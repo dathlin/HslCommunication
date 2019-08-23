@@ -219,18 +219,23 @@ value = netSimplifyClient.ReadFromServer(1,'123').Content
 will be used in English and Chinese double annotation, thank you for your understanding.
 
 **HslCommunicationDemo** The features supported by this project can be roughly clear through the demo interface below:
+![Picture](https://raw.githubusercontent.com/dathlin/HslCommunication/master/imgs/demo.png)
 
 
 ## HslCommunication.jar Summary 
 This component provides the Java version, for the. NET version of the castration version, removed all the server function code, 
 retained part of the client function code, convenient and plc, device data interaction, and C # program data interaction, 
 this jar component is suitable for the development of Android, easy to build a. NET Server + Windows Client + asp.net client + J2EE client + Java Client + Android client.
+![Picture](https://raw.githubusercontent.com/dathlin/HslCommunication/master/imgs/java_demo.png)
 
 ## HslCommunication.py Summary 
 This component provides a Python version, a castration version of the. NET version, removes all server function codes, retains some of the client function code, 
 facilitates data interaction with PLC, devices, and data interaction with C # programs for cross-platform operation
 
 ## Xamarin.Android Demo
+![Picture](https://raw.githubusercontent.com/dathlin/HslCommunication/master/imgs/appDemo.png)
 
-## Where is the source code?
+## Where is the Source code?
 Not free open source. you can refer to webside: http://www.hslcommunication.cn/Cooperation
+
+Thank you for your understanding
