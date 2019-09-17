@@ -1,0 +1,932 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3878075B-B8D7-4090-B094-29622581442F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HslCommunicationDemo</RootNamespace>
+    <AssemblyName>HslCommunicationDemo</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HslCommunication, Version=8.0.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.8.0.1\lib\net35\HslCommunication.dll</HintPath>
+    </Reference>
+    <Reference Include="HslControls, Version=2.2.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslControls.2.2.2\lib\net35\HslControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.3.0.6\lib\net35-client\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2015, Version=3.0.4.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.ThemeVS2015.3.0.4\lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Algorithms\FormConnectPool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Algorithms\FormConnectPool.Designer.cs">
+      <DependentUpon>FormConnectPool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Algorithms\FormPid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Algorithms\FormPid.Designer.cs">
+      <DependentUpon>FormPid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Algorithms\FourierFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Algorithms\FourierFilter.Designer.cs">
+      <DependentUpon>FourierFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Algorithms\FourierTransform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Algorithms\FourierTransform.Designer.cs">
+      <DependentUpon>FourierTransform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BarCode\FormSickBarCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BarCode\FormSickBarCode.Designer.cs">
+      <DependentUpon>FormSickBarCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FormBasicControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\FormBasicControl.Designer.cs">
+      <DependentUpon>FormBasicControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FormPipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\FormPipe.Designer.cs">
+      <DependentUpon>FormPipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\UserControlHead.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\UserControlHead.Designer.cs">
+      <DependentUpon>UserControlHead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoUtils.cs" />
+    <Compile Include="FormAuthor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAuthor.Designer.cs">
+      <DependentUpon>FormAuthor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormByteTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormByteTransfer.Designer.cs">
+      <DependentUpon>FormByteTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCharge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCharge.Designer.cs">
+      <DependentUpon>FormCharge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormPlainSocket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormPlainSocket.Designer.cs">
+      <DependentUpon>FormPlainSocket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormComplexNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormComplexNet.Designer.cs">
+      <DependentUpon>FormComplexNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FormCurve.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\FormCurve.Designer.cs">
+      <DependentUpon>FormCurve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisclaimer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisclaimer.Designer.cs">
+      <DependentUpon>FormDisclaimer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormFileClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormFileClient.Designer.cs">
+      <DependentUpon>FormFileClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FormGauge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\FormGauge.Designer.cs">
+      <DependentUpon>FormGauge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormImage.Designer.cs">
+      <DependentUpon>FormImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelect.Designer.cs">
+      <DependentUpon>FormSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormLogNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormLogNet.Designer.cs">
+      <DependentUpon>FormLogNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMail.Designer.cs">
+      <DependentUpon>FormMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOpenProtocol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOpenProtocol.Designer.cs">
+      <DependentUpon>FormOpenProtocol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegister.Designer.cs">
+      <DependentUpon>FormRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSeqCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSeqCreate.Designer.cs">
+      <DependentUpon>FormSeqCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSerialDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSerialDebug.Designer.cs">
+      <DependentUpon>FormSerialDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTcpServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTcpServer.Designer.cs">
+      <DependentUpon>FormTcpServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HslFormContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormUpdateServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormUpdateServer.Designer.cs">
+      <DependentUpon>FormUpdateServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modbus\FormInputAlien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modbus\FormInputAlien.Designer.cs">
+      <DependentUpon>FormInputAlien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modbus\FormModbusRtuOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modbus\FormModbusRtuOverTcp.Designer.cs">
+      <DependentUpon>FormModbusRtuOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modbus\FormModbusServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modbus\FormModbusServer.Designer.cs">
+      <DependentUpon>FormModbusServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modbus\FormTrustedClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modbus\FormTrustedClient.Designer.cs">
+      <DependentUpon>FormTrustedClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MQTT\FormMqttClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MQTT\FormMqttClient.Designer.cs">
+      <DependentUpon>FormMqttClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormFatekProgrameOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormFatekProgrameOverTcp.Designer.cs">
+      <DependentUpon>FormFatekProgrameOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormFujiSPBOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormFujiSPBOverTcp.Designer.cs">
+      <DependentUpon>FormFujiSPBOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormFujiSPB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormFujiSPB.Designer.cs">
+      <DependentUpon>FormFujiSPB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormFatekPrograme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormFatekPrograme.Designer.cs">
+      <DependentUpon>FormFatekPrograme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceNanoSerialOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceNanoSerialOverTcp.Designer.cs">
+      <DependentUpon>FormKeyenceNanoSerialOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormLsisCnetOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormLsisCnetOverTcp.Designer.cs">
+      <DependentUpon>FormLsisCnetOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMelsec3COverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsec3COverTcp.Designer.cs">
+      <DependentUpon>FormMelsec3COverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMelsecLinksOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsecLinksOverTcp.Designer.cs">
+      <DependentUpon>FormMelsecLinksOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMelsecSerialOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsecSerialOverTcp.Designer.cs">
+      <DependentUpon>FormMelsecSerialOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormOmronCip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmronCip.Designer.cs">
+      <DependentUpon>FormOmronCip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLinkOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLinkOverTcp.Designer.cs">
+      <DependentUpon>FormOmronHostLinkOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormPanasonicBinary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormPanasonicBinary.Designer.cs">
+      <DependentUpon>FormPanasonicBinary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMelsec3C.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsec3C.Designer.cs">
+      <DependentUpon>FormMelsec3C.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceBinary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceBinary.Designer.cs">
+      <DependentUpon>FormKeyenceBinary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceAscii.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceAscii.Designer.cs">
+      <DependentUpon>FormKeyenceAscii.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceNanoSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceNanoSerial.Designer.cs">
+      <DependentUpon>FormKeyenceNanoSerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormLsisCnet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormLsisCnet.Designer.cs">
+      <DependentUpon>FormLsisCnet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormOmronUdp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmronUdp.Designer.cs">
+      <DependentUpon>FormOmronUdp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLink.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLink.Designer.cs">
+      <DependentUpon>FormOmronHostLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMcServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMcServer.Designer.cs">
+      <DependentUpon>FormMcServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormLSisServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormLSisServer.Designer.cs">
+      <DependentUpon>FormLSisServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormPanasonicMewOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormPanasonicMewOverTcp.Designer.cs">
+      <DependentUpon>FormPanasonicMewOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormS7Server.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormS7Server.Designer.cs">
+      <DependentUpon>FormS7Server.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormLsisFEnet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormLsisFEnet.Designer.cs">
+      <DependentUpon>FormLsisFEnet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormSiemensPPIOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormSiemensPPIOverTcp.Designer.cs">
+      <DependentUpon>FormSiemensPPIOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Redis\FormRedisSubscribe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Redis\FormRedisSubscribe.Designer.cs">
+      <DependentUpon>FormRedisSubscribe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Redis\FormRedisClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Redis\FormRedisClient.Designer.cs">
+      <DependentUpon>FormRedisClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormSimplifyNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormSimplifyNet.Designer.cs">
+      <DependentUpon>FormSimplifyNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTcpDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTcpDebug.Designer.cs">
+      <DependentUpon>FormTcpDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormDAM3601.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDAM3601.Designer.cs">
+      <DependentUpon>FormDAM3601.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modbus\FormModbusAscii.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modbus\FormModbusAscii.Designer.cs">
+      <DependentUpon>FormModbusAscii.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMelsec1EBinary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsec1EBinary.Designer.cs">
+      <DependentUpon>FormMelsec1EBinary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modbus\FormModbusRtu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modbus\FormModbusRtu.Designer.cs">
+      <DependentUpon>FormModbusRtu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modbus\FormModbusAlien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modbus\FormModbusAlien.Designer.cs">
+      <DependentUpon>FormModbusAlien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMelsecLinks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsecLinks.Designer.cs">
+      <DependentUpon>FormMelsecLinks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMelsecSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsecSerial.Designer.cs">
+      <DependentUpon>FormMelsecSerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormPanasonicMew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormPanasonicMew.Designer.cs">
+      <DependentUpon>FormPanasonicMew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormOmron.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmron.Designer.cs">
+      <DependentUpon>FormOmron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FormPieChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\FormPieChart.Designer.cs">
+      <DependentUpon>FormPieChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormPushNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormPushNet.Designer.cs">
+      <DependentUpon>FormPushNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormAllenBrandly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormAllenBrandly.Designer.cs">
+      <DependentUpon>FormAllenBrandly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormSiemensPPI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormSiemensPPI.Designer.cs">
+      <DependentUpon>FormSiemensPPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormSiemensFW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormSiemensFW.Designer.cs">
+      <DependentUpon>FormSiemensFW.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormUdpNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormUdpNet.Designer.cs">
+      <DependentUpon>FormUdpNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormSimplifyNetAlien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormSimplifyNetAlien.Designer.cs">
+      <DependentUpon>FormSimplifyNetAlien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLoad.Designer.cs">
+      <DependentUpon>FormLoad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMelsecAscii.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsecAscii.Designer.cs">
+      <DependentUpon>FormMelsecAscii.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modbus\FormModbus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modbus\FormModbus.Designer.cs">
+      <DependentUpon>FormModbus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMelsecBinary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsecBinary.Designer.cs">
+      <DependentUpon>FormMelsecBinary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormSiemens.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormSiemens.Designer.cs">
+      <DependentUpon>FormSiemens.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Redis\RedisBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Redis\RedisBrowser.Designer.cs">
+      <DependentUpon>RedisBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Robot\FormABBWebApi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormABBWebApi.Designer.cs">
+      <DependentUpon>FormABBWebApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Robot\FormEfortPrevious.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormEfortPrevious.Designer.cs">
+      <DependentUpon>FormEfortPrevious.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Robot\FormEfort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormEfort.Designer.cs">
+      <DependentUpon>FormEfort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Robot\FormYRC1000.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormYRC1000.Designer.cs">
+      <DependentUpon>FormYRC1000.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Robot\FormKuka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormKuka.Designer.cs">
+      <DependentUpon>FormKuka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings1.settings</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\UserControlCurve.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\UserControlCurve.Designer.cs">
+      <DependentUpon>UserControlCurve.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Algorithms\FormConnectPool.resx">
+      <DependentUpon>FormConnectPool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Algorithms\FormPid.resx">
+      <DependentUpon>FormPid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Algorithms\FourierFilter.resx">
+      <DependentUpon>FourierFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Algorithms\FourierTransform.resx">
+      <DependentUpon>FourierTransform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BarCode\FormSickBarCode.resx">
+      <DependentUpon>FormSickBarCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\FormBasicControl.resx">
+      <DependentUpon>FormBasicControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\FormPipe.resx">
+      <DependentUpon>FormPipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\UserControlCurve.resx">
+      <DependentUpon>UserControlCurve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\UserControlHead.resx">
+      <DependentUpon>UserControlHead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAuthor.resx">
+      <DependentUpon>FormAuthor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormByteTransfer.resx">
+      <DependentUpon>FormByteTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCharge.resx">
+      <DependentUpon>FormCharge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormPlainSocket.resx">
+      <DependentUpon>FormPlainSocket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormComplexNet.resx">
+      <DependentUpon>FormComplexNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\FormCurve.resx">
+      <DependentUpon>FormCurve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisclaimer.resx">
+      <DependentUpon>FormDisclaimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormFileClient.resx">
+      <DependentUpon>FormFileClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\FormGauge.resx">
+      <DependentUpon>FormGauge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormImage.resx">
+      <DependentUpon>FormImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelect.resx">
+      <DependentUpon>FormSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormLogNet.resx">
+      <DependentUpon>FormLogNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMail.resx">
+      <DependentUpon>FormMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOpenProtocol.resx">
+      <DependentUpon>FormOpenProtocol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegister.resx">
+      <DependentUpon>FormRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSeqCreate.resx">
+      <DependentUpon>FormSeqCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSerialDebug.resx">
+      <DependentUpon>FormSerialDebug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTcpServer.resx">
+      <DependentUpon>FormTcpServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormUpdateServer.resx">
+      <DependentUpon>FormUpdateServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modbus\FormInputAlien.resx">
+      <DependentUpon>FormInputAlien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modbus\FormModbusRtuOverTcp.resx">
+      <DependentUpon>FormModbusRtuOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modbus\FormModbusServer.resx">
+      <DependentUpon>FormModbusServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modbus\FormTrustedClient.resx">
+      <DependentUpon>FormTrustedClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MQTT\FormMqttClient.resx">
+      <DependentUpon>FormMqttClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormFatekProgrameOverTcp.resx">
+      <DependentUpon>FormFatekProgrameOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormFujiSPBOverTcp.resx">
+      <DependentUpon>FormFujiSPBOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormFujiSPB.resx">
+      <DependentUpon>FormFujiSPB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormFatekPrograme.resx">
+      <DependentUpon>FormFatekPrograme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormKeyenceNanoSerialOverTcp.resx">
+      <DependentUpon>FormKeyenceNanoSerialOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormLsisCnetOverTcp.resx">
+      <DependentUpon>FormLsisCnetOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsec3COverTcp.resx">
+      <DependentUpon>FormMelsec3COverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsecLinksOverTcp.resx">
+      <DependentUpon>FormMelsecLinksOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsecSerialOverTcp.resx">
+      <DependentUpon>FormMelsecSerialOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmronCip.resx">
+      <DependentUpon>FormOmronCip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmronHostLinkOverTcp.resx">
+      <DependentUpon>FormOmronHostLinkOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormPanasonicBinary.resx">
+      <DependentUpon>FormPanasonicBinary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsec3C.resx">
+      <DependentUpon>FormMelsec3C.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormKeyenceBinary.resx">
+      <DependentUpon>FormKeyenceBinary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormKeyenceAscii.resx">
+      <DependentUpon>FormKeyenceAscii.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormKeyenceNanoSerial.resx">
+      <DependentUpon>FormKeyenceNanoSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormLsisCnet.resx">
+      <DependentUpon>FormLsisCnet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmronUdp.resx">
+      <DependentUpon>FormOmronUdp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmronHostLink.resx">
+      <DependentUpon>FormOmronHostLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMcServer.resx">
+      <DependentUpon>FormMcServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormLSisServer.resx">
+      <DependentUpon>FormLSisServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormPanasonicMewOverTcp.resx">
+      <DependentUpon>FormPanasonicMewOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormS7Server.resx">
+      <DependentUpon>FormS7Server.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormLsisFEnet.resx">
+      <DependentUpon>FormLsisFEnet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormSiemensPPIOverTcp.resx">
+      <DependentUpon>FormSiemensPPIOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Redis\FormRedisSubscribe.resx">
+      <DependentUpon>FormRedisSubscribe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Redis\FormRedisClient.resx">
+      <DependentUpon>FormRedisClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormSimplifyNet.resx">
+      <DependentUpon>FormSimplifyNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTcpDebug.resx">
+      <DependentUpon>FormTcpDebug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDAM3601.resx">
+      <DependentUpon>FormDAM3601.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modbus\FormModbusAscii.resx">
+      <DependentUpon>FormModbusAscii.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsec1EBinary.resx">
+      <DependentUpon>FormMelsec1EBinary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modbus\FormModbusRtu.resx">
+      <DependentUpon>FormModbusRtu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modbus\FormModbusAlien.resx">
+      <DependentUpon>FormModbusAlien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsecLinks.resx">
+      <DependentUpon>FormMelsecLinks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsecSerial.resx">
+      <DependentUpon>FormMelsecSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormPanasonicMew.resx">
+      <DependentUpon>FormPanasonicMew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmron.resx">
+      <DependentUpon>FormOmron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\FormPieChart.resx">
+      <DependentUpon>FormPieChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormPushNet.resx">
+      <DependentUpon>FormPushNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormAllenBrandly.resx">
+      <DependentUpon>FormAllenBrandly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormSiemensPPI.resx">
+      <DependentUpon>FormSiemensPPI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormSiemensFW.resx">
+      <DependentUpon>FormSiemensFW.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormUdpNet.resx">
+      <DependentUpon>FormUdpNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormSimplifyNetAlien.resx">
+      <DependentUpon>FormSimplifyNetAlien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLoad.resx">
+      <DependentUpon>FormLoad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsecAscii.resx">
+      <DependentUpon>FormMelsecAscii.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modbus\FormModbus.resx">
+      <DependentUpon>FormModbus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsecBinary.resx">
+      <DependentUpon>FormMelsecBinary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormSiemens.resx">
+      <DependentUpon>FormSiemens.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Redis\RedisBrowser.resx">
+      <DependentUpon>RedisBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormABBWebApi.resx">
+      <DependentUpon>FormABBWebApi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormEfortPrevious.resx">
+      <DependentUpon>FormEfortPrevious.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormEfort.resx">
+      <DependentUpon>FormEfort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormYRC1000.resx">
+      <DependentUpon>FormYRC1000.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormKuka.resx">
+      <DependentUpon>FormKuka.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Settings1.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bitbug_favicon.ico" />
+    <None Include="img\VirtualMachine.png" />
+    <None Include="img\usbcontroller.png" />
+    <None Include="img\Tag_7213.png" />
+    <None Include="img\Table_748.png" />
+    <None Include="img\Structure_507.png" />
+    <None Include="img\Module_648.png" />
+    <None Include="img\Method_636.png" />
+    <None Include="img\loading.gif" />
+    <None Include="img\ListView_687.png" />
+    <None Include="img\lightningBolt_16xLG.png" />
+    <None Include="img\grid_Data_16xLG.png" />
+    <None Include="img\glasses_16xLG.png" />
+    <None Include="img\Event_594_exp.png" />
+    <None Include="img\Event_594.png" />
+    <None Include="img\Enum_582.png" />
+    <None Include="img\docview_xaml_on_16x16.png" />
+    <None Include="img\Delegate_8339.png" />
+    <None Include="img\Copy_6524.png" />
+    <None Include="img\Cloud_16xLG.png" />
+    <None Include="img\ClassIcon.png" />
+    <None Include="img\Class_489.png" />
+    <None Include="img\brackets_Square_16xMD.png" />
+    <None Include="img\Activity_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
