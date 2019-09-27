@@ -175,53 +175,80 @@ namespace HslCommunicationDemo
         private void button_read_bool_Click( object sender, EventArgs e )
         {
             // 读取bool变量
-            DemoUtils.ReadResultRender( melsecA3C.ReadBool( textBox3.Text ), textBox3.Text, textBox4 );
+            if(textBox12.Text == "1")
+                DemoUtils.ReadResultRender( melsecA3C.ReadBool( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( melsecA3C.ReadBool( textBox3.Text, ushort.Parse( textBox12.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_short_Click( object sender, EventArgs e )
         {
             // 读取short变量
-            DemoUtils.ReadResultRender( melsecA3C.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox12.Text == "1")
+                DemoUtils.ReadResultRender( melsecA3C.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( melsecA3C.ReadInt16( textBox3.Text, ushort.Parse( textBox12.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ushort_Click( object sender, EventArgs e )
         {
             // 读取ushort变量
-            DemoUtils.ReadResultRender( melsecA3C.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox12.Text == "1")
+                DemoUtils.ReadResultRender( melsecA3C.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( melsecA3C.ReadUInt16( textBox3.Text, ushort.Parse( textBox12.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_int_Click( object sender, EventArgs e )
         {
             // 读取int变量
-            DemoUtils.ReadResultRender( melsecA3C.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox12.Text == "1")
+                DemoUtils.ReadResultRender( melsecA3C.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( melsecA3C.ReadInt32( textBox3.Text, ushort.Parse( textBox12.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_uint_Click( object sender, EventArgs e )
         {
             // 读取uint变量
-            DemoUtils.ReadResultRender( melsecA3C.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox12.Text == "1")
+                DemoUtils.ReadResultRender( melsecA3C.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( melsecA3C.ReadUInt32( textBox3.Text, ushort.Parse( textBox12.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_long_Click( object sender, EventArgs e )
         {
             // 读取long变量
-            DemoUtils.ReadResultRender( melsecA3C.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox12.Text == "1")
+                DemoUtils.ReadResultRender( melsecA3C.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( melsecA3C.ReadInt64( textBox3.Text, ushort.Parse( textBox12.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ulong_Click( object sender, EventArgs e )
         {
             // 读取ulong变量
-            DemoUtils.ReadResultRender( melsecA3C.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox12.Text == "1")
+                DemoUtils.ReadResultRender( melsecA3C.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( melsecA3C.ReadUInt64( textBox3.Text, ushort.Parse( textBox12.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_float_Click( object sender, EventArgs e )
         {
             // 读取float变量
-            DemoUtils.ReadResultRender( melsecA3C.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox12.Text == "1")
+                DemoUtils.ReadResultRender( melsecA3C.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( melsecA3C.ReadFloat( textBox3.Text, ushort.Parse( textBox12.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_double_Click( object sender, EventArgs e )
         {
             // 读取double变量
-            DemoUtils.ReadResultRender( melsecA3C.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox12.Text == "1")
+                DemoUtils.ReadResultRender( melsecA3C.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( melsecA3C.ReadDouble( textBox3.Text, ushort.Parse( textBox12.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_string_Click( object sender, EventArgs e )

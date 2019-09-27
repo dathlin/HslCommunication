@@ -97,7 +97,14 @@ namespace HslCommunicationDemo
         {
             if (result.IsSuccess)
             {
-                textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {result.Content}{Environment.NewLine}" );
+                if(result.Content is Array array)
+                {
+                    textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat(result.Content)}{Environment.NewLine}" );
+                }
+                else
+                {
+                    textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {result.Content}{Environment.NewLine}" );
+                }
             }
             else
             {
@@ -217,7 +224,7 @@ namespace HslCommunicationDemo
         private void button_read_bool_Click( object sender, EventArgs e )
         {
             // 读取bool变量
-            readResultRender( lSisServer.ReadBool( textBox3.Text  ), textBox3.Text, textBox4 );
+            readResultRender( lSisServer.ReadBool( textBox3.Text ), textBox3.Text, textBox4 );
         }
         
         private void button6_Click( object sender, EventArgs e )
@@ -229,47 +236,71 @@ namespace HslCommunicationDemo
         private void button_read_short_Click( object sender, EventArgs e )
         {
             // 读取short变量
-            readResultRender( lSisServer.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox6.Text == "1")
+                readResultRender( lSisServer.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                readResultRender( lSisServer.ReadInt16( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ushort_Click( object sender, EventArgs e )
         {
             // 读取ushort变量
-            readResultRender( lSisServer.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox6.Text == "1")
+                readResultRender( lSisServer.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                readResultRender( lSisServer.ReadUInt16( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_int_Click( object sender, EventArgs e )
         {
             // 读取int变量
-            readResultRender( lSisServer.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox6.Text == "1")
+                readResultRender( lSisServer.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                readResultRender( lSisServer.ReadInt32( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_uint_Click( object sender, EventArgs e )
         {
             // 读取uint变量
-            readResultRender( lSisServer.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox6.Text == "1")
+                readResultRender( lSisServer.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                readResultRender( lSisServer.ReadUInt32( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_long_Click( object sender, EventArgs e )
         {
             // 读取long变量
-            readResultRender( lSisServer.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox6.Text == "1")
+                readResultRender( lSisServer.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                readResultRender( lSisServer.ReadInt64( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ulong_Click( object sender, EventArgs e )
         {
             // 读取ulong变量
-            readResultRender( lSisServer.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox6.Text == "1")
+                readResultRender( lSisServer.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                readResultRender( lSisServer.ReadUInt64( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_float_Click( object sender, EventArgs e )
         {
             // 读取float变量
-            readResultRender( lSisServer.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox6.Text == "1")
+                readResultRender( lSisServer.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                readResultRender( lSisServer.ReadFloat( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_double_Click( object sender, EventArgs e )
         {
             // 读取double变量
-            readResultRender( lSisServer.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox6.Text == "1")
+                readResultRender( lSisServer.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                readResultRender( lSisServer.ReadDouble( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_string_Click( object sender, EventArgs e )

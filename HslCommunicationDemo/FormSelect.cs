@@ -333,6 +333,7 @@ namespace HslCommunicationDemo
             // Mqtt 相关
             TreeNode mqttNode = new TreeNode( "MQTT" );
             mqttNode.Nodes.Add( new TreeNode( "Mqtt Client" ) { Tag = typeof( FormMqttClient ) } );
+            mqttNode.Nodes.Add( new TreeNode( "Mqtt Server" ) { Tag = typeof( FormMqttServer ) } );
             treeView1.Nodes.Add( mqttNode );
 
             // Robot 相关

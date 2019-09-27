@@ -80,6 +80,7 @@ namespace HslCommunicationDemo
                 button_read_float.Text = "r-float";
                 button_read_double.Text = "r-double";
                 button_read_string.Text = "r-string";
+                button7.Text = "r-time";
                 label11.Text = "Address:";
                 label12.Text = "length:";
                 button25.Text = "Bulk Read";
@@ -101,6 +102,7 @@ namespace HslCommunicationDemo
                 button16.Text = "w-float";
                 button15.Text = "w-double";
                 button14.Text = "w-string";
+                button8.Text = "w-time";
 
                 groupBox1.Text = "Single Data Read test";
                 groupBox2.Text = "Single Data Write test";
@@ -193,47 +195,71 @@ namespace HslCommunicationDemo
         private void button_read_short_Click( object sender, EventArgs e )
         {
             // 读取short变量
-            DemoUtils.ReadResultRender( siemensTcpNet.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            if(textBox5.Text == "1")
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadInt16( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ushort_Click( object sender, EventArgs e )
         {
             // 读取ushort变量
-            DemoUtils.ReadResultRender( siemensTcpNet.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox5.Text == "1")
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadUInt16( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_int_Click( object sender, EventArgs e )
         {
             // 读取int变量
-            DemoUtils.ReadResultRender( siemensTcpNet.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox5.Text == "1")
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadInt32( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_uint_Click( object sender, EventArgs e )
         {
             // 读取uint变量
-            DemoUtils.ReadResultRender( siemensTcpNet.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox5.Text == "1")
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadUInt32( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_long_Click( object sender, EventArgs e )
         {
             // 读取long变量
-            DemoUtils.ReadResultRender( siemensTcpNet.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox5.Text == "1")
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadInt64( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ulong_Click( object sender, EventArgs e )
         {
             // 读取ulong变量
-            DemoUtils.ReadResultRender( siemensTcpNet.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox5.Text == "1")
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadUInt64( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_float_Click( object sender, EventArgs e )
         {
             // 读取float变量
-            DemoUtils.ReadResultRender( siemensTcpNet.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox5.Text == "1")
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadFloat( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_double_Click( object sender, EventArgs e )
         {
             // 读取double变量
-            DemoUtils.ReadResultRender( siemensTcpNet.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox5.Text == "1")
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( siemensTcpNet.ReadDouble( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_string_Click( object sender, EventArgs e )
@@ -242,6 +268,11 @@ namespace HslCommunicationDemo
             DemoUtils.ReadResultRender( siemensTcpNet.ReadString( textBox3.Text ), textBox3.Text, textBox4 );
         }
 
+        private void Button7_Click( object sender, EventArgs e )
+        {
+            // 读取时间
+            DemoUtils.ReadResultRender( siemensTcpNet.ReadDateTime( textBox3.Text ), textBox3.Text, textBox4 );
+        }
 
         #endregion
 
@@ -323,6 +354,11 @@ namespace HslCommunicationDemo
         }
 
 
+        private void Button8_Click( object sender, EventArgs e )
+        {
+            // time写入
+            DemoUtils.WriteResultRender( ( ) => siemensTcpNet.Write( textBox8.Text, DateTime.Parse( textBox7.Text ) ), textBox8.Text );
+        }
 
 
         #endregion
@@ -507,5 +543,6 @@ namespace HslCommunicationDemo
                 MessageBox.Show( "Failed: " + result.Message );
             }
         }
+
     }
 }

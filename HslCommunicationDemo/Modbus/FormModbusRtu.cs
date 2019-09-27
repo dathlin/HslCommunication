@@ -225,59 +225,89 @@ namespace HslCommunicationDemo
         private void button_read_bool_Click( object sender, EventArgs e )
         {
             // 读取bool变量
-            DemoUtils.ReadResultRender( busRtuClient.ReadCoil( textBox3.Text ), textBox3.Text, textBox4 );
+            if(textBox1.Text == "1")
+                DemoUtils.ReadResultRender( busRtuClient.ReadCoil( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busRtuClient.ReadCoil( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button4_Click_1( object sender, EventArgs e )
         {
             // 离散输入读取
-            DemoUtils.ReadResultRender( busRtuClient.ReadDiscrete( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox1.Text == "1")
+                DemoUtils.ReadResultRender( busRtuClient.ReadDiscrete( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busRtuClient.ReadDiscrete( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_short_Click( object sender, EventArgs e )
         {
             // 读取short变量
-            DemoUtils.ReadResultRender( busRtuClient.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox1.Text == "1")
+                DemoUtils.ReadResultRender( busRtuClient.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busRtuClient.ReadInt16( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ushort_Click( object sender, EventArgs e )
         {
             // 读取ushort变量
-            DemoUtils.ReadResultRender( busRtuClient.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox1.Text == "1")
+                DemoUtils.ReadResultRender( busRtuClient.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busRtuClient.ReadUInt16( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_int_Click( object sender, EventArgs e )
         {
             // 读取int变量
-            DemoUtils.ReadResultRender( busRtuClient.ReadInt32(  textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox1.Text == "1")
+                DemoUtils.ReadResultRender( busRtuClient.ReadInt32(  textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busRtuClient.ReadInt32( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_uint_Click( object sender, EventArgs e )
         {
             // 读取uint变量
-            DemoUtils.ReadResultRender( busRtuClient.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox1.Text == "1")
+                DemoUtils.ReadResultRender( busRtuClient.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busRtuClient.ReadUInt32( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_long_Click( object sender, EventArgs e )
         {
             // 读取long变量
-            DemoUtils.ReadResultRender( busRtuClient.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox1.Text == "1")
+                DemoUtils.ReadResultRender( busRtuClient.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busRtuClient.ReadInt64( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ulong_Click( object sender, EventArgs e )
         {
             // 读取ulong变量
-            DemoUtils.ReadResultRender( busRtuClient.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox1.Text == "1")
+                DemoUtils.ReadResultRender( busRtuClient.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busRtuClient.ReadUInt64( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_float_Click( object sender, EventArgs e )
         {
             // 读取float变量
-            DemoUtils.ReadResultRender( busRtuClient.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox1.Text == "1")
+                DemoUtils.ReadResultRender( busRtuClient.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busRtuClient.ReadFloat( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_double_Click( object sender, EventArgs e )
         {
             // 读取double变量
-            DemoUtils.ReadResultRender( busRtuClient.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox1.Text == "1")
+                DemoUtils.ReadResultRender( busRtuClient.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busRtuClient.ReadDouble( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_string_Click( object sender, EventArgs e )

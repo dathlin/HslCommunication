@@ -138,7 +138,10 @@ namespace HslCommunicationDemo
         /// <param name="textBox"></param>
         private void readResultRender<T>( T result, string address, TextBox textBox )
         {
-            textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {result}{Environment.NewLine}" );
+            if(result is Array array)
+                textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat(result)}{Environment.NewLine}" );
+            else
+                textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {result}{Environment.NewLine}" );
         }
 
         /// <summary>
@@ -259,59 +262,89 @@ namespace HslCommunicationDemo
         private void button_read_bool_Click( object sender, EventArgs e )
         {
             // 读取线圈bool变量
-            readResultRender( busTcpServer.ReadCoil( textBox3.Text  ), textBox3.Text, textBox4 );
+            if(textBox11.Text == "1")
+                readResultRender( busTcpServer.ReadCoil( textBox3.Text  ), textBox3.Text, textBox4 );
+            else
+                readResultRender( busTcpServer.ReadCoil( textBox3.Text, ushort.Parse( textBox11.Text ) ), textBox3.Text, textBox4 );
         }
         
         private void button6_Click( object sender, EventArgs e )
         {
             // 读取离散bool变量
-            readResultRender( busTcpServer.ReadDiscrete( textBox3.Text  ), textBox3.Text, textBox4 );
+            if (textBox11.Text == "1")
+                readResultRender( busTcpServer.ReadDiscrete( textBox3.Text  ), textBox3.Text, textBox4 );
+            else
+                readResultRender( busTcpServer.ReadDiscrete( textBox3.Text, ushort.Parse( textBox11.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_short_Click( object sender, EventArgs e )
         {
             // 读取short变量
-            DemoUtils.ReadResultRender( busTcpServer.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox11.Text == "1")
+                DemoUtils.ReadResultRender( busTcpServer.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busTcpServer.ReadInt16( textBox3.Text, ushort.Parse( textBox11.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ushort_Click( object sender, EventArgs e )
         {
             // 读取ushort变量
-            DemoUtils.ReadResultRender( busTcpServer.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox11.Text == "1")
+                DemoUtils.ReadResultRender( busTcpServer.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busTcpServer.ReadUInt16( textBox3.Text, ushort.Parse( textBox11.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_int_Click( object sender, EventArgs e )
         {
             // 读取int变量
-            DemoUtils.ReadResultRender( busTcpServer.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox11.Text == "1")
+                DemoUtils.ReadResultRender( busTcpServer.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busTcpServer.ReadInt32( textBox3.Text, ushort.Parse( textBox11.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_uint_Click( object sender, EventArgs e )
         {
             // 读取uint变量
-            DemoUtils.ReadResultRender( busTcpServer.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox11.Text == "1")
+                DemoUtils.ReadResultRender( busTcpServer.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busTcpServer.ReadUInt32( textBox3.Text, ushort.Parse( textBox11.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_long_Click( object sender, EventArgs e )
         {
             // 读取long变量
-            DemoUtils.ReadResultRender( busTcpServer.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox11.Text == "1")
+                DemoUtils.ReadResultRender( busTcpServer.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busTcpServer.ReadInt64( textBox3.Text, ushort.Parse( textBox11.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ulong_Click( object sender, EventArgs e )
         {
             // 读取ulong变量
-            DemoUtils.ReadResultRender( busTcpServer.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox11.Text == "1")
+                DemoUtils.ReadResultRender( busTcpServer.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busTcpServer.ReadUInt64( textBox3.Text, ushort.Parse( textBox11.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_float_Click( object sender, EventArgs e )
         {
             // 读取float变量
-            DemoUtils.ReadResultRender( busTcpServer.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox11.Text == "1")
+                DemoUtils.ReadResultRender( busTcpServer.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busTcpServer.ReadFloat( textBox3.Text, ushort.Parse( textBox11.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_double_Click( object sender, EventArgs e )
         {
             // 读取double变量
-            DemoUtils.ReadResultRender( busTcpServer.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+            if (textBox11.Text == "1")
+                DemoUtils.ReadResultRender( busTcpServer.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( busTcpServer.ReadDouble( textBox3.Text, ushort.Parse( textBox11.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_string_Click( object sender, EventArgs e )

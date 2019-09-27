@@ -27,7 +27,6 @@ namespace HslCommunicationDemo
             button2.Enabled = false;
 
             Language( Program.Language );
-
         }
 
         private void Language( int language )
@@ -70,6 +69,7 @@ namespace HslCommunicationDemo
 
         private void button1_Click( object sender, EventArgs e )
         {
+            panel2.Enabled = true;
             // 连接
             MqttConnectionOptions options = new MqttConnectionOptions( )
             {
@@ -103,10 +103,17 @@ namespace HslCommunicationDemo
 
         private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
         {
-            Invoke( new Action( ( ) =>
-             {
-                 textBox8.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
-             } ) );
+            try
+            {
+                Invoke( new Action( ( ) =>
+                 {
+                     textBox8.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+                 } ) );
+            }
+            catch
+            {
+
+            }
         }
 
         private void button2_Click( object sender, EventArgs e )

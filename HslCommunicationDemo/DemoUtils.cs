@@ -23,7 +23,14 @@ namespace HslCommunicationDemo
         {
             if (result.IsSuccess)
             {
-                textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {result.Content}{Environment.NewLine}" );
+                if (result.Content is Array)
+                {
+                    textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat(result.Content)}{Environment.NewLine}" );
+                }
+                else
+                {
+                    textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {result.Content}{Environment.NewLine}" );
+                }
             }
             else
             {
