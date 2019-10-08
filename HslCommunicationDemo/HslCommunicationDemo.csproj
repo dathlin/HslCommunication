@@ -37,8 +37,8 @@
     <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=8.0.3.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.8.0.3\lib\net35\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=8.1.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.8.1.0\lib\net35\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.2.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.2.2\lib\net35\HslControls.dll</HintPath>
@@ -129,6 +129,12 @@
     </Compile>
     <Compile Include="FormCharge.Designer.cs">
       <DependentUpon>FormCharge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormHttpServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormHttpServer.designer.cs">
+      <DependentUpon>FormHttpServer.cs</DependentUpon>
     </Compile>
     <Compile Include="Hsl\FormPlainSocket.cs">
       <SubType>Form</SubType>
@@ -246,6 +252,12 @@
     </Compile>
     <Compile Include="Modbus\FormModbusServer.Designer.cs">
       <DependentUpon>FormModbusServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modbus\FormModbusUdp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modbus\FormModbusUdp.designer.cs">
+      <DependentUpon>FormModbusUdp.cs</DependentUpon>
     </Compile>
     <Compile Include="Modbus\FormTrustedClient.cs">
       <SubType>Form</SubType>
@@ -650,6 +662,9 @@
     <EmbeddedResource Include="FormCharge.resx">
       <DependentUpon>FormCharge.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormHttpServer.resx">
+      <DependentUpon>FormHttpServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormPlainSocket.resx">
       <DependentUpon>FormPlainSocket.cs</DependentUpon>
     </EmbeddedResource>
@@ -706,6 +721,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modbus\FormModbusServer.resx">
       <DependentUpon>FormModbusServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modbus\FormModbusUdp.resx">
+      <DependentUpon>FormModbusUdp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modbus\FormTrustedClient.resx">
       <DependentUpon>FormTrustedClient.cs</DependentUpon>

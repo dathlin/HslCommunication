@@ -267,6 +267,7 @@ namespace HslCommunicationDemo
             // Modbus协议
             TreeNode modbusNode = new TreeNode( "Modbus" );
             modbusNode.Nodes.Add( new TreeNode( "Modbus Tcp" ) { Tag = typeof( FormModbus ) } );
+            modbusNode.Nodes.Add( new TreeNode( "Modbus Udp" ) { Tag = typeof( FormModbusUdp ) } );
             modbusNode.Nodes.Add( new TreeNode( "Modbus Tcp[Alien]" ) { Tag = typeof( FormModbusAlien ) } );
             modbusNode.Nodes.Add( new TreeNode( "Modbus Rtu" ) { Tag = typeof( FormModbusRtu ) } );
             modbusNode.Nodes.Add( new TreeNode( "Modbus Rtu OverTcp" ) { Tag = typeof( FormModbusRtuOverTcp ) } );
@@ -367,6 +368,7 @@ namespace HslCommunicationDemo
             hslNode.Nodes.Add( new TreeNode( "Push Net [消息推送]" ) { Tag = typeof( FormPushNet ) } );
             hslNode.Nodes.Add( new TreeNode( "SoftUpdate [软件更新]" ) { Tag = typeof( FormUpdateServer ) } );
             hslNode.Nodes.Add( new TreeNode( "Plain Net [明文交互]" ) { Tag = typeof( FormPlainSocket ) } );
+            hslNode.Nodes.Add( new TreeNode( "Simplify Web" ) { Tag = typeof( FormHttpServer ) } );
             treeView1.Nodes.Add( hslNode );
 
             // 扫码软件
