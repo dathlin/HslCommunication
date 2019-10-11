@@ -26,6 +26,8 @@ namespace HslCommunicationDemo
             panel2.Enabled = false;
             button2.Enabled = false;
 
+            
+
             Language( Program.Language );
         }
 
@@ -85,6 +87,7 @@ namespace HslCommunicationDemo
             mqttClient = new MqttClient( options );
             mqttClient.LogNet = new HslCommunication.LogNet.LogNetSingle( string.Empty );
             mqttClient.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+            mqttClient.OnMqttMessageReceived += MqttClient_OnMqttMessageReceived;
 
             OperateResult connect = mqttClient.ConnectServer( );
 
@@ -101,13 +104,57 @@ namespace HslCommunicationDemo
             }
         }
 
+        private void MqttClient_OnMqttMessageReceived( string topic, byte[] payload )
+        {
+            try
+            {
+                Invoke( new Action( ( ) =>
+                {
+                    string msg = Encoding.UTF8.GetString( payload );
+                    if (radioButton4.Checked)
+                    {
+                        try
+                        {
+                            msg = System.Xml.Linq.XElement.Parse( msg ).ToString( );
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                    else if (radioButton5.Checked)
+                    {
+                        try
+                        {
+                            msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+
+
+                    if (radioButton2.Checked)
+                        textBox8.AppendText( $"Topic[{topic}] " + Environment.NewLine + msg + Environment.NewLine );
+                    else if (radioButton1.Checked)
+                        textBox8.Text = $"Topic[{topic}] " + Environment.NewLine + msg;
+                } ) );
+            }
+            catch
+            {
+
+            }
+        }
+
         private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
         {
             try
             {
                 Invoke( new Action( ( ) =>
                  {
-                     textBox8.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+                     if(radioButton2.Checked)
+                        textBox8.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
                  } ) );
             }
             catch

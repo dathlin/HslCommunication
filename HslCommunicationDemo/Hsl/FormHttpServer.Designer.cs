@@ -29,8 +29,8 @@
         private void InitializeComponent( )
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,7 +47,8 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.button4 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -57,9 +58,10 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label3);
@@ -69,27 +71,29 @@
             this.panel1.Size = new System.Drawing.Size(978, 49);
             this.panel1.TabIndex = 7;
             // 
-            // comboBox1
+            // checkBox1
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(225, 8);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 25);
-            this.comboBox1.TabIndex = 15;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(173, 10);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(123, 21);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.Text = "是否支持跨域请求";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // button4
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(175, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 17);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "编码：";
+            this.button4.Location = new System.Drawing.Point(717, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(91, 28);
+            this.button4.TabIndex = 16;
+            this.button4.Text = "关闭服务";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(369, 7);
+            this.button1.Location = new System.Drawing.Point(620, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 28);
             this.button1.TabIndex = 4;
@@ -198,7 +202,9 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(892, 138);
             this.textBox4.TabIndex = 8;
-            this.textBox4.Text = "这是一个测试的数据";
+            this.textBox4.Text = "<html><head><title>HslWebServer</title></head><body><p style=\"color:red\">这是一个测试的消" +
+    "息内容</p></body></html>";
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label9
             // 
@@ -240,23 +246,32 @@
             this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
             this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.userControlHead1.HelpLink = "http://www.cnblogs.com/dathlin/p/7697782.html";
+            this.userControlHead1.HelpLink = "http://www.hslcommunication.cn/";
             this.userControlHead1.Location = new System.Drawing.Point(0, 0);
             this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
             this.userControlHead1.Name = "userControlHead1";
+            this.userControlHead1.ProtocolInfo = "html";
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 14;
             // 
-            // button4
+            // comboBox1
             // 
-            this.button4.Location = new System.Drawing.Point(466, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(91, 28);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "关闭服务";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(419, 8);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 25);
+            this.comboBox1.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(333, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 17);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "返回内容方式";
             // 
             // FormHttpServer
             // 
@@ -271,7 +286,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormHttpServer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Simplify网络客户端";
+            this.Text = "Web轻量级的服务器";
             this.Load += new System.EventHandler(this.FormClient_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -296,11 +311,12 @@
         private System.Windows.Forms.Label label7;
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

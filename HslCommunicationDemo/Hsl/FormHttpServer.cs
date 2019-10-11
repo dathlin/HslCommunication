@@ -28,14 +28,14 @@ namespace HslCommunicationDemo
 
             comboBox1.DataSource = new string[]
             {
-                "utf-8",
-                "ascii",
-                "ansi"
+                "text/html",
+                "text/plain",
+                "text/xml",
+                "application/xml",
+                "application/json"
             };
-            comboBox1.SelectedIndex = 2;
 
             Language( Program.Language );
-
 
         }
 
@@ -56,9 +56,9 @@ namespace HslCommunicationDemo
             try
             {
                 httpServer = new HttpServer( );
-                httpServer.ServerEncoding = comboBox1.SelectedIndex == 0 ? Encoding.UTF8 : comboBox1.SelectedIndex == 1 ? Encoding.ASCII : Encoding.Default;
                 httpServer.Start( int.Parse( textBox2.Text ) );
                 httpServer.HandleRequestFunc = HandleRequest;
+                httpServer.IsCrossDomain = checkBox1.Checked;             // 是否跨域的设置
 
                 panel2.Enabled = true;
                 button1.Enabled = false;
@@ -77,6 +77,7 @@ namespace HslCommunicationDemo
             {
                 if (returnWeb.ContainsKey( request.RawUrl ))
                 {
+                    response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
                     return returnWeb[request.RawUrl];
                 }
             }
@@ -116,6 +117,11 @@ namespace HslCommunicationDemo
             httpServer?.Close( );
             panel2.Enabled = false;
             button1.Enabled = true;
+        }
+
+        private void textBox4_TextChanged( object sender, EventArgs e )
+        {
+
         }
     }
 

@@ -368,7 +368,7 @@ namespace HslCommunicationDemo
             hslNode.Nodes.Add( new TreeNode( "Push Net [消息推送]" ) { Tag = typeof( FormPushNet ) } );
             hslNode.Nodes.Add( new TreeNode( "SoftUpdate [软件更新]" ) { Tag = typeof( FormUpdateServer ) } );
             hslNode.Nodes.Add( new TreeNode( "Plain Net [明文交互]" ) { Tag = typeof( FormPlainSocket ) } );
-            hslNode.Nodes.Add( new TreeNode( "Simplify Web" ) { Tag = typeof( FormHttpServer ) } );
+            hslNode.Nodes.Add( new TreeNode( "Http Web" ) { Tag = typeof( FormHttpServer ) } );
             treeView1.Nodes.Add( hslNode );
 
             // 扫码软件
