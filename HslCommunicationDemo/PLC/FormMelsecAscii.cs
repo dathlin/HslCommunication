@@ -324,6 +324,22 @@ namespace HslCommunicationDemo
         }
 
 
+        private void button9_Click( object sender, EventArgs e )
+        {
+
+            // 批量随机读取
+            OperateResult<byte[]> read = melsec_net.ReadRandom( 
+                textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ),
+                textBox9.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( m => ushort.Parse( m ) ).ToArray( ) );
+            if (read.IsSuccess)
+            {
+                textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
+            }
+            else
+            {
+                MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
+            }
+        }
 
         #endregion
 
@@ -433,5 +449,34 @@ namespace HslCommunicationDemo
                 MessageBox.Show( "Failed: " + readResult.ToMessageShowString( ) );
             }
         }
+
+        private void button7_Click( object sender, EventArgs e )
+        {
+            // 远程重置
+            OperateResult result = melsec_net.RemoteReset( );
+            if (result.IsSuccess)
+            {
+                MessageBox.Show( "RemoteReset Success" );
+            }
+            else
+            {
+                MessageBox.Show( "Failed: " + result.ToMessageShowString( ) );
+            }
+        }
+
+        private void button8_Click( object sender, EventArgs e )
+        {
+            // 错误灯恢复
+            OperateResult result = melsec_net.ErrorStateReset( );
+            if (result.IsSuccess)
+            {
+                MessageBox.Show( "ErrorStateReset Success" );
+            }
+            else
+            {
+                MessageBox.Show( "Failed: " + result.ToMessageShowString( ) );
+            }
+        }
+
     }
 }

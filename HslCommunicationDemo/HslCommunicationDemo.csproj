@@ -37,8 +37,8 @@
     <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=8.1.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.8.1.1\lib\net35\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=8.1.2.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.8.1.2\lib\net35\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.2.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.2.2\lib\net35\HslControls.dll</HintPath>
@@ -307,6 +307,12 @@
     <Compile Include="PLC\FormKeyenceNanoSerialOverTcp.Designer.cs">
       <DependentUpon>FormKeyenceNanoSerialOverTcp.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\FormKnx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormKnx.designer.cs">
+      <DependentUpon>FormKnx.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\FormLsisCnetOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -420,6 +426,12 @@
     </Compile>
     <Compile Include="PLC\FormLsisFEnet.Designer.cs">
       <DependentUpon>FormLsisFEnet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormSiemensMPI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormSiemensMPI.designer.cs">
+      <DependentUpon>FormSiemensMPI.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormSiemensPPIOverTcp.cs">
       <SubType>Form</SubType>
@@ -749,6 +761,9 @@
     <EmbeddedResource Include="PLC\FormKeyenceNanoSerialOverTcp.resx">
       <DependentUpon>FormKeyenceNanoSerialOverTcp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormKnx.resx">
+      <DependentUpon>FormKnx.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormLsisCnetOverTcp.resx">
       <DependentUpon>FormLsisCnetOverTcp.cs</DependentUpon>
     </EmbeddedResource>
@@ -805,6 +820,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormLsisFEnet.resx">
       <DependentUpon>FormLsisFEnet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormSiemensMPI.resx">
+      <DependentUpon>FormSiemensMPI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormSiemensPPIOverTcp.resx">
       <DependentUpon>FormSiemensPPIOverTcp.cs</DependentUpon>

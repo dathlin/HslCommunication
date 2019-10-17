@@ -55,6 +55,8 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -75,6 +77,7 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button_read_string = new System.Windows.Forms.Button();
@@ -93,7 +96,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -279,6 +282,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button9);
             this.groupBox3.Controls.Add(this.button6);
             this.groupBox3.Controls.Add(this.textBox10);
             this.groupBox3.Controls.Add(this.label13);
@@ -334,16 +338,16 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(239, 27);
+            this.textBox9.Location = new System.Drawing.Point(216, 27);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(80, 23);
+            this.textBox9.Size = new System.Drawing.Size(48, 23);
             this.textBox9.TabIndex = 7;
             this.textBox9.Text = "10";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(185, 30);
+            this.label12.Location = new System.Drawing.Point(174, 30);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(44, 17);
             this.label12.TabIndex = 6;
@@ -353,7 +357,7 @@
             // 
             this.textBox6.Location = new System.Drawing.Point(63, 27);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(102, 23);
+            this.textBox6.Size = new System.Drawing.Size(107, 23);
             this.textBox6.TabIndex = 5;
             this.textBox6.Text = "D100";
             // 
@@ -368,6 +372,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button8);
+            this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button3);
@@ -393,6 +399,26 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "单数据写入测试";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(110, 126);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(86, 28);
+            this.button8.TabIndex = 27;
+            this.button8.Text = "error reset";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(13, 126);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(91, 28);
+            this.button7.TabIndex = 26;
+            this.button7.Text = "remote reset";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button5
             // 
@@ -604,6 +630,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单数据读取测试";
             // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(255, 27);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(41, 23);
+            this.textBox12.TabIndex = 20;
+            this.textBox12.Text = "1";
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -779,13 +813,15 @@
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 2;
             // 
-            // textBox12
+            // button9
             // 
-            this.textBox12.Location = new System.Drawing.Point(255, 27);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(41, 23);
-            this.textBox12.TabIndex = 20;
-            this.textBox12.Text = "1";
+            this.button9.Location = new System.Drawing.Point(270, 24);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(62, 28);
+            this.button9.TabIndex = 26;
+            this.button9.Text = "随机读";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // FormMelsecAscii
             // 
@@ -886,5 +922,8 @@
         private DemoControl.UserControlCurve userControlCurve1;
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button9;
     }
 }

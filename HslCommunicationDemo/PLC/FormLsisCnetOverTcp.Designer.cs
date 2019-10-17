@@ -72,6 +72,7 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
             this.button_read_byte = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button_read_string = new System.Windows.Forms.Button();
@@ -89,7 +90,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.button_read_bool = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -541,6 +542,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button_read_bool);
             this.groupBox1.Controls.Add(this.textBox12);
             this.groupBox1.Controls.Add(this.button_read_byte);
             this.groupBox1.Controls.Add(this.textBox5);
@@ -564,6 +566,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单数据读取测试";
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(255, 27);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(41, 23);
+            this.textBox12.TabIndex = 20;
+            this.textBox12.Text = "1";
             // 
             // button_read_byte
             // 
@@ -730,13 +740,15 @@
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 2;
             // 
-            // textBox12
+            // button_read_bool
             // 
-            this.textBox12.Location = new System.Drawing.Point(255, 27);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(41, 23);
-            this.textBox12.TabIndex = 20;
-            this.textBox12.Text = "1";
+            this.button_read_bool.Location = new System.Drawing.Point(415, 22);
+            this.button_read_bool.Name = "button_read_bool";
+            this.button_read_bool.Size = new System.Drawing.Size(82, 28);
+            this.button_read_bool.TabIndex = 21;
+            this.button_read_bool.Text = "bool读取";
+            this.button_read_bool.UseVisualStyleBackColor = true;
+            this.button_read_bool.Click += new System.EventHandler(this.button_read_bool_Click);
             // 
             // FormLsisCnetOverTcp
             // 
@@ -833,5 +845,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Button button_read_bool;
     }
 }

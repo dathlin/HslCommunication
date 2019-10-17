@@ -47,6 +47,7 @@ namespace HslCommunicationDemo
                 label6.Text = "address:";
                 label7.Text = "result:";
 
+                button_read_bool.Text = "r-bool";
                 button_read_byte.Text = "r-byte";
                 button_read_short.Text = "r-short";
                 button_read_ushort.Text = "r-ushort";
@@ -158,11 +159,19 @@ namespace HslCommunicationDemo
             button1.Enabled = true;
             panel2.Enabled = false;
         }
-        
+
         #endregion
 
         #region 单数据读取测试
 
+
+        private void button_read_bool_Click( object sender, EventArgs e )
+        {
+            if (textBox12.Text == "1")
+                DemoUtils.ReadResultRender( xGBCnet.ReadBool( textBox3.Text ), textBox3.Text, textBox4 );
+            else
+                DemoUtils.ReadResultRender( xGBCnet.ReadBool( textBox3.Text, ushort.Parse( textBox12.Text ) ), textBox3.Text, textBox4 );
+        }
 
         private void button_read_short_Click( object sender, EventArgs e )
         {
@@ -429,5 +438,6 @@ namespace HslCommunicationDemo
                 MessageBox.Show( ex.Message );
             }
         }
+
     }
 }

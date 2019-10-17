@@ -261,6 +261,7 @@ namespace HslCommunicationDemo
             siemensNode.Nodes.Add( new TreeNode( "Fetch/Write" ) { Tag = typeof( FormSiemensFW ) } );
             siemensNode.Nodes.Add( new TreeNode( "PPI" ) { Tag = typeof( FormSiemensPPI ) } );
             siemensNode.Nodes.Add( new TreeNode( "PPI OverTcp" ) { Tag = typeof( FormSiemensPPIOverTcp ) } );
+            siemensNode.Nodes.Add( new TreeNode( "MPI" ) { Tag = typeof( FormSiemensMPI ) } );
             siemensNode.Nodes.Add( new TreeNode( "S7 Virtual Server" ) { Tag = typeof( FormS7Server ) } );
             treeView1.Nodes.Add( siemensNode );
 
@@ -279,7 +280,7 @@ namespace HslCommunicationDemo
             TreeNode omronNode = new TreeNode( "Omron Plc[欧姆龙]" );
             omronNode.Nodes.Add( new TreeNode( "Fins Tcp" ) { Tag = typeof( FormOmron ) } );
             omronNode.Nodes.Add( new TreeNode( "Fins Udp" ) { Tag = typeof( FormOmronUdp ) } );
-            omronNode.Nodes.Add( new TreeNode( "CIP" ) { Tag = typeof( FormOmronCip ) } );
+            omronNode.Nodes.Add( new TreeNode( "EtherNet/IP(CIP)" ) { Tag = typeof( FormOmronCip ) } );
             omronNode.Nodes.Add( new TreeNode( "HostLink 【串口】" ) { Tag = typeof( FormOmronHostLink ) } );
             omronNode.Nodes.Add( new TreeNode( "HostLink OverTcp" ) { Tag = typeof( FormOmronHostLinkOverTcp ) } );
             treeView1.Nodes.Add( omronNode );
@@ -309,7 +310,7 @@ namespace HslCommunicationDemo
 
             // Allen Bradlly PLC
             TreeNode allenBrandlyPlc = new TreeNode( "AllenBrandly Plc[罗克韦尔]" );
-            allenBrandlyPlc.Nodes.Add( new TreeNode( "CIP" ) { Tag = typeof( FormAllenBrandly ) } );
+            allenBrandlyPlc.Nodes.Add( new TreeNode( "EtherNet/IP(CIP)" ) { Tag = typeof( FormAllenBrandly ) } );
             treeView1.Nodes.Add( allenBrandlyPlc );
 
             // Fatek 永宏PLC
@@ -323,6 +324,11 @@ namespace HslCommunicationDemo
             fujiNode.Nodes.Add( new TreeNode( "SPB [编程口]" ) { Tag = typeof( FormFujiSPB ) } );
             fujiNode.Nodes.Add( new TreeNode( "SPB OverTcp" ) { Tag = typeof( FormFujiSPBOverTcp ) } );
             treeView1.Nodes.Add( fujiNode );
+
+            // Knx
+            TreeNode knxNode = new TreeNode( "Knx" );
+            knxNode.Nodes.Add( new TreeNode( "Knx" ) { Tag = typeof( PLC.FormKnx ) } );
+            treeView1.Nodes.Add( knxNode );
 
             // Redis 相关
             TreeNode redisNode = new TreeNode( "Redis" );
