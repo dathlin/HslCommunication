@@ -76,6 +76,7 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox14 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button_read_string = new System.Windows.Forms.Button();
             this.button_read_double = new System.Windows.Forms.Button();
@@ -94,7 +95,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -108,6 +110,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.textBox16);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.textBox15);
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label22);
@@ -126,16 +130,16 @@
             // 
             // textBox15
             // 
-            this.textBox15.Location = new System.Drawing.Point(410, 9);
+            this.textBox15.Location = new System.Drawing.Point(373, 9);
             this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(49, 23);
+            this.textBox15.Size = new System.Drawing.Size(32, 23);
             this.textBox15.TabIndex = 9;
             this.textBox15.Text = "0";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(366, 12);
+            this.label23.Location = new System.Drawing.Point(329, 12);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(41, 17);
             this.label23.TabIndex = 8;
@@ -152,7 +156,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(745, 2);
+            this.label21.Location = new System.Drawing.Point(760, 2);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(68, 17);
             this.label21.TabIndex = 6;
@@ -161,9 +165,9 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(629, 6);
+            this.button2.Location = new System.Drawing.Point(678, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 28);
+            this.button2.Size = new System.Drawing.Size(76, 28);
             this.button2.TabIndex = 5;
             this.button2.Text = "断开连接";
             this.button2.UseVisualStyleBackColor = true;
@@ -171,9 +175,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(522, 6);
+            this.button1.Location = new System.Drawing.Point(609, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 28);
+            this.button1.Size = new System.Drawing.Size(63, 28);
             this.button1.TabIndex = 4;
             this.button1.Text = "连接";
             this.button1.UseVisualStyleBackColor = true;
@@ -183,7 +187,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(269, 9);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(84, 23);
+            this.textBox2.Size = new System.Drawing.Size(52, 23);
             this.textBox2.TabIndex = 3;
             this.textBox2.Text = "44818";
             // 
@@ -611,6 +615,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单数据读取测试";
             // 
+            // textBox14
+            // 
+            this.textBox14.Location = new System.Drawing.Point(258, 27);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(41, 23);
+            this.textBox14.TabIndex = 19;
+            this.textBox14.Text = "1";
+            // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(358, 195);
@@ -787,13 +799,22 @@
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 2;
             // 
-            // textBox14
+            // textBox16
             // 
-            this.textBox14.Location = new System.Drawing.Point(258, 27);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(41, 23);
-            this.textBox14.TabIndex = 19;
-            this.textBox14.Text = "1";
+            this.textBox16.Location = new System.Drawing.Point(481, 9);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(105, 23);
+            this.textBox16.TabIndex = 11;
+            this.textBox16.Text = "01 00";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(423, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "PortSlot";
             // 
             // FormAllenBrandly
             // 
@@ -895,5 +916,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.Label label4;
     }
 }

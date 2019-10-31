@@ -125,6 +125,11 @@ namespace HslCommunicationDemo
             allenBradleyNet.Port = port;
             allenBradleyNet.Slot = slot;
 
+            if (!string.IsNullOrEmpty( textBox16.Text ))
+            {
+                allenBradleyNet.PortSlot = HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox16.Text );
+            }
+
             try
             {
                 OperateResult connect = allenBradleyNet.ConnectServer( );

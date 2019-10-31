@@ -249,4 +249,10 @@ facilitates data interaction with PLC, devices, and data interaction with C # pr
 ## Where is the Source code?
 Not free open source. you can refer to webside: http://www.hslcommunication.cn/Cooperation
 
-Thank you for your understanding
+## How to sponsor author?
+
+[PayPal](https://www.PayPal.Me/hslcommunication)
+
+![Alipay](https://raw.githubusercontent.com/dathlin/HslCommunication/master/imgs/support.png)
+
+Thank you for your understanding 

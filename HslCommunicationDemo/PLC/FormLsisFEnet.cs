@@ -32,7 +32,7 @@ namespace HslCommunicationDemo
 
             Language( Program.Language );
 
-           
+            cboxModel.DataSource = Enum.GetNames( typeof( LSCpuInfo ) );
         }
 
 
@@ -126,6 +126,7 @@ namespace HslCommunicationDemo
             fastEnet.IpAddress = textBox1.Text;
             fastEnet.Port = port;
             fastEnet.SlotNo = slot;
+            fastEnet.SetCpuType = cboxModel.Text;
 
             try
             {

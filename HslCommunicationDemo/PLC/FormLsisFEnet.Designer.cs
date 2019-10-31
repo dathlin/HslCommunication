@@ -73,6 +73,7 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_read_bool = new System.Windows.Forms.Button();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button_read_string = new System.Windows.Forms.Button();
@@ -91,7 +92,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.button_read_bool = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboxModel = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -105,6 +107,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cboxModel);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.textBox12);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.label22);
@@ -123,16 +127,16 @@
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(403, 14);
+            this.textBox12.Location = new System.Drawing.Point(463, 14);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(53, 23);
+            this.textBox12.Size = new System.Drawing.Size(41, 23);
             this.textBox12.TabIndex = 9;
             this.textBox12.Text = "3";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(349, 17);
+            this.label15.Location = new System.Drawing.Point(424, 17);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(42, 17);
             this.label15.TabIndex = 8;
@@ -158,7 +162,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(584, 11);
+            this.button2.Location = new System.Drawing.Point(608, 11);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(91, 28);
             this.button2.TabIndex = 5;
@@ -168,7 +172,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(477, 11);
+            this.button1.Location = new System.Drawing.Point(509, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 28);
             this.button1.TabIndex = 4;
@@ -178,16 +182,16 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(263, 14);
+            this.textBox2.Location = new System.Drawing.Point(221, 14);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(80, 23);
+            this.textBox2.Size = new System.Drawing.Size(58, 23);
             this.textBox2.TabIndex = 3;
             this.textBox2.Text = "2004";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(209, 17);
+            this.label3.Location = new System.Drawing.Point(167, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 2;
@@ -197,7 +201,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(62, 14);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(141, 23);
+            this.textBox1.Size = new System.Drawing.Size(99, 23);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "127.0.0.1";
             // 
@@ -578,6 +582,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单数据读取测试";
             // 
+            // button_read_bool
+            // 
+            this.button_read_bool.Location = new System.Drawing.Point(415, 24);
+            this.button_read_bool.Name = "button_read_bool";
+            this.button_read_bool.Size = new System.Drawing.Size(82, 28);
+            this.button_read_bool.TabIndex = 20;
+            this.button_read_bool.Text = "bool读取";
+            this.button_read_bool.UseVisualStyleBackColor = true;
+            this.button_read_bool.Click += new System.EventHandler(this.button_read_bool_Click);
+            // 
             // textBox14
             // 
             this.textBox14.Location = new System.Drawing.Point(255, 27);
@@ -751,15 +765,22 @@
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 3;
             // 
-            // button_read_bool
+            // label2
             // 
-            this.button_read_bool.Location = new System.Drawing.Point(415, 24);
-            this.button_read_bool.Name = "button_read_bool";
-            this.button_read_bool.Size = new System.Drawing.Size(82, 28);
-            this.button_read_bool.TabIndex = 20;
-            this.button_read_bool.Text = "bool读取";
-            this.button_read_bool.UseVisualStyleBackColor = true;
-            this.button_read_bool.Click += new System.EventHandler(this.button_read_bool_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(285, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 17);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "cpuType:";
+            // 
+            // cboxModel
+            // 
+            this.cboxModel.FormattingEnabled = true;
+            this.cboxModel.Location = new System.Drawing.Point(347, 14);
+            this.cboxModel.Name = "cboxModel";
+            this.cboxModel.Size = new System.Drawing.Size(71, 25);
+            this.cboxModel.TabIndex = 11;
             // 
             // FormLsisFEnet
             // 
@@ -858,5 +879,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Button button_read_bool;
+        private System.Windows.Forms.ComboBox cboxModel;
+        private System.Windows.Forms.Label label2;
     }
 }
