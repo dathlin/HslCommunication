@@ -26,6 +26,19 @@ HslCommunication.py
 ## CopyRight
 (C) 2017 - 2019 Richard.Hu, All Rights Reserved
 
+## Authorization(授权)
+具体可以参照 http://www.hslcommunication.cn/Cooperation
+
+试用授权： 加入 **技术支持VIP群** 即可以获得激活码，支持长时间测试使用。
+
+商用授权（赠送源代码）: 
+   1. 签订合同。
+   2. 付款，支付宝，微信，银行卡都可以。
+   3. 开票，目前是增值税普票。
+   4. 加入 **Hsl超级VIP群** 即获得源代码和超级激活码，永久支持更新。
+   5. 注册官网的git账户
+   6. 专业培训额外付费，1000元人民币1小时，培训控件使用，控件开发。
+
 ## Official Website
 Webside: [http://www.hslcommunication.cn/](http://www.hslcommunication.cn/)
 
