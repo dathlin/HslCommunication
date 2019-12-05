@@ -115,6 +115,7 @@ namespace HslCommunicationDemo
             SP_ReadData.DataBits = dataBits;
             SP_ReadData.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
             SP_ReadData.Parity = comboBox1.SelectedIndex == 0 ? Parity.None : (comboBox1.SelectedIndex == 1 ? Parity.Odd : Parity.Even);
+            SP_ReadData.RtsEnable = checkBox5.Checked;
 
             try
             {
@@ -134,34 +135,35 @@ namespace HslCommunicationDemo
         private void SP_ReadData_DataReceived( object sender, SerialDataReceivedEventArgs e )
         {
             // 接收数据
-            byte[] buffer = null;
-            byte[] data = new byte[2048];
-            int receiveCount = 0;
+            List<byte> buffer = new List<byte>( );
+            byte[] data = new byte[1024];
             while (true)
             {
                 System.Threading.Thread.Sleep( 20 );
                 if(SP_ReadData.BytesToRead < 1)
                 {
-                    buffer = new byte[receiveCount];
-                    Array.Copy( data, 0, buffer, 0, receiveCount );
                     break;
                 }
 
-                receiveCount += SP_ReadData.Read( data, receiveCount, SP_ReadData.BytesToRead );
+                int recCount = SP_ReadData.Read( data, 0, Math.Min( SP_ReadData.BytesToRead, data.Length ) );
+
+                byte[] buffer2 = new byte[recCount];
+                Array.Copy( data, 0, buffer2, 0, recCount );
+                buffer.AddRange( buffer2 );
             }
 
-            if (receiveCount == 0) return;
+            if (buffer.Count == 0) return;
 
             Invoke( new Action( ( ) =>
              {
                  string msg = string.Empty;
                  if(checkBox1.Checked)
                  {
-                     msg = HslCommunication.BasicFramework.SoftBasic.ByteToHexString( buffer, ' ' );
+                     msg = HslCommunication.BasicFramework.SoftBasic.ByteToHexString( buffer.ToArray( ), ' ' );
                  }
                  else
                  {
-                     msg = Encoding.ASCII.GetString( buffer );
+                     msg = Encoding.ASCII.GetString( buffer.ToArray( ) );
                  }
                  
 

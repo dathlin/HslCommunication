@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -59,8 +61,6 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -91,6 +91,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(978, 72);
             this.panel1.TabIndex = 7;
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(446, 8);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(79, 23);
+            this.textBox11.TabIndex = 15;
+            this.textBox11.Text = "5000";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(380, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 17);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "接收超时：";
             // 
             // textBox10
             // 
@@ -132,6 +149,7 @@
             this.button6.TabIndex = 9;
             this.button6.Text = "压力测试";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -374,23 +392,6 @@
             this.userControlHead1.Name = "userControlHead1";
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 14;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(446, 8);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(79, 23);
-            this.textBox11.TabIndex = 15;
-            this.textBox11.Text = "5000";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(380, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 17);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "接收超时：";
             // 
             // FormSimplifyNet
             // 

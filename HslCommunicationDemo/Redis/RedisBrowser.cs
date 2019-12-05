@@ -339,8 +339,27 @@ namespace HslCommunicationDemo.Redis
                 if (dataGridView1.SelectedRows.Count > 0)
                 {
                     selectRowIndex = e.RowIndex ;
-                    textBox7.Text = dataGridView1.SelectedRows[0].Cells[1].Value.ToString( );
-                    label9.Text = "Size: " + HslCommunication.BasicFramework.SoftBasic.GetSizeDescription( Encoding.UTF8.GetBytes( textBox7.Text ).Length );
+                    string value = dataGridView1.SelectedRows[0].Cells[1].Value.ToString( );
+                    try
+                    {
+                        if (radioButton1.Checked)
+                        {
+                            textBox7.Text = value;
+                        }
+                        else if (radioButton2.Checked)
+                        {
+                            textBox7.Text = System.Xml.Linq.XElement.Parse( value ).ToString( );
+                        }
+                        else if (radioButton3.Checked)
+                        {
+                            textBox7.Text = Newtonsoft.Json.Linq.JObject.Parse( value ).ToString( );
+                        }
+                    }
+                    catch
+                    {
+                        textBox7.Text = value;
+                    }
+                    label9.Text = "Size: " + HslCommunication.BasicFramework.SoftBasic.GetSizeDescription( Encoding.UTF8.GetBytes( value ).Length );
                 }
             }
         }
@@ -383,6 +402,21 @@ namespace HslCommunicationDemo.Redis
             {
                 MessageBox.Show( "ReadTime Failed:" + read.Message );
             }
+        }
+
+        private void radioButton1_CheckedChanged( object sender, EventArgs e )
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged( object sender, EventArgs e )
+        {
+
+        }
+
+        private void radioButton3_CheckedChanged( object sender, EventArgs e )
+        {
+
         }
     }
 }

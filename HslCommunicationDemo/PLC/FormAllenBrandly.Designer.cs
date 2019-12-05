@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -95,8 +97,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -127,6 +128,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(978, 42);
             this.panel1.TabIndex = 0;
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(481, 9);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(105, 23);
+            this.textBox16.TabIndex = 11;
+            this.textBox16.Text = "01 00";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(423, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "PortSlot";
             // 
             // textBox15
             // 
@@ -245,6 +263,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button4);
             this.groupBox4.Controls.Add(this.textBox11);
             this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Controls.Add(this.button26);
@@ -277,11 +296,11 @@
             // 
             // button26
             // 
-            this.button26.Location = new System.Drawing.Point(426, 24);
+            this.button26.Location = new System.Drawing.Point(405, 24);
             this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(82, 28);
+            this.button26.Size = new System.Drawing.Size(48, 28);
             this.button26.TabIndex = 8;
-            this.button26.Text = "报文读取";
+            this.button26.Text = "cip";
             this.button26.UseVisualStyleBackColor = true;
             this.button26.Click += new System.EventHandler(this.button26_Click);
             // 
@@ -289,7 +308,7 @@
             // 
             this.textBox13.Location = new System.Drawing.Point(63, 27);
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(357, 23);
+            this.textBox13.Size = new System.Drawing.Size(336, 23);
             this.textBox13.TabIndex = 5;
             // 
             // label16
@@ -799,22 +818,15 @@
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 2;
             // 
-            // textBox16
+            // button4
             // 
-            this.textBox16.Location = new System.Drawing.Point(481, 9);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(105, 23);
-            this.textBox16.TabIndex = 11;
-            this.textBox16.Text = "01 00";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(423, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 17);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "PortSlot";
+            this.button4.Location = new System.Drawing.Point(459, 24);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(48, 28);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "eip";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // FormAllenBrandly
             // 
@@ -918,5 +930,6 @@
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button4;
     }
 }

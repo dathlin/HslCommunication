@@ -240,7 +240,9 @@ namespace HslCommunicationDemo
             TreeNode melsecNode = new TreeNode( "Melsec Plc [三菱]" );
             melsecNode.Nodes.Add( new TreeNode( "A-1E (Binary)" ) { Tag = typeof( FormMelsec1EBinary ) } );
             melsecNode.Nodes.Add( new TreeNode( "MC (Binary)" ) { Tag = typeof( FormMelsecBinary ) } );
+            melsecNode.Nodes.Add( new TreeNode( "MC Udp(Binary)" ) { Tag = typeof( FormMelsecUdp ) } );
             melsecNode.Nodes.Add( new TreeNode( "MC (ASCII)" ) { Tag = typeof( FormMelsecAscii ) } );
+            melsecNode.Nodes.Add( new TreeNode( "MC Udp(ASCII)" ) { Tag = typeof( FormMelsecAsciiUdp ) } );
             melsecNode.Nodes.Add( new TreeNode( "Fx Serial【编程口】" ) { Tag = typeof( FormMelsecSerial ) } );
             melsecNode.Nodes.Add( new TreeNode( "Fx Serial OverTcp" ) { Tag = typeof( FormMelsecSerialOverTcp ) } );
             melsecNode.Nodes.Add( new TreeNode( "Fx Links【485】" ) { Tag = typeof( FormMelsecLinks ) } );
@@ -283,6 +285,7 @@ namespace HslCommunicationDemo
             omronNode.Nodes.Add( new TreeNode( "EtherNet/IP(CIP)" ) { Tag = typeof( FormOmronCip ) } );
             omronNode.Nodes.Add( new TreeNode( "HostLink 【串口】" ) { Tag = typeof( FormOmronHostLink ) } );
             omronNode.Nodes.Add( new TreeNode( "HostLink OverTcp" ) { Tag = typeof( FormOmronHostLinkOverTcp ) } );
+            omronNode.Nodes.Add( new TreeNode( "Fins Virtual Server" ) { Tag = typeof( FormOmronServer ) } );
             treeView1.Nodes.Add( omronNode );
 
             // Lsis PLC
@@ -311,6 +314,7 @@ namespace HslCommunicationDemo
             // Allen Bradlly PLC
             TreeNode allenBrandlyPlc = new TreeNode( "AllenBrandly Plc[罗克韦尔]" );
             allenBrandlyPlc.Nodes.Add( new TreeNode( "EtherNet/IP(CIP)" ) { Tag = typeof( FormAllenBrandly ) } );
+            allenBrandlyPlc.Nodes.Add( new TreeNode( "CIP Virtual Server" ) { Tag = typeof( FormCipServer ) } );
             treeView1.Nodes.Add( allenBrandlyPlc );
 
             // Fatek 永宏PLC

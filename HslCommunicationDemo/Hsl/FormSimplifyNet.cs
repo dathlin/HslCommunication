@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Enthernet;
 using HslCommunication;
+using System.Threading;
 
 namespace HslCommunicationDemo
 {
@@ -206,6 +207,50 @@ namespace HslCommunicationDemo
             }
 
             textBox7.Text = (DateTime.Now - start).TotalMilliseconds.ToString( "F2" );
+        }
+
+        private void button6_Click( object sender, EventArgs e )
+        {
+            PressureTest2( );
+        }
+
+        private int thread_status = 0;
+        private int failed = 0;
+        private DateTime thread_time_start = DateTime.Now;
+        // 压力测试，开3个线程，每个线程进行读写操作，看使用时间
+        private void PressureTest2( )
+        {
+            thread_status = 3;
+            failed = 0;
+            thread_time_start = DateTime.Now;
+            new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
+            new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
+            new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
+            button3.Enabled = false;
+        }
+
+        private void thread_test2( )
+        {
+            int count = 1000;
+            while (count > 0)
+            {
+                if (!simplifyClient.ReadCustomerFromServer( 1, "" ).IsSuccess) failed++;
+                count--;
+            }
+            thread_end( );
+        }
+
+        private void thread_end( )
+        {
+            if (Interlocked.Decrement( ref thread_status ) == 0)
+            {
+                // 执行完成
+                Invoke( new Action( ( ) =>
+                {
+                    button3.Enabled = true;
+                    MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Read Failed：" + failed );
+                } ) );
+            }
         }
     }
 

@@ -31,7 +31,15 @@ namespace HslCommunicationDemo
 
             logNet.FiltrateKeyword( "123" );  // 过滤关键字123的存储
             logNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+        }
 
+        private void CurrentDomain_UnhandledException( object sender, UnhandledExceptionEventArgs e )
+        {
+            if(e.ExceptionObject is Exception ex)
+            {
+                logNet?.WriteException( "UnhandledException", ex );
+            }
         }
 
         private void LogNet_BeforeSaveToFile( object sender, HslEventArgs e )
@@ -162,6 +170,13 @@ namespace HslCommunicationDemo
                 form.ShowDialog( );
             }
         }
+
+        private void button9_Click( object sender, EventArgs e )
+        {
+            FormSiemensFW formSiemensFW = null;
+            formSiemensFW.AcceptButton = button1;
+        }
+
 
     }
 }

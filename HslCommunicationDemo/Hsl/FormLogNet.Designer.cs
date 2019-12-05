@@ -52,6 +52,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+            this.button9 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +60,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
@@ -292,7 +294,7 @@
             // 
             // userControlHead1
             // 
-            this.userControlHead1.BackColor = System.Drawing.Color.MediumPurple;
+            this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
             this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.userControlHead1.HelpLink = "http://www.cnblogs.com/dathlin/p/7691693.html";
@@ -304,10 +306,21 @@
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 27;
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(612, 164);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(132, 28);
+            this.button9.TabIndex = 18;
+            this.button9.Text = "强制引发异常";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // FormLogNet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1004, 645);
             this.Controls.Add(this.userControlHead1);
             this.Controls.Add(this.panel2);
@@ -351,5 +364,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.CheckBox checkBox1;
         private DemoControl.UserControlHead userControlHead1;
+        private System.Windows.Forms.Button button9;
     }
 }

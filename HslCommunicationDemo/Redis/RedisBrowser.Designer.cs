@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent( )
         {
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("db0");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("db1");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("db2");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("db3");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("db4");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("db5");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("db6");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("db7");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("db8");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("db9");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("db10");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("db11");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("db12");
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("db0");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("db1");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("db2");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("db3");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("db4");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("db5");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("db6");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("db7");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("db8");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("db9");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("db10");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("db11");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("db12");
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -65,6 +66,10 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label12 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -79,7 +84,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,6 +94,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -114,6 +119,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(978, 83);
             this.panel1.TabIndex = 8;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(477, 50);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(71, 21);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.Text = "Refresh";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // textBox3
             // 
@@ -234,46 +249,46 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.Location = new System.Drawing.Point(3, 32);
             this.treeView1.Name = "treeView1";
-            treeNode14.Name = "节点0";
-            treeNode14.Text = "db0";
-            treeNode15.Name = "节点1";
-            treeNode15.Text = "db1";
-            treeNode16.Name = "节点2";
-            treeNode16.Text = "db2";
-            treeNode17.Name = "节点3";
-            treeNode17.Text = "db3";
-            treeNode18.Name = "节点4";
-            treeNode18.Text = "db4";
-            treeNode19.Name = "节点5";
-            treeNode19.Text = "db5";
-            treeNode20.Name = "节点6";
-            treeNode20.Text = "db6";
-            treeNode21.Name = "节点7";
-            treeNode21.Text = "db7";
-            treeNode22.Name = "节点8";
-            treeNode22.Text = "db8";
-            treeNode23.Name = "节点9";
-            treeNode23.Text = "db9";
-            treeNode24.Name = "节点10";
-            treeNode24.Text = "db10";
-            treeNode25.Name = "节点11";
-            treeNode25.Text = "db11";
-            treeNode26.Name = "节点12";
-            treeNode26.Text = "db12";
+            treeNode1.Name = "节点0";
+            treeNode1.Text = "db0";
+            treeNode2.Name = "节点1";
+            treeNode2.Text = "db1";
+            treeNode3.Name = "节点2";
+            treeNode3.Text = "db2";
+            treeNode4.Name = "节点3";
+            treeNode4.Text = "db3";
+            treeNode5.Name = "节点4";
+            treeNode5.Text = "db4";
+            treeNode6.Name = "节点5";
+            treeNode6.Text = "db5";
+            treeNode7.Name = "节点6";
+            treeNode7.Text = "db6";
+            treeNode8.Name = "节点7";
+            treeNode8.Text = "db7";
+            treeNode9.Name = "节点8";
+            treeNode9.Text = "db8";
+            treeNode10.Name = "节点9";
+            treeNode10.Text = "db9";
+            treeNode11.Name = "节点10";
+            treeNode11.Text = "db10";
+            treeNode12.Name = "节点11";
+            treeNode12.Text = "db11";
+            treeNode13.Name = "节点12";
+            treeNode13.Text = "db12";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode14,
-            treeNode15,
-            treeNode16,
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20,
-            treeNode21,
-            treeNode22,
-            treeNode23,
-            treeNode24,
-            treeNode25,
-            treeNode26});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode13});
             this.treeView1.Size = new System.Drawing.Size(276, 479);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -329,6 +344,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.panel6);
             this.splitContainer2.Panel2.Controls.Add(this.label9);
             this.splitContainer2.Panel2.Controls.Add(this.textBox7);
             this.splitContainer2.Size = new System.Drawing.Size(486, 232);
@@ -357,8 +373,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -397,6 +413,51 @@
             this.label12.Size = new System.Drawing.Size(39, 17);
             this.label12.TabIndex = 13;
             this.label12.Text = "Time:";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.radioButton3);
+            this.panel6.Controls.Add(this.radioButton2);
+            this.panel6.Controls.Add(this.radioButton1);
+            this.panel6.Location = new System.Drawing.Point(124, 1);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(226, 22);
+            this.panel6.TabIndex = 9;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(133, 0);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(52, 21);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.Text = "Json";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(73, 1);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(48, 21);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.Text = "Xml";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(5, 1);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(53, 21);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Plain";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // label9
             // 
@@ -536,20 +597,11 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel1.Text = "就绪";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(477, 50);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(71, 21);
-            this.checkBox1.TabIndex = 15;
-            this.checkBox1.Text = "Refresh";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // RedisBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1004, 645);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel3);
@@ -574,6 +626,8 @@
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -624,5 +678,9 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

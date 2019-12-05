@@ -1,6 +1,6 @@
 ﻿namespace HslCommunicationDemo
 {
-    partial class FormModbusRtu
+    partial class FormMelsecAsciiUdp
     {
         /// <summary>
         /// Required designer variable.
@@ -29,23 +29,14 @@
         private void InitializeComponent( )
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.textBox16 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.userControlCurve1 = new HslCommunicationDemo.DemoControl.UserControlCurve();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -55,6 +46,8 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.button25 = new System.Windows.Forms.Button();
@@ -63,6 +56,12 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label24 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
@@ -79,8 +78,8 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button_read_string = new System.Windows.Forms.Button();
             this.button_read_double = new System.Windows.Forms.Button();
@@ -98,7 +97,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -112,193 +110,91 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.checkBox5);
-            this.panel1.Controls.Add(this.comboBox3);
-            this.panel1.Controls.Add(this.comboBox2);
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.textBox17);
-            this.panel1.Controls.Add(this.label23);
-            this.panel1.Controls.Add(this.textBox16);
             this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Controls.Add(this.textBox15);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label24);
-            this.panel1.Controls.Add(this.checkBox3);
-            this.panel1.Location = new System.Drawing.Point(14, 42);
+            this.panel1.Location = new System.Drawing.Point(14, 40);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(978, 54);
+            this.panel1.Size = new System.Drawing.Size(978, 46);
             this.panel1.TabIndex = 0;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(61, 14);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(67, 25);
-            this.comboBox3.TabIndex = 29;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "ABCD",
-            "BADC",
-            "CDAB",
-            "DCBA"});
-            this.comboBox2.Location = new System.Drawing.Point(594, 25);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(83, 25);
-            this.comboBox2.TabIndex = 28;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "无",
-            "奇",
-            "偶"});
-            this.comboBox1.Location = new System.Drawing.Point(452, 14);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(49, 25);
-            this.comboBox1.TabIndex = 15;
-            // 
-            // textBox17
-            // 
-            this.textBox17.Location = new System.Drawing.Point(386, 14);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(23, 23);
-            this.textBox17.TabIndex = 13;
-            this.textBox17.Text = "1";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(332, 17);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(56, 17);
-            this.label23.TabIndex = 12;
-            this.label23.Text = "停止位：";
-            // 
-            // textBox16
-            // 
-            this.textBox16.Location = new System.Drawing.Point(295, 14);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(24, 23);
-            this.textBox16.TabIndex = 11;
-            this.textBox16.Text = "8";
             // 
             // label22
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(241, 17);
+            this.label22.Location = new System.Drawing.Point(776, 2);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(56, 17);
-            this.label22.TabIndex = 10;
-            this.label22.Text = "数据位：";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(666, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(106, 21);
-            this.checkBox1.TabIndex = 9;
-            this.checkBox1.Text = "首地址从0开始";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // textBox15
-            // 
-            this.textBox15.Location = new System.Drawing.Point(615, 1);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(37, 23);
-            this.textBox15.TabIndex = 7;
-            this.textBox15.Text = "1";
+            this.label22.Size = new System.Drawing.Size(197, 45);
+            this.label22.TabIndex = 7;
+            this.label22.Text = "M100 D100 X1A0 Y1A0 详细说明参照博客";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(571, 4);
+            this.label21.Location = new System.Drawing.Point(702, 2);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(44, 17);
+            this.label21.Size = new System.Drawing.Size(68, 17);
             this.label21.TabIndex = 6;
-            this.label21.Text = "站号：";
+            this.label21.Text = "地址示例：";
             // 
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(875, 11);
+            this.button2.Location = new System.Drawing.Point(584, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(91, 28);
             this.button2.TabIndex = 5;
-            this.button2.Text = "关闭串口";
+            this.button2.Text = "断开连接";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(778, 11);
+            this.button1.Location = new System.Drawing.Point(477, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 28);
             this.button1.TabIndex = 4;
-            this.button1.Text = "打开串口";
+            this.button1.Text = "连接";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(188, 14);
+            this.textBox2.Location = new System.Drawing.Point(305, 9);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(47, 23);
+            this.textBox2.Size = new System.Drawing.Size(141, 23);
             this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "9600";
+            this.textBox2.Text = "6000";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(134, 17);
+            this.label3.Location = new System.Drawing.Point(251, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "波特率：";
+            this.label3.Text = "端口号：";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(62, 9);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(141, 23);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "192.168.0.100";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 17);
+            this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 17);
+            this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Com口：";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(416, 17);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(44, 17);
-            this.label24.TabIndex = 14;
-            this.label24.Text = "奇偶：";
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(683, 28);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(87, 21);
-            this.checkBox3.TabIndex = 26;
-            this.checkBox3.Text = "字符串颠倒";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.label1.Text = "Ip地址：";
             // 
             // panel2
             // 
@@ -311,7 +207,7 @@
             this.panel2.Controls.Add(this.groupBox3);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Location = new System.Drawing.Point(14, 102);
+            this.panel2.Location = new System.Drawing.Point(14, 95);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(978, 537);
@@ -319,7 +215,7 @@
             // 
             // userControlCurve1
             // 
-            this.userControlCurve1.AddressExample = "100";
+            this.userControlCurve1.AddressExample = "D100";
             this.userControlCurve1.Location = new System.Drawing.Point(545, 243);
             this.userControlCurve1.Name = "userControlCurve1";
             this.userControlCurve1.ReadWriteNet = null;
@@ -338,7 +234,7 @@
             this.groupBox4.Size = new System.Drawing.Size(518, 118);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "报文读取测试，此处需要填入16进制报文字符串，不用写CRC校验";
+            this.groupBox4.Text = "报文读取测试，此处需要填入完整的16进制报文字符串";
             // 
             // textBox11
             // 
@@ -374,7 +270,6 @@
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(357, 23);
             this.textBox13.TabIndex = 5;
-            this.textBox13.Text = "01 03 00 64 00 02";
             // 
             // label16
             // 
@@ -387,6 +282,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button9);
+            this.groupBox3.Controls.Add(this.button6);
             this.groupBox3.Controls.Add(this.textBox10);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.button25);
@@ -400,6 +297,26 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "批量读取测试";
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(270, 24);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(62, 28);
+            this.button9.TabIndex = 26;
+            this.button9.Text = "随机读";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(338, 24);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(82, 28);
+            this.button6.TabIndex = 25;
+            this.button6.Text = "plc type";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // textBox10
             // 
@@ -431,16 +348,16 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(239, 27);
+            this.textBox9.Location = new System.Drawing.Point(216, 27);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(102, 23);
+            this.textBox9.Size = new System.Drawing.Size(48, 23);
             this.textBox9.TabIndex = 7;
             this.textBox9.Text = "10";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(185, 30);
+            this.label12.Location = new System.Drawing.Point(174, 30);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(44, 17);
             this.label12.TabIndex = 6;
@@ -450,9 +367,9 @@
             // 
             this.textBox6.Location = new System.Drawing.Point(63, 27);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(102, 23);
+            this.textBox6.Size = new System.Drawing.Size(107, 23);
             this.textBox6.TabIndex = 5;
-            this.textBox6.Text = "100";
+            this.textBox6.Text = "D100";
             // 
             // label11
             // 
@@ -465,6 +382,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button8);
+            this.groupBox2.Controls.Add(this.button7);
+            this.groupBox2.Controls.Add(this.button5);
+            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.label24);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.button14);
             this.groupBox2.Controls.Add(this.button15);
@@ -486,6 +409,65 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "单数据写入测试";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(110, 126);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(86, 28);
+            this.button8.TabIndex = 27;
+            this.button8.Text = "error reset";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(13, 126);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(91, 28);
+            this.button7.TabIndex = 26;
+            this.button7.Text = "remote reset";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(101, 156);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(95, 28);
+            this.button5.TabIndex = 25;
+            this.button5.Text = "remote stop";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(13, 156);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(82, 28);
+            this.button4.TabIndex = 24;
+            this.button4.Text = "remote run";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(13, 190);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(184, 28);
+            this.button3.TabIndex = 22;
+            this.button3.Text = "压力测试，快速读写3000次";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(317, 30);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(96, 17);
+            this.label24.TabIndex = 20;
+            this.label24.Text = "针对M,X,Y,L,V,B";
             // 
             // label19
             // 
@@ -592,7 +574,7 @@
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(82, 28);
             this.button24.TabIndex = 6;
-            this.button24.Text = "线圈写入";
+            this.button24.Text = "位写入";
             this.button24.UseVisualStyleBackColor = true;
             this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
@@ -620,7 +602,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(132, 23);
             this.textBox8.TabIndex = 3;
-            this.textBox8.Text = "100";
+            this.textBox8.Text = "M100";
             // 
             // label10
             // 
@@ -633,8 +615,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.textBox12);
+            this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.textBox5);
             this.groupBox1.Controls.Add(this.button_read_string);
             this.groupBox1.Controls.Add(this.button_read_double);
@@ -658,23 +640,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单数据读取测试";
             // 
-            // textBox1
+            // textBox12
             // 
-            this.textBox1.Location = new System.Drawing.Point(255, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(41, 23);
-            this.textBox1.TabIndex = 20;
-            this.textBox1.Text = "1";
+            this.textBox12.Location = new System.Drawing.Point(255, 27);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(41, 23);
+            this.textBox12.TabIndex = 20;
+            this.textBox12.Text = "1";
             // 
-            // button4
+            // label23
             // 
-            this.button4.Location = new System.Drawing.Point(408, 19);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(89, 28);
-            this.button4.TabIndex = 19;
-            this.button4.Text = "离散输入读取";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(412, 24);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(96, 17);
+            this.label23.TabIndex = 19;
+            this.label23.Text = "针对M,X,Y,L,V,B";
             // 
             // textBox5
             // 
@@ -780,7 +761,7 @@
             this.button_read_bool.Name = "button_read_bool";
             this.button_read_bool.Size = new System.Drawing.Size(82, 28);
             this.button_read_bool.TabIndex = 6;
-            this.button_read_bool.Text = "线圈读取";
+            this.button_read_bool.Text = "位读取";
             this.button_read_bool.UseVisualStyleBackColor = true;
             this.button_read_bool.Click += new System.EventHandler(this.button_read_bool_Click);
             // 
@@ -806,9 +787,9 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(63, 27);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(186, 23);
+            this.textBox3.Size = new System.Drawing.Size(189, 23);
             this.textBox3.TabIndex = 3;
-            this.textBox3.Text = "100";
+            this.textBox3.Text = "M100";
             // 
             // label6
             // 
@@ -833,26 +814,16 @@
             this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
             this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.userControlHead1.HelpLink = "http://www.cnblogs.com/dathlin/p/8974215.html";
+            this.userControlHead1.HelpLink = "http://www.cnblogs.com/dathlin/p/7469679.html";
             this.userControlHead1.Location = new System.Drawing.Point(0, 0);
             this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
             this.userControlHead1.Name = "userControlHead1";
-            this.userControlHead1.ProtocolInfo = "Modbus Rtu";
+            this.userControlHead1.ProtocolInfo = "MC Qna3E ASCII Udp";
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 2;
             // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(506, 28);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(84, 21);
-            this.checkBox5.TabIndex = 30;
-            this.checkBox5.Text = "RtsEnable";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // FormModbusRtu
+            // FormMelsecAsciiUdp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -863,9 +834,9 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "FormModbusRtu";
+            this.Name = "FormMelsecAsciiUdp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Modbus Rtu访问Demo";
+            this.Text = "三菱PLC访问Demo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
             this.Load += new System.EventHandler(this.FormSiemens_Load);
             this.panel1.ResumeLayout(false);
@@ -892,6 +863,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label14;
@@ -939,22 +911,19 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Button button6;
         private DemoControl.UserControlCurve userControlCurve1;
         private DemoControl.UserControlHead userControlHead1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button9;
     }
 }

@@ -194,6 +194,7 @@ namespace HslCommunicationDemo
                      sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
                      sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
                  } );
+                busRtuClient.RtsEnable = checkBox5.Checked;
                 busRtuClient.Open( );
 
                 button2.Enabled = true;

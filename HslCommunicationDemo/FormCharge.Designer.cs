@@ -141,7 +141,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(213, 36);
             this.label7.TabIndex = 2;
-            this.label7.Text = "20年";
+            this.label7.Text = "永久";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
@@ -154,7 +154,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(213, 36);
             this.label8.TabIndex = 1;
-            this.label8.Text = "5000 ￥";
+            this.label8.Text = "6500 ￥";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
@@ -230,7 +230,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(213, 36);
             this.label5.TabIndex = 1;
-            this.label5.Text = "2400 ￥";
+            this.label5.Text = "2500 ￥";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
