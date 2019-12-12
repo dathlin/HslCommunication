@@ -400,15 +400,15 @@ namespace HslCommunicationDemo
 
         private void button4_Click( object sender, EventArgs e )
         {
-            //OperateResult<byte[]> read = allenBradleyNet.ReadEipFromServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-            //if (read.IsSuccess)
-            //{
-            //    textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-            //}
-            //else
-            //{
-            //    MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
-            //}
+            OperateResult<byte[]> read = allenBradleyNet.ReadEipFromServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
+            if (read.IsSuccess)
+            {
+                textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
+            }
+            else
+            {
+                MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
+            }
         }
 
         #endregion

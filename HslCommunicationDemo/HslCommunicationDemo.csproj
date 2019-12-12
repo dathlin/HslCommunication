@@ -37,8 +37,8 @@
     <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=8.2.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.8.2.0\lib\net35\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=8.2.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.8.2.1\lib\net35\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\packages\HslControls.2.2.5\lib\net35\HslControls.dll</HintPath>
@@ -235,6 +235,18 @@
     <Compile Include="Hsl\FormUpdateServer.Designer.cs">
       <DependentUpon>FormUpdateServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="IDCard\FormSAMSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IDCard\FormSAMSerial.designer.cs">
+      <DependentUpon>FormSAMSerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IDCard\FormSAMTcpNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IDCard\FormSAMTcpNet.designer.cs">
+      <DependentUpon>FormSAMTcpNet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modbus\FormInputAlien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +288,12 @@
     </Compile>
     <Compile Include="MQTT\FormMqttServer.designer.cs">
       <DependentUpon>FormMqttServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormBeckpffAdsNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormBeckpffAdsNet.designer.cs">
+      <DependentUpon>FormBeckpffAdsNet.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormCipServer.cs">
       <SubType>Form</SubType>
@@ -749,6 +767,12 @@
     <EmbeddedResource Include="Hsl\FormUpdateServer.resx">
       <DependentUpon>FormUpdateServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="IDCard\FormSAMSerial.resx">
+      <DependentUpon>FormSAMSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IDCard\FormSAMTcpNet.resx">
+      <DependentUpon>FormSAMTcpNet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modbus\FormInputAlien.resx">
       <DependentUpon>FormInputAlien.cs</DependentUpon>
     </EmbeddedResource>
@@ -769,6 +793,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MQTT\FormMqttServer.resx">
       <DependentUpon>FormMqttServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormBeckpffAdsNet.resx">
+      <DependentUpon>FormBeckpffAdsNet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormCipServer.resx">
       <DependentUpon>FormCipServer.cs</DependentUpon>

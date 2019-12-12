@@ -317,6 +317,11 @@ namespace HslCommunicationDemo
             allenBrandlyPlc.Nodes.Add( new TreeNode( "CIP Virtual Server" ) { Tag = typeof( FormCipServer ) } );
             treeView1.Nodes.Add( allenBrandlyPlc );
 
+            // Beckhoff PLC
+            TreeNode beckhoffPlc = new TreeNode( "Beckhoff Plc[倍福]" );
+            beckhoffPlc.Nodes.Add( new TreeNode( "Ads Net" ) { Tag = typeof( FormBeckpffAdsNet ) } );
+            treeView1.Nodes.Add( beckhoffPlc );
+
             // Fatek 永宏PLC
             TreeNode fatekNode = new TreeNode( "Fatek Plc[永宏]" );
             fatekNode.Nodes.Add( new TreeNode( "programe [编程口]" ) { Tag = typeof( FormFatekPrograme ) } );
@@ -333,6 +338,12 @@ namespace HslCommunicationDemo
             TreeNode knxNode = new TreeNode( "Knx" );
             knxNode.Nodes.Add( new TreeNode( "Knx" ) { Tag = typeof( PLC.FormKnx ) } );
             treeView1.Nodes.Add( knxNode );
+
+            // 身份证阅读器
+            TreeNode idNode = new TreeNode( "ID Card[身份证]" );
+            idNode.Nodes.Add( new TreeNode( "SAM Serial" ) { Tag = typeof( FormSAMSerial ) } );
+            idNode.Nodes.Add( new TreeNode( "SAM Tcp" ) { Tag = typeof( FormSAMTcpNet ) } );
+            treeView1.Nodes.Add( idNode );
 
             // Redis 相关
             TreeNode redisNode = new TreeNode( "Redis" );
