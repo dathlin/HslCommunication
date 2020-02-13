@@ -64,6 +64,7 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button_read_string = new System.Windows.Forms.Button();
@@ -82,7 +83,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.cboxModel = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -94,6 +96,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cboxModel);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.textBox10);
             this.panel1.Controls.Add(this.label14);
@@ -206,7 +210,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("微软雅黑", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label15.Font = new System.Drawing.Font("Microsoft YaHei", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label15.Location = new System.Drawing.Point(414, 253);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(31, 36);
@@ -216,7 +220,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("微软雅黑", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label16.Font = new System.Drawing.Font("Microsoft YaHei", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label16.Location = new System.Drawing.Point(225, 253);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(183, 36);
@@ -495,6 +499,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单数据读取测试";
             // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(255, 27);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(41, 23);
+            this.textBox6.TabIndex = 20;
+            this.textBox6.Text = "1";
+            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(415, 19);
@@ -661,7 +673,7 @@
             // 
             this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.userControlHead1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.userControlHead1.Location = new System.Drawing.Point(0, 0);
             this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
@@ -670,13 +682,22 @@
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 2;
             // 
-            // textBox6
+            // cboxModel
             // 
-            this.textBox6.Location = new System.Drawing.Point(255, 27);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(41, 23);
-            this.textBox6.TabIndex = 20;
-            this.textBox6.Text = "1";
+            this.cboxModel.FormattingEnabled = true;
+            this.cboxModel.Location = new System.Drawing.Point(610, 7);
+            this.cboxModel.Name = "cboxModel";
+            this.cboxModel.Size = new System.Drawing.Size(71, 25);
+            this.cboxModel.TabIndex = 33;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(548, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 17);
+            this.label2.TabIndex = 32;
+            this.label2.Text = "cpuType:";
             // 
             // FormLSisServer
             // 
@@ -687,7 +708,7 @@
             this.Controls.Add(this.userControlHead1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormLSisServer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -763,5 +784,7 @@
         private System.Windows.Forms.Label label14;
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.ComboBox cboxModel;
+        private System.Windows.Forms.Label label2;
     }
 }

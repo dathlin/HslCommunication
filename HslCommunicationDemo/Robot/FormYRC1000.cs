@@ -103,7 +103,7 @@ namespace HslCommunicationDemo
 
 
 
-        private void button1_Click( object sender, EventArgs e )
+        private async void button1_Click( object sender, EventArgs e )
         {
             // 连接
             if (!System.Net.IPAddress.TryParse( textBox1.Text, out System.Net.IPAddress address ))
@@ -123,7 +123,7 @@ namespace HslCommunicationDemo
 
             try
             {
-                OperateResult connect = YRC1000Tcp.ConnectServer( );
+                OperateResult connect = await YRC1000Tcp.ConnectServerAsync( );
                 if (connect.IsSuccess)
                 {
                     MessageBox.Show( "连接成功！" );
@@ -162,10 +162,10 @@ namespace HslCommunicationDemo
         #region 单数据读取测试
         
 
-        private void button_read_string_Click( object sender, EventArgs e )
+        private async void button_read_string_Click( object sender, EventArgs e )
         {
             // 读取字符串
-            readResultRender( YRC1000Tcp.ReadString( textBox3.Text ), textBox3.Text, textBox4 );
+            readResultRender( await YRC1000Tcp.ReadStringAsync( textBox3.Text ), textBox3.Text, textBox4 );
         }
 
 
@@ -174,12 +174,12 @@ namespace HslCommunicationDemo
         #region 单数据写入测试
         
 
-        private void button14_Click( object sender, EventArgs e )
+        private async void button14_Click( object sender, EventArgs e )
         {
             // string写入
             try
             {
-                writeResultRender( YRC1000Tcp.Write( textBox8.Text, textBox7.Text ), textBox8.Text );
+                writeResultRender( await YRC1000Tcp.WriteAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
             }
             catch (Exception ex)
             {

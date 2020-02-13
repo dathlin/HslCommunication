@@ -76,7 +76,7 @@ namespace HslCommunicationDemo
 
         private NetSimplifyClient simplifyClient = new NetSimplifyClient( );
 
-        private void button1_Click( object sender, EventArgs e )
+        private async void button1_Click( object sender, EventArgs e )
         {
             // 连接
             simplifyClient.IpAddress = textBox1.Text;
@@ -84,7 +84,7 @@ namespace HslCommunicationDemo
             simplifyClient.ReceiveTimeOut = int.Parse( textBox11.Text );
             simplifyClient.Token = new Guid( textBox3.Text );
             simplifyClient.SetLoginAccount( textBox9.Text, textBox10.Text );
-            OperateResult connect = simplifyClient.ConnectServer( );
+            OperateResult connect = await simplifyClient.ConnectServerAsync( );
 
             if(connect.IsSuccess)
             {
@@ -100,7 +100,7 @@ namespace HslCommunicationDemo
             }
         }
 
-        private void button2_Click( object sender, EventArgs e )
+        private async void button2_Click( object sender, EventArgs e )
         {
             // 断开连接
             button5.Enabled = true;
@@ -108,7 +108,7 @@ namespace HslCommunicationDemo
             button2.Enabled = false;
             panel2.Enabled = false;
 
-            simplifyClient.ConnectClose( );
+            await simplifyClient.ConnectCloseAsync( );
         }
 
         private int status = 1;
@@ -136,8 +136,9 @@ namespace HslCommunicationDemo
             }
         }
 
-        private void button3_Click( object sender, EventArgs e )
+        private async void button3_Click( object sender, EventArgs e )
         {
+            button3.Enabled = false;
             // 数据发送
             NetHandle handle = new NetHandle( );
             if (textBox5.Text.IndexOf( '.' ) >= 0)
@@ -155,7 +156,7 @@ namespace HslCommunicationDemo
             DateTime start = DateTime.Now;
             for (int i = 0; i < count; i++)
             {
-                OperateResult<string> read = simplifyClient.ReadFromServer( handle, textBox4.Text );
+                OperateResult<string> read = await simplifyClient.ReadFromServerAsync( handle, textBox4.Text );
                 if (read.IsSuccess)
                 {
                     textBox8.AppendText( read.Content + Environment.NewLine );
@@ -168,6 +169,7 @@ namespace HslCommunicationDemo
 
             textBox7.Text = (DateTime.Now - start).TotalMilliseconds.ToString( "F2" );
 
+            button3.Enabled = true;
         }
 
         private void button4_Click( object sender, EventArgs e )
@@ -176,7 +178,7 @@ namespace HslCommunicationDemo
             textBox8.Clear( );
         }
 
-        private void Button7_Click( object sender, EventArgs e )
+        private async void Button7_Click( object sender, EventArgs e )
         {
             // 数据发送
             NetHandle handle = new NetHandle( );
@@ -195,7 +197,7 @@ namespace HslCommunicationDemo
             DateTime start = DateTime.Now;
             for (int i = 0; i < count; i++)
             {
-                OperateResult<NetHandle,string[]> read = simplifyClient.ReadCustomerFromServer( handle, textBox4.Text.Split(new char[] { ';' } ) );
+                OperateResult<NetHandle,string[]> read = await simplifyClient.ReadCustomerFromServerAsync( handle, textBox4.Text.Split(new char[] { ';' } ) );
                 if (read.IsSuccess)
                 {
                     textBox8.Lines = read.Content2;
@@ -229,12 +231,12 @@ namespace HslCommunicationDemo
             button3.Enabled = false;
         }
 
-        private void thread_test2( )
+        private async void thread_test2( )
         {
             int count = 1000;
             while (count > 0)
             {
-                if (!simplifyClient.ReadCustomerFromServer( 1, "" ).IsSuccess) failed++;
+                if (!(await simplifyClient.ReadCustomerFromServerAsync( 1, "" )).IsSuccess) failed++;
                 count--;
             }
             thread_end( );

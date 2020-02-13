@@ -30,6 +30,26 @@ HslCommunication.py
 具体可以参照 http://www.hslcommunication.cn/Cooperation
 
 试用授权： 加入 **技术支持VIP群** 即可以获得激活码，支持长时间测试使用。
+```
+        /// <summary>
+        /// 应用程序的主入口点。
+        /// </summary>
+        [STAThread]
+        static void Main( )
+        {
+            // 授权示例   调用一次即可  call only once
+            if(!HslCommunication.Authorization.SetAuthorizationCode( "你的激活码" ))
+            {
+                MessageBox.Show( "授权失败！当前程序只能使用8小时！" );
+                return;
+            }
+
+
+            Application.EnableVisualStyles( );
+            Application.SetCompatibleTextRenderingDefault( false );
+            Application.Run( new Form1( ) );
+        }
+```
 
 商用授权（赠送源代码）: 
    1. 签订合同。
@@ -113,6 +133,11 @@ Of course, you can also write very concise, because the judgment of success is i
 SiemensS7Net siemens = new SiemensS7Net( SiemensPLCS.S1200, " 192.168.1.110" );
 short value = siemens.ReadInt16("M100").Content;   // Look at this code, isn't it very succinct.
 ```
+When use .Net4.5 or higher plateform. we can use like this
+```
+SiemensS7Net siemens = new SiemensS7Net( SiemensPLCS.S1200, " 192.168.1.110" );
+short value = (await siemens.ReadInt16Async("M100")).Content;   // Look at this code, isn't it very succinct.
+```
 
 The above operation we have read the data, but is based on a short connection, 
 when the reading of the data finished, automatically shut down the network, 
@@ -122,6 +147,27 @@ if you want to open a long connection, follow the following actions.
 SiemensS7Net siemens = new SiemensS7Net( SiemensPLCS.S1200, " 192.168.1.110" );
 siemens.SetPersistentConnection( );
 OperateResult<short> read = siemens.ReadInt16("M100");
+
+if(read.IsSuccess)
+{
+	// you get the right value
+	short value = read.Content;
+}
+else
+{
+	// failed , but you still can know the failed detail
+	Consolo.WriteLine(read.Message);
+}
+
+// when you don't want read data, you should call close method
+siemens.ConnectClose( );
+
+```
+When use .Net4.5 or higher plateform. we can use like this
+```
+SiemensS7Net siemens = new SiemensS7Net( SiemensPLCS.S1200, " 192.168.1.110" );
+siemens.SetPersistentConnection( );
+OperateResult<short> read = await siemens.ReadInt16Async("M100");
 
 if(read.IsSuccess)
 {

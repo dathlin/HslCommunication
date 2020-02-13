@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>HslCommunicationDemo</RootNamespace>
     <AssemblyName>HslCommunicationDemo</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -37,8 +37,8 @@
     <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=8.2.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.8.2.1\lib\net35\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.0.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\packages\HslControls.2.2.5\lib\net35\HslControls.dll</HintPath>
@@ -105,11 +105,23 @@
     <Compile Include="Control\FormPipe.Designer.cs">
       <DependentUpon>FormPipe.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoControl\FormCurveMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormCurveMonitor.Designer.cs">
+      <DependentUpon>FormCurveMonitor.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\UserControlHead.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DemoControl\UserControlHead.Designer.cs">
       <DependentUpon>UserControlHead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\UserControlReadWriteOp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\UserControlReadWriteOp.Designer.cs">
+      <DependentUpon>UserControlReadWriteOp.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoUtils.cs" />
     <Compile Include="FormAuthor.cs">
@@ -288,6 +300,12 @@
     </Compile>
     <Compile Include="MQTT\FormMqttServer.designer.cs">
       <DependentUpon>FormMqttServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormAllenBrandlyBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormAllenBrandlyBrowser.Designer.cs">
+      <DependentUpon>FormAllenBrandlyBrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormBeckpffAdsNet.cs">
       <SubType>Form</SubType>
@@ -680,6 +698,24 @@
     <Compile Include="DemoControl\UserControlCurve.Designer.cs">
       <DependentUpon>UserControlCurve.cs</DependentUpon>
     </Compile>
+    <Compile Include="WebSocket\FormWebsocketClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebSocket\FormWebsocketClient.designer.cs">
+      <DependentUpon>FormWebsocketClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebSocket\FormWebsocketQANet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebSocket\FormWebsocketQANet.designer.cs">
+      <DependentUpon>FormWebsocketQANet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebSocket\FormWebsocketServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebSocket\FormWebsocketServer.designer.cs">
+      <DependentUpon>FormWebsocketServer.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Algorithms\FormConnectPool.resx">
       <DependentUpon>FormConnectPool.cs</DependentUpon>
     </EmbeddedResource>
@@ -701,11 +737,17 @@
     <EmbeddedResource Include="Control\FormPipe.resx">
       <DependentUpon>FormPipe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormCurveMonitor.resx">
+      <DependentUpon>FormCurveMonitor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\UserControlCurve.resx">
       <DependentUpon>UserControlCurve.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\UserControlHead.resx">
       <DependentUpon>UserControlHead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\UserControlReadWriteOp.resx">
+      <DependentUpon>UserControlReadWriteOp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAuthor.resx">
       <DependentUpon>FormAuthor.cs</DependentUpon>
@@ -793,6 +835,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MQTT\FormMqttServer.resx">
       <DependentUpon>FormMqttServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormAllenBrandlyBrowser.resx">
+      <DependentUpon>FormAllenBrandlyBrowser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormBeckpffAdsNet.resx">
       <DependentUpon>FormBeckpffAdsNet.cs</DependentUpon>
@@ -992,6 +1037,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormKuka.resx">
       <DependentUpon>FormKuka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebSocket\FormWebsocketClient.resx">
+      <DependentUpon>FormWebsocketClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebSocket\FormWebsocketQANet.resx">
+      <DependentUpon>FormWebsocketQANet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebSocket\FormWebsocketServer.resx">
+      <DependentUpon>FormWebsocketServer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />

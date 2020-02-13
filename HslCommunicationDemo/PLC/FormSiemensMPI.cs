@@ -304,7 +304,7 @@ namespace HslCommunicationDemo
                 //    buffer[i] = (byte)i;
                 //}
                 //writeResultRender( siemensTcpNet.Write( textBox8.Text, buffer ), textBox8.Text );
-                DemoUtils.WriteResultRender( siemensMPI.WriteByte( textBox8.Text, byte.Parse( textBox7.Text ) ), textBox8.Text );
+                DemoUtils.WriteResultRender( siemensMPI.Write( textBox8.Text, byte.Parse( textBox7.Text ) ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -514,7 +514,7 @@ namespace HslCommunicationDemo
 
             // 写入操作，这里的M100可以替换成I100,Q100,DB20.100效果时一样的
             siemensMPI.Write( "M100.7", true );                // 写位，注意M100.0等同于M100
-            siemensMPI.Write( "M100", (byte)0x33 );            // 写单个字节
+			siemensMPI.Write( "M100", (short)(byte)0x33 );            // 写单个字节
             siemensMPI.Write( "M100", (short)12345 );          // 写双字节有符号
             siemensMPI.Write( "M100", (ushort)45678 );         // 写双字节无符号
             siemensMPI.Write( "M100", 123456789 );             // 写双字有符号

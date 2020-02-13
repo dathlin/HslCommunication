@@ -84,13 +84,13 @@ namespace HslCommunicationDemo
         private void ComplexClient_AcceptByte( HslCommunication.Core.Net.AppSession session, NetHandle handle, byte[] data )
         {
             // 接收字节数据，
-            ShowTextInfo( $"[{session.IpEndPoint}] [{handle}] {HslCommunication.BasicFramework.SoftBasic.ByteToHexString( data )}" );
+            ShowTextInfo( $"{DateTime.Now} [{session.IpEndPoint}] [{handle}] {HslCommunication.BasicFramework.SoftBasic.ByteToHexString( data )}" );
         }
 
         private void ComplexClient_AcceptString( HslCommunication.Core.Net.AppSession session, NetHandle handle, string data )
         {
             // 接收字符串
-            ShowTextInfo( $"[{session.IpEndPoint}] [{handle}] {data}" );
+            ShowTextInfo( $"{DateTime.Now} [{session.IpEndPoint}] [{handle}] {data}" );
         }
 
         private void button2_Click( object sender, EventArgs e )
@@ -99,6 +99,7 @@ namespace HslCommunicationDemo
             complexClient.ClientClose( );
             button1.Enabled = true;
             button2.Enabled = false;
+            panel2.Enabled = false;
         }
 
         private void ShowTextInfo( string text )

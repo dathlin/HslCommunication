@@ -36,6 +36,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -81,7 +82,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -182,6 +182,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(978, 537);
             this.panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(405, 17);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "服务器值列表：   A short ; A1  short  ;  B int ;  C   float ;     D  short[5]";
             // 
             // label15
             // 
@@ -654,18 +663,9 @@
             this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
             this.userControlHead1.Name = "userControlHead1";
-            this.userControlHead1.ProtocolInfo = "Fins Tcp";
+            this.userControlHead1.ProtocolInfo = "Cip";
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(405, 17);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "服务器值列表：   A short ; A1  short  ;  B int ;  C   float ;     D  short[5]";
             // 
             // FormCipServer
             // 

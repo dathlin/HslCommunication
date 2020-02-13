@@ -1,4 +1,5 @@
 ﻿using HslCommunication;
+using HslCommunication.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;

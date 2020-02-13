@@ -86,32 +86,6 @@ namespace HslCommunicationDemo
         }
 
         /// <summary>
-        /// 统一的读取结果的数据解析，显示
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="result"></param>
-        /// <param name="address"></param>
-        /// <param name="textBox"></param>
-        private void readResultRender<T>( OperateResult<T> result, string address, TextBox textBox )
-        {
-            if (result.IsSuccess)
-            {
-                if (result.Content is Array array)
-                {
-                    textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat( result.Content )}{Environment.NewLine}" );
-                }
-                else
-                {
-                    textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {result.Content}{Environment.NewLine}" );
-                }
-            }
-            else
-            {
-                MessageBox.Show( result.ToString( ) );
-            }
-        }
-
-        /// <summary>
         /// 统一的数据写入的结果显示
         /// </summary>
         /// <param name="result"></param>
@@ -253,90 +227,90 @@ namespace HslCommunicationDemo
         {
             // 读取bool变量
             if(textBox6.Text == "1")
-                readResultRender( cipServer.ReadBool( textBox3.Text  ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadBool( textBox3.Text  ), textBox3.Text, textBox4 );
             else
-                readResultRender( cipServer.ReadBool( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadBool( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_byte_Click( object sender, EventArgs e )
         {
-            readResultRender( cipServer.ReadByte( textBox3.Text ), textBox3.Text, textBox4 );
+            DemoUtils.ReadResultRender( cipServer.ReadByte( textBox3.Text ), textBox3.Text, textBox4 );
         }
 
         private void button_read_short_Click( object sender, EventArgs e )
         {
             // 读取short变量
             if (textBox6.Text == "1")
-                readResultRender( cipServer.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
             else
-                readResultRender( cipServer.ReadInt16( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadInt16( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ushort_Click( object sender, EventArgs e )
         {
             // 读取ushort变量
             if (textBox6.Text == "1")
-                readResultRender( cipServer.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
             else
-                readResultRender( cipServer.ReadUInt16( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadUInt16( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_int_Click( object sender, EventArgs e )
         {
             // 读取int变量
             if (textBox6.Text == "1")
-                readResultRender( cipServer.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
             else
-                readResultRender( cipServer.ReadInt32( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadInt32( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_uint_Click( object sender, EventArgs e )
         {
             // 读取uint变量
             if (textBox6.Text == "1")
-                readResultRender( cipServer.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
             else
-                readResultRender( cipServer.ReadUInt32( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadUInt32( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_long_Click( object sender, EventArgs e )
         {
             // 读取long变量
             if (textBox6.Text == "1")
-                readResultRender( cipServer.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
             else
-                readResultRender( cipServer.ReadInt64( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadInt64( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ulong_Click( object sender, EventArgs e )
         {
             // 读取ulong变量
             if (textBox6.Text == "1")
-                readResultRender( cipServer.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
             else
-                readResultRender( cipServer.ReadUInt64( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadUInt64( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_float_Click( object sender, EventArgs e )
         {
             // 读取float变量
             if (textBox6.Text == "1")
-                readResultRender( cipServer.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
             else
-                readResultRender( cipServer.ReadFloat( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadFloat( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_double_Click( object sender, EventArgs e )
         {
             // 读取double变量
             if (textBox6.Text == "1")
-                readResultRender( cipServer.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
             else
-                readResultRender( cipServer.ReadDouble( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
+                DemoUtils.ReadResultRender( cipServer.ReadDouble( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_string_Click( object sender, EventArgs e )
         {
             // 读取字符串
-            readResultRender( cipServer.ReadString( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+            DemoUtils.ReadResultRender( cipServer.ReadString( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
         }
 
 

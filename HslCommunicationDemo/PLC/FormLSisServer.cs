@@ -10,6 +10,7 @@ using HslCommunication.Profinet;
 using HslCommunication;
 using HslCommunication.ModBus;
 using System.Threading;
+using HslCommunication.Profinet.LSIS;
 
 namespace HslCommunicationDemo
 {
@@ -24,9 +25,9 @@ namespace HslCommunicationDemo
         private void FormSiemens_Load( object sender, EventArgs e )
         {
             panel2.Enabled = false;
+            cboxModel.DataSource = Enum.GetNames(typeof(LSCpuInfo));
 
-
-            if(Program.Language == 2)
+            if (Program.Language == 2)
             {
                 Text = "LSis Virtual Server" ;
                 label3.Text = "port:";
@@ -140,7 +141,7 @@ namespace HslCommunicationDemo
             try
             {
 
-                lSisServer = new HslCommunication.Profinet.LSIS.LSisServer( );                       // 实例化对象
+                lSisServer = new HslCommunication.Profinet.LSIS.LSisServer(cboxModel.Text);                       // 实例化对象
                 //lSisServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "logs.txt" );                  // 配置日志信息
                 //lSisServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
                 lSisServer.OnDataReceived += BusTcpServer_OnDataReceived;

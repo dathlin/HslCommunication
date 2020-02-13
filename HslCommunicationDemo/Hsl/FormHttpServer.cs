@@ -70,6 +70,7 @@ namespace HslCommunicationDemo
         }
 
         private Dictionary<string, string> returnWeb = new Dictionary<string, string>( );
+        private Dictionary<string, string> postWeb = new Dictionary<string, string>( );
 
         private string HandleRequest( HttpListenerRequest request, HttpListenerResponse response, string data )
         {
@@ -81,9 +82,18 @@ namespace HslCommunicationDemo
                     return returnWeb[request.RawUrl];
                 }
             }
-            else
+            else if(request.HttpMethod == "POST")
             {
                 // POST示例，在data中可以上传复杂的数据，长度不限制的
+                if (postWeb.ContainsKey( request.RawUrl ))
+                {
+                    response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
+                    return postWeb[request.RawUrl];
+                }
+            }
+            else
+            {
+
             }
             return string.Empty;
         }
@@ -103,7 +113,15 @@ namespace HslCommunicationDemo
 
         private void Button7_Click( object sender, EventArgs e )
         {
-            
+            // 设置POST
+            if (postWeb.ContainsKey( textBox5.Text ))
+            {
+                postWeb[textBox5.Text] = textBox4.Text;
+            }
+            else
+            {
+                postWeb.Add( textBox5.Text, textBox4.Text );
+            }
         }
 
         private void button2_Click( object sender, EventArgs e )

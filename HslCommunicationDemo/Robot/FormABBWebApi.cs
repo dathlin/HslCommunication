@@ -34,11 +34,11 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button2_Click( object sender, EventArgs e )
+        private async void Button2_Click( object sender, EventArgs e )
         {
             if(comboBox1.SelectedIndex == 0)
             {
-                OperateResult<string> read = webApiClient.ReadString( textBox5.Text );
+                OperateResult<string> read = await webApiClient.ReadStringAsync( textBox5.Text );
                 if (read.IsSuccess)
                 {
                     textBox6.Text = read.Content;
@@ -51,7 +51,7 @@ namespace HslCommunicationDemo.Robot
             }
             else
             {
-                OperateResult write = webApiClient.Write( textBox5.Text, textBox7.Text );
+                OperateResult write = await webApiClient.WriteAsync( textBox5.Text, textBox7.Text );
                 if (write.IsSuccess)
                 {
                     MessageBox.Show( "Write Success" );
@@ -89,9 +89,9 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button3_Click( object sender, EventArgs e )
+        private async void Button3_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = webApiClient.GetErrorState( );
+            OperateResult<string> read = await webApiClient.GetErrorStateAsync( );
             if(!read.IsSuccess)
             {
                 MessageBox.Show( "Read Failed:" + read.Message );
@@ -102,9 +102,9 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button4_Click( object sender, EventArgs e )
+        private async void Button4_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = webApiClient.GetJointTarget( );
+            OperateResult<string> read = await webApiClient.GetJointTargetAsync( );
             if (!read.IsSuccess)
             {
                 MessageBox.Show( "Read Failed:" + read.Message );
@@ -115,9 +115,9 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button5_Click( object sender, EventArgs e )
+        private async void Button5_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = webApiClient.GetSpeedRatio( );
+            OperateResult<string> read = await webApiClient.GetSpeedRatioAsync( );
             if (!read.IsSuccess)
             {
                 MessageBox.Show( "Read Failed:" + read.Message );
@@ -128,9 +128,9 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button6_Click( object sender, EventArgs e )
+        private async void Button6_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = webApiClient.GetOperationMode( );
+            OperateResult<string> read = await webApiClient.GetOperationModeAsync( );
             if (!read.IsSuccess)
             {
                 MessageBox.Show( "Read Failed:" + read.Message );
@@ -141,9 +141,9 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button7_Click( object sender, EventArgs e )
+        private async void Button7_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = webApiClient.GetCtrlState( );
+            OperateResult<string> read = await webApiClient.GetCtrlStateAsync( );
             if (!read.IsSuccess)
             {
                 MessageBox.Show( "Read Failed:" + read.Message );
@@ -154,9 +154,9 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button8_Click( object sender, EventArgs e )
+        private async void Button8_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = webApiClient.GetIOIn( );
+            OperateResult<string> read = await webApiClient.GetIOInAsync( );
             if (!read.IsSuccess)
             {
                 MessageBox.Show( "Read Failed:" + read.Message );
@@ -167,9 +167,9 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button9_Click( object sender, EventArgs e )
+        private async void Button9_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = webApiClient.GetIOOut( );
+            OperateResult<string> read = await webApiClient.GetIOOutAsync( );
             if (!read.IsSuccess)
             {
                 MessageBox.Show( "Read Failed:" + read.Message );
@@ -180,9 +180,9 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button11_Click( object sender, EventArgs e )
+        private async void Button11_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = webApiClient.GetIO2In( );
+            OperateResult<string> read = await webApiClient.GetIO2InAsync( );
             if (!read.IsSuccess)
             {
                 MessageBox.Show( "Read Failed:" + read.Message );
@@ -193,9 +193,9 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button10_Click( object sender, EventArgs e )
+        private async void Button10_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = webApiClient.GetIO2Out( );
+            OperateResult<string> read = await webApiClient.GetIO2OutAsync( );
             if (!read.IsSuccess)
             {
                 MessageBox.Show( "Read Failed:" + read.Message );
@@ -206,9 +206,9 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Button12_Click( object sender, EventArgs e )
+        private async void Button12_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = webApiClient.GetLog( );
+            OperateResult<string> read = await webApiClient.GetLogAsync( );
             if (!read.IsSuccess)
             {
                 MessageBox.Show( "Read Failed:" + read.Message );

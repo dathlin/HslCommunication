@@ -11,161 +11,188 @@ using HslCommunication;
 
 namespace HslCommunicationDemo
 {
-    #region FormSimplifyNet
+	#region FormSimplifyNet
 
 
-    public partial class FormMqttServer : HslFormContent
-    {
-        public FormMqttServer( )
-        {
-            InitializeComponent( );
-        }
+	public partial class FormMqttServer : HslFormContent
+	{
+		public FormMqttServer( )
+		{
+			InitializeComponent( );
+		}
 
-        private void FormClient_Load( object sender, EventArgs e )
-        {
-            panel2.Enabled = false;
-            button2.Enabled = false;
+		private void FormClient_Load( object sender, EventArgs e )
+		{
+			panel2.Enabled = false;
+			button2.Enabled = false;
 
-            Language( Program.Language );
+			Language( Program.Language );
 
-            timer1s = new Timer( );
-            timer1s.Interval = 1000;
-            timer1s.Tick += Timer1s_Tick;
-            timer1s.Start( );
-        }
+			timer1s = new Timer( );
+			timer1s.Interval = 1000;
+			timer1s.Tick += Timer1s_Tick;
+			timer1s.Start( );
+		}
 
-        private void Timer1s_Tick( object sender, EventArgs e )
-        {
-            if (mqttServer != null)
-            {
-                label2.Text = "Online Count:" + mqttServer.OnlineCount;
-            }
-        }
+		private void Timer1s_Tick( object sender, EventArgs e )
+		{
+			if (mqttServer != null)
+			{
+				label2.Text = "Online Count:" + mqttServer.OnlineCount;
+				label4.Text = "Receive Count:" + receiveCount;
+			}
+		}
 
-        private Timer timer1s;
+		private Timer timer1s;
 
-        private void Language( int language )
-        {
-            if (language == 1)
-            {
-                Text = "Mqtt服务器";
-                label3.Text = "端口：";
-                button1.Text = "启动服务";
-                button2.Text = "关闭服务";
-                button5.Text = "广播指定ip";
-                label7.Text = "Topic：";
-                label8.Text = "主题";
-                label9.Text = "Payload：";
-                button3.Text = "广播所有";
-                button4.Text = "清空";
-                label12.Text = "接收：";
-            }
-            else
-            {
-                Text = "Mqtt Test";
-                label3.Text = "Port:";
-                button1.Text = "Start";
-                button2.Text = "Close";
-                button5.Text = "Publish Id";
-                label7.Text = "Topic:";
-                label8.Text = "";
-                label9.Text = "Payload:";
-                button3.Text = "Publish all";
-                button4.Text = "Clear";
-                label12.Text = "Receive:";
-            }
-        }
+		private void Language( int language )
+		{
+			if (language == 1)
+			{
+				Text = "Mqtt服务器";
+				label3.Text = "端口：";
+				button1.Text = "启动服务";
+				button2.Text = "关闭服务";
+				button5.Text = "广播指定ip";
+				label7.Text = "Topic：";
+				label8.Text = "主题";
+				label9.Text = "Payload：";
+				button3.Text = "广播所有";
+				button4.Text = "清空";
+				label12.Text = "接收：";
+			}
+			else
+			{
+				Text = "Mqtt Server Test";
+				label3.Text = "Port:";
+				button1.Text = "Start";
+				button2.Text = "Close";
+				button5.Text = "Publish Id";
+				label7.Text = "Topic:";
+				label8.Text = "";
+				label9.Text = "Payload:";
+				button3.Text = "Publish all";
+				button4.Text = "Clear";
+				label12.Text = "Receive:";
+			}
+		}
 
-        private MqttServer mqttServer;
+		private MqttServer mqttServer;
 
-        private void button1_Click( object sender, EventArgs e )
-        {
-            try
-            {
-                mqttServer = new MqttServer( );
-                mqttServer.OnClientApplicationMessageReceive += MqttServer_OnClientApplicationMessageReceive;
-                if (checkBox1.Checked)
-                {
-                    mqttServer.ClientVerification += MqttServer_ClientVerification;
-                }
+		private void button1_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				mqttServer = new MqttServer( );
+				mqttServer.OnClientApplicationMessageReceive += MqttServer_OnClientApplicationMessageReceive;
+				if (checkBox1.Checked)
+				{
+					mqttServer.ClientVerification += MqttServer_ClientVerification;
+				}
 
-                mqttServer.ServerStart( int.Parse( textBox2.Text ) );
-                mqttServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
-                mqttServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
-                button1.Enabled = false;
-                button2.Enabled = true;
-                panel2.Enabled = true;
-                MessageBox.Show( "Start Success" );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( "Start Failed : " + ex.Message );
-            }
-        }
+				mqttServer.ServerStart( int.Parse( textBox2.Text ) );
+				mqttServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
+				mqttServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+				button1.Enabled = false;
+				button2.Enabled = true;
+				panel2.Enabled = true;
+				MessageBox.Show( "Start Success" );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( "Start Failed : " + ex.Message );
+			}
+		}
 
-        private int MqttServer_ClientVerification( string clientId, string userName, string passwrod )
-        {
-            if(userName == "admin" && passwrod == "123456")
-            {
-                return 0; // 成功
-            }
-            else
-            {
-                return 5; // 账号密码验证失败
-            }
-        }
+		private int MqttServer_ClientVerification( string clientId, string userName, string passwrod )
+		{
+			if(userName == "admin" && passwrod == "123456")
+			{
+				return 0; // 成功
+			}
+			else
+			{
+				return 5; // 账号密码验证失败
+			}
+		}
 
-        private void MqttServer_OnClientApplicationMessageReceive( MqttClientApplicationMessage message )
-        {
-            Invoke( new Action( ( ) =>
-            {
-                textBox8.AppendText( $"Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
-            } ) );
-        }
+		private long receiveCount = 0;
 
-        private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
-        {
-            Invoke( new Action( ( ) =>
-             {
-                 textBox8.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
-             } ) );
-        }
+		private void MqttServer_OnClientApplicationMessageReceive( MqttSession session, MqttClientApplicationMessage message )
+		{
+			if (message.Topic == "ndiwh是本地AIHDniwd")   // 用户客户端的压力测试
+			{
+				mqttServer.PublishTopicPayload( session, message.Topic, message.Payload );
+			}
+			Invoke( new Action( ( ) =>
+			{
+				if (!isStop)
+				{
+					receiveCount++;
+					textBox8.AppendText( $"Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
+				}
+			} ) );
+		}
 
-        private void button2_Click( object sender, EventArgs e )
-        {
-            // 断开连接
-            button5.Enabled = true;
-            button1.Enabled = true;
-            button2.Enabled = false;
-            panel2.Enabled = false;
+		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
+		{
+			Invoke( new Action( ( ) =>
+			 {
+				 textBox8.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+			 } ) );
+		}
 
-            mqttServer.ServerClose( );
-        }
+		private void button2_Click( object sender, EventArgs e )
+		{
+			// 断开连接
+			button5.Enabled = true;
+			button1.Enabled = true;
+			button2.Enabled = false;
+			panel2.Enabled = false;
 
-        private void button3_Click( object sender, EventArgs e )
-        {
-            mqttServer.PublishAllClientTopicPayload( textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ) );
-        }
+			mqttServer.ServerClose( );
+		}
+
+		private void button3_Click( object sender, EventArgs e )
+		{
+			mqttServer.PublishAllClientTopicPayload( textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ) );
+		}
+
+		private void button4_Click( object sender, EventArgs e )
+		{
+			// 清空
+			textBox8.Clear( );
+			receiveCount = 0;
+		}
+
+		private void Button5_Click( object sender, EventArgs e )
+		{
+			// 发布到指定的客户端ID
+			mqttServer.PublishTopicPayload( textBox1.Text, textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ) );
+		}
+
+		private void button6_Click_1( object sender, EventArgs e )
+		{
+			// 发布指定的主题
+			mqttServer.PublishTopicPayload( textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ) );
+		}
+
+		bool isStop = false;
+		private void button7_Click( object sender, EventArgs e )
+		{
+			if (!isStop)
+			{
+				button7.Text = "继续";
+				isStop = true;
+			}
+			else
+			{
+				isStop = false;
+				button7.Text = "暂停";
+			}
+		}
+	}
 
 
-
-        private void button4_Click( object sender, EventArgs e )
-        {
-            // 清空
-            textBox8.Clear( );
-        }
-
-        private void Button5_Click( object sender, EventArgs e )
-        {
-            mqttServer.PublishTopicPayload( textBox1.Text, textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ) );
-        }
-
-        private void button6_Click_1( object sender, EventArgs e )
-        {
-            mqttServer.PublishTopicPayload( textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ) );
-        }
-    }
-
-
-    #endregion
+	#endregion
 }

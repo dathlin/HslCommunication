@@ -285,7 +285,7 @@ namespace HslCommunicationDemo.Robot
 
         private ER7BC10Previous efortRobot;
 
-        private void button1_Click( object sender, EventArgs e )
+        private async void button1_Click( object sender, EventArgs e )
         {
             try
             {
@@ -293,7 +293,7 @@ namespace HslCommunicationDemo.Robot
                 efortRobot = new ER7BC10Previous( textBox1.Text, int.Parse( textBox2.Text ) );
                 efortRobot.ConnectTimeOut = 2000;
 
-                OperateResult connect = efortRobot.ConnectServer( );
+                OperateResult connect = await efortRobot.ConnectServerAsync( );
                 if(connect.IsSuccess)
                 {
                     MessageBox.Show( "连接成功" );
@@ -312,10 +312,10 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void button2_Click( object sender, EventArgs e )
+        private async void button2_Click( object sender, EventArgs e )
         {
             isReadPlc = false;
-            efortRobot?.ConnectClose( );
+            await efortRobot?.ConnectCloseAsync( );
             button2.Enabled = false;
             panel2.Enabled = false;
             button1.Enabled = true;
@@ -323,10 +323,10 @@ namespace HslCommunicationDemo.Robot
             button3.Enabled = true;
         }
 
-        private void button_read_short_Click( object sender, EventArgs e )
+        private async void button_read_short_Click( object sender, EventArgs e )
         {
             // 刷新数据
-            OperateResult<EfortData> read = efortRobot.ReadEfortData( );
+            OperateResult<EfortData> read = await efortRobot.ReadEfortDataAsync( );
             if(!read.IsSuccess)
             {
                 MessageBox.Show( "读取失败！" + read.Message );
@@ -338,14 +338,14 @@ namespace HslCommunicationDemo.Robot
         }
 
 
-        private void ThreadReadRobot( )
+        private async void ThreadReadRobot( )
         {
             while(true)
             {
                 System.Threading.Thread.Sleep( timeSpeep );
                 if (isReadPlc)
                 {
-                    OperateResult<EfortData> read = efortRobot.ReadEfortData( );
+                    OperateResult<EfortData> read = await efortRobot.ReadEfortDataAsync( );
                     if (read.IsSuccess)
                     {
                         RenderRobotData( read.Content );
@@ -379,10 +379,10 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
-        private void Timer_Tick( object sender, EventArgs e )
+        private async void Timer_Tick( object sender, EventArgs e )
         {
-            OperateResult<EfortData> read = efortRobot.ReadEfortData( );
-            if(read.IsSuccess)
+            OperateResult<EfortData> read = await efortRobot.ReadEfortDataAsync( );
+            if (read.IsSuccess)
             {
                 RenderRobotData( read.Content );
             }

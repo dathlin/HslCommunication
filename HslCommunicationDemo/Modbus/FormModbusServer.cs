@@ -179,7 +179,6 @@ namespace HslCommunicationDemo
                 // add some accounts
                 busTcpServer.AddAccount( "admin", "123456" );
                 busTcpServer.AddAccount( "hsl", "test" );
-                busTcpServer.UseSynchronousNet = checkBox2.Checked;
 
                 ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
                 busTcpServer.IsStringReverse = checkBox3.Checked;
