@@ -74,14 +74,14 @@ namespace HslCommunicationDemo
 				Text = "HslCommunication 测试工具";
 				免责条款ToolStripMenuItem.Text = "免责条款";
 				论坛toolStripMenuItem.Text = "论坛";
-				授权ToolStripMenuItem.Text = "授权";
+				//授权ToolStripMenuItem.Text = "授权";
 			}
 			else
 			{
 				Text = "HslCommunication Test Tool";
 				论坛toolStripMenuItem.Text = "BBS";
 				免责条款ToolStripMenuItem.Text = "Disclaimer";
-				授权ToolStripMenuItem.Text = "Authorize";
+				//授权ToolStripMenuItem.Text = "Authorize";
 			}
 		}
 

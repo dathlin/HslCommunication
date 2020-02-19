@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.button2 = new System.Windows.Forms.Button();
@@ -52,6 +53,7 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.button8 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -61,6 +63,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox3);
 			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.button2);
@@ -72,6 +75,18 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(978, 72);
 			this.panel1.TabIndex = 7;
+			// 
+			// checkBox3
+			// 
+			this.checkBox3.AutoSize = true;
+			this.checkBox3.Checked = true;
+			this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox3.Location = new System.Drawing.Point(256, 40);
+			this.checkBox3.Name = "checkBox3";
+			this.checkBox3.Size = new System.Drawing.Size(147, 21);
+			this.checkBox3.TabIndex = 8;
+			this.checkBox3.Text = "是否回发一条测试数据";
+			this.checkBox3.UseVisualStyleBackColor = true;
 			// 
 			// checkBox2
 			// 
@@ -139,6 +154,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button8);
 			this.panel2.Controls.Add(this.button7);
 			this.panel2.Controls.Add(this.label2);
 			this.panel2.Controls.Add(this.button6);
@@ -173,7 +189,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(489, 186);
+			this.label2.Location = new System.Drawing.Point(450, 186);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(86, 17);
 			this.label2.TabIndex = 27;
@@ -318,6 +334,16 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
 			// 
+			// button8
+			// 
+			this.button8.Location = new System.Drawing.Point(633, 180);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(102, 28);
+			this.button8.TabIndex = 29;
+			this.button8.Text = "测试网页";
+			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.button8_Click);
+			// 
 			// FormWebsocketServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -366,5 +392,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.CheckBox checkBox3;
+		private System.Windows.Forms.Button button8;
 	}
 }

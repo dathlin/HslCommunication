@@ -65,6 +65,8 @@ namespace HslCommunicationDemo
 				button4.Text = "Clear";
 				label12.Text = "Receive:";
 				button9.Text = "Press Test";
+				button7.Text = "subscribe";
+				button8.Text = "unsubscribe";
 			}
 		}
 

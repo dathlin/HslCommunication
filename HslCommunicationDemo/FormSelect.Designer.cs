@@ -190,10 +190,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslMoveText1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.hslMoveText1.ForeColor = System.Drawing.Color.Cyan;
-			this.hslMoveText1.Location = new System.Drawing.Point(496, 0);
+			this.hslMoveText1.Location = new System.Drawing.Point(485, 0);
 			this.hslMoveText1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.hslMoveText1.Name = "hslMoveText1";
-			this.hslMoveText1.Size = new System.Drawing.Size(744, 25);
+			this.hslMoveText1.Size = new System.Drawing.Size(755, 25);
 			this.hslMoveText1.TabIndex = 35;
 			this.hslMoveText1.Text = "本demo仅支持运行8小时，如果你有什么问题，可以先去论坛看看";
 			// 

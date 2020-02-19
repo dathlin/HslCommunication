@@ -35,6 +35,7 @@
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.label4 = new System.Windows.Forms.Label();
 			this.button7 = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button6 = new System.Windows.Forms.Button();
@@ -51,7 +52,7 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.label4 = new System.Windows.Forms.Label();
+			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -61,6 +62,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox3);
 			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
@@ -146,6 +148,15 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(977, 518);
 			this.panel2.TabIndex = 13;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(617, 186);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(93, 17);
+			this.label4.TabIndex = 29;
+			this.label4.Text = "Receive Count:";
 			// 
 			// button7
 			// 
@@ -292,9 +303,10 @@
 			// 
 			// userControlHead1
 			// 
-			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlHead1.HelpLink = "https://www.cnblogs.com/dathlin/p/12312952.html";
 			this.userControlHead1.Location = new System.Drawing.Point(0, 0);
 			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
@@ -303,14 +315,15 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
 			// 
-			// label4
+			// checkBox3
 			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(617, 186);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(93, 17);
-			this.label4.TabIndex = 29;
-			this.label4.Text = "Receive Count:";
+			this.checkBox3.AutoSize = true;
+			this.checkBox3.Location = new System.Drawing.Point(11, 44);
+			this.checkBox3.Name = "checkBox3";
+			this.checkBox3.Size = new System.Drawing.Size(147, 21);
+			this.checkBox3.TabIndex = 9;
+			this.checkBox3.Text = "是否回发一条测试数据";
+			this.checkBox3.UseVisualStyleBackColor = true;
 			// 
 			// FormMqttServer
 			// 
@@ -360,5 +373,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label4;
-    }
+		private System.Windows.Forms.CheckBox checkBox3;
+	}
 }

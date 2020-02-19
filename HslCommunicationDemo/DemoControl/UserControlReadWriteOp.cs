@@ -79,7 +79,7 @@ namespace HslCommunicationDemo.DemoControl
 			Type type = readWrite.GetType( );
 			readByteMethod = type.GetMethod( "ReadByte", new Type[] { typeof(string) } );
 			if (readByteMethod == null) button_read_byte.Enabled = false;
-			writeByteMethod = type.GetMethod("Write", new Type[] { typeof( byte ) } );
+			writeByteMethod = type.GetMethod("Write", new Type[] { typeof( string ), typeof( byte ) } );
 			if (writeByteMethod == null) button23.Enabled = false;
 
 		}

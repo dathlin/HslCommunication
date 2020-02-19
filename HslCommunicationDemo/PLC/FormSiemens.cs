@@ -66,19 +66,7 @@ namespace HslCommunicationDemo
                 button1.Text = "Connect";
                 button2.Text = "Disconnect";
                 label21.Text = "Address:";
-                label6.Text = "address:";
-                label7.Text = "result:";
 
-                button_read_bool.Text = "Read Bit";
-                button_read_byte.Text = "r-byte";
-                button_read_short.Text = "r-short";
-                button_read_ushort.Text = "r-ushort";
-                button_read_int.Text = "r-int";
-                button_read_uint.Text = "r-uint";
-                button_read_long.Text = "r-long";
-                button_read_ulong.Text = "r-ulong";
-                button_read_float.Text = "r-float";
-                button_read_double.Text = "r-double";
                 button_read_string.Text = "r-string";
                 button7.Text = "r-time";
                 label11.Text = "Address:";
@@ -92,25 +80,14 @@ namespace HslCommunicationDemo
                 label10.Text = "Address:";
                 label9.Text = "Value:";
                 label19.Text = "Note: The value of the string needs to be converted";
-                button24.Text = "Write Bit";
-                button22.Text = "w-short";
-                button21.Text = "w-ushort";
-                button20.Text = "w-int";
-                button19.Text = "w-uint";
-                button18.Text = "w-long";
-                button17.Text = "w-ulong";
-                button16.Text = "w-float";
-                button15.Text = "w-double";
                 button14.Text = "w-string";
                 button8.Text = "w-time";
 
-                groupBox1.Text = "Single Data Read test";
-                groupBox2.Text = "Single Data Write test";
                 groupBox3.Text = "Bulk Read test";
                 groupBox4.Text = "Message reading test, hex string needs to be filled in";
+                groupBox5.Text = "Special function test";
 
                 button3.Text = "Order";
-                button23.Text = "w-byte";
                 button4.Text = "hot-start";
                 button5.Text = "cold-start";
                 button6.Text = "stop";
@@ -156,7 +133,7 @@ namespace HslCommunicationDemo
                     button2.Enabled = true;
                     button1.Enabled = false;
                     panel2.Enabled = true;
-                    userControlCurve1.ReadWriteNet = siemensTcpNet;
+                    userControlReadWriteOp1.SetReadWriteNet( siemensTcpNet, "M100", true );
                 }
                 else
                 {
@@ -182,194 +159,37 @@ namespace HslCommunicationDemo
 
         #region 单数据读取测试
 
-        private async void button_read_bool_Click( object sender, EventArgs e )
-        {
-            // 读取bool变量
-            DemoUtils.ReadResultRender( await siemensTcpNet.ReadBoolAsync( textBox3.Text ), textBox3.Text, textBox4 );
-        }
-        private async void button_read_byte_Click( object sender, EventArgs e )
-        {
-            // 读取byte变量
-            DemoUtils.ReadResultRender( await siemensTcpNet.ReadByteAsync( textBox3.Text ), textBox3.Text, textBox4 );
-        }
-        private async void button_read_short_Click( object sender, EventArgs e )
-        {
-            // 读取short变量
-            if(textBox5.Text == "1")
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadInt16Async( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private async void button_read_ushort_Click( object sender, EventArgs e )
-        {
-            // 读取ushort变量
-            if (textBox5.Text == "1")
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadUInt16Async( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadUInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private async void button_read_int_Click( object sender, EventArgs e )
-        {
-            // 读取int变量
-            if (textBox5.Text == "1")
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadInt32Async( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
-        }
-        private async void button_read_uint_Click( object sender, EventArgs e )
-        {
-            // 读取uint变量
-            if (textBox5.Text == "1")
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadUInt32Async( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadUInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
-        }
-        private async void button_read_long_Click( object sender, EventArgs e )
-        {
-            // 读取long变量
-            if (textBox5.Text == "1")
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadInt64Async( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private async void button_read_ulong_Click( object sender, EventArgs e )
-        {
-            // 读取ulong变量
-            if (textBox5.Text == "1")
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadUInt64Async( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadUInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private async void button_read_float_Click( object sender, EventArgs e )
-        {
-            // 读取float变量
-            if (textBox5.Text == "1")
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadFloatAsync( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadFloatAsync( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private async void button_read_double_Click( object sender, EventArgs e )
-        {
-            // 读取double变量
-            if (textBox5.Text == "1")
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadDoubleAsync( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( await siemensTcpNet.ReadDoubleAsync( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
-        }
 
         private async void button_read_string_Click( object sender, EventArgs e )
         {
             // 读取字符串
-            DemoUtils.ReadResultRender( await siemensTcpNet.ReadStringAsync( textBox3.Text ), textBox3.Text, textBox4 );
+            OperateResult<string> read = await siemensTcpNet.ReadStringAsync( textBox8.Text );
+            if (read.IsSuccess)
+            {
+                textBox7.Text = read.Content;
+            }
+            else
+            {
+                MessageBox.Show( "Failed:" + read.Message );
+            }
         }
 
         private async void Button7_Click( object sender, EventArgs e )
         {
-            // 读取时间
-            DemoUtils.ReadResultRender( await siemensTcpNet.ReadDateTimeAsync( textBox3.Text ), textBox3.Text, textBox4 );
+            OperateResult<DateTime> read = await siemensTcpNet.ReadDateTimeAsync( textBox8.Text );
+            if (read.IsSuccess)
+            {
+                textBox7.Text = read.Content.ToString( );
+            }
+            else
+            {
+                MessageBox.Show( "Failed:" + read.Message );
+            }
         }
 
         #endregion
 
         #region 单数据写入测试
-
-
-        private async void button24_Click( object sender, EventArgs e )
-        {
-            // bool写入
-            if (bool.TryParse( textBox7.Text, out bool value ))
-                DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-            else
-                MessageBox.Show( "Bool Data is not corrent: " + textBox7.Text );
-        }
-
-        private async void button23_Click( object sender, EventArgs e )
-        {
-            // byte写入
-            if (byte.TryParse( textBox7.Text, out byte value ))
-                DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-            else
-                MessageBox.Show( "Byte Data is not corrent: " + textBox7.Text );
-        }
-
-        private async void button22_Click( object sender, EventArgs e )
-        {
-            // short写入
-            if (short.TryParse( textBox7.Text, out short value ))
-                DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-            else
-                MessageBox.Show( "Short Data is not corrent: " + textBox7.Text );
-        }
-
-        private async void button21_Click( object sender, EventArgs e )
-        {
-            // ushort写入
-            if (ushort.TryParse( textBox7.Text, out ushort value ))
-                DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-            else
-                MessageBox.Show( "ushort Data is not corrent: " + textBox7.Text );
-        }
-
-
-        private async void button20_Click( object sender, EventArgs e )
-        {
-            // int写入
-            if (int.TryParse( textBox7.Text, out int value ))
-                DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-            else
-                MessageBox.Show( "int Data is not corrent: " + textBox7.Text );
-        }
-
-        private async void button19_Click( object sender, EventArgs e )
-        {
-            // uint写入
-            if (uint.TryParse( textBox7.Text, out uint value ))
-                DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-            else
-                MessageBox.Show( "uint Data is not corrent: " + textBox7.Text );
-        }
-
-        private async void button18_Click( object sender, EventArgs e )
-        {
-            // long写入
-            if (long.TryParse( textBox7.Text, out long value ))
-                DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-            else
-                MessageBox.Show( "long Data is not corrent: " + textBox7.Text );
-        }
-
-        private async void button17_Click( object sender, EventArgs e )
-        {
-            // ulong写入
-            if (ulong.TryParse( textBox7.Text, out ulong value ))
-                DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-            else
-                MessageBox.Show( "ulong Data is not corrent: " + textBox7.Text );
-        }
-
-        private async void button16_Click( object sender, EventArgs e )
-        {
-            // float写入
-            if (float.TryParse( textBox7.Text, out float value ))
-                DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-            else
-                MessageBox.Show( "float Data is not corrent: " + textBox7.Text );
-        }
-
-        private async void button15_Click( object sender, EventArgs e )
-        {
-            // double写入
-            if (double.TryParse( textBox7.Text, out double value ))
-                DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-            else
-                MessageBox.Show( "double Data is not corrent: " + textBox7.Text );
-        }
-
 
         private async void button14_Click( object sender, EventArgs e )
         {

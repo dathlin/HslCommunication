@@ -75,6 +75,8 @@ namespace HslCommunicationDemo
 				button4.Text = "Clear";
 				label12.Text = "Receive:";
 				checkBox2.Text = "Start Topic Cache";
+				checkBox3.Text = "Send test message back when client connect";
+				button8.Text = "web test";
 			}
 		}
 
@@ -86,6 +88,7 @@ namespace HslCommunicationDemo
 			{
 				wsServer = new WebSocketServer( );
 				wsServer.OnClientApplicationMessageReceive += WebSocket_OnClientApplicationMessageReceive;
+				wsServer.OnClientConnected += WsServer_OnClientConnected;
 
 				wsServer.IsTopicRetain = checkBox2.Checked;
 				wsServer.ServerStart( int.Parse( textBox2.Text ) );
@@ -99,6 +102,15 @@ namespace HslCommunicationDemo
 			catch (Exception ex)
 			{
 				MessageBox.Show( "Start Failed : " + ex.Message );
+			}
+		}
+
+		private void WsServer_OnClientConnected( WebSocketSession session )
+		{
+			// 当客户端刚连上来的时候可以选择回发数据操作，具体取决于你的业务逻辑
+			if (checkBox3.Checked)
+			{
+				wsServer.SendClientPayload( session, "This a test message when client connect" );
 			}
 		}
 
@@ -177,6 +189,51 @@ namespace HslCommunicationDemo
 			{
 				isStop = false;
 				button7.Text = "暂停";
+			}
+		}
+
+		private void button8_Click( object sender, EventArgs e )
+		{
+			string content = @"<html>
+	<head>
+		<title>
+			测试的websocket信息-hslcommunication
+		</title>
+	</head>
+	<body>
+		<div id=" + "\"hsl\"" + @"></div>
+	</body>
+	<script type=" + "\"text/javascript\"" + @">
+		if (" + "\"WebSocket\"" + @" in window)
+		{
+			// 打开一个 web socket
+			var ws = new WebSocket('ws://127.0.0.1:1883');
+			ws.onopen = function()
+			{
+				 console.log('已经打开...');
+			};
+			ws.onmessage = function (evt)
+			{
+				var received_msg = evt.data;
+				var obj = document.getElementById('hsl');
+				obj.innerText = received_msg;
+			};
+		}
+		else
+		{
+			var obj = document.getElementById('hsl');
+			obj.innerText = '您的浏览器不支持 WebSocket!';
+		}
+	</script>
+</html>";
+			try
+			{
+				System.IO.File.WriteAllText( "websocket.html", content, Encoding.UTF8 );
+				System.Diagnostics.Process.Start( "websocket.html" );
+			}
+			catch(Exception ex)
+			{
+				HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
 			}
 		}
 	}

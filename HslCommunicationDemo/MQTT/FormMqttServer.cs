@@ -74,6 +74,7 @@ namespace HslCommunicationDemo
 				button3.Text = "Publish all";
 				button4.Text = "Clear";
 				label12.Text = "Receive:";
+				checkBox3.Text = "Send test message back when client connect";
 			}
 		}
 
@@ -85,6 +86,7 @@ namespace HslCommunicationDemo
 			{
 				mqttServer = new MqttServer( );
 				mqttServer.OnClientApplicationMessageReceive += MqttServer_OnClientApplicationMessageReceive;
+				mqttServer.OnClientConnected += MqttServer_OnClientConnected;
 				if (checkBox1.Checked)
 				{
 					mqttServer.ClientVerification += MqttServer_ClientVerification;
@@ -101,6 +103,15 @@ namespace HslCommunicationDemo
 			catch (Exception ex)
 			{
 				MessageBox.Show( "Start Failed : " + ex.Message );
+			}
+		}
+
+		private void MqttServer_OnClientConnected( MqttSession session )
+		{
+			if (checkBox3.Checked)
+			{
+				// 当客户端连接上来时，可以立即返回一些数据内容信息
+				mqttServer.PublishTopicPayload( session, "HslMqtt", Encoding.UTF8.GetBytes( "This is a test message" ) );
 			}
 		}
 
