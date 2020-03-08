@@ -18,6 +18,22 @@ namespace HslCommunicationDemo.Redis
             InitializeComponent( );
         }
 
+        private int dbSelect = 0;       // 当前选择的数据库，默认是0
+        private int GetDbFromTreeNode( TreeNode node)
+        {
+            while (true)
+            {
+                if(node.ImageKey == "VirtualMachine")
+                {
+                    return int.Parse( node.Text.Substring( 2 ) );
+                }
+                else
+                {
+                    node = node.Parent;
+                }
+            }
+        }
+
         private void RedisBrowser_Load( object sender, EventArgs e )
         {
             ImageList imageList = new ImageList( );
@@ -67,7 +83,7 @@ namespace HslCommunicationDemo.Redis
                 button2.Enabled = true;
                 panel3.Enabled = true;
                 MessageBox.Show( StringResources.Language.ConnectServerSuccess );
-                RedisRefresh( );
+                RedisRefresh( treeView1.Nodes[dbSelect] );
             }
             else
             {
@@ -77,12 +93,12 @@ namespace HslCommunicationDemo.Redis
 
         private void button3_Click( object sender, EventArgs e )
         {
-            RedisRefresh( );
+            RedisRefresh( treeView1.Nodes[dbSelect] );
         }
 
-        private void RedisRefresh( )
+        private void RedisRefresh( TreeNode rootNode )
         {
-            treeView1.Nodes[0].Nodes.Clear( );
+            rootNode.Nodes.Clear( );
             // 加载所有的键值信息
             OperateResult<string[]> reads = redisClient.ReadAllKeys( "*" );
             if (!reads.IsSuccess) return;
@@ -90,10 +106,10 @@ namespace HslCommunicationDemo.Redis
             // 填充tree
             foreach (var item in reads.Content)
             {
-                AddTreeNode( treeView1.Nodes[0], item, item );
+                AddTreeNode( rootNode, item, item );
             }
 
-            treeView1.ExpandAll( );
+            rootNode.ExpandAll( );
         }
 
         private void AddTreeNode(TreeNode parent, string key, string infactKey )
@@ -175,6 +191,17 @@ namespace HslCommunicationDemo.Redis
 
         private void treeView1_AfterSelect( object sender, TreeViewEventArgs e )
         {
+            int db = GetDbFromTreeNode( e.Node );
+            if (dbSelect != db)
+            {
+                dbSelect = db;
+                if (redisClient.SelectDB( dbSelect ).IsSuccess == false)
+                {
+                    MessageBox.Show( "Db select failed" );
+                    return;
+                }
+            }
+
             // 点击了数据信息
             if (e.Node.ImageKey == "Enum_582")
             {
@@ -185,11 +212,29 @@ namespace HslCommunicationDemo.Redis
                 OperateResult<string> read = redisClient.ReadKey( e.Node.Tag.ToString( ) );
 
                 label5.Text = "Time: " + (DateTime.Now - start).TotalMilliseconds.ToString( "F0" ) + " ms";
-                label4.Text = "Size: " + HslCommunication.BasicFramework.SoftBasic.GetSizeDescription( Encoding.UTF8.GetBytes( read.Content ).Length );
                 if (read.IsSuccess)
                 {
-                    textBox5.Text = read.Content;
-
+                    label4.Text = "Size: " + HslCommunication.BasicFramework.SoftBasic.GetSizeDescription( Encoding.UTF8.GetBytes( read.Content ).Length );
+                    string value = read.Content;
+                    try
+                    {
+                        if (radioButton6.Checked)
+                        {
+                            textBox5.Text = value;
+                        }
+                        else if (radioButton5.Checked)
+                        {
+                            textBox5.Text = System.Xml.Linq.XElement.Parse( value ).ToString( );
+                        }
+                        else if (radioButton4.Checked)
+                        {
+                            textBox5.Text = Newtonsoft.Json.Linq.JObject.Parse( value ).ToString( );
+                        }
+                    }
+                    catch
+                    {
+                        textBox5.Text = value;
+                    }
 
                     lastNodeSelected = e.Node.Tag.ToString( );
                     selectRowIndex = -1;
@@ -211,7 +256,7 @@ namespace HslCommunicationDemo.Redis
                 this.Refresh( );
                 textBox6.Text = e.Node.Tag.ToString( );
 
-                
+
                 DateTime start = DateTime.Now;
                 OperateResult<string[]> read = redisClient.ListRange( e.Node.Tag.ToString( ), 0, -1 );
                 if (!read.IsSuccess)
@@ -287,9 +332,13 @@ namespace HslCommunicationDemo.Redis
                     MessageBox.Show( read.Message );
                 }
             }
-            else if( e.Node.ImageKey == "Class_489")
+            else if (e.Node.ImageKey == "Class_489")
             {
 
+            }
+            else if (e.Node.ImageKey == "VirtualMachine")
+            {
+                button3_Click( sender, e );
             }
             else
             {
@@ -417,6 +466,15 @@ namespace HslCommunicationDemo.Redis
         private void radioButton3_CheckedChanged( object sender, EventArgs e )
         {
 
+        }
+
+        private void button7_Click( object sender, EventArgs e )
+        {
+            // 针对当前的db选择，写入新的数据信息
+            using (FormRedisInput formRedisInput = new FormRedisInput( redisClient ))
+            {
+                formRedisInput.ShowDialog( );
+            }
         }
     }
 }

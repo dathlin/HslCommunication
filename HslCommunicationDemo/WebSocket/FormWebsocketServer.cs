@@ -39,6 +39,7 @@ namespace HslCommunicationDemo
 			if (wsServer != null)
 			{
 				label2.Text = "Online Count:" + wsServer.OnlineCount;
+				//listBox1.DataSource = wsServer.OnlineSessions;
 			}
 		}
 
@@ -128,6 +129,8 @@ namespace HslCommunicationDemo
 			{
 				wsServer.SendClientPayload( session, Encoding.UTF8.GetString( message.Payload ) + random.Next( 1000, 10000 ) );
 			}
+
+			// wsServer.AddSessionTopic( session, Encoding.UTF8.GetString( message.Payload ) );
 		}
 
 		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
@@ -162,7 +165,7 @@ namespace HslCommunicationDemo
 
 		private void Button5_Click( object sender, EventArgs e )
 		{
-			// 发布到指定的客户端ID
+			// 发布100K数据
 			StringBuilder sb = new StringBuilder( );
 			for (int i = 0; i < 100 * 1024; i++)
 			{

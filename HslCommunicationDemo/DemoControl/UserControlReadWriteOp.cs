@@ -79,8 +79,16 @@ namespace HslCommunicationDemo.DemoControl
 			Type type = readWrite.GetType( );
 			readByteMethod = type.GetMethod( "ReadByte", new Type[] { typeof(string) } );
 			if (readByteMethod == null) button_read_byte.Enabled = false;
-			writeByteMethod = type.GetMethod("Write", new Type[] { typeof( string ), typeof( byte ) } );
-			if (writeByteMethod == null) button23.Enabled = false;
+
+			try
+			{
+				writeByteMethod = type.GetMethod( "Write", new Type[] { typeof( string ), typeof( byte ) } );
+				if (writeByteMethod == null) button23.Enabled = false;
+			}
+			catch
+			{
+				button23.Enabled = false;
+			}
 
 		}
 
@@ -321,7 +329,7 @@ namespace HslCommunicationDemo.DemoControl
 			// byte，此处演示了基于反射的写入操作
 			if (byte.TryParse( textBox7.Text, out byte value ))
 			{
-				DemoUtils.WriteResultRender( (OperateResult)writeByteMethod.Invoke( textBox8.Text, new object[] { value } ), textBox8.Text );
+				DemoUtils.WriteResultRender( (OperateResult)writeByteMethod.Invoke( readWriteNet, new object[] { textBox8.Text, value } ), textBox8.Text );
 			}
 			else
 				MessageBox.Show( "Byte Data is not corrent: " + textBox7.Text );

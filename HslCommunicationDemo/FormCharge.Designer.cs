@@ -294,7 +294,7 @@
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(213, 36);
 			this.label3.TabIndex = 2;
-			this.label3.Text = "永久";
+			this.label3.Text = "20年";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label2

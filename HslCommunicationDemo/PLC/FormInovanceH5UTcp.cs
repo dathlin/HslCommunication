@@ -8,20 +8,20 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet;
 using HslCommunication;
-using HslCommunication.ModBus;
 using System.Threading;
+using HslCommunication.Profinet.Inovance;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormModbusUdp : HslFormContent
+    public partial class FormInovanceH5UTcp : HslFormContent
     {
-        public FormModbusUdp( )
+        public FormInovanceH5UTcp( )
         {
             InitializeComponent( );
         }
 
 
-        private ModbusUdpNet busTcpClient = null;
+        private InovanceH5UTcp inovanceH5UTcp = null;
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
@@ -40,15 +40,15 @@ namespace HslCommunicationDemo
         {
             if (language == 2)
             {
-                Text = "Modbus Tcp Over Udp Read Demo";
+                Text = "InovanceH5UTcp Read Demo";
 
                 label1.Text = "Ip:";
                 label3.Text = "Port:";
                 label21.Text = "station";
                 checkBox1.Text = "address from 0";
                 checkBox3.Text = "string reverse";
-                button1.Text = "Open";
-                button2.Text = "Close";
+                button1.Text = "Connect";
+                button2.Text = "Disconnect";
                 
                 label11.Text = "Address:";
                 label12.Text = "length:";
@@ -63,21 +63,19 @@ namespace HslCommunicationDemo
                 groupBox5.Text = "Special function test";
 
                 button3.Text = "Pressure test, r/w 3,000s";
-
-
             }
         }
 
         private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if (busTcpClient != null)
+            if (inovanceH5UTcp != null)
             {
                 switch (comboBox1.SelectedIndex)
                 {
-                    case 0: busTcpClient.DataFormat = HslCommunication.Core.DataFormat.ABCD;break;
-                    case 1: busTcpClient.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
-                    case 2: busTcpClient.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
-                    case 3: busTcpClient.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
+                    case 0: inovanceH5UTcp.DataFormat = HslCommunication.Core.DataFormat.ABCD;break;
+                    case 1: inovanceH5UTcp.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
+                    case 2: inovanceH5UTcp.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
+                    case 3: inovanceH5UTcp.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
                     default:break;
                 }
             }
@@ -85,9 +83,9 @@ namespace HslCommunicationDemo
 
         private void CheckBox3_CheckedChanged( object sender, EventArgs e )
         {
-            if (busTcpClient != null)
+            if (inovanceH5UTcp != null)
             {
-                busTcpClient.IsStringReverse = checkBox3.Checked;
+                inovanceH5UTcp.IsStringReverse = checkBox3.Checked;
             }
         }
         
@@ -99,8 +97,6 @@ namespace HslCommunicationDemo
         
 
         #region Connect And Close
-
-
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -125,21 +121,29 @@ namespace HslCommunicationDemo
                 return;
             }
 
-            busTcpClient = new ModbusUdpNet( textBox1.Text, port, station );
-            busTcpClient.AddressStartWithZero = checkBox1.Checked;
-
+            inovanceH5UTcp?.ConnectClose( );
+            inovanceH5UTcp = new InovanceH5UTcp( textBox1.Text, port, station );
+            inovanceH5UTcp.AddressStartWithZero = checkBox1.Checked;
 
             ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
-            busTcpClient.IsStringReverse = checkBox3.Checked;
+            inovanceH5UTcp.IsStringReverse = checkBox3.Checked;
 
             try
             {
-                MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
-                button2.Enabled = true;
-                button1.Enabled = false;
-                panel2.Enabled = true;
+                OperateResult connect = inovanceH5UTcp.ConnectServer( );
+                if (connect.IsSuccess)
+                {
+                    MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+                    button2.Enabled = true;
+                    button1.Enabled = false;
+                    panel2.Enabled = true;
 
-                userControlReadWriteOp1.SetReadWriteNet( busTcpClient, "100", false );
+                    userControlReadWriteOp1.SetReadWriteNet( inovanceH5UTcp, "D100", true );
+                }
+                else
+                {
+                    MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+                }
             }
             catch (Exception ex)
             {
@@ -150,6 +154,7 @@ namespace HslCommunicationDemo
         private void button2_Click( object sender, EventArgs e )
         {
             // 断开连接
+            inovanceH5UTcp.ConnectClose( );
             button2.Enabled = false;
             button1.Enabled = true;
             panel2.Enabled = false;
@@ -161,7 +166,7 @@ namespace HslCommunicationDemo
 
         private void button25_Click( object sender, EventArgs e )
         {
-            DemoUtils.BulkReadRenderResult( busTcpClient, textBox6, textBox9, textBox10 );
+            DemoUtils.BulkReadRenderResult( inovanceH5UTcp, textBox6, textBox9, textBox10 );
         }
 
 
@@ -173,7 +178,7 @@ namespace HslCommunicationDemo
 
         private void button26_Click( object sender, EventArgs e )
         {
-            OperateResult<byte[]> read = busTcpClient.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
+            OperateResult<byte[]> read = inovanceH5UTcp.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
             if (read.IsSuccess)
             {
                 textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -214,8 +219,8 @@ namespace HslCommunicationDemo
             int count = 500;
             while (count > 0)
             {
-                if (!busTcpClient.Write( "100", (short)1234 ).IsSuccess) failed++;
-                if (!busTcpClient.ReadInt16( "100" ).IsSuccess) failed++;
+                if (!inovanceH5UTcp.Write( "100", (short)1234 ).IsSuccess) failed++;
+                if (!inovanceH5UTcp.ReadInt16( "100" ).IsSuccess) failed++;
                 count--;
             }
             thread_end( );
@@ -235,7 +240,6 @@ namespace HslCommunicationDemo
         }
         
         #endregion
-
         
     }
 }

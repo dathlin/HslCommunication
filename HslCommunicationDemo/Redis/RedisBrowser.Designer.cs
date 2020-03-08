@@ -53,6 +53,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -84,12 +85,18 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
@@ -98,6 +105,7 @@
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -211,6 +219,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button7);
             this.splitContainer1.Panel1.Controls.Add(this.button6);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.treeView1);
@@ -221,6 +230,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(974, 514);
             this.splitContainer1.SplitterDistance = 282;
             this.splitContainer1.TabIndex = 9;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(252, 5);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(23, 23);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "+";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -500,6 +519,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.panel7);
             this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.label5);
@@ -597,6 +617,49 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel1.Text = "就绪";
             // 
+            // panel7
+            // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.Controls.Add(this.radioButton4);
+            this.panel7.Controls.Add(this.radioButton5);
+            this.panel7.Controls.Add(this.radioButton6);
+            this.panel7.Location = new System.Drawing.Point(243, 33);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(226, 22);
+            this.panel7.TabIndex = 10;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(133, 0);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(52, 21);
+            this.radioButton4.TabIndex = 2;
+            this.radioButton4.Text = "Json";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(73, 1);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(48, 21);
+            this.radioButton5.TabIndex = 1;
+            this.radioButton5.Text = "Xml";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Checked = true;
+            this.radioButton6.Location = new System.Drawing.Point(5, 1);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(53, 21);
+            this.radioButton6.TabIndex = 0;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Plain";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
             // RedisBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -616,6 +679,7 @@
             this.panel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -624,6 +688,7 @@
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel6.ResumeLayout(false);
@@ -633,6 +698,8 @@
             this.panel3.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -682,5 +749,10 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton6;
     }
 }

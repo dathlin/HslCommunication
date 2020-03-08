@@ -32,12 +32,12 @@
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.blogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.webSideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.mesDemoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.rToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.support赞助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.简体中文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.论坛toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.日志ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.verisonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.免责条款ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +57,7 @@
             this.简体中文ToolStripMenuItem,
             this.englishToolStripMenuItem,
             this.论坛toolStripMenuItem,
+            this.toolStripMenuItem1,
             this.日志ToolStripMenuItem,
             this.verisonToolStripMenuItem,
             this.免责条款ToolStripMenuItem,
@@ -72,7 +73,6 @@
 			this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.blogsToolStripMenuItem,
             this.webSideToolStripMenuItem,
-            this.mesDemoToolStripMenuItem,
             this.rToolStripMenuItem,
             this.support赞助ToolStripMenuItem});
 			this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
@@ -83,35 +83,28 @@
 			// blogsToolStripMenuItem
 			// 
 			this.blogsToolStripMenuItem.Name = "blogsToolStripMenuItem";
-			this.blogsToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+			this.blogsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
 			this.blogsToolStripMenuItem.Text = "Blogs [博客]";
 			this.blogsToolStripMenuItem.Click += new System.EventHandler(this.blogsToolStripMenuItem_Click);
 			// 
 			// webSideToolStripMenuItem
 			// 
 			this.webSideToolStripMenuItem.Name = "webSideToolStripMenuItem";
-			this.webSideToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+			this.webSideToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
 			this.webSideToolStripMenuItem.Text = "WebSide [官网]";
 			this.webSideToolStripMenuItem.Click += new System.EventHandler(this.webSideToolStripMenuItem_Click);
-			// 
-			// mesDemoToolStripMenuItem
-			// 
-			this.mesDemoToolStripMenuItem.Name = "mesDemoToolStripMenuItem";
-			this.mesDemoToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
-			this.mesDemoToolStripMenuItem.Text = "Mes Demo [简易MES系统示例]";
-			this.mesDemoToolStripMenuItem.Click += new System.EventHandler(this.mesDemoToolStripMenuItem_Click);
 			// 
 			// rToolStripMenuItem
 			// 
 			this.rToolStripMenuItem.Name = "rToolStripMenuItem";
-			this.rToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+			this.rToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
 			this.rToolStripMenuItem.Text = "Richard Hu [作者]";
 			this.rToolStripMenuItem.Click += new System.EventHandler(this.rToolStripMenuItem_Click);
 			// 
 			// support赞助ToolStripMenuItem
 			// 
 			this.support赞助ToolStripMenuItem.Name = "support赞助ToolStripMenuItem";
-			this.support赞助ToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+			this.support赞助ToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
 			this.support赞助ToolStripMenuItem.Text = "Support [赞助]";
 			// 
 			// 简体中文ToolStripMenuItem
@@ -137,6 +130,14 @@
 			this.论坛toolStripMenuItem.Size = new System.Drawing.Size(43, 21);
 			this.论坛toolStripMenuItem.Text = "BBS";
 			this.论坛toolStripMenuItem.Click += new System.EventHandler(this.论坛toolStripMenuItem_Click);
+			// 
+			// toolStripMenuItem1
+			// 
+			this.toolStripMenuItem1.ForeColor = System.Drawing.Color.Silver;
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(80, 21);
+			this.toolStripMenuItem1.Text = "MesDemo";
+			this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
 			// 
 			// 日志ToolStripMenuItem
 			// 
@@ -190,10 +191,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslMoveText1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.hslMoveText1.ForeColor = System.Drawing.Color.Cyan;
-			this.hslMoveText1.Location = new System.Drawing.Point(485, 0);
+			this.hslMoveText1.Location = new System.Drawing.Point(565, 0);
 			this.hslMoveText1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.hslMoveText1.Name = "hslMoveText1";
-			this.hslMoveText1.Size = new System.Drawing.Size(755, 25);
+			this.hslMoveText1.Size = new System.Drawing.Size(675, 25);
 			this.hslMoveText1.TabIndex = 35;
 			this.hslMoveText1.Text = "本demo仅支持运行8小时，如果你有什么问题，可以先去论坛看看";
 			// 
@@ -228,7 +229,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem blogsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem webSideToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mesDemoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 简体中文ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
@@ -242,6 +242,7 @@
         private System.Windows.Forms.TreeView treeView1;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
         private HslControls.HslMoveText hslMoveText1;
-    }
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+	}
 }
 

@@ -37,14 +37,14 @@
     <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.0.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.0.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.0.3.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.0.3\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.2.8.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\packages\HslControls.2.2.8\lib\net45\HslControls.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -307,6 +307,12 @@
     <Compile Include="PLC\FormAllenBrandlyBrowser.Designer.cs">
       <DependentUpon>FormAllenBrandlyBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\FormAllenBrandlyMicroCip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormAllenBrandlyMicroCip.designer.cs">
+      <DependentUpon>FormAllenBrandlyMicroCip.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\FormBeckpffAdsNet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -342,6 +348,42 @@
     </Compile>
     <Compile Include="PLC\FormFatekPrograme.Designer.cs">
       <DependentUpon>FormFatekPrograme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormInovanceAMSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormInovanceAMSerial.designer.cs">
+      <DependentUpon>FormInovanceAMSerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormInovanceAMTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormInovanceAMTcp.designer.cs">
+      <DependentUpon>FormInovanceAMTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormInovanceH3USerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormInovanceH3USerial.designer.cs">
+      <DependentUpon>FormInovanceH3USerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormInovanceH3UTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormInovanceH3UTcp.designer.cs">
+      <DependentUpon>FormInovanceH3UTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormInovanceH5USerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormInovanceH5USerial.designer.cs">
+      <DependentUpon>FormInovanceH5USerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormInovanceH5UTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormInovanceH5UTcp.designer.cs">
+      <DependentUpon>FormInovanceH5UTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormKeyenceNanoSerialOverTcp.cs">
       <SubType>Form</SubType>
@@ -498,6 +540,12 @@
     </Compile>
     <Compile Include="PLC\FormSiemensPPIOverTcp.Designer.cs">
       <DependentUpon>FormSiemensPPIOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Redis\FormRedisInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Redis\FormRedisInput.designer.cs">
+      <DependentUpon>FormRedisInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Redis\FormRedisSubscribe.cs">
       <SubType>Form</SubType>
@@ -839,6 +887,9 @@
     <EmbeddedResource Include="PLC\FormAllenBrandlyBrowser.resx">
       <DependentUpon>FormAllenBrandlyBrowser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormAllenBrandlyMicroCip.resx">
+      <DependentUpon>FormAllenBrandlyMicroCip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormBeckpffAdsNet.resx">
       <DependentUpon>FormBeckpffAdsNet.cs</DependentUpon>
     </EmbeddedResource>
@@ -856,6 +907,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormFatekPrograme.resx">
       <DependentUpon>FormFatekPrograme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormInovanceAMSerial.resx">
+      <DependentUpon>FormInovanceAMSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormInovanceAMTcp.resx">
+      <DependentUpon>FormInovanceAMTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormInovanceH3USerial.resx">
+      <DependentUpon>FormInovanceH3USerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormInovanceH3UTcp.resx">
+      <DependentUpon>FormInovanceH3UTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormInovanceH5USerial.resx">
+      <DependentUpon>FormInovanceH5USerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormInovanceH5UTcp.resx">
+      <DependentUpon>FormInovanceH5UTcp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormKeyenceNanoSerialOverTcp.resx">
       <DependentUpon>FormKeyenceNanoSerialOverTcp.cs</DependentUpon>
@@ -934,6 +1003,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormSiemensPPIOverTcp.resx">
       <DependentUpon>FormSiemensPPIOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Redis\FormRedisInput.resx">
+      <DependentUpon>FormRedisInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Redis\FormRedisSubscribe.resx">
       <DependentUpon>FormRedisSubscribe.cs</DependentUpon>

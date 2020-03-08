@@ -138,12 +138,10 @@ namespace HslCommunicationDemo
 			OpenWebside( "http://www.hslcommunication.cn/" );
 		}
 
-		private void mesDemoToolStripMenuItem_Click( object sender, EventArgs e )
+		private void toolStripMenuItem1_Click( object sender, EventArgs e )
 		{
-			OpenWebside( "http://118.24.36.220:8081/" );
+			OpenWebside( "http://www.hslcommunication.cn/MesDemo" );
 		}
-
-
 		private void 简体中文ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			// 简体中文
@@ -278,6 +276,16 @@ namespace HslCommunicationDemo
 			modbusNode.Nodes.Add( new TreeNode( "Modbus Server" ) { Tag = typeof( FormModbusServer ) } );
 			treeView1.Nodes.Add( modbusNode );
 
+			// Modbus协议
+			TreeNode inovanceNode = new TreeNode( "Inovance Plc[汇川]" );
+			inovanceNode.Nodes.Add( new TreeNode( "InovanceAMTcp" ) { Tag = typeof( FormInovanceAMTcp ) } );
+			inovanceNode.Nodes.Add( new TreeNode( "InovanceAMSerial" ) { Tag = typeof( FormInovanceAMSerial ) } );
+			inovanceNode.Nodes.Add( new TreeNode( "InovanceH3UTcp" ) { Tag = typeof( FormInovanceH3UTcp ) } );
+			inovanceNode.Nodes.Add( new TreeNode( "InovanceH3USerial" ) { Tag = typeof( FormInovanceH3USerial ) } );
+			inovanceNode.Nodes.Add( new TreeNode( "InovanceH5UTcp" ) { Tag = typeof( FormInovanceH5UTcp ) } );
+			inovanceNode.Nodes.Add( new TreeNode( "InovanceH5USerial" ) { Tag = typeof( FormInovanceH5USerial ) } );
+			treeView1.Nodes.Add( inovanceNode );
+
 			// 欧姆龙PLC相关
 			TreeNode omronNode = new TreeNode( "Omron Plc[欧姆龙]" );
 			omronNode.Nodes.Add( new TreeNode( "Fins Tcp" ) { Tag = typeof( FormOmron ) } );
@@ -314,6 +322,7 @@ namespace HslCommunicationDemo
 			// Allen Bradlly PLC
 			TreeNode allenBrandlyPlc = new TreeNode( "AllenBrandly Plc[罗克韦尔]" );
 			allenBrandlyPlc.Nodes.Add( new TreeNode( "EtherNet/IP(CIP)" ) { Tag = typeof( FormAllenBrandly ) } );
+			allenBrandlyPlc.Nodes.Add( new TreeNode( "MicroCip(Micro800)" ) { Tag = typeof( FormAllenBrandlyMicroCip ) } );
 			allenBrandlyPlc.Nodes.Add( new TreeNode( "CIP Browser" ) { Tag = typeof( FormAllenBrandlyBrowser ) } );
 			allenBrandlyPlc.Nodes.Add( new TreeNode( "CIP Virtual Server" ) { Tag = typeof( FormCipServer ) } );
 			treeView1.Nodes.Add( allenBrandlyPlc );
@@ -446,6 +455,7 @@ namespace HslCommunicationDemo
 				if (hslForm != null) hslForm.Show( dockPanel1 );
 			}
 		}
+
 	}
 
 	public class FormSiemensS1200 : FormSiemens

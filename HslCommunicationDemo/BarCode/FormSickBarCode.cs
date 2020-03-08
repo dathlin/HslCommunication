@@ -83,5 +83,10 @@ namespace HslCommunicationDemo.BarCode
                 MessageBox.Show( "Data Input wrong: " + HslCommunication.BasicFramework.SoftBasic.GetExceptionMessage( ex ) );
             }
         }
+
+        private void label6_Click( object sender, EventArgs e )
+        {
+
+        }
     }
 }

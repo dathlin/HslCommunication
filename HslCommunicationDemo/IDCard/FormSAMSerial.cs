@@ -216,11 +216,9 @@ namespace HslCommunicationDemo
             {
                 Thread.Sleep( sleep );
                 OperateResult search = sAMSerial.SearchCard( );
+                if (!search.IsSuccess)
                 {
-                    if (!search.IsSuccess)
-                    {
-                        continue;
-                    }
+                    continue;
                 }
 
                 Invoke( new Action( ( ) =>

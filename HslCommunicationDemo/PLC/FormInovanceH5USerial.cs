@@ -8,22 +8,20 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet;
 using HslCommunication;
-using HslCommunication.ModBus;
 using System.Threading;
 using System.IO.Ports;
+using HslCommunication.Profinet.Inovance;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormModbusAscii : HslFormContent
+    public partial class FormInovanceH5USerial : HslFormContent
     {
-        public FormModbusAscii( )
+        public FormInovanceH5USerial( )
         {
             InitializeComponent( );
         }
 
-
-        private ModbusAscii busAsciiClient = null;
-
+        private InovanceH5USerial inovanceH5USerial = null;
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
@@ -48,12 +46,11 @@ namespace HslCommunicationDemo
         }
 
 
-
         private void Language( int language )
         {
             if (language == 2)
             {
-                Text = "Modbus Ascii Read Demo";
+                Text = "InovanceH3USerial Read Demo";
 
                 label1.Text = "Com:";
                 label3.Text = "baudRate:";
@@ -84,35 +81,35 @@ namespace HslCommunicationDemo
 
         private void CheckBox3_CheckedChanged( object sender, EventArgs e )
         {
-            if (busAsciiClient != null)
+            if (inovanceH5USerial != null)
             {
-                busAsciiClient.IsStringReverse = checkBox3.Checked;
+                inovanceH5USerial.IsStringReverse = checkBox3.Checked;
             }
         }
 
         private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if (busAsciiClient != null)
+            if (inovanceH5USerial != null)
             {
                 switch (comboBox2.SelectedIndex)
                 {
-                    case 0: busAsciiClient.DataFormat = HslCommunication.Core.DataFormat.ABCD; break;
-                    case 1: busAsciiClient.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
-                    case 2: busAsciiClient.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
-                    case 3: busAsciiClient.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
+                    case 0: inovanceH5USerial.DataFormat = HslCommunication.Core.DataFormat.ABCD; break;
+                    case 1: inovanceH5USerial.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
+                    case 2: inovanceH5USerial.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
+                    case 3: inovanceH5USerial.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
                     default: break;
                 }
             }
         }
+
 
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
         {
 
         }
         
+
         #region Connect And Close
-
-
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -137,21 +134,22 @@ namespace HslCommunicationDemo
 
             if (!byte.TryParse(textBox15.Text,out byte station))
             {
-                MessageBox.Show( "station input wrong！" );
+                MessageBox.Show( "Station input wrong！" );
                 return;
             }
 
-            busAsciiClient?.Close( );
-            busAsciiClient = new ModbusAscii( station );
-            busAsciiClient.AddressStartWithZero = checkBox1.Checked;
+            inovanceH5USerial?.Close( );
+            inovanceH5USerial = new InovanceH5USerial( station );
+            inovanceH5USerial.AddressStartWithZero = checkBox1.Checked;
+
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
-            busAsciiClient.IsStringReverse = checkBox3.Checked;
+            inovanceH5USerial.IsStringReverse = checkBox3.Checked;
 
 
             try
             {
-                busAsciiClient.SerialPortInni( sp =>
+                inovanceH5USerial.SerialPortInni( sp =>
                  {
                      sp.PortName = comboBox3.Text;
                      sp.BaudRate = baudRate;
@@ -159,13 +157,14 @@ namespace HslCommunicationDemo
                      sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
                      sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
                  } );
-                busAsciiClient.Open( );
+                inovanceH5USerial.RtsEnable = checkBox5.Checked;
+                inovanceH5USerial.Open( );
 
                 button2.Enabled = true;
                 button1.Enabled = false;
                 panel2.Enabled = true;
 
-                userControlReadWriteOp1.SetReadWriteNet( busAsciiClient, "100", false );
+                userControlReadWriteOp1.SetReadWriteNet( inovanceH5USerial, "D100", false );
             }
             catch (Exception ex)
             {
@@ -176,21 +175,19 @@ namespace HslCommunicationDemo
         private void button2_Click( object sender, EventArgs e )
         {
             // 断开连接
-            busAsciiClient.Close( );
+            inovanceH5USerial.Close( );
             button2.Enabled = false;
             button1.Enabled = true;
             panel2.Enabled = false;
         }
-
         
-
         #endregion
 
         #region 批量读取测试
 
         private void button25_Click( object sender, EventArgs e )
         {
-            DemoUtils.BulkReadRenderResult( busAsciiClient, textBox6, textBox9, textBox10 );
+            DemoUtils.BulkReadRenderResult( inovanceH5USerial, textBox6, textBox9, textBox10 );
         }
 
         #endregion
@@ -200,7 +197,7 @@ namespace HslCommunicationDemo
 
         private void button26_Click( object sender, EventArgs e )
         {
-            OperateResult<byte[]> read = busAsciiClient.ReadBase( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
+            OperateResult<byte[]> read = inovanceH5USerial.ReadBase( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
             if (read.IsSuccess)
             {
                 textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -213,6 +210,6 @@ namespace HslCommunicationDemo
 
 
         #endregion
-
+        
     }
 }

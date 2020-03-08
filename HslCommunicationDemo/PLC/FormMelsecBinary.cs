@@ -145,7 +145,6 @@ namespace HslCommunicationDemo
 			}
 		}
 
-
 		#endregion
 
 		#region 报文读取测试

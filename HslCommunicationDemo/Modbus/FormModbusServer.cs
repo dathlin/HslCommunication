@@ -611,7 +611,7 @@ namespace HslCommunicationDemo
             {
                 try
                 {
-                    busTcpServer.StartSerialPort( textBox10.Text );
+                    busTcpServer.StartModbusRtu( textBox10.Text );
                     button5.Enabled = false;
                 }
                 catch(Exception ex)

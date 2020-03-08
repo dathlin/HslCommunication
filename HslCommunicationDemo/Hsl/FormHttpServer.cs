@@ -74,7 +74,7 @@ namespace HslCommunicationDemo
 
         private string HandleRequest( HttpListenerRequest request, HttpListenerResponse response, string data )
         {
-            if(request.HttpMethod == "GET")
+            if (request.HttpMethod == "GET")
             {
                 if (returnWeb.ContainsKey( request.RawUrl ))
                 {
