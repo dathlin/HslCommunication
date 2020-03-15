@@ -37,11 +37,11 @@
     <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.0.3.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.0.3\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.1.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.1.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
-    <Reference Include="HslControls, Version=2.2.8.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslControls.2.2.8\lib\net45\HslControls.dll</HintPath>
+    <Reference Include="HslControls, Version=2.2.9.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslControls.2.2.9\lib\net45\HslControls.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -723,6 +723,18 @@
     <Compile Include="Robot\FormEfort.Designer.cs">
       <DependentUpon>FormEfort.cs</DependentUpon>
     </Compile>
+    <Compile Include="Robot\FormFanucRobot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormFanucRobot.designer.cs">
+      <DependentUpon>FormFanucRobot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Robot\FormFanucRobotServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormFanucRobotServer.designer.cs">
+      <DependentUpon>FormFanucRobotServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Robot\FormYRC1000.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1103,6 +1115,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormEfort.resx">
       <DependentUpon>FormEfort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormFanucRobot.resx">
+      <DependentUpon>FormFanucRobot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormFanucRobotServer.resx">
+      <DependentUpon>FormFanucRobotServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormYRC1000.resx">
       <DependentUpon>FormYRC1000.cs</DependentUpon>

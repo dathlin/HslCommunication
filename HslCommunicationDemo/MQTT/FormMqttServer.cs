@@ -40,7 +40,7 @@ namespace HslCommunicationDemo
 			{
 				label2.Text = "Online Count:" + mqttServer.OnlineCount;
 				label4.Text = "Receive Count:" + receiveCount;
-				//listBox1.DataSource = mqttServer.OnlineSessions;
+				listBox1.DataSource = mqttServer.OnlineSessions;
 			}
 		}
 

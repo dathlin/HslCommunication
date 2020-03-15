@@ -188,7 +188,7 @@ namespace HslCommunicationDemo
 					// 有更新
 					Invoke( new Action( ( ) =>
 					 {
-						 if (MessageBox.Show( "服务器有新版本：" + read.Content2 + Environment.NewLine + "是否启动更新？", "检测到更新", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+						 if (MessageBox.Show( "New version on server：" + read.Content2 + Environment.NewLine + " Start update?", "Version Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
 						 {
 							 try
 							 {
@@ -382,6 +382,8 @@ namespace HslCommunicationDemo
 			robotNode.Nodes.Add( new TreeNode( "Kuka [库卡]" ) { Tag = typeof( FormKuka ) } );
 			robotNode.Nodes.Add( new TreeNode( "YRC1000 [安川]" ) { Tag = typeof( FormYRC1000 ) } );
 			robotNode.Nodes.Add( new TreeNode( "ABB Web" ) { Tag = typeof( Robot.FormABBWebApi ) } );
+			robotNode.Nodes.Add( new TreeNode( "Fanuc [发那科]" ) { Tag = typeof( Robot.FormFanucRobot ) } );
+			robotNode.Nodes.Add( new TreeNode( "Fanuc Server [发那科服务器]" ) { Tag = typeof( FormFanucRobotServer ) } );
 			treeView1.Nodes.Add( robotNode );
 
 			// Debug 相关

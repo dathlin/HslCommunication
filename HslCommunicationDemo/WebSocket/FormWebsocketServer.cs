@@ -39,7 +39,7 @@ namespace HslCommunicationDemo
 			if (wsServer != null)
 			{
 				label2.Text = "Online Count:" + wsServer.OnlineCount;
-				//listBox1.DataSource = wsServer.OnlineSessions;
+				listBox1.DataSource = wsServer.OnlineSessions;
 			}
 		}
 
