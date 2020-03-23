@@ -55,6 +55,11 @@ namespace HslCommunicationDemo
 			support赞助ToolStripMenuItem.Click += Support赞助ToolStripMenuItem_Click;
 			TreeViewIni( );
 
+			if (Program.IsActive)
+			{
+				hslMoveText1.Text = "本程序已激活，如果你有什么问题，可以去官网查找api文档，也可以加入QQ群访问。";
+			}
+
 			FormCharge form = new FormCharge( );
 			form.Show( dockPanel1 );
 		}
@@ -237,6 +242,7 @@ namespace HslCommunicationDemo
 			// 三菱PLC相关
 			TreeNode melsecNode = new TreeNode( "Melsec Plc [三菱]" );
 			melsecNode.Nodes.Add( new TreeNode( "A-1E (Binary)" ) { Tag = typeof( FormMelsec1EBinary ) } );
+			melsecNode.Nodes.Add( new TreeNode( "A-1E (ASCII)" ) { Tag = typeof( FormMelsec1EAscii ) } );
 			melsecNode.Nodes.Add( new TreeNode( "MC (Binary)" ) { Tag = typeof( FormMelsecBinary ) } );
 			melsecNode.Nodes.Add( new TreeNode( "MC Udp(Binary)" ) { Tag = typeof( FormMelsecUdp ) } );
 			melsecNode.Nodes.Add( new TreeNode( "MC (ASCII)" ) { Tag = typeof( FormMelsecAscii ) } );

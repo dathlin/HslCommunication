@@ -34,38 +34,7 @@ namespace HslCommunicationDemo
                 button1.Text = "Start Server";
                 button11.Text = "Close Server";
                 label11.Text = "This server is not a strict cip protocol and only supports perfect communication with HSL components.";
-                label19.Text = "Note: The string of values needs to be converted to the corresponding data type";
                 button4.Text = "Connecting Alien client";
-                groupBox1.Text = "Single Data Read test";
-                label6.Text = "Adderss:";
-                label7.Text = "Result";
-                button_read_bool.Text = "Read Bit";
-                button_read_byte.Text = "r-byte";
-                button_read_short.Text = "r-short";
-                button_read_ushort.Text = "r-ushort";
-                button_read_int.Text = "r-int";
-                button_read_uint.Text = "r-uint";
-                button_read_long.Text = "r-long";
-                button_read_ulong.Text = "r-ulong";
-                button_read_float.Text = "r-float";
-                button_read_double.Text = "r-double";
-                button_read_string.Text = "r-string";
-                label8.Text = "length";
-
-                label10.Text = "Address:";
-                label9.Text = "Value";
-                groupBox2.Text = "Single Data Write test";
-                button24.Text = "w-Bit";
-                button23.Text = "w-byte";
-                button22.Text = "w-short";
-                button21.Text = "w-ushort";
-                button20.Text = "w-int";
-                button19.Text = "w-uint";
-                button18.Text = "w-long";
-                button17.Text = "w-ulong";
-                button16.Text = "w-float";
-                button15.Text = "w-double";
-                button14.Text = "w-string";
 
                 button8.Text = "Load";
                 button9.Text = "Save";
@@ -148,11 +117,30 @@ namespace HslCommunicationDemo
                     IsArray = true,
                     TypeLength = 2
                 } );
+                cipServer.AddTagValue( "E", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
+                {
+                    Buffer = new byte[2],
+                    IsArray = false,
+                    TypeLength = 2
+                } );
+                cipServer.AddTagValue( "F", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
+                {
+                    Buffer = new byte[100],
+                    IsArray = false,
+                    TypeLength = 1
+                } );
+                cipServer.AddTagValue( "AB.C", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
+                {
+                    Buffer = new byte[10],
+                    IsArray = true,
+                    TypeLength = 2
+                } );
 
                 button1.Enabled = false;
                 panel2.Enabled = true;
                 button4.Enabled = true;
                 button11.Enabled = true;
+                userControlReadWriteOp1.SetReadWriteNet( cipServer, "A", false );
 
                 timerSecond?.Dispose( );
                 timerSecond = new System.Windows.Forms.Timer( );
@@ -220,265 +208,6 @@ namespace HslCommunicationDemo
 
         #endregion
 
-        #region 单数据读取测试
-
-
-        private void button_read_bool_Click( object sender, EventArgs e )
-        {
-            // 读取bool变量
-            if(textBox6.Text == "1")
-                DemoUtils.ReadResultRender( cipServer.ReadBool( textBox3.Text  ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( cipServer.ReadBool( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private void button_read_byte_Click( object sender, EventArgs e )
-        {
-            DemoUtils.ReadResultRender( cipServer.ReadByte( textBox3.Text ), textBox3.Text, textBox4 );
-        }
-
-        private void button_read_short_Click( object sender, EventArgs e )
-        {
-            // 读取short变量
-            if (textBox6.Text == "1")
-                DemoUtils.ReadResultRender( cipServer.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( cipServer.ReadInt16( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private void button_read_ushort_Click( object sender, EventArgs e )
-        {
-            // 读取ushort变量
-            if (textBox6.Text == "1")
-                DemoUtils.ReadResultRender( cipServer.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( cipServer.ReadUInt16( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private void button_read_int_Click( object sender, EventArgs e )
-        {
-            // 读取int变量
-            if (textBox6.Text == "1")
-                DemoUtils.ReadResultRender( cipServer.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( cipServer.ReadInt32( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
-        }
-        private void button_read_uint_Click( object sender, EventArgs e )
-        {
-            // 读取uint变量
-            if (textBox6.Text == "1")
-                DemoUtils.ReadResultRender( cipServer.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( cipServer.ReadUInt32( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
-        }
-        private void button_read_long_Click( object sender, EventArgs e )
-        {
-            // 读取long变量
-            if (textBox6.Text == "1")
-                DemoUtils.ReadResultRender( cipServer.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( cipServer.ReadInt64( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private void button_read_ulong_Click( object sender, EventArgs e )
-        {
-            // 读取ulong变量
-            if (textBox6.Text == "1")
-                DemoUtils.ReadResultRender( cipServer.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( cipServer.ReadUInt64( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private void button_read_float_Click( object sender, EventArgs e )
-        {
-            // 读取float变量
-            if (textBox6.Text == "1")
-                DemoUtils.ReadResultRender( cipServer.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( cipServer.ReadFloat( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private void button_read_double_Click( object sender, EventArgs e )
-        {
-            // 读取double变量
-            if (textBox6.Text == "1")
-                DemoUtils.ReadResultRender( cipServer.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
-            else
-                DemoUtils.ReadResultRender( cipServer.ReadDouble( textBox3.Text, ushort.Parse( textBox6.Text ) ), textBox3.Text, textBox4 );
-        }
-
-        private void button_read_string_Click( object sender, EventArgs e )
-        {
-            // 读取字符串
-            DemoUtils.ReadResultRender( cipServer.ReadString( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
-        }
-
-
-        #endregion
-
-        #region 单数据写入测试
-
-
-        private void button24_Click( object sender, EventArgs e )
-        {
-            // bool写入
-            try
-            {
-                cipServer.Write( textBox8.Text, bool.Parse( textBox7.Text ) );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-        private void button23_Click( object sender, EventArgs e )
-        {
-            // byte写入
-            try
-            {
-                cipServer.Write( textBox8.Text, byte.Parse( textBox7.Text ) );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-        private void button22_Click( object sender, EventArgs e )
-        {
-            // short写入
-            try
-            {
-                cipServer.Write( textBox8.Text, short.Parse( textBox7.Text ) );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-        private void button21_Click( object sender, EventArgs e )
-        {
-            // ushort写入
-            try
-            {
-                cipServer.Write(textBox8.Text, ushort.Parse( textBox7.Text ) );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-
-        private void button20_Click( object sender, EventArgs e )
-        {
-            // int写入
-            try
-            {
-                cipServer.Write( textBox8.Text, int.Parse( textBox7.Text ) );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-        private void button19_Click( object sender, EventArgs e )
-        {
-            // uint写入
-            try
-            {
-                cipServer.Write( textBox8.Text , uint.Parse( textBox7.Text ) );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-        private void button18_Click( object sender, EventArgs e )
-        {
-            // long写入
-            try
-            {
-                cipServer.Write( textBox8.Text, long.Parse( textBox7.Text ) );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-        private void button17_Click( object sender, EventArgs e )
-        {
-            // ulong写入
-            try
-            {
-                cipServer.Write(textBox8.Text , ulong.Parse( textBox7.Text ) );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-        private void button16_Click( object sender, EventArgs e )
-        {
-            // float写入
-            try
-            {
-                cipServer.Write( textBox8.Text, float.Parse( textBox7.Text ) );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-        private void button15_Click( object sender, EventArgs e )
-        {
-            // double写入
-            try
-            {
-                cipServer.Write( textBox8.Text, double.Parse( textBox7.Text ) );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-
-        private void button14_Click( object sender, EventArgs e )
-        {
-            // string写入
-            try
-            {
-                cipServer.Write( textBox8.Text, textBox7.Text );
-                writeResultRender( textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-
-
-        #endregion
-        
 
         private void linkLabel2_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
@@ -546,7 +275,7 @@ namespace HslCommunicationDemo
             timerWrite.Interval = 300;
             timerWrite.Tick += TimerWrite_Tick;
             timerWrite.Start( );
-            timerAddress = textBox8.Text;
+            timerAddress = "A";
             button10.Enabled = false;
         }
 

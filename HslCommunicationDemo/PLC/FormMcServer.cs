@@ -137,7 +137,7 @@ namespace HslCommunicationDemo
             try
             {
 
-                mcNetServer = new HslCommunication.Profinet.Melsec.MelsecMcServer( );                       // 实例化对象
+                mcNetServer = new HslCommunication.Profinet.Melsec.MelsecMcServer( checkBox2.Checked );                       // 实例化对象
                 //s7NetServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "logs.txt" );                  // 配置日志信息
                 //s7NetServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
                 mcNetServer.OnDataReceived += BusTcpServer_OnDataReceived;
@@ -185,7 +185,10 @@ namespace HslCommunicationDemo
                 return;
             }
 
-            textBox1.AppendText( "Received：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( receive, ' ' ) + Environment.NewLine );
+            if(checkBox2.Checked)
+                textBox1.AppendText( "Received：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( receive, ' ' ) + Environment.NewLine );
+            else
+                textBox1.AppendText( "Received：" + Encoding.ASCII.GetString( receive ) + Environment.NewLine );
         }
 
         /// <summary>

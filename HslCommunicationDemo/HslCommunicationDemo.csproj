@@ -37,8 +37,8 @@
     <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.1.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.1.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.1.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.1.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.2.9.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\packages\HslControls.2.2.9\lib\net45\HslControls.dll</HintPath>
@@ -402,6 +402,12 @@
     </Compile>
     <Compile Include="PLC\FormLsisCnetOverTcp.Designer.cs">
       <DependentUpon>FormLsisCnetOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMelsec1EAscii.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsec1EAscii.designer.cs">
+      <DependentUpon>FormMelsec1EAscii.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormMelsec3COverTcp.cs">
       <SubType>Form</SubType>
@@ -946,6 +952,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormLsisCnetOverTcp.resx">
       <DependentUpon>FormLsisCnetOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsec1EAscii.resx">
+      <DependentUpon>FormMelsec1EAscii.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormMelsec3COverTcp.resx">
       <DependentUpon>FormMelsec3COverTcp.cs</DependentUpon>
