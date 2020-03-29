@@ -19,6 +19,10 @@ namespace HslCommunicationDemo
 
 		public static bool IsActive { get; private set; }
 
+		public static DateTime StartTime = DateTime.Now;
+
+		public static string SystemName = "工业设备联网调试系统";
+
 		/// <summary>
 		/// 应用程序的主入口点。
 		/// </summary>

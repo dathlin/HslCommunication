@@ -154,16 +154,17 @@
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
 			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
 			this.userControlReadWriteOp1.TabIndex = 22;
+			this.userControlReadWriteOp1.Load += new System.EventHandler(this.userControlReadWriteOp1_Load);
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(8, 10);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(639, 17);
+			this.label2.Size = new System.Drawing.Size(710, 17);
 			this.label2.TabIndex = 18;
 			this.label2.Text = "服务器值列表：   A short ; A1  short  ;  B int ;  C   float ;     D  short[5];     E  bo" +
-    "ol;     F  string ;   AB.C  short[5]";
+    "ol;     F  string ;  G  sting[5];   AB.C  short[5]";
 			// 
 			// button10
 			// 

@@ -37,11 +37,11 @@
     <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.1.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.1.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.1.2.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.1.2\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
-    <Reference Include="HslControls, Version=2.2.9.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslControls.2.2.9\lib\net45\HslControls.dll</HintPath>
+    <Reference Include="HslControls, Version=2.3.0.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslControls.2.3.0\lib\net45\HslControls.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -141,6 +141,12 @@
     </Compile>
     <Compile Include="FormCharge.Designer.cs">
       <DependentUpon>FormCharge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIndex.designer.cs">
+      <DependentUpon>FormIndex.cs</DependentUpon>
     </Compile>
     <Compile Include="Hsl\FormHttpServer.cs">
       <SubType>Form</SubType>
@@ -741,6 +747,12 @@
     <Compile Include="Robot\FormFanucRobotServer.designer.cs">
       <DependentUpon>FormFanucRobotServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Robot\FormHyundaiUdp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormHyundaiUdp.designer.cs">
+      <DependentUpon>FormHyundaiUdp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Robot\FormYRC1000.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -823,6 +835,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCharge.resx">
       <DependentUpon>FormCharge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIndex.resx">
+      <DependentUpon>FormIndex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormHttpServer.resx">
       <DependentUpon>FormHttpServer.cs</DependentUpon>
@@ -1131,6 +1146,9 @@
     <EmbeddedResource Include="Robot\FormFanucRobotServer.resx">
       <DependentUpon>FormFanucRobotServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormHyundaiUdp.resx">
+      <DependentUpon>FormHyundaiUdp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormYRC1000.resx">
       <DependentUpon>FormYRC1000.cs</DependentUpon>
     </EmbeddedResource>
@@ -1164,6 +1182,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
+    <None Include="img\weipay.png" />
+    <None Include="img\SupportRobot.png" />
+    <None Include="img\SupportDevice.png" />
+    <None Include="img\alipay.png" />
     <None Include="img\VirtualMachine.png" />
     <None Include="img\usbcontroller.png" />
     <None Include="img\Tag_7213.png" />

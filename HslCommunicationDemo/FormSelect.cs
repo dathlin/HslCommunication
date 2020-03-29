@@ -60,8 +60,8 @@ namespace HslCommunicationDemo
 				hslMoveText1.Text = "本程序已激活，如果你有什么问题，可以去官网查找api文档，也可以加入QQ群访问。";
 			}
 
-			FormCharge form = new FormCharge( );
-			form.Show( dockPanel1 );
+			new FormCharge( ).Show( dockPanel1 );
+			new FormIndex( ).Show( dockPanel1 );
 		}
 
 		private void Support赞助ToolStripMenuItem_Click( object sender, EventArgs e )
@@ -88,24 +88,6 @@ namespace HslCommunicationDemo
 				免责条款ToolStripMenuItem.Text = "Disclaimer";
 				//授权ToolStripMenuItem.Text = "Authorize";
 			}
-		}
-
-		private void LinkLabel6_Click( object sender, EventArgs e )
-		{
-			// English
-			HslCommunication.StringResources.SeteLanguageEnglish( );
-			Program.Language = 2;
-			Language( Program.Language );
-			MessageBox.Show( "Select English!" );
-		}
-
-		private void LinkLabel5_Click( object sender, EventArgs e )
-		{
-			// 简体中文
-			HslCommunication.StringResources.SetLanguageChinese( );
-			Program.Language = 1;
-			Language( Program.Language );
-			MessageBox.Show( "已选择中文" );
 		}
 
 		private void 论坛toolStripMenuItem_Click(object sender, EventArgs e)
@@ -390,6 +372,7 @@ namespace HslCommunicationDemo
 			robotNode.Nodes.Add( new TreeNode( "ABB Web" ) { Tag = typeof( Robot.FormABBWebApi ) } );
 			robotNode.Nodes.Add( new TreeNode( "Fanuc [发那科]" ) { Tag = typeof( Robot.FormFanucRobot ) } );
 			robotNode.Nodes.Add( new TreeNode( "Fanuc Server [发那科服务器]" ) { Tag = typeof( FormFanucRobotServer ) } );
+			robotNode.Nodes.Add( new TreeNode( "Hyundai [现代]" ) { Tag = typeof( Robot.FormHyundaiUdp ) } );
 			treeView1.Nodes.Add( robotNode );
 
 			// Debug 相关

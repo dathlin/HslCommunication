@@ -109,7 +109,7 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( allenBradleyNet, "A1", true );
+					userControlReadWriteOp1.SetReadWriteNet( allenBradleyNet, "A1", true, 1 );
 				}
 				else
 				{

@@ -54,17 +54,6 @@ namespace HslCommunicationDemo
             cipServer?.ServerClose( );
         }
 
-        /// <summary>
-        /// 统一的数据写入的结果显示
-        /// </summary>
-        /// <param name="result"></param>
-        /// <param name="address"></param>
-        private void writeResultRender( string address )
-        {
-            MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
-        }
-
-
         #region Server Start
 
         private HslCommunication.Profinet.AllenBradley.AllenBradleyServer cipServer;
@@ -129,6 +118,12 @@ namespace HslCommunicationDemo
                     IsArray = false,
                     TypeLength = 1
                 } );
+                cipServer.AddTagValue( "G", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
+                {
+                    Buffer = new byte[500],
+                    IsArray = true,
+                    TypeLength = 100
+                } );
                 cipServer.AddTagValue( "AB.C", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
                 {
                     Buffer = new byte[10],
@@ -140,7 +135,7 @@ namespace HslCommunicationDemo
                 panel2.Enabled = true;
                 button4.Enabled = true;
                 button11.Enabled = true;
-                userControlReadWriteOp1.SetReadWriteNet( cipServer, "A", false );
+                userControlReadWriteOp1.SetReadWriteNet( cipServer, "A", false, 1 );
 
                 timerSecond?.Dispose( );
                 timerSecond = new System.Windows.Forms.Timer( );
@@ -286,5 +281,9 @@ namespace HslCommunicationDemo
             timerValue++;
         }
 
+        private void userControlReadWriteOp1_Load( object sender, EventArgs e )
+        {
+
+        }
     }
 }

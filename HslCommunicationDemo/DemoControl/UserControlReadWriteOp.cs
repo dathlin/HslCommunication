@@ -69,12 +69,13 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		public void SetReadWriteNet( IReadWriteNet readWrite, string address, bool isAsync = false )
+		public void SetReadWriteNet( IReadWriteNet readWrite, string address, bool isAsync = false, int strLength = 10 )
 		{
 			this.isAsync = isAsync;
 			this.address = address;
 			textBox3.Text = address;
 			textBox8.Text = address;
+			textBox1.Text = strLength.ToString( );
 			readWriteNet = readWrite;
 			Type type = readWrite.GetType( );
 			readByteMethod = type.GetMethod( "ReadByte", new Type[] { typeof(string) } );
