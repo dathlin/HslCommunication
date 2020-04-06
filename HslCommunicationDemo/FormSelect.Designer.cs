@@ -143,8 +143,8 @@
 			// 
 			this.日志ToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
 			this.日志ToolStripMenuItem.Name = "日志ToolStripMenuItem";
-			this.日志ToolStripMenuItem.Size = new System.Drawing.Size(83, 21);
-			this.日志ToolStripMenuItem.Text = "Changelog";
+			this.日志ToolStripMenuItem.Size = new System.Drawing.Size(67, 21);
+			this.日志ToolStripMenuItem.Text = "API 文档";
 			this.日志ToolStripMenuItem.Click += new System.EventHandler(this.日志ToolStripMenuItem_Click);
 			// 
 			// verisonToolStripMenuItem

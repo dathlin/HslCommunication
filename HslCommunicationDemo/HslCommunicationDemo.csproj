@@ -37,8 +37,8 @@
     <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.1.2.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.1.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.1.3.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.1.3\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.3.0.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\packages\HslControls.2.3.0\lib\net45\HslControls.dll</HintPath>
@@ -776,6 +776,18 @@
     <Compile Include="DemoControl\UserControlCurve.Designer.cs">
       <DependentUpon>UserControlCurve.cs</DependentUpon>
     </Compile>
+    <Compile Include="Toledo\FormToledoSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Toledo\FormToledoSerial.designer.cs">
+      <DependentUpon>FormToledoSerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Toledo\FormToledoTcpServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Toledo\FormToledoTcpServer.designer.cs">
+      <DependentUpon>FormToledoTcpServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="WebSocket\FormWebsocketClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1154,6 +1166,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormKuka.resx">
       <DependentUpon>FormKuka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Toledo\FormToledoSerial.resx">
+      <DependentUpon>FormToledoSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Toledo\FormToledoTcpServer.resx">
+      <DependentUpon>FormToledoTcpServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WebSocket\FormWebsocketClient.resx">
       <DependentUpon>FormWebsocketClient.cs</DependentUpon>

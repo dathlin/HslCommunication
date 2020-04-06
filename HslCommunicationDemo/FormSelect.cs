@@ -79,6 +79,7 @@ namespace HslCommunicationDemo
 				Text = "HslCommunication 测试工具";
 				免责条款ToolStripMenuItem.Text = "免责条款";
 				论坛toolStripMenuItem.Text = "论坛";
+				日志ToolStripMenuItem.Text = "API 文档";
 				//授权ToolStripMenuItem.Text = "授权";
 			}
 			else
@@ -86,6 +87,7 @@ namespace HslCommunicationDemo
 				Text = "HslCommunication Test Tool";
 				论坛toolStripMenuItem.Text = "BBS";
 				免责条款ToolStripMenuItem.Text = "Disclaimer";
+				日志ToolStripMenuItem.Text = "API Doc";
 				//授权ToolStripMenuItem.Text = "Authorize";
 			}
 		}
@@ -409,6 +411,12 @@ namespace HslCommunicationDemo
 			TreeNode instrumentNode = new TreeNode( "Instrument [仪器仪表]" );
 			instrumentNode.Nodes.Add( new TreeNode( "DAM3601 [阿尔泰科技]" ) { Tag = typeof( FormDAM3601 ) } );
 			treeView1.Nodes.Add( instrumentNode );
+
+			// 托利多电子秤Toledo
+			TreeNode toledoNode = new TreeNode( "Toledo [托利多]" );
+			toledoNode.Nodes.Add( new TreeNode( "Serial [串口通讯]" ) { Tag = typeof( Toledo.FormToledoSerial ) } );
+			toledoNode.Nodes.Add( new TreeNode( "Tcp Server [网口服务]" ) { Tag = typeof( Toledo.FormToledoTcpServer ) } );
+			treeView1.Nodes.Add( toledoNode );
 
 			// 控件库
 			TreeNode controlNode = new TreeNode( "Control [控件库]" );

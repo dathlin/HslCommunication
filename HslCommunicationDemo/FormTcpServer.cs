@@ -167,9 +167,18 @@ namespace HslCommunicationDemo
                 try
                 {
                     int length = client.EndReceive( ar );
-                    client.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), client );
 
-                    if (length == 0) return;
+                    if (length == 0)
+                    {
+                        client.Close( );
+                        Invoke( new Action( ( ) =>
+                        {
+                            textBox6.AppendText( "Client Offline[" + ((IPEndPoint)client.RemoteEndPoint).Address.ToString( ) + "]" + Environment.NewLine );
+                        } ) );
+                        return;
+                    };
+
+                    client.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), client );
 
                     byte[] data = new byte[length];
                     Array.Copy( buffer, 0, data, 0, length );
