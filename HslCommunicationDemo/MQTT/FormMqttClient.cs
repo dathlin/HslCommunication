@@ -67,6 +67,7 @@ namespace HslCommunicationDemo
 				button9.Text = "Press Test";
 				button7.Text = "subscribe";
 				button8.Text = "unsubscribe";
+				button10.Text = "OnlyTransfer";
 			}
 		}
 
@@ -194,6 +195,17 @@ namespace HslCommunicationDemo
 
 		}
 
+		private void button10_Click( object sender, EventArgs e )
+		{
+			OperateResult send = mqttClient.PublishMessage( new MqttApplicationMessage( )
+			{
+				QualityOfServiceLevel = MqttQualityOfServiceLevel.OnlyTransfer,
+				Topic = textBox5.Text,
+				Payload = Encoding.UTF8.GetBytes( textBox4.Text )
+			} );
+
+			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
+		}
 
 		private void button4_Click( object sender, EventArgs e )
 		{

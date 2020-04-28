@@ -228,5 +228,17 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button5_Click( object sender, EventArgs e )
+		{
+			OperateResult<bool[]> read = allenBradleyNet.ReadBoolArray( textBox3.Text );
+			if (read.IsSuccess)
+			{
+				textBox4.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ArrayFormat( read.Content );
+			}
+			else
+			{
+				MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
+			}
+		}
 	}
 }

@@ -90,8 +90,9 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button23.Enabled = false;
 			}
-
 		}
+
+		public string GetWriteAddress( ) => textBox8.Text;
 
 		private string address = string.Empty;
 		private IReadWriteNet readWriteNet;

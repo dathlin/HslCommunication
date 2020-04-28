@@ -301,6 +301,7 @@ this jar component is suitable for the development of Android, easy to build a. 
 ## HslCommunication.py Summary 
 This component provides a Python version, a castration version of the. NET version, removes all server function codes, retains some of the client function code, 
 facilitates data interaction with PLC, devices, and data interaction with C # programs for cross-platform operation
+![Picture](https://raw.githubusercontent.com/dathlin/HslCommunication/master/imgs/python_demo.png)
 
 ## Xamarin.Android Demo
 ![Picture](https://raw.githubusercontent.com/dathlin/HslCommunication/master/imgs/appDemo.png)

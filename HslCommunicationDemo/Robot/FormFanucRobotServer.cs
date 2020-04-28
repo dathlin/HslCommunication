@@ -31,17 +31,8 @@ namespace HslCommunicationDemo
                 button1.Text = "Start Server";
                 button11.Text = "Close Server";
                 label11.Text = "This server is not a strict fanuc protocol and only supports perfect communication with HSL components.";
-
-                label1.Text = "log:";
-                checkBox1.Text = "Display received data";
-                label16.Text = "Client-Online:";
             }
         }
-        
-        
-        
-        private System.Windows.Forms.Timer timerSecond;
-
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
         {
             fanucRobotServer?.ServerClose( );
@@ -60,27 +51,18 @@ namespace HslCommunicationDemo
                 return;
             }
 
-
             try
             {
 
                 fanucRobotServer = new HslCommunication.Robot.FANUC.FanucRobotServer( );                             // 实例化对象
-                //fanucRobotServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "logs.txt" );                  // 配置日志信息
-                //fanucRobotServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
                 fanucRobotServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
                 fanucRobotServer.ServerStart( port );
 
-                userControlReadWriteOp1.SetReadWriteNet( fanucRobotServer, "D0" );
+                userControlReadWriteServer1.SetReadWriteServer( fanucRobotServer, "D0" );
                 button1.Enabled = false;
                 panel2.Enabled = true;
                 button11.Enabled = true;
-
-                timerSecond?.Dispose( );
-                timerSecond = new System.Windows.Forms.Timer( );
-                timerSecond.Interval = 1000;
-                timerSecond.Tick += TimerSecond_Tick;
-                timerSecond.Start( );
             }
             catch (Exception ex)
             {
@@ -97,57 +79,12 @@ namespace HslCommunicationDemo
             button11.Enabled = false;
         }
 
-        private void TimerSecond_Tick( object sender, EventArgs e )
-        {
-            label15.Text = fanucRobotServer.OnlineCount.ToString( ) ;
-        }
-
         private void BusTcpServer_OnDataReceived( object sender, byte[] receive )
         {
-            if (!checkBox1.Checked) return;
-
-            if (InvokeRequired)
-            {
-                BeginInvoke( new Action<object,byte[]>( BusTcpServer_OnDataReceived ), sender, receive );
-                return;
-            }
-
-            textBox1.AppendText( "Received：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( receive, ' ' ) + Environment.NewLine );
+            // 可以进行相关的操作
         }
-
-        /// <summary>
-        /// 当有日志记录的时候，触发，将日志信息也在主界面进行输出
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
-        {
-            try
-            {
-                if (InvokeRequired)
-                {
-                    Invoke( new Action<object, HslCommunication.LogNet.HslEventArgs>( LogNet_BeforeSaveToFile ), sender, e );
-                    return;
-                }
-
-                textBox1.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-
 
         #endregion
-
-
-
-        private string timerAddress = string.Empty;
-        private long timerValue = 0;
-        private System.Windows.Forms.Timer timerWrite = null;
-
 
     }
 }

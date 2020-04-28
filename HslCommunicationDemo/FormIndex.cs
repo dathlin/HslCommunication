@@ -66,17 +66,23 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V9.1.3
-1. HslExtension: 完善一些转化的api，方便数组和字符串转化，完善对象转JSON字符串。
-2. LogNet：消息格式化文本的消息等级追随HSL的语言设定，如果是中文，就显示调试，信息，警告，错误，致命。
-3. Redis: 修复ExpireKey，生存时间参数丢失的bug，完善了说明文档。
-4. OmronCip: 欧姆龙的CIP协议的类库，修复数组读取的bug，修复字符串写入bug，字符串写入还需要测试。
-5. Toledo：新增托利多电子秤的串口类及网口服务器类，方便接收标准的数据流，等待测试。
-6. Java：增加了单元测试的内容，对一些已经完成的类添加单元测试。
-7. Python：实现了python版本的HslCommunication程序，基于pyqt实现，初步添加了一些PLC的调试界面。
-8. 代码注释优化，使用前请仔细阅读下面的信息：http://api.hslcommunication.cn/
-9. http://www.hslcommunication.cn/MesDemo 官网的地址以后作为优秀的MES产品展示平台，欢迎大家关注。
-10. HSL的目标是打造成工业互联网的利器，工业大数据的基础，打造边缘计算平台。企业终身授权费：8000元。";
+			textBox1.Text = @"V9.2.0
+1. HttpServer: 当客户端发起request请求的时候，在日志记录的时候记录当前的请求的方式，GET,POST,OPTION等等。
+2. MQTT: mqtt的消息等级追加一个新的等级，为OnlyTransfer等级，用来表示只发送服务器，不触发发布操作。
+3. MqttServer: 配合Qos等级为OnlyTransfer时，进行相关的适配操作，并触发消息接收的事件。
+4. MqttSyncClient: 新增MQTT的同步访问的客户端，协议头标记为HUSL，向HSL的mqtt服务器进行数据请求并等待反馈。尚未添加心跳程序。
+5. MqttServer: 适配同步客户端实现功能，当客户端为同步客户端的时候，调试心跳验证。
+6. 至此，HSL的MQTT协议已经是兼容几大网络功能了，在线客户端管理，消息发布订阅，消息普通收发，同步网络访问。
+7. IByteTransform接口属性新增IsStringReverseByteWord，相当于从ReverseByWord挪过来了，默认为false，如果为true，在解析字符串的时候将两两字节颠倒。
+8. Omron: 欧姆的fins-tcp及fins-udp及hostlink的IByteTransform接口IsStringReverseByteWord调整为true默认颠倒。
+9. SerialBase: 串口基类的打开串口方法调整返回类型OperateResult，在串口数据读取之前增加打开串口的Open方法，串口类也只需要一直读就可以了。
+10. NetworkDoubleBase, SerialDeviceBase, NetworkUdpDeviceBase及相关的继承类，对所有的泛型进行了擦除，一律采用接口实现，之后将统一java,python代码。
+11. FreedomTcp,FreedomUdp,FreeSerial: 添加基于自由协议的tcp，udp，串口协议，可以自由配置IByteTransform接口，可用来读取一些不常见的协议。
+12. Omron-cip: 读写字符串仍然没有测试通过，请暂时不要调用。
+13. SiemensS7: 单次读取之前是按照200字节进行拆分的，现在根据s7协议返回的报文来自动调整，1200系列是220字节，1500系列是920字节，其他等待测试。
+14. 官网的备案失效了，重新备案需要点时间，请访问 http://118.24.36.220/ 然后去顶部的菜单找相应的入口。
+15. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。
+16. HSL的目标是打造成工业互联网的利器，工业大数据的基础，打造边缘计算平台。企业终身授权费：8000元(不含税)。";
 		}
 
 

@@ -66,6 +66,7 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.button10 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -222,6 +223,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button10);
 			this.panel2.Controls.Add(this.label10);
 			this.panel2.Controls.Add(this.button9);
 			this.panel2.Controls.Add(this.panel3);
@@ -271,7 +273,7 @@
 			this.panel3.Controls.Add(this.radioButton5);
 			this.panel3.Controls.Add(this.radioButton3);
 			this.panel3.Controls.Add(this.radioButton4);
-			this.panel3.Location = new System.Drawing.Point(651, 179);
+			this.panel3.Location = new System.Drawing.Point(699, 181);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(184, 28);
 			this.panel3.TabIndex = 26;
@@ -312,7 +314,7 @@
 			// 
 			this.radioButton2.AutoSize = true;
 			this.radioButton2.Checked = true;
-			this.radioButton2.Location = new System.Drawing.Point(567, 174);
+			this.radioButton2.Location = new System.Drawing.Point(616, 175);
 			this.radioButton2.Name = "radioButton2";
 			this.radioButton2.Size = new System.Drawing.Size(74, 21);
 			this.radioButton2.TabIndex = 25;
@@ -323,7 +325,7 @@
 			// radioButton1
 			// 
 			this.radioButton1.AutoSize = true;
-			this.radioButton1.Location = new System.Drawing.Point(567, 193);
+			this.radioButton1.Location = new System.Drawing.Point(616, 193);
 			this.radioButton1.Name = "radioButton1";
 			this.radioButton1.Size = new System.Drawing.Size(74, 21);
 			this.radioButton1.TabIndex = 24;
@@ -332,7 +334,7 @@
 			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(454, 180);
+			this.button8.Location = new System.Drawing.Point(514, 180);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(91, 28);
 			this.button8.TabIndex = 23;
@@ -342,7 +344,7 @@
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(357, 180);
+			this.button7.Location = new System.Drawing.Point(417, 180);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(91, 28);
 			this.button7.TabIndex = 22;
@@ -352,9 +354,9 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(256, 180);
+			this.button6.Location = new System.Drawing.Point(233, 180);
 			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(91, 28);
+			this.button6.Size = new System.Drawing.Size(80, 28);
 			this.button6.TabIndex = 21;
 			this.button6.Text = "正好一次";
 			this.button6.UseVisualStyleBackColor = true;
@@ -362,9 +364,9 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(159, 180);
+			this.button5.Location = new System.Drawing.Point(147, 180);
 			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(91, 28);
+			this.button5.Size = new System.Drawing.Size(80, 28);
 			this.button5.TabIndex = 20;
 			this.button5.Text = "最少一次";
 			this.button5.UseVisualStyleBackColor = true;
@@ -393,9 +395,9 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(863, 180);
+			this.button4.Location = new System.Drawing.Point(883, 180);
 			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(91, 28);
+			this.button4.Size = new System.Drawing.Size(71, 28);
 			this.button4.TabIndex = 17;
 			this.button4.Text = "清空";
 			this.button4.UseVisualStyleBackColor = true;
@@ -405,7 +407,7 @@
 			// 
 			this.button3.Location = new System.Drawing.Point(62, 180);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(91, 28);
+			this.button3.Size = new System.Drawing.Size(79, 28);
 			this.button3.TabIndex = 12;
 			this.button3.Text = "最多一次";
 			this.button3.UseVisualStyleBackColor = true;
@@ -458,7 +460,7 @@
 			// 
 			// userControlHead1
 			// 
-			this.userControlHead1.BackColor = System.Drawing.Color.DarkGray;
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlHead1.HelpLink = "https://www.cnblogs.com/dathlin/p/11631894.html";
@@ -469,6 +471,16 @@
 			this.userControlHead1.ProtocolInfo = "MQTT";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
+			// 
+			// button10
+			// 
+			this.button10.Location = new System.Drawing.Point(319, 180);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(80, 28);
+			this.button10.TabIndex = 29;
+			this.button10.Text = "只发不推送";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
 			// FormMqttClient
 			// 
@@ -534,5 +546,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button9;
 		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Button button10;
 	}
 }

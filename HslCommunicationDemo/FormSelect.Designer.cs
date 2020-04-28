@@ -42,7 +42,6 @@
 			this.verisonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.免责条款ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.vS2015BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
 			this.hslMoveText1 = new HslControls.HslMoveText();
@@ -127,8 +126,8 @@
 			// 
 			this.论坛toolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
 			this.论坛toolStripMenuItem.Name = "论坛toolStripMenuItem";
-			this.论坛toolStripMenuItem.Size = new System.Drawing.Size(43, 21);
-			this.论坛toolStripMenuItem.Text = "BBS";
+			this.论坛toolStripMenuItem.Size = new System.Drawing.Size(47, 21);
+			this.论坛toolStripMenuItem.Text = "Blog";
 			this.论坛toolStripMenuItem.Click += new System.EventHandler(this.论坛toolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem1
@@ -238,7 +237,6 @@
         private System.Windows.Forms.ToolStripMenuItem 论坛toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 授权ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem support赞助ToolStripMenuItem;
-        private WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme vS2015BlueTheme1;
         private System.Windows.Forms.TreeView treeView1;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
         private HslControls.HslMoveText hslMoveText1;

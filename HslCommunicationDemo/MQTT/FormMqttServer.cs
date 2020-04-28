@@ -136,6 +136,19 @@ namespace HslCommunicationDemo
 			{
 				mqttServer.PublishTopicPayload( session, message.Topic, message.Payload );
 			}
+
+			if(session.Protocol == "HUSL")
+			{
+				// 当前的会话是同步通信的情况
+				if(message.Topic == "A")
+				{
+					// 测试回传一条数据信息
+					mqttServer.PublishTopicPayload( session, "B", Encoding.UTF8.GetBytes( "这是回传的一条测试数据" ) );
+				}
+
+				// 如果不回传数据，客户端就会引发超时，关闭连接
+			}
+
 			Invoke( new Action( ( ) =>
 			{
 				if (!isStop)

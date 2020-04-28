@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Profinet.Toledo;
-using System.IO.Ports;
 using HslCommunication;
 
 namespace HslCommunicationDemo.Toledo

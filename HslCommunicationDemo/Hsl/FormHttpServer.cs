@@ -72,30 +72,46 @@ namespace HslCommunicationDemo
         private Dictionary<string, string> returnWeb = new Dictionary<string, string>( );
         private Dictionary<string, string> postWeb = new Dictionary<string, string>( );
 
+        [HttpPost]
+        public OperateResult CheckAccount(string name, string password )
+        {
+            if (name != "admin") return new OperateResult( "用户名错误" );
+            if (password != "123456") return new OperateResult( "密码错误" );
+            return OperateResult.CreateSuccessResult( );
+        }
+
         private string HandleRequest( HttpListenerRequest request, HttpListenerResponse response, string data )
         {
-            if (request.HttpMethod == "GET")
+            if (request.RawUrl.StartsWith( "/FormHttpServer/" ))
             {
-                if (returnWeb.ContainsKey( request.RawUrl ))
-                {
-                    response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
-                    return returnWeb[request.RawUrl];
-                }
-            }
-            else if(request.HttpMethod == "POST")
-            {
-                // POST示例，在data中可以上传复杂的数据，长度不限制的
-                if (postWeb.ContainsKey( request.RawUrl ))
-                {
-                    response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
-                    return postWeb[request.RawUrl];
-                }
+                // /FormHttpServer/CheckAccount            { "name" : "admin", "password" : "123456" }
+                return HttpServer.HandleObjectMethod( request, data, this );
             }
             else
             {
+                if (request.HttpMethod == "GET")
+                {
+                    if (returnWeb.ContainsKey( request.RawUrl ))
+                    {
+                        response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
+                        return returnWeb[request.RawUrl];
+                    }
+                }
+                else if (request.HttpMethod == "POST")
+                {
+                    // POST示例，在data中可以上传复杂的数据，长度不限制的
+                    if (postWeb.ContainsKey( request.RawUrl ))
+                    {
+                        response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
+                        return postWeb[request.RawUrl];
+                    }
+                }
+                else
+                {
 
+                }
+                return string.Empty;
             }
-            return string.Empty;
         }
 
         private void button3_Click( object sender, EventArgs e )

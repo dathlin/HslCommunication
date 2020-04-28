@@ -32,6 +32,11 @@ namespace HslCommunicationDemo
 				timer1s.Interval = 500;
 				timer1s.Start( );
 			}
+
+			if(Program.Language == 2)
+			{
+				Text = "Charge";
+			}
 		}
 
 		int tick = 0;
@@ -40,6 +45,11 @@ namespace HslCommunicationDemo
 		}
 
 		private void tableLayoutPanel1_Paint( object sender, PaintEventArgs e )
+		{
+
+		}
+
+		private void label1_Click( object sender, EventArgs e )
 		{
 
 		}
