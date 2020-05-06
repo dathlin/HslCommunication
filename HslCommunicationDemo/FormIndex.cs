@@ -66,23 +66,19 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V9.2.0
-1. HttpServer: 当客户端发起request请求的时候，在日志记录的时候记录当前的请求的方式，GET,POST,OPTION等等。
-2. MQTT: mqtt的消息等级追加一个新的等级，为OnlyTransfer等级，用来表示只发送服务器，不触发发布操作。
-3. MqttServer: 配合Qos等级为OnlyTransfer时，进行相关的适配操作，并触发消息接收的事件。
-4. MqttSyncClient: 新增MQTT的同步访问的客户端，协议头标记为HUSL，向HSL的mqtt服务器进行数据请求并等待反馈。尚未添加心跳程序。
-5. MqttServer: 适配同步客户端实现功能，当客户端为同步客户端的时候，调试心跳验证。
-6. 至此，HSL的MQTT协议已经是兼容几大网络功能了，在线客户端管理，消息发布订阅，消息普通收发，同步网络访问。
-7. IByteTransform接口属性新增IsStringReverseByteWord，相当于从ReverseByWord挪过来了，默认为false，如果为true，在解析字符串的时候将两两字节颠倒。
-8. Omron: 欧姆的fins-tcp及fins-udp及hostlink的IByteTransform接口IsStringReverseByteWord调整为true默认颠倒。
-9. SerialBase: 串口基类的打开串口方法调整返回类型OperateResult，在串口数据读取之前增加打开串口的Open方法，串口类也只需要一直读就可以了。
-10. NetworkDoubleBase, SerialDeviceBase, NetworkUdpDeviceBase及相关的继承类，对所有的泛型进行了擦除，一律采用接口实现，之后将统一java,python代码。
-11. FreedomTcp,FreedomUdp,FreeSerial: 添加基于自由协议的tcp，udp，串口协议，可以自由配置IByteTransform接口，可用来读取一些不常见的协议。
-12. Omron-cip: 读写字符串仍然没有测试通过，请暂时不要调用。
-13. SiemensS7: 单次读取之前是按照200字节进行拆分的，现在根据s7协议返回的报文来自动调整，1200系列是220字节，1500系列是920字节，其他等待测试。
-14. 官网的备案失效了，重新备案需要点时间，请访问 http://118.24.36.220/ 然后去顶部的菜单找相应的入口。
-15. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。
-16. HSL的目标是打造成工业互联网的利器，工业大数据的基础，打造边缘计算平台。企业终身授权费：8000元(不含税)。";
+			textBox1.Text = @"V9.2.1
+1. Toledo: 托利多电子秤的字节触发的时候，传递出来携带原始的字节数组，方便自行处理，Demo界面优化，显示信息更加完善。
+2. Lsis: Lsis的PLC通信类修复一些bug，感谢埃及朋友的提供的技术支持。
+3. MqttSyncClient: 新增ReadString方法，以字符串的形式来和服务器交互，默认编码UTF8，当然也可以自己指定编码，本质还是读取字节数据。
+4. WebsocketClient: websocket的客户端类，重新设计异常重连，网络异常时触发 OnNetworkError 事件，用户应该捕获事件，然后在事件里重连服务器，直到成功为止。
+5. MqttClient: Mqtt客户端类，重新设计异常重连，网络异常时触发 OnNetworkError 事件，用户应该捕获事件，然后在事件里重连服务器，直到成功为止。
+6. MqttSyncClient: 支持读取数据的进度回调功能，支持三种进度报告，数据上传到服务器的进度报告，服务器处理进度报告，数据返回到客户端的进度报告。
+7. PanasonicMewtocol: 修复注释错误，L区的数据也可以进行L100F，L2.3访问。
+8. DLT645: 初步添加电力规约协议的串口实现，目前只实现了读取数据，还未测试，等待后续的测试完善。
+9. Omron-cip: 读写字符串仍然没有测试通过，请暂时不要调用。
+10. 官网的备案失效了，重新备案需要点时间，请访问 http://118.24.36.220/ 然后去顶部的菜单找相应的入口。
+11. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。
+12. HSL的目标是打造成工业互联网的利器，工业大数据的基础，打造边缘计算平台。企业终身授权费：8000元(不含税)。";
 		}
 
 

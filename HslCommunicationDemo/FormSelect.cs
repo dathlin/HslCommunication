@@ -38,6 +38,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "debug",                 Properties.Resources.debug );             // 15
 			imageList.Images.Add( "barcode",               Properties.Resources.barcode );           // 16
 			imageList.Images.Add( "mqtt",                  Properties.Resources.mqtt );              // 17
+			imageList.Images.Add( "toledo",                Properties.Resources.toledo );            // 18
 
 			treeView1.ImageList = imageList;
 		}
@@ -437,12 +438,13 @@ namespace HslCommunicationDemo
 			// Instrument 仪器仪表
 			TreeNode instrumentNode = new TreeNode( "Instrument [仪器仪表]" );
 			instrumentNode.Nodes.Add( new TreeNode( "DAM3601 [阿尔泰科技]" ) { Tag = typeof( FormDAM3601 ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DLT645 [电力规约]" ) { Tag = typeof( FormDLT645 ) } );
 			treeView1.Nodes.Add( instrumentNode );
 
 			// 托利多电子秤Toledo
-			TreeNode toledoNode = new TreeNode( "Toledo [托利多]" );
-			toledoNode.Nodes.Add( new TreeNode( "Serial [串口通讯]" ) { Tag = typeof( Toledo.FormToledoSerial ) } );
-			toledoNode.Nodes.Add( new TreeNode( "Tcp Server [网口服务]" ) { Tag = typeof( Toledo.FormToledoTcpServer ) } );
+			TreeNode toledoNode = new TreeNode( "Toledo [托利多]", 18, 18 );
+			toledoNode.Nodes.Add( new TreeNode( "Serial [串口通讯]", 18, 18 ) { Tag = typeof( Toledo.FormToledoSerial ) } );
+			toledoNode.Nodes.Add( new TreeNode( "Tcp Server [网口服务]", 18, 18 ) { Tag = typeof( Toledo.FormToledoTcpServer ) } );
 			treeView1.Nodes.Add( toledoNode );
 
 			// 控件库

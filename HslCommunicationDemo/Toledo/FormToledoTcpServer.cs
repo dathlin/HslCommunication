@@ -25,6 +25,7 @@ namespace HslCommunicationDemo.Toledo
             panel2.Enabled = false;
             button2.Enabled = false;
             Language( Program.Language );
+            hslCurve1.SetLeftCurve( "重量", null, Color.Red );
         }
 
         private void Language( int language )
@@ -52,6 +53,7 @@ namespace HslCommunicationDemo.Toledo
             try
             {
                 toledoTcpServer = new ToledoTcpServer( );
+                toledoTcpServer.HasChk = checkBox1.Checked;
                 toledoTcpServer.OnToledoStandardDataReceived += ToledoTcpServer_OnToledoStandardDataReceived;
                 toledoTcpServer.ServerStart( port );
                 button1.Enabled = false;
@@ -64,20 +66,30 @@ namespace HslCommunicationDemo.Toledo
                 HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
             }
         }
-
+        private long receiveTimes = 0;
         private void ToledoTcpServer_OnToledoStandardDataReceived( object sender, ToledoStandardData e )
         {
             if (InvokeRequired)
             {
-                Invoke( new Action<object, ToledoStandardData>( ToledoTcpServer_OnToledoStandardDataReceived ) );
+                Invoke( new Action<object, ToledoStandardData>( ToledoTcpServer_OnToledoStandardDataReceived ), sender, e );
                 return;
             }
 
+            receiveTimes++;
             StringBuilder sb = new StringBuilder( );
             if (checkBox4.Checked)
                 sb.Append( DateTime.Now.ToString( ) + Environment.NewLine );
             sb.Append( e.ToJsonString( ) + Environment.NewLine );
             textBox6.Text = sb.ToString( );
+
+            textBox1.Text = e.SourceData.ToHexString( ' ' );
+            textBox3.Text = Encoding.ASCII.GetString( e.SourceData );
+
+            toledoDataControl1.SetToledoData( e );
+            hslCurve1.AddCurveData( "重量", e.Weight );
+            hslDialPlate1.Value = e.Weight;
+
+            label2.Text = "Receive Times:" + receiveTimes;
         }
 
         private void button2_Click( object sender, EventArgs e )
@@ -93,6 +105,19 @@ namespace HslCommunicationDemo.Toledo
             catch (Exception ex)
             {
                 HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+            }
+        }
+
+        private void button3_Click( object sender, EventArgs e )
+        {
+            if (float.TryParse( textBox4.Text, out float result ))
+            {
+                hslCurve1.ValueMaxLeft = result;
+                hslDialPlate1.MaxValue = result; 
+            }
+            else
+            {
+                MessageBox.Show( "Input Wrong" );
             }
         }
     }

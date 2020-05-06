@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.MQTT;
 using HslCommunication;
+using System.Threading.Tasks;
 
 namespace HslCommunicationDemo
 {
@@ -108,11 +109,43 @@ namespace HslCommunicationDemo
 			mqttSyncClient.ConnectClose( );
 		}
 
+		private void SendProgressReport(long already, long total )
+		{
+			// already : 已发送的字节数
+			// total : 总计发送的字节数
+			if (InvokeRequired)
+			{
+				Invoke( new Action<long, long>( SendProgressReport ), already, total );
+				return;
+			}
+
+			hslProgress1.Value = (int)(already * 100 / total);
+		}
+
+		private void ReceiveProgressReport( long already, long total )
+		{
+			// already : 已接收的字节数
+			// total : 总计接收的字节数
+			if (InvokeRequired)
+			{
+				Invoke( new Action<long, long>( ReceiveProgressReport ), already, total );
+				return;
+			}
+
+			hslProgress2.Value = (int)(already * 100 / total);
+		}
+
+
 		private async void button3_Click( object sender, EventArgs e )
 		{
+			hslProgress1.Value = 0;
+			hslProgress2.Value = 0;
 			DateTime start = DateTime.Now;
 			button3.Enabled = false;
-			OperateResult<string, byte[]> read = await mqttSyncClient.ReadAsync( textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ) );
+			OperateResult<string, byte[]> read = await mqttSyncClient.ReadAsync(
+				textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ),
+				new Action<long, long>( SendProgressReport ), null,
+				new Action<long, long>( ReceiveProgressReport ) );
 			button3.Enabled = true;
 
 			textBox7.Text = (int)(DateTime.Now - start).TotalMilliseconds + " ms";
@@ -153,6 +186,99 @@ namespace HslCommunicationDemo
 			textBox8.Clear( );
 		}
 
+		private async void button5_Click( object sender, EventArgs e )
+		{
+			// 大批量数据上传的情况
+			hslProgress1.Value = 0;
+			hslProgress2.Value = 0;
+			DateTime start = DateTime.Now;
+			button5.Enabled = false;
+
+			// 编造一条1M的数据
+			byte[] buffer = new byte[1024 * 1024];
+			for (int i = 0; i < buffer.Length; i++)
+			{
+				buffer[i] = 0x30;
+			}
+
+			OperateResult<string, byte[]> read = await mqttSyncClient.ReadAsync( textBox5.Text, buffer,
+				new Action<long, long>( SendProgressReport ), null,
+				new Action<long, long>( ReceiveProgressReport ) ) ;
+			button5.Enabled = true;
+
+			textBox7.Text = (int)(DateTime.Now - start).TotalMilliseconds + " ms";
+			if (!read.IsSuccess) { MessageBox.Show( "Rend Failed:" + read.Message ); return; }
+
+			textBox6.Text = read.Content1;
+			string msg = Encoding.UTF8.GetString( read.Content2 );
+			if (radioButton4.Checked)
+			{
+				try
+				{
+					msg = System.Xml.Linq.XElement.Parse( msg ).ToString( );
+				}
+				catch
+				{
+
+				}
+			}
+			else if (radioButton5.Checked)
+			{
+				try
+				{
+					msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+				}
+				catch
+				{
+
+				}
+			}
+
+			textBox8.Text = msg;
+		}
+
+		private async void button6_Click( object sender, EventArgs e )
+		{
+			hslProgress1.Value = 0;
+			hslProgress2.Value = 0;
+			DateTime start = DateTime.Now;
+			button6.Enabled = false;
+			OperateResult<string, byte[]> read = await mqttSyncClient.ReadAsync(
+				"C", Encoding.UTF8.GetBytes( textBox4.Text ),
+				new Action<long, long>( SendProgressReport ), null,
+				new Action<long, long>( ReceiveProgressReport ) );
+			button6.Enabled = true;
+
+			textBox7.Text = (int)(DateTime.Now - start).TotalMilliseconds + " ms";
+			if (!read.IsSuccess) { MessageBox.Show( "Rend Failed:" + read.Message ); return; }
+
+			textBox6.Text = read.Content1;
+			string msg = Encoding.UTF8.GetString( read.Content2 );
+			if (radioButton4.Checked)
+			{
+				try
+				{
+					msg = System.Xml.Linq.XElement.Parse( msg ).ToString( );
+				}
+				catch
+				{
+
+				}
+			}
+			else if (radioButton5.Checked)
+			{
+				try
+				{
+					msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+				}
+				catch
+				{
+
+				}
+			}
+
+			textBox8.Text = msg?.Length > 100 ? msg.Substring( 0, 100 ) + "..." : msg;
+		}
 	}
 
 

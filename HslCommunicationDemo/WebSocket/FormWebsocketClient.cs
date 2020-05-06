@@ -74,10 +74,12 @@ namespace HslCommunicationDemo
 				
 			}
 
+			wsClient?.ConnectClose( );
 			wsClient = new WebSocketClient( textBox1.Text, int.Parse(textBox2.Text) );
 			wsClient.LogNet = new HslCommunication.LogNet.LogNetSingle( string.Empty );
 			wsClient.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			wsClient.OnClientApplicationMessageReceive += WebSocket_OnWebSocketMessageReceived;
+			wsClient.OnNetworkError += WsClient_OnNetworkError;
 			OperateResult connect = null;
 			if(string.IsNullOrEmpty(textBox3.Text))
 				connect = wsClient.ConnectServer( );
@@ -94,6 +96,30 @@ namespace HslCommunicationDemo
 			else
 			{
 				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+			}
+		}
+
+		private void WsClient_OnNetworkError( object sender, EventArgs e )
+		{
+			// 当网络异常的时候触发，可以在此处重连服务器
+			if (sender is WebSocketClient client)
+			{
+				// 开始重连服务器，直到连接成功为止
+				client.LogNet?.WriteInfo( "网络异常，准备10秒后重新连接。" );
+				while (true)
+				{
+					// 每隔10秒重连
+					System.Threading.Thread.Sleep( 10_000 );
+					client.LogNet?.WriteInfo( "准备重新连接服务器..." );
+					OperateResult connect = client.ConnectServer( );
+					if (connect.IsSuccess)
+					{
+						// 连接成功后，可以在下方break之前进行订阅，或是数据初始化操作
+						client.LogNet?.WriteInfo( "连接服务器成功！" );
+						break;
+					}
+					client.LogNet?.WriteInfo( "连接失败，准备10秒后重新连接。" );
+				}
 			}
 		}
 

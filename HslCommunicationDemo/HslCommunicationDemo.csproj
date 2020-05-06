@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.2.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.2.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.2.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.2.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.3.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\packages\HslControls.2.3.1\lib\net45\HslControls.dll</HintPath>
@@ -310,6 +310,12 @@
     </Compile>
     <Compile Include="IDCard\FormSAMSerial.Designer.cs">
       <DependentUpon>FormSAMSerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormDLT645.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDLT645.Designer.cs">
+      <DependentUpon>FormDLT645.cs</DependentUpon>
     </Compile>
     <Compile Include="Modbus\FormInputAlien.cs">
       <SubType>Form</SubType>
@@ -864,6 +870,12 @@
     <Compile Include="Toledo\FormToledoTcpServer.Designer.cs">
       <DependentUpon>FormToledoTcpServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Toledo\ToledoDataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Toledo\ToledoDataControl.Designer.cs">
+      <DependentUpon>ToledoDataControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="WebSocket\FormWebsocketQANet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -989,6 +1001,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IDCard\FormSAMSerial.resx">
       <DependentUpon>FormSAMSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDLT645.resx">
+      <DependentUpon>FormDLT645.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modbus\FormInputAlien.resx">
       <DependentUpon>FormInputAlien.cs</DependentUpon>
@@ -1270,6 +1285,9 @@
     <EmbeddedResource Include="Toledo\FormToledoTcpServer.resx">
       <DependentUpon>FormToledoTcpServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Toledo\ToledoDataControl.resx">
+      <DependentUpon>ToledoDataControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WebSocket\FormWebsocketQANet.resx">
       <DependentUpon>FormWebsocketQANet.cs</DependentUpon>
     </EmbeddedResource>
@@ -1298,6 +1316,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
+    <None Include="img\toledo.png" />
     <None Include="img\copyright.jpg" />
     <None Include="img\mqtt.png" />
     <None Include="img\barcode.png" />

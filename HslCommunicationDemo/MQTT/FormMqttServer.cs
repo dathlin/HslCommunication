@@ -145,6 +145,28 @@ namespace HslCommunicationDemo
 					// 测试回传一条数据信息
 					mqttServer.PublishTopicPayload( session, "B", Encoding.UTF8.GetBytes( "这是回传的一条测试数据" ) );
 				}
+				else if (message.Topic == "B")
+				{
+					System.Threading.Thread.Sleep( 1000 );
+					// 假设服务器处理数据要耗费10秒钟
+					for (int i = 0; i < 10; i++)
+					{
+						System.Threading.Thread.Sleep( 1000 );
+						mqttServer.ReportProgress( session, ((i + 1) * 10).ToString( ), $"当前正在处理{i + 1}步" );
+					}
+					System.Threading.Thread.Sleep( 1000 );
+					mqttServer.PublishTopicPayload( session, StringResources.Language.SuccessText, Encoding.UTF8.GetBytes( "B操作处理成功" ) );
+				}
+				else if (message.Topic == "C")
+				{
+					// 回传一条1M的数据
+					byte[] buffer = new byte[1024 * 1024];
+					for (int i = 0; i < buffer.Length; i++)
+					{
+						buffer[i] = 0x30;
+					}
+					mqttServer.PublishTopicPayload( session, "C", buffer );
+				}
 
 				// 如果不回传数据，客户端就会引发超时，关闭连接
 			}
@@ -154,7 +176,14 @@ namespace HslCommunicationDemo
 				if (!isStop)
 				{
 					receiveCount++;
-					textBox8.AppendText( $"Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
+					if (message.Payload?.Length > 100)
+					{
+						textBox8.AppendText( $"Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload.SelectBegin( 100 ) )}...]" + Environment.NewLine );
+					}
+					else
+					{
+						textBox8.AppendText( $"Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
+					}
 				}
 			} ) );
 		}

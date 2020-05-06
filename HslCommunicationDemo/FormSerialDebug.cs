@@ -7,6 +7,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HslCommunication;
 
 namespace HslCommunicationDemo
 {
@@ -245,6 +246,54 @@ namespace HslCommunicationDemo
                 HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
             }
         }
+
+        #region Toledo Test
+
+        private void button6_Click( object sender, EventArgs e )
+        {
+            if (button6.BackColor != Color.Green)
+            {
+                toledoThread = true;
+                button6.BackColor = Color.Green;
+                new System.Threading.Thread( new System.Threading.ThreadStart( ToledoTest ) ) { IsBackground = true }.Start( );
+            }
+            else
+            {
+                toledoThread = false;
+                button6.BackColor = SystemColors.Control;
+            }
+        }
+
+        private bool toledoThread = false;
+        private Random random = new Random( );
+        private float toledoWeight = 30f;
+
+        private void ToledoTest( )
+        {
+            while (toledoThread)
+            {
+                System.Threading.Thread.Sleep( 50 );
+
+                byte[] send = "02 2C 30 20 20 20 33 38 36 32 20 20 20 30 30 30 0D".ToHexBytes( );
+                toledoWeight += random.Next( 200 ) / 100f - 1;
+                if (toledoWeight < 0) toledoWeight = 5f;
+                if (toledoWeight > 100) toledoWeight = 95f;
+                string tmp = toledoWeight.ToString( "F2" ).Replace( ".", "" ).PadLeft( 6, ' ' );
+                Encoding.ASCII.GetBytes( tmp ).CopyTo( send, 4 );
+
+                try
+                {
+                    SP_ReadData?.Write( send, 0, send.Length );
+                }
+                catch (Exception ex)
+                {
+                    HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+                    return;
+                }
+            }
+        }
+
+        #endregion
 
     }
 }

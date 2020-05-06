@@ -25,6 +25,7 @@ namespace HslCommunicationDemo.Toledo
 
             panel2.Enabled = false;
 
+            hslCurve1.SetLeftCurve( "重量", null, Color.Red );
             comboBox1.SelectedIndex = 0;
 
             comboBox2.DataSource = SerialPort.GetPortNames( );
@@ -121,19 +122,30 @@ namespace HslCommunicationDemo.Toledo
             }
         }
 
+        private long receiveTimes = 0;
         private void ToledoSerial_OnToledoStandardDataReceived( object sender, ToledoStandardData e )
         {
             if (InvokeRequired)
             {
-                Invoke( new Action<object, ToledoStandardData>( ToledoSerial_OnToledoStandardDataReceived ) );
+                Invoke( new Action<object, ToledoStandardData>( ToledoSerial_OnToledoStandardDataReceived ), sender, e );
                 return;
             }
 
+            receiveTimes++;
             StringBuilder sb = new StringBuilder( );
             if (checkBox4.Checked)
                 sb.Append( DateTime.Now.ToString( ) + Environment.NewLine );
             sb.Append( e.ToJsonString( ) + Environment.NewLine );
             textBox6.Text = sb.ToString( );
+
+            textBox1.Text = e.SourceData.ToHexString( ' ' );
+            textBox3.Text = Encoding.ASCII.GetString( e.SourceData );
+
+            toledoDataControl1.SetToledoData( e );
+            hslCurve1.AddCurveData( "重量", e.Weight );
+            hslDialPlate1.Value = e.Weight;
+
+            label2.Text = "Receive Times:" + receiveTimes;
         }
 
         private void button2_Click( object sender, EventArgs e )
@@ -149,6 +161,19 @@ namespace HslCommunicationDemo.Toledo
             catch (Exception ex)
             {
                 HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+            }
+        }
+
+        private void button3_Click( object sender, EventArgs e )
+        {
+            if (float.TryParse( textBox4.Text, out float result ))
+            {
+                hslCurve1.ValueMaxLeft = result;
+                hslDialPlate1.MaxValue = result;
+            }
+            else
+            {
+                MessageBox.Show( "Input Wrong" );
             }
         }
     }
