@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.2.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.2.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.2.4.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.2.4\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.3.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\packages\HslControls.2.3.1\lib\net45\HslControls.dll</HintPath>
@@ -193,6 +193,18 @@
     </Compile>
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVibrationSensorClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVibrationSensorClient.designer.cs">
+      <DependentUpon>FormVibrationSensorClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormDtuServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormDtuServer.Designer.cs">
+      <DependentUpon>FormDtuServer.cs</DependentUpon>
     </Compile>
     <Compile Include="Hsl\FormPlainSocket.cs">
       <SubType>Form</SubType>
@@ -635,6 +647,12 @@
     <Compile Include="PLC\FormAllenBrandlyBrowser.Designer.cs">
       <DependentUpon>FormAllenBrandlyBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Redis\FormRedisCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Redis\FormRedisCopy.Designer.cs">
+      <DependentUpon>FormRedisCopy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Redis\FormRedisInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -945,6 +963,12 @@
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormVibrationSensorClient.resx">
+      <DependentUpon>FormVibrationSensorClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormDtuServer.resx">
+      <DependentUpon>FormDtuServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormPlainSocket.resx">
       <DependentUpon>FormPlainSocket.cs</DependentUpon>
     </EmbeddedResource>
@@ -1163,6 +1187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormAllenBrandlyBrowser.resx">
       <DependentUpon>FormAllenBrandlyBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Redis\FormRedisCopy.resx">
+      <DependentUpon>FormRedisCopy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Redis\FormRedisInput.resx">
       <DependentUpon>FormRedisInput.cs</DependentUpon>

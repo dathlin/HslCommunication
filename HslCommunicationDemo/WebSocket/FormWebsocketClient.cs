@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace HslCommunicationDemo
 {
-	#region FormSimplifyNet
+	#region Websocket
 
 
 	public partial class FormWebsocketClient : HslFormContent
@@ -75,7 +75,7 @@ namespace HslCommunicationDemo
 			}
 
 			wsClient?.ConnectClose( );
-			wsClient = new WebSocketClient( textBox1.Text, int.Parse(textBox2.Text) );
+			wsClient = new WebSocketClient( textBox1.Text, int.Parse( textBox2.Text ), textBox5.Text );//( textBox1.Text, int.Parse(textBox2.Text), textBox5.Text );
 			wsClient.LogNet = new HslCommunication.LogNet.LogNetSingle( string.Empty );
 			wsClient.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			wsClient.OnClientApplicationMessageReceive += WebSocket_OnWebSocketMessageReceived;
@@ -189,7 +189,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			panel2.Enabled = false;
 
-			wsClient.ConnectClose( );
+			wsClient?.ConnectClose( );
 		}
 
 		private void button3_Click( object sender, EventArgs e )

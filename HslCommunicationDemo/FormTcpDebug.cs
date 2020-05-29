@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using HslCommunication;
 
@@ -21,14 +22,14 @@ namespace HslCommunicationDemo
         private void FormTcpDebug_Load( object sender, EventArgs e )
         {
             panel2.Enabled = false;
-            timer = new Timer( );
+            timer = new System.Windows.Forms.Timer( );
             timer.Interval = 200;
             timer.Tick += Timer_Tick;
             timer.Start( );
 
             Language( Program.Language );
-
         }
+
 
         private void Language( int language )
         {
@@ -88,7 +89,7 @@ namespace HslCommunicationDemo
         private Socket socketCore = null;
         private bool connectSuccess = false;
         private byte[] buffer = new byte[2048];
-        private Timer timer;
+        private System.Windows.Forms.Timer timer;
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -125,7 +126,6 @@ namespace HslCommunicationDemo
             socketCore?.Close( );
             button1.Enabled = true;
             button2.Enabled = false;
-            panel2.Enabled = false;
         }
 
         private void ReceiveCallBack( IAsyncResult ar )

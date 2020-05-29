@@ -66,5 +66,34 @@ namespace HslCommunicationDemo.Redis
                 }
             }
         }
+
+        private void button3_Click( object sender, EventArgs e )
+        {
+            if (string.IsNullOrEmpty( textBox6.Text ) || string.IsNullOrEmpty( textBox7.Text ))
+            {
+                MessageBox.Show( "Key Can not be null" );
+            }
+            else
+            {
+                OperateResult write = null;
+                if (radioButton2.Checked)
+                {
+                    write = redis.ListRightPush( textBox7.Text, textBox6.Text );
+                }
+                else
+                {
+                    write = redis.ListLeftPush( textBox7.Text, textBox6.Text );
+                }
+                
+                if (write.IsSuccess)
+                {
+                    MessageBox.Show( "Write sucess" );
+                }
+                else
+                {
+                    MessageBox.Show( "Failed:" + write.Message );
+                }
+            }
+        }
     }
 }

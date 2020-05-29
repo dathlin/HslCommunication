@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet.Siemens;
 using HslCommunicationDemo.Control;
+using HslCommunicationDemo.Redis;
 
 namespace HslCommunicationDemo
 {
@@ -73,11 +74,6 @@ namespace HslCommunicationDemo
 
 			support赞助ToolStripMenuItem.Click += Support赞助ToolStripMenuItem_Click;
 			TreeViewIni( );
-
-			if (Program.IsActive)
-			{
-				hslMoveText1.Text = "本程序已激活，如果你有什么问题，可以去官网查找api文档，也可以加入QQ群访问。";
-			}
 
 			new FormCharge( ).Show( dockPanel1 );
 			new FormIndex( ).Show( dockPanel1 );
@@ -368,9 +364,10 @@ namespace HslCommunicationDemo
 
 			// Redis 相关
 			TreeNode redisNode = new TreeNode( "Redis", 12, 12 );
-			redisNode.Nodes.Add( new TreeNode( "Redis Client", 12, 12 ) { Tag = typeof( FormRedisClient ) } );
-			redisNode.Nodes.Add( new TreeNode( "Redis Browser", 12, 12 ) { Tag = typeof( Redis.RedisBrowser ) } );
+			redisNode.Nodes.Add( new TreeNode( "Redis Client", 12, 12 )    { Tag = typeof( FormRedisClient ) } );
+			redisNode.Nodes.Add( new TreeNode( "Redis Browser", 12, 12 )   { Tag = typeof( Redis.RedisBrowser ) } );
 			redisNode.Nodes.Add( new TreeNode( "Redis Subscribe", 12, 12 ) { Tag = typeof( FormRedisSubscribe ) } );
+			redisNode.Nodes.Add( new TreeNode( "Redis Copy", 12, 12 )      { Tag = typeof( FormRedisCopy ) } );
 			treeView1.Nodes.Add( redisNode );
 
 			// Mqtt 相关
@@ -399,21 +396,25 @@ namespace HslCommunicationDemo
 			robotNode.Nodes.Add( new TreeNode( "Hyundai [现代]" ) { Tag = typeof( Robot.FormHyundaiUdp ) } );
 			treeView1.Nodes.Add( robotNode );
 
+			TreeNode sensorNode = new TreeNode( "Sensor[传感器]" );
+			sensorNode.Nodes.Add( new TreeNode( "Vibration[捷杰振动]" ) { Tag = typeof( FormVibrationSensorClient ) } );
+			treeView1.Nodes.Add( sensorNode );
+
 			TreeNode freeNode = new TreeNode( "Freedom[自由协议]" );
-			freeNode.Nodes.Add( new TreeNode( "TCP Net" ) { Tag = typeof( FormFreedomTcpNet ) } );
-			freeNode.Nodes.Add( new TreeNode( "UDP Net" ) { Tag = typeof( FormFreedomUdpNet ) } );
-			freeNode.Nodes.Add( new TreeNode( "Serial [串口]" ) { Tag = typeof( FormFreedomSerial ) } );
+			freeNode.Nodes.Add( new TreeNode( "TCP Net" ) {        Tag = typeof( FormFreedomTcpNet ) } );
+			freeNode.Nodes.Add( new TreeNode( "UDP Net" ) {        Tag = typeof( FormFreedomUdpNet ) } );
+			freeNode.Nodes.Add( new TreeNode( "Serial [串口]" ) {  Tag = typeof( FormFreedomSerial ) } );
 			treeView1.Nodes.Add( freeNode );
 
 			// Debug 相关
 			TreeNode debugNode = new TreeNode( "Debug About[调试技术]", 15, 15 );
-			debugNode.Nodes.Add( new TreeNode( "Serial [串口调试]", 15, 15 ) { Tag = typeof( FormSerialDebug ) } );
-			debugNode.Nodes.Add( new TreeNode( "Tcp/Ip Client [网口调试]", 15, 15 ) { Tag = typeof( FormTcpDebug ) } );
-			debugNode.Nodes.Add( new TreeNode( "Tcp/Ip Server [网口调试]", 15, 15 ) { Tag = typeof( FormTcpServer ) } );
-			debugNode.Nodes.Add( new TreeNode( "Bytes Data [数据调试]", 15, 15 ) { Tag = typeof( FormByteTransfer ) } );
-			debugNode.Nodes.Add( new TreeNode( "Mail [邮件调试]", 15, 15 ) { Tag = typeof( FormMail ) } );
+			debugNode.Nodes.Add( new TreeNode( "Serial [串口调试]", 15, 15 ) {         Tag = typeof( FormSerialDebug ) } );
+			debugNode.Nodes.Add( new TreeNode( "Tcp/Ip Client [网口调试]", 15, 15 ) {  Tag = typeof( FormTcpDebug ) } );
+			debugNode.Nodes.Add( new TreeNode( "Tcp/Ip Server [网口调试]", 15, 15 ) {  Tag = typeof( FormTcpServer ) } );
+			debugNode.Nodes.Add( new TreeNode( "Bytes Data [数据调试]", 15, 15 ) {     Tag = typeof( FormByteTransfer ) } );
+			debugNode.Nodes.Add( new TreeNode( "Mail [邮件调试]", 15, 15 ) {           Tag = typeof( FormMail ) } );
 			debugNode.Nodes.Add( new TreeNode( "Order Number [订单号调试]", 15, 15 ) { Tag = typeof( FormSeqCreate ) } );
-			debugNode.Nodes.Add( new TreeNode( "Regist [注册码调试]", 15, 15 ) { Tag = typeof( FormRegister ) } );
+			debugNode.Nodes.Add( new TreeNode( "Regist [注册码调试]", 15, 15 ) {       Tag = typeof( FormRegister ) } );
 			treeView1.Nodes.Add( debugNode );
 
 			// HSL 相关
@@ -428,6 +429,7 @@ namespace HslCommunicationDemo
 			hslNode.Nodes.Add( new TreeNode( "SoftUpdate [软件更新]", 3, 3 ) { Tag = typeof( FormUpdateServer ) } );
 			hslNode.Nodes.Add( new TreeNode( "Plain Net [明文交互]", 3, 3 ) { Tag = typeof( FormPlainSocket ) } );
 			hslNode.Nodes.Add( new TreeNode( "Http Web", 3, 3 ) { Tag = typeof( FormHttpServer ) } );
+			hslNode.Nodes.Add( new TreeNode( "Dtu Server[DTU服务器]", 3, 3 ) { Tag = typeof( FormDtuServer ) } );
 			treeView1.Nodes.Add( hslNode );
 
 			// 扫码软件

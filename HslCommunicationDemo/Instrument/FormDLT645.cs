@@ -180,7 +180,48 @@ namespace HslCommunicationDemo
             }
             else
             {
-                MessageBox.Show( "Active Code failed" );
+                MessageBox.Show( "Active Code failed:" + active.Message );
+            }
+        }
+
+        private void button4_Click( object sender, EventArgs e )
+        {
+            OperateResult<string> read = dLT645.ReadAddress( );
+            if (read.IsSuccess)
+            {
+                textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Address:{read.Content}";
+            }
+            else
+            {
+                MessageBox.Show( "Read failed: " + read.Message );
+            }
+        }
+
+        private void button6_Click( object sender, EventArgs e )
+        {
+            // 广播当前时间
+            OperateResult read = dLT645.BroadcastTime( DateTime.Now );
+            if (read.IsSuccess)
+            {
+                textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] BroadcastTime Success";
+            }
+            else
+            {
+                MessageBox.Show( "Read failed: " + read.Message );
+            }
+        }
+
+        private void button5_Click( object sender, EventArgs e )
+        {
+            // 写通信地址
+            OperateResult read = dLT645.WriteAddress( textBox1.Text );
+            if (read.IsSuccess)
+            {
+                textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Write Success";
+            }
+            else
+            {
+                MessageBox.Show( "Read failed: " + read.Message );
             }
         }
     }

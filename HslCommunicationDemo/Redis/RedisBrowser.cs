@@ -476,5 +476,18 @@ namespace HslCommunicationDemo.Redis
                 formRedisInput.ShowDialog( );
             }
         }
+
+        private void button8_Click( object sender, EventArgs e )
+        {
+            OperateResult<long> read = redisClient.DBSize( );
+            if (read.IsSuccess)
+            {
+                toolStripStatusLabel1.Text = "Key Number: " + read.Content.ToString( );
+            }
+            else
+            {
+                MessageBox.Show( "ReadTime Failed:" + read.Message );
+            }
+        }
     }
 }

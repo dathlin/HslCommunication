@@ -60,6 +60,7 @@ namespace HslCommunicationDemo.DemoControl
 				button16.Text = "w-float";
 				button15.Text = "w-double";
 				button14.Text = "w-string";
+				button2.Text = "w-hex";
 
 				groupBox1.Text = "Single Data Read test";
 				groupBox2.Text = "Single Data Write test";
@@ -501,6 +502,19 @@ namespace HslCommunicationDemo.DemoControl
 				monitor.SetReadWrite( readWriteNet, address );
 				monitor.ShowDialog( );
 			}
+		}
+
+		private async void button2_Click( object sender, EventArgs e )
+		{
+			// hex
+			if (isAsync)
+			{
+				button14.Enabled = false;
+				DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text.ToHexBytes( ) ), textBox8.Text );
+				button14.Enabled = true;
+			}
+			else
+				DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, textBox7.Text.ToHexBytes( ) ), textBox8.Text );
 		}
 	}
 }

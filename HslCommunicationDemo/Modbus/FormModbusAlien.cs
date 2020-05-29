@@ -172,7 +172,7 @@ namespace HslCommunicationDemo
             networkAlien.ServerStart( port );
         }
 
-        private void NetworkAlien_OnClientConnected( NetworkAlienClient network , AlienSession session )
+        private void NetworkAlien_OnClientConnected( AlienSession session )
         {
             if(session.DTU == busTcpClient.ConnectionId)
             {
@@ -185,25 +185,18 @@ namespace HslCommunicationDemo
             }
         }
 
-
-
         #endregion
 
-
         #region Connect And Close
-
-
 
         private void button1_Click( object sender, EventArgs e )
         {
             // 连接
-
             if (!int.TryParse( textBox2.Text, out int port ))
             {
                 MessageBox.Show( "端口输入不正确！" );
                 return;
             }
-
 
             if (!byte.TryParse( textBox15.Text, out byte station ))
             {
@@ -238,14 +231,7 @@ namespace HslCommunicationDemo
             button2.Enabled = false;
             panel2.Enabled = false;
             // 通知下线
-            networkAlien.AlienSessionLoginOut( busTcpClient.AlienSession );
         }
-
-
-
-
-
-
 
         #endregion
 

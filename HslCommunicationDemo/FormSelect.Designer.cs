@@ -44,7 +44,6 @@
 			this.授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-			this.hslMoveText1 = new HslControls.HslMoveText();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -184,26 +183,12 @@
 			this.dockPanel1.Size = new System.Drawing.Size(1019, 691);
 			this.dockPanel1.TabIndex = 32;
 			// 
-			// hslMoveText1
-			// 
-			this.hslMoveText1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.hslMoveText1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.hslMoveText1.ForeColor = System.Drawing.Color.Cyan;
-			this.hslMoveText1.Location = new System.Drawing.Point(566, 0);
-			this.hslMoveText1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.hslMoveText1.Name = "hslMoveText1";
-			this.hslMoveText1.Size = new System.Drawing.Size(674, 25);
-			this.hslMoveText1.TabIndex = 35;
-			this.hslMoveText1.Text = "本demo仅支持运行8小时，如果你有什么问题，可以先去论坛看看";
-			// 
 			// FormSelect
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.AliceBlue;
 			this.ClientSize = new System.Drawing.Size(1240, 716);
-			this.Controls.Add(this.hslMoveText1);
 			this.Controls.Add(this.dockPanel1);
 			this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.menuStrip1);
@@ -239,7 +224,6 @@
         private System.Windows.Forms.ToolStripMenuItem support赞助ToolStripMenuItem;
         private System.Windows.Forms.TreeView treeView1;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
-        private HslControls.HslMoveText hslMoveText1;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
 	}
 }

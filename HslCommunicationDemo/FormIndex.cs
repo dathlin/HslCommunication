@@ -66,16 +66,16 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V9.2.1
-1. Toledo: 托利多电子秤的字节触发的时候，传递出来携带原始的字节数组，方便自行处理，Demo界面优化，显示信息更加完善。
-2. Lsis: Lsis的PLC通信类修复一些bug，感谢埃及朋友的提供的技术支持。
-3. MqttSyncClient: 新增ReadString方法，以字符串的形式来和服务器交互，默认编码UTF8，当然也可以自己指定编码，本质还是读取字节数据。
-4. WebsocketClient: websocket的客户端类，重新设计异常重连，网络异常时触发 OnNetworkError 事件，用户应该捕获事件，然后在事件里重连服务器，直到成功为止。
-5. MqttClient: Mqtt客户端类，重新设计异常重连，网络异常时触发 OnNetworkError 事件，用户应该捕获事件，然后在事件里重连服务器，直到成功为止。
-6. MqttSyncClient: 支持读取数据的进度回调功能，支持三种进度报告，数据上传到服务器的进度报告，服务器处理进度报告，数据返回到客户端的进度报告。
-7. PanasonicMewtocol: 修复注释错误，L区的数据也可以进行L100F，L2.3访问。
-8. DLT645: 初步添加电力规约协议的串口实现，目前只实现了读取数据，还未测试，等待后续的测试完善。
-9. Omron-cip: 读写字符串仍然没有测试通过，请暂时不要调用。
+			textBox1.Text = @"V9.2.4
+1. Mewtocol: 松下的串口协议修复LD寄存器无法访问的bug，输入LD100，如果只输入L100，就是线圈。
+2. Modbus: 修复写入寄存器指定位bool失败的bug，写入true的掩码改为 FF FE，00 01
+3. Modbus：在ModbusRtuOverTcp里填写掩码写入的api方法。
+4. ab-plc：CIP协议解析标签地址的编码从ASCII编码修改为UTF-8编码，支持中文的标签名访问。
+5. omron-plc：CIP协议解析标签地址的编码从ASCII编码修改为UTF-8编码，支持中文的标签名访问。
+6. Websocket: 连接的请求标头修改为GET ws://127.0.0.1:8800/ HTTP/1.1  就是带IP地址及端口信息
+7. Redis：Redis的客户端添加对集合和有序集合操作的相关API方法，基本支持了所有需要的操作信息，单元测试通过。
+8. Demo: 所有DEMO写入数据操作，新增Hex写入，输入1A 1B等十六进制数据，然后底层调用Write(string, byte[])方法。
+9. Demo：Redis的功能菜单新增一个测试界面，用来同步两个不同的redis的数据，也可以同一个redis不同的db块数据。
 10. 官网的备案失效了，重新备案需要点时间，请访问 http://118.24.36.220/ 然后去顶部的菜单找相应的入口。
 11. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。
 12. HSL的目标是打造成工业互联网的利器，工业大数据的基础，打造边缘计算平台。企业终身授权费：8000元(不含税)。";
