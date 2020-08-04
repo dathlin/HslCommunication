@@ -62,60 +62,15 @@ namespace HslCommunicationDemo
                 cipServer.OnDataReceived += BusTcpServer_OnDataReceived;
                 
                 cipServer.ServerStart( port );
-                cipServer.AddTagValue( "A", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
-                {
-                    Buffer = new byte[2],
-                    IsArray = false,
-                    TypeLength = 2
-                } );
-                cipServer.AddTagValue( "A1", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
-                {
-                    Buffer = new byte[2],
-                    IsArray = false,
-                    TypeLength = 2
-                } );
-                cipServer.AddTagValue( "B", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
-                {
-                    Buffer = new byte[4],
-                    IsArray = false,
-                    TypeLength = 4
-                } );
-                cipServer.AddTagValue( "C", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
-                {
-                    Buffer = new byte[4],
-                    IsArray = false,
-                    TypeLength = 4
-                } );
-                cipServer.AddTagValue( "D", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
-                {
-                    Buffer = new byte[10],
-                    IsArray = true,
-                    TypeLength = 2
-                } );
-                cipServer.AddTagValue( "E", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
-                {
-                    Buffer = new byte[2],
-                    IsArray = false,
-                    TypeLength = 2
-                } );
-                cipServer.AddTagValue( "F", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
-                {
-                    Buffer = new byte[100],
-                    IsArray = false,
-                    TypeLength = 1
-                } );
-                cipServer.AddTagValue( "G", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
-                {
-                    Buffer = new byte[500],
-                    IsArray = true,
-                    TypeLength = 100
-                } );
-                cipServer.AddTagValue( "AB.C", new HslCommunication.Profinet.AllenBradley.AllenBradleyItemValue( )
-                {
-                    Buffer = new byte[10],
-                    IsArray = true,
-                    TypeLength = 2
-                } );
+                cipServer.AddTagValue( "A", (short)10 );
+                cipServer.AddTagValue( "A1", (short)1000 );
+                cipServer.AddTagValue( "B", 123 );
+                cipServer.AddTagValue( "C", 123f );
+                cipServer.AddTagValue( "D", new short[] { 1,2,3,4,5 } );
+                cipServer.AddTagValue( "E", true );
+                cipServer.AddTagValue( "F", "12345", 100 );
+                cipServer.AddTagValue( "G", new string[5] { "123", "123456", string.Empty, "abcd", "测试" }, 100 );
+                cipServer.AddTagValue( "AB.C", new short[] { 1, 2, 3, 4, 5 } );
 
                 button1.Enabled = false;
                 panel2.Enabled = true;
@@ -141,7 +96,11 @@ namespace HslCommunicationDemo
             // 可以对接收到的数据进行二次处理
         }
 
-        #endregion
+		#endregion
 
-    }
+		private void userControlReadWriteServer1_Load( object sender, EventArgs e )
+		{
+
+		}
+	}
 }

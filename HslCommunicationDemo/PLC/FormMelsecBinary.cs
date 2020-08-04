@@ -105,7 +105,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( connect.Message );
+				MessageBox.Show( connect.Message + Environment.NewLine + "ErrorCode: " + connect.ErrorCode );
 				button1.Enabled = true;
 			}
 		}

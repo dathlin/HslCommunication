@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
@@ -91,7 +93,17 @@ namespace HslCommunicationDemo
                 else if (radioButton14.Checked)
                 {
                     buffer = Encoding.Default.GetBytes( textBox1.Text );
-                    radioButton = radioButton13;
+                    radioButton = radioButton14;
+                }
+                else if (radioButton15.Checked)
+                {
+                    DateTime dateTime = DateTime.Parse( textBox3.Text );
+                    double timestamp = double.Parse( textBox1.Text );
+                    radioButton = radioButton15;
+
+                    textBox2.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + textBox1.Text + "] [" + radioButton.Text.PadRight( 7, ' ' ) + "] Time " +
+                    dateTime.AddSeconds(timestamp).ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine );
+                    return;
                 }
             }
             catch(Exception ex)
@@ -230,6 +242,40 @@ namespace HslCommunicationDemo
 
             textBox2.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + textBox1.Text + "] [" + radioButton.Text.PadRight( 7, ' ' ) + "]  " +
                 value + Environment.NewLine );
+        }
+
+        private void button3_Click( object sender, EventArgs e )
+        {
+            try
+            {
+                textBox2.Text = SoftBasic.ByteToHexString( File.ReadAllBytes( textBox1.Text ), ' ', 32 );
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show( "Failed:" + ex.Message );
+            }
+        }
+
+        private void textBox2_DragEnter( object sender, DragEventArgs e )
+        {
+            if (e.Data.GetDataPresent( DataFormats.FileDrop ))
+            {
+                e.Effect = DragDropEffects.Link;
+                this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;  //指定鼠标形状（更好看）  
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void textBox2_DragDrop( object sender, DragEventArgs e )
+        {
+            string fileName = ((System.Array)e.Data.GetData( DataFormats.FileDrop )).GetValue( 0 ).ToString( );
+            textBox1.Text = fileName;
+
+            button3_Click( sender, e );
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam; //还原鼠标形状
         }
     }
 }

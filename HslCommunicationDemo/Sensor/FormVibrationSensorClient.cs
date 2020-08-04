@@ -42,8 +42,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-
-
 			}
 		}
 
@@ -63,8 +61,15 @@ namespace HslCommunicationDemo
 				return;
 			}
 
+			if(!ushort.TryParse(textBox5.Text, out ushort station ))
+			{
+				MessageBox.Show( "Address input wrong!" );
+				return;
+			}
+
 			client?.ConnectClose( );
 			client = new VibrationSensorClient( textBox1.Text, port );
+			client.Address = station;
 			client.LogNet = new HslCommunication.LogNet.LogNetSingle( string.Empty );
 			client.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			client.OnPeekValueReceive += Client_OnPeekValueReceive;
@@ -85,12 +90,14 @@ namespace HslCommunicationDemo
 		}
 
 		int receiveCount = 0;
+		long receiveTotalCount = 0;
 		SharpList<VibrationSensorActualValue> actValues = new SharpList<VibrationSensorActualValue>( 1024 );
 
 		private void Client_OnActualValueReceive( VibrationSensorActualValue actualValue )
 		{
 			// 每秒4000个数据
 			receiveCount++;
+			receiveTotalCount++;
 			actValues.Add( actualValue );
 			if (receiveCount == 4096)
 			{
@@ -99,7 +106,7 @@ namespace HslCommunicationDemo
 					 textBox19.Text = actualValue.AcceleratedSpeedX.ToString( );
 					 textBox18.Text = actualValue.AcceleratedSpeedY.ToString( );
 					 textBox17.Text = actualValue.AcceleratedSpeedZ.ToString( );
-					 textBox20.Text = receiveCount.ToString( );
+					 textBox20.Text = receiveTotalCount.ToString( );
 				 } ) );
 				receiveCount = 0;
 			}
@@ -196,6 +203,7 @@ namespace HslCommunicationDemo
 
 		private void button5_Click( object sender, EventArgs e )
 		{
+			// 切换读取实时的数据信息
 			OperateResult send = client.SetReadActual( );
 
 			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
@@ -203,6 +211,7 @@ namespace HslCommunicationDemo
 
 		private void button6_Click( object sender, EventArgs e )
 		{
+			// 设置间隔时间
 			if(int.TryParse(textBox3.Text, out int seconds ))
 			{
 				OperateResult send = client.SetReadStatusInterval( seconds );
@@ -215,7 +224,6 @@ namespace HslCommunicationDemo
 			}
 		}
 	}
-
 
 	#endregion
 }

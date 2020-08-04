@@ -218,5 +218,70 @@ namespace HslCommunicationDemo.Robot
                 textBox6.Text = read.Content;
             }
         }
+
+        private async void button13_Click( object sender, EventArgs e )
+        {
+            OperateResult<string> read = await webApiClient.GetSystemAsync( );
+            if (!read.IsSuccess)
+            {
+                MessageBox.Show( "Read Failed:" + read.Message );
+            }
+            else
+            {
+                textBox6.Text = read.Content;
+            }
+        }
+
+        private async void button14_Click( object sender, EventArgs e )
+        {
+            OperateResult<string> read = await webApiClient.GetRobotTargetAsync( );
+            if (!read.IsSuccess)
+            {
+                MessageBox.Show( "Read Failed:" + read.Message );
+            }
+            else
+            {
+                textBox6.Text = read.Content;
+            }
+        }
+
+        private async void button15_Click( object sender, EventArgs e )
+        {
+            OperateResult<string> read = await webApiClient.GetServoEnableAsync( );
+            if (!read.IsSuccess)
+            {
+                MessageBox.Show( "Read Failed:" + read.Message );
+            }
+            else
+            {
+                textBox6.Text = read.Content;
+            }
+        }
+
+        private async void button16_Click( object sender, EventArgs e )
+        {
+            OperateResult<string> read = await webApiClient.GetRapidExecutionAsync( );
+            if (!read.IsSuccess)
+            {
+                MessageBox.Show( "Read Failed:" + read.Message );
+            }
+            else
+            {
+                textBox6.Text = read.Content;
+            }
+        }
+
+        private async void button17_Click( object sender, EventArgs e )
+        {
+            OperateResult<string> read = await webApiClient.GetRapidTasksAsync( );
+            if (!read.IsSuccess)
+            {
+                MessageBox.Show( "Read Failed:" + read.Message );
+            }
+            else
+            {
+                textBox6.Text = read.Content;
+            }
+        }
     }
 }

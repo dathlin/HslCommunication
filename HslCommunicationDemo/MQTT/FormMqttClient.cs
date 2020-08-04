@@ -81,6 +81,7 @@ namespace HslCommunicationDemo
 				IpAddress = textBox1.Text,
 				Port = int.Parse( textBox2.Text ),
 				ClientId = textBox3.Text,
+				KeepAlivePeriod = TimeSpan.FromSeconds(int.Parse(textBox6.Text)),
 			};
 			if(!string.IsNullOrEmpty(textBox9.Text) || !string.IsNullOrEmpty( textBox10.Text ))
 			{

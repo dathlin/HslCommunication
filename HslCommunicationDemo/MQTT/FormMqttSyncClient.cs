@@ -149,7 +149,7 @@ namespace HslCommunicationDemo
 			button3.Enabled = true;
 
 			textBox7.Text = (int)(DateTime.Now - start).TotalMilliseconds + " ms";
-			if (!read.IsSuccess) { MessageBox.Show( "Rend Failed:" + read.Message ); return; }
+			if (!read.IsSuccess) { MessageBox.Show( "Read Failed:" + read.Message ); return; }
 
 			textBox6.Text = read.Content1;
 			string msg = Encoding.UTF8.GetString( read.Content2 );

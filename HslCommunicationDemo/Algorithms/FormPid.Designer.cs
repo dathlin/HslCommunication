@@ -142,9 +142,11 @@
             // userCurve1
             // 
             this.userCurve1.BackColor = System.Drawing.Color.Transparent;
+            this.userCurve1.IsAbscissaStrech = true;
             this.userCurve1.Location = new System.Drawing.Point(12, 151);
             this.userCurve1.Name = "userCurve1";
             this.userCurve1.Size = new System.Drawing.Size(980, 482);
+            this.userCurve1.StrechDataCountMax = 100;
             this.userCurve1.TabIndex = 0;
             this.userCurve1.ValueMaxLeft = 400F;
             this.userCurve1.ValueMaxRight = 400F;
@@ -161,7 +163,7 @@
             // 
             // userControlHead1
             // 
-            this.userControlHead1.BackColor = System.Drawing.Color.MediumPurple;
+            this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
             this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.userControlHead1.Location = new System.Drawing.Point(0, 0);
@@ -175,6 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1004, 645);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

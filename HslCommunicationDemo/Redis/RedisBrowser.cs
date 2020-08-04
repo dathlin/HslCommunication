@@ -36,6 +36,11 @@ namespace HslCommunicationDemo.Redis
 
         private void RedisBrowser_Load( object sender, EventArgs e )
         {
+            if(Program.Language == 2)
+            {
+                linkLabel1.Text = "For a more powerful Redis desktop application, click browse";
+            }
+
             ImageList imageList = new ImageList( );
             imageList.Images.Add( "VirtualMachine", Properties.Resources.VirtualMachine );
             imageList.Images.Add( "Class_489", Properties.Resources.Class_489 );
@@ -487,6 +492,18 @@ namespace HslCommunicationDemo.Redis
             else
             {
                 MessageBox.Show( "ReadTime Failed:" + read.Message );
+            }
+        }
+
+        private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            try
+            {
+                System.Diagnostics.Process.Start( "https://github.com/dathlin/HslRedisDesktop" );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show( ex.Message );
             }
         }
     }

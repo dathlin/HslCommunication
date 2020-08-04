@@ -44,6 +44,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button10 = new System.Windows.Forms.Button();
 			this.label10 = new System.Windows.Forms.Label();
 			this.button9 = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
@@ -66,7 +67,8 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button10 = new System.Windows.Forms.Button();
+			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.label11 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -77,6 +79,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox6);
+			this.panel1.Controls.Add(this.label11);
 			this.panel1.Controls.Add(this.textBox3);
 			this.panel1.Controls.Add(this.label6);
 			this.panel1.Controls.Add(this.textBox11);
@@ -165,7 +169,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(664, 5);
+			this.button2.Location = new System.Drawing.Point(841, 5);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -175,7 +179,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(567, 5);
+			this.button1.Location = new System.Drawing.Point(744, 5);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -246,6 +250,16 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(977, 518);
 			this.panel2.TabIndex = 13;
+			// 
+			// button10
+			// 
+			this.button10.Location = new System.Drawing.Point(319, 180);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(80, 28);
+			this.button10.TabIndex = 29;
+			this.button10.Text = "只发不推送";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
 			// label10
 			// 
@@ -472,15 +486,22 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
 			// 
-			// button10
+			// textBox6
 			// 
-			this.button10.Location = new System.Drawing.Point(319, 180);
-			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(80, 28);
-			this.button10.TabIndex = 29;
-			this.button10.Text = "只发不推送";
-			this.button10.UseVisualStyleBackColor = true;
-			this.button10.Click += new System.EventHandler(this.button10_Click);
+			this.textBox6.Location = new System.Drawing.Point(610, 8);
+			this.textBox6.Name = "textBox6";
+			this.textBox6.Size = new System.Drawing.Size(79, 23);
+			this.textBox6.TabIndex = 19;
+			this.textBox6.Text = "100";
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(537, 11);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(72, 17);
+			this.label11.TabIndex = 18;
+			this.label11.Text = "KeepLive：";
 			// 
 			// FormMqttClient
 			// 
@@ -547,5 +568,7 @@
         private System.Windows.Forms.Button button9;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Button button10;
+		private System.Windows.Forms.TextBox textBox6;
+		private System.Windows.Forms.Label label11;
 	}
 }

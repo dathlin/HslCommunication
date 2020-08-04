@@ -95,7 +95,7 @@
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(197, 45);
 			this.label22.TabIndex = 7;
-			this.label22.Text = "M100 D100 X1A0 Y1A0 详细说明参照博客";
+			this.label22.Text = "M100 D100 X1A0 Y1A0 详细说明参照博客 X012就表示八进制";
 			// 
 			// label21
 			// 
@@ -420,7 +420,7 @@
 			// 
 			// userControlHead1
 			// 
-			this.userControlHead1.BackColor = System.Drawing.Color.DarkGray;
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlHead1.HelpLink = "http://www.cnblogs.com/dathlin/p/7469679.html";

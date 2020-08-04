@@ -71,11 +71,11 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.2.4.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.2.4\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.3.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.3.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
-    <Reference Include="HslControls, Version=2.3.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslControls.2.3.1\lib\net45\HslControls.dll</HintPath>
+    <Reference Include="HslControls, Version=2.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslControls.2.4.2\lib\net45\HslControls.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -127,6 +127,12 @@
     <Compile Include="BarCode\FormSickBarCode.Designer.cs">
       <DependentUpon>FormSickBarCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="CNC\FormCncFanuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CNC\FormCncFanuc.designer.cs">
+      <DependentUpon>FormCncFanuc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\FormBasicControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,12 @@
     </Compile>
     <Compile Include="FormByteTransfer.Designer.cs">
       <DependentUpon>FormByteTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHslMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHslMap.designer.cs">
+      <DependentUpon>FormHslMap.cs</DependentUpon>
     </Compile>
     <Compile Include="FormIndex.cs">
       <SubType>Form</SubType>
@@ -497,6 +509,18 @@
     <Compile Include="PLC\FormMelsecRBinary.Designer.cs">
       <DependentUpon>FormMelsecRBinary.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\FormOmronConnectedCip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmronConnectedCip.designer.cs">
+      <DependentUpon>FormOmronConnectedCip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLinkCMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLinkCMode.designer.cs">
+      <DependentUpon>FormOmronHostLinkCMode.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\FormOmronServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -817,6 +841,12 @@
     <Compile Include="Redis\RedisBrowser.Designer.cs">
       <DependentUpon>RedisBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Robot\FormAbbServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormAbbServer.designer.cs">
+      <DependentUpon>FormAbbServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Robot\FormABBWebApi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -852,6 +882,12 @@
     </Compile>
     <Compile Include="Robot\FormHyundaiUdp.Designer.cs">
       <DependentUpon>FormHyundaiUdp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Robot\FormYamahaRCX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormYamahaRCX.designer.cs">
+      <DependentUpon>FormYamahaRCX.cs</DependentUpon>
     </Compile>
     <Compile Include="Robot\FormYRC1000.cs">
       <SubType>Form</SubType>
@@ -927,6 +963,9 @@
     <EmbeddedResource Include="BarCode\FormSickBarCode.resx">
       <DependentUpon>FormSickBarCode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CNC\FormCncFanuc.resx">
+      <DependentUpon>FormCncFanuc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\FormBasicControl.resx">
       <DependentUpon>FormBasicControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -953,6 +992,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormByteTransfer.resx">
       <DependentUpon>FormByteTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHslMap.resx">
+      <DependentUpon>FormHslMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormIndex.resx">
       <DependentUpon>FormIndex.cs</DependentUpon>
@@ -1112,6 +1154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormMelsecRBinary.resx">
       <DependentUpon>FormMelsecRBinary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmronConnectedCip.resx">
+      <DependentUpon>FormOmronConnectedCip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmronHostLinkCMode.resx">
+      <DependentUpon>FormOmronHostLinkCMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormOmronServer.resx">
       <DependentUpon>FormOmronServer.cs</DependentUpon>
@@ -1282,6 +1330,9 @@
     <EmbeddedResource Include="Redis\RedisBrowser.resx">
       <DependentUpon>RedisBrowser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormAbbServer.resx">
+      <DependentUpon>FormAbbServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormABBWebApi.resx">
       <DependentUpon>FormABBWebApi.cs</DependentUpon>
     </EmbeddedResource>
@@ -1299,6 +1350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormHyundaiUdp.resx">
       <DependentUpon>FormHyundaiUdp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormYamahaRCX.resx">
+      <DependentUpon>FormYamahaRCX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormYRC1000.resx">
       <DependentUpon>FormYRC1000.cs</DependentUpon>
@@ -1343,6 +1397,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
+    <None Include="img\robot.png" />
     <None Include="img\toledo.png" />
     <None Include="img\copyright.jpg" />
     <None Include="img\mqtt.png" />

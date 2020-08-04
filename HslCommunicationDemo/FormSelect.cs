@@ -40,6 +40,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "barcode",               Properties.Resources.barcode );           // 16
 			imageList.Images.Add( "mqtt",                  Properties.Resources.mqtt );              // 17
 			imageList.Images.Add( "toledo",                Properties.Resources.toledo );            // 18
+			imageList.Images.Add( "robot",                 Properties.Resources.robot );             // 19
 
 			treeView1.ImageList = imageList;
 		}
@@ -75,8 +76,10 @@ namespace HslCommunicationDemo
 			support赞助ToolStripMenuItem.Click += Support赞助ToolStripMenuItem_Click;
 			TreeViewIni( );
 
-			new FormCharge( ).Show( dockPanel1 );
+			if(!Program.IsActive)
+				new FormCharge( ).Show( dockPanel1 );
 			new FormIndex( ).Show( dockPanel1 );
+			//new FormHslMap( ).Show( dockPanel1 );
 		}
 
 		private void Support赞助ToolStripMenuItem_Click( object sender, EventArgs e )
@@ -92,7 +95,7 @@ namespace HslCommunicationDemo
 			if (language == 1)
 			{
 				Text = "HslCommunication 测试工具";
-				免责条款ToolStripMenuItem.Text = "免责条款";
+				免责条款ToolStripMenuItem.Text = "全国使用分布";
 				论坛toolStripMenuItem.Text = "博客";
 				日志ToolStripMenuItem.Text = "API 文档";
 				//授权ToolStripMenuItem.Text = "授权";
@@ -101,7 +104,7 @@ namespace HslCommunicationDemo
 			{
 				Text = "HslCommunication Test Tool";
 				论坛toolStripMenuItem.Text = "Blog";
-				免责条款ToolStripMenuItem.Text = "Disclaimer";
+				免责条款ToolStripMenuItem.Text = "China Map";
 				日志ToolStripMenuItem.Text = "API Doc";
 				//授权ToolStripMenuItem.Text = "Authorize";
 			}
@@ -212,14 +215,15 @@ namespace HslCommunicationDemo
 
 		private void 免责条款ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			Hide( );
-			System.Threading.Thread.Sleep( 200 );
-			using (FormDisclaimer form = new FormDisclaimer( ))
-			{
-				form.ShowDialog( );
-			}
-			System.Threading.Thread.Sleep( 200 );
-			Show( );
+			new FormHslMap( ).Show( dockPanel1 );
+			//Hide( );
+			//System.Threading.Thread.Sleep( 200 );
+			//using (FormDisclaimer form = new FormDisclaimer( ))
+			//{
+			//	form.ShowDialog( );
+			//}
+			//System.Threading.Thread.Sleep( 200 );
+			//Show( );
 		}
 
 		private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
@@ -298,8 +302,10 @@ namespace HslCommunicationDemo
 			omronNode.Nodes.Add( new TreeNode( "Fins Tcp", 10, 10 ) { Tag = typeof( FormOmron ) } );
 			omronNode.Nodes.Add( new TreeNode( "Fins Udp", 10, 10 ) { Tag = typeof( FormOmronUdp ) } );
 			omronNode.Nodes.Add( new TreeNode( "EtherNet/IP(CIP)", 10, 10 ) { Tag = typeof( FormOmronCip ) } );
+			omronNode.Nodes.Add( new TreeNode( "Connected CIP", 10, 10 ) { Tag = typeof( FormOmronConnectedCip ) } );
 			omronNode.Nodes.Add( new TreeNode( "HostLink 【串口】", 10, 10 ) { Tag = typeof( FormOmronHostLink ) } );
 			omronNode.Nodes.Add( new TreeNode( "HostLink OverTcp", 10, 10 ) { Tag = typeof( FormOmronHostLinkOverTcp ) } );
+			omronNode.Nodes.Add( new TreeNode( "HostLink C-Mode", 10, 10 ) { Tag = typeof( FormOmronHostLinkCMode ) } );
 			omronNode.Nodes.Add( new TreeNode( "Fins Virtual Server", 10, 10 ) { Tag = typeof( FormOmronServer ) } );
 			treeView1.Nodes.Add( omronNode );
 
@@ -385,16 +391,22 @@ namespace HslCommunicationDemo
 			treeView1.Nodes.Add( wsNode );
 
 			// Robot 相关
-			TreeNode robotNode = new TreeNode( "Robot[机器人]" );
+			TreeNode robotNode = new TreeNode( "Robot[机器人]", 19, 19 );
 			robotNode.Nodes.Add( new TreeNode( "EFORT New [新版]" ) { Tag = typeof( Robot.FormEfort ) } );
 			robotNode.Nodes.Add( new TreeNode( "EFORT Pre [旧版]" ) { Tag = typeof( Robot.FormEfortPrevious ) } );
 			robotNode.Nodes.Add( new TreeNode( "Kuka [库卡]" ) { Tag = typeof( FormKuka ) } );
 			robotNode.Nodes.Add( new TreeNode( "YRC1000 [安川]" ) { Tag = typeof( FormYRC1000 ) } );
 			robotNode.Nodes.Add( new TreeNode( "ABB Web" ) { Tag = typeof( Robot.FormABBWebApi ) } );
+			robotNode.Nodes.Add( new TreeNode( "ABB Web Server" ) { Tag = typeof( FormAbbServer ) } );
 			robotNode.Nodes.Add( new TreeNode( "Fanuc [发那科]" ) { Tag = typeof( Robot.FormFanucRobot ) } );
 			robotNode.Nodes.Add( new TreeNode( "Fanuc Server [发那科服务器]" ) { Tag = typeof( FormFanucRobotServer ) } );
 			robotNode.Nodes.Add( new TreeNode( "Hyundai [现代]" ) { Tag = typeof( Robot.FormHyundaiUdp ) } );
+			robotNode.Nodes.Add( new TreeNode( "YamahaRCX [雅马哈]" ) { Tag = typeof( Robot.FormYamahaRCX ) } );
 			treeView1.Nodes.Add( robotNode );
+
+			TreeNode cncNode = new TreeNode( "CNC[数控机床]" );
+			cncNode.Nodes.Add( new TreeNode( "Fanuc 0i [Test]" ) { Tag = typeof( FormCncFanuc ) } );
+			treeView1.Nodes.Add( cncNode );
 
 			TreeNode sensorNode = new TreeNode( "Sensor[传感器]" );
 			sensorNode.Nodes.Add( new TreeNode( "Vibration[捷杰振动]" ) { Tag = typeof( FormVibrationSensorClient ) } );

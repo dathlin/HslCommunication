@@ -271,6 +271,11 @@ namespace HslCommunicationDemo
             }
         }
 
-        #endregion
-    }
+		#endregion
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+            textBox6.Clear( );
+		}
+	}
 }

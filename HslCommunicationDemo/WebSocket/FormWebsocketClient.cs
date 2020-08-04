@@ -79,7 +79,7 @@ namespace HslCommunicationDemo
 			wsClient.LogNet = new HslCommunication.LogNet.LogNetSingle( string.Empty );
 			wsClient.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			wsClient.OnClientApplicationMessageReceive += WebSocket_OnWebSocketMessageReceived;
-			wsClient.OnNetworkError += WsClient_OnNetworkError;
+			//wsClient.OnNetworkError += WsClient_OnNetworkError; // 这里使用内置的处理方式，一般也就够用了。
 			OperateResult connect = null;
 			if(string.IsNullOrEmpty(textBox3.Text))
 				connect = wsClient.ConnectServer( );
@@ -111,6 +111,8 @@ namespace HslCommunicationDemo
 					// 每隔10秒重连
 					System.Threading.Thread.Sleep( 10_000 );
 					client.LogNet?.WriteInfo( "准备重新连接服务器..." );
+
+					if (client.IsClosed) return;  // 如果已经是关闭了的，就不需要进行重连服务器了
 					OperateResult connect = client.ConnectServer( );
 					if (connect.IsSuccess)
 					{

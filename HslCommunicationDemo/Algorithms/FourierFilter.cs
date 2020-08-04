@@ -70,5 +70,13 @@ namespace HslCommunicationDemo.Algorithms
                 MessageBox.Show( "数据输入错误！" + ex.Message );
             }
         }
+
+        private void button3_Click( object sender, EventArgs e )
+        {
+            using (FormImage form = new FormImage( HslCommunication.Algorithms.Fourier.FFTHelper.GetFFTImage( values.Select( m => (double)m ).ToArray( ), 1000, 600, Color.Blue, true ) ))
+            {
+                form.ShowDialog( );
+            }
+        }
     }
 }

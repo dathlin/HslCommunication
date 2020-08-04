@@ -147,11 +147,12 @@ namespace HslCommunicationDemo
                     button1.Enabled = false;
                     panel2.Enabled = true;
 
-                    userControlReadWriteOp1.SetReadWriteNet( busTcpClient, "100", true );
+                    userControlReadWriteOp1.SetReadWriteNet( busTcpClient, "100", false );
                 }
                 else
                 {
-                    MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+                    MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+                        "Error: " + connect.ErrorCode);
                 }
             }
             catch (Exception ex)
@@ -247,8 +248,12 @@ namespace HslCommunicationDemo
                 } ) );
             }
         }
-        
-        #endregion
-        
-    }
+
+		#endregion
+
+		private void button4_Click_1( object sender, EventArgs e )
+		{
+            MessageBox.Show( busTcpClient.IpAddressPing( ).ToString( ) ) ;
+		}
+	}
 }

@@ -40,6 +40,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.button7 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
@@ -62,7 +63,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -95,7 +95,7 @@
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(197, 45);
 			this.label22.TabIndex = 7;
-			this.label22.Text = "M100 D100 X1A0 Y1A0 详细说明参照博客";
+			this.label22.Text = "M100 D100 X1A0 Y1A0 详细说明参照博客 X012就表示八进制";
 			// 
 			// label21
 			// 
@@ -200,6 +200,15 @@
 			this.groupBox5.TabIndex = 26;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// textBox3
+			// 
+			this.textBox3.Location = new System.Drawing.Point(16, 93);
+			this.textBox3.Multiline = true;
+			this.textBox3.Name = "textBox3";
+			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox3.Size = new System.Drawing.Size(388, 145);
+			this.textBox3.TabIndex = 26;
 			// 
 			// button7
 			// 
@@ -411,7 +420,7 @@
 			// 
 			// userControlHead1
 			// 
-			this.userControlHead1.BackColor = System.Drawing.Color.DarkGray;
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlHead1.HelpLink = "http://www.cnblogs.com/dathlin/p/7469679.html";
@@ -422,15 +431,6 @@
 			this.userControlHead1.ProtocolInfo = "MC Qna3E Binary";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
-			// 
-			// textBox3
-			// 
-			this.textBox3.Location = new System.Drawing.Point(16, 93);
-			this.textBox3.Multiline = true;
-			this.textBox3.Name = "textBox3";
-			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox3.Size = new System.Drawing.Size(388, 145);
-			this.textBox3.TabIndex = 26;
 			// 
 			// FormMelsecBinary
 			// 

@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
+using HslCommunication.Core.Net;
 
 namespace HslCommunicationDemo
 {
@@ -89,7 +90,7 @@ namespace HslCommunicationDemo
         private bool connectSuccess = false;
         private byte[] buffer = new byte[2048];
         private Timer timer;
-        private List<Socket> sockets = new List<Socket>( );
+        private List<ClientSession> sockets = new List<ClientSession>( );
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -127,12 +128,20 @@ namespace HslCommunicationDemo
                 {
                     // 在原始套接字上调用EndAccept方法，返回新的套接字
                     client = server_socket.EndAccept( iar );
-                    client.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), client );
-                    sockets.Add( client );
+
+                    ClientSession session = new ClientSession( )
+                    {
+                        Socket = client,
+                        EndPoint = (IPEndPoint)client.RemoteEndPoint
+                    };
+
+                    client.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), session );
+
+                    sockets.Add( session );
 
                     Invoke( new Action( ( ) =>
                     {
-                        textBox6.AppendText( "Client Online[" + ((IPEndPoint)client.RemoteEndPoint).Address.ToString( ) + "]" + Environment.NewLine );
+                        textBox6.AppendText( "Client Online[" + session.EndPoint.Address.ToString( ) + "]" + Environment.NewLine );
                     } ) );
                 }
                 catch (ObjectDisposedException)
@@ -162,23 +171,23 @@ namespace HslCommunicationDemo
 
         private void ReceiveCallBack( IAsyncResult ar )
         {
-            if (ar.AsyncState is Socket client)
+            if (ar.AsyncState is ClientSession client)
             {
                 try
                 {
-                    int length = client.EndReceive( ar );
+                    int length = client.Socket.EndReceive( ar );
 
                     if (length == 0)
                     {
-                        client.Close( );
+                        client.Socket.Close( );
                         Invoke( new Action( ( ) =>
                         {
-                            textBox6.AppendText( "Client Offline[" + ((IPEndPoint)client.RemoteEndPoint).Address.ToString( ) + "]" + Environment.NewLine );
+                            textBox6.AppendText( "Client Offline[" + client.EndPoint.Address.ToString( ) + "]" + Environment.NewLine );
                         } ) );
                         return;
                     };
 
-                    client.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), client );
+                    client.Socket.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), client );
 
                     byte[] data = new byte[length];
                     Array.Copy( buffer, 0, data, 0, length );
@@ -194,14 +203,13 @@ namespace HslCommunicationDemo
                             msg = Encoding.ASCII.GetString( data );
                         }
 
-
                         if (checkBox4.Checked)
                         {
-                            textBox6.AppendText( "[" + DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + (Program.Language == 1 ? "][" + ((IPEndPoint)client.RemoteEndPoint).Address.ToString( ) + "][收]   " : "][" + ((IPEndPoint)client.RemoteEndPoint).Address.ToString( ) + "][R]   ") + msg + Environment.NewLine );
+                            textBox6.AppendText( "[" + DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + (Program.Language == 1 ? "][" + client.EndPoint.Address.ToString( ) + "][收]   " : "][" + client.EndPoint.Address.ToString( ) + "][R]   ") + msg + Environment.NewLine );
                         }
                         else
                         {
-                            textBox6.AppendText( (Program.Language == 1 ? "[" + ((IPEndPoint)client.RemoteEndPoint).Address.ToString( ) + "][收]   " : "][R]   ") + msg + Environment.NewLine );
+                            textBox6.AppendText( (Program.Language == 1 ? "[" + client.EndPoint.Address.ToString( ) + "][收]   " : "][R]   ") + msg + Environment.NewLine );
                         }
 
                     } ) );
@@ -255,9 +263,9 @@ namespace HslCommunicationDemo
             {
                 for (int i = 0; i < sockets.Count; i++)
                 {
-                    if (((IPEndPoint)sockets[i].RemoteEndPoint).Address.ToString( ) == textBox1.Text)
+                    if (sockets[i].EndPoint.Address.ToString( ) == textBox1.Text)
                     {
-                        sockets[i].Send( send, 0, send.Length, SocketFlags.None );
+                        sockets[i].Socket.Send( send, 0, send.Length, SocketFlags.None );
                     }
                     break;
                 }
@@ -275,4 +283,11 @@ namespace HslCommunicationDemo
         }
 
     }
+
+    class ClientSession
+	{
+        public Socket Socket { get; set; }
+
+        public IPEndPoint EndPoint { get; set; }
+	}
 }

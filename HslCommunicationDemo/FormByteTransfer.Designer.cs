@@ -29,6 +29,12 @@
         private void InitializeComponent( )
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.radioButton15 = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.hslPanelText1 = new HslControls.HslPanelText();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.radioButton14 = new System.Windows.Forms.RadioButton();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -54,11 +60,19 @@
             this.label7 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
             this.panel2.SuspendLayout();
+            this.hslPanelText1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.radioButton15);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.hslPanelText1);
             this.panel2.Controls.Add(this.radioButton14);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
@@ -87,6 +101,63 @@
             this.panel2.Size = new System.Drawing.Size(977, 594);
             this.panel2.TabIndex = 33;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(373, 146);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(110, 26);
+            this.button3.TabIndex = 37;
+            this.button3.Text = "打开文件";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // radioButton15
+            // 
+            this.radioButton15.AutoSize = true;
+            this.radioButton15.Location = new System.Drawing.Point(102, 119);
+            this.radioButton15.Name = "radioButton15";
+            this.radioButton15.Size = new System.Drawing.Size(77, 21);
+            this.radioButton15.TabIndex = 36;
+            this.radioButton15.Text = "datetime";
+            this.radioButton15.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 121);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 17);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "时间数据：";
+            // 
+            // hslPanelText1
+            // 
+            this.hslPanelText1.Controls.Add(this.textBox3);
+            this.hslPanelText1.Controls.Add(this.label2);
+            this.hslPanelText1.Location = new System.Drawing.Point(571, 37);
+            this.hslPanelText1.Name = "hslPanelText1";
+            this.hslPanelText1.Size = new System.Drawing.Size(389, 135);
+            this.hslPanelText1.TabIndex = 34;
+            this.hslPanelText1.Text = "时间戳转换";
+            this.hslPanelText1.TextOffect = 20;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(89, 24);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(144, 23);
+            this.textBox3.TabIndex = 1;
+            this.textBox3.Text = "1970-1-1 08:00:00";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 17);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "起始时间：";
+            // 
             // radioButton14
             // 
             this.radioButton14.AutoSize = true;
@@ -99,7 +170,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(233, 118);
+            this.button2.Location = new System.Drawing.Point(233, 146);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(110, 26);
             this.button2.TabIndex = 32;
@@ -109,7 +180,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(102, 118);
+            this.button1.Location = new System.Drawing.Point(102, 146);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 26);
             this.button1.TabIndex = 31;
@@ -279,7 +350,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 153);
+            this.label1.Location = new System.Drawing.Point(8, 184);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 17);
             this.label1.TabIndex = 14;
@@ -287,13 +358,19 @@
             // 
             // textBox2
             // 
+            this.textBox2.AllowDrop = true;
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox2.Location = new System.Drawing.Point(102, 150);
+            this.textBox2.Location = new System.Drawing.Point(102, 178);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(870, 439);
+            this.textBox2.Size = new System.Drawing.Size(870, 411);
             this.textBox2.TabIndex = 8;
+            this.textBox2.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBox2_DragDrop);
+            this.textBox2.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox2_DragEnter);
             // 
             // textBox1
             // 
@@ -313,7 +390,7 @@
             // 
             // userControlHead1
             // 
-            this.userControlHead1.BackColor = System.Drawing.Color.MediumPurple;
+            this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
             this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.userControlHead1.HelpLink = "https://www.cnblogs.com/dathlin/p/7703805.htmln";
@@ -329,6 +406,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1004, 645);
             this.Controls.Add(this.userControlHead1);
             this.Controls.Add(this.panel2);
@@ -341,6 +419,8 @@
             this.Shown += new System.EventHandler(this.FormByteTransfer_Shown);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.hslPanelText1.ResumeLayout(false);
+            this.hslPanelText1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -372,5 +452,11 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RadioButton radioButton14;
         private DemoControl.UserControlHead userControlHead1;
+        private System.Windows.Forms.RadioButton radioButton15;
+        private System.Windows.Forms.Label label5;
+        private HslControls.HslPanelText hslPanelText1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button3;
     }
 }
