@@ -10,6 +10,7 @@ using HslCommunication.Profinet;
 using HslCommunication;
 using HslCommunication.ModBus;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -80,6 +81,22 @@ namespace HslCommunicationDemo
         private void BusTcpServer_OnDataReceived( object sender, byte[] receive )
         {
             // 可以进行相关的操作
+        }
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
         }
     }
 }

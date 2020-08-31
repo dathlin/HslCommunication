@@ -99,6 +99,7 @@
 			this.textBox16.Size = new System.Drawing.Size(105, 23);
 			this.textBox16.TabIndex = 11;
 			this.textBox16.Text = "01 00";
+			this.textBox16.Visible = false;
 			// 
 			// label4
 			// 
@@ -108,6 +109,7 @@
 			this.label4.Size = new System.Drawing.Size(54, 17);
 			this.label4.TabIndex = 10;
 			this.label4.Text = "PortSlot";
+			this.label4.Visible = false;
 			// 
 			// textBox15
 			// 
@@ -420,6 +422,7 @@
 			this.userControlHead1.ProtocolInfo = "CIP";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// FormAllenBrandlyMicroCip
 			// 

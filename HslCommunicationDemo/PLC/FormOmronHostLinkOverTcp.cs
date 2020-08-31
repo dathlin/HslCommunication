@@ -10,6 +10,7 @@ using HslCommunication.Profinet;
 using System.Threading;
 using HslCommunication;
 using HslCommunication.Profinet.Omron;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -233,6 +234,35 @@ namespace HslCommunicationDemo
 					// 发生了异常
 				}
 			}
-		}        
+		}
+
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox20.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox19.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlUnitNumber, textBox16.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPCUnitNumber, textBox17.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlDeviceId, textBox15.Text );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox20.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox19.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+			textBox1.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			textBox16.Text = element.Attribute( DemoDeviceList.XmlUnitNumber ).Value;
+			textBox17.Text = element.Attribute( DemoDeviceList.XmlPCUnitNumber ).Value;
+			textBox15.Text = element.Attribute( DemoDeviceList.XmlDeviceId ).Value;
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
 	}
 }

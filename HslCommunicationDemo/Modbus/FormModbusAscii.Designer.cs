@@ -47,6 +47,8 @@
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
@@ -62,8 +64,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
+			this.checkBox5 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -75,6 +76,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox5);
 			this.panel1.Controls.Add(this.comboBox3);
 			this.panel1.Controls.Add(this.comboBox2);
 			this.panel1.Controls.Add(this.comboBox1);
@@ -95,13 +97,13 @@
 			this.panel1.Location = new System.Drawing.Point(14, 41);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 54);
+			this.panel1.Size = new System.Drawing.Size(978, 62);
 			this.panel1.TabIndex = 0;
 			// 
 			// comboBox3
 			// 
 			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(55, 12);
+			this.comboBox3.Location = new System.Drawing.Point(55, 3);
 			this.comboBox3.Name = "comboBox3";
 			this.comboBox3.Size = new System.Drawing.Size(68, 25);
 			this.comboBox3.TabIndex = 28;
@@ -115,7 +117,7 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox2.Location = new System.Drawing.Point(552, 26);
+			this.comboBox2.Location = new System.Drawing.Point(119, 33);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(111, 25);
 			this.comboBox2.TabIndex = 27;
@@ -128,15 +130,15 @@
             "无",
             "奇",
             "偶"});
-			this.comboBox1.Location = new System.Drawing.Point(443, 14);
+			this.comboBox1.Location = new System.Drawing.Point(596, 4);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(49, 25);
+			this.comboBox1.Size = new System.Drawing.Size(60, 25);
 			this.comboBox1.TabIndex = 15;
 			// 
 			// label24
 			// 
 			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(404, 17);
+			this.label24.Location = new System.Drawing.Point(543, 7);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(44, 17);
 			this.label24.TabIndex = 14;
@@ -144,7 +146,7 @@
 			// 
 			// textBox17
 			// 
-			this.textBox17.Location = new System.Drawing.Point(374, 14);
+			this.textBox17.Location = new System.Drawing.Point(490, 3);
 			this.textBox17.Name = "textBox17";
 			this.textBox17.Size = new System.Drawing.Size(23, 23);
 			this.textBox17.TabIndex = 13;
@@ -153,7 +155,7 @@
 			// label23
 			// 
 			this.label23.AutoSize = true;
-			this.label23.Location = new System.Drawing.Point(320, 17);
+			this.label23.Location = new System.Drawing.Point(429, 6);
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(56, 17);
 			this.label23.TabIndex = 12;
@@ -161,7 +163,7 @@
 			// 
 			// textBox16
 			// 
-			this.textBox16.Location = new System.Drawing.Point(290, 14);
+			this.textBox16.Location = new System.Drawing.Point(370, 3);
 			this.textBox16.Name = "textBox16";
 			this.textBox16.Size = new System.Drawing.Size(24, 23);
 			this.textBox16.TabIndex = 11;
@@ -170,7 +172,7 @@
 			// label22
 			// 
 			this.label22.AutoSize = true;
-			this.label22.Location = new System.Drawing.Point(236, 17);
+			this.label22.Location = new System.Drawing.Point(307, 6);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(56, 17);
 			this.label22.TabIndex = 10;
@@ -178,7 +180,7 @@
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(552, 2);
+			this.textBox15.Location = new System.Drawing.Point(55, 33);
 			this.textBox15.Name = "textBox15";
 			this.textBox15.Size = new System.Drawing.Size(37, 23);
 			this.textBox15.TabIndex = 7;
@@ -187,7 +189,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(508, 5);
+			this.label21.Location = new System.Drawing.Point(8, 36);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(44, 17);
 			this.label21.TabIndex = 6;
@@ -216,7 +218,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(183, 14);
+			this.textBox2.Location = new System.Drawing.Point(196, 3);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(47, 23);
 			this.textBox2.TabIndex = 3;
@@ -225,7 +227,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(129, 17);
+			this.label3.Location = new System.Drawing.Point(134, 6);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -234,7 +236,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(3, 17);
+			this.label1.Location = new System.Drawing.Point(3, 7);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(59, 17);
 			this.label1.TabIndex = 0;
@@ -245,7 +247,7 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(665, 3);
+			this.checkBox1.Location = new System.Drawing.Point(270, 35);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(106, 21);
 			this.checkBox1.TabIndex = 9;
@@ -255,7 +257,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(683, 28);
+			this.checkBox3.Location = new System.Drawing.Point(432, 35);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 26;
@@ -272,11 +274,27 @@
 			this.panel2.Controls.Add(this.groupBox5);
 			this.panel2.Controls.Add(this.groupBox4);
 			this.panel2.Controls.Add(this.groupBox3);
-			this.panel2.Location = new System.Drawing.Point(14, 103);
+			this.panel2.Location = new System.Drawing.Point(14, 111);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 537);
+			this.panel2.Size = new System.Drawing.Size(978, 529);
 			this.panel2.TabIndex = 1;
+			// 
+			// userControlReadWriteOp1
+			// 
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 2);
+			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.TabIndex = 5;
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Location = new System.Drawing.Point(546, 243);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(419, 278);
+			this.groupBox5.TabIndex = 4;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "特殊功能测试";
 			// 
 			// groupBox4
 			// 
@@ -428,22 +446,17 @@
 			this.userControlHead1.ProtocolInfo = "Modbus Ascii";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// groupBox5
+			// checkBox5
 			// 
-			this.groupBox5.Location = new System.Drawing.Point(546, 243);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 278);
-			this.groupBox5.TabIndex = 4;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "特殊功能测试";
-			// 
-			// userControlReadWriteOp1
-			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 2);
-			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
-			this.userControlReadWriteOp1.TabIndex = 5;
+			this.checkBox5.AutoSize = true;
+			this.checkBox5.Location = new System.Drawing.Point(572, 35);
+			this.checkBox5.Name = "checkBox5";
+			this.checkBox5.Size = new System.Drawing.Size(84, 21);
+			this.checkBox5.TabIndex = 31;
+			this.checkBox5.Text = "RtsEnable";
+			this.checkBox5.UseVisualStyleBackColor = true;
 			// 
 			// FormModbusAscii
 			// 
@@ -510,5 +523,6 @@
         private DemoControl.UserControlHead userControlHead1;
         private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
         private System.Windows.Forms.GroupBox groupBox5;
+		private System.Windows.Forms.CheckBox checkBox5;
 	}
 }

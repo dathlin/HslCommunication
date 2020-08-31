@@ -40,6 +40,8 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
@@ -55,8 +57,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -88,7 +88,7 @@
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(504, 7);
+			this.comboBox1.Location = new System.Drawing.Point(502, 9);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(95, 25);
 			this.comboBox1.TabIndex = 14;
@@ -186,6 +186,22 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(978, 537);
 			this.panel2.TabIndex = 1;
+			// 
+			// userControlReadWriteOp1
+			// 
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 3);
+			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.TabIndex = 5;
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Location = new System.Drawing.Point(546, 243);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(419, 278);
+			this.groupBox5.TabIndex = 4;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "特殊功能测试";
 			// 
 			// groupBox4
 			// 
@@ -325,7 +341,7 @@
 			// 
 			// userControlHead1
 			// 
-			this.userControlHead1.BackColor = System.Drawing.Color.DarkGray;
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlHead1.HelpLink = "http://www.cnblogs.com/dathlin/p/7469679.html";
@@ -336,22 +352,7 @@
 			this.userControlHead1.ProtocolInfo = "Fins Udp";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
-			// 
-			// groupBox5
-			// 
-			this.groupBox5.Location = new System.Drawing.Point(546, 243);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 278);
-			this.groupBox5.TabIndex = 4;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "特殊功能测试";
-			// 
-			// userControlReadWriteOp1
-			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 3);
-			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
-			this.userControlReadWriteOp1.TabIndex = 5;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// FormOmronUdp
 			// 

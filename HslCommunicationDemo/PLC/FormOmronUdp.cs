@@ -10,6 +10,7 @@ using HslCommunication.Profinet;
 using System.Threading;
 using HslCommunication;
 using HslCommunication.Profinet.Omron;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -133,7 +134,29 @@ namespace HslCommunicationDemo
 
 
 		#endregion
-		
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlNetNumber, textBox15.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox15.Text = element.Attribute( DemoDeviceList.XmlNetNumber ).Value;
+			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
+
 		private void test()
 		{
 			// 读取操作，这里的D100可以替换成C100,A100,W100,H100效果时一样的

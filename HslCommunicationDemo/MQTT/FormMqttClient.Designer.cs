@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.label11 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.textBox11 = new System.Windows.Forms.TextBox();
@@ -67,8 +69,6 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.label11 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -101,11 +101,28 @@
 			this.panel1.Size = new System.Drawing.Size(978, 72);
 			this.panel1.TabIndex = 7;
 			// 
+			// textBox6
+			// 
+			this.textBox6.Location = new System.Drawing.Point(610, 8);
+			this.textBox6.Name = "textBox6";
+			this.textBox6.Size = new System.Drawing.Size(79, 23);
+			this.textBox6.TabIndex = 19;
+			this.textBox6.Text = "100";
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(537, 11);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(72, 17);
+			this.label11.TabIndex = 18;
+			this.label11.Text = "KeepLive：";
+			// 
 			// textBox3
 			// 
 			this.textBox3.Location = new System.Drawing.Point(94, 41);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(149, 23);
+			this.textBox3.Size = new System.Drawing.Size(262, 23);
 			this.textBox3.TabIndex = 17;
 			// 
 			// label6
@@ -136,7 +153,7 @@
 			// 
 			// textBox10
 			// 
-			this.textBox10.Location = new System.Drawing.Point(484, 41);
+			this.textBox10.Location = new System.Drawing.Point(597, 41);
 			this.textBox10.Name = "textBox10";
 			this.textBox10.Size = new System.Drawing.Size(91, 23);
 			this.textBox10.TabIndex = 13;
@@ -144,7 +161,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(420, 44);
+			this.label4.Location = new System.Drawing.Point(533, 44);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(44, 17);
 			this.label4.TabIndex = 12;
@@ -152,7 +169,7 @@
 			// 
 			// textBox9
 			// 
-			this.textBox9.Location = new System.Drawing.Point(313, 41);
+			this.textBox9.Location = new System.Drawing.Point(426, 41);
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(91, 23);
 			this.textBox9.TabIndex = 11;
@@ -160,7 +177,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(249, 44);
+			this.label2.Location = new System.Drawing.Point(362, 44);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(56, 17);
 			this.label2.TabIndex = 10;
@@ -485,23 +502,7 @@
 			this.userControlHead1.ProtocolInfo = "MQTT";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
-			// 
-			// textBox6
-			// 
-			this.textBox6.Location = new System.Drawing.Point(610, 8);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(79, 23);
-			this.textBox6.TabIndex = 19;
-			this.textBox6.Text = "100";
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(537, 11);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(72, 17);
-			this.label11.TabIndex = 18;
-			this.label11.Text = "KeepLive：";
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// FormMqttClient
 			// 

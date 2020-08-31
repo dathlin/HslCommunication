@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using HslCommunication.Enthernet;
 using HslCommunication;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -253,6 +254,33 @@ namespace HslCommunicationDemo
                     MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Read Failed：" + failed );
                 } ) );
             }
+        }
+
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlTimeout, textBox11.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlToken, textBox3.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox9.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox10.Text );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+            textBox11.Text = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
+            textBox3.Text = element.Attribute( DemoDeviceList.XmlToken ).Value;
+            textBox9.Text = element.Attribute( DemoDeviceList.XmlUserName ).Value;
+            textBox10.Text = element.Attribute( DemoDeviceList.XmlPassword ).Value;
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
         }
     }
 

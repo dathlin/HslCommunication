@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HslCommunicationDemo.Control;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -34,11 +35,13 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				label2.Text = "博客地址：";
 				label4.Text = "使用协议：";
+				linkLabel2.Text = "保存连接";
 			}
 			else
 			{
 				label2.Text = "Blogs:";
 				label4.Text = "Protocols:";
+				linkLabel2.Text = "Save Connect";
 			}
 
 			if (!Program.ShowAuthorInfomation)
@@ -81,5 +84,19 @@ namespace HslCommunicationDemo.DemoControl
 				label5.Text = value;
 			}
 		}
+
+		private void linkLabel2_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+		{
+			if(SaveConnectEvent == null)
+			{
+				MessageBox.Show( new NotImplementedException( ).Message );
+				return;
+			}
+
+			SaveConnectEvent?.Invoke( sender, new EventArgs( ) );
+		}
+
+		public event EventHandler<EventArgs> SaveConnectEvent;
 	}
+
 }

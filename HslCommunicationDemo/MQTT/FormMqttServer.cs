@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.MQTT;
 using HslCommunication;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -244,6 +245,25 @@ namespace HslCommunicationDemo
 				isStop = false;
 				button7.Text = "暂停";
 			}
+		}
+
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlRetureMessage, checkBox3.Checked );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRetureMessage ).Value );
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
 		}
 	}
 

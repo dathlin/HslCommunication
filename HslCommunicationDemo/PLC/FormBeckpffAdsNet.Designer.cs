@@ -47,6 +47,13 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button5 = new System.Windows.Forms.Button();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.button4 = new System.Windows.Forms.Button();
+			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
@@ -62,10 +69,9 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.groupBox5.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
@@ -104,13 +110,15 @@
 			this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.label17.Location = new System.Drawing.Point(488, 50);
 			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(282, 17);
+			this.label17.Size = new System.Drawing.Size(402, 17);
 			this.label17.TabIndex = 16;
-			this.label17.Text = "TwinCAT2，端口号801；TwinCAT3，端口号为851";
+			this.label17.Text = "TwinCAT2，端口号801,811,821,831；TwinCAT3，端口号为851,852,853";
 			// 
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
+			this.checkBox1.Checked = true;
+			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox1.Location = new System.Drawing.Point(461, 3);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(75, 21);
@@ -198,7 +206,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(626, 7);
+			this.button2.Location = new System.Drawing.Point(625, 21);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(82, 28);
 			this.button2.TabIndex = 5;
@@ -208,7 +216,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(543, 7);
+			this.button1.Location = new System.Drawing.Point(543, 21);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(76, 28);
 			this.button1.TabIndex = 4;
@@ -265,6 +273,74 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(978, 518);
 			this.panel2.TabIndex = 1;
+			// 
+			// userControlReadWriteOp1
+			// 
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 3);
+			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.TabIndex = 5;
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Controls.Add(this.button5);
+			this.groupBox5.Controls.Add(this.textBox4);
+			this.groupBox5.Controls.Add(this.button4);
+			this.groupBox5.Controls.Add(this.textBox3);
+			this.groupBox5.Controls.Add(this.button3);
+			this.groupBox5.Location = new System.Drawing.Point(546, 243);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(419, 267);
+			this.groupBox5.TabIndex = 4;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(140, 57);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(128, 28);
+			this.button5.TabIndex = 14;
+			this.button5.Text = "Release Handle";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(6, 60);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(128, 23);
+			this.textBox4.TabIndex = 13;
+			this.textBox4.Text = "0";
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(140, 24);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(128, 28);
+			this.button4.TabIndex = 12;
+			this.button4.Text = "Read Ads State";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
+			// 
+			// textBox3
+			// 
+			this.textBox3.Location = new System.Drawing.Point(6, 92);
+			this.textBox3.Multiline = true;
+			this.textBox3.Name = "textBox3";
+			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox3.Size = new System.Drawing.Size(407, 169);
+			this.textBox3.TabIndex = 11;
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(6, 24);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(128, 28);
+			this.button3.TabIndex = 9;
+			this.button3.Text = "Read Ads Info";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// groupBox4
 			// 
@@ -404,7 +480,7 @@
 			// 
 			// userControlHead1
 			// 
-			this.userControlHead1.BackColor = System.Drawing.Color.DarkGray;
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlHead1.HelpLink = "https://www.cnblogs.com/dathlin/p/12051529.html";
@@ -415,22 +491,7 @@
 			this.userControlHead1.ProtocolInfo = "ADS";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
-			// 
-			// groupBox5
-			// 
-			this.groupBox5.Location = new System.Drawing.Point(546, 243);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 267);
-			this.groupBox5.TabIndex = 4;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "特殊功能测试";
-			// 
-			// userControlReadWriteOp1
-			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 3);
-			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
-			this.userControlReadWriteOp1.TabIndex = 5;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// FormBeckpffAdsNet
 			// 
@@ -451,6 +512,8 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
@@ -497,5 +560,10 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox5;
 		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
-	}
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBox4;
+    }
 }

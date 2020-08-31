@@ -10,6 +10,7 @@ using HslCommunication.Robot.ABB;
 using HslCommunication;
 using System.Net;
 using HslCommunication.LogNet;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -57,6 +58,7 @@ namespace HslCommunicationDemo
             try
             {
                 httpServer = new ABBWebApiServer( );
+                httpServer.SetLoginAccount( textBox3.Text, textBox1.Text );
                 httpServer.Start( int.Parse( textBox2.Text ) );
                 httpServer.LogNet = new LogNetSingle( "" );
                 httpServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
@@ -75,7 +77,7 @@ namespace HslCommunicationDemo
         {
             Invoke( new Action( ( ) =>
              {
-                 textBox4.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+                 if(showLog) textBox4.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
              } ) );
         }
 
@@ -89,6 +91,50 @@ namespace HslCommunicationDemo
         private void textBox4_TextChanged( object sender, EventArgs e )
         {
 
+        }
+
+        private bool showLog = true;
+
+        private void linkLabel3_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            textBox4.Clear( );
+        }
+
+        private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            // 停止
+            showLog = false;
+        }
+
+        private void linkLabel2_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            // 继续
+            showLog = true;
+        }
+
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox3.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox1.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlCrossDomain, checkBox1.Checked );
+            element.SetAttributeValue( DemoDeviceList.XmlContentType, comboBox1.SelectedIndex );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+            textBox3.Text = element.Attribute( DemoDeviceList.XmlUserName ).Value;
+            textBox1.Text = element.Attribute( DemoDeviceList.XmlPassword ).Value;
+            checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlCrossDomain ).Value );
+            comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlContentType ).Value );
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
         }
     }
 

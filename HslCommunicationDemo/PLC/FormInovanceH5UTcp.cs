@@ -10,6 +10,7 @@ using HslCommunication.Profinet;
 using HslCommunication;
 using System.Threading;
 using HslCommunication.Profinet.Inovance;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -238,8 +239,33 @@ namespace HslCommunicationDemo
                 } ) );
             }
         }
-        
+
         #endregion
-        
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
+            element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
+            element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+            textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+            checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
+            comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+            checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
+        }
     }
 }

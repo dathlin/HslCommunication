@@ -39,7 +39,6 @@
 			this.label27 = new System.Windows.Forms.Label();
 			this.textBox19 = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
-			this.textBox20 = new System.Windows.Forms.TextBox();
 			this.label29 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.label22 = new System.Windows.Forms.Label();
@@ -56,6 +55,7 @@
 			this.textBox13 = new System.Windows.Forms.TextBox();
 			this.label16 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.button3 = new System.Windows.Forms.Button();
 			this.textBox10 = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.button25 = new System.Windows.Forms.Button();
@@ -64,7 +64,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button3 = new System.Windows.Forms.Button();
+			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -76,6 +76,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.comboBox3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.comboBox2);
@@ -86,7 +87,6 @@
 			this.panel1.Controls.Add(this.label27);
 			this.panel1.Controls.Add(this.textBox19);
 			this.panel1.Controls.Add(this.label28);
-			this.panel1.Controls.Add(this.textBox20);
 			this.panel1.Controls.Add(this.label29);
 			this.panel1.Controls.Add(this.comboBox1);
 			this.panel1.Controls.Add(this.label22);
@@ -96,21 +96,21 @@
 			this.panel1.Location = new System.Drawing.Point(14, 45);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 54);
+			this.panel1.Size = new System.Drawing.Size(978, 59);
 			this.panel1.TabIndex = 0;
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(540, 14);
+			this.textBox1.Location = new System.Drawing.Point(62, 31);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(31, 23);
+			this.textBox1.Size = new System.Drawing.Size(38, 23);
 			this.textBox1.TabIndex = 40;
 			this.textBox1.Text = "0";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(498, 17);
+			this.label1.Location = new System.Drawing.Point(8, 34);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 39;
@@ -124,15 +124,15 @@
             "无",
             "奇",
             "偶"});
-			this.comboBox2.Location = new System.Drawing.Point(430, 14);
+			this.comboBox2.Location = new System.Drawing.Point(504, 4);
 			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(49, 25);
+			this.comboBox2.Size = new System.Drawing.Size(60, 25);
 			this.comboBox2.TabIndex = 38;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(389, 17);
+			this.label3.Location = new System.Drawing.Point(455, 7);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(44, 17);
 			this.label3.TabIndex = 37;
@@ -140,7 +140,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(361, 14);
+			this.textBox2.Location = new System.Drawing.Point(420, 4);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(23, 23);
 			this.textBox2.TabIndex = 36;
@@ -149,7 +149,7 @@
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(307, 17);
+			this.label26.Location = new System.Drawing.Point(358, 7);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(56, 17);
 			this.label26.TabIndex = 35;
@@ -157,7 +157,7 @@
 			// 
 			// textBox18
 			// 
-			this.textBox18.Location = new System.Drawing.Point(283, 14);
+			this.textBox18.Location = new System.Drawing.Point(320, 4);
 			this.textBox18.Name = "textBox18";
 			this.textBox18.Size = new System.Drawing.Size(24, 23);
 			this.textBox18.TabIndex = 34;
@@ -166,7 +166,7 @@
 			// label27
 			// 
 			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(229, 17);
+			this.label27.Location = new System.Drawing.Point(258, 7);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(56, 17);
 			this.label27.TabIndex = 33;
@@ -174,7 +174,7 @@
 			// 
 			// textBox19
 			// 
-			this.textBox19.Location = new System.Drawing.Point(179, 14);
+			this.textBox19.Location = new System.Drawing.Point(205, 4);
 			this.textBox19.Name = "textBox19";
 			this.textBox19.Size = new System.Drawing.Size(47, 23);
 			this.textBox19.TabIndex = 32;
@@ -183,24 +183,16 @@
 			// label28
 			// 
 			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(125, 17);
+			this.label28.Location = new System.Drawing.Point(135, 7);
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(56, 17);
 			this.label28.TabIndex = 31;
 			this.label28.Text = "波特率：";
 			// 
-			// textBox20
-			// 
-			this.textBox20.Location = new System.Drawing.Point(62, 14);
-			this.textBox20.Name = "textBox20";
-			this.textBox20.Size = new System.Drawing.Size(59, 23);
-			this.textBox20.TabIndex = 30;
-			this.textBox20.Text = "COM3";
-			// 
 			// label29
 			// 
 			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(8, 17);
+			this.label29.Location = new System.Drawing.Point(8, 7);
 			this.label29.Name = "label29";
 			this.label29.Size = new System.Drawing.Size(59, 17);
 			this.label29.TabIndex = 29;
@@ -210,7 +202,7 @@
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(589, 14);
+			this.comboBox1.Location = new System.Drawing.Point(131, 30);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(95, 25);
 			this.comboBox1.TabIndex = 14;
@@ -263,10 +255,10 @@
 			this.panel2.Controls.Add(this.groupBox5);
 			this.panel2.Controls.Add(this.groupBox4);
 			this.panel2.Controls.Add(this.groupBox3);
-			this.panel2.Location = new System.Drawing.Point(14, 104);
+			this.panel2.Location = new System.Drawing.Point(14, 112);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 537);
+			this.panel2.Size = new System.Drawing.Size(978, 528);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
@@ -360,6 +352,16 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
 			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(321, 24);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(101, 28);
+			this.button3.TabIndex = 11;
+			this.button3.Text = "Read Type";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
 			// textBox10
 			// 
 			this.textBox10.Location = new System.Drawing.Point(63, 60);
@@ -435,16 +437,15 @@
 			this.userControlHead1.ProtocolInfo = "Omron HostLink C-Mode";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// button3
+			// comboBox3
 			// 
-			this.button3.Location = new System.Drawing.Point(321, 24);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(101, 28);
-			this.button3.TabIndex = 11;
-			this.button3.Text = "Read Type";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.comboBox3.FormattingEnabled = true;
+			this.comboBox3.Location = new System.Drawing.Point(62, 2);
+			this.comboBox3.Name = "comboBox3";
+			this.comboBox3.Size = new System.Drawing.Size(67, 25);
+			this.comboBox3.TabIndex = 42;
 			// 
 			// FormOmronHostLinkCMode
 			// 
@@ -506,11 +507,11 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox textBox20;
         private System.Windows.Forms.Label label29;
         private DemoControl.UserControlHead userControlHead1;
         private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
         private System.Windows.Forms.GroupBox groupBox5;
 		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.ComboBox comboBox3;
 	}
 }

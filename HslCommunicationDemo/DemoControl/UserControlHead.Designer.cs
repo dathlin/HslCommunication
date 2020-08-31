@@ -32,6 +32,7 @@
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
+			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.SuspendLayout();
 			// 
 			// label2
@@ -76,11 +77,24 @@
 			this.label5.TabIndex = 15;
 			this.label5.Text = "Hsl";
 			// 
+			// linkLabel2
+			// 
+			this.linkLabel2.LinkColor = System.Drawing.Color.SkyBlue;
+			this.linkLabel2.Location = new System.Drawing.Point(858, 2);
+			this.linkLabel2.Name = "linkLabel2";
+			this.linkLabel2.Size = new System.Drawing.Size(146, 26);
+			this.linkLabel2.TabIndex = 16;
+			this.linkLabel2.TabStop = true;
+			this.linkLabel2.Text = "保存连接";
+			this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+			// 
 			// UserControlHead
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.Controls.Add(this.linkLabel2);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.linkLabel1);
 			this.Controls.Add(this.label4);
@@ -102,5 +116,6 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-    }
+		private System.Windows.Forms.LinkLabel linkLabel2;
+	}
 }

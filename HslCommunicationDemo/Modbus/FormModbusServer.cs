@@ -11,6 +11,7 @@ using HslCommunication;
 using HslCommunication.ModBus;
 using System.Threading;
 using System.IO;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -169,6 +170,29 @@ namespace HslCommunicationDemo
             {
                 MessageBox.Show( "Start tcp server first please!" );
             }
+        }
+
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
+            element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+            textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+            comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+            checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
         }
     }
 }

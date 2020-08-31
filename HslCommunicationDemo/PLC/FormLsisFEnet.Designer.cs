@@ -44,6 +44,8 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
@@ -59,8 +61,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -86,16 +86,16 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(14, 32);
+			this.panel1.Location = new System.Drawing.Point(14, 40);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(979, 54);
+			this.panel1.Size = new System.Drawing.Size(979, 66);
 			this.panel1.TabIndex = 0;
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(425, 5);
+			this.label4.Location = new System.Drawing.Point(425, 7);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(79, 17);
 			this.label4.TabIndex = 13;
@@ -108,7 +108,7 @@
             "LSIS-XGT",
             "LGIS-GLOGA",
             "MASTER-K"});
-			this.cboxCompanyID.Location = new System.Drawing.Point(512, 2);
+			this.cboxCompanyID.Location = new System.Drawing.Point(512, 4);
 			this.cboxCompanyID.Name = "cboxCompanyID";
 			this.cboxCompanyID.Size = new System.Drawing.Size(89, 25);
 			this.cboxCompanyID.TabIndex = 12;
@@ -116,7 +116,7 @@
 			// cboxModel
 			// 
 			this.cboxModel.FormattingEnabled = true;
-			this.cboxModel.Location = new System.Drawing.Point(347, 1);
+			this.cboxModel.Location = new System.Drawing.Point(347, 4);
 			this.cboxModel.Name = "cboxModel";
 			this.cboxModel.Size = new System.Drawing.Size(71, 25);
 			this.cboxModel.TabIndex = 11;
@@ -124,7 +124,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(285, 4);
+			this.label2.Location = new System.Drawing.Point(285, 7);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(60, 17);
 			this.label2.TabIndex = 10;
@@ -132,7 +132,7 @@
 			// 
 			// textBox12
 			// 
-			this.textBox12.Location = new System.Drawing.Point(347, 28);
+			this.textBox12.Location = new System.Drawing.Point(347, 36);
 			this.textBox12.Name = "textBox12";
 			this.textBox12.Size = new System.Drawing.Size(71, 23);
 			this.textBox12.TabIndex = 9;
@@ -141,7 +141,7 @@
 			// label15
 			// 
 			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(285, 31);
+			this.label15.Location = new System.Drawing.Point(285, 39);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(42, 17);
 			this.label15.TabIndex = 8;
@@ -149,7 +149,7 @@
 			// 
 			// label22
 			// 
-			this.label22.Location = new System.Drawing.Point(805, 28);
+			this.label22.Location = new System.Drawing.Point(805, 26);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(176, 20);
 			this.label22.TabIndex = 7;
@@ -158,7 +158,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(805, 8);
+			this.label21.Location = new System.Drawing.Point(805, 6);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(68, 17);
 			this.label21.TabIndex = 6;
@@ -167,7 +167,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(709, 11);
+			this.button2.Location = new System.Drawing.Point(709, 16);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -177,7 +177,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(611, 11);
+			this.button1.Location = new System.Drawing.Point(611, 16);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -187,7 +187,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(221, 14);
+			this.textBox2.Location = new System.Drawing.Point(221, 19);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(58, 23);
 			this.textBox2.TabIndex = 3;
@@ -196,7 +196,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(167, 17);
+			this.label3.Location = new System.Drawing.Point(167, 22);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -204,7 +204,7 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(62, 14);
+			this.textBox1.Location = new System.Drawing.Point(62, 19);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(99, 23);
 			this.textBox1.TabIndex = 1;
@@ -213,7 +213,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 17);
+			this.label1.Location = new System.Drawing.Point(8, 22);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 17);
 			this.label1.TabIndex = 0;
@@ -229,11 +229,27 @@
 			this.panel2.Controls.Add(this.groupBox5);
 			this.panel2.Controls.Add(this.groupBox4);
 			this.panel2.Controls.Add(this.groupBox3);
-			this.panel2.Location = new System.Drawing.Point(14, 95);
+			this.panel2.Location = new System.Drawing.Point(14, 112);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(979, 537);
+			this.panel2.Size = new System.Drawing.Size(979, 527);
 			this.panel2.TabIndex = 1;
+			// 
+			// userControlReadWriteOp1
+			// 
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 0);
+			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.TabIndex = 5;
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Location = new System.Drawing.Point(546, 243);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(419, 278);
+			this.groupBox5.TabIndex = 4;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "特殊功能测试";
 			// 
 			// groupBox4
 			// 
@@ -373,7 +389,7 @@
 			// 
 			// userControlHead1
 			// 
-			this.userControlHead1.BackColor = System.Drawing.Color.DarkGray;
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlHead1.Location = new System.Drawing.Point(0, 0);
@@ -383,22 +399,7 @@
 			this.userControlHead1.ProtocolInfo = "Fast Enet 协议";
 			this.userControlHead1.Size = new System.Drawing.Size(1005, 32);
 			this.userControlHead1.TabIndex = 3;
-			// 
-			// groupBox5
-			// 
-			this.groupBox5.Location = new System.Drawing.Point(546, 243);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 278);
-			this.groupBox5.TabIndex = 4;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "特殊功能测试";
-			// 
-			// userControlReadWriteOp1
-			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 0);
-			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
-			this.userControlReadWriteOp1.TabIndex = 5;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// FormLsisFEnet
 			// 

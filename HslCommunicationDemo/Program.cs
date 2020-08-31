@@ -31,8 +31,9 @@ namespace HslCommunicationDemo
 		{
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			// 授权示例
-			if(!HslCommunication.Authorization.SetAuthorizationCode( "你的激活码" ))
+			if(!HslCommunication.Authorization.SetAuthorizationCode( "Your Code" ))
 			{
+				// active failed
 				// MessageBox.Show( "授权失败！当前程序只能使用8小时！" );
 				// return;
 			}

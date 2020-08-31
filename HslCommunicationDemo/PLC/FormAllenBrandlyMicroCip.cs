@@ -10,6 +10,7 @@ using HslCommunication.Profinet;
 using System.Threading;
 using HslCommunication.Profinet.AllenBradley;
 using HslCommunication;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -94,10 +95,10 @@ namespace HslCommunicationDemo
 			allenBradleyNet.Port = port;
 			allenBradleyNet.Slot = slot;
 
-			if (!string.IsNullOrEmpty( textBox16.Text ))
-			{
-				allenBradleyNet.PortSlot = HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox16.Text );
-			}
+			//if (!string.IsNullOrEmpty( textBox16.Text ))
+			//{
+			//	allenBradleyNet.PortSlot = HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox16.Text );
+			//}
 
 			try
 			{
@@ -228,5 +229,25 @@ namespace HslCommunicationDemo
 			}
 		}
 
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox15.Text );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox15.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
 	}
 }

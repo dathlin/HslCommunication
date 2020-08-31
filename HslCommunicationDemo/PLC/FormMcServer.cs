@@ -10,6 +10,7 @@ using HslCommunication.Profinet;
 using HslCommunication;
 using HslCommunication.ModBus;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -82,5 +83,24 @@ namespace HslCommunicationDemo
         }
 
         #endregion
+
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlBinary, checkBox2.Checked );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+            checkBox2.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlBinary ).Value );
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
+        }
     }
 }

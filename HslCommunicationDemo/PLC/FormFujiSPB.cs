@@ -10,6 +10,8 @@ using HslCommunication.Profinet;
 using System.Threading;
 using HslCommunication.Profinet.Fuji;
 using HslCommunication;
+using System.IO.Ports;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -28,7 +30,15 @@ namespace HslCommunicationDemo
 		{
 			panel2.Enabled = false;
 			comboBox1.SelectedIndex = 2;
-
+			comboBox3.DataSource = SerialPort.GetPortNames( );
+			try
+			{
+				comboBox3.SelectedIndex = 0;
+			}
+			catch
+			{
+				comboBox3.Text = "COM3";
+			}
 			Language( Program.Language );
 		}
 
@@ -102,7 +112,7 @@ namespace HslCommunicationDemo
 			{
 				fujiSPB.SerialPortInni( sp =>
 				{
-					sp.PortName = textBox1.Text;
+					sp.PortName = comboBox3.Text;
 					sp.BaudRate = baudRate;
 					sp.DataBits = dataBits;
 					sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
@@ -224,5 +234,30 @@ namespace HslCommunicationDemo
 
 		#endregion
 
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+			textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
+			textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
+			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
 	}
 }

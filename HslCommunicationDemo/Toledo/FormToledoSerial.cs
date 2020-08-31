@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Profinet.Toledo;
 using HslCommunication;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo.Toledo
 {
@@ -28,14 +29,14 @@ namespace HslCommunicationDemo.Toledo
             hslCurve1.SetLeftCurve( "重量", null, Color.Red );
             comboBox1.SelectedIndex = 0;
 
-            comboBox2.DataSource = SerialPort.GetPortNames( );
+            comboBox3.DataSource = SerialPort.GetPortNames( );
             try
             {
-                comboBox2.SelectedIndex = 0;
+                comboBox3.SelectedIndex = 0;
             }
             catch
             {
-                comboBox2.Text = "COM3";
+                comboBox3.Text = "COM3";
             }
 
             Language( Program.Language );
@@ -100,7 +101,7 @@ namespace HslCommunicationDemo.Toledo
             toledoSerial.OnToledoStandardDataReceived += ToledoSerial_OnToledoStandardDataReceived;
             toledoSerial.SerialPortInni( new Action<SerialPort>( m =>
               {
-                  m.PortName = comboBox2.Text;
+                  m.PortName = comboBox3.Text;
                   m.BaudRate = baudRate;
                   m.DataBits = dataBits;
                   m.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
@@ -175,6 +176,34 @@ namespace HslCommunicationDemo.Toledo
             {
                 MessageBox.Show( "Input Wrong" );
             }
+        }
+
+
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+            element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+            textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
+            textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
+            comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+            checkBox5.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
         }
     }
 }

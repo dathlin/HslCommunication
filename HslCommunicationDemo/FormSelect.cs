@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using HslCommunication.Core;
+using HslCommunication.Core.Net;
 using HslCommunication.Profinet.Siemens;
 using HslCommunicationDemo.Control;
 using HslCommunicationDemo.Redis;
+using HslCommunicationDemo.Toledo;
 
 namespace HslCommunicationDemo
 {
@@ -19,6 +27,7 @@ namespace HslCommunicationDemo
 		public FormSelect( )
 		{
 			InitializeComponent( );
+			Form = this;
 
 			imageList = new ImageList( );
 			imageList.Images.Add( "Method_636",            Properties.Resources.Method_636 );        // 0
@@ -41,14 +50,30 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "mqtt",                  Properties.Resources.mqtt );              // 17
 			imageList.Images.Add( "toledo",                Properties.Resources.toledo );            // 18
 			imageList.Images.Add( "robot",                 Properties.Resources.robot );             // 19
+			imageList.Images.Add( "beckhoff",              Properties.Resources.beckhoff );          // 20
+			imageList.Images.Add( "abb",                   Properties.Resources.abb );               // 21
+			imageList.Images.Add( "fatek",                 Properties.Resources.fatek );             // 22
+			imageList.Images.Add( "kuka",                  Properties.Resources.kuka );              // 23
+			imageList.Images.Add( "efort",                 Properties.Resources.efort );             // 24
+			imageList.Images.Add( "fanuc",                 Properties.Resources.fanuc );             // 25
+			imageList.Images.Add( "Class_489",             Properties.Resources.Class_489 );         // 26
+			imageList.Images.Add( "zkt",                   Properties.Resources.zkt );               // 27
+			imageList.Images.Add( "websocket",             Properties.Resources.websocket );         // 28
+			imageList.Images.Add( "yaskawa",               Properties.Resources.yaskawa );           // 29
+
 
 			treeView1.ImageList = imageList;
+			treeView2.ImageList = imageList;
 		}
 
 
 
 		private void FormLoad_Load( object sender, EventArgs e )
 		{
+
+			dockPanel1.Theme = vS2015BlueTheme1;
+
+
 			ThemeColor = menuStrip1.BackColor;
 			verisonToolStripMenuItem.Text = "Version: " + HslCommunication.BasicFramework.SoftBasic.FrameworkVersion.ToString( );
 
@@ -76,11 +101,43 @@ namespace HslCommunicationDemo
 			support赞助ToolStripMenuItem.Click += Support赞助ToolStripMenuItem_Click;
 			TreeViewIni( );
 
-			if(!Program.IsActive)
-				new FormCharge( ).Show( dockPanel1 );
 			new FormIndex( ).Show( dockPanel1 );
 			//new FormHslMap( ).Show( dockPanel1 );
+
+			LoadDeviceList( );
+
+			timer = new Timer( );
+			timer.Interval = 1000;
+			timer.Tick += Timer_Tick;
+			timer.Start( );
+
+			treeView2.MouseClick += TreeView2_MouseClick;
+			deleteDeviceToolStripMenuItem.Click += DeleteDeviceToolStripMenuItem_Click;
 		}
+
+		private void TreeView2_MouseClick( object sender, MouseEventArgs e )
+		{
+			if(e.Button == MouseButtons.Right)
+			{
+				treeView2.SelectedNode = treeView2.GetNodeAt( e.Location );
+				contextMenuStrip1.Show( treeView2, e.Location );
+			}
+		}
+
+		private void Timer_Tick( object sender, EventArgs e )
+		{
+			if(curpcp != null)
+			{
+				string RamInfo = (curpcp.NextValue( ) / MB_DIV).ToString( "F1" ) + "MB";
+				label2.Text = "Ram: " + RamInfo;
+			}
+			label1.Text = $"Thread:{NetworkBase.ThreadPoolTimeoutCheckCount}  Lock:{SimpleHybirdLock.SimpleHybirdLockCount}  Wait:{SimpleHybirdLock.SimpleHybirdLockWaitCount}";
+		}
+
+		private System.Windows.Forms.Timer timer;
+		private Process cur = null;
+		private PerformanceCounter curpcp = null;
+		private const int MB_DIV = 1024 * 1024;
 
 		private void Support赞助ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
@@ -99,6 +156,9 @@ namespace HslCommunicationDemo
 				论坛toolStripMenuItem.Text = "博客";
 				日志ToolStripMenuItem.Text = "API 文档";
 				//授权ToolStripMenuItem.Text = "授权";
+				tabPage1.Text = "所有设备列表";
+				tabPage2.Text = "保存列表";
+				deleteDeviceToolStripMenuItem.Text = "删除设备";
 			}
 			else
 			{
@@ -107,6 +167,8 @@ namespace HslCommunicationDemo
 				免责条款ToolStripMenuItem.Text = "China Map";
 				日志ToolStripMenuItem.Text = "API Doc";
 				//授权ToolStripMenuItem.Text = "Authorize";
+				tabPage1.Text = "All Devices";
+				tabPage2.Text = "Save Devices";
 			}
 		}
 
@@ -114,7 +176,7 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				System.Diagnostics.Process.Start( "http://118.24.36.220:8082/" );
+				System.Diagnostics.Process.Start( "http://blog.hslcommunication.cn/" );
 			}
 			catch (Exception ex)
 			{
@@ -142,12 +204,12 @@ namespace HslCommunicationDemo
 
 		private void webSideToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			OpenWebside( "http://118.24.36.220/" );
+			OpenWebside( "http://www.hslcommunication.cn/" );
 		}
 
 		private void toolStripMenuItem1_Click( object sender, EventArgs e )
 		{
-			OpenWebside( "http://118.24.36.220/MesDemo" );
+			OpenWebside( "http://www.hslcommunication.cn/MesDemo" );
 		}
 		private void 简体中文ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
@@ -173,7 +235,7 @@ namespace HslCommunicationDemo
 
 		private void 日志ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			OpenWebside( "http://118.24.36.220:8080/html/c136d3de-eab7-9b0f-4bdf-d891297c8018.htm" );
+			OpenWebside( "http://api.hslcommunication.cn" );
 		}
 
 
@@ -211,6 +273,16 @@ namespace HslCommunicationDemo
 					 } ) );
 				}
 			}
+
+			try
+			{
+				cur = Process.GetCurrentProcess( );
+				curpcp = new PerformanceCounter( "Process", "Working Set - Private", cur.ProcessName );
+			}
+			catch (Exception ex)
+			{
+
+			}
 		}
 
 		private void 免责条款ToolStripMenuItem_Click( object sender, EventArgs e )
@@ -226,186 +298,189 @@ namespace HslCommunicationDemo
 			//Show( );
 		}
 
-		private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+		private void authorization授权ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			OpenWebside( "https://github.com/dathlin/HslControlsDemo" );
-		}
-
-		private void rToolStripMenuItem_Click( object sender, EventArgs e )
-		{
-			using (FormAuthor form = new FormAuthor( ))
-			{
-				form.ShowDialog( );
-			}
+			new FormCharge( ).Show( dockPanel1 );
 		}
 
 		private ImageList imageList;
+		private Dictionary<string, int> formIconImageIndex = new Dictionary<string, int>( );
+
+		private TreeNode GetTreeNodeByIndex( string name, int index, Type form )
+		{
+			formIconImageIndex.Add( form.Name, index );
+			return new TreeNode( name, index, index )
+			{
+				Tag = form
+			};
+		}
 
 		private void TreeViewIni( )
 		{
 			// 三菱PLC相关
 			TreeNode melsecNode = new TreeNode( "Melsec Plc [三菱]",   8, 8 );
-			melsecNode.Nodes.Add( new TreeNode( "A-1E (Binary)",       8, 8 ) { Tag = typeof( FormMelsec1EBinary ) } );
-			melsecNode.Nodes.Add( new TreeNode( "A-1E (ASCII)",        8, 8 ) { Tag = typeof( FormMelsec1EAscii ) } );
-			melsecNode.Nodes.Add( new TreeNode( "MC (Binary)",         8, 8 ) { Tag = typeof( FormMelsecBinary ) } );
-			melsecNode.Nodes.Add( new TreeNode( "MC Udp(Binary)",      8, 8 ) { Tag = typeof( FormMelsecUdp ) } );
-			melsecNode.Nodes.Add( new TreeNode( "MC (ASCII)",          8, 8 ) { Tag = typeof( FormMelsecAscii ) } );
-			melsecNode.Nodes.Add( new TreeNode( "MC Udp(ASCII)",       8, 8 ) { Tag = typeof( FormMelsecAsciiUdp ) } );
-			melsecNode.Nodes.Add( new TreeNode( "MC-R (Binary)",       8, 8 ) { Tag = typeof( FormMelsecRBinary ) } );
-			melsecNode.Nodes.Add( new TreeNode( "Fx Serial【编程口】",  8, 8 ) { Tag = typeof( FormMelsecSerial ) } );
-			melsecNode.Nodes.Add( new TreeNode( "Fx Serial OverTcp",   8, 8 ) { Tag = typeof( FormMelsecSerialOverTcp ) } );
-			melsecNode.Nodes.Add( new TreeNode( "Fx Links【485】",     8, 8 ) { Tag = typeof( FormMelsecLinks ) } );
-			melsecNode.Nodes.Add( new TreeNode( "Fx Links OverTcp",    8, 8 ) { Tag = typeof( FormMelsecLinksOverTcp ) } );
-			melsecNode.Nodes.Add( new TreeNode( "A-3C (format1)",      8, 8 ) { Tag = typeof( FormMelsec3C ) } );
-			melsecNode.Nodes.Add( new TreeNode( "A-3C OverTcp",        8, 8 ) { Tag = typeof( FormMelsec3COverTcp ) } );
-			melsecNode.Nodes.Add( new TreeNode( "Mc Virtual Server",   8, 8 ) { Tag = typeof( FormMcServer ) } );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-1E (Binary)",       8, typeof( FormMelsec1EBinary ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-1E (ASCII)",        8, typeof( FormMelsec1EAscii ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "MC (Binary)",         8, typeof( FormMelsecBinary ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "MC Udp(Binary)",      8, typeof( FormMelsecUdp ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "MC (ASCII)",          8, typeof( FormMelsecAscii ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "MC Udp(ASCII)",       8, typeof( FormMelsecAsciiUdp ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "MC-R (Binary)",       8, typeof( FormMelsecRBinary ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Serial【编程口】",  8, typeof( FormMelsecSerial ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Serial OverTcp",   8, typeof( FormMelsecSerialOverTcp ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Links【485】",     8, typeof( FormMelsecLinks ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Links OverTcp",    8, typeof( FormMelsecLinksOverTcp ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C (format1)",      8, typeof( FormMelsec3C ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C OverTcp",        8, typeof( FormMelsec3COverTcp ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Mc Virtual Server",   8, typeof( FormMcServer ) ) );
 			treeView1.Nodes.Add( melsecNode );
 
 			// 西门子PLC相关
 			TreeNode siemensNode = new TreeNode( "Siemens Plc [西门子]", 14, 14 );
-			siemensNode.Nodes.Add( new TreeNode( "S1200", 14, 14 ) { Tag = typeof( FormSiemensS1200 ) } );
-			siemensNode.Nodes.Add( new TreeNode( "S1500", 14, 14 ) { Tag = typeof( FormSiemensS1500 ) } );
-			siemensNode.Nodes.Add( new TreeNode( "S300", 14, 14 ) { Tag = typeof( FormSiemensS300 ) } );
-			siemensNode.Nodes.Add( new TreeNode( "S400", 14, 14 ) { Tag = typeof( FormSiemensS400 ) } );
-			siemensNode.Nodes.Add( new TreeNode( "S200", 14, 14 ) { Tag = typeof( FormSiemensS200 ) } );
-			siemensNode.Nodes.Add( new TreeNode( "S200 smart", 14, 14 ) { Tag = typeof( FormSiemensS200Smart ) } );
-			siemensNode.Nodes.Add( new TreeNode( "Fetch/Write", 14, 14 ) { Tag = typeof( FormSiemensFW ) } );
-			siemensNode.Nodes.Add( new TreeNode( "PPI", 14, 14 ) { Tag = typeof( FormSiemensPPI ) } );
-			siemensNode.Nodes.Add( new TreeNode( "PPI OverTcp", 14, 14 ) { Tag = typeof( FormSiemensPPIOverTcp ) } );
-			siemensNode.Nodes.Add( new TreeNode( "MPI", 14, 14 ) { Tag = typeof( FormSiemensMPI ) } );
-			siemensNode.Nodes.Add( new TreeNode( "S7 Virtual Server", 14, 14 ) { Tag = typeof( FormS7Server ) } );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7-S1200",           14, typeof( FormSiemensS1200 ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7-S1500",           14, typeof( FormSiemensS1500 ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7-S300",            14, typeof( FormSiemensS300 ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7-S400",            14, typeof( FormSiemensS400 ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7-S200",            14, typeof( FormSiemensS200 ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7-S200 smart",      14, typeof( FormSiemensS200Smart ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Fetch/Write",        14, typeof( FormSiemensFW ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "PPI",                14, typeof( FormSiemensPPI ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "PPI OverTcp",        14, typeof( FormSiemensPPIOverTcp ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "MPI",                14, typeof( FormSiemensMPI ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7 Virtual Server",  14, typeof( FormS7Server ) ) );
 			treeView1.Nodes.Add( siemensNode );
 
 			// Modbus协议
 			TreeNode modbusNode = new TreeNode( "Modbus", 9, 9 );
-			modbusNode.Nodes.Add( new TreeNode( "Modbus Tcp", 9, 9 ) { Tag = typeof( FormModbus ) } );
-			modbusNode.Nodes.Add( new TreeNode( "Modbus Udp", 9, 9 ) { Tag = typeof( FormModbusUdp ) } );
-			modbusNode.Nodes.Add( new TreeNode( "Modbus Tcp[Alien]", 9, 9 ) { Tag = typeof( FormModbusAlien ) } );
-			modbusNode.Nodes.Add( new TreeNode( "Modbus Rtu", 9, 9 ) { Tag = typeof( FormModbusRtu ) } );
-			modbusNode.Nodes.Add( new TreeNode( "Modbus Rtu OverTcp", 9, 9 ) { Tag = typeof( FormModbusRtuOverTcp ) } );
-			modbusNode.Nodes.Add( new TreeNode( "Modbus Ascii", 9, 9 ) { Tag = typeof( FormModbusAscii ) } );
-			modbusNode.Nodes.Add( new TreeNode( "Modbus Server", 9, 9 ) { Tag = typeof( FormModbusServer ) } );
+			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Tcp",                9, typeof( FormModbus ) ) );
+			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Udp",                9, typeof( FormModbusUdp ) ) );
+			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Tcp[Alien]",         9, typeof( FormModbusAlien ) ) );
+			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Rtu",                9, typeof( FormModbusRtu ) ) );
+			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Rtu OverTcp",        9, typeof( FormModbusRtuOverTcp ) ) );
+			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Ascii",              9, typeof( FormModbusAscii ) ) );
+			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Server",             9, typeof( FormModbusServer ) ) );
 			treeView1.Nodes.Add( modbusNode );
 
 			// Modbus协议
 			TreeNode inovanceNode = new TreeNode( "Inovance Plc[汇川]", 5, 5 );
-			inovanceNode.Nodes.Add( new TreeNode( "InovanceAMTcp", 5, 5 ) { Tag = typeof( FormInovanceAMTcp ) } );
-			inovanceNode.Nodes.Add( new TreeNode( "InovanceAMSerial", 5, 5 ) { Tag = typeof( FormInovanceAMSerial ) } );
-			inovanceNode.Nodes.Add( new TreeNode( "InovanceH3UTcp", 5, 5 ) { Tag = typeof( FormInovanceH3UTcp ) } );
-			inovanceNode.Nodes.Add( new TreeNode( "InovanceH3USerial", 5, 5 ) { Tag = typeof( FormInovanceH3USerial ) } );
-			inovanceNode.Nodes.Add( new TreeNode( "InovanceH5UTcp", 5, 5 ) { Tag = typeof( FormInovanceH5UTcp ) } );
-			inovanceNode.Nodes.Add( new TreeNode( "InovanceH5USerial", 5, 5 ) { Tag = typeof( FormInovanceH5USerial ) } );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceAMTcp",              5, typeof( FormInovanceAMTcp ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceAMSerial",           5, typeof( FormInovanceAMSerial ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceH3UTcp",             5, typeof( FormInovanceH3UTcp ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceH3USerial",          5, typeof( FormInovanceH3USerial ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceH5UTcp",             5, typeof( FormInovanceH5UTcp ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceH5USerial",          5, typeof( FormInovanceH5USerial ) ) );
 			treeView1.Nodes.Add( inovanceNode );
 
 			// 欧姆龙PLC相关
 			TreeNode omronNode = new TreeNode( "Omron Plc[欧姆龙]", 10, 10 );
-			omronNode.Nodes.Add( new TreeNode( "Fins Tcp", 10, 10 ) { Tag = typeof( FormOmron ) } );
-			omronNode.Nodes.Add( new TreeNode( "Fins Udp", 10, 10 ) { Tag = typeof( FormOmronUdp ) } );
-			omronNode.Nodes.Add( new TreeNode( "EtherNet/IP(CIP)", 10, 10 ) { Tag = typeof( FormOmronCip ) } );
-			omronNode.Nodes.Add( new TreeNode( "Connected CIP", 10, 10 ) { Tag = typeof( FormOmronConnectedCip ) } );
-			omronNode.Nodes.Add( new TreeNode( "HostLink 【串口】", 10, 10 ) { Tag = typeof( FormOmronHostLink ) } );
-			omronNode.Nodes.Add( new TreeNode( "HostLink OverTcp", 10, 10 ) { Tag = typeof( FormOmronHostLinkOverTcp ) } );
-			omronNode.Nodes.Add( new TreeNode( "HostLink C-Mode", 10, 10 ) { Tag = typeof( FormOmronHostLinkCMode ) } );
-			omronNode.Nodes.Add( new TreeNode( "Fins Virtual Server", 10, 10 ) { Tag = typeof( FormOmronServer ) } );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Tcp",                       10, typeof( FormOmron ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Udp",                       10, typeof( FormOmronUdp ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "EtherNet/IP(CIP)",               10, typeof( FormOmronCip ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "Connected CIP",                  10, typeof( FormOmronConnectedCip ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink 【串口】",              10, typeof( FormOmronHostLink ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink OverTcp",               10, typeof( FormOmronHostLinkOverTcp ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink C-Mode",                10, typeof( FormOmronHostLinkCMode ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Virtual Server",            10, typeof( FormOmronServer ) ) );
 			treeView1.Nodes.Add( omronNode );
 
 			// Lsis PLC
 			TreeNode lsisNode = new TreeNode( "LSis Plc", 7, 7 );
-			lsisNode.Nodes.Add( new TreeNode( "XGB Fast Enet", 7, 7 ) { Tag = typeof( FormLsisFEnet ) } );
-			lsisNode.Nodes.Add( new TreeNode( "XGB Cnet", 7, 7 ) { Tag = typeof( FormLsisCnet ) } );
-			lsisNode.Nodes.Add( new TreeNode( "XGB Cnet OverTcp", 7, 7 ) { Tag = typeof( FormLsisCnetOverTcp ) } );
-			lsisNode.Nodes.Add( new TreeNode( "LSis Virtual Server", 7, 7 ) { Tag = typeof( FormLSisServer ) } );
+			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGB Fast Enet",       7, typeof( FormLsisFEnet ) ) );
+			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGB Cnet",            7, typeof( FormLsisCnet ) ) );
+			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGB Cnet OverTcp",    7, typeof( FormLsisCnetOverTcp ) ) );
+			lsisNode.Nodes.Add( GetTreeNodeByIndex( "LSis Virtual Server", 7, typeof( FormLSisServer ) ) );
 			treeView1.Nodes.Add( lsisNode );
 
 			// Keyence PLC
 			TreeNode keyencePlc = new TreeNode( "Keyence Plc[基恩士]", 6, 6 );
-			keyencePlc.Nodes.Add( new TreeNode( "MC-3E (Binary)", 6, 6 ) { Tag = typeof( FormKeyenceBinary ) } );
-			keyencePlc.Nodes.Add( new TreeNode( "MC-3E (ASCII)", 6, 6 ) { Tag = typeof( FormKeyenceAscii ) } );
-			keyencePlc.Nodes.Add( new TreeNode( "Nano (ASCII)", 6, 6 ) { Tag = typeof( FormKeyenceNanoSerial ) } );
-			keyencePlc.Nodes.Add( new TreeNode( "Nano OverTcp", 6, 6 ) { Tag = typeof( FormKeyenceNanoSerialOverTcp ) } );
+			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "MC-3E (Binary)",        6, typeof( FormKeyenceBinary ) ) );
+			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "MC-3E (ASCII)",         6, typeof( FormKeyenceAscii ) ) );
+			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Nano (ASCII)",          6, typeof( FormKeyenceNanoSerial ) ) );
+			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Nano OverTcp",          6, typeof( FormKeyenceNanoSerialOverTcp ) ) );
 			treeView1.Nodes.Add( keyencePlc );
 
 			// Panasonic PLC
 			TreeNode panasonicPlc = new TreeNode( "Panasonic Plc[松下]", 11, 11 );
-			panasonicPlc.Nodes.Add( new TreeNode( "MC-3E (Binary)", 11, 11 ) { Tag = typeof( FormPanasonicBinary ) } );
-			panasonicPlc.Nodes.Add( new TreeNode( "Mewtocol", 11, 11 ) { Tag = typeof( FormPanasonicMew ) } );
-			panasonicPlc.Nodes.Add( new TreeNode( "Mewtocol OverTcp", 11, 11 ) { Tag = typeof( FormPanasonicMewOverTcp ) } );
+			panasonicPlc.Nodes.Add( GetTreeNodeByIndex( "MC-3E (Binary)",         11, typeof( FormPanasonicBinary ) ) );
+			panasonicPlc.Nodes.Add( GetTreeNodeByIndex( "Mewtocol",               11, typeof( FormPanasonicMew ) ) );
+			panasonicPlc.Nodes.Add( GetTreeNodeByIndex( "Mewtocol OverTcp",       11, typeof( FormPanasonicMewOverTcp ) ) );
 			treeView1.Nodes.Add( panasonicPlc );
 
 			// Allen Bradlly PLC
-			TreeNode allenBrandlyPlc = new TreeNode( "AllenBrandly Plc[罗克韦尔]", 1, 1 );
-			allenBrandlyPlc.Nodes.Add( new TreeNode( "EtherNet/IP(CIP)", 1, 1 ) { Tag = typeof( FormAllenBrandly ) } );
-			allenBrandlyPlc.Nodes.Add( new TreeNode( "MicroCip(Micro800)", 1, 1 ) { Tag = typeof( FormAllenBrandlyMicroCip ) } );
-			allenBrandlyPlc.Nodes.Add( new TreeNode( "CIP Browser", 1, 1 ) { Tag = typeof( FormAllenBrandlyBrowser ) } );
-			allenBrandlyPlc.Nodes.Add( new TreeNode( "CIP Virtual Server", 1, 1 ) { Tag = typeof( FormCipServer ) } );
+			TreeNode allenBrandlyPlc = new TreeNode( "AllenBrandly[罗克韦尔]", 1, 1 );
+			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "EtherNet/IP(CIP)",        1, typeof( FormAllenBrandly ) ) );
+			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "MicroCip(Micro800)",      1, typeof( FormAllenBrandlyMicroCip ) ) );
+			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP Browser",             1, typeof( FormAllenBrandlyBrowser ) ) );
+			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP Virtual Server",      1, typeof( FormCipServer ) ) );
 			treeView1.Nodes.Add( allenBrandlyPlc );
 
 			// Beckhoff PLC
-			TreeNode beckhoffPlc = new TreeNode( "Beckhoff Plc[倍福]" );
-			beckhoffPlc.Nodes.Add( new TreeNode( "Ads Net" ) { Tag = typeof( FormBeckpffAdsNet ) } );
+			TreeNode beckhoffPlc = new TreeNode( "Beckhoff Plc[倍福]", 20, 20 );
+			beckhoffPlc.Nodes.Add( GetTreeNodeByIndex( "Ads Net",    20, typeof( FormBeckpffAdsNet ) ) );
 			treeView1.Nodes.Add( beckhoffPlc );
 
 			// Fatek 永宏PLC
-			TreeNode fatekNode = new TreeNode( "Fatek Plc[永宏]" );
-			fatekNode.Nodes.Add( new TreeNode( "programe [编程口]" ) { Tag = typeof( FormFatekPrograme ) } );
-			fatekNode.Nodes.Add( new TreeNode( "programe OverTcp" ) { Tag = typeof( FormFatekProgrameOverTcp ) } );
+			TreeNode fatekNode = new TreeNode( "Fatek Plc[永宏]", 22, 22 );
+			fatekNode.Nodes.Add( GetTreeNodeByIndex( "programe [编程口]", 22, typeof( FormFatekPrograme ) ) );
+			fatekNode.Nodes.Add( GetTreeNodeByIndex( "programe OverTcp", 22, typeof( FormFatekProgrameOverTcp ) ) );
 			treeView1.Nodes.Add( fatekNode );
 
 			// Fuji Plc
 			TreeNode fujiNode = new TreeNode( "Fuji Plc[富士]", 2, 2 );
-			fujiNode.Nodes.Add( new TreeNode( "SPB [编程口]", 2, 2 ) { Tag = typeof( FormFujiSPB ) } );
-			fujiNode.Nodes.Add( new TreeNode( "SPB OverTcp", 2, 2 ) { Tag = typeof( FormFujiSPBOverTcp ) } );
+			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB [编程口]", 2, typeof( FormFujiSPB ) ) );
+			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB OverTcp", 2, typeof( FormFujiSPBOverTcp ) ) );
 			treeView1.Nodes.Add( fujiNode );
 
 			// Knx
 			TreeNode knxNode = new TreeNode( "Knx" );
-			knxNode.Nodes.Add( new TreeNode( "Knx" ) { Tag = typeof( PLC.FormKnx ) } );
+			knxNode.Nodes.Add( new TreeNode( "Knx" )  { Tag = typeof( PLC.FormKnx ) } );
 			treeView1.Nodes.Add( knxNode );
 
 			// 身份证阅读器
 			TreeNode idNode = new TreeNode( "ID Card[身份证]", 4, 4 );
-			idNode.Nodes.Add( new TreeNode( "SAM Serial", 4, 4 ) { Tag = typeof( FormSAMSerial ) } );
-			idNode.Nodes.Add( new TreeNode( "SAM Tcp", 4, 4 ) { Tag = typeof( FormSAMTcpNet ) } );
+			idNode.Nodes.Add( GetTreeNodeByIndex( "SAM Serial", 27, typeof( FormSAMSerial ) ) );
+			idNode.Nodes.Add( GetTreeNodeByIndex( "SAM Tcp", 27, typeof( FormSAMTcpNet ) ) );
 			treeView1.Nodes.Add( idNode );
 
 			// Redis 相关
 			TreeNode redisNode = new TreeNode( "Redis", 12, 12 );
-			redisNode.Nodes.Add( new TreeNode( "Redis Client", 12, 12 )    { Tag = typeof( FormRedisClient ) } );
-			redisNode.Nodes.Add( new TreeNode( "Redis Browser", 12, 12 )   { Tag = typeof( Redis.RedisBrowser ) } );
-			redisNode.Nodes.Add( new TreeNode( "Redis Subscribe", 12, 12 ) { Tag = typeof( FormRedisSubscribe ) } );
-			redisNode.Nodes.Add( new TreeNode( "Redis Copy", 12, 12 )      { Tag = typeof( FormRedisCopy ) } );
+			redisNode.Nodes.Add( GetTreeNodeByIndex( "Redis Client",      12, typeof( FormRedisClient ) ) );
+			redisNode.Nodes.Add( GetTreeNodeByIndex( "Redis Browser",     12, typeof( Redis.RedisBrowser ) ) );
+			redisNode.Nodes.Add( GetTreeNodeByIndex( "Redis Subscribe",   12, typeof( FormRedisSubscribe ) ) );
+			redisNode.Nodes.Add( GetTreeNodeByIndex( "Redis Copy",        12, typeof( FormRedisCopy ) ) );
 			treeView1.Nodes.Add( redisNode );
 
 			// Mqtt 相关
 			TreeNode mqttNode = new TreeNode( "MQTT", 17, 17 );
-			mqttNode.Nodes.Add( new TreeNode( "Mqtt Server", 17, 17 ) { Tag = typeof( FormMqttServer ) } );
-			mqttNode.Nodes.Add( new TreeNode( "Mqtt Client", 17, 17 ) { Tag = typeof( FormMqttClient ) } );
-			mqttNode.Nodes.Add( new TreeNode( "Mqtt Sync Client", 17, 17 ) { Tag = typeof( FormMqttSyncClient ) } );
+			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt Server",      17, typeof( FormMqttServer ) ) );
+			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt Client",      17, typeof( FormMqttClient ) ) );
+			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt Sync Client", 17, typeof( FormMqttSyncClient ) ) );
 			treeView1.Nodes.Add( mqttNode );
 
 			// WebSocket 相关
-			TreeNode wsNode = new TreeNode( "WebSocket" );
-			wsNode.Nodes.Add( new TreeNode( "WebSocket Client" ) { Tag = typeof( FormWebsocketClient ) } );
-			wsNode.Nodes.Add( new TreeNode( "WebSocket Server" ) { Tag = typeof( FormWebsocketServer ) } );
-			wsNode.Nodes.Add( new TreeNode( "WebSocket QANet" ) { Tag = typeof( FormWebsocketQANet ) } );
+			TreeNode wsNode = new TreeNode( "WebSocket", 28, 28 );
+			wsNode.Nodes.Add( GetTreeNodeByIndex( "WebSocket Client", 28, typeof( FormWebsocketClient ) ) );
+			wsNode.Nodes.Add( GetTreeNodeByIndex( "WebSocket Server", 28, typeof( FormWebsocketServer ) ) );
+			wsNode.Nodes.Add( GetTreeNodeByIndex( "WebSocket QANet",  28, typeof( FormWebsocketQANet ) ) );
 			treeView1.Nodes.Add( wsNode );
 
 			// Robot 相关
 			TreeNode robotNode = new TreeNode( "Robot[机器人]", 19, 19 );
-			robotNode.Nodes.Add( new TreeNode( "EFORT New [新版]" ) { Tag = typeof( Robot.FormEfort ) } );
-			robotNode.Nodes.Add( new TreeNode( "EFORT Pre [旧版]" ) { Tag = typeof( Robot.FormEfortPrevious ) } );
-			robotNode.Nodes.Add( new TreeNode( "Kuka [库卡]" ) { Tag = typeof( FormKuka ) } );
-			robotNode.Nodes.Add( new TreeNode( "YRC1000 [安川]" ) { Tag = typeof( FormYRC1000 ) } );
-			robotNode.Nodes.Add( new TreeNode( "ABB Web" ) { Tag = typeof( Robot.FormABBWebApi ) } );
-			robotNode.Nodes.Add( new TreeNode( "ABB Web Server" ) { Tag = typeof( FormAbbServer ) } );
-			robotNode.Nodes.Add( new TreeNode( "Fanuc [发那科]" ) { Tag = typeof( Robot.FormFanucRobot ) } );
-			robotNode.Nodes.Add( new TreeNode( "Fanuc Server [发那科服务器]" ) { Tag = typeof( FormFanucRobotServer ) } );
-			robotNode.Nodes.Add( new TreeNode( "Hyundai [现代]" ) { Tag = typeof( Robot.FormHyundaiUdp ) } );
-			robotNode.Nodes.Add( new TreeNode( "YamahaRCX [雅马哈]" ) { Tag = typeof( Robot.FormYamahaRCX ) } );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "EFORT New [新版]",            24, typeof( Robot.FormEfort ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "EFORT Pre [旧版]",            24, typeof( Robot.FormEfortPrevious ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "Kuka [库卡]",                 23, typeof( FormKuka ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "Kuka Tcp [库卡]",             23, typeof( FormKukaTcp ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "YRC1000 [安川]",              29, typeof( FormYRC1000 ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "ABB Web",                     21, typeof( Robot.FormABBWebApi ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "ABB Web Server",              21, typeof( FormAbbServer ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc [发那科]",              25, typeof( Robot.FormFanucRobot ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc Server [发那科服务器]", 25, typeof( FormFanucRobotServer ) ) );
+			robotNode.Nodes.Add( new TreeNode( "Hyundai [现代]" )  { Tag = typeof( Robot.FormHyundaiUdp ) } );
+			robotNode.Nodes.Add( new TreeNode( "YamahaRCX [雅马哈]" )  { Tag = typeof( Robot.FormYamahaRCX ) } );
 			treeView1.Nodes.Add( robotNode );
-
+			 
 			TreeNode cncNode = new TreeNode( "CNC[数控机床]" );
-			cncNode.Nodes.Add( new TreeNode( "Fanuc 0i [Test]" ) { Tag = typeof( FormCncFanuc ) } );
+			cncNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc 0i [Test]", 25, typeof( FormCncFanuc ) ) );
 			treeView1.Nodes.Add( cncNode );
 
 			TreeNode sensorNode = new TreeNode( "Sensor[传感器]" );
@@ -420,33 +495,33 @@ namespace HslCommunicationDemo
 
 			// Debug 相关
 			TreeNode debugNode = new TreeNode( "Debug About[调试技术]", 15, 15 );
-			debugNode.Nodes.Add( new TreeNode( "Serial [串口调试]", 15, 15 ) {         Tag = typeof( FormSerialDebug ) } );
-			debugNode.Nodes.Add( new TreeNode( "Tcp/Ip Client [网口调试]", 15, 15 ) {  Tag = typeof( FormTcpDebug ) } );
-			debugNode.Nodes.Add( new TreeNode( "Tcp/Ip Server [网口调试]", 15, 15 ) {  Tag = typeof( FormTcpServer ) } );
-			debugNode.Nodes.Add( new TreeNode( "Bytes Data [数据调试]", 15, 15 ) {     Tag = typeof( FormByteTransfer ) } );
-			debugNode.Nodes.Add( new TreeNode( "Mail [邮件调试]", 15, 15 ) {           Tag = typeof( FormMail ) } );
-			debugNode.Nodes.Add( new TreeNode( "Order Number [订单号调试]", 15, 15 ) { Tag = typeof( FormSeqCreate ) } );
-			debugNode.Nodes.Add( new TreeNode( "Regist [注册码调试]", 15, 15 ) {       Tag = typeof( FormRegister ) } );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口调试]", 15, typeof( FormSerialDebug ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Client [网口调试]", 15, typeof( FormTcpDebug ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]", 15, typeof( FormTcpServer ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Bytes Data [数据调试]", 15, typeof( FormByteTransfer ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Mail [邮件调试]", 15, typeof( FormMail ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Order Number [订单号调试]", 15, typeof( FormSeqCreate ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regist [注册码调试]", 15, typeof( FormRegister ) ) );
 			treeView1.Nodes.Add( debugNode );
 
 			// HSL 相关
 			TreeNode hslNode = new TreeNode( "Hsl Protocal[HSL 协议]", 3, 3 );
-			hslNode.Nodes.Add( new TreeNode( "Simplify Net [同步交互]", 3, 3 ) { Tag = typeof( FormSimplifyNet ) } );
-			hslNode.Nodes.Add( new TreeNode( "Simplify Net Alien", 3, 3 ) { Tag = typeof( FormSimplifyNetAlien ) } );
-			hslNode.Nodes.Add( new TreeNode( "Complex Net [异步交互]", 3, 3 ) { Tag = typeof( FormComplexNet ) } );
-			hslNode.Nodes.Add( new TreeNode( "Udp Net [同步交互]", 3, 3 ) { Tag = typeof( FormUdpNet ) } );
-			hslNode.Nodes.Add( new TreeNode( "File Net [文件收发]", 3, 3 ) { Tag = typeof( FormFileClient ) } );
-			hslNode.Nodes.Add( new TreeNode( "Log Net [日志记录]", 3, 3 ) { Tag = typeof( FormLogNet ) } );
-			hslNode.Nodes.Add( new TreeNode( "Push Net [消息推送]", 3, 3 ) { Tag = typeof( FormPushNet ) } );
-			hslNode.Nodes.Add( new TreeNode( "SoftUpdate [软件更新]", 3, 3 ) { Tag = typeof( FormUpdateServer ) } );
-			hslNode.Nodes.Add( new TreeNode( "Plain Net [明文交互]", 3, 3 ) { Tag = typeof( FormPlainSocket ) } );
-			hslNode.Nodes.Add( new TreeNode( "Http Web", 3, 3 ) { Tag = typeof( FormHttpServer ) } );
-			hslNode.Nodes.Add( new TreeNode( "Dtu Server[DTU服务器]", 3, 3 ) { Tag = typeof( FormDtuServer ) } );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "Simplify Net [同步交互]", 3, typeof( FormSimplifyNet ) ) );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "Simplify Net Alien", 3, typeof( FormSimplifyNetAlien ) ) );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "Complex Net [异步交互]", 3, typeof( FormComplexNet ) ) );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "Udp Net [同步交互]", 3, typeof( FormUdpNet ) ) );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "File Net [文件收发]", 3, typeof( FormFileClient ) ) );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "Log Net [日志记录]", 3, typeof( FormLogNet ) ) );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "Push Net [消息推送]", 3, typeof( FormPushNet ) ) );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "SoftUpdate [软件更新]", 3, typeof( FormUpdateServer ) ) );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "Plain Net [明文交互]", 3, typeof( FormPlainSocket ) ) );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "Http Web", 3, typeof( FormHttpServer ) ) );
+			hslNode.Nodes.Add( GetTreeNodeByIndex( "Dtu Server[DTU服务器]", 3, typeof( FormDtuServer ) ) );
 			treeView1.Nodes.Add( hslNode );
 
 			// 扫码软件
 			TreeNode barCodeNode = new TreeNode( "BarCode[扫码]", 16, 16 );
-			barCodeNode.Nodes.Add( new TreeNode( "Sick", 16, 16 ) { Tag = typeof( BarCode.FormSickBarCode ) } );
+			barCodeNode.Nodes.Add( GetTreeNodeByIndex( "Sick", 16, typeof( BarCode.FormSickBarCode ) ) );
 			treeView1.Nodes.Add( barCodeNode );
 
 			// Instrument 仪器仪表
@@ -457,8 +532,8 @@ namespace HslCommunicationDemo
 
 			// 托利多电子秤Toledo
 			TreeNode toledoNode = new TreeNode( "Toledo [托利多]", 18, 18 );
-			toledoNode.Nodes.Add( new TreeNode( "Serial [串口通讯]", 18, 18 ) { Tag = typeof( Toledo.FormToledoSerial ) } );
-			toledoNode.Nodes.Add( new TreeNode( "Tcp Server [网口服务]", 18, 18 ) { Tag = typeof( Toledo.FormToledoTcpServer ) } );
+			toledoNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口通讯]", 18, typeof( Toledo.FormToledoSerial ) ) );
+			toledoNode.Nodes.Add( GetTreeNodeByIndex( "Tcp Server [网口服务]", 18, typeof( Toledo.FormToledoTcpServer ) ) );
 			treeView1.Nodes.Add( toledoNode );
 
 			// 控件库
@@ -494,7 +569,179 @@ namespace HslCommunicationDemo
 			if (treeNode.Tag is Type type)
 			{
 				HslFormContent hslForm = (HslFormContent)type.GetConstructors( )[0].Invoke( null );
+				if (treeNode.ImageIndex >= 0)
+					hslForm.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[treeNode.ImageIndex]).GetHicon( ) );
+				else
+					hslForm.Icon = Icon.FromHandle( Properties.Resources.Method_636.GetHicon( ) );
 				if (hslForm != null) hslForm.Show( dockPanel1 );
+			}
+		}
+
+		private void treeView1_MouseClick( object sender, MouseEventArgs e )
+		{
+			if(e.Button == MouseButtons.Right)
+			{
+				TreeNode treeNode = treeView1.GetNodeAt(e.Location);
+				if (treeNode != null) treeView1.SelectedNode = treeNode;
+			}
+		}
+
+		private DemoDeviceList deviceList = new DemoDeviceList( );
+
+		public void LoadDeviceList( )
+		{
+			if(File.Exists( Path.Combine( Application.StartupPath, "devices.xml" ) ))
+			{
+				deviceList.SetDevices( XElement.Load( Path.Combine( Application.StartupPath, "devices.xml" ) ) );
+				RefreshSaveDevices( );
+				tabControl1.SelectedTab = tabPage2;
+			}
+		}
+
+		public void AddDeviceList(XElement element )
+		{
+			deviceList.AddDevice( element );
+			RefreshSaveDevices( );
+			File.WriteAllText( Path.Combine( Application.StartupPath, "devices.xml" ), deviceList.GetDevices.ToString( ) );
+		}
+
+		public void RefreshSaveDevices( )
+		{
+			treeView2.Nodes.Clear( );
+			foreach (var item in deviceList.GetDevices.Elements( ))
+			{
+				string name = item.Attribute( "Name" ).Value;
+				AddTreeNode(  treeView2, null, item, name );
+			}
+			treeView2.ExpandAll( );
+		}
+
+		private void DeleteDeviceToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (treeView2.SelectedNode == null) return;
+			if (treeView2.SelectedNode.Tag == null) return;
+			if (treeView2.SelectedNode.Tag is XElement element)
+			{
+				deviceList.DeleteDevice( element );
+				RefreshSaveDevices( );
+				File.WriteAllText( Path.Combine( Application.StartupPath, "devices.xml" ), deviceList.GetDevices.ToString( ) );
+				MessageBox.Show( "Delete Success!" );
+			}
+		}
+
+
+		private void AddTreeNode( TreeView treeView, TreeNode parent, XElement element, string key )
+		{
+			int index = key.IndexOf( ':' );
+			if (index <= 0)
+			{
+				// 不存在冒号
+				TreeNode node = new TreeNode( key );
+				node.Tag = element;
+				string type = element.Attribute( DemoDeviceList.XmlType ).Value;
+				if (formIconImageIndex.ContainsKey( type ))
+				{
+					node.ImageIndex = formIconImageIndex[type];
+					node.SelectedImageIndex = formIconImageIndex[type];
+				}
+				else
+				{
+					node.ImageIndex = 0;
+					node.SelectedImageIndex = 0;
+				}
+
+				if (parent == null)
+				{
+					treeView.Nodes.Add( node );
+				}
+				else
+				{
+					parent.Nodes.Add( node );
+				}
+			}
+			else
+			{
+				TreeNode parentNode = null;
+				if (parent == null)
+				{
+					for (int i = 0; i < treeView.Nodes.Count; i++)
+					{
+						if (treeView.Nodes[i].Text == key.Substring( 0, index ))
+						{
+							parentNode = treeView.Nodes[i];
+							break;
+						}
+					}
+				}
+				else
+				{
+					for (int i = 0; i < parent.Nodes.Count; i++)
+					{
+						if (parent.Nodes[i].Text == key.Substring( 0, index ))
+						{
+							parentNode = parent.Nodes[i];
+							break;
+						}
+					}
+				}
+
+
+				if (parentNode == null)
+				{
+					parentNode = new TreeNode( key.Substring( 0, index ) );
+					parentNode.ImageKey = "Class_489";
+					parentNode.SelectedImageKey = "Class_489";
+					AddTreeNode( treeView, parentNode, element, key.Substring( index + 1 ) );
+
+					if(parent == null)
+					{
+						treeView.Nodes.Add( parentNode );
+					}
+					else
+					{
+						parent.Nodes.Add( parentNode );
+					}
+				}
+				else
+				{
+					AddTreeNode( treeView, parentNode, element, key.Substring( index + 1 ) );
+				}
+			}
+		}
+
+		public static FormSelect Form { get; set; }
+		public static Type[] formTypes = Assembly.GetExecutingAssembly( ).GetTypes( );
+
+		private void treeView2_MouseDoubleClick( object sender, MouseEventArgs e )
+		{
+			TreeNode treeNode = treeView2.SelectedNode;
+			if (treeNode == null) return;
+			if (treeNode.Tag == null) return;
+
+			if (treeNode.Tag is XElement element)
+			{
+				string type = element.Attribute( DemoDeviceList.XmlType ).Value;
+				HslFormContent hslForm = null;
+				// 读取类型
+				foreach (var item in formTypes)
+				{
+					if(item.Name == type)
+					{
+						hslForm = (HslFormContent)item.GetConstructors( )[0].Invoke( null );
+						break;
+					}
+				}
+
+				if (hslForm != null)
+				{
+					if (treeNode.ImageIndex >= 0)
+						hslForm.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[treeNode.ImageIndex]).GetHicon( ) );
+					else
+						hslForm.Icon = Icon.FromHandle( Properties.Resources.Method_636.GetHicon( ) );
+
+					hslForm.Show( dockPanel1 );
+					hslForm.LoadXmlParameter( element );
+				}
 			}
 		}
 
@@ -506,12 +753,24 @@ namespace HslCommunicationDemo
 		{
 
 		}
+
+		protected override void OnLoad( EventArgs e )
+		{
+			base.OnLoad( e );
+			this.userControlHead1.ProtocolInfo = "s7-1200";
+		}
 	}
 	public class FormSiemensS1500 : FormSiemens
 	{
 		public FormSiemensS1500( ) : base( SiemensPLCS.S1500 )
 		{
 
+		}
+
+		protected override void OnLoad( EventArgs e )
+		{
+			base.OnLoad( e );
+			this.userControlHead1.ProtocolInfo = "s7-1500";
 		}
 	}
 	public class FormSiemensS300 : FormSiemens
@@ -520,12 +779,24 @@ namespace HslCommunicationDemo
 		{
 
 		}
+
+		protected override void OnLoad( EventArgs e )
+		{
+			base.OnLoad( e );
+			this.userControlHead1.ProtocolInfo = "s7-300";
+		}
 	}
 	public class FormSiemensS400 : FormSiemens
 	{
 		public FormSiemensS400( ) : base( SiemensPLCS.S400 )
 		{
 
+		}
+
+		protected override void OnLoad( EventArgs e )
+		{
+			base.OnLoad( e );
+			this.userControlHead1.ProtocolInfo = "s7-400";
 		}
 	}
 	public class FormSiemensS200 : FormSiemens
@@ -534,12 +805,24 @@ namespace HslCommunicationDemo
 		{
 
 		}
+
+		protected override void OnLoad( EventArgs e )
+		{
+			base.OnLoad( e );
+			this.userControlHead1.ProtocolInfo = "s7-200";
+		}
 	}
 	public class FormSiemensS200Smart : FormSiemens
 	{
 		public FormSiemensS200Smart( ) : base( SiemensPLCS.S200Smart )
 		{
 
+		}
+
+		protected override void OnLoad( EventArgs e )
+		{
+			base.OnLoad( e );
+			this.userControlHead1.ProtocolInfo = "s7-200Smart";
 		}
 	}
 }

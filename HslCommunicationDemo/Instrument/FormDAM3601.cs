@@ -11,6 +11,7 @@ using HslCommunication;
 using HslCommunication.Instrument.Temperature;
 using System.Threading;
 using System.IO.Ports;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -24,17 +25,6 @@ namespace HslCommunicationDemo
 
         private DAM3601 dAM3601 = null;
 
-        private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
-        {
-            try
-            {
-                System.Diagnostics.Process.Start( linkLabel1.Text );
-            }
-            catch (Exception ex) 
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
@@ -58,15 +48,7 @@ namespace HslCommunicationDemo
             }
 
             Language( Program.Language );
-
-            if (!Program.ShowAuthorInfomation)
-            {
-                label2.Visible = false;
-                linkLabel1.Visible = false;
-                label20.Visible = false;
-            }
-
-
+            
             // 动态生成128个 label和128个textbox
             int index = 1;
             for (int i = 0; i < 16; i++)
@@ -97,10 +79,6 @@ namespace HslCommunicationDemo
             if (language == 2)
             {
                 Text = "Modbus Rtu Read Demo";
-                label2.Text = "Blogs:";
-                label4.Text = "Protocols:";
-                label20.Text = "Author:Richard Hu";
-                label5.Text = "Modbus Rtu";
 
                 label1.Text = "Com:";
                 label3.Text = "baudRate:";
@@ -248,6 +226,39 @@ namespace HslCommunicationDemo
             {
                 allTextBox[i].Text = read.Content[i].ToString( );
             }
+        }
+
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+            element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
+            element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
+            element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+            textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
+            textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
+            comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+            textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+            checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
+            comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+            checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
         }
     }
 }

@@ -37,16 +37,16 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button9 = new System.Windows.Forms.Button();
+			this.button8 = new System.Windows.Forms.Button();
+			this.button7 = new System.Windows.Forms.Button();
+			this.button6 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
-			this.button6 = new System.Windows.Forms.Button();
-			this.button7 = new System.Windows.Forms.Button();
-			this.button8 = new System.Windows.Forms.Button();
-			this.button9 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -64,6 +64,7 @@
 			this.userControlHead1.ProtocolInfo = "TCP";
 			this.userControlHead1.Size = new System.Drawing.Size(990, 32);
 			this.userControlHead1.TabIndex = 30;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// panel1
 			// 
@@ -105,7 +106,7 @@
 			// 
 			this.textBox2.Location = new System.Drawing.Point(269, 12);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(44, 23);
+			this.textBox2.Size = new System.Drawing.Size(54, 23);
 			this.textBox2.TabIndex = 12;
 			this.textBox2.Text = "80";
 			// 
@@ -155,6 +156,76 @@
 			this.panel2.Size = new System.Drawing.Size(967, 518);
 			this.panel2.TabIndex = 32;
 			// 
+			// button9
+			// 
+			this.button9.Location = new System.Drawing.Point(356, 41);
+			this.button9.Name = "button9";
+			this.button9.Size = new System.Drawing.Size(81, 26);
+			this.button9.TabIndex = 24;
+			this.button9.Text = "Emergency";
+			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Click += new System.EventHandler(this.button9_Click);
+			// 
+			// button8
+			// 
+			this.button8.Location = new System.Drawing.Point(269, 41);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(81, 26);
+			this.button8.TabIndex = 23;
+			this.button8.Text = "JOINTS";
+			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.button8_Click);
+			// 
+			// button7
+			// 
+			this.button7.Location = new System.Drawing.Point(180, 41);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(81, 26);
+			this.button7.TabIndex = 22;
+			this.button7.Text = "MODE";
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.button7_Click);
+			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(89, 41);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(81, 26);
+			this.button6.TabIndex = 21;
+			this.button6.Text = "MOTOR";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(269, 9);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(81, 26);
+			this.button5.TabIndex = 20;
+			this.button5.Text = "STOP";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(180, 9);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(81, 26);
+			this.button4.TabIndex = 19;
+			this.button4.Text = "RUN";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(88, 9);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(81, 26);
+			this.button3.TabIndex = 18;
+			this.button3.Text = "RESET";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
 			// panel3
 			// 
 			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -185,76 +256,6 @@
 			this.label6.Size = new System.Drawing.Size(51, 17);
 			this.label6.TabIndex = 4;
 			this.label6.Text = "content";
-			// 
-			// button3
-			// 
-			this.button3.Location = new System.Drawing.Point(88, 9);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(81, 26);
-			this.button3.TabIndex = 18;
-			this.button3.Text = "RESET";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
-			// 
-			// button4
-			// 
-			this.button4.Location = new System.Drawing.Point(180, 9);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(81, 26);
-			this.button4.TabIndex = 19;
-			this.button4.Text = "RUN";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click);
-			// 
-			// button5
-			// 
-			this.button5.Location = new System.Drawing.Point(269, 9);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(81, 26);
-			this.button5.TabIndex = 20;
-			this.button5.Text = "STOP";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.button5_Click);
-			// 
-			// button6
-			// 
-			this.button6.Location = new System.Drawing.Point(89, 41);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(81, 26);
-			this.button6.TabIndex = 21;
-			this.button6.Text = "MOTOR";
-			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.button6_Click);
-			// 
-			// button7
-			// 
-			this.button7.Location = new System.Drawing.Point(180, 41);
-			this.button7.Name = "button7";
-			this.button7.Size = new System.Drawing.Size(81, 26);
-			this.button7.TabIndex = 22;
-			this.button7.Text = "MODE";
-			this.button7.UseVisualStyleBackColor = true;
-			this.button7.Click += new System.EventHandler(this.button7_Click);
-			// 
-			// button8
-			// 
-			this.button8.Location = new System.Drawing.Point(269, 41);
-			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(81, 26);
-			this.button8.TabIndex = 23;
-			this.button8.Text = "JOINTS";
-			this.button8.UseVisualStyleBackColor = true;
-			this.button8.Click += new System.EventHandler(this.button8_Click);
-			// 
-			// button9
-			// 
-			this.button9.Location = new System.Drawing.Point(356, 41);
-			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(81, 26);
-			this.button9.TabIndex = 24;
-			this.button9.Text = "Emergency";
-			this.button9.UseVisualStyleBackColor = true;
-			this.button9.Click += new System.EventHandler(this.button9_Click);
 			// 
 			// FormYamahaRCX
 			// 

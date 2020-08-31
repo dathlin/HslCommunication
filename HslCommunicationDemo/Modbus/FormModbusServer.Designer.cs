@@ -215,6 +215,7 @@
 			this.userControlHead1.ProtocolInfo = "Modbus Tcp + Rtu + Ascii";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// FormModbusServer
 			// 

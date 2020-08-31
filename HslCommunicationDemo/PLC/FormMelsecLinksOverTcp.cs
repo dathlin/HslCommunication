@@ -10,6 +10,7 @@ using HslCommunication.Profinet;
 using System.Threading;
 using HslCommunication.Profinet.Melsec;
 using HslCommunication;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -44,7 +45,7 @@ namespace HslCommunicationDemo
 				button2.Text = "Disconnect";
 				button3.Text = "Start Plc";
 				button4.Text = "Stop Plc";
-				label21.Text = "Address:";
+				label21.Text = "Station:";
 
 				label11.Text = "Address:";
 				label12.Text = "length:";
@@ -60,6 +61,7 @@ namespace HslCommunicationDemo
 				groupBox5.Text = "Special function test";
 
 				button3.Text = "Pressure test, r/w 3,000s";
+				userControlHead1.ProtocolInfo = "fxlinks over tcp";
 			}
 		}
 
@@ -310,6 +312,31 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Stop Success" );
 			}
+		}
+
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlTimeout, textBox18.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlSumCheck, checkBox1.Checked );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			textBox18.Text = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
+			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlSumCheck ).Value );
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
 		}
 	}
 }

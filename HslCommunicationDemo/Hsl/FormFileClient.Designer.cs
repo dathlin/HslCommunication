@@ -57,6 +57,7 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.button9 = new System.Windows.Forms.Button();
 			this.textBox_delete_fileName = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.textBox_delete_id = new System.Windows.Forms.TextBox();
@@ -98,7 +99,6 @@
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button9 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -241,7 +241,7 @@
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(70, 32);
 			this.button7.TabIndex = 34;
-			this.button7.Text = "测试";
+			this.button7.Text = "压力测试";
 			this.button7.UseVisualStyleBackColor = true;
 			this.button7.Click += new System.EventHandler(this.button7_Click);
 			// 
@@ -391,6 +391,16 @@
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "文件删除";
+			// 
+			// button9
+			// 
+			this.button9.Location = new System.Drawing.Point(866, 22);
+			this.button9.Name = "button9";
+			this.button9.Size = new System.Drawing.Size(78, 28);
+			this.button9.TabIndex = 18;
+			this.button9.Text = "全部删除";
+			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Click += new System.EventHandler(this.button9_Click);
 			// 
 			// textBox_delete_fileName
 			// 
@@ -774,18 +784,10 @@
 			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
+			this.userControlHead1.ProtocolInfo = "Hsl - File";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
-			// 
-			// button9
-			// 
-			this.button9.Location = new System.Drawing.Point(866, 22);
-			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(78, 28);
-			this.button9.TabIndex = 18;
-			this.button9.Text = "全部删除";
-			this.button9.UseVisualStyleBackColor = true;
-			this.button9.Click += new System.EventHandler(this.button9_Click);
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// FormFileClient
 			// 

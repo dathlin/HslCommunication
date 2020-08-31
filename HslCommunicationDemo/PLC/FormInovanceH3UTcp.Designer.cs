@@ -110,7 +110,7 @@
             "DCBA"});
 			this.comboBox1.Location = new System.Drawing.Point(558, 14);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(111, 25);
+			this.comboBox1.Size = new System.Drawing.Size(89, 25);
 			this.comboBox1.TabIndex = 26;
 			// 
 			// checkBox1
@@ -190,7 +190,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(675, 17);
+			this.checkBox3.Location = new System.Drawing.Point(653, 16);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 25;
@@ -399,6 +399,7 @@
 			this.userControlHead1.ProtocolInfo = "Modbus Tcp";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// FormInovanceH3UTcp
 			// 

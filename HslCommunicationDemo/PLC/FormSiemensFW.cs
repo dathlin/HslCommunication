@@ -10,6 +10,7 @@ using HslCommunication.Profinet;
 using HslCommunication;
 using System.Threading;
 using HslCommunication.Profinet.Siemens;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -148,5 +149,23 @@ namespace HslCommunicationDemo
 		}
 
 		#endregion
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
 	}
 }

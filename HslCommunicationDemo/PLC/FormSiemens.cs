@@ -10,6 +10,7 @@ using HslCommunication.Profinet;
 using System.Threading;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -389,5 +390,84 @@ namespace HslCommunicationDemo
             }
         }
 
+        private int thread_status = 0;
+        private int failed = 0;
+        private DateTime thread_time_start = DateTime.Now;
+        private long successCount = 0;
+        private System.Windows.Forms.Timer timer;
+
+
+        private void button9_Click( object sender, EventArgs e )
+        {
+            thread_status = 3;
+            failed = 0;
+            thread_time_start = DateTime.Now;
+            new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
+            new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
+            new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
+            button9.Enabled = false;
+
+            timer = new System.Windows.Forms.Timer( );
+            timer.Interval = 1000;
+            timer.Tick += Timer_Tick;
+            timer.Start( );
+        }
+
+        private void Timer_Tick( object sender, EventArgs e )
+        {
+            label2.Text = successCount.ToString( );
+        }
+
+        private async void thread_test1( )
+        {
+            int count = 100000;
+            while (count > 0)
+            {
+                if (!(await siemensTcpNet.WriteAsync( "M100", (short)1234 )).IsSuccess) failed++;
+                if (!(await siemensTcpNet.ReadInt16Async( "M100" ) ).IsSuccess) failed++;
+                count--;
+                successCount++;
+            }
+            thread_end( );
+        }
+
+        private void thread_end( )
+        {
+            if (Interlocked.Decrement( ref thread_status ) == 0)
+            {
+                // 执行完成
+                Invoke( new Action( ( ) =>
+                {
+                    label2.Text = successCount.ToString( );
+                    timer.Stop( );
+                    button9.Enabled = true;
+                    MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
+                } ) );
+            }
+        }
+
+
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlRack, textBox15.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox16.Text );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+            textBox15.Text = element.Attribute( DemoDeviceList.XmlRack ).Value;
+            textBox16.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
+        }
     }
 }

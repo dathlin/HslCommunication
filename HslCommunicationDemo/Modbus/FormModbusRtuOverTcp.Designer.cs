@@ -41,6 +41,10 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.textBox14 = new System.Windows.Forms.TextBox();
+			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
@@ -56,15 +60,11 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.textBox14 = new System.Windows.Forms.TextBox();
-			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
-			this.button3 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.groupBox5.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			this.groupBox5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -108,9 +108,9 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox1.Location = new System.Drawing.Point(558, 6);
+			this.comboBox1.Location = new System.Drawing.Point(576, 7);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(111, 25);
+			this.comboBox1.Size = new System.Drawing.Size(70, 25);
 			this.comboBox1.TabIndex = 26;
 			// 
 			// checkBox1
@@ -190,7 +190,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(675, 9);
+			this.checkBox3.Location = new System.Drawing.Point(652, 9);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 25;
@@ -212,6 +212,43 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(978, 527);
 			this.panel2.TabIndex = 1;
+			// 
+			// userControlReadWriteOp1
+			// 
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 2);
+			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.TabIndex = 5;
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Controls.Add(this.textBox14);
+			this.groupBox5.Controls.Add(this.button3);
+			this.groupBox5.Location = new System.Drawing.Point(546, 243);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(419, 278);
+			this.groupBox5.TabIndex = 4;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// textBox14
+			// 
+			this.textBox14.Location = new System.Drawing.Point(12, 62);
+			this.textBox14.Multiline = true;
+			this.textBox14.Name = "textBox14";
+			this.textBox14.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox14.Size = new System.Drawing.Size(396, 150);
+			this.textBox14.TabIndex = 24;
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(225, 240);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(184, 28);
+			this.button3.TabIndex = 23;
+			this.button3.Text = "压力测试，快速读写3000次";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button4_Click);
 			// 
 			// groupBox4
 			// 
@@ -363,43 +400,7 @@
 			this.userControlHead1.ProtocolInfo = "Modbus Rtu OverTcp";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
-			// 
-			// groupBox5
-			// 
-			this.groupBox5.Controls.Add(this.textBox14);
-			this.groupBox5.Controls.Add(this.button3);
-			this.groupBox5.Location = new System.Drawing.Point(546, 243);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 278);
-			this.groupBox5.TabIndex = 4;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "特殊功能测试";
-			// 
-			// textBox14
-			// 
-			this.textBox14.Location = new System.Drawing.Point(12, 62);
-			this.textBox14.Multiline = true;
-			this.textBox14.Name = "textBox14";
-			this.textBox14.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox14.Size = new System.Drawing.Size(396, 150);
-			this.textBox14.TabIndex = 24;
-			// 
-			// userControlReadWriteOp1
-			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 2);
-			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
-			this.userControlReadWriteOp1.TabIndex = 5;
-			// 
-			// button3
-			// 
-			this.button3.Location = new System.Drawing.Point(225, 240);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(184, 28);
-			this.button3.TabIndex = 23;
-			this.button3.Text = "压力测试，快速读写3000次";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button4_Click);
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// FormModbusRtuOverTcp
 			// 
@@ -420,12 +421,12 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			this.groupBox5.ResumeLayout(false);
-			this.groupBox5.PerformLayout();
 			this.ResumeLayout(false);
 
         }

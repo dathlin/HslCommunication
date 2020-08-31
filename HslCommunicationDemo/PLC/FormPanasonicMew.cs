@@ -10,6 +10,7 @@ using HslCommunication;
 using HslCommunication.Profinet.Panasonic;
 using System.Threading;
 using System.IO.Ports;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -295,6 +296,32 @@ namespace HslCommunicationDemo
 
 		#endregion
 
-		
+
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+			textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
+			textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
+			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
 	}
 }

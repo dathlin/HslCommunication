@@ -48,6 +48,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button4 = new System.Windows.Forms.Button();
 			this.textBox17 = new System.Windows.Forms.TextBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -65,7 +66,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button4 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -284,6 +284,16 @@
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
 			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(12, 244);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(82, 28);
+			this.button4.TabIndex = 25;
+			this.button4.Text = "Ping";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click_1);
+			// 
 			// textBox17
 			// 
 			this.textBox17.Location = new System.Drawing.Point(12, 59);
@@ -453,16 +463,7 @@
 			this.userControlHead1.ProtocolInfo = "Modbus Tcp";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
-			// 
-			// button4
-			// 
-			this.button4.Location = new System.Drawing.Point(12, 244);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(82, 28);
-			this.button4.TabIndex = 25;
-			this.button4.Text = "Ping";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click_1);
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// FormModbus
 			// 

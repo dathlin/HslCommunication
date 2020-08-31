@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication;
 using System.IO.Ports;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -241,6 +242,27 @@ namespace HslCommunicationDemo
 			OperateResult stop = siemensPPI.Stop( );
 			if (stop.IsSuccess) MessageBox.Show( "Stop Success!" );
 			else MessageBox.Show( stop.Message );
+		}
+
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
 		}
 	}
 }

@@ -10,6 +10,8 @@ using HslCommunication.Profinet;
 using System.Threading;
 using HslCommunication;
 using HslCommunication.Profinet.Omron;
+using System.IO.Ports;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -33,7 +35,15 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 
 			Language( Program.Language );
-
+			comboBox3.DataSource = SerialPort.GetPortNames( );
+			try
+			{
+				comboBox3.SelectedIndex = 0;
+			}
+			catch
+			{
+				comboBox3.Text = "COM3";
+			}
 			comboBox2.SelectedIndex = 2;
 		}
 
@@ -110,7 +120,7 @@ namespace HslCommunicationDemo
 			{
 				omronHostLink.SerialPortInni( sp =>
 				{
-					sp.PortName = textBox20.Text;
+					sp.PortName = comboBox3.Text;
 					sp.BaudRate = baudRate;
 					sp.DataBits = dataBits;
 					sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
@@ -185,6 +195,35 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
 			}
+		}
+
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox19.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox18.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox2.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+			textBox19.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+			textBox18.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
+			comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+			textBox1.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
 		}
 	}
 }

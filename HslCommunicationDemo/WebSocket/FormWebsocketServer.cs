@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.WebSocket;
 using HslCommunication;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -111,7 +112,7 @@ namespace HslCommunicationDemo
 			// 当客户端刚连上来的时候可以选择回发数据操作，具体取决于你的业务逻辑
 			if (checkBox3.Checked)
 			{
-				wsServer.SendClientPayload( session, "This a test message when client connect" );
+				wsServer.SendClientPayload( session, "This a test message when client connect, url:" + session.Url );
 			}
 		}
 
@@ -238,6 +239,27 @@ namespace HslCommunicationDemo
 			{
 				HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
 			}
+		}
+
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlTagCache, checkBox2.Checked );
+			element.SetAttributeValue( DemoDeviceList.XmlRetureMessage, checkBox3.Checked );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			checkBox2.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlTagCache ).Value );
+			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRetureMessage ).Value );
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
 		}
 	}
 

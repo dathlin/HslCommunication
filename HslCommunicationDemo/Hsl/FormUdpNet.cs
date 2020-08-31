@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Enthernet;
 using HslCommunication;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -84,6 +85,27 @@ namespace HslCommunicationDemo
         {
             // 清空
             textBox4.Clear( );
+        }
+
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlToken, textBox3.Text );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+            textBox3.Text = element.Attribute( DemoDeviceList.XmlToken ).Value;
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
         }
     }
 }

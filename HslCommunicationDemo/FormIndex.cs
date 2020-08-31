@@ -22,8 +22,6 @@ namespace HslCommunicationDemo
 			FormLoad.OpenWebside( linkLabel1.Text );
 		}
 
-		private Timer timer1s;
-
 		private void FormCharge_Load( object sender, EventArgs e )
 		{
 			SetUpdayeInfo( );
@@ -33,58 +31,27 @@ namespace HslCommunicationDemo
 				Text = "Start Page";
 			}
 
-			if (Program.IsActive)
-			{
-				hslLedDisplay1.DisplayText = "-----";
-				hslLedDisplay1.Visible = false;
-				hslTitle1.TextLeft = "";
-			}
-			else
-			{
-				timer1s = new Timer( );
-				timer1s.Tick += Timer1s_Tick;
-				timer1s.Interval = 500;
-				timer1s.Start( );
-			}
-		}
-
-		int tick = 0;
-		private void Timer1s_Tick( object sender, EventArgs e )
-		{
-			tick++;
-			if (tick == 2) tick = 0;
-
-			TimeSpan ts = DateTime.Now - Program.StartTime;
-			double remain = 8d - ts.TotalHours;
-			if (remain < 0) hslLedDisplay1.DisplayText = "00:00";
-			else
-			{
-				int hour = (int)remain;
-				int min = 59 - ts.Minutes;
-				if (tick == 0) hslLedDisplay1.DisplayText = $"{hour:D2}:{min:D2}";
-				else hslLedDisplay1.DisplayText = $"{hour:D2} {min:D2}";
-			}
 		}
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V9.3.0
-1.Networkbase：核心网络底层的错误码调整，当读写操作因为网络问题失败时，返回错误码为负数-1，如果连续读写失败，就一直递减。
-2. OmronConnectedCipNet: 地址解析修改为全部上29 00 报文。
-3. FileNet: 两种文件服务器支持删除多个文件和删除文件夹的所有文件功能，客户端同步适配，初步测试通过。
-4. NetSimplifyClient: 新增一个构造方法，可以传入IPAddress类型的ip地址。
-5. MqttSyncClient: 新增一个构造方法，可以传入IPAddress类型的ip地址。
-6. MqttClient: 修复一个连接反馈信号，解析判断服务器状态错误的bug，该bug导致MqttClient连接不是中国移动的OneNet物联网框架。
-7. FFT: 傅立叶变换FFTValue方法添加一个可选参数，是否二次开放，波形中的毛刺频段会更加明显。
-8. HttpServer: webapi的服务器完善注释，添加一个端口号的属性，获取当前配置端口号信息。
-9. Active: 当前库激活失效的时候，返回的错误消息，携带当前的通信对象的实例化个数，方便查找授权失败的原因。
-10. Abb机器人：abb机器人支持读取程序执行状态，任务列表功能，伺服状态，机器人位置数据。
-11. ABB虚拟机器人：新增一个abb机器人的虚拟webapi的服务器，可以用来测试和ABB客户端的通信。
-12. Demo: 数据转换的界面，新增一个显示指定的文件的二进制的内容的功能。当demo激活成功时，不显示时间及授权信息。
-13. 新增一篇全新的博文，介绍基于HSL的大一统网络架构实现，满足发布订阅，一对多通信，webapi等：https://www.cnblogs.com/dathlin/p/13416030.html。
-14. 官网备案成功了，地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
+			textBox1.Text = @"V9.3.1
+1. Beckhoff: 倍福PLC新增读取设备信息和设备状态的api接口。在demo界面添加测试按钮，状态码检查优化，错误时返回报文信息。
+2. FanucSeries0i: 修复fanuc机床的读取宏变量解析double数据时，为0的时候解析异常的bug。
+3. ABBWebApiServer：ABB机器人的虚拟服务器支持用户名和密码设置，在客户端请求数据的时间，支持账户验证。
+4. Demoserver: 优化根据IP地址获取物理地址的方法，获取不到或是奇怪字符将切换线路重新获取。
+5. KukaTcpNet: 新增KukaTcp通讯类，支持多变量写入的api，在demo界面增加启动，复位，停止程序的操作。
+6. .Net Framwork 2.0 支持2.0的框架的dll发布，通过nuget安装即可。
+7. SimpleHybirdLock: 简单混合锁添加一个当前进入锁的次数的静态属性，可以查看当前共有多少锁，等待多少锁。
+8. NetworkDeviceBase: 核心交互方便增加错误捕获，异常释放锁，再throw, YamahaRCX类完善异步方法
+9. NetworkBase: 增加一个线程检查超时的次数统计功能。
+10. InovanceH3U: 修复汇川的3U的PLC地址类型为SM,SD时解析异常的bug。
+11. Demo: HslCommunication Test Demo支持PLC及一些连接对象的参数保存功能，使用英文冒号可以分类管理。
+12. WebSocketSession: 新增url属性，如果客户端请求包含url信息，例如：ws://127.0.0.1:1883/A/B?C=123, 那么url就是这个值。
+13. Demo: 测试的DEMO程序，支持连接参数存储，不用再每次打开程序重新输入IP地址，端口，站号等等信息，可以存储起来，还支持分类存储。
+14. 官网地址： http://www.hslcommunication.cn 官网的界面全新设计过，感谢浏览关注。
 15. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。
-16. HSL的目标是打造成工业互联网的利器，工业大数据的基础，打造边缘计算平台。企业终身授权费：8000元(不含税)。";
+16. HSL的目标是打造成工业互联网的利器，工业大数据的基础，打造边缘计算平台。";
 		}
 
 
