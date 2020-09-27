@@ -139,7 +139,7 @@ namespace HslCommunicationDemo
                     button1.Enabled = false;
                     panel2.Enabled = true;
 
-                    userControlReadWriteOp1.SetReadWriteNet( inovanceAMTcp, "MW100", false );
+                    userControlReadWriteOp1.SetReadWriteNet( inovanceAMTcp, "MW100", true );
                 }
                 else
                 {

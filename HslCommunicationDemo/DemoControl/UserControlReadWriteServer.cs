@@ -53,6 +53,7 @@ namespace HslCommunicationDemo.DemoControl
                     return;
                 }
 
+                if (textBox1.TextLength > 1000_000) textBox1.Clear( );
                 textBox1.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
             }
             catch

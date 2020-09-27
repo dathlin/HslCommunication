@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.3.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.3.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.3.2.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.3.2\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -218,6 +218,24 @@
     </Compile>
     <Compile Include="Hsl\FormDtuServer.Designer.cs">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormAllenBrandlySLC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormAllenBrandlySLC.Designer.cs">
+      <DependentUpon>FormAllenBrandlySLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMcUdpServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMcUdpServer.Designer.cs">
+      <DependentUpon>FormMcUdpServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormOmronUdpServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmronUdpServer.Designer.cs">
+      <DependentUpon>FormOmronUdpServer.cs</DependentUpon>
     </Compile>
     <Compile Include="Robot\FormAbbServer.cs">
       <SubType>Form</SubType>
@@ -1023,6 +1041,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormDtuServer.resx">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormAllenBrandlySLC.resx">
+      <DependentUpon>FormAllenBrandlySLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMcUdpServer.resx">
+      <DependentUpon>FormMcUdpServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmronUdpServer.resx">
+      <DependentUpon>FormOmronUdpServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormAbbServer.resx">
       <DependentUpon>FormAbbServer.cs</DependentUpon>

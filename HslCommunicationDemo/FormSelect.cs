@@ -333,6 +333,7 @@ namespace HslCommunicationDemo
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C (format1)",      8, typeof( FormMelsec3C ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C OverTcp",        8, typeof( FormMelsec3COverTcp ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Mc Virtual Server",   8, typeof( FormMcServer ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Mc Udp Server",       8, typeof( FormMcUdpServer ) ) );
 			treeView1.Nodes.Add( melsecNode );
 
 			// 西门子PLC相关
@@ -381,6 +382,7 @@ namespace HslCommunicationDemo
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink OverTcp",               10, typeof( FormOmronHostLinkOverTcp ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink C-Mode",                10, typeof( FormOmronHostLinkCMode ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Virtual Server",            10, typeof( FormOmronServer ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Udp Server",                10, typeof( FormOmronUdpServer ) ) );
 			treeView1.Nodes.Add( omronNode );
 
 			// Lsis PLC
@@ -412,6 +414,7 @@ namespace HslCommunicationDemo
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "MicroCip(Micro800)",      1, typeof( FormAllenBrandlyMicroCip ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP Browser",             1, typeof( FormAllenBrandlyBrowser ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP Virtual Server",      1, typeof( FormCipServer ) ) );
+			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "SLC Net",                 1, typeof( FormAllenBrandlySLC ) ) );
 			treeView1.Nodes.Add( allenBrandlyPlc );
 
 			// Beckhoff PLC

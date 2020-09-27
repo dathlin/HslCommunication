@@ -46,6 +46,7 @@ namespace HslCommunicationDemo
 							xElement.SetAttributeValue( DemoDeviceList.XmlName, form.DeviceAlias );
 							SaveXmlParameter( xElement );
 							FormSelect.Form.AddDeviceList( xElement );
+							MessageBox.Show( "Save Success" );
 						}
 					}
 				}
@@ -54,7 +55,6 @@ namespace HslCommunicationDemo
 					SaveXmlParameter( xElement );
 					FormSelect.Form.AddDeviceList( xElement );
 				}
-				MessageBox.Show( "Save Success" );
 			}
 			catch (Exception ex)
 			{

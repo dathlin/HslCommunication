@@ -11,101 +11,132 @@ using HslCommunication;
 
 namespace HslCommunicationDemo
 {
-    #region FormSimplifyNet
+	#region FormSimplifyNet
 
 
-    public partial class FormRedisSubscribe : HslFormContent
-    {
-        public FormRedisSubscribe( )
-        {
-            InitializeComponent( );
-        }
+	public partial class FormRedisSubscribe : HslFormContent
+	{
+		public FormRedisSubscribe( )
+		{
+			InitializeComponent( );
+		}
 
-        private void FormClient_Load( object sender, EventArgs e )
-        {
-            panel2.Enabled = false;
-            button2.Enabled = false;
-        }
-        
+		private void FormClient_Load( object sender, EventArgs e )
+		{
+			panel2.Enabled = false;
+			button2.Enabled = false;
 
-        private RedisSubscribe redisSubscribe = null;
+			if(Program.Language == 2)
+			{
+				label1.Text = "IP:";
+				label3.Text = "Port:";
+				button1.Text = "Connect";
+				button2.Text = "DisConnect";
+				label6.Text = "Password";
+				label7.Text = "Keyword: all input is batch subscription";
+				button3.Text = "Subscribe";
+				button4.Text = "UnSubscribe";
+				label12.Text = "Time:";
+				label10.Text = "Count:";
+				label9.Text = "Data:";
+			}
+		}
+		
 
-        private void button1_Click( object sender, EventArgs e )
-        {
-            try
-            {
-                List<string> lists = new List<string>( );
-                if (!string.IsNullOrEmpty( textBox5.Text )) lists.Add( textBox5.Text );
-                if (!string.IsNullOrEmpty( textBox6.Text )) lists.Add( textBox6.Text );
-                if (!string.IsNullOrEmpty( textBox7.Text )) lists.Add( textBox7.Text );
-                if (!string.IsNullOrEmpty( textBox8.Text )) lists.Add( textBox8.Text );
+		private RedisSubscribe redisSubscribe = null;
 
-                if(lists.Count == 0)
-                {
-                    MessageBox.Show( "没有订阅的关键字！" );
-                    return;
-                }
-                // 连接
-                redisSubscribe = new RedisSubscribe( textBox1.Text, int.Parse( textBox2.Text ), lists.ToArray( ) );
-                redisSubscribe.Password = textBox3.Text;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show( "输入错误：" + ex.Message );
-                return;
-            }
-            OperateResult connect = redisSubscribe.CreatePush( ShowSubscribe );
+		private void button1_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				redisSubscribe = new RedisSubscribe( textBox1.Text, int.Parse( textBox2.Text ) );
+				redisSubscribe.Password = textBox3.Text;
+				redisSubscribe.OnRedisMessageReceived += RedisSubscribe_OnRedisMessageReceived;
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show( "输入错误：" + ex.Message );
+				return;
+			}
+			OperateResult connect = redisSubscribe.ConnectServer( );
 
-            if(connect.IsSuccess)
-            {
-                button1.Enabled = false;
-                button2.Enabled = true;
-                panel2.Enabled = true;
-                MessageBox.Show( StringResources.Language.ConnectServerSuccess );
-            }
-            else
-            {
-                MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
-            }
-        }
+			if(connect.IsSuccess)
+			{
+				button1.Enabled = false;
+				button2.Enabled = true;
+				panel2.Enabled = true;
+				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+			}
+			else
+			{
+				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+			}
+		}
 
-        private void button2_Click( object sender, EventArgs e )
-        {
-            // 断开连接
-            button1.Enabled = true;
-            button2.Enabled = false;
-            panel2.Enabled = false;
+		private void RedisSubscribe_OnRedisMessageReceived( string topic, string message )
+		{
+			ShowSubscribe( topic, message );
+		}
 
-            redisSubscribe.ClosePush( );
-        }
+		private void button2_Click( object sender, EventArgs e )
+		{
+			// 断开连接
+			button1.Enabled = true;
+			button2.Enabled = false;
+			panel2.Enabled = false;
 
-        private int count = 0;
-       
-        private void ShowSubscribe(string key, string content )
-        {
-            if (InvokeRequired)
-            {
-                Invoke( new Action<string, string>( ShowSubscribe ), key, content );
-                return;
-            }
+			redisSubscribe.ConnectClose( );
+		}
 
-            count++;
-            label11.Text = DateTime.Now.ToString( );
-            label8.Text = count.ToString( );
+		private int count = 0;
 
-            textBox4.AppendText( DateTime.Now.ToString() + " : " + key );
-            textBox4.AppendText( Environment.NewLine );
-            textBox4.AppendText( content );
-            textBox4.AppendText( Environment.NewLine );
-            textBox4.AppendText( Environment.NewLine );
-        }
+		private void ShowSubscribe( string key, string content )
+		{
+			if (InvokeRequired)
+			{
+				Invoke( new Action<string, string>( ShowSubscribe ), key, content );
+				return;
+			}
+
+			count++;
+			label11.Text = DateTime.Now.ToString( );
+			label8.Text = count.ToString( );
+
+			textBox4.AppendText( DateTime.Now.ToString( ) + $"  Topic:[{key}] Message:{content}" );
+			textBox4.AppendText( Environment.NewLine );
+		}
+
+		private Random random = new Random( );
+
+		private void button3_Click( object sender, EventArgs e )
+		{
+			// 订阅操作
+			OperateResult sub = redisSubscribe.SubscribeMessage( textBox5.Text );
+			if (sub.IsSuccess)
+			{
+				MessageBox.Show( "订阅成功" );
+			}
+			else
+			{
+				MessageBox.Show( "订阅失败" );
+			}
+		}
+
+		private void button4_Click( object sender, EventArgs e )
+		{
+			// 取消订阅
+			OperateResult sub = redisSubscribe.UnSubscribeMessage( textBox5.Text );
+			if (sub.IsSuccess)
+			{
+				MessageBox.Show( "取消订阅成功" );
+			}
+			else
+			{
+				MessageBox.Show( "取消订阅失败" );
+			}
+		}
+	}
 
 
-
-        private Random random = new Random( );
-      
-    }
-
-
-    #endregion
+	#endregion
 }

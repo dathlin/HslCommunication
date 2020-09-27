@@ -89,7 +89,6 @@ namespace HslCommunicationDemo
 			}
 
 			keyence_net.Port = port;
-
 			keyence_net.ConnectClose( );
 
 			try

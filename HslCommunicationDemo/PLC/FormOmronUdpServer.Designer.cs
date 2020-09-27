@@ -1,7 +1,7 @@
 ﻿namespace HslCommunicationDemo
 {
-    partial class FormMcServer
-    {
+    partial class FormOmronUdpServer
+	{
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -29,7 +29,6 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.button11 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -47,7 +46,6 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.label11);
 			this.panel1.Controls.Add(this.button11);
 			this.panel1.Controls.Add(this.button1);
@@ -56,20 +54,8 @@
 			this.panel1.Location = new System.Drawing.Point(14, 40);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 68);
+			this.panel1.Size = new System.Drawing.Size(978, 46);
 			this.panel1.TabIndex = 0;
-			// 
-			// checkBox2
-			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Checked = true;
-			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox2.Location = new System.Drawing.Point(74, 40);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(63, 21);
-			this.checkBox2.TabIndex = 30;
-			this.checkBox2.Text = "Binary";
-			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// label11
 			// 
@@ -78,7 +64,7 @@
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(447, 41);
 			this.label11.TabIndex = 29;
-			this.label11.Text = "本服务器不是严格的mc协议，仅支持和HSL组件完美通信。";
+			this.label11.Text = "本服务器不是严格的fins协议，仅支持和HSL组件完美通信。";
 			// 
 			// button11
 			// 
@@ -107,7 +93,7 @@
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
-			this.textBox2.Text = "6000";
+			this.textBox2.Text = "9600";
 			// 
 			// label3
 			// 
@@ -125,10 +111,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(14, 116);
+			this.panel2.Location = new System.Drawing.Point(14, 95);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 516);
+			this.panel2.Size = new System.Drawing.Size(978, 537);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -137,9 +123,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteServer1.Location = new System.Drawing.Point(5, 4);
+			this.userControlReadWriteServer1.Location = new System.Drawing.Point(7, 4);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(960, 505);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(960, 519);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -151,12 +137,12 @@
 			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
-			this.userControlHead1.ProtocolInfo = "MC Qna3E Server";
+			this.userControlHead1.ProtocolInfo = "Fins Udp Server";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// FormMcServer
+			// FormOmronUdpServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -167,9 +153,9 @@
 			this.Controls.Add(this.panel1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "FormMcServer";
+			this.Name = "FormOmronUdpServer";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "mc虚拟服务器【数据支持，bool是M,X,Y，字操作是x,y,m,d,w】";
+			this.Text = "欧姆龙虚拟服务器【数据支持，D,H,A,W,C】";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
 			this.Load += new System.EventHandler(this.FormSiemens_Load);
 			this.panel1.ResumeLayout(false);
@@ -189,7 +175,6 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label11;
         private DemoControl.UserControlHead userControlHead1;
-		private System.Windows.Forms.CheckBox checkBox2;
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
     }
 }

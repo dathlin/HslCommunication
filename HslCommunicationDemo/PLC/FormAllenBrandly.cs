@@ -234,7 +234,7 @@ namespace HslCommunicationDemo
 			OperateResult<bool[]> read = allenBradleyNet.ReadBoolArray( textBox3.Text );
 			if (read.IsSuccess)
 			{
-				textBox4.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ArrayFormat( read.Content );
+				textBox4.Text = $"Result[{DateTime.Now:HH:mm:ss}]：" + HslCommunication.BasicFramework.SoftBasic.ArrayFormat( read.Content );
 			}
 			else
 			{
