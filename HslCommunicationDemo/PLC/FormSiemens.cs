@@ -216,6 +216,23 @@ namespace HslCommunicationDemo
         private void button25_Click( object sender, EventArgs e )
         {
             DemoUtils.BulkReadRenderResult( siemensTcpNet, textBox6, textBox9, textBox10 );
+
+
+            //siemensTcpNet.Write( "M100.0", true ).
+            //    Then( ( ) => siemensTcpNet.ReadInt16( "M1100" ) ).
+            //    Then( content => siemensTcpNet.Write( "M200", true ) );
+
+            // 比如我有个简单的需求，先读M100.0，如果是true，我就写M101.0为true，否则返回确认没有件的失败消息
+            // 以前的写法
+            // OperateResult<bool> readbool = siemensTcpNet.ReadBool( "M100.0" );
+            // if (!readbool.IsSuccess) return readbool;
+
+            // if (readbool.Content) return siemensTcpNet.Write( "M101.0", true );
+            // else return new OperateResult( "当前位置没有件" );
+
+            // 现在写法
+            // var result = siemensTcpNet.ReadBool( "M100.0" ).Check( content => content == true, "当前位置没有件" ).Then( () => siemensTcpNet.Write( "M101.0", true ) );
+            // DemoUtils.WriteResultRender( result, "Test" );
         }
 
         private async void button3_Click( object sender, EventArgs e )

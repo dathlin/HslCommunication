@@ -377,6 +377,38 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private async void button10_Click( object sender, EventArgs e )
+		{
+			// 等待M100为True，读取频率为间隔100ms，等待超时为30秒
+			button10.Enabled = false;
+			OperateResult<TimeSpan> wait = await melsec_net.WaitAsync( "M100", true, 100, 30_000 );
+			if (wait.IsSuccess)
+			{
+				MessageBox.Show( "Wait Success, Takes " + wait.Content.TotalSeconds.ToString( "F1" ) + " Seconds" );
+			}
+			else
+			{
+				MessageBox.Show( "Wait Failed:" + wait.Message );
+			}
+			button10.Enabled = true;
+		}
+
+		private async void button11_Click( object sender, EventArgs e )
+		{
+			// 等待D100为123，读取频率为间隔100ms，等待超时为30秒
+			button11.Enabled = false;
+			OperateResult<TimeSpan> wait = await melsec_net.WaitAsync( "D100", (short)123, 100, 30_000 );
+			if (wait.IsSuccess)
+			{
+				MessageBox.Show( "Wait Success, Takes " + wait.Content.TotalSeconds.ToString( "F1" ) + " Seconds" );
+			}
+			else
+			{
+				MessageBox.Show( "Wait Failed:" + wait.Message );
+			}
+			button11.Enabled = true;
+		}
+
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
@@ -394,6 +426,7 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 
 	public class UserType : HslCommunication.IDataTransfer

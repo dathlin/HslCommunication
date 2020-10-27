@@ -57,6 +57,7 @@ namespace HslCommunicationDemo
             {
 
                 s7NetServer = new HslCommunication.Profinet.Siemens.SiemensS7Server( );                       // 实例化对象
+                s7NetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 s7NetServer.OnDataReceived += BusTcpServer_OnDataReceived;
                 
                 s7NetServer.ServerStart( port );

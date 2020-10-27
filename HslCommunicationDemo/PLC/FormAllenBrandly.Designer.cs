@@ -34,7 +34,6 @@
 			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label23 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
@@ -86,7 +85,6 @@
 			this.panel1.Controls.Add(this.textBox15);
 			this.panel1.Controls.Add(this.label23);
 			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
@@ -136,20 +134,11 @@
 			// 
 			// label22
 			// 
-			this.label22.Location = new System.Drawing.Point(819, 2);
+			this.label22.Location = new System.Drawing.Point(760, 2);
 			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(154, 45);
+			this.label22.Size = new System.Drawing.Size(213, 45);
 			this.label22.TabIndex = 7;
-			this.label22.Text = "变量的标签名";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(760, 2);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(68, 17);
-			this.label21.TabIndex = 6;
-			this.label21.Text = "地址示例：";
+			this.label22.Text = "变量的标签名，bool数组如果是int类型，则带i=开头访问";
 			// 
 			// button2
 			// 
@@ -542,7 +531,6 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox15;

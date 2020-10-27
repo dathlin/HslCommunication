@@ -56,6 +56,7 @@ namespace HslCommunicationDemo
             {
 
                 fanucRobotServer = new HslCommunication.Robot.FANUC.FanucRobotServer( );                             // 实例化对象
+                fanucRobotServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 fanucRobotServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
                 fanucRobotServer.ServerStart( port );

@@ -26,42 +26,52 @@ namespace HslCommunicationDemo
 		private void FormClient_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
+			panel4.Enabled = false;
 			button2.Enabled = false;
 
-			
-
 			Language( Program.Language );
+			ImageList imageList = new ImageList( );
+			imageList.Images.Add( "VirtualMachine",        Properties.Resources.VirtualMachine );
+			imageList.Images.Add( "Class_489",             Properties.Resources.Class_489 );
+			imageList.Images.Add( "Enum_582",              Properties.Resources.Enum_582 );             // string
+			imageList.Images.Add( "brackets_Square_16xMD", Properties.Resources.brackets_Square_16xMD );   // 数组
+			imageList.Images.Add( "Method_636",            Properties.Resources.Method_636 );         // 哈希
+			imageList.Images.Add( "Module_648",            Properties.Resources.Module_648 );         // 集合
+			imageList.Images.Add( "Structure_507",         Properties.Resources.Structure_507 );   // 有序集合
+
+			treeView1.AfterSelect += TreeView1_AfterSelect;
+			treeView1.ImageList = imageList;
+			treeView1.Nodes[0].ImageKey = "VirtualMachine";
+			treeView1.Nodes[0].SelectedImageKey = "VirtualMachine";
 		}
 
 		private void Language( int language )
 		{
 			if (language == 1)
 			{
-				Text = "Mqtt同步客户端";
-				label1.Text = "Ip地址：";
-				label3.Text = "端口号：";
-				button1.Text = "连接";
-				button2.Text = "断开连接";
-				label7.Text = "Topic：";
-				label8.Text = "主题";
-				label9.Text = "Payload：";
-				button4.Text = "清空";
-				label12.Text = "接收：";
+
 			}
 			else
 			{
-				Text = "Mqtt Sync Client Test";
+				Text = "Mqtt Sync Client [RPC remote call client]";
 				label1.Text = "Ip:";
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label7.Text = "Topic:";
-				label8.Text = "";
 				label9.Text = "Payload:";
-				button3.Text = "most one";
-				button4.Text = "Clear";
-				label12.Text = "Receive:";
 				button3.Text = "Read";
+				button4.Text = "Clear";
+				label12.Text = "R-Topic:";
+				label5.Text = "R-Payload:";
+				button3.Text = "Read";
+				hslProgress1.TextRenderFormat = "Send {0}%";
+				hslProgress2.TextRenderFormat = "Receive {0}%";
+				label6.Text = "Client ID:";
+				label2.Text = "UserName:";
+				label4.Text = "Password:";
+				label11.Text = "Spend-Time:";
+				button8.Text = "Refresh";
 			}
 		}
 
@@ -90,7 +100,9 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 				button1.Enabled = false;
 				button2.Enabled = true;
+				panel4.Enabled = true;
 				panel2.Enabled = true;
+				MqttRpcApiRefresh( treeView1.Nodes[0] );
 				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
 			}
 			else
@@ -106,6 +118,7 @@ namespace HslCommunicationDemo
 			button1.Enabled = true;
 			button2.Enabled = false;
 			panel2.Enabled = false;
+			panel4.Enabled = false;
 
 			mqttSyncClient.ConnectClose( );
 		}
@@ -150,7 +163,18 @@ namespace HslCommunicationDemo
 			button3.Enabled = true;
 
 			textBox7.Text = (int)(DateTime.Now - start).TotalMilliseconds + " ms";
-			if (!read.IsSuccess) { MessageBox.Show( "Read Failed:" + read.Message ); return; }
+			if (!read.IsSuccess) { MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) ); return; }
+
+
+			// 此处应该修改demo里的RPC接口的默认参数功能
+			if (mqttRpcApiInfos != null)
+			{
+				MqttRpcApiInfo api = mqttRpcApiInfos.FirstOrDefault( m => m.ApiTopic == textBox5.Text );
+				if (api != null)
+				{
+					api.ExamplePayload = textBox4.Text;
+				}
+			}
 
 			textBox6.Text = read.Content1;
 			string msg = Encoding.UTF8.GetString( read.Content2 );
@@ -281,12 +305,104 @@ namespace HslCommunicationDemo
 			textBox8.Text = msg?.Length > 100 ? msg.Substring( 0, 100 ) + "..." : msg;
 		}
 
+		private void button7_Click( object sender, EventArgs e )
+		{
+			OperateResult<MqttRpcApiInfo[]> read = mqttSyncClient.ReadRpcApis( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = read.Content.ToJsonString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.Message );
+			}
+		}
+
+		private void button8_Click( object sender, EventArgs e )
+		{
+			MqttRpcApiRefresh( treeView1.Nodes[0] );
+		}
+
+		MqttRpcApiInfo[] mqttRpcApiInfos;
+
+		private void MqttRpcApiRefresh( TreeNode rootNode )
+		{
+			rootNode.Nodes.Clear( );
+			// 加载所有的键值信息
+			OperateResult<MqttRpcApiInfo[]> read = mqttSyncClient.ReadRpcApis( );
+			if (!read.IsSuccess) return;
+
+
+			mqttRpcApiInfos = read.Content;
+			// 填充tree
+			foreach (var item in read.Content)
+			{
+				AddTreeNode( rootNode, item.ApiTopic, item.ApiTopic, item );
+			}
+
+			rootNode.ExpandAll( );
+		}
+
+
+		private void AddTreeNode( TreeNode parent, string key, string infactKey, MqttRpcApiInfo mqttRpc )
+		{
+			int index = key.IndexOf( '/' );
+			if (index <= 0)
+			{
+				// 不存在冒号
+				TreeNode node = new TreeNode( $"{key}" );
+				node.Tag = mqttRpc;
+				node.ImageKey = "Method_636";
+				node.SelectedImageKey = "Method_636";
+				parent.Nodes.Add( node );
+			}
+			else
+			{
+				TreeNode node = null;
+				for (int i = 0; i < parent.Nodes.Count; i++)
+				{
+					if (parent.Nodes[i].Text == key.Substring( 0, index ))
+					{
+						node = parent.Nodes[i];
+						break;
+					}
+				}
+
+				if (node == null)
+				{
+					node = new TreeNode( key.Substring( 0, index ) );
+					node.ImageKey = "Class_489";
+					node.SelectedImageKey = "Class_489";
+					AddTreeNode( node, key.Substring( index + 1 ), infactKey, mqttRpc );
+					parent.Nodes.Add( node );
+				}
+				else
+				{
+					AddTreeNode( node, key.Substring( index + 1 ), infactKey, mqttRpc );
+				}
+			}
+		}
+
+		private void TreeView1_AfterSelect( object sender, TreeViewEventArgs e )
+		{
+			TreeNode node = treeView1.SelectedNode;
+			if (node == null) return;
+
+			if(node.Tag is MqttRpcApiInfo apiInfo)
+			{
+				textBox5.Text = apiInfo.ApiTopic;
+				textBox4.Text = apiInfo.ExamplePayload;
+				textBox12.Text = apiInfo.CalledCount.ToString( );
+				textBox13.Text = apiInfo.SpendTotalTime.ToString( "F2" );
+				label15.Text = apiInfo.Description;
+			}
+		}
+
 
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlTimeout, textBox11.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlCompanyID, textBox3.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox9.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox10.Text );
@@ -297,7 +413,6 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox11.Text = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
 			textBox3.Text = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;
 			textBox9.Text = element.Attribute( DemoDeviceList.XmlUserName ).Value;
 			textBox10.Text = element.Attribute( DemoDeviceList.XmlPassword ).Value;
@@ -307,6 +422,7 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 
 

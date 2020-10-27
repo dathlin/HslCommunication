@@ -9,6 +9,10 @@ using System.Windows.Forms;
 using HslCommunication.MQTT;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunication.Reflection;
+using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using HslCommunication.Profinet.Siemens;
 
 namespace HslCommunicationDemo
 {
@@ -81,11 +85,15 @@ namespace HslCommunicationDemo
 		}
 
 		private MqttServer mqttServer;
+		private SiemensS7Net siemens;
 
 		private void button1_Click( object sender, EventArgs e )
 		{
 			try
 			{
+				siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
+				siemens.SetPersistentConnection( );
+
 				mqttServer = new MqttServer( );
 				mqttServer.OnClientApplicationMessageReceive += MqttServer_OnClientApplicationMessageReceive;
 				mqttServer.OnClientConnected += MqttServer_OnClientConnected;
@@ -94,6 +102,8 @@ namespace HslCommunicationDemo
 					mqttServer.ClientVerification += MqttServer_ClientVerification;
 				}
 
+				mqttServer.RegisterMqttRpcApi( "Account", this );
+				mqttServer.RegisterMqttRpcApi( "Siemens", siemens );
 				mqttServer.ServerStart( int.Parse( textBox2.Text ) );
 				mqttServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				mqttServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
@@ -138,10 +148,10 @@ namespace HslCommunicationDemo
 				mqttServer.PublishTopicPayload( session, message.Topic, message.Payload );
 			}
 
-			if(session.Protocol == "HUSL")
+			if (session.Protocol == "HUSL")
 			{
 				// 当前的会话是同步通信的情况
-				if(message.Topic == "A")
+				if (message.Topic == "A")
 				{
 					// 测试回传一条数据信息
 					mqttServer.PublishTopicPayload( session, "B", Encoding.UTF8.GetBytes( "这是回传的一条测试数据" ) );
@@ -168,8 +178,33 @@ namespace HslCommunicationDemo
 					}
 					mqttServer.PublishTopicPayload( session, "C", buffer );
 				}
+				else if (message.Topic == "D")
+				{
+					// 返回一条操作失败的信息
+					mqttServer.ReportOperateResult( session, "当前的功能码不支持！" );
+				}
+				else if (message.Topic == "E")
+				{
+					// 返回一条操作结果的信息
+					if (random.Next( 100 ) < 50)
+						mqttServer.ReportOperateResult( session, new OperateResult<string>( "当前的结果为失败信息" ) );
+					else
+						mqttServer.ReportOperateResult( session, OperateResult.CreateSuccessResult( "成功" ) );
 
-				// 如果不回传数据，客户端就会引发超时，关闭连接
+				}
+				else if (message.Topic == "F")
+				{
+					// 返回当前对象支持的API信息
+					mqttServer.PublishTopicPayload( session, "list", Encoding.UTF8.GetBytes( JArray.FromObject( MqttHelper.GetSyncServicesApiInformationFromObject( this ) ).ToString( ) ) );
+				}
+				else
+				{
+					// 如果不回传数据，客户端就会引发超时，关闭连接
+
+
+					// 下面是示例，支持了一个CheckName的接口数据，返回类型必须是 OperateResult<string>
+					mqttServer.ReportObjectApiMethod( session, message, this );
+				}
 			}
 
 			Invoke( new Action( ( ) =>
@@ -187,6 +222,83 @@ namespace HslCommunicationDemo
 					}
 				}
 			} ) );
+		}
+
+		[HslMqttApi("检查账户的信息")]
+		[HslMqttPermission(ClientID ="AAA")]
+		public OperateResult<string> CheckName(string name, short value )
+		{
+			if (value < 10) return new OperateResult<string>( "值不能小于10" );
+			return OperateResult.CreateSuccessResult( "成功:" + name + " 年龄:" + value );
+		}
+
+		[HslMqttApi( "读取设备的信息，address: 设备的地址 length: 读取的数据长度" )]
+		public OperateResult<string> ReadInt( string address, short length )
+		{
+			return OperateResult.CreateSuccessResult( "成功:" + address );
+		}
+
+		[HslMqttApi( "读取设备的Int16信息，address: 设备的地址 length: 读取的数据长度" )]
+		public OperateResult<short> ReadInt16( string address, short length )
+		{
+			return OperateResult.CreateSuccessResult( (short)random.Next( 10000 ) );
+		}
+
+		[HslMqttApi( "读取设备的Int16数组信息，address: 设备的地址 length: 读取的数据长度" )]
+		public OperateResult<short[]> ReadInt16Array( string address, short length )
+		{
+			short[] array = new short[10];
+			for (int i = 0; i < 10; i++)
+			{
+				array[i] = (short)random.Next( 10000 );
+			}
+			return OperateResult.CreateSuccessResult( array );
+		}
+
+		[HslMqttApi( "读取设备的Int16信息，address: 设备的地址 length: 读取的数据长度" )]
+		public short ReadFloat( string address, short length = 12345 )
+		{
+			return (short)random.Next( 10000 );
+		}
+
+		[HslMqttApi( "读取设备的学生信息\r\naddress: 设备的地址 length: 读取的数据长度" )]
+		public Student ReadStudent( string address = "M100", short length = 10 )
+		{
+			return new Student( ) { Name = "张三", Age = 23, ID = "1012312321" };
+		}
+
+		[HslMqttApi( "读取设备的学生信息\r\naddress: 设备的地址 length: 读取的数据长度" )]
+		public OperateResult<Student> ReadStudentResult( string address, short length )
+		{
+			if (random.Next( 1000 ) < 500)
+			{
+				return OperateResult.CreateSuccessResult( new Student( ) { Name = "张三", Age = 23, ID = "1012312321" } );
+			}
+			else
+			{
+				return new OperateResult<Student>( "读取失败" );
+			}
+		}
+
+		[HslMqttApi( "启动设备的接口信息")]
+		public OperateResult<string> StartDevice( DateTime start )
+		{
+			return OperateResult.CreateSuccessResult( start.ToString( ) );
+		}
+
+		[HslMqttApi( "StopDevice", "关闭设备的接口信息" )]
+		public OperateResult<int> asdgasasdasd( )
+		{
+			return OperateResult.CreateSuccessResult( random.Next( 10000 ) );
+		}
+
+		private Random random = new Random( );
+
+		public class Student
+		{
+			public string Name { get; set; }
+			public int Age { get; set; }
+			public string ID { get; set; }
 		}
 
 		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )

@@ -55,6 +55,7 @@ namespace HslCommunicationDemo
             try
             {
                 mcNetServer = new HslCommunication.Profinet.Melsec.MelsecMcServer( checkBox2.Checked );                       // 实例化对象
+                mcNetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 mcNetServer.OnDataReceived += MelsecMcServer_OnDataReceived;
                 mcNetServer.ServerStart( port );
                 userControlReadWriteServer1.SetReadWriteServer( mcNetServer, "D100" );

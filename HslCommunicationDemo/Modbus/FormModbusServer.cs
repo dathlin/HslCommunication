@@ -99,6 +99,7 @@ namespace HslCommunicationDemo
             try
             {
                 busTcpServer = new HslCommunication.ModBus.ModbusTcpServer( );                       // 实例化对象
+                busTcpServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 busTcpServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
                 // add some accounts

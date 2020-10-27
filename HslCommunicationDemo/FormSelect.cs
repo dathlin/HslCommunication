@@ -381,6 +381,7 @@ namespace HslCommunicationDemo
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink 【串口】",              10, typeof( FormOmronHostLink ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink OverTcp",               10, typeof( FormOmronHostLinkOverTcp ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink C-Mode",                10, typeof( FormOmronHostLinkCMode ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "C-Mode OverTcp",                 10, typeof( FormOmronHostLinkCModeOverTcp ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Virtual Server",            10, typeof( FormOmronServer ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Udp Server",                10, typeof( FormOmronUdpServer ) ) );
 			treeView1.Nodes.Add( omronNode );
@@ -457,7 +458,7 @@ namespace HslCommunicationDemo
 			TreeNode mqttNode = new TreeNode( "MQTT", 17, 17 );
 			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt Server",      17, typeof( FormMqttServer ) ) );
 			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt Client",      17, typeof( FormMqttClient ) ) );
-			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt Sync Client", 17, typeof( FormMqttSyncClient ) ) );
+			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt RPC Client", 17, typeof( FormMqttSyncClient ) ) );
 			treeView1.Nodes.Add( mqttNode );
 
 			// WebSocket 相关

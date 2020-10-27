@@ -193,15 +193,26 @@ namespace HslCommunicationDemo
                 return;
             }
 
+            this.sleep = sleep;
+            threadEnable = true;
             new Thread( new ThreadStart( ThreadBackgroundReadCard ) ) { IsBackground = true }.Start( );
             button_sam_start.Enabled = false;
+            button3.Enabled = true;
         }
 
         private int sleep = 1000;
+        private bool threadEnable = true;
+
+        private void button3_Click( object sender, EventArgs e )
+        {
+            threadEnable = false;
+            button_sam_start.Enabled = true;
+            button3.Enabled = false;
+        }
 
         private void ThreadBackgroundReadCard( )
         {
-            while (true)
+            while (threadEnable)
             {
                 Thread.Sleep( sleep );
                 OperateResult search = sAMTcpNet.SearchCard( );

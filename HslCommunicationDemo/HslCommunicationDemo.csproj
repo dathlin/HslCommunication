@@ -71,14 +71,14 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.3.2.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.3.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.5.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.5.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -230,6 +230,12 @@
     </Compile>
     <Compile Include="PLC\FormMcUdpServer.Designer.cs">
       <DependentUpon>FormMcUdpServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLinkCModeOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLinkCModeOverTcp.Designer.cs">
+      <DependentUpon>FormOmronHostLinkCModeOverTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormOmronUdpServer.cs">
       <SubType>Form</SubType>
@@ -1047,6 +1053,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormMcUdpServer.resx">
       <DependentUpon>FormMcUdpServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmronHostLinkCModeOverTcp.resx">
+      <DependentUpon>FormOmronHostLinkCModeOverTcp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormOmronUdpServer.resx">
       <DependentUpon>FormOmronUdpServer.cs</DependentUpon>

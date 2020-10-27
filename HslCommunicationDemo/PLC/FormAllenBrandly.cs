@@ -43,7 +43,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 
 				label11.Text = "Address:";
 				button25.Text = "Bulk Read";
@@ -58,7 +57,7 @@ namespace HslCommunicationDemo
 				groupBox4.Text = "CIP reading test, hex string needs to be filled in";
 				groupBox5.Text = "Special function test";
 
-				label22.Text = "plc tag name";
+				label22.Text = "Tag name, if the bool array is of type int, access begin with \"i=\"";
 			}
 		}
 

@@ -53,8 +53,8 @@ namespace HslCommunicationDemo
 
             try
             {
-
                 omronFinsServer = new HslCommunication.Profinet.Omron.OmronFinsServer( );                       // 实例化对象
+                omronFinsServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 omronFinsServer.OnDataReceived += BusTcpServer_OnDataReceived;
                 omronFinsServer.ServerStart( port );
 
