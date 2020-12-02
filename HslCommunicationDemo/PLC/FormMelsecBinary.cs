@@ -275,13 +275,13 @@ namespace HslCommunicationDemo
 			button3.Enabled = false;
 		}
 
-		private void thread_test2( )
+		private async void thread_test2( )
 		{
 			int count = 500;
 			while (count > 0)
 			{
-				if (!melsec_net.Write( "D100", (short)1234 ).IsSuccess) failed++;
-				if (!melsec_net.ReadInt16( "D100" ).IsSuccess) failed++;
+				if (!(await melsec_net.WriteAsync( "D100", (short)1234 ) ).IsSuccess) failed++;
+				if (!(await melsec_net.ReadInt16Async( "D100" ) ).IsSuccess) failed++;
 				count--;
 			}
 			thread_end( );

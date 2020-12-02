@@ -60,6 +60,9 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "zkt",                   Properties.Resources.zkt );               // 27
 			imageList.Images.Add( "websocket",             Properties.Resources.websocket );         // 28
 			imageList.Images.Add( "yaskawa",               Properties.Resources.yaskawa );           // 29
+			imageList.Images.Add( "xinje",                 Properties.Resources.xinje );             // 30
+			imageList.Images.Add( "yokogawa",              Properties.Resources.yokogawa );          // 31
+			imageList.Images.Add( "delta",                 Properties.Resources.delta );             // 32
 
 
 			treeView1.ImageList = imageList;
@@ -349,6 +352,7 @@ namespace HslCommunicationDemo
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "PPI OverTcp",        14, typeof( FormSiemensPPIOverTcp ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "MPI",                14, typeof( FormSiemensMPI ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7 Virtual Server",  14, typeof( FormS7Server ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Fetch Write Server", 14, typeof( FormFetchWriteServer ) ) );
 			treeView1.Nodes.Add( siemensNode );
 
 			// Modbus协议
@@ -391,6 +395,8 @@ namespace HslCommunicationDemo
 			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGB Fast Enet",       7, typeof( FormLsisFEnet ) ) );
 			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGB Cnet",            7, typeof( FormLsisCnet ) ) );
 			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGB Cnet OverTcp",    7, typeof( FormLsisCnetOverTcp ) ) );
+			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGK Cnet",            7, typeof( FormLsisXGKCnet ) ) );
+			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGK Fast Enet",       7, typeof( FormLsisXGKFEnet ) ) );
 			lsisNode.Nodes.Add( GetTreeNodeByIndex( "LSis Virtual Server", 7, typeof( FormLSisServer ) ) );
 			treeView1.Nodes.Add( lsisNode );
 
@@ -400,6 +406,7 @@ namespace HslCommunicationDemo
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "MC-3E (ASCII)",         6, typeof( FormKeyenceAscii ) ) );
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Nano (ASCII)",          6, typeof( FormKeyenceNanoSerial ) ) );
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Nano OverTcp",          6, typeof( FormKeyenceNanoSerialOverTcp ) ) );
+			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "SR2000 [读码]",         6, typeof( FormKeyenceSR2000 ) ) );
 			treeView1.Nodes.Add( keyencePlc );
 
 			// Panasonic PLC
@@ -434,6 +441,24 @@ namespace HslCommunicationDemo
 			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB [编程口]", 2, typeof( FormFujiSPB ) ) );
 			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB OverTcp", 2, typeof( FormFujiSPBOverTcp ) ) );
 			treeView1.Nodes.Add( fujiNode );
+
+			// XinJE Plc
+			TreeNode xinjeNode = new TreeNode( "XinJE Plc[信捷]", 30, 30 );
+			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE XC Serial", 30, typeof( FormXinJEXCSerial ) ) );
+			treeView1.Nodes.Add( xinjeNode );
+
+			// Yokogawa Plc
+			TreeNode YokogawaNode = new TreeNode( "Yokogawa Plc[横河]", 31, 31 );
+			YokogawaNode.Nodes.Add( GetTreeNodeByIndex( "Yokogawa Link Tcp", 31, typeof( FormYokogawaLinkTcp ) ) );
+			YokogawaNode.Nodes.Add( GetTreeNodeByIndex( "Yokogawa Link Server", 31, typeof( FormYokogawaLinkServer ) ) );
+			treeView1.Nodes.Add( YokogawaNode );
+
+			// delta Plc
+			TreeNode deltaNode = new TreeNode( "Delta Plc[台达]", 32, 32 );
+			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Dvp Serial", 32, typeof( FormDeltaDvpSerial ) ) );
+			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Dvp Serial Ascii", 32, typeof( FormDeltaDvpSerialAscii ) ) );
+			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Dvp Tcp Net", 32, typeof( FormDeltaDvpTcpNet ) ) );
+			treeView1.Nodes.Add( deltaNode );
 
 			// Knx
 			TreeNode knxNode = new TreeNode( "Knx" );
@@ -502,6 +527,7 @@ namespace HslCommunicationDemo
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口调试]", 15, typeof( FormSerialDebug ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Client [网口调试]", 15, typeof( FormTcpDebug ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]", 15, typeof( FormTcpServer ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial2Tcp [串口转网口]", 15, typeof( FormSerialToTcp ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Bytes Data [数据调试]", 15, typeof( FormByteTransfer ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Mail [邮件调试]", 15, typeof( FormMail ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Order Number [订单号调试]", 15, typeof( FormSeqCreate ) ) );
@@ -559,6 +585,7 @@ namespace HslCommunicationDemo
 			// 其他界面
 			TreeNode othersNode = new TreeNode( "Special [特殊协议]" );
 			othersNode.Nodes.Add( new TreeNode( "Open Protocol" ) { Tag = typeof( FormOpenProtocol ) } );
+			othersNode.Nodes.Add( new TreeNode( "南京自动化 DCS" ) { Tag = typeof( FormDcsNanJingAuto ) } );
 			treeView1.Nodes.Add( othersNode );
 
 			// treeView1.ExpandAll( );

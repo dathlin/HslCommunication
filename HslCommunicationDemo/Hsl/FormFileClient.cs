@@ -27,8 +27,6 @@ namespace HslCommunicationDemo
 			textBox15.Text = Guid.Empty.ToString( );
 		}
 
-
-
 		#region Intergration File Client
 
 
@@ -262,6 +260,27 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button10_Click( object sender, EventArgs e )
+		{
+			string fileName = textBox_download_fileName.Text;
+			OperateResult<bool> result = integrationFileClient.IsFileExists(
+					fileName,                                              // 文件在服务器上保存的名称，举例123.txt
+					textBox_download_factory.Text,                         // 第一级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+					textBox_download_group.Text,                           // 第二级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+					textBox_download_id.Text                               // 第三级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+					);
+			if (result.IsSuccess)
+			{
+				if (result.Content)
+					MessageBox.Show( "文件存在！" );
+				else
+					MessageBox.Show( "文件不存在！" );
+			}
+			else
+			{
+				MessageBox.Show( result.Message );
+			}
+		}
 
 		private void ThreadDownloadFile( object filename )
 		{
@@ -425,6 +444,7 @@ namespace HslCommunicationDemo
 			button6.Enabled = false;
 			FillNodeByFactoryGroupId( treeView1.Nodes[0], await integrationFileClient.DownloadPathFoldersAsync( "", "", "" ), 1 );
 			button6.Enabled = true;
+			treeView1.Nodes[0].ExpandAll( );
 		}
 
 
@@ -454,12 +474,22 @@ namespace HslCommunicationDemo
 		private void treeView1_AfterSelect( object sender, TreeViewEventArgs e )
 		{
 			TreeNode node = e.Node;
-			if(node.Tag!=null)
+			if (node.Tag != null)
 			{
-				if(node.Tag is GroupFileItem fileItem)
+				if (node.Tag is GroupFileItem fileItem)
 				{
+					List<string> list = new List<string>( 3 ) { string.Empty, string.Empty, string.Empty };
+					list[0] = node.Parent?.Parent?.Parent?.Text;
+					list[1] = node.Parent?.Parent?.Text;
+					list[2] = node.Parent?.Text;
+					for (int i = 2; i >= 0; i--)
+						if (string.IsNullOrEmpty( list[i] )) list.RemoveAt( i );
+					if (list.Count > 0) textBox_show_factory.Text = list[0];
+					if (list.Count > 1) textBox_show_group.Text = list[1];
+					if (list.Count > 2) textBox_show_id.Text = list[2];
+
 					textBox_file_fileName.Text = fileItem.FileName;
-					textBox_file_fileSize.Text = fileItem.FileSize.ToString();
+					textBox_file_fileSize.Text = fileItem.FileSize.ToString( );
 					textBox_file_date.Text = fileItem.UploadTime.ToString( );
 					textBox_file_dowloadTimes.Text = fileItem.DownloadTimes.ToString( );
 					textBox_file_upload.Text = fileItem.Owner;
@@ -493,7 +523,7 @@ namespace HslCommunicationDemo
 			deleteSuccess = 0;
 			for (int i = 0; i < threadlength; i++)
 			{
-				System.Threading.ThreadPool.QueueUserWorkItem( new System.Threading.WaitCallback( ServerPressureTest ), "B" + i );
+				new System.Threading.Thread( new System.Threading.ParameterizedThreadStart( ServerPressureTest ) ) { IsBackground = true }.Start( "B" + i );
 			}
 			button7.Enabled = false;
 		}
@@ -512,7 +542,7 @@ namespace HslCommunicationDemo
 				System.IO.Directory.CreateDirectory( pathNew );
 				for (int j = 0; j < 100; j++)
 				{
-					string fileName = "A" + random.Next( 500 ) + ".txt";
+					string fileName = path + "-A" + random.Next( 500 ) + ".txt";
 					string fullName = System.IO.Path.Combine( pathNew, fileName );
 
 					StringBuilder sb = new StringBuilder( );
@@ -523,9 +553,22 @@ namespace HslCommunicationDemo
 					System.IO.File.WriteAllText( fullName, sb.ToString( ), Encoding.UTF8 );
 					if (integrationFileClient.UploadFile( fullName, "Files", "Group", "id", null ).IsSuccess) upSuccess++;
 					System.IO.File.Delete( fullName );
+					if (!integrationFileClient.IsFileExists( fileName, "Files", "Group", "id" ).Content)
+					{
+						upSuccess--;
+						continue;
+					}
+
 					if (integrationFileClient.DownloadFile( fileName, "Files", "Group", "id", null, fullName ).IsSuccess) downSuccess++;
 					System.IO.File.Delete( fullName );
+
+
 					if (integrationFileClient.DeleteFile( fileName, "Files", "Group", "id" ).IsSuccess) deleteSuccess++;
+					if (integrationFileClient.IsFileExists( fileName, "Files", "Group", "id" ).Content)
+					{
+						deleteSuccess--;
+						continue;
+					}
 				}
 				System.IO.Directory.Delete( pathNew );
 				if(System.Threading.Interlocked.Decrement(ref threadlength) == 0)
@@ -609,5 +652,6 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

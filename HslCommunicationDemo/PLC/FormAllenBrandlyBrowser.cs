@@ -168,7 +168,6 @@ namespace HslCommunicationDemo
 
         private string lastNodeSelected = string.Empty;
         private TreeNode treeViewSelectedNode = null;
-        private int selectRowIndex = -1;
 
 
         public override void SaveXmlParameter( XElement element )

@@ -49,7 +49,7 @@ namespace HslCommunicationDemo.DemoControl
 
 				label10.Text = "Address:";
 				label9.Text = "Value:";
-				label19.Text = "Note: The value of the string needs to be converted";
+				label19.Text = "Note: The value of the string needs to be converted\r\nif array：[1,2,3]";
 				button24.Text = "Write Bit";
 				button22.Text = "w-short";
 				button21.Text = "w-ushort";
@@ -312,19 +312,41 @@ namespace HslCommunicationDemo.DemoControl
 		private async void button24_Click( object sender, EventArgs e )
 		{
 			// bool
-			if (bool.TryParse( textBox7.Text, out bool value ))
+			if (textBox7.Text.StartsWith("[") && textBox7.Text.EndsWith( "]" ))
 			{
-				if (isAsync)
+				try
 				{
-					button24.Enabled = false;
-					DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-					button24.Enabled = true;
+					bool[] value = textBox7.Text.ToStringArray<bool>( );
+					if (isAsync)
+					{
+						button24.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button24.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
 				}
-				else
-					DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				catch(Exception ex)
+				{
+					MessageBox.Show( "Bool Data is not corrent: " + textBox7.Text + Environment.NewLine + ex.Message );
+				}
 			}
 			else
-				MessageBox.Show( "Bool Data is not corrent: " + textBox7.Text );
+			{
+				if (bool.TryParse( textBox7.Text, out bool value ))
+				{
+					if (isAsync)
+					{
+						button24.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button24.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				}
+				else
+					MessageBox.Show( "Bool Data is not corrent: " + textBox7.Text );
+			}
 		}
 
 		private void button23_Click( object sender, EventArgs e )
@@ -341,145 +363,321 @@ namespace HslCommunicationDemo.DemoControl
 		private async void button22_Click( object sender, EventArgs e )
 		{
 			// short
-			if (short.TryParse( textBox7.Text, out short value ))
+			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
 			{
-				if (isAsync)
+				try
 				{
-					button22.Enabled = false;
-					DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-					button22.Enabled = true;
+					short[] value = textBox7.Text.ToStringArray<short>( );
+					if (isAsync)
+					{
+						button22.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button22.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
 				}
-				else
-					DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				catch (Exception ex)
+				{
+					MessageBox.Show( "short Data is not corrent: " + textBox7.Text + Environment.NewLine + ex.Message );
+				}
 			}
 			else
-				MessageBox.Show( "short Data is not corrent: " + textBox7.Text );
+			{
+				if (short.TryParse( textBox7.Text, out short value ))
+				{
+					if (isAsync)
+					{
+						button22.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button22.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				}
+				else
+					MessageBox.Show( "short Data is not corrent: " + textBox7.Text );
+			}
 		}
 
 		private async void button21_Click( object sender, EventArgs e )
 		{
 			// ushort
-			if (ushort.TryParse( textBox7.Text, out ushort value ))
+			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
 			{
-				if (isAsync)
+				try
 				{
-					button21.Enabled = false;
-					DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-					button21.Enabled = true;
+					ushort[] value = textBox7.Text.ToStringArray<ushort>( );
+					if (isAsync)
+					{
+						button21.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button21.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
 				}
-				else
-					DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				catch (Exception ex)
+				{
+					MessageBox.Show( "ushort Data is not corrent: " + textBox7.Text + Environment.NewLine + ex.Message );
+				}
 			}
 			else
-				MessageBox.Show( "ushort Data is not corrent: " + textBox7.Text );
+			{
+				if (ushort.TryParse( textBox7.Text, out ushort value ))
+				{
+					if (isAsync)
+					{
+						button21.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button21.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				}
+				else
+					MessageBox.Show( "ushort Data is not corrent: " + textBox7.Text );
+			}
 		}
 
 		private async void button20_Click( object sender, EventArgs e )
 		{
 			// int
-			if (int.TryParse( textBox7.Text, out int value ))
+			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
 			{
-				if (isAsync)
+				try
 				{
-					button20.Enabled = false;
-					DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-					button20.Enabled = true;
+					int[] value = textBox7.Text.ToStringArray<int>( );
+					if (isAsync)
+					{
+						button20.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button20.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
 				}
-				else
-					DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				catch (Exception ex)
+				{
+					MessageBox.Show( "int Data is not corrent: " + textBox7.Text + Environment.NewLine + ex.Message );
+				}
 			}
 			else
-				MessageBox.Show( "int Data is not corrent: " + textBox7.Text );
+			{
+				if (int.TryParse( textBox7.Text, out int value ))
+				{
+					if (isAsync)
+					{
+						button20.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button20.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				}
+				else
+					MessageBox.Show( "int Data is not corrent: " + textBox7.Text );
+			}
 		}
 
 		private async void button19_Click( object sender, EventArgs e )
 		{
 			// uint
-			if (uint.TryParse( textBox7.Text, out uint value ))
+			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
 			{
-				if (isAsync)
+				try
 				{
-					button19.Enabled = false;
-					DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-					button19.Enabled = true;
+					uint[] value = textBox7.Text.ToStringArray<uint>( );
+					if (isAsync)
+					{
+						button19.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button19.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
 				}
-				else
-					DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				catch (Exception ex)
+				{
+					MessageBox.Show( "uint Data is not corrent: " + textBox7.Text + Environment.NewLine + ex.Message );
+				}
 			}
 			else
-				MessageBox.Show( "uint Data is not corrent: " + textBox7.Text );
+			{
+				if (uint.TryParse( textBox7.Text, out uint value ))
+				{
+					if (isAsync)
+					{
+						button19.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button19.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				}
+				else
+					MessageBox.Show( "uint Data is not corrent: " + textBox7.Text );
+			}
 		}
 
 		private async void button18_Click( object sender, EventArgs e )
 		{
 			// long
-			if (long.TryParse( textBox7.Text, out long value ))
+			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
 			{
-				if (isAsync)
+				try
 				{
-					button18.Enabled = false;
-					DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-					button18.Enabled = true;
+					long[] value = textBox7.Text.ToStringArray<long>( );
+					if (isAsync)
+					{
+						button19.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button19.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
 				}
-				else
-					DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				catch (Exception ex)
+				{
+					MessageBox.Show( "long Data is not corrent: " + textBox7.Text + Environment.NewLine + ex.Message );
+				}
 			}
 			else
-				MessageBox.Show( "long Data is not corrent: " + textBox7.Text );
+			{
+				if (long.TryParse( textBox7.Text, out long value ))
+				{
+					if (isAsync)
+					{
+						button18.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button18.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				}
+				else
+					MessageBox.Show( "long Data is not corrent: " + textBox7.Text );
+			}
 		}
 
 		private async void button17_Click( object sender, EventArgs e )
 		{
 			// ulong
-			if (ulong.TryParse( textBox7.Text, out ulong value ))
+			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
 			{
-				if (isAsync)
+				try
 				{
-					button17.Enabled = false;
-					DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-					button17.Enabled = true;
+					ulong[] value = textBox7.Text.ToStringArray<ulong>( );
+					if (isAsync)
+					{
+						button19.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button19.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
 				}
-				else
-					DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				catch (Exception ex)
+				{
+					MessageBox.Show( "ulong Data is not corrent: " + textBox7.Text + Environment.NewLine + ex.Message );
+				}
 			}
 			else
-				MessageBox.Show( "ulong Data is not corrent: " + textBox7.Text );
+			{
+				if (ulong.TryParse( textBox7.Text, out ulong value ))
+				{
+					if (isAsync)
+					{
+						button17.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button17.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				}
+				else
+					MessageBox.Show( "ulong Data is not corrent: " + textBox7.Text );
+			}
 		}
 
 		private async void button16_Click( object sender, EventArgs e )
 		{
 			// float
-			if (float.TryParse( textBox7.Text, out float value ))
+			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
 			{
-				if (isAsync)
+				try
 				{
-					button16.Enabled = false;
-					DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-					button16.Enabled = true;
+					float[] value = textBox7.Text.ToStringArray<float>( );
+					if (isAsync)
+					{
+						button19.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button19.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
 				}
-				else
-					DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				catch (Exception ex)
+				{
+					MessageBox.Show( "float Data is not corrent: " + textBox7.Text + Environment.NewLine + ex.Message );
+				}
 			}
 			else
-				MessageBox.Show( "float Data is not corrent: " + textBox7.Text );
+			{
+				if (float.TryParse( textBox7.Text, out float value ))
+				{
+					if (isAsync)
+					{
+						button16.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button16.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				}
+				else
+					MessageBox.Show( "float Data is not corrent: " + textBox7.Text );
+			}
 		}
 
 		private async void button15_Click( object sender, EventArgs e )
 		{
 			// double
-			if (double.TryParse( textBox7.Text, out double value ))
+			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
 			{
-				if (isAsync)
+				try
 				{
-					button15.Enabled = false;
-					DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-					button15.Enabled = true;
+					double[] value = textBox7.Text.ToStringArray<double>( );
+					if (isAsync)
+					{
+						button19.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button19.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
 				}
-				else
-					DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				catch (Exception ex)
+				{
+					MessageBox.Show( "float Data is not corrent: " + textBox7.Text + Environment.NewLine + ex.Message );
+				}
 			}
 			else
-				MessageBox.Show( "double Data is not corrent: " + textBox7.Text );
+			{
+				if (double.TryParse( textBox7.Text, out double value ))
+				{
+					if (isAsync)
+					{
+						button15.Enabled = false;
+						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						button15.Enabled = true;
+					}
+					else
+						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+				}
+				else
+					MessageBox.Show( "double Data is not corrent: " + textBox7.Text );
+			}
 		}
 
 		private async void button14_Click( object sender, EventArgs e )

@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.5.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.5.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.5.3.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.5.3\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -151,6 +151,12 @@
     <Compile Include="Control\FormPipe.Designer.cs">
       <DependentUpon>FormPipe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dcs\FormDcsNanJingAuto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dcs\FormDcsNanJingAuto.Designer.cs">
+      <DependentUpon>FormDcsNanJingAuto.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\FormCurveMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,12 @@
     <Compile Include="FormHslMap.Designer.cs">
       <DependentUpon>FormHslMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="HslDebug\FormSerialToTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HslDebug\FormSerialToTcp.Designer.cs">
+      <DependentUpon>FormSerialToTcp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hsl\FormDtuServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +236,66 @@
     </Compile>
     <Compile Include="PLC\FormAllenBrandlySLC.Designer.cs">
       <DependentUpon>FormAllenBrandlySLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormDeltaDvpSerialAscii.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormDeltaDvpSerialAscii.Designer.cs">
+      <DependentUpon>FormDeltaDvpSerialAscii.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormFetchWriteServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormFetchWriteServer.Designer.cs">
+      <DependentUpon>FormFetchWriteServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormDeltaDvpSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormDeltaDvpSerial.Designer.cs">
+      <DependentUpon>FormDeltaDvpSerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormDeltaDvpTcpNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormDeltaDvpTcpNet.Designer.cs">
+      <DependentUpon>FormDeltaDvpTcpNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormYokogawaLinkServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormYokogawaLinkServer.Designer.cs">
+      <DependentUpon>FormYokogawaLinkServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormYokogawaLinkTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormYokogawaLinkTcp.Designer.cs">
+      <DependentUpon>FormYokogawaLinkTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormXinJEXCSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormXinJEXCSerial.Designer.cs">
+      <DependentUpon>FormXinJEXCSerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceSR2000.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceSR2000.Designer.cs">
+      <DependentUpon>FormKeyenceSR2000.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormLsisXGKCnet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormLsisXGKCnet.Designer.cs">
+      <DependentUpon>FormLsisXGKCnet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormLsisXGKFEnet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormLsisXGKFEnet.Designer.cs">
+      <DependentUpon>FormLsisXGKFEnet.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormMcUdpServer.cs">
       <SubType>Form</SubType>
@@ -1012,6 +1084,9 @@
     <EmbeddedResource Include="Control\FormPipe.resx">
       <DependentUpon>FormPipe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dcs\FormDcsNanJingAuto.resx">
+      <DependentUpon>FormDcsNanJingAuto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormCurveMonitor.resx">
       <DependentUpon>FormCurveMonitor.cs</DependentUpon>
     </EmbeddedResource>
@@ -1045,11 +1120,44 @@
     <EmbeddedResource Include="FormHslMap.resx">
       <DependentUpon>FormHslMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HslDebug\FormSerialToTcp.resx">
+      <DependentUpon>FormSerialToTcp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormDtuServer.resx">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormAllenBrandlySLC.resx">
       <DependentUpon>FormAllenBrandlySLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormDeltaDvpSerialAscii.resx">
+      <DependentUpon>FormDeltaDvpSerialAscii.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormFetchWriteServer.resx">
+      <DependentUpon>FormFetchWriteServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormDeltaDvpSerial.resx">
+      <DependentUpon>FormDeltaDvpSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormDeltaDvpTcpNet.resx">
+      <DependentUpon>FormDeltaDvpTcpNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormYokogawaLinkServer.resx">
+      <DependentUpon>FormYokogawaLinkServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormYokogawaLinkTcp.resx">
+      <DependentUpon>FormYokogawaLinkTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormXinJEXCSerial.resx">
+      <DependentUpon>FormXinJEXCSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormKeyenceSR2000.resx">
+      <DependentUpon>FormKeyenceSR2000.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormLsisXGKCnet.resx">
+      <DependentUpon>FormLsisXGKCnet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormLsisXGKFEnet.resx">
+      <DependentUpon>FormLsisXGKFEnet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormMcUdpServer.resx">
       <DependentUpon>FormMcUdpServer.cs</DependentUpon>
@@ -1453,7 +1561,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
+    <None Include="img\yokogawa.png" />
+    <None Include="img\xinje.png" />
     <None Include="img\action_Cancel_16xLG.png" />
+    <None Include="img\delta.png" />
     <Content Include="img\kuka_help.jpg" />
     <None Include="img\zkt.png" />
     <None Include="img\yaskawa.png" />

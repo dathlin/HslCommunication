@@ -107,6 +107,7 @@ namespace HslCommunicationDemo
 				mqttServer.ServerStart( int.Parse( textBox2.Text ) );
 				mqttServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				mqttServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+				mqttServer.RegisterMqttRpcApi( "Log", mqttServer.LogNet );
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
@@ -127,7 +128,7 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private int MqttServer_ClientVerification( string clientId, string userName, string passwrod )
+		private int MqttServer_ClientVerification( MqttSession mqttSession, string clientId, string userName, string passwrod )
 		{
 			if(userName == "admin" && passwrod == "123456")
 			{
@@ -203,7 +204,7 @@ namespace HslCommunicationDemo
 
 
 					// 下面是示例，支持了一个CheckName的接口数据，返回类型必须是 OperateResult<string>
-					mqttServer.ReportObjectApiMethod( session, message, this );
+					// mqttServer.ReportObjectApiMethod( session, message, this );
 				}
 			}
 
@@ -239,7 +240,7 @@ namespace HslCommunicationDemo
 		}
 
 		[HslMqttApi( "读取设备的Int16信息，address: 设备的地址 length: 读取的数据长度" )]
-		public OperateResult<short> ReadInt16( string address, short length )
+		public OperateResult<short> ReadInt16( string address = "100", short length = 10 )
 		{
 			return OperateResult.CreateSuccessResult( (short)random.Next( 10000 ) );
 		}
@@ -277,6 +278,21 @@ namespace HslCommunicationDemo
 			else
 			{
 				return new OperateResult<Student>( "读取失败" );
+			}
+		}
+
+		[HslMqttApi( "写入设备的学生信息\r\naddress: 设备的地址 length: 读取的数据长度" )]
+		public OperateResult<string> WriteStudentResult( string address, short length, Student student )
+		{
+			if (random.Next( 1000 ) < 500)
+			{
+				if(student== null)
+					return new OperateResult<string>( "student is null" );
+				return OperateResult.CreateSuccessResult( $"学生信息写入成功：ID:{student.ID} Name:{student.Name}" );
+			}
+			else
+			{
+				return new OperateResult<string>( "写入失败" );
 			}
 		}
 

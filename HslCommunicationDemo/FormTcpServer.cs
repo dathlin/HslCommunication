@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
+using HslCommunication.BasicFramework;
 using HslCommunication.Core.Net;
 
 namespace HslCommunicationDemo
@@ -124,34 +125,48 @@ namespace HslCommunicationDemo
             if (iar.AsyncState is Socket server_socket)
             {
                 Socket client = null;
+                ClientSession session = new ClientSession( );
                 try
                 {
                     // 在原始套接字上调用EndAccept方法，返回新的套接字
                     client = server_socket.EndAccept( iar );
 
-                    ClientSession session = new ClientSession( )
-                    {
-                        Socket = client,
-                        EndPoint = (IPEndPoint)client.RemoteEndPoint
-                    };
+                    session.Socket = client;
+                    session.EndPoint = (IPEndPoint)client.RemoteEndPoint;
 
                     client.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), session );
 
-                    sockets.Add( session );
+                    lock (session)
+                    {
+                        sockets.Add( session );
+                    }
 
                     Invoke( new Action( ( ) =>
                     {
                         textBox6.AppendText( "Client Online[" + session.EndPoint.Address.ToString( ) + "]" + Environment.NewLine );
+                        lock (lockObject)
+                        {
+                            comboBox1.DataSource = sockets.Select( m => m.EndPoint.ToString( ) ).ToArray( );
+                        }
                     } ) );
                 }
                 catch (ObjectDisposedException)
                 {
                     // 服务器关闭时候触发的异常，不进行记录
+
+                    lock (lockObject)
+                    {
+                        sockets.Remove( session );
+                    }
                     return;
                 }
                 catch (Exception ex)
                 {
                     // 有可能刚连接上就断开了，那就不管
+                    lock (lockObject)
+                    {
+                        sockets.Remove( session );
+                    }
                     client?.Close( );
                 }
 
@@ -179,9 +194,14 @@ namespace HslCommunicationDemo
 
                     if (length == 0)
                     {
-                        client.Socket.Close( );
                         Invoke( new Action( ( ) =>
                         {
+                            client.Socket.Close( );
+                            lock (lockObject)
+                            {
+                                sockets.Remove( client );
+                                comboBox1.DataSource = sockets.Select( m => m.EndPoint.ToString( ) ).ToArray( );
+                            }
                             textBox6.AppendText( "Client Offline[" + client.EndPoint.Address.ToString( ) + "]" + Environment.NewLine );
                         } ) );
                         return;
@@ -205,24 +225,35 @@ namespace HslCommunicationDemo
 
                         if (checkBox4.Checked)
                         {
-                            textBox6.AppendText( "[" + DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + (Program.Language == 1 ? "][" + client.EndPoint.Address.ToString( ) + "][收]   " : "][" + client.EndPoint.Address.ToString( ) + "][R]   ") + msg + Environment.NewLine );
+                            textBox6.AppendText( $"[{DateTime.Now:HH:mm:dd.fff}] [{client.EndPoint}] [{(Program.Language == 1 ? "收" : "R")}]   " + msg + Environment.NewLine );
                         }
                         else
                         {
-                            textBox6.AppendText( (Program.Language == 1 ? "[" + client.EndPoint.Address.ToString( ) + "][收]   " : "][R]   ") + msg + Environment.NewLine );
+                            textBox6.AppendText( $"[{client.EndPoint}] [{(Program.Language == 1 ? "收" : "R")}]   " + msg + Environment.NewLine );
                         }
 
                     } ) );
                 }
                 catch (ObjectDisposedException)
                 {
-
+                    Invoke( new Action( ( ) =>
+                    {
+                        lock (lockObject)
+                        {
+                            sockets.Remove( client );
+                            comboBox1.DataSource = sockets.Select( m => m.EndPoint.ToString( ) ).ToArray( );
+                        }
+                    } ) );
                 }
                 catch (Exception ex)
                 {
-                    sockets.Remove( client );
                     Invoke( new Action( ( ) =>
                     {
+                        lock (lockObject)
+                        {
+                            sockets.Remove( client );
+                            comboBox1.DataSource = sockets.Select( m => m.EndPoint.ToString( ) ).ToArray( );
+                        }
                         textBox6.AppendText( Program.Language == 1 ? "服务器断开连接。" : "DisConnect from remote" + Environment.NewLine );
                     } ) );
                 }
@@ -235,16 +266,12 @@ namespace HslCommunicationDemo
             byte[] send = null;
             if (checkBox1.Checked)
             {
-                send = HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox5.Text );
+                send = SoftBasic.HexStringToBytes( textBox5.Text );
             }
             else
             {
-                send = Encoding.ASCII.GetBytes( textBox5.Text.Replace( "\\n", "\r\n" ) );
-            }
-
-            if (checkBox2.Checked)
-            {
-                send = HslCommunication.BasicFramework.SoftBasic.SpliceTwoByteArray( send, new byte[] { 0x0A } );
+                string str = textBox5.Text.Replace( "\\n", "\n" ).Replace( "\\r", "\r" );
+                send = Encoding.ASCII.GetBytes( str );
             }
 
             if (checkBox3.Checked)
@@ -252,22 +279,27 @@ namespace HslCommunicationDemo
                 // 显示发送信息
                 if (checkBox4.Checked)
                 {
-                    textBox6.AppendText( "[" + DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + (Program.Language == 1 ? "][" + textBox1.Text + "][发]   " : "][" + textBox1.Text + "][S]   ") + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( send, ' ' ) + Environment.NewLine );
+                    textBox6.AppendText( "[" + DateTime.Now.ToString( "HH:mm:ss.fff" ) + (Program.Language == 1 ? "] [" + comboBox1.Text + "] [发]   " : "] [" + comboBox1.Text + "] [S]   ") + 
+                        (checkBox1.Checked ? SoftBasic.ByteToHexString( send, ' ' ) : Encoding.ASCII.GetString( send ) ) + Environment.NewLine );
                 }
                 else
                 {
-                    textBox6.AppendText( (Program.Language == 1 ? "][" + textBox1.Text + "][发]   " : "][" + textBox1.Text + "][S]   ") + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( send, ' ' ) + Environment.NewLine );
+                    textBox6.AppendText( (Program.Language == 1 ? "[" + comboBox1.Text + "] [发]   " : "[" + comboBox1.Text + "] [S]   ") +
+                        (checkBox1.Checked ? SoftBasic.ByteToHexString( send, ' ' ) : Encoding.ASCII.GetString( send )) + Environment.NewLine );
                 }
             }
             try
             {
-                for (int i = 0; i < sockets.Count; i++)
+                lock (lockObject)
                 {
-                    if (sockets[i].EndPoint.Address.ToString( ) == textBox1.Text)
+                    for (int i = 0; i < sockets.Count; i++)
                     {
-                        sockets[i].Socket.Send( send, 0, send.Length, SocketFlags.None );
+                        if (sockets[i].EndPoint.ToString( ) == comboBox1.Text)
+                        {
+                            sockets[i].Socket.Send( send, 0, send.Length, SocketFlags.None );
+                            break;
+                        }
                     }
-                    break;
                 }
             }
             catch (Exception ex)
@@ -282,6 +314,8 @@ namespace HslCommunicationDemo
             textBox5.Text = HslCommunication.BasicFramework.SoftBasic.ByteToHexString( eR7BC10.GetReadCommand( ), ' ' );
         }
 
+
+        private object lockObject = new object( );
     }
 
     class ClientSession
@@ -289,5 +323,7 @@ namespace HslCommunicationDemo
         public Socket Socket { get; set; }
 
         public IPEndPoint EndPoint { get; set; }
-	}
+
+        public override string ToString( ) => EndPoint.ToString( );
+    }
 }

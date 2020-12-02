@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("文件列表");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("文件列表");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
@@ -39,6 +39,12 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.textBox_show_id = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.textBox_show_group = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.textBox_show_factory = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.button8 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
 			this.label18 = new System.Windows.Forms.Label();
@@ -68,6 +74,7 @@
 			this.textBox_delete_factory = new System.Windows.Forms.TextBox();
 			this.label17 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.button10 = new System.Windows.Forms.Button();
 			this.label9 = new System.Windows.Forms.Label();
 			this.textBox_download_fileName = new System.Windows.Forms.TextBox();
 			this.label16 = new System.Windows.Forms.Label();
@@ -201,6 +208,12 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Controls.Add(this.textBox_show_id);
+			this.groupBox4.Controls.Add(this.label2);
+			this.groupBox4.Controls.Add(this.textBox_show_group);
+			this.groupBox4.Controls.Add(this.label4);
+			this.groupBox4.Controls.Add(this.textBox_show_factory);
+			this.groupBox4.Controls.Add(this.label5);
 			this.groupBox4.Controls.Add(this.button8);
 			this.groupBox4.Controls.Add(this.button7);
 			this.groupBox4.Controls.Add(this.label18);
@@ -218,16 +231,64 @@
 			this.groupBox4.Controls.Add(this.textBox_file_fileName);
 			this.groupBox4.Controls.Add(this.label11);
 			this.groupBox4.Controls.Add(this.treeView1);
-			this.groupBox4.Location = new System.Drawing.Point(11, 295);
+			this.groupBox4.Location = new System.Drawing.Point(11, 289);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(955, 240);
+			this.groupBox4.Size = new System.Drawing.Size(955, 246);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "浏览服务器文件";
 			// 
+			// textBox_show_id
+			// 
+			this.textBox_show_id.Location = new System.Drawing.Point(850, 58);
+			this.textBox_show_id.Name = "textBox_show_id";
+			this.textBox_show_id.Size = new System.Drawing.Size(84, 23);
+			this.textBox_show_id.TabIndex = 41;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(817, 61);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(32, 17);
+			this.label2.TabIndex = 40;
+			this.label2.Text = "Id：";
+			// 
+			// textBox_show_group
+			// 
+			this.textBox_show_group.Location = new System.Drawing.Point(723, 58);
+			this.textBox_show_group.Name = "textBox_show_group";
+			this.textBox_show_group.Size = new System.Drawing.Size(84, 23);
+			this.textBox_show_group.TabIndex = 39;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(667, 61);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(57, 17);
+			this.label4.TabIndex = 38;
+			this.label4.Text = "Group：";
+			// 
+			// textBox_show_factory
+			// 
+			this.textBox_show_factory.Location = new System.Drawing.Point(577, 58);
+			this.textBox_show_factory.Name = "textBox_show_factory";
+			this.textBox_show_factory.Size = new System.Drawing.Size(84, 23);
+			this.textBox_show_factory.TabIndex = 37;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(503, 61);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(62, 17);
+			this.label5.TabIndex = 36;
+			this.label5.Text = "Factory：";
+			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(424, 197);
+			this.button8.Location = new System.Drawing.Point(424, 211);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(70, 32);
 			this.button8.TabIndex = 35;
@@ -237,7 +298,7 @@
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(424, 161);
+			this.button7.Location = new System.Drawing.Point(424, 175);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(70, 32);
 			this.button7.TabIndex = 34;
@@ -248,7 +309,7 @@
 			// label18
 			// 
 			this.label18.ForeColor = System.Drawing.Color.Red;
-			this.label18.Location = new System.Drawing.Point(509, 22);
+			this.label18.Location = new System.Drawing.Point(509, 14);
 			this.label18.Name = "label18";
 			this.label18.Size = new System.Drawing.Size(425, 43);
 			this.label18.TabIndex = 33;
@@ -256,7 +317,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(424, 22);
+			this.button6.Location = new System.Drawing.Point(424, 20);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(70, 28);
 			this.button6.TabIndex = 32;
@@ -266,7 +327,7 @@
 			// 
 			// textBox_file_date
 			// 
-			this.textBox_file_date.Location = new System.Drawing.Point(576, 170);
+			this.textBox_file_date.Location = new System.Drawing.Point(576, 189);
 			this.textBox_file_date.Name = "textBox_file_date";
 			this.textBox_file_date.Size = new System.Drawing.Size(357, 23);
 			this.textBox_file_date.TabIndex = 31;
@@ -274,7 +335,7 @@
 			// label32
 			// 
 			this.label32.AutoSize = true;
-			this.label32.Location = new System.Drawing.Point(502, 173);
+			this.label32.Location = new System.Drawing.Point(502, 192);
 			this.label32.Name = "label32";
 			this.label32.Size = new System.Drawing.Size(68, 17);
 			this.label32.TabIndex = 30;
@@ -282,7 +343,7 @@
 			// 
 			// textBox_file_tag
 			// 
-			this.textBox_file_tag.Location = new System.Drawing.Point(576, 202);
+			this.textBox_file_tag.Location = new System.Drawing.Point(576, 216);
 			this.textBox_file_tag.Name = "textBox_file_tag";
 			this.textBox_file_tag.Size = new System.Drawing.Size(357, 23);
 			this.textBox_file_tag.TabIndex = 29;
@@ -290,7 +351,7 @@
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(502, 205);
+			this.label26.Location = new System.Drawing.Point(502, 219);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(44, 17);
 			this.label26.TabIndex = 28;
@@ -298,7 +359,7 @@
 			// 
 			// textBox_file_upload
 			// 
-			this.textBox_file_upload.Location = new System.Drawing.Point(802, 137);
+			this.textBox_file_upload.Location = new System.Drawing.Point(802, 161);
 			this.textBox_file_upload.Name = "textBox_file_upload";
 			this.textBox_file_upload.Size = new System.Drawing.Size(132, 23);
 			this.textBox_file_upload.TabIndex = 27;
@@ -306,7 +367,7 @@
 			// label25
 			// 
 			this.label25.AutoSize = true;
-			this.label25.Location = new System.Drawing.Point(728, 140);
+			this.label25.Location = new System.Drawing.Point(728, 164);
 			this.label25.Name = "label25";
 			this.label25.Size = new System.Drawing.Size(56, 17);
 			this.label25.TabIndex = 26;
@@ -314,7 +375,7 @@
 			// 
 			// textBox_file_dowloadTimes
 			// 
-			this.textBox_file_dowloadTimes.Location = new System.Drawing.Point(576, 137);
+			this.textBox_file_dowloadTimes.Location = new System.Drawing.Point(576, 161);
 			this.textBox_file_dowloadTimes.Name = "textBox_file_dowloadTimes";
 			this.textBox_file_dowloadTimes.Size = new System.Drawing.Size(132, 23);
 			this.textBox_file_dowloadTimes.TabIndex = 25;
@@ -322,7 +383,7 @@
 			// label24
 			// 
 			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(502, 140);
+			this.label24.Location = new System.Drawing.Point(502, 164);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(68, 17);
 			this.label24.TabIndex = 24;
@@ -330,7 +391,7 @@
 			// 
 			// textBox_file_fileSize
 			// 
-			this.textBox_file_fileSize.Location = new System.Drawing.Point(576, 104);
+			this.textBox_file_fileSize.Location = new System.Drawing.Point(576, 132);
 			this.textBox_file_fileSize.Name = "textBox_file_fileSize";
 			this.textBox_file_fileSize.Size = new System.Drawing.Size(357, 23);
 			this.textBox_file_fileSize.TabIndex = 23;
@@ -338,7 +399,7 @@
 			// label23
 			// 
 			this.label23.AutoSize = true;
-			this.label23.Location = new System.Drawing.Point(502, 107);
+			this.label23.Location = new System.Drawing.Point(502, 135);
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(68, 17);
 			this.label23.TabIndex = 22;
@@ -346,7 +407,7 @@
 			// 
 			// textBox_file_fileName
 			// 
-			this.textBox_file_fileName.Location = new System.Drawing.Point(576, 68);
+			this.textBox_file_fileName.Location = new System.Drawing.Point(576, 102);
 			this.textBox_file_fileName.Name = "textBox_file_fileName";
 			this.textBox_file_fileName.Size = new System.Drawing.Size(357, 23);
 			this.textBox_file_fileName.TabIndex = 15;
@@ -354,7 +415,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(502, 71);
+			this.label11.Location = new System.Drawing.Point(502, 105);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(68, 17);
 			this.label11.TabIndex = 14;
@@ -364,11 +425,11 @@
 			// 
 			this.treeView1.Location = new System.Drawing.Point(9, 22);
 			this.treeView1.Name = "treeView1";
-			treeNode1.Name = "节点0";
-			treeNode1.Text = "文件列表";
+			treeNode2.Name = "节点0";
+			treeNode2.Text = "文件列表";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-			this.treeView1.Size = new System.Drawing.Size(409, 209);
+            treeNode2});
+			this.treeView1.Size = new System.Drawing.Size(409, 218);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeExpand);
 			this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -385,7 +446,7 @@
 			this.groupBox3.Controls.Add(this.button5);
 			this.groupBox3.Controls.Add(this.textBox_delete_factory);
 			this.groupBox3.Controls.Add(this.label17);
-			this.groupBox3.Location = new System.Drawing.Point(11, 223);
+			this.groupBox3.Location = new System.Drawing.Point(11, 217);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(955, 66);
 			this.groupBox3.TabIndex = 2;
@@ -481,6 +542,7 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.button10);
 			this.groupBox2.Controls.Add(this.label9);
 			this.groupBox2.Controls.Add(this.textBox_download_fileName);
 			this.groupBox2.Controls.Add(this.label16);
@@ -493,12 +555,22 @@
 			this.groupBox2.Controls.Add(this.button4);
 			this.groupBox2.Controls.Add(this.textBox_download_factory);
 			this.groupBox2.Controls.Add(this.label13);
-			this.groupBox2.Location = new System.Drawing.Point(11, 131);
+			this.groupBox2.Location = new System.Drawing.Point(11, 125);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(955, 86);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "文件下载";
+			// 
+			// button10
+			// 
+			this.button10.Location = new System.Drawing.Point(874, 52);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(70, 28);
+			this.button10.TabIndex = 19;
+			this.button10.Text = "是否存在";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
 			// label9
 			// 
@@ -621,7 +693,7 @@
 			this.groupBox1.Controls.Add(this.button2);
 			this.groupBox1.Controls.Add(this.textBox3);
 			this.groupBox1.Controls.Add(this.label6);
-			this.groupBox1.Location = new System.Drawing.Point(11, 8);
+			this.groupBox1.Location = new System.Drawing.Point(11, 3);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(955, 117);
 			this.groupBox1.TabIndex = 0;
@@ -890,5 +962,12 @@
         private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.Button button9;
+		private System.Windows.Forms.Button button10;
+		private System.Windows.Forms.TextBox textBox_show_id;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.TextBox textBox_show_group;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox textBox_show_factory;
+		private System.Windows.Forms.Label label5;
 	}
 }

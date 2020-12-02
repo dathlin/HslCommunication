@@ -29,10 +29,9 @@
         private void InitializeComponent( )
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -49,17 +48,21 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.checkBox2);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.textBox6);
@@ -75,12 +78,13 @@
             this.panel2.Size = new System.Drawing.Size(978, 540);
             this.panel2.TabIndex = 20;
             // 
-            // textBox1
+            // comboBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(62, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(145, 23);
-            this.textBox1.TabIndex = 27;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(62, 42);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(145, 25);
+            this.comboBox1.TabIndex = 27;
             // 
             // label1
             // 
@@ -93,6 +97,7 @@
             // 
             // button5
             // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.Location = new System.Drawing.Point(875, 71);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(91, 28);
@@ -100,19 +105,10 @@
             this.button5.Text = "清空";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(322, 8);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(99, 21);
-            this.checkBox2.TabIndex = 24;
-            this.checkBox2.Text = "是否带有回车";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(486, 3);
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(847, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(120, 28);
             this.button4.TabIndex = 23;
@@ -122,6 +118,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(8, 513);
             this.label8.Name = "label8";
@@ -176,6 +173,7 @@
             // 
             // button3
             // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.Location = new System.Drawing.Point(875, 40);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(91, 28);
@@ -186,6 +184,8 @@
             // 
             // textBox5
             // 
+            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox5.Location = new System.Drawing.Point(213, 43);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(656, 23);
@@ -277,6 +277,16 @@
             this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
             this.userControlHead1.TabIndex = 21;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Gray;
+            this.label2.Location = new System.Drawing.Point(409, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(261, 17);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "ASCII Format: use \\r , \\n means  0x0d  0x0a";
+            // 
             // FormTcpServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -318,10 +328,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Button button5;
         private DemoControl.UserControlHead userControlHead1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
     }
 }

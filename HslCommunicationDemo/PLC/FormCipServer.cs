@@ -73,6 +73,7 @@ namespace HslCommunicationDemo
 				cipServer.AddTagValue( "F", "12345", 100 );
 				cipServer.AddTagValue( "G", new string[5] { "123", "123456", string.Empty, "abcd", "测试" }, 100 );
 				cipServer.AddTagValue( "AB.C", new short[] { 1, 2, 3, 4, 5 } );
+				cipServer.AddTagValue( "M", new uint[] { 12345678, 34567, 567890, 1234567 } );
 
 				button1.Enabled = false;
 				panel2.Enabled = true;

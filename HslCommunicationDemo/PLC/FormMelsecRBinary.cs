@@ -332,7 +332,7 @@ namespace HslCommunicationDemo
 			//}
 		}
 
-		private async void button6_Click( object sender, EventArgs e )
+		private void button6_Click( object sender, EventArgs e )
 		{
 			// 读取型号
 			//button6.Enabled = false;

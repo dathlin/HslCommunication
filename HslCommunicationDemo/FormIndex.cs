@@ -35,20 +35,20 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V9.5.0
-1. AllenBradleyNet: ReadBool方法默认读取单bool类型变量，如果要读取int类型的bool数组，采用""i=""开头表示，例如""i=A[10]""
-2. NetworkDataServerBase: 新增一个属性ActiveTimeSpan，可以设置激活时间间隔，默认24小时，锁优化，其他的继承实现的服务器都进行了设置。
-3. NetworkDeviceBase: Read<T>修改为虚方法，支持继承进行重写，基于特性的类注释完善。
-4. Siemenss7net: ReadString(string address, ushort length)读取字符串时，如果长度为0，就读取西门子格式的字符串。
-5. OperateResult: 扩充泛型方法，Check, Convert, Then，实现了结果链，简化代码。参考：https://www.cnblogs.com/dathlin/p/13863115.html
-6. FanucSeries0i: 修复数控机床在读取0i-mf状态时导致长度不够的bug。
-7. IReadWriteNet: 新增wait方法接口，用于等待一些信号到达指定的值，支持扫描频率设置，超时设置。例如 Wait(""M100.0"", true, 500, 10000)等待这个信号为true为止。
-8. MqttServer: 支持调用ReportOperateResult返回错误信息及错误码给客户端，MqttSyncClient会自动识别报文，然后IsSuccess自动适应，网络不会断开。
-9. MqttSyncClient: 支持设置接收超时时间，默认是60秒，之前是5秒，而且不能更改。
-10. MqttServer: 支持注册远程RPC的API接口，自动解析json参数，自动调用已经注册的接口自动返回是否成功，MqttSyncClient也支持遍历服务器的接口列表。详细：https://www.cnblogs.com/dathlin/p/13864866.html
-11. SiemensS7Net: 通信类实现ReadBool(""M100"", 10); 批量读bool方法，通过读Byte间接实现。
-12. OmronHostLinkCModeOverTcp: 新增欧姆龙的通讯类，Cmode模式的以太网透传实现。
-13. PLC: 所以的PLC实现了HslMqttApi特性支持，从而在MqttServer里可以直接注册，然后对外开放读写接口操作。
+			textBox1.Text = @"V9.5.3
+1. ModbusRtuOverTcp: 更改继承，直接从NetworkDeviceBase进行继承，通过单元测试
+2. YokogawaLinkTcp: 新增横河PLC的二进制通讯类，支持X,Y,I,E,M,T,C,L,D,B,F,R,V,Z,W,TN,CN读写，部分高级API商业授权用户才能使用，例如读取PLC信息。
+3. YokogawaLinkServer: 新增横河PLC的二进制格式的虚拟PLC，模拟的真实的PLC的通信机制，实现了读写长度的限制，以及错误信号的返回。
+4. Networkdoublebase: ReadFromCoreServer( byte[] send, bool hasResponseData ) 新增是否等待数据返回的属性，可以用于某些不需要数据返回的命令。
+5. Networkbase： 修复异步接收数据时，某些情况下长度为0导致连接关闭的bug。
+6. FetchWriteServer: 新增西门子fetch/Write协议的虚拟PLC，支持虚拟数据的读写，通信。
+7. MelsecFxSerialOverTcp: 修改继承体系，从NetworkDeviceBase继承，和MelsecFxSerial的IsStringReverseByteWord调整为true;
+8. 文件引擎服务器修复路径大小写导致的bug问题，文件客户端支持检查文件是否存在的方法，检查文件是否存在。
+9. MqttServer: 远程调用的MRPC的参数支持自定义类型，通过JSON转换，将字符串转换为实体类。还有其他的优化。
+10. DeltaDvpSerial, DeltaDvpSerialAscii, DeltaDvpTcpNet: 添加台达的通信类，输入台达的地址即可，会自动转换实际的modbus地址。
+11. 所有的虚拟PLC的服务器均调整为商业授权用户专享，还有一些高级的API，具体看api注释是否带有[商业授权]字样，基本的数据读写功能将一直对个人用户开放。
+12. Demo: 数据读写示例的界面，写入现在支持批量写入，数据写[1,2,3]，然后写入short，就是写入short数组了。
+13. 普通VIP的个人使用不再限制100个PLC对象，连续运行时间调整为10年，高级的一些API限制商用，参考注释是否带[商业授权]字样。
 14. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
 15. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}

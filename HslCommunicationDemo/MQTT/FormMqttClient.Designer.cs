@@ -46,6 +46,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.button10 = new System.Windows.Forms.Button();
 			this.label10 = new System.Windows.Forms.Label();
 			this.button9 = new System.Windows.Forms.Button();
@@ -263,16 +264,27 @@
 			this.panel2.Controls.Add(this.label8);
 			this.panel2.Controls.Add(this.textBox5);
 			this.panel2.Controls.Add(this.label7);
+			this.panel2.Controls.Add(this.checkBox1);
 			this.panel2.Location = new System.Drawing.Point(15, 122);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(977, 518);
 			this.panel2.TabIndex = 13;
 			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(1, 183);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(69, 21);
+			this.checkBox1.TabIndex = 30;
+			this.checkBox1.Text = "Retain?";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
 			// button10
 			// 
-			this.button10.Location = new System.Drawing.Point(319, 180);
+			this.button10.Location = new System.Drawing.Point(318, 180);
 			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(80, 28);
+			this.button10.Size = new System.Drawing.Size(93, 28);
 			this.button10.TabIndex = 29;
 			this.button10.Text = "只发不推送";
 			this.button10.UseVisualStyleBackColor = true;
@@ -385,7 +397,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(233, 180);
+			this.button6.Location = new System.Drawing.Point(235, 180);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(80, 28);
 			this.button6.TabIndex = 21;
@@ -395,7 +407,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(147, 180);
+			this.button5.Location = new System.Drawing.Point(152, 180);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(80, 28);
 			this.button5.TabIndex = 20;
@@ -436,7 +448,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(62, 180);
+			this.button3.Location = new System.Drawing.Point(68, 180);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(79, 28);
 			this.button3.TabIndex = 12;
@@ -571,5 +583,6 @@
 		private System.Windows.Forms.Button button10;
 		private System.Windows.Forms.TextBox textBox6;
 		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.CheckBox checkBox1;
 	}
 }

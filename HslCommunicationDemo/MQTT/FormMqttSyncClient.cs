@@ -43,6 +43,12 @@ namespace HslCommunicationDemo
 			treeView1.ImageList = imageList;
 			treeView1.Nodes[0].ImageKey = "VirtualMachine";
 			treeView1.Nodes[0].SelectedImageKey = "VirtualMachine";
+			treeView1.Nodes[1].ImageKey = "VirtualMachine";
+			treeView1.Nodes[1].SelectedImageKey = "VirtualMachine";
+
+			panel5.Visible = false;
+			panel2.Dock = DockStyle.Fill;
+			panel5.Dock = DockStyle.Fill;
 		}
 
 		private void Language( int language )
@@ -103,6 +109,7 @@ namespace HslCommunicationDemo
 				panel4.Enabled = true;
 				panel2.Enabled = true;
 				MqttRpcApiRefresh( treeView1.Nodes[0] );
+				TopicsRefresh( treeView1.Nodes[1] );
 				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
 			}
 			else
@@ -302,7 +309,7 @@ namespace HslCommunicationDemo
 				}
 			}
 
-			textBox8.Text = msg?.Length > 100 ? msg.Substring( 0, 100 ) + "..." : msg;
+			textBox8.Text = msg?.Length > 10000 ? msg.Substring( 0, 10000 ) + "..." : msg;
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -321,6 +328,42 @@ namespace HslCommunicationDemo
 		private void button8_Click( object sender, EventArgs e )
 		{
 			MqttRpcApiRefresh( treeView1.Nodes[0] );
+			TopicsRefresh( treeView1.Nodes[1] );
+		}
+
+		public void UpdateMqttTopicMessage( MqttClientApplicationMessage message )
+		{
+			textBox19.Text = message.ClientId;
+			textBox14.Text = message.UserName;
+			label18.Text = message.CreateTime.ToString( );
+			textBox16.Text = message.Topic;
+			label8.Text = message.QualityOfServiceLevel.ToString( );
+			string msg = Encoding.UTF8.GetString( message.Payload );
+
+			if (radioButton6.Checked)
+			{
+				try
+				{
+					msg = XElement.Parse( msg ).ToString( );
+				}
+				catch
+				{
+
+				}
+			}
+			else if (radioButton1.Checked)
+			{
+				try
+				{
+					msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+				}
+				catch
+				{
+
+				}
+			}
+
+			textBox17.Text = msg?.Length > 10000 ? msg.Substring( 0, 10000 ) + "..." : msg;
 		}
 
 		MqttRpcApiInfo[] mqttRpcApiInfos;
@@ -340,7 +383,63 @@ namespace HslCommunicationDemo
 				AddTreeNode( rootNode, item.ApiTopic, item.ApiTopic, item );
 			}
 
-			rootNode.ExpandAll( );
+			rootNode.Expand( );
+		}
+
+		private void TopicsRefresh( TreeNode rootNode )
+		{
+
+			rootNode.Nodes.Clear( );
+			// 加载所有的键值信息
+			OperateResult<string[]> read = mqttSyncClient.ReadRetainTopics( );
+			if (!read.IsSuccess) return;
+
+			// 填充tree
+			foreach (var item in read.Content)
+			{
+				AddTopicTreeNode( rootNode, item, item );
+			}
+
+			rootNode.Expand( );
+		}
+
+		private void AddTopicTreeNode( TreeNode parent, string key, string infactKey )
+		{
+			int index = key.IndexOf( '/' );
+			if (index <= 0)
+			{
+				// 不存在冒号
+				TreeNode node = new TreeNode( $"{key}" );
+				node.Tag = infactKey;
+				node.ImageKey = "Enum_582";
+				node.SelectedImageKey = "Enum_582";
+				parent.Nodes.Add( node );
+			}
+			else
+			{
+				TreeNode node = null;
+				for (int i = 0; i < parent.Nodes.Count; i++)
+				{
+					if (parent.Nodes[i].Text == key.Substring( 0, index ))
+					{
+						node = parent.Nodes[i];
+						break;
+					}
+				}
+
+				if (node == null)
+				{
+					node = new TreeNode( key.Substring( 0, index ) );
+					node.ImageKey = "Class_489";
+					node.SelectedImageKey = "Class_489";
+					AddTopicTreeNode( node, key.Substring( index + 1 ), infactKey );
+					parent.Nodes.Add( node );
+				}
+				else
+				{
+					AddTopicTreeNode( node, key.Substring( index + 1 ), infactKey );
+				}
+			}
 		}
 
 
@@ -383,19 +482,63 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private void TreeView1_AfterSelect( object sender, TreeViewEventArgs e )
+		private async void TreeView1_AfterSelect( object sender, TreeViewEventArgs e )
 		{
 			TreeNode node = treeView1.SelectedNode;
 			if (node == null) return;
 
-			if(node.Tag is MqttRpcApiInfo apiInfo)
+			if(node.SelectedImageKey == "VirtualMachine")
 			{
+				if(node.Text == "Rpc Apis")
+				{
+					panel5.Visible = false;
+					panel2.Visible = true;
+				}
+				else
+				{
+					panel5.Visible = true;
+					panel2.Visible = false;
+				}
+			}
+			else if(node.Tag is MqttRpcApiInfo apiInfo)
+			{
+				panel5.Visible = false;
+				panel2.Visible = true;
+
 				textBox5.Text = apiInfo.ApiTopic;
 				textBox4.Text = apiInfo.ExamplePayload;
 				textBox12.Text = apiInfo.CalledCount.ToString( );
 				textBox13.Text = apiInfo.SpendTotalTime.ToString( "F2" );
 				label15.Text = apiInfo.Description;
 			}
+			else if(node.Tag is string topic)
+			{
+				panel5.Visible = true;
+				panel2.Visible = false;
+
+				hslProgress3.Value = 0;
+				OperateResult<MqttClientApplicationMessage> message = await mqttSyncClient.ReadTopicPayloadAsync( topic, ReceiveTopicProgressReport );
+				if (!message.IsSuccess)
+				{
+					MessageBox.Show( "Failed: " + message.Message );
+				}
+				else
+				{
+					UpdateMqttTopicMessage( message.Content );
+				}
+			}
+		}
+		private void ReceiveTopicProgressReport( long already, long total )
+		{
+			// already : 已接收的字节数
+			// total : 总计接收的字节数
+			if (InvokeRequired)
+			{
+				Invoke( new Action<long, long>( ReceiveProgressReport ), already, total );
+				return;
+			}
+
+			hslProgress3.Value = (int)(already * 100 / total);
 		}
 
 
@@ -422,7 +565,6 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
-
 	}
 
 

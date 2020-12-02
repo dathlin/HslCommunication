@@ -42,6 +42,8 @@ namespace HslCommunicationDemo
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button11 = new System.Windows.Forms.Button();
+			this.button10 = new System.Windows.Forms.Button();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.button7 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
@@ -65,8 +67,6 @@ namespace HslCommunicationDemo
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button10 = new System.Windows.Forms.Button();
-			this.button11 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -206,6 +206,26 @@ namespace HslCommunicationDemo
 			this.groupBox5.TabIndex = 26;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// button11
+			// 
+			this.button11.Location = new System.Drawing.Point(212, 58);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(190, 28);
+			this.button11.TabIndex = 28;
+			this.button11.Text = "Wait D100 123";
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.button11_Click);
+			// 
+			// button10
+			// 
+			this.button10.Location = new System.Drawing.Point(16, 59);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(190, 28);
+			this.button10.TabIndex = 27;
+			this.button10.Text = "Wait M100 True";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
 			// textBox3
 			// 
@@ -438,26 +458,6 @@ namespace HslCommunicationDemo
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// button10
-			// 
-			this.button10.Location = new System.Drawing.Point(16, 59);
-			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(190, 28);
-			this.button10.TabIndex = 27;
-			this.button10.Text = "Wait M100 True";
-			this.button10.UseVisualStyleBackColor = true;
-			this.button10.Click += new System.EventHandler(this.button10_Click);
-			// 
-			// button11
-			// 
-			this.button11.Location = new System.Drawing.Point(212, 58);
-			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(190, 28);
-			this.button11.TabIndex = 28;
-			this.button11.Text = "Wait D100 123";
-			this.button11.UseVisualStyleBackColor = true;
-			this.button11.Click += new System.EventHandler(this.button11_Click);
 			// 
 			// FormMelsecBinary
 			// 

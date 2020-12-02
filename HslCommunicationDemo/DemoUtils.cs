@@ -61,6 +61,23 @@ namespace HslCommunicationDemo
         /// </summary>
         /// <param name="result">写入的结果信息</param>
         /// <param name="address">地址信息</param>
+        public static void WriteResultRender( OperateResult result )
+        {
+            if (result.IsSuccess)
+            {
+                MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"Success" );
+            }
+            else
+            {
+                MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
+            }
+        }
+
+        /// <summary>
+        /// 统一的数据写入的结果显示
+        /// </summary>
+        /// <param name="result">写入的结果信息</param>
+        /// <param name="address">地址信息</param>
         public static void WriteResultRender( Func<OperateResult> write, string address )
         {
             try

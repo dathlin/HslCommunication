@@ -109,6 +109,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
+				mqttClient = null;
 				button1.Enabled = true;
 				MessageBox.Show( connect.Message );
 			}
@@ -213,19 +214,21 @@ namespace HslCommunicationDemo
 
 		private void button3_Click( object sender, EventArgs e )
 		{
+			// 最多一次
 			OperateResult send = mqttClient.PublishMessage( new MqttApplicationMessage( )
 			{
 				QualityOfServiceLevel = MqttQualityOfServiceLevel.AtMostOnce,
 				Topic = textBox5.Text,
-				Payload = Encoding.UTF8.GetBytes( textBox4.Text )
+				Payload = Encoding.UTF8.GetBytes( textBox4.Text ),
+				Retain = checkBox1.Checked               // 如果为TRUE，该消息在服务器上进行驻留保存，方便客户端连上立即推送
 			} );
 
 			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
-
 		}
 
 		private void button10_Click( object sender, EventArgs e )
 		{
+			// 只推不发布，只针对HSL的MQTT SERVER有效
 			OperateResult send = mqttClient.PublishMessage( new MqttApplicationMessage( )
 			{
 				QualityOfServiceLevel = MqttQualityOfServiceLevel.OnlyTransfer,
@@ -244,11 +247,13 @@ namespace HslCommunicationDemo
 
 		private void Button5_Click( object sender, EventArgs e )
 		{
+			// 最少一次
 			OperateResult send = mqttClient.PublishMessage( new MqttApplicationMessage( )
 			{
 				QualityOfServiceLevel = MqttQualityOfServiceLevel.AtLeastOnce,
 				Topic = textBox5.Text,
-				Payload = Encoding.UTF8.GetBytes( textBox4.Text )
+				Payload = Encoding.UTF8.GetBytes( textBox4.Text ),
+				Retain = checkBox1.Checked               // 如果为TRUE，该消息在服务器上进行驻留保存，方便客户端连上立即推送
 			} );
 
 			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
@@ -256,11 +261,13 @@ namespace HslCommunicationDemo
 
 		private void Button6_Click( object sender, EventArgs e )
 		{
+			// 刚好一次
 			OperateResult send = mqttClient.PublishMessage( new MqttApplicationMessage( )
 			{
 				QualityOfServiceLevel = MqttQualityOfServiceLevel.ExactlyOnce,
 				Topic = textBox5.Text,
-				Payload = Encoding.UTF8.GetBytes( textBox4.Text )
+				Payload = Encoding.UTF8.GetBytes( textBox4.Text ),
+				Retain = checkBox1.Checked               // 如果为TRUE，该消息在服务器上进行驻留保存，方便客户端连上立即推送
 			} );
 
 			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
@@ -268,8 +275,12 @@ namespace HslCommunicationDemo
 
 		private void Button7_Click( object sender, EventArgs e )
 		{
-			OperateResult send = mqttClient.SubscribeMessage( textBox5.Text );
-
+			//OperateResult send = mqttClient.SubscribeMessage( textBox5.Text );
+			OperateResult send = mqttClient.SubscribeMessage( new MqttSubscribeMessage( )
+			{
+				QualityOfServiceLevel = MqttQualityOfServiceLevel.ExactlyOnce,
+				Topics = new string[] { textBox5.Text }
+			} );
 
 			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
 		}

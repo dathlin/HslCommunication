@@ -63,45 +63,8 @@ namespace HslCommunicationDemo
         {
         }
 
-        /// <summary>
-        /// 统一的读取结果的数据解析，显示
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="result"></param>
-        /// <param name="address"></param>
-        /// <param name="textBox"></param>
-        private void readResultRender<T>( OperateResult<T> result, string address, TextBox textBox )
-        {
-            if (result.IsSuccess)
-            {
-                textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {result.Content}{Environment.NewLine}" );
-            }
-            else
-            {
-                MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Read Failed{Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
-            }
-        }
-
-        /// <summary>
-        /// 统一的数据写入的结果显示
-        /// </summary>
-        /// <param name="result"></param>
-        /// <param name="address"></param>
-        private void writeResultRender( OperateResult result, string address )
-        {
-            if (result.IsSuccess)
-            {
-                MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
-            }
-            else
-            {
-                MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Failed{Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
-            }
-        }
-
 
         #region Connect And Close
-
 
 
         private async void button1_Click( object sender, EventArgs e )
@@ -160,7 +123,7 @@ namespace HslCommunicationDemo
         private async void button_read_string_Click( object sender, EventArgs e )
         {
             // 读取字符串
-            readResultRender( await kuka.ReadStringAsync( textBox3.Text ), textBox3.Text, textBox4 );
+            DemoUtils.ReadResultRender( await kuka.ReadStringAsync( textBox3.Text ), textBox3.Text, textBox4 );
         }
 
 
@@ -174,7 +137,7 @@ namespace HslCommunicationDemo
             // string写入
             try
             {
-                writeResultRender( await kuka.WriteAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
+                DemoUtils.WriteResultRender( await kuka.WriteAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
             }
             catch (Exception ex)
             {
