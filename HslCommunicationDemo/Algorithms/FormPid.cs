@@ -19,7 +19,6 @@ namespace HslCommunicationDemo.Algorithms
 
         private PIDHelper pIDHelper;
         private Timer timer;
-        private float value = 0;
 
         private void FormPid_Load( object sender, EventArgs e )
         {
@@ -43,7 +42,7 @@ namespace HslCommunicationDemo.Algorithms
             {
                 pIDHelper.SetValue = double.Parse( textBox5.Text );
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show( "Input Wrong, please check the input value!" );
             }
@@ -58,7 +57,7 @@ namespace HslCommunicationDemo.Algorithms
                 pIDHelper.Kd = double.Parse( textBox3.Text );
                 pIDHelper.DeadBand = double.Parse( textBox4.Text );
             }
-            catch(Exception ex)
+            catch
             {
                 MessageBox.Show( "Input Wrong, please check the input value!" );
             }

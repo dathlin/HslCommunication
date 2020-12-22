@@ -209,7 +209,7 @@ namespace HslCommunicationDemo.DemoControl
 						}
 					}
 				}
-				catch (Exception ex)
+				catch
 				{
 					if (isQuit) break; ;
 				}

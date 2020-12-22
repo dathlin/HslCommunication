@@ -101,20 +101,11 @@ namespace HslCommunicationDemo
 
         private void button1_Click( object sender, EventArgs e )
         {
-            // 连接
-            if (!System.Net.IPAddress.TryParse( textBox1.Text, out System.Net.IPAddress address ))
-            {
-                MessageBox.Show( DemoUtils.IpAddressInputWrong );
-                return;
-            }
-
-
             if(!int.TryParse(textBox2.Text,out int port))
             {
                 MessageBox.Show( DemoUtils.PortInputWrong );
                 return;
             }
-
 
             if(!byte.TryParse(textBox15.Text,out byte station))
             {
@@ -134,7 +125,7 @@ namespace HslCommunicationDemo
                 OperateResult connect = inovanceH3UTcp.ConnectServer( );
                 if (connect.IsSuccess)
                 {
-                    MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+                    MessageBox.Show( StringResources.Language.ConnectedSuccess );
                     button2.Enabled = true;
                     button1.Enabled = false;
                     panel2.Enabled = true;

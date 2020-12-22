@@ -69,13 +69,6 @@ namespace HslCommunicationDemo
 
         private async void button1_Click( object sender, EventArgs e )
         {
-            // 连接
-            if (!System.Net.IPAddress.TryParse( textBox1.Text, out System.Net.IPAddress address ))
-            {
-                MessageBox.Show( "Ip地址输入不正确！" );
-                return;
-            }
-            
             if(!int.TryParse(textBox2.Text,out int port))
             {
                 MessageBox.Show( "端口输入格式不正确！" );

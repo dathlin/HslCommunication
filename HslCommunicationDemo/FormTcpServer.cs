@@ -88,7 +88,6 @@ namespace HslCommunicationDemo
         }
 
         private Socket socketCore = null;
-        private bool connectSuccess = false;
         private byte[] buffer = new byte[2048];
         private Timer timer;
         private List<ClientSession> sockets = new List<ClientSession>( );
@@ -160,7 +159,7 @@ namespace HslCommunicationDemo
                     }
                     return;
                 }
-                catch (Exception ex)
+                catch
                 {
                     // 有可能刚连接上就断开了，那就不管
                     lock (lockObject)
@@ -245,7 +244,7 @@ namespace HslCommunicationDemo
                         }
                     } ) );
                 }
-                catch (Exception ex)
+                catch
                 {
                     Invoke( new Action( ( ) =>
                     {

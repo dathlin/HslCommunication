@@ -104,7 +104,7 @@ namespace HslCommunicationDemo
                     System.Threading.Thread.Sleep( 2000 );
                     if (!connectSuccess) socketCore?.Close( );
                 } ).Start( );
-                socketCore.Connect( System.Net.IPAddress.Parse( textBox1.Text ), int.Parse( textBox2.Text ) );
+                socketCore.Connect( System.Net.IPAddress.Parse( HslCommunication.Core.HslHelper.GetIpAddressFromInput( textBox1.Text ) ), int.Parse( textBox2.Text ) );
                 connectSuccess = true;
 
                 socketCore.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), socketCore );
@@ -167,7 +167,7 @@ namespace HslCommunicationDemo
             {
 
             }
-            catch (Exception ex)
+            catch
             {
                 Invoke( new Action( ( ) =>
                 {

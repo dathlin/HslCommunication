@@ -137,6 +137,7 @@ namespace HslCommunicationDemo
 			label1.Text = $"Thread:{NetworkBase.ThreadPoolTimeoutCheckCount}  Lock:{SimpleHybirdLock.SimpleHybirdLockCount}  Wait:{SimpleHybirdLock.SimpleHybirdLockWaitCount}";
 		}
 
+		private HslCommunication.MQTT.MqttClient mqttClient;
 		private System.Windows.Forms.Timer timer;
 		private Process cur = null;
 		private PerformanceCounter curpcp = null;
@@ -250,6 +251,13 @@ namespace HslCommunicationDemo
 		private void ThreadPoolCheckVersion( object obj )
 		{
 			System.Threading.Thread.Sleep( 100 );
+			mqttClient = new HslCommunication.MQTT.MqttClient( new HslCommunication.MQTT.MqttConnectionOptions( )
+			{
+				IpAddress = "118.24.36.220",
+				Port = 1883,
+				ClientId = "HslDemo"
+			} );
+			mqttClient.ConnectServer( );
 			HslCommunication.Enthernet.NetSimplifyClient simplifyClient = new HslCommunication.Enthernet.NetSimplifyClient( "118.24.36.220", 18467 );
 			HslCommunication.OperateResult<HslCommunication.NetHandle, string> read = simplifyClient.ReadCustomerFromServer( 1, HslCommunication.BasicFramework.SoftBasic.FrameworkVersion.ToString( ) );
 			if (read.IsSuccess)
@@ -282,7 +290,7 @@ namespace HslCommunicationDemo
 				cur = Process.GetCurrentProcess( );
 				curpcp = new PerformanceCounter( "Process", "Working Set - Private", cur.ProcessName );
 			}
-			catch (Exception ex)
+			catch
 			{
 
 			}
@@ -440,6 +448,7 @@ namespace HslCommunicationDemo
 			TreeNode fujiNode = new TreeNode( "Fuji Plc[富士]", 2, 2 );
 			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB [编程口]", 2, typeof( FormFujiSPB ) ) );
 			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB OverTcp", 2, typeof( FormFujiSPBOverTcp ) ) );
+			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB Server", 2, typeof( FormFujiSPBServer ) ) );
 			treeView1.Nodes.Add( fujiNode );
 
 			// XinJE Plc
@@ -459,11 +468,6 @@ namespace HslCommunicationDemo
 			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Dvp Serial Ascii", 32, typeof( FormDeltaDvpSerialAscii ) ) );
 			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Dvp Tcp Net", 32, typeof( FormDeltaDvpTcpNet ) ) );
 			treeView1.Nodes.Add( deltaNode );
-
-			// Knx
-			TreeNode knxNode = new TreeNode( "Knx" );
-			knxNode.Nodes.Add( new TreeNode( "Knx" )  { Tag = typeof( PLC.FormKnx ) } );
-			treeView1.Nodes.Add( knxNode );
 
 			// 身份证阅读器
 			TreeNode idNode = new TreeNode( "ID Card[身份证]", 4, 4 );
@@ -492,6 +496,12 @@ namespace HslCommunicationDemo
 			wsNode.Nodes.Add( GetTreeNodeByIndex( "WebSocket Server", 28, typeof( FormWebsocketServer ) ) );
 			wsNode.Nodes.Add( GetTreeNodeByIndex( "WebSocket QANet",  28, typeof( FormWebsocketQANet ) ) );
 			treeView1.Nodes.Add( wsNode );
+
+			// HttpWeb 相关
+			TreeNode httpNode = new TreeNode( "Http", 0, 0 );
+			httpNode.Nodes.Add( GetTreeNodeByIndex( "Http Web Server", 0, typeof( FormHttpServer ) ) );
+			httpNode.Nodes.Add( GetTreeNodeByIndex( "Http Web Client", 0, typeof( FormHttpClient ) ) );
+			treeView1.Nodes.Add( httpNode );
 
 			// Robot 相关
 			TreeNode robotNode = new TreeNode( "Robot[机器人]", 19, 19 );
@@ -545,7 +555,6 @@ namespace HslCommunicationDemo
 			hslNode.Nodes.Add( GetTreeNodeByIndex( "Push Net [消息推送]", 3, typeof( FormPushNet ) ) );
 			hslNode.Nodes.Add( GetTreeNodeByIndex( "SoftUpdate [软件更新]", 3, typeof( FormUpdateServer ) ) );
 			hslNode.Nodes.Add( GetTreeNodeByIndex( "Plain Net [明文交互]", 3, typeof( FormPlainSocket ) ) );
-			hslNode.Nodes.Add( GetTreeNodeByIndex( "Http Web", 3, typeof( FormHttpServer ) ) );
 			hslNode.Nodes.Add( GetTreeNodeByIndex( "Dtu Server[DTU服务器]", 3, typeof( FormDtuServer ) ) );
 			treeView1.Nodes.Add( hslNode );
 
@@ -584,8 +593,9 @@ namespace HslCommunicationDemo
 
 			// 其他界面
 			TreeNode othersNode = new TreeNode( "Special [特殊协议]" );
-			othersNode.Nodes.Add( new TreeNode( "Open Protocol" ) { Tag = typeof( FormOpenProtocol ) } );
-			othersNode.Nodes.Add( new TreeNode( "南京自动化 DCS" ) { Tag = typeof( FormDcsNanJingAuto ) } );
+			othersNode.Nodes.Add( new TreeNode( "Open Protocol"   ) { Tag = typeof( FormOpenProtocol ) } );
+			othersNode.Nodes.Add( new TreeNode( "南京自动化 DCS"  ) { Tag = typeof( FormDcsNanJingAuto ) } );
+			othersNode.Nodes.Add( new TreeNode( "Knx"             ) { Tag = typeof( PLC.FormKnx ) } );
 			treeView1.Nodes.Add( othersNode );
 
 			// treeView1.ExpandAll( );
@@ -776,6 +786,10 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void FormSelect_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			mqttClient?.ConnectClose( );
+		}
 	}
 
 	public class FormSiemensS1200 : FormSiemens

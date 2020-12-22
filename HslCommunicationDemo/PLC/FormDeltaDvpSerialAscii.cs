@@ -27,8 +27,6 @@ namespace HslCommunicationDemo
         private void FormSiemens_Load( object sender, EventArgs e )
         {
             panel2.Enabled = false;
-            comboBox1.SelectedIndex = 2;
-
             comboBox3.DataSource = SerialPort.GetPortNames( );
             try
             {
@@ -40,6 +38,8 @@ namespace HslCommunicationDemo
             }
 
             Language( Program.Language );
+            comboBox1.SelectedIndex = 2;
+
         }
 
 

@@ -43,6 +43,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button5 = new System.Windows.Forms.Button();
 			this.textBox14 = new System.Windows.Forms.TextBox();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
@@ -216,6 +217,7 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Controls.Add(this.button5);
 			this.groupBox5.Controls.Add(this.textBox14);
 			this.groupBox5.Controls.Add(this.button4);
 			this.groupBox5.Controls.Add(this.button3);
@@ -225,6 +227,16 @@
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(188, 24);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(108, 28);
+			this.button5.TabIndex = 24;
+			this.button5.Text = "读取PLC型号";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
 			// textBox14
 			// 
@@ -469,5 +481,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox textBox14;
 		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
+		private System.Windows.Forms.Button button5;
 	}
 }

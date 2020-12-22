@@ -297,6 +297,7 @@
 			this.Name = "FormSelect";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "HslCommunication Test Tools";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSelect_FormClosing);
 			this.Load += new System.EventHandler(this.FormLoad_Load);
 			this.Shown += new System.EventHandler(this.FormLoad_Shown);
 			this.menuStrip1.ResumeLayout(false);

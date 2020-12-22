@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Rpc Apis");
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Topics");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Rpc Apis");
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Topics");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
@@ -94,6 +94,7 @@
 			this.label21 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.panel7 = new System.Windows.Forms.Panel();
+			this.hslBarChart1 = new HslControls.HslBarChart();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -235,6 +236,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.hslBarChart1);
 			this.panel2.Controls.Add(this.label15);
 			this.panel2.Controls.Add(this.button7);
 			this.panel2.Controls.Add(this.textBox13);
@@ -258,13 +260,15 @@
 			this.panel2.Controls.Add(this.textBox5);
 			this.panel2.Controls.Add(this.label7);
 			this.panel2.Controls.Add(this.label5);
-			this.panel2.Location = new System.Drawing.Point(156, 7);
+			this.panel2.Location = new System.Drawing.Point(-19, 7);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(730, 525);
 			this.panel2.TabIndex = 13;
 			// 
 			// label15
 			// 
+			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.label15.ForeColor = System.Drawing.Color.Gray;
 			this.label15.Location = new System.Drawing.Point(60, 34);
 			this.label15.Name = "label15";
@@ -487,7 +491,7 @@
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(663, 115);
+			this.textBox4.Size = new System.Drawing.Size(328, 115);
 			this.textBox4.TabIndex = 8;
 			// 
 			// label9
@@ -571,13 +575,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.Location = new System.Drawing.Point(3, 27);
 			this.treeView1.Name = "treeView1";
-			treeNode1.Name = "节点0";
-			treeNode1.Text = "Rpc Apis";
-			treeNode2.Name = "节点0";
-			treeNode2.Text = "Topics";
+			treeNode3.Name = "节点0";
+			treeNode3.Text = "Rpc Apis";
+			treeNode4.Name = "节点0";
+			treeNode4.Text = "Topics";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode3,
+            treeNode4});
 			this.treeView1.Size = new System.Drawing.Size(251, 483);
 			this.treeView1.TabIndex = 1;
 			// 
@@ -796,6 +800,19 @@
 			this.panel7.Size = new System.Drawing.Size(716, 518);
 			this.panel7.TabIndex = 17;
 			// 
+			// hslBarChart1
+			// 
+			this.hslBarChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.hslBarChart1.BackColor = System.Drawing.Color.White;
+			this.hslBarChart1.Location = new System.Drawing.Point(396, 74);
+			this.hslBarChart1.Name = "hslBarChart1";
+			this.hslBarChart1.ShowBarValueFormat = "{0}";
+			this.hslBarChart1.Size = new System.Drawing.Size(329, 115);
+			this.hslBarChart1.TabIndex = 46;
+			this.hslBarChart1.Text = "hslBarChart1";
+			this.hslBarChart1.Title = "Called Infomation";
+			this.hslBarChart1.UseGradient = true;
+			// 
 			// FormMqttSyncClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -894,5 +911,6 @@
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Panel panel7;
+		private HslControls.HslBarChart hslBarChart1;
 	}
 }

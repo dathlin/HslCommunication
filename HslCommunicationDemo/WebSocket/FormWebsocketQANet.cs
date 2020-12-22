@@ -167,8 +167,6 @@ namespace HslCommunicationDemo
 			textBox8.Clear( );
 		}
 
-		private int testThreadCount = 10;
-
 		private void button5_Click( object sender, EventArgs e )
 		{
 			button5.Enabled = false;

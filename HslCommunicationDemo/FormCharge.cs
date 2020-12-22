@@ -60,7 +60,6 @@ Only for testing environment and academic research";
 			}
 		}
 
-		int tick = 0;
 		private void Timer1s_Tick( object sender, EventArgs e )
 		{
 		}

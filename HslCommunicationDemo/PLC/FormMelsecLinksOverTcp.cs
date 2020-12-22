@@ -60,7 +60,9 @@ namespace HslCommunicationDemo
 				groupBox4.Text = "Message reading test, hex string needs to be filled in";
 				groupBox5.Text = "Special function test";
 
-				button3.Text = "Pressure test, r/w 3,000s";
+				button3.Text = "Start";
+				button4.Text = "Stop";
+				button5.Text = "PLC Type";
 				userControlHead1.ProtocolInfo = "fxlinks over tcp";
 			}
 		}
@@ -75,19 +77,11 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			// 连接
-			if (!System.Net.IPAddress.TryParse( textBox1.Text, out System.Net.IPAddress address ))
-			{
-				MessageBox.Show( DemoUtils.IpAddressInputWrong );
-				return;
-			}
-
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
 				MessageBox.Show( DemoUtils.PortInputWrong );
 				return;
 			}
-
 
 			melsecSerial?.ConnectClose( );
 			melsecSerial = new MelsecFxLinksOverTcp( );
@@ -314,6 +308,18 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button5_Click( object sender, EventArgs e )
+		{
+			OperateResult<string> read = melsecSerial.ReadPlcType( );
+			if (read.IsSuccess)
+			{
+				textBox14.Text = read.Content;
+			}
+			else
+			{
+				MessageBox.Show( "Read PLC Type failed:" + read.ToMessageShowString( ) );
+			}
+		}
 
 		public override void SaveXmlParameter( XElement element )
 		{
@@ -338,5 +344,6 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.textBox18 = new System.Windows.Forms.TextBox();
 			this.label22 = new System.Windows.Forms.Label();
 			this.textBox15 = new System.Windows.Forms.TextBox();
@@ -66,7 +67,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
+			this.button5 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -101,6 +102,14 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(978, 46);
 			this.panel1.TabIndex = 0;
+			// 
+			// comboBox3
+			// 
+			this.comboBox3.FormattingEnabled = true;
+			this.comboBox3.Location = new System.Drawing.Point(63, 8);
+			this.comboBox3.Name = "comboBox3";
+			this.comboBox3.Size = new System.Drawing.Size(67, 25);
+			this.comboBox3.TabIndex = 31;
 			// 
 			// textBox18
 			// 
@@ -276,6 +285,7 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Controls.Add(this.button5);
 			this.groupBox5.Controls.Add(this.textBox14);
 			this.groupBox5.Controls.Add(this.button4);
 			this.groupBox5.Controls.Add(this.button3);
@@ -465,13 +475,15 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// comboBox3
+			// button5
 			// 
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(63, 8);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(67, 25);
-			this.comboBox3.TabIndex = 31;
+			this.button5.Location = new System.Drawing.Point(188, 30);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(108, 28);
+			this.button5.TabIndex = 25;
+			this.button5.Text = "读取PLC型号";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
 			// FormMelsecLinks
 			// 
@@ -543,5 +555,6 @@
         private System.Windows.Forms.TextBox textBox14;
 		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
 		private System.Windows.Forms.ComboBox comboBox3;
+		private System.Windows.Forms.Button button5;
 	}
 }

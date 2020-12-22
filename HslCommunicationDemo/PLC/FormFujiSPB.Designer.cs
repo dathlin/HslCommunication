@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -60,7 +61,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -92,13 +92,21 @@
 			this.panel1.Size = new System.Drawing.Size(978, 46);
 			this.panel1.TabIndex = 0;
 			// 
+			// comboBox3
+			// 
+			this.comboBox3.FormattingEnabled = true;
+			this.comboBox3.Location = new System.Drawing.Point(62, 9);
+			this.comboBox3.Name = "comboBox3";
+			this.comboBox3.Size = new System.Drawing.Size(67, 25);
+			this.comboBox3.TabIndex = 40;
+			// 
 			// textBox15
 			// 
 			this.textBox15.Location = new System.Drawing.Point(640, 9);
 			this.textBox15.Name = "textBox15";
 			this.textBox15.Size = new System.Drawing.Size(31, 23);
 			this.textBox15.TabIndex = 28;
-			this.textBox15.Text = "1";
+			this.textBox15.Text = "0";
 			// 
 			// label21
 			// 
@@ -137,7 +145,7 @@
 			this.textBox17.Name = "textBox17";
 			this.textBox17.Size = new System.Drawing.Size(23, 23);
 			this.textBox17.TabIndex = 23;
-			this.textBox17.Text = "2";
+			this.textBox17.Text = "1";
 			// 
 			// label3
 			// 
@@ -154,7 +162,7 @@
 			this.textBox16.Name = "textBox16";
 			this.textBox16.Size = new System.Drawing.Size(24, 23);
 			this.textBox16.TabIndex = 21;
-			this.textBox16.Text = "7";
+			this.textBox16.Text = "8";
 			// 
 			// label25
 			// 
@@ -393,14 +401,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// comboBox3
-			// 
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(62, 9);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(67, 25);
-			this.comboBox3.TabIndex = 40;
 			// 
 			// FormFujiSPB
 			// 

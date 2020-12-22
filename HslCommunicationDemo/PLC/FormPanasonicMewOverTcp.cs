@@ -76,12 +76,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!System.Net.IPAddress.TryParse( textBox1.Text, out System.Net.IPAddress address ))
-			{
-				MessageBox.Show( DemoUtils.IpAddressInputWrong );
-				return;
-			}
-
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
 				MessageBox.Show( DemoUtils.PortInputWrong );

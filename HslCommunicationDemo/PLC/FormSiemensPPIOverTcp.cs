@@ -71,13 +71,6 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			if(!System.Net.IPAddress.TryParse(textBox1.Text, out System.Net.IPAddress address ))
-			{
-				MessageBox.Show( DemoUtils.IpAddressInputWrong );
-				return;
-			}
-
-
 			siemensPPI?.ConnectClose( );
 			siemensPPI = new SiemensPPIOverTcp( textBox1.Text, port );
 

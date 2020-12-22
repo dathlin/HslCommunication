@@ -181,7 +181,7 @@ namespace HslCommunicationDemo
                     client = null;
                     return;
                 }
-                catch (Exception ex)
+                catch
                 {
                     // 有可能刚连接上就断开了，那就不管
                     client = null;
@@ -241,7 +241,7 @@ namespace HslCommunicationDemo
                         SP_ReadData.Write( data, 0, data.Length );
                     } ) );
                 }
-                catch (Exception ex)
+                catch
                 {
                     Invoke( new Action( ( ) =>
                     {

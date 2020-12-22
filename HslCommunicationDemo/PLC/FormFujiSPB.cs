@@ -29,7 +29,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
-			comboBox1.SelectedIndex = 2;
+			comboBox1.SelectedIndex = 0;
 			comboBox3.DataSource = SerialPort.GetPortNames( );
 			try
 			{

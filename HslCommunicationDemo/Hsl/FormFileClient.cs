@@ -415,7 +415,7 @@ namespace HslCommunicationDemo
 		#region DownloadPathFileNames
 
 
-		private async void FillNodeFilesByFactoryGroupId( TreeNode root, OperateResult<GroupFileItem[]> read )
+		private void FillNodeFilesByFactoryGroupId( TreeNode root, OperateResult<GroupFileItem[]> read )
 		{
 			root.Nodes.Clear( );
 			root.ExpandAll( );

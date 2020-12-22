@@ -73,7 +73,10 @@ namespace HslCommunicationDemo
 				groupBox4.Text = "Message reading test, hex string needs to be filled in";
 				groupBox5.Text = "Special function test";
 
-				button3.Text = "Pressure test, r/w 3,000s";
+				button3.Text = "Start";
+				button4.Text = "Stop";
+				button5.Text = "Plc Type";
+
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}
@@ -331,6 +334,18 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button5_Click( object sender, EventArgs e )
+		{
+			OperateResult<string> read = melsecSerial.ReadPlcType( );
+			if (read.IsSuccess)
+			{
+				textBox14.Text = read.Content;
+			}
+			else
+			{
+				MessageBox.Show( "Read PLC Type failed:" + read.ToMessageShowString( ) );
+			}
+		}
 
 		public override void SaveXmlParameter( XElement element )
 		{
@@ -361,5 +376,6 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

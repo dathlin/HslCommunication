@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using HslCommunication.Enthernet;
 using HslCommunication;
 using System.Net;
+using HslCommunication.Profinet.Siemens;
+using HslCommunication.Reflection;
 
 namespace HslCommunicationDemo
 {
@@ -49,16 +51,23 @@ namespace HslCommunicationDemo
             }
         }
 
-        HttpServer httpServer;
+        private SiemensS7Net siemens;
+        private HttpServer httpServer;
+
         private void button1_Click( object sender, EventArgs e )
         {
             // 启动服务
             try
             {
+                siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
+                siemens.SetPersistentConnection( );
+
                 httpServer = new HttpServer( );
                 httpServer.Start( int.Parse( textBox2.Text ) );
                 httpServer.HandleRequestFunc = HandleRequest;
                 httpServer.IsCrossDomain = checkBox1.Checked;             // 是否跨域的设置
+                httpServer.RegisterHttpRpcApi( "", this );
+                httpServer.RegisterHttpRpcApi( "Siemens", siemens );      // 注册一个西门子PLC的服务的示例
 
                 panel2.Enabled = true;
                 button1.Enabled = false;
@@ -72,12 +81,18 @@ namespace HslCommunicationDemo
         private Dictionary<string, string> returnWeb = new Dictionary<string, string>( );
         private Dictionary<string, string> postWeb = new Dictionary<string, string>( );
 
-        [HttpPost]
+        [HslMqttApi( HttpMethod = "POST" )]
         public OperateResult CheckAccount(string name, string password )
         {
             if (name != "admin") return new OperateResult( "用户名错误" );
             if (password != "123456") return new OperateResult( "密码错误" );
             return OperateResult.CreateSuccessResult( );
+        }
+
+        [HslMqttApi( HttpMethod = "GET" )]
+        public int GetHslCommunication( int id )
+        {
+            return id + 1;
         }
 
         private string HandleRequest( HttpListenerRequest request, HttpListenerResponse response, string data )
@@ -95,6 +110,12 @@ namespace HslCommunicationDemo
                     {
                         response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
                         return returnWeb[request.RawUrl];
+                    }
+                    else
+                    {
+                        response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
+                        // return HttpServer.HandleObjectMethod( request, data, this );
+                        return "123456";
                     }
                 }
                 else if (request.HttpMethod == "POST")

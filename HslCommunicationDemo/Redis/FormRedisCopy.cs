@@ -33,15 +33,6 @@ namespace HslCommunicationDemo.Redis
 
 		private void button2_Click( object sender, EventArgs e )
 		{
-			// 连接
-			if(!IPAddress.TryParse(textBox1.Text, out IPAddress add1 ))
-			{
-				MessageBox.Show( DemoUtils.IpAddressInputWrong );return;
-			}
-			if (!IPAddress.TryParse( textBox6.Text, out IPAddress add2 ))
-			{
-				MessageBox.Show( DemoUtils.IpAddressInputWrong ); return;
-			}
 			if(!int.TryParse(textBox2.Text, out int port1 ))
 			{
 				MessageBox.Show( DemoUtils.PortInputWrong ); return;

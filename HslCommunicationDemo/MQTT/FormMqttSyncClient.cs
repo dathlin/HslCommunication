@@ -451,8 +451,8 @@ namespace HslCommunicationDemo
 				// 不存在冒号
 				TreeNode node = new TreeNode( $"{key}" );
 				node.Tag = mqttRpc;
-				node.ImageKey = "Method_636";
-				node.SelectedImageKey = "Method_636";
+				node.ImageKey = mqttRpc.IsMethodApi ? "Method_636" : "Enum_582";
+				node.SelectedImageKey = mqttRpc.IsMethodApi ? "Method_636" : "Enum_582";
 				parent.Nodes.Add( node );
 			}
 			else
@@ -510,6 +510,25 @@ namespace HslCommunicationDemo
 				textBox12.Text = apiInfo.CalledCount.ToString( );
 				textBox13.Text = apiInfo.SpendTotalTime.ToString( "F2" );
 				label15.Text = apiInfo.Description;
+
+
+				OperateResult<long[]> read = mqttSyncClient.ReadRpcApiLog( apiInfo.ApiTopic );
+				if (read.IsSuccess)
+				{
+					long[] data = read.Content.SelectLast( 7 );
+					int[] ydata = new int[7];
+					string[] xdata = new string[7];
+					for (int i = 0; i < 7; i++)
+					{
+						ydata[i] = (int)data[i];
+						xdata[i] = DateTime.Now.AddDays( i - 6 ).ToString( "M-d" );
+						hslBarChart1.SetDataSource( ydata, xdata );
+					}
+				}
+				else
+				{
+					hslBarChart1.SetDataSource( new int[7] );
+				}
 			}
 			else if(node.Tag is string topic)
 			{
