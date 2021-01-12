@@ -44,6 +44,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.hslBarChart1 = new HslControls.HslBarChart();
 			this.label15 = new System.Windows.Forms.Label();
 			this.button7 = new System.Windows.Forms.Button();
 			this.textBox13 = new System.Windows.Forms.TextBox();
@@ -94,7 +95,6 @@
 			this.label21 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.panel7 = new System.Windows.Forms.Panel();
-			this.hslBarChart1 = new HslControls.HslBarChart();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -260,10 +260,23 @@
 			this.panel2.Controls.Add(this.textBox5);
 			this.panel2.Controls.Add(this.label7);
 			this.panel2.Controls.Add(this.label5);
-			this.panel2.Location = new System.Drawing.Point(-19, 7);
+			this.panel2.Location = new System.Drawing.Point(61, 9);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(730, 525);
 			this.panel2.TabIndex = 13;
+			// 
+			// hslBarChart1
+			// 
+			this.hslBarChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.hslBarChart1.BackColor = System.Drawing.Color.White;
+			this.hslBarChart1.Location = new System.Drawing.Point(396, 74);
+			this.hslBarChart1.Name = "hslBarChart1";
+			this.hslBarChart1.ShowBarValueFormat = "{0}";
+			this.hslBarChart1.Size = new System.Drawing.Size(329, 166);
+			this.hslBarChart1.TabIndex = 46;
+			this.hslBarChart1.Text = "hslBarChart1";
+			this.hslBarChart1.Title = "Called Infomation";
+			this.hslBarChart1.UseGradient = true;
 			// 
 			// label15
 			// 
@@ -353,7 +366,7 @@
 			this.hslProgress2.Name = "hslProgress2";
 			this.hslProgress2.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.hslProgress2.ProgressStyle = HslControls.HslProgressStyle.Horizontal;
-			this.hslProgress2.Size = new System.Drawing.Size(663, 18);
+			this.hslProgress2.Size = new System.Drawing.Size(328, 18);
 			this.hslProgress2.TabIndex = 33;
 			this.hslProgress2.TextRenderFormat = "已接收 {0}%";
 			this.hslProgress2.Value = 0;
@@ -367,7 +380,7 @@
 			this.hslProgress1.Name = "hslProgress1";
 			this.hslProgress1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.hslProgress1.ProgressStyle = HslControls.HslProgressStyle.Horizontal;
-			this.hslProgress1.Size = new System.Drawing.Size(663, 18);
+			this.hslProgress1.Size = new System.Drawing.Size(328, 18);
 			this.hslProgress1.TabIndex = 32;
 			this.hslProgress1.TextRenderFormat = "已发送 {0}%";
 			this.hslProgress1.Value = 0;
@@ -375,7 +388,7 @@
 			// textBox7
 			// 
 			this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox7.Location = new System.Drawing.Point(644, 222);
+			this.textBox7.Location = new System.Drawing.Point(644, 246);
 			this.textBox7.Name = "textBox7";
 			this.textBox7.ReadOnly = true;
 			this.textBox7.Size = new System.Drawing.Size(81, 23);
@@ -385,7 +398,7 @@
 			// 
 			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(560, 224);
+			this.label11.Location = new System.Drawing.Point(560, 248);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(44, 17);
 			this.label11.TabIndex = 30;
@@ -404,7 +417,7 @@
 			this.panel3.Controls.Add(this.radioButton5);
 			this.panel3.Controls.Add(this.radioButton3);
 			this.panel3.Controls.Add(this.radioButton4);
-			this.panel3.Location = new System.Drawing.Point(471, 253);
+			this.panel3.Location = new System.Drawing.Point(471, 277);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(184, 28);
 			this.panel3.TabIndex = 26;
@@ -465,7 +478,7 @@
 			// button4
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(655, 253);
+			this.button4.Location = new System.Drawing.Point(655, 277);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(71, 28);
 			this.button4.TabIndex = 17;
@@ -799,19 +812,6 @@
 			this.panel7.Name = "panel7";
 			this.panel7.Size = new System.Drawing.Size(716, 518);
 			this.panel7.TabIndex = 17;
-			// 
-			// hslBarChart1
-			// 
-			this.hslBarChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.hslBarChart1.BackColor = System.Drawing.Color.White;
-			this.hslBarChart1.Location = new System.Drawing.Point(396, 74);
-			this.hslBarChart1.Name = "hslBarChart1";
-			this.hslBarChart1.ShowBarValueFormat = "{0}";
-			this.hslBarChart1.Size = new System.Drawing.Size(329, 115);
-			this.hslBarChart1.TabIndex = 46;
-			this.hslBarChart1.Text = "hslBarChart1";
-			this.hslBarChart1.Title = "Called Infomation";
-			this.hslBarChart1.UseGradient = true;
 			// 
 			// FormMqttSyncClient
 			// 

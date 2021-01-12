@@ -122,5 +122,6 @@ namespace HslCommunicationDemo
 		public static readonly string XmlContentType = "ContentType";
 		public static readonly string XmlToken = "Token";
 		public static readonly string XmlAlias = "Alias";
+		public static readonly string XmlFilePath = "FilePath";
 	}
 }

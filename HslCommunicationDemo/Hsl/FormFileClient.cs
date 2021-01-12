@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using HslCommunication.Core;
 #if !NET35
 using System.Threading.Tasks;
 #endif
@@ -34,28 +35,26 @@ namespace HslCommunicationDemo
 
 		private void IntegrationFileClientInitialization( )
 		{
-
-			if(!System.Net.IPAddress.TryParse(textBox1.Text,out System.Net.IPAddress ipAddress))
+			if(!int.TryParse(textBox2.Text,out int port))
 			{
-				MessageBox.Show( "Ip输入异常，请重新输入！" );
+				MessageBox.Show( "Port输入异常，请重新输入！" );
 				return;
 			}
 
-
-			if(!int.TryParse(textBox2.Text,out int port))
+			if (!int.TryParse( textBox4.Text, out int fileCache ))
 			{
-				MessageBox.Show( "Ip输入异常，请重新输入！" );
+				MessageBox.Show( "FileCache输入异常，请重新输入！" );
 				return;
 			}
 
 
 			// 定义连接服务器的一些属性，超时时间，IP及端口信息
-			integrationFileClient = new IntegrationFileClient( )
+			integrationFileClient = new IntegrationFileClient( textBox1.Text, port )
 			{
 				ConnectTimeOut = 5000,                                                      // 连接的超时时间
-				ServerIpEndPoint = new System.Net.IPEndPoint( ipAddress, port ),            // 服务器的地址
 				Token = new Guid( textBox15.Text ),                                         // 指定一个令牌（不是必须的）
 				LogNet = new HslCommunication.LogNet.LogNetSingle( Application.StartupPath + "\\Logs\\log.txt" ),   // 指定日志（不是必须的）
+				FileCacheSize = fileCache * 1024,                                           // 文件缓存大小，越大速度越快，越占内存，2M比较适合
 			};
 
 			// 创建本地文件存储的路径
@@ -122,6 +121,7 @@ namespace HslCommunicationDemo
 				button3.Enabled = false;
 				string fileName = textBox3.Text;
 				System.IO.FileInfo fileInfo = new System.IO.FileInfo( fileName );
+				DateTime uploadStartTime = DateTime.Now;
 				// 开始正式上传，关于三级分类，下面只是举个例子，上传成功后去服务器端寻找文件就能明白
 				// start to upload file to server , u shold specify the catgray about the file
 				OperateResult result = await integrationFileClient.UploadFileAsync(
@@ -138,7 +138,7 @@ namespace HslCommunicationDemo
 				if (result.IsSuccess)
 				{
 					// file upload success
-					MessageBox.Show( "文件上传成功！" );
+					MessageBox.Show( "文件上传成功！耗时：" + (DateTime.Now - uploadStartTime).TotalSeconds.ToString( "F1" ) + " 秒" );
 				}
 				else
 				{
@@ -237,6 +237,7 @@ namespace HslCommunicationDemo
 			button4.Enabled = false;
 
 			string fileName = textBox_download_fileName.Text;
+			DateTime downloadStartTime = DateTime.Now;
 			OperateResult result = await integrationFileClient.DownloadFileAsync(
 					fileName,                                              // 文件在服务器上保存的名称，举例123.txt
 					textBox_download_factory.Text,                         // 第一级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
@@ -250,7 +251,7 @@ namespace HslCommunicationDemo
 			if (result.IsSuccess)
 			{
 				// message: file download success
-				MessageBox.Show( "文件下载成功！" );
+				MessageBox.Show( "文件下载成功！耗时：" + (DateTime.Now - downloadStartTime).TotalSeconds.ToString( "F1" ) + " 秒" );
 			}
 			else
 			{

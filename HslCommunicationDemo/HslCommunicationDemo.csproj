@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.6.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.6.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.6.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.6.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -237,6 +237,24 @@
     </Compile>
     <Compile Include="Hsl\FormDtuServer.Designer.cs">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormDLT645OverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDLT645OverTcp.Designer.cs">
+      <DependentUpon>FormDLT645OverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MQTT\FormMqttFileClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MQTT\FormMqttFileClient.Designer.cs">
+      <DependentUpon>FormMqttFileClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MQTT\FormMqttFileServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MQTT\FormMqttFileServer.Designer.cs">
+      <DependentUpon>FormMqttFileServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormAllenBrandlySLC.cs">
       <SubType>Form</SubType>
@@ -1142,6 +1160,15 @@
     <EmbeddedResource Include="Hsl\FormDtuServer.resx">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDLT645OverTcp.resx">
+      <DependentUpon>FormDLT645OverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MQTT\FormMqttFileClient.resx">
+      <DependentUpon>FormMqttFileClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MQTT\FormMqttFileServer.resx">
+      <DependentUpon>FormMqttFileServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormAllenBrandlySLC.resx">
       <DependentUpon>FormAllenBrandlySLC.cs</DependentUpon>
     </EmbeddedResource>
@@ -1584,6 +1611,113 @@
     <None Include="img\xinje.png" />
     <None Include="img\action_Cancel_16xLG.png" />
     <None Include="img\delta.png" />
+    <None Include="img\FileIcon\7z.png" />
+    <None Include="img\FileIcon\ai.png" />
+    <None Include="img\FileIcon\aiff.png" />
+    <None Include="img\FileIcon\arj.png" />
+    <None Include="img\FileIcon\asc.png" />
+    <None Include="img\FileIcon\asp.png" />
+    <None Include="img\FileIcon\audio.png" />
+    <None Include="img\FileIcon\avi.png" />
+    <None Include="img\FileIcon\bin.png" />
+    <None Include="img\FileIcon\bmp.png" />
+    <None Include="img\FileIcon\bz2.png" />
+    <None Include="img\FileIcon\c.png" />
+    <None Include="img\FileIcon\cdr.png" />
+    <None Include="img\FileIcon\cfc.png" />
+    <None Include="img\FileIcon\cfm.png" />
+    <None Include="img\FileIcon\chm.png" />
+    <None Include="img\FileIcon\class.png" />
+    <None Include="img\FileIcon\conf.png" />
+    <None Include="img\FileIcon\cpp.png" />
+    <None Include="img\FileIcon\cs.png" />
+    <None Include="img\FileIcon\css.png" />
+    <None Include="img\FileIcon\csv.png" />
+    <None Include="img\FileIcon\deb.png" />
+    <None Include="img\FileIcon\divx.png" />
+    <None Include="img\FileIcon\dll.png" />
+    <None Include="img\FileIcon\doc.png" />
+    <None Include="img\FileIcon\docx.png" />
+    <None Include="img\FileIcon\dot.png" />
+    <None Include="img\FileIcon\eml.png" />
+    <None Include="img\FileIcon\enc.png" />
+    <None Include="img\FileIcon\eps.gif" />
+    <None Include="img\FileIcon\exe.png" />
+    <None Include="img\FileIcon\f4v.png" />
+    <None Include="img\FileIcon\file.png" />
+    <None Include="img\FileIcon\flv.png" />
+    <None Include="img\FileIcon\gif.png" />
+    <None Include="img\FileIcon\gz.png" />
+    <None Include="img\FileIcon\hlp.png" />
+    <None Include="img\FileIcon\htm.png" />
+    <None Include="img\FileIcon\html.png" />
+    <None Include="img\FileIcon\ics.png" />
+    <None Include="img\FileIcon\image.png" />
+    <None Include="img\FileIcon\iso.png" />
+    <None Include="img\FileIcon\jar.png" />
+    <None Include="img\FileIcon\java.png" />
+    <None Include="img\FileIcon\jpg.gif" />
+    <None Include="img\FileIcon\js.png" />
+    <None Include="img\FileIcon\jsp.png" />
+    <None Include="img\FileIcon\lua.png" />
+    <None Include="img\FileIcon\m.png" />
+    <None Include="img\FileIcon\mm.png" />
+    <None Include="img\FileIcon\mov.png" />
+    <None Include="img\FileIcon\mp3.png" />
+    <None Include="img\FileIcon\mpg.png" />
+    <None Include="img\FileIcon\msi.png" />
+    <None Include="img\FileIcon\odc.png" />
+    <None Include="img\FileIcon\odf.png" />
+    <None Include="img\FileIcon\odg.png" />
+    <None Include="img\FileIcon\odi.png" />
+    <None Include="img\FileIcon\odp.png" />
+    <None Include="img\FileIcon\ods.png" />
+    <None Include="img\FileIcon\odt.png" />
+    <None Include="img\FileIcon\ogg.png" />
+    <None Include="img\FileIcon\pdf.png" />
+    <None Include="img\FileIcon\perl.png" />
+    <None Include="img\FileIcon\pgp.png" />
+    <None Include="img\FileIcon\php.png" />
+    <None Include="img\FileIcon\pl.png" />
+    <None Include="img\FileIcon\png.png" />
+    <None Include="img\FileIcon\ppt.png" />
+    <None Include="img\FileIcon\ps.png" />
+    <None Include="img\FileIcon\psd.gif" />
+    <None Include="img\FileIcon\py.png" />
+    <None Include="img\FileIcon\ram.png" />
+    <None Include="img\FileIcon\rar.png" />
+    <None Include="img\FileIcon\rb.png" />
+    <None Include="img\FileIcon\rm.png" />
+    <None Include="img\FileIcon\rpm.png" />
+    <None Include="img\FileIcon\rtf.png" />
+    <None Include="img\FileIcon\ruby.png" />
+    <None Include="img\FileIcon\sig.png" />
+    <None Include="img\FileIcon\sql.png" />
+    <None Include="img\FileIcon\svg.png" />
+    <None Include="img\FileIcon\swf.png" />
+    <None Include="img\FileIcon\sxc.png" />
+    <None Include="img\FileIcon\sxd.png" />
+    <None Include="img\FileIcon\sxi.png" />
+    <None Include="img\FileIcon\sxw.png" />
+    <None Include="img\FileIcon\tar.png" />
+    <None Include="img\FileIcon\tex.png" />
+    <None Include="img\FileIcon\tgz.png" />
+    <None Include="img\FileIcon\tif.png" />
+    <None Include="img\FileIcon\ttf.png" />
+    <None Include="img\FileIcon\txt.png" />
+    <None Include="img\FileIcon\vb.png" />
+    <None Include="img\FileIcon\vcf.png" />
+    <None Include="img\FileIcon\vdo.png" />
+    <None Include="img\FileIcon\video.png" />
+    <None Include="img\FileIcon\vsd.png" />
+    <None Include="img\FileIcon\wav.gif" />
+    <None Include="img\FileIcon\wma.gif" />
+    <None Include="img\FileIcon\xls.png" />
+    <None Include="img\FileIcon\xml.png" />
+    <None Include="img\FileIcon\xpi.png" />
+    <None Include="img\FileIcon\xul.png" />
+    <None Include="img\FileIcon\xvid.png" />
+    <None Include="img\FileIcon\zip.png" />
     <Content Include="img\kuka_help.jpg" />
     <None Include="img\zkt.png" />
     <None Include="img\yaskawa.png" />

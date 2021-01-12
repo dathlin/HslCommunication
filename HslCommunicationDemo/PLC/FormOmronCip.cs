@@ -204,6 +204,22 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button4_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				OperateResult write = omronCipNet.WriteTag(
+					textBox3.Text,
+					Convert.ToUInt16( textBox4.Text, 16 ),
+					textBox5.Text.ToHexBytes( ),
+					int.Parse( textBox7.Text ) );
+				DemoUtils.WriteResultRender( write, textBox3.Text );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( "write failed：" + ex.Message );
+			}
+		}
 
 		public override void SaveXmlParameter( XElement element )
 		{
@@ -224,5 +240,6 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

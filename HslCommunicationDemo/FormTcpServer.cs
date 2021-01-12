@@ -215,7 +215,7 @@ namespace HslCommunicationDemo
                         string msg = string.Empty;
                         if (checkBox1.Checked)
                         {
-                            msg = HslCommunication.BasicFramework.SoftBasic.ByteToHexString( data, ' ' );
+                            msg = SoftBasic.ByteToHexString( data, ' ' );
                         }
                         else
                         {
@@ -224,7 +224,7 @@ namespace HslCommunicationDemo
 
                         if (checkBox4.Checked)
                         {
-                            textBox6.AppendText( $"[{DateTime.Now:HH:mm:dd.fff}] [{client.EndPoint}] [{(Program.Language == 1 ? "收" : "R")}]   " + msg + Environment.NewLine );
+                            textBox6.AppendText( $"[{DateTime.Now:HH:mm:ss.fff}] [{client.EndPoint}] [{(Program.Language == 1 ? "收" : "R")}]   " + msg + Environment.NewLine );
                         }
                         else
                         {

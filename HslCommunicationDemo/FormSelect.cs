@@ -134,7 +134,7 @@ namespace HslCommunicationDemo
 				string RamInfo = (curpcp.NextValue( ) / MB_DIV).ToString( "F1" ) + "MB";
 				label2.Text = "Ram: " + RamInfo;
 			}
-			label1.Text = $"Thread:{NetworkBase.ThreadPoolTimeoutCheckCount}  Lock:{SimpleHybirdLock.SimpleHybirdLockCount}  Wait:{SimpleHybirdLock.SimpleHybirdLockWaitCount}";
+			label1.Text = $"Timeout:{HslCommunication.HslTimeOut.TimeOutCheckCount}  Lock:{SimpleHybirdLock.SimpleHybirdLockCount}  Wait:{SimpleHybirdLock.SimpleHybirdLockWaitCount}";
 		}
 
 		private HslCommunication.MQTT.MqttClient mqttClient;
@@ -487,7 +487,9 @@ namespace HslCommunicationDemo
 			TreeNode mqttNode = new TreeNode( "MQTT", 17, 17 );
 			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt Server",      17, typeof( FormMqttServer ) ) );
 			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt Client",      17, typeof( FormMqttClient ) ) );
-			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt RPC Client", 17, typeof( FormMqttSyncClient ) ) );
+			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt RPC Client",  17, typeof( FormMqttSyncClient ) ) );
+			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt File Server", 17, typeof( FormMqttFileServer ) ) );
+			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt File Client", 17, typeof( FormMqttFileClient ) ) );
 			treeView1.Nodes.Add( mqttNode );
 
 			// WebSocket 相关
@@ -567,6 +569,7 @@ namespace HslCommunicationDemo
 			TreeNode instrumentNode = new TreeNode( "Instrument [仪器仪表]" );
 			instrumentNode.Nodes.Add( new TreeNode( "DAM3601 [阿尔泰科技]" ) { Tag = typeof( FormDAM3601 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645 [电力规约]" ) { Tag = typeof( FormDLT645 ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DLT645 OverTcp" ) { Tag = typeof( FormDLT645OverTcp ) } );
 			treeView1.Nodes.Add( instrumentNode );
 
 			// 托利多电子秤Toledo

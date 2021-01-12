@@ -106,6 +106,9 @@
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.label19 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -119,6 +122,9 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.label20);
+			this.panel1.Controls.Add(this.textBox4);
+			this.panel1.Controls.Add(this.label19);
 			this.panel1.Controls.Add(this.textBox15);
 			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button1);
@@ -134,16 +140,16 @@
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(517, 9);
+			this.textBox15.Location = new System.Drawing.Point(552, 9);
 			this.textBox15.Name = "textBox15";
-			this.textBox15.Size = new System.Drawing.Size(337, 23);
+			this.textBox15.Size = new System.Drawing.Size(302, 23);
 			this.textBox15.TabIndex = 7;
 			this.textBox15.Text = "1";
 			// 
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(463, 12);
+			this.label21.Location = new System.Drawing.Point(498, 12);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(44, 17);
 			this.label21.TabIndex = 6;
@@ -161,16 +167,16 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(305, 9);
+			this.textBox2.Location = new System.Drawing.Point(244, 9);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(141, 23);
+			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
 			this.textBox2.Text = "35002";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(251, 12);
+			this.label3.Location = new System.Drawing.Point(190, 12);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -180,7 +186,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(62, 9);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(141, 23);
+			this.textBox1.Size = new System.Drawing.Size(113, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "127.0.0.1";
 			// 
@@ -861,6 +867,32 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(395, 9);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(72, 23);
+			this.textBox4.TabIndex = 9;
+			this.textBox4.Text = "100";
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Location = new System.Drawing.Point(325, 12);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(65, 17);
+			this.label19.TabIndex = 8;
+			this.label19.Text = "FileCache:";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(474, 12);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(24, 17);
+			this.label20.TabIndex = 10;
+			this.label20.Text = "KB";
+			// 
 			// FormFileClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -969,5 +1001,8 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox textBox_show_factory;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.Label label19;
 	}
 }

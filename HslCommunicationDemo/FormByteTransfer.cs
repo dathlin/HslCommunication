@@ -164,72 +164,72 @@ namespace HslCommunicationDemo
             {
                 if (radioButton1.Checked)
                 {
-                    value = HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text )[0].ToString( );
+                    value = SoftBasic.HexStringToBytes( textBox1.Text )[0].ToString( );
                     radioButton = radioButton1;
                 }
                 else if (radioButton2.Checked)
                 {
-                    value = BitConverter.ToInt16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+                    value = BitConverter.ToInt16( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
                     radioButton = radioButton2;
                 }
                 else if (radioButton3.Checked)
                 {
-                    value = BitConverter.ToUInt16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+                    value = BitConverter.ToUInt16( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
                     radioButton = radioButton3;
                 }
                 else if (radioButton4.Checked)
                 {
-                    value = BitConverter.ToInt32( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+                    value = BitConverter.ToInt32( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
                     radioButton = radioButton4;
                 }
                 else if (radioButton5.Checked)
                 {
-                    value = BitConverter.ToUInt32( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+                    value = BitConverter.ToUInt32( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
                     radioButton = radioButton5;
                 }
                 else if (radioButton6.Checked)
                 {
-                    value = BitConverter.ToInt64( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+                    value = BitConverter.ToInt64( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
                     radioButton = radioButton6;
                 }
                 else if (radioButton7.Checked)
                 {
-                    value = BitConverter.ToUInt64( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+                    value = BitConverter.ToUInt64( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
                     radioButton = radioButton7;
                 }
                 else if (radioButton8.Checked)
                 {
-                    value = BitConverter.ToSingle( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+                    value = BitConverter.ToSingle( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
                     radioButton = radioButton8;
                 }
                 else if (radioButton9.Checked)
                 {
-                    value = BitConverter.ToDouble( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+                    value = BitConverter.ToDouble( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
                     radioButton = radioButton9;
                 }
                 else if (radioButton10.Checked)
                 {
-                    value = Encoding.ASCII.GetString( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+                    value = Encoding.ASCII.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
                     radioButton = radioButton10;
                 }
                 else if (radioButton11.Checked)
                 {
-                    value = Encoding.Unicode.GetString( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+                    value = Encoding.Unicode.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
                     radioButton = radioButton11;
                 }
                 else if (radioButton12.Checked)
                 {
-                    value = Encoding.UTF8.GetString( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+                    value = Encoding.UTF8.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
                     radioButton = radioButton12;
                 }
                 else if (radioButton13.Checked)
                 {
-                    value = Encoding.UTF32.GetString( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+                    value = Encoding.UTF32.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
                     radioButton = radioButton13;
                 }
                 else if (radioButton14.Checked)
                 {
-                    value = Encoding.Default.GetString( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+                    value = Encoding.Default.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
                     radioButton = radioButton13;
                 }
             }
@@ -276,6 +276,69 @@ namespace HslCommunicationDemo
 
             button3_Click( sender, e );
             this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam; //还原鼠标形状
+        }
+
+        private void button4_Click( object sender, EventArgs e )
+        {
+            try
+            {
+                DateTime dateTime = DateTime.Now;
+                textBox2.Text = SoftBasic.CalculateFileMD5( textBox1.Text );
+                textBox2.AppendText( Environment.NewLine + "Total Coust:" + (DateTime.Now - dateTime).TotalSeconds.ToString( "F2" ) + " s" );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show( "Failed:" + ex.Message );
+            }
+        }
+
+        private string PrintBase64( byte[] content )
+        {
+            int already = 0;
+            string str = Convert.ToBase64String( content );
+            StringBuilder sb = new StringBuilder( );
+            while (already < str.Length)
+            {
+                int length = Math.Min( str.Length - already, 120 );
+                sb.Append( str.Substring( already, length ) );
+                already += length;
+                if (already < str.Length)
+                {
+                    sb.Append( Environment.NewLine );
+                }
+            }
+            return sb.ToString( );
+        }
+
+        private void button5_Click( object sender, EventArgs e )
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty( textBox1.Text ))
+                {
+                    if (File.Exists( textBox1.Text ))
+                    {
+                        byte[] content = File.ReadAllBytes( textBox1.Text );
+                        textBox2.Text = PrintBase64( content );
+                    }
+                }
+                else
+                {
+                    if (Clipboard.ContainsImage( ))
+                    {
+                        using (MemoryStream ms = new MemoryStream( ))
+                        {
+                            Clipboard.GetImage( ).Save( ms, System.Drawing.Imaging.ImageFormat.Png );
+                            byte[] content = ms.ToArray( );
+                            textBox2.Text = PrintBase64( content );
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SoftBasic.ShowExceptionMessage( ex );
+            }
         }
     }
 }

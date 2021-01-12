@@ -65,9 +65,10 @@ namespace HslCommunicationDemo
                 httpServer = new HttpServer( );
                 httpServer.Start( int.Parse( textBox2.Text ) );
                 httpServer.HandleRequestFunc = HandleRequest;
-                httpServer.IsCrossDomain = checkBox1.Checked;             // 是否跨域的设置
+                httpServer.IsCrossDomain = checkBox1.Checked;                        // 是否跨域的设置
                 httpServer.RegisterHttpRpcApi( "", this );
-                httpServer.RegisterHttpRpcApi( "Siemens", siemens );      // 注册一个西门子PLC的服务的示例
+                httpServer.RegisterHttpRpcApi( "Siemens", siemens );                 // 注册一个西门子PLC的服务接口的示例
+                httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );    // 注册的类的静态方法和静态属性
 
                 panel2.Enabled = true;
                 button1.Enabled = false;
