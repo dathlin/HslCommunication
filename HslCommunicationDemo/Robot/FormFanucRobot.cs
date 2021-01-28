@@ -526,6 +526,25 @@ namespace HslCommunicationDemo.Robot
             }
         }
 
+        private void button32_Click( object sender, EventArgs e )
+        {
+            try
+            {
+                OperateResult<byte[]> read = fanuc.Read( byte.Parse( textBox4.Text ), ushort.Parse( textBox5.Text ), ushort.Parse( textBox6.Text ) );
+                if (read.IsSuccess)
+                {
+                    textBox3.Text = "Data: " + read.Content.ToHexString( ' ' );
+                }
+                else
+                {
+                    MessageBox.Show( "Write Failed！" + read.Message );
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show( "Read Failed: " + ex.Message );
+            }
+        }
 
         public override void SaveXmlParameter( XElement element )
         {
@@ -544,5 +563,6 @@ namespace HslCommunicationDemo.Robot
         {
             userControlHead1_SaveConnectEvent( sender, e );
         }
+
     }
 }

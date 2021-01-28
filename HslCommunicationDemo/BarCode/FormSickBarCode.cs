@@ -67,6 +67,7 @@ namespace HslCommunicationDemo.BarCode
         private void Button11_Click( object sender, EventArgs e )
         {
             tcpServer?.ServerClose( );
+
             button1.Enabled = true;
             button11.Enabled = false;
         }

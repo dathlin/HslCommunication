@@ -89,16 +89,13 @@ namespace HslCommunicationDemo
                     button1.Enabled = false;
                     panel2.Enabled = true;
 
-                    userControlReadWriteOp1.SetReadWriteNet( dLT645, "100", false );
+                    userControlReadWriteOp1.SetReadWriteNet( dLT645, "00-00-00-00", true );
                 }
                 else
                 {
                     MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
                         "Error: " + connect.ErrorCode );
                 }
-
-
-                userControlReadWriteOp1.SetReadWriteNet( dLT645, "00-00-00-00", false );
             }
             catch (Exception ex)
             {
@@ -145,9 +142,9 @@ namespace HslCommunicationDemo
 
         #endregion
 
-        private void button3_Click( object sender, EventArgs e )
+        private async void button3_Click( object sender, EventArgs e )
         {
-            OperateResult active = dLT645.ActiveDeveice( );
+            OperateResult active = await dLT645.ActiveDeveiceAsync( );
             if (active.IsSuccess)
             {
                 MessageBox.Show( "Send Active Code Success" );
@@ -158,9 +155,9 @@ namespace HslCommunicationDemo
             }
         }
 
-        private void button4_Click( object sender, EventArgs e )
+        private async void button4_Click( object sender, EventArgs e )
         {
-            OperateResult<string> read = dLT645.ReadAddress( );
+            OperateResult<string> read = await dLT645.ReadAddressAsync( );
             if (read.IsSuccess)
             {
                 textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Address:{read.Content}";
@@ -171,10 +168,10 @@ namespace HslCommunicationDemo
             }
         }
 
-        private void button6_Click( object sender, EventArgs e )
+        private async void button6_Click( object sender, EventArgs e )
         {
             // 广播当前时间
-            OperateResult read = dLT645.BroadcastTime( DateTime.Now );
+            OperateResult read = await dLT645.BroadcastTimeAsync( DateTime.Now );
             if (read.IsSuccess)
             {
                 textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] BroadcastTime Success";
@@ -185,10 +182,10 @@ namespace HslCommunicationDemo
             }
         }
 
-        private void button5_Click( object sender, EventArgs e )
+        private async void button5_Click( object sender, EventArgs e )
         {
             // 写通信地址
-            OperateResult read = dLT645.WriteAddress( textBox1.Text );
+            OperateResult read = await dLT645.WriteAddressAsync( textBox1.Text );
             if (read.IsSuccess)
             {
                 textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Write Success";

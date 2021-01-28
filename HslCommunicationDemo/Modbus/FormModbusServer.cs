@@ -195,5 +195,5 @@ namespace HslCommunicationDemo
         {
             userControlHead1_SaveConnectEvent( sender, e );
         }
-    }
+	}
 }

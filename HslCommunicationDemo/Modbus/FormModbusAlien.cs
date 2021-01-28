@@ -181,6 +181,7 @@ namespace HslCommunicationDemo
                  {
                      panel2.Enabled = true;
                      button2.Enabled = true;
+
                  } ) );
             }
         }
@@ -204,7 +205,7 @@ namespace HslCommunicationDemo
                 return;
             }
 
-            busTcpClient = new ModbusTcpNet( textBox1.Text, port, station );
+            busTcpClient = new ModbusTcpNet( "127.0.0.1", port, station );
             busTcpClient.LogNet = logNet;
             busTcpClient.AddressStartWithZero = checkBox1.Checked;
 

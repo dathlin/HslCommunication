@@ -63,6 +63,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "xinje",                 Properties.Resources.xinje );             // 30
 			imageList.Images.Add( "yokogawa",              Properties.Resources.yokogawa );          // 31
 			imageList.Images.Add( "delta",                 Properties.Resources.delta );             // 32
+			imageList.Images.Add( "ge",                    Properties.Resources.ge );                // 33
 
 
 			treeView1.ImageList = imageList;
@@ -330,6 +331,7 @@ namespace HslCommunicationDemo
 		{
 			// 三菱PLC相关
 			TreeNode melsecNode = new TreeNode( "Melsec Plc [三菱]",   8, 8 );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "EtherNet/IP(CIP)",    8, typeof( FormMelsecCipNet ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-1E (Binary)",       8, typeof( FormMelsec1EBinary ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-1E (ASCII)",        8, typeof( FormMelsec1EAscii ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "MC (Binary)",         8, typeof( FormMelsecBinary ) ) );
@@ -361,6 +363,7 @@ namespace HslCommunicationDemo
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "MPI",                14, typeof( FormSiemensMPI ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7 Virtual Server",  14, typeof( FormS7Server ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Fetch Write Server", 14, typeof( FormFetchWriteServer ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Siemens DTU",        14, typeof( FormSiemensDTU ) ) );
 			treeView1.Nodes.Add( siemensNode );
 
 			// Modbus协议
@@ -437,6 +440,12 @@ namespace HslCommunicationDemo
 			TreeNode beckhoffPlc = new TreeNode( "Beckhoff Plc[倍福]", 20, 20 );
 			beckhoffPlc.Nodes.Add( GetTreeNodeByIndex( "Ads Net",    20, typeof( FormBeckpffAdsNet ) ) );
 			treeView1.Nodes.Add( beckhoffPlc );
+
+			// GE PLC
+			TreeNode gePlc = new TreeNode( "GE Plc[通用电气]", 33, 33 );
+			gePlc.Nodes.Add( GetTreeNodeByIndex( "SRTP", 33, typeof( FormGeSRTP ) ) );
+			gePlc.Nodes.Add( GetTreeNodeByIndex( "SRTP Server", 33, typeof( FormGeSRTPServer ) ) );
+			treeView1.Nodes.Add( gePlc );
 
 			// Fatek 永宏PLC
 			TreeNode fatekNode = new TreeNode( "Fatek Plc[永宏]", 22, 22 );

@@ -29,7 +29,7 @@
         private void InitializeComponent( )
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("文件列表");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("文件列表");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
@@ -274,6 +274,7 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.label4);
 			this.groupBox5.Controls.Add(this.label11);
 			this.groupBox5.Controls.Add(this.textBox_show_group);
@@ -409,7 +410,6 @@
 			// 
 			// label13
 			// 
-			this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label13.AutoSize = true;
 			this.label13.ForeColor = System.Drawing.Color.Gray;
 			this.label13.Location = new System.Drawing.Point(8, 21);
@@ -733,7 +733,6 @@
 			// 
 			// button6
 			// 
-			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button6.Location = new System.Drawing.Point(291, 15);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(74, 23);
@@ -749,10 +748,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.Location = new System.Drawing.Point(9, 42);
 			this.treeView1.Name = "treeView1";
-			treeNode1.Name = "节点0";
-			treeNode1.Text = "文件列表";
+			treeNode2.Name = "节点0";
+			treeNode2.Text = "文件列表";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
 			this.treeView1.Size = new System.Drawing.Size(356, 483);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeExpand);

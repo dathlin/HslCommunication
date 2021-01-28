@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.6.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.6.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.6.2.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.6.2\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -256,6 +256,12 @@
     <Compile Include="MQTT\FormMqttFileServer.Designer.cs">
       <DependentUpon>FormMqttFileServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\FormMelsecCipNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMelsecCipNet.Designer.cs">
+      <DependentUpon>FormMelsecCipNet.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\FormAllenBrandlySLC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -291,6 +297,24 @@
     </Compile>
     <Compile Include="PLC\FormFujiSPBServer.Designer.cs">
       <DependentUpon>FormFujiSPBServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormGeSRTP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormGeSRTP.Designer.cs">
+      <DependentUpon>FormGeSRTP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormGeSRTPServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormGeSRTPServer.Designer.cs">
+      <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormSiemensDTU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormSiemensDTU.Designer.cs">
+      <DependentUpon>FormSiemensDTU.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormYokogawaLinkServer.cs">
       <SubType>Form</SubType>
@@ -1169,6 +1193,9 @@
     <EmbeddedResource Include="MQTT\FormMqttFileServer.resx">
       <DependentUpon>FormMqttFileServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMelsecCipNet.resx">
+      <DependentUpon>FormMelsecCipNet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormAllenBrandlySLC.resx">
       <DependentUpon>FormAllenBrandlySLC.cs</DependentUpon>
     </EmbeddedResource>
@@ -1186,6 +1213,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormFujiSPBServer.resx">
       <DependentUpon>FormFujiSPBServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormGeSRTP.resx">
+      <DependentUpon>FormGeSRTP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormGeSRTPServer.resx">
+      <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormSiemensDTU.resx">
+      <DependentUpon>FormSiemensDTU.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormYokogawaLinkServer.resx">
       <DependentUpon>FormYokogawaLinkServer.cs</DependentUpon>
@@ -1718,6 +1754,7 @@
     <None Include="img\FileIcon\xul.png" />
     <None Include="img\FileIcon\xvid.png" />
     <None Include="img\FileIcon\zip.png" />
+    <None Include="img\ge.png" />
     <Content Include="img\kuka_help.jpg" />
     <None Include="img\zkt.png" />
     <None Include="img\yaskawa.png" />

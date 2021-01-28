@@ -148,7 +148,26 @@ namespace HslCommunicationDemo
 
         private void button25_Click( object sender, EventArgs e )
         {
-            DemoUtils.BulkReadRenderResult( dLT645, textBox6, textBox9, textBox10 );
+            try
+            {
+                OperateResult<byte[]> read = dLT645.Read( textBox6.Text, ushort.Parse( textBox9.Text ) );
+                if (read.IsSuccess)
+                {
+					for (int i = 0; i < read.Content.Length; i++)
+					{
+                        read.Content[i] = (byte)(read.Content[i] - 0x33);
+                    }
+                    textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content, ' ' );
+                }
+                else
+                {
+                    MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show( "Read Failed：" + ex.Message );
+            }
         }
 
         #endregion
