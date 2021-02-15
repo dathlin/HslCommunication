@@ -194,7 +194,7 @@ namespace HslCommunicationDemo
 
             if (checkBox2.Checked)
             {
-                send = HslCommunication.BasicFramework.SoftBasic.SpliceTwoByteArray( send, new byte[] { 0x0A } );
+                send = HslCommunication.BasicFramework.SoftBasic.SpliceArray( send, new byte[] { 0x0A } );
             }
 
             if (checkBox3.Checked)

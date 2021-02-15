@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using HslCommunication.Profinet;
 using HslCommunication;
 using HslCommunication.ModBus;
-using System.Threading;
 
 namespace HslCommunicationDemo
 {
@@ -33,8 +32,29 @@ namespace HslCommunicationDemo
                 button11.Text = "Close Server";
                 label11.Text = "This server is not a strict S7 protocol and only supports perfect communication with HSL components.";
             }
+            //timer = new Timer( );
+            //timer.Interval = 1000;
+            //timer.Tick += Timer_Tick;
+            //timer.Start( );
         }
-        
+
+        private short m60 = 0;
+        private bool m62 = false;
+        private float m64 = 1.1f;
+
+
+        private void Timer_Tick( object sender, EventArgs e )
+        {
+            m60++;
+            s7NetServer.Write( "M60", m60 );
+            s7NetServer.Write( "M62", !m62 );
+            m62 = !m62;
+            m64 += 1f;
+            if (m64 > 2000) m64 = 1.1f;
+            s7NetServer.Write( "M64", m64 );
+            s7NetServer.Write( "M70", "A" + DateTime.Now.Minute.ToString( ) + DateTime.Now.Second.ToString( ) );
+        }
+
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
         {
             s7NetServer?.ServerClose( );
@@ -44,6 +64,7 @@ namespace HslCommunicationDemo
 
 
         private HslCommunication.Profinet.Siemens.SiemensS7Server s7NetServer;
+        private Timer timer;
 
         private void button1_Click( object sender, EventArgs e )
         {
