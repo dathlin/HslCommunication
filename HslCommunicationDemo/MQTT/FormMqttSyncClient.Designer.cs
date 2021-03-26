@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Rpc Apis");
-			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Topics");
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Rpc Apis");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Topics");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
@@ -518,6 +518,8 @@
 			// 
 			// textBox5
 			// 
+			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox5.Location = new System.Drawing.Point(62, 7);
 			this.textBox5.Name = "textBox5";
 			this.textBox5.Size = new System.Drawing.Size(237, 23);
@@ -588,13 +590,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.Location = new System.Drawing.Point(3, 27);
 			this.treeView1.Name = "treeView1";
-			treeNode3.Name = "节点0";
-			treeNode3.Text = "Rpc Apis";
-			treeNode4.Name = "节点0";
-			treeNode4.Text = "Topics";
+			treeNode1.Name = "节点0";
+			treeNode1.Text = "Rpc Apis";
+			treeNode2.Name = "节点0";
+			treeNode2.Text = "Topics";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode1,
+            treeNode2});
 			this.treeView1.Size = new System.Drawing.Size(251, 483);
 			this.treeView1.TabIndex = 1;
 			// 

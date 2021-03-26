@@ -54,6 +54,17 @@ namespace HslCommunicationDemo
                 textBox15.Text = "0";
                 textBox16.Text = "0";
             }
+            else if(siemensPLCSelected == SiemensPLCS.S200Smart)
+            {
+                label4.Visible = false;
+                label5.Visible = false;
+                label23.Visible = false;
+                label24.Visible = false;
+                textBox3.Visible = false;
+                textBox4.Visible = false;
+                textBox15.Visible = false;
+                textBox16.Visible = false;
+            }
         }
 
         private void Language( int language )
@@ -111,12 +122,16 @@ namespace HslCommunicationDemo
 
             siemensTcpNet.IpAddress = textBox1.Text;
             siemensTcpNet.Port = port;
+            //siemensTcpNet.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Parse( "127.0.0.1" ), 12345 );
             try
             {
                 if (siemensPLCSelected != SiemensPLCS.S200Smart)
                 {
                     siemensTcpNet.Rack = byte.Parse( textBox15.Text );
                     siemensTcpNet.Slot = byte.Parse( textBox16.Text );
+
+                    siemensTcpNet.ConnectionType = byte.Parse( textBox3.Text );
+                    siemensTcpNet.LocalTSAP = int.Parse( textBox4.Text );
                 }
 
 
@@ -181,6 +196,20 @@ namespace HslCommunicationDemo
             }
         }
 
+        private async void button11_Click( object sender, EventArgs e )
+        {
+            // WString 读取
+            OperateResult<string> read = await siemensTcpNet.ReadWStringAsync( textBox8.Text );
+            if (read.IsSuccess)
+            {
+                textBox7.Text = read.Content;
+            }
+            else
+            {
+                MessageBox.Show( "Failed:" + read.Message );
+            }
+        }
+
         #endregion
 
         #region 单数据写入测试
@@ -191,6 +220,11 @@ namespace HslCommunicationDemo
             DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
         }
 
+        private async void button10_Click( object sender, EventArgs e )
+        {
+            // WString 写入
+            DemoUtils.WriteResultRender( await siemensTcpNet.WriteWStringAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
+        }
 
         private async void Button8_Click( object sender, EventArgs e )
         {
@@ -479,5 +513,6 @@ namespace HslCommunicationDemo
         {
             userControlHead1_SaveConnectEvent( sender, e );
         }
-    }
+
+	}
 }

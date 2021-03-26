@@ -434,6 +434,7 @@ namespace HslCommunicationDemo
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP Browser",             1, typeof( FormAllenBrandlyBrowser ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP Virtual Server",      1, typeof( FormCipServer ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "SLC Net",                 1, typeof( FormAllenBrandlySLC ) ) );
+			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "DF1",                     1, typeof( FormAllenBradleyDF1Serial ) ) );
 			treeView1.Nodes.Add( allenBrandlyPlc );
 
 			// Beckhoff PLC

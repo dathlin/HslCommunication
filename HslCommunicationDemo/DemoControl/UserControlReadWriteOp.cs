@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using HslCommunication.Core;
 using System.Reflection;
 using HslCommunication;
+using HslCommunication.LogNet;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -66,7 +67,8 @@ namespace HslCommunicationDemo.DemoControl
 				groupBox2.Text = "Single Data Write test";
 
 				button23.Text = "w-byte";
-				button1.Text = "Curve Monitor";
+				button1.Text = "Curve";
+				label1.Text = "Time-Cost:";
 			}
 		}
 
@@ -74,8 +76,10 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			this.isAsync = isAsync;
 			this.address = address;
-			textBox3.Text = address;
-			textBox8.Text = address;
+			if(string.IsNullOrEmpty( textBox3.Text ))
+				textBox3.Text = address;
+			if (string.IsNullOrEmpty( textBox8.Text ))
+				textBox8.Text = address;
 			textBox1.Text = strLength.ToString( );
 			readWriteNet = readWrite;
 			Type type = readWrite.GetType( );
@@ -101,6 +105,16 @@ namespace HslCommunicationDemo.DemoControl
 		private MethodInfo readByteMethod = null;
 		private MethodInfo writeByteMethod = null;
 
+		private ValueLimit valueLimit = new ValueLimit( );
+
+		private void SetTimeSpend( int millseconds )
+		{
+			valueLimit.SetNewValue( millseconds );
+			label2.Text = $"{valueLimit.Current} ms";
+			label3.Text = $"{valueLimit.MaxValue} ms";
+			label5.Text = $"{valueLimit.MinValue} ms";
+		}
+
 		private async void button_read_bool_Click( object sender, EventArgs e )
 		{
 			// bool
@@ -108,24 +122,47 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_bool.Enabled = false;
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( await readWriteNet.ReadBoolAsync( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<bool> read = await readWriteNet.ReadBoolAsync( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( await readWriteNet.ReadBoolAsync( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<bool[]> read = await readWriteNet.ReadBoolAsync( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				button_read_bool.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( readWriteNet.ReadBool( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<bool> read = readWriteNet.ReadBool( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( readWriteNet.ReadBool( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<bool[]> read = readWriteNet.ReadBool( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 			}
 		}
 
 		private void button_read_byte_Click( object sender, EventArgs e )
 		{
 			// byte，此处演示了基于反射的读取操作
-			DemoUtils.ReadResultRender( (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } ), textBox3.Text, textBox4 );
+			DateTime start = DateTime.Now;
+			OperateResult<byte> read = (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } );
+			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+			DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
 		}
 
 		private async void button_read_short_Click( object sender, EventArgs e )
@@ -135,17 +172,37 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_short.Enabled = false;
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( await readWriteNet.ReadInt16Async( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<short> read = await readWriteNet.ReadInt16Async( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( await readWriteNet.ReadInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<short[]> read = await readWriteNet.ReadInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				button_read_short.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( readWriteNet.ReadInt16( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<short> read = readWriteNet.ReadInt16( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( readWriteNet.ReadInt16( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<short[]> read = readWriteNet.ReadInt16( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 			}
 		}
 
@@ -156,17 +213,38 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_ushort.Enabled = false;
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( await readWriteNet.ReadUInt16Async( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<ushort> read = await readWriteNet.ReadUInt16Async( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( await readWriteNet.ReadUInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<ushort[]> read = await readWriteNet.ReadUInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) ); 
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				button_read_ushort.Enabled = true;
 			}
 			else
 			{
+
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( readWriteNet.ReadUInt16( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<ushort> read = readWriteNet.ReadUInt16( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( readWriteNet.ReadUInt16( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<ushort[]> read = readWriteNet.ReadUInt16( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 			}
 		}
 
@@ -177,17 +255,37 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_int.Enabled = false;
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( await readWriteNet.ReadInt32Async( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<int> read = await readWriteNet.ReadInt32Async( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( await readWriteNet.ReadInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<int[]> read = await readWriteNet.ReadInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) ); 
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				button_read_int.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( readWriteNet.ReadInt32( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<int> read = readWriteNet.ReadInt32( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( readWriteNet.ReadInt32( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<int[]> read = readWriteNet.ReadInt32( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 			}
 		}
 
@@ -198,17 +296,37 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_uint.Enabled = false;
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( await readWriteNet.ReadUInt32Async( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<uint> read = await readWriteNet.ReadUInt32Async( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( await readWriteNet.ReadUInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<uint[]> read = await readWriteNet.ReadUInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				button_read_uint.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( readWriteNet.ReadUInt32( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<uint> read = readWriteNet.ReadUInt32( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( readWriteNet.ReadUInt32( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<uint[]> read = readWriteNet.ReadUInt32( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 			}
 		}
 
@@ -219,17 +337,37 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_long.Enabled = false;
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( await readWriteNet.ReadInt64Async( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<long> read = await readWriteNet.ReadInt64Async( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( await readWriteNet.ReadInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<long[]> read = await readWriteNet.ReadInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				button_read_long.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( readWriteNet.ReadInt64( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<long> read = readWriteNet.ReadInt64( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( readWriteNet.ReadInt64( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<long[]> read = readWriteNet.ReadInt64( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 			}
 		}
 
@@ -240,17 +378,37 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_ulong.Enabled = false;
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( await readWriteNet.ReadUInt64Async( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<ulong> read = await readWriteNet.ReadUInt64Async( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( await readWriteNet.ReadUInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<ulong[]> read = await readWriteNet.ReadUInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				button_read_ulong.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( readWriteNet.ReadUInt64( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<ulong> read = readWriteNet.ReadUInt64( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( readWriteNet.ReadUInt64( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<ulong[]> read = readWriteNet.ReadUInt64( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 			}
 		}
 
@@ -261,17 +419,37 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_float.Enabled = false;
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( await readWriteNet.ReadFloatAsync( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<float> read = await readWriteNet.ReadFloatAsync( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( await readWriteNet.ReadFloatAsync( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<float[]> read = await readWriteNet.ReadFloatAsync( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				button_read_float.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( readWriteNet.ReadFloat( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<float> read = readWriteNet.ReadFloat( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( readWriteNet.ReadFloat( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<float[]> read = readWriteNet.ReadFloat( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 			}
 		}
 
@@ -282,17 +460,37 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_double.Enabled = false;
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( await readWriteNet.ReadDoubleAsync( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<double> read = await readWriteNet.ReadDoubleAsync( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( await readWriteNet.ReadDoubleAsync( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<double[]> read = await readWriteNet.ReadDoubleAsync( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				button_read_double.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-					DemoUtils.ReadResultRender( readWriteNet.ReadDouble( textBox3.Text ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<double> read = readWriteNet.ReadDouble( textBox3.Text );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 				else
-					DemoUtils.ReadResultRender( readWriteNet.ReadDouble( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+				{
+					DateTime start = DateTime.Now;
+					OperateResult<double[]> read = readWriteNet.ReadDouble( textBox3.Text, ushort.Parse( textBox5.Text ) );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				}
 			}
 		}
 
@@ -302,11 +500,18 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_string.Enabled = false;
+				DateTime start = DateTime.Now;
 				DemoUtils.ReadResultRender( await readWriteNet.ReadStringAsync( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
+				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 				button_read_string.Enabled = true;
 			}
 			else
-				DemoUtils.ReadResultRender( readWriteNet.ReadString( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
+			{
+				DateTime start = DateTime.Now;
+				OperateResult<string> read = readWriteNet.ReadString( textBox3.Text, ushort.Parse( textBox1.Text ) );
+				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+			}
 		}
 
 		private async void button24_Click( object sender, EventArgs e )
@@ -320,11 +525,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button24.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write , textBox8.Text );
 						button24.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				catch(Exception ex)
 				{
@@ -338,11 +551,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button24.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button24.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				else
 					MessageBox.Show( "Bool Data is not corrent: " + textBox7.Text );
@@ -354,7 +575,10 @@ namespace HslCommunicationDemo.DemoControl
 			// byte，此处演示了基于反射的写入操作
 			if (byte.TryParse( textBox7.Text, out byte value ))
 			{
-				DemoUtils.WriteResultRender( (OperateResult)writeByteMethod.Invoke( readWriteNet, new object[] { textBox8.Text, value } ), textBox8.Text );
+				DateTime start = DateTime.Now;
+				OperateResult write = (OperateResult)writeByteMethod.Invoke( readWriteNet, new object[] { textBox8.Text, value } );
+				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				DemoUtils.WriteResultRender( write, textBox8.Text );
 			}
 			else
 				MessageBox.Show( "Byte Data is not corrent: " + textBox7.Text );
@@ -371,11 +595,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button22.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button22.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				catch (Exception ex)
 				{
@@ -389,11 +621,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button22.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button22.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				else
 					MessageBox.Show( "short Data is not corrent: " + textBox7.Text );
@@ -411,11 +651,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button21.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button21.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				catch (Exception ex)
 				{
@@ -429,11 +677,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button21.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button21.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				else
 					MessageBox.Show( "ushort Data is not corrent: " + textBox7.Text );
@@ -451,11 +707,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button20.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button20.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				catch (Exception ex)
 				{
@@ -469,11 +733,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button20.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button20.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				else
 					MessageBox.Show( "int Data is not corrent: " + textBox7.Text );
@@ -491,11 +763,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button19.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button19.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				catch (Exception ex)
 				{
@@ -509,11 +789,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button19.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button19.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				else
 					MessageBox.Show( "uint Data is not corrent: " + textBox7.Text );
@@ -531,11 +819,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button19.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button19.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				catch (Exception ex)
 				{
@@ -549,11 +845,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button18.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button18.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				else
 					MessageBox.Show( "long Data is not corrent: " + textBox7.Text );
@@ -571,11 +875,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button19.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button19.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				catch (Exception ex)
 				{
@@ -589,11 +901,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button17.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button17.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				else
 					MessageBox.Show( "ulong Data is not corrent: " + textBox7.Text );
@@ -611,11 +931,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button19.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button19.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				catch (Exception ex)
 				{
@@ -629,11 +957,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button16.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button16.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				else
 					MessageBox.Show( "float Data is not corrent: " + textBox7.Text );
@@ -651,11 +987,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button19.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button19.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				catch (Exception ex)
 				{
@@ -669,11 +1013,19 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						button15.Enabled = false;
-						DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
 						button15.Enabled = true;
 					}
 					else
-						DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, value ), textBox8.Text );
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
 				}
 				else
 					MessageBox.Show( "double Data is not corrent: " + textBox7.Text );
@@ -686,11 +1038,19 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button14.Enabled = false;
-				DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
+				DateTime start = DateTime.Now;
+				OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text );
+				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				DemoUtils.WriteResultRender( write, textBox8.Text );
 				button14.Enabled = true;
 			}
 			else
-				DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, textBox7.Text ), textBox8.Text );
+			{
+				DateTime start = DateTime.Now;
+				OperateResult write = readWriteNet.Write( textBox8.Text, textBox7.Text );
+				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				DemoUtils.WriteResultRender( write, textBox8.Text );
+			}
 		}
 
 		private void button1_Click( object sender, EventArgs e )
@@ -708,11 +1068,19 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button14.Enabled = false;
-				DemoUtils.WriteResultRender( await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text.ToHexBytes( ) ), textBox8.Text );
+				DateTime start = DateTime.Now;
+				OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text.ToHexBytes( ) );
+				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				DemoUtils.WriteResultRender( write, textBox8.Text );
 				button14.Enabled = true;
 			}
 			else
-				DemoUtils.WriteResultRender( readWriteNet.Write( textBox8.Text, textBox7.Text.ToHexBytes( ) ), textBox8.Text );
+			{
+				DateTime start = DateTime.Now;
+				OperateResult write = readWriteNet.Write( textBox8.Text, textBox7.Text.ToHexBytes( ) );
+				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				DemoUtils.WriteResultRender( write, textBox8.Text );
+			}
 		}
 	}
 }

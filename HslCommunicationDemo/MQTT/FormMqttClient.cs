@@ -95,7 +95,7 @@ namespace HslCommunicationDemo
 			mqttClient.LogNet = new HslCommunication.LogNet.LogNetSingle( string.Empty );
 			mqttClient.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			mqttClient.OnMqttMessageReceived   += MqttClient_OnMqttMessageReceived;
-			mqttClient.OnNetworkError          += MqttClient_OnNetworkError;
+			//mqttClient.OnNetworkError          += MqttClient_OnNetworkError; // 自己来控制异常及重连的操作
 
 			OperateResult connect = await mqttClient.ConnectServerAsync( );
 
@@ -127,6 +127,8 @@ namespace HslCommunicationDemo
 					// 每隔10秒重连
 					System.Threading.Thread.Sleep( 10_000 );
 					client.LogNet?.WriteInfo( "准备重新连接服务器..." );
+
+					// 重连之前需要判断是否关闭了Client，自己重写的异常需要自己手动处理
 					OperateResult connect = client.ConnectServer( );
 					if (connect.IsSuccess)
 					{

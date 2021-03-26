@@ -130,6 +130,7 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
+				wsClient.LogNet?.WriteDebug( ToString( ), $"OpCode[{message.OpCode}] HasMask[{message.HasMask}] Payload: {message.Payload.ToHexString( )}" );
 				Invoke( new Action( ( ) =>
 				{
 					string msg = Encoding.UTF8.GetString( message.Payload );
@@ -137,7 +138,7 @@ namespace HslCommunicationDemo
 					{
 						try
 						{
-							msg = System.Xml.Linq.XElement.Parse( msg ).ToString( );
+							msg = XElement.Parse( msg ).ToString( );
 						}
 						catch
 						{
@@ -156,9 +157,8 @@ namespace HslCommunicationDemo
 						}
 					}
 
-
 					if (radioButton2.Checked)
-						textBox8.AppendText( msg + Environment.NewLine );
+						wsClient.LogNet?.WriteInfo( msg );
 					else if (radioButton1.Checked)
 						textBox8.Text = msg;
 				} ) );
@@ -197,7 +197,7 @@ namespace HslCommunicationDemo
 
 		private void button3_Click( object sender, EventArgs e )
 		{
-			OperateResult send = wsClient.SendServer(  textBox4.Text );
+			OperateResult send = wsClient.SendServer( checkBox1.Checked, textBox4.Text );
 
 			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
 		}
@@ -216,15 +216,6 @@ namespace HslCommunicationDemo
 			MessageBox.Show( "暂时不支持" );
 			//for (int i = 0; i < testThreadCount; i++)
 			//	new Thread( new ThreadStart( ThreadPoolTest ) ) { IsBackground = true }.Start( );
-		}
-
-		private void ThreadPoolTest( )
-		{
-			//WebSocketClient ws = new WebSocketClient( textBox1.Text, int.Parse( textBox2.Text ) );
-			//if(ws.ConnectServer( ).IsSuccess)
-			//{
-				
-			//}
 		}
 
 

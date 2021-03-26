@@ -62,6 +62,7 @@
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.button22 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -163,6 +164,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button22);
 			this.panel2.Controls.Add(this.button21);
 			this.panel2.Controls.Add(this.button20);
 			this.panel2.Controls.Add(this.button19);
@@ -433,6 +435,16 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// button22
+			// 
+			this.button22.Location = new System.Drawing.Point(521, 42);
+			this.button22.Name = "button22";
+			this.button22.Size = new System.Drawing.Size(96, 29);
+			this.button22.TabIndex = 41;
+			this.button22.Text = "系统语言";
+			this.button22.UseVisualStyleBackColor = true;
+			this.button22.Click += new System.EventHandler(this.button22_Click);
+			// 
 			// FormCncFanuc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -491,5 +503,6 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button19;
-    }
+		private System.Windows.Forms.Button button22;
+	}
 }

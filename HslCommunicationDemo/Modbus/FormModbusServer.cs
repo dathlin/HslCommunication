@@ -29,6 +29,7 @@ namespace HslCommunicationDemo
 
             comboBox2.SelectedIndex = 0;
             comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
+			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
             checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
             checkBox2.CheckedChanged += CheckBox2_CheckedChanged;
 
@@ -44,10 +45,19 @@ namespace HslCommunicationDemo
                 label14.Text = "Com:";
                 button5.Text = "Open Com";
                 checkBox3.Text = "str-reverse";
+                checkBox1.Text = "Whether to run remote write operation";
             }
         }
 
-        private void CheckBox2_CheckedChanged( object sender, EventArgs e )
+		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
+        {
+            if (busTcpServer != null)
+            {
+                busTcpServer.EnableWrite = checkBox1.Checked;
+            }
+        }
+
+		private void CheckBox2_CheckedChanged( object sender, EventArgs e )
         {
             if (busTcpServer != null)
             {
@@ -101,6 +111,7 @@ namespace HslCommunicationDemo
                 busTcpServer = new HslCommunication.ModBus.ModbusTcpServer( );                       // 实例化对象
                 busTcpServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 busTcpServer.OnDataReceived += BusTcpServer_OnDataReceived;
+                busTcpServer.EnableWrite = checkBox1.Checked;
 
                 // add some accounts
                 busTcpServer.AddAccount( "admin", "123456" );
@@ -131,9 +142,22 @@ namespace HslCommunicationDemo
             button11.Enabled = false;
         }
 
-        private void BusTcpServer_OnDataReceived( object sender, byte[] modbus )
+        private void BusTcpServer_OnDataReceived( object sender, object source, byte[] modbus )
         {
             // 我们可以捕获到接收到的客户端的modbus报文
+            // 如果是TCP接收的
+            if (source is HslCommunication.Core.Net.AppSession session)
+            {
+                // 获取当前客户的IP地址
+                string ip = session.IpAddress;
+            }
+
+            // 如果是串口接收的
+            if (source is System.IO.Ports.SerialPort serialPort)
+            {
+                // 获取当前的串口的名称
+                string portName = serialPort.PortName;
+            }
         }
 
         #endregion

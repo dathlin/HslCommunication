@@ -216,7 +216,7 @@ namespace HslCommunicationDemo.PLC
             this.OnDataReceived += My_modbus_server_OnDataReceived;///截取modbus的信号进行处理
         }
 
-        private void My_modbus_server_OnDataReceived( object sender, byte[] data )
+        private void My_modbus_server_OnDataReceived( object sender, object source, byte[] data )
         {
             byte[] swap = new byte[2];
             if (modbus_buffer != null)

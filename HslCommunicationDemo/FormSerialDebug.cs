@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using HslCommunication;
+using HslCommunication.MQTT;
 
 namespace HslCommunicationDemo
 {
@@ -109,6 +110,24 @@ namespace HslCommunicationDemo
                 return;
             }
 
+            if (checkBox6.Checked)
+            {
+                mqttClient?.ConnectClose( );
+                mqttClient = new MqttClient( new MqttConnectionOptions( )
+                {
+                    IpAddress = textBox8.Text,
+                    Port = int.Parse( textBox7.Text ),
+                    Credentials = new MqttCredential( textBox10.Text, textBox9.Text ),
+                    ConnectTimeout = 3000,
+                } );
+                OperateResult connect = mqttClient.ConnectServer( );
+                if (!connect.IsSuccess)
+                {
+                    MessageBox.Show( "MQTT Connected failed, not use it" );
+                    mqttClient = null;
+                }
+            }
+
 
             SP_ReadData = new SerialPort( );
             SP_ReadData.PortName = comboBox2.Text;
@@ -154,6 +173,12 @@ namespace HslCommunicationDemo
             }
 
             if (buffer.Count == 0) return;
+
+            mqttClient?.PublishMessage( new MqttApplicationMessage( )
+            {
+                Topic = textBox1.Text,
+                Payload = buffer.ToArray( ),
+            } );
 
             Invoke( new Action( ( ) =>
              {
@@ -267,6 +292,7 @@ namespace HslCommunicationDemo
         private bool toledoThread = false;
         private Random random = new Random( );
         private float toledoWeight = 30f;
+        private MqttClient mqttClient;
 
         private void ToledoTest( )
         {

@@ -201,6 +201,20 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button22_Click( object sender, EventArgs e )
+		{
+			// 系统语言
+			OperateResult<ushort> read = fanuc.ReadLanguage( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = read.Content.ToString() + Environment.NewLine +
+					"此处举几个常用值 0: 英语 1: 日语 2: 德语 3: 法语 4: 中文繁体 6: 韩语 15: 中文简体 16: 俄语 17: 土耳其语";
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
 		private void button12_Click( object sender, EventArgs e )
 		{
 			OperateResult<double[]> read = fanuc.ReadDeviceWorkPiecesSize( );
@@ -342,6 +356,7 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 
 

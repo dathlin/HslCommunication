@@ -105,6 +105,7 @@ namespace HslCommunicationDemo
 				mqttServer.RegisterMqttRpcApi( "Account", this );
 				mqttServer.RegisterMqttRpcApi( "Siemens", siemens );               // 注册一个西门子PLC的服务接口的示例
 				mqttServer.RegisterMqttRpcApi( "TimeOut", typeof(HslTimeOut) );    // 注册的类的静态方法和静态属性
+				mqttServer.RegisterMqttRpcApi( "Fanuc", new HslCommunication.CNC.Fanuc.FanucSeries0i( "127.0.0.1" ) );
 				mqttServer.ServerStart( int.Parse( textBox2.Text ) );
 				mqttServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				mqttServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
@@ -238,6 +239,12 @@ namespace HslCommunicationDemo
 		public OperateResult<string> ReadInt( string address, short length )
 		{
 			return OperateResult.CreateSuccessResult( "成功:" + address );
+		}
+
+		[HslMqttApi( "读取设备的信息，address: 设备的地址 length: 读取的数据长度" )]
+		public OperateResult<int, string> ReadABC( string address )
+		{
+			return OperateResult.CreateSuccessResult( random.Next(1000), "成功:" + address );
 		}
 
 		[HslMqttApi( "读取设备的Int16信息，address: 设备的地址 length: 读取的数据长度" )]

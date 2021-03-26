@@ -60,8 +60,6 @@ namespace HslCommunicationDemo
 				label14.Text = "Results:";
 				button26.Text = "Read";
 
-				checkBox1.Text = "change SA1 value after read failed";
-
 				groupBox3.Text = "Bulk Read test";
 				groupBox4.Text = "Message reading test, hex string needs to be filled in";
 				groupBox5.Text = "Special function test";
@@ -85,14 +83,6 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-
-			if (!byte.TryParse( textBox15.Text, out byte SA1 ))
-			{
-				MessageBox.Show( "SA1 Input Wrong！" );
-				return;
-			}
-
-
 			if (!byte.TryParse( textBox16.Text, out byte DA2 ))
 			{
 				MessageBox.Show( "PLC DA2 input wrong！" );
@@ -101,25 +91,24 @@ namespace HslCommunicationDemo
 			
 			omronFinsNet.IpAddress = textBox1.Text;
 			omronFinsNet.Port = port;
-			omronFinsNet.SA1 = SA1;
 			omronFinsNet.DA2 = DA2;
 			omronFinsNet.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
-			omronFinsNet.IsChangeSA1AfterReadFailed = checkBox1.Checked;
 
-			// OperateResult connect = OperateResult.CreateSuccessResult( ); 
 			OperateResult connect = omronFinsNet.ConnectServer( );
 			if (connect.IsSuccess)
 			{
-				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+				MessageBox.Show( StringResources.Language.ConnectedSuccess );
 				button2.Enabled = true;
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
+				textBox15.Text = omronFinsNet.SA1.ToString( );
+				textBox3.Text = omronFinsNet.DA1.ToString( );
 				userControlReadWriteOp1.SetReadWriteNet( omronFinsNet, "D100", true );
 			}
 			else
 			{
-				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+				MessageBox.Show( StringResources.Language.ConnectedFailed + " " + connect.ToMessageShowString( ) );
 			}
 		}
 
@@ -172,7 +161,6 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlNetNumber, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUnitNumber, textBox16.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
-			element.SetAttributeValue( DemoDeviceList.XmlChangeSA1, checkBox1.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -183,7 +171,6 @@ namespace HslCommunicationDemo
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlNetNumber ).Value;
 			textBox16.Text = element.Attribute( DemoDeviceList.XmlUnitNumber ).Value;
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
-			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlChangeSA1 ).Value );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

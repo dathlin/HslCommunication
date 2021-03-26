@@ -200,7 +200,14 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+					if (msg.StartsWith( "\"{" ) && msg.EndsWith( "}\"" ))
+					{
+						msg = Newtonsoft.Json.Linq.JObject.Parse( Newtonsoft.Json.JsonConvert.DeserializeObject<string>( msg ) ).ToString( );
+					}
+					else
+					{
+						msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+					}
 				}
 				catch
 				{
@@ -258,7 +265,14 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+					if (msg.StartsWith( "\"{" ) && msg.EndsWith( "}\"" ))
+					{
+						msg = Newtonsoft.Json.Linq.JObject.Parse( Newtonsoft.Json.JsonConvert.DeserializeObject<string>( msg ) ).ToString( );
+					}
+					else
+					{
+						msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+					}
 				}
 				catch
 				{
@@ -301,7 +315,14 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+					if (msg.StartsWith( "\"{" ) && msg.EndsWith( "}\"" ))
+					{
+						msg = Newtonsoft.Json.Linq.JObject.Parse( Newtonsoft.Json.JsonConvert.DeserializeObject<string>( msg ) ).ToString( );
+					}
+					else
+					{
+						msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+					}
 				}
 				catch
 				{
@@ -355,7 +376,14 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+					if(msg.StartsWith("\"{") && msg.EndsWith( "}\"" ))
+					{
+						msg = Newtonsoft.Json.Linq.JObject.Parse( Newtonsoft.Json.JsonConvert.DeserializeObject<string>( msg ) ).ToString( );
+					}
+					else
+					{
+						msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+					}
 				}
 				catch
 				{

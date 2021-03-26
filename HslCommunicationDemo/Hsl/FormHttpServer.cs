@@ -81,6 +81,7 @@ namespace HslCommunicationDemo
 
         private Dictionary<string, string> returnWeb = new Dictionary<string, string>( );
         private Dictionary<string, string> postWeb = new Dictionary<string, string>( );
+        private Random random = new Random( );
 
         [HslMqttApi( HttpMethod = "POST" )]
         public OperateResult CheckAccount(string name, string password )
@@ -94,6 +95,12 @@ namespace HslCommunicationDemo
         public int GetHslCommunication( int id )
         {
             return id + 1;
+        }
+
+        [HslMqttApi( "读取设备的信息，address: 设备的地址 length: 读取的数据长度" )]
+        public OperateResult<int, string> ReadABC( string address )
+        {
+            return OperateResult.CreateSuccessResult( random.Next( 1000 ), "成功:" + address );
         }
 
         private string HandleRequest( HttpListenerRequest request, HttpListenerResponse response, string data )

@@ -95,9 +95,22 @@ namespace HslCommunicationDemo
 			button11.Enabled = false;
 		}
 
-		private void BusTcpServer_OnDataReceived( object sender, byte[] receive )
+		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] receive )
 		{
-			// 可以对接收到的数据进行二次处理
+			// 我们可以捕获到接收到的客户端的modbus报文
+			// 如果是TCP接收的
+			if (source is HslCommunication.Core.Net.AppSession session)
+			{
+				// 获取当前客户的IP地址
+				string ip = session.IpAddress;
+			}
+
+			// 如果是串口接收的
+			if (source is System.IO.Ports.SerialPort serialPort)
+			{
+				// 获取当前的串口的名称
+				string portName = serialPort.PortName;
+			}
 		}
 
 		#endregion

@@ -35,19 +35,21 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V9.6.3
-1. SickIcrTcpServer: 修复手动连接扫码设备的网络在关闭服务器后仍然会自动重连的bug。
-2. SoftBasic: 删除SpliceTwoByteArray及SpliceByteArray方法，改为泛型支持的SpliceArray方法，支持任意类型拼接，添加了扩展方法支持。
-3. Modbus: 支持 0x16 功能码，用于掩码操作，支持对寄存器地址的位操作，需要设备方支持，该功能仅支持商业授权使用。
-4. Modbus: 读取线圈和输入线圈的长度支持任意，内部按照2000长度自动切割，读取寄存器和输入寄存器按照120自动切割，该功能商业授权特权，普通的VIP用户存在长度限制。
-5. MqttSyncClient: 新增ReadRpc<T>(string topic, string payload )方法，专门用来读取注册的RPC接口的，自动json转换类型。
-6. MqttSyncClientPool: 连接池优化，注释优化，添加了一些缺失的方法。该功能商业授权特权。
-7. RedisClientPool: 连接池优化，注释优化。该功能商业授权特权。
-8. LogNet: 日志部分新增一个 ConsoleOutput 属性，如果设置为 true，那么日志就会在控制台进行输出，等级不一样的日志，文字颜色不一样。
-9. LogNet: 日志部分的记录优化调整，取消了一些底层的重复记录的日志内容，针对 MQTT, Websocket, HTTP 及虚拟PLC相关的日志记录根据信息进行优化。
-10. 祝大家新年生意滚滚，身体健康，牛年大吉。
-11. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
-12. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V9.6.6
+1. SoftCRC16: 计算CRC16的辅助方法，开放预置值的设定，可以自由的指定。
+2. FanucSeries0i: 新增一个读取机床系统语言的api，读取之后将会自动切换语言，暂不支持根据消息自动匹配编码解析。
+3. SiemensS7Net: OperateResult<byte[]> Read( string[] address, ushort[] length )接口添加RPC支持
+4. NetworkDataServerBase: OnDataReceived事件签名修改为DataReceivedDelegate( object sender, object source, byte[] data )，追加一个source参数，可用来获取客户端IP地址，具体看api文档
+5. NetworkDoubleBase: 增加LocalBinding属性，如果需要绑定本地ip或是端口的，可以设置，所有的网络类PLC都支持绑定本地的ip端口操作了。
+6. NetworkUdpBase: 增加LocalBinding属性，如果需要绑定本地ip或是端口的，可以设置，所有的网络类PLC都支持绑定本地的ip端口操作了。
+7. SiemensS7Net: 完善异步的PDU自动长度信息，新增AI,AQ地址的读写，地址格式：AI0,AQ0，欢迎大家测试。
+8. OmronFinsNet: 欧姆龙FINSTCP协议的SA1机制调整为自动获取，不需要在手动设置，修复错误信息文本和错误码不匹配的bug。
+9. MqttClient: 修复在网络异常导致正在重连服务器的时候，调用ConnectClose方法后，后台仍然不停的重连服务器的BUG。
+10. NetworkDeviceSoloBase: 删除这个文件，并优化相关的串口透传类。全部改为继承自：NetworkDeviceBase
+11. NetworkDataServerBase: 所有派生类的虚拟服务器，包括modbus，s7, mc, fins等服务器全部支持设置是否允许远程写入操作，modbus的demo界面添加是否允许的选项。
+12. WebSocketClient: 修复客户量的Request报文少一个换行信号在某些服务器会连接失败的bug，新增两个发送数据的api，发送数据更加的灵活。
+13. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
+14. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 
