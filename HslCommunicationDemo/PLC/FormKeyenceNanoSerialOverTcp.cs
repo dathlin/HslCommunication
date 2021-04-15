@@ -20,11 +20,11 @@ namespace HslCommunicationDemo
         public FormKeyenceNanoSerialOverTcp( )
         {
             InitializeComponent( );
-            keyenceNanoSerial = new KeyenceNanoSerialOverTcp( );
+            keyence = new KeyenceNanoSerialOverTcp( );
         }
 
 
-        private KeyenceNanoSerialOverTcp keyenceNanoSerial = null;
+        private KeyenceNanoSerialOverTcp keyence = null;
 
 
         private void FormSiemens_Load( object sender, EventArgs e )
@@ -53,6 +53,8 @@ namespace HslCommunicationDemo
                 label16.Text = "Message:";
                 label14.Text = "Results:";
                 button26.Text = "Read";
+                label1.Text = "Station:";
+                button4.Text = "Annotation";
 
                 groupBox3.Text = "Bulk Read test";
                 groupBox4.Text = "Message reading test, hex string needs to be filled in";
@@ -74,23 +76,31 @@ namespace HslCommunicationDemo
                 return;
             }
 
-            keyenceNanoSerial?.ConnectClose( );
-            keyenceNanoSerial = new KeyenceNanoSerialOverTcp( );
-            keyenceNanoSerial.IpAddress = textBox1.Text;
-            keyenceNanoSerial.Port = port;
+            if (!byte.TryParse( textBox3.Text, out byte station ))
+            {
+                MessageBox.Show( "Station int wrong, it needs 0 - 255" );
+                return;
+            }
+
+
+            keyence?.ConnectClose( );
+            keyence = new KeyenceNanoSerialOverTcp( );
+            keyence.IpAddress = textBox1.Text;
+            keyence.Port = port;
+            keyence.Station = station;
 
             try
             {
-                OperateResult connect = keyenceNanoSerial.ConnectServer( );
+                OperateResult connect = keyence.ConnectServer( );
                 if (connect.IsSuccess)
                 {
-                    MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+                    MessageBox.Show( StringResources.Language.ConnectedSuccess );
                     button2.Enabled = true;
                     button1.Enabled = false;
                     panel2.Enabled = true;
 
-                    userControlReadWriteOp1.SetReadWriteNet( keyenceNanoSerial, "DM0", false );
-                    userControlCurve1.ReadWriteNet = keyenceNanoSerial;
+                    userControlReadWriteOp1.SetReadWriteNet( keyence, "DM0", false );
+                    userControlCurve1.ReadWriteNet = keyence;
                 }
                 else
                 {
@@ -107,13 +117,13 @@ namespace HslCommunicationDemo
         private void button2_Click( object sender, EventArgs e )
         {
             // 断开连接
-            keyenceNanoSerial.ConnectClose( );
+            keyence.ConnectClose( );
             button2.Enabled = false;
             button1.Enabled = true;
             panel2.Enabled = false;
         }
 
-        
+
 
         #endregion
 
@@ -121,44 +131,31 @@ namespace HslCommunicationDemo
 
         private void button25_Click( object sender, EventArgs e )
         {
-            if (int.Parse(textBox9.Text)>64)
-            {
-                MessageBox.Show("批量读取int32最多支持64个！");
-                return;
-            }
             try
             {
-                OperateResult<int[]> read = keyenceNanoSerial.ReadInt32(textBox6.Text, ushort.Parse(textBox9.Text));
+                OperateResult<byte[]> read = keyence.Read( textBox6.Text, ushort.Parse( textBox9.Text ) );
                 if (read.IsSuccess)
                 {
-                    string result = "";
-                    for(int i =0; i<read.Content.Length;i++)
-                    {
-                        result += read.Content[i].ToString() + ",";
-                    }
-                    textBox10.Text = "Result：" + result;
+                    textBox10.Text = "Result：" + read.Content.ToHexString( ' ' );
                 }
                 else
                 {
-                    MessageBox.Show("Read Failed：" + read.ToMessageShowString());
+                    MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Read Failed：" + ex.Message);
+                MessageBox.Show( "Read Failed：" + ex.Message );
             }
-
         }
-
 
         #endregion
 
         #region 报文读取测试
 
-
         private void button26_Click( object sender, EventArgs e )
         {
-            OperateResult<byte[]> read = keyenceNanoSerial.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
+            OperateResult<byte[]> read = keyence.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
             if (read.IsSuccess)
             {
                 textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -171,6 +168,31 @@ namespace HslCommunicationDemo
 
 
         #endregion
+
+        private void button3_Click( object sender, EventArgs e )
+        {
+            OperateResult<KeyencePLCS> read = keyence.ReadPlcType( );
+            if (read.IsSuccess)
+            {
+                textBox10.Text = read.Content.ToString( );
+            }
+            else
+            {
+                MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+            }
+        }
+        private void button4_Click( object sender, EventArgs e )
+        {
+            OperateResult<string> read = keyence.ReadAddressAnnotation( textBox6.Text );
+            if (read.IsSuccess)
+            {
+                textBox10.Text = read.Content;
+            }
+            else
+            {
+                MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+            }
+        }
 
         public override void SaveXmlParameter( XElement element )
         {
@@ -189,5 +211,6 @@ namespace HslCommunicationDemo
         {
             userControlHead1_SaveConnectEvent( sender, e );
         }
-    }
+
+	}
 }

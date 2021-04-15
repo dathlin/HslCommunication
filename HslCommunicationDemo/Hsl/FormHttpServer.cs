@@ -92,6 +92,22 @@ namespace HslCommunicationDemo
         }
 
         [HslMqttApi( HttpMethod = "GET" )]
+        public OperateResult CheckAccountChinese( string name, string password )
+        {
+            if (name != "张三") return new OperateResult( "用户名错误" );
+            if (password != "123456") return new OperateResult( "密码错误" );
+            return OperateResult.CreateSuccessResult( );
+        }
+
+        [HslMqttApi( HttpMethod = "GET" )]
+        public OperateResult 检查AccountChinese( string name, string password )
+        {
+            if (name != "张三") return new OperateResult( "用户名错误" );
+            if (password != "123456") return new OperateResult( "密码错误" );
+            return OperateResult.CreateSuccessResult( );
+        }
+
+        [HslMqttApi( HttpMethod = "GET" )]
         public int GetHslCommunication( int id )
         {
             return id + 1;
@@ -108,7 +124,7 @@ namespace HslCommunicationDemo
             if (request.RawUrl.StartsWith( "/FormHttpServer/" ))
             {
                 // /FormHttpServer/CheckAccount            { "name" : "admin", "password" : "123456" }
-                return HttpServer.HandleObjectMethod( request, data, this );
+                return HttpServer.HandleObjectMethod( request, request.RawUrl, data, this );
             }
             else
             {

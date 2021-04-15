@@ -66,6 +66,8 @@ namespace HslCommunicationDemo
                 label16.Text = "Message:";
                 label14.Text = "Results:";
                 button26.Text = "Read";
+                label2.Text = "Station:";
+                button4.Text = "Annotation";
 
                 groupBox3.Text = "Bulk Read test";
                 groupBox4.Text = "Message reading test, hex string needs to be filled in";
@@ -101,11 +103,16 @@ namespace HslCommunicationDemo
                 MessageBox.Show( DemoUtils.StopBitInputWrong );
                 return;
             }
-            
+
+            if(!byte.TryParse(textBox3.Text,out byte station ))
+            {
+                MessageBox.Show( "Station int wrong, it needs 0 - 255" );
+                return;
+            }
 
             keyenceNanoSerial?.Close( );
             keyenceNanoSerial = new KeyenceNanoSerial( );
-            
+            keyenceNanoSerial.Station = station;
             try
             {
                 keyenceNanoSerial.SerialPortInni( sp =>
@@ -194,7 +201,31 @@ namespace HslCommunicationDemo
 
         #endregion
 
+        private void button3_Click( object sender, EventArgs e )
+        {
+            OperateResult<KeyencePLCS> read = keyenceNanoSerial.ReadPlcType( );
+            if (read.IsSuccess)
+            {
+                textBox10.Text = read.Content.ToString( );
+            }
+            else
+            {
+                MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+            }
+        }
 
+        private void button4_Click( object sender, EventArgs e )
+        {
+            OperateResult<string> read = keyenceNanoSerial.ReadAddressAnnotation( textBox6.Text );
+            if (read.IsSuccess)
+            {
+                textBox10.Text = read.Content;
+            }
+            else
+            {
+                MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+            }
+        }
         public override void SaveXmlParameter( XElement element )
         {
             element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
@@ -218,5 +249,6 @@ namespace HslCommunicationDemo
         {
             userControlHead1_SaveConnectEvent( sender, e );
         }
-    }
+
+	}
 }

@@ -336,6 +336,19 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button23_Click( object sender, EventArgs e )
+		{
+			// 读R数据
+			OperateResult<byte[]> read = fanuc.ReadRData( int.Parse( textBox4.Text ), int.Parse( textBox5.Text ) );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = read.Content.ToHexString( ' ' );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
 
 		public override void SaveXmlParameter( XElement element )
 		{

@@ -35,21 +35,22 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V9.6.6
-1. SoftCRC16: 计算CRC16的辅助方法，开放预置值的设定，可以自由的指定。
-2. FanucSeries0i: 新增一个读取机床系统语言的api，读取之后将会自动切换语言，暂不支持根据消息自动匹配编码解析。
-3. SiemensS7Net: OperateResult<byte[]> Read( string[] address, ushort[] length )接口添加RPC支持
-4. NetworkDataServerBase: OnDataReceived事件签名修改为DataReceivedDelegate( object sender, object source, byte[] data )，追加一个source参数，可用来获取客户端IP地址，具体看api文档
-5. NetworkDoubleBase: 增加LocalBinding属性，如果需要绑定本地ip或是端口的，可以设置，所有的网络类PLC都支持绑定本地的ip端口操作了。
-6. NetworkUdpBase: 增加LocalBinding属性，如果需要绑定本地ip或是端口的，可以设置，所有的网络类PLC都支持绑定本地的ip端口操作了。
-7. SiemensS7Net: 完善异步的PDU自动长度信息，新增AI,AQ地址的读写，地址格式：AI0,AQ0，欢迎大家测试。
-8. OmronFinsNet: 欧姆龙FINSTCP协议的SA1机制调整为自动获取，不需要在手动设置，修复错误信息文本和错误码不匹配的bug。
-9. MqttClient: 修复在网络异常导致正在重连服务器的时候，调用ConnectClose方法后，后台仍然不停的重连服务器的BUG。
-10. NetworkDeviceSoloBase: 删除这个文件，并优化相关的串口透传类。全部改为继承自：NetworkDeviceBase
-11. NetworkDataServerBase: 所有派生类的虚拟服务器，包括modbus，s7, mc, fins等服务器全部支持设置是否允许远程写入操作，modbus的demo界面添加是否允许的选项。
-12. WebSocketClient: 修复客户量的Request报文少一个换行信号在某些服务器会连接失败的bug，新增两个发送数据的api，发送数据更加的灵活。
-13. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
-14. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V9.7.0
+1. OmronFinsNet, OmronFinsUdp, HostLink: 地址的解析优化，在读取的API方法里，自动按照500长度进行切割，可以由 ReadSplits 更改。
+2. FanucSeriesOi: fanuc数控机床支持R数据的读取，参考API： ReadRData(int start, int end)
+3. HslExtension: 新增从字节数组获取位值的扩展方法: GetBoolValue( this byte[] bytes, int bytIndex, int boolIndex )
+4. FatekProgram: 地址解析优化，修复 RT,RC地址解析不正确的bug，读取的字及位长度自动切割，调用不受长度限制。
+5. SoftBasic: 添加设置byte数据的某个位的方法SetBoolOnByteIndex，也可以调用byte的扩展方法，byte.SetBoolByIndex(2, true) 就是设置第二位为true
+6. FujiSPHNet: 新增支持富士的SPH以太网协议，支持M1.0, M3.0, M10.0, I0, Q0地址的读写操作，支持位的读写操作。写位需要谨慎，先读字，修改位，再写入。
+7. net20, net35, net451三个框架版本的项目引用 http.web 组件，用来修复 HttpServer 里url携带中文时，会导致解析乱码的情况，现在支持了中文的api接口注册，中文参数。
+8. HttpServer: 使用了注册RPC接口时，返回调用方的数据内容格式调整为json格式，方便postman等测试工具识别内容。
+9. FujiSPHServer: 新增富士SPH协议的虚拟服务器，支持和FujiSPHNet进行测试通信。支持的地址是一致的。
+10. KeyenceNanoSerial: 基恩士的上位链路协议优化，支持了B，VB的bool读写，W，VM的字读写，新增bool数组写入功能。
+11. KeyenceNanoSerial: 支持了plc型号读取，状态读取，注释读取，扩展缓存器的读写，错误代码提示携带更详细文本，适用于 KeyenceNanoSerialOverTcp
+12. KeyenceNanoServer: 新增基恩士上位链路协议的虚拟服务器，可以和 KeyenceNanoSerialOverTcp 进行通信测试。
+13. KeyenceSR2000: 基恩士扫描的协议的错误提示信息新增了英文模式下的注释，原来的只有中文的提示。
+14. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
+15. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

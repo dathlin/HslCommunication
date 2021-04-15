@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.6.6.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.6.6\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=9.7.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.9.7.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -261,6 +261,24 @@
     </Compile>
     <Compile Include="PLC\FormAllenBradleyDF1Serial.Designer.cs">
       <DependentUpon>FormAllenBradleyDF1Serial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormFujiSPHNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormFujiSPHNet.Designer.cs">
+      <DependentUpon>FormFujiSPHNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceNanoServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormKeyenceNanoServer.Designer.cs">
+      <DependentUpon>FormKeyenceNanoServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormFujiSPHServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormFujiSPHServer.Designer.cs">
+      <DependentUpon>FormFujiSPHServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormMelsecCipNet.cs">
       <SubType>Form</SubType>
@@ -1201,6 +1219,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormAllenBradleyDF1Serial.resx">
       <DependentUpon>FormAllenBradleyDF1Serial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormFujiSPHNet.resx">
+      <DependentUpon>FormFujiSPHNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormKeyenceNanoServer.resx">
+      <DependentUpon>FormKeyenceNanoServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormFujiSPHServer.resx">
+      <DependentUpon>FormFujiSPHServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormMelsecCipNet.resx">
       <DependentUpon>FormMelsecCipNet.cs</DependentUpon>

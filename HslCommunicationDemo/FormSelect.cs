@@ -417,6 +417,7 @@ namespace HslCommunicationDemo
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "MC-3E (ASCII)",         6, typeof( FormKeyenceAscii ) ) );
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Nano (ASCII)",          6, typeof( FormKeyenceNanoSerial ) ) );
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Nano OverTcp",          6, typeof( FormKeyenceNanoSerialOverTcp ) ) );
+			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Nano Server",           6, typeof( FormKeyenceNanoServer ) ) );
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "SR2000 [读码]",         6, typeof( FormKeyenceSR2000 ) ) );
 			treeView1.Nodes.Add( keyencePlc );
 
@@ -459,6 +460,8 @@ namespace HslCommunicationDemo
 			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB [编程口]", 2, typeof( FormFujiSPB ) ) );
 			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB OverTcp", 2, typeof( FormFujiSPBOverTcp ) ) );
 			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB Server", 2, typeof( FormFujiSPBServer ) ) );
+			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPH Net", 2, typeof( FormFujiSPHNet ) ) );
+			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPH Server", 2, typeof( FormFujiSPHServer ) ) );
 			treeView1.Nodes.Add( fujiNode );
 
 			// XinJE Plc
