@@ -426,6 +426,7 @@ namespace HslCommunicationDemo
 			panasonicPlc.Nodes.Add( GetTreeNodeByIndex( "MC-3E (Binary)",         11, typeof( FormPanasonicBinary ) ) );
 			panasonicPlc.Nodes.Add( GetTreeNodeByIndex( "Mewtocol",               11, typeof( FormPanasonicMew ) ) );
 			panasonicPlc.Nodes.Add( GetTreeNodeByIndex( "Mewtocol OverTcp",       11, typeof( FormPanasonicMewOverTcp ) ) );
+			panasonicPlc.Nodes.Add( GetTreeNodeByIndex( "Mewtocol Server",        11, typeof( FormPanasonicMewtocolServer ) ) );
 			treeView1.Nodes.Add( panasonicPlc );
 
 			// Allen Bradlly PLC
@@ -440,7 +441,8 @@ namespace HslCommunicationDemo
 
 			// Beckhoff PLC
 			TreeNode beckhoffPlc = new TreeNode( "Beckhoff Plc[倍福]", 20, 20 );
-			beckhoffPlc.Nodes.Add( GetTreeNodeByIndex( "Ads Net",    20, typeof( FormBeckpffAdsNet ) ) );
+			beckhoffPlc.Nodes.Add( GetTreeNodeByIndex( "Ads Net",    20, typeof( FormBeckhoffAdsNet ) ) );
+			beckhoffPlc.Nodes.Add( GetTreeNodeByIndex( "Ads Server", 20, typeof( FormBeckhoffAdsServer ) ) );
 			treeView1.Nodes.Add( beckhoffPlc );
 
 			// GE PLC
@@ -583,6 +585,8 @@ namespace HslCommunicationDemo
 			instrumentNode.Nodes.Add( new TreeNode( "DAM3601 [阿尔泰科技]" ) { Tag = typeof( FormDAM3601 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645 [电力规约]" ) { Tag = typeof( FormDLT645 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645 OverTcp" ) { Tag = typeof( FormDLT645OverTcp ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "光源控制器" ) { Tag = typeof( Light.FormShineInLight ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DTSU6606 [德力西电表]" ) { Tag = typeof( FormDTSU6606 ) } );
 			treeView1.Nodes.Add( instrumentNode );
 
 			// 托利多电子秤Toledo

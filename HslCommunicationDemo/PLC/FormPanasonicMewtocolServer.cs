@@ -12,9 +12,9 @@ using HslCommunication.ModBus;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormS7Server : HslFormContent
+    public partial class FormPanasonicMewtocolServer : HslFormContent
     {
-        public FormS7Server( )
+        public FormPanasonicMewtocolServer( )
         {
             InitializeComponent( );
         }
@@ -26,11 +26,11 @@ namespace HslCommunicationDemo
 
             if(Program.Language == 2)
             {
-                Text = "S7 Virtual Server [data support i,q,m,db block read and write, db block only one, whether it is DB1.1 or DB100.1 refers to the same]";
+                Text = "Mewtocol Server [data support]";
                 label3.Text = "port:";
                 button1.Text = "Start Server";
                 button11.Text = "Close Server";
-                label11.Text = "This server is not a strict S7 protocol and only supports perfect communication with HSL components.";
+                label11.Text = "This server is not a strict Mewtocol protocol and only supports perfect communication with HSL components.";
             }
             //timer = new Timer( );
             //timer.Interval = 1000;
@@ -38,32 +38,16 @@ namespace HslCommunicationDemo
             //timer.Start( );
         }
 
-        private short m60 = 0;
-        private bool m62 = false;
-        private float m64 = 1.1f;
-
-
-        private void Timer_Tick( object sender, EventArgs e )
-        {
-            m60++;
-            s7NetServer.Write( "M60", m60 );
-            s7NetServer.Write( "M62", !m62 );
-            m62 = !m62;
-            m64 += 1f;
-            if (m64 > 2000) m64 = 1.1f;
-            s7NetServer.Write( "M64", m64 );
-            s7NetServer.Write( "M70", "A" + DateTime.Now.Minute.ToString( ) + DateTime.Now.Second.ToString( ) );
-        }
-
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
         {
-            s7NetServer?.ServerClose( );
+            mewtocolServer?.ServerClose( );
         }
 
         #region Server Start
 
 
-        private HslCommunication.Profinet.Siemens.SiemensS7Server s7NetServer;
+        private HslCommunication.Profinet.Panasonic.PanasonicMewtocolServer mewtocolServer;
+        private Timer timer;
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -76,13 +60,13 @@ namespace HslCommunicationDemo
             try
             {
 
-                s7NetServer = new HslCommunication.Profinet.Siemens.SiemensS7Server( );                       // 实例化对象
-                s7NetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
-                s7NetServer.OnDataReceived += BusTcpServer_OnDataReceived;
+                mewtocolServer = new HslCommunication.Profinet.Panasonic.PanasonicMewtocolServer( );                       // 实例化对象
+                mewtocolServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
+                mewtocolServer.OnDataReceived += BusTcpServer_OnDataReceived;
                 
-                s7NetServer.ServerStart( port );
+                mewtocolServer.ServerStart( port );
 
-                userControlReadWriteServer1.SetReadWriteServer( s7NetServer, "M100" );
+                userControlReadWriteServer1.SetReadWriteServer( mewtocolServer, "D100" );
                 button1.Enabled = false;
                 panel2.Enabled = true;
                 button11.Enabled = true;
@@ -97,7 +81,7 @@ namespace HslCommunicationDemo
         private void button11_Click( object sender, EventArgs e )
         {
             // 停止服务
-            s7NetServer?.ServerClose( );
+            mewtocolServer?.ServerClose( );
             button1.Enabled = true;
             button11.Enabled = false;
         }

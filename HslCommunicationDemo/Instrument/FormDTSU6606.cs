@@ -8,28 +8,27 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet;
 using HslCommunication;
-using HslCommunication.ModBus;
-using System.Threading;
+using HslCommunication.Instrument.Delixi;
 using System.IO.Ports;
 using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormModbusAscii : HslFormContent
+    public partial class FormDTSU6606 : HslFormContent
     {
-        public FormModbusAscii( )
+        public FormDTSU6606( )
         {
             InitializeComponent( );
         }
 
-
-        private ModbusAscii busAsciiClient = null;
-
+        private DTSU6606Serial delixi = null;
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
             panel2.Enabled = false;
-            comboBox1.SelectedIndex = 0;
+            comboBox1.SelectedIndex = 2;
+
+
 
             comboBox2.SelectedIndex = 0;
             comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
@@ -46,15 +45,20 @@ namespace HslCommunicationDemo
             }
 
             Language( Program.Language );
-        }
 
+
+            hslCurve1.SetLeftCurve( "电压A", null );
+            hslCurve1.SetLeftCurve( "电压B", null );
+            hslCurve1.SetLeftCurve( "电压C", null );
+            hslCurve1.SetRightCurve( "频率", null );
+        }
 
 
         private void Language( int language )
         {
             if (language == 2)
             {
-                Text = "Modbus Ascii Read Demo";
+                Text = "Delixi Read Demo";
 
                 label1.Text = "Com:";
                 label3.Text = "baudRate:";
@@ -69,14 +73,9 @@ namespace HslCommunicationDemo
 
                 label11.Text = "Address:";
                 label12.Text = "length:";
-                button25.Text = "Bulk Read";
                 label13.Text = "Results:";
                 label16.Text = "Message:";
                 label14.Text = "Results:";
-                button26.Text = "Read";
-
-                groupBox3.Text = "Bulk Read test";
-                groupBox4.Text = "Message reading test, hex string needs to be filled in,without crc";
                 groupBox5.Text = "Special function test";
 
                 comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
@@ -85,39 +84,41 @@ namespace HslCommunicationDemo
 
         private void CheckBox3_CheckedChanged( object sender, EventArgs e )
         {
-            if (busAsciiClient != null)
+            if (delixi != null)
             {
-                busAsciiClient.IsStringReverse = checkBox3.Checked;
+                delixi.IsStringReverse = checkBox3.Checked;
             }
         }
 
         private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if (busAsciiClient != null)
+            if (delixi != null)
             {
                 switch (comboBox2.SelectedIndex)
                 {
-                    case 0: busAsciiClient.DataFormat = HslCommunication.Core.DataFormat.ABCD; break;
-                    case 1: busAsciiClient.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
-                    case 2: busAsciiClient.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
-                    case 3: busAsciiClient.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
+                    case 0: delixi.DataFormat = HslCommunication.Core.DataFormat.ABCD; break;
+                    case 1: delixi.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
+                    case 2: delixi.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
+                    case 3: delixi.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
                     default: break;
                 }
             }
         }
 
+
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
         {
 
         }
-        
+
+
         #region Connect And Close
 
 
 
         private void button1_Click( object sender, EventArgs e )
         {
-            if(!int.TryParse(textBox2.Text,out int baudRate ))
+            if (!int.TryParse( textBox2.Text, out int baudRate ))
             {
                 MessageBox.Show( DemoUtils.BaudRateInputWrong );
                 return;
@@ -136,23 +137,24 @@ namespace HslCommunicationDemo
             }
 
 
-            if (!byte.TryParse(textBox15.Text,out byte station))
+            if (!byte.TryParse( textBox15.Text, out byte station ))
             {
-                MessageBox.Show( "station input wrong！" );
+                MessageBox.Show( "Station input wrong！" );
                 return;
             }
 
-            busAsciiClient?.Close( );
-            busAsciiClient = new ModbusAscii( station );
-            busAsciiClient.AddressStartWithZero = checkBox1.Checked;
+            delixi?.Close( );
+            delixi = new DTSU6606Serial( station );
+            delixi.AddressStartWithZero = checkBox1.Checked;
+
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
-            busAsciiClient.IsStringReverse = checkBox3.Checked;
-            busAsciiClient.RtsEnable = checkBox5.Checked;
+            delixi.IsStringReverse = checkBox3.Checked;
+
 
             try
             {
-                busAsciiClient.SerialPortInni( sp =>
+                delixi.SerialPortInni( sp =>
                  {
                      sp.PortName = comboBox3.Text;
                      sp.BaudRate = baudRate;
@@ -160,13 +162,14 @@ namespace HslCommunicationDemo
                      sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
                      sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
                  } );
-                busAsciiClient.Open( );
+                delixi.RtsEnable = checkBox5.Checked;
+                delixi.Open( );
 
                 button2.Enabled = true;
                 button1.Enabled = false;
                 panel2.Enabled = true;
 
-                userControlReadWriteOp1.SetReadWriteNet( busAsciiClient, "100", false );
+                userControlReadWriteOp1.SetReadWriteNet( delixi, "100", false );
             }
             catch (Exception ex)
             {
@@ -177,44 +180,13 @@ namespace HslCommunicationDemo
         private void button2_Click( object sender, EventArgs e )
         {
             // 断开连接
-            busAsciiClient.Close( );
+            delixi.Close( );
             button2.Enabled = false;
             button1.Enabled = true;
             panel2.Enabled = false;
         }
 
-        
-
         #endregion
-
-        #region 批量读取测试
-
-        private void button25_Click( object sender, EventArgs e )
-        {
-            DemoUtils.BulkReadRenderResult( busAsciiClient, textBox6, textBox9, textBox10 );
-        }
-
-        #endregion
-
-        #region 报文读取测试
-
-
-        private void button26_Click( object sender, EventArgs e )
-        {
-            OperateResult<byte[]> read = busAsciiClient.ReadFromCoreServer( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
-            if (read.IsSuccess)
-            {
-                textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-            }
-            else
-            {
-                MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-            }
-        }
-
-
-        #endregion
-
 
         public override void SaveXmlParameter( XElement element )
         {
@@ -248,6 +220,82 @@ namespace HslCommunicationDemo
         private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
         {
             userControlHead1_SaveConnectEvent( sender, e );
+        }
+
+        private void button3_Click( object sender, EventArgs e )
+        {
+            OperateResult<ElectricalParameters> read = delixi.ReadElectricalParameters( );
+            if (read.IsSuccess)
+            {
+                ShowElectrical( read.Content );
+            }
+            else
+            {
+                MessageBox.Show( "Read Failed: " + read.Message );
+            }
+        }
+
+        private void ShowElectrical( ElectricalParameters electrical )
+        {
+            textBox1.Text = electrical.VoltageA.ToString( );
+            textBox3.Text = electrical.VoltageB.ToString( );
+            textBox4.Text = electrical.VoltageC.ToString( );
+            textBox5.Text = electrical.CurrentA.ToString( );
+            textBox6.Text = electrical.CurrentB.ToString( );
+            textBox7.Text = electrical.CurrentC.ToString( );
+            textBox8.Text = electrical.Frequency.ToString( );
+
+            textBox9.Text = electrical.InstantaneousActivePowerA.ToString( );
+            textBox10.Text = electrical.InstantaneousActivePowerB.ToString( );
+            textBox11.Text = electrical.InstantaneousActivePowerC.ToString( );
+            textBox13.Text = electrical.InstantaneousTotalActivePower.ToString( );
+            textBox14.Text = electrical.InstantaneousReactivePowerA.ToString( );
+            textBox18.Text = electrical.InstantaneousReactivePowerB.ToString( );
+            textBox19.Text = electrical.InstantaneousReactivePowerC.ToString( );
+            textBox20.Text = electrical.InstantaneousTotalReactivePower.ToString( );
+
+            textBox21.Text = electrical.InstantaneousApparentPowerA.ToString( );
+            textBox22.Text = electrical.InstantaneousApparentPowerB.ToString( );
+            textBox23.Text = electrical.InstantaneousApparentPowerC.ToString( );
+            textBox24.Text = electrical.InstantaneousTotalApparentPower.ToString( );
+            textBox25.Text = electrical.PowerFactorA.ToString( );
+            textBox26.Text = electrical.PowerFactorB.ToString( );
+            textBox27.Text = electrical.PowerFactorC.ToString( );
+            textBox28.Text = electrical.TotalPowerFactor.ToString( );
+        }
+
+        private Timer timer;
+        bool timerRead = false;
+        private void button4_Click( object sender, EventArgs e )
+        {
+            // 定时读取
+            if (timerRead)
+            {
+                timerRead = false;
+                timer?.Dispose( );
+                button4.Text = "定时读取";
+            }
+            else
+            {
+                timerRead = true;
+                timer = new Timer( );
+                timer.Interval = int.Parse( textBox12.Text );
+                timer.Tick += Timer_Tick;
+                timer.Start( );
+                button4.Text = "Stop";
+            }
+        }
+
+        private void Timer_Tick( object sender, EventArgs e )
+        {
+            OperateResult<ElectricalParameters> read = delixi.ReadElectricalParameters( );
+            if (read.IsSuccess)
+            {
+                ShowElectrical( read.Content );
+                hslCurve1.AddCurveData(
+                    new string[] { "电压A", "电压B", "电压C", "频率" },
+                    new float[] { read.Content.VoltageA, read.Content.VoltageB, read.Content.VoltageC, read.Content.Frequency } );
+            }
         }
     }
 }

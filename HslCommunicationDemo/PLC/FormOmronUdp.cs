@@ -193,5 +193,45 @@ namespace HslCommunicationDemo
 				}
 			}
 		}
+
+		private void button3_Click( object sender, EventArgs e )
+		{
+			// run
+			OperateResult run = omronFinsUdp.Run( );
+			if (run.IsSuccess)
+				MessageBox.Show( "Run success" );
+			else
+				MessageBox.Show( "Run failed:" + run.Message );
+		}
+
+		private void button4_Click( object sender, EventArgs e )
+		{
+			// stop
+			OperateResult stop = omronFinsUdp.Stop( );
+			if (stop.IsSuccess)
+				MessageBox.Show( "Run success" );
+			else
+				MessageBox.Show( "Run failed:" + stop.Message );
+		}
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+			// read cpu data
+			OperateResult<OmronCpuUnitData> read = omronFinsUdp.ReadCpuUnitData( );
+			if (read.IsSuccess)
+				textBox4.Text = read.Content.ToJsonString( );
+			else
+				MessageBox.Show( "read failed:" + read.Message );
+		}
+
+		private void button6_Click( object sender, EventArgs e )
+		{
+			// read cpu status
+			OperateResult<OmronCpuUnitStatus> read = omronFinsUdp.ReadCpuUnitStatus( );
+			if (read.IsSuccess)
+				textBox4.Text = read.Content.ToJsonString( );
+			else
+				MessageBox.Show( "read failed:" + read.Message );
+		}
 	}
 }

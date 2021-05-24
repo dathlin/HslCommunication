@@ -110,16 +110,29 @@ namespace HslCommunicationDemo.DemoControl
         private Random random = new Random( );
         private string timerAddress = string.Empty;
         private long timerValue = 0;
-        private System.Windows.Forms.Timer timerWrite = null;
+        private Timer timerWrite = null;
+        private bool timeWriteEnable = false;
+
         private void button10_Click( object sender, EventArgs e )
         {
-            // 定时写
-            timerWrite = new System.Windows.Forms.Timer( );
-            timerWrite.Interval = 300;
-            timerWrite.Tick += TimerWrite_Tick;
-            timerWrite.Start( );
-            timerAddress = userControlReadWriteOp1.GetWriteAddress( );
-            button10.Enabled = false;
+            if (timeWriteEnable)
+            {
+                // 停止定时器
+                timeWriteEnable = false;
+                timerWrite?.Dispose( );
+                button10.Text = Program.Language == 2 ? "Timed writing" : "定时写";
+            }
+            else
+            {
+                // 启动定时器
+                timeWriteEnable = true;
+                timerWrite = new Timer( );
+                timerWrite.Interval = 300;
+                timerWrite.Tick += TimerWrite_Tick;
+                timerWrite.Start( );
+                timerAddress = userControlReadWriteOp1.GetWriteAddress( );
+                button10.Text = Program.Language == 2 ? "Stop Timer" : "停止写入";
+            }
         }
 
         private void TimerWrite_Tick( object sender, EventArgs e )

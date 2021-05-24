@@ -175,6 +175,44 @@ namespace HslCommunicationDemo
 			wsServer.PublishAllClientPayload( sb.ToString( ) );
 		}
 
+		private bool startThreadPublish = false;
+		private System.Threading.Thread thread;
+		private void button9_Click( object sender, EventArgs e )
+		{
+			if (startThreadPublish)
+			{
+				startThreadPublish = false;
+				button9.Text = "高频发布测试";
+			}
+			else
+			{
+				startThreadPublish = true;
+				button9.Text = "停止";
+				if (thread == null)
+				{
+					thread = new System.Threading.Thread( new System.Threading.ThreadStart( ThreadTest ) );
+					thread.IsBackground = true;
+					thread.Start( );
+				}
+			}
+		}
+		private void ThreadTest( )
+		{
+			while (true)
+			{
+				System.Threading.Thread.Sleep( 200 );
+				if (startThreadPublish)
+				{
+					for (int i = 0; i < 100; i++)
+					{
+						byte[] buffer = new byte[4096];
+						random.NextBytes( buffer );
+						wsServer.PublishAllClientPayload( buffer.ToHexString( ) );
+					}
+				}
+			}
+		}
+
 		private void button6_Click_1( object sender, EventArgs e )
 		{
 			// 发布指定的主题
@@ -205,13 +243,14 @@ namespace HslCommunicationDemo
 		</title>
 	</head>
 	<body>
-		<div id=" + "\"hsl\"" + @"></div>
+		<div id=""hsl""></div>
 	</body>
-	<script type=" + "\"text/javascript\"" + @">
-		if (" + "\"WebSocket\"" + @" in window)
+	<script type=""text/javascript"">
+		if (""WebSocket"" in window)
 		{
 			// 打开一个 web socket
 			var ws = new WebSocket('ws://127.0.0.1:1883');
+			var count = 0;
 			ws.onopen = function()
 			{
 				 console.log('已经打开...');
@@ -221,7 +260,13 @@ namespace HslCommunicationDemo
 				var received_msg = evt.data;
 				var obj = document.getElementById('hsl');
 				obj.innerText = received_msg;
+				count++;
 			};
+			var int=self.setInterval(""clock()"",1000);
+			function clock()
+			{
+				 console.log('接收次数:' + count);
+			}
 		}
 		else
 		{
@@ -261,7 +306,8 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
-	}
+
+    }
 
 
 	#endregion

@@ -298,7 +298,7 @@
 			this.textBox13.Name = "textBox13";
 			this.textBox13.Size = new System.Drawing.Size(357, 23);
 			this.textBox13.TabIndex = 5;
-			this.textBox13.Text = "00 00 00 00 00 06 FF 03 00 00 00 05";
+			this.textBox13.Text = "01 03 00 00 00 05";
 			// 
 			// label16
 			// 

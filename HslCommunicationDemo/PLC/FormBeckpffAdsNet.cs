@@ -14,9 +14,9 @@ using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormBeckpffAdsNet : HslFormContent
+    public partial class FormBeckhoffAdsNet : HslFormContent
     {
-        public FormBeckpffAdsNet( )
+        public FormBeckhoffAdsNet( )
         {
             InitializeComponent( );
         }
@@ -37,7 +37,7 @@ namespace HslCommunicationDemo
         {
             if (language == 2)
             {
-                Text = "Beckoff AdsNet Read PLC Demo";
+                Text = "Beckhoff AdsNet Read PLC Demo";
 
                 label1.Text = "Ip:";
                 label3.Text = "Port:";
@@ -87,7 +87,7 @@ namespace HslCommunicationDemo
                 OperateResult connect = adsNet.ConnectServer( );
                 if (connect.IsSuccess)
                 {
-                    MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+                    MessageBox.Show( StringResources.Language.ConnectedSuccess );
                     button2.Enabled = true;
                     button1.Enabled = false;
                     panel2.Enabled = true;

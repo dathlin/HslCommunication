@@ -112,6 +112,7 @@ namespace HslCommunicationDemo
                 busTcpServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 busTcpServer.OnDataReceived += BusTcpServer_OnDataReceived;
                 busTcpServer.EnableWrite = checkBox1.Checked;
+                busTcpServer.UseModbusRtuOverTcp = checkBox4.Checked;
 
                 // add some accounts
                 busTcpServer.AddAccount( "admin", "123456" );

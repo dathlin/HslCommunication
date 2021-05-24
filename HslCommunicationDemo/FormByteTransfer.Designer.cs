@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.radioButton16 = new System.Windows.Forms.RadioButton();
+			this.button5 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.radioButton15 = new System.Windows.Forms.RadioButton();
@@ -60,7 +62,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button5 = new System.Windows.Forms.Button();
+			this.radioButton17 = new System.Windows.Forms.RadioButton();
 			this.panel2.SuspendLayout();
 			this.hslPanelText1.SuspendLayout();
 			this.SuspendLayout();
@@ -71,6 +73,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.radioButton17);
+			this.panel2.Controls.Add(this.radioButton16);
 			this.panel2.Controls.Add(this.button5);
 			this.panel2.Controls.Add(this.button4);
 			this.panel2.Controls.Add(this.button3);
@@ -104,6 +108,26 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(977, 594);
 			this.panel2.TabIndex = 33;
+			// 
+			// radioButton16
+			// 
+			this.radioButton16.AutoSize = true;
+			this.radioButton16.Location = new System.Drawing.Point(536, 91);
+			this.radioButton16.Name = "radioButton16";
+			this.radioButton16.Size = new System.Drawing.Size(71, 21);
+			this.radioButton16.TabIndex = 40;
+			this.radioButton16.Text = "GB2312";
+			this.radioButton16.UseVisualStyleBackColor = true;
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(566, 146);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(110, 26);
+			this.button5.TabIndex = 39;
+			this.button5.Text = "图片base64";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
 			// button4
 			// 
@@ -148,9 +172,9 @@
 			// 
 			this.hslPanelText1.Controls.Add(this.textBox3);
 			this.hslPanelText1.Controls.Add(this.label2);
-			this.hslPanelText1.Location = new System.Drawing.Point(571, 37);
+			this.hslPanelText1.Location = new System.Drawing.Point(613, 37);
 			this.hslPanelText1.Name = "hslPanelText1";
-			this.hslPanelText1.Size = new System.Drawing.Size(389, 101);
+			this.hslPanelText1.Size = new System.Drawing.Size(347, 101);
 			this.hslPanelText1.TabIndex = 34;
 			this.hslPanelText1.Text = "时间戳转换";
 			this.hslPanelText1.TextOffect = 20;
@@ -232,7 +256,7 @@
 			// radioButton13
 			// 
 			this.radioButton13.AutoSize = true;
-			this.radioButton13.Location = new System.Drawing.Point(373, 91);
+			this.radioButton13.Location = new System.Drawing.Point(470, 91);
 			this.radioButton13.Name = "radioButton13";
 			this.radioButton13.Size = new System.Drawing.Size(60, 21);
 			this.radioButton13.TabIndex = 27;
@@ -242,7 +266,7 @@
 			// radioButton12
 			// 
 			this.radioButton12.AutoSize = true;
-			this.radioButton12.Location = new System.Drawing.Point(311, 91);
+			this.radioButton12.Location = new System.Drawing.Point(411, 91);
 			this.radioButton12.Name = "radioButton12";
 			this.radioButton12.Size = new System.Drawing.Size(53, 21);
 			this.radioButton12.TabIndex = 26;
@@ -416,15 +440,15 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 34;
 			// 
-			// button5
+			// radioButton17
 			// 
-			this.button5.Location = new System.Drawing.Point(566, 146);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(110, 26);
-			this.button5.TabIndex = 39;
-			this.button5.Text = "图片base64";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.button5_Click);
+			this.radioButton17.AutoSize = true;
+			this.radioButton17.Location = new System.Drawing.Point(311, 91);
+			this.radioButton17.Name = "radioButton17";
+			this.radioButton17.Size = new System.Drawing.Size(96, 21);
+			this.radioButton17.TabIndex = 41;
+			this.radioButton17.Text = "unicode-big";
+			this.radioButton17.UseVisualStyleBackColor = true;
 			// 
 			// FormByteTransfer
 			// 
@@ -484,5 +508,7 @@
         private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.RadioButton radioButton16;
+		private System.Windows.Forms.RadioButton radioButton17;
 	}
 }

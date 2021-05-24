@@ -57,8 +57,15 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label4 = new System.Windows.Forms.Label();
+			this.button6 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
+			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.groupBox5.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
@@ -196,6 +203,12 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Controls.Add(this.label4);
+			this.groupBox5.Controls.Add(this.button6);
+			this.groupBox5.Controls.Add(this.button5);
+			this.groupBox5.Controls.Add(this.button4);
+			this.groupBox5.Controls.Add(this.button3);
+			this.groupBox5.Controls.Add(this.textBox4);
 			this.groupBox5.Location = new System.Drawing.Point(546, 243);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(419, 278);
@@ -354,6 +367,65 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.ForeColor = System.Drawing.Color.Red;
+			this.label4.Location = new System.Drawing.Point(7, 56);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(221, 17);
+			this.label4.TabIndex = 22;
+			this.label4.Text = "Run Stop 请谨慎操作，确认安全为前提";
+			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(274, 22);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(104, 28);
+			this.button6.TabIndex = 21;
+			this.button6.Text = "Cpu Status";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(164, 22);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(104, 28);
+			this.button5.TabIndex = 20;
+			this.button5.Text = "Cpu Data";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(85, 22);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(73, 28);
+			this.button4.TabIndex = 19;
+			this.button4.Text = "Stop";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(6, 22);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(73, 28);
+			this.button3.TabIndex = 18;
+			this.button3.Text = "Run";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(6, 80);
+			this.textBox4.Multiline = true;
+			this.textBox4.Name = "textBox4";
+			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox4.Size = new System.Drawing.Size(407, 192);
+			this.textBox4.TabIndex = 17;
+			// 
 			// FormOmronUdp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -373,6 +445,8 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
@@ -412,5 +486,11 @@
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.GroupBox groupBox5;
 		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.TextBox textBox4;
 	}
 }

@@ -64,7 +64,7 @@
 			// 
 			// menuStrip1
 			// 
-			this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.menuStrip1.BackColor = System.Drawing.Color.DarkGoldenrod;
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem,
             this.简体中文ToolStripMenuItem,
@@ -88,7 +88,7 @@
             this.webSideToolStripMenuItem,
             this.support赞助ToolStripMenuItem,
             this.authorization授权ToolStripMenuItem});
-			this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+			this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(55, 21);
 			this.aboutToolStripMenuItem.Text = "About";
@@ -122,7 +122,7 @@
 			// 
 			// 简体中文ToolStripMenuItem
 			// 
-			this.简体中文ToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+			this.简体中文ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.简体中文ToolStripMenuItem.Name = "简体中文ToolStripMenuItem";
 			this.简体中文ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
 			this.简体中文ToolStripMenuItem.Text = "简体中文";
@@ -130,7 +130,7 @@
 			// 
 			// englishToolStripMenuItem
 			// 
-			this.englishToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+			this.englishToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
 			this.englishToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
 			this.englishToolStripMenuItem.Text = "English";
@@ -138,7 +138,7 @@
 			// 
 			// 论坛toolStripMenuItem
 			// 
-			this.论坛toolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+			this.论坛toolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.论坛toolStripMenuItem.Name = "论坛toolStripMenuItem";
 			this.论坛toolStripMenuItem.Size = new System.Drawing.Size(47, 21);
 			this.论坛toolStripMenuItem.Text = "Blog";
@@ -146,7 +146,7 @@
 			// 
 			// toolStripMenuItem1
 			// 
-			this.toolStripMenuItem1.ForeColor = System.Drawing.Color.Silver;
+			this.toolStripMenuItem1.ForeColor = System.Drawing.Color.White;
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
 			this.toolStripMenuItem1.Size = new System.Drawing.Size(80, 21);
 			this.toolStripMenuItem1.Text = "MesDemo";
@@ -154,7 +154,7 @@
 			// 
 			// 日志ToolStripMenuItem
 			// 
-			this.日志ToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+			this.日志ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.日志ToolStripMenuItem.Name = "日志ToolStripMenuItem";
 			this.日志ToolStripMenuItem.Size = new System.Drawing.Size(67, 21);
 			this.日志ToolStripMenuItem.Text = "API 文档";
@@ -162,14 +162,14 @@
 			// 
 			// verisonToolStripMenuItem
 			// 
-			this.verisonToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+			this.verisonToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.verisonToolStripMenuItem.Name = "verisonToolStripMenuItem";
 			this.verisonToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
 			this.verisonToolStripMenuItem.Text = "Verison";
 			// 
 			// 免责条款ToolStripMenuItem
 			// 
-			this.免责条款ToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+			this.免责条款ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.免责条款ToolStripMenuItem.Name = "免责条款ToolStripMenuItem";
 			this.免责条款ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
 			this.免责条款ToolStripMenuItem.Text = "全国使用情况";
@@ -244,7 +244,7 @@
 			// label1
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label1.BackColor = System.Drawing.Color.DarkGoldenrod;
 			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.label1.Location = new System.Drawing.Point(1031, 3);
 			this.label1.Name = "label1";
@@ -270,7 +270,7 @@
 			// label2
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label2.BackColor = System.Drawing.Color.DarkGoldenrod;
 			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.label2.Location = new System.Drawing.Point(816, 3);
 			this.label2.Name = "label2";

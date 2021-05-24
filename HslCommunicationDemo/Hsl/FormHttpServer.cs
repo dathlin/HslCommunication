@@ -69,6 +69,8 @@ namespace HslCommunicationDemo
                 httpServer.RegisterHttpRpcApi( "", this );
                 httpServer.RegisterHttpRpcApi( "Siemens", siemens );                 // 注册一个西门子PLC的服务接口的示例
                 httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );    // 注册的类的静态方法和静态属性
+                if (checkBox2.Checked) httpServer.SetLoginAccessControl( new HslCommunication.MQTT.MqttCredential[] {
+                new HslCommunication.MQTT.MqttCredential("admin", "123456")} );
 
                 panel2.Enabled = true;
                 button1.Enabled = false;

@@ -73,8 +73,6 @@ namespace HslCommunicationDemo
 
 		#region Connect And Close
 
-
-
 		private void button1_Click( object sender, EventArgs e )
 		{
 			if (!int.TryParse( textBox2.Text, out int port ))
@@ -220,6 +218,46 @@ namespace HslCommunicationDemo
 					// 
 				}
 			}
+		}
+
+		private void button3_Click( object sender, EventArgs e )
+		{
+			// run
+			OperateResult run = omronFinsNet.Run( );
+			if (run.IsSuccess)
+				MessageBox.Show( "Run success" );
+			else
+				MessageBox.Show( "Run failed:" + run.Message );
+		}
+
+		private void button4_Click( object sender, EventArgs e )
+		{
+			// stop
+			OperateResult stop = omronFinsNet.Stop( );
+			if (stop.IsSuccess)
+				MessageBox.Show( "Run success" );
+			else
+				MessageBox.Show( "Run failed:" + stop.Message );
+		}
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+			// read cpu data
+			OperateResult<OmronCpuUnitData> read = omronFinsNet.ReadCpuUnitData( );
+			if (read.IsSuccess)
+				textBox4.Text = read.Content.ToJsonString( );
+			else
+				MessageBox.Show( "read failed:" + read.Message );
+		}
+
+		private void button6_Click( object sender, EventArgs e )
+		{
+			// read cpu status
+			OperateResult<OmronCpuUnitStatus> read = omronFinsNet.ReadCpuUnitStatus( );
+			if (read.IsSuccess)
+				textBox4.Text = read.Content.ToJsonString( );
+			else
+				MessageBox.Show( "read failed:" + read.Message );
 		}
 	}
 }

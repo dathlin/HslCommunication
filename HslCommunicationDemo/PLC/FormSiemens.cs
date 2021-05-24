@@ -54,7 +54,7 @@ namespace HslCommunicationDemo
                 textBox15.Text = "0";
                 textBox16.Text = "0";
             }
-            else if(siemensPLCSelected == SiemensPLCS.S200Smart)
+            else if(siemensPLCSelected == SiemensPLCS.S200Smart || siemensPLCSelected == SiemensPLCS.S200)
             {
                 label4.Visible = false;
                 label5.Visible = false;
@@ -125,7 +125,8 @@ namespace HslCommunicationDemo
             //siemensTcpNet.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Parse( "127.0.0.1" ), 12345 );
             try
             {
-                if (siemensPLCSelected != SiemensPLCS.S200Smart)
+                if (siemensPLCSelected != SiemensPLCS.S200Smart &&
+                    siemensPLCSelected != SiemensPLCS.S200)
                 {
                     siemensTcpNet.Rack = byte.Parse( textBox15.Text );
                     siemensTcpNet.Slot = byte.Parse( textBox16.Text );
@@ -138,7 +139,7 @@ namespace HslCommunicationDemo
                 OperateResult connect = siemensTcpNet.ConnectServer( );
                 if (connect.IsSuccess)
                 {
-                    MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+                    MessageBox.Show( StringResources.Language.ConnectedSuccess );
                     button2.Enabled = true;
                     button1.Enabled = false;
                     panel2.Enabled = true;

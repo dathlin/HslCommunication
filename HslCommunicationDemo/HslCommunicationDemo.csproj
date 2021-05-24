@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=9.7.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.9.7.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.0.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.0.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -244,6 +244,18 @@
     <Compile Include="Instrument\FormDLT645OverTcp.Designer.cs">
       <DependentUpon>FormDLT645OverTcp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instrument\FormDTSU6606.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDTSU6606.Designer.cs">
+      <DependentUpon>FormDTSU6606.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Light\FormShineInLight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Light\FormShineInLight.Designer.cs">
+      <DependentUpon>FormShineInLight.cs</DependentUpon>
+    </Compile>
     <Compile Include="MQTT\FormMqttFileClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +279,12 @@
     </Compile>
     <Compile Include="PLC\FormFujiSPHNet.Designer.cs">
       <DependentUpon>FormFujiSPHNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormBeckhoffAdsServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormBeckhoffAdsServer.Designer.cs">
+      <DependentUpon>FormBeckhoffAdsServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormKeyenceNanoServer.cs">
       <SubType>Form</SubType>
@@ -333,6 +351,12 @@
     </Compile>
     <Compile Include="PLC\FormGeSRTPServer.Designer.cs">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormPanasonicMewtocolServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormPanasonicMewtocolServer.Designer.cs">
+      <DependentUpon>FormPanasonicMewtocolServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormSiemensDTU.cs">
       <SubType>Form</SubType>
@@ -1211,6 +1235,12 @@
     <EmbeddedResource Include="Instrument\FormDLT645OverTcp.resx">
       <DependentUpon>FormDLT645OverTcp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDTSU6606.resx">
+      <DependentUpon>FormDTSU6606.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Light\FormShineInLight.resx">
+      <DependentUpon>FormShineInLight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MQTT\FormMqttFileClient.resx">
       <DependentUpon>FormMqttFileClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -1222,6 +1252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormFujiSPHNet.resx">
       <DependentUpon>FormFujiSPHNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormBeckhoffAdsServer.resx">
+      <DependentUpon>FormBeckhoffAdsServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormKeyenceNanoServer.resx">
       <DependentUpon>FormKeyenceNanoServer.cs</DependentUpon>
@@ -1255,6 +1288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormGeSRTPServer.resx">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormPanasonicMewtocolServer.resx">
+      <DependentUpon>FormPanasonicMewtocolServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormSiemensDTU.resx">
       <DependentUpon>FormSiemensDTU.cs</DependentUpon>
@@ -1855,6 +1891,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\HslCommunication_Net45\HslCommunication_Net45.csproj">
+      <Project>{7f8029da-1b94-4b1d-b91f-5b21dbf2f3a2}</Project>
+      <Name>HslCommunication_Net45</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -105,6 +105,16 @@ namespace HslCommunicationDemo
                     dateTime.AddSeconds(timestamp).ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine );
                     return;
                 }
+                else if (radioButton16.Checked)
+                {
+                    buffer = Encoding.GetEncoding( "gb2312" ).GetBytes( textBox1.Text );
+                    radioButton = radioButton16;
+                }
+                else if (radioButton17.Checked)
+                {
+                    buffer = Encoding.BigEndianUnicode.GetBytes( textBox1.Text );
+                    radioButton = radioButton17;
+                }
             }
             catch(Exception ex)
             {
@@ -231,6 +241,16 @@ namespace HslCommunicationDemo
                 {
                     value = Encoding.Default.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
                     radioButton = radioButton13;
+                }
+                else if (radioButton16.Checked)
+                {
+                    value = Encoding.GetEncoding("gb2312").GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+                    radioButton = radioButton16;
+                }
+                else if (radioButton17.Checked)
+                {
+                    value = Encoding.BigEndianUnicode.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+                    radioButton = radioButton17;
                 }
             }
             catch (Exception ex)

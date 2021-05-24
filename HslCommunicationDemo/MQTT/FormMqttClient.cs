@@ -142,7 +142,7 @@ namespace HslCommunicationDemo
 		}
 
 		private long receiveCount = 0;
-		private void MqttClient_OnMqttMessageReceived( string topic, byte[] payload )
+		private void MqttClient_OnMqttMessageReceived( MqttClient client, string topic, byte[] payload )
 		{
 			try
 			{
@@ -278,11 +278,7 @@ namespace HslCommunicationDemo
 		private void Button7_Click( object sender, EventArgs e )
 		{
 			//OperateResult send = mqttClient.SubscribeMessage( textBox5.Text );
-			OperateResult send = mqttClient.SubscribeMessage( new MqttSubscribeMessage( )
-			{
-				QualityOfServiceLevel = MqttQualityOfServiceLevel.ExactlyOnce,
-				Topics = new string[] { textBox5.Text }
-			} );
+			OperateResult send = mqttClient.SubscribeMessage( new string[] { textBox5.Text } );
 
 			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
 		}

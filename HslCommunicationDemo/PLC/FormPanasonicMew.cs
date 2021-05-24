@@ -189,7 +189,7 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				OperateResult<byte[]> read = panasonicMewtocol.ReadBase( HslCommunication.Serial.SoftCRC16.CRC16(HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text )) );
+				OperateResult<byte[]> read = panasonicMewtocol.ReadFromCoreServer( HslCommunication.Serial.SoftCRC16.CRC16(HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text )) );
 				if (read.IsSuccess)
 				{
 					textBox11.Text = "结果：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
