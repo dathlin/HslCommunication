@@ -57,6 +57,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -69,6 +70,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
@@ -85,16 +87,16 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(317, 9);
+			this.textBox2.Location = new System.Drawing.Point(275, 9);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(141, 23);
+			this.textBox2.Size = new System.Drawing.Size(77, 23);
 			this.textBox2.TabIndex = 11;
 			this.textBox2.Text = "6000";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(263, 12);
+			this.label3.Location = new System.Drawing.Point(221, 12);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 10;
@@ -137,7 +139,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(577, 6);
+			this.button2.Location = new System.Drawing.Point(632, 6);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -147,7 +149,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(480, 6);
+			this.button1.Location = new System.Drawing.Point(535, 6);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -358,6 +360,18 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Checked = true;
+			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox1.Location = new System.Drawing.Point(371, 11);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(99, 21);
+			this.checkBox1.TabIndex = 32;
+			this.checkBox1.Text = "新版本报文？";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
 			// FormMelsecSerialOverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -418,5 +432,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox textBox14;
 		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
+		private System.Windows.Forms.CheckBox checkBox1;
 	}
 }

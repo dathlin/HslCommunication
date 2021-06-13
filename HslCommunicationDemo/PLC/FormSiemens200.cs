@@ -14,9 +14,9 @@ using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormSiemens : HslFormContent
+    public partial class FormSiemens200 : HslFormContent
     {
-        public FormSiemens( SiemensPLCS siemensPLCS )
+        public FormSiemens200( SiemensPLCS siemensPLCS )
         {
             InitializeComponent( );
             siemensPLCSelected = siemensPLCS;
@@ -25,7 +25,7 @@ namespace HslCommunicationDemo
 
 
         private SiemensS7Net siemensTcpNet = null;
-        private SiemensPLCS siemensPLCSelected = SiemensPLCS.S1200;
+        private SiemensPLCS siemensPLCSelected = SiemensPLCS.S200Smart;
 
 
         private void FormSiemens_Load( object sender, EventArgs e )
@@ -33,26 +33,12 @@ namespace HslCommunicationDemo
             panel2.Enabled = false;
 
             Language( Program.Language );
-
-            if (siemensPLCSelected == SiemensPLCS.S400)
+            if(siemensPLCSelected == SiemensPLCS.S200Smart)
             {
-                textBox15.Text = "0";
-                textBox16.Text = "3";
-            }
-            else if(siemensPLCSelected == SiemensPLCS.S1200)
-            {
-                textBox15.Text = "0";
-                textBox16.Text = "0";
-            }
-            else if (siemensPLCSelected == SiemensPLCS.S300)
-            {
-                textBox15.Text = "0";
-                textBox16.Text = "2";
-            }
-            else if (siemensPLCSelected == SiemensPLCS.S1500)
-            {
-                textBox15.Text = "0";
-                textBox16.Text = "0";
+                label4.Visible = false;
+                label5.Visible = false;
+                textBox3.Visible = false;
+                textBox4.Visible = false;
             }
         }
 
@@ -114,11 +100,11 @@ namespace HslCommunicationDemo
             //siemensTcpNet.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Parse( "127.0.0.1" ), 12345 );
             try
             {
-                siemensTcpNet.Rack = byte.Parse( textBox15.Text );
-                siemensTcpNet.Slot = byte.Parse( textBox16.Text );
-
-                siemensTcpNet.ConnectionType = byte.Parse( textBox3.Text );
-                siemensTcpNet.LocalTSAP = int.Parse( textBox4.Text );
+                if (siemensPLCSelected == SiemensPLCS.S200)
+                {
+                    siemensTcpNet.LocalTSAP = Convert.ToInt32( textBox4.Text, 16 );
+                    siemensTcpNet.DestTSAP = Convert.ToInt32( textBox3.Text, 16 );
+                }
 
 
                 OperateResult connect = siemensTcpNet.ConnectServer( );
@@ -482,8 +468,6 @@ namespace HslCommunicationDemo
         {
             element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
             element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-            element.SetAttributeValue( DemoDeviceList.XmlRack, textBox15.Text );
-            element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox16.Text );
         }
 
         public override void LoadXmlParameter( XElement element )
@@ -491,8 +475,6 @@ namespace HslCommunicationDemo
             base.LoadXmlParameter( element );
             textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
             textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-            textBox15.Text = element.Attribute( DemoDeviceList.XmlRack ).Value;
-            textBox16.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
         }
 
         private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

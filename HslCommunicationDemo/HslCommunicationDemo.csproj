@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.0.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.0.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.0.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.0.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -352,11 +352,29 @@
     <Compile Include="PLC\FormGeSRTPServer.Designer.cs">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\FormXinJETcpNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormXinJETcpNet.Designer.cs">
+      <DependentUpon>FormXinJETcpNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormXinJESerialOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormXinJESerialOverTcp.Designer.cs">
+      <DependentUpon>FormXinJESerialOverTcp.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\FormPanasonicMewtocolServer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PLC\FormPanasonicMewtocolServer.Designer.cs">
       <DependentUpon>FormPanasonicMewtocolServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormSiemens200.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormSiemens200.Designer.cs">
+      <DependentUpon>FormSiemens200.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormSiemensDTU.cs">
       <SubType>Form</SubType>
@@ -637,29 +655,11 @@
     <Compile Include="PLC\FormFatekPrograme.Designer.cs">
       <DependentUpon>FormFatekPrograme.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormInovanceH5USerial.cs">
+    <Compile Include="PLC\FormInovanceTcpNet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormInovanceH5USerial.Designer.cs">
-      <DependentUpon>FormInovanceH5USerial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PLC\FormInovanceH3USerial.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PLC\FormInovanceH3USerial.Designer.cs">
-      <DependentUpon>FormInovanceH3USerial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PLC\FormInovanceH5UTcp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PLC\FormInovanceH5UTcp.Designer.cs">
-      <DependentUpon>FormInovanceH5UTcp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PLC\FormInovanceH3UTcp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PLC\FormInovanceH3UTcp.Designer.cs">
-      <DependentUpon>FormInovanceH3UTcp.cs</DependentUpon>
+    <Compile Include="PLC\FormInovanceTcpNet.Designer.cs">
+      <DependentUpon>FormInovanceTcpNet.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormKeyenceNanoSerialOverTcp.cs">
       <SubType>Form</SubType>
@@ -685,17 +685,17 @@
     <Compile Include="PLC\FormCipServer.Designer.cs">
       <DependentUpon>FormCipServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormInovanceAMTcp.cs">
+    <Compile Include="PLC\FormInovanceSerialOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormInovanceAMTcp.Designer.cs">
-      <DependentUpon>FormInovanceAMTcp.cs</DependentUpon>
+    <Compile Include="PLC\FormInovanceSerialOverTcp.Designer.cs">
+      <DependentUpon>FormInovanceSerialOverTcp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormInovanceAMSerial.cs">
+    <Compile Include="PLC\FormInovanceSerial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormInovanceAMSerial.Designer.cs">
-      <DependentUpon>FormInovanceAMSerial.cs</DependentUpon>
+    <Compile Include="PLC\FormInovanceSerial.Designer.cs">
+      <DependentUpon>FormInovanceSerial.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormMelsec1EAscii.cs">
       <SubType>Form</SubType>
@@ -1289,8 +1289,17 @@
     <EmbeddedResource Include="PLC\FormGeSRTPServer.resx">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormXinJETcpNet.resx">
+      <DependentUpon>FormXinJETcpNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormXinJESerialOverTcp.resx">
+      <DependentUpon>FormXinJESerialOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormPanasonicMewtocolServer.resx">
       <DependentUpon>FormPanasonicMewtocolServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormSiemens200.resx">
+      <DependentUpon>FormSiemens200.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormSiemensDTU.resx">
       <DependentUpon>FormSiemensDTU.cs</DependentUpon>
@@ -1430,17 +1439,8 @@
     <EmbeddedResource Include="PLC\FormFatekPrograme.resx">
       <DependentUpon>FormFatekPrograme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormInovanceH5USerial.resx">
-      <DependentUpon>FormInovanceH5USerial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormInovanceH3USerial.resx">
-      <DependentUpon>FormInovanceH3USerial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormInovanceH5UTcp.resx">
-      <DependentUpon>FormInovanceH5UTcp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormInovanceH3UTcp.resx">
-      <DependentUpon>FormInovanceH3UTcp.cs</DependentUpon>
+    <EmbeddedResource Include="PLC\FormInovanceTcpNet.resx">
+      <DependentUpon>FormInovanceTcpNet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormKeyenceNanoSerialOverTcp.resx">
       <DependentUpon>FormKeyenceNanoSerialOverTcp.cs</DependentUpon>
@@ -1454,11 +1454,11 @@
     <EmbeddedResource Include="PLC\FormCipServer.resx">
       <DependentUpon>FormCipServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormInovanceAMTcp.resx">
-      <DependentUpon>FormInovanceAMTcp.cs</DependentUpon>
+    <EmbeddedResource Include="PLC\FormInovanceSerialOverTcp.resx">
+      <DependentUpon>FormInovanceSerialOverTcp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormInovanceAMSerial.resx">
-      <DependentUpon>FormInovanceAMSerial.cs</DependentUpon>
+    <EmbeddedResource Include="PLC\FormInovanceSerial.resx">
+      <DependentUpon>FormInovanceSerial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormMelsec1EAscii.resx">
       <DependentUpon>FormMelsec1EAscii.cs</DependentUpon>
@@ -1891,12 +1891,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\HslCommunication_Net45\HslCommunication_Net45.csproj">
-      <Project>{7f8029da-1b94-4b1d-b91f-5b21dbf2f3a2}</Project>
-      <Name>HslCommunication_Net45</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

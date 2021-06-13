@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("文件列表");
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("文件列表");
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label20 = new System.Windows.Forms.Label();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.label19 = new System.Windows.Forms.Label();
 			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
@@ -106,9 +109,7 @@
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.label19 = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
+			this.button11 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -137,6 +138,32 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(978, 42);
 			this.panel1.TabIndex = 7;
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(474, 12);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(24, 17);
+			this.label20.TabIndex = 10;
+			this.label20.Text = "KB";
+			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(395, 9);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(72, 23);
+			this.textBox4.TabIndex = 9;
+			this.textBox4.Text = "100";
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Location = new System.Drawing.Point(325, 12);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(65, 17);
+			this.label19.TabIndex = 8;
+			this.label19.Text = "FileCache:";
 			// 
 			// textBox15
 			// 
@@ -431,10 +458,10 @@
 			// 
 			this.treeView1.Location = new System.Drawing.Point(9, 22);
 			this.treeView1.Name = "treeView1";
-			treeNode2.Name = "节点0";
-			treeNode2.Text = "文件列表";
+			treeNode1.Name = "节点0";
+			treeNode1.Text = "文件列表";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
 			this.treeView1.Size = new System.Drawing.Size(409, 218);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeExpand);
@@ -442,6 +469,7 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.button11);
 			this.groupBox3.Controls.Add(this.button9);
 			this.groupBox3.Controls.Add(this.textBox_delete_fileName);
 			this.groupBox3.Controls.Add(this.label8);
@@ -452,16 +480,16 @@
 			this.groupBox3.Controls.Add(this.button5);
 			this.groupBox3.Controls.Add(this.textBox_delete_factory);
 			this.groupBox3.Controls.Add(this.label17);
-			this.groupBox3.Location = new System.Drawing.Point(11, 217);
+			this.groupBox3.Location = new System.Drawing.Point(11, 213);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(955, 66);
+			this.groupBox3.Size = new System.Drawing.Size(955, 74);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "文件删除";
 			// 
 			// button9
 			// 
-			this.button9.Location = new System.Drawing.Point(866, 22);
+			this.button9.Location = new System.Drawing.Point(866, 13);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(78, 28);
 			this.button9.TabIndex = 18;
@@ -471,7 +499,7 @@
 			// 
 			// textBox_delete_fileName
 			// 
-			this.textBox_delete_fileName.Location = new System.Drawing.Point(517, 25);
+			this.textBox_delete_fileName.Location = new System.Drawing.Point(517, 16);
 			this.textBox_delete_fileName.Name = "textBox_delete_fileName";
 			this.textBox_delete_fileName.Size = new System.Drawing.Size(267, 23);
 			this.textBox_delete_fileName.TabIndex = 17;
@@ -479,7 +507,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(443, 28);
+			this.label8.Location = new System.Drawing.Point(443, 19);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(56, 17);
 			this.label8.TabIndex = 16;
@@ -487,7 +515,7 @@
 			// 
 			// textBox_delete_id
 			// 
-			this.textBox_delete_id.Location = new System.Drawing.Point(353, 25);
+			this.textBox_delete_id.Location = new System.Drawing.Point(353, 16);
 			this.textBox_delete_id.Name = "textBox_delete_id";
 			this.textBox_delete_id.Size = new System.Drawing.Size(84, 23);
 			this.textBox_delete_id.TabIndex = 15;
@@ -496,7 +524,7 @@
 			// label_delete_id
 			// 
 			this.label_delete_id.AutoSize = true;
-			this.label_delete_id.Location = new System.Drawing.Point(320, 28);
+			this.label_delete_id.Location = new System.Drawing.Point(320, 19);
 			this.label_delete_id.Name = "label_delete_id";
 			this.label_delete_id.Size = new System.Drawing.Size(32, 17);
 			this.label_delete_id.TabIndex = 14;
@@ -504,7 +532,7 @@
 			// 
 			// textBox_delete_group
 			// 
-			this.textBox_delete_group.Location = new System.Drawing.Point(226, 25);
+			this.textBox_delete_group.Location = new System.Drawing.Point(226, 16);
 			this.textBox_delete_group.Name = "textBox_delete_group";
 			this.textBox_delete_group.Size = new System.Drawing.Size(84, 23);
 			this.textBox_delete_group.TabIndex = 13;
@@ -513,7 +541,7 @@
 			// label_delete_group
 			// 
 			this.label_delete_group.AutoSize = true;
-			this.label_delete_group.Location = new System.Drawing.Point(170, 28);
+			this.label_delete_group.Location = new System.Drawing.Point(170, 19);
 			this.label_delete_group.Name = "label_delete_group";
 			this.label_delete_group.Size = new System.Drawing.Size(57, 17);
 			this.label_delete_group.TabIndex = 12;
@@ -521,7 +549,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(790, 22);
+			this.button5.Location = new System.Drawing.Point(790, 13);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(70, 28);
 			this.button5.TabIndex = 7;
@@ -531,7 +559,7 @@
 			// 
 			// textBox_delete_factory
 			// 
-			this.textBox_delete_factory.Location = new System.Drawing.Point(80, 25);
+			this.textBox_delete_factory.Location = new System.Drawing.Point(80, 16);
 			this.textBox_delete_factory.Name = "textBox_delete_factory";
 			this.textBox_delete_factory.Size = new System.Drawing.Size(84, 23);
 			this.textBox_delete_factory.TabIndex = 5;
@@ -540,7 +568,7 @@
 			// label17
 			// 
 			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(6, 28);
+			this.label17.Location = new System.Drawing.Point(6, 19);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(62, 17);
 			this.label17.TabIndex = 4;
@@ -867,31 +895,15 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// textBox4
+			// button11
 			// 
-			this.textBox4.Location = new System.Drawing.Point(395, 9);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(72, 23);
-			this.textBox4.TabIndex = 9;
-			this.textBox4.Text = "100";
-			// 
-			// label19
-			// 
-			this.label19.AutoSize = true;
-			this.label19.Location = new System.Drawing.Point(325, 12);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(65, 17);
-			this.label19.TabIndex = 8;
-			this.label19.Text = "FileCache:";
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(474, 12);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(24, 17);
-			this.label20.TabIndex = 10;
-			this.label20.Text = "KB";
+			this.button11.Location = new System.Drawing.Point(866, 42);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(78, 28);
+			this.button11.TabIndex = 19;
+			this.button11.Text = "空目录删除";
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.button11_Click);
 			// 
 			// FormFileClient
 			// 
@@ -1004,5 +1016,6 @@
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.Button button11;
 	}
 }

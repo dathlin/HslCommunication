@@ -379,12 +379,9 @@ namespace HslCommunicationDemo
 
 			// Modbus协议
 			TreeNode inovanceNode = new TreeNode( "Inovance Plc[汇川]", 5, 5 );
-			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceAMTcp",              5, typeof( FormInovanceAMTcp ) ) );
-			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceAMSerial",           5, typeof( FormInovanceAMSerial ) ) );
-			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceH3UTcp",             5, typeof( FormInovanceH3UTcp ) ) );
-			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceH3USerial",          5, typeof( FormInovanceH3USerial ) ) );
-			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceH5UTcp",             5, typeof( FormInovanceH5UTcp ) ) );
-			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceH5USerial",          5, typeof( FormInovanceH5USerial ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceSerial",           5, typeof( FormInovanceSerial ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceSerialOverTcp",    5, typeof( FormInovanceSerialOverTcp ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceTcpNet",           5, typeof( FormInovanceTcpNet ) ) );
 			treeView1.Nodes.Add( inovanceNode );
 
 			// 欧姆龙PLC相关
@@ -468,7 +465,9 @@ namespace HslCommunicationDemo
 
 			// XinJE Plc
 			TreeNode xinjeNode = new TreeNode( "XinJE Plc[信捷]", 30, 30 );
-			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE XC Serial", 30, typeof( FormXinJEXCSerial ) ) );
+			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE Serial", 30, typeof( FormXinJEXCSerial ) ) );
+			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE Serial OverTcp", 30, typeof( FormXinJESerialOverTcp ) ) );
+			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE TCP", 30, typeof( FormXinJETcpNet ) ) );
 			treeView1.Nodes.Add( xinjeNode );
 
 			// Yokogawa Plc
@@ -864,7 +863,7 @@ namespace HslCommunicationDemo
 			this.userControlHead1.ProtocolInfo = "s7-400";
 		}
 	}
-	public class FormSiemensS200 : FormSiemens
+	public class FormSiemensS200 : FormSiemens200
 	{
 		public FormSiemensS200( ) : base( SiemensPLCS.S200 )
 		{
@@ -877,7 +876,7 @@ namespace HslCommunicationDemo
 			this.userControlHead1.ProtocolInfo = "s7-200";
 		}
 	}
-	public class FormSiemensS200Smart : FormSiemens
+	public class FormSiemensS200Smart : FormSiemens200
 	{
 		public FormSiemensS200Smart( ) : base( SiemensPLCS.S200Smart )
 		{

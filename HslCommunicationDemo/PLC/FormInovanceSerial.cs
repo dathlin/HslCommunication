@@ -10,28 +10,29 @@ using HslCommunication.Profinet;
 using HslCommunication;
 using System.Threading;
 using System.IO.Ports;
-using HslCommunication.Profinet.XINJE;
+using HslCommunication.Profinet.Inovance;
 using System.Xml.Linq;
 using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormXinJEXCSerial : HslFormContent
+    public partial class FormInovanceSerial : HslFormContent
     {
-        public FormXinJEXCSerial( )
+        public FormInovanceSerial( )
         {
             InitializeComponent( );
         }
 
-        private XinJESerial xinje = null;
+        private InovanceSerial inovance = null;
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
             panel2.Enabled = false;
             comboBox1.SelectedIndex = 0;
 
+
+            comboBox4.DataSource = SoftBasic.GetEnumValues<InovanceSeries>( );
             comboBox2.SelectedIndex = 0;
-            comboBox4.DataSource = SoftBasic.GetEnumValues<XinJESeries>( );
             comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
             checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
 
@@ -53,9 +54,10 @@ namespace HslCommunicationDemo
         {
             if (language == 2)
             {
-                Text = "XinJE XC Read Demo";
+                Text = "InovanceSerial Read Demo";
 
                 label1.Text = "Com:";
+                label2.Text = "Series:";
                 label3.Text = "baudRate:";
                 label22.Text = "DataBit";
                 label23.Text = "StopBit";
@@ -84,22 +86,22 @@ namespace HslCommunicationDemo
 
         private void CheckBox3_CheckedChanged( object sender, EventArgs e )
         {
-            if (xinje != null)
+            if (inovance != null)
             {
-                xinje.IsStringReverse = checkBox3.Checked;
+                inovance.IsStringReverse = checkBox3.Checked;
             }
         }
 
         private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if (xinje != null)
+            if (inovance != null)
             {
                 switch (comboBox2.SelectedIndex)
                 {
-                    case 0: xinje.DataFormat = HslCommunication.Core.DataFormat.ABCD; break;
-                    case 1: xinje.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
-                    case 2: xinje.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
-                    case 3: xinje.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
+                    case 0: inovance.DataFormat = HslCommunication.Core.DataFormat.ABCD; break;
+                    case 1: inovance.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
+                    case 2: inovance.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
+                    case 3: inovance.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
                     default: break;
                 }
             }
@@ -113,6 +115,8 @@ namespace HslCommunicationDemo
         
 
         #region Connect And Close
+
+
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -141,33 +145,33 @@ namespace HslCommunicationDemo
                 return;
             }
 
-            xinje?.Close( );
-            xinje = new XinJESerial( (XinJESeries)comboBox4.SelectedItem, station );
-            xinje.AddressStartWithZero = checkBox1.Checked;
-
+            inovance?.Close( );
+            inovance = new InovanceSerial( station );
+            inovance.AddressStartWithZero = checkBox1.Checked;
+            inovance.Series = (InovanceSeries)comboBox4.SelectedItem;
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
-            xinje.IsStringReverse = checkBox3.Checked;
+            inovance.IsStringReverse = checkBox3.Checked;
 
 
             try
             {
-                xinje.SerialPortInni( sp =>
+                inovance.SerialPortInni( sp =>
                  {
                      sp.PortName = comboBox3.Text;
                      sp.BaudRate = baudRate;
                      sp.DataBits = dataBits;
-                     sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
-                     sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
+                     sp.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
+                     sp.Parity = comboBox1.SelectedIndex == 0 ? Parity.None : (comboBox1.SelectedIndex == 1 ? Parity.Odd : Parity.Even);
                  } );
-                xinje.RtsEnable = checkBox5.Checked;
-                xinje.Open( );
+                inovance.RtsEnable = checkBox5.Checked;
+                inovance.Open( );
 
                 button2.Enabled = true;
                 button1.Enabled = false;
                 panel2.Enabled = true;
 
-                userControlReadWriteOp1.SetReadWriteNet( xinje, "D100", false );
+                userControlReadWriteOp1.SetReadWriteNet( inovance, "M100", false );
             }
             catch (Exception ex)
             {
@@ -178,7 +182,7 @@ namespace HslCommunicationDemo
         private void button2_Click( object sender, EventArgs e )
         {
             // 断开连接
-            xinje.Close( );
+            inovance.Close( );
             button2.Enabled = false;
             button1.Enabled = true;
             panel2.Enabled = false;
@@ -190,7 +194,7 @@ namespace HslCommunicationDemo
 
         private void button25_Click( object sender, EventArgs e )
         {
-            DemoUtils.BulkReadRenderResult( xinje, textBox6, textBox9, textBox10 );
+            DemoUtils.BulkReadRenderResult( inovance, textBox6, textBox9, textBox10 );
         }
 
         #endregion
@@ -200,7 +204,7 @@ namespace HslCommunicationDemo
 
         private void button26_Click( object sender, EventArgs e )
         {
-            OperateResult<byte[]> read = xinje.ReadFromCoreServer( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
+            OperateResult<byte[]> read = inovance.ReadFromCoreServer( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
             if (read.IsSuccess)
             {
                 textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -214,6 +218,7 @@ namespace HslCommunicationDemo
 
         #endregion
 
+
         public override void SaveXmlParameter( XElement element )
         {
             element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
@@ -226,7 +231,7 @@ namespace HslCommunicationDemo
             element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
             element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
             element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
-            element.SetAttributeValue( nameof( XinJESeries ), comboBox4.SelectedItem );
+            element.SetAttributeValue( nameof( InovanceSeries ), (InovanceSeries)comboBox4.SelectedItem );
         }
 
         public override void LoadXmlParameter( XElement element )
@@ -242,7 +247,8 @@ namespace HslCommunicationDemo
             comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
             checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
             checkBox5.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
-            comboBox4.SelectedItem = SoftBasic.GetEnumFromString<XinJESeries>( element.Attribute( nameof( XinJESeries ) ).Value );
+            if (element.Attribute( nameof( InovanceSeries ) ) != null)
+                comboBox4.SelectedItem = SoftBasic.GetEnumFromString<InovanceSeries>( element.Attribute( nameof( InovanceSeries ) ).Value );
         }
 
         private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

@@ -35,22 +35,24 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V10.0.0
-1. V10版本：本来上个版本就应该定为V10版本，因为已经内核优化，出现不兼容更新，所以这个版本果断设定为V10版本。
-2. SerialBase: 修复在串口异常的情况下，会抛出异常的bug，是上个版本的问题，现在会返回失败的OperateResult对象。
-3. ShineInLightSourceController: 新增昱行智造科技（深圳）有限公司的光源控制器的通信对象，主要用于视觉的打光操作。
-4. MqttSession：Mqtt的会话信息增加一个object Tag属性，用来自己绑定一些自定义的数据。
-5. SerialBase: 串口初始化的方法修改为虚方法，允许在继承类里进行重写，修改一些默认参数信息。
-6. NetworkBase: 修复ReceiveAsync异步方法在length=-1时，对方关闭时返回仍然为成功的bug，只有在极少数情况下会触发。
-7. ModbusTcpServer: 新增一个属性UseModbusRtuOverTcp，只要设置为True，就可以创建ModbusRtuOverTcp的对应的服务器，使用TCP传送RTU报文。
-8. HttpServer: 新增SetLoginAccessControl( MqttCredential[] credentials )方法，用于增加默认的账户控制，如果传入null，则不启动账户控制。
-9. IReadWriteDevice: 新增设备读写接口，继承自IReadWriteNet，然后所有设备实现IReadWriteDevice接口，相关继承关系优化，接口增加ReadFromCoreServer。
-10. All: 统一所有的设备核心层打包报文方法名为:PackCommandWithHeader 解包的方法名为UnpackResponseContent，允许重写实现自定义操作。
-11. Omron: 对OmronFinsTcp和OmronFinsUdp的通信层大幅度优化，统一代码规则，新增run，stop，读取cpu数据，cpu状态的高级方法。
-12. DTSU6606Serial: 新增德力西电表的采集类，基于modbusrtu实现，ReadElectricalParameters方法可以直接获取电表相关参数。
-13. HslExtension: 有两个获取byte的位的方法，功能重复，删除GetBoolOnIndex方法，使用GetBoolByIndex方法。
-14. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
-15. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V10.0.1
+1. FatekProgram: 串口类和串口转网口透传类优化，统一一套代码来读写设备。
+2. IDisposable: NetworkAlienClient, NetworkAlienClient, LogNetBase, MqttClient, MqttServer, WebSocketClient, WebSocketServer实现释放接口。
+3. SiemensS7net: 新增DestTSAP属性，优化了LocalTSAP和DestTSAP属性对不同系列plc的值设置，当plc为s200系列时，支持设置自定义的值来访问plc。
+4. UltimateFileServer: 文件服务器删除目录所有文件调整为直接删除整个目录，新增支持删除指定目录下所有空的子目录的功能。文件客户端新增匹配操作的方法。
+5. PanasonicMcNet: 地址新增支持SD数据类型，示例SD0，返回的错误代码修改为松下的专用信息，和三菱的不一致。
+6. IModbus: Modbus接口新增TranlateToModbusAddress( string, byte) 接口，只要继承重写该方法，即可轻松实现自定义地址解析转modbus地址。
+7. Delta: 台达相关的类根据modbus最新的优化，全部进行优化，每个类只有一点点代码了。
+8. FujiSPB: 富士的串口协议代码和串口透传代码优化，修复串口类调用异步写bool失败的bug。
+9. XinJE: XinJEXCSerial重命名为 XinJESerial类，根据modbus的优化进行精简，支持了信捷系列选择，可选XC,XJ,XD，地址支持根据所选型号自动解析。
+10. XinJE: 新增基于串口透传的XinJESerialOverTcp类，以及modbustcp协议的XinJETcpNet类，DEMO上支持测试。
+11. Inovance: 汇川的类优化，删除原来的AM,H3U,H5U类，改用InovanceSeries枚举来区分系列，然后解析不同的地址。同时添加InovanceSerialOverTcp串口转网口类。
+12. OmronFinsServer: 欧姆龙的FinsTCP虚拟服务器端支持E数据块，E0.0-E31.0 都是指同一个数据块。
+13. IByteTransform: 新增二维数组的解析方法接口，主要是short,ushort,int,uint,long,ulong,float,double类型。
+14. Demo: MelsecSerialOverTcp的demo界面添加是否新版的选择。
+15. 如果有用到汇川，信捷的类库，请注意升级时出现不兼容，需要修改下类型，指定PLC的系列，感谢支持。
+16. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
+17. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

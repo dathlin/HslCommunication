@@ -384,6 +384,25 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button11_Click( object sender, EventArgs e )
+		{
+			OperateResult result = integrationFileClient.DeleteEmptyFolders(
+				textBox_delete_factory.Text,                        // 第一级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+				textBox_delete_group.Text,                          // 第二级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+				textBox_delete_id.Text                              // 第三级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+				);
+			if (result.IsSuccess)
+			{
+				// delete file success
+				MessageBox.Show( "空目录信息删除成功！" );
+			}
+			else
+			{
+				// 删除失败的原因除了一般的网络问题，还有因为服务器的文件不存在，会在Message里有显示。
+				// file not exsist or net work exception
+				MessageBox.Show( "空目录信息删除失败，原因：" + result.ToMessageShowString( ) );
+			}
+		}
 		#endregion
 
 		#region DownloadPathFolders

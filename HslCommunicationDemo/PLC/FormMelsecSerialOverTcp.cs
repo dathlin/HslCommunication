@@ -39,6 +39,7 @@ namespace HslCommunicationDemo
 			{
 				Text = "Melsec Read PLC Demo";
 
+				checkBox1.Text = "New Version Message?";
 				label1.Text = "Ip:";
 				label3.Text = "Port:";
 				button1.Text = "Connect";
@@ -81,6 +82,7 @@ namespace HslCommunicationDemo
 			melsec_net = new MelsecFxSerialOverTcp( );
 			melsec_net.IpAddress = textBox1.Text;
 			melsec_net.Port = port;
+			melsec_net.IsNewVersion = checkBox1.Checked;
 			try
 			{
 				OperateResult connect = melsec_net.ConnectServer( );
