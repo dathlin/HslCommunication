@@ -35,24 +35,26 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V10.0.1
-1. FatekProgram: 串口类和串口转网口透传类优化，统一一套代码来读写设备。
-2. IDisposable: NetworkAlienClient, NetworkAlienClient, LogNetBase, MqttClient, MqttServer, WebSocketClient, WebSocketServer实现释放接口。
-3. SiemensS7net: 新增DestTSAP属性，优化了LocalTSAP和DestTSAP属性对不同系列plc的值设置，当plc为s200系列时，支持设置自定义的值来访问plc。
-4. UltimateFileServer: 文件服务器删除目录所有文件调整为直接删除整个目录，新增支持删除指定目录下所有空的子目录的功能。文件客户端新增匹配操作的方法。
-5. PanasonicMcNet: 地址新增支持SD数据类型，示例SD0，返回的错误代码修改为松下的专用信息，和三菱的不一致。
-6. IModbus: Modbus接口新增TranlateToModbusAddress( string, byte) 接口，只要继承重写该方法，即可轻松实现自定义地址解析转modbus地址。
-7. Delta: 台达相关的类根据modbus最新的优化，全部进行优化，每个类只有一点点代码了。
-8. FujiSPB: 富士的串口协议代码和串口透传代码优化，修复串口类调用异步写bool失败的bug。
-9. XinJE: XinJEXCSerial重命名为 XinJESerial类，根据modbus的优化进行精简，支持了信捷系列选择，可选XC,XJ,XD，地址支持根据所选型号自动解析。
-10. XinJE: 新增基于串口透传的XinJESerialOverTcp类，以及modbustcp协议的XinJETcpNet类，DEMO上支持测试。
-11. Inovance: 汇川的类优化，删除原来的AM,H3U,H5U类，改用InovanceSeries枚举来区分系列，然后解析不同的地址。同时添加InovanceSerialOverTcp串口转网口类。
-12. OmronFinsServer: 欧姆龙的FinsTCP虚拟服务器端支持E数据块，E0.0-E31.0 都是指同一个数据块。
-13. IByteTransform: 新增二维数组的解析方法接口，主要是short,ushort,int,uint,long,ulong,float,double类型。
-14. Demo: MelsecSerialOverTcp的demo界面添加是否新版的选择。
-15. 如果有用到汇川，信捷的类库，请注意升级时出现不兼容，需要修改下类型，指定PLC的系列，感谢支持。
-16. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
-17. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V10.1.0
+1. Melsec: 三菱的MC协议TCP，UDP，二进制，ASCII代码优化，一套代码实现，新增IReadWriteMc接口，针对MC协议的设备通用读写类
+2. NetworkUdpBase: 新增LogMsgFormatBinary属性，可以指示当前的数据交互报文记录时按照ASCII编码显示，或是二进制显示。
+3. DTSU6606Serial: 德力西的电表的读取方法ReadElectricalParameters支持HslMqttApi特性，方便MRPC及WEBAPI接口服务注册。
+4. Demo: Modbus rtu的demo界面的报文读取取消crc封装，因为内部已经集成封装。
+5. Melsec: 统一 MelsecMcNet, MelsecMcUdp, MelsecMcAsciiNet, MelsecMcAsciiUdp, MelsecMcRNet的代码逻辑结构，修复了ASCII格式类的一些bug。
+6. MelsecMcServer: 三菱的虚拟服务器限制了bool读取长度7168限制字读取长度960，三菱MC客户端的bool读取支持自动切割。
+7. OmronHostLink: OmronHostLink及OmronHostLinkOverTcp代码优化，完善错误代码文本提示，增加返回命令和发送命令校验的操作。
+8. HslExtension: ToStringArray的扩展方法支持对GUID的解析功能，不支持.net20, .net35
+9. NetworkDataServerBase: 修复数据类服务器在主动关闭引擎时，在线客户端的数量未及时复原的bug，影响范围，所有的虚拟PLC服务器。
+10. OmronHostLinkServer: 新增欧姆龙HostLink协议的虚拟PLC，支持网口和串口的进行读写操作。优化hostlink协议的客户端错误代码含义展示，优化数据接收机制。
+11. Demo: httpclient界面支持对https接口测试，在内容请求的header支持添加content-type信息，提供了一些选项。
+12. SimensWebApi: 新增NetworkWebApiDevice设备类，实现IReadWritteNet接口，新增SimensWebApi类，用于西门子1500的webapi接口，可实现读写标签变量信息。
+13. FanucSeries0i: fanuc的通信类支持NC程序文件的上传和下载，删除，设置主程序号，启动加工操作。修复刀具信息读取时，某个刀具信息失败导致读取失败的bug。
+14. AllenBradleyServer: ab-plc的虚拟服务器支持会话id的生成，支持对客户端校验会话id是否一致。
+15. Melsec: MC协议的类支持对字地址按照位读取，例如读取D100.5 开始的3个位，使用ReadBool(""D100.5"", 3)即可
+16. NetworkBase: 优化ReceiveByMessage及异步版本的性能，减少一次内容数据的拷贝操作，提升内存利用效率，提升读写的性能。
+17. SiemensS7Net: 西门子s7协议的地址支持 VB100, VW100, VD100的写法。
+18. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
+19. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

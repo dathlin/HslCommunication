@@ -88,6 +88,7 @@ namespace HslCommunicationDemo
             keyence.IpAddress = textBox1.Text;
             keyence.Port = port;
             keyence.Station = station;
+            keyence.UseStation = checkBox1.Checked;
 
             try
             {

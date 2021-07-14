@@ -53,6 +53,7 @@ namespace HslCommunicationDemo
                 button1.Text = "Connect";
                 button2.Text = "Disconnect";
                 label21.Text = "Address:";
+                label6.Text = "Hexadecimal!!!";
 
                 button_read_string.Text = "r-string";
                 button7.Text = "r-time";

@@ -43,9 +43,9 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Omron Read PLC Demo";
-				label24.Text = "Unit Num";
-				label25.Text = "Net Num";
-				label23.Text = "PC Net Num";
+				label24.Text = "DA2";
+				label25.Text = "SA2";
+				label23.Text = "SID";
 
 				label1.Text = "Station:";
 				button1.Text = "Open";

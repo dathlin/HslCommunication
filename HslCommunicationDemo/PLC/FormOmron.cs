@@ -60,6 +60,7 @@ namespace HslCommunicationDemo
 				label14.Text = "Results:";
 				button26.Text = "Read";
 
+				label4.Text = "Run Stop Please be cautious and confirm safety as the prerequisite";
 				groupBox3.Text = "Bulk Read test";
 				groupBox4.Text = "Message reading test, hex string needs to be filled in";
 				groupBox5.Text = "Special function test";

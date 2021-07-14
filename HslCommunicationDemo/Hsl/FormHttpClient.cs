@@ -33,7 +33,7 @@ namespace HslCommunicationDemo
                 panel2.Enabled = true;
                 button1.Enabled = false;
                 button2.Enabled = true;
-
+                webApiClient.UseHttps = checkBox1.Checked;
                 await MqttRpcApiRefresh( treeView1.Nodes[0] );
             }
             catch(Exception ex)
@@ -54,6 +54,15 @@ namespace HslCommunicationDemo
             else
                 label6.Text = "Body input parameters, if it is in GET mode, the parameters need to be transmitted through the address, such as GetA?id=5&&name=job";
 
+            comboBox2.DataSource = new string[]
+            {
+                "none",
+                "text/plain",
+                "application/javascript",
+                "application/json",
+                "text/html",
+                "application/xml"
+            };
 
             button2.Enabled = false;
             panel2.Enabled = false;
@@ -130,7 +139,7 @@ namespace HslCommunicationDemo
 
         private async Task<MqttRpcApiInfo[]> ReadMqttRpcApiInfo( NetworkWebApiBase webApiBase )
         {
-            string url = $"http://{webApiBase.IpAddress}:{webApiBase.Port}/Apis";
+            string url = $"{(checkBox1.Checked ? "https" : "http")}://{webApiBase.IpAddress}:{webApiBase.Port}/Apis";
             try
             {
                 using (HttpRequestMessage request = new HttpRequestMessage( new HttpMethod( "HSL" ), url ))
@@ -160,28 +169,38 @@ namespace HslCommunicationDemo
 
         private async Task<OperateResult<string>> ReadFromServer( NetworkWebApiBase webApiBase, HttpMethod httpMethod, string url, string body )
         {
-            url = $"http://{webApiBase.IpAddress}:{webApiBase.Port}/{ (url.StartsWith( "/" ) ? url.Substring( 1 ) : url) }";
+            url = $"{(checkBox1.Checked ? "https" : "http")}://{webApiBase.IpAddress}:{webApiBase.Port}/{ (url.StartsWith( "/" ) ? url.Substring( 1 ) : url) }";
+            //textBox8.Text = url;
             try
             {
                 using (HttpRequestMessage request = new HttpRequestMessage( httpMethod, url ))
                 {
-                    if(httpMethod != HttpMethod.Get) request.Content = new StringContent( body );
+                    if (httpMethod != HttpMethod.Get)
+                    {
+                        request.Content = new StringContent( body );
+                        string contentType = comboBox2.SelectedItem.ToString( );
+                        if(contentType!="none")
+                            request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue( contentType );
+                    }
                     if (!string.IsNullOrEmpty( textBox3.Text ))
                     {
                         request.Headers.Add( "Authorization", "Basic " + Convert.ToBase64String( Encoding.UTF8.GetBytes( textBox3.Text + ":" + textBox4.Text ) ) );
                     }
 
                     using (HttpResponseMessage response = await webApiBase.Client.SendAsync( request ))
-                    using (HttpContent content = response.Content)
                     {
-                        response.EnsureSuccessStatusCode( );
-                        return OperateResult.CreateSuccessResult( await content.ReadAsStringAsync( ) );
+                        using (HttpContent content = response.Content)
+                        {
+                            response.EnsureSuccessStatusCode( );
+                            return OperateResult.CreateSuccessResult( await content.ReadAsStringAsync( ) );
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                return new OperateResult<string>( "Read Failed:" + ex.Message );
+                //HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+                return new OperateResult<string>(  ex.Message );
             }
         }
 

@@ -112,6 +112,7 @@ namespace HslCommunicationDemo
 
             keyenceNanoSerial?.Close( );
             keyenceNanoSerial = new KeyenceNanoSerial( );
+            keyenceNanoSerial.UseStation = checkBox1.Checked;
             keyenceNanoSerial.Station = station;
             try
             {

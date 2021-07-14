@@ -12,6 +12,7 @@ using HslCommunication.ModBus;
 using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
+using HslCommunication;
 
 namespace HslCommunicationDemo
 {
@@ -204,7 +205,7 @@ namespace HslCommunicationDemo
 
         private void button26_Click( object sender, EventArgs e )
         {
-            OperateResult<byte[]> read = busRtuClient.ReadFromCoreServer( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
+            OperateResult<byte[]> read = busRtuClient.ReadFromCoreServer( textBox13.Text.ToHexBytes( ) );
             if (read.IsSuccess)
             {
                 textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );

@@ -49,6 +49,7 @@
 			this.textBox13 = new System.Windows.Forms.TextBox();
 			this.label16 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.textBox10 = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
@@ -58,7 +59,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button4 = new System.Windows.Forms.Button();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -70,6 +71,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.textBox3);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.textBox2);
@@ -88,16 +90,16 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(426, 8);
+			this.textBox3.Location = new System.Drawing.Point(499, 8);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(65, 23);
+			this.textBox3.Size = new System.Drawing.Size(40, 23);
 			this.textBox3.TabIndex = 21;
 			this.textBox3.Text = "0";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(361, 11);
+			this.label1.Location = new System.Drawing.Point(434, 11);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 20;
@@ -105,7 +107,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(274, 8);
+			this.textBox2.Location = new System.Drawing.Point(253, 8);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 19;
@@ -114,7 +116,7 @@
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(220, 11);
+			this.label26.Location = new System.Drawing.Point(199, 11);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(44, 17);
 			this.label26.TabIndex = 18;
@@ -283,6 +285,16 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
 			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(356, 24);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(79, 28);
+			this.button4.TabIndex = 13;
+			this.button4.Text = "注释";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
+			// 
 			// button3
 			// 
 			this.button3.Location = new System.Drawing.Point(286, 24);
@@ -369,15 +381,15 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// button4
+			// checkBox1
 			// 
-			this.button4.Location = new System.Drawing.Point(356, 24);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(79, 28);
-			this.button4.TabIndex = 13;
-			this.button4.Text = "注释";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click);
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(329, 10);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(99, 21);
+			this.checkBox1.TabIndex = 43;
+			this.checkBox1.Text = "Use Station?";
+			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
 			// FormKeyenceNanoSerialOverTcp
 			// 
@@ -439,5 +451,6 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.CheckBox checkBox1;
 	}
 }

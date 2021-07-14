@@ -11,6 +11,7 @@ using HslCommunication;
 using System.Net;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication.Reflection;
+using HslCommunication.Core;
 
 namespace HslCommunicationDemo
 {
@@ -113,6 +114,14 @@ namespace HslCommunicationDemo
         public int GetHslCommunication( int id )
         {
             return id + 1;
+        }
+
+        [HslMqttApi( "读取设备的Int16信息，address: 设备的地址 length: 读取的数据长度" )]
+        public short ReadFloat( ISessionContext context, string address, short length = 12345 )
+        {
+            // 这里举例，只控制账户hsl才能有效
+            if (context?.UserName != "hsl") return -100;
+            return (short)random.Next( 10000 );
         }
 
         [HslMqttApi( "读取设备的信息，address: 设备的地址 length: 读取的数据长度" )]

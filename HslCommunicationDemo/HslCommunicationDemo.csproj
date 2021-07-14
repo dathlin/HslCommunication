@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.0.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.0.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.1.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.1.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -351,6 +351,18 @@
     </Compile>
     <Compile Include="PLC\FormGeSRTPServer.Designer.cs">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLinkServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLinkServer.Designer.cs">
+      <DependentUpon>FormOmronHostLinkServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormSiemensWebApi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormSiemensWebApi.Designer.cs">
+      <DependentUpon>FormSiemensWebApi.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormXinJETcpNet.cs">
       <SubType>Form</SubType>
@@ -1288,6 +1300,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormGeSRTPServer.resx">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmronHostLinkServer.resx">
+      <DependentUpon>FormOmronHostLinkServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormSiemensWebApi.resx">
+      <DependentUpon>FormSiemensWebApi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormXinJETcpNet.resx">
       <DependentUpon>FormXinJETcpNet.cs</DependentUpon>

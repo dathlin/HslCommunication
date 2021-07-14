@@ -28,7 +28,7 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 			button2.Enabled = false;
 
-			
+			textBox7.Text = System.IO.Path.Combine( Application.StartupPath, "O6.txt" );
 
 			Language( Program.Language );
 		}
@@ -40,7 +40,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				Text = "Mqtt Sync Client Test";
+				Text = "Fanuc 0i-mf Test";
 				label1.Text = "Ip:";
 				label3.Text = "Port:";
 				button1.Text = "Connect";
@@ -277,6 +277,111 @@ namespace HslCommunicationDemo
 			ReadTimeData( 3 );
 		}
 
+		private void button24_Click( object sender, EventArgs e )
+		{
+			// 当前的程序
+			OperateResult<string> read = fanuc.ReadCurrentProgram( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "程序内容：" + Environment.NewLine + read.Content;
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
+
+		private async void button28_Click( object sender, EventArgs e )
+		{
+			// 读取程序
+			if (!ushort.TryParse( textBox9.Text, out ushort programNum ))
+			{
+				MessageBox.Show( "主程序号输入错误！" );
+				return;
+			}
+			button28.Enabled = false;
+			OperateResult<string> read = await fanuc.ReadProgramAsync( programNum );
+			button28.Enabled = true;
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "程序内容：" + Environment.NewLine + read.Content;
+			}
+			else
+			{
+				MessageBox.Show( "读取失败！" + read.ToMessageShowString( ) );
+			}
+		}
+
+		private void button29_Click( object sender, EventArgs e )
+		{
+			// 删除程序
+			if (!ushort.TryParse( textBox9.Text, out ushort programNum ))
+			{
+				MessageBox.Show( "主程序号输入错误！" );
+				return;
+			}
+
+			OperateResult read = fanuc.DeleteProgram( programNum );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "删除程序成功！";
+			}
+			else
+			{
+				MessageBox.Show( "删除失败！" + read.ToMessageShowString( ) );
+			}
+		}
+		private void button25_Click( object sender, EventArgs e )
+		{
+			// 设置为主程序
+			if (!ushort.TryParse( textBox6.Text, out ushort programNum ))
+			{
+				MessageBox.Show( "主程序号输入错误！" );
+				return;
+			}
+			OperateResult set = fanuc.SetCurrentProgram( programNum );
+			if (set.IsSuccess)
+			{
+				MessageBox.Show( "设置主程序成功！" );
+			}
+			else
+			{
+				MessageBox.Show( "设置主程序失败！" + set.Message );
+			}
+		}
+
+		private async void button27_Click( object sender, EventArgs e )
+		{
+			if (!System.IO.File.Exists( textBox7.Text ))
+			{
+				MessageBox.Show( "文件不存在!" );
+				return;
+			}
+			// 下载程序
+			button27.Enabled = false;
+			OperateResult write = await fanuc.WriteProgramFileAsync( textBox7.Text );
+			button27.Enabled = true;
+			if (write.IsSuccess)
+			{
+				MessageBox.Show( "下载成功！" );
+			}
+			else
+			{
+				MessageBox.Show( "下载失败！" + write.Message );
+			}
+		}
+		private void button26_Click( object sender, EventArgs e )
+		{
+			OperateResult start = fanuc.StartProcessing( );
+			if (start.IsSuccess)
+			{
+				MessageBox.Show( "启动成功！" );
+			}
+			else
+			{
+				MessageBox.Show( "启动失败！"  + start.ToMessageShowString());
+			}
+		}
 		private void button18_Click( object sender, EventArgs e )
 		{
 			if(!int.TryParse(textBox3.Text, out int address ))

@@ -358,6 +358,7 @@ namespace HslCommunicationDemo
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7-S200",            14, typeof( FormSiemensS200 ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7-S200 smart",      14, typeof( FormSiemensS200Smart ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Fetch/Write",        14, typeof( FormSiemensFW ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "WebApi",             14, typeof( FormSiemensWebApi ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "PPI",                14, typeof( FormSiemensPPI ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "PPI OverTcp",        14, typeof( FormSiemensPPIOverTcp ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "MPI",                14, typeof( FormSiemensMPI ) ) );
@@ -396,6 +397,7 @@ namespace HslCommunicationDemo
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "C-Mode OverTcp",                 10, typeof( FormOmronHostLinkCModeOverTcp ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Virtual Server",            10, typeof( FormOmronServer ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Udp Server",                10, typeof( FormOmronUdpServer ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink Server",                10, typeof( FormOmronHostLinkServer ) ) );
 			treeView1.Nodes.Add( omronNode );
 
 			// Lsis PLC

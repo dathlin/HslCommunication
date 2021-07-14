@@ -13,6 +13,7 @@ using HslCommunication.Reflection;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using HslCommunication.Profinet.Siemens;
+using HslCommunication.Core;
 
 namespace HslCommunicationDemo
 {
@@ -265,8 +266,9 @@ namespace HslCommunicationDemo
 		}
 
 		[HslMqttApi( "读取设备的Int16信息，address: 设备的地址 length: 读取的数据长度" )]
-		public short ReadFloat( string address, short length = 12345 )
+		public short ReadFloat( ISessionContext context, string address, short length = 12345 )
 		{
+			if (context.UserName != "hsl") return -100;
 			return (short)random.Next( 10000 );
 		}
 
