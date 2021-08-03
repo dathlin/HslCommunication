@@ -20,17 +20,20 @@ namespace HslCommunicationDemo
 		public FormMelsec3C( )
 		{
 			InitializeComponent( );
-			melsecA3C = new MelsecA3CNet1( );
+			melsecA3C = new MelsecA3CNet( );
 		}
 
 
-		private MelsecA3CNet1 melsecA3C = null;
+		private MelsecA3CNet melsecA3C = null;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 			comboBox1.SelectedIndex = 0;
+			comboBox2.SelectedIndex = 0;
+			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
+			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
 
 			Language( Program.Language );
 
@@ -48,6 +51,21 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 		}
 
+		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
+		{
+			if (melsecA3C != null)
+			{
+				melsecA3C.SumCheck = checkBox1.Checked;
+			}
+		}
+
+		private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			if (melsecA3C != null)
+			{
+				melsecA3C.Format = int.Parse( comboBox2.SelectedItem.ToString( ) );
+			}
+		}
 
 		private void Language( int language )
 		{
@@ -115,7 +133,7 @@ namespace HslCommunicationDemo
 			
 
 			melsecA3C?.Close( );
-			melsecA3C = new MelsecA3CNet1( );
+			melsecA3C = new MelsecA3CNet( );
 			
 			try
 			{
@@ -124,11 +142,13 @@ namespace HslCommunicationDemo
 					sp.PortName = comboBox3.Text;
 					sp.BaudRate = baudRate;
 					sp.DataBits = dataBits;
-					sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
-					sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
+					sp.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
+					sp.Parity = comboBox1.SelectedIndex == 0 ? Parity.None : (comboBox1.SelectedIndex == 1 ? Parity.Odd : Parity.Even);
+					sp.RtsEnable = true;
 				} );
 				melsecA3C.Station = byte.Parse( textBox15.Text );
-
+				melsecA3C.SumCheck = checkBox1.Checked;
+				melsecA3C.Format = int.Parse( comboBox2.SelectedItem.ToString( ) );
 
 				melsecA3C.Open( );
 				button2.Enabled = true;

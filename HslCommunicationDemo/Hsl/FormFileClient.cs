@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using HslCommunication.Core;
+using HslCommunication.BasicFramework;
 #if !NET35
 using System.Threading.Tasks;
 #endif
@@ -403,6 +404,46 @@ namespace HslCommunicationDemo
 				MessageBox.Show( "空目录信息删除失败，原因：" + result.ToMessageShowString( ) );
 			}
 		}
+
+		private async void button12_Click( object sender, EventArgs e )
+		{
+			OperateResult<GroupFileInfo> result = await integrationFileClient.GetGroupFileInfoAsync(
+				textBox_delete_factory.Text,                        // 第一级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+				textBox_delete_group.Text,                          // 第二级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+				textBox_delete_id.Text                              // 第三级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+				);
+			if (result.IsSuccess)
+			{
+				// get file size success
+				label22.Text = result.Content.ToString( );
+			}
+			else
+			{
+				// 删除失败的原因除了一般的网络问题，还有因为服务器的文件不存在，会在Message里有显示。
+				// file not exsist or net work exception
+				MessageBox.Show( "获取文件大小失败，原因：" + result.ToMessageShowString( ) );
+			}
+		}
+
+		private async void button13_Click( object sender, EventArgs e )
+		{
+			OperateResult<GroupFileInfo[]> result = await integrationFileClient.GetSubGroupFileInfosAsync(
+				textBox_delete_factory.Text,                        // 第一级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+				textBox_delete_group.Text,                          // 第二级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+				textBox_delete_id.Text                              // 第三级分类，指示文件存储的类别，对应在服务器端存储的路径不一致
+				);
+			if (result.IsSuccess)
+			{
+				MessageBox.Show( result.Content.ToJsonString( ) );
+			}
+			else
+			{
+				// 删除失败的原因除了一般的网络问题，还有因为服务器的文件不存在，会在Message里有显示。
+				// file not exsist or net work exception
+				MessageBox.Show( "获取文件大小失败，原因：" + result.ToMessageShowString( ) );
+			}
+		}
+
 		#endregion
 
 		#region DownloadPathFolders

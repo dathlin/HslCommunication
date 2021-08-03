@@ -291,6 +291,20 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button30_Click( object sender, EventArgs e )
+		{
+			// 当前的刀号
+			OperateResult<int> read = fanuc.ReadCutterNumber( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "刀号：" + Environment.NewLine + read.Content;
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
+
 		private async void button28_Click( object sender, EventArgs e )
 		{
 			// 读取程序

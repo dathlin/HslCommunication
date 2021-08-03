@@ -537,7 +537,8 @@ namespace HslCommunicationDemo
 				textBox4.Text = apiInfo.ExamplePayload;
 				textBox12.Text = apiInfo.CalledCount.ToString( );
 				textBox13.Text = apiInfo.SpendTotalTime.ToString( "F2" );
-				label15.Text = apiInfo.Description;
+				label15.Text = "[注释] " + apiInfo.Description;
+				label20.Text = "[签名] " + apiInfo.MethodSignature;
 
 
 				OperateResult<long[]> read = mqttSyncClient.ReadRpcApiLog( apiInfo.ApiTopic );

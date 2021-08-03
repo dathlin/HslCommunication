@@ -29,7 +29,7 @@
         private void InitializeComponent( )
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("文件列表");
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("文件列表");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
@@ -62,6 +62,8 @@
 			this.textBox_file_tag = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.label17 = new System.Windows.Forms.Label();
+			this.button11 = new System.Windows.Forms.Button();
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.button9 = new System.Windows.Forms.Button();
@@ -103,6 +105,7 @@
 			this.删除目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.全部下载ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.批量上传ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.button12 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -289,7 +292,7 @@
 			this.groupBox5.Controls.Add(this.label32);
 			this.groupBox5.Controls.Add(this.label26);
 			this.groupBox5.Controls.Add(this.textBox_file_tag);
-			this.groupBox5.Location = new System.Drawing.Point(371, 19);
+			this.groupBox5.Location = new System.Drawing.Point(371, 11);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(594, 146);
 			this.groupBox5.TabIndex = 41;
@@ -421,18 +424,39 @@
 			// groupBox3
 			// 
 			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Controls.Add(this.button12);
+			this.groupBox3.Controls.Add(this.label17);
+			this.groupBox3.Controls.Add(this.button11);
 			this.groupBox3.Controls.Add(this.textBox6);
 			this.groupBox3.Controls.Add(this.label5);
 			this.groupBox3.Controls.Add(this.button9);
 			this.groupBox3.Controls.Add(this.textBox_delete_fileName);
 			this.groupBox3.Controls.Add(this.label8);
 			this.groupBox3.Controls.Add(this.button5);
-			this.groupBox3.Location = new System.Drawing.Point(371, 442);
+			this.groupBox3.Location = new System.Drawing.Point(371, 431);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(594, 83);
+			this.groupBox3.Size = new System.Drawing.Size(594, 94);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "文件删除";
+			// 
+			// label17
+			// 
+			this.label17.Location = new System.Drawing.Point(347, 55);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(241, 36);
+			this.label17.TabIndex = 25;
+			this.label17.Text = "0";
+			// 
+			// button11
+			// 
+			this.button11.Location = new System.Drawing.Point(240, 49);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(101, 28);
+			this.button11.TabIndex = 24;
+			this.button11.Text = "目录文件信息";
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.button11_Click);
 			// 
 			// textBox6
 			// 
@@ -453,9 +477,9 @@
 			// 
 			// button9
 			// 
-			this.button9.Location = new System.Drawing.Point(95, 49);
+			this.button9.Location = new System.Drawing.Point(70, 49);
 			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(102, 28);
+			this.button9.Size = new System.Drawing.Size(83, 28);
 			this.button9.TabIndex = 18;
 			this.button9.Text = "删除目录";
 			this.button9.UseVisualStyleBackColor = true;
@@ -465,7 +489,7 @@
 			// 
 			this.textBox_delete_fileName.Location = new System.Drawing.Point(321, 21);
 			this.textBox_delete_fileName.Name = "textBox_delete_fileName";
-			this.textBox_delete_fileName.Size = new System.Drawing.Size(192, 23);
+			this.textBox_delete_fileName.Size = new System.Drawing.Size(266, 23);
 			this.textBox_delete_fileName.TabIndex = 17;
 			// 
 			// label8
@@ -481,7 +505,7 @@
 			// 
 			this.button5.Location = new System.Drawing.Point(10, 49);
 			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(70, 28);
+			this.button5.Size = new System.Drawing.Size(54, 28);
 			this.button5.TabIndex = 7;
 			this.button5.Text = "删除";
 			this.button5.UseVisualStyleBackColor = true;
@@ -502,7 +526,7 @@
 			this.groupBox2.Controls.Add(this.progressBar2);
 			this.groupBox2.Controls.Add(this.label12);
 			this.groupBox2.Controls.Add(this.button4);
-			this.groupBox2.Location = new System.Drawing.Point(371, 311);
+			this.groupBox2.Location = new System.Drawing.Point(371, 300);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(594, 128);
 			this.groupBox2.TabIndex = 1;
@@ -629,7 +653,7 @@
 			this.groupBox1.Controls.Add(this.button2);
 			this.groupBox1.Controls.Add(this.textBox3);
 			this.groupBox1.Controls.Add(this.label6);
-			this.groupBox1.Location = new System.Drawing.Point(371, 167);
+			this.groupBox1.Location = new System.Drawing.Point(371, 158);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(594, 138);
 			this.groupBox1.TabIndex = 0;
@@ -748,10 +772,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.Location = new System.Drawing.Point(9, 42);
 			this.treeView1.Name = "treeView1";
-			treeNode2.Name = "节点0";
-			treeNode2.Text = "文件列表";
+			treeNode1.Name = "节点0";
+			treeNode1.Text = "文件列表";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
 			this.treeView1.Size = new System.Drawing.Size(356, 483);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeExpand);
@@ -824,6 +848,16 @@
 			this.批量上传ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
 			this.批量上传ToolStripMenuItem.Text = "批量上传";
 			this.批量上传ToolStripMenuItem.Click += new System.EventHandler(this.批量上传ToolStripMenuItem_Click);
+			// 
+			// button12
+			// 
+			this.button12.Location = new System.Drawing.Point(159, 49);
+			this.button12.Name = "button12";
+			this.button12.Size = new System.Drawing.Size(75, 28);
+			this.button12.TabIndex = 26;
+			this.button12.Text = "子目录";
+			this.button12.UseVisualStyleBackColor = true;
+			this.button12.Click += new System.EventHandler(this.button12_Click);
 			// 
 			// FormMqttFileClient
 			// 
@@ -933,5 +967,8 @@
 		private System.Windows.Forms.ToolStripMenuItem 删除目录ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 全部下载ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 批量上传ToolStripMenuItem;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.Button button11;
+		private System.Windows.Forms.Button button12;
 	}
 }

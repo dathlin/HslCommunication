@@ -19,18 +19,37 @@ namespace HslCommunicationDemo
 		public FormMelsec3COverTcp( )
 		{
 			InitializeComponent( );
-			melsecA3C = new MelsecA3CNet1OverTcp( );
+			melsecA3C = new MelsecA3CNetOverTcp( );
 		}
 
 
-		private MelsecA3CNet1OverTcp melsecA3C = null;
+		private MelsecA3CNetOverTcp melsecA3C = null;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 
+			comboBox2.SelectedIndex = 0;
+			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
+			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
 			Language( Program.Language );
+		}
+
+		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
+		{
+			if (melsecA3C != null)
+			{
+				melsecA3C.SumCheck = checkBox1.Checked;
+			}
+		}
+
+		private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			if (melsecA3C != null)
+			{
+				melsecA3C.Format = int.Parse( comboBox2.SelectedItem.ToString( ) );
+			}
 		}
 
 
@@ -81,18 +100,19 @@ namespace HslCommunicationDemo
 			}
 
 			melsecA3C?.ConnectClose( );
-			melsecA3C = new MelsecA3CNet1OverTcp( );
+			melsecA3C = new MelsecA3CNetOverTcp( );
 			melsecA3C.IpAddress = textBox1.Text;
 			melsecA3C.Port = port;
 
 			try
 			{
 				melsecA3C.Station = byte.Parse( textBox15.Text );
-
+				melsecA3C.SumCheck = checkBox1.Checked;
+				melsecA3C.Format = int.Parse( comboBox2.SelectedItem.ToString( ) );
 				OperateResult connect = melsecA3C.ConnectServer( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					MessageBox.Show( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;

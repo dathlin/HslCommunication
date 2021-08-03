@@ -94,11 +94,12 @@ namespace HslCommunicationDemo
 
             if (node.Tag is MqttRpcApiInfo apiInfo)
             {
-                textBox9.Text = apiInfo.ApiTopic;
-                textBox5.Text = apiInfo.ExamplePayload;
+                textBox9.Text  = apiInfo.ApiTopic;
+                textBox5.Text  = apiInfo.ExamplePayload;
                 textBox12.Text = apiInfo.CalledCount.ToString( );
                 textBox13.Text = apiInfo.SpendTotalTime.ToString( "F2" );
-                label15.Text = apiInfo.Description;
+                label15.Text   = "[注释] " + apiInfo.Description;
+                label20.Text   = "[签名] " + apiInfo.MethodSignature;
                 if(apiInfo.HttpMethod.ToUpper() == "GET" )
                     comboBox1.SelectedItem = HttpMethod.Get;
                 else if (apiInfo.HttpMethod.ToUpper( ) == "POST")

@@ -66,6 +66,9 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.label22 = new System.Windows.Forms.Label();
+			this.button12 = new System.Windows.Forms.Button();
+			this.button11 = new System.Windows.Forms.Button();
 			this.button9 = new System.Windows.Forms.Button();
 			this.textBox_delete_fileName = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -109,7 +112,7 @@
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button11 = new System.Windows.Forms.Button();
+			this.button13 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -469,6 +472,9 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.button13);
+			this.groupBox3.Controls.Add(this.label22);
+			this.groupBox3.Controls.Add(this.button12);
 			this.groupBox3.Controls.Add(this.button11);
 			this.groupBox3.Controls.Add(this.button9);
 			this.groupBox3.Controls.Add(this.textBox_delete_fileName);
@@ -486,6 +492,35 @@
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "文件删除";
+			// 
+			// label22
+			// 
+			this.label22.AutoSize = true;
+			this.label22.Location = new System.Drawing.Point(118, 48);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(15, 17);
+			this.label22.TabIndex = 21;
+			this.label22.Text = "0";
+			// 
+			// button12
+			// 
+			this.button12.Location = new System.Drawing.Point(9, 42);
+			this.button12.Name = "button12";
+			this.button12.Size = new System.Drawing.Size(95, 28);
+			this.button12.TabIndex = 20;
+			this.button12.Text = "文件夹信息";
+			this.button12.UseVisualStyleBackColor = true;
+			this.button12.Click += new System.EventHandler(this.button12_Click);
+			// 
+			// button11
+			// 
+			this.button11.Location = new System.Drawing.Point(866, 42);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(78, 28);
+			this.button11.TabIndex = 19;
+			this.button11.Text = "空目录删除";
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.button11_Click);
 			// 
 			// button9
 			// 
@@ -895,15 +930,15 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// button11
+			// button13
 			// 
-			this.button11.Location = new System.Drawing.Point(866, 42);
-			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(78, 28);
-			this.button11.TabIndex = 19;
-			this.button11.Text = "空目录删除";
-			this.button11.UseVisualStyleBackColor = true;
-			this.button11.Click += new System.EventHandler(this.button11_Click);
+			this.button13.Location = new System.Drawing.Point(765, 42);
+			this.button13.Name = "button13";
+			this.button13.Size = new System.Drawing.Size(95, 28);
+			this.button13.TabIndex = 22;
+			this.button13.Text = "子文件夹信息";
+			this.button13.UseVisualStyleBackColor = true;
+			this.button13.Click += new System.EventHandler(this.button13_Click);
 			// 
 			// FormFileClient
 			// 
@@ -1017,5 +1052,8 @@
 		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.Button button11;
+		private System.Windows.Forms.Button button12;
+		private System.Windows.Forms.Label label22;
+		private System.Windows.Forms.Button button13;
 	}
 }

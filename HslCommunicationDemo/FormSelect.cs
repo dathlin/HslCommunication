@@ -64,6 +64,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "yokogawa",              Properties.Resources.yokogawa );          // 31
 			imageList.Images.Add( "delta",                 Properties.Resources.delta );             // 32
 			imageList.Images.Add( "ge",                    Properties.Resources.ge );                // 33
+			imageList.Images.Add( "yamatake",              Properties.Resources.Yamatake );          // 34
 
 
 			treeView1.ImageList = imageList;
@@ -343,8 +344,9 @@ namespace HslCommunicationDemo
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Serial OverTcp",   8, typeof( FormMelsecSerialOverTcp ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Links【485】",     8, typeof( FormMelsecLinks ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Links OverTcp",    8, typeof( FormMelsecLinksOverTcp ) ) );
-			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C (format1)",      8, typeof( FormMelsec3C ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C (串口)",         8, typeof( FormMelsec3C ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C OverTcp",        8, typeof( FormMelsec3COverTcp ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C Server",         8, typeof( FormMcA3CServer ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Mc Virtual Server",   8, typeof( FormMcServer ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Mc Udp Server",       8, typeof( FormMcUdpServer ) ) );
 			treeView1.Nodes.Add( melsecNode );
@@ -449,6 +451,18 @@ namespace HslCommunicationDemo
 			gePlc.Nodes.Add( GetTreeNodeByIndex( "SRTP", 33, typeof( FormGeSRTP ) ) );
 			gePlc.Nodes.Add( GetTreeNodeByIndex( "SRTP Server", 33, typeof( FormGeSRTPServer ) ) );
 			treeView1.Nodes.Add( gePlc );
+
+			// Yaskawa PLC
+			TreeNode yaskawaPlc = new TreeNode( "Yaskawa Plc[安川]", 29, 29 );
+			yaskawaPlc.Nodes.Add( GetTreeNodeByIndex( "Memobus", 29, typeof( FormYASKAWAMemobusTcpNet ) ) );
+			treeView1.Nodes.Add( yaskawaPlc );
+
+			// yamatake 山武 
+			TreeNode yamatakePlc = new TreeNode( "yamatake[山武]", 34, 34 );
+			yamatakePlc.Nodes.Add( GetTreeNodeByIndex( "DigitronCPL", 34, typeof( FormDigitronCPL ) ) );
+			yamatakePlc.Nodes.Add( GetTreeNodeByIndex( "DigitronCPL OverTcp", 34, typeof( FormDigitronCPLOverTcp ) ) );
+			yamatakePlc.Nodes.Add( GetTreeNodeByIndex( "DigitronCPL Server", 34, typeof( FormDigitronCPLServer ) ) );
+			treeView1.Nodes.Add( yamatakePlc );
 
 			// Fatek 永宏PLC
 			TreeNode fatekNode = new TreeNode( "Fatek Plc[永宏]", 22, 22 );

@@ -155,7 +155,7 @@ namespace HslCommunicationDemo
 					{
 						try
 						{
-							msg = System.Xml.Linq.XElement.Parse( msg ).ToString( );
+							msg = XElement.Parse( msg ).ToString( );
 						}
 						catch
 						{
@@ -174,11 +174,10 @@ namespace HslCommunicationDemo
 						}
 					}
 
-
 					if (radioButton2.Checked)
-						textBox8.AppendText( $"Topic[{topic}] " + Environment.NewLine + msg + Environment.NewLine );
+						textBox8.AppendText( $"Topic[{topic}] " + msg + Environment.NewLine );
 					else if (radioButton1.Checked)
-						textBox8.Text = $"Topic[{topic}] " + Environment.NewLine + msg;
+						textBox8.Text = $"Topic[{topic}] " + msg;
 				} ) );
 			}
 			catch

@@ -12,6 +12,7 @@ using System.Net;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication.Reflection;
 using HslCommunication.Core;
+using System.Threading.Tasks;
 
 namespace HslCommunicationDemo
 {
@@ -110,6 +111,19 @@ namespace HslCommunicationDemo
             return OperateResult.CreateSuccessResult( );
         }
 
+        [HslMqttApi( "异步的读取方法，需要传入字符串的值" )]
+        public async Task<short> ReadDatabaseAsync( string abc = "123" )
+        {
+            await Task.Delay( 1000 );
+            return await Task.FromResult( short.Parse( abc ) );
+        }
+
+        [HslMqttApi( "异步的读取方法，需要传入字符串的值" )]
+        public Task WriteDatabaseAsync( string abc = "123" )
+        {
+            return Task.Delay( 500 );
+        }
+
         [HslMqttApi( HttpMethod = "GET" )]
         public int GetHslCommunication( int id )
         {
@@ -135,7 +149,7 @@ namespace HslCommunicationDemo
             if (request.RawUrl.StartsWith( "/FormHttpServer/" ))
             {
                 // /FormHttpServer/CheckAccount            { "name" : "admin", "password" : "123456" }
-                return HttpServer.HandleObjectMethod( request, request.RawUrl, data, this );
+                return HttpServer.HandleObjectMethod( request, request.RawUrl, data, this ).Result;
             }
             else
             {

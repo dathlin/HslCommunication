@@ -38,6 +38,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button29 = new System.Windows.Forms.Button();
 			this.textBox9 = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.button28 = new System.Windows.Forms.Button();
@@ -79,7 +80,7 @@
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button29 = new System.Windows.Forms.Button();
+			this.button30 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -181,6 +182,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button30);
 			this.panel2.Controls.Add(this.button29);
 			this.panel2.Controls.Add(this.textBox9);
 			this.panel2.Controls.Add(this.label9);
@@ -226,6 +228,16 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(977, 544);
 			this.panel2.TabIndex = 13;
+			// 
+			// button29
+			// 
+			this.button29.Location = new System.Drawing.Point(774, 144);
+			this.button29.Name = "button29";
+			this.button29.Size = new System.Drawing.Size(96, 29);
+			this.button29.TabIndex = 58;
+			this.button29.Text = "删除程序";
+			this.button29.UseVisualStyleBackColor = true;
+			this.button29.Click += new System.EventHandler(this.button29_Click);
 			// 
 			// textBox9
 			// 
@@ -624,15 +636,15 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// button29
+			// button30
 			// 
-			this.button29.Location = new System.Drawing.Point(774, 144);
-			this.button29.Name = "button29";
-			this.button29.Size = new System.Drawing.Size(96, 29);
-			this.button29.TabIndex = 58;
-			this.button29.Text = "删除程序";
-			this.button29.UseVisualStyleBackColor = true;
-			this.button29.Click += new System.EventHandler(this.button29_Click);
+			this.button30.Location = new System.Drawing.Point(419, 77);
+			this.button30.Name = "button30";
+			this.button30.Size = new System.Drawing.Size(96, 29);
+			this.button30.TabIndex = 59;
+			this.button30.Text = "当前刀具号";
+			this.button30.UseVisualStyleBackColor = true;
+			this.button30.Click += new System.EventHandler(this.button30_Click);
 			// 
 			// FormCncFanuc
 			// 
@@ -710,5 +722,6 @@
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Button button28;
 		private System.Windows.Forms.Button button29;
+		private System.Windows.Forms.Button button30;
 	}
 }

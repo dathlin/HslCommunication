@@ -44,6 +44,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.label20 = new System.Windows.Forms.Label();
 			this.hslBarChart1 = new HslControls.HslBarChart();
 			this.label15 = new System.Windows.Forms.Label();
 			this.button7 = new System.Windows.Forms.Button();
@@ -124,7 +125,7 @@
 			this.panel1.Location = new System.Drawing.Point(15, 43);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 72);
+			this.panel1.Size = new System.Drawing.Size(1089, 72);
 			this.panel1.TabIndex = 7;
 			// 
 			// textBox3
@@ -236,6 +237,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.label20);
 			this.panel2.Controls.Add(this.hslBarChart1);
 			this.panel2.Controls.Add(this.label15);
 			this.panel2.Controls.Add(this.button7);
@@ -262,14 +264,26 @@
 			this.panel2.Controls.Add(this.label5);
 			this.panel2.Location = new System.Drawing.Point(61, 9);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(730, 525);
+			this.panel2.Size = new System.Drawing.Size(841, 505);
 			this.panel2.TabIndex = 13;
+			// 
+			// label20
+			// 
+			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label20.AutoSize = true;
+			this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label20.Location = new System.Drawing.Point(59, 38);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(40, 17);
+			this.label20.TabIndex = 47;
+			this.label20.Text = "[签名]";
 			// 
 			// hslBarChart1
 			// 
 			this.hslBarChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslBarChart1.BackColor = System.Drawing.Color.White;
-			this.hslBarChart1.Location = new System.Drawing.Point(396, 74);
+			this.hslBarChart1.Location = new System.Drawing.Point(507, 101);
 			this.hslBarChart1.Name = "hslBarChart1";
 			this.hslBarChart1.ShowBarValueFormat = "{0}";
 			this.hslBarChart1.Size = new System.Drawing.Size(329, 166);
@@ -282,16 +296,16 @@
 			// 
 			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.label15.ForeColor = System.Drawing.Color.Gray;
-			this.label15.Location = new System.Drawing.Point(60, 34);
+			this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label15.Location = new System.Drawing.Point(60, 61);
 			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(648, 37);
+			this.label15.Size = new System.Drawing.Size(705, 37);
 			this.label15.TabIndex = 41;
 			this.label15.Text = "[注释]";
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(263, 252);
+			this.button7.Location = new System.Drawing.Point(263, 279);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(119, 28);
 			this.button7.TabIndex = 40;
@@ -302,7 +316,7 @@
 			// textBox13
 			// 
 			this.textBox13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox13.Location = new System.Drawing.Point(634, 8);
+			this.textBox13.Location = new System.Drawing.Point(745, 8);
 			this.textBox13.Name = "textBox13";
 			this.textBox13.ReadOnly = true;
 			this.textBox13.Size = new System.Drawing.Size(91, 23);
@@ -312,7 +326,7 @@
 			// 
 			this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(511, 11);
+			this.label14.Location = new System.Drawing.Point(622, 11);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(113, 17);
 			this.label14.TabIndex = 38;
@@ -321,7 +335,7 @@
 			// textBox12
 			// 
 			this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox12.Location = new System.Drawing.Point(408, 8);
+			this.textBox12.Location = new System.Drawing.Point(519, 8);
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ReadOnly = true;
 			this.textBox12.Size = new System.Drawing.Size(91, 23);
@@ -331,7 +345,7 @@
 			// 
 			this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(316, 11);
+			this.label13.Location = new System.Drawing.Point(427, 11);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(85, 17);
 			this.label13.TabIndex = 36;
@@ -339,7 +353,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(263, 218);
+			this.button6.Location = new System.Drawing.Point(263, 245);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(119, 28);
 			this.button6.TabIndex = 35;
@@ -349,7 +363,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(138, 218);
+			this.button5.Location = new System.Drawing.Point(138, 245);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(119, 28);
 			this.button5.TabIndex = 34;
@@ -362,11 +376,11 @@
 			this.hslProgress2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslProgress2.BackColor = System.Drawing.Color.Gainsboro;
-			this.hslProgress2.Location = new System.Drawing.Point(62, 284);
+			this.hslProgress2.Location = new System.Drawing.Point(62, 311);
 			this.hslProgress2.Name = "hslProgress2";
 			this.hslProgress2.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.hslProgress2.ProgressStyle = HslControls.HslProgressStyle.Horizontal;
-			this.hslProgress2.Size = new System.Drawing.Size(328, 18);
+			this.hslProgress2.Size = new System.Drawing.Size(439, 18);
 			this.hslProgress2.TabIndex = 33;
 			this.hslProgress2.TextRenderFormat = "已接收 {0}%";
 			this.hslProgress2.Value = 0;
@@ -376,11 +390,11 @@
 			this.hslProgress1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslProgress1.BackColor = System.Drawing.Color.Gainsboro;
-			this.hslProgress1.Location = new System.Drawing.Point(62, 194);
+			this.hslProgress1.Location = new System.Drawing.Point(62, 221);
 			this.hslProgress1.Name = "hslProgress1";
 			this.hslProgress1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.hslProgress1.ProgressStyle = HslControls.HslProgressStyle.Horizontal;
-			this.hslProgress1.Size = new System.Drawing.Size(328, 18);
+			this.hslProgress1.Size = new System.Drawing.Size(439, 18);
 			this.hslProgress1.TabIndex = 32;
 			this.hslProgress1.TextRenderFormat = "已发送 {0}%";
 			this.hslProgress1.Value = 0;
@@ -388,7 +402,7 @@
 			// textBox7
 			// 
 			this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox7.Location = new System.Drawing.Point(644, 246);
+			this.textBox7.Location = new System.Drawing.Point(755, 273);
 			this.textBox7.Name = "textBox7";
 			this.textBox7.ReadOnly = true;
 			this.textBox7.Size = new System.Drawing.Size(81, 23);
@@ -398,7 +412,7 @@
 			// 
 			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(560, 248);
+			this.label11.Location = new System.Drawing.Point(671, 275);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(44, 17);
 			this.label11.TabIndex = 30;
@@ -406,9 +420,9 @@
 			// 
 			// textBox6
 			// 
-			this.textBox6.Location = new System.Drawing.Point(62, 255);
+			this.textBox6.Location = new System.Drawing.Point(62, 282);
 			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(181, 23);
+			this.textBox6.Size = new System.Drawing.Size(195, 23);
 			this.textBox6.TabIndex = 29;
 			// 
 			// panel3
@@ -417,7 +431,7 @@
 			this.panel3.Controls.Add(this.radioButton5);
 			this.panel3.Controls.Add(this.radioButton3);
 			this.panel3.Controls.Add(this.radioButton4);
-			this.panel3.Location = new System.Drawing.Point(471, 277);
+			this.panel3.Location = new System.Drawing.Point(582, 304);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(184, 28);
 			this.panel3.TabIndex = 26;
@@ -459,17 +473,17 @@
 			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox8.Location = new System.Drawing.Point(62, 308);
+			this.textBox8.Location = new System.Drawing.Point(62, 338);
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(663, 209);
+			this.textBox8.Size = new System.Drawing.Size(774, 159);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(0, 258);
+			this.label12.Location = new System.Drawing.Point(0, 285);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(68, 17);
 			this.label12.TabIndex = 19;
@@ -478,7 +492,7 @@
 			// button4
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(655, 277);
+			this.button4.Location = new System.Drawing.Point(766, 277);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(71, 28);
 			this.button4.TabIndex = 17;
@@ -488,7 +502,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(62, 218);
+			this.button3.Location = new System.Drawing.Point(62, 245);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(70, 28);
 			this.button3.TabIndex = 12;
@@ -500,17 +514,17 @@
 			// 
 			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox4.Location = new System.Drawing.Point(62, 74);
+			this.textBox4.Location = new System.Drawing.Point(62, 101);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(328, 115);
+			this.textBox4.Size = new System.Drawing.Size(439, 115);
 			this.textBox4.TabIndex = 8;
 			// 
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(0, 77);
+			this.label9.Location = new System.Drawing.Point(0, 104);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(68, 17);
 			this.label9.TabIndex = 11;
@@ -522,7 +536,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox5.Location = new System.Drawing.Point(62, 7);
 			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(237, 23);
+			this.textBox5.Size = new System.Drawing.Size(348, 23);
 			this.textBox5.TabIndex = 9;
 			this.textBox5.Text = "A";
 			// 
@@ -538,7 +552,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(0, 311);
+			this.label5.Location = new System.Drawing.Point(-4, 335);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 17);
 			this.label5.TabIndex = 42;
@@ -555,7 +569,7 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "MQTT RPC";
-			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(1115, 32);
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
@@ -569,7 +583,7 @@
 			this.panel4.Controls.Add(this.label10);
 			this.panel4.Location = new System.Drawing.Point(15, 122);
 			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(259, 518);
+			this.panel4.Size = new System.Drawing.Size(259, 498);
 			this.panel4.TabIndex = 15;
 			// 
 			// button8
@@ -597,7 +611,7 @@
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2});
-			this.treeView1.Size = new System.Drawing.Size(251, 483);
+			this.treeView1.Size = new System.Drawing.Size(251, 463);
 			this.treeView1.TabIndex = 1;
 			// 
 			// label10
@@ -631,7 +645,7 @@
 			this.panel5.Controls.Add(this.label22);
 			this.panel5.Location = new System.Drawing.Point(21, 60);
 			this.panel5.Name = "panel5";
-			this.panel5.Size = new System.Drawing.Size(815, 525);
+			this.panel5.Size = new System.Drawing.Size(926, 505);
 			this.panel5.TabIndex = 16;
 			// 
 			// label18
@@ -666,7 +680,7 @@
 			// textBox14
 			// 
 			this.textBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox14.Location = new System.Drawing.Point(493, 8);
+			this.textBox14.Location = new System.Drawing.Point(604, 8);
 			this.textBox14.Name = "textBox14";
 			this.textBox14.ReadOnly = true;
 			this.textBox14.Size = new System.Drawing.Size(317, 23);
@@ -676,7 +690,7 @@
 			// 
 			this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(405, 11);
+			this.label17.Location = new System.Drawing.Point(516, 11);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(73, 17);
 			this.label17.TabIndex = 36;
@@ -691,7 +705,7 @@
 			this.hslProgress3.Name = "hslProgress3";
 			this.hslProgress3.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.hslProgress3.ProgressStyle = HslControls.HslProgressStyle.Horizontal;
-			this.hslProgress3.Size = new System.Drawing.Size(748, 18);
+			this.hslProgress3.Size = new System.Drawing.Size(859, 18);
 			this.hslProgress3.TabIndex = 33;
 			this.hslProgress3.TextRenderFormat = "已接收 {0}%";
 			this.hslProgress3.Value = 0;
@@ -709,7 +723,7 @@
 			this.panel6.Controls.Add(this.radioButton1);
 			this.panel6.Controls.Add(this.radioButton2);
 			this.panel6.Controls.Add(this.radioButton6);
-			this.panel6.Location = new System.Drawing.Point(556, 78);
+			this.panel6.Location = new System.Drawing.Point(667, 78);
 			this.panel6.Name = "panel6";
 			this.panel6.Size = new System.Drawing.Size(184, 28);
 			this.panel6.TabIndex = 26;
@@ -755,7 +769,7 @@
 			this.textBox17.Multiline = true;
 			this.textBox17.Name = "textBox17";
 			this.textBox17.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox17.Size = new System.Drawing.Size(748, 384);
+			this.textBox17.Size = new System.Drawing.Size(859, 364);
 			this.textBox17.TabIndex = 18;
 			// 
 			// label19
@@ -770,7 +784,7 @@
 			// button12
 			// 
 			this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button12.Location = new System.Drawing.Point(740, 78);
+			this.button12.Location = new System.Drawing.Point(851, 78);
 			this.button12.Name = "button12";
 			this.button12.Size = new System.Drawing.Size(71, 28);
 			this.button12.TabIndex = 17;
@@ -812,7 +826,7 @@
 			this.panel7.Controls.Add(this.panel5);
 			this.panel7.Location = new System.Drawing.Point(277, 122);
 			this.panel7.Name = "panel7";
-			this.panel7.Size = new System.Drawing.Size(716, 518);
+			this.panel7.Size = new System.Drawing.Size(827, 498);
 			this.panel7.TabIndex = 17;
 			// 
 			// FormMqttSyncClient
@@ -820,7 +834,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.ClientSize = new System.Drawing.Size(1115, 625);
 			this.Controls.Add(this.panel7);
 			this.Controls.Add(this.panel4);
 			this.Controls.Add(this.userControlHead1);
@@ -914,5 +928,6 @@
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Panel panel7;
 		private HslControls.HslBarChart hslBarChart1;
+		private System.Windows.Forms.Label label20;
 	}
 }

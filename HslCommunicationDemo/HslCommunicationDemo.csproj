@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.1.0.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.1.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.1.2.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.1.2\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -250,6 +250,24 @@
     <Compile Include="Instrument\FormDTSU6606.Designer.cs">
       <DependentUpon>FormDTSU6606.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instrument\FormDigitronCPLServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDigitronCPLServer.Designer.cs">
+      <DependentUpon>FormDigitronCPLServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormDigitronCPL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDigitronCPL.Designer.cs">
+      <DependentUpon>FormDigitronCPL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormDigitronCPLOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDigitronCPLOverTcp.Designer.cs">
+      <DependentUpon>FormDigitronCPLOverTcp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Light\FormShineInLight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -297,6 +315,12 @@
     </Compile>
     <Compile Include="PLC\FormFujiSPHServer.Designer.cs">
       <DependentUpon>FormFujiSPHServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormMcA3CServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormMcA3CServer.Designer.cs">
+      <DependentUpon>FormMcA3CServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormMelsecCipNet.cs">
       <SubType>Form</SubType>
@@ -351,6 +375,12 @@
     </Compile>
     <Compile Include="PLC\FormGeSRTPServer.Designer.cs">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormYASKAWAMemobusTcpNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormYASKAWAMemobusTcpNet.Designer.cs">
+      <DependentUpon>FormYASKAWAMemobusTcpNet.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormOmronHostLinkServer.cs">
       <SubType>Form</SubType>
@@ -1250,6 +1280,15 @@
     <EmbeddedResource Include="Instrument\FormDTSU6606.resx">
       <DependentUpon>FormDTSU6606.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDigitronCPLServer.resx">
+      <DependentUpon>FormDigitronCPLServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDigitronCPL.resx">
+      <DependentUpon>FormDigitronCPL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDigitronCPLOverTcp.resx">
+      <DependentUpon>FormDigitronCPLOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Light\FormShineInLight.resx">
       <DependentUpon>FormShineInLight.cs</DependentUpon>
     </EmbeddedResource>
@@ -1273,6 +1312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormFujiSPHServer.resx">
       <DependentUpon>FormFujiSPHServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormMcA3CServer.resx">
+      <DependentUpon>FormMcA3CServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormMelsecCipNet.resx">
       <DependentUpon>FormMelsecCipNet.cs</DependentUpon>
@@ -1300,6 +1342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormGeSRTPServer.resx">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormYASKAWAMemobusTcpNet.resx">
+      <DependentUpon>FormYASKAWAMemobusTcpNet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormOmronHostLinkServer.resx">
       <DependentUpon>FormOmronHostLinkServer.cs</DependentUpon>
@@ -1733,6 +1778,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
+    <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />
     <None Include="img\action_Cancel_16xLG.png" />

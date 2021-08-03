@@ -265,6 +265,19 @@ namespace HslCommunicationDemo
 			return OperateResult.CreateSuccessResult( array );
 		}
 
+		[HslMqttApi( "异步的读取方法，需要传入字符串的值" )]
+		public async Task<short> ReadDatabaseAsync( string abc = "123" )
+		{
+			await Task.Delay( 1000 );
+			return await Task.FromResult( short.Parse( abc ) );
+		}
+
+		[HslMqttApi( "异步的读取方法，需要传入字符串的值" )]
+		public Task WriteDatabaseAsync( string abc = "123" )
+		{
+			return Task.Delay( 500 );
+		}
+
 		[HslMqttApi( "读取设备的Int16信息，address: 设备的地址 length: 读取的数据长度" )]
 		public short ReadFloat( ISessionContext context, string address, short length = 12345 )
 		{

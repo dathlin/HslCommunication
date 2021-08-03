@@ -28,9 +28,10 @@
 		/// </summary>
 		private void InitializeComponent( )
 		{
-			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Rpc Apis");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Rpc Apis");
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label8 = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -71,7 +72,7 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -113,6 +114,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1000, 56);
 			this.panel1.TabIndex = 31;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.ForeColor = System.Drawing.Color.Fuchsia;
+			this.label8.Location = new System.Drawing.Point(333, 36);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(208, 17);
+			this.label8.TabIndex = 20;
+			this.label8.Text = "if use https, the port is default 443";
 			// 
 			// checkBox1
 			// 
@@ -241,10 +252,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.Location = new System.Drawing.Point(3, 27);
 			this.treeView1.Name = "treeView1";
-			treeNode3.Name = "节点0";
-			treeNode3.Text = "Rpc Apis";
+			treeNode2.Name = "节点0";
+			treeNode2.Text = "Rpc Apis";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode2});
 			this.treeView1.Size = new System.Drawing.Size(251, 483);
 			this.treeView1.TabIndex = 1;
 			// 
@@ -263,6 +274,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.label20);
 			this.panel2.Controls.Add(this.comboBox2);
 			this.panel2.Controls.Add(this.hslBarChart1);
 			this.panel2.Controls.Add(this.comboBox1);
@@ -293,7 +305,7 @@
 			// 
 			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(217, 232);
+			this.comboBox2.Location = new System.Drawing.Point(217, 257);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(167, 25);
 			this.comboBox2.TabIndex = 46;
@@ -302,7 +314,7 @@
 			// 
 			this.hslBarChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslBarChart1.BackColor = System.Drawing.Color.White;
-			this.hslBarChart1.Location = new System.Drawing.Point(402, 74);
+			this.hslBarChart1.Location = new System.Drawing.Point(402, 99);
 			this.hslBarChart1.Name = "hslBarChart1";
 			this.hslBarChart1.ShowBarValueFormat = "{0}";
 			this.hslBarChart1.Size = new System.Drawing.Size(329, 151);
@@ -315,7 +327,7 @@
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(62, 232);
+			this.comboBox1.Location = new System.Drawing.Point(62, 257);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(69, 25);
 			this.comboBox1.TabIndex = 43;
@@ -324,16 +336,16 @@
 			// 
 			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.label15.ForeColor = System.Drawing.Color.Gray;
-			this.label15.Location = new System.Drawing.Point(60, 34);
+			this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label15.Location = new System.Drawing.Point(60, 59);
 			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(648, 37);
+			this.label15.Size = new System.Drawing.Size(670, 37);
 			this.label15.TabIndex = 41;
 			this.label15.Text = "[注释]";
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(402, 231);
+			this.button7.Location = new System.Drawing.Point(402, 256);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(119, 28);
 			this.button7.TabIndex = 40;
@@ -382,7 +394,7 @@
 			// textBox7
 			// 
 			this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox7.Location = new System.Drawing.Point(649, 231);
+			this.textBox7.Location = new System.Drawing.Point(649, 256);
 			this.textBox7.Name = "textBox7";
 			this.textBox7.ReadOnly = true;
 			this.textBox7.Size = new System.Drawing.Size(81, 23);
@@ -392,7 +404,7 @@
 			// 
 			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(565, 233);
+			this.label11.Location = new System.Drawing.Point(565, 258);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(44, 17);
 			this.label11.TabIndex = 30;
@@ -404,7 +416,7 @@
 			this.panel3.Controls.Add(this.radioButton5);
 			this.panel3.Controls.Add(this.radioButton3);
 			this.panel3.Controls.Add(this.radioButton4);
-			this.panel3.Location = new System.Drawing.Point(476, 262);
+			this.panel3.Location = new System.Drawing.Point(476, 287);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(184, 28);
 			this.panel3.TabIndex = 26;
@@ -446,17 +458,17 @@
 			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox8.Location = new System.Drawing.Point(62, 296);
+			this.textBox8.Location = new System.Drawing.Point(62, 321);
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(668, 214);
+			this.textBox8.Size = new System.Drawing.Size(668, 189);
 			this.textBox8.TabIndex = 18;
 			// 
 			// button4
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(660, 262);
+			this.button4.Location = new System.Drawing.Point(660, 287);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(71, 28);
 			this.button4.TabIndex = 17;
@@ -465,7 +477,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(141, 231);
+			this.button3.Location = new System.Drawing.Point(141, 256);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(70, 28);
 			this.button3.TabIndex = 12;
@@ -477,7 +489,7 @@
 			// 
 			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox5.Location = new System.Drawing.Point(62, 74);
+			this.textBox5.Location = new System.Drawing.Point(62, 99);
 			this.textBox5.Multiline = true;
 			this.textBox5.Name = "textBox5";
 			this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -487,7 +499,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(-1, 77);
+			this.label9.Location = new System.Drawing.Point(-1, 102);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(50, 17);
 			this.label9.TabIndex = 11;
@@ -515,7 +527,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(-1, 299);
+			this.label5.Location = new System.Drawing.Point(-1, 321);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 17);
 			this.label5.TabIndex = 42;
@@ -525,20 +537,22 @@
 			// 
 			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.label6.Location = new System.Drawing.Point(60, 261);
+			this.label6.Location = new System.Drawing.Point(60, 286);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(410, 36);
 			this.label6.TabIndex = 44;
 			// 
-			// label8
+			// label20
 			// 
-			this.label8.AutoSize = true;
-			this.label8.ForeColor = System.Drawing.Color.Fuchsia;
-			this.label8.Location = new System.Drawing.Point(333, 36);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(208, 17);
-			this.label8.TabIndex = 20;
-			this.label8.Text = "if use https, the port is default 443";
+			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label20.AutoSize = true;
+			this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label20.Location = new System.Drawing.Point(60, 38);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(40, 17);
+			this.label20.TabIndex = 48;
+			this.label20.Text = "[签名]";
 			// 
 			// FormHttpClient
 			// 
@@ -611,5 +625,6 @@
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.ComboBox comboBox2;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label20;
 	}
 }

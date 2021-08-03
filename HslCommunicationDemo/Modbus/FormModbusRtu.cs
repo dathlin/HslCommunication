@@ -79,6 +79,7 @@ namespace HslCommunicationDemo
                 groupBox4.Text = "Message reading test, hex string needs to be filled in,without crc";
                 groupBox5.Text = "Special function test";
 
+                checkBox2.Text = "IsClearCacheBeforeRead";
                 comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
             }
         }
@@ -147,6 +148,7 @@ namespace HslCommunicationDemo
             busRtuClient?.Close( );
             busRtuClient = new ModbusRtu( station );
             busRtuClient.AddressStartWithZero = checkBox1.Checked;
+            busRtuClient.IsClearCacheBeforeRead = checkBox2.Checked;
 
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );

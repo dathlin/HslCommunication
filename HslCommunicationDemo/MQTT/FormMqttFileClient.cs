@@ -478,6 +478,39 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private async void button11_Click( object sender, EventArgs e )
+		{
+			// 获取目标的所有文件的大小
+			OperateResult<GroupFileInfo> result = await mqttSyncClient.GetGroupFileInfoAsync(
+				textBox6.Text                                      // 类别信息，例如 Files/Personal/Admin
+				);
+			if (result.IsSuccess)
+			{
+				// success
+				label17.Text = result.Content.ToString( );
+			}
+			else
+			{
+				MessageBox.Show( "获取目录大小失败，原因：" + result.ToMessageShowString( ) );
+			}
+		}
+
+		private async void button12_Click( object sender, EventArgs e )
+		{
+			// 获取目标的所有文件的大小
+			OperateResult<GroupFileInfo[]> result = await mqttSyncClient.GetSubGroupFileInfosAsync(
+				textBox6.Text                                      // 类别信息，例如 Files/Personal/Admin
+				);
+			if (result.IsSuccess)
+			{
+				// success
+				MessageBox.Show( result.Content.ToJsonString( ) );
+			}
+			else
+			{
+				MessageBox.Show( "获取目录大小失败，原因：" + result.ToMessageShowString( ) );
+			}
+		}
 		#endregion
 
 		#region DownloadPathFolders

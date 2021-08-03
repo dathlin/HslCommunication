@@ -153,7 +153,21 @@ namespace HslCommunicationDemo
 
 		private void button25_Click( object sender, EventArgs e )
 		{
-			DemoUtils.BulkReadRenderResult( xGBCnet, textBox6, textBox9, textBox10 );
+			if(textBox6.Text.IndexOf(';') < 0)
+				DemoUtils.BulkReadRenderResult( xGBCnet, textBox6, textBox9, textBox10 );
+			else
+			{
+				string[] address = textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries );
+				OperateResult<byte[]> read = xGBCnet.Read( address );
+				if (read.IsSuccess)
+				{
+					textBox10.Text = "Result: " + read.Content.ToHexString( ' ' );
+				}
+				else
+				{
+					MessageBox.Show( "Read Failed! " + read.Message );
+				}
+			}
 		}
 
 

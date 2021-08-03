@@ -35,26 +35,24 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V10.1.0
-1. Melsec: 三菱的MC协议TCP，UDP，二进制，ASCII代码优化，一套代码实现，新增IReadWriteMc接口，针对MC协议的设备通用读写类
-2. NetworkUdpBase: 新增LogMsgFormatBinary属性，可以指示当前的数据交互报文记录时按照ASCII编码显示，或是二进制显示。
-3. DTSU6606Serial: 德力西的电表的读取方法ReadElectricalParameters支持HslMqttApi特性，方便MRPC及WEBAPI接口服务注册。
-4. Demo: Modbus rtu的demo界面的报文读取取消crc封装，因为内部已经集成封装。
-5. Melsec: 统一 MelsecMcNet, MelsecMcUdp, MelsecMcAsciiNet, MelsecMcAsciiUdp, MelsecMcRNet的代码逻辑结构，修复了ASCII格式类的一些bug。
-6. MelsecMcServer: 三菱的虚拟服务器限制了bool读取长度7168限制字读取长度960，三菱MC客户端的bool读取支持自动切割。
-7. OmronHostLink: OmronHostLink及OmronHostLinkOverTcp代码优化，完善错误代码文本提示，增加返回命令和发送命令校验的操作。
-8. HslExtension: ToStringArray的扩展方法支持对GUID的解析功能，不支持.net20, .net35
-9. NetworkDataServerBase: 修复数据类服务器在主动关闭引擎时，在线客户端的数量未及时复原的bug，影响范围，所有的虚拟PLC服务器。
-10. OmronHostLinkServer: 新增欧姆龙HostLink协议的虚拟PLC，支持网口和串口的进行读写操作。优化hostlink协议的客户端错误代码含义展示，优化数据接收机制。
-11. Demo: httpclient界面支持对https接口测试，在内容请求的header支持添加content-type信息，提供了一些选项。
-12. SimensWebApi: 新增NetworkWebApiDevice设备类，实现IReadWritteNet接口，新增SimensWebApi类，用于西门子1500的webapi接口，可实现读写标签变量信息。
-13. FanucSeries0i: fanuc的通信类支持NC程序文件的上传和下载，删除，设置主程序号，启动加工操作。修复刀具信息读取时，某个刀具信息失败导致读取失败的bug。
-14. AllenBradleyServer: ab-plc的虚拟服务器支持会话id的生成，支持对客户端校验会话id是否一致。
-15. Melsec: MC协议的类支持对字地址按照位读取，例如读取D100.5 开始的3个位，使用ReadBool(""D100.5"", 3)即可
-16. NetworkBase: 优化ReceiveByMessage及异步版本的性能，减少一次内容数据的拷贝操作，提升内存利用效率，提升读写的性能。
-17. SiemensS7Net: 西门子s7协议的地址支持 VB100, VW100, VD100的写法。
-18. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
-19. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V10.1.2
+1. feat(UltimateFileServer): 获取文件服务器的指定目录的大小的方法改为获取大小，文件数量，最后一个文件修改时间的方法，客户端同步更新GetGroupFileInfo。
+2. feat(MqttServer): 获取文件服务器的指定目录的大小的方法改为获取大小，文件数量，最后一个文件修改时间的方法，客户端同步更新GetGroupFileInfo。
+3. feat(UltimateFileServer): 新增一个获取指定目录所有子目录的基本信息，包含总大小，文件数量，最后一个文件修改时间，GetSubGroupFileInfos
+4. feat(MqttServer): 文件服务器新增一个获取指定目录所有子目录的基本信息，包含总大小，文件数量，最后一个文件修改时间，GetSubGroupFileInfos
+5. SiemensWebApi: 修复在.net standard2.0及2.1中未添加SiemensWebApi类的bug。
+6. MelsecA3CNetHelper: 优化数据解析时，对错误异常的处理，增加错误捕获。
+7. LSisServer: 重写串口Cnet协议的数据接收，处理，和返回，支持了单变量数据，和连续数据的读写操作。
+8. XGBCnet, XGBCnetOverTcp: 重新实现了类，统一了代码，重新解析的数据内容，支持了对错误码的提取和错误消息的解析。
+9. XGBCnet: 支持Read(string[]); 读取多个地址的数据信息，自动按照每16进行拆分访问。
+10. memobus: 新增memobus通信协议，初步实现了读取的操作，具体还需要测试，如有网友有测试条件，可以联系我测试。
+11. Yamatake: 新增山武的数字示波器的CPL协议的通信对象和虚拟服务器，分别是DigitronCPL,DigitronCPLServer
+12. MqttServer, HttpServer: 使用HslMqttApi特性注册远程RPC接口时，支持对异步方法(async...await)进行注册，并进行异步调用，返回相关数据。仅支持NET451及以上。
+13. HslMqttApi: 在注册RPC接口时，增加了对方法签名的解析过程，客户端可以浏览服务器接口的方法签名，清楚的看到返回类型，参数类型信息。
+14. Delta: DeltaDvp系列的网口，串口协议，修复在跨区域读写M1536及D4096时，地址偏移不正确的bug。现在会自动跳转。
+15. MqttServer: 修复Mqtt客户端在取消订阅时，传入多个的Topic时导致服务器解析异常的bug。
+16. 官网地址： http://www.hslcommunication.cn 官网的界面全新设计过，感谢浏览关注。
+17. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 
