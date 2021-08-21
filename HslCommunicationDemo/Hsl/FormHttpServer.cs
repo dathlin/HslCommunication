@@ -157,12 +157,12 @@ namespace HslCommunicationDemo
                 {
                     if (returnWeb.ContainsKey( request.RawUrl ))
                     {
-                        response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
+                        response.AddHeader( "Content-type", $"{comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
                         return returnWeb[request.RawUrl];
                     }
                     else
                     {
-                        response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
+                        response.AddHeader( "Content-type", $"{comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
                         // return HttpServer.HandleObjectMethod( request, data, this );
                         return "123456";
                     }
@@ -172,7 +172,7 @@ namespace HslCommunicationDemo
                     // POST示例，在data中可以上传复杂的数据，长度不限制的
                     if (postWeb.ContainsKey( request.RawUrl ))
                     {
-                        response.AddHeader( "Content-type", $"Content-Type: {comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
+                        response.AddHeader( "Content-type", $"{comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
                         return postWeb[request.RawUrl];
                     }
                 }

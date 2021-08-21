@@ -477,6 +477,8 @@ namespace HslCommunicationDemo
 			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPB Server", 2, typeof( FormFujiSPBServer ) ) );
 			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPH Net", 2, typeof( FormFujiSPHNet ) ) );
 			fujiNode.Nodes.Add( GetTreeNodeByIndex( "SPH Server", 2, typeof( FormFujiSPHServer ) ) );
+			fujiNode.Nodes.Add( GetTreeNodeByIndex( "CommandST", 2, typeof( FormFujiCSTNet ) ) );
+			fujiNode.Nodes.Add( GetTreeNodeByIndex( "CommandST Server", 2, typeof( FormFujiCSTServer ) ) );
 			treeView1.Nodes.Add( fujiNode );
 
 			// XinJE Plc

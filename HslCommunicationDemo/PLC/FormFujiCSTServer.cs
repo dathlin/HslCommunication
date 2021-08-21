@@ -14,9 +14,9 @@ using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormFujiSPHServer : HslFormContent
+    public partial class FormFujiCSTServer : HslFormContent
     {
-        public FormFujiSPHServer( )
+        public FormFujiCSTServer( )
         {
             InitializeComponent( );
         }
@@ -27,11 +27,11 @@ namespace HslCommunicationDemo
 
             if(Program.Language == 2)
             {
-                Text = "SPH Virtual Server [data support M1.0, M3.0, M10.0, I0, Q0]";
+                Text = "Fuji Virtual Server [data support B,M,K,F,A,D,S,W9,BD,WL,W21]";
                 label3.Text = "port:";
                 button1.Text = "Start Server";
                 button11.Text = "Close Server";
-                label11.Text = "This server is not a strict sph protocol and only supports perfect communication with HSL components.";
+                label11.Text = "This server is not a strict Command-setting-type protocol and only supports perfect communication with HSL components.";
             }
         }
         
@@ -42,7 +42,7 @@ namespace HslCommunicationDemo
 
         #region Server Start
 
-        private FujiSPHServer fujiSPHServer;
+        private FujiCommandSettingTypeServer fujiSPHServer;
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -54,11 +54,12 @@ namespace HslCommunicationDemo
 
             try
             {
-                fujiSPHServer = new FujiSPHServer( );                       // 实例化对象
+                fujiSPHServer = new FujiCommandSettingTypeServer( );                       // 实例化对象
                 fujiSPHServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );     // 如果客户端1个小时不通信，就关闭连接
                 fujiSPHServer.OnDataReceived += MelsecMcServer_OnDataReceived;
+                fujiSPHServer.DataSwap = checkBox1.Checked;
                 fujiSPHServer.ServerStart( port );
-                userControlReadWriteServer1.SetReadWriteServer( fujiSPHServer, "M1.100" );
+                userControlReadWriteServer1.SetReadWriteServer( fujiSPHServer, "BD100" );
 
                 button1.Enabled = false;
                 panel2.Enabled = true;

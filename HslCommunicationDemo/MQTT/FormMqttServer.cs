@@ -304,7 +304,7 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		[HslMqttApi( "写入设备的学生信息\r\naddress: 设备的地址 length: 读取的数据长度" )]
+		[HslMqttApi( Description = "写入设备的学生信息\r\naddress: 设备的地址 length: 读取的数据长度" )]
 		public OperateResult<string> WriteStudentResult( string address, short length, Student student )
 		{
 			if (random.Next( 1000 ) < 500)
