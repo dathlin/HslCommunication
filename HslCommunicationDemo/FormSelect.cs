@@ -65,6 +65,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "delta",                 Properties.Resources.delta );             // 32
 			imageList.Images.Add( "ge",                    Properties.Resources.ge );                // 33
 			imageList.Images.Add( "yamatake",              Properties.Resources.Yamatake );          // 34
+			imageList.Images.Add( "rkc",                   Properties.Resources.rkc );               // 35
 
 
 			treeView1.ImageList = imageList;
@@ -463,6 +464,12 @@ namespace HslCommunicationDemo
 			yamatakePlc.Nodes.Add( GetTreeNodeByIndex( "DigitronCPL OverTcp", 34, typeof( FormDigitronCPLOverTcp ) ) );
 			yamatakePlc.Nodes.Add( GetTreeNodeByIndex( "DigitronCPL Server", 34, typeof( FormDigitronCPLServer ) ) );
 			treeView1.Nodes.Add( yamatakePlc );
+
+			// RKC 理化
+			TreeNode rkc = new TreeNode( "RKC[理化]", 35, 35 );
+			rkc.Nodes.Add( GetTreeNodeByIndex( "温度控制器", 35, typeof( FormRkcTemperatureController ) ) );
+			rkc.Nodes.Add( GetTreeNodeByIndex( "温度控制器TCP", 35, typeof( FormRkcTemperatureControllerOverTcp ) ) );
+			treeView1.Nodes.Add( rkc );
 
 			// Fatek 永宏PLC
 			TreeNode fatekNode = new TreeNode( "Fatek Plc[永宏]", 22, 22 );

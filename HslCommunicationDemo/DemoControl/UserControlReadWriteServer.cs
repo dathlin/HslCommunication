@@ -149,7 +149,7 @@ namespace HslCommunicationDemo.DemoControl
             {
                 if (form.ShowDialog( ) == DialogResult.OK)
                 {
-                    OperateResult connect = dataServerBase.ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU );
+                    OperateResult connect = dataServerBase.ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU, form.Pwd );
                     if (connect.IsSuccess)
                     {
                         MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );

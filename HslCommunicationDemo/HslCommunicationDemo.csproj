@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.1.3.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.1.3\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.1.4.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.1.4\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -220,6 +220,12 @@
     <Compile Include="FormHslMap.Designer.cs">
       <DependentUpon>FormHslMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="HslDebug\FormRSADebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HslDebug\FormRSADebug.Designer.cs">
+      <DependentUpon>FormRSADebug.cs</DependentUpon>
+    </Compile>
     <Compile Include="HslDebug\FormSerialToTcp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,18 @@
     </Compile>
     <Compile Include="Hsl\FormDtuServer.Designer.cs">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormRkcTemperatureControllerOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormRkcTemperatureControllerOverTcp.Designer.cs">
+      <DependentUpon>FormRkcTemperatureControllerOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormRkcTemperatureController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormRkcTemperatureController.Designer.cs">
+      <DependentUpon>FormRkcTemperatureController.cs</DependentUpon>
     </Compile>
     <Compile Include="Instrument\FormDLT645OverTcp.cs">
       <SubType>Form</SubType>
@@ -1277,6 +1295,9 @@
     <EmbeddedResource Include="FormHslMap.resx">
       <DependentUpon>FormHslMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HslDebug\FormRSADebug.resx">
+      <DependentUpon>FormRSADebug.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HslDebug\FormSerialToTcp.resx">
       <DependentUpon>FormSerialToTcp.cs</DependentUpon>
     </EmbeddedResource>
@@ -1285,6 +1306,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormDtuServer.resx">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormRkcTemperatureControllerOverTcp.resx">
+      <DependentUpon>FormRkcTemperatureControllerOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormRkcTemperatureController.resx">
+      <DependentUpon>FormRkcTemperatureController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormDLT645OverTcp.resx">
       <DependentUpon>FormDLT645OverTcp.cs</DependentUpon>
@@ -1796,6 +1823,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
+    <None Include="img\rkc.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

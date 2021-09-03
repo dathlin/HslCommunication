@@ -35,16 +35,16 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V10.1.3
-1. JSON: .NET framework的dll对newtonsoft.Json不依赖特定的版本。
-2. XGBFastEnet: 修复读取单个的bool时报文不正确的bug.
-3. MqttServer: 新增GetMqttSessionsByTopic方法，用来获取订阅某个主题的所有客户端列表。
-4. HttpServer: 修复httpserver中文编码问题，在谷歌，微软浏览器下显示中文乱码的bug。因为Content-Type传值不正确
-5. HttpServer: 修复在账户验证模式下，使用ajax跨域请求OPTIONS导致401错误的bug。
-6. FujiCommandSettingType: 新增富士的CommandSettingType通信协议的实现，基于TCP访问，支持地址见API文档.
-7. FujiCommandSettingTypeServer: 新增富士的CommandSettingType协议的虚拟PLC，支持B,M,K,D,W9,BD,F,A,WL,W21地址
+			textBox1.Text = @"V10.1.4
+1. NetworkAlienClient: DTU(异形)服务器增加对报文的固定头的检查。
+2. NetworkServerBase: 连接异形DTU(异形)的server的方法ConnectHslAlientClient支持密码输入。
+3. NetworkDoubleBase: 当设置DTU会话时，修复恰好正在读取导致报文错乱的bug，初始化成功才成功切换DTU。
+4. McServer: 修复三菱的MC虚拟服务器在ASCII模式下，远程客户端读写B继电器时，地址解析异常的bug。
+5. LSisServer: 修复LSisServer在客户端读写位时，PX20之类的地址时，写入true不成功的bug。
+6. TemperatureController: 新增RKC的数字式温度控制器的读写类，地址支持M1,M2,M3,等等
+7. TemperatureControllerOverTcp: 新增RKC的数字式温度控制器的网口透传读写类，地址支持M1,M2,M3,等等
 8. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
-9. 本软件已经申请软件著作权，软著登字第5219522号，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+9. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 
@@ -66,7 +66,7 @@ static void Main( )
 	// English For example
 	if(!HslCommunication.Authorization.SetAuthorizationCode( " + "\"Your Active Code\"" + @" ))
 	{
-		MessageBox.Show( " + "\"Active Failed! it can only use 8 hours\"" + @" );
+		MessageBox.Show( " + "\"Active Failed! it can only use 24 hours\"" + @" );
 		return;  // quit if active failed
 	}
 	Application.EnableVisualStyles( );

@@ -51,25 +51,51 @@ namespace HslCommunicationDemo.DemoControl
 				label10.Text = "Address:";
 				label9.Text = "Value:";
 				label19.Text = "Note: The value of the string needs to be converted\r\nif array：[1,2,3]";
-				button24.Text = "Write Bit";
-				button22.Text = "w-short";
-				button21.Text = "w-ushort";
-				button20.Text = "w-int";
-				button19.Text = "w-uint";
-				button18.Text = "w-long";
-				button17.Text = "w-ulong";
-				button16.Text = "w-float";
-				button15.Text = "w-double";
-				button14.Text = "w-string";
-				button2.Text = "w-hex";
+				button_write_bool.Text = "Write Bit";
+				button_write_short.Text = "w-short";
+				button_write_ushort.Text = "w-ushort";
+				button_write_int.Text = "w-int";
+				button_write_uint.Text = "w-uint";
+				button_write_long.Text = "w-long";
+				button_write_ulong.Text = "w-ulong";
+				button_write_float.Text = "w-float";
+				button_write_double.Text = "w-double";
+				button_write_string.Text = "w-string";
+				button_write_hex.Text = "w-hex";
 
 				groupBox1.Text = "Single Data Read test";
 				groupBox2.Text = "Single Data Write test";
 
-				button23.Text = "w-byte";
+				button_write_byte.Text = "w-byte";
 				button1.Text = "Curve";
 				label1.Text = "Time-Cost:";
 			}
+		}
+
+		public void EnableRKC( )
+		{
+			button_read_bool.Enabled = false;
+			button_read_byte.Enabled = false;
+			button_read_short.Enabled = false;
+			button_read_ushort.Enabled = false;
+			button_read_int.Enabled = false;
+			button_read_uint.Enabled = false;
+			button_read_long.Enabled = false;
+			button_read_ulong.Enabled = false;
+			button_read_float.Enabled = false;
+			button_read_string.Enabled = false;
+
+			button_write_bool.Enabled = false;
+			button_write_byte.Enabled = false;
+			button_write_short.Enabled = false;
+			button_write_ushort.Enabled = false;
+			button_write_int.Enabled = false;
+			button_write_uint.Enabled = false;
+			button_write_long.Enabled = false;
+			button_write_ulong.Enabled = false;
+			button_write_float.Enabled = false;
+			button_write_hex.Enabled = false;
+			button_write_string.Enabled = false;
 		}
 
 		public void SetReadWriteNet( IReadWriteNet readWrite, string address, bool isAsync = false, int strLength = 10 )
@@ -89,11 +115,11 @@ namespace HslCommunicationDemo.DemoControl
 			try
 			{
 				writeByteMethod = type.GetMethod( "Write", new Type[] { typeof( string ), typeof( byte ) } );
-				if (writeByteMethod == null) button23.Enabled = false;
+				if (writeByteMethod == null) button_write_byte.Enabled = false;
 			}
 			catch
 			{
-				button23.Enabled = false;
+				button_write_byte.Enabled = false;
 			}
 		}
 
@@ -524,12 +550,12 @@ namespace HslCommunicationDemo.DemoControl
 					bool[] value = textBox7.Text.ToStringArray<bool>( );
 					if (isAsync)
 					{
-						button24.Enabled = false;
+						button_write_bool.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write , textBox8.Text );
-						button24.Enabled = true;
+						button_write_bool.Enabled = true;
 					}
 					else
 					{
@@ -550,12 +576,12 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					if (isAsync)
 					{
-						button24.Enabled = false;
+						button_write_bool.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button24.Enabled = true;
+						button_write_bool.Enabled = true;
 					}
 					else
 					{
@@ -594,12 +620,12 @@ namespace HslCommunicationDemo.DemoControl
 					short[] value = textBox7.Text.ToStringArray<short>( );
 					if (isAsync)
 					{
-						button22.Enabled = false;
+						button_write_short.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button22.Enabled = true;
+						button_write_short.Enabled = true;
 					}
 					else
 					{
@@ -620,12 +646,12 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					if (isAsync)
 					{
-						button22.Enabled = false;
+						button_write_short.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button22.Enabled = true;
+						button_write_short.Enabled = true;
 					}
 					else
 					{
@@ -650,12 +676,12 @@ namespace HslCommunicationDemo.DemoControl
 					ushort[] value = textBox7.Text.ToStringArray<ushort>( );
 					if (isAsync)
 					{
-						button21.Enabled = false;
+						button_write_ushort.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button21.Enabled = true;
+						button_write_ushort.Enabled = true;
 					}
 					else
 					{
@@ -676,12 +702,12 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					if (isAsync)
 					{
-						button21.Enabled = false;
+						button_write_ushort.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button21.Enabled = true;
+						button_write_ushort.Enabled = true;
 					}
 					else
 					{
@@ -706,12 +732,12 @@ namespace HslCommunicationDemo.DemoControl
 					int[] value = textBox7.Text.ToStringArray<int>( );
 					if (isAsync)
 					{
-						button20.Enabled = false;
+						button_write_int.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button20.Enabled = true;
+						button_write_int.Enabled = true;
 					}
 					else
 					{
@@ -732,12 +758,12 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					if (isAsync)
 					{
-						button20.Enabled = false;
+						button_write_int.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button20.Enabled = true;
+						button_write_int.Enabled = true;
 					}
 					else
 					{
@@ -762,12 +788,12 @@ namespace HslCommunicationDemo.DemoControl
 					uint[] value = textBox7.Text.ToStringArray<uint>( );
 					if (isAsync)
 					{
-						button19.Enabled = false;
+						button_write_uint.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button19.Enabled = true;
+						button_write_uint.Enabled = true;
 					}
 					else
 					{
@@ -788,12 +814,12 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					if (isAsync)
 					{
-						button19.Enabled = false;
+						button_write_uint.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button19.Enabled = true;
+						button_write_uint.Enabled = true;
 					}
 					else
 					{
@@ -818,12 +844,12 @@ namespace HslCommunicationDemo.DemoControl
 					long[] value = textBox7.Text.ToStringArray<long>( );
 					if (isAsync)
 					{
-						button19.Enabled = false;
+						button_write_uint.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button19.Enabled = true;
+						button_write_uint.Enabled = true;
 					}
 					else
 					{
@@ -844,12 +870,12 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					if (isAsync)
 					{
-						button18.Enabled = false;
+						button_write_long.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button18.Enabled = true;
+						button_write_long.Enabled = true;
 					}
 					else
 					{
@@ -874,12 +900,12 @@ namespace HslCommunicationDemo.DemoControl
 					ulong[] value = textBox7.Text.ToStringArray<ulong>( );
 					if (isAsync)
 					{
-						button19.Enabled = false;
+						button_write_uint.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button19.Enabled = true;
+						button_write_uint.Enabled = true;
 					}
 					else
 					{
@@ -900,12 +926,12 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					if (isAsync)
 					{
-						button17.Enabled = false;
+						button_write_ulong.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button17.Enabled = true;
+						button_write_ulong.Enabled = true;
 					}
 					else
 					{
@@ -930,12 +956,12 @@ namespace HslCommunicationDemo.DemoControl
 					float[] value = textBox7.Text.ToStringArray<float>( );
 					if (isAsync)
 					{
-						button19.Enabled = false;
+						button_write_uint.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button19.Enabled = true;
+						button_write_uint.Enabled = true;
 					}
 					else
 					{
@@ -956,12 +982,12 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					if (isAsync)
 					{
-						button16.Enabled = false;
+						button_write_float.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button16.Enabled = true;
+						button_write_float.Enabled = true;
 					}
 					else
 					{
@@ -986,12 +1012,12 @@ namespace HslCommunicationDemo.DemoControl
 					double[] value = textBox7.Text.ToStringArray<double>( );
 					if (isAsync)
 					{
-						button19.Enabled = false;
+						button_write_uint.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button19.Enabled = true;
+						button_write_uint.Enabled = true;
 					}
 					else
 					{
@@ -1012,12 +1038,12 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					if (isAsync)
 					{
-						button15.Enabled = false;
+						button_write_double.Enabled = false;
 						DateTime start = DateTime.Now;
 						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						DemoUtils.WriteResultRender( write, textBox8.Text );
-						button15.Enabled = true;
+						button_write_double.Enabled = true;
 					}
 					else
 					{
@@ -1037,12 +1063,12 @@ namespace HslCommunicationDemo.DemoControl
 			// string
 			if (isAsync)
 			{
-				button14.Enabled = false;
+				button_write_string.Enabled = false;
 				DateTime start = DateTime.Now;
 				OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 				DemoUtils.WriteResultRender( write, textBox8.Text );
-				button14.Enabled = true;
+				button_write_string.Enabled = true;
 			}
 			else
 			{
@@ -1067,12 +1093,12 @@ namespace HslCommunicationDemo.DemoControl
 			// hex
 			if (isAsync)
 			{
-				button14.Enabled = false;
+				button_write_string.Enabled = false;
 				DateTime start = DateTime.Now;
 				OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text.ToHexBytes( ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 				DemoUtils.WriteResultRender( write, textBox8.Text );
-				button14.Enabled = true;
+				button_write_string.Enabled = true;
 			}
 			else
 			{

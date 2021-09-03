@@ -9,29 +9,27 @@ using System.Windows.Forms;
 using HslCommunication.Profinet;
 using System.Threading;
 using HslCommunication;
-using HslCommunication.Profinet.Yamatake;
+using HslCommunication.Instrument.RKC;
 using System.IO.Ports;
 using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
-	public partial class FormDigitronCPL : HslFormContent
+	public partial class FormRkcTemperatureController : HslFormContent
 	{
-		public FormDigitronCPL( )
+		public FormRkcTemperatureController( )
 		{
 			InitializeComponent( );
-			cpl = new DigitronCPL( );
+			rkc = new TemperatureController( );
 			// omronHostLink.LogNet = new HslCommunication.LogNet.LogNetSingle( "omron.log.txt" );
 		}
 
 
-		private DigitronCPL cpl = null;
+		private TemperatureController rkc = null;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
-			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
 			panel2.Enabled = false;
 
 			Language( Program.Language );
@@ -52,7 +50,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "Yamatake CPL DigitronIK Read Demo";
+				Text = "RKC CD/CH digital temperature controller";
 
 				label1.Text = "Station:";
 				label3.Text = "Parity:";
@@ -113,27 +111,29 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			cpl?.Close( );
-			cpl = new DigitronCPL( );
+			rkc?.Close( );
+			rkc = new TemperatureController( );
 
 			try
 			{
-				cpl.SerialPortInni( sp =>
+				rkc.SerialPortInni( sp =>
 				{
 					sp.PortName = comboBox3.Text;
 					sp.BaudRate = baudRate;
 					sp.DataBits = dataBits;
-					sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
-					sp.Parity = comboBox2.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox2.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
+					sp.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
+					sp.Parity = comboBox2.SelectedIndex == 0 ? Parity.None : (comboBox2.SelectedIndex == 1 ? Parity.Odd : Parity.Even);
 				} );
 				//yamateke.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
-				cpl.Open( );
+				rkc.Open( );
+				rkc.Station = Station;
 				button2.Enabled = true;
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
-				userControlReadWriteOp1.SetReadWriteNet( cpl, "100", false );
+				userControlReadWriteOp1.SetReadWriteNet( rkc, "M1", false );
+				userControlReadWriteOp1.EnableRKC( );
 			}
 			catch (Exception ex)
 			{
@@ -144,7 +144,7 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			cpl.Close( );
+			rkc.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
@@ -156,7 +156,7 @@ namespace HslCommunicationDemo
 
 		private void button25_Click( object sender, EventArgs e )
 		{
-			DemoUtils.BulkReadRenderResult( cpl, textBox6, textBox9, textBox10 );
+			DemoUtils.BulkReadRenderResult( rkc, textBox6, textBox9, textBox10 );
 		}
 
 
@@ -167,7 +167,7 @@ namespace HslCommunicationDemo
 
 		private void button26_Click( object sender, EventArgs e )
 		{
-			OperateResult<byte[]> read = cpl.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
+			OperateResult<byte[]> read = rkc.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
 			if (read.IsSuccess)
 			{
 				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -188,7 +188,6 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox18.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox2.SelectedIndex );
-			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
 		}
 
@@ -200,7 +199,6 @@ namespace HslCommunicationDemo
 			textBox18.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
 			comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 		}
 

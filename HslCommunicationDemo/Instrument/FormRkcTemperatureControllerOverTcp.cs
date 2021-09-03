@@ -8,22 +8,22 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet;
 using HslCommunication;
-using HslCommunication.Profinet.Yamatake;
+using HslCommunication.Instrument.RKC;
 using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
-	public partial class FormDigitronCPLOverTcp : HslFormContent
+	public partial class FormRkcTemperatureControllerOverTcp : HslFormContent
 	{
-		public FormDigitronCPLOverTcp( )
+		public FormRkcTemperatureControllerOverTcp( )
 		{
 			InitializeComponent( );
 		}
 
 
-		private DigitronCPLOverTcp cpl = null;
+		private TemperatureControllerOverTcp rkc = null;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -37,7 +37,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "Yamatake CPL DigitronIK Read Demo";
+				Text = "RKC CD/CH digital temperature controller";
 
 				label1.Text = "Ip:";
 				label3.Text = "Port:";
@@ -84,15 +84,15 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			cpl?.ConnectClose( );
-			cpl = new DigitronCPLOverTcp( );
-			cpl.Station = station;
-			cpl.IpAddress = textBox1.Text;
-			cpl.Port = port;
+			rkc?.ConnectClose( );
+			rkc = new TemperatureControllerOverTcp( );
+			rkc.Station = station;
+			rkc.IpAddress = textBox1.Text;
+			rkc.Port = port;
 
 			try
 			{
-				OperateResult connect = cpl.ConnectServer( );
+				OperateResult connect = rkc.ConnectServer( );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -100,7 +100,8 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( cpl, "100", true );
+					userControlReadWriteOp1.SetReadWriteNet( rkc, "M1", true );
+					userControlReadWriteOp1.EnableRKC( );
 				}
 				else
 				{
@@ -117,7 +118,7 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			cpl.ConnectClose( );
+			rkc.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
@@ -129,7 +130,7 @@ namespace HslCommunicationDemo
 
 		private void button25_Click( object sender, EventArgs e )
 		{
-			DemoUtils.BulkReadRenderResult( cpl, textBox6, textBox9, textBox10 );
+			DemoUtils.BulkReadRenderResult( rkc, textBox6, textBox9, textBox10 );
 		}
 
 
@@ -141,7 +142,7 @@ namespace HslCommunicationDemo
 
 		private void button26_Click( object sender, EventArgs e )
 		{
-			OperateResult<byte[]> read = cpl.ReadFromCoreServer( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
+			OperateResult<byte[]> read = rkc.ReadFromCoreServer( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
 			if (read.IsSuccess)
 			{
 				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );

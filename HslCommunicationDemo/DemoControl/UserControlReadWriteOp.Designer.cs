@@ -35,19 +35,19 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.button2 = new System.Windows.Forms.Button();
+			this.button_write_hex = new System.Windows.Forms.Button();
 			this.label19 = new System.Windows.Forms.Label();
-			this.button14 = new System.Windows.Forms.Button();
-			this.button15 = new System.Windows.Forms.Button();
-			this.button16 = new System.Windows.Forms.Button();
-			this.button17 = new System.Windows.Forms.Button();
-			this.button18 = new System.Windows.Forms.Button();
-			this.button19 = new System.Windows.Forms.Button();
-			this.button20 = new System.Windows.Forms.Button();
-			this.button21 = new System.Windows.Forms.Button();
-			this.button22 = new System.Windows.Forms.Button();
-			this.button23 = new System.Windows.Forms.Button();
-			this.button24 = new System.Windows.Forms.Button();
+			this.button_write_string = new System.Windows.Forms.Button();
+			this.button_write_double = new System.Windows.Forms.Button();
+			this.button_write_float = new System.Windows.Forms.Button();
+			this.button_write_ulong = new System.Windows.Forms.Button();
+			this.button_write_long = new System.Windows.Forms.Button();
+			this.button_write_uint = new System.Windows.Forms.Button();
+			this.button_write_int = new System.Windows.Forms.Button();
+			this.button_write_ushort = new System.Windows.Forms.Button();
+			this.button_write_short = new System.Windows.Forms.Button();
+			this.button_write_byte = new System.Windows.Forms.Button();
+			this.button_write_bool = new System.Windows.Forms.Button();
 			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.textBox8 = new System.Windows.Forms.TextBox();
@@ -84,19 +84,19 @@
 			this.groupBox2.Controls.Add(this.label4);
 			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Controls.Add(this.label1);
-			this.groupBox2.Controls.Add(this.button2);
+			this.groupBox2.Controls.Add(this.button_write_hex);
 			this.groupBox2.Controls.Add(this.label19);
-			this.groupBox2.Controls.Add(this.button14);
-			this.groupBox2.Controls.Add(this.button15);
-			this.groupBox2.Controls.Add(this.button16);
-			this.groupBox2.Controls.Add(this.button17);
-			this.groupBox2.Controls.Add(this.button18);
-			this.groupBox2.Controls.Add(this.button19);
-			this.groupBox2.Controls.Add(this.button20);
-			this.groupBox2.Controls.Add(this.button21);
-			this.groupBox2.Controls.Add(this.button22);
-			this.groupBox2.Controls.Add(this.button23);
-			this.groupBox2.Controls.Add(this.button24);
+			this.groupBox2.Controls.Add(this.button_write_string);
+			this.groupBox2.Controls.Add(this.button_write_double);
+			this.groupBox2.Controls.Add(this.button_write_float);
+			this.groupBox2.Controls.Add(this.button_write_ulong);
+			this.groupBox2.Controls.Add(this.button_write_long);
+			this.groupBox2.Controls.Add(this.button_write_uint);
+			this.groupBox2.Controls.Add(this.button_write_int);
+			this.groupBox2.Controls.Add(this.button_write_ushort);
+			this.groupBox2.Controls.Add(this.button_write_short);
+			this.groupBox2.Controls.Add(this.button_write_byte);
+			this.groupBox2.Controls.Add(this.button_write_bool);
 			this.groupBox2.Controls.Add(this.textBox7);
 			this.groupBox2.Controls.Add(this.label9);
 			this.groupBox2.Controls.Add(this.textBox8);
@@ -171,15 +171,15 @@
 			this.label1.TabIndex = 20;
 			this.label1.Text = "当前通信耗时：";
 			// 
-			// button2
+			// button_write_hex
 			// 
-			this.button2.Location = new System.Drawing.Point(238, 197);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(82, 28);
-			this.button2.TabIndex = 19;
-			this.button2.Text = "Hex写入";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
+			this.button_write_hex.Location = new System.Drawing.Point(238, 197);
+			this.button_write_hex.Name = "button_write_hex";
+			this.button_write_hex.Size = new System.Drawing.Size(82, 28);
+			this.button_write_hex.TabIndex = 19;
+			this.button_write_hex.Text = "Hex写入";
+			this.button_write_hex.UseVisualStyleBackColor = true;
+			this.button_write_hex.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// label19
 			// 
@@ -190,115 +190,115 @@
 			this.label19.TabIndex = 17;
 			this.label19.Text = "注意：值的字符串需要能转化成对应的数据类型\r\n如果是数组：[1,2,3]";
 			// 
-			// button14
+			// button_write_string
 			// 
-			this.button14.Location = new System.Drawing.Point(329, 197);
-			this.button14.Name = "button14";
-			this.button14.Size = new System.Drawing.Size(82, 28);
-			this.button14.TabIndex = 16;
-			this.button14.Text = "字符串写入";
-			this.button14.UseVisualStyleBackColor = true;
-			this.button14.Click += new System.EventHandler(this.button14_Click);
+			this.button_write_string.Location = new System.Drawing.Point(329, 197);
+			this.button_write_string.Name = "button_write_string";
+			this.button_write_string.Size = new System.Drawing.Size(82, 28);
+			this.button_write_string.TabIndex = 16;
+			this.button_write_string.Text = "字符串写入";
+			this.button_write_string.UseVisualStyleBackColor = true;
+			this.button_write_string.Click += new System.EventHandler(this.button14_Click);
 			// 
-			// button15
+			// button_write_double
 			// 
-			this.button15.Location = new System.Drawing.Point(329, 163);
-			this.button15.Name = "button15";
-			this.button15.Size = new System.Drawing.Size(82, 28);
-			this.button15.TabIndex = 15;
-			this.button15.Text = "double写入";
-			this.button15.UseVisualStyleBackColor = true;
-			this.button15.Click += new System.EventHandler(this.button15_Click);
+			this.button_write_double.Location = new System.Drawing.Point(329, 163);
+			this.button_write_double.Name = "button_write_double";
+			this.button_write_double.Size = new System.Drawing.Size(82, 28);
+			this.button_write_double.TabIndex = 15;
+			this.button_write_double.Text = "double写入";
+			this.button_write_double.UseVisualStyleBackColor = true;
+			this.button_write_double.Click += new System.EventHandler(this.button15_Click);
 			// 
-			// button16
+			// button_write_float
 			// 
-			this.button16.Location = new System.Drawing.Point(238, 163);
-			this.button16.Name = "button16";
-			this.button16.Size = new System.Drawing.Size(82, 28);
-			this.button16.TabIndex = 14;
-			this.button16.Text = "float写入";
-			this.button16.UseVisualStyleBackColor = true;
-			this.button16.Click += new System.EventHandler(this.button16_Click);
+			this.button_write_float.Location = new System.Drawing.Point(238, 163);
+			this.button_write_float.Name = "button_write_float";
+			this.button_write_float.Size = new System.Drawing.Size(82, 28);
+			this.button_write_float.TabIndex = 14;
+			this.button_write_float.Text = "float写入";
+			this.button_write_float.UseVisualStyleBackColor = true;
+			this.button_write_float.Click += new System.EventHandler(this.button16_Click);
 			// 
-			// button17
+			// button_write_ulong
 			// 
-			this.button17.Location = new System.Drawing.Point(329, 129);
-			this.button17.Name = "button17";
-			this.button17.Size = new System.Drawing.Size(82, 28);
-			this.button17.TabIndex = 13;
-			this.button17.Text = "ulong写入";
-			this.button17.UseVisualStyleBackColor = true;
-			this.button17.Click += new System.EventHandler(this.button17_Click);
+			this.button_write_ulong.Location = new System.Drawing.Point(329, 129);
+			this.button_write_ulong.Name = "button_write_ulong";
+			this.button_write_ulong.Size = new System.Drawing.Size(82, 28);
+			this.button_write_ulong.TabIndex = 13;
+			this.button_write_ulong.Text = "ulong写入";
+			this.button_write_ulong.UseVisualStyleBackColor = true;
+			this.button_write_ulong.Click += new System.EventHandler(this.button17_Click);
 			// 
-			// button18
+			// button_write_long
 			// 
-			this.button18.Location = new System.Drawing.Point(238, 129);
-			this.button18.Name = "button18";
-			this.button18.Size = new System.Drawing.Size(82, 28);
-			this.button18.TabIndex = 12;
-			this.button18.Text = "long写入";
-			this.button18.UseVisualStyleBackColor = true;
-			this.button18.Click += new System.EventHandler(this.button18_Click);
+			this.button_write_long.Location = new System.Drawing.Point(238, 129);
+			this.button_write_long.Name = "button_write_long";
+			this.button_write_long.Size = new System.Drawing.Size(82, 28);
+			this.button_write_long.TabIndex = 12;
+			this.button_write_long.Text = "long写入";
+			this.button_write_long.UseVisualStyleBackColor = true;
+			this.button_write_long.Click += new System.EventHandler(this.button18_Click);
 			// 
-			// button19
+			// button_write_uint
 			// 
-			this.button19.Location = new System.Drawing.Point(329, 95);
-			this.button19.Name = "button19";
-			this.button19.Size = new System.Drawing.Size(82, 28);
-			this.button19.TabIndex = 11;
-			this.button19.Text = "uint写入";
-			this.button19.UseVisualStyleBackColor = true;
-			this.button19.Click += new System.EventHandler(this.button19_Click);
+			this.button_write_uint.Location = new System.Drawing.Point(329, 95);
+			this.button_write_uint.Name = "button_write_uint";
+			this.button_write_uint.Size = new System.Drawing.Size(82, 28);
+			this.button_write_uint.TabIndex = 11;
+			this.button_write_uint.Text = "uint写入";
+			this.button_write_uint.UseVisualStyleBackColor = true;
+			this.button_write_uint.Click += new System.EventHandler(this.button19_Click);
 			// 
-			// button20
+			// button_write_int
 			// 
-			this.button20.Location = new System.Drawing.Point(238, 95);
-			this.button20.Name = "button20";
-			this.button20.Size = new System.Drawing.Size(82, 28);
-			this.button20.TabIndex = 10;
-			this.button20.Text = "int写入";
-			this.button20.UseVisualStyleBackColor = true;
-			this.button20.Click += new System.EventHandler(this.button20_Click);
+			this.button_write_int.Location = new System.Drawing.Point(238, 95);
+			this.button_write_int.Name = "button_write_int";
+			this.button_write_int.Size = new System.Drawing.Size(82, 28);
+			this.button_write_int.TabIndex = 10;
+			this.button_write_int.Text = "int写入";
+			this.button_write_int.UseVisualStyleBackColor = true;
+			this.button_write_int.Click += new System.EventHandler(this.button20_Click);
 			// 
-			// button21
+			// button_write_ushort
 			// 
-			this.button21.Location = new System.Drawing.Point(329, 61);
-			this.button21.Name = "button21";
-			this.button21.Size = new System.Drawing.Size(82, 28);
-			this.button21.TabIndex = 9;
-			this.button21.Text = "ushort写入";
-			this.button21.UseVisualStyleBackColor = true;
-			this.button21.Click += new System.EventHandler(this.button21_Click);
+			this.button_write_ushort.Location = new System.Drawing.Point(329, 61);
+			this.button_write_ushort.Name = "button_write_ushort";
+			this.button_write_ushort.Size = new System.Drawing.Size(82, 28);
+			this.button_write_ushort.TabIndex = 9;
+			this.button_write_ushort.Text = "ushort写入";
+			this.button_write_ushort.UseVisualStyleBackColor = true;
+			this.button_write_ushort.Click += new System.EventHandler(this.button21_Click);
 			// 
-			// button22
+			// button_write_short
 			// 
-			this.button22.Location = new System.Drawing.Point(238, 61);
-			this.button22.Name = "button22";
-			this.button22.Size = new System.Drawing.Size(82, 28);
-			this.button22.TabIndex = 8;
-			this.button22.Text = "short写入";
-			this.button22.UseVisualStyleBackColor = true;
-			this.button22.Click += new System.EventHandler(this.button22_Click);
+			this.button_write_short.Location = new System.Drawing.Point(238, 61);
+			this.button_write_short.Name = "button_write_short";
+			this.button_write_short.Size = new System.Drawing.Size(82, 28);
+			this.button_write_short.TabIndex = 8;
+			this.button_write_short.Text = "short写入";
+			this.button_write_short.UseVisualStyleBackColor = true;
+			this.button_write_short.Click += new System.EventHandler(this.button22_Click);
 			// 
-			// button23
+			// button_write_byte
 			// 
-			this.button23.Location = new System.Drawing.Point(329, 24);
-			this.button23.Name = "button23";
-			this.button23.Size = new System.Drawing.Size(82, 28);
-			this.button23.TabIndex = 7;
-			this.button23.Text = "byte写入";
-			this.button23.UseVisualStyleBackColor = true;
-			this.button23.Click += new System.EventHandler(this.button23_Click);
+			this.button_write_byte.Location = new System.Drawing.Point(329, 24);
+			this.button_write_byte.Name = "button_write_byte";
+			this.button_write_byte.Size = new System.Drawing.Size(82, 28);
+			this.button_write_byte.TabIndex = 7;
+			this.button_write_byte.Text = "byte写入";
+			this.button_write_byte.UseVisualStyleBackColor = true;
+			this.button_write_byte.Click += new System.EventHandler(this.button23_Click);
 			// 
-			// button24
+			// button_write_bool
 			// 
-			this.button24.Location = new System.Drawing.Point(238, 24);
-			this.button24.Name = "button24";
-			this.button24.Size = new System.Drawing.Size(82, 28);
-			this.button24.TabIndex = 6;
-			this.button24.Text = "bool写入";
-			this.button24.UseVisualStyleBackColor = true;
-			this.button24.Click += new System.EventHandler(this.button24_Click);
+			this.button_write_bool.Location = new System.Drawing.Point(238, 24);
+			this.button_write_bool.Name = "button_write_bool";
+			this.button_write_bool.Size = new System.Drawing.Size(82, 28);
+			this.button_write_bool.TabIndex = 6;
+			this.button_write_bool.Text = "bool写入";
+			this.button_write_bool.UseVisualStyleBackColor = true;
+			this.button_write_bool.Click += new System.EventHandler(this.button24_Click);
 			// 
 			// textBox7
 			// 
@@ -562,17 +562,17 @@
 
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Label label19;
-		private System.Windows.Forms.Button button14;
-		private System.Windows.Forms.Button button15;
-		private System.Windows.Forms.Button button16;
-		private System.Windows.Forms.Button button17;
-		private System.Windows.Forms.Button button18;
-		private System.Windows.Forms.Button button19;
-		private System.Windows.Forms.Button button20;
-		private System.Windows.Forms.Button button21;
-		private System.Windows.Forms.Button button22;
-		private System.Windows.Forms.Button button23;
-		private System.Windows.Forms.Button button24;
+		private System.Windows.Forms.Button button_write_string;
+		private System.Windows.Forms.Button button_write_double;
+		private System.Windows.Forms.Button button_write_float;
+		private System.Windows.Forms.Button button_write_ulong;
+		private System.Windows.Forms.Button button_write_long;
+		private System.Windows.Forms.Button button_write_uint;
+		private System.Windows.Forms.Button button_write_int;
+		private System.Windows.Forms.Button button_write_ushort;
+		private System.Windows.Forms.Button button_write_short;
+		private System.Windows.Forms.Button button_write_byte;
+		private System.Windows.Forms.Button button_write_bool;
 		private System.Windows.Forms.TextBox textBox7;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.TextBox textBox8;
@@ -597,7 +597,7 @@
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_write_hex;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.Label label3;

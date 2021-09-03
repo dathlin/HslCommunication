@@ -34,6 +34,7 @@ namespace HslCommunicationDemo
             IpAddress = address.ToString( );
             Port = port;
             DTU = textBox3.Text;
+            Pwd = textBox4.Text;
 
             DialogResult = DialogResult.OK;
         }
@@ -53,6 +54,8 @@ namespace HslCommunicationDemo
         /// DTU的唯一ID信息
         /// </summary>
         public string DTU { get; set; }
+
+        public string Pwd { get; set; }
 
     }
 }
