@@ -77,9 +77,10 @@ namespace HslCommunicationDemo
 			// 连接
 			MqttConnectionOptions options = new MqttConnectionOptions( )
 			{
-				IpAddress = textBox4.Text,
-				Port = int.Parse( textBox2.Text ),
-				ClientId = textBox1.Text,
+				IpAddress      = textBox4.Text,
+				Port           = int.Parse( textBox2.Text ),
+				ClientId       = textBox1.Text,
+				UseRSAProvider = checkBox_rsa.Checked,
 			};
 			if (!string.IsNullOrEmpty( textBox9.Text ) || !string.IsNullOrEmpty( textBox10.Text ))
 			{

@@ -57,7 +57,7 @@ namespace HslCommunicationDemo
             if (dTUServer != null)
             {
                 AlienSession[] sessions = dTUServer.GetAlienSessions( );
-                listBox1.DataSource = sessions;
+                listBox1.DataSource = sessions.Where( m => m != null ).ToArray( );
 
                 label2.Text = "Client Count:" + sessions.Length;
                 int onlineCount = 0;
@@ -113,9 +113,10 @@ namespace HslCommunicationDemo
             dTUServer = new DTUServer( settingTypes );
             dTUServer.OnClientConnected += NetworkAlien_OnClientConnected;
             dTUServer.LogNet = logNet;
+            dTUServer.SetPassword( Encoding.ASCII.GetBytes( textBox3.Text ) );
             dTUServer.ServerStart( port );
 
-            comboBox1.DataSource = settingTypes.Select( m => m.DtuId ).ToArray( );
+            comboBox1.DataSource = settingTypes.ToArray( );
             if (settingTypes.Count > 0)
             {
                 comboBox1.SelectedIndex = 0;
@@ -126,11 +127,11 @@ namespace HslCommunicationDemo
         {
             if (dTUServer != null)
             {
-                if(comboBox1.SelectedItem is string id)
+                if(comboBox1.SelectedItem is DTUSettingType id)
                 {
-                    if (!string.IsNullOrEmpty( id ))
+                    if (!string.IsNullOrEmpty( id.DtuId ))
                     {
-                        userControlReadWriteOp1.SetReadWriteNet( dTUServer[id], "0" );
+                        userControlReadWriteOp1.SetReadWriteNet( dTUServer[id.DtuId], "0" );
                     }
                 }
             }

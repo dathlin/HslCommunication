@@ -34,6 +34,7 @@
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -41,7 +42,8 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -51,6 +53,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox3);
+			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
@@ -64,7 +68,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(263, 4);
+			this.button2.Location = new System.Drawing.Point(406, 5);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -74,7 +78,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(166, 4);
+			this.button1.Location = new System.Drawing.Point(309, 5);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -117,6 +121,17 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(978, 537);
 			this.panel2.TabIndex = 1;
+			// 
+			// textBox1
+			// 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox1.Location = new System.Drawing.Point(344, 9);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox1.Size = new System.Drawing.Size(620, 244);
+			this.textBox1.TabIndex = 38;
 			// 
 			// userControlReadWriteOp1
 			// 
@@ -184,16 +199,22 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			// 
-			// textBox1
+			// textBox3
 			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(344, 9);
-			this.textBox1.Multiline = true;
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(620, 244);
-			this.textBox1.TabIndex = 38;
+			this.textBox3.Location = new System.Drawing.Point(221, 7);
+			this.textBox3.Name = "textBox3";
+			this.textBox3.Size = new System.Drawing.Size(76, 23);
+			this.textBox3.TabIndex = 7;
+			this.textBox3.Text = "123456";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(168, 10);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(44, 17);
+			this.label1.TabIndex = 6;
+			this.label1.Text = "密码：";
 			// 
 			// FormDtuServer
 			// 
@@ -235,5 +256,7 @@
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.Label label1;
 	}
 }

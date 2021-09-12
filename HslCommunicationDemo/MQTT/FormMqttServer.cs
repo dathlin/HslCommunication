@@ -14,6 +14,7 @@ using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication.Core;
+using System.Security.Cryptography;
 
 namespace HslCommunicationDemo
 {
@@ -56,17 +57,6 @@ namespace HslCommunicationDemo
 		{
 			if (language == 1)
 			{
-				Text = "Mqtt服务器";
-				label3.Text = "端口：";
-				button1.Text = "启动服务";
-				button2.Text = "关闭服务";
-				button5.Text = "广播指定ip";
-				label7.Text = "Topic：";
-				label8.Text = "主题";
-				label9.Text = "Payload：";
-				button3.Text = "广播所有";
-				button4.Text = "清空";
-				label12.Text = "接收：";
 			}
 			else
 			{
@@ -78,8 +68,9 @@ namespace HslCommunicationDemo
 				label7.Text = "Topic:";
 				label8.Text = "";
 				label9.Text = "Payload:";
-				button3.Text = "Publish all";
+				button3.Text = "Publish All";
 				button4.Text = "Clear";
+				button6.Text = "Publish";
 				label12.Text = "Receive:";
 				checkBox3.Text = "Send test message back when client connect";
 			}
@@ -97,7 +88,7 @@ namespace HslCommunicationDemo
 
 				mqttServer = new MqttServer( );
 				mqttServer.OnClientApplicationMessageReceive += MqttServer_OnClientApplicationMessageReceive;
-				mqttServer.OnClientConnected += MqttServer_OnClientConnected;
+				mqttServer.OnClientConnected                 += MqttServer_OnClientConnected;
 				if (checkBox1.Checked)
 				{
 					mqttServer.ClientVerification += MqttServer_ClientVerification;
@@ -106,7 +97,7 @@ namespace HslCommunicationDemo
 				mqttServer.RegisterMqttRpcApi( "Account", this );
 				mqttServer.RegisterMqttRpcApi( "Siemens", siemens );               // 注册一个西门子PLC的服务接口的示例
 				mqttServer.RegisterMqttRpcApi( "TimeOut", typeof(HslTimeOut) );    // 注册的类的静态方法和静态属性
-				mqttServer.RegisterMqttRpcApi( "Fanuc", new HslCommunication.CNC.Fanuc.FanucSeries0i( "127.0.0.1" ) );
+				mqttServer.RegisterMqttRpcApi( "Fanuc",   new HslCommunication.CNC.Fanuc.FanucSeries0i( "127.0.0.1" ) );
 				mqttServer.ServerStart( int.Parse( textBox2.Text ) );
 				mqttServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				mqttServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;

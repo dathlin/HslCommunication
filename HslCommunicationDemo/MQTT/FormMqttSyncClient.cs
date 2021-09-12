@@ -91,6 +91,7 @@ namespace HslCommunicationDemo
 				IpAddress = textBox1.Text,
 				Port = int.Parse( textBox2.Text ),
 				ClientId = textBox3.Text,
+				UseRSAProvider = checkBox_rsa.Checked,
 			};
 			if(!string.IsNullOrEmpty(textBox9.Text) || !string.IsNullOrEmpty( textBox10.Text ))
 			{

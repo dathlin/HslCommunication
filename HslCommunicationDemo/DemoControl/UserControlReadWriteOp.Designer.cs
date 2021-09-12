@@ -78,6 +78,7 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.label5);
 			this.groupBox2.Controls.Add(this.label11);
 			this.groupBox2.Controls.Add(this.label3);
@@ -175,7 +176,7 @@
 			// 
 			this.button_write_hex.Location = new System.Drawing.Point(238, 197);
 			this.button_write_hex.Name = "button_write_hex";
-			this.button_write_hex.Size = new System.Drawing.Size(82, 28);
+			this.button_write_hex.Size = new System.Drawing.Size(84, 28);
 			this.button_write_hex.TabIndex = 19;
 			this.button_write_hex.Text = "Hex写入";
 			this.button_write_hex.UseVisualStyleBackColor = true;
@@ -194,7 +195,7 @@
 			// 
 			this.button_write_string.Location = new System.Drawing.Point(329, 197);
 			this.button_write_string.Name = "button_write_string";
-			this.button_write_string.Size = new System.Drawing.Size(82, 28);
+			this.button_write_string.Size = new System.Drawing.Size(84, 28);
 			this.button_write_string.TabIndex = 16;
 			this.button_write_string.Text = "字符串写入";
 			this.button_write_string.UseVisualStyleBackColor = true;
@@ -204,7 +205,7 @@
 			// 
 			this.button_write_double.Location = new System.Drawing.Point(329, 163);
 			this.button_write_double.Name = "button_write_double";
-			this.button_write_double.Size = new System.Drawing.Size(82, 28);
+			this.button_write_double.Size = new System.Drawing.Size(84, 28);
 			this.button_write_double.TabIndex = 15;
 			this.button_write_double.Text = "double写入";
 			this.button_write_double.UseVisualStyleBackColor = true;
@@ -214,7 +215,7 @@
 			// 
 			this.button_write_float.Location = new System.Drawing.Point(238, 163);
 			this.button_write_float.Name = "button_write_float";
-			this.button_write_float.Size = new System.Drawing.Size(82, 28);
+			this.button_write_float.Size = new System.Drawing.Size(84, 28);
 			this.button_write_float.TabIndex = 14;
 			this.button_write_float.Text = "float写入";
 			this.button_write_float.UseVisualStyleBackColor = true;
@@ -224,7 +225,7 @@
 			// 
 			this.button_write_ulong.Location = new System.Drawing.Point(329, 129);
 			this.button_write_ulong.Name = "button_write_ulong";
-			this.button_write_ulong.Size = new System.Drawing.Size(82, 28);
+			this.button_write_ulong.Size = new System.Drawing.Size(84, 28);
 			this.button_write_ulong.TabIndex = 13;
 			this.button_write_ulong.Text = "ulong写入";
 			this.button_write_ulong.UseVisualStyleBackColor = true;
@@ -234,7 +235,7 @@
 			// 
 			this.button_write_long.Location = new System.Drawing.Point(238, 129);
 			this.button_write_long.Name = "button_write_long";
-			this.button_write_long.Size = new System.Drawing.Size(82, 28);
+			this.button_write_long.Size = new System.Drawing.Size(84, 28);
 			this.button_write_long.TabIndex = 12;
 			this.button_write_long.Text = "long写入";
 			this.button_write_long.UseVisualStyleBackColor = true;
@@ -244,7 +245,7 @@
 			// 
 			this.button_write_uint.Location = new System.Drawing.Point(329, 95);
 			this.button_write_uint.Name = "button_write_uint";
-			this.button_write_uint.Size = new System.Drawing.Size(82, 28);
+			this.button_write_uint.Size = new System.Drawing.Size(84, 28);
 			this.button_write_uint.TabIndex = 11;
 			this.button_write_uint.Text = "uint写入";
 			this.button_write_uint.UseVisualStyleBackColor = true;
@@ -254,7 +255,7 @@
 			// 
 			this.button_write_int.Location = new System.Drawing.Point(238, 95);
 			this.button_write_int.Name = "button_write_int";
-			this.button_write_int.Size = new System.Drawing.Size(82, 28);
+			this.button_write_int.Size = new System.Drawing.Size(84, 28);
 			this.button_write_int.TabIndex = 10;
 			this.button_write_int.Text = "int写入";
 			this.button_write_int.UseVisualStyleBackColor = true;
@@ -264,7 +265,7 @@
 			// 
 			this.button_write_ushort.Location = new System.Drawing.Point(329, 61);
 			this.button_write_ushort.Name = "button_write_ushort";
-			this.button_write_ushort.Size = new System.Drawing.Size(82, 28);
+			this.button_write_ushort.Size = new System.Drawing.Size(84, 28);
 			this.button_write_ushort.TabIndex = 9;
 			this.button_write_ushort.Text = "ushort写入";
 			this.button_write_ushort.UseVisualStyleBackColor = true;
@@ -274,7 +275,7 @@
 			// 
 			this.button_write_short.Location = new System.Drawing.Point(238, 61);
 			this.button_write_short.Name = "button_write_short";
-			this.button_write_short.Size = new System.Drawing.Size(82, 28);
+			this.button_write_short.Size = new System.Drawing.Size(84, 28);
 			this.button_write_short.TabIndex = 8;
 			this.button_write_short.Text = "short写入";
 			this.button_write_short.UseVisualStyleBackColor = true;
@@ -284,7 +285,7 @@
 			// 
 			this.button_write_byte.Location = new System.Drawing.Point(329, 24);
 			this.button_write_byte.Name = "button_write_byte";
-			this.button_write_byte.Size = new System.Drawing.Size(82, 28);
+			this.button_write_byte.Size = new System.Drawing.Size(84, 28);
 			this.button_write_byte.TabIndex = 7;
 			this.button_write_byte.Text = "byte写入";
 			this.button_write_byte.UseVisualStyleBackColor = true;
@@ -294,7 +295,7 @@
 			// 
 			this.button_write_bool.Location = new System.Drawing.Point(238, 24);
 			this.button_write_bool.Name = "button_write_bool";
-			this.button_write_bool.Size = new System.Drawing.Size(82, 28);
+			this.button_write_bool.Size = new System.Drawing.Size(84, 28);
 			this.button_write_bool.TabIndex = 6;
 			this.button_write_bool.Text = "bool写入";
 			this.button_write_bool.UseVisualStyleBackColor = true;
@@ -346,6 +347,8 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.textBox1);
 			this.groupBox1.Controls.Add(this.button1);
 			this.groupBox1.Controls.Add(this.label8);
@@ -368,14 +371,15 @@
 			this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(518, 234);
+			this.groupBox1.Size = new System.Drawing.Size(529, 234);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "单数据读取测试";
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(367, 195);
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox1.Location = new System.Drawing.Point(386, 199);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(41, 23);
 			this.textBox1.TabIndex = 19;
@@ -383,8 +387,9 @@
 			// 
 			// label8
 			// 
+			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(323, 198);
+			this.label8.Location = new System.Drawing.Point(342, 202);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(44, 17);
 			this.label8.TabIndex = 20;
@@ -392,17 +397,20 @@
 			// 
 			// textBox5
 			// 
+			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox5.Location = new System.Drawing.Point(275, 27);
 			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(42, 23);
+			this.textBox5.Size = new System.Drawing.Size(64, 23);
 			this.textBox5.TabIndex = 18;
 			this.textBox5.Text = "1";
 			// 
 			// button_read_string
 			// 
-			this.button_read_string.Location = new System.Drawing.Point(421, 192);
+			this.button_read_string.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_string.Location = new System.Drawing.Point(436, 196);
 			this.button_read_string.Name = "button_read_string";
-			this.button_read_string.Size = new System.Drawing.Size(82, 28);
+			this.button_read_string.Size = new System.Drawing.Size(84, 28);
 			this.button_read_string.TabIndex = 16;
 			this.button_read_string.Text = "字符串读取";
 			this.button_read_string.UseVisualStyleBackColor = true;
@@ -410,9 +418,10 @@
 			// 
 			// button_read_double
 			// 
-			this.button_read_double.Location = new System.Drawing.Point(421, 158);
+			this.button_read_double.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_double.Location = new System.Drawing.Point(436, 162);
 			this.button_read_double.Name = "button_read_double";
-			this.button_read_double.Size = new System.Drawing.Size(82, 28);
+			this.button_read_double.Size = new System.Drawing.Size(84, 28);
 			this.button_read_double.TabIndex = 15;
 			this.button_read_double.Text = "double读取";
 			this.button_read_double.UseVisualStyleBackColor = true;
@@ -420,9 +429,10 @@
 			// 
 			// button_read_float
 			// 
-			this.button_read_float.Location = new System.Drawing.Point(326, 158);
+			this.button_read_float.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_float.Location = new System.Drawing.Point(345, 162);
 			this.button_read_float.Name = "button_read_float";
-			this.button_read_float.Size = new System.Drawing.Size(82, 28);
+			this.button_read_float.Size = new System.Drawing.Size(84, 28);
 			this.button_read_float.TabIndex = 14;
 			this.button_read_float.Text = "float读取";
 			this.button_read_float.UseVisualStyleBackColor = true;
@@ -430,9 +440,10 @@
 			// 
 			// button_read_ulong
 			// 
-			this.button_read_ulong.Location = new System.Drawing.Point(421, 124);
+			this.button_read_ulong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_ulong.Location = new System.Drawing.Point(436, 128);
 			this.button_read_ulong.Name = "button_read_ulong";
-			this.button_read_ulong.Size = new System.Drawing.Size(82, 28);
+			this.button_read_ulong.Size = new System.Drawing.Size(84, 28);
 			this.button_read_ulong.TabIndex = 13;
 			this.button_read_ulong.Text = "ulong读取";
 			this.button_read_ulong.UseVisualStyleBackColor = true;
@@ -440,9 +451,10 @@
 			// 
 			// button_read_long
 			// 
-			this.button_read_long.Location = new System.Drawing.Point(326, 124);
+			this.button_read_long.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_long.Location = new System.Drawing.Point(345, 128);
 			this.button_read_long.Name = "button_read_long";
-			this.button_read_long.Size = new System.Drawing.Size(82, 28);
+			this.button_read_long.Size = new System.Drawing.Size(84, 28);
 			this.button_read_long.TabIndex = 12;
 			this.button_read_long.Text = "long读取";
 			this.button_read_long.UseVisualStyleBackColor = true;
@@ -450,9 +462,10 @@
 			// 
 			// button_read_uint
 			// 
-			this.button_read_uint.Location = new System.Drawing.Point(421, 90);
+			this.button_read_uint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_uint.Location = new System.Drawing.Point(436, 94);
 			this.button_read_uint.Name = "button_read_uint";
-			this.button_read_uint.Size = new System.Drawing.Size(82, 28);
+			this.button_read_uint.Size = new System.Drawing.Size(84, 28);
 			this.button_read_uint.TabIndex = 11;
 			this.button_read_uint.Text = "uint读取";
 			this.button_read_uint.UseVisualStyleBackColor = true;
@@ -460,9 +473,10 @@
 			// 
 			// button_read_int
 			// 
-			this.button_read_int.Location = new System.Drawing.Point(326, 90);
+			this.button_read_int.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_int.Location = new System.Drawing.Point(345, 94);
 			this.button_read_int.Name = "button_read_int";
-			this.button_read_int.Size = new System.Drawing.Size(82, 28);
+			this.button_read_int.Size = new System.Drawing.Size(84, 28);
 			this.button_read_int.TabIndex = 10;
 			this.button_read_int.Text = "int读取";
 			this.button_read_int.UseVisualStyleBackColor = true;
@@ -470,9 +484,10 @@
 			// 
 			// button_read_ushort
 			// 
-			this.button_read_ushort.Location = new System.Drawing.Point(421, 56);
+			this.button_read_ushort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_ushort.Location = new System.Drawing.Point(436, 60);
 			this.button_read_ushort.Name = "button_read_ushort";
-			this.button_read_ushort.Size = new System.Drawing.Size(82, 28);
+			this.button_read_ushort.Size = new System.Drawing.Size(84, 28);
 			this.button_read_ushort.TabIndex = 9;
 			this.button_read_ushort.Text = "ushort读取";
 			this.button_read_ushort.UseVisualStyleBackColor = true;
@@ -480,9 +495,10 @@
 			// 
 			// button_read_short
 			// 
-			this.button_read_short.Location = new System.Drawing.Point(326, 56);
+			this.button_read_short.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_short.Location = new System.Drawing.Point(345, 60);
 			this.button_read_short.Name = "button_read_short";
-			this.button_read_short.Size = new System.Drawing.Size(82, 28);
+			this.button_read_short.Size = new System.Drawing.Size(84, 28);
 			this.button_read_short.TabIndex = 8;
 			this.button_read_short.Text = "short读取";
 			this.button_read_short.UseVisualStyleBackColor = true;
@@ -490,9 +506,10 @@
 			// 
 			// button_read_byte
 			// 
-			this.button_read_byte.Location = new System.Drawing.Point(421, 19);
+			this.button_read_byte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_byte.Location = new System.Drawing.Point(436, 23);
 			this.button_read_byte.Name = "button_read_byte";
-			this.button_read_byte.Size = new System.Drawing.Size(82, 28);
+			this.button_read_byte.Size = new System.Drawing.Size(84, 28);
 			this.button_read_byte.TabIndex = 7;
 			this.button_read_byte.Text = "byte读取";
 			this.button_read_byte.UseVisualStyleBackColor = true;
@@ -500,9 +517,10 @@
 			// 
 			// button_read_bool
 			// 
-			this.button_read_bool.Location = new System.Drawing.Point(326, 19);
+			this.button_read_bool.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_bool.Location = new System.Drawing.Point(345, 23);
 			this.button_read_bool.Name = "button_read_bool";
-			this.button_read_bool.Size = new System.Drawing.Size(82, 28);
+			this.button_read_bool.Size = new System.Drawing.Size(84, 28);
 			this.button_read_bool.TabIndex = 6;
 			this.button_read_bool.Text = "bool读取";
 			this.button_read_bool.UseVisualStyleBackColor = true;
@@ -510,11 +528,13 @@
 			// 
 			// textBox4
 			// 
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox4.Location = new System.Drawing.Point(63, 56);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(254, 169);
+			this.textBox4.Size = new System.Drawing.Size(276, 169);
 			this.textBox4.TabIndex = 5;
 			// 
 			// label7

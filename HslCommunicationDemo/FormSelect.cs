@@ -336,6 +336,7 @@ namespace HslCommunicationDemo
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "EtherNet/IP(CIP)",    8, typeof( FormMelsecCipNet ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-1E (Binary)",       8, typeof( FormMelsec1EBinary ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-1E (ASCII)",        8, typeof( FormMelsec1EAscii ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-1E Server",         8, typeof( FormMcA1EServer ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "MC (Binary)",         8, typeof( FormMelsecBinary ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "MC Udp(Binary)",      8, typeof( FormMelsecUdp ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "MC (ASCII)",          8, typeof( FormMelsecAscii ) ) );
@@ -633,6 +634,7 @@ namespace HslCommunicationDemo
 			algorithmsNode.Nodes.Add( new TreeNode( "Fourier [傅立叶算法]" ) { Tag = typeof( Algorithms.FourierTransform ) } );
 			algorithmsNode.Nodes.Add( new TreeNode( "Fourier [傅立叶滤波]" ) { Tag = typeof( Algorithms.FourierFilter ) } );
 			algorithmsNode.Nodes.Add( new TreeNode( "PID [Pid模拟]" ) { Tag = typeof( Algorithms.FormPid ) } );
+			algorithmsNode.Nodes.Add( new TreeNode( "RSA [加密解密]" ) { Tag = typeof( FormRSADebug ) } );
 			treeView1.Nodes.Add( algorithmsNode );
 
 			// 其他界面

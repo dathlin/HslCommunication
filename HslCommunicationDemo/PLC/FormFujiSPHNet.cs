@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication.Profinet.Fuji;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
@@ -30,8 +31,21 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 
 			Language( Program.Language );
+			comboBox1.DataSource = SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
+			comboBox1.SelectedItem = fujiSPB.ByteTransform.DataFormat;
+			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
 		}
 
+		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			if(this.fujiSPB != null)
+			{
+				if(comboBox1.SelectedItem is HslCommunication.Core.DataFormat dataformat)
+				{
+					this.fujiSPB.ByteTransform.DataFormat = dataformat;
+				}
+			}
+		}
 
 		private void Language( int language )
 		{
@@ -43,7 +57,6 @@ namespace HslCommunicationDemo
 				label26.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 
 				label11.Text = "Address:";
 				label12.Text = "length:";

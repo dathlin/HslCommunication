@@ -31,6 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("文件列表");
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_rsa = new System.Windows.Forms.CheckBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBox10 = new System.Windows.Forms.TextBox();
@@ -62,6 +63,7 @@
 			this.textBox_file_tag = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.button12 = new System.Windows.Forms.Button();
 			this.label17 = new System.Windows.Forms.Label();
 			this.button11 = new System.Windows.Forms.Button();
 			this.textBox6 = new System.Windows.Forms.TextBox();
@@ -105,7 +107,6 @@
 			this.删除目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.全部下载ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.批量上传ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.button12 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -122,6 +123,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_rsa);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.textBox10);
@@ -134,11 +136,21 @@
 			this.panel1.Controls.Add(this.label20);
 			this.panel1.Controls.Add(this.textBox4);
 			this.panel1.Controls.Add(this.label21);
-			this.panel1.Location = new System.Drawing.Point(12, 40);
+			this.panel1.Location = new System.Drawing.Point(6, 37);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(981, 60);
+			this.panel1.Size = new System.Drawing.Size(993, 60);
 			this.panel1.TabIndex = 7;
+			// 
+			// checkBox_rsa
+			// 
+			this.checkBox_rsa.AutoSize = true;
+			this.checkBox_rsa.Location = new System.Drawing.Point(712, 4);
+			this.checkBox_rsa.Name = "checkBox_rsa";
+			this.checkBox_rsa.Size = new System.Drawing.Size(212, 21);
+			this.checkBox_rsa.TabIndex = 30;
+			this.checkBox_rsa.Text = "RSA加密 (V10.2.0版本以上服务器)";
+			this.checkBox_rsa.UseVisualStyleBackColor = true;
 			// 
 			// textBox1
 			// 
@@ -191,7 +203,7 @@
 			// button1
 			// 
 			this.button1.Enabled = false;
-			this.button1.Location = new System.Drawing.Point(843, 15);
+			this.button1.Location = new System.Drawing.Point(808, 27);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 23;
@@ -201,7 +213,7 @@
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(733, 15);
+			this.button7.Location = new System.Drawing.Point(708, 27);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(91, 28);
 			this.button7.TabIndex = 22;
@@ -251,9 +263,9 @@
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.groupBox4);
 			this.panel2.Enabled = false;
-			this.panel2.Location = new System.Drawing.Point(12, 103);
+			this.panel2.Location = new System.Drawing.Point(6, 102);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(981, 539);
+			this.panel2.Size = new System.Drawing.Size(993, 539);
 			this.panel2.TabIndex = 13;
 			// 
 			// groupBox4
@@ -270,7 +282,7 @@
 			this.groupBox4.Controls.Add(this.treeView1);
 			this.groupBox4.Location = new System.Drawing.Point(5, 3);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(971, 531);
+			this.groupBox4.Size = new System.Drawing.Size(983, 531);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "浏览服务器文件";
@@ -292,7 +304,7 @@
 			this.groupBox5.Controls.Add(this.label32);
 			this.groupBox5.Controls.Add(this.label26);
 			this.groupBox5.Controls.Add(this.textBox_file_tag);
-			this.groupBox5.Location = new System.Drawing.Point(371, 11);
+			this.groupBox5.Location = new System.Drawing.Point(383, 11);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(594, 146);
 			this.groupBox5.TabIndex = 41;
@@ -433,12 +445,22 @@
 			this.groupBox3.Controls.Add(this.textBox_delete_fileName);
 			this.groupBox3.Controls.Add(this.label8);
 			this.groupBox3.Controls.Add(this.button5);
-			this.groupBox3.Location = new System.Drawing.Point(371, 431);
+			this.groupBox3.Location = new System.Drawing.Point(383, 431);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(594, 94);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "文件删除";
+			// 
+			// button12
+			// 
+			this.button12.Location = new System.Drawing.Point(159, 49);
+			this.button12.Name = "button12";
+			this.button12.Size = new System.Drawing.Size(75, 28);
+			this.button12.TabIndex = 26;
+			this.button12.Text = "子目录";
+			this.button12.UseVisualStyleBackColor = true;
+			this.button12.Click += new System.EventHandler(this.button12_Click);
 			// 
 			// label17
 			// 
@@ -526,7 +548,7 @@
 			this.groupBox2.Controls.Add(this.progressBar2);
 			this.groupBox2.Controls.Add(this.label12);
 			this.groupBox2.Controls.Add(this.button4);
-			this.groupBox2.Location = new System.Drawing.Point(371, 300);
+			this.groupBox2.Location = new System.Drawing.Point(383, 300);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(594, 128);
 			this.groupBox2.TabIndex = 1;
@@ -653,7 +675,7 @@
 			this.groupBox1.Controls.Add(this.button2);
 			this.groupBox1.Controls.Add(this.textBox3);
 			this.groupBox1.Controls.Add(this.label6);
-			this.groupBox1.Location = new System.Drawing.Point(371, 158);
+			this.groupBox1.Location = new System.Drawing.Point(383, 158);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(594, 138);
 			this.groupBox1.TabIndex = 0;
@@ -757,7 +779,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(291, 15);
+			this.button6.Location = new System.Drawing.Point(300, 15);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(74, 23);
 			this.button6.TabIndex = 32;
@@ -776,7 +798,7 @@
 			treeNode1.Text = "文件列表";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
-			this.treeView1.Size = new System.Drawing.Size(356, 483);
+			this.treeView1.Size = new System.Drawing.Size(368, 483);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeExpand);
 			this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -848,16 +870,6 @@
 			this.批量上传ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
 			this.批量上传ToolStripMenuItem.Text = "批量上传";
 			this.批量上传ToolStripMenuItem.Click += new System.EventHandler(this.批量上传ToolStripMenuItem_Click);
-			// 
-			// button12
-			// 
-			this.button12.Location = new System.Drawing.Point(159, 49);
-			this.button12.Name = "button12";
-			this.button12.Size = new System.Drawing.Size(75, 28);
-			this.button12.TabIndex = 26;
-			this.button12.Text = "子目录";
-			this.button12.UseVisualStyleBackColor = true;
-			this.button12.Click += new System.EventHandler(this.button12_Click);
 			// 
 			// FormMqttFileClient
 			// 
@@ -970,5 +982,6 @@
 		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.Button button11;
 		private System.Windows.Forms.Button button12;
+		private System.Windows.Forms.CheckBox checkBox_rsa;
 	}
 }

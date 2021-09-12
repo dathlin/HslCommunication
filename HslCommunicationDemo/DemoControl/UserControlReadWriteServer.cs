@@ -72,8 +72,7 @@ namespace HslCommunicationDemo.DemoControl
                 button8.Text = "Load";
                 button9.Text = "Save";
                 button10.Text = "Timed writing";
-                label1.Text = "log:";
-                checkBox1.Text = "Display log data";
+                checkBox1.Text = "Display log data?";
                 label16.Text = "Client-Online:";
                 button1.Text = "Connecting Alien client";
             }

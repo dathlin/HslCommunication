@@ -91,10 +91,10 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(14, 44);
+			this.panel1.Location = new System.Drawing.Point(5, 37);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 42);
+			this.panel1.Size = new System.Drawing.Size(993, 42);
 			this.panel1.TabIndex = 0;
 			// 
 			// textBox16
@@ -205,17 +205,17 @@
 			this.panel2.Controls.Add(this.groupBox5);
 			this.panel2.Controls.Add(this.groupBox4);
 			this.panel2.Controls.Add(this.groupBox3);
-			this.panel2.Location = new System.Drawing.Point(14, 95);
+			this.panel2.Location = new System.Drawing.Point(5, 84);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 537);
+			this.panel2.Size = new System.Drawing.Size(993, 557);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
 			// 
 			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 2);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(975, 240);
 			this.userControlReadWriteOp1.TabIndex = 5;
 			// 
 			// groupBox5
@@ -226,26 +226,26 @@
 			this.groupBox5.Controls.Add(this.button5);
 			this.groupBox5.Controls.Add(this.textBox3);
 			this.groupBox5.Controls.Add(this.label5);
-			this.groupBox5.Location = new System.Drawing.Point(546, 243);
+			this.groupBox5.Location = new System.Drawing.Point(546, 248);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 278);
+			this.groupBox5.Size = new System.Drawing.Size(440, 149);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
 			// 
 			// textBox4
 			// 
-			this.textBox4.Location = new System.Drawing.Point(60, 76);
+			this.textBox4.Location = new System.Drawing.Point(60, 66);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(341, 186);
+			this.textBox4.Size = new System.Drawing.Size(374, 74);
 			this.textBox4.TabIndex = 14;
 			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(6, 78);
+			this.label7.Location = new System.Drawing.Point(6, 69);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(44, 17);
 			this.label7.TabIndex = 13;
@@ -254,7 +254,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(6, 19);
+			this.label6.Location = new System.Drawing.Point(6, 18);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(255, 17);
 			this.label6.TabIndex = 12;
@@ -262,7 +262,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(276, 36);
+			this.button5.Location = new System.Drawing.Point(309, 36);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(125, 28);
 			this.button5.TabIndex = 11;
@@ -274,7 +274,7 @@
 			// 
 			this.textBox3.Location = new System.Drawing.Point(60, 39);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(199, 23);
+			this.textBox3.Size = new System.Drawing.Size(243, 23);
 			this.textBox3.TabIndex = 10;
 			this.textBox3.Text = "A1";
 			// 
@@ -297,7 +297,7 @@
 			this.groupBox4.Controls.Add(this.label16);
 			this.groupBox4.Location = new System.Drawing.Point(11, 403);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(518, 118);
+			this.groupBox4.Size = new System.Drawing.Size(518, 145);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "CIP报文读取测试，此处需要填入完整的16进制报文字符串";
@@ -318,7 +318,7 @@
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
 			this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox11.Size = new System.Drawing.Size(445, 52);
+			this.textBox11.Size = new System.Drawing.Size(445, 79);
 			this.textBox11.TabIndex = 10;
 			// 
 			// label14
@@ -425,7 +425,7 @@
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(445, 78);
+			this.textBox10.Size = new System.Drawing.Size(445, 88);
 			this.textBox10.TabIndex = 10;
 			// 
 			// label13

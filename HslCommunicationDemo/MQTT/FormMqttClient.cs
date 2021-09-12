@@ -36,19 +36,6 @@ namespace HslCommunicationDemo
 		{
 			if (language == 1)
 			{
-				Text = "Mqtt客户端";
-				label1.Text = "Ip地址：";
-				label3.Text = "端口号：";
-				button1.Text = "连接";
-				button2.Text = "断开连接";
-				button5.Text = "最少一次";
-				button6.Text = "刚好一次";
-				label7.Text = "Topic：";
-				label8.Text = "主题";
-				label9.Text = "Payload：";
-				button3.Text = "最多一次";
-				button4.Text = "清空";
-				label12.Text = "接收：";
 			}
 			else
 			{
@@ -79,10 +66,11 @@ namespace HslCommunicationDemo
 			// 连接
 			MqttConnectionOptions options = new MqttConnectionOptions( )
 			{
-				IpAddress = textBox1.Text,
-				Port = int.Parse( textBox2.Text ),
-				ClientId = textBox3.Text,
+				IpAddress       = textBox1.Text,
+				Port            = int.Parse( textBox2.Text ),
+				ClientId        = textBox3.Text,
 				KeepAlivePeriod = TimeSpan.FromSeconds(int.Parse(textBox6.Text)),
+				UseRSAProvider  = checkBox_rsa.Checked,
 			};
 			if(!string.IsNullOrEmpty(textBox9.Text) || !string.IsNullOrEmpty( textBox10.Text ))
 			{
@@ -91,8 +79,8 @@ namespace HslCommunicationDemo
 
 			button1.Enabled = false;
 			mqttClient?.ConnectClose( );
-			mqttClient = new MqttClient( options );
-			mqttClient.LogNet = new HslCommunication.LogNet.LogNetSingle( string.Empty );
+			mqttClient            = new MqttClient( options );
+			mqttClient.LogNet     = new HslCommunication.LogNet.LogNetSingle( string.Empty );
 			mqttClient.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			mqttClient.OnMqttMessageReceived   += MqttClient_OnMqttMessageReceived;
 			//mqttClient.OnNetworkError          += MqttClient_OnNetworkError; // 自己来控制异常及重连的操作
@@ -101,10 +89,10 @@ namespace HslCommunicationDemo
 
 			if(connect.IsSuccess)
 			{
-				panel2.Enabled = true;
+				panel2.Enabled  = true;
 				button1.Enabled = false;
 				button2.Enabled = true;
-				panel2.Enabled = true;
+				panel2.Enabled  = true;
 				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
 			}
 			else

@@ -220,6 +220,105 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button5_Click( object sender, EventArgs e )
+		{
+			OperateResult<ushort, byte[]> read = omronCipNet.ReadTag( textBox3.Text, int.Parse( textBox7.Text ) );
+			if(!read.IsSuccess)
+			{
+				MessageBox.Show( "Read failed! " + read.Message );
+			}
+			else
+			{
+				textBox4.Text = read.Content1.ToString( "X" );
+				textBox5.Text = read.Content2.ToHexString( ' ' );
+			}
+		}
+
+		private void button6_Click( object sender, EventArgs e )
+		{
+			// 读日期格式
+			OperateResult<DateTime> read = omronCipNet.ReadDate( textBox_date_address.Text );
+			if(!read.IsSuccess)
+			{
+				MessageBox.Show( "Read failed! " + read.Message );
+			}
+			else
+			{
+				textBox_date_render.Text = read.Content.ToString( );
+			}
+		}
+
+		private void button7_Click( object sender, EventArgs e )
+		{
+			// 写日期格式
+			OperateResult write = omronCipNet.WriteDate( textBox_date_address.Text, DateTime.Parse( textBox_date_render.Text ) );
+			if (!write.IsSuccess)
+			{
+				MessageBox.Show( "Write failed! " + write.Message );
+			}
+			else
+			{
+				MessageBox.Show( "Write Success" );
+			}
+		}
+
+		private void button8_Click( object sender, EventArgs e )
+		{
+			// 读时间
+			OperateResult<TimeSpan> read = omronCipNet.ReadTime( textBox_date_address.Text );
+			if (!read.IsSuccess)
+			{
+				MessageBox.Show( "Read failed! " + read.Message );
+			}
+			else
+			{
+				textBox_date_render.Text = read.Content.ToString( );
+			}
+		}
+
+		private void button9_Click( object sender, EventArgs e )
+		{
+			// 写时间
+			OperateResult write = omronCipNet.WriteTime( textBox_date_address.Text, TimeSpan.Parse( textBox_date_render.Text ) );
+			if (!write.IsSuccess)
+			{
+				MessageBox.Show( "Write failed! " + write.Message );
+			}
+			else
+			{
+				MessageBox.Show( "Write Success" );
+			}
+		}
+
+		private void button10_Click( object sender, EventArgs e )
+		{
+			// 写日期时间格式
+			OperateResult write = omronCipNet.WriteTimeAndDate( textBox_date_address.Text, DateTime.Parse( textBox_date_render.Text ) );
+			if (!write.IsSuccess)
+			{
+				MessageBox.Show( "Write failed! " + write.Message );
+			}
+			else
+			{
+				MessageBox.Show( "Write Success" );
+			}
+		}
+
+		private void button11_Click( object sender, EventArgs e )
+		{
+			// 写time of date格式数据
+			OperateResult write = omronCipNet.WriteTimeOfDate( textBox_date_address.Text, TimeSpan.Parse( textBox_date_render.Text ) );
+			if (!write.IsSuccess)
+			{
+				MessageBox.Show( "Write failed! " + write.Message );
+			}
+			else
+			{
+				MessageBox.Show( "Write Success" );
+			}
+		}
+
+
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
