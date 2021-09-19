@@ -77,10 +77,10 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(15, 43);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 72);
+			this.panel1.Size = new System.Drawing.Size(997, 72);
 			this.panel1.TabIndex = 7;
 			// 
 			// textBox1
@@ -89,13 +89,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox1.Location = new System.Drawing.Point(95, 40);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(854, 23);
+			this.textBox1.Size = new System.Drawing.Size(873, 23);
 			this.textBox1.TabIndex = 8;
 			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(8, 43);
+			this.label13.Location = new System.Drawing.Point(7, 43);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(92, 17);
 			this.label13.TabIndex = 7;
@@ -165,9 +165,9 @@
 			this.panel2.Controls.Add(this.textBox8);
 			this.panel2.Controls.Add(this.label12);
 			this.panel2.Controls.Add(this.button4);
-			this.panel2.Location = new System.Drawing.Point(15, 122);
+			this.panel2.Location = new System.Drawing.Point(3, 111);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(977, 518);
+			this.panel2.Size = new System.Drawing.Size(997, 532);
 			this.panel2.TabIndex = 13;
 			// 
 			// label7
@@ -217,7 +217,7 @@
 			this.dataGridView1.RowHeadersVisible = false;
 			this.dataGridView1.RowTemplate.Height = 23;
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridView1.Size = new System.Drawing.Size(969, 150);
+			this.dataGridView1.Size = new System.Drawing.Size(989, 150);
 			this.dataGridView1.TabIndex = 31;
 			// 
 			// Column1
@@ -301,7 +301,7 @@
 			// 
 			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(7, 4);
+			this.label5.Location = new System.Drawing.Point(27, 4);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(93, 17);
 			this.label5.TabIndex = 30;
@@ -319,7 +319,7 @@
 			// button7
 			// 
 			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button7.Location = new System.Drawing.Point(784, 180);
+			this.button7.Location = new System.Drawing.Point(804, 180);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(91, 28);
 			this.button7.TabIndex = 28;
@@ -331,7 +331,7 @@
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(854, 4);
+			this.label2.Location = new System.Drawing.Point(874, 4);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(86, 17);
 			this.label2.TabIndex = 27;
@@ -346,7 +346,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(910, 299);
+			this.textBox8.Size = new System.Drawing.Size(930, 313);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
@@ -361,7 +361,7 @@
 			// button4
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(881, 180);
+			this.button4.Location = new System.Drawing.Point(901, 180);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(91, 28);
 			this.button4.TabIndex = 17;

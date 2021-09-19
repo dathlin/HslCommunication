@@ -58,6 +58,16 @@ namespace HslCommunicationDemo
 				groupBox4.Text = "CIP reading test, hex string needs to be filled in";
 				groupBox5.Text = "Special function test";
 				label22.Text = "plc tag name";
+
+				groupBox1.Text = "Time Read Write";
+				label2.Text = "Address:";
+				label4.Text = "Address:";
+				label8.Text = "Data:";
+				label5.Text = "Type:";
+				label7.Text = "Length:";
+				label6.Text = "Data:";
+				button4.Text = "Write";
+				button5.Text = "Read Type Data";
 			}
 		}
 

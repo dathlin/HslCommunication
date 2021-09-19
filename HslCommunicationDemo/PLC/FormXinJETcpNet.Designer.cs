@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -61,8 +63,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.comboBox4 = new System.Windows.Forms.ComboBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -88,11 +88,33 @@
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.checkBox3);
-			this.panel1.Location = new System.Drawing.Point(14, 45);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 62);
+			this.panel1.Size = new System.Drawing.Size(997, 62);
 			this.panel1.TabIndex = 0;
+			// 
+			// comboBox4
+			// 
+			this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox4.FormattingEnabled = true;
+			this.comboBox4.Items.AddRange(new object[] {
+            "无",
+            "奇",
+            "偶"});
+			this.comboBox4.Location = new System.Drawing.Point(456, 32);
+			this.comboBox4.Name = "comboBox4";
+			this.comboBox4.Size = new System.Drawing.Size(65, 25);
+			this.comboBox4.TabIndex = 34;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(403, 36);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(44, 17);
+			this.label2.TabIndex = 33;
+			this.label2.Text = "系列：";
 			// 
 			// button1
 			// 
@@ -212,17 +234,17 @@
 			this.panel2.Controls.Add(this.groupBox5);
 			this.panel2.Controls.Add(this.groupBox4);
 			this.panel2.Controls.Add(this.groupBox3);
-			this.panel2.Location = new System.Drawing.Point(14, 115);
+			this.panel2.Location = new System.Drawing.Point(3, 101);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 527);
+			this.panel2.Size = new System.Drawing.Size(997, 541);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
 			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 2);
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 2);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 240);
 			this.userControlReadWriteOp1.TabIndex = 5;
 			// 
 			// groupBox5
@@ -230,16 +252,16 @@
 			this.groupBox5.Controls.Add(this.button4);
 			this.groupBox5.Controls.Add(this.textBox17);
 			this.groupBox5.Controls.Add(this.button3);
-			this.groupBox5.Location = new System.Drawing.Point(546, 243);
+			this.groupBox5.Location = new System.Drawing.Point(573, 243);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 278);
+			this.groupBox5.Size = new System.Drawing.Size(419, 293);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(12, 244);
+			this.button4.Location = new System.Drawing.Point(12, 259);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(82, 28);
 			this.button4.TabIndex = 25;
@@ -253,12 +275,12 @@
 			this.textBox17.Multiline = true;
 			this.textBox17.Name = "textBox17";
 			this.textBox17.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox17.Size = new System.Drawing.Size(396, 179);
+			this.textBox17.Size = new System.Drawing.Size(401, 194);
 			this.textBox17.TabIndex = 24;
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(229, 244);
+			this.button3.Location = new System.Drawing.Point(229, 259);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(184, 28);
 			this.button3.TabIndex = 23;
@@ -273,9 +295,9 @@
 			this.groupBox4.Controls.Add(this.button26);
 			this.groupBox4.Controls.Add(this.textBox13);
 			this.groupBox4.Controls.Add(this.label16);
-			this.groupBox4.Location = new System.Drawing.Point(11, 403);
+			this.groupBox4.Location = new System.Drawing.Point(3, 403);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(518, 118);
+			this.groupBox4.Size = new System.Drawing.Size(564, 133);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "报文读取测试，此处需要填入完整的16进制报文字符串";
@@ -286,7 +308,7 @@
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
 			this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox11.Size = new System.Drawing.Size(445, 52);
+			this.textBox11.Size = new System.Drawing.Size(495, 67);
 			this.textBox11.TabIndex = 10;
 			// 
 			// label14
@@ -300,7 +322,7 @@
 			// 
 			// button26
 			// 
-			this.button26.Location = new System.Drawing.Point(426, 24);
+			this.button26.Location = new System.Drawing.Point(476, 24);
 			this.button26.Name = "button26";
 			this.button26.Size = new System.Drawing.Size(82, 28);
 			this.button26.TabIndex = 8;
@@ -312,7 +334,7 @@
 			// 
 			this.textBox13.Location = new System.Drawing.Point(63, 27);
 			this.textBox13.Name = "textBox13";
-			this.textBox13.Size = new System.Drawing.Size(357, 23);
+			this.textBox13.Size = new System.Drawing.Size(407, 23);
 			this.textBox13.TabIndex = 5;
 			this.textBox13.Text = "01 03 00 00 00 05";
 			// 
@@ -334,20 +356,23 @@
 			this.groupBox3.Controls.Add(this.label12);
 			this.groupBox3.Controls.Add(this.textBox6);
 			this.groupBox3.Controls.Add(this.label11);
-			this.groupBox3.Location = new System.Drawing.Point(11, 243);
+			this.groupBox3.Location = new System.Drawing.Point(3, 243);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(518, 154);
+			this.groupBox3.Size = new System.Drawing.Size(564, 154);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
 			// 
 			// textBox10
 			// 
+			this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox10.Location = new System.Drawing.Point(63, 60);
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(445, 78);
+			this.textBox10.Size = new System.Drawing.Size(495, 88);
 			this.textBox10.TabIndex = 10;
 			// 
 			// label13
@@ -361,9 +386,11 @@
 			// 
 			// button25
 			// 
-			this.button25.Location = new System.Drawing.Point(426, 24);
+			this.button25.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button25.Location = new System.Drawing.Point(430, 24);
 			this.button25.Name = "button25";
-			this.button25.Size = new System.Drawing.Size(82, 28);
+			this.button25.Size = new System.Drawing.Size(128, 28);
 			this.button25.TabIndex = 8;
 			this.button25.Text = "批量读取";
 			this.button25.UseVisualStyleBackColor = true;
@@ -417,28 +444,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// comboBox4
-			// 
-			this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox4.FormattingEnabled = true;
-			this.comboBox4.Items.AddRange(new object[] {
-            "无",
-            "奇",
-            "偶"});
-			this.comboBox4.Location = new System.Drawing.Point(456, 32);
-			this.comboBox4.Name = "comboBox4";
-			this.comboBox4.Size = new System.Drawing.Size(65, 25);
-			this.comboBox4.TabIndex = 34;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(403, 36);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(44, 17);
-			this.label2.TabIndex = 33;
-			this.label2.Text = "系列：";
 			// 
 			// FormXinJETcpNet
 			// 

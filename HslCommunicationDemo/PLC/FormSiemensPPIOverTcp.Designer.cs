@@ -74,10 +74,10 @@
 			this.panel1.Controls.Add(this.label23);
 			this.panel1.Controls.Add(this.label22);
 			this.panel1.Controls.Add(this.label21);
-			this.panel1.Location = new System.Drawing.Point(14, 40);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 54);
+			this.panel1.Size = new System.Drawing.Size(997, 54);
 			this.panel1.TabIndex = 0;
 			// 
 			// button2
@@ -154,16 +154,16 @@
 			// 
 			// label22
 			// 
-			this.label22.Location = new System.Drawing.Point(841, 0);
+			this.label22.Location = new System.Drawing.Point(794, 0);
 			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(132, 52);
+			this.label22.Size = new System.Drawing.Size(168, 52);
 			this.label22.TabIndex = 7;
 			this.label22.Text = "M100  I100  Q100 DB100.20   T100 C100";
 			// 
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(767, 0);
+			this.label21.Location = new System.Drawing.Point(707, 0);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(68, 17);
 			this.label21.TabIndex = 6;
@@ -178,26 +178,26 @@
 			this.panel2.Controls.Add(this.userControlReadWriteOp1);
 			this.panel2.Controls.Add(this.groupBox4);
 			this.panel2.Controls.Add(this.groupBox3);
-			this.panel2.Location = new System.Drawing.Point(14, 100);
+			this.panel2.Location = new System.Drawing.Point(3, 93);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 537);
+			this.panel2.Size = new System.Drawing.Size(997, 548);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
 			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 0);
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(4, 1);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(988, 240);
 			this.userControlReadWriteOp1.TabIndex = 4;
 			// 
 			// groupBox4
 			// 
 			this.groupBox4.Controls.Add(this.button4);
 			this.groupBox4.Controls.Add(this.button3);
-			this.groupBox4.Location = new System.Drawing.Point(546, 243);
+			this.groupBox4.Location = new System.Drawing.Point(573, 243);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(419, 278);
+			this.groupBox4.Size = new System.Drawing.Size(419, 296);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "特殊功能测试";
@@ -231,9 +231,9 @@
 			this.groupBox3.Controls.Add(this.label12);
 			this.groupBox3.Controls.Add(this.textBox6);
 			this.groupBox3.Controls.Add(this.label11);
-			this.groupBox3.Location = new System.Drawing.Point(11, 243);
+			this.groupBox3.Location = new System.Drawing.Point(4, 243);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(518, 278);
+			this.groupBox3.Size = new System.Drawing.Size(563, 296);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
@@ -244,7 +244,7 @@
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(445, 201);
+			this.textBox10.Size = new System.Drawing.Size(494, 230);
 			this.textBox10.TabIndex = 10;
 			// 
 			// label13
@@ -258,7 +258,7 @@
 			// 
 			// button25
 			// 
-			this.button25.Location = new System.Drawing.Point(426, 24);
+			this.button25.Location = new System.Drawing.Point(475, 27);
 			this.button25.Name = "button25";
 			this.button25.Size = new System.Drawing.Size(82, 28);
 			this.button25.TabIndex = 8;

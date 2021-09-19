@@ -51,16 +51,16 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(14, 40);
+			this.panel1.Location = new System.Drawing.Point(3, 36);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 68);
+			this.panel1.Size = new System.Drawing.Size(997, 52);
 			this.panel1.TabIndex = 0;
 			// 
 			// label11
 			// 
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(343, 11);
+			this.label11.Location = new System.Drawing.Point(343, 4);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(447, 41);
 			this.label11.TabIndex = 29;
@@ -69,7 +69,7 @@
 			// button11
 			// 
 			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(235, 15);
+			this.button11.Location = new System.Drawing.Point(235, 8);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(83, 28);
 			this.button11.TabIndex = 28;
@@ -79,7 +79,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(145, 15);
+			this.button1.Location = new System.Drawing.Point(145, 8);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(83, 28);
 			this.button1.TabIndex = 4;
@@ -89,7 +89,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(74, 18);
+			this.textBox2.Location = new System.Drawing.Point(66, 11);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
@@ -98,7 +98,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(20, 21);
+			this.label3.Location = new System.Drawing.Point(12, 14);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -111,10 +111,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(14, 116);
+			this.panel2.Location = new System.Drawing.Point(3, 92);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 516);
+			this.panel2.Size = new System.Drawing.Size(997, 550);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -123,9 +123,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteServer1.Location = new System.Drawing.Point(5, 4);
+			this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 2);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(960, 505);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 543);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1

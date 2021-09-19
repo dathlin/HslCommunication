@@ -270,9 +270,9 @@
 			this.hslPanelHead1.Controls.Add(this.label7);
 			this.hslPanelHead1.Controls.Add(this.textBox7);
 			this.hslPanelHead1.Controls.Add(this.button4);
-			this.hslPanelHead1.Location = new System.Drawing.Point(12, 250);
+			this.hslPanelHead1.Location = new System.Drawing.Point(4, 246);
 			this.hslPanelHead1.Name = "hslPanelHead1";
-			this.hslPanelHead1.Size = new System.Drawing.Size(980, 383);
+			this.hslPanelHead1.Size = new System.Drawing.Size(996, 395);
 			this.hslPanelHead1.TabIndex = 19;
 			this.hslPanelHead1.Text = "操作区域";
 			// 
@@ -371,9 +371,9 @@
 			this.hslPanelHead2.Controls.Add(this.button2);
 			this.hslPanelHead2.Controls.Add(this.hslPanelTextBack1);
 			this.hslPanelHead2.Controls.Add(this.hslPanelTextBack2);
-			this.hslPanelHead2.Location = new System.Drawing.Point(12, 39);
+			this.hslPanelHead2.Location = new System.Drawing.Point(4, 37);
 			this.hslPanelHead2.Name = "hslPanelHead2";
-			this.hslPanelHead2.Size = new System.Drawing.Size(980, 205);
+			this.hslPanelHead2.Size = new System.Drawing.Size(996, 205);
 			this.hslPanelHead2.TabIndex = 20;
 			this.hslPanelHead2.Text = "参数设置区域";
 			// 

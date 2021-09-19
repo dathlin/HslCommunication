@@ -78,7 +78,7 @@ namespace HslCommunicationDemo
             if(comboBox1.SelectedItem == null) { MessageBox.Show( "There is none serial port to use, try later!" ); return; }
             try
             {
-                digitronServer.StartSerial( comboBox1.SelectedItem.ToString( ) );
+                digitronServer.StartSerialSlave( comboBox1.SelectedItem.ToString( ) );
 
                 userControlReadWriteServer1.SetReadWriteServer( digitronServer, "100" );
                 button5.Enabled = false;

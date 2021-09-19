@@ -76,7 +76,7 @@ namespace HslCommunicationDemo
             if(comboBox1.SelectedItem == null) { MessageBox.Show( "There is none serial port to use, try later!" ); return; }
             try
             {
-                omronFinsServer.StartSerial( comboBox1.SelectedItem.ToString( ) );
+                omronFinsServer.StartSerialSlave( comboBox1.SelectedItem.ToString( ), 9600, 7, Parity.Even, StopBits.One );
 
                 userControlReadWriteServer1.SetReadWriteServer( omronFinsServer, "D100" );
                 button5.Enabled = false;

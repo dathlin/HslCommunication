@@ -42,6 +42,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button5 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button9 = new System.Windows.Forms.Button();
@@ -60,7 +61,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button5 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -82,10 +82,10 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(14, 39);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 54);
+			this.panel1.Size = new System.Drawing.Size(997, 54);
 			this.panel1.TabIndex = 0;
 			// 
 			// textBox16
@@ -185,17 +185,17 @@
 			this.panel2.Controls.Add(this.userControlReadWriteOp1);
 			this.panel2.Controls.Add(this.groupBox5);
 			this.panel2.Controls.Add(this.groupBox3);
-			this.panel2.Location = new System.Drawing.Point(14, 99);
+			this.panel2.Location = new System.Drawing.Point(3, 92);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 537);
+			this.panel2.Size = new System.Drawing.Size(997, 550);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
 			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 2);
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 2);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 240);
 			this.userControlReadWriteOp1.TabIndex = 5;
 			// 
 			// groupBox5
@@ -211,12 +211,22 @@
 			this.groupBox5.Controls.Add(this.label10);
 			this.groupBox5.Controls.Add(this.textBox8);
 			this.groupBox5.Controls.Add(this.label9);
-			this.groupBox5.Location = new System.Drawing.Point(546, 243);
+			this.groupBox5.Location = new System.Drawing.Point(573, 243);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 278);
+			this.groupBox5.Size = new System.Drawing.Size(419, 302);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(137, 138);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(107, 30);
+			this.button5.TabIndex = 25;
+			this.button5.Text = "Ping";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
 			// button4
 			// 
@@ -318,16 +328,16 @@
 			this.groupBox3.Controls.Add(this.button25);
 			this.groupBox3.Controls.Add(this.textBox6);
 			this.groupBox3.Controls.Add(this.label11);
-			this.groupBox3.Location = new System.Drawing.Point(11, 243);
+			this.groupBox3.Location = new System.Drawing.Point(3, 243);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(518, 278);
+			this.groupBox3.Size = new System.Drawing.Size(564, 302);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(342, 24);
+			this.button3.Location = new System.Drawing.Point(388, 24);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(82, 28);
 			this.button3.TabIndex = 15;
@@ -341,7 +351,7 @@
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(445, 218);
+			this.textBox10.Size = new System.Drawing.Size(495, 236);
 			this.textBox10.TabIndex = 10;
 			this.textBox10.Text = "批量读取时，多个标签按照 \';\' 英文的分号进行分割";
 			// 
@@ -356,7 +366,7 @@
 			// 
 			// button25
 			// 
-			this.button25.Location = new System.Drawing.Point(426, 24);
+			this.button25.Location = new System.Drawing.Point(476, 24);
 			this.button25.Name = "button25";
 			this.button25.Size = new System.Drawing.Size(82, 28);
 			this.button25.TabIndex = 8;
@@ -368,7 +378,7 @@
 			// 
 			this.textBox6.Location = new System.Drawing.Point(63, 27);
 			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(273, 23);
+			this.textBox6.Size = new System.Drawing.Size(319, 23);
 			this.textBox6.TabIndex = 5;
 			this.textBox6.Text = "\"全局DB\".Static_14";
 			// 
@@ -395,16 +405,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// button5
-			// 
-			this.button5.Location = new System.Drawing.Point(137, 138);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(107, 30);
-			this.button5.TabIndex = 25;
-			this.button5.Text = "Ping";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
 			// FormSiemensWebApi
 			// 

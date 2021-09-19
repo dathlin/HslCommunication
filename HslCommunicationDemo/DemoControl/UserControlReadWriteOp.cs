@@ -21,9 +21,39 @@ namespace HslCommunicationDemo.DemoControl
 			InitializeComponent( );
 		}
 
+		private string[] encodings = new string[]
+			{
+				"ASCII",
+				"Unicode",
+				"Unicode-big",
+				"UTF8",
+				"UTF32",
+				"ANSI",
+				"GB2312"
+			};
+
+		private Encoding GetEncodingFromIndex(int index )
+		{
+			switch (index)
+			{
+				case 0: return Encoding.ASCII;
+				case 1: return Encoding.Unicode;
+				case 2: return Encoding.BigEndianUnicode;
+				case 3: return Encoding.UTF8;
+				case 4: return Encoding.UTF32;
+				case 5: return Encoding.Default;
+				case 6: return Encoding.GetEncoding( "gb2312" );
+				default: return Encoding.ASCII;
+			}
+		}
+
 		private void UserControlReadWriteOp_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+
+			
+			comboBox_read_encoding.DataSource = encodings;
+			comboBox_write_Encoding.DataSource = encodings;
 		}
 
 		private void Language( int language )
@@ -69,6 +99,8 @@ namespace HslCommunicationDemo.DemoControl
 				button_write_byte.Text = "w-byte";
 				button1.Text = "Curve";
 				label1.Text = "Time-Cost:";
+				label12.Text = "Encoding:";
+				label13.Text = "Encoding:";
 			}
 		}
 
@@ -527,14 +559,15 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_string.Enabled = false;
 				DateTime start = DateTime.Now;
-				DemoUtils.ReadResultRender( await readWriteNet.ReadStringAsync( textBox3.Text, ushort.Parse( textBox1.Text ) ), textBox3.Text, textBox4 );
+				DemoUtils.ReadResultRender( await readWriteNet.ReadStringAsync( textBox3.Text, ushort.Parse( textBox1.Text ), 
+					GetEncodingFromIndex(comboBox_read_encoding.SelectedIndex) ), textBox3.Text, textBox4 );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 				button_read_string.Enabled = true;
 			}
 			else
 			{
 				DateTime start = DateTime.Now;
-				OperateResult<string> read = readWriteNet.ReadString( textBox3.Text, ushort.Parse( textBox1.Text ) );
+				OperateResult<string> read = readWriteNet.ReadString( textBox3.Text, ushort.Parse( textBox1.Text ), GetEncodingFromIndex( comboBox_read_encoding.SelectedIndex ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 				DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
 			}
@@ -1065,7 +1098,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_write_string.Enabled = false;
 				DateTime start = DateTime.Now;
-				OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text );
+				OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text, GetEncodingFromIndex(comboBox_write_Encoding.SelectedIndex) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 				DemoUtils.WriteResultRender( write, textBox8.Text );
 				button_write_string.Enabled = true;
@@ -1073,7 +1106,7 @@ namespace HslCommunicationDemo.DemoControl
 			else
 			{
 				DateTime start = DateTime.Now;
-				OperateResult write = readWriteNet.Write( textBox8.Text, textBox7.Text );
+				OperateResult write = readWriteNet.Write( textBox8.Text, textBox7.Text, GetEncodingFromIndex( comboBox_write_Encoding.SelectedIndex ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 				DemoUtils.WriteResultRender( write, textBox8.Text );
 			}

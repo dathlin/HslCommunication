@@ -184,7 +184,7 @@ namespace HslCommunicationDemo
             {
                 try
                 {
-                    busTcpServer.StartModbusRtu( textBox10.Text );
+                    busTcpServer.StartSerialSlave( textBox10.Text );
                     button5.Enabled = false;
                 }
                 catch(Exception ex)

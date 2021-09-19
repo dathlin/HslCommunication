@@ -27,11 +27,11 @@ namespace HslCommunicationDemo
 
             if(Program.Language == 2)
             {
-                Text = "MC Virtual Server [data support, bool: x,y,m   word: x,y,m,d,w]";
+                Text = "Keyence upper link virtual server [data support, R,B,MR,DM,EM]";
                 label3.Text = "port:";
                 button1.Text = "Start Server";
                 button11.Text = "Close Server";
-                label11.Text = "This server is not a strict mc protocol and only supports perfect communication with HSL components.";
+                label11.Text = "This server is not a strict keyence nanos protocol and only supports perfect communication with HSL components.";
             }
         }
         
@@ -70,6 +70,21 @@ namespace HslCommunicationDemo
             }
         }
 
+        private void button5_Click( object sender, EventArgs e )
+        {
+            if (keyencdeServer != null)
+            {
+                try
+                {
+                    keyencdeServer.StartSerialSlave( textBox10.Text );
+                    button5.Enabled = false;
+                }
+                catch (Exception ex)
+                {
+                    HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+                }
+            }
+        }
         private void button11_Click( object sender, EventArgs e )
         {
             // 停止服务
@@ -114,5 +129,6 @@ namespace HslCommunicationDemo
         {
             userControlHead1_SaveConnectEvent( sender, e );
         }
-    }
+
+	}
 }

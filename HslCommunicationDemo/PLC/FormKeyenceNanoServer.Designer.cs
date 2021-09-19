@@ -29,6 +29,10 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label2 = new System.Windows.Forms.Label();
+			this.button5 = new System.Windows.Forms.Button();
+			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.label14 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.button11 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -46,30 +50,71 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.label2);
+			this.panel1.Controls.Add(this.button5);
+			this.panel1.Controls.Add(this.textBox10);
+			this.panel1.Controls.Add(this.label14);
 			this.panel1.Controls.Add(this.label11);
 			this.panel1.Controls.Add(this.button11);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(14, 40);
+			this.panel1.Location = new System.Drawing.Point(4, 36);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 68);
+			this.panel1.Size = new System.Drawing.Size(996, 68);
 			this.panel1.TabIndex = 0;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Gray;
+			this.label2.Location = new System.Drawing.Point(381, 38);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(91, 17);
+			this.label2.TabIndex = 35;
+			this.label2.Text = "9600,8,1,None";
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(468, 9);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(91, 28);
+			this.button5.TabIndex = 34;
+			this.button5.Text = "启动串口";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
+			// textBox10
+			// 
+			this.textBox10.Location = new System.Drawing.Point(384, 12);
+			this.textBox10.Name = "textBox10";
+			this.textBox10.Size = new System.Drawing.Size(78, 23);
+			this.textBox10.TabIndex = 33;
+			this.textBox10.Text = "COM1";
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(317, 15);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(44, 17);
+			this.label14.TabIndex = 32;
+			this.label14.Text = "串口：";
 			// 
 			// label11
 			// 
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(343, 11);
+			this.label11.Location = new System.Drawing.Point(579, 5);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(447, 41);
+			this.label11.Size = new System.Drawing.Size(412, 61);
 			this.label11.TabIndex = 29;
 			this.label11.Text = "本服务器不是严格的上位链路协议，仅支持和HSL组件完美通信。";
 			// 
 			// button11
 			// 
 			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(235, 15);
+			this.button11.Location = new System.Drawing.Point(228, 9);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(83, 28);
 			this.button11.TabIndex = 28;
@@ -79,7 +124,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(145, 15);
+			this.button1.Location = new System.Drawing.Point(138, 9);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(83, 28);
 			this.button1.TabIndex = 4;
@@ -89,7 +134,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(74, 18);
+			this.textBox2.Location = new System.Drawing.Point(67, 12);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
@@ -98,7 +143,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(20, 21);
+			this.label3.Location = new System.Drawing.Point(13, 15);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -111,10 +156,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(14, 116);
+			this.panel2.Location = new System.Drawing.Point(4, 109);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 516);
+			this.panel2.Size = new System.Drawing.Size(996, 532);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -123,9 +168,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteServer1.Location = new System.Drawing.Point(5, 4);
+			this.userControlReadWriteServer1.Location = new System.Drawing.Point(2, 4);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(960, 505);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 521);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -176,5 +221,9 @@
         private System.Windows.Forms.Label label11;
         private DemoControl.UserControlHead userControlHead1;
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
-    }
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.TextBox textBox10;
+		private System.Windows.Forms.Label label14;
+	}
 }

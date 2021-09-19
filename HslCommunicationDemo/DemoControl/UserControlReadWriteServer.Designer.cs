@@ -143,11 +143,11 @@
 			this.Controls.Add(this.button10);
 			this.Controls.Add(this.label15);
 			this.Controls.Add(this.button9);
-			this.Controls.Add(this.label16);
 			this.Controls.Add(this.button8);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.userControlReadWriteOp1);
+			this.Controls.Add(this.label16);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "UserControlReadWriteServer";
 			this.Size = new System.Drawing.Size(960, 505);

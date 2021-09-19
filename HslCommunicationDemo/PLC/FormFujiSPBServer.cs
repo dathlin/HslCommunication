@@ -129,7 +129,7 @@ namespace HslCommunicationDemo
             {
                 try
                 {
-                    sPBServer.StartSerial( textBox10.Text );
+                    sPBServer.StartSerialSlave( textBox10.Text );
                     button5.Enabled = false;
                 }
                 catch(Exception ex)

@@ -110,7 +110,7 @@ namespace HslCommunicationDemo
             {
                 try
                 {
-                    lSisServer.StartSerialPort(textBox10.Text);
+                    lSisServer.StartSerialSlave(textBox10.Text);
                     button5.Enabled = false;
                 }
                 catch (Exception ex)

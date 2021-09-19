@@ -98,7 +98,7 @@ namespace HslCommunicationDemo
         {
 			if (mcNetServer != null)
 			{
-                mcNetServer.StartSerial( comboBox1.SelectedItem.ToString( ) );
+                mcNetServer.StartSerialSlave( comboBox1.SelectedItem.ToString( ) );
                 button5.Enabled = false;
             }
         }

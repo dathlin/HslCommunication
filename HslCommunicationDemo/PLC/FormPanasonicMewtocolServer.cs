@@ -38,6 +38,21 @@ namespace HslCommunicationDemo
             //timer.Start( );
         }
 
+        private void button2_Click( object sender, EventArgs e )
+        {
+            if (mewtocolServer != null)
+            {
+                try
+                {
+                    mewtocolServer.StartSerialSlave( textBox1.Text );
+                    button2.Enabled = false;
+                }
+                catch (Exception ex)
+                {
+                    HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+                }
+            }
+        }
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
         {
             mewtocolServer?.ServerClose( );
@@ -104,6 +119,7 @@ namespace HslCommunicationDemo
             }
         }
 
-        #endregion
-    }
+		#endregion
+
+	}
 }

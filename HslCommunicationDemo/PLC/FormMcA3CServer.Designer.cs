@@ -65,10 +65,10 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(14, 40);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 68);
+			this.panel1.Size = new System.Drawing.Size(997, 68);
 			this.panel1.TabIndex = 0;
 			// 
 			// comboBox2
@@ -88,6 +88,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Gray;
 			this.label2.Location = new System.Drawing.Point(486, 42);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(75, 17);
@@ -196,10 +197,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(14, 116);
+			this.panel2.Location = new System.Drawing.Point(3, 107);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 516);
+			this.panel2.Size = new System.Drawing.Size(997, 535);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -208,9 +209,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteServer1.Location = new System.Drawing.Point(5, 4);
+			this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 2);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(960, 505);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 528);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1
