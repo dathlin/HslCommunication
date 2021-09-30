@@ -55,6 +55,7 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -64,6 +65,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.checkBox3);
 			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.button2);
@@ -99,7 +101,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(319, 8);
+			this.button2.Location = new System.Drawing.Point(416, 8);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -109,7 +111,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(222, 8);
+			this.button1.Location = new System.Drawing.Point(319, 8);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -353,6 +355,16 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(208, 13);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(87, 21);
+			this.checkBox2.TabIndex = 10;
+			this.checkBox2.Text = "主题通配符";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			// 
 			// FormMqttServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -404,5 +416,6 @@
 		private System.Windows.Forms.CheckBox checkBox3;
 		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.CheckBox checkBox2;
 	}
 }

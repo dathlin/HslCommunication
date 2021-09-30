@@ -13,6 +13,8 @@ using HslCommunication.MQTT;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using System.Net;
+using System.IO;
 
 namespace HslCommunicationDemo
 {
@@ -34,6 +36,7 @@ namespace HslCommunicationDemo
                 button1.Enabled = false;
                 button2.Enabled = true;
                 webApiClient.UseHttps = checkBox1.Checked;
+                webApiClient.UseEncodingISO = checkBox2.Checked;
                 await MqttRpcApiRefresh( treeView1.Nodes[0] );
             }
             catch(Exception ex)
@@ -144,14 +147,50 @@ namespace HslCommunicationDemo
             try
             {
                 using (HttpRequestMessage request = new HttpRequestMessage( new HttpMethod( "HSL" ), url ))
-                using (HttpResponseMessage response = await webApiBase.Client.SendAsync( request ))
-                using (HttpContent content = response.Content)
                 {
-                    response.EnsureSuccessStatusCode( );
-                    string result = await content.ReadAsStringAsync( );
+                    using (HttpResponseMessage response = await webApiBase.Client.SendAsync( request ))
+                    using (HttpContent content = response.Content)
+                    {
+                        response.EnsureSuccessStatusCode( );
+                        string result = await content.ReadAsStringAsync( );
 
-                    return JArray.Parse( result ).ToObject<MqttRpcApiInfo[]>( );
+                        return JArray.Parse( result ).ToObject<MqttRpcApiInfo[]>( );
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                //HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+                return null;
+            }
+        }
+
+        private MqttRpcApiInfo[] ReadMqttRpcApiInfo2( )
+        {
+            try
+            {
+                string url = $"{(checkBox1.Checked ? "https" : "http")}://{webApiClient.IpAddress}:{webApiClient.Port}/Apis";
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create( url );
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.KeepAlive = false;
+                httpWebRequest.AllowAutoRedirect = true;
+                httpWebRequest.CookieContainer = new CookieContainer( );
+                httpWebRequest.Accept = "application/json, text/javascript, */*; q=0.01";
+                httpWebRequest.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36";
+
+                if (!string.IsNullOrEmpty( textBox3.Text ))
+                    httpWebRequest.Credentials = new NetworkCredential( textBox3.Text, textBox4.Text );
+                httpWebRequest.Method = "HSL";
+                httpWebRequest.Timeout = 10_000;
+                string result = "";
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse( );
+
+                using (var streamReader = new StreamReader( httpResponse.GetResponseStream( ) ))
+                {
+                    result = streamReader.ReadToEnd( );
+                }
+                return JArray.Parse( result ).ToObject<MqttRpcApiInfo[]>( );
+
             }
             catch
             {
@@ -209,7 +248,7 @@ namespace HslCommunicationDemo
         {
             rootNode.Nodes.Clear( );
             // 加载所有的键值信息
-            mqttRpcApiInfos = await ReadMqttRpcApiInfo( webApiClient );
+            mqttRpcApiInfos = await Task.Run( ( ) => ReadMqttRpcApiInfo2( ) );//  await ReadMqttRpcApiInfo( webApiClient ); 
             if (mqttRpcApiInfos == null) return;
 
             // 填充tree

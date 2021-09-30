@@ -37,6 +37,15 @@ namespace HslCommunicationDemo
 				sb.Append( "1" );
 			}
 			textBox_jiami_input.Text = sb.ToString( );
+
+			comboBox1.DataSource = new object[]
+			{
+				new SHA1CryptoServiceProvider(),
+				new SHA256CryptoServiceProvider(),
+				new SHA384CryptoServiceProvider(),
+				new SHA512CryptoServiceProvider(),
+				new MD5CryptoServiceProvider(),
+			};
 		}
 
 		private void Language( int language )
@@ -136,7 +145,7 @@ namespace HslCommunicationDemo
 		{
 			RSACryptoServiceProvider rsa = RSAHelper.CreateRsaProviderFromPrivateKey( textBox_pri_key.Text );
 			// 解密
-			byte[] jiemi = rsa.Decrypt( textBox_jiemi_input.Text.ToHexBytes( ), false );
+			byte[] jiemi = rsa.DecryptLargeData( textBox_jiemi_input.Text.ToHexBytes( ) );
 			if (radioButton3.Checked)
 				textBox_jiemi_result.Text = jiemi.ToHexString( ' ' );
 			else
@@ -208,6 +217,47 @@ namespace HslCommunicationDemo
 			label9.Text = "" + jiami.Length;
 		}
 
+		private object GetHalg( )
+		{
+			return comboBox1.SelectedItem;
+		}
+
+		private void button2_Click_1( object sender, EventArgs e )
+		{
+			// 验签
+			RSACryptoServiceProvider rsa = HslCommunication.Core.Security.RSAHelper.CreateRsaProviderFromPublicKey(
+				textBox_pub_key.Text );
+
+			byte[] jiami = null;
+			if (radioButton1.Checked)
+				jiami = textBox_jiami_input.Text.ToHexBytes( );
+			else
+				jiami = Encoding.UTF8.GetBytes( textBox_jiami_input.Text );
+
+			if (rsa.VerifyData( jiami, GetHalg( ), textBox_jiami_result.Text.ToHexBytes( ) ))
+			{
+				MessageBox.Show( "Sign verify success!" );
+			}
+			else
+			{
+				MessageBox.Show( "Sign verify failed" );
+			}
+		}
+
+		private void button3_Click_1( object sender, EventArgs e )
+		{
+			// 签名
+			RSACryptoServiceProvider rsa = HslCommunication.Core.Security.RSAHelper.CreateRsaProviderFromPrivateKey(
+				textBox_pri_key.Text );
+			byte[] sign = null;
+			if (radioButton1.Checked)
+				sign = rsa.SignData( textBox_jiami_input.Text.ToHexBytes( ), GetHalg( ) );
+			else
+				sign = rsa.SignData( Encoding.UTF8.GetBytes( textBox_jiami_input.Text ), GetHalg( ) );
+
+			textBox_jiami_result.Text = sign.ToHexString( ' ' );
+			label9.Text = "" + sign.Length;
+		}
 		private void button1_Click_1( object sender, EventArgs e )
 		{
 			// 加密结果另存为
@@ -219,5 +269,6 @@ namespace HslCommunicationDemo
 				MessageBox.Show( "Save Success" );
 			}
 		}
+
 	}
 }

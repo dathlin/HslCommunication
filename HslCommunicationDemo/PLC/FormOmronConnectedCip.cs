@@ -237,9 +237,31 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button6_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				OperateResult<ushort, byte[]> read = omronCipNet.ReadTag( textBox3.Text, ushort.Parse( textBox7.Text ) );
+				if (read.IsSuccess)
+				{
+					textBox4.Text = read.Content1.ToString( "X2" );
+					textBox5.Text = read.Content2.ToHexString( ' ' );
+				}
+				else
+				{
+					MessageBox.Show( "read failed：" + read.Message );
+				}
+			}
+			catch( Exception ex)
+			{
+				MessageBox.Show( "read failed：" + ex.Message );
+			}
+		}
+
 		private void button5_Click( object sender, EventArgs e )
 		{
 			MessageBox.Show( omronCipNet.ProductName );
 		}
+
 	}
 }

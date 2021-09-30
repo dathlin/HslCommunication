@@ -244,6 +244,20 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button12_Click( object sender, EventArgs e )
+		{
+			// 读设备类型
+			OperateResult<string> read = omronCipNet.ReadPlcType( );
+			if (read.IsSuccess)
+			{
+				textBox5.Text = read.Content;
+			}
+			else
+			{
+				MessageBox.Show( "Read failed! " + read.Message );
+			}
+		}
+
 		private void button6_Click( object sender, EventArgs e )
 		{
 			// 读日期格式

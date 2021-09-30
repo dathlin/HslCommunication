@@ -73,6 +73,7 @@ namespace HslCommunicationDemo
 				button6.Text = "Publish";
 				label12.Text = "Receive:";
 				checkBox3.Text = "Send test message back when client connect";
+				checkBox2.Text = "Willcards";
 			}
 		}
 
@@ -89,6 +90,7 @@ namespace HslCommunicationDemo
 				mqttServer = new MqttServer( );
 				mqttServer.OnClientApplicationMessageReceive += MqttServer_OnClientApplicationMessageReceive;
 				mqttServer.OnClientConnected                 += MqttServer_OnClientConnected;
+				mqttServer.TopicWildcard = checkBox2.Checked;
 				if (checkBox1.Checked)
 				{
 					mqttServer.ClientVerification += MqttServer_ClientVerification;

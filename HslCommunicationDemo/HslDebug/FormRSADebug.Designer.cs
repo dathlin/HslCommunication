@@ -29,6 +29,9 @@
 		private void InitializeComponent( )
 		{
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.button3 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
 			this.label9 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
@@ -65,6 +68,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.comboBox1);
+			this.panel2.Controls.Add(this.button3);
+			this.panel2.Controls.Add(this.button2);
 			this.panel2.Controls.Add(this.label9);
 			this.panel2.Controls.Add(this.button1);
 			this.panel2.Controls.Add(this.panel3);
@@ -88,6 +94,35 @@
 			this.panel2.Size = new System.Drawing.Size(994, 601);
 			this.panel2.TabIndex = 33;
 			// 
+			// comboBox1
+			// 
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(326, 340);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(395, 25);
+			this.comboBox1.TabIndex = 54;
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(193, 339);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(129, 26);
+			this.button3.TabIndex = 53;
+			this.button3.Text = "签名(原始数据)";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click_1);
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(100, 339);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(87, 26);
+			this.button2.TabIndex = 52;
+			this.button2.Text = "验签";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click_1);
+			// 
 			// label9
 			// 
 			this.label9.AutoSize = true;
@@ -99,9 +134,9 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(267, 363);
+			this.button1.Location = new System.Drawing.Point(328, 370);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(203, 26);
+			this.button1.Size = new System.Drawing.Size(142, 26);
 			this.button1.TabIndex = 50;
 			this.button1.Text = "加密结果另存为";
 			this.button1.UseVisualStyleBackColor = true;
@@ -112,7 +147,7 @@
 			this.panel3.Controls.Add(this.label8);
 			this.panel3.Controls.Add(this.radioButton3);
 			this.panel3.Controls.Add(this.radioButton4);
-			this.panel3.Location = new System.Drawing.Point(655, 361);
+			this.panel3.Location = new System.Drawing.Point(754, 368);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(232, 28);
 			this.panel3.TabIndex = 49;
@@ -192,7 +227,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(473, 372);
+			this.label6.Location = new System.Drawing.Point(626, 375);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(74, 17);
 			this.label6.TabIndex = 47;
@@ -205,11 +240,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_jiemi_result.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.textBox_jiemi_result.Location = new System.Drawing.Point(475, 392);
+			this.textBox_jiemi_result.Location = new System.Drawing.Point(475, 399);
 			this.textBox_jiemi_result.Multiline = true;
 			this.textBox_jiemi_result.Name = "textBox_jiemi_result";
 			this.textBox_jiemi_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_jiemi_result.Size = new System.Drawing.Size(514, 203);
+			this.textBox_jiemi_result.Size = new System.Drawing.Size(514, 196);
 			this.textBox_jiemi_result.TabIndex = 46;
 			// 
 			// textBox_jiemi_input
@@ -281,7 +316,7 @@
 			// 
 			// button_jiemi
 			// 
-			this.button_jiemi.Location = new System.Drawing.Point(476, 343);
+			this.button_jiemi.Location = new System.Drawing.Point(475, 370);
 			this.button_jiemi.Name = "button_jiemi";
 			this.button_jiemi.Size = new System.Drawing.Size(110, 26);
 			this.button_jiemi.TabIndex = 32;
@@ -291,9 +326,9 @@
 			// 
 			// button_jiami
 			// 
-			this.button_jiami.Location = new System.Drawing.Point(11, 343);
+			this.button_jiami.Location = new System.Drawing.Point(11, 339);
 			this.button_jiami.Name = "button_jiami";
-			this.button_jiami.Size = new System.Drawing.Size(110, 26);
+			this.button_jiami.Size = new System.Drawing.Size(83, 26);
 			this.button_jiami.TabIndex = 31;
 			this.button_jiami.Text = "加密";
 			this.button_jiami.UseVisualStyleBackColor = true;
@@ -311,12 +346,14 @@
 			// textBox_jiami_result
 			// 
 			this.textBox_jiami_result.AllowDrop = true;
+			this.textBox_jiami_result.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.textBox_jiami_result.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.textBox_jiami_result.Location = new System.Drawing.Point(10, 392);
+			this.textBox_jiami_result.Location = new System.Drawing.Point(10, 399);
 			this.textBox_jiami_result.Multiline = true;
 			this.textBox_jiami_result.Name = "textBox_jiami_result";
 			this.textBox_jiami_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_jiami_result.Size = new System.Drawing.Size(460, 203);
+			this.textBox_jiami_result.Size = new System.Drawing.Size(460, 196);
 			this.textBox_jiami_result.TabIndex = 8;
 			this.textBox_jiami_result.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBox2_DragDrop);
 			this.textBox_jiami_result.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox2_DragEnter);
@@ -409,5 +446,8 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.ComboBox comboBox1;
 	}
 }
