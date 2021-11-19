@@ -13,9 +13,9 @@ using HslCommunication;
 
 namespace HslCommunicationDemo
 {
-	public partial class FormSerialToTcp : HslFormContent
+	public partial class FormTcpToTcp : HslFormContent
 	{
-		public FormSerialToTcp( )
+		public FormTcpToTcp( )
 		{
 			InitializeComponent( );
 		}
@@ -24,18 +24,6 @@ namespace HslCommunicationDemo
 		{
 			panel2.Enabled = false;
 
-			comboBox1.SelectedIndex = 0;
-
-			comboBox2.DataSource = SerialPort.GetPortNames( );
-			try
-			{
-				comboBox2.SelectedIndex = 0;
-			}
-			catch
-			{
-				comboBox2.Text = "COM3";
-			}
-
 			Language( Program.Language );
 		}
 
@@ -43,31 +31,15 @@ namespace HslCommunicationDemo
 		{
 			if (language == 1)
 			{
-				Text = "串口调试助手";
-				label1.Text = "Com口：";
-				label3.Text = "波特率:";
-				label22.Text = "数据位:";
-				label23.Text = "停止位:";
-				label24.Text = "奇偶：";
-				button1.Text = "打开串口";
-				button2.Text = "关闭串口";
+				Text = "网口转网口调试助手";
 				label7.Text = "数据接收区：";
 				checkBox3.Text = "是否显示发送数据";
-				comboBox1.DataSource = new string[] { "无", "奇", "偶" };
 			}
 			else
 			{
-				Text = "Serial Debug Tools";
-				label1.Text = "Com:";
-				label3.Text = "Baud rate:";
-				label22.Text = "Data bits:";
-				label23.Text = "Stop bits:";
-				label24.Text = "parity:";
-				button1.Text = "Open";
-				button2.Text = "Close";
+				Text = "TCP TO TCP Debug Tools";
 				label7.Text = "Data receiving Area:";
 				checkBox3.Text = "Whether to display send data";
-				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}
 
@@ -77,7 +49,7 @@ namespace HslCommunicationDemo
 
 		#region Private Member
 
-		private SerialPort SP_ReadData = null;                    // 串口交互的核心
+		private Socket remote = null;
 		private Socket socketCore = null;
 		private Socket client = null;
 		private byte[] buffer = new byte[2048];
@@ -86,37 +58,17 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int baudRate ))
+			if (!int.TryParse( textBox2.Text, out int remotePort ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "波特率输入错误！" : "Baud rate input error" );
+				MessageBox.Show( Program.Language == 1 ? "端口号输入错误！" : "IpAddress port input error" );
 				return;
 			}
 
-			if (!int.TryParse( textBox16.Text, out int dataBits ))
-			{
-				MessageBox.Show( Program.Language == 1 ? "数据位输入错误！" : "Data bits input error" );
-				return;
-			}
-
-			if (!int.TryParse( textBox17.Text, out int stopBits ))
-			{
-				MessageBox.Show( Program.Language == 1 ? "停止位输入错误！" : "Stop bits input error" );
-				return;
-			}
-
-
-			SP_ReadData = new SerialPort( );
-			SP_ReadData.PortName = comboBox2.Text;
-			SP_ReadData.BaudRate = baudRate;
-			SP_ReadData.DataBits = dataBits;
-			SP_ReadData.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
-			SP_ReadData.Parity = comboBox1.SelectedIndex == 0 ? Parity.None : (comboBox1.SelectedIndex == 1 ? Parity.Odd : Parity.Even);
-			SP_ReadData.RtsEnable = checkBox5.Checked;
-
+			remote = new Socket( AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp );
 			try
 			{
-				SP_ReadData.DataReceived += SP_ReadData_DataReceived;
-				SP_ReadData.Open( );
+				remote.Connect( IPAddress.Parse( textBox3.Text ), remotePort );
+				remote.BeginReceive( new byte[0], 0, 0, SocketFlags.None, new AsyncCallback( RemoteSocketEndReceive ), remote );
 				button1.Enabled = false;
 				button2.Enabled = true;
 
@@ -125,6 +77,7 @@ namespace HslCommunicationDemo
 			catch(Exception ex)
 			{
 				HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+				return;
 			}
 
 			// 连接服务器
@@ -132,7 +85,7 @@ namespace HslCommunicationDemo
 			{
 				socketCore = new Socket( AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp );
 				socketCore.Bind( new IPEndPoint( 0, int.Parse( textBox1.Text ) ) );
-				socketCore.Listen( 500 );//单次允许最后请求500个，足够小型系统应用了
+				socketCore.Listen( 100 );
 				socketCore.BeginAccept( new AsyncCallback( AsyncAcceptCallback ), socketCore );
 
 				button1.Enabled = false;
@@ -144,6 +97,68 @@ namespace HslCommunicationDemo
 			catch (Exception ex)
 			{
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + Environment.NewLine + ex.Message );
+			}
+		}
+
+		private void RemoteSocketEndReceive( IAsyncResult ar )
+		{
+			if (ar.AsyncState is Socket socket)
+			{
+				byte[] buffer = new byte[1024];
+				try
+				{
+					int length = socket.Receive( buffer, 0, 1024, SocketFlags.None );
+					if (length == 0)
+					{
+						Invoke( new Action( ( ) =>
+						{
+							DemoUtils.AppendTextBox( textBox6, remote.RemoteEndPoint.ToString( ), "Remote Offline" );
+						} ) );
+						return;
+					}
+					else
+					{
+						buffer = buffer.SelectBegin( length );
+					}
+					remote.BeginReceive( new byte[0], 0, 0, SocketFlags.None, new AsyncCallback( RemoteSocketEndReceive ), remote );
+				}
+				catch (Exception ex)
+				{
+					Invoke( new Action( ( ) =>
+					{
+						DemoUtils.AppendTextBox( textBox6, remote?.RemoteEndPoint.ToString( ), "Remote Offline Exception: " + ex.Message );
+					} ) );
+					return;
+				}
+
+				try
+				{
+					client?.Send( buffer, 0, buffer.Length, SocketFlags.None );
+					Invoke( new Action( ( ) =>
+					{
+						string msg = string.Empty;
+						if (checkBox1.Checked)
+						{
+							msg = HslCommunication.BasicFramework.SoftBasic.ByteToHexString( buffer, ' ' );
+						}
+						else
+						{
+							msg = HslCommunication.BasicFramework.SoftBasic.GetAsciiStringRender( buffer );
+						}
+
+
+						DemoUtils.AppendTextBox( textBox6, "Remote->Client", msg );
+
+					} ) );
+				}
+				catch (Exception ex)
+				{
+					Invoke( new Action( ( ) =>
+					{
+						if (client != null) DemoUtils.AppendTextBox( textBox6, client.RemoteEndPoint.ToString( ), "Client Offline Exception: " + ex.Message );
+					} ) );
+					return;
+				}
 			}
 		}
 
@@ -171,6 +186,7 @@ namespace HslCommunicationDemo
 					Invoke( new Action( ( ) =>
 					{
 						DemoUtils.AppendTextBox( textBox6, session.EndPoint.ToString( ), "Client Online" );
+						textBox4.Text = client.RemoteEndPoint.ToString( );
 					} ) );
 				}
 				catch (ObjectDisposedException)
@@ -212,10 +228,10 @@ namespace HslCommunicationDemo
 					};
 
 					client.Socket.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), client );
-
 					byte[] data = new byte[length];
 					Array.Copy( buffer, 0, data, 0, length );
-					SP_ReadData.Write( data, 0, data.Length );
+					remote?.Send( data, 0, data.Length, SocketFlags.None );
+
 					Invoke( new Action( ( ) =>
 					{
 						string msg = string.Empty;
@@ -228,7 +244,7 @@ namespace HslCommunicationDemo
 							msg = HslCommunication.BasicFramework.SoftBasic.GetAsciiStringRender( data );
 						}
 
-						DemoUtils.AppendTextBox( textBox6, "Tcp-Serial", msg );
+						DemoUtils.AppendTextBox( textBox6, "Client->Remote", msg );
 					} ) );
 				}
 				catch
@@ -242,63 +258,15 @@ namespace HslCommunicationDemo
 			}
 		}
 
-
-		private void SP_ReadData_DataReceived( object sender, SerialDataReceivedEventArgs e )
-		{
-			// 接收数据
-			List<byte> buffer = new List<byte>( );
-			byte[] data = new byte[1024];
-			while (true)
-			{
-				System.Threading.Thread.Sleep( 20 );
-				if(SP_ReadData.BytesToRead < 1)
-				{
-					break;
-				}
-
-				int recCount = SP_ReadData.Read( data, 0, Math.Min( SP_ReadData.BytesToRead, data.Length ) );
-
-				byte[] buffer2 = new byte[recCount];
-				Array.Copy( data, 0, buffer2, 0, recCount );
-				buffer.AddRange( buffer2 );
-			}
-
-			if (buffer.Count == 0) return;
-
-			try
-			{
-				byte[] send = buffer.ToArray( );
-				client.Send( send, 0, send.Length, SocketFlags.None );
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( "Client Send Failed! " + ex.Message );
-				return;
-			}
-
-			Invoke( new Action( ( ) =>
-			 {
-				 string msg = string.Empty;
-				 if (checkBox1.Checked)
-				 {
-					 msg = HslCommunication.BasicFramework.SoftBasic.ByteToHexString( buffer.ToArray( ), ' ' );
-				 }
-				 else
-				 {
-					 msg = HslCommunication.BasicFramework.SoftBasic.GetAsciiStringRender( buffer.ToArray( ) );
-				 }
-
-				 DemoUtils.AppendTextBox( textBox6, "Serial-Tcp", msg );
-			 } ) );
-		}
-
-
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 关闭串口
 			try
 			{
-				SP_ReadData.Close( );
+				remote?.Close( );
+				remote = null;
+				client?.Close( );
+				socketCore?.Close( );
 				button2.Enabled = false;
 				button1.Enabled = true;
 

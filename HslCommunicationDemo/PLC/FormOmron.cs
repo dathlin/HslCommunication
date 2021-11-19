@@ -200,7 +200,7 @@ namespace HslCommunicationDemo
 			omronFinsNet.Write( "D100", 1234556434534545L );     // 写大整数有符号
 			omronFinsNet.Write( "D100", 523434234234343UL );     // 写大整数无符号
 			omronFinsNet.Write( "D100", 123.456d );              // 写双精度
-			omronFinsNet.Write( "D100", "K123456789" );// 写ASCII字符串
+			omronFinsNet.Write( "D100", "K123456789" );          // 写ASCII字符串
 
 			OperateResult<byte[]> read = omronFinsNet.Read( "D100", 5 );
 			{

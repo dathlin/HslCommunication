@@ -79,38 +79,43 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			if (!byte.TryParse( textBox1.Text, out byte Station ))
+			if (!byte.TryParse( textBox_cpu_from.Text, out byte cpuFrom ))
 			{
-				MessageBox.Show( "PLC Station input wrong！" );
+				MessageBox.Show( "PLC cpuFrom input wrong！" );
 				return;
 			}
 
+			if (!byte.TryParse ( textBox_cpu_to.Text, out byte cpuTo ))
+			{
+				MessageBox.Show( "PLC cpuTo input wrong！" );
+				return;
+			}
 
 			memobus?.ConnectClose( );
 			memobus = new MemobusTcpNet( );
 			memobus.IpAddress = textBox20.Text;
 			memobus.Port = port;
+			memobus.CpuFrom = cpuFrom;
+			memobus.CpuTo = cpuTo;
 
 			try
 			{
-				
-				//omronHostLink.UnitNumber = Station;
 				memobus.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
 				OperateResult connect = memobus.ConnectServer( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					MessageBox.Show( StringResources.Language.ConnectedSuccess );
 
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( memobus, "100", false );
+					userControlReadWriteOp1.SetReadWriteNet( memobus, "100", true );
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)
@@ -160,56 +165,13 @@ namespace HslCommunicationDemo
 
 		#endregion
 		
-		private void test()
-		{
-			// 读取操作，这里的D100可以替换成C100,A100,W100,H100效果时一样的
-			bool D100_7 = memobus.ReadBool( "D100.7" ).Content;  // 读取D100.7是否通断，注意D100.0等同于D100
-			short short_D100 = memobus.ReadInt16( "D100" ).Content; // 读取D100组成的字
-			ushort ushort_D100 = memobus.ReadUInt16( "D100" ).Content; // 读取D100组成的无符号的值
-			int int_D100 = memobus.ReadInt32( "D100" ).Content;         // 读取D100-D101组成的有符号的数据
-			uint uint_D100 = memobus.ReadUInt32( "D100" ).Content;      // 读取D100-D101组成的无符号的值
-			float float_D100 = memobus.ReadFloat( "D100" ).Content;   // 读取D100-D101组成的单精度值
-			long long_D100 = memobus.ReadInt64( "D100" ).Content;      // 读取D100-D103组成的大数据值
-			ulong ulong_D100 = memobus.ReadUInt64( "D100" ).Content;   // 读取D100-D103组成的无符号大数据
-			double double_D100 = memobus.ReadDouble( "D100" ).Content; // 读取D100-D103组成的双精度值
-			string str_D100 = memobus.ReadString( "D100", 5 ).Content;// 读取D100-D104组成的ASCII字符串数据
-
-			// 写入操作，这里的D100可以替换成C100,A100,W100,H100效果时一样的
-			memobus.Write( "D100", (byte)0x33 );            // 写单个字节
-			memobus.Write( "D100", (short)12345 );          // 写双字节有符号
-			memobus.Write( "D100", (ushort)45678 );         // 写双字节无符号
-			memobus.Write( "D100", (uint)3456789123 );      // 写双字无符号
-			memobus.Write( "D100", 123.456f );              // 写单精度
-			memobus.Write( "D100", 1234556434534545L );     // 写大整数有符号
-			memobus.Write( "D100", 523434234234343UL );     // 写大整数无符号
-			memobus.Write( "D100", 123.456d );              // 写双精度
-			memobus.Write( "D100", "K123456789" );// 写ASCII字符串
-
-			OperateResult<byte[]> read = memobus.Read( "D100", 5 );
-			{
-				if (read.IsSuccess)
-				{
-					// 此处需要根据实际的情况来自定义来处理复杂的数据
-					short D100 = memobus.ByteTransform.TransInt16( read.Content, 0 );
-					short D101 = memobus.ByteTransform.TransInt16( read.Content, 2 );
-					short D102 = memobus.ByteTransform.TransInt16( read.Content, 4 );
-					short D103 = memobus.ByteTransform.TransInt16( read.Content, 6 );
-					short D104 = memobus.ByteTransform.TransInt16( read.Content, 7 );
-				}
-				else
-				{
-					// 发生了异常
-				}
-			}
-		}
-
-
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox20.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox19.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
-			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
+			element.SetAttributeValue( "cpu_from", textBox_cpu_from.Text );
+			element.SetAttributeValue( "cpu_to", textBox_cpu_to.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -218,7 +180,8 @@ namespace HslCommunicationDemo
 			textBox20.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox19.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			textBox_cpu_from.Text = element.Attribute( "cpu_from" ).Value;
+			textBox_cpu_to.Text = element.Attribute( "cpu_to" ).Value;
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

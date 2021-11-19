@@ -402,6 +402,7 @@ namespace HslCommunicationDemo
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Virtual Server",            10, typeof( FormOmronServer ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Udp Server",                10, typeof( FormOmronUdpServer ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink Server",                10, typeof( FormOmronHostLinkServer ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "Cmode Server",                   10, typeof( FormOmronHostLinkCModeServer ) ) );
 			treeView1.Nodes.Add( omronNode );
 
 			// Lsis PLC
@@ -552,6 +553,7 @@ namespace HslCommunicationDemo
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "Kuka [库卡]",                 23, typeof( FormKuka ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "Kuka Tcp [库卡]",             23, typeof( FormKukaTcp ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "YRC1000 [安川]",              29, typeof( FormYRC1000 ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "HighEthernet [安川]",         29, typeof( FormYRCHighEthernet ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "ABB Web",                     21, typeof( Robot.FormABBWebApi ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "ABB Web Server",              21, typeof( FormAbbServer ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc [发那科]",              25, typeof( Robot.FormFanucRobot ) ) );
@@ -580,6 +582,7 @@ namespace HslCommunicationDemo
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Client [网口调试]", 15, typeof( FormTcpDebug ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]", 15, typeof( FormTcpServer ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial2Tcp [串口转网口]", 15, typeof( FormSerialToTcp ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp2Tcp [网口转网口]", 15, typeof( FormTcpToTcp ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Bytes Data [数据调试]", 15, typeof( FormByteTransfer ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Mail [邮件调试]", 15, typeof( FormMail ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Order Number [订单号调试]", 15, typeof( FormSeqCreate ) ) );

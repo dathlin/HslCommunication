@@ -573,7 +573,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private async void button24_Click( object sender, EventArgs e )
+		private async void button_write_bool_Click( object sender, EventArgs e )
 		{
 			// bool
 			if (textBox7.Text.StartsWith("[") && textBox7.Text.EndsWith( "]" ))
@@ -629,7 +629,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private void button23_Click( object sender, EventArgs e )
+		private void button_write_byte_Click( object sender, EventArgs e )
 		{
 			// byte，此处演示了基于反射的写入操作
 			if (byte.TryParse( textBox7.Text, out byte value ))
@@ -643,7 +643,7 @@ namespace HslCommunicationDemo.DemoControl
 				MessageBox.Show( "Byte Data is not corrent: " + textBox7.Text );
 		}
 
-		private async void button22_Click( object sender, EventArgs e )
+		private async void button_write_short_Click( object sender, EventArgs e )
 		{
 			// short
 			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
@@ -699,7 +699,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private async void button21_Click( object sender, EventArgs e )
+		private async void button_write_ushort_Click( object sender, EventArgs e )
 		{
 			// ushort
 			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
@@ -755,7 +755,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private async void button20_Click( object sender, EventArgs e )
+		private async void button_write_int_Click( object sender, EventArgs e )
 		{
 			// int
 			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
@@ -811,7 +811,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private async void button19_Click( object sender, EventArgs e )
+		private async void button_write_uint_Click( object sender, EventArgs e )
 		{
 			// uint
 			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
@@ -867,7 +867,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private async void button18_Click( object sender, EventArgs e )
+		private async void button_write_long_Click( object sender, EventArgs e )
 		{
 			// long
 			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
@@ -923,7 +923,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private async void button17_Click( object sender, EventArgs e )
+		private async void button_write_ulong_Click( object sender, EventArgs e )
 		{
 			// ulong
 			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
@@ -979,7 +979,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private async void button16_Click( object sender, EventArgs e )
+		private async void button_write_float_Click( object sender, EventArgs e )
 		{
 			// float
 			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
@@ -1035,7 +1035,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private async void button15_Click( object sender, EventArgs e )
+		private async void button_write_double_Click( object sender, EventArgs e )
 		{
 			// double
 			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
@@ -1091,7 +1091,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private async void button14_Click( object sender, EventArgs e )
+		private async void button_write_string_Click( object sender, EventArgs e )
 		{
 			// string
 			if (isAsync)
@@ -1112,16 +1112,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private void button1_Click( object sender, EventArgs e )
-		{
-			using (FormCurveMonitor monitor = new FormCurveMonitor( ))
-			{
-				monitor.SetReadWrite( readWriteNet, address );
-				monitor.ShowDialog( );
-			}
-		}
-
-		private async void button2_Click( object sender, EventArgs e )
+		private async void button_write_hex_Click( object sender, EventArgs e )
 		{
 			// hex
 			if (isAsync)
@@ -1141,5 +1132,15 @@ namespace HslCommunicationDemo.DemoControl
 				DemoUtils.WriteResultRender( write, textBox8.Text );
 			}
 		}
+
+		private void button1_Click( object sender, EventArgs e )
+		{
+			using (FormCurveMonitor monitor = new FormCurveMonitor( ))
+			{
+				monitor.SetReadWrite( readWriteNet, address );
+				monitor.ShowDialog( );
+			}
+		}
+
 	}
 }

@@ -158,7 +158,7 @@ namespace HslCommunicationDemo
                     }
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 //HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
                 return null;

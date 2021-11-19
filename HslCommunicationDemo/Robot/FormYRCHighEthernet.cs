@@ -14,15 +14,15 @@ using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
-	public partial class FormYRC1000 : HslFormContent
+	public partial class FormYRCHighEthernet : HslFormContent
 	{
-		public FormYRC1000( )
+		public FormYRCHighEthernet( )
 		{
 			InitializeComponent( );
 		}
 
 
-		private YRC1000TcpNet YRC1000Tcp = null;
+		private YRCHighEthernet YRC1000Tcp = null;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -44,16 +44,11 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
-				label6.Text = "address:";
 				label7.Text = "result:";
-
-				button_read_string.Text = "r-string";
 
 
 				label10.Text = "Address:";
 				label9.Text = "Value:";
-
-				button14.Text = "w-string";
 
 				groupBox1.Text = "Single Data Read test";
 				groupBox2.Text = "Single Data Write test";
@@ -114,23 +109,24 @@ namespace HslCommunicationDemo
 				return;
 			}
 			
-			YRC1000Tcp?.ConnectClose( );
-			YRC1000Tcp = new YRC1000TcpNet( textBox1.Text, port );
+			YRC1000Tcp = new YRCHighEthernet( textBox1.Text, port );
+			YRC1000Tcp.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
+			YRC1000Tcp.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 
 			try
 			{
-				OperateResult connect = await YRC1000Tcp.ConnectServerAsync( );
-				if (connect.IsSuccess)
-				{
-					MessageBox.Show( "连接成功！" );
+				//OperateResult connect = await YRC1000Tcp.ConnectServerAsync( );
+				//if (connect.IsSuccess)
+				//{
+					MessageBox.Show( "打开UDP成功！" );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
-				}
-				else
-				{
-					MessageBox.Show( "连接失败！" );
-				}
+				//}
+				//else
+				//{
+					//MessageBox.Show( "连接失败！" );
+				//}
 			}
 			catch (Exception ex)
 			{
@@ -138,10 +134,17 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
+		{
+			Invoke( new Action( ( ) =>
+			 {
+				 textBox4.AppendText( e.HslMessage.ToString( ) );
+			 } ) );
+		}
+
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			YRC1000Tcp.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
@@ -155,36 +158,54 @@ namespace HslCommunicationDemo
 
 		#endregion
 
-		#region 单数据读取测试
-		
 
-		private async void button_read_string_Click( object sender, EventArgs e )
+		private void button14_Click( object sender, EventArgs e )
 		{
-			// 读取字符串
-			readResultRender( await YRC1000Tcp.ReadStringAsync( textBox3.Text ), textBox3.Text, textBox4 );
-		}
-
-
-		#endregion
-
-		#region 单数据写入测试
-		
-
-		private async void button14_Click( object sender, EventArgs e )
-		{
-			// string写入
-			try
+			OperateResult<int> command = DemoUtils.ParseInt( textBox_command.Text );
+			if (!command.IsSuccess)
 			{
-				writeResultRender( await YRC1000Tcp.WriteAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
+				MessageBox.Show( "Command input wrong: " + command.Message );
+				return;
 			}
-			catch (Exception ex)
+
+			OperateResult<int> dataAddress = DemoUtils.ParseInt( textBox_dataAddress.Text );
+			if (!dataAddress.IsSuccess)
 			{
-				MessageBox.Show( ex.Message );
+				MessageBox.Show( "Data Address input wrong: " + dataAddress.Message );
+				return;
+			}
+
+			OperateResult<int> dataAttribute = DemoUtils.ParseInt( textBox_dataAttribute.Text );
+			if (!dataAttribute.IsSuccess)
+			{
+				MessageBox.Show( "单元编号输入错误:" + dataAttribute.Message );
+				return;
+			}
+
+			OperateResult<int> handle = DemoUtils.ParseInt( textBox_dataHandle.Text );
+			if (!handle.IsSuccess)
+			{
+				MessageBox.Show( "处理请求输入错误:" + dataAttribute.Message );
+				return;
+			}
+
+			byte[] dataPart = string.IsNullOrEmpty( textBox_dataPart.Text ) ? new byte[0] : textBox_dataPart.Text.ToHexBytes( );
+			OperateResult<byte[]> read = YRC1000Tcp.ReadCommand( (ushort)command.Content, (ushort)dataAddress.Content, (byte)dataAttribute.Content, (byte)handle.Content, dataPart );
+			if (!read.IsSuccess)
+			{
+				MessageBox.Show( "Read failed: " + read.Message );
+				return;
+			}
+
+			if (radioButton1.Checked)
+			{
+				textBox7.Text = read.Content.ToHexString( );
+			}
+			else
+			{
+				textBox7.Text = HslCommunication.BasicFramework.SoftBasic.GetAsciiStringRender( read.Content );
 			}
 		}
-
-		#endregion
-
 
 		public override void SaveXmlParameter( XElement element )
 		{
@@ -207,10 +228,10 @@ namespace HslCommunicationDemo
 		private void button3_Click( object sender, EventArgs e )
 		{
 			// 报警信息
-			OperateResult<string> read = YRC1000Tcp.ReadALARM( );
+			OperateResult<YRCAlarmItem[]> read = YRC1000Tcp.ReadAlarms( );
 			if (read.IsSuccess)
 			{
-				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToJsonString( );
 			}
 			else
 			{
@@ -221,10 +242,10 @@ namespace HslCommunicationDemo
 		private void button4_Click( object sender, EventArgs e )
 		{
 			// 关节坐标
-			OperateResult<string> read = YRC1000Tcp.ReadPOSJ( );
+			OperateResult<string[]> read = YRC1000Tcp.ReadPose( );
 			if (read.IsSuccess)
 			{
-				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToJsonString( );
 			}
 			else
 			{
@@ -277,10 +298,14 @@ namespace HslCommunicationDemo
 		private void button7_Click( object sender, EventArgs e )
 		{
 			// 程序名读取
-			OperateResult<string> read = YRC1000Tcp.ReadJSeq( );
+			OperateResult<string[]> read = YRC1000Tcp.ReadJSeq( );
 			if (read.IsSuccess)
 			{
-				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + "程序名，行编号，步编号: "  + read.Content;
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine +
+					"程序名: " + read.Content[0] + Environment.NewLine +
+					"行编号: " + read.Content[1] + Environment.NewLine +
+					"步编号: " + read.Content[2] + Environment.NewLine +
+					"速度超出值: " + read.Content[3] + Environment.NewLine;
 			}
 			else
 			{
@@ -291,7 +316,7 @@ namespace HslCommunicationDemo
 		private void button8_Click( object sender, EventArgs e )
 		{
 			// 字节变量读取
-			OperateResult<string> read = YRC1000Tcp.ReadByteVariable( textBox5.Text );
+			OperateResult<byte> read = YRC1000Tcp.ReadByteVariable( ushort.Parse( textBox5.Text ) );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
@@ -305,7 +330,7 @@ namespace HslCommunicationDemo
 		private void button9_Click( object sender, EventArgs e )
 		{
 			// 整型读取
-			OperateResult<string> read = YRC1000Tcp.ReadIntegerVariable( textBox5.Text );
+			OperateResult<short> read = YRC1000Tcp.ReadIntegerVariable( ushort.Parse( textBox5.Text ) );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
@@ -319,7 +344,7 @@ namespace HslCommunicationDemo
 		private void button10_Click( object sender, EventArgs e )
 		{
 			// 双整型读取
-			OperateResult<string> read = YRC1000Tcp.ReadDoubleIntegerVariable( textBox5.Text );
+			OperateResult<int> read = YRC1000Tcp.ReadDoubleIntegerVariable( ushort.Parse( textBox5.Text ) );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
@@ -333,7 +358,7 @@ namespace HslCommunicationDemo
 		private void button11_Click( object sender, EventArgs e )
 		{
 			// 实数读取
-			OperateResult<string> read = YRC1000Tcp.ReadRealVariable( textBox5.Text );
+			OperateResult<float> read = YRC1000Tcp.ReadRealVariable( ushort.Parse( textBox5.Text ) );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
@@ -347,7 +372,7 @@ namespace HslCommunicationDemo
 		private void button12_Click( object sender, EventArgs e )
 		{
 			// 字符串读取
-			OperateResult<string> read = YRC1000Tcp.ReadStringVariable( textBox5.Text );
+			OperateResult<string> read = YRC1000Tcp.ReadStringVariable( ushort.Parse( textBox5.Text ) );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
@@ -445,7 +470,7 @@ namespace HslCommunicationDemo
 		private void button18_Click( object sender, EventArgs e )
 		{
 			// 启动程序
-			OperateResult op = YRC1000Tcp.Start( textBox6.Text );
+			OperateResult op = YRC1000Tcp.Start( );
 			if (op.IsSuccess)
 			{
 				MessageBox.Show( "Start Success" );
@@ -456,31 +481,43 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private void button19_Click( object sender, EventArgs e )
+
+		private void button23_Click( object sender, EventArgs e )
 		{
-			// 删除程序
-			OperateResult op = YRC1000Tcp.Delete( textBox6.Text );
-			if (op.IsSuccess)
+			OperateResult<DateTime> read = YRC1000Tcp.ReadManagementTime( 1 );
+			if (read.IsSuccess)
 			{
-				MessageBox.Show( "Delte Success" );
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
 			}
 			else
 			{
-				MessageBox.Show( "Delte Failed: " + op.Message );
+				MessageBox.Show( "Read Failed: " + read.Message );
 			}
 		}
 
-		private void button20_Click( object sender, EventArgs e )
+		private void button24_Click( object sender, EventArgs e )
 		{
-			// 设定主程序
-			OperateResult op = YRC1000Tcp.SetMJ( textBox6.Text );
-			if (op.IsSuccess)
+			OperateResult<DateTime> read = YRC1000Tcp.ReadManagementTime( 10 );
+			if (read.IsSuccess)
 			{
-				MessageBox.Show( "Set Success" );
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
 			}
 			else
 			{
-				MessageBox.Show( "Set Failed: " + op.Message );
+				MessageBox.Show( "Read Failed: " + read.Message );
+			}
+		}
+
+		private void button25_Click( object sender, EventArgs e )
+		{
+			OperateResult<DateTime> read = YRC1000Tcp.ReadManagementTime( 210 );
+			if (read.IsSuccess)
+			{
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed: " + read.Message );
 			}
 		}
 	}

@@ -12,7 +12,6 @@ using HslCommunication.ModBus;
 using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
-using HslCommunication;
 
 namespace HslCommunicationDemo
 {

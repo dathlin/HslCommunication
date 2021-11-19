@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.2.2.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.2.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.3.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.3.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -225,6 +225,12 @@
     </Compile>
     <Compile Include="HslDebug\FormRSADebug.Designer.cs">
       <DependentUpon>FormRSADebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HslDebug\FormTcpToTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HslDebug\FormTcpToTcp.Designer.cs">
+      <DependentUpon>FormTcpToTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="HslDebug\FormSerialToTcp.cs">
       <SubType>Form</SubType>
@@ -411,6 +417,12 @@
     </Compile>
     <Compile Include="PLC\FormGeSRTPServer.Designer.cs">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLinkCModeServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormOmronHostLinkCModeServer.Designer.cs">
+      <DependentUpon>FormOmronHostLinkCModeServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormYASKAWAMemobusTcpNet.cs">
       <SubType>Form</SubType>
@@ -1173,6 +1185,12 @@
     <Compile Include="Robot\FormHyundaiUdp.Designer.cs">
       <DependentUpon>FormHyundaiUdp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Robot\FormYRCHighEthernet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormYRCHighEthernet.Designer.cs">
+      <DependentUpon>FormYRCHighEthernet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Robot\FormYRC1000.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1304,6 +1322,9 @@
     <EmbeddedResource Include="HslDebug\FormRSADebug.resx">
       <DependentUpon>FormRSADebug.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HslDebug\FormTcpToTcp.resx">
+      <DependentUpon>FormTcpToTcp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HslDebug\FormSerialToTcp.resx">
       <DependentUpon>FormSerialToTcp.cs</DependentUpon>
     </EmbeddedResource>
@@ -1396,6 +1417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormGeSRTPServer.resx">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormOmronHostLinkCModeServer.resx">
+      <DependentUpon>FormOmronHostLinkCModeServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormYASKAWAMemobusTcpNet.resx">
       <DependentUpon>FormYASKAWAMemobusTcpNet.cs</DependentUpon>
@@ -1784,6 +1808,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormHyundaiUdp.resx">
       <DependentUpon>FormHyundaiUdp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormYRCHighEthernet.resx">
+      <DependentUpon>FormYRCHighEthernet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormYRC1000.resx">
       <DependentUpon>FormYRC1000.cs</DependentUpon>

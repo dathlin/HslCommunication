@@ -75,6 +75,12 @@ namespace HslCommunicationDemo
 				groupBox3.Text = "Bulk Read test";
 				groupBox4.Text = "Message reading test, hex string needs to be filled in";
 				groupBox5.Text = "Special function test";
+
+				comboBox4.DataSource = new string[] { "programming", "running", "monitoring" };
+			}
+			else
+			{
+				comboBox4.DataSource = new string[] { "编程模式", "运行模式", "监视模式" };
 			}
 		}
 
@@ -186,10 +192,10 @@ namespace HslCommunicationDemo
 
 		private void button3_Click( object sender, EventArgs e )
 		{
-			OperateResult<string> read = omronHostLink.ReadPlcModel( );
+			OperateResult<string> read = omronHostLink.ReadPlcType( );
 			if (read.IsSuccess)
 			{
-				textBox11.Text = "Result：" + read.Content;
+				textBox3.Text = "Result：" + read.Content;
 			}
 			else
 			{
@@ -197,6 +203,33 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button4_Click( object sender, EventArgs e )
+		{
+			OperateResult<int> read = omronHostLink.ReadPlcMode( );
+			if (read.IsSuccess)
+			{
+				textBox3.Text = "Result：" + read.Content + Environment.NewLine +
+					(read.Content == 0 ? "编程模式" : read.Content == 1 ? "运行模式" : "监视模式");
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
+			}
+		}
+
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+			OperateResult op = omronHostLink.ChangePlcMode( (byte)comboBox4.SelectedIndex );
+			if (op.IsSuccess)
+			{
+				MessageBox.Show( "success" );
+			}
+			else
+			{
+				MessageBox.Show( "failed:" + op.Message );
+			}
+		}
 
 		public override void SaveXmlParameter( XElement element )
 		{
@@ -224,6 +257,21 @@ namespace HslCommunicationDemo
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
+		}
+
+		private void comboBox4_SelectedIndexChanged( object sender, EventArgs e )
+		{
+
+		}
+
+		private void textBox3_TextChanged( object sender, EventArgs e )
+		{
+
+		}
+
+		private void label2_Click( object sender, EventArgs e )
+		{
+
 		}
 	}
 }

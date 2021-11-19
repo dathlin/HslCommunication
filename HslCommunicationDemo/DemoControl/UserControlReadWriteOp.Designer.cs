@@ -186,7 +186,7 @@
 			this.button_write_hex.TabIndex = 19;
 			this.button_write_hex.Text = "Hex写入";
 			this.button_write_hex.UseVisualStyleBackColor = true;
-			this.button_write_hex.Click += new System.EventHandler(this.button2_Click);
+			this.button_write_hex.Click += new System.EventHandler(this.button_write_hex_Click);
 			// 
 			// label19
 			// 
@@ -205,7 +205,7 @@
 			this.button_write_string.TabIndex = 16;
 			this.button_write_string.Text = "字符串写入";
 			this.button_write_string.UseVisualStyleBackColor = true;
-			this.button_write_string.Click += new System.EventHandler(this.button14_Click);
+			this.button_write_string.Click += new System.EventHandler(this.button_write_string_Click);
 			// 
 			// button_write_double
 			// 
@@ -215,7 +215,7 @@
 			this.button_write_double.TabIndex = 15;
 			this.button_write_double.Text = "double写入";
 			this.button_write_double.UseVisualStyleBackColor = true;
-			this.button_write_double.Click += new System.EventHandler(this.button15_Click);
+			this.button_write_double.Click += new System.EventHandler(this.button_write_double_Click);
 			// 
 			// button_write_float
 			// 
@@ -225,7 +225,7 @@
 			this.button_write_float.TabIndex = 14;
 			this.button_write_float.Text = "float写入";
 			this.button_write_float.UseVisualStyleBackColor = true;
-			this.button_write_float.Click += new System.EventHandler(this.button16_Click);
+			this.button_write_float.Click += new System.EventHandler(this.button_write_float_Click);
 			// 
 			// button_write_ulong
 			// 
@@ -235,7 +235,7 @@
 			this.button_write_ulong.TabIndex = 13;
 			this.button_write_ulong.Text = "ulong写入";
 			this.button_write_ulong.UseVisualStyleBackColor = true;
-			this.button_write_ulong.Click += new System.EventHandler(this.button17_Click);
+			this.button_write_ulong.Click += new System.EventHandler(this.button_write_ulong_Click);
 			// 
 			// button_write_long
 			// 
@@ -245,7 +245,7 @@
 			this.button_write_long.TabIndex = 12;
 			this.button_write_long.Text = "long写入";
 			this.button_write_long.UseVisualStyleBackColor = true;
-			this.button_write_long.Click += new System.EventHandler(this.button18_Click);
+			this.button_write_long.Click += new System.EventHandler(this.button_write_long_Click);
 			// 
 			// button_write_uint
 			// 
@@ -255,7 +255,7 @@
 			this.button_write_uint.TabIndex = 11;
 			this.button_write_uint.Text = "uint写入";
 			this.button_write_uint.UseVisualStyleBackColor = true;
-			this.button_write_uint.Click += new System.EventHandler(this.button19_Click);
+			this.button_write_uint.Click += new System.EventHandler(this.button_write_uint_Click);
 			// 
 			// button_write_int
 			// 
@@ -265,7 +265,7 @@
 			this.button_write_int.TabIndex = 10;
 			this.button_write_int.Text = "int写入";
 			this.button_write_int.UseVisualStyleBackColor = true;
-			this.button_write_int.Click += new System.EventHandler(this.button20_Click);
+			this.button_write_int.Click += new System.EventHandler(this.button_write_int_Click);
 			// 
 			// button_write_ushort
 			// 
@@ -275,7 +275,7 @@
 			this.button_write_ushort.TabIndex = 9;
 			this.button_write_ushort.Text = "ushort写入";
 			this.button_write_ushort.UseVisualStyleBackColor = true;
-			this.button_write_ushort.Click += new System.EventHandler(this.button21_Click);
+			this.button_write_ushort.Click += new System.EventHandler(this.button_write_ushort_Click);
 			// 
 			// button_write_short
 			// 
@@ -285,7 +285,7 @@
 			this.button_write_short.TabIndex = 8;
 			this.button_write_short.Text = "short写入";
 			this.button_write_short.UseVisualStyleBackColor = true;
-			this.button_write_short.Click += new System.EventHandler(this.button22_Click);
+			this.button_write_short.Click += new System.EventHandler(this.button_write_short_Click);
 			// 
 			// button_write_byte
 			// 
@@ -295,7 +295,7 @@
 			this.button_write_byte.TabIndex = 7;
 			this.button_write_byte.Text = "byte写入";
 			this.button_write_byte.UseVisualStyleBackColor = true;
-			this.button_write_byte.Click += new System.EventHandler(this.button23_Click);
+			this.button_write_byte.Click += new System.EventHandler(this.button_write_byte_Click);
 			// 
 			// button_write_bool
 			// 
@@ -305,7 +305,7 @@
 			this.button_write_bool.TabIndex = 6;
 			this.button_write_bool.Text = "bool写入";
 			this.button_write_bool.UseVisualStyleBackColor = true;
-			this.button_write_bool.Click += new System.EventHandler(this.button24_Click);
+			this.button_write_bool.Click += new System.EventHandler(this.button_write_bool_Click);
 			// 
 			// textBox7
 			// 

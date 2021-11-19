@@ -48,6 +48,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button12 = new System.Windows.Forms.Button();
 			this.button10 = new System.Windows.Forms.Button();
 			this.button11 = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
@@ -279,6 +280,7 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Controls.Add(this.button12);
 			this.groupBox5.Controls.Add(this.button10);
 			this.groupBox5.Controls.Add(this.button11);
 			this.groupBox5.Controls.Add(this.label2);
@@ -301,6 +303,16 @@
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// button12
+			// 
+			this.button12.Location = new System.Drawing.Point(13, 233);
+			this.button12.Name = "button12";
+			this.button12.Size = new System.Drawing.Size(82, 28);
+			this.button12.TabIndex = 26;
+			this.button12.Text = "共享测试";
+			this.button12.UseVisualStyleBackColor = true;
+			this.button12.Click += new System.EventHandler(this.button12_Click);
 			// 
 			// button10
 			// 
@@ -325,7 +337,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(123, 250);
+			this.label2.Location = new System.Drawing.Point(112, 254);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(15, 17);
 			this.label2.TabIndex = 23;
@@ -333,7 +345,7 @@
 			// 
 			// button9
 			// 
-			this.button9.Location = new System.Drawing.Point(24, 244);
+			this.button9.Location = new System.Drawing.Point(13, 267);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(82, 28);
 			this.button9.TabIndex = 22;
@@ -708,5 +720,6 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button button10;
 		private System.Windows.Forms.Button button11;
+		private System.Windows.Forms.Button button12;
 	}
 }

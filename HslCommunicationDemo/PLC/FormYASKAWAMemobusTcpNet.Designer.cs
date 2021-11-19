@@ -29,7 +29,9 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_cpu_to = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.textBox_cpu_from = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBox19 = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
@@ -67,7 +69,9 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.textBox_cpu_to);
+			this.panel1.Controls.Add(this.label2);
+			this.panel1.Controls.Add(this.textBox_cpu_from);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.textBox19);
 			this.panel1.Controls.Add(this.label28);
@@ -82,37 +86,52 @@
 			this.panel1.Size = new System.Drawing.Size(997, 50);
 			this.panel1.TabIndex = 0;
 			// 
-			// textBox1
+			// textBox_cpu_to
 			// 
-			this.textBox1.Location = new System.Drawing.Point(494, 8);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(31, 23);
-			this.textBox1.TabIndex = 40;
-			this.textBox1.Text = "0";
-			this.textBox1.Visible = false;
+			this.textBox_cpu_to.Location = new System.Drawing.Point(636, 11);
+			this.textBox_cpu_to.Name = "textBox_cpu_to";
+			this.textBox_cpu_to.Size = new System.Drawing.Size(31, 23);
+			this.textBox_cpu_to.TabIndex = 42;
+			this.textBox_cpu_to.Text = "2";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(561, 14);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(62, 17);
+			this.label2.TabIndex = 41;
+			this.label2.Text = "Cpu To：";
+			// 
+			// textBox_cpu_from
+			// 
+			this.textBox_cpu_from.Location = new System.Drawing.Point(510, 11);
+			this.textBox_cpu_from.Name = "textBox_cpu_from";
+			this.textBox_cpu_from.Size = new System.Drawing.Size(31, 23);
+			this.textBox_cpu_from.TabIndex = 40;
+			this.textBox_cpu_from.Text = "1";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(443, 11);
+			this.label1.Location = new System.Drawing.Point(431, 14);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(44, 17);
+			this.label1.Size = new System.Drawing.Size(77, 17);
 			this.label1.TabIndex = 39;
-			this.label1.Text = "站号：";
-			this.label1.Visible = false;
+			this.label1.Text = "Cpu From：";
 			// 
 			// textBox19
 			// 
-			this.textBox19.Location = new System.Drawing.Point(243, 8);
+			this.textBox19.Location = new System.Drawing.Point(233, 10);
 			this.textBox19.Name = "textBox19";
 			this.textBox19.Size = new System.Drawing.Size(53, 23);
 			this.textBox19.TabIndex = 32;
-			this.textBox19.Text = "2000";
+			this.textBox19.Text = "9999";
 			// 
 			// label28
 			// 
 			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(195, 11);
+			this.label28.Location = new System.Drawing.Point(185, 13);
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(44, 17);
 			this.label28.TabIndex = 31;
@@ -120,7 +139,7 @@
 			// 
 			// textBox20
 			// 
-			this.textBox20.Location = new System.Drawing.Point(74, 8);
+			this.textBox20.Location = new System.Drawing.Point(64, 10);
 			this.textBox20.Name = "textBox20";
 			this.textBox20.Size = new System.Drawing.Size(109, 23);
 			this.textBox20.TabIndex = 30;
@@ -129,7 +148,7 @@
 			// label29
 			// 
 			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(20, 11);
+			this.label29.Location = new System.Drawing.Point(10, 13);
 			this.label29.Name = "label29";
 			this.label29.Size = new System.Drawing.Size(56, 17);
 			this.label29.TabIndex = 29;
@@ -139,7 +158,7 @@
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(317, 8);
+			this.comboBox1.Location = new System.Drawing.Point(307, 10);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(95, 25);
 			this.comboBox1.TabIndex = 14;
@@ -147,7 +166,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(710, 5);
+			this.button2.Location = new System.Drawing.Point(808, 7);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(90, 28);
 			this.button2.TabIndex = 5;
@@ -157,7 +176,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(603, 5);
+			this.button1.Location = new System.Drawing.Point(701, 7);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -406,7 +425,7 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_cpu_from;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.Label label28;
@@ -415,5 +434,7 @@
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.GroupBox groupBox5;
 		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
+		private System.Windows.Forms.TextBox textBox_cpu_to;
+		private System.Windows.Forms.Label label2;
 	}
 }

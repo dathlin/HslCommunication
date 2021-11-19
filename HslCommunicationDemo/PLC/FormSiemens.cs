@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunication.Core.Pipe;
 
 namespace HslCommunicationDemo
 {
@@ -432,9 +433,9 @@ namespace HslCommunicationDemo
             thread_status = 3;
             failed = 0;
             thread_time_start = DateTime.Now;
-            new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
-            new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
-            new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
+            new Thread( new ParameterizedThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( "M100" );
+            new Thread( new ParameterizedThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( "M200" );
+            new Thread( new ParameterizedThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( "M300" );
             button9.Enabled = false;
 
             timer = new System.Windows.Forms.Timer( );
@@ -443,22 +444,77 @@ namespace HslCommunicationDemo
             timer.Start( );
         }
 
+
         private void Timer_Tick( object sender, EventArgs e )
         {
             label2.Text = successCount.ToString( );
         }
 
-        private async void thread_test1( )
+        private async void thread_test1( object add )
         {
-            int count = 100000;
+            string address = (string)add;
+            int count = 10000;
             while (count > 0)
             {
-                if (!(await siemensTcpNet.WriteAsync( "M100", (short)1234 )).IsSuccess) failed++;
-                if (!(await siemensTcpNet.ReadInt16Async( "M100" ) ).IsSuccess) failed++;
+                if (!(await siemensTcpNet.WriteAsync( address, (short)count )).IsSuccess) failed++;
+                OperateResult<short> read = await siemensTcpNet.ReadInt16Async( address );
+                if (!read.IsSuccess) failed++;
+                else
+                {
+                    if (read.Content != count) failed++;
+                }
                 count--;
                 successCount++;
             }
             thread_end( );
+        }
+
+        private PipeSocket pipeSocket;
+        private SiemensS7Net[] siemensS = new SiemensS7Net[3];
+
+        private void button12_Click( object sender, EventArgs e )
+        {
+            pipeSocket?.Socket?.Close( );
+            pipeSocket = new PipeSocket( "127.0.0.1", 102 );
+            siemensS[0] = new SiemensS7Net( SiemensPLCS.S1200 );
+            siemensS[1] = new SiemensS7Net( SiemensPLCS.S1200 );
+            siemensS[2] = new SiemensS7Net( SiemensPLCS.S1200 );
+            siemensS[0].SetPipeSocket( pipeSocket );
+            siemensS[1].SetPipeSocket( pipeSocket );
+            siemensS[2].SetPipeSocket( pipeSocket );
+
+            thread_status = 3;
+            failed = 0;
+            thread_time_start = DateTime.Now;
+            new Thread( new ParameterizedThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( "M100" );
+            new Thread( new ParameterizedThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( "M200" );
+            new Thread( new ParameterizedThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( "M300" );
+            button12.Enabled = false;
+
+            timer = new System.Windows.Forms.Timer( );
+            timer.Interval = 1000;
+            timer.Tick += Timer_Tick;
+            timer.Start( );
+        }
+
+        private async void thread_test2( object add )
+        {
+            string address = (string)add;
+            SiemensS7Net plc = address == "M100" ? siemensS[0] : address == "M200" ? siemensS[1] : siemensS[2];
+            int count = 10000;
+            while (count > 0)
+            {
+                if (!(await plc.WriteAsync( address, (short)count )).IsSuccess) failed++;
+                OperateResult<short> read = await plc.ReadInt16Async( address );
+                if (!read.IsSuccess) failed++;
+                else
+                {
+                    if (read.Content != count) failed++;
+                }
+                count--;
+                successCount++;
+            }
+            thread_end2( );
         }
 
         private void thread_end( )
@@ -476,6 +532,22 @@ namespace HslCommunicationDemo
             }
         }
 
+
+        private void thread_end2( )
+        {
+            if (Interlocked.Decrement( ref thread_status ) == 0)
+            {
+                pipeSocket?.Socket?.Close( );
+                // 执行完成
+                Invoke( new Action( ( ) =>
+                {
+                    label2.Text = successCount.ToString( );
+                    timer.Stop( );
+                    button12.Enabled = true;
+                    MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
+                } ) );
+            }
+        }
 
 
         public override void SaveXmlParameter( XElement element )
