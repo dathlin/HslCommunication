@@ -97,14 +97,15 @@ namespace HslCommunicationDemo
             try
             {
                 socketCore?.Close( );
-                socketCore = new Socket( AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp );
+                System.Net.IPAddress iPAddress = System.Net.IPAddress.Parse( HslCommunication.Core.HslHelper.GetIpAddressFromInput( textBox1.Text ) );
+                socketCore = new Socket( iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp );
                 connectSuccess = false;
                 new System.Threading.Thread( ( ) =>
                 {
                     System.Threading.Thread.Sleep( 2000 );
                     if (!connectSuccess) socketCore?.Close( );
                 } ).Start( );
-                socketCore.Connect( System.Net.IPAddress.Parse( HslCommunication.Core.HslHelper.GetIpAddressFromInput( textBox1.Text ) ), int.Parse( textBox2.Text ) );
+                socketCore.Connect( iPAddress, int.Parse( textBox2.Text ) );
                 connectSuccess = true;
 
                 socketCore.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), socketCore );

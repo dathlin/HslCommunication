@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using HslCommunicationDemo.Control;
+using HslCommunication.MQTT;
+using HslCommunication;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -36,6 +38,7 @@ namespace HslCommunicationDemo.DemoControl
 				label2.Text = "博客地址：";
 				label4.Text = "使用协议：";
 				linkLabel2.Text = "保存连接";
+				linkLabel3.Text = "支持列表";
 			}
 			else
 			{
@@ -65,6 +68,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+
 		[Browsable( true )]
 		[Category( "HslCommunicationDemo" )]
 		[DefaultValue( "Hsl" )]
@@ -85,6 +89,15 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		[Browsable( true )]
+		[Category( "HslCommunicationDemo" )]
+		[DefaultValue( false )]
+		public bool SupportListVisiable
+		{
+			get => linkLabel3.Visible;
+			set => linkLabel3.Visible = value;
+		}
+
 		private void linkLabel2_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
 		{
 			if(SaveConnectEvent == null)
@@ -92,11 +105,36 @@ namespace HslCommunicationDemo.DemoControl
 				MessageBox.Show( new NotImplementedException( ).Message );
 				return;
 			}
-
 			SaveConnectEvent?.Invoke( sender, new EventArgs( ) );
 		}
 
 		public event EventHandler<EventArgs> SaveConnectEvent;
+
+		private void linkLabel3_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+		{
+			// 点击了支持的设备列表信息
+			System.Windows.Forms.Control forms = this.Parent;
+			while (true)
+			{
+				if(forms is HslFormContent)
+				{
+					break;
+				}
+				if ( forms == null || forms.Parent == null)
+				{
+					break;
+				}
+				forms = forms.Parent;
+			}
+
+			if(forms != null)
+			{
+				using (FormDeviceSupport form = new FormDeviceSupport( forms.GetType( ).Name ))
+				{
+					form.ShowDialog( );
+				}
+			}
+		}
 	}
 
 }

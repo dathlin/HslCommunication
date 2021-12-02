@@ -383,6 +383,9 @@ namespace HslCommunicationDemo.Robot
         private int w_sdo = 0;
         private async void button22_Click( object sender, EventArgs e )
         {
+            if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+
+            // SDO
             int intStartIndex = ReferenceEquals( sender, button22 ) ? 1 : ReferenceEquals( sender, button23 ) ? 10001 : 11001;
             w_sdo++;
 
@@ -409,6 +412,8 @@ namespace HslCommunicationDemo.Robot
         private int w_sdi = 0;
         private async void button25_Click( object sender, EventArgs e )
         {
+            if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+
             w_sdi++;
 
             bool[] value = new bool[10];
@@ -434,6 +439,8 @@ namespace HslCommunicationDemo.Robot
         private int w_rdo = 0;
         private async void button26_Click( object sender, EventArgs e )
         {
+            if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+
             w_rdo++;
 
             bool[] value = new bool[8];
@@ -459,6 +466,8 @@ namespace HslCommunicationDemo.Robot
         private int w_rdi = 0;
         private async void button27_Click( object sender, EventArgs e )
         {
+            if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+
             w_rdi++;
 
             bool[] value = new bool[8];
@@ -484,6 +493,8 @@ namespace HslCommunicationDemo.Robot
         private int w_go = 0;
         private async void button28_Click( object sender, EventArgs e )
         {
+            if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+
             int intStartIndex = ReferenceEquals( sender, button28 ) ? 1 : 10001;
             w_go++;
 
@@ -507,6 +518,8 @@ namespace HslCommunicationDemo.Robot
         private int w_gi = 0;
         private async void button30_Click( object sender, EventArgs e )
         {
+            if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+
             w_gi++;
 
             ushort[] value = new ushort[3];

@@ -40,6 +40,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button6 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
 			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -66,7 +67,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button6 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -207,6 +207,16 @@
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(119, 190);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(99, 28);
+			this.button6.TabIndex = 26;
+			this.button6.Text = "读取";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
 			// 
 			// button5
 			// 
@@ -468,18 +478,9 @@
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Connected CIP";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// button6
-			// 
-			this.button6.Location = new System.Drawing.Point(119, 190);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(99, 28);
-			this.button6.TabIndex = 26;
-			this.button6.Text = "读取";
-			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.button6_Click);
 			// 
 			// FormOmronConnectedCip
 			// 

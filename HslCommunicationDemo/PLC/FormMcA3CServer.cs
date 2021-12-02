@@ -105,6 +105,7 @@ namespace HslCommunicationDemo
         private void button11_Click( object sender, EventArgs e )
         {
             // 停止服务
+            mcNetServer?.CloseSerialSlave( );
             mcNetServer?.ServerClose( );
             button1.Enabled = true;
             button11.Enabled = false;

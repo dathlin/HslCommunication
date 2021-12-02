@@ -53,6 +53,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button12 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
 			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -79,7 +80,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button12 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -356,6 +356,16 @@
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "类型及原始数据读写测试";
 			// 
+			// button12
+			// 
+			this.button12.Location = new System.Drawing.Point(343, 114);
+			this.button12.Name = "button12";
+			this.button12.Size = new System.Drawing.Size(99, 28);
+			this.button12.TabIndex = 26;
+			this.button12.Text = "PLC 型号";
+			this.button12.UseVisualStyleBackColor = true;
+			this.button12.Click += new System.EventHandler(this.button12_Click);
+			// 
 			// button5
 			// 
 			this.button5.Location = new System.Drawing.Point(247, 114);
@@ -605,18 +615,9 @@
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "CIP";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// button12
-			// 
-			this.button12.Location = new System.Drawing.Point(343, 114);
-			this.button12.Name = "button12";
-			this.button12.Size = new System.Drawing.Size(99, 28);
-			this.button12.TabIndex = 26;
-			this.button12.Text = "PLC 型号";
-			this.button12.UseVisualStyleBackColor = true;
-			this.button12.Click += new System.EventHandler(this.button12_Click);
 			// 
 			// FormOmronCip
 			// 

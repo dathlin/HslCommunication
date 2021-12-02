@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.IO;
+using System.Threading;
 
 namespace HslCommunicationDemo
 {
@@ -198,12 +199,67 @@ namespace HslCommunicationDemo
             }
         }
 
+        private bool isTest = false;
+        private int thread_status = 0;
+        private int failed = 0;
+        private DateTime thread_time_start = DateTime.Now;
+        private long successCount = 0;
+
+
         private async void button7_Click( object sender, EventArgs e )
         {
-            MqttRpcApiInfo[] apis = await ReadMqttRpcApiInfo( webApiClient );
-            if (apis != null)
+            // 进行测试操作，开启4个线程
+            if(isTest)
+			{
+                thread_status = 4;
+                failed = 0;
+                thread_time_start = DateTime.Now;
+                new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
+                new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
+                new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
+                new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
+                button7.Enabled = false;
+            }
+			else
             {
-                textBox8.Text = JArray.FromObject( apis ).ToString( );
+                MqttRpcApiInfo[] apis = await ReadMqttRpcApiInfo( webApiClient );
+                if (apis != null)
+                {
+                    textBox8.Text = JArray.FromObject( apis ).ToString( );
+                }
+            }
+        }
+
+        private async void thread_test1( )
+        {
+            string url = textBox9.Text;
+            string body = textBox5.Text;
+            int count = 10000;
+            while (count > 0)
+            {
+                OperateResult<string> read = await webApiClient.PostAsync( url, new { id = count }.ToJsonString( ) );
+                if (!read.IsSuccess) failed++;
+                else
+                {
+                    if (read.Content != (count + 1).ToString( )) failed++;
+                }
+                count--;
+                successCount++;
+            }
+            thread_end( );
+        }
+
+        private void thread_end( )
+        {
+            if (Interlocked.Decrement( ref thread_status ) == 0)
+            {
+                // 执行完成
+                Invoke( new Action( ( ) =>
+                {
+                    label2.Text = successCount.ToString( );
+                    button7.Enabled = true;
+                    MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
+                } ) );
             }
         }
 

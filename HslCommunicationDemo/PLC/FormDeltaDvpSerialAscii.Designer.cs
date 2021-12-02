@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.checkBox5 = new System.Windows.Forms.CheckBox();
 			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -75,6 +77,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.comboBox2);
+			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.checkBox5);
 			this.panel1.Controls.Add(this.comboBox3);
 			this.panel1.Controls.Add(this.comboBox1);
@@ -95,6 +99,24 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 66);
 			this.panel1.TabIndex = 0;
+			// 
+			// comboBox2
+			// 
+			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox2.FormattingEnabled = true;
+			this.comboBox2.Location = new System.Drawing.Point(307, 34);
+			this.comboBox2.Name = "comboBox2";
+			this.comboBox2.Size = new System.Drawing.Size(86, 25);
+			this.comboBox2.TabIndex = 32;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(248, 38);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(44, 17);
+			this.label2.TabIndex = 31;
+			this.label2.Text = "系列：";
 			// 
 			// checkBox5
 			// 
@@ -434,6 +456,7 @@
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Modbus ASCII";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
@@ -503,5 +526,7 @@
         private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox textBox12;
-    }
+		private System.Windows.Forms.ComboBox comboBox2;
+		private System.Windows.Forms.Label label2;
+	}
 }

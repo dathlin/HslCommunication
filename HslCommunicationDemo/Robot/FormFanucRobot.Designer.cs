@@ -48,6 +48,13 @@
 			this.label42 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.button32 = new System.Windows.Forms.Button();
+			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.button30 = new System.Windows.Forms.Button();
 			this.button29 = new System.Windows.Forms.Button();
 			this.button28 = new System.Windows.Forms.Button();
@@ -78,13 +85,6 @@
 			this.button3 = new System.Windows.Forms.Button();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.button32 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -344,6 +344,67 @@
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "特殊功能测试";
+			// 
+			// button32
+			// 
+			this.button32.Location = new System.Drawing.Point(773, 103);
+			this.button32.Name = "button32";
+			this.button32.Size = new System.Drawing.Size(77, 25);
+			this.button32.TabIndex = 34;
+			this.button32.Text = "Read";
+			this.button32.UseVisualStyleBackColor = true;
+			this.button32.Click += new System.EventHandler(this.button32_Click);
+			// 
+			// textBox6
+			// 
+			this.textBox6.Location = new System.Drawing.Point(841, 77);
+			this.textBox6.Name = "textBox6";
+			this.textBox6.Size = new System.Drawing.Size(92, 23);
+			this.textBox6.TabIndex = 33;
+			this.textBox6.Text = "4";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(770, 80);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(44, 17);
+			this.label7.TabIndex = 32;
+			this.label7.Text = "长度：";
+			// 
+			// textBox5
+			// 
+			this.textBox5.Location = new System.Drawing.Point(841, 49);
+			this.textBox5.Name = "textBox5";
+			this.textBox5.Size = new System.Drawing.Size(92, 23);
+			this.textBox5.TabIndex = 31;
+			this.textBox5.Text = "1";
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(770, 52);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(68, 17);
+			this.label6.TabIndex = 30;
+			this.label6.Text = "偏移地址：";
+			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(841, 20);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(92, 23);
+			this.textBox4.TabIndex = 29;
+			this.textBox4.Text = "70";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(770, 23);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(56, 17);
+			this.label5.TabIndex = 28;
+			this.label5.Text = "数据块：";
 			// 
 			// button30
 			// 
@@ -645,69 +706,9 @@
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Robot";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// textBox4
-			// 
-			this.textBox4.Location = new System.Drawing.Point(841, 20);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(92, 23);
-			this.textBox4.TabIndex = 29;
-			this.textBox4.Text = "70";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(770, 23);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(56, 17);
-			this.label5.TabIndex = 28;
-			this.label5.Text = "数据块：";
-			// 
-			// textBox5
-			// 
-			this.textBox5.Location = new System.Drawing.Point(841, 49);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(92, 23);
-			this.textBox5.TabIndex = 31;
-			this.textBox5.Text = "1";
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(770, 52);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(68, 17);
-			this.label6.TabIndex = 30;
-			this.label6.Text = "偏移地址：";
-			// 
-			// textBox6
-			// 
-			this.textBox6.Location = new System.Drawing.Point(841, 77);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(92, 23);
-			this.textBox6.TabIndex = 33;
-			this.textBox6.Text = "4";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(770, 80);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(44, 17);
-			this.label7.TabIndex = 32;
-			this.label7.Text = "长度：";
-			// 
-			// button32
-			// 
-			this.button32.Location = new System.Drawing.Point(773, 103);
-			this.button32.Name = "button32";
-			this.button32.Size = new System.Drawing.Size(77, 25);
-			this.button32.TabIndex = 34;
-			this.button32.Text = "Read";
-			this.button32.UseVisualStyleBackColor = true;
-			this.button32.Click += new System.EventHandler(this.button32_Click);
 			// 
 			// FormFanucRobot
 			// 

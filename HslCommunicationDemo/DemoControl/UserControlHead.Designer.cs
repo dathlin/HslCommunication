@@ -33,6 +33,7 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
 			this.SuspendLayout();
 			// 
 			// label2
@@ -61,7 +62,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.ForeColor = System.Drawing.Color.White;
-			this.label4.Location = new System.Drawing.Point(544, 6);
+			this.label4.Location = new System.Drawing.Point(480, 6);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(68, 17);
 			this.label4.TabIndex = 14;
@@ -71,7 +72,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.ForeColor = System.Drawing.Color.White;
-			this.label5.Location = new System.Drawing.Point(618, 6);
+			this.label5.Location = new System.Drawing.Point(554, 6);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(26, 17);
 			this.label5.TabIndex = 15;
@@ -79,21 +80,35 @@
 			// 
 			// linkLabel2
 			// 
-			this.linkLabel2.LinkColor = System.Drawing.Color.SkyBlue;
-			this.linkLabel2.Location = new System.Drawing.Point(858, 2);
+			this.linkLabel2.LinkColor = System.Drawing.Color.Lavender;
+			this.linkLabel2.Location = new System.Drawing.Point(911, 2);
 			this.linkLabel2.Name = "linkLabel2";
-			this.linkLabel2.Size = new System.Drawing.Size(146, 26);
+			this.linkLabel2.Size = new System.Drawing.Size(95, 26);
 			this.linkLabel2.TabIndex = 16;
 			this.linkLabel2.TabStop = true;
-			this.linkLabel2.Text = "保存连接";
+			this.linkLabel2.Text = "Save Connect";
 			this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+			// 
+			// linkLabel3
+			// 
+			this.linkLabel3.LinkColor = System.Drawing.Color.Cyan;
+			this.linkLabel3.Location = new System.Drawing.Point(811, 2);
+			this.linkLabel3.Name = "linkLabel3";
+			this.linkLabel3.Size = new System.Drawing.Size(89, 26);
+			this.linkLabel3.TabIndex = 17;
+			this.linkLabel3.TabStop = true;
+			this.linkLabel3.Text = "Support List";
+			this.linkLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.linkLabel3.Visible = false;
+			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
 			// 
 			// UserControlHead
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.Controls.Add(this.linkLabel3);
 			this.Controls.Add(this.linkLabel2);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.linkLabel1);
@@ -117,5 +132,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.LinkLabel linkLabel2;
+		private System.Windows.Forms.LinkLabel linkLabel3;
 	}
 }

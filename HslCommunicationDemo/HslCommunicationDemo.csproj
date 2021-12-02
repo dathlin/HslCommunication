@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.3.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.3.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.4.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.4.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -163,6 +163,12 @@
     </Compile>
     <Compile Include="DemoControl\FormCurveMonitor.Designer.cs">
       <DependentUpon>FormCurveMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\FormDeviceSupport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormDeviceSupport.Designer.cs">
+      <DependentUpon>FormDeviceSupport.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\UserControlHead.cs">
       <SubType>UserControl</SubType>
@@ -310,11 +316,29 @@
     <Compile Include="MQTT\FormMqttFileServer.Designer.cs">
       <DependentUpon>FormMqttFileServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormAllenBradleyDF1Serial.cs">
+    <Compile Include="PLC\AllenBrandly\FormAllenBradleyDF1Serial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormAllenBradleyDF1Serial.Designer.cs">
+    <Compile Include="PLC\AllenBrandly\FormAllenBradleyDF1Serial.Designer.cs">
       <DependentUpon>FormAllenBradleyDF1Serial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandlyPCCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandlyPCCC.Designer.cs">
+      <DependentUpon>FormAllenBrandlyPCCC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\AllenBrandly\FormPcccServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\AllenBrandly\FormPcccServer.Designer.cs">
+      <DependentUpon>FormPcccServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormDeltaSerialOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormDeltaSerialOverTcp.Designer.cs">
+      <DependentUpon>FormDeltaSerialOverTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormFujiCSTNet.cs">
       <SubType>Form</SubType>
@@ -370,10 +394,10 @@
     <Compile Include="PLC\FormMelsecCipNet.Designer.cs">
       <DependentUpon>FormMelsecCipNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormAllenBrandlySLC.cs">
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandlySLC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormAllenBrandlySLC.Designer.cs">
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandlySLC.Designer.cs">
       <DependentUpon>FormAllenBrandlySLC.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormDeltaDvpSerialAscii.cs">
@@ -703,10 +727,10 @@
     <Compile Include="MQTT\FormMqttClient.Designer.cs">
       <DependentUpon>FormMqttClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormAllenBrandlyMicroCip.cs">
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandlyMicroCip.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormAllenBrandlyMicroCip.Designer.cs">
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandlyMicroCip.Designer.cs">
       <DependentUpon>FormAllenBrandlyMicroCip.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormFatekProgrameOverTcp.cs">
@@ -769,10 +793,10 @@
     <Compile Include="PLC\FormLsisCnetOverTcp.Designer.cs">
       <DependentUpon>FormLsisCnetOverTcp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormCipServer.cs">
+    <Compile Include="PLC\AllenBrandly\FormCipServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormCipServer.Designer.cs">
+    <Compile Include="PLC\AllenBrandly\FormCipServer.Designer.cs">
       <DependentUpon>FormCipServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormInovanceSerialOverTcp.cs">
@@ -961,10 +985,10 @@
     <Compile Include="PLC\FormSiemensPPIOverTcp.Designer.cs">
       <DependentUpon>FormSiemensPPIOverTcp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormAllenBrandlyBrowser.cs">
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandlyBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormAllenBrandlyBrowser.Designer.cs">
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandlyBrowser.Designer.cs">
       <DependentUpon>FormAllenBrandlyBrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="Redis\FormRedisCopy.cs">
@@ -1069,10 +1093,10 @@
     <Compile Include="Hsl\FormPushNet.Designer.cs">
       <DependentUpon>FormPushNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormAllenBrandly.cs">
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandly.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormAllenBrandly.Designer.cs">
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandly.Designer.cs">
       <DependentUpon>FormAllenBrandly.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormSiemensPPI.cs">
@@ -1289,6 +1313,9 @@
     <EmbeddedResource Include="DemoControl\FormCurveMonitor.resx">
       <DependentUpon>FormCurveMonitor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormDeviceSupport.resx">
+      <DependentUpon>FormDeviceSupport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\UserControlCurve.resx">
       <DependentUpon>UserControlCurve.cs</DependentUpon>
     </EmbeddedResource>
@@ -1364,8 +1391,17 @@
     <EmbeddedResource Include="MQTT\FormMqttFileServer.resx">
       <DependentUpon>FormMqttFileServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormAllenBradleyDF1Serial.resx">
+    <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBradleyDF1Serial.resx">
       <DependentUpon>FormAllenBradleyDF1Serial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandlyPCCC.resx">
+      <DependentUpon>FormAllenBrandlyPCCC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\AllenBrandly\FormPcccServer.resx">
+      <DependentUpon>FormPcccServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormDeltaSerialOverTcp.resx">
+      <DependentUpon>FormDeltaSerialOverTcp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormFujiCSTNet.resx">
       <DependentUpon>FormFujiCSTNet.cs</DependentUpon>
@@ -1394,7 +1430,7 @@
     <EmbeddedResource Include="PLC\FormMelsecCipNet.resx">
       <DependentUpon>FormMelsecCipNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormAllenBrandlySLC.resx">
+    <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandlySLC.resx">
       <DependentUpon>FormAllenBrandlySLC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormDeltaDvpSerialAscii.resx">
@@ -1559,7 +1595,7 @@
     <EmbeddedResource Include="MQTT\FormMqttClient.resx">
       <DependentUpon>FormMqttClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormAllenBrandlyMicroCip.resx">
+    <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandlyMicroCip.resx">
       <DependentUpon>FormAllenBrandlyMicroCip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormFatekProgrameOverTcp.resx">
@@ -1592,7 +1628,7 @@
     <EmbeddedResource Include="PLC\FormLsisCnetOverTcp.resx">
       <DependentUpon>FormLsisCnetOverTcp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormCipServer.resx">
+    <EmbeddedResource Include="PLC\AllenBrandly\FormCipServer.resx">
       <DependentUpon>FormCipServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormInovanceSerialOverTcp.resx">
@@ -1688,7 +1724,7 @@
     <EmbeddedResource Include="PLC\FormSiemensPPIOverTcp.resx">
       <DependentUpon>FormSiemensPPIOverTcp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormAllenBrandlyBrowser.resx">
+    <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandlyBrowser.resx">
       <DependentUpon>FormAllenBrandlyBrowser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Redis\FormRedisCopy.resx">
@@ -1742,7 +1778,7 @@
     <EmbeddedResource Include="Hsl\FormPushNet.resx">
       <DependentUpon>FormPushNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormAllenBrandly.resx">
+    <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandly.resx">
       <DependentUpon>FormAllenBrandly.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormSiemensPPI.resx">

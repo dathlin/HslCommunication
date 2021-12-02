@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_ipv6 = new System.Windows.Forms.CheckBox();
 			this.checkBox4 = new System.Windows.Forms.CheckBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -54,6 +55,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_ipv6);
 			this.panel1.Controls.Add(this.checkBox4);
 			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.checkBox2);
@@ -72,6 +74,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 61);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_ipv6
+			// 
+			this.checkBox_ipv6.AutoSize = true;
+			this.checkBox_ipv6.Location = new System.Drawing.Point(431, 35);
+			this.checkBox_ipv6.Name = "checkBox_ipv6";
+			this.checkBox_ipv6.Size = new System.Drawing.Size(77, 21);
+			this.checkBox_ipv6.TabIndex = 33;
+			this.checkBox_ipv6.Text = "Use IPv6";
+			this.checkBox_ipv6.UseVisualStyleBackColor = true;
 			// 
 			// checkBox4
 			// 
@@ -114,7 +126,7 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox2.Location = new System.Drawing.Point(690, 12);
+			this.comboBox2.Location = new System.Drawing.Point(701, 4);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(111, 25);
 			this.comboBox2.TabIndex = 29;
@@ -142,7 +154,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(585, 11);
+			this.button5.Location = new System.Drawing.Point(593, 3);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(91, 28);
 			this.button5.TabIndex = 9;
@@ -154,7 +166,7 @@
 			// 
 			this.textBox10.Location = new System.Drawing.Point(495, 6);
 			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(61, 23);
+			this.textBox10.Size = new System.Drawing.Size(73, 23);
 			this.textBox10.TabIndex = 8;
 			this.textBox10.Text = "COM4";
 			// 
@@ -285,5 +297,6 @@
 		private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.CheckBox checkBox4;
+		private System.Windows.Forms.CheckBox checkBox_ipv6;
 	}
 }

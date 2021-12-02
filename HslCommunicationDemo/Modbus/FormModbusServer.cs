@@ -112,6 +112,7 @@ namespace HslCommunicationDemo
                 busTcpServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 busTcpServer.OnDataReceived += BusTcpServer_OnDataReceived;
                 busTcpServer.EnableWrite = checkBox1.Checked;
+                busTcpServer.EnableIPv6  = checkBox_ipv6.Checked;
                 busTcpServer.UseModbusRtuOverTcp = checkBox4.Checked;
 
                 // add some accounts
@@ -138,6 +139,7 @@ namespace HslCommunicationDemo
         private void button11_Click( object sender, EventArgs e )
         {
             // 停止服务
+            busTcpServer?.CloseSerialSlave( );
             busTcpServer?.ServerClose( );
             button1.Enabled = true;
             button11.Enabled = false;

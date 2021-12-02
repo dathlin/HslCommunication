@@ -439,6 +439,8 @@ namespace HslCommunicationDemo
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "MicroCip(Micro800)",      1, typeof( FormAllenBrandlyMicroCip ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP Browser",             1, typeof( FormAllenBrandlyBrowser ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP Virtual Server",      1, typeof( FormCipServer ) ) );
+			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP PCCC",                1, typeof( FormAllenBrandlyPCCC ) ) );
+			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP PCCC Server",         1, typeof( FormPcccServer ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "SLC Net",                 1, typeof( FormAllenBrandlySLC ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "DF1",                     1, typeof( FormAllenBradleyDF1Serial ) ) );
 			treeView1.Nodes.Add( allenBrandlyPlc );
@@ -504,10 +506,11 @@ namespace HslCommunicationDemo
 			treeView1.Nodes.Add( YokogawaNode );
 
 			// delta Plc
-			TreeNode deltaNode = new TreeNode( "Delta Plc[台达]", 32, 32 );
-			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Dvp Serial", 32, typeof( FormDeltaDvpSerial ) ) );
-			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Dvp Serial Ascii", 32, typeof( FormDeltaDvpSerialAscii ) ) );
-			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Dvp Tcp Net", 32, typeof( FormDeltaDvpTcpNet ) ) );
+			TreeNode deltaNode = new TreeNode( "Delta Plc[台达]",       32, 32 );
+			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Serial",          32, typeof( FormDeltaDvpSerial ) ) );
+			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Serial Over Tcp", 32, typeof( FormDeltaSerialOverTcp ) ) );
+			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Serial Ascii",    32, typeof( FormDeltaDvpSerialAscii ) ) );
+			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Tcp Net",         32, typeof( FormDeltaDvpTcpNet ) ) );
 			treeView1.Nodes.Add( deltaNode );
 
 			// 身份证阅读器

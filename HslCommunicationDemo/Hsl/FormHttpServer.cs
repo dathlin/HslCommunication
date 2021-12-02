@@ -130,6 +130,12 @@ namespace HslCommunicationDemo
             return id + 1;
         }
 
+        [HslMqttApi( HttpMethod = "POST" )]
+        public int GetTest( int id )
+        {
+            return id + 1;
+        }
+
         [HslMqttApi( "读取设备的Int16信息，address: 设备的地址 length: 读取的数据长度" )]
         public short ReadFloat( ISessionContext context, string address, short length = 12345 )
         {

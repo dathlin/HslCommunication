@@ -11,6 +11,7 @@ using HslCommunication;
 using System.Threading;
 using HslCommunication.Profinet.Delta;
 using System.Xml.Linq;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
@@ -21,13 +22,14 @@ namespace HslCommunicationDemo
             InitializeComponent( );
         }
 
-        private DeltaDvpTcpNet delta = null;
+        private DeltaTcpNet delta = null;
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
             panel2.Enabled = false;
 
             Language( Program.Language );
+            comboBox1.DataSource = SoftBasic.GetEnumValues<DeltaSeries>( );
         }
 
         private void Language( int language )
@@ -37,6 +39,7 @@ namespace HslCommunicationDemo
                 Text = "DeltaDvpTcp Read Demo";
 
                 label1.Text = "Ip:";
+                label2.Text = "Series:";
                 label3.Text = "Port:";
                 label21.Text = "station";
                 button1.Text = "Connect";
@@ -83,7 +86,8 @@ namespace HslCommunicationDemo
             }
 
             delta?.ConnectClose( );
-            delta = new DeltaDvpTcpNet( textBox1.Text, port, station );
+            delta = new DeltaTcpNet( textBox1.Text, port, station );
+            delta.Series = (DeltaSeries)comboBox1.SelectedItem;
 
             try
             {

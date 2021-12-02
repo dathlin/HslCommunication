@@ -12,6 +12,7 @@ using System.Threading;
 using System.IO.Ports;
 using HslCommunication.Profinet.Delta;
 using System.Xml.Linq;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
@@ -22,7 +23,7 @@ namespace HslCommunicationDemo
             InitializeComponent( );
         }
 
-        private DeltaDvpSerialAscii delta = null;
+        private DeltaSerialAscii delta = null;
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
@@ -39,7 +40,7 @@ namespace HslCommunicationDemo
 
             Language( Program.Language );
             comboBox1.SelectedIndex = 2;
-
+            comboBox2.DataSource = SoftBasic.GetEnumValues<DeltaSeries>( );
         }
 
 
@@ -50,6 +51,7 @@ namespace HslCommunicationDemo
                 Text = "Delta DVP Read Demo";
 
                 label1.Text = "Com:";
+                label2.Text = "Series:";
                 label3.Text = "baudRate:";
                 label22.Text = "DataBit";
                 label23.Text = "StopBit";
@@ -110,7 +112,8 @@ namespace HslCommunicationDemo
             }
 
             delta?.Close( );
-            delta = new DeltaDvpSerialAscii( station );
+            delta = new DeltaSerialAscii( station );
+            delta.Series = (DeltaSeries)comboBox2.SelectedItem;
 
             try
             {

@@ -251,16 +251,16 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(252, 10);
+			this.textBox2.Location = new System.Drawing.Point(331, 10);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(47, 23);
+			this.textBox2.Size = new System.Drawing.Size(53, 23);
 			this.textBox2.TabIndex = 3;
 			this.textBox2.Text = "502";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(198, 13);
+			this.label3.Location = new System.Drawing.Point(277, 13);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(44, 17);
 			this.label3.TabIndex = 2;
@@ -270,7 +270,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(62, 10);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(104, 23);
+			this.textBox1.Size = new System.Drawing.Size(192, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "127.0.0.1";
 			// 
@@ -342,5 +342,5 @@
         private System.Windows.Forms.Button button5;
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.Button button6;
-    }
+	}
 }

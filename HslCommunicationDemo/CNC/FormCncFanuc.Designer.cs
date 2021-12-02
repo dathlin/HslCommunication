@@ -38,6 +38,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button30 = new System.Windows.Forms.Button();
 			this.button29 = new System.Windows.Forms.Button();
 			this.textBox9 = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
@@ -80,7 +81,6 @@
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button30 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -228,6 +228,16 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(977, 544);
 			this.panel2.TabIndex = 13;
+			// 
+			// button30
+			// 
+			this.button30.Location = new System.Drawing.Point(419, 77);
+			this.button30.Name = "button30";
+			this.button30.Size = new System.Drawing.Size(96, 29);
+			this.button30.TabIndex = 59;
+			this.button30.Text = "当前刀具号";
+			this.button30.UseVisualStyleBackColor = true;
+			this.button30.Click += new System.EventHandler(this.button30_Click);
 			// 
 			// button29
 			// 
@@ -633,18 +643,9 @@
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Fanuc Series Oi-MF";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// button30
-			// 
-			this.button30.Location = new System.Drawing.Point(419, 77);
-			this.button30.Name = "button30";
-			this.button30.Size = new System.Drawing.Size(96, 29);
-			this.button30.TabIndex = 59;
-			this.button30.Text = "当前刀具号";
-			this.button30.UseVisualStyleBackColor = true;
-			this.button30.Click += new System.EventHandler(this.button30_Click);
 			// 
 			// FormCncFanuc
 			// 
