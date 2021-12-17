@@ -99,7 +99,7 @@ namespace HslCommunicationDemo
 			{
 				mqttClient = null;
 				button1.Enabled = true;
-				MessageBox.Show( connect.Message );
+				MessageBox.Show( connect.ToMessageShowString( ) );
 			}
 		}
 

@@ -66,6 +66,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "ge",                    Properties.Resources.ge );                // 33
 			imageList.Images.Add( "yamatake",              Properties.Resources.Yamatake );          // 34
 			imageList.Images.Add( "rkc",                   Properties.Resources.rkc );               // 35
+			imageList.Images.Add( "vigor",                 Properties.Resources.vigor );             // 36
 
 
 			treeView1.ImageList = imageList;
@@ -480,6 +481,13 @@ namespace HslCommunicationDemo
 			fatekNode.Nodes.Add( GetTreeNodeByIndex( "programe [编程口]", 22, typeof( FormFatekPrograme ) ) );
 			fatekNode.Nodes.Add( GetTreeNodeByIndex( "programe OverTcp", 22, typeof( FormFatekProgrameOverTcp ) ) );
 			treeView1.Nodes.Add( fatekNode );
+
+			// Vigor 丰炜
+			TreeNode vigorNode = new TreeNode( "Vigor Plc[丰炜]", 36, 36 );
+			vigorNode.Nodes.Add( GetTreeNodeByIndex( "Serial [编程口]", 36, typeof( FormVigorSerial ) ) );
+			vigorNode.Nodes.Add( GetTreeNodeByIndex( "Serial OverTcp",  36, typeof( FormVigorSerialOverTcp ) ) );
+			vigorNode.Nodes.Add( GetTreeNodeByIndex( "Virtual Server",  36, typeof( FormVigorServer ) ) );
+			treeView1.Nodes.Add( vigorNode );
 
 			// Fuji Plc
 			TreeNode fujiNode = new TreeNode( "Fuji Plc[富士]", 2, 2 );

@@ -299,5 +299,18 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
+		private void button_active_plc_Click( object sender, EventArgs e )
+		{
+			OperateResult active = melsec_net.ActivePlc( );
+			if (active.IsSuccess)
+			{
+				MessageBox.Show( "Active Successful" );
+			}
+			else
+			{
+				MessageBox.Show( "Failed: " + active.ToMessageShowString( ) );
+			}
+		}
 	}
 }

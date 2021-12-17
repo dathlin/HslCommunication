@@ -35,20 +35,21 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V10.4.0
-1. Delta:台达系列的PLC类重命名，新增PLC系列，可选DVP系列和AS系列，相当于新增了对AS300的支持，如果用到，谨慎更新。
-2. WebSocketServer: 原先订阅的操作使用header来完成，新增客户端从url添加订阅主题，例如：ws://127.0.0.1:1883/HslSubscribes=A,B
-3. AllenBradleyPcccNet:新增AB的CIP协议PCCC格式的通信，测试适用ab1400，地址格式为 N7:5, I:0/2, F2:0 等
-4. AllenBradleyPcccServer: 新增PCCC的虚拟服务器功能，可以配合客户端进行通信的测试，支持基本的地址。
-5. MC-A3C: 修复A3C的服务器在格式4的情况下，返回写入操作的控制代码错误的bug，应该为06，写成了02。
-6. 三菱的A3C协议的读取字数据及位数据长度自动切割，可以输入理论最大长度，修复校验是否写入成功确提示失败的bug。
-7. NetworkDataServerBase:串口接收增加最小接收时间，默认是20，表示20毫秒，如果重写了报文结束检查，则可以设置大一点。
-8. NetworkServerBase: 基础服务器对象新增属性EnableIPv6，当设置为true的时候，则使用IPv6协议进行数据通信和访问。
-9. 所有的TCP及UDP的相关的客户端通信类的 IP 地址设置，都支持了 IPv6 地址，所以目前IP地址支持 IPv4 和 IPv6 及 网址。
-10. Demo:fanuc机器人的测试界面写入数据操作进行提示相关的确认，防止手抖不小心写入导致机器人运行不正常。
-11. Demo，所有的设备通信类，新增一个支持的设备列表功能，大家可以手动添加支持的列表，方便别人查看支持的型号，请大家务必真实填写。
-12. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
-13. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V10.4.1
+1. Delta: 台达的DVP系列，当地址带站号时，并且出现了跨地址切割时，修复站号丢失的bug。跨地址指跨越M1536,D4096地址。
+2. Delta: 台达AS系列的地址 SR 地址支持输入 SR0 以及 sr0
+3. 针对FinsTcp协议及ADS协议的剩余字节解析，本来是int类型，现在加了最大长度10000的限制，防止异常攻击时导致申请内存过大而奔溃。
+4. Inovance: 汇川相关的PLC的数据排列规则调整为 CDAB，DEMO上的选择也默认改为这个。
+5. MelsecFxSerial: 移除三菱编程口协议最小接收回复报文2字节的限制，实际测试有时候只需要一个字节就可以了，否则会一直处于接收超时。
+6. ByteTransform: TransBool的方法的偏移和长度均修改为以位为单位，具体调用API时查看注释说明，长度为10就表示10个长度的bool。
+7. AllenBradleySLCNet,AllenBradleyPcccNet: 地址支持ST10:2这种字符串地址，并在AllenBradleyPcccNet上实现动态读取字符串，长度为0或没有，则自动长度。
+8. AllenBradleySLCNet,AllenBradleyPcccNet: 以及SLC的协议地址支持了 L17:0 的地址，长整型类型
+9. VigorSerial,VigorSerialOverTcp: 新增丰炜PLC的编程口协议及透传类，支持VS系列，地址支持动态站号信息，例如 s=2;D100
+10. VigorServer: 新增丰炜的虚拟PLC，模拟了VS系列的通信，可以和对应的客户端进行数据读写测试，位地址支持 X,Y,M,S，字地址支持 D,R,SD
+11. MelsecFxSerial: 三菱的编程口协议及其透传类添加一个激活PLC的API方法ActivePlc，在某些特殊的PLC读写数据之前，需要先调用一下。
+12. Modbus:Modbus所有协议的ReadFromCoreServe(byte[])增加特别的注释，只需要传递modbus核心报文即可，不管tcp,还是rtu,还是ascii，都是一样的。
+13. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
+14. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

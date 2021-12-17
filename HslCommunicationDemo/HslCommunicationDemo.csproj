@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.4.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.4.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.4.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.4.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -339,6 +339,24 @@
     </Compile>
     <Compile Include="PLC\FormDeltaSerialOverTcp.Designer.cs">
       <DependentUpon>FormDeltaSerialOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormVigorSerialOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormVigorSerialOverTcp.Designer.cs">
+      <DependentUpon>FormVigorSerialOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormVigorServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormVigorServer.Designer.cs">
+      <DependentUpon>FormVigorServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\FormVigorSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormVigorSerial.Designer.cs">
+      <DependentUpon>FormVigorSerial.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormFujiCSTNet.cs">
       <SubType>Form</SubType>
@@ -1403,6 +1421,15 @@
     <EmbeddedResource Include="PLC\FormDeltaSerialOverTcp.resx">
       <DependentUpon>FormDeltaSerialOverTcp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormVigorSerialOverTcp.resx">
+      <DependentUpon>FormVigorSerialOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormVigorServer.resx">
+      <DependentUpon>FormVigorServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormVigorSerial.resx">
+      <DependentUpon>FormVigorSerial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormFujiCSTNet.resx">
       <DependentUpon>FormFujiCSTNet.cs</DependentUpon>
     </EmbeddedResource>
@@ -1896,6 +1923,7 @@
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
     <None Include="img\rkc.png" />
+    <None Include="img\vigor.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

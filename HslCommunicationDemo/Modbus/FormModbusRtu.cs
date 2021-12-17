@@ -153,7 +153,6 @@ namespace HslCommunicationDemo
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
             busRtuClient.IsStringReverse = checkBox3.Checked;
 
-
             try
             {
                 busRtuClient.SerialPortInni( sp =>

@@ -32,7 +32,7 @@ namespace HslCommunicationDemo
 
 
             comboBox4.DataSource = SoftBasic.GetEnumValues<InovanceSeries>( );
-            comboBox2.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 2;
             comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
             checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
 

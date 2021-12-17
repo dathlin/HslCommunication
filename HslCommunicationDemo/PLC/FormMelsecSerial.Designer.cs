@@ -64,6 +64,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.button_active_plc = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -262,6 +263,7 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Controls.Add(this.button_active_plc);
 			this.groupBox5.Controls.Add(this.textBox14);
 			this.groupBox5.Controls.Add(this.button3);
 			this.groupBox5.Location = new System.Drawing.Point(573, 243);
@@ -282,7 +284,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(12, 24);
+			this.button3.Location = new System.Drawing.Point(229, 19);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(184, 28);
 			this.button3.TabIndex = 21;
@@ -451,6 +453,16 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// button_active_plc
+			// 
+			this.button_active_plc.Location = new System.Drawing.Point(12, 19);
+			this.button_active_plc.Name = "button_active_plc";
+			this.button_active_plc.Size = new System.Drawing.Size(90, 28);
+			this.button_active_plc.TabIndex = 23;
+			this.button_active_plc.Text = "激活PLC";
+			this.button_active_plc.UseVisualStyleBackColor = true;
+			this.button_active_plc.Click += new System.EventHandler(this.button_active_plc_Click);
+			// 
 			// FormMelsecSerial
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -518,5 +530,6 @@
 		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.CheckBox checkBox1;
-    }
+		private System.Windows.Forms.Button button_active_plc;
+	}
 }
