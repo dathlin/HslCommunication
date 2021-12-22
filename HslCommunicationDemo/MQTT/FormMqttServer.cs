@@ -100,6 +100,7 @@ namespace HslCommunicationDemo
 				mqttServer.RegisterMqttRpcApi( "Siemens", siemens );               // 注册一个西门子PLC的服务接口的示例
 				mqttServer.RegisterMqttRpcApi( "TimeOut", typeof(HslTimeOut) );    // 注册的类的静态方法和静态属性
 				mqttServer.RegisterMqttRpcApi( "Fanuc",   new HslCommunication.CNC.Fanuc.FanucSeries0i( "127.0.0.1" ) );
+				mqttServer.RegisterMqttRpcApi( "PCCC", new HslCommunication.Profinet.AllenBradley.AllenBradleyPcccNet( "127.0.0.1" ) );
 				mqttServer.ServerStart( int.Parse( textBox2.Text ) );
 				mqttServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				mqttServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;

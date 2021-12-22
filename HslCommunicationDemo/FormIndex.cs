@@ -35,21 +35,12 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V10.4.1
-1. Delta: 台达的DVP系列，当地址带站号时，并且出现了跨地址切割时，修复站号丢失的bug。跨地址指跨越M1536,D4096地址。
-2. Delta: 台达AS系列的地址 SR 地址支持输入 SR0 以及 sr0
-3. 针对FinsTcp协议及ADS协议的剩余字节解析，本来是int类型，现在加了最大长度10000的限制，防止异常攻击时导致申请内存过大而奔溃。
-4. Inovance: 汇川相关的PLC的数据排列规则调整为 CDAB，DEMO上的选择也默认改为这个。
-5. MelsecFxSerial: 移除三菱编程口协议最小接收回复报文2字节的限制，实际测试有时候只需要一个字节就可以了，否则会一直处于接收超时。
-6. ByteTransform: TransBool的方法的偏移和长度均修改为以位为单位，具体调用API时查看注释说明，长度为10就表示10个长度的bool。
-7. AllenBradleySLCNet,AllenBradleyPcccNet: 地址支持ST10:2这种字符串地址，并在AllenBradleyPcccNet上实现动态读取字符串，长度为0或没有，则自动长度。
-8. AllenBradleySLCNet,AllenBradleyPcccNet: 以及SLC的协议地址支持了 L17:0 的地址，长整型类型
-9. VigorSerial,VigorSerialOverTcp: 新增丰炜PLC的编程口协议及透传类，支持VS系列，地址支持动态站号信息，例如 s=2;D100
-10. VigorServer: 新增丰炜的虚拟PLC，模拟了VS系列的通信，可以和对应的客户端进行数据读写测试，位地址支持 X,Y,M,S，字地址支持 D,R,SD
-11. MelsecFxSerial: 三菱的编程口协议及其透传类添加一个激活PLC的API方法ActivePlc，在某些特殊的PLC读写数据之前，需要先调用一下。
-12. Modbus:Modbus所有协议的ReadFromCoreServe(byte[])增加特别的注释，只需要传递modbus核心报文即可，不管tcp,还是rtu,还是ascii，都是一样的。
-13. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
-14. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V10.4.2
+1. NetworkBase: 新增Receive原始字节数据时，也就是申请byte[]缓存时，对可能存在的异常捕获操作，返回失败的结果对象。
+2. AllenBradleyPcccNet: 修复对于ReadAsync也注册了API接口，导致重复注册的bug。
+3. WebSocketClient: 修复因为掉线重连服务器的时候，重新携带订阅的主题。
+4. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
+5. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 
