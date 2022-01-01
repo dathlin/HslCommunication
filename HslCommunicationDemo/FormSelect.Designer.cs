@@ -44,6 +44,7 @@
 			this.verisonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.免责条款ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.newVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.vS2015BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -55,6 +56,7 @@
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
+			this.activeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -73,8 +75,10 @@
             this.toolStripMenuItem1,
             this.日志ToolStripMenuItem,
             this.verisonToolStripMenuItem,
+            this.activeToolStripMenuItem,
             this.免责条款ToolStripMenuItem,
-            this.授权ToolStripMenuItem});
+            this.授权ToolStripMenuItem,
+            this.newVersionToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(1240, 25);
@@ -180,6 +184,13 @@
 			this.授权ToolStripMenuItem.Name = "授权ToolStripMenuItem";
 			this.授权ToolStripMenuItem.Size = new System.Drawing.Size(12, 21);
 			// 
+			// newVersionToolStripMenuItem
+			// 
+			this.newVersionToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+			this.newVersionToolStripMenuItem.Name = "newVersionToolStripMenuItem";
+			this.newVersionToolStripMenuItem.Size = new System.Drawing.Size(98, 21);
+			this.newVersionToolStripMenuItem.Text = "New Version!";
+			// 
 			// treeView1
 			// 
 			this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -278,6 +289,13 @@
 			this.label2.TabIndex = 42;
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
+			// activeToolStripMenuItem
+			// 
+			this.activeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.activeToolStripMenuItem.Name = "activeToolStripMenuItem";
+			this.activeToolStripMenuItem.Size = new System.Drawing.Size(54, 21);
+			this.activeToolStripMenuItem.Text = "Active";
+			// 
 			// FormSelect
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -337,6 +355,8 @@
 		private System.Windows.Forms.ToolStripMenuItem authorization授权ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem deleteDeviceToolStripMenuItem;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.ToolStripMenuItem newVersionToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem activeToolStripMenuItem;
 	}
 }
 

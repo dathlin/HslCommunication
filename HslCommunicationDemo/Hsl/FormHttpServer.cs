@@ -10,6 +10,7 @@ using HslCommunication.Enthernet;
 using HslCommunication;
 using System.Net;
 using HslCommunication.Profinet.Siemens;
+using HslCommunication.Profinet.AllenBradley;
 using HslCommunication.Reflection;
 using HslCommunication.Core;
 using System.Threading.Tasks;
@@ -53,6 +54,7 @@ namespace HslCommunicationDemo
             }
         }
 
+        private AllenBradleyPcccNet pcccNet;
         private SiemensS7Net siemens;
         private HttpServer httpServer;
 
@@ -63,6 +65,8 @@ namespace HslCommunicationDemo
             {
                 siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
                 siemens.SetPersistentConnection( );
+                pcccNet = new AllenBradleyPcccNet( "127.0.0.1" );
+                pcccNet.SetPersistentConnection( );
 
                 httpServer = new HttpServer( );
                 httpServer.Start( int.Parse( textBox2.Text ) );
@@ -71,6 +75,7 @@ namespace HslCommunicationDemo
                 httpServer.RegisterHttpRpcApi( "", this );
                 httpServer.RegisterHttpRpcApi( "Siemens", siemens );                 // 注册一个西门子PLC的服务接口的示例
                 httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );    // 注册的类的静态方法和静态属性
+                httpServer.RegisterHttpRpcApi( "PCCC", pcccNet );
                 if (checkBox2.Checked) httpServer.SetLoginAccessControl( new HslCommunication.MQTT.MqttCredential[] {
                 new HslCommunication.MQTT.MqttCredential("admin", "123456")} );
 

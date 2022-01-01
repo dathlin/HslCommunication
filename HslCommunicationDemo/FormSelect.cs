@@ -78,6 +78,7 @@ namespace HslCommunicationDemo
 		private void FormLoad_Load( object sender, EventArgs e )
 		{
 
+			LoadActive( );
 			dockPanel1.Theme = vS2015BlueTheme1;
 
 
@@ -120,6 +121,47 @@ namespace HslCommunicationDemo
 
 			treeView2.MouseClick += TreeView2_MouseClick;
 			deleteDeviceToolStripMenuItem.Click += DeleteDeviceToolStripMenuItem_Click;
+			newVersionToolStripMenuItem.Visible = false;
+
+			activeToolStripMenuItem.Click += ActiveToolStripMenuItem_Click;
+		}
+
+		private void LoadActive( )
+		{
+			try
+			{
+				string activePath = System.IO.Path.Combine( Application.StartupPath, "active.txt" );
+				if (File.Exists( activePath ))
+				{
+					System.IO.FileInfo fileInfo = new System.IO.FileInfo( activePath );
+					string key = fileInfo.CreationTime.ToString( "yyyy-MM-dd-mm-ss" );
+					HslCommunication.Core.Security.AesCryptography aesCryptography = new HslCommunication.Core.Security.AesCryptography( key + key );
+
+					string hsl = Encoding.UTF8.GetString( aesCryptography.Decrypt( File.ReadAllBytes( activePath ) ) );
+					if (HslCommunication.Authorization.SetAuthorizationCode( hsl ))
+					{
+						activeToolStripMenuItem.Text = "Actived!";
+						activeToolStripMenuItem.ForeColor = Color.Lime;
+					}
+					else
+					{
+						System.IO.File.Delete( activePath );
+					}
+				}
+			}
+			catch( Exception ex )
+			{
+				HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+			}
+		}
+
+		private void ActiveToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			using (FormActive form = new FormActive( ))
+			{
+				form.ShowDialog( );
+				LoadActive( );
+			}
 		}
 
 		private void TreeView2_MouseClick( object sender, MouseEventArgs e )
@@ -272,18 +314,29 @@ namespace HslCommunicationDemo
 					// 有更新
 					Invoke( new Action( ( ) =>
 					 {
-						 if (MessageBox.Show( "New version on server：" + read.Content2 + Environment.NewLine + " Start update?", "Version Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+						 bool tip = File.Exists( Path.Combine( Application.StartupPath, "newVersionIngored.txt" ) );
+						 if (!tip)
 						 {
-							 try
+							 using (FormNewVerison form = new FormNewVerison( ))
 							 {
-								 System.Diagnostics.Process.Start( Application.StartupPath + "\\AutoUpdate.exe" );
-								 System.Threading.Thread.Sleep( 50 );
-								 Close( );
+								 if (form.ShowDialog( "Version Check", "New version on server：" + read.Content2 + Environment.NewLine + " Start update?" ) == DialogResult.Yes)
+								 {
+									 NewVersionToolStripMenuItem_Click( null, new EventArgs( ) );
+								 }
+								 if (form.NewVersionIngored)
+								 {
+									 File.WriteAllText( Path.Combine( Application.StartupPath, "newVersionIngored.txt" ), string.Empty, Encoding.UTF8 );
+								 }
+								 else
+								 {
+									 File.Delete( Path.Combine( Application.StartupPath, "newVersionIngored.txt" ) );
+								 }
 							 }
-							 catch(Exception ex)
-							 {
-								 MessageBox.Show( "更新软件丢失，无法启动更新： " + ex.Message );
-							 }
+						 }
+						 else
+						 {
+							 newVersionToolStripMenuItem.Visible = true;
+							 newVersionToolStripMenuItem.Click += NewVersionToolStripMenuItem_Click;
 						 }
 					 } ) );
 				}
@@ -297,6 +350,20 @@ namespace HslCommunicationDemo
 			catch
 			{
 
+			}
+		}
+
+		private void NewVersionToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				Process.Start( Application.StartupPath + "\\AutoUpdate.exe" );
+				System.Threading.Thread.Sleep( 50 );
+				Close( );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( "更新软件丢失，无法启动更新： " + ex.Message );
 			}
 		}
 
@@ -569,6 +636,7 @@ namespace HslCommunicationDemo
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "ABB Web Server",              21, typeof( FormAbbServer ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc [发那科]",              25, typeof( Robot.FormFanucRobot ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc Server [发那科服务器]", 25, typeof( FormFanucRobotServer ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "Estun [埃斯顿]",              19, typeof( Robot.FormEstunTcp ) ) );
 			robotNode.Nodes.Add( new TreeNode( "Hyundai [现代]" )  { Tag = typeof( Robot.FormHyundaiUdp ) } );
 			robotNode.Nodes.Add( new TreeNode( "YamahaRCX [雅马哈]" )  { Tag = typeof( Robot.FormYamahaRCX ) } );
 			treeView1.Nodes.Add( robotNode );

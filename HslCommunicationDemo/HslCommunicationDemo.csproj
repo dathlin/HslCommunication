@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.4.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.4.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.4.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.4.3\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -190,6 +190,12 @@
     </Compile>
     <Compile Include="DemoDeviceList.cs" />
     <Compile Include="DemoUtils.cs" />
+    <Compile Include="FormActive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormActive.Designer.cs">
+      <DependentUpon>FormActive.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAuthor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +231,12 @@
     </Compile>
     <Compile Include="FormHslMap.Designer.cs">
       <DependentUpon>FormHslMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNewVerison.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNewVerison.Designer.cs">
+      <DependentUpon>FormNewVerison.cs</DependentUpon>
     </Compile>
     <Compile Include="HslDebug\FormRSADebug.cs">
       <SubType>Form</SubType>
@@ -1179,6 +1191,12 @@
     <Compile Include="Redis\RedisBrowser.Designer.cs">
       <DependentUpon>RedisBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Robot\FormEstunTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Robot\FormEstunTcp.Designer.cs">
+      <DependentUpon>FormEstunTcp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Robot\FormKukaTcp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1346,6 +1364,9 @@
     <EmbeddedResource Include="DemoControl\UserControlReadWriteServer.resx">
       <DependentUpon>UserControlReadWriteServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormActive.resx">
+      <DependentUpon>FormActive.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAuthor.resx">
       <DependentUpon>FormAuthor.cs</DependentUpon>
     </EmbeddedResource>
@@ -1363,6 +1384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHslMap.resx">
       <DependentUpon>FormHslMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNewVerison.resx">
+      <DependentUpon>FormNewVerison.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HslDebug\FormRSADebug.resx">
       <DependentUpon>FormRSADebug.cs</DependentUpon>
@@ -1847,6 +1871,9 @@
     </Compile>
     <EmbeddedResource Include="Redis\RedisBrowser.resx">
       <DependentUpon>RedisBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\FormEstunTcp.resx">
+      <DependentUpon>FormEstunTcp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormKukaTcp.resx">
       <DependentUpon>FormKukaTcp.cs</DependentUpon>

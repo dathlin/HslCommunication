@@ -35,12 +35,18 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V10.4.2
-1. NetworkBase: 新增Receive原始字节数据时，也就是申请byte[]缓存时，对可能存在的异常捕获操作，返回失败的结果对象。
-2. AllenBradleyPcccNet: 修复对于ReadAsync也注册了API接口，导致重复注册的bug。
-3. WebSocketClient: 修复因为掉线重连服务器的时候，重新携带订阅的主题。
-4. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
-5. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V10.4.3
+1. SerialBase: SetPipSerial重，命名为SetPipeSerial，如果有使用串口管道，则需要更改相关的名称。
+2. MelsecMcDataType: 修复三菱累计定时器当前的值的地址进制转换应该为10进制，结果写成100导致转换失败的bug。
+3. Keyence: 上位链路协议的串口及网口的通信类，ByteTransform的IsStringReverseByteWord调整为true，读写字符串时将两两颠倒。
+4. IByteTransform: 转换接口类的注释进行完善，提示更加详细完整，中英文并行提示。
+5. Vigor: 丰炜PLC的读取位和读取字的功能方法，对读取长度进行内置切割，相当于支持了无限长度的数据读取。
+6. EstunTcpNet: 新增埃斯顿机器人通信类，内置定时器保持心跳，支持读取机器人的基本信息，详细见DEMO界面。
+7. FanucInterfaceNet: 修复fanuc机器人的中文编码异常的bug，使用标准的GB编码解析，如果编码获取异常，需要自行nuget安装System.Text.Encoding.CodePages组件，并注册编码。
+8. Device: 设备类增加ReadStruct{T}方法，根据特性从原始字节里解析出实际的数据对象。影响范围所有的设备类对象。
+9. Demo: Demo程序支持了手动设置版本更新忽略提醒，忽略之后再菜单栏进行提示新版，以及增加添加激活操作功能，本地保存加密的激活码。
+10. 官网地址： http://www.hslcommunication.cn 官网的界面全新设计过，感谢浏览关注。
+11. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 
