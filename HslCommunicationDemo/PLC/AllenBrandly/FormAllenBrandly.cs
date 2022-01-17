@@ -87,6 +87,11 @@ namespace HslCommunicationDemo
 			allenBradleyNet.Port = port;
 			allenBradleyNet.Slot = slot;
 
+			if (!string.IsNullOrEmpty( textBox_router.Text ))
+			{
+				allenBradleyNet.MessageRouter = new MessageRouter( textBox_router.Text );
+			}
+
 			//if (!string.IsNullOrEmpty( textBox16.Text ))
 			//{
 			//	allenBradleyNet.PortSlot = HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox16.Text );
@@ -179,7 +184,7 @@ namespace HslCommunicationDemo
 			OperateResult<byte[]> read = allenBradleyNet.ReadCipFromServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
 			if (read.IsSuccess)
 			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
+				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content, ' ' );
 			}
 			else
 			{

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent( )
         {
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox16 = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -44,15 +45,20 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
+			this.button4 = new System.Windows.Forms.Button();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.label2 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
 			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.Column_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_image = new System.Windows.Forms.DataGridViewImageColumn();
+			this.Column_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_value = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -60,6 +66,7 @@
 			this.splitContainer1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel4.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.panel3.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -79,34 +86,31 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(12, 41);
+			this.panel1.Location = new System.Drawing.Point(2, 34);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 51);
+			this.panel1.Size = new System.Drawing.Size(999, 40);
 			this.panel1.TabIndex = 8;
 			// 
 			// textBox16
 			// 
-			this.textBox16.Location = new System.Drawing.Point(605, 14);
+			this.textBox16.Location = new System.Drawing.Point(576, 7);
 			this.textBox16.Name = "textBox16";
-			this.textBox16.Size = new System.Drawing.Size(105, 23);
+			this.textBox16.Size = new System.Drawing.Size(159, 23);
 			this.textBox16.TabIndex = 19;
-			this.textBox16.Text = "01 00";
-			this.textBox16.Visible = false;
 			// 
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(547, 17);
+			this.label8.Location = new System.Drawing.Point(520, 10);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(54, 17);
+			this.label8.Size = new System.Drawing.Size(50, 17);
 			this.label8.TabIndex = 18;
-			this.label8.Text = "PortSlot";
-			this.label8.Visible = false;
+			this.label8.Text = "Router:";
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(497, 14);
+			this.textBox15.Location = new System.Drawing.Point(469, 7);
 			this.textBox15.Name = "textBox15";
 			this.textBox15.Size = new System.Drawing.Size(32, 23);
 			this.textBox15.TabIndex = 17;
@@ -115,7 +119,7 @@
 			// label23
 			// 
 			this.label23.AutoSize = true;
-			this.label23.Location = new System.Drawing.Point(453, 17);
+			this.label23.Location = new System.Drawing.Point(425, 10);
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(41, 17);
 			this.label23.TabIndex = 16;
@@ -124,7 +128,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(876, 11);
+			this.button2.Location = new System.Drawing.Point(876, 4);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -134,7 +138,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(779, 11);
+			this.button1.Location = new System.Drawing.Point(779, 4);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -144,7 +148,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(285, 14);
+			this.textBox2.Location = new System.Drawing.Point(276, 7);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(141, 23);
 			this.textBox2.TabIndex = 3;
@@ -153,7 +157,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(231, 17);
+			this.label3.Location = new System.Drawing.Point(222, 10);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(45, 17);
 			this.label3.TabIndex = 2;
@@ -161,7 +165,7 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(62, 14);
+			this.textBox1.Location = new System.Drawing.Point(66, 7);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(141, 23);
 			this.textBox1.TabIndex = 1;
@@ -170,7 +174,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 17);
+			this.label1.Location = new System.Drawing.Point(8, 10);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(55, 17);
 			this.label1.TabIndex = 0;
@@ -192,8 +196,8 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.panel2);
-			this.splitContainer1.Size = new System.Drawing.Size(974, 519);
-			this.splitContainer1.SplitterDistance = 282;
+			this.splitContainer1.Size = new System.Drawing.Size(993, 537);
+			this.splitContainer1.SplitterDistance = 224;
 			this.splitContainer1.TabIndex = 9;
 			// 
 			// button3
@@ -208,9 +212,12 @@
 			// 
 			// treeView1
 			// 
+			this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.Location = new System.Drawing.Point(3, 32);
 			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(276, 511);
+			this.treeView1.Size = new System.Drawing.Size(213, 502);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
 			// 
@@ -220,21 +227,58 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(688, 519);
+			this.panel2.Size = new System.Drawing.Size(765, 537);
 			this.panel2.TabIndex = 0;
 			// 
 			// panel4
 			// 
+			this.panel4.Controls.Add(this.button4);
+			this.panel4.Controls.Add(this.dataGridView1);
 			this.panel4.Controls.Add(this.label2);
-			this.panel4.Controls.Add(this.label5);
 			this.panel4.Controls.Add(this.textBox4);
-			this.panel4.Controls.Add(this.label4);
-			this.panel4.Controls.Add(this.textBox5);
 			this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel4.Location = new System.Drawing.Point(0, 0);
 			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(688, 519);
+			this.panel4.Size = new System.Drawing.Size(765, 537);
 			this.panel4.TabIndex = 5;
+			// 
+			// button4
+			// 
+			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button4.Location = new System.Drawing.Point(665, 3);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(91, 27);
+			this.button4.TabIndex = 6;
+			this.button4.Text = "Show Value";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.AllowUserToAddRows = false;
+			this.dataGridView1.AllowUserToDeleteRows = false;
+			this.dataGridView1.AllowUserToResizeRows = false;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column_number,
+            this.Column_image,
+            this.Column_name,
+            this.Column_type,
+            this.Column_TypeName,
+            this.Column_value});
+			this.dataGridView1.Location = new System.Drawing.Point(3, 35);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.ReadOnly = true;
+			this.dataGridView1.RowHeadersVisible = false;
+			this.dataGridView1.RowTemplate.Height = 23;
+			this.dataGridView1.Size = new System.Drawing.Size(753, 499);
+			this.dataGridView1.TabIndex = 5;
 			// 
 			// label2
 			// 
@@ -245,44 +289,14 @@
 			this.label2.TabIndex = 0;
 			this.label2.Text = "string tag:";
 			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(132, 38);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(39, 17);
-			this.label5.TabIndex = 4;
-			this.label5.Text = "Time:";
-			// 
 			// textBox4
 			// 
 			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox4.Location = new System.Drawing.Point(73, 6);
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(606, 23);
+			this.textBox4.Size = new System.Drawing.Size(586, 23);
 			this.textBox4.TabIndex = 1;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(3, 38);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(34, 17);
-			this.label4.TabIndex = 3;
-			this.label4.Text = "Size:";
-			// 
-			// textBox5
-			// 
-			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox5.Location = new System.Drawing.Point(3, 58);
-			this.textBox5.Multiline = true;
-			this.textBox5.Name = "textBox5";
-			this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox5.Size = new System.Drawing.Size(682, 458);
-			this.textBox5.TabIndex = 2;
 			// 
 			// panel3
 			// 
@@ -290,9 +304,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel3.Controls.Add(this.splitContainer1);
-			this.panel3.Location = new System.Drawing.Point(12, 95);
+			this.panel3.Location = new System.Drawing.Point(2, 77);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(980, 525);
+			this.panel3.Size = new System.Drawing.Size(999, 543);
 			this.panel3.TabIndex = 10;
 			// 
 			// statusStrip1
@@ -326,6 +340,48 @@
 			this.userControlHead1.TabIndex = 12;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// Column_number
+			// 
+			this.Column_number.HeaderText = "Number";
+			this.Column_number.Name = "Column_number";
+			this.Column_number.ReadOnly = true;
+			this.Column_number.Width = 80;
+			// 
+			// Column_image
+			// 
+			this.Column_image.HeaderText = "";
+			this.Column_image.Name = "Column_image";
+			this.Column_image.ReadOnly = true;
+			this.Column_image.Width = 25;
+			// 
+			// Column_name
+			// 
+			this.Column_name.HeaderText = "Name";
+			this.Column_name.Name = "Column_name";
+			this.Column_name.ReadOnly = true;
+			this.Column_name.Width = 170;
+			// 
+			// Column_type
+			// 
+			this.Column_type.HeaderText = "TypeCode";
+			this.Column_type.Name = "Column_type";
+			this.Column_type.ReadOnly = true;
+			this.Column_type.Width = 80;
+			// 
+			// Column_TypeName
+			// 
+			this.Column_TypeName.HeaderText = "TypeName";
+			this.Column_TypeName.Name = "Column_TypeName";
+			this.Column_TypeName.ReadOnly = true;
+			this.Column_TypeName.Width = 80;
+			// 
+			// Column_value
+			// 
+			this.Column_value.HeaderText = "Value";
+			this.Column_value.Name = "Column_value";
+			this.Column_value.ReadOnly = true;
+			this.Column_value.Width = 298;
+			// 
 			// FormAllenBrandlyBrowser
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -351,6 +407,7 @@
 			this.panel2.ResumeLayout(false);
 			this.panel4.ResumeLayout(false);
 			this.panel4.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.panel3.ResumeLayout(false);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
@@ -371,13 +428,10 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -386,5 +440,13 @@
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Label label23;
 		private DemoControl.UserControlHead userControlHead1;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_number;
+		private System.Windows.Forms.DataGridViewImageColumn Column_image;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_name;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_type;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_TypeName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_value;
 	}
 }

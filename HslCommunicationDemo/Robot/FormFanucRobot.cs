@@ -341,7 +341,7 @@ namespace HslCommunicationDemo.Robot
         private async void button19_Click( object sender, EventArgs e )
         {
             // WO
-            OperateResult<bool[]> read = await fanuc.ReadSDOAsync( 1, 5 );
+            OperateResult<bool[]> read = await fanuc.ReadSDOAsync( 8001, 5 );
             if (read.IsSuccess)
             {
                 textBox3.Text = "WO:" + TransBoolArrayToString( read.Content );

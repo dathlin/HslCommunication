@@ -13,6 +13,38 @@ namespace HslCommunicationDemo
 	/// </summary>
 	public class DemoUtils
 	{
+
+		/// <summary>
+		/// 将 <see cref="DataGridView"/> 的行数控制在指定的行数
+		/// </summary>
+		/// <param name="dataGridView1">图标控件</param>
+		/// <param name="row">指定的行数信息</param>
+		public static void DataGridSpecifyRowCount( DataGridView dataGridView1, int row )
+		{
+			if (dataGridView1.AllowUserToAddRows)
+			{
+				row++;
+			}
+			if (dataGridView1.RowCount < row)
+			{
+				// 扩充
+				dataGridView1.Rows.Add( row - dataGridView1.RowCount );
+			}
+			else if (dataGridView1.RowCount > row)
+			{
+				int deleteRows = dataGridView1.RowCount - row;
+				for (int i = 0; i < deleteRows; i++)
+				{
+					dataGridView1.Rows.RemoveAt( dataGridView1.Rows.Count - 1 );
+				}
+			}
+			if (row > 0)
+			{
+				dataGridView1.Rows[0].Cells[0].Selected = false;
+			}
+		}
+
+
 		/// <summary>
 		/// 统一的读取结果的数据解析，显示
 		/// </summary>

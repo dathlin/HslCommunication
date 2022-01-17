@@ -29,13 +29,16 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox15 = new System.Windows.Forms.TextBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.textBox_router = new System.Windows.Forms.TextBox();
+			this.button1 = new System.Windows.Forms.Button();
+			this.label9 = new System.Windows.Forms.Label();
 			this.textBox16 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label23 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
@@ -80,13 +83,16 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox15);
+			this.panel1.Controls.Add(this.label8);
+			this.panel1.Controls.Add(this.textBox_router);
+			this.panel1.Controls.Add(this.button1);
+			this.panel1.Controls.Add(this.label9);
 			this.panel1.Controls.Add(this.textBox16);
 			this.panel1.Controls.Add(this.label4);
-			this.panel1.Controls.Add(this.textBox15);
 			this.panel1.Controls.Add(this.label23);
 			this.panel1.Controls.Add(this.label22);
 			this.panel1.Controls.Add(this.button2);
-			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
@@ -94,26 +100,8 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 51);
+			this.panel1.Size = new System.Drawing.Size(997, 56);
 			this.panel1.TabIndex = 0;
-			// 
-			// textBox16
-			// 
-			this.textBox16.Location = new System.Drawing.Point(481, 13);
-			this.textBox16.Name = "textBox16";
-			this.textBox16.Size = new System.Drawing.Size(105, 23);
-			this.textBox16.TabIndex = 11;
-			this.textBox16.Visible = false;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(423, 16);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(54, 17);
-			this.label4.TabIndex = 10;
-			this.label4.Text = "PortSlot";
-			this.label4.Visible = false;
 			// 
 			// textBox15
 			// 
@@ -122,6 +110,60 @@
 			this.textBox15.Size = new System.Drawing.Size(32, 23);
 			this.textBox15.TabIndex = 9;
 			this.textBox15.Text = "0";
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(411, 16);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(47, 17);
+			this.label8.TabIndex = 12;
+			this.label8.Text = "Router";
+			// 
+			// textBox_router
+			// 
+			this.textBox_router.Location = new System.Drawing.Point(469, 13);
+			this.textBox_router.Name = "textBox_router";
+			this.textBox_router.Size = new System.Drawing.Size(134, 23);
+			this.textBox_router.TabIndex = 13;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(609, 10);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(63, 28);
+			this.button1.TabIndex = 4;
+			this.button1.Text = "连接";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.ForeColor = System.Drawing.Color.DarkGray;
+			this.label9.Location = new System.Drawing.Point(401, 36);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(220, 17);
+			this.label9.TabIndex = 14;
+			this.label9.Text = "if use router, example: 1.15.2.18.1.12";
+			// 
+			// textBox16
+			// 
+			this.textBox16.Location = new System.Drawing.Point(853, 30);
+			this.textBox16.Name = "textBox16";
+			this.textBox16.Size = new System.Drawing.Size(134, 23);
+			this.textBox16.TabIndex = 11;
+			this.textBox16.Visible = false;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(795, 33);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(54, 17);
+			this.label4.TabIndex = 10;
+			this.label4.Text = "PortSlot";
+			this.label4.Visible = false;
 			// 
 			// label23
 			// 
@@ -150,16 +192,6 @@
 			this.button2.Text = "断开连接";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(609, 10);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(63, 28);
-			this.button1.TabIndex = 4;
-			this.button1.Text = "连接";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// textBox2
 			// 
@@ -205,15 +237,15 @@
 			this.panel2.Controls.Add(this.groupBox5);
 			this.panel2.Controls.Add(this.groupBox4);
 			this.panel2.Controls.Add(this.groupBox3);
-			this.panel2.Location = new System.Drawing.Point(3, 89);
+			this.panel2.Location = new System.Drawing.Point(3, 94);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 553);
+			this.panel2.Size = new System.Drawing.Size(997, 548);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
 			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 2);
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 3);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
 			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 240);
 			this.userControlReadWriteOp1.TabIndex = 5;
@@ -289,13 +321,15 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox4.Controls.Add(this.button4);
 			this.groupBox4.Controls.Add(this.textBox11);
 			this.groupBox4.Controls.Add(this.label14);
 			this.groupBox4.Controls.Add(this.button26);
 			this.groupBox4.Controls.Add(this.textBox13);
 			this.groupBox4.Controls.Add(this.label16);
-			this.groupBox4.Location = new System.Drawing.Point(3, 401);
+			this.groupBox4.Location = new System.Drawing.Point(3, 399);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(558, 145);
 			this.groupBox4.TabIndex = 3;
@@ -314,6 +348,8 @@
 			// 
 			// textBox11
 			// 
+			this.textBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.textBox11.Location = new System.Drawing.Point(63, 60);
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
@@ -551,5 +587,8 @@
 		private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.TextBox textBox_router;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label9;
 	}
 }

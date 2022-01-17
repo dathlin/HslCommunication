@@ -60,43 +60,6 @@ namespace HslCommunicationDemo
 		{
 		}
 
-		/// <summary>
-		/// 统一的读取结果的数据解析，显示
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="result"></param>
-		/// <param name="address"></param>
-		/// <param name="textBox"></param>
-		private void readResultRender<T>( OperateResult<T> result, string address, TextBox textBox )
-		{
-			if (result.IsSuccess)
-			{
-				textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {result.Content}{Environment.NewLine}" );
-			}
-			else
-			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Read Failed{Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
-			}
-		}
-
-		/// <summary>
-		/// 统一的数据写入的结果显示
-		/// </summary>
-		/// <param name="result"></param>
-		/// <param name="address"></param>
-		private void writeResultRender( OperateResult result, string address )
-		{
-			if (result.IsSuccess)
-			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
-			}
-			else
-			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Failed{Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
-			}
-		}
-
-
 		#region Connect And Close
 
 
@@ -111,7 +74,7 @@ namespace HslCommunicationDemo
 			
 			YRC1000Tcp = new YRCHighEthernet( textBox1.Text, port );
 			YRC1000Tcp.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
-			YRC1000Tcp.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+			//YRC1000Tcp.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 
 			try
 			{
@@ -316,70 +279,88 @@ namespace HslCommunicationDemo
 		private void button8_Click( object sender, EventArgs e )
 		{
 			// 字节变量读取
-			OperateResult<byte> read = YRC1000Tcp.ReadByteVariable( ushort.Parse( textBox5.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed: " + read.Message );
-			}
+			DemoUtils.ReadResultRender( YRC1000Tcp.ReadByteVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
 		}
 
 		private void button9_Click( object sender, EventArgs e )
 		{
 			// 整型读取
-			OperateResult<short> read = YRC1000Tcp.ReadIntegerVariable( ushort.Parse( textBox5.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed: " + read.Message );
-			}
+			DemoUtils.ReadResultRender( YRC1000Tcp.ReadIntegerVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
 		}
 
 		private void button10_Click( object sender, EventArgs e )
 		{
-			// 双整型读取
-			OperateResult<int> read = YRC1000Tcp.ReadDoubleIntegerVariable( ushort.Parse( textBox5.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed: " + read.Message );
-			}
+			// 双整形读取
+			DemoUtils.ReadResultRender( YRC1000Tcp.ReadDoubleIntegerVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
 		}
 
 		private void button11_Click( object sender, EventArgs e )
 		{
 			// 实数读取
-			OperateResult<float> read = YRC1000Tcp.ReadRealVariable( ushort.Parse( textBox5.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed: " + read.Message );
-			}
+			DemoUtils.ReadResultRender( YRC1000Tcp.ReadRealVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
 		}
 
 		private void button12_Click( object sender, EventArgs e )
 		{
 			// 字符串读取
-			OperateResult<string> read = YRC1000Tcp.ReadStringVariable( ushort.Parse( textBox5.Text ) );
-			if (read.IsSuccess)
+			DemoUtils.ReadResultRender( YRC1000Tcp.ReadStringVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+		}
+
+		private void button19_Click( object sender, EventArgs e )
+		{
+			// 字符串写入
+			DemoUtils.WriteResultRender( YRC1000Tcp.WriteStringVariable( ushort.Parse( textBox3.Text ), textBox6.Text ), textBox3.Text );
+		}
+
+		private void button20_Click( object sender, EventArgs e )
+		{
+			// 整形写入
+			try
 			{
-				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content;
+				DemoUtils.WriteResultRender( YRC1000Tcp.WriteIntegerVariable( ushort.Parse( textBox3.Text ), short.Parse( textBox6.Text ) ), textBox3.Text );
 			}
-			else
+			catch (Exception ex)
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				MessageBox.Show( "Write Failed: " + ex.Message );
+			}
+		}
+
+		private void button26_Click( object sender, EventArgs e )
+		{
+			// 双整型写入
+			try
+			{
+				DemoUtils.WriteResultRender( YRC1000Tcp.WriteDoubleIntegerVariable( ushort.Parse( textBox3.Text ), int.Parse( textBox6.Text ) ), textBox3.Text );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( "Write Failed: " + ex.Message );
+			}
+		}
+
+		private void button27_Click( object sender, EventArgs e )
+		{
+			// 实数写入
+			try
+			{
+				DemoUtils.WriteResultRender( YRC1000Tcp.WriteRealVariable( ushort.Parse( textBox3.Text ), float.Parse( textBox6.Text ) ), textBox3.Text );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( "Write Failed: " + ex.Message );
+			}
+		}
+
+		private void button28_Click( object sender, EventArgs e )
+		{
+			// 字节写入
+			try
+			{
+				DemoUtils.WriteResultRender( YRC1000Tcp.WriteByteVariable( ushort.Parse( textBox3.Text ), byte.Parse( textBox6.Text ) ), textBox3.Text );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( "Write Failed: " + ex.Message );
 			}
 		}
 
@@ -520,6 +501,7 @@ namespace HslCommunicationDemo
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
 		}
+
 	}
 	
 }
