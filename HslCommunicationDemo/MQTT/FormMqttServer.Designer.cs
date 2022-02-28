@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.button2 = new System.Windows.Forms.Button();
@@ -55,7 +56,7 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.button8 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -77,6 +78,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(993, 72);
 			this.panel1.TabIndex = 7;
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(208, 13);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(87, 21);
+			this.checkBox2.TabIndex = 10;
+			this.checkBox2.Text = "主题通配符";
+			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// checkBox3
 			// 
@@ -142,6 +153,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button8);
 			this.panel2.Controls.Add(this.listBox1);
 			this.panel2.Controls.Add(this.label5);
 			this.panel2.Controls.Add(this.label4);
@@ -218,7 +230,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(170, 180);
+			this.button6.Location = new System.Drawing.Point(159, 180);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(91, 28);
 			this.button6.TabIndex = 26;
@@ -244,7 +256,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(280, 180);
+			this.button5.Location = new System.Drawing.Point(256, 180);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(164, 28);
 			this.button5.TabIndex = 20;
@@ -355,15 +367,15 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// checkBox2
+			// button8
 			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(208, 13);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(87, 21);
-			this.checkBox2.TabIndex = 10;
-			this.checkBox2.Text = "主题通配符";
-			this.checkBox2.UseVisualStyleBackColor = true;
+			this.button8.Location = new System.Drawing.Point(489, 180);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(91, 28);
+			this.button8.TabIndex = 32;
+			this.button8.Text = "测试发布";
+			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.button8_Click);
 			// 
 			// FormMqttServer
 			// 
@@ -417,5 +429,6 @@
 		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.Button button8;
 	}
 }

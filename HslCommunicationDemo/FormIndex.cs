@@ -35,25 +35,24 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V10.5.0
-1. ABBWebApiClient: GetRobotTarget方法，返回的数据信息，增加q4数据信息。
-2. Modbus: 在modbus的派生类协议中，重写了modbus的地址转换的情况中，修复读写bool操作，因为地址中带小数点导致地址转换异常的bug。例如汇川AM系列读写QX3000.0 的bool值
-3. MelsecFxSerialHelper: 三菱编程口协议的检查和校验的方法，增加try...catch，在某些特殊的情况下，会导致异常，直接奔溃。
-4. NetSoftUpdateServer: 针对之前旧版的软件升级功能，增加30分钟的超时时间限制，如果30分钟后仍然没有更新完成，则自动移除会话。
-5. SiemensS7: S7的地址支持大小写，且都支持带X,B,D,W的地址，比如MD100, MW100, MX100.2
-6. OmronConnectedCipNet: 注册报文里的不通信超时修改为42分钟，读取short，及ushort数组时，按照994长度进行切割
-7. AllenBradleyPcccNet: 支持使用0F-AB的掩码写入功能，写入一个bool值到PLC中，PCCC虚拟服务器实现了这个AB功能码，可以虚拟测试。
-8. FanucInterfaceNet: 修复demo上读取WO数据时，地址偏移不正确的bug。
-9. Freedom: 串口，网口的自由通信协议增加委托CheckResponseStatus，可以自定义对报文结果进行校验，完善注释。
-10. DLT645: 优化数据接收部分的代码，如果数据完整，立即返回，数据前面兼容无用的字符数据。
-11. INetMessage: 消息类新增方法PependedUselesByteLength( byte[] headByte )并在DLT645OverTcp消息类重写，支持前置无效的字符。
-12. AllenBradleyNet：支持添加消息路由功能，默认不开启，实例化属性MessageRouter, 例如：1.15.2.18.1.1，支持在demo界面进行配置操作。
-13. AllenBradleyNet: 支持遍历全局变量和局部变量。新增StructTagEnumerator( AbTagItem structTag )方法遍历结构体的成员变量信息。
-14. Demo:AllenBradleyNet节点浏览的界面支持了查找数据，显示数据，结构体嵌套遍历，还支持显示当前的数据信息。
-15. ModbusTcpServer的RTU接收时间调整为500ms，如果报文完整立即接收结束。
-16. 本版本可能是春节前的最后一个版本了，提前祝大家新春快乐。
-17 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
-18. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V10.5.1
+1. AllenBradleyNet: Write( string address, bool value )写入bool方法优化，如果是类型代号0xD3的，地址前面需要增加 ""i="" 标记。
+2. PanasonicMewtocolServer: 松下虚拟PLC地址类型支持完善线圈支持X,Y,R,L, 字单位的整型支持 X,Y,R,L,D,LD,F，支持RCP及WCP指令离散读写线圈。
+3. PanasonicMewtocol：松下协议及其网口类的代码优化提炼共同代码，新增加离散bool地址的读写，传入多个地址，返回一个bool数组。
+4. AsciiControl: 在命名空间slCommunication.Core下面增加一个AsciiControl类，包含控制类ASCII常量定义，例如ENQ,NAK,STX,ETX等。
+5. MelsecFxLinksServer: 新增三菱的FxLinks计算机链接协议的虚拟PLC，支持串口和网口透传访问，支持格式1，4切换，支持是否和校验。
+6. MelsecFxLinks: 1. 同时支持了格式1，格式4，2. 支持了地址大于10000的时候使用QR,QW命令，3. 修复报文创建时数据长度及站号不是16进制的bug。
+7. KeyenceNanoServer: 修复启动串口时，和上位链路客户端通信时，一直返回通信校验错误的bug，现在针对CC指令和CQ指令都能正确的返回。
+8. keyenceNano: 基恩士上位链路协议的串口类和网口透传类记录报文的格式调整为ASCII码，这样更加直观。
+9. NetworDataServerBase: 添加GetNewNetMessage( )及ReadFromCoreServer方法，精简所有继承的子类虚拟PLC的服务器的代码。
+10. MelsecA1EServer: 修复三菱A1E协议服务器报文接收异常的bug，导致客户端读写数据不正常。
+11. FatekPrograme: 永宏编程口协议读取字按照64字长度自动切割，支持了RUN,STOP，读取状态接口方法，新增对应的虚拟服务器实现。
+12. SpecifiedCharacterMessage: 新增基于指定字符结尾的消息类，通过ProtocolHeadBytesLength属性变种而来，NetworkBase的ReceiveByMessage功能适配了SpecifiedCharacterMessage消息。
+13. Turck: 新增图尔克的Reader协议实现，支持对字节读写，bool读写，实现了虚拟服务器，通过了单元测试，主要用来和RFID进行通信。
+14. IEC104: 初步添加IEC104协议实现和解析，增加demo测试，但是目前还清楚怎么设计API和使用场景，等待继续优化，欢迎相关需求的人联系测试优化。
+15. DEMO: RSA加密解密的测试界面，支持对超长的数据进行加密解密操作。
+16. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
+17. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

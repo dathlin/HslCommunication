@@ -92,8 +92,10 @@ namespace HslCommunicationDemo
         private void button11_Click( object sender, EventArgs e )
         {
             // 停止服务
+            digitronServer?.CloseSerialSlave( );
             digitronServer?.ServerClose( );
             button1.Enabled = true;
+            button5.Enabled = true;
             button11.Enabled = false;
         }
 

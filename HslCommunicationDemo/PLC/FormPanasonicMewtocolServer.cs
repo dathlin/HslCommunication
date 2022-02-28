@@ -62,7 +62,7 @@ namespace HslCommunicationDemo
 
 
         private HslCommunication.Profinet.Panasonic.PanasonicMewtocolServer mewtocolServer;
-        private Timer timer;
+        //private Timer timer;
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -96,8 +96,10 @@ namespace HslCommunicationDemo
         private void button11_Click( object sender, EventArgs e )
         {
             // 停止服务
+            mewtocolServer?.CloseSerialSlave( );
             mewtocolServer?.ServerClose( );
             button1.Enabled = true;
+            button2.Enabled = true;
             button11.Enabled = false;
         }
 

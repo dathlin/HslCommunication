@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.5.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.5.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.5.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.5.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -268,6 +268,12 @@
     <Compile Include="Hsl\FormDtuServer.Designer.cs">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instrument\FormIEC104.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormIEC104.Designer.cs">
+      <DependentUpon>FormIEC104.cs</DependentUpon>
+    </Compile>
     <Compile Include="Instrument\FormRkcTemperatureControllerOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -346,6 +352,12 @@
     <Compile Include="PLC\AllenBrandly\FormPcccServer.Designer.cs">
       <DependentUpon>FormPcccServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\Fatek\FormFatekProgrameServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Fatek\FormFatekProgrameServer.Designer.cs">
+      <DependentUpon>FormFatekProgrameServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\FormDeltaSerialOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -406,22 +418,28 @@
     <Compile Include="PLC\FormFujiSPHServer.Designer.cs">
       <DependentUpon>FormFujiSPHServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMcA3CServer.cs">
+    <Compile Include="PLC\Melsec\FormFxLinksServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMcA3CServer.Designer.cs">
+    <Compile Include="PLC\Melsec\FormFxLinksServer.Designer.cs">
+      <DependentUpon>FormFxLinksServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Melsec\FormMcA3CServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Melsec\FormMcA3CServer.Designer.cs">
       <DependentUpon>FormMcA3CServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMcA1EServer.cs">
+    <Compile Include="PLC\Melsec\FormMcA1EServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMcA1EServer.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMcA1EServer.Designer.cs">
       <DependentUpon>FormMcA1EServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsecCipNet.cs">
+    <Compile Include="PLC\Melsec\FormMelsecCipNet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsecCipNet.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsecCipNet.Designer.cs">
       <DependentUpon>FormMelsecCipNet.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\AllenBrandly\FormAllenBrandlySLC.cs">
@@ -436,10 +454,10 @@
     <Compile Include="PLC\FormDeltaDvpSerialAscii.Designer.cs">
       <DependentUpon>FormDeltaDvpSerialAscii.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormFetchWriteServer.cs">
+    <Compile Include="PLC\Siemens\FormFetchWriteServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormFetchWriteServer.Designer.cs">
+    <Compile Include="PLC\Siemens\FormFetchWriteServer.Designer.cs">
       <DependentUpon>FormFetchWriteServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormDeltaDvpSerial.cs">
@@ -472,10 +490,10 @@
     <Compile Include="PLC\FormGeSRTPServer.Designer.cs">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLinkCModeServer.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLinkCModeServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLinkCModeServer.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLinkCModeServer.Designer.cs">
       <DependentUpon>FormOmronHostLinkCModeServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormYASKAWAMemobusTcpNet.cs">
@@ -484,16 +502,16 @@
     <Compile Include="PLC\FormYASKAWAMemobusTcpNet.Designer.cs">
       <DependentUpon>FormYASKAWAMemobusTcpNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLinkServer.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLinkServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLinkServer.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLinkServer.Designer.cs">
       <DependentUpon>FormOmronHostLinkServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormSiemensWebApi.cs">
+    <Compile Include="PLC\Siemens\FormSiemensWebApi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormSiemensWebApi.Designer.cs">
+    <Compile Include="PLC\Siemens\FormSiemensWebApi.Designer.cs">
       <DependentUpon>FormSiemensWebApi.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormXinJETcpNet.cs">
@@ -514,16 +532,16 @@
     <Compile Include="PLC\FormPanasonicMewtocolServer.Designer.cs">
       <DependentUpon>FormPanasonicMewtocolServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormSiemens200.cs">
+    <Compile Include="PLC\Siemens\FormSiemens200.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormSiemens200.Designer.cs">
+    <Compile Include="PLC\Siemens\FormSiemens200.Designer.cs">
       <DependentUpon>FormSiemens200.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormSiemensDTU.cs">
+    <Compile Include="PLC\Siemens\FormSiemensDTU.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormSiemensDTU.Designer.cs">
+    <Compile Include="PLC\Siemens\FormSiemensDTU.Designer.cs">
       <DependentUpon>FormSiemensDTU.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormYokogawaLinkServer.cs">
@@ -562,23 +580,35 @@
     <Compile Include="PLC\FormLsisXGKFEnet.Designer.cs">
       <DependentUpon>FormLsisXGKFEnet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMcUdpServer.cs">
+    <Compile Include="PLC\Melsec\FormMcUdpServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMcUdpServer.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMcUdpServer.Designer.cs">
       <DependentUpon>FormMcUdpServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLinkCModeOverTcp.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLinkCModeOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLinkCModeOverTcp.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLinkCModeOverTcp.Designer.cs">
       <DependentUpon>FormOmronHostLinkCModeOverTcp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronUdpServer.cs">
+    <Compile Include="PLC\Omron\FormOmronUdpServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronUdpServer.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronUdpServer.Designer.cs">
       <DependentUpon>FormOmronUdpServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Turck\FormTurckReaderNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Turck\FormTurckReaderNet.Designer.cs">
+      <DependentUpon>FormTurckReaderNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Turck\FormTurckReaderServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Turck\FormTurckReaderServer.Designer.cs">
+      <DependentUpon>FormTurckReaderServer.cs</DependentUpon>
     </Compile>
     <Compile Include="Robot\FormAbbServer.cs">
       <SubType>Form</SubType>
@@ -763,10 +793,10 @@
     <Compile Include="PLC\AllenBrandly\FormAllenBrandlyMicroCip.Designer.cs">
       <DependentUpon>FormAllenBrandlyMicroCip.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormFatekProgrameOverTcp.cs">
+    <Compile Include="PLC\Fatek\FormFatekProgrameOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormFatekProgrameOverTcp.Designer.cs">
+    <Compile Include="PLC\Fatek\FormFatekProgrameOverTcp.Designer.cs">
       <DependentUpon>FormFatekProgrameOverTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormFreedomSerial.cs">
@@ -793,10 +823,10 @@
     <Compile Include="PLC\FormFujiSPB.Designer.cs">
       <DependentUpon>FormFujiSPB.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormFatekPrograme.cs">
+    <Compile Include="PLC\Fatek\FormFatekPrograme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormFatekPrograme.Designer.cs">
+    <Compile Include="PLC\Fatek\FormFatekPrograme.Designer.cs">
       <DependentUpon>FormFatekPrograme.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormInovanceTcpNet.cs">
@@ -841,10 +871,10 @@
     <Compile Include="PLC\FormInovanceSerial.Designer.cs">
       <DependentUpon>FormInovanceSerial.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsec1EAscii.cs">
+    <Compile Include="PLC\Melsec\FormMelsec1EAscii.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsec1EAscii.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsec1EAscii.Designer.cs">
       <DependentUpon>FormMelsec1EAscii.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormFreedomTcpNet.cs">
@@ -853,70 +883,70 @@
     <Compile Include="PLC\FormFreedomTcpNet.Designer.cs">
       <DependentUpon>FormFreedomTcpNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsecRBinary.cs">
+    <Compile Include="PLC\Melsec\FormMelsecRBinary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsecRBinary.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsecRBinary.Designer.cs">
       <DependentUpon>FormMelsecRBinary.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronConnectedCip.cs">
+    <Compile Include="PLC\Omron\FormOmronConnectedCip.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronConnectedCip.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronConnectedCip.Designer.cs">
       <DependentUpon>FormOmronConnectedCip.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLinkCMode.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLinkCMode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLinkCMode.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLinkCMode.Designer.cs">
       <DependentUpon>FormOmronHostLinkCMode.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronServer.cs">
+    <Compile Include="PLC\Omron\FormOmronServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronServer.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronServer.Designer.cs">
       <DependentUpon>FormOmronServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsec3COverTcp.cs">
+    <Compile Include="PLC\Melsec\FormMelsec3COverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsec3COverTcp.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsec3COverTcp.Designer.cs">
       <DependentUpon>FormMelsec3COverTcp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsecAsciiUdp.cs">
+    <Compile Include="PLC\Melsec\FormMelsecAsciiUdp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsecAsciiUdp.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsecAsciiUdp.Designer.cs">
       <DependentUpon>FormMelsecAsciiUdp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsecUdp.cs">
+    <Compile Include="PLC\Melsec\FormMelsecUdp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsecUdp.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsecUdp.Designer.cs">
       <DependentUpon>FormMelsecUdp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsecLinksOverTcp.cs">
+    <Compile Include="PLC\Melsec\FormMelsecLinksOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsecLinksOverTcp.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsecLinksOverTcp.Designer.cs">
       <DependentUpon>FormMelsecLinksOverTcp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsecSerialOverTcp.cs">
+    <Compile Include="PLC\Melsec\FormMelsecSerialOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsecSerialOverTcp.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsecSerialOverTcp.Designer.cs">
       <DependentUpon>FormMelsecSerialOverTcp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronCip.cs">
+    <Compile Include="PLC\Omron\FormOmronCip.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronCip.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronCip.Designer.cs">
       <DependentUpon>FormOmronCip.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLinkOverTcp.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLinkOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLinkOverTcp.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLinkOverTcp.Designer.cs">
       <DependentUpon>FormOmronHostLinkOverTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormPanasonicBinary.cs">
@@ -925,10 +955,10 @@
     <Compile Include="PLC\FormPanasonicBinary.Designer.cs">
       <DependentUpon>FormPanasonicBinary.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsec3C.cs">
+    <Compile Include="PLC\Melsec\FormMelsec3C.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsec3C.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsec3C.Designer.cs">
       <DependentUpon>FormMelsec3C.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormKeyenceBinary.cs">
@@ -955,22 +985,22 @@
     <Compile Include="PLC\FormLsisCnet.Designer.cs">
       <DependentUpon>FormLsisCnet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronUdp.cs">
+    <Compile Include="PLC\Omron\FormOmronUdp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronUdp.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronUdp.Designer.cs">
       <DependentUpon>FormOmronUdp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLink.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLink.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmronHostLink.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmronHostLink.Designer.cs">
       <DependentUpon>FormOmronHostLink.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMcServer.cs">
+    <Compile Include="PLC\Melsec\FormMcServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMcServer.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMcServer.Designer.cs">
       <DependentUpon>FormMcServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormLSisServer.cs">
@@ -985,10 +1015,10 @@
     <Compile Include="PLC\FormPanasonicMewOverTcp.Designer.cs">
       <DependentUpon>FormPanasonicMewOverTcp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormS7Server.cs">
+    <Compile Include="PLC\Siemens\FormS7Server.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormS7Server.Designer.cs">
+    <Compile Include="PLC\Siemens\FormS7Server.Designer.cs">
       <DependentUpon>FormS7Server.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormLsisFEnet.cs">
@@ -1003,16 +1033,16 @@
     <Compile Include="PLC\FormBeckpffAdsNet.Designer.cs">
       <DependentUpon>FormBeckpffAdsNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormSiemensMPI.cs">
+    <Compile Include="PLC\Siemens\FormSiemensMPI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormSiemensMPI.Designer.cs">
+    <Compile Include="PLC\Siemens\FormSiemensMPI.Designer.cs">
       <DependentUpon>FormSiemensMPI.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormSiemensPPIOverTcp.cs">
+    <Compile Include="PLC\Siemens\FormSiemensPPIOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormSiemensPPIOverTcp.Designer.cs">
+    <Compile Include="PLC\Siemens\FormSiemensPPIOverTcp.Designer.cs">
       <DependentUpon>FormSiemensPPIOverTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\AllenBrandly\FormAllenBrandlyBrowser.cs">
@@ -1069,10 +1099,10 @@
     <Compile Include="Modbus\FormModbusAscii.Designer.cs">
       <DependentUpon>FormModbusAscii.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsec1EBinary.cs">
+    <Compile Include="PLC\Melsec\FormMelsec1EBinary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsec1EBinary.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsec1EBinary.Designer.cs">
       <DependentUpon>FormMelsec1EBinary.cs</DependentUpon>
     </Compile>
     <Compile Include="Modbus\FormModbusRtu.cs">
@@ -1087,16 +1117,16 @@
     <Compile Include="Modbus\FormModbusAlien.Designer.cs">
       <DependentUpon>FormModbusAlien.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsecLinks.cs">
+    <Compile Include="PLC\Melsec\FormMelsecLinks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsecLinks.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsecLinks.Designer.cs">
       <DependentUpon>FormMelsecLinks.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsecSerial.cs">
+    <Compile Include="PLC\Melsec\FormMelsecSerial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsecSerial.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsecSerial.Designer.cs">
       <DependentUpon>FormMelsecSerial.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormPanasonicMew.cs">
@@ -1105,10 +1135,10 @@
     <Compile Include="PLC\FormPanasonicMew.Designer.cs">
       <DependentUpon>FormPanasonicMew.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormOmron.cs">
+    <Compile Include="PLC\Omron\FormOmron.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormOmron.Designer.cs">
+    <Compile Include="PLC\Omron\FormOmron.Designer.cs">
       <DependentUpon>FormOmron.cs</DependentUpon>
     </Compile>
     <Compile Include="Control\FormPieChart.cs">
@@ -1129,16 +1159,16 @@
     <Compile Include="PLC\AllenBrandly\FormAllenBrandly.Designer.cs">
       <DependentUpon>FormAllenBrandly.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormSiemensPPI.cs">
+    <Compile Include="PLC\Siemens\FormSiemensPPI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormSiemensPPI.Designer.cs">
+    <Compile Include="PLC\Siemens\FormSiemensPPI.Designer.cs">
       <DependentUpon>FormSiemensPPI.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormSiemensFW.cs">
+    <Compile Include="PLC\Siemens\FormSiemensFW.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormSiemensFW.Designer.cs">
+    <Compile Include="PLC\Siemens\FormSiemensFW.Designer.cs">
       <DependentUpon>FormSiemensFW.cs</DependentUpon>
     </Compile>
     <Compile Include="Hsl\FormUdpNet.cs">
@@ -1159,10 +1189,10 @@
     <Compile Include="FormLoad.Designer.cs">
       <DependentUpon>FormLoad.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsecAscii.cs">
+    <Compile Include="PLC\Melsec\FormMelsecAscii.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsecAscii.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsecAscii.Designer.cs">
       <DependentUpon>FormMelsecAscii.cs</DependentUpon>
     </Compile>
     <Compile Include="Modbus\FormModbus.cs">
@@ -1171,16 +1201,16 @@
     <Compile Include="Modbus\FormModbus.Designer.cs">
       <DependentUpon>FormModbus.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormMelsecBinary.cs">
+    <Compile Include="PLC\Melsec\FormMelsecBinary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormMelsecBinary.Designer.cs">
+    <Compile Include="PLC\Melsec\FormMelsecBinary.Designer.cs">
       <DependentUpon>FormMelsecBinary.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormSiemens.cs">
+    <Compile Include="PLC\Siemens\FormSiemens.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormSiemens.Designer.cs">
+    <Compile Include="PLC\Siemens\FormSiemens.Designer.cs">
       <DependentUpon>FormSiemens.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -1403,6 +1433,9 @@
     <EmbeddedResource Include="Hsl\FormDtuServer.resx">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormIEC104.resx">
+      <DependentUpon>FormIEC104.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormRkcTemperatureControllerOverTcp.resx">
       <DependentUpon>FormRkcTemperatureControllerOverTcp.cs</DependentUpon>
     </EmbeddedResource>
@@ -1442,6 +1475,9 @@
     <EmbeddedResource Include="PLC\AllenBrandly\FormPcccServer.resx">
       <DependentUpon>FormPcccServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Fatek\FormFatekProgrameServer.resx">
+      <DependentUpon>FormFatekProgrameServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormDeltaSerialOverTcp.resx">
       <DependentUpon>FormDeltaSerialOverTcp.cs</DependentUpon>
     </EmbeddedResource>
@@ -1472,13 +1508,16 @@
     <EmbeddedResource Include="PLC\FormFujiSPHServer.resx">
       <DependentUpon>FormFujiSPHServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMcA3CServer.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormFxLinksServer.resx">
+      <DependentUpon>FormFxLinksServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Melsec\FormMcA3CServer.resx">
       <DependentUpon>FormMcA3CServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMcA1EServer.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMcA1EServer.resx">
       <DependentUpon>FormMcA1EServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsecCipNet.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsecCipNet.resx">
       <DependentUpon>FormMelsecCipNet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandlySLC.resx">
@@ -1487,7 +1526,7 @@
     <EmbeddedResource Include="PLC\FormDeltaDvpSerialAscii.resx">
       <DependentUpon>FormDeltaDvpSerialAscii.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormFetchWriteServer.resx">
+    <EmbeddedResource Include="PLC\Siemens\FormFetchWriteServer.resx">
       <DependentUpon>FormFetchWriteServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormDeltaDvpSerial.resx">
@@ -1505,16 +1544,16 @@
     <EmbeddedResource Include="PLC\FormGeSRTPServer.resx">
       <DependentUpon>FormGeSRTPServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronHostLinkCModeServer.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronHostLinkCModeServer.resx">
       <DependentUpon>FormOmronHostLinkCModeServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormYASKAWAMemobusTcpNet.resx">
       <DependentUpon>FormYASKAWAMemobusTcpNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronHostLinkServer.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronHostLinkServer.resx">
       <DependentUpon>FormOmronHostLinkServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormSiemensWebApi.resx">
+    <EmbeddedResource Include="PLC\Siemens\FormSiemensWebApi.resx">
       <DependentUpon>FormSiemensWebApi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormXinJETcpNet.resx">
@@ -1526,10 +1565,10 @@
     <EmbeddedResource Include="PLC\FormPanasonicMewtocolServer.resx">
       <DependentUpon>FormPanasonicMewtocolServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormSiemens200.resx">
+    <EmbeddedResource Include="PLC\Siemens\FormSiemens200.resx">
       <DependentUpon>FormSiemens200.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormSiemensDTU.resx">
+    <EmbeddedResource Include="PLC\Siemens\FormSiemensDTU.resx">
       <DependentUpon>FormSiemensDTU.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormYokogawaLinkServer.resx">
@@ -1550,14 +1589,20 @@
     <EmbeddedResource Include="PLC\FormLsisXGKFEnet.resx">
       <DependentUpon>FormLsisXGKFEnet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMcUdpServer.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMcUdpServer.resx">
       <DependentUpon>FormMcUdpServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronHostLinkCModeOverTcp.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronHostLinkCModeOverTcp.resx">
       <DependentUpon>FormOmronHostLinkCModeOverTcp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronUdpServer.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronUdpServer.resx">
       <DependentUpon>FormOmronUdpServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Turck\FormTurckReaderNet.resx">
+      <DependentUpon>FormTurckReaderNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Turck\FormTurckReaderServer.resx">
+      <DependentUpon>FormTurckReaderServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormAbbServer.resx">
       <DependentUpon>FormAbbServer.cs</DependentUpon>
@@ -1649,7 +1694,7 @@
     <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandlyMicroCip.resx">
       <DependentUpon>FormAllenBrandlyMicroCip.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormFatekProgrameOverTcp.resx">
+    <EmbeddedResource Include="PLC\Fatek\FormFatekProgrameOverTcp.resx">
       <DependentUpon>FormFatekProgrameOverTcp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormFreedomSerial.resx">
@@ -1664,7 +1709,7 @@
     <EmbeddedResource Include="PLC\FormFujiSPB.resx">
       <DependentUpon>FormFujiSPB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormFatekPrograme.resx">
+    <EmbeddedResource Include="PLC\Fatek\FormFatekPrograme.resx">
       <DependentUpon>FormFatekPrograme.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormInovanceTcpNet.resx">
@@ -1688,49 +1733,49 @@
     <EmbeddedResource Include="PLC\FormInovanceSerial.resx">
       <DependentUpon>FormInovanceSerial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsec1EAscii.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsec1EAscii.resx">
       <DependentUpon>FormMelsec1EAscii.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormFreedomTcpNet.resx">
       <DependentUpon>FormFreedomTcpNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsecRBinary.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsecRBinary.resx">
       <DependentUpon>FormMelsecRBinary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronConnectedCip.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronConnectedCip.resx">
       <DependentUpon>FormOmronConnectedCip.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronHostLinkCMode.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronHostLinkCMode.resx">
       <DependentUpon>FormOmronHostLinkCMode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronServer.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronServer.resx">
       <DependentUpon>FormOmronServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsec3COverTcp.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsec3COverTcp.resx">
       <DependentUpon>FormMelsec3COverTcp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsecAsciiUdp.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsecAsciiUdp.resx">
       <DependentUpon>FormMelsecAsciiUdp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsecUdp.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsecUdp.resx">
       <DependentUpon>FormMelsecUdp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsecLinksOverTcp.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsecLinksOverTcp.resx">
       <DependentUpon>FormMelsecLinksOverTcp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsecSerialOverTcp.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsecSerialOverTcp.resx">
       <DependentUpon>FormMelsecSerialOverTcp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronCip.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronCip.resx">
       <DependentUpon>FormOmronCip.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronHostLinkOverTcp.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronHostLinkOverTcp.resx">
       <DependentUpon>FormOmronHostLinkOverTcp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormPanasonicBinary.resx">
       <DependentUpon>FormPanasonicBinary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsec3C.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsec3C.resx">
       <DependentUpon>FormMelsec3C.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormKeyenceBinary.resx">
@@ -1745,13 +1790,13 @@
     <EmbeddedResource Include="PLC\FormLsisCnet.resx">
       <DependentUpon>FormLsisCnet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronUdp.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronUdp.resx">
       <DependentUpon>FormOmronUdp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmronHostLink.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmronHostLink.resx">
       <DependentUpon>FormOmronHostLink.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMcServer.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMcServer.resx">
       <DependentUpon>FormMcServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormLSisServer.resx">
@@ -1760,7 +1805,7 @@
     <EmbeddedResource Include="PLC\FormPanasonicMewOverTcp.resx">
       <DependentUpon>FormPanasonicMewOverTcp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormS7Server.resx">
+    <EmbeddedResource Include="PLC\Siemens\FormS7Server.resx">
       <DependentUpon>FormS7Server.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormLsisFEnet.resx">
@@ -1769,10 +1814,10 @@
     <EmbeddedResource Include="PLC\FormBeckpffAdsNet.resx">
       <DependentUpon>FormBeckpffAdsNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormSiemensMPI.resx">
+    <EmbeddedResource Include="PLC\Siemens\FormSiemensMPI.resx">
       <DependentUpon>FormSiemensMPI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormSiemensPPIOverTcp.resx">
+    <EmbeddedResource Include="PLC\Siemens\FormSiemensPPIOverTcp.resx">
       <DependentUpon>FormSiemensPPIOverTcp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandlyBrowser.resx">
@@ -1802,7 +1847,7 @@
     <EmbeddedResource Include="Modbus\FormModbusAscii.resx">
       <DependentUpon>FormModbusAscii.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsec1EBinary.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsec1EBinary.resx">
       <DependentUpon>FormMelsec1EBinary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modbus\FormModbusRtu.resx">
@@ -1811,16 +1856,16 @@
     <EmbeddedResource Include="Modbus\FormModbusAlien.resx">
       <DependentUpon>FormModbusAlien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsecLinks.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsecLinks.resx">
       <DependentUpon>FormMelsecLinks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsecSerial.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsecSerial.resx">
       <DependentUpon>FormMelsecSerial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormPanasonicMew.resx">
       <DependentUpon>FormPanasonicMew.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormOmron.resx">
+    <EmbeddedResource Include="PLC\Omron\FormOmron.resx">
       <DependentUpon>FormOmron.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\FormPieChart.resx">
@@ -1832,10 +1877,10 @@
     <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandly.resx">
       <DependentUpon>FormAllenBrandly.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormSiemensPPI.resx">
+    <EmbeddedResource Include="PLC\Siemens\FormSiemensPPI.resx">
       <DependentUpon>FormSiemensPPI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormSiemensFW.resx">
+    <EmbeddedResource Include="PLC\Siemens\FormSiemensFW.resx">
       <DependentUpon>FormSiemensFW.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormUdpNet.resx">
@@ -1847,16 +1892,16 @@
     <EmbeddedResource Include="FormLoad.resx">
       <DependentUpon>FormLoad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsecAscii.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsecAscii.resx">
       <DependentUpon>FormMelsecAscii.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modbus\FormModbus.resx">
       <DependentUpon>FormModbus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormMelsecBinary.resx">
+    <EmbeddedResource Include="PLC\Melsec\FormMelsecBinary.resx">
       <DependentUpon>FormMelsecBinary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormSiemens.resx">
+    <EmbeddedResource Include="PLC\Siemens\FormSiemens.resx">
       <DependentUpon>FormSiemens.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -1951,6 +1996,8 @@
     <Content Include="bitbug_favicon.ico" />
     <None Include="img\rkc.png" />
     <None Include="img\vigor.png" />
+    <None Include="img\iec.png" />
+    <None Include="img\Turck.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

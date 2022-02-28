@@ -763,6 +763,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap iec {
+            get {
+                object obj = ResourceManager.GetObject("iec", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap image {
             get {
                 object obj = ResourceManager.GetObject("image", resourceCulture);
@@ -1536,6 +1546,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap ttf {
             get {
                 object obj = ResourceManager.GetObject("ttf", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Turck {
+            get {
+                object obj = ResourceManager.GetObject("Turck", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

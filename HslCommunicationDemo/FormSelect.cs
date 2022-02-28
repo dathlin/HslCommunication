@@ -67,6 +67,8 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "yamatake",              Properties.Resources.Yamatake );          // 34
 			imageList.Images.Add( "rkc",                   Properties.Resources.rkc );               // 35
 			imageList.Images.Add( "vigor",                 Properties.Resources.vigor );             // 36
+			imageList.Images.Add( "iec",                   Properties.Resources.iec );               // 37
+			imageList.Images.Add( "turck",                 Properties.Resources.Turck );             // 38
 
 
 			treeView1.ImageList = imageList;
@@ -414,6 +416,7 @@ namespace HslCommunicationDemo
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Serial OverTcp",   8, typeof( FormMelsecSerialOverTcp ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Links【485】",     8, typeof( FormMelsecLinks ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Links OverTcp",    8, typeof( FormMelsecLinksOverTcp ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "FxLinks Server",      8, typeof( FormFxLinksServer ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C (串口)",         8, typeof( FormMelsec3C ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C OverTcp",        8, typeof( FormMelsec3COverTcp ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C Server",         8, typeof( FormMcA3CServer ) ) );
@@ -547,6 +550,7 @@ namespace HslCommunicationDemo
 			TreeNode fatekNode = new TreeNode( "Fatek Plc[永宏]", 22, 22 );
 			fatekNode.Nodes.Add( GetTreeNodeByIndex( "programe [编程口]", 22, typeof( FormFatekPrograme ) ) );
 			fatekNode.Nodes.Add( GetTreeNodeByIndex( "programe OverTcp", 22, typeof( FormFatekProgrameOverTcp ) ) );
+			fatekNode.Nodes.Add( GetTreeNodeByIndex( "programe Server", 22, typeof( FormFatekProgrameServer ) ) );
 			treeView1.Nodes.Add( fatekNode );
 
 			// Vigor 丰炜
@@ -683,8 +687,10 @@ namespace HslCommunicationDemo
 			treeView1.Nodes.Add( hslNode );
 
 			// 扫码软件
-			TreeNode barCodeNode = new TreeNode( "BarCode[扫码]", 16, 16 );
+			TreeNode barCodeNode = new TreeNode( "Bar/RFID[扫码及RFID]", 16, 16 );
 			barCodeNode.Nodes.Add( GetTreeNodeByIndex( "Sick", 16, typeof( BarCode.FormSickBarCode ) ) );
+			barCodeNode.Nodes.Add( GetTreeNodeByIndex( "Turck Reader", 38, typeof( FormTurckReaderNet ) ) );
+			barCodeNode.Nodes.Add( GetTreeNodeByIndex( "Turck Reader Server", 38, typeof( FormTurckReaderServer ) ) );
 			treeView1.Nodes.Add( barCodeNode );
 
 			// Instrument 仪器仪表
@@ -694,6 +700,7 @@ namespace HslCommunicationDemo
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645 OverTcp" ) { Tag = typeof( FormDLT645OverTcp ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "光源控制器" ) { Tag = typeof( Light.FormShineInLight ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DTSU6606 [德力西电表]" ) { Tag = typeof( FormDTSU6606 ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "IEC104 [电力规约]", 37, 37 ) { Tag = typeof( FormIEC104 ) } );
 			treeView1.Nodes.Add( instrumentNode );
 
 			// 托利多电子秤Toledo

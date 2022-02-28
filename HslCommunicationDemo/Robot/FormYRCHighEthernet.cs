@@ -64,7 +64,7 @@ namespace HslCommunicationDemo
 
 
 
-		private async void button1_Click( object sender, EventArgs e )
+		private void button1_Click( object sender, EventArgs e )
 		{
 			if(!int.TryParse(textBox2.Text,out int port))
 			{

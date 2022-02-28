@@ -116,6 +116,23 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button8_Click( object sender, EventArgs e )
+		{
+			button8.Enabled = false;
+			timerPublish = new System.Threading.Timer( new System.Threading.TimerCallback( TimerPublish ), null, 0, 1000 );
+		}
+
+		private System.Threading.Timer timerPublish;
+		private int publishTick = 0;
+		private void TimerPublish( object obj )
+		{
+			mqttServer.PublishTopicPayload( "A", Encoding.UTF8.GetBytes( "A" + publishTick ) );
+			mqttServer.PublishTopicPayload( "B", Encoding.UTF8.GetBytes( "B" + publishTick ) );
+			mqttServer.PublishTopicPayload( "C", Encoding.UTF8.GetBytes( "C" + publishTick ) );
+			mqttServer.PublishTopicPayload( "D", Encoding.UTF8.GetBytes( "D" + publishTick ) );
+			publishTick++;
+		}
+
 		private void MqttServer_OnClientConnected( MqttSession session )
 		{
 			if (checkBox3.Checked)
@@ -410,6 +427,7 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 
 

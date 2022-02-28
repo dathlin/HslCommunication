@@ -34,7 +34,7 @@ namespace HslCommunicationDemo
 			if(!HslCommunication.Authorization.SetAuthorizationCode( "Your Code" ))
 			{
 				// active failed
-				// MessageBox.Show( "授权失败！当前程序只能使用8小时！" );
+				// MessageBox.Show( "授权失败！当前程序只能使用24小时！" );
 				// return;
 			}
 			else

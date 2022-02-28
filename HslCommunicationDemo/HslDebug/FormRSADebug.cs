@@ -209,9 +209,9 @@ namespace HslCommunicationDemo
 
 			byte[] jiami = null;
 			if (radioButton1.Checked)
-				jiami = rsa.Encrypt( textBox_jiami_input.Text.ToHexBytes( ), false );
+				jiami = rsa.EncryptLargeData( textBox_jiami_input.Text.ToHexBytes( ) );
 			else
-				jiami = rsa.Encrypt( Encoding.UTF8.GetBytes( textBox_jiami_input.Text ), false );
+				jiami = rsa.EncryptLargeData( Encoding.UTF8.GetBytes( textBox_jiami_input.Text ) );
 
 			textBox_jiami_result.Text = jiami.ToHexString( ' ' );
 			label9.Text = "" + jiami.Length;

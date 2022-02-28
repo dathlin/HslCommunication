@@ -182,7 +182,7 @@
 			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
-			this.userControlHead1.ProtocolInfo = "Fuji SPH";
+			this.userControlHead1.ProtocolInfo = "KV 上位链路协议";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);

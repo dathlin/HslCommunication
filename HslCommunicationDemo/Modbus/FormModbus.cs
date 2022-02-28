@@ -69,6 +69,7 @@ namespace HslCommunicationDemo
 				label2.Text = "Pwd";
 				label5.Text = "When the server is a server built by hsl, login with account name and password is supported.";
 
+				checkBox2.Text = "Check Message ID";
 			}
 		}
 
@@ -124,6 +125,7 @@ namespace HslCommunicationDemo
 			busTcpClient?.ConnectClose( );
 			busTcpClient = new ModbusTcpNet( textBox1.Text, port, station );
 			busTcpClient.AddressStartWithZero = checkBox1.Checked;
+			busTcpClient.IsCheckMessageId = checkBox2.Checked;
 
 			busTcpClient.SetLoginAccount( textBox14.Text, textBox12.Text );
 

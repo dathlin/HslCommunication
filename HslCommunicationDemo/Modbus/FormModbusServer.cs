@@ -142,6 +142,7 @@ namespace HslCommunicationDemo
             busTcpServer?.CloseSerialSlave( );
             busTcpServer?.ServerClose( );
             button1.Enabled = true;
+            button5.Enabled = true;
             button11.Enabled = false;
         }
 

@@ -99,6 +99,7 @@ namespace HslCommunicationDemo
             // 停止服务
             sPBServer?.ServerClose( );
             button1.Enabled = true;
+            button5.Enabled = true;
             button11.Enabled = false;
         }
 
