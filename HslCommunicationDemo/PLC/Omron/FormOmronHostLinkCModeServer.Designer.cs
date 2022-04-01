@@ -29,7 +29,6 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.button5 = new System.Windows.Forms.Button();
@@ -42,6 +41,8 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label4 = new System.Windows.Forms.Label();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -51,7 +52,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.label2);
+			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.comboBox1);
 			this.panel1.Controls.Add(this.button5);
@@ -64,18 +66,8 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 46);
+			this.panel1.Size = new System.Drawing.Size(997, 56);
 			this.panel1.TabIndex = 0;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.ForeColor = System.Drawing.Color.Gray;
-			this.label2.Location = new System.Drawing.Point(441, 27);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(72, 17);
-			this.label2.TabIndex = 35;
-			this.label2.Text = "9600-7-E-1";
 			// 
 			// label1
 			// 
@@ -168,10 +160,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(3, 84);
+			this.panel2.Location = new System.Drawing.Point(3, 94);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 558);
+			this.panel2.Size = new System.Drawing.Size(997, 548);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -182,7 +174,7 @@
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 3);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 550);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 540);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -198,6 +190,23 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(430, 32);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(44, 17);
+			this.label4.TabIndex = 36;
+			this.label4.Text = "参数：";
+			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(481, 30);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(177, 23);
+			this.textBox1.TabIndex = 37;
+			this.textBox1.Text = "9600-7-E-1";
 			// 
 			// FormOmronHostLinkCModeServer
 			// 
@@ -237,6 +246,7 @@
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Label label4;
 	}
 }

@@ -53,6 +53,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.button5 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -107,7 +108,7 @@
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(61, 23);
 			this.textBox2.TabIndex = 44;
-			this.textBox2.Text = "102";
+			this.textBox2.Text = "2000";
 			// 
 			// label3
 			// 
@@ -224,6 +225,7 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.button5);
 			this.groupBox3.Controls.Add(this.textBox10);
 			this.groupBox3.Controls.Add(this.label13);
 			this.groupBox3.Controls.Add(this.button25);
@@ -316,6 +318,16 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(387, 27);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(82, 28);
+			this.button5.TabIndex = 11;
+			this.button5.Text = "Plc Type";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
 			// FormSiemensPPIOverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -369,5 +381,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox4;
 		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
+		private System.Windows.Forms.Button button5;
 	}
 }

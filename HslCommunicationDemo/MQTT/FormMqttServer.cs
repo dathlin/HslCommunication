@@ -315,13 +315,30 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		[HslMqttApi( Description = "写入设备的多个学生信息\r\naddress: 设备的地址 length: 读取的数据长度" )]
+		public OperateResult<string> WriteMultiStudentResult( string address, short length, Student[] student )
+		{
+			if (random.Next( 1000 ) < 500)
+			{
+				if (student == null) return new OperateResult<string>( "student is null" );
+				for (int i = 0; i < student.Length; i++)
+				{
+
+				}
+				return OperateResult.CreateSuccessResult( $"学生信息写入成功，数组数量：{student.Length} ID列表:{student.Select( m => m.ID ).ToArray( ).ToArrayString( )}" );
+			}
+			else
+			{
+				return new OperateResult<string>( "写入失败" );
+			}
+		}
+
 		[HslMqttApi( Description = "写入设备的学生信息\r\naddress: 设备的地址 length: 读取的数据长度" )]
 		public OperateResult<string> WriteStudentResult( string address, short length, Student student )
 		{
 			if (random.Next( 1000 ) < 500)
 			{
-				if(student== null)
-					return new OperateResult<string>( "student is null" );
+				if(student== null) return new OperateResult<string>( "student is null" );
 				return OperateResult.CreateSuccessResult( $"学生信息写入成功：ID:{student.ID} Name:{student.Name}" );
 			}
 			else

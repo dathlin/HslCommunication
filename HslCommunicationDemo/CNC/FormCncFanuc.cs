@@ -30,6 +30,8 @@ namespace HslCommunicationDemo
 
 			textBox7.Text = System.IO.Path.Combine( Application.StartupPath, "O6.txt" );
 
+			comboBox_readdata.SelectedIndex = 0;
+			comboBox_writedata.SelectedIndex = 0;
 			Language( Program.Language );
 		}
 
@@ -457,8 +459,13 @@ namespace HslCommunicationDemo
 
 		private void button23_Click( object sender, EventArgs e )
 		{
-			// 读R数据
-			OperateResult<byte[]> read = fanuc.ReadRData( int.Parse( textBox4.Text ), int.Parse( textBox5.Text ) );
+			// 读数据
+			OperateResult<byte[]> read = null;
+			if (comboBox_readdata.SelectedIndex == 0)
+				read = fanuc.ReadRData( int.Parse( textBox4.Text ), int.Parse( textBox5.Text ) );
+			if (comboBox_readdata.SelectedIndex == 1)
+				read = fanuc.ReadGData( int.Parse( textBox4.Text ), int.Parse( textBox5.Text ) );
+
 			if (read.IsSuccess)
 			{
 				textBox8.Text = read.Content.ToHexString( ' ' );
@@ -469,6 +476,24 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button31_Click( object sender, EventArgs e )
+		{
+			// 写数据
+			OperateResult write = null;
+			if (comboBox_writedata.SelectedIndex == 0) // R数据
+				write = fanuc.WriteRData( int.Parse( textBox10.Text ), textBox13.Text.ToHexBytes( ) );
+			if (comboBox_writedata.SelectedIndex == 1) // PMC数据
+				write = fanuc.WriteGData( int.Parse( textBox10.Text ), textBox13.Text.ToHexBytes( ) );
+
+			if (write.IsSuccess)
+			{
+				MessageBox.Show( "Write Success!" );
+			}
+			else
+			{
+				MessageBox.Show( "Write Failed:" + write.ToMessageShowString( ) );
+			}
+		}
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );

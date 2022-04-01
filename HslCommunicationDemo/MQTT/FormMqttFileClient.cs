@@ -500,7 +500,8 @@ namespace HslCommunicationDemo
 		{
 			// 获取目标的所有文件的大小
 			OperateResult<GroupFileInfo[]> result = await mqttSyncClient.GetSubGroupFileInfosAsync(
-				textBox6.Text                                      // 类别信息，例如 Files/Personal/Admin
+				textBox6.Text,                                      // 类别信息，例如 Files/Personal/Admin
+				true
 				);
 			if (result.IsSuccess)
 			{
@@ -512,6 +513,7 @@ namespace HslCommunicationDemo
 				MessageBox.Show( "获取目录大小失败，原因：" + result.ToMessageShowString( ) );
 			}
 		}
+
 		#endregion
 
 		#region DownloadPathFolders

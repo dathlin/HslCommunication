@@ -38,6 +38,7 @@ namespace HslCommunicationDemo
                 button11.Text = "Close Server";
                 label11.Text = "This server is not a strict mc protocol and only supports perfect communication with HSL components.";
                 label4.Text = "Station:";
+                label5.Text = "Para:";
                 label1.Text = "Format:";
             }
 
@@ -101,7 +102,7 @@ namespace HslCommunicationDemo
         {
 			if (fxLinksServer != null)
 			{
-                fxLinksServer.StartSerialSlave( comboBox_serialPort.SelectedItem.ToString( ) );
+                fxLinksServer.StartSerialSlave( comboBox_serialPort.SelectedItem.ToString( ) + "-" + textBox1.Text );
                 button5.Enabled = false;
             }
         }

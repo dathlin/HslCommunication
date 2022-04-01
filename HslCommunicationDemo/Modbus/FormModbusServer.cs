@@ -187,6 +187,7 @@ namespace HslCommunicationDemo
             {
                 try
                 {
+                    busTcpServer.SerialReceiveAtleastTime = Convert.ToInt32( textBox3.Text );
                     busTcpServer.StartSerialSlave( textBox10.Text );
                     button5.Enabled = false;
                 }

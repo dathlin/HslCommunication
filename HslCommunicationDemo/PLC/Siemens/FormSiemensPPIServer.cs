@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using HslCommunication.Profinet.FATEK;
+using HslCommunication.Profinet.Siemens;
 using HslCommunication;
 using HslCommunication.ModBus;
 using System.Threading;
@@ -15,9 +15,9 @@ using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormFatekProgrameServer : HslFormContent
+    public partial class FormSiemensPPIServer : HslFormContent
     {
-        public FormFatekProgrameServer( )
+        public FormSiemensPPIServer( )
         {
             InitializeComponent( );
         }
@@ -26,38 +26,28 @@ namespace HslCommunicationDemo
         {
             panel2.Enabled = false;
 
-            checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
-
             if (Program.Language == 2)
             {
-                Text = "Fatek Virtual Server[supports TCP and Serial";
+                Text = "Siemens PPI Server[supports serial and tcp]";
                 label3.Text = "port:";
                 button1.Text = "Start Server";
                 button11.Text = "Close Server";
 
                 label14.Text = "Com:";
                 button5.Text = "Open Com";
-                checkBox3.Text = "str-reverse";
             }
         }
 
-        private void CheckBox3_CheckedChanged( object sender, EventArgs e )
-        {
-            if (fatekServer != null)
-            {
-                //fatekServer.IsStringReverse = checkBox3.Checked;
-            }
-        }
         
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
         {
-            fatekServer?.ServerClose( );
+            ppiServer?.ServerClose( );
         }
 
         #region Server Start
 
 
-        private FatekProgramServer fatekServer;
+        private SiemensPPIServer ppiServer;
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -69,15 +59,13 @@ namespace HslCommunicationDemo
 
             try
             {
-                fatekServer = new FatekProgramServer( );                       // 实例化对象
-                fatekServer.Station = byte.Parse( textBox1.Text );
-                fatekServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
-                fatekServer.OnDataReceived += BusTcpServer_OnDataReceived;
+                ppiServer                = new SiemensPPIServer( );                       // 实例化对象
+                ppiServer.Station        = byte.Parse( textBox1.Text );
+                ppiServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
+                ppiServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
-                //sPBServer.IsStringReverse = checkBox3.Checked;
-
-                userControlReadWriteServer1.SetReadWriteServer( fatekServer, "D100" );
-                fatekServer.ServerStart( port );
+                userControlReadWriteServer1.SetReadWriteServer( ppiServer, "M100" );
+                ppiServer.ServerStart( port );
 
                 button1.Enabled = false;
                 panel2.Enabled = true;
@@ -93,7 +81,7 @@ namespace HslCommunicationDemo
         private void button11_Click( object sender, EventArgs e )
         {
             // 停止服务
-            fatekServer?.ServerClose( );
+            ppiServer?.ServerClose( );
             button1.Enabled = true;
             button5.Enabled = true;
             button11.Enabled = false;
@@ -122,11 +110,11 @@ namespace HslCommunicationDemo
         private void button5_Click( object sender, EventArgs e )
         {
             // 启动串口
-            if (fatekServer != null)
+            if (ppiServer != null)
             {
                 try
                 {
-                    fatekServer.StartSerialSlave( textBox10.Text );
+                    ppiServer.StartSerialSlave( textBox10.Text );
                     button5.Enabled = false;
                 }
                 catch(Exception ex)
@@ -145,7 +133,6 @@ namespace HslCommunicationDemo
         {
             element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
             element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
-            element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
         }
 
         public override void LoadXmlParameter( XElement element )
@@ -153,7 +140,6 @@ namespace HslCommunicationDemo
             base.LoadXmlParameter( element );
             textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
             textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-            checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
         }
 
         private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

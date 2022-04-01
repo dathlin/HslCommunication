@@ -68,7 +68,7 @@
 			// cboxModel
 			// 
 			this.cboxModel.FormattingEnabled = true;
-			this.cboxModel.Location = new System.Drawing.Point(610, 8);
+			this.cboxModel.Location = new System.Drawing.Point(704, 8);
 			this.cboxModel.Name = "cboxModel";
 			this.cboxModel.Size = new System.Drawing.Size(83, 25);
 			this.cboxModel.TabIndex = 33;
@@ -76,7 +76,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(548, 12);
+			this.label2.Location = new System.Drawing.Point(642, 12);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(60, 17);
 			this.label2.TabIndex = 32;
@@ -84,7 +84,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(441, 7);
+			this.button5.Location = new System.Drawing.Point(535, 7);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(91, 28);
 			this.button5.TabIndex = 31;
@@ -96,9 +96,9 @@
 			// 
 			this.textBox10.Location = new System.Drawing.Point(371, 10);
 			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(61, 23);
+			this.textBox10.Size = new System.Drawing.Size(158, 23);
 			this.textBox10.TabIndex = 30;
-			this.textBox10.Text = "COM4";
+			this.textBox10.Text = "COM4-9600-8-N-1";
 			// 
 			// label14
 			// 

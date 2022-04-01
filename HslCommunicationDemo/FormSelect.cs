@@ -438,6 +438,7 @@ namespace HslCommunicationDemo
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "PPI OverTcp",        14, typeof( FormSiemensPPIOverTcp ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "MPI",                14, typeof( FormSiemensMPI ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7 Virtual Server",  14, typeof( FormS7Server ) ) );
+			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7 PPI Server",      14, typeof( FormSiemensPPIServer ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Fetch Write Server", 14, typeof( FormFetchWriteServer ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Siemens DTU",        14, typeof( FormSiemensDTU ) ) );
 			treeView1.Nodes.Add( siemensNode );
@@ -575,7 +576,9 @@ namespace HslCommunicationDemo
 			TreeNode xinjeNode = new TreeNode( "XinJE Plc[信捷]", 30, 30 );
 			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE Serial", 30, typeof( FormXinJEXCSerial ) ) );
 			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE Serial OverTcp", 30, typeof( FormXinJESerialOverTcp ) ) );
-			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE TCP", 30, typeof( FormXinJETcpNet ) ) );
+			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE TCP [Modbus]", 30, typeof( FormXinJETcpNet ) ) );
+			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE Server", 30, typeof( FormXinJEInternalServer ) ) );
+			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE TCP[专用]", 30, typeof( FormXinJEInternalTcp ) ) );
 			treeView1.Nodes.Add( xinjeNode );
 
 			// Yokogawa Plc
@@ -648,6 +651,10 @@ namespace HslCommunicationDemo
 			TreeNode cncNode = new TreeNode( "CNC[数控机床]" );
 			cncNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc 0i [Test]", 25, typeof( FormCncFanuc ) ) );
 			treeView1.Nodes.Add( cncNode );
+
+			TreeNode secsNode = new TreeNode( "Secs [半导体]" );
+			secsNode.Nodes.Add( new TreeNode( "Secs Gem" ) { Tag = typeof( FormSecsGem ) } );
+			treeView1.Nodes.Add( secsNode );
 
 			TreeNode sensorNode = new TreeNode( "Sensor[传感器]" );
 			sensorNode.Nodes.Add( new TreeNode( "Vibration[捷杰振动]" ) { Tag = typeof( FormVibrationSensorClient ) } );

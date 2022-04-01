@@ -268,6 +268,18 @@ namespace HslCommunicationDemo
 		}
 
 
+		private void button5_Click( object sender, EventArgs e )
+		{
+			OperateResult<string> read = siemensPPI.ReadPlcType( );
+			if (read.IsSuccess)
+			{
+				textBox10.Text = read.Content;
+			}
+			else
+			{
+				MessageBox.Show( read.Message );
+			}
+		}
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
@@ -293,5 +305,6 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

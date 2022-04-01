@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.5.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.5.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=10.6.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.10.6.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -454,6 +454,12 @@
     <Compile Include="PLC\FormDeltaDvpSerialAscii.Designer.cs">
       <DependentUpon>FormDeltaDvpSerialAscii.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\Secs\FormSecsGem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Secs\FormSecsGem.Designer.cs">
+      <DependentUpon>FormSecsGem.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Siemens\FormFetchWriteServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -508,22 +514,40 @@
     <Compile Include="PLC\Omron\FormOmronHostLinkServer.Designer.cs">
       <DependentUpon>FormOmronHostLinkServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\Siemens\FormSiemensPPIServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Siemens\FormSiemensPPIServer.Designer.cs">
+      <DependentUpon>FormSiemensPPIServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Siemens\FormSiemensWebApi.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PLC\Siemens\FormSiemensWebApi.Designer.cs">
       <DependentUpon>FormSiemensWebApi.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormXinJETcpNet.cs">
+    <Compile Include="PLC\XINJE\FormXinJEInternalTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormXinJETcpNet.Designer.cs">
+    <Compile Include="PLC\XINJE\FormXinJEInternalTcp.Designer.cs">
+      <DependentUpon>FormXinJEInternalTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\XINJE\FormXinJEInternalServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\XINJE\FormXinJEInternalServer.Designer.cs">
+      <DependentUpon>FormXinJEInternalServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\XINJE\FormXinJETcpNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\XINJE\FormXinJETcpNet.Designer.cs">
       <DependentUpon>FormXinJETcpNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormXinJESerialOverTcp.cs">
+    <Compile Include="PLC\XINJE\FormXinJESerialOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormXinJESerialOverTcp.Designer.cs">
+    <Compile Include="PLC\XINJE\FormXinJESerialOverTcp.Designer.cs">
       <DependentUpon>FormXinJESerialOverTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormPanasonicMewtocolServer.cs">
@@ -556,10 +580,10 @@
     <Compile Include="PLC\FormYokogawaLinkTcp.Designer.cs">
       <DependentUpon>FormYokogawaLinkTcp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormXinJEXCSerial.cs">
+    <Compile Include="PLC\XINJE\FormXinJEXCSerial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormXinJEXCSerial.Designer.cs">
+    <Compile Include="PLC\XINJE\FormXinJEXCSerial.Designer.cs">
       <DependentUpon>FormXinJEXCSerial.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormKeyenceSR2000.cs">
@@ -1526,6 +1550,9 @@
     <EmbeddedResource Include="PLC\FormDeltaDvpSerialAscii.resx">
       <DependentUpon>FormDeltaDvpSerialAscii.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Secs\FormSecsGem.resx">
+      <DependentUpon>FormSecsGem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Siemens\FormFetchWriteServer.resx">
       <DependentUpon>FormFetchWriteServer.cs</DependentUpon>
     </EmbeddedResource>
@@ -1553,13 +1580,22 @@
     <EmbeddedResource Include="PLC\Omron\FormOmronHostLinkServer.resx">
       <DependentUpon>FormOmronHostLinkServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Siemens\FormSiemensPPIServer.resx">
+      <DependentUpon>FormSiemensPPIServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Siemens\FormSiemensWebApi.resx">
       <DependentUpon>FormSiemensWebApi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormXinJETcpNet.resx">
+    <EmbeddedResource Include="PLC\XINJE\FormXinJEInternalTcp.resx">
+      <DependentUpon>FormXinJEInternalTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\XINJE\FormXinJEInternalServer.resx">
+      <DependentUpon>FormXinJEInternalServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\XINJE\FormXinJETcpNet.resx">
       <DependentUpon>FormXinJETcpNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormXinJESerialOverTcp.resx">
+    <EmbeddedResource Include="PLC\XINJE\FormXinJESerialOverTcp.resx">
       <DependentUpon>FormXinJESerialOverTcp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormPanasonicMewtocolServer.resx">
@@ -1577,7 +1613,7 @@
     <EmbeddedResource Include="PLC\FormYokogawaLinkTcp.resx">
       <DependentUpon>FormYokogawaLinkTcp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormXinJEXCSerial.resx">
+    <EmbeddedResource Include="PLC\XINJE\FormXinJEXCSerial.resx">
       <DependentUpon>FormXinJEXCSerial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormKeyenceSR2000.resx">

@@ -29,7 +29,6 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.label2 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.button11 = new System.Windows.Forms.Button();
@@ -52,7 +51,6 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.button11);
@@ -69,16 +67,6 @@
 			this.panel1.Size = new System.Drawing.Size(997, 54);
 			this.panel1.TabIndex = 0;
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.ForeColor = System.Drawing.Color.Gray;
-			this.label2.Location = new System.Drawing.Point(556, 30);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(91, 17);
-			this.label2.TabIndex = 31;
-			this.label2.Text = "9600,8,1,None";
 			// 
 			// textBox1
 			// 
@@ -111,7 +99,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(763, 6);
+			this.checkBox3.Location = new System.Drawing.Point(793, 16);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 27;
@@ -120,7 +108,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(643, 1);
+			this.button5.Location = new System.Drawing.Point(696, 11);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(91, 28);
 			this.button5.TabIndex = 9;
@@ -130,16 +118,16 @@
 			// 
 			// textBox10
 			// 
-			this.textBox10.Location = new System.Drawing.Point(559, 4);
+			this.textBox10.Location = new System.Drawing.Point(533, 13);
 			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(61, 23);
+			this.textBox10.Size = new System.Drawing.Size(157, 23);
 			this.textBox10.TabIndex = 8;
-			this.textBox10.Text = "COM1";
+			this.textBox10.Text = "COM1-9600-8-N-1";
 			// 
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(492, 7);
+			this.label14.Location = new System.Drawing.Point(478, 16);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(44, 17);
 			this.label14.TabIndex = 7;
@@ -250,6 +238,5 @@
 		private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
 	}
 }

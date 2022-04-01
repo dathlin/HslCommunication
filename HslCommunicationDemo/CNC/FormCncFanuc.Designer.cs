@@ -38,6 +38,19 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.textBox13 = new System.Windows.Forms.TextBox();
+			this.comboBox_writedata = new System.Windows.Forms.ComboBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.button31 = new System.Windows.Forms.Button();
+			this.label11 = new System.Windows.Forms.Label();
+			this.comboBox_readdata = new System.Windows.Forms.ComboBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.button23 = new System.Windows.Forms.Button();
+			this.label6 = new System.Windows.Forms.Label();
+			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.button30 = new System.Windows.Forms.Button();
 			this.button29 = new System.Windows.Forms.Button();
 			this.textBox9 = new System.Windows.Forms.TextBox();
@@ -51,11 +64,6 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.button25 = new System.Windows.Forms.Button();
 			this.button24 = new System.Windows.Forms.Button();
-			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.button23 = new System.Windows.Forms.Button();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
 			this.button22 = new System.Windows.Forms.Button();
 			this.button21 = new System.Windows.Forms.Button();
 			this.button20 = new System.Windows.Forms.Button();
@@ -83,6 +91,7 @@
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -98,10 +107,10 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(15, 43);
+			this.panel1.Location = new System.Drawing.Point(4, 36);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 46);
+			this.panel1.Size = new System.Drawing.Size(996, 46);
 			this.panel1.TabIndex = 7;
 			// 
 			// textBox11
@@ -182,6 +191,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.panel3);
 			this.panel2.Controls.Add(this.button30);
 			this.panel2.Controls.Add(this.button29);
 			this.panel2.Controls.Add(this.textBox9);
@@ -195,11 +205,6 @@
 			this.panel2.Controls.Add(this.label7);
 			this.panel2.Controls.Add(this.button25);
 			this.panel2.Controls.Add(this.button24);
-			this.panel2.Controls.Add(this.textBox5);
-			this.panel2.Controls.Add(this.label6);
-			this.panel2.Controls.Add(this.button23);
-			this.panel2.Controls.Add(this.textBox4);
-			this.panel2.Controls.Add(this.label4);
 			this.panel2.Controls.Add(this.button22);
 			this.panel2.Controls.Add(this.button21);
 			this.panel2.Controls.Add(this.button20);
@@ -224,10 +229,142 @@
 			this.panel2.Controls.Add(this.button3);
 			this.panel2.Controls.Add(this.textBox8);
 			this.panel2.Controls.Add(this.label12);
-			this.panel2.Location = new System.Drawing.Point(15, 96);
+			this.panel2.Location = new System.Drawing.Point(4, 87);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(977, 544);
+			this.panel2.Size = new System.Drawing.Size(996, 555);
 			this.panel2.TabIndex = 13;
+			// 
+			// panel3
+			// 
+			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+			this.panel3.Controls.Add(this.textBox13);
+			this.panel3.Controls.Add(this.comboBox_writedata);
+			this.panel3.Controls.Add(this.label10);
+			this.panel3.Controls.Add(this.textBox10);
+			this.panel3.Controls.Add(this.button31);
+			this.panel3.Controls.Add(this.label11);
+			this.panel3.Controls.Add(this.comboBox_readdata);
+			this.panel3.Controls.Add(this.label4);
+			this.panel3.Controls.Add(this.textBox4);
+			this.panel3.Controls.Add(this.button23);
+			this.panel3.Controls.Add(this.label6);
+			this.panel3.Controls.Add(this.textBox5);
+			this.panel3.Location = new System.Drawing.Point(5, 112);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(591, 65);
+			this.panel3.TabIndex = 61;
+			// 
+			// textBox13
+			// 
+			this.textBox13.Location = new System.Drawing.Point(274, 36);
+			this.textBox13.Name = "textBox13";
+			this.textBox13.Size = new System.Drawing.Size(212, 23);
+			this.textBox13.TabIndex = 67;
+			this.textBox13.Text = "01 02";
+			// 
+			// comboBox_writedata
+			// 
+			this.comboBox_writedata.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_writedata.FormattingEnabled = true;
+			this.comboBox_writedata.Items.AddRange(new object[] {
+            "R",
+            "PMC"});
+			this.comboBox_writedata.Location = new System.Drawing.Point(9, 35);
+			this.comboBox_writedata.Name = "comboBox_writedata";
+			this.comboBox_writedata.Size = new System.Drawing.Size(92, 25);
+			this.comboBox_writedata.TabIndex = 66;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(107, 39);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(44, 17);
+			this.label10.TabIndex = 61;
+			this.label10.Text = "起始：";
+			// 
+			// textBox10
+			// 
+			this.textBox10.Location = new System.Drawing.Point(152, 36);
+			this.textBox10.Name = "textBox10";
+			this.textBox10.Size = new System.Drawing.Size(65, 23);
+			this.textBox10.TabIndex = 62;
+			this.textBox10.Text = "1200";
+			// 
+			// button31
+			// 
+			this.button31.Location = new System.Drawing.Point(492, 33);
+			this.button31.Name = "button31";
+			this.button31.Size = new System.Drawing.Size(96, 29);
+			this.button31.TabIndex = 63;
+			this.button31.Text = "写数据";
+			this.button31.UseVisualStyleBackColor = true;
+			this.button31.Click += new System.EventHandler(this.button31_Click);
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(224, 39);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(44, 17);
+			this.label11.TabIndex = 64;
+			this.label11.Text = "数据：";
+			// 
+			// comboBox_readdata
+			// 
+			this.comboBox_readdata.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_readdata.FormattingEnabled = true;
+			this.comboBox_readdata.Items.AddRange(new object[] {
+            "R",
+            "PMC"});
+			this.comboBox_readdata.Location = new System.Drawing.Point(9, 6);
+			this.comboBox_readdata.Name = "comboBox_readdata";
+			this.comboBox_readdata.Size = new System.Drawing.Size(92, 25);
+			this.comboBox_readdata.TabIndex = 60;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(107, 10);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(44, 17);
+			this.label4.TabIndex = 42;
+			this.label4.Text = "起始：";
+			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(152, 7);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(65, 23);
+			this.textBox4.TabIndex = 43;
+			this.textBox4.Text = "1200";
+			// 
+			// button23
+			// 
+			this.button23.Location = new System.Drawing.Point(347, 4);
+			this.button23.Name = "button23";
+			this.button23.Size = new System.Drawing.Size(96, 29);
+			this.button23.TabIndex = 44;
+			this.button23.Text = "读数据";
+			this.button23.UseVisualStyleBackColor = true;
+			this.button23.Click += new System.EventHandler(this.button23_Click);
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(224, 10);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(44, 17);
+			this.label6.TabIndex = 45;
+			this.label6.Text = "结束：";
+			// 
+			// textBox5
+			// 
+			this.textBox5.Location = new System.Drawing.Point(273, 7);
+			this.textBox5.Name = "textBox5";
+			this.textBox5.Size = new System.Drawing.Size(62, 23);
+			this.textBox5.TabIndex = 46;
+			this.textBox5.Text = "1271";
 			// 
 			// button30
 			// 
@@ -350,50 +487,6 @@
 			this.button24.UseVisualStyleBackColor = true;
 			this.button24.Click += new System.EventHandler(this.button24_Click);
 			// 
-			// textBox5
-			// 
-			this.textBox5.Location = new System.Drawing.Point(236, 153);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(105, 23);
-			this.textBox5.TabIndex = 46;
-			this.textBox5.Text = "1271";
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(182, 156);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(44, 17);
-			this.label6.TabIndex = 45;
-			this.label6.Text = "结束：";
-			// 
-			// button23
-			// 
-			this.button23.Location = new System.Drawing.Point(358, 150);
-			this.button23.Name = "button23";
-			this.button23.Size = new System.Drawing.Size(96, 29);
-			this.button23.TabIndex = 44;
-			this.button23.Text = "读R数据";
-			this.button23.UseVisualStyleBackColor = true;
-			this.button23.Click += new System.EventHandler(this.button23_Click);
-			// 
-			// textBox4
-			// 
-			this.textBox4.Location = new System.Drawing.Point(62, 153);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(105, 23);
-			this.textBox4.TabIndex = 43;
-			this.textBox4.Text = "1200";
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(8, 156);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(44, 17);
-			this.label4.TabIndex = 42;
-			this.label4.Text = "起始：";
-			// 
 			// button22
 			// 
 			this.button22.Location = new System.Drawing.Point(521, 42);
@@ -436,7 +529,7 @@
 			// 
 			// button18
 			// 
-			this.button18.Location = new System.Drawing.Point(185, 117);
+			this.button18.Location = new System.Drawing.Point(779, 106);
 			this.button18.Name = "button18";
 			this.button18.Size = new System.Drawing.Size(96, 29);
 			this.button18.TabIndex = 37;
@@ -446,7 +539,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(62, 120);
+			this.textBox3.Location = new System.Drawing.Point(656, 109);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(105, 23);
 			this.textBox3.TabIndex = 36;
@@ -455,7 +548,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(8, 123);
+			this.label2.Location = new System.Drawing.Point(602, 112);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(56, 17);
 			this.label2.TabIndex = 35;
@@ -620,7 +713,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(910, 321);
+			this.textBox8.Size = new System.Drawing.Size(929, 332);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
@@ -666,6 +759,8 @@
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -724,5 +819,13 @@
 		private System.Windows.Forms.Button button28;
 		private System.Windows.Forms.Button button29;
 		private System.Windows.Forms.Button button30;
+		private System.Windows.Forms.ComboBox comboBox_readdata;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.TextBox textBox13;
+		private System.Windows.Forms.ComboBox comboBox_writedata;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.TextBox textBox10;
+		private System.Windows.Forms.Button button31;
+		private System.Windows.Forms.Label label11;
 	}
 }

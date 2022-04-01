@@ -33,6 +33,7 @@ namespace HslCommunicationDemo
             {
                 Text = "Omron Virtual Server [data support, d, a, h, c, w]";
                 label3.Text = "port:";
+                label4.Text = "Para:";
                 button1.Text = "Start Server";
                 button11.Text = "Close Server";
                 label11.Text = "This server is not a strict fins protocol and only supports perfect communication with HSL components.";
@@ -76,7 +77,7 @@ namespace HslCommunicationDemo
             if(comboBox1.SelectedItem == null) { MessageBox.Show( "There is none serial port to use, try later!" ); return; }
             try
             {
-                omronFinsServer.StartSerialSlave( comboBox1.SelectedItem.ToString( ), 9600, 7, Parity.Even, StopBits.One );
+                omronFinsServer.StartSerialSlave( comboBox1.SelectedItem.ToString( ) + "-" + textBox1.Text );
 
                 userControlReadWriteServer1.SetReadWriteServer( omronFinsServer, "D100" );
                 button5.Enabled = false;

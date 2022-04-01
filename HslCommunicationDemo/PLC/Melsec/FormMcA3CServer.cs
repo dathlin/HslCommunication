@@ -34,6 +34,7 @@ namespace HslCommunicationDemo
             {
                 Text = "MC Virtual Server [data support, bool: x,y,m   word: x,y,m,d,w]";
                 label3.Text = "port:";
+                label4.Text = "Para:";
                 button1.Text = "Start Server";
                 button11.Text = "Close Server";
                 label11.Text = "This server is not a strict mc protocol and only supports perfect communication with HSL components.";
@@ -98,7 +99,7 @@ namespace HslCommunicationDemo
         {
 			if (mcNetServer != null)
 			{
-                mcNetServer.StartSerialSlave( comboBox1.SelectedItem.ToString( ) );
+                mcNetServer.StartSerialSlave( comboBox1.SelectedItem.ToString( ) + "-" + textBox1.Text );
                 button5.Enabled = false;
             }
         }

@@ -237,6 +237,18 @@ namespace HslCommunicationDemo
 			else MessageBox.Show( stop.Message );
 		}
 
+		private void button5_Click( object sender, EventArgs e )
+		{
+			OperateResult<string> read = siemensPPI.ReadPlcType( );
+			if (read.IsSuccess)
+			{
+				textBox10.Text = read.Content;
+			}
+			else
+			{
+				MessageBox.Show( read.Message );
+			}
+		}
 
 		public override void SaveXmlParameter( XElement element )
 		{
@@ -257,5 +269,6 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }
