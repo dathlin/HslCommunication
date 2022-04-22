@@ -29,7 +29,6 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.label2 = new System.Windows.Forms.Label();
 			this.button5 = new System.Windows.Forms.Button();
 			this.textBox10 = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
@@ -50,7 +49,6 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.button5);
 			this.panel1.Controls.Add(this.textBox10);
 			this.panel1.Controls.Add(this.label14);
@@ -65,19 +63,9 @@
 			this.panel1.Size = new System.Drawing.Size(996, 68);
 			this.panel1.TabIndex = 0;
 			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.ForeColor = System.Drawing.Color.Gray;
-			this.label2.Location = new System.Drawing.Point(381, 38);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(91, 17);
-			this.label2.TabIndex = 35;
-			this.label2.Text = "9600,8,1,None";
-			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(468, 9);
+			this.button5.Location = new System.Drawing.Point(545, 9);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(91, 28);
 			this.button5.TabIndex = 34;
@@ -89,9 +77,9 @@
 			// 
 			this.textBox10.Location = new System.Drawing.Point(384, 12);
 			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(78, 23);
+			this.textBox10.Size = new System.Drawing.Size(153, 23);
 			this.textBox10.TabIndex = 33;
-			this.textBox10.Text = "COM1";
+			this.textBox10.Text = "COM4-9600-8-N-1";
 			// 
 			// label14
 			// 
@@ -105,9 +93,9 @@
 			// label11
 			// 
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(579, 5);
+			this.label11.Location = new System.Drawing.Point(653, 5);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(412, 61);
+			this.label11.Size = new System.Drawing.Size(338, 46);
 			this.label11.TabIndex = 29;
 			this.label11.Text = "本服务器不是严格的上位链路协议，仅支持和HSL组件完美通信。";
 			// 
@@ -221,7 +209,6 @@
         private System.Windows.Forms.Label label11;
         private DemoControl.UserControlHead userControlHead1;
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.TextBox textBox10;
 		private System.Windows.Forms.Label label14;

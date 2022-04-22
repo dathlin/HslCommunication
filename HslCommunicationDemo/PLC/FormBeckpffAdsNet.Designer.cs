@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label7 = new System.Windows.Forms.Label();
 			this.textBox_ams_port = new System.Windows.Forms.TextBox();
 			this.label17 = new System.Windows.Forms.Label();
 			this.textBox15 = new System.Windows.Forms.TextBox();
@@ -64,6 +65,7 @@
 			this.textBox13 = new System.Windows.Forms.TextBox();
 			this.label16 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.textBox10 = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.button25 = new System.Windows.Forms.Button();
@@ -72,7 +74,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.label7 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -111,6 +112,15 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 79);
 			this.panel1.TabIndex = 0;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(869, 52);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(128, 17);
+			this.label7.TabIndex = 21;
+			this.label7.Text = "4: M100.1 (bool读写)";
 			// 
 			// textBox_ams_port
 			// 
@@ -319,6 +329,9 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.button5);
 			this.groupBox5.Controls.Add(this.textBox4);
 			this.groupBox5.Controls.Add(this.button4);
@@ -380,6 +393,7 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox4.Controls.Add(this.textBox11);
 			this.groupBox4.Controls.Add(this.label14);
 			this.groupBox4.Controls.Add(this.button26);
@@ -444,6 +458,9 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.groupBox3.Controls.Add(this.label9);
 			this.groupBox3.Controls.Add(this.textBox10);
 			this.groupBox3.Controls.Add(this.label13);
 			this.groupBox3.Controls.Add(this.button25);
@@ -457,6 +474,15 @@
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(7, 109);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(50, 34);
+			this.label9.TabIndex = 11;
+			this.label9.Text = "Length:\r\n0";
 			// 
 			// textBox10
 			// 
@@ -492,16 +518,18 @@
 			// 
 			// textBox9
 			// 
-			this.textBox9.Location = new System.Drawing.Point(234, 27);
+			this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox9.Location = new System.Drawing.Point(321, 27);
 			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(102, 23);
+			this.textBox9.Size = new System.Drawing.Size(135, 23);
 			this.textBox9.TabIndex = 7;
-			this.textBox9.Text = "10";
+			this.textBox9.Text = "2;4;2";
 			// 
 			// label12
 			// 
+			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(185, 30);
+			this.label12.Location = new System.Drawing.Point(272, 30);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(44, 17);
 			this.label12.TabIndex = 6;
@@ -509,11 +537,13 @@
 			// 
 			// textBox6
 			// 
+			this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox6.Location = new System.Drawing.Point(63, 27);
 			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(102, 23);
+			this.textBox6.Size = new System.Drawing.Size(203, 23);
 			this.textBox6.TabIndex = 5;
-			this.textBox6.Text = "M100";
+			this.textBox6.Text = "M100;s=MAIN.dd;s=MAIN.a";
 			// 
 			// label11
 			// 
@@ -539,15 +569,6 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(869, 52);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(128, 17);
-			this.label7.TabIndex = 21;
-			this.label7.Text = "4: M100.1 (bool读写)";
 			// 
 			// FormBeckhoffAdsNet
 			// 
@@ -625,5 +646,6 @@
 		private System.Windows.Forms.CheckBox checkBox_auto;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label9;
 	}
 }

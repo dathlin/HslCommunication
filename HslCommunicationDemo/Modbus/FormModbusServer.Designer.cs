@@ -33,7 +33,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.checkBox_ipv6 = new System.Windows.Forms.CheckBox();
 			this.checkBox4 = new System.Windows.Forms.CheckBox();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.checkBox_remote_write = new System.Windows.Forms.CheckBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.button11 = new System.Windows.Forms.Button();
@@ -48,6 +48,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox_station_check = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -57,11 +58,12 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_station_check);
 			this.panel1.Controls.Add(this.textBox3);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.checkBox_ipv6);
 			this.panel1.Controls.Add(this.checkBox4);
-			this.panel1.Controls.Add(this.checkBox1);
+			this.panel1.Controls.Add(this.checkBox_remote_write);
 			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.comboBox2);
 			this.panel1.Controls.Add(this.button11);
@@ -81,7 +83,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(537, 32);
+			this.textBox3.Location = new System.Drawing.Point(705, 32);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(68, 23);
 			this.textBox3.TabIndex = 37;
@@ -90,7 +92,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(430, 36);
+			this.label2.Location = new System.Drawing.Point(598, 36);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(92, 17);
 			this.label2.TabIndex = 36;
@@ -99,7 +101,7 @@
 			// checkBox_ipv6
 			// 
 			this.checkBox_ipv6.AutoSize = true;
-			this.checkBox_ipv6.Location = new System.Drawing.Point(331, 34);
+			this.checkBox_ipv6.Location = new System.Drawing.Point(460, 34);
 			this.checkBox_ipv6.Name = "checkBox_ipv6";
 			this.checkBox_ipv6.Size = new System.Drawing.Size(77, 21);
 			this.checkBox_ipv6.TabIndex = 33;
@@ -116,17 +118,17 @@
 			this.checkBox4.Text = "使用ModbusRTU报文";
 			this.checkBox4.UseVisualStyleBackColor = true;
 			// 
-			// checkBox1
+			// checkBox_remote_write
 			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Checked = true;
-			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(168, 35);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(147, 21);
-			this.checkBox1.TabIndex = 31;
-			this.checkBox1.Text = "是否运行远程写入操作";
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox_remote_write.AutoSize = true;
+			this.checkBox_remote_write.Checked = true;
+			this.checkBox_remote_write.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_remote_write.Location = new System.Drawing.Point(168, 35);
+			this.checkBox_remote_write.Name = "checkBox_remote_write";
+			this.checkBox_remote_write.Size = new System.Drawing.Size(123, 21);
+			this.checkBox_remote_write.TabIndex = 31;
+			this.checkBox_remote_write.Text = "是否允许远程写入";
+			this.checkBox_remote_write.UseVisualStyleBackColor = true;
 			// 
 			// checkBox2
 			// 
@@ -276,6 +278,18 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// checkBox_station_check
+			// 
+			this.checkBox_station_check.AutoSize = true;
+			this.checkBox_station_check.Checked = true;
+			this.checkBox_station_check.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_station_check.Location = new System.Drawing.Point(325, 34);
+			this.checkBox_station_check.Name = "checkBox_station_check";
+			this.checkBox_station_check.Size = new System.Drawing.Size(112, 21);
+			this.checkBox_station_check.TabIndex = 38;
+			this.checkBox_station_check.Text = "Station Check?";
+			this.checkBox_station_check.UseVisualStyleBackColor = true;
+			// 
 			// FormModbusServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -316,10 +330,11 @@
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.CheckBox checkBox2;
 		private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
-		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.CheckBox checkBox_remote_write;
 		private System.Windows.Forms.CheckBox checkBox4;
 		private System.Windows.Forms.CheckBox checkBox_ipv6;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.CheckBox checkBox_station_check;
 	}
 }

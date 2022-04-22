@@ -39,18 +39,17 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.textBox13 = new System.Windows.Forms.TextBox();
-			this.comboBox_writedata = new System.Windows.Forms.ComboBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.textBox_pmc_Data = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
-			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.textBox_pmc_write = new System.Windows.Forms.TextBox();
 			this.button31 = new System.Windows.Forms.Button();
 			this.label11 = new System.Windows.Forms.Label();
-			this.comboBox_readdata = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.textBox_pmc_read = new System.Windows.Forms.TextBox();
 			this.button23 = new System.Windows.Forms.Button();
 			this.label6 = new System.Windows.Forms.Label();
-			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.textBox_pmc_length = new System.Windows.Forms.TextBox();
 			this.button30 = new System.Windows.Forms.Button();
 			this.button29 = new System.Windows.Forms.Button();
 			this.textBox9 = new System.Windows.Forms.TextBox();
@@ -237,59 +236,56 @@
 			// panel3
 			// 
 			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-			this.panel3.Controls.Add(this.textBox13);
-			this.panel3.Controls.Add(this.comboBox_writedata);
+			this.panel3.Controls.Add(this.label13);
+			this.panel3.Controls.Add(this.textBox_pmc_Data);
 			this.panel3.Controls.Add(this.label10);
-			this.panel3.Controls.Add(this.textBox10);
+			this.panel3.Controls.Add(this.textBox_pmc_write);
 			this.panel3.Controls.Add(this.button31);
 			this.panel3.Controls.Add(this.label11);
-			this.panel3.Controls.Add(this.comboBox_readdata);
 			this.panel3.Controls.Add(this.label4);
-			this.panel3.Controls.Add(this.textBox4);
+			this.panel3.Controls.Add(this.textBox_pmc_read);
 			this.panel3.Controls.Add(this.button23);
 			this.panel3.Controls.Add(this.label6);
-			this.panel3.Controls.Add(this.textBox5);
+			this.panel3.Controls.Add(this.textBox_pmc_length);
 			this.panel3.Location = new System.Drawing.Point(5, 112);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(591, 65);
+			this.panel3.Size = new System.Drawing.Size(592, 66);
 			this.panel3.TabIndex = 61;
+			this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
 			// 
-			// textBox13
+			// label13
 			// 
-			this.textBox13.Location = new System.Drawing.Point(274, 36);
-			this.textBox13.Name = "textBox13";
-			this.textBox13.Size = new System.Drawing.Size(212, 23);
-			this.textBox13.TabIndex = 67;
-			this.textBox13.Text = "01 02";
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(344, 9);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(181, 17);
+			this.label13.TabIndex = 68;
+			this.label13.Text = "Support: G,F,Y,X,A,R,T,K,C,D,E ";
 			// 
-			// comboBox_writedata
+			// textBox_pmc_Data
 			// 
-			this.comboBox_writedata.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox_writedata.FormattingEnabled = true;
-			this.comboBox_writedata.Items.AddRange(new object[] {
-            "R",
-            "PMC"});
-			this.comboBox_writedata.Location = new System.Drawing.Point(9, 35);
-			this.comboBox_writedata.Name = "comboBox_writedata";
-			this.comboBox_writedata.Size = new System.Drawing.Size(92, 25);
-			this.comboBox_writedata.TabIndex = 66;
+			this.textBox_pmc_Data.Location = new System.Drawing.Point(169, 36);
+			this.textBox_pmc_Data.Name = "textBox_pmc_Data";
+			this.textBox_pmc_Data.Size = new System.Drawing.Size(309, 23);
+			this.textBox_pmc_Data.TabIndex = 67;
+			this.textBox_pmc_Data.Text = "01 02";
 			// 
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(107, 39);
+			this.label10.Location = new System.Drawing.Point(3, 39);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(44, 17);
 			this.label10.TabIndex = 61;
 			this.label10.Text = "起始：";
 			// 
-			// textBox10
+			// textBox_pmc_write
 			// 
-			this.textBox10.Location = new System.Drawing.Point(152, 36);
-			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(65, 23);
-			this.textBox10.TabIndex = 62;
-			this.textBox10.Text = "1200";
+			this.textBox_pmc_write.Location = new System.Drawing.Point(48, 36);
+			this.textBox_pmc_write.Name = "textBox_pmc_write";
+			this.textBox_pmc_write.Size = new System.Drawing.Size(65, 23);
+			this.textBox_pmc_write.TabIndex = 62;
+			this.textBox_pmc_write.Text = "R1200";
 			// 
 			// button31
 			// 
@@ -304,44 +300,32 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(224, 39);
+			this.label11.Location = new System.Drawing.Point(119, 39);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(44, 17);
 			this.label11.TabIndex = 64;
 			this.label11.Text = "数据：";
 			// 
-			// comboBox_readdata
-			// 
-			this.comboBox_readdata.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox_readdata.FormattingEnabled = true;
-			this.comboBox_readdata.Items.AddRange(new object[] {
-            "R",
-            "PMC"});
-			this.comboBox_readdata.Location = new System.Drawing.Point(9, 6);
-			this.comboBox_readdata.Name = "comboBox_readdata";
-			this.comboBox_readdata.Size = new System.Drawing.Size(92, 25);
-			this.comboBox_readdata.TabIndex = 60;
-			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(107, 10);
+			this.label4.Location = new System.Drawing.Point(3, 10);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(44, 17);
 			this.label4.TabIndex = 42;
 			this.label4.Text = "起始：";
 			// 
-			// textBox4
+			// textBox_pmc_read
 			// 
-			this.textBox4.Location = new System.Drawing.Point(152, 7);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(65, 23);
-			this.textBox4.TabIndex = 43;
-			this.textBox4.Text = "1200";
+			this.textBox_pmc_read.Location = new System.Drawing.Point(48, 7);
+			this.textBox_pmc_read.Name = "textBox_pmc_read";
+			this.textBox_pmc_read.Size = new System.Drawing.Size(65, 23);
+			this.textBox_pmc_read.TabIndex = 43;
+			this.textBox_pmc_read.Text = "R1200";
 			// 
 			// button23
 			// 
-			this.button23.Location = new System.Drawing.Point(347, 4);
+			this.button23.Location = new System.Drawing.Point(242, 4);
 			this.button23.Name = "button23";
 			this.button23.Size = new System.Drawing.Size(96, 29);
 			this.button23.TabIndex = 44;
@@ -352,19 +336,19 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(224, 10);
+			this.label6.Location = new System.Drawing.Point(119, 10);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(44, 17);
 			this.label6.TabIndex = 45;
-			this.label6.Text = "结束：";
+			this.label6.Text = "长度：";
 			// 
-			// textBox5
+			// textBox_pmc_length
 			// 
-			this.textBox5.Location = new System.Drawing.Point(273, 7);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(62, 23);
-			this.textBox5.TabIndex = 46;
-			this.textBox5.Text = "1271";
+			this.textBox_pmc_length.Location = new System.Drawing.Point(168, 7);
+			this.textBox_pmc_length.Name = "textBox_pmc_length";
+			this.textBox_pmc_length.Size = new System.Drawing.Size(62, 23);
+			this.textBox_pmc_length.TabIndex = 46;
+			this.textBox_pmc_length.Text = "10";
 			// 
 			// button30
 			// 
@@ -469,9 +453,9 @@
 			// 
 			// button25
 			// 
-			this.button25.Location = new System.Drawing.Point(185, 180);
+			this.button25.Location = new System.Drawing.Point(174, 180);
 			this.button25.Name = "button25";
-			this.button25.Size = new System.Drawing.Size(96, 29);
+			this.button25.Size = new System.Drawing.Size(122, 29);
 			this.button25.TabIndex = 48;
 			this.button25.Text = "设为主程序";
 			this.button25.UseVisualStyleBackColor = true;
@@ -801,10 +785,10 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button19;
 		private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox_pmc_length;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox_pmc_read;
         private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button button24;
 		private System.Windows.Forms.TextBox textBox6;
@@ -819,13 +803,12 @@
 		private System.Windows.Forms.Button button28;
 		private System.Windows.Forms.Button button29;
 		private System.Windows.Forms.Button button30;
-		private System.Windows.Forms.ComboBox comboBox_readdata;
 		private System.Windows.Forms.Panel panel3;
-		private System.Windows.Forms.TextBox textBox13;
-		private System.Windows.Forms.ComboBox comboBox_writedata;
+		private System.Windows.Forms.TextBox textBox_pmc_Data;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.TextBox textBox10;
+		private System.Windows.Forms.TextBox textBox_pmc_write;
 		private System.Windows.Forms.Button button31;
 		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.Label label13;
 	}
 }

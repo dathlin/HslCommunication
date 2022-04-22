@@ -122,10 +122,16 @@ namespace HslCommunicationDemo
 					panel2.Enabled = true;
 
 					userControlReadWriteOp1.SetReadWriteNet( beckhoffAdsNet, "M100", true );
+
 					if (checkBox_auto.Checked)
 					{
 						textBox14.Text = beckhoffAdsNet.GetTargetAMSNetId( );
 						textBox15.Text = beckhoffAdsNet.GetSenderAMSNetId( );
+					}
+					else
+					{
+						if (string.IsNullOrEmpty( textBox14.Text )) textBox14.Text = beckhoffAdsNet.GetTargetAMSNetId( );
+						if (string.IsNullOrEmpty( textBox15.Text )) textBox15.Text = beckhoffAdsNet.GetSenderAMSNetId( );
 					}
 				}
 				else
@@ -154,7 +160,24 @@ namespace HslCommunicationDemo
 
 		private void button25_Click( object sender, EventArgs e )
 		{
-			DemoUtils.BulkReadRenderResult( beckhoffAdsNet, textBox6, textBox9, textBox10 );
+			if (!textBox6.Text.Contains(";") && !textBox6.Text.Contains( "," ))
+				DemoUtils.BulkReadRenderResult( beckhoffAdsNet, textBox6, textBox9, textBox10 );
+			else
+			{
+				string[] address = textBox6.Text.Split( new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries );
+				ushort[] length = textBox9.Text.Split( new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( m => ushort.Parse( m ) ).ToArray( );
+
+				OperateResult<byte[]> read = beckhoffAdsNet.Read( address, length );
+				if (read.IsSuccess)
+				{
+					textBox10.Text = read.Content.ToHexString( ' ' );
+					label9.Text = "Length:" + Environment.NewLine + read.Content.Length;
+				}
+				else
+				{
+					MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
+				}
+			}
 		}
 
 

@@ -30,8 +30,6 @@ namespace HslCommunicationDemo
 
 			textBox7.Text = System.IO.Path.Combine( Application.StartupPath, "O6.txt" );
 
-			comboBox_readdata.SelectedIndex = 0;
-			comboBox_writedata.SelectedIndex = 0;
 			Language( Program.Language );
 		}
 
@@ -43,11 +41,22 @@ namespace HslCommunicationDemo
 			else
 			{
 				Text = "Fanuc 0i-mf Test";
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
-				label12.Text = "Receive:";
+				label1.Text   = "Ip:";
+				label3.Text   = "Port:";
+				button1.Text  = "Connect";
+				button2.Text  = "Disconnect";
+				label12.Text  = "Receive:";
+				label4.Text   = "Addr:";
+				label10.Text  = "Addr:";
+				label6.Text   = "Len:";
+				label8.Text   = "Prog Path";
+				label11.Text  = "Data:";
+				button23.Text = "Read";
+				button25.Text = "Set Main Program";
+				button31.Text = "Write";
+				button27.Text = "Down Program";
+				button28.Text = "Read Program";
+				button29.Text = "Del Program";
 			}
 		}
 
@@ -460,12 +469,7 @@ namespace HslCommunicationDemo
 		private void button23_Click( object sender, EventArgs e )
 		{
 			// 读数据
-			OperateResult<byte[]> read = null;
-			if (comboBox_readdata.SelectedIndex == 0)
-				read = fanuc.ReadRData( int.Parse( textBox4.Text ), int.Parse( textBox5.Text ) );
-			if (comboBox_readdata.SelectedIndex == 1)
-				read = fanuc.ReadGData( int.Parse( textBox4.Text ), int.Parse( textBox5.Text ) );
-
+			OperateResult<byte[]> read = fanuc.ReadPMCData( textBox_pmc_read.Text, ushort.Parse( textBox_pmc_length.Text ) );
 			if (read.IsSuccess)
 			{
 				textBox8.Text = read.Content.ToHexString( ' ' );
@@ -479,11 +483,7 @@ namespace HslCommunicationDemo
 		private void button31_Click( object sender, EventArgs e )
 		{
 			// 写数据
-			OperateResult write = null;
-			if (comboBox_writedata.SelectedIndex == 0) // R数据
-				write = fanuc.WriteRData( int.Parse( textBox10.Text ), textBox13.Text.ToHexBytes( ) );
-			if (comboBox_writedata.SelectedIndex == 1) // PMC数据
-				write = fanuc.WriteGData( int.Parse( textBox10.Text ), textBox13.Text.ToHexBytes( ) );
+			OperateResult write = fanuc.WritePMCData( textBox_pmc_write.Text, textBox_pmc_Data.Text.ToHexBytes( ) );
 
 			if (write.IsSuccess)
 			{
@@ -514,6 +514,10 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
+		private void panel3_Paint( object sender, PaintEventArgs e )
+		{
+			e.Graphics.DrawRectangle( Pens.Gray, new Rectangle( 0, 0, panel3.Width - 1, panel3.Height - 1 ) );
+		}
 	}
 
 

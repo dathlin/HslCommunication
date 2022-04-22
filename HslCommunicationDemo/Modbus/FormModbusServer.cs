@@ -29,7 +29,7 @@ namespace HslCommunicationDemo
 
             comboBox2.SelectedIndex = 0;
             comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
-			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
+			checkBox_remote_write.CheckedChanged += CheckBox1_CheckedChanged;
             checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
             checkBox2.CheckedChanged += CheckBox2_CheckedChanged;
 
@@ -45,7 +45,7 @@ namespace HslCommunicationDemo
                 label14.Text = "Com:";
                 button5.Text = "Open Com";
                 checkBox3.Text = "str-reverse";
-                checkBox1.Text = "Whether to run remote write operation";
+                checkBox_remote_write.Text = "Whether to run remote write operation";
             }
         }
 
@@ -53,7 +53,7 @@ namespace HslCommunicationDemo
         {
             if (busTcpServer != null)
             {
-                busTcpServer.EnableWrite = checkBox1.Checked;
+                busTcpServer.EnableWrite = checkBox_remote_write.Checked;
             }
         }
 
@@ -109,15 +109,16 @@ namespace HslCommunicationDemo
             try
             {
                 busTcpServer = new HslCommunication.ModBus.ModbusTcpServer( );                       // 实例化对象
-                busTcpServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
-                busTcpServer.OnDataReceived += BusTcpServer_OnDataReceived;
-                busTcpServer.EnableWrite = checkBox1.Checked;
-                busTcpServer.EnableIPv6  = checkBox_ipv6.Checked;
+                busTcpServer.ActiveTimeSpan      = TimeSpan.FromHours( 1 );
+                busTcpServer.OnDataReceived      += BusTcpServer_OnDataReceived;
+                busTcpServer.EnableWrite         = checkBox_remote_write.Checked;
+                busTcpServer.EnableIPv6          = checkBox_ipv6.Checked;
+                busTcpServer.StationCheck        = checkBox_station_check.Checked;
                 busTcpServer.UseModbusRtuOverTcp = checkBox4.Checked;
 
                 // add some accounts
                 busTcpServer.AddAccount( "admin", "123456" );
-                busTcpServer.AddAccount( "hsl", "test" );
+                busTcpServer.AddAccount( "hsl",   "test" );
 
                 ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
                 busTcpServer.IsStringReverse = checkBox3.Checked;

@@ -79,16 +79,30 @@ namespace HslCommunicationDemo
 			}
 
 
-			if (!byte.TryParse( textBox15.Text, out byte SA1 ))
+			if (!byte.TryParse( textBox_sa1.Text, out byte SA1 ))
 			{
 				MessageBox.Show( "SA1 Input Wrong！" );
 				return;
 			}
-			
+
+			if (!byte.TryParse( textBox_gct.Text, out byte gct ))
+			{
+				MessageBox.Show( "GCT Input Wrong！" );
+				return;
+			}
+
+			if (!byte.TryParse( textBox_sid.Text, out byte sid ))
+			{
+				MessageBox.Show( "SID Input Wrong！" );
+				return;
+			}
+
 
 			omronFinsUdp = new OmronFinsUdp( textBox1.Text, port );
 			panel2.Enabled = true;
 			omronFinsUdp.SA1 = SA1;
+			omronFinsUdp.GCT = gct;
+			omronFinsUdp.SID = sid;
 			omronFinsUdp.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
 			userControlReadWriteOp1.SetReadWriteNet( omronFinsUdp, "D100", false );
@@ -132,7 +146,7 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlNetNumber, textBox15.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlNetNumber, textBox_sa1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 		}
 
@@ -141,7 +155,7 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox15.Text = element.Attribute( DemoDeviceList.XmlNetNumber ).Value;
+			textBox_sa1.Text = element.Attribute( DemoDeviceList.XmlNetNumber ).Value;
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 		}
 
