@@ -136,10 +136,11 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(8, 10);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(840, 17);
+			this.label2.Size = new System.Drawing.Size(893, 17);
 			this.label2.TabIndex = 18;
-			this.label2.Text = "服务器值列表：   A short ; A1  short  ;  B int ;  C   float ;     D  short[5];     E  bo" +
-    "ol;     F  string ;  G  sting[5];   AB.C  short[5];   M  uint[4];  N   long";
+			this.label2.Text = "服务器值列表：   A short ; A1  float[2000]  ;  B int ;  C   float ;     D  short[2000]; " +
+    "    E  bool;     F  string ;  G  sting[5];   AB.C  short[5];   M  uint[4];  N   " +
+    "long";
 			// 
 			// userControlHead1
 			// 

@@ -31,7 +31,7 @@ namespace HslCommunicationDemo
             comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			checkBox_remote_write.CheckedChanged += CheckBox1_CheckedChanged;
             checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
-            checkBox2.CheckedChanged += CheckBox2_CheckedChanged;
+            checkBox_account.CheckedChanged += CheckBox2_CheckedChanged;
 
             if (Program.Language == 2)
             {
@@ -39,7 +39,7 @@ namespace HslCommunicationDemo
                 label3.Text = "port:";
                 button1.Text = "Start Server";
                 button11.Text = "Close Server";
-                checkBox2.Text = "Account Login";
+                checkBox_account.Text = "Account Login";
 
                 button3.Text = "filter-cli";
                 label14.Text = "Com:";
@@ -61,7 +61,7 @@ namespace HslCommunicationDemo
         {
             if (busTcpServer != null)
             {
-                busTcpServer.IsUseAccountCertificate = checkBox2.Checked;
+                busTcpServer.IsUseAccountCertificate = checkBox_account.Checked;
             }
         }
 
@@ -109,12 +109,13 @@ namespace HslCommunicationDemo
             try
             {
                 busTcpServer = new HslCommunication.ModBus.ModbusTcpServer( );                       // 实例化对象
-                busTcpServer.ActiveTimeSpan      = TimeSpan.FromHours( 1 );
-                busTcpServer.OnDataReceived      += BusTcpServer_OnDataReceived;
-                busTcpServer.EnableWrite         = checkBox_remote_write.Checked;
-                busTcpServer.EnableIPv6          = checkBox_ipv6.Checked;
-                busTcpServer.StationCheck        = checkBox_station_check.Checked;
-                busTcpServer.UseModbusRtuOverTcp = checkBox4.Checked;
+                busTcpServer.ActiveTimeSpan           = TimeSpan.FromHours( 1 );
+                busTcpServer.OnDataReceived           += BusTcpServer_OnDataReceived;
+                busTcpServer.EnableWrite              = checkBox_remote_write.Checked;
+                busTcpServer.EnableIPv6               = checkBox_ipv6.Checked;
+                busTcpServer.StationCheck             = checkBox_station_check.Checked;
+                busTcpServer.UseModbusRtuOverTcp      = checkBox4.Checked;
+                busTcpServer.IsUseAccountCertificate  = checkBox_account.Checked;
 
                 // add some accounts
                 busTcpServer.AddAccount( "admin", "123456" );

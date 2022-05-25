@@ -49,18 +49,18 @@ namespace HslCommunicationDemo
 			textBox_example.Text = stringBuilder.ToString();
 
 			TreeNode s1Node = new TreeNode( "S1" );
-			AddTree( s1Node, new SecsTreeItem( 1, 1, true, null, "Are You Online" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 3, true, new SecsValue(new object[] { (uint)1, (uint)2 } ), "Selected Equipment Status" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 5, true, new SecsValue( new byte[] { 0x01 } ), "Formatted Status" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 7, false, new SecsValue( new byte[] { 0x01 } ), "Fixed Form Request" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 9, true, null, "Material Transfer Status" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 11, true, new SecsValue(new object[] { (uint)1, (uint)2 } ), "Status Variable Namelist" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 13, true, null, "Establish Communications" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 15, true, null, "Request OFF-LINE" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 17, true, null, "Request ON-LINE" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 19, true, new SecsValue( new object[] { "object class name", new object[] { "Job0001", "Job0002" }, new object[] { "attribute1", "attribute2" } } ), "Get Attribute" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 21, true, new SecsValue( new object[] { "Variable ID1", "Variable ID2" } ), "Data Variable Namelist" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 23, true, new SecsValue( new object[] { (uint)1, (uint)2 } ), "Collection Event Namelist" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 1,  true,  null, "Are You Online" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 3,  true,  new SecsValue(new object[] { (uint)1, (uint)2 } ), "Selected Equipment Status" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 5,  true,  new SecsValue( new byte[] { 0x01 } ), "Formatted Status" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 7,  false, new SecsValue( new byte[] { 0x01 } ), "Fixed Form Request" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 9,  true,  null, "Material Transfer Status" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 11, true,  new SecsValue(new object[] { (uint)1, (uint)2 } ), "Status Variable Namelist" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 13, true,  null, "Establish Communications" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 15, true,  null, "Request OFF-LINE" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 17, true,  null, "Request ON-LINE" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 19, true,  new SecsValue( new object[] { "object class name", new object[] { "Job0001", "Job0002" }, new object[] { "attribute1", "attribute2" } } ), "Get Attribute" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 21, true,  new SecsValue( new object[] { "Variable ID1", "Variable ID2" } ), "Data Variable Namelist" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 23, true,  new SecsValue( new object[] { (uint)1, (uint)2 } ), "Collection Event Namelist" ) );
 			treeView1.Nodes.Add( s1Node );
 
 			TreeNode s2Node = new TreeNode( "S2" );

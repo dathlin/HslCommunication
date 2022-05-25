@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_got = new System.Windows.Forms.CheckBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -41,6 +42,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button_active_plc = new System.Windows.Forms.Button();
 			this.textBox14 = new System.Windows.Forms.TextBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -58,7 +60,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button_active_plc = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -71,6 +72,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_got);
 			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
@@ -80,18 +82,28 @@
 			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
-			this.panel1.Location = new System.Drawing.Point(3, 35);
+			this.panel1.Location = new System.Drawing.Point(4, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 43);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_got
+			// 
+			this.checkBox_got.AutoSize = true;
+			this.checkBox_got.Location = new System.Drawing.Point(478, 11);
+			this.checkBox_got.Name = "checkBox_got";
+			this.checkBox_got.Size = new System.Drawing.Size(77, 21);
+			this.checkBox_got.TabIndex = 33;
+			this.checkBox_got.Text = "GOT连接";
+			this.checkBox_got.UseVisualStyleBackColor = true;
 			// 
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(371, 11);
+			this.checkBox1.Location = new System.Drawing.Point(365, 11);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(99, 21);
 			this.checkBox1.TabIndex = 32;
@@ -104,7 +116,7 @@
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(77, 23);
 			this.textBox2.TabIndex = 11;
-			this.textBox2.Text = "6000";
+			this.textBox2.Text = "5014";
 			// 
 			// label3
 			// 
@@ -134,7 +146,7 @@
 			// 
 			// label22
 			// 
-			this.label22.Location = new System.Drawing.Point(817, 2);
+			this.label22.Location = new System.Drawing.Point(831, 2);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(156, 45);
 			this.label22.TabIndex = 7;
@@ -143,7 +155,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(743, 2);
+			this.label21.Location = new System.Drawing.Point(759, 2);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(68, 17);
 			this.label21.TabIndex = 6;
@@ -152,7 +164,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(632, 6);
+			this.button2.Location = new System.Drawing.Point(669, 7);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -162,7 +174,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(535, 6);
+			this.button1.Location = new System.Drawing.Point(572, 7);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -204,6 +216,16 @@
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// button_active_plc
+			// 
+			this.button_active_plc.Location = new System.Drawing.Point(12, 24);
+			this.button_active_plc.Name = "button_active_plc";
+			this.button_active_plc.Size = new System.Drawing.Size(90, 28);
+			this.button_active_plc.TabIndex = 24;
+			this.button_active_plc.Text = "激活PLC";
+			this.button_active_plc.UseVisualStyleBackColor = true;
+			this.button_active_plc.Click += new System.EventHandler(this.button_active_plc_Click);
 			// 
 			// textBox14
 			// 
@@ -385,16 +407,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// button_active_plc
-			// 
-			this.button_active_plc.Location = new System.Drawing.Point(12, 24);
-			this.button_active_plc.Name = "button_active_plc";
-			this.button_active_plc.Size = new System.Drawing.Size(90, 28);
-			this.button_active_plc.TabIndex = 24;
-			this.button_active_plc.Text = "激活PLC";
-			this.button_active_plc.UseVisualStyleBackColor = true;
-			this.button_active_plc.Click += new System.EventHandler(this.button_active_plc_Click);
-			// 
 			// FormMelsecSerialOverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -457,5 +469,6 @@
 		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Button button_active_plc;
+		private System.Windows.Forms.CheckBox checkBox_got;
 	}
 }

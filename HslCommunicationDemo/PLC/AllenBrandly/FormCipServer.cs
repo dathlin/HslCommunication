@@ -62,13 +62,22 @@ namespace HslCommunicationDemo
 				cipServer = new HslCommunication.Profinet.AllenBradley.AllenBradleyServer( );                       // 实例化对象
 				cipServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				cipServer.OnDataReceived += BusTcpServer_OnDataReceived;
+
+				short[] d = new short[2000];
+				float[] a1 = new float[2000];
+				for (int i = 0; i < d.Length; i++)
+				{
+					d[i] = (short)(i + 1);
+					a1[i] = d[i];
+				}
 				
 				cipServer.ServerStart( port );
+				//cipServer.AddTagValue( "TEST2", new bool[10000] );
 				cipServer.AddTagValue( "A", (short)10 );
-				cipServer.AddTagValue( "A1", (short)1000 );
+				cipServer.AddTagValue( "A1", a1 );
 				cipServer.AddTagValue( "B", 123 );
 				cipServer.AddTagValue( "C", 123f );
-				cipServer.AddTagValue( "D", new short[] { 1,2,3,4,5 } );
+				cipServer.AddTagValue( "D", d );
 				cipServer.AddTagValue( "E", true );
 				cipServer.AddTagValue( "F", "12345", 100 );
 				cipServer.AddTagValue( "G", new string[5] { "123", "123456", string.Empty, "abcd", "测试" }, 100 );

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent( )
         {
+			this.components = new System.ComponentModel.Container();
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("CNC_MEM");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -38,6 +40,12 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.label15 = new System.Windows.Forms.Label();
+			this.treeView1 = new System.Windows.Forms.TreeView();
+			this.button33 = new System.Windows.Forms.Button();
+			this.button32 = new System.Windows.Forms.Button();
+			this.textBox_path = new System.Windows.Forms.TextBox();
+			this.label14 = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.label13 = new System.Windows.Forms.Label();
 			this.textBox_pmc_Data = new System.Windows.Forms.TextBox();
@@ -88,9 +96,14 @@
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.AddNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.readNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -173,7 +186,7 @@
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(141, 23);
 			this.textBox1.TabIndex = 1;
-			this.textBox1.Text = "192.168.0.109";
+			this.textBox1.Text = "192.168.64.129";
 			// 
 			// label1
 			// 
@@ -190,6 +203,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.label15);
+			this.panel2.Controls.Add(this.treeView1);
+			this.panel2.Controls.Add(this.button33);
+			this.panel2.Controls.Add(this.button32);
+			this.panel2.Controls.Add(this.textBox_path);
+			this.panel2.Controls.Add(this.label14);
 			this.panel2.Controls.Add(this.panel3);
 			this.panel2.Controls.Add(this.button30);
 			this.panel2.Controls.Add(this.button29);
@@ -232,6 +251,65 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(996, 555);
 			this.panel2.TabIndex = 13;
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.ForeColor = System.Drawing.Color.Green;
+			this.label15.Location = new System.Drawing.Point(94, 209);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(80, 17);
+			this.label15.TabIndex = 67;
+			this.label15.Text = "右键菜单操作";
+			// 
+			// treeView1
+			// 
+			this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.treeView1.Location = new System.Drawing.Point(5, 229);
+			this.treeView1.Name = "treeView1";
+			treeNode1.Name = "节点0";
+			treeNode1.Text = "CNC_MEM";
+			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+			this.treeView1.Size = new System.Drawing.Size(204, 316);
+			this.treeView1.TabIndex = 66;
+			// 
+			// button33
+			// 
+			this.button33.Location = new System.Drawing.Point(5, 203);
+			this.button33.Name = "button33";
+			this.button33.Size = new System.Drawing.Size(83, 23);
+			this.button33.TabIndex = 65;
+			this.button33.Text = "路径信息";
+			this.button33.UseVisualStyleBackColor = true;
+			this.button33.Click += new System.EventHandler(this.button33_Click);
+			// 
+			// button32
+			// 
+			this.button32.Location = new System.Drawing.Point(827, 42);
+			this.button32.Name = "button32";
+			this.button32.Size = new System.Drawing.Size(96, 29);
+			this.button32.TabIndex = 64;
+			this.button32.Text = "系统信息";
+			this.button32.UseVisualStyleBackColor = true;
+			this.button32.Click += new System.EventHandler(this.button32_Click);
+			// 
+			// textBox_path
+			// 
+			this.textBox_path.Location = new System.Drawing.Point(656, 127);
+			this.textBox_path.Name = "textBox_path";
+			this.textBox_path.Size = new System.Drawing.Size(316, 23);
+			this.textBox_path.TabIndex = 63;
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(602, 130);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(51, 17);
+			this.label14.TabIndex = 62;
+			this.label14.Text = "PATH：";
 			// 
 			// panel3
 			// 
@@ -362,7 +440,7 @@
 			// 
 			// button29
 			// 
-			this.button29.Location = new System.Drawing.Point(774, 144);
+			this.button29.Location = new System.Drawing.Point(774, 151);
 			this.button29.Name = "button29";
 			this.button29.Size = new System.Drawing.Size(96, 29);
 			this.button29.TabIndex = 58;
@@ -372,7 +450,7 @@
 			// 
 			// textBox9
 			// 
-			this.textBox9.Location = new System.Drawing.Point(656, 147);
+			this.textBox9.Location = new System.Drawing.Point(656, 154);
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(105, 23);
 			this.textBox9.TabIndex = 57;
@@ -381,7 +459,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(602, 150);
+			this.label9.Location = new System.Drawing.Point(602, 157);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(56, 17);
 			this.label9.TabIndex = 56;
@@ -389,7 +467,7 @@
 			// 
 			// button28
 			// 
-			this.button28.Location = new System.Drawing.Point(876, 144);
+			this.button28.Location = new System.Drawing.Point(876, 151);
 			this.button28.Name = "button28";
 			this.button28.Size = new System.Drawing.Size(96, 29);
 			this.button28.TabIndex = 55;
@@ -436,7 +514,7 @@
 			// 
 			// textBox6
 			// 
-			this.textBox6.Location = new System.Drawing.Point(62, 183);
+			this.textBox6.Location = new System.Drawing.Point(62, 180);
 			this.textBox6.Name = "textBox6";
 			this.textBox6.Size = new System.Drawing.Size(105, 23);
 			this.textBox6.TabIndex = 50;
@@ -445,7 +523,7 @@
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(8, 186);
+			this.label7.Location = new System.Drawing.Point(8, 183);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(56, 17);
 			this.label7.TabIndex = 49;
@@ -453,7 +531,7 @@
 			// 
 			// button25
 			// 
-			this.button25.Location = new System.Drawing.Point(174, 180);
+			this.button25.Location = new System.Drawing.Point(174, 177);
 			this.button25.Name = "button25";
 			this.button25.Size = new System.Drawing.Size(122, 29);
 			this.button25.TabIndex = 48;
@@ -513,7 +591,7 @@
 			// 
 			// button18
 			// 
-			this.button18.Location = new System.Drawing.Point(779, 106);
+			this.button18.Location = new System.Drawing.Point(876, 92);
 			this.button18.Name = "button18";
 			this.button18.Size = new System.Drawing.Size(96, 29);
 			this.button18.TabIndex = 37;
@@ -523,7 +601,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(656, 109);
+			this.textBox3.Location = new System.Drawing.Point(753, 95);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(105, 23);
 			this.textBox3.TabIndex = 36;
@@ -532,7 +610,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(602, 112);
+			this.label2.Location = new System.Drawing.Point(699, 98);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(56, 17);
 			this.label2.TabIndex = 35;
@@ -693,17 +771,17 @@
 			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox8.Location = new System.Drawing.Point(62, 215);
+			this.textBox8.Location = new System.Drawing.Point(215, 229);
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(929, 332);
+			this.textBox8.Size = new System.Drawing.Size(776, 318);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(3, 216);
+			this.label12.Location = new System.Drawing.Point(218, 209);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(61, 17);
 			this.label12.TabIndex = 19;
@@ -718,11 +796,38 @@
 			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
-			this.userControlHead1.ProtocolInfo = "Fanuc Series Oi-MF";
+			this.userControlHead1.ProtocolInfo = "Fanuc Series 0iD/0iF/30i/31i/32i/35i 等新系统";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddNCToolStripMenuItem,
+            this.readNCToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(143, 70);
+			// 
+			// AddNCToolStripMenuItem
+			// 
+			this.AddNCToolStripMenuItem.Name = "AddNCToolStripMenuItem";
+			this.AddNCToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.AddNCToolStripMenuItem.Text = "添加NC程序";
+			// 
+			// readNCToolStripMenuItem
+			// 
+			this.readNCToolStripMenuItem.Name = "readNCToolStripMenuItem";
+			this.readNCToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.readNCToolStripMenuItem.Text = "读取NC程序";
+			// 
+			// deleteToolStripMenuItem
+			// 
+			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.deleteToolStripMenuItem.Text = "删除文件";
 			// 
 			// FormCncFanuc
 			// 
@@ -745,6 +850,7 @@
 			this.panel2.PerformLayout();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -810,5 +916,15 @@
 		private System.Windows.Forms.Button button31;
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.TextBox textBox_path;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Button button32;
+		private System.Windows.Forms.Button button33;
+		private System.Windows.Forms.TreeView treeView1;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem AddNCToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem readNCToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+		private System.Windows.Forms.Label label15;
 	}
 }

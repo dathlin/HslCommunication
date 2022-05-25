@@ -46,6 +46,17 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button_type_read = new System.Windows.Forms.Button();
+			this.button_read_plc_type = new System.Windows.Forms.Button();
+			this.textBox_type_length = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.textBox_type_data = new System.Windows.Forms.TextBox();
+			this.label15 = new System.Windows.Forms.Label();
+			this.textBox_type_code = new System.Windows.Forms.TextBox();
+			this.label17 = new System.Windows.Forms.Label();
+			this.button_type_write = new System.Windows.Forms.Button();
+			this.textBox_type_address = new System.Windows.Forms.TextBox();
+			this.label18 = new System.Windows.Forms.Label();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
@@ -71,6 +82,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -252,6 +264,18 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Controls.Add(this.groupBox1);
+			this.groupBox5.Controls.Add(this.button_type_read);
+			this.groupBox5.Controls.Add(this.button_read_plc_type);
+			this.groupBox5.Controls.Add(this.textBox_type_length);
+			this.groupBox5.Controls.Add(this.label10);
+			this.groupBox5.Controls.Add(this.textBox_type_data);
+			this.groupBox5.Controls.Add(this.label15);
+			this.groupBox5.Controls.Add(this.textBox_type_code);
+			this.groupBox5.Controls.Add(this.label17);
+			this.groupBox5.Controls.Add(this.button_type_write);
+			this.groupBox5.Controls.Add(this.textBox_type_address);
+			this.groupBox5.Controls.Add(this.label18);
 			this.groupBox5.Controls.Add(this.textBox4);
 			this.groupBox5.Controls.Add(this.label7);
 			this.groupBox5.Controls.Add(this.label6);
@@ -260,24 +284,124 @@
 			this.groupBox5.Controls.Add(this.label5);
 			this.groupBox5.Location = new System.Drawing.Point(567, 243);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 154);
+			this.groupBox5.Size = new System.Drawing.Size(419, 300);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
 			// 
+			// button_type_read
+			// 
+			this.button_type_read.Location = new System.Drawing.Point(177, 268);
+			this.button_type_read.Name = "button_type_read";
+			this.button_type_read.Size = new System.Drawing.Size(105, 28);
+			this.button_type_read.TabIndex = 37;
+			this.button_type_read.Text = "读取";
+			this.button_type_read.UseVisualStyleBackColor = true;
+			this.button_type_read.Click += new System.EventHandler(this.button_type_read_Click);
+			// 
+			// button_read_plc_type
+			// 
+			this.button_read_plc_type.Location = new System.Drawing.Point(286, 268);
+			this.button_read_plc_type.Name = "button_read_plc_type";
+			this.button_read_plc_type.Size = new System.Drawing.Size(127, 28);
+			this.button_read_plc_type.TabIndex = 36;
+			this.button_read_plc_type.Text = "PLC 型号";
+			this.button_read_plc_type.UseVisualStyleBackColor = true;
+			this.button_read_plc_type.Click += new System.EventHandler(this.button_read_plc_type_Click);
+			// 
+			// textBox_type_length
+			// 
+			this.textBox_type_length.Location = new System.Drawing.Point(275, 163);
+			this.textBox_type_length.Name = "textBox_type_length";
+			this.textBox_type_length.Size = new System.Drawing.Size(138, 23);
+			this.textBox_type_length.TabIndex = 35;
+			this.textBox_type_length.Text = "1";
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(221, 166);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(44, 17);
+			this.label10.TabIndex = 34;
+			this.label10.Text = "长度：";
+			// 
+			// textBox_type_data
+			// 
+			this.textBox_type_data.Location = new System.Drawing.Point(60, 193);
+			this.textBox_type_data.Multiline = true;
+			this.textBox_type_data.Name = "textBox_type_data";
+			this.textBox_type_data.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_type_data.Size = new System.Drawing.Size(353, 72);
+			this.textBox_type_data.TabIndex = 33;
+			this.textBox_type_data.Text = "64";
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(6, 196);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(44, 17);
+			this.label15.TabIndex = 32;
+			this.label15.Text = "数据：";
+			// 
+			// textBox_type_code
+			// 
+			this.textBox_type_code.Location = new System.Drawing.Point(60, 163);
+			this.textBox_type_code.Name = "textBox_type_code";
+			this.textBox_type_code.Size = new System.Drawing.Size(155, 23);
+			this.textBox_type_code.TabIndex = 31;
+			this.textBox_type_code.Text = "C1";
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Location = new System.Drawing.Point(6, 166);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(44, 17);
+			this.label17.TabIndex = 30;
+			this.label17.Text = "类型：";
+			// 
+			// button_type_write
+			// 
+			this.button_type_write.Location = new System.Drawing.Point(60, 268);
+			this.button_type_write.Name = "button_type_write";
+			this.button_type_write.Size = new System.Drawing.Size(111, 28);
+			this.button_type_write.TabIndex = 29;
+			this.button_type_write.Text = "写入";
+			this.button_type_write.UseVisualStyleBackColor = true;
+			this.button_type_write.Click += new System.EventHandler(this.button_type_write_Click);
+			// 
+			// textBox_type_address
+			// 
+			this.textBox_type_address.Location = new System.Drawing.Point(60, 134);
+			this.textBox_type_address.Name = "textBox_type_address";
+			this.textBox_type_address.Size = new System.Drawing.Size(353, 23);
+			this.textBox_type_address.TabIndex = 28;
+			this.textBox_type_address.Text = "A1";
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(6, 137);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(44, 17);
+			this.label18.TabIndex = 27;
+			this.label18.Text = "地址：";
+			// 
 			// textBox4
 			// 
-			this.textBox4.Location = new System.Drawing.Point(60, 66);
+			this.textBox4.Location = new System.Drawing.Point(60, 64);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(353, 74);
+			this.textBox4.Size = new System.Drawing.Size(353, 52);
 			this.textBox4.TabIndex = 14;
 			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(6, 69);
+			this.label7.Location = new System.Drawing.Point(6, 67);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(44, 17);
 			this.label7.TabIndex = 13;
@@ -286,7 +410,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(6, 18);
+			this.label6.Location = new System.Drawing.Point(6, 16);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(255, 17);
 			this.label6.TabIndex = 12;
@@ -304,7 +428,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(60, 39);
+			this.textBox3.Location = new System.Drawing.Point(60, 37);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(243, 23);
 			this.textBox3.TabIndex = 10;
@@ -313,7 +437,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(6, 42);
+			this.label5.Location = new System.Drawing.Point(6, 40);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(44, 17);
 			this.label5.TabIndex = 9;
@@ -516,6 +640,14 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// groupBox1
+			// 
+			this.groupBox1.Location = new System.Drawing.Point(6, 117);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(410, 11);
+			this.groupBox1.TabIndex = 38;
+			this.groupBox1.TabStop = false;
+			// 
 			// FormAllenBrandly
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -590,5 +722,17 @@
 		private System.Windows.Forms.TextBox textBox_router;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Button button_type_read;
+		private System.Windows.Forms.Button button_read_plc_type;
+		private System.Windows.Forms.TextBox textBox_type_length;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.TextBox textBox_type_data;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.TextBox textBox_type_code;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.Button button_type_write;
+		private System.Windows.Forms.TextBox textBox_type_address;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.GroupBox groupBox1;
 	}
 }

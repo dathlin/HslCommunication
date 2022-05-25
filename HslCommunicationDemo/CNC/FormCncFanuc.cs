@@ -21,6 +21,7 @@ namespace HslCommunicationDemo
 		public FormCncFanuc( )
 		{
 			InitializeComponent( );
+
 		}
 
 		private void FormClient_Load( object sender, EventArgs e )
@@ -30,6 +31,17 @@ namespace HslCommunicationDemo
 
 			textBox7.Text = System.IO.Path.Combine( Application.StartupPath, "O6.txt" );
 
+
+			imageList = new ImageList( );
+			imageList.Images.Add( "Class_489", Properties.Resources.Class_489 );
+			imageList.Images.Add( "file", Properties.Resources.file );
+			treeView1.ImageList = imageList;
+			treeView1.AfterSelect += TreeView1_AfterSelect;
+			treeView1.MouseDown += TreeView1_MouseDown;
+
+			AddNCToolStripMenuItem.Click += AddNCToolStripMenuItem_Click;
+			readNCToolStripMenuItem.Click += ReadNCToolStripMenuItem_Click;
+			deleteToolStripMenuItem.Click += DeleteToolStripMenuItem_Click;
 			Language( Program.Language );
 		}
 
@@ -57,6 +69,7 @@ namespace HslCommunicationDemo
 				button27.Text = "Down Program";
 				button28.Text = "Read Program";
 				button29.Text = "Del Program";
+				label15.Text = "Right Mouse Click";
 			}
 		}
 
@@ -93,6 +106,20 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 
 			fanuc.ConnectClose( );
+		}
+
+		private void button32_Click( object sender, EventArgs e )
+		{
+			// 系统信息
+			OperateResult<FanucSysInfo> read = fanuc.ReadSysInfo( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = read.Content.ToJsonString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
 		}
 
 		private void button3_Click( object sender, EventArgs e )
@@ -325,7 +352,7 @@ namespace HslCommunicationDemo
 				return;
 			}
 			button28.Enabled = false;
-			OperateResult<string> read = await fanuc.ReadProgramAsync( programNum );
+			OperateResult<string> read = await fanuc.ReadProgramAsync( programNum, textBox_path.Text );
 			button28.Enabled = true;
 			if (read.IsSuccess)
 			{
@@ -371,7 +398,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "设置主程序失败！" + set.Message );
+				MessageBox.Show( "设置主程序失败！" + set.ToMessageShowString( ) );
 			}
 		}
 
@@ -384,7 +411,7 @@ namespace HslCommunicationDemo
 			}
 			// 下载程序
 			button27.Enabled = false;
-			OperateResult write = await fanuc.WriteProgramFileAsync( textBox7.Text );
+			OperateResult write = await fanuc.WriteProgramFileAsync( textBox7.Text, 512, textBox_path.Text );
 			button27.Enabled = true;
 			if (write.IsSuccess)
 			{
@@ -517,6 +544,182 @@ namespace HslCommunicationDemo
 		private void panel3_Paint( object sender, PaintEventArgs e )
 		{
 			e.Graphics.DrawRectangle( Pens.Gray, new Rectangle( 0, 0, panel3.Width - 1, panel3.Height - 1 ) );
+		}
+
+		private string GetPathFromTree( TreeNode treeNode )
+		{
+			if (treeNode.Parent == null) return "//" + treeNode.Text + "/";
+			if (treeNode.Tag is FileDirInfo fileDirInfo)
+			{
+				if (!fileDirInfo.IsDirectory)
+				{
+					return GetPathFromTree( treeNode.Parent ) + treeNode.Text;
+				}
+				else
+				{
+					return GetPathFromTree( treeNode.Parent ) + treeNode.Text + "/";
+				}
+			}
+			return GetPathFromTree( treeNode.Parent ) + treeNode.Text + "/";
+		}
+
+		private void TreeView1_AfterSelect( object sender, TreeViewEventArgs e )
+		{
+			if (e.Node == null) return;
+			if (e.Node.Tag is FileDirInfo fileDirInfo)
+			{
+				if (!fileDirInfo.IsDirectory)
+				{
+					textBox8.Text = fileDirInfo.ToString( );
+				}
+				else
+				{
+					textBox_path.Text = GetPathFromTree( e.Node );
+					List<string> list = new List<string>( );
+					foreach (TreeNode item in e.Node.Nodes)
+					{
+						if (item.Tag is FileDirInfo file)
+						{
+							if (!file.IsDirectory)
+								list.Add( file.ToString( ) );
+						}
+					}
+					textBox8.Text = list.ToJsonString( );
+				}
+			}
+		}
+
+		private void BrowerFile( TreeNode treeNode )
+		{
+			OperateResult<FileDirInfo[]> read = fanuc.ReadAllDirectoryAndFile( GetPathFromTree( treeNode ) );
+			if (read.IsSuccess)
+			{
+				foreach(FileDirInfo fileDirInfo in read.Content)
+				{
+					TreeNode node = new TreeNode( fileDirInfo.Name );
+					node.Tag = fileDirInfo;
+					treeNode.Nodes.Add( node );
+
+					if (fileDirInfo.IsDirectory)
+					{
+						node.ImageKey = "Class_489";
+						node.SelectedImageKey = "Class_489";
+						BrowerFile( node );
+					}
+					else
+					{
+						node.ImageKey = "file";
+						node.SelectedImageKey = "file";
+					}
+				}
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
+		private void TreeView1_MouseDown( object sender, MouseEventArgs e )
+		{
+			TreeNode treeNode = treeView1.GetNodeAt( e.Location );
+			if (treeNode == null) return;
+
+			treeView1.SelectedNode = treeNode;
+			if (treeNode.Parent == null) return;
+
+			if (e.Button == MouseButtons.Right)
+				contextMenuStrip1.Show( treeView1, e.Location );
+		}
+
+		private async void DeleteToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			TreeNode treeNode = treeView1.SelectedNode;
+			if (treeNode == null) return;
+
+			string path = GetPathFromTree( treeNode );
+			OperateResult write = await fanuc.DeleteFileAsync( path );
+			if (write.IsSuccess)
+			{
+				MessageBox.Show( "Delete success！" );
+			}
+			else
+			{
+				MessageBox.Show( "delete failed！" + write.Message );
+			}
+		}
+
+		private async void ReadNCToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			TreeNode treeNode = treeView1.SelectedNode;
+			if (treeNode == null) return;
+
+			if (treeNode.Tag is FileDirInfo fileDirInfo)
+			{
+				if (fileDirInfo.IsDirectory) return;
+
+				string path = GetPathFromTree( treeNode.Parent );
+				int program = int.Parse( fileDirInfo.Name.Substring( 1 ) );
+
+
+				OperateResult<string> read = await fanuc.ReadProgramAsync( program, path );
+				if (read.IsSuccess)
+				{
+					textBox8.Text = "Program Content：" + Environment.NewLine + read.Content;
+				}
+				else
+				{
+					MessageBox.Show( "read failed！" + read.ToMessageShowString( ) );
+				}
+			}
+		}
+
+		private async void AddNCToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			TreeNode treeNode = treeView1.SelectedNode;
+			if (treeNode == null) return;
+
+			if (treeNode.Tag is FileDirInfo fileDirInfo)
+			{
+				if (!fileDirInfo.IsDirectory)
+				{
+					MessageBox.Show( "Add nc program must select path!" );
+					return;
+				}
+
+				string path = GetPathFromTree( treeNode );
+				OpenFileDialog openFileDialog = new OpenFileDialog( );
+				if(openFileDialog.ShowDialog( this ) == DialogResult.OK)
+				{
+					OperateResult write = await fanuc.WriteProgramFileAsync( openFileDialog.FileName, 512, path );
+					if (write.IsSuccess)
+					{
+						MessageBox.Show( "Success！" );
+					}
+					else
+					{
+						MessageBox.Show( "failed！" + write.ToMessageShowString() );
+					}
+				}
+
+			}
+		}
+
+		private ImageList imageList;
+
+
+		private void button33_Click( object sender, EventArgs e )
+		{
+			treeView1.Nodes[0].Nodes.Clear( );
+			BrowerFile( treeView1.Nodes[0] );
+			treeView1.Nodes[0].ExpandAll( );
+			//OperateResult<FileDirInfo[]> read = fanuc.ReadAllDirects( textBox_path.Text );
+			//if (read.IsSuccess)
+			//{
+			//	textBox8.Text = read.Content.ToJsonString( );
+			//}
+			//else
+			//{
+			//	MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			//}
 		}
 	}
 

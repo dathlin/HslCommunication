@@ -76,6 +76,7 @@ namespace HslCommunicationDemo
                 httpServer.RegisterHttpRpcApi( "Siemens", siemens );                 // 注册一个西门子PLC的服务接口的示例
                 httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );    // 注册的类的静态方法和静态属性
                 httpServer.RegisterHttpRpcApi( "PCCC", pcccNet );
+                httpServer.DealWithHttpListenerRequest = DealWithHttpListenerRequest;
                 if (checkBox2.Checked) httpServer.SetLoginAccessControl( new HslCommunication.MQTT.MqttCredential[] {
                 new HslCommunication.MQTT.MqttCredential("admin", "123456")} );
 
@@ -88,16 +89,33 @@ namespace HslCommunicationDemo
             }
         }
 
+        private void DealWithHttpListenerRequest( HttpListenerRequest request, ISessionContext session )
+		{
+            // 获取ClientID信息
+            string[] values = request.Headers.GetValues( "ClientID" );
+            if (values?.Length > 0)
+			{
+                session.ClientId = values[0];
+            }
+        }
+
         private Dictionary<string, string> returnWeb = new Dictionary<string, string>( );
         private Dictionary<string, string> postWeb = new Dictionary<string, string>( );
         private Random random = new Random( );
 
         [HslMqttApi( HttpMethod = "POST" )]
-        public OperateResult CheckAccount(string name, string password )
+        public OperateResult CheckAccount( ISessionContext session, string name, string password )
         {
-            if (name != "admin") return new OperateResult( "用户名错误" );
-            if (password != "123456") return new OperateResult( "密码错误" );
-            return OperateResult.CreateSuccessResult( );
+            if (string.IsNullOrEmpty( session.ClientId ))
+            {
+                if (name != "admin") return new OperateResult( "用户名错误" );
+                if (password != "123456") return new OperateResult( "密码错误" );
+                return OperateResult.CreateSuccessResult( );
+            }
+			else
+			{
+                return new OperateResult( "ClientID: " + session.ClientId );
+			}
         }
 
         [HslMqttApi( HttpMethod = "GET" )]
@@ -160,7 +178,7 @@ namespace HslCommunicationDemo
             if (request.RawUrl.StartsWith( "/FormHttpServer/" ))
             {
                 // /FormHttpServer/CheckAccount            { "name" : "admin", "password" : "123456" }
-                return HttpServer.HandleObjectMethod( request, request.RawUrl, data, this ).Result;
+                return HttpServer.HandleObjectMethod( request, request.RawUrl, data, this, action: null ).Result;
             }
             else
             {

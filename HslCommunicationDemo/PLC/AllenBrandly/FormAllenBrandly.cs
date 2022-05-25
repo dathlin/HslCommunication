@@ -259,5 +259,56 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
+		private void button_type_read_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				OperateResult<ushort, byte[]> read = allenBradleyNet.ReadTag( textBox_type_address.Text, ushort.Parse( textBox_type_length.Text ) );
+				if (read.IsSuccess)
+				{
+					textBox_type_code.Text = read.Content1.ToString( "X2" );
+					textBox_type_data.Text = read.Content2.ToHexString( ' ' );
+				}
+				else
+				{
+					MessageBox.Show( "read failed：" + read.Message );
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( "read failed：" + ex.Message );
+			}
+		}
+
+		private void button_type_write_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				OperateResult write = allenBradleyNet.WriteTag(
+					textBox_type_address.Text,
+					Convert.ToUInt16( textBox_type_code.Text, 16 ),
+					textBox_type_data.Text.ToHexBytes( ),
+					int.Parse( textBox_type_length.Text ) );
+				DemoUtils.WriteResultRender( write, textBox_type_address.Text );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( "write failed：" + ex.Message );
+			}
+		}
+
+		private void button_read_plc_type_Click( object sender, EventArgs e )
+		{
+			OperateResult<string> read = allenBradleyNet.ReadPlcType( );
+			if (read.IsSuccess)
+			{
+				textBox_type_data.Text = read.Content;
+			}
+			else
+			{
+				MessageBox.Show( "Read failed: " + read.Message );
+			}
+		}
 	}
 }

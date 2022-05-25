@@ -47,18 +47,19 @@
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.button4 = new System.Windows.Forms.Button();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.label2 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.Column_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column_image = new System.Windows.Forms.DataGridViewImageColumn();
 			this.Column_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column_TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column_value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.label2 = new System.Windows.Forms.Label();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.textBox_regex = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -190,6 +191,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.textBox_regex);
 			this.splitContainer1.Panel1.Controls.Add(this.button3);
 			this.splitContainer1.Panel1.Controls.Add(this.treeView1);
 			// 
@@ -202,9 +204,9 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(3, 5);
+			this.button3.Location = new System.Drawing.Point(142, 5);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(75, 23);
+			this.button3.Size = new System.Drawing.Size(75, 26);
 			this.button3.TabIndex = 1;
 			this.button3.Text = "refresh";
 			this.button3.UseVisualStyleBackColor = true;
@@ -280,66 +282,6 @@
 			this.dataGridView1.Size = new System.Drawing.Size(753, 499);
 			this.dataGridView1.TabIndex = 5;
 			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(3, 9);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(67, 17);
-			this.label2.TabIndex = 0;
-			this.label2.Text = "string tag:";
-			// 
-			// textBox4
-			// 
-			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox4.Location = new System.Drawing.Point(73, 6);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(586, 23);
-			this.textBox4.TabIndex = 1;
-			// 
-			// panel3
-			// 
-			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.panel3.Controls.Add(this.splitContainer1);
-			this.panel3.Location = new System.Drawing.Point(2, 77);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(999, 543);
-			this.panel3.TabIndex = 10;
-			// 
-			// statusStrip1
-			// 
-			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 623);
-			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(1004, 22);
-			this.statusStrip1.TabIndex = 11;
-			this.statusStrip1.Text = "statusStrip1";
-			// 
-			// toolStripStatusLabel1
-			// 
-			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(32, 17);
-			this.toolStripStatusLabel1.Text = "就绪";
-			// 
-			// userControlHead1
-			// 
-			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlHead1.HelpLink = "https://www.cnblogs.com/dathlin/p/9607929.html";
-			this.userControlHead1.Location = new System.Drawing.Point(0, 0);
-			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
-			this.userControlHead1.Name = "userControlHead1";
-			this.userControlHead1.ProtocolInfo = "CIP";
-			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
-			this.userControlHead1.TabIndex = 12;
-			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
 			// Column_number
 			// 
 			this.Column_number.HeaderText = "Number";
@@ -382,6 +324,73 @@
 			this.Column_value.ReadOnly = true;
 			this.Column_value.Width = 298;
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(3, 9);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(67, 17);
+			this.label2.TabIndex = 0;
+			this.label2.Text = "string tag:";
+			// 
+			// textBox4
+			// 
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox4.Location = new System.Drawing.Point(73, 6);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(586, 23);
+			this.textBox4.TabIndex = 1;
+			// 
+			// panel3
+			// 
+			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel3.Controls.Add(this.splitContainer1);
+			this.panel3.Location = new System.Drawing.Point(2, 77);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(999, 543);
+			this.panel3.TabIndex = 10;
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 623);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(1004, 22);
+			this.statusStrip1.TabIndex = 11;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// toolStripStatusLabel1
+			// 
+			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(188, 17);
+			this.toolStripStatusLabel1.Text = "就绪，支持节点的正则表达式查询";
+			// 
+			// userControlHead1
+			// 
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlHead1.HelpLink = "https://www.cnblogs.com/dathlin/p/9607929.html";
+			this.userControlHead1.Location = new System.Drawing.Point(0, 0);
+			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
+			this.userControlHead1.Name = "userControlHead1";
+			this.userControlHead1.ProtocolInfo = "CIP";
+			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.TabIndex = 12;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// textBox_regex
+			// 
+			this.textBox_regex.Location = new System.Drawing.Point(3, 6);
+			this.textBox_regex.Name = "textBox_regex";
+			this.textBox_regex.Size = new System.Drawing.Size(129, 23);
+			this.textBox_regex.TabIndex = 2;
+			// 
 			// FormAllenBrandlyBrowser
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -401,6 +410,7 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
@@ -448,5 +458,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column_type;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column_TypeName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column_value;
+		private System.Windows.Forms.TextBox textBox_regex;
 	}
 }

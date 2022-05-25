@@ -10,6 +10,7 @@ using System.Xml.Linq;
 using HslCommunication;
 using HslCommunication.BasicFramework;
 using HslCommunication.Profinet.AllenBradley;
+using System.Text.RegularExpressions;
 
 namespace HslCommunicationDemo
 {
@@ -119,7 +120,7 @@ namespace HslCommunicationDemo
 				return;
 			};
 			rootTags = reads.Content;
-			AddTreeNode( treeView1.Nodes[0], reads.Content, string.Empty, true );
+			AddTreeNode( treeView1.Nodes[0], reads.Content, string.Empty, true, true );
 
 			treeView1.Nodes[0].Expand( );
 		}
@@ -167,10 +168,15 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private void AddTreeNode(TreeNode parent, AbTagItem[] items, string parentName, bool showDataGrid )
+		private void AddTreeNode(TreeNode parent, AbTagItem[] items, string parentName, bool showDataGrid, bool regexMatch )
 		{
 			foreach (var item in items)
 			{
+				if (regexMatch && !string.IsNullOrEmpty( textBox_regex.Text ) && !Regex.IsMatch( item.Name, textBox_regex.Text ))
+				{
+					continue;
+				}
+
 				TreeNode treeNode         = new TreeNode( item.Name );
 				treeNode.Name             = string.IsNullOrEmpty( parentName ) ? item.Name : parentName + "." + item.Name;
 				treeNode.ImageKey         = GetIamgeKeyByTag(item);
@@ -186,7 +192,7 @@ namespace HslCommunicationDemo
 					item.Members = read.Content;
 					if (item.ArrayDimension == 0)
 					{
-						AddTreeNode( treeNode, read.Content, treeNode.Name, false );
+						AddTreeNode( treeNode, read.Content, treeNode.Name, false, false );
 					}
 					else if (item.ArrayDimension == 1)
 					{
@@ -206,13 +212,34 @@ namespace HslCommunicationDemo
 							abTag.Members        = AbTagItem.CloneBy( item.Members );
 
 							treeNodeChild.Tag = abTag;
-							AddTreeNode( treeNodeChild, read.Content, treeNodeChild.Name, false );
+							AddTreeNode( treeNodeChild, read.Content, treeNodeChild.Name, false, false );
 							treeNode.Nodes.Add( treeNodeChild );
 						}
 					}
-					else
+					else if (item.ArrayDimension == 2) 
 					{
-						 
+						for (int i = 0; i < item.ArrayLength[0]; i++)
+						{
+							for(int j = 0; j < item.ArrayLength[1]; j++)
+							{
+								TreeNode treeNodeChild = new TreeNode( item.Name + $"[{i},{j}]" );
+								treeNodeChild.Name = string.IsNullOrEmpty( parentName ) ? item.Name + $"[{i},{j}]" : parentName + "." + item.Name + $"[{i},{j}]";
+								treeNodeChild.ImageKey = GetIamgeKeyByTag( item );
+								treeNodeChild.SelectedImageKey = GetIamgeKeyByTag( item );
+								AbTagItem abTag = new AbTagItem( );
+								abTag.Name = item.Name + $"[{i},{j}]";
+								abTag.InstanceID = item.InstanceID;
+								abTag.SymbolType = item.SymbolType;
+								abTag.IsStruct = item.IsStruct;
+								abTag.ArrayDimension = 0;
+								abTag.ArrayLength = item.ArrayLength;
+								abTag.Members = AbTagItem.CloneBy( item.Members );
+
+								treeNodeChild.Tag = abTag;
+								AddTreeNode( treeNodeChild, read.Content, treeNodeChild.Name, false, false );
+								treeNode.Nodes.Add( treeNodeChild );
+							}
+						}
 					}
 				}
 			}
@@ -472,7 +499,9 @@ namespace HslCommunicationDemo
 					if (treeNode.Parent.Tag is AbTagItem parentTag)
 					{
 						if (parentTag.IsStruct && parentTag.ArrayDimension == 1)
+						{
 							RenderDataGridView( parentTag.Members );
+						}
 					}
 					else if (treeNode.Parent.Tag == null)
 					{

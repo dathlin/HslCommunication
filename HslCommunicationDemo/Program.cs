@@ -39,6 +39,8 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
+				// active success
+				// MessageBox.Show( "授权成功！" );
 				IsActive = true;
 			}
 

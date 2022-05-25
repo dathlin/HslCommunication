@@ -30,8 +30,16 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 
 			Language( Program.Language );
+			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
 		}
 
+		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
+		{
+			if (melsec_net != null)
+			{
+				melsec_net.IsNewVersion = checkBox1.Checked;
+			}
+		}
 
 		private void Language( int language )
 		{
@@ -40,6 +48,7 @@ namespace HslCommunicationDemo
 				Text = "Melsec Read PLC Demo";
 
 				checkBox1.Text = "New Version Message?";
+				checkBox_got.Text = "Use Got";
 				label1.Text = "Ip:";
 				label3.Text = "Port:";
 				button1.Text = "Connect";
@@ -79,10 +88,11 @@ namespace HslCommunicationDemo
 			}
 
 			melsec_net?.ConnectClose( );
-			melsec_net = new MelsecFxSerialOverTcp( );
-			melsec_net.IpAddress = textBox1.Text;
-			melsec_net.Port = port;
+			melsec_net              = new MelsecFxSerialOverTcp( );
+			melsec_net.IpAddress    = textBox1.Text;
+			melsec_net.Port         = port;
 			melsec_net.IsNewVersion = checkBox1.Checked;
+			melsec_net.UseGOT       = checkBox_got.Checked;
 			try
 			{
 				OperateResult connect = melsec_net.ConnectServer( );

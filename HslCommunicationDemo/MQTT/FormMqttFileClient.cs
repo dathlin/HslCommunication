@@ -115,8 +115,6 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		#region Upload File
-
 		private async void 批量上传ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			TreeNode node = treeView1.SelectedNode;
@@ -141,15 +139,6 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		/*************************************************************************************************
-		 * 
-		 *   一条指令即可完成文件的上传操作，上传模式有三种
-		 *   1. 指定本地的完整路径的文件名
-		 *   2. 将流（stream）中的数据上传到服务器
-		 *   3. 将bitmap图片数据上传到服务器
-		 * 
-		 ********************************************************************************************/
-
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 选择文件
@@ -162,30 +151,28 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private async Task<OperateResult> UploadFlieExample( )
-		{
-			button3.Enabled = false;
-			string fileName = textBox3.Text;
-			System.IO.FileInfo fileInfo = new System.IO.FileInfo( fileName );
-			// 开始正式上传，关于三级分类，下面只是举个例子，上传成功后去服务器端寻找文件就能明白
-			// start to upload file to server , u shold specify the catgray about the file
-			OperateResult result = await mqttSyncClient.UploadFileAsync(
-				fileName,                       // 需要上传的原文件的完整路径，上传成功还需要个条件，该文件不能被占用
-				textBox_upload_group.Text,      // 类别信息，例如 Files/Personal/Admin
-				fileInfo.Name,                  // 在服务器存储的文件名，带后缀，一般设置为原文件的文件名，当然您也可以重新设置名字
-				textBox_upload_tag.Text,        // 这个文件的额外描述文本，可以为空（""）
-				UpdateReportProgress            // 文件上传时的进度报告，如果你不需要，指定为NULL就行，一般文件比较大，带宽比较小，都需要进度提示
-				);
-			button3.Enabled = true;
-			return result;
-		}
+		#region Upload File
 
-		private async void button3_Click( object sender, EventArgs e )
+		/*************************************************************************************************
+		 * 
+		 *   一条指令即可完成文件的上传操作，上传模式有三种
+		 *   1. 指定本地的完整路径的文件名
+		 *   2. 将流（stream）中的数据上传到服务器
+		 *   3. 将bitmap图片数据上传到服务器
+		 * 
+		 ********************************************************************************************/
+
+		// 取消上传的令牌
+		private HslCancelToken uploadCacel = null;
+		// mqttSyncClient 即为通信对象
+
+		private async void button_upload_Click( object sender, EventArgs e )
 		{
 			// 开始上传
+			uploadCacel = new HslCancelToken( );
 			if (!string.IsNullOrEmpty( textBox3.Text ))
 			{
-				if(!System.IO.File.Exists( textBox3.Text ))
+				if (!System.IO.File.Exists( textBox3.Text ))
 				{
 					MessageBox.Show( "选择的文件不存在，退出！" );
 					return;
@@ -210,6 +197,34 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Please Select a File" );
 			}
+			uploadCacel = null;
+		}
+
+		private async Task<OperateResult> UploadFlieExample( )
+		{
+			button_upload.Enabled = false;             // 上传按钮禁用，取消上传按钮使能
+			button_upload_cancel.Enabled = true;
+			string fileName = textBox3.Text;           // 等待上传的完整文件路径
+			System.IO.FileInfo fileInfo = new System.IO.FileInfo( fileName );
+			// 开始正式上传，关于三级分类，下面只是举个例子，上传成功后去服务器端寻找文件就能明白
+			// start to upload file to server , u shold specify the catgray about the file
+			OperateResult result = await mqttSyncClient.UploadFileAsync(
+				fileName,                       // 需要上传的原文件的完整路径，上传成功还需要个条件，该文件不能被占用
+				textBox_upload_group.Text,      // 类别信息，例如 Files/Personal/Admin
+				fileInfo.Name,                  // 在服务器存储的文件名，带后缀，一般设置为原文件的文件名，当然您也可以重新设置名字
+				textBox_upload_tag.Text,        // 这个文件的额外描述文本，可以为空（""）
+				UpdateReportProgress,           // 文件上传时的进度报告，如果你不需要，指定为NULL就行，一般文件比较大，带宽比较小，都需要进度提示
+				uploadCacel                     // 用于取消的令牌，不需要取消的话，传NULL即可
+				);
+			button_upload.Enabled = true;
+			button_upload_cancel.Enabled = false;
+			return result;
+		}
+
+		// 点击取消上传按钮
+		private void button_upload_cancel_Click( object sender, EventArgs e )
+		{
+			if (uploadCacel != null) uploadCacel.IsCancelled = true;
 		}
 
 		/// <summary>
@@ -234,8 +249,6 @@ namespace HslCommunicationDemo
 			progressBar1.Value = value;
 		}
 
-
-
 		#endregion
 
 		#region Download File
@@ -254,7 +267,7 @@ namespace HslCommunicationDemo
 				if (node.Tag is GroupFileItem fileItem)
 				{
 					// 菜单下载文件
-					if (!button4.Enabled)
+					if (!button_download.Enabled)
 					{
 						MessageBox.Show( "请等待之前的下载完成再进行操作！" );
 						return;
@@ -283,7 +296,7 @@ namespace HslCommunicationDemo
 					if (item.Tag is GroupFileItem fileItem)
 					{
 						// 菜单下载文件
-						if (!button4.Enabled)
+						if (!button_download.Enabled)
 						{
 							MessageBox.Show( "请等待之前的下载完成再进行操作！" );
 							return;
@@ -297,6 +310,21 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		#region Download Sample
+
+		// mqttSyncClient 即为通信对象
+
+		private HslCancelToken downloadCacel = null;
+
+		private async void button_download_Click( object sender, EventArgs e )
+		{
+			// 点击开始下载，此处按照实际项目需求放到了后台线程处理，事实上这种耗时的操作就应该放到后台线程
+			// click this button to start a backgroud thread for downloading file
+			downloadCacel = new HslCancelToken( );
+			await DownloadFileExample( );
+			downloadCacel = null;
+		}
+
 		/*************************************************************************************************
 		 * 
 		 *   一条指令即可完成文件的下载操作，下载模式有三种
@@ -308,8 +336,9 @@ namespace HslCommunicationDemo
 
 		private async Task DownloadFileExample( )
 		{
-			progressBar2.Value = 0;
-			button4.Enabled = false;
+			progressBar2.Value = 0;                                       // 下载的进度条复位
+			button_download.Enabled = false;                              // 下载按钮禁止，打开取消下载按钮
+			button_download_cancel.Enabled = true;
 			label15.Text = "Start downloading...";
 
 			string fileName = textBox_download_fileName.Text;
@@ -318,10 +347,12 @@ namespace HslCommunicationDemo
 					textBox5.Text,                                         // 类别信息，例如 Files/Personal/Admin
 					fileName,                                              // 文件在服务器上保存的名称，举例123.txt
 					DownloadReportProgress,                                // 文件下载的时候的进度报告，友好的提示下载进度信息
-					Application.StartupPath + @"\Files\" + fileName        // 下载后在文本保存的路径，也可以直接下载到 MemoryStream 的数据流中，或是bitmap中，或是手动选择存储路径
+					Application.StartupPath + @"\Files\" + fileName,       // 下载后在文本保存的路径，也可以直接下载到 MemoryStream 的数据流中，或是bitmap中，或是手动选择存储路径
+					downloadCacel                                          // 取消下载操作的令牌，如果不需要取消，使用NULL即可
 					);
 
-			button4.Enabled = true;
+			button_download.Enabled = true;
+			button_download_cancel.Enabled = false;
 			if (result.IsSuccess)
 			{
 				// message: file download success
@@ -335,12 +366,33 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private async void button4_Click( object sender, EventArgs e )
+		// 点击下载取消的按钮，取消的令牌设置为 True
+		private void button_download_cancel_Click( object sender, EventArgs e )
 		{
-			// 点击开始下载，此处按照实际项目需求放到了后台线程处理，事实上这种耗时的操作就应该放到后台线程
-			// click this button to start a backgroud thread for downloading file
-			await DownloadFileExample( );
+			if (downloadCacel != null) downloadCacel.IsCancelled = true;
 		}
+
+		/// <summary>
+		/// 用于更新文件下载进度的方法，该方法是线程安全的，主要作用是将下载文件的进度在进度条上显示
+		/// </summary>
+		/// <param name="receive">已经接收的字节数</param>
+		/// <param name="totle">总字节数</param>
+		private void DownloadReportProgress( long receive, long totle )
+		{
+			if (progressBar2.InvokeRequired)
+			{
+				progressBar2.Invoke( new Action<long, long>( DownloadReportProgress ), receive, totle );
+				return;
+			}
+
+			// 此处代码是线程安全的
+			// thread-safe code
+			int value = (int)(receive * 100L / totle);
+			progressBar2.Value = value;
+			label9.Text = SoftBasic.GetSizeDescription( receive ) + "/" + SoftBasic.GetSizeDescription( totle );
+		}
+
+		#endregion
 
 		private async void button10_Click( object sender, EventArgs e )
 		{
@@ -361,28 +413,6 @@ namespace HslCommunicationDemo
 				MessageBox.Show( result.Message );
 			}
 		}
-
-		/// <summary>
-		/// 用于更新文件下载进度的方法，该方法是线程安全的
-		/// </summary>
-		/// <param name="receive">已经接收的字节数</param>
-		/// <param name="totle">总字节数</param>
-		private void DownloadReportProgress( long receive, long totle )
-		{
-			if (progressBar2.InvokeRequired)
-			{
-				progressBar2.Invoke( new Action<long, long>( DownloadReportProgress ), receive, totle );
-				return;
-			}
-
-			// 此处代码是线程安全的
-			// thread-safe code
-			int value = (int)(receive * 100L / totle);
-			progressBar2.Value = value;
-			label9.Text = SoftBasic.GetSizeDescription( receive ) + "/" + SoftBasic.GetSizeDescription( totle );
-		}
-
-
 		#endregion
 
 		#region Delete Files

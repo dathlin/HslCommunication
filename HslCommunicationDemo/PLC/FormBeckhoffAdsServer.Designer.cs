@@ -37,6 +37,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -110,6 +111,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.label1);
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
 			this.panel2.Location = new System.Drawing.Point(3, 92);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -123,9 +125,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 2);
+			this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 22);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 543);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 523);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -141,6 +143,17 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.Green;
+			this.label1.Location = new System.Drawing.Point(5, 2);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(690, 17);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "预设地址：s=MAIN.a (short)     s=MAIN.cc (int)    s=MAIN.dd (float)     s=MAIN.ee  (bo" +
+    "o[11])     s=MAIN.ff  (short[3])";
 			// 
 			// FormBeckhoffAdsServer
 			// 
@@ -161,6 +174,7 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -176,5 +190,6 @@
         private System.Windows.Forms.Label label11;
         private DemoControl.UserControlHead userControlHead1;
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
-    }
+		private System.Windows.Forms.Label label1;
+	}
 }

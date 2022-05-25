@@ -211,6 +211,8 @@ namespace HslCommunicationDemo
 				tabPage1.Text = "所有设备列表";
 				tabPage2.Text = "保存列表";
 				deleteDeviceToolStripMenuItem.Text = "删除设备";
+				toolStripMenuItem_language.Text = "语言";
+				toolStripMenuItem_homepage.Text = "官网";
 			}
 			else
 			{
@@ -221,6 +223,8 @@ namespace HslCommunicationDemo
 				//授权ToolStripMenuItem.Text = "Authorize";
 				tabPage1.Text = "All Devices";
 				tabPage2.Text = "Save Devices";
+				toolStripMenuItem_language.Text = "Language";
+				toolStripMenuItem_homepage.Text = "Home";
 			}
 		}
 
@@ -259,9 +263,9 @@ namespace HslCommunicationDemo
 			OpenWebside( "http://www.hslcommunication.cn/" );
 		}
 
-		private void toolStripMenuItem1_Click( object sender, EventArgs e )
+		private void toolStripMenuItem_homepage_Click( object sender, EventArgs e )
 		{
-			OpenWebside( "http://www.hslcommunication.cn/MesDemo" );
+			OpenWebside( "http://www.hsltechnology.cn" );
 		}
 		private void 简体中文ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
@@ -508,6 +512,7 @@ namespace HslCommunicationDemo
 			// Allen Bradlly PLC
 			TreeNode allenBrandlyPlc = new TreeNode( "AllenBrandly[罗克韦尔]", 1, 1 );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "EtherNet/IP(CIP)",        1, typeof( FormAllenBrandly ) ) );
+			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "Connected CIP",           1, typeof( FormAllenBrandlyConnectedCip ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "MicroCip(Micro800)",      1, typeof( FormAllenBrandlyMicroCip ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP Browser",             1, typeof( FormAllenBrandlyBrowser ) ) );
 			allenBrandlyPlc.Nodes.Add( GetTreeNodeByIndex( "CIP Virtual Server",      1, typeof( FormCipServer ) ) );
@@ -654,6 +659,7 @@ namespace HslCommunicationDemo
 
 			TreeNode secsNode = new TreeNode( "Secs [半导体]" );
 			secsNode.Nodes.Add( new TreeNode( "Secs Gem" ) { Tag = typeof( FormSecsGem ) } );
+			secsNode.Nodes.Add( new TreeNode( "Secs Server" ) { Tag = typeof( PLC.Secs.FormSecsHsmsServer ) } );
 			treeView1.Nodes.Add( secsNode );
 
 			TreeNode sensorNode = new TreeNode( "Sensor[传感器]" );
@@ -668,6 +674,7 @@ namespace HslCommunicationDemo
 
 			// Debug 相关
 			TreeNode debugNode = new TreeNode( "Debug About[调试技术]", 15, 15 );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regex [正则表达式]", 15, typeof( HslDebug.FormRegexTest ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口调试]", 15, typeof( FormSerialDebug ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Client [网口调试]", 15, typeof( FormTcpDebug ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]", 15, typeof( FormTcpServer ) ) );

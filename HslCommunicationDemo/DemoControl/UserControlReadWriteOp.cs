@@ -629,18 +629,48 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private void button_write_byte_Click( object sender, EventArgs e )
+		private async void button_write_byte_Click( object sender, EventArgs e )
 		{
-			// byte，此处演示了基于反射的写入操作
-			if (byte.TryParse( textBox7.Text, out byte value ))
+			if (textBox7.Text.StartsWith( "[" ) && textBox7.Text.EndsWith( "]" ))
 			{
-				DateTime start = DateTime.Now;
-				OperateResult write = (OperateResult)writeByteMethod.Invoke( readWriteNet, new object[] { textBox8.Text, value } );
-				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-				DemoUtils.WriteResultRender( write, textBox8.Text );
+				try
+				{
+					byte[] value = textBox7.Text.ToStringArray<byte>( );
+					if (isAsync)
+					{
+						button_write_short.Enabled = false;
+						DateTime start = DateTime.Now;
+						OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+						button_write_short.Enabled = true;
+					}
+					else
+					{
+						DateTime start = DateTime.Now;
+						OperateResult write = readWriteNet.Write( textBox8.Text, value );
+						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						DemoUtils.WriteResultRender( write, textBox8.Text );
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show( "byte Data is not corrent: " + textBox7.Text + Environment.NewLine + ex.Message );
+				}
 			}
 			else
-				MessageBox.Show( "Byte Data is not corrent: " + textBox7.Text );
+			{
+				// byte，此处演示了基于反射的写入操作
+				if (byte.TryParse( textBox7.Text, out byte value ))
+				{
+					DateTime start = DateTime.Now;
+					OperateResult write = (OperateResult)writeByteMethod.Invoke( readWriteNet, new object[] { textBox8.Text, value } );
+					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					DemoUtils.WriteResultRender( write, textBox8.Text );
+				}
+				else
+					MessageBox.Show( "Byte Data is not corrent: " + textBox7.Text );
+			}
 		}
 
 		private async void button_write_short_Click( object sender, EventArgs e )

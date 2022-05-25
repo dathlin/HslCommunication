@@ -8,23 +8,22 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet;
 using System.Threading;
-using HslCommunication.Profinet.Omron;
 using HslCommunication;
 using HslCommunication.Profinet.AllenBradley;
 using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
-	public partial class FormOmronConnectedCip : HslFormContent
+	public partial class FormAllenBrandlyConnectedCip : HslFormContent
 	{
-		public FormOmronConnectedCip( )
+		public FormAllenBrandlyConnectedCip( )
 		{
 			InitializeComponent( );
-			omronCipNet = new OmronConnectedCipNet( "192.168.0.110" );
+			omronCipNet = new AllenBradleyConnectedCipNet( "192.168.0.110" );
 		}
 
 
-		private OmronConnectedCipNet omronCipNet = null;
+		private AllenBradleyConnectedCipNet omronCipNet = null;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -39,7 +38,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "Omron Read PLC Demo";
+				Text = "AllenBradly Read PLC Demo";
 				label1.Text = "Ip:";
 				label3.Text = "Port:";
 				button1.Text = "Connect";

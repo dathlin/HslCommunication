@@ -29,7 +29,7 @@
         private void InitializeComponent( )
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("文件列表");
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("文件列表");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.checkBox_rsa = new System.Windows.Forms.CheckBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
@@ -73,6 +73,7 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.button5 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.button_download_cancel = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
@@ -84,8 +85,9 @@
 			this.label16 = new System.Windows.Forms.Label();
 			this.progressBar2 = new System.Windows.Forms.ProgressBar();
 			this.label12 = new System.Windows.Forms.Label();
-			this.button4 = new System.Windows.Forms.Button();
+			this.button_download = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.button_upload_cancel = new System.Windows.Forms.Button();
 			this.label10 = new System.Windows.Forms.Label();
 			this.textBox_upload_tag = new System.Windows.Forms.TextBox();
 			this.label31 = new System.Windows.Forms.Label();
@@ -93,7 +95,7 @@
 			this.label28 = new System.Windows.Forms.Label();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.label7 = new System.Windows.Forms.Label();
-			this.button3 = new System.Windows.Forms.Button();
+			this.button_upload = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
@@ -540,6 +542,7 @@
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.button_download_cancel);
 			this.groupBox2.Controls.Add(this.button8);
 			this.groupBox2.Controls.Add(this.label15);
 			this.groupBox2.Controls.Add(this.label14);
@@ -551,7 +554,7 @@
 			this.groupBox2.Controls.Add(this.label16);
 			this.groupBox2.Controls.Add(this.progressBar2);
 			this.groupBox2.Controls.Add(this.label12);
-			this.groupBox2.Controls.Add(this.button4);
+			this.groupBox2.Controls.Add(this.button_download);
 			this.groupBox2.Location = new System.Drawing.Point(383, 296);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(594, 128);
@@ -559,11 +562,22 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "文件下载";
 			// 
+			// button_download_cancel
+			// 
+			this.button_download_cancel.Enabled = false;
+			this.button_download_cancel.Location = new System.Drawing.Point(517, 74);
+			this.button_download_cancel.Name = "button_download_cancel";
+			this.button_download_cancel.Size = new System.Drawing.Size(70, 25);
+			this.button_download_cancel.TabIndex = 25;
+			this.button_download_cancel.Text = "取消";
+			this.button_download_cancel.UseVisualStyleBackColor = true;
+			this.button_download_cancel.Click += new System.EventHandler(this.button_download_cancel_Click);
+			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(517, 98);
+			this.button8.Location = new System.Drawing.Point(517, 101);
 			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(70, 28);
+			this.button8.Size = new System.Drawing.Size(70, 25);
 			this.button8.TabIndex = 24;
 			this.button8.Text = "打开目录";
 			this.button8.UseVisualStyleBackColor = true;
@@ -606,9 +620,9 @@
 			// 
 			// button10
 			// 
-			this.button10.Location = new System.Drawing.Point(517, 18);
+			this.button10.Location = new System.Drawing.Point(517, 19);
 			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(70, 28);
+			this.button10.Size = new System.Drawing.Size(70, 25);
 			this.button10.TabIndex = 19;
 			this.button10.Text = "是否存在";
 			this.button10.UseVisualStyleBackColor = true;
@@ -617,7 +631,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(464, 81);
+			this.label9.Location = new System.Drawing.Point(417, 81);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(27, 17);
 			this.label9.TabIndex = 18;
@@ -643,7 +657,7 @@
 			// 
 			this.progressBar2.Location = new System.Drawing.Point(80, 81);
 			this.progressBar2.Name = "progressBar2";
-			this.progressBar2.Size = new System.Drawing.Size(378, 17);
+			this.progressBar2.Size = new System.Drawing.Size(331, 17);
 			this.progressBar2.TabIndex = 9;
 			// 
 			// label12
@@ -655,19 +669,20 @@
 			this.label12.TabIndex = 8;
 			this.label12.Text = "进度：";
 			// 
-			// button4
+			// button_download
 			// 
-			this.button4.Location = new System.Drawing.Point(517, 49);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(70, 28);
-			this.button4.TabIndex = 7;
-			this.button4.Text = "下载";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click);
+			this.button_download.Location = new System.Drawing.Point(517, 47);
+			this.button_download.Name = "button_download";
+			this.button_download.Size = new System.Drawing.Size(70, 25);
+			this.button_download.TabIndex = 7;
+			this.button_download.Text = "下载";
+			this.button_download.UseVisualStyleBackColor = true;
+			this.button_download.Click += new System.EventHandler(this.button_download_Click);
 			// 
 			// groupBox1
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.button_upload_cancel);
 			this.groupBox1.Controls.Add(this.label10);
 			this.groupBox1.Controls.Add(this.textBox_upload_tag);
 			this.groupBox1.Controls.Add(this.label31);
@@ -675,7 +690,7 @@
 			this.groupBox1.Controls.Add(this.label28);
 			this.groupBox1.Controls.Add(this.progressBar1);
 			this.groupBox1.Controls.Add(this.label7);
-			this.groupBox1.Controls.Add(this.button3);
+			this.groupBox1.Controls.Add(this.button_upload);
 			this.groupBox1.Controls.Add(this.button2);
 			this.groupBox1.Controls.Add(this.textBox3);
 			this.groupBox1.Controls.Add(this.label6);
@@ -685,6 +700,17 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "文件上传";
+			// 
+			// button_upload_cancel
+			// 
+			this.button_upload_cancel.Enabled = false;
+			this.button_upload_cancel.Location = new System.Drawing.Point(518, 83);
+			this.button_upload_cancel.Name = "button_upload_cancel";
+			this.button_upload_cancel.Size = new System.Drawing.Size(70, 28);
+			this.button_upload_cancel.TabIndex = 27;
+			this.button_upload_cancel.Text = "取消";
+			this.button_upload_cancel.UseVisualStyleBackColor = true;
+			this.button_upload_cancel.Click += new System.EventHandler(this.button_upload_cancel_Click);
 			// 
 			// label10
 			// 
@@ -745,19 +771,19 @@
 			this.label7.TabIndex = 8;
 			this.label7.Text = "进度：";
 			// 
-			// button3
+			// button_upload
 			// 
-			this.button3.Location = new System.Drawing.Point(517, 53);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(70, 28);
-			this.button3.TabIndex = 7;
-			this.button3.Text = "上传";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.button_upload.Location = new System.Drawing.Point(517, 51);
+			this.button_upload.Name = "button_upload";
+			this.button_upload.Size = new System.Drawing.Size(70, 28);
+			this.button_upload.TabIndex = 7;
+			this.button_upload.Text = "上传";
+			this.button_upload.UseVisualStyleBackColor = true;
+			this.button_upload.Click += new System.EventHandler(this.button_upload_Click);
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(517, 22);
+			this.button2.Location = new System.Drawing.Point(517, 20);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(70, 28);
 			this.button2.TabIndex = 6;
@@ -798,10 +824,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.Location = new System.Drawing.Point(9, 42);
 			this.treeView1.Name = "treeView1";
-			treeNode3.Name = "节点0";
-			treeNode3.Text = "文件列表";
+			treeNode1.Name = "节点0";
+			treeNode1.Text = "文件列表";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
 			this.treeView1.Size = new System.Drawing.Size(368, 483);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeExpand);
@@ -915,7 +941,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_upload;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
@@ -942,7 +968,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button_download;
         private System.Windows.Forms.TextBox textBox_upload_tag;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox textBox_upload_group;
@@ -987,5 +1013,7 @@
 		private System.Windows.Forms.Button button11;
 		private System.Windows.Forms.Button button12;
 		private System.Windows.Forms.CheckBox checkBox_rsa;
+		private System.Windows.Forms.Button button_upload_cancel;
+		private System.Windows.Forms.Button button_download_cancel;
 	}
 }

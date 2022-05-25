@@ -118,7 +118,7 @@ namespace HslCommunicationDemo
 
 		private void button8_Click( object sender, EventArgs e )
 		{
-			button8.Enabled = false;
+			//button8.Enabled = false;
 			timerPublish = new System.Threading.Timer( new System.Threading.TimerCallback( TimerPublish ), null, 0, 1000 );
 		}
 
@@ -227,13 +227,13 @@ namespace HslCommunicationDemo
 				if (!isStop)
 				{
 					receiveCount++;
-					if (message.Payload?.Length > 100)
+					if (message.Payload?.Length > 100 && checkBox_long_message_hide.Checked)
 					{
-						textBox8.AppendText( $"Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload.SelectBegin( 100 ) )}...]" + Environment.NewLine );
+						textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload.SelectBegin( 100 ) )}...]" + Environment.NewLine );
 					}
 					else
 					{
-						textBox8.AppendText( $"Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
+						textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
 					}
 				}
 			} ) );

@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=10.6.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.10.6.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.0.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.0.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -238,6 +238,24 @@
     <Compile Include="FormNewVerison.Designer.cs">
       <DependentUpon>FormNewVerison.cs</DependentUpon>
     </Compile>
+    <Compile Include="HslDebug\FormHandShake.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HslDebug\FormHandShake.Designer.cs">
+      <DependentUpon>FormHandShake.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HslDebug\FormMessageCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HslDebug\FormMessageCreate.Designer.cs">
+      <DependentUpon>FormMessageCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HslDebug\FormRegexTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HslDebug\FormRegexTest.Designer.cs">
+      <DependentUpon>FormRegexTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="HslDebug\FormRSADebug.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -334,6 +352,12 @@
     <Compile Include="MQTT\FormMqttFileServer.Designer.cs">
       <DependentUpon>FormMqttFileServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="MQTT\FormWillTopicSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MQTT\FormWillTopicSetting.Designer.cs">
+      <DependentUpon>FormWillTopicSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\AllenBrandly\FormAllenBradleyDF1Serial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -345,6 +369,12 @@
     </Compile>
     <Compile Include="PLC\AllenBrandly\FormAllenBrandlyPCCC.Designer.cs">
       <DependentUpon>FormAllenBrandlyPCCC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandlyConnectedCip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\AllenBrandly\FormAllenBrandlyConnectedCip.Designer.cs">
+      <DependentUpon>FormAllenBrandlyConnectedCip.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\AllenBrandly\FormPcccServer.cs">
       <SubType>Form</SubType>
@@ -459,6 +489,12 @@
     </Compile>
     <Compile Include="PLC\Secs\FormSecsGem.Designer.cs">
       <DependentUpon>FormSecsGem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Secs\FormSecsHsmsServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Secs\FormSecsHsmsServer.Designer.cs">
+      <DependentUpon>FormSecsHsmsServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Siemens\FormFetchWriteServer.cs">
       <SubType>Form</SubType>
@@ -1442,6 +1478,15 @@
     <EmbeddedResource Include="FormNewVerison.resx">
       <DependentUpon>FormNewVerison.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HslDebug\FormHandShake.resx">
+      <DependentUpon>FormHandShake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HslDebug\FormMessageCreate.resx">
+      <DependentUpon>FormMessageCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HslDebug\FormRegexTest.resx">
+      <DependentUpon>FormRegexTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HslDebug\FormRSADebug.resx">
       <DependentUpon>FormRSADebug.cs</DependentUpon>
     </EmbeddedResource>
@@ -1490,11 +1535,17 @@
     <EmbeddedResource Include="MQTT\FormMqttFileServer.resx">
       <DependentUpon>FormMqttFileServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MQTT\FormWillTopicSetting.resx">
+      <DependentUpon>FormWillTopicSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBradleyDF1Serial.resx">
       <DependentUpon>FormAllenBradleyDF1Serial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandlyPCCC.resx">
       <DependentUpon>FormAllenBrandlyPCCC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandlyConnectedCip.resx">
+      <DependentUpon>FormAllenBrandlyConnectedCip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\AllenBrandly\FormPcccServer.resx">
       <DependentUpon>FormPcccServer.cs</DependentUpon>
@@ -1552,6 +1603,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Secs\FormSecsGem.resx">
       <DependentUpon>FormSecsGem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Secs\FormSecsHsmsServer.resx">
+      <DependentUpon>FormSecsHsmsServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Siemens\FormFetchWriteServer.resx">
       <DependentUpon>FormFetchWriteServer.cs</DependentUpon>

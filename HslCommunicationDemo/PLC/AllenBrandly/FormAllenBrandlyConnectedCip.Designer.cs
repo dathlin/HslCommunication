@@ -1,6 +1,6 @@
 ﻿namespace HslCommunicationDemo
 {
-    partial class FormOmronConnectedCip
+    partial class FormAllenBrandlyConnectedCip
 	{
         /// <summary>
         /// Required designer variable.
@@ -482,7 +482,7 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// FormOmronConnectedCip
+			// FormAllenBrandlyConnectedCip
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -493,9 +493,9 @@
 			this.Controls.Add(this.panel1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "FormOmronConnectedCip";
+			this.Name = "FormAllenBrandlyConnectedCip";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Omron访问Demo";
+			this.Text = "Allen Brandly访问Demo";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
 			this.Load += new System.EventHandler(this.FormSiemens_Load);
 			this.panel1.ResumeLayout(false);

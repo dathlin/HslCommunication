@@ -37,6 +37,7 @@
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.checkBox_long_message_hide = new System.Windows.Forms.CheckBox();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button8 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -76,13 +76,13 @@
 			this.panel1.Location = new System.Drawing.Point(5, 37);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(993, 72);
+			this.panel1.Size = new System.Drawing.Size(993, 60);
 			this.panel1.TabIndex = 7;
 			// 
 			// checkBox2
 			// 
 			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(208, 13);
+			this.checkBox2.Location = new System.Drawing.Point(208, 9);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(87, 21);
 			this.checkBox2.TabIndex = 10;
@@ -92,7 +92,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(11, 44);
+			this.checkBox3.Location = new System.Drawing.Point(11, 34);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(147, 21);
 			this.checkBox3.TabIndex = 9;
@@ -102,7 +102,7 @@
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(319, 44);
+			this.checkBox1.Location = new System.Drawing.Point(523, 7);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(288, 21);
 			this.checkBox1.TabIndex = 6;
@@ -112,7 +112,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(416, 8);
+			this.button2.Location = new System.Drawing.Point(416, 4);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -122,7 +122,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(319, 8);
+			this.button1.Location = new System.Drawing.Point(319, 4);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -132,7 +132,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(62, 11);
+			this.textBox2.Location = new System.Drawing.Point(62, 7);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(131, 23);
 			this.textBox2.TabIndex = 3;
@@ -141,7 +141,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(8, 14);
+			this.label3.Location = new System.Drawing.Point(8, 10);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -153,7 +153,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel2.Controls.Add(this.button8);
+			this.panel2.Controls.Add(this.checkBox_long_message_hide);
 			this.panel2.Controls.Add(this.listBox1);
 			this.panel2.Controls.Add(this.label5);
 			this.panel2.Controls.Add(this.label4);
@@ -172,10 +172,22 @@
 			this.panel2.Controls.Add(this.label8);
 			this.panel2.Controls.Add(this.textBox5);
 			this.panel2.Controls.Add(this.label7);
-			this.panel2.Location = new System.Drawing.Point(5, 116);
+			this.panel2.Location = new System.Drawing.Point(5, 101);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(993, 525);
+			this.panel2.Size = new System.Drawing.Size(993, 540);
 			this.panel2.TabIndex = 13;
+			// 
+			// checkBox_long_message_hide
+			// 
+			this.checkBox_long_message_hide.AutoSize = true;
+			this.checkBox_long_message_hide.Checked = true;
+			this.checkBox_long_message_hide.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_long_message_hide.Location = new System.Drawing.Point(435, 185);
+			this.checkBox_long_message_hide.Name = "checkBox_long_message_hide";
+			this.checkBox_long_message_hide.Size = new System.Drawing.Size(99, 21);
+			this.checkBox_long_message_hide.TabIndex = 33;
+			this.checkBox_long_message_hide.Text = "超长消息简略";
+			this.checkBox_long_message_hide.UseVisualStyleBackColor = true;
 			// 
 			// listBox1
 			// 
@@ -210,7 +222,7 @@
 			// button7
 			// 
 			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button7.Location = new System.Drawing.Point(786, 180);
+			this.button7.Location = new System.Drawing.Point(799, 180);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(91, 28);
 			this.button7.TabIndex = 28;
@@ -258,7 +270,7 @@
 			// 
 			this.button5.Location = new System.Drawing.Point(256, 180);
 			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(164, 28);
+			this.button5.Size = new System.Drawing.Size(141, 28);
 			this.button5.TabIndex = 20;
 			this.button5.Text = "广播指定id";
 			this.button5.UseVisualStyleBackColor = true;
@@ -273,7 +285,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(924, 303);
+			this.textBox8.Size = new System.Drawing.Size(924, 318);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
@@ -281,9 +293,9 @@
 			this.label12.AutoSize = true;
 			this.label12.Location = new System.Drawing.Point(8, 217);
 			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(61, 17);
+			this.label12.Size = new System.Drawing.Size(64, 17);
 			this.label12.TabIndex = 19;
-			this.label12.Text = "receive：";
+			this.label12.Text = "Receive：";
 			// 
 			// button4
 			// 
@@ -367,16 +379,6 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// button8
-			// 
-			this.button8.Location = new System.Drawing.Point(489, 180);
-			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(91, 28);
-			this.button8.TabIndex = 32;
-			this.button8.Text = "测试发布";
-			this.button8.UseVisualStyleBackColor = true;
-			this.button8.Click += new System.EventHandler(this.button8_Click);
-			// 
 			// FormMqttServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -429,6 +431,6 @@
 		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.CheckBox checkBox2;
-		private System.Windows.Forms.Button button8;
+		private System.Windows.Forms.CheckBox checkBox_long_message_hide;
 	}
 }

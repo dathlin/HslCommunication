@@ -55,8 +55,15 @@ namespace HslCommunicationDemo
             try
             {
                 adsServer = new BeckhoffAdsServer( );                       // 实例化对象
-                adsServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );     // 如果客户端1个小时不通信，就关闭连接
+                adsServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );         // 如果客户端1个小时不通信，就关闭连接
                 adsServer.OnDataReceived += MelsecMcServer_OnDataReceived;
+                // 添加几个符号数据
+                adsServer.AddTagValue( "MAIN.a", (short)0 );
+                adsServer.AddTagValue( "MAIN.cc", 0 );
+                adsServer.AddTagValue( "MAIN.dd", 0f );
+                adsServer.AddTagValue( "MAIN.ee", new bool[11] );
+                adsServer.AddTagValue( "MAIN.ff", new short[3] );
+
                 adsServer.ServerStart( port );
                 userControlReadWriteServer1.SetReadWriteServer( adsServer, "M100" );
 

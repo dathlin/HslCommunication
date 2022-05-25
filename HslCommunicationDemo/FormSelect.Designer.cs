@@ -36,12 +36,14 @@
 			this.webSideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.support赞助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.authorization授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_language = new System.Windows.Forms.ToolStripMenuItem();
 			this.简体中文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.论坛toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_homepage = new System.Windows.Forms.ToolStripMenuItem();
 			this.日志ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.verisonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.activeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.免责条款ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +58,6 @@
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
-			this.activeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -66,13 +67,12 @@
 			// 
 			// menuStrip1
 			// 
-			this.menuStrip1.BackColor = System.Drawing.Color.SlateBlue;
+			this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(108)))), ((int)(((byte)(124)))));
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem,
-            this.简体中文ToolStripMenuItem,
-            this.englishToolStripMenuItem,
+            this.toolStripMenuItem_language,
             this.论坛toolStripMenuItem,
-            this.toolStripMenuItem1,
+            this.toolStripMenuItem_homepage,
             this.日志ToolStripMenuItem,
             this.verisonToolStripMenuItem,
             this.activeToolStripMenuItem,
@@ -92,7 +92,7 @@
             this.webSideToolStripMenuItem,
             this.support赞助ToolStripMenuItem,
             this.authorization授权ToolStripMenuItem});
-			this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(55, 21);
 			this.aboutToolStripMenuItem.Text = "About";
@@ -124,41 +124,52 @@
 			this.authorization授权ToolStripMenuItem.Text = "Authorization [授权]";
 			this.authorization授权ToolStripMenuItem.Click += new System.EventHandler(this.authorization授权ToolStripMenuItem_Click);
 			// 
+			// toolStripMenuItem_language
+			// 
+			this.toolStripMenuItem_language.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.简体中文ToolStripMenuItem,
+            this.englishToolStripMenuItem});
+			this.toolStripMenuItem_language.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.toolStripMenuItem_language.ImageTransparentColor = System.Drawing.Color.White;
+			this.toolStripMenuItem_language.Name = "toolStripMenuItem_language";
+			this.toolStripMenuItem_language.Size = new System.Drawing.Size(44, 21);
+			this.toolStripMenuItem_language.Text = "语言";
+			// 
 			// 简体中文ToolStripMenuItem
 			// 
-			this.简体中文ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.简体中文ToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
 			this.简体中文ToolStripMenuItem.Name = "简体中文ToolStripMenuItem";
-			this.简体中文ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+			this.简体中文ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.简体中文ToolStripMenuItem.Text = "简体中文";
 			this.简体中文ToolStripMenuItem.Click += new System.EventHandler(this.简体中文ToolStripMenuItem_Click);
 			// 
 			// englishToolStripMenuItem
 			// 
-			this.englishToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.englishToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
 			this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
-			this.englishToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
+			this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.englishToolStripMenuItem.Text = "English";
 			this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
 			// 
 			// 论坛toolStripMenuItem
 			// 
-			this.论坛toolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.论坛toolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.论坛toolStripMenuItem.Name = "论坛toolStripMenuItem";
 			this.论坛toolStripMenuItem.Size = new System.Drawing.Size(47, 21);
 			this.论坛toolStripMenuItem.Text = "Blog";
 			this.论坛toolStripMenuItem.Click += new System.EventHandler(this.论坛toolStripMenuItem_Click);
 			// 
-			// toolStripMenuItem1
+			// toolStripMenuItem_homepage
 			// 
-			this.toolStripMenuItem1.ForeColor = System.Drawing.Color.White;
-			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(80, 21);
-			this.toolStripMenuItem1.Text = "MesDemo";
-			this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+			this.toolStripMenuItem_homepage.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.toolStripMenuItem_homepage.Name = "toolStripMenuItem_homepage";
+			this.toolStripMenuItem_homepage.Size = new System.Drawing.Size(44, 21);
+			this.toolStripMenuItem_homepage.Text = "官网";
+			this.toolStripMenuItem_homepage.Click += new System.EventHandler(this.toolStripMenuItem_homepage_Click);
 			// 
 			// 日志ToolStripMenuItem
 			// 
-			this.日志ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.日志ToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.日志ToolStripMenuItem.Name = "日志ToolStripMenuItem";
 			this.日志ToolStripMenuItem.Size = new System.Drawing.Size(67, 21);
 			this.日志ToolStripMenuItem.Text = "API 文档";
@@ -166,14 +177,21 @@
 			// 
 			// verisonToolStripMenuItem
 			// 
-			this.verisonToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.verisonToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.verisonToolStripMenuItem.Name = "verisonToolStripMenuItem";
 			this.verisonToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
 			this.verisonToolStripMenuItem.Text = "Verison";
 			// 
+			// activeToolStripMenuItem
+			// 
+			this.activeToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.activeToolStripMenuItem.Name = "activeToolStripMenuItem";
+			this.activeToolStripMenuItem.Size = new System.Drawing.Size(54, 21);
+			this.activeToolStripMenuItem.Text = "Active";
+			// 
 			// 免责条款ToolStripMenuItem
 			// 
-			this.免责条款ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.免责条款ToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.免责条款ToolStripMenuItem.Name = "免责条款ToolStripMenuItem";
 			this.免责条款ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
 			this.免责条款ToolStripMenuItem.Text = "全国使用情况";
@@ -255,7 +273,7 @@
 			// label1
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label1.BackColor = System.Drawing.Color.SlateBlue;
+			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(108)))), ((int)(((byte)(124)))));
 			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.label1.Location = new System.Drawing.Point(1031, 3);
 			this.label1.Name = "label1";
@@ -281,20 +299,13 @@
 			// label2
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label2.BackColor = System.Drawing.Color.SlateBlue;
+			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(108)))), ((int)(((byte)(124)))));
 			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.label2.Location = new System.Drawing.Point(816, 3);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(209, 21);
 			this.label2.TabIndex = 42;
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// activeToolStripMenuItem
-			// 
-			this.activeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-			this.activeToolStripMenuItem.Name = "activeToolStripMenuItem";
-			this.activeToolStripMenuItem.Size = new System.Drawing.Size(54, 21);
-			this.activeToolStripMenuItem.Text = "Active";
 			// 
 			// FormSelect
 			// 
@@ -334,8 +345,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem blogsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem webSideToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 简体中文ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 日志ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verisonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 免责条款ToolStripMenuItem;
@@ -344,7 +353,7 @@
         private System.Windows.Forms.ToolStripMenuItem support赞助ToolStripMenuItem;
         private WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme vS2015BlueTheme1;
         private System.Windows.Forms.TreeView treeView1;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_homepage;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -357,6 +366,9 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ToolStripMenuItem newVersionToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem activeToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_language;
+		private System.Windows.Forms.ToolStripMenuItem 简体中文ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
 	}
 }
 
