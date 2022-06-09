@@ -144,7 +144,7 @@ namespace HslCommunicationDemo
             xinje?.Close( );
             xinje = new XinJESerial( (XinJESeries)comboBox4.SelectedItem, station );
             xinje.AddressStartWithZero = checkBox1.Checked;
-
+            xinje.LogNet = LogNet;
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
             xinje.IsStringReverse = checkBox3.Checked;

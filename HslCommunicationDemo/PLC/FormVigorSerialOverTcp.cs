@@ -78,6 +78,7 @@ namespace HslCommunicationDemo
 			vigor = new VigorSerialOverTcp( );
 			vigor.IpAddress = textBox1.Text;
 			vigor.Port = port;
+			vigor.LogNet = LogNet;
 
 			try
 			{

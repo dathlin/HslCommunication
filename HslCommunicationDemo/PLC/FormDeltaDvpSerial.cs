@@ -114,6 +114,7 @@ namespace HslCommunicationDemo
 
             delta?.Close( );
             delta = new DeltaSerial( station );
+            delta.LogNet = LogNet;
             delta.Series = (DeltaSeries)comboBox2.SelectedItem;
 
             try

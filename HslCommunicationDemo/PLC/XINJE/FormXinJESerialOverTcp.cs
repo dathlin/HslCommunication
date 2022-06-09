@@ -124,6 +124,7 @@ namespace HslCommunicationDemo
             xinJE?.ConnectClose( );
             xinJE = new XinJESerialOverTcp( (XinJESeries)comboBox4.SelectedItem, textBox1.Text, port, station );
             xinJE.AddressStartWithZero = checkBox1.Checked;
+            xinJE.LogNet = LogNet;
 
 
             ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务

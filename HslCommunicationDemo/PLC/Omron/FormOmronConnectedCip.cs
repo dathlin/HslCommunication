@@ -81,6 +81,7 @@ namespace HslCommunicationDemo
 
 			omronCipNet.IpAddress = textBox1.Text;
 			omronCipNet.Port = port;
+			omronCipNet.LogNet = LogNet;
 
 			omronCipNet.SetPersistentConnection( );
 

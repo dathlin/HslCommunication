@@ -95,6 +95,7 @@ namespace HslCommunicationDemo
 			fastEnet.SlotNo = slot;
 			fastEnet.SetCpuType = cboxModel.Text;
 			fastEnet.CompanyID = cboxCompanyID.Text;
+			fastEnet.LogNet = LogNet;
 
 			try
 			{

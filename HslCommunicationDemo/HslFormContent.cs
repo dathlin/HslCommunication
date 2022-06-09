@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using HslCommunicationDemo.Control;
+using HslCommunication.LogNet;
 
 namespace HslCommunicationDemo
 {
@@ -15,6 +16,8 @@ namespace HslCommunicationDemo
 			base.OnLoad( e );
 			AutoScroll = true;
 		}
+
+		public ILogNet LogNet { get; set; }
 
 
 		public virtual void LoadXmlParameter(XElement element )

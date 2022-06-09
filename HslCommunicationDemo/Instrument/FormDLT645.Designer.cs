@@ -29,6 +29,10 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_op_code = new System.Windows.Forms.TextBox();
+			this.label_op_code = new System.Windows.Forms.Label();
+			this.textBox_password = new System.Windows.Forms.TextBox();
+			this.label_password = new System.Windows.Forms.Label();
 			this.checkBox5 = new System.Windows.Forms.CheckBox();
 			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -36,8 +40,8 @@
 			this.label23 = new System.Windows.Forms.Label();
 			this.textBox16 = new System.Windows.Forms.TextBox();
 			this.label22 = new System.Windows.Forms.Label();
-			this.textBox15 = new System.Windows.Forms.TextBox();
-			this.label21 = new System.Windows.Forms.Label();
+			this.textBox_station = new System.Windows.Forms.TextBox();
+			this.label_address = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
@@ -81,6 +85,10 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_op_code);
+			this.panel1.Controls.Add(this.label_op_code);
+			this.panel1.Controls.Add(this.textBox_password);
+			this.panel1.Controls.Add(this.label_password);
 			this.panel1.Controls.Add(this.checkBox5);
 			this.panel1.Controls.Add(this.comboBox3);
 			this.panel1.Controls.Add(this.comboBox1);
@@ -88,24 +96,56 @@
 			this.panel1.Controls.Add(this.label23);
 			this.panel1.Controls.Add(this.textBox16);
 			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.textBox15);
-			this.panel1.Controls.Add(this.label21);
+			this.panel1.Controls.Add(this.textBox_station);
+			this.panel1.Controls.Add(this.label_address);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.label24);
-			this.panel1.Location = new System.Drawing.Point(14, 42);
+			this.panel1.Location = new System.Drawing.Point(4, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 54);
+			this.panel1.Size = new System.Drawing.Size(997, 59);
 			this.panel1.TabIndex = 0;
+			// 
+			// textBox_op_code
+			// 
+			this.textBox_op_code.Location = new System.Drawing.Point(333, 31);
+			this.textBox_op_code.Name = "textBox_op_code";
+			this.textBox_op_code.Size = new System.Drawing.Size(159, 23);
+			this.textBox_op_code.TabIndex = 34;
+			// 
+			// label_op_code
+			// 
+			this.label_op_code.AutoSize = true;
+			this.label_op_code.Location = new System.Drawing.Point(247, 34);
+			this.label_op_code.Name = "label_op_code";
+			this.label_op_code.Size = new System.Drawing.Size(80, 17);
+			this.label_op_code.TabIndex = 33;
+			this.label_op_code.Text = "操作者代码：";
+			// 
+			// textBox_password
+			// 
+			this.textBox_password.Location = new System.Drawing.Point(61, 31);
+			this.textBox_password.Name = "textBox_password";
+			this.textBox_password.Size = new System.Drawing.Size(180, 23);
+			this.textBox_password.TabIndex = 32;
+			// 
+			// label_password
+			// 
+			this.label_password.AutoSize = true;
+			this.label_password.Location = new System.Drawing.Point(11, 34);
+			this.label_password.Name = "label_password";
+			this.label_password.Size = new System.Drawing.Size(44, 17);
+			this.label_password.TabIndex = 31;
+			this.label_password.Text = "密码：";
 			// 
 			// checkBox5
 			// 
 			this.checkBox5.AutoSize = true;
-			this.checkBox5.Location = new System.Drawing.Point(568, 16);
+			this.checkBox5.Location = new System.Drawing.Point(631, 5);
 			this.checkBox5.Name = "checkBox5";
 			this.checkBox5.Size = new System.Drawing.Size(84, 21);
 			this.checkBox5.TabIndex = 30;
@@ -115,9 +155,9 @@
 			// comboBox3
 			// 
 			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(61, 14);
+			this.comboBox3.Location = new System.Drawing.Point(61, 3);
 			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(67, 25);
+			this.comboBox3.Size = new System.Drawing.Size(85, 25);
 			this.comboBox3.TabIndex = 29;
 			// 
 			// comboBox1
@@ -128,23 +168,23 @@
             "无",
             "奇",
             "偶"});
-			this.comboBox1.Location = new System.Drawing.Point(501, 14);
+			this.comboBox1.Location = new System.Drawing.Point(553, 3);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(57, 25);
+			this.comboBox1.Size = new System.Drawing.Size(62, 25);
 			this.comboBox1.TabIndex = 15;
 			// 
 			// textBox17
 			// 
-			this.textBox17.Location = new System.Drawing.Point(415, 14);
+			this.textBox17.Location = new System.Drawing.Point(457, 3);
 			this.textBox17.Name = "textBox17";
-			this.textBox17.Size = new System.Drawing.Size(23, 23);
+			this.textBox17.Size = new System.Drawing.Size(35, 23);
 			this.textBox17.TabIndex = 13;
 			this.textBox17.Text = "1";
 			// 
 			// label23
 			// 
 			this.label23.AutoSize = true;
-			this.label23.Location = new System.Drawing.Point(345, 17);
+			this.label23.Location = new System.Drawing.Point(387, 6);
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(56, 17);
 			this.label23.TabIndex = 12;
@@ -152,42 +192,42 @@
 			// 
 			// textBox16
 			// 
-			this.textBox16.Location = new System.Drawing.Point(308, 14);
+			this.textBox16.Location = new System.Drawing.Point(342, 3);
 			this.textBox16.Name = "textBox16";
-			this.textBox16.Size = new System.Drawing.Size(24, 23);
+			this.textBox16.Size = new System.Drawing.Size(33, 23);
 			this.textBox16.TabIndex = 11;
 			this.textBox16.Text = "8";
 			// 
 			// label22
 			// 
 			this.label22.AutoSize = true;
-			this.label22.Location = new System.Drawing.Point(245, 17);
+			this.label22.Location = new System.Drawing.Point(279, 6);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(56, 17);
 			this.label22.TabIndex = 10;
 			this.label22.Text = "数据位：";
 			// 
-			// textBox15
+			// textBox_station
 			// 
-			this.textBox15.Location = new System.Drawing.Point(710, 14);
-			this.textBox15.Name = "textBox15";
-			this.textBox15.Size = new System.Drawing.Size(37, 23);
-			this.textBox15.TabIndex = 7;
-			this.textBox15.Text = "1";
+			this.textBox_station.Location = new System.Drawing.Point(554, 30);
+			this.textBox_station.Name = "textBox_station";
+			this.textBox_station.Size = new System.Drawing.Size(180, 23);
+			this.textBox_station.TabIndex = 7;
+			this.textBox_station.Text = "1";
 			// 
-			// label21
+			// label_address
 			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(662, 17);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(44, 17);
-			this.label21.TabIndex = 6;
-			this.label21.Text = "站号：";
+			this.label_address.AutoSize = true;
+			this.label_address.Location = new System.Drawing.Point(506, 33);
+			this.label_address.Name = "label_address";
+			this.label_address.Size = new System.Drawing.Size(44, 17);
+			this.label_address.TabIndex = 6;
+			this.label_address.Text = "站号：";
 			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(875, 11);
+			this.button2.Location = new System.Drawing.Point(857, 11);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -197,7 +237,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(778, 11);
+			this.button1.Location = new System.Drawing.Point(760, 11);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -207,16 +247,16 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(192, 14);
+			this.textBox2.Location = new System.Drawing.Point(212, 3);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(47, 23);
+			this.textBox2.Size = new System.Drawing.Size(56, 23);
 			this.textBox2.TabIndex = 3;
 			this.textBox2.Text = "9600";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(132, 17);
+			this.label3.Location = new System.Drawing.Point(152, 6);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -225,7 +265,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 17);
+			this.label1.Location = new System.Drawing.Point(8, 6);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(59, 17);
 			this.label1.TabIndex = 0;
@@ -234,7 +274,7 @@
 			// label24
 			// 
 			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(453, 17);
+			this.label24.Location = new System.Drawing.Point(505, 6);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(44, 17);
 			this.label24.TabIndex = 14;
@@ -250,17 +290,17 @@
 			this.panel2.Controls.Add(this.groupBox5);
 			this.panel2.Controls.Add(this.groupBox4);
 			this.panel2.Controls.Add(this.groupBox3);
-			this.panel2.Location = new System.Drawing.Point(14, 102);
+			this.panel2.Location = new System.Drawing.Point(4, 98);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 537);
+			this.panel2.Size = new System.Drawing.Size(1000, 545);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
 			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 2);
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(2, 2);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(993, 240);
 			this.userControlReadWriteOp1.TabIndex = 5;
 			// 
 			// groupBox5
@@ -272,9 +312,9 @@
 			this.groupBox5.Controls.Add(this.button4);
 			this.groupBox5.Controls.Add(this.button3);
 			this.groupBox5.Controls.Add(this.textBox12);
-			this.groupBox5.Location = new System.Drawing.Point(546, 243);
+			this.groupBox5.Location = new System.Drawing.Point(575, 244);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(420, 278);
+			this.groupBox5.Size = new System.Drawing.Size(420, 296);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
@@ -342,7 +382,7 @@
 			this.textBox12.Multiline = true;
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox12.Size = new System.Drawing.Size(396, 163);
+			this.textBox12.Size = new System.Drawing.Size(396, 187);
 			this.textBox12.TabIndex = 11;
 			// 
 			// groupBox4
@@ -352,9 +392,9 @@
 			this.groupBox4.Controls.Add(this.button26);
 			this.groupBox4.Controls.Add(this.textBox13);
 			this.groupBox4.Controls.Add(this.label16);
-			this.groupBox4.Location = new System.Drawing.Point(11, 403);
+			this.groupBox4.Location = new System.Drawing.Point(2, 403);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(518, 118);
+			this.groupBox4.Size = new System.Drawing.Size(567, 137);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "报文读取测试，此处需要填入16进制报文字符串";
@@ -365,7 +405,7 @@
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
 			this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox11.Size = new System.Drawing.Size(445, 52);
+			this.textBox11.Size = new System.Drawing.Size(498, 71);
 			this.textBox11.TabIndex = 10;
 			// 
 			// label14
@@ -379,7 +419,7 @@
 			// 
 			// button26
 			// 
-			this.button26.Location = new System.Drawing.Point(426, 24);
+			this.button26.Location = new System.Drawing.Point(479, 24);
 			this.button26.Name = "button26";
 			this.button26.Size = new System.Drawing.Size(82, 28);
 			this.button26.TabIndex = 8;
@@ -391,7 +431,7 @@
 			// 
 			this.textBox13.Location = new System.Drawing.Point(63, 27);
 			this.textBox13.Name = "textBox13";
-			this.textBox13.Size = new System.Drawing.Size(357, 23);
+			this.textBox13.Size = new System.Drawing.Size(410, 23);
 			this.textBox13.TabIndex = 5;
 			this.textBox13.Text = "68 00 00 00 00 00 01 68 11 04 00 00 00 00 10 16";
 			// 
@@ -413,26 +453,26 @@
 			this.groupBox3.Controls.Add(this.label12);
 			this.groupBox3.Controls.Add(this.textBox6);
 			this.groupBox3.Controls.Add(this.label11);
-			this.groupBox3.Location = new System.Drawing.Point(11, 243);
+			this.groupBox3.Location = new System.Drawing.Point(2, 244);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(518, 154);
+			this.groupBox3.Size = new System.Drawing.Size(567, 154);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
 			// 
 			// textBox10
 			// 
-			this.textBox10.Location = new System.Drawing.Point(63, 60);
+			this.textBox10.Location = new System.Drawing.Point(63, 55);
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(445, 78);
+			this.textBox10.Size = new System.Drawing.Size(498, 93);
 			this.textBox10.TabIndex = 10;
 			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(9, 62);
+			this.label13.Location = new System.Drawing.Point(9, 58);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(44, 17);
 			this.label13.TabIndex = 9;
@@ -440,7 +480,7 @@
 			// 
 			// button25
 			// 
-			this.button25.Location = new System.Drawing.Point(426, 24);
+			this.button25.Location = new System.Drawing.Point(479, 21);
 			this.button25.Name = "button25";
 			this.button25.Size = new System.Drawing.Size(82, 28);
 			this.button25.TabIndex = 8;
@@ -450,7 +490,7 @@
 			// 
 			// textBox9
 			// 
-			this.textBox9.Location = new System.Drawing.Point(239, 27);
+			this.textBox9.Location = new System.Drawing.Point(239, 24);
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(102, 23);
 			this.textBox9.TabIndex = 7;
@@ -459,7 +499,7 @@
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(185, 30);
+			this.label12.Location = new System.Drawing.Point(185, 27);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(44, 17);
 			this.label12.TabIndex = 6;
@@ -467,7 +507,7 @@
 			// 
 			// textBox6
 			// 
-			this.textBox6.Location = new System.Drawing.Point(63, 27);
+			this.textBox6.Location = new System.Drawing.Point(63, 24);
 			this.textBox6.Name = "textBox6";
 			this.textBox6.Size = new System.Drawing.Size(102, 23);
 			this.textBox6.TabIndex = 5;
@@ -476,7 +516,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(9, 30);
+			this.label11.Location = new System.Drawing.Point(9, 27);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(44, 17);
 			this.label11.TabIndex = 4;
@@ -549,8 +589,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox textBox_station;
+        private System.Windows.Forms.Label label_address;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox textBox17;
@@ -569,5 +609,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button6;
-    }
+		private System.Windows.Forms.TextBox textBox_op_code;
+		private System.Windows.Forms.Label label_op_code;
+		private System.Windows.Forms.TextBox textBox_password;
+		private System.Windows.Forms.Label label_password;
+	}
 }

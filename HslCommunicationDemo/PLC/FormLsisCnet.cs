@@ -113,6 +113,7 @@ namespace HslCommunicationDemo
 			xGBCnet?.Close( );
 			xGBCnet = new XGBCnet( );
 			xGBCnet.Station = station;
+			xGBCnet.LogNet = LogNet;
 
 			try
 			{

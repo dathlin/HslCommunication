@@ -150,7 +150,8 @@ namespace HslCommunicationDemo
                 return;
             }
 
-            siemensTcpNet = new SiemensS7Net( siemensPLCSelected, "127.0.0.1" ); 
+            siemensTcpNet = new SiemensS7Net( siemensPLCSelected, "127.0.0.1" );
+            siemensTcpNet.LogNet = LogNet;
             if (siemensPLCSelected != SiemensPLCS.S200Smart)
             {
                 siemensTcpNet.Rack = byte.Parse( textBox15.Text );

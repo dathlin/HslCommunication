@@ -145,6 +145,7 @@ namespace HslCommunicationDemo
             busAsciiClient?.Close( );
             busAsciiClient = new ModbusAscii( station );
             busAsciiClient.AddressStartWithZero = checkBox1.Checked;
+            busAsciiClient.LogNet = LogNet;
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
             busAsciiClient.IsStringReverse = checkBox3.Checked;

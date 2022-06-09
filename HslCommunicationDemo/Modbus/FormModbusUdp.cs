@@ -120,6 +120,7 @@ namespace HslCommunicationDemo
 
 			busTcpClient = new ModbusUdpNet( textBox1.Text, port, station );
 			busTcpClient.AddressStartWithZero = checkBox1.Checked;
+			busTcpClient.LogNet = LogNet;
 
 
 			ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务

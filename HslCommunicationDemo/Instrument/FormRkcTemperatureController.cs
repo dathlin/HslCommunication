@@ -113,6 +113,7 @@ namespace HslCommunicationDemo
 
 			rkc?.Close( );
 			rkc = new TemperatureController( );
+			rkc.LogNet = LogNet;
 
 			try
 			{

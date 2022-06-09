@@ -89,6 +89,7 @@ namespace HslCommunicationDemo
 			cpl.Station = station;
 			cpl.IpAddress = textBox1.Text;
 			cpl.Port = port;
+			cpl.LogNet = LogNet;
 
 			try
 			{

@@ -93,6 +93,7 @@ namespace HslCommunicationDemo
 			melsec_net.Port         = port;
 			melsec_net.IsNewVersion = checkBox1.Checked;
 			melsec_net.UseGOT       = checkBox_got.Checked;
+			melsec_net.LogNet       = LogNet;
 			try
 			{
 				OperateResult connect = melsec_net.ConnectServer( );

@@ -91,6 +91,7 @@ namespace HslCommunicationDemo
 			reader_net.Port = port;
 
 			reader_net.ConnectClose( );
+			reader_net.LogNet = LogNet;
 
 			button1.Enabled = false;
 			reader_net.ConnectTimeOut = 3000; // 连接3秒超时

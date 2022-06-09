@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.0.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.0.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.0.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.0.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -170,6 +170,12 @@
     <Compile Include="DemoControl\FormDeviceSupport.Designer.cs">
       <DependentUpon>FormDeviceSupport.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoControl\FormLogRender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormLogRender.Designer.cs">
+      <DependentUpon>FormLogRender.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\UserControlHead.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,6 +193,12 @@
     </Compile>
     <Compile Include="DemoControl\UserControlReadWriteServer.Designer.cs">
       <DependentUpon>UserControlReadWriteServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\UserControlsSourceByteRead.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\UserControlsSourceByteRead.Designer.cs">
+      <DependentUpon>UserControlsSourceByteRead.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoDeviceList.cs" />
     <Compile Include="DemoUtils.cs" />
@@ -1442,6 +1454,9 @@
     <EmbeddedResource Include="DemoControl\FormDeviceSupport.resx">
       <DependentUpon>FormDeviceSupport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormLogRender.resx">
+      <DependentUpon>FormLogRender.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\UserControlCurve.resx">
       <DependentUpon>UserControlCurve.cs</DependentUpon>
     </EmbeddedResource>
@@ -1453,6 +1468,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\UserControlReadWriteServer.resx">
       <DependentUpon>UserControlReadWriteServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\UserControlsSourceByteRead.resx">
+      <DependentUpon>UserControlsSourceByteRead.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormActive.resx">
       <DependentUpon>FormActive.cs</DependentUpon>

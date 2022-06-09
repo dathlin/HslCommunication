@@ -39,7 +39,7 @@ namespace HslCommunicationDemo
 
                 label1.Text = "Com:";
                 label3.Text = "baudRate:";
-                label21.Text = "station";
+                label_address.Text = "station";
                 button1.Text = "Connect";
                 button2.Text = "Disconnect";
                 button3.Text = "Active";
@@ -47,6 +47,8 @@ namespace HslCommunicationDemo
                 label11.Text = "Address:";
                 label12.Text = "length:";
                 button25.Text = "Bulk Read";
+                textBox_password.Text = "Pwd:";
+                textBox_op_code.Text = "Op Code:";
                 label13.Text = "Results:";
                 label16.Text = "Message:";
                 label14.Text = "Results:";
@@ -70,14 +72,15 @@ namespace HslCommunicationDemo
 
         private void button1_Click( object sender, EventArgs e )
         {
-            if(!int.TryParse(textBox2.Text,out int port ))
+            if(!int.TryParse(textBox_port.Text,out int port ))
             {
                 MessageBox.Show( DemoUtils.PortInputWrong );
                 return;
             }
 
             dLT645?.ConnectClose( );
-            dLT645 = new DLT645OverTcp( textBox3.Text, port );
+            dLT645 = new DLT645OverTcp( textBox_ip.Text, port, textBox_station.Text, textBox_password.Text, textBox_op_code.Text );
+            dLT645.LogNet = LogNet;
 
             try
             {
@@ -160,6 +163,7 @@ namespace HslCommunicationDemo
             OperateResult<string> read = await dLT645.ReadAddressAsync( );
             if (read.IsSuccess)
             {
+                textBox_station.Text = read.Content;
                 textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Address:{read.Content}";
             }
             else
@@ -199,15 +203,15 @@ namespace HslCommunicationDemo
 
         public override void SaveXmlParameter( XElement element )
         {
-            element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
-            element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox_port.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
         }
 
         public override void LoadXmlParameter( XElement element )
         {
             base.LoadXmlParameter( element );
-            textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-            textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+            textBox_port.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+            textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
         }
 
         private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

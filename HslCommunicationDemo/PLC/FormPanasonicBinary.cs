@@ -85,6 +85,7 @@ namespace HslCommunicationDemo
 			panasonic_net.Port = port;
 
 			panasonic_net.ConnectClose( );
+			panasonic_net.LogNet = LogNet;
 
 			try
 			{

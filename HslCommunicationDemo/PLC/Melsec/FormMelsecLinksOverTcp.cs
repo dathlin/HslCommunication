@@ -19,11 +19,11 @@ namespace HslCommunicationDemo
 		public FormMelsecLinksOverTcp( )
 		{
 			InitializeComponent( );
-			melsecSerial = new MelsecFxLinksOverTcp( );
+			melsec = new MelsecFxLinksOverTcp( );
 		}
 
 
-		private MelsecFxLinksOverTcp melsecSerial = null;
+		private MelsecFxLinksOverTcp melsec = null;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -84,19 +84,20 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			melsecSerial?.ConnectClose( );
-			melsecSerial = new MelsecFxLinksOverTcp( );
-			melsecSerial.IpAddress = textBox1.Text;
-			melsecSerial.Port = port;
+			melsec?.ConnectClose( );
+			melsec = new MelsecFxLinksOverTcp( );
+			melsec.IpAddress = textBox1.Text;
+			melsec.Port = port;
+			melsec.LogNet = LogNet;
 
 			try
 			{
-				melsecSerial.Station = byte.Parse( textBox15.Text );
-				melsecSerial.WaittingTime = byte.Parse( textBox18.Text );
-				melsecSerial.SumCheck = checkBox1.Checked;
-				melsecSerial.Format = int.Parse( comboBox_format.SelectedItem.ToString( ) );
+				melsec.Station = byte.Parse( textBox15.Text );
+				melsec.WaittingTime = byte.Parse( textBox18.Text );
+				melsec.SumCheck = checkBox1.Checked;
+				melsec.Format = int.Parse( comboBox_format.SelectedItem.ToString( ) );
 
-				OperateResult connect = melsecSerial.ConnectServer( );
+				OperateResult connect = melsec.ConnectServer( );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -104,7 +105,7 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( melsecSerial, "D100", true );
+					userControlReadWriteOp1.SetReadWriteNet( melsec, "D100", true );
 				}
 				else
 				{
@@ -120,7 +121,7 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			melsecSerial.ConnectClose( );
+			melsec.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
@@ -134,7 +135,7 @@ namespace HslCommunicationDemo
 
 		private void button25_Click( object sender, EventArgs e )
 		{
-			DemoUtils.BulkReadRenderResult( melsecSerial, textBox6, textBox9, textBox10 );
+			DemoUtils.BulkReadRenderResult( melsec, textBox6, textBox9, textBox10 );
 		}
 
 
@@ -146,7 +147,7 @@ namespace HslCommunicationDemo
 
 		private void button26_Click( object sender, EventArgs e )
 		{
-			OperateResult<byte[]> read = melsecSerial.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
+			OperateResult<byte[]> read = melsec.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
 			if (read.IsSuccess)
 			{
 				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -164,7 +165,7 @@ namespace HslCommunicationDemo
 
 		private void test1()
 		{
-			OperateResult<bool[]> read = melsecSerial.ReadBool( "M100", 10 );
+			OperateResult<bool[]> read = melsec.ReadBool( "M100", 10 );
 			if(read.IsSuccess)
 			{
 				bool m100 = read.Content[0];
@@ -180,55 +181,55 @@ namespace HslCommunicationDemo
 
 		private void test3( )
 		{
-			short d100_short = melsecSerial.ReadInt16( "D100" ).Content;
-			ushort d100_ushort = melsecSerial.ReadUInt16( "D100" ).Content;
-			int d100_int = melsecSerial.ReadInt32( "D100" ).Content;
-			uint d100_uint = melsecSerial.ReadUInt32( "D100" ).Content;
-			long d100_long = melsecSerial.ReadInt64( "D100" ).Content;
-			ulong d100_ulong = melsecSerial.ReadUInt64( "D100" ).Content;
-			float d100_float = melsecSerial.ReadFloat( "D100" ).Content;
-			double d100_double = melsecSerial.ReadDouble( "D100" ).Content;
+			short d100_short = melsec.ReadInt16( "D100" ).Content;
+			ushort d100_ushort = melsec.ReadUInt16( "D100" ).Content;
+			int d100_int = melsec.ReadInt32( "D100" ).Content;
+			uint d100_uint = melsec.ReadUInt32( "D100" ).Content;
+			long d100_long = melsec.ReadInt64( "D100" ).Content;
+			ulong d100_ulong = melsec.ReadUInt64( "D100" ).Content;
+			float d100_float = melsec.ReadFloat( "D100" ).Content;
+			double d100_double = melsec.ReadDouble( "D100" ).Content;
 			// need to specify the text length
-			string d100_string = melsecSerial.ReadString( "D100", 10 ).Content;
+			string d100_string = melsec.ReadString( "D100", 10 ).Content;
 		}
 		private void test4( )
 		{
-			melsecSerial.Write( "D100", (short)5 );
-			melsecSerial.Write( "D100", (ushort)5 );
-			melsecSerial.Write( "D100", 5 );
-			melsecSerial.Write( "D100", (uint)5 );
-			melsecSerial.Write( "D100", (long)5 );
-			melsecSerial.Write( "D100", (ulong)5 );
-			melsecSerial.Write( "D100", 5f );
-			melsecSerial.Write( "D100", 5d );
+			melsec.Write( "D100", (short)5 );
+			melsec.Write( "D100", (ushort)5 );
+			melsec.Write( "D100", 5 );
+			melsec.Write( "D100", (uint)5 );
+			melsec.Write( "D100", (long)5 );
+			melsec.Write( "D100", (ulong)5 );
+			melsec.Write( "D100", 5f );
+			melsec.Write( "D100", 5d );
 			// length should Multiples of 2 
-			melsecSerial.Write( "D100", "12345678" );
+			melsec.Write( "D100", "12345678" );
 		}
 
 
 		private void test5( )
 		{
-			OperateResult<byte[]> read = melsecSerial.Read( "D100", 10 );
+			OperateResult<byte[]> read = melsec.Read( "D100", 10 );
 			if(read.IsSuccess)
 			{
-				int count = melsecSerial.ByteTransform.TransInt32( read.Content, 0 );
-				float temp = melsecSerial.ByteTransform.TransSingle( read.Content, 4 );
-				short name1 = melsecSerial.ByteTransform.TransInt16( read.Content, 8 );
+				int count = melsec.ByteTransform.TransInt32( read.Content, 0 );
+				float temp = melsec.ByteTransform.TransSingle( read.Content, 4 );
+				short name1 = melsec.ByteTransform.TransInt16( read.Content, 8 );
 				string barcode = Encoding.ASCII.GetString( read.Content, 10, 10 );
 			}
 		}
 
 		private void test6( )
 		{
-			OperateResult<UserType> read = melsecSerial.ReadCustomer<UserType>( "D100" );
+			OperateResult<UserType> read = melsec.ReadCustomer<UserType>( "D100" );
 			if (read.IsSuccess)
 			{
 				UserType value = read.Content;
 			}
 			// write value
-			melsecSerial.WriteCustomer( "D100", new UserType( ) );
+			melsec.WriteCustomer( "D100", new UserType( ) );
 
-			melsecSerial.LogNet = new HslCommunication.LogNet.LogNetSingle( Application.StartupPath + "\\Logs.txt" );
+			melsec.LogNet = new HslCommunication.LogNet.LogNetSingle( Application.StartupPath + "\\Logs.txt" );
 
 		}
 
@@ -258,8 +259,8 @@ namespace HslCommunicationDemo
 			int count = 500;
 			while (count > 0)
 			{
-				if (!melsecSerial.Write( "D100", (short)1234 ).IsSuccess) failed++;
-				if (!melsecSerial.ReadInt16( "D100" ).IsSuccess) failed++;
+				if (!melsec.Write( "D100", (short)1234 ).IsSuccess) failed++;
+				if (!melsec.ReadInt16( "D100" ).IsSuccess) failed++;
 				count--;
 			}
 			thread_end( );
@@ -285,7 +286,7 @@ namespace HslCommunicationDemo
 
 		private void button3_Click_1( object sender, EventArgs e )
 		{
-			OperateResult operate = melsecSerial.StartPLC( );
+			OperateResult operate = melsec.StartPLC( );
 			if(!operate.IsSuccess)
 			{
 				MessageBox.Show( "Start Failed：" + operate.Message );
@@ -299,7 +300,7 @@ namespace HslCommunicationDemo
 		private void button4_Click( object sender, EventArgs e )
 		{
 
-			OperateResult operate = melsecSerial.StopPLC( );
+			OperateResult operate = melsec.StopPLC( );
 			if (!operate.IsSuccess)
 			{
 				MessageBox.Show( "Stop Failed：" + operate.Message );
@@ -312,7 +313,7 @@ namespace HslCommunicationDemo
 
 		private void button5_Click( object sender, EventArgs e )
 		{
-			OperateResult<string> read = melsecSerial.ReadPlcType( );
+			OperateResult<string> read = melsec.ReadPlcType( );
 			if (read.IsSuccess)
 			{
 				textBox14.Text = read.Content;

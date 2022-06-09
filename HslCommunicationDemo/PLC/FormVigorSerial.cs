@@ -106,6 +106,7 @@ namespace HslCommunicationDemo
 
 			vigor?.Close( );
 			vigor = new VigorSerial( );
+			vigor.LogNet = LogNet;
 			
 			try
 			{

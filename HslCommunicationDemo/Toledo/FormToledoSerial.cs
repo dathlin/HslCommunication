@@ -99,6 +99,7 @@ namespace HslCommunicationDemo.Toledo
 
             toledoSerial = new ToledoSerial( );
             toledoSerial.OnToledoStandardDataReceived += ToledoSerial_OnToledoStandardDataReceived;
+            toledoSerial.LogNet = LogNet;
             toledoSerial.SerialPortInni( new Action<SerialPort>( m =>
               {
                   m.PortName = comboBox3.Text;

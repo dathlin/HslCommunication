@@ -126,6 +126,7 @@ namespace HslCommunicationDemo
 			busTcpClient = new ModbusTcpNet( textBox1.Text, port, station );
 			busTcpClient.AddressStartWithZero = checkBox1.Checked;
 			busTcpClient.IsCheckMessageId = checkBox2.Checked;
+			busTcpClient.LogNet = LogNet;
 
 			busTcpClient.SetLoginAccount( textBox14.Text, textBox12.Text );
 

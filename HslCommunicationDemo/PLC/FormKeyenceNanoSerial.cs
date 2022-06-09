@@ -114,6 +114,7 @@ namespace HslCommunicationDemo
             keyenceNanoSerial = new KeyenceNanoSerial( );
             keyenceNanoSerial.UseStation = checkBox1.Checked;
             keyenceNanoSerial.Station = station;
+            keyenceNanoSerial.LogNet = LogNet;
             try
             {
                 keyenceNanoSerial.SerialPortInni( sp =>

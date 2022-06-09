@@ -154,10 +154,10 @@
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.label24);
 			this.panel1.Controls.Add(this.checkBox3);
-			this.panel1.Location = new System.Drawing.Point(14, 42);
+			this.panel1.Location = new System.Drawing.Point(5, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 62);
+			this.panel1.Size = new System.Drawing.Size(997, 64);
 			this.panel1.TabIndex = 0;
 			// 
 			// checkBox5
@@ -342,17 +342,17 @@
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteOp1);
 			this.panel2.Controls.Add(this.groupBox5);
-			this.panel2.Location = new System.Drawing.Point(14, 112);
+			this.panel2.Location = new System.Drawing.Point(5, 103);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 528);
+			this.panel2.Size = new System.Drawing.Size(997, 540);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
 			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 2);
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(4, 2);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(988, 240);
 			this.userControlReadWriteOp1.TabIndex = 5;
 			// 
 			// groupBox5
@@ -435,9 +435,9 @@
 			this.groupBox5.Controls.Add(this.textBox1);
 			this.groupBox5.Controls.Add(this.label2);
 			this.groupBox5.Controls.Add(this.button3);
-			this.groupBox5.Location = new System.Drawing.Point(11, 243);
+			this.groupBox5.Location = new System.Drawing.Point(5, 243);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(955, 278);
+			this.groupBox5.Size = new System.Drawing.Size(987, 290);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
@@ -486,7 +486,7 @@
 			this.hslCurve1.BackColor = System.Drawing.Color.White;
 			this.hslCurve1.Location = new System.Drawing.Point(594, 62);
 			this.hslCurve1.Name = "hslCurve1";
-			this.hslCurve1.Size = new System.Drawing.Size(355, 210);
+			this.hslCurve1.Size = new System.Drawing.Size(387, 222);
 			this.hslCurve1.TabIndex = 82;
 			this.hslCurve1.ValueMaxLeft = 250F;
 			// 
@@ -1099,7 +1099,7 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormDTSU6606";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Modbus Rtu访问Demo";
+			this.Text = "DTSU6606";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
 			this.Load += new System.EventHandler(this.FormSiemens_Load);
 			this.panel1.ResumeLayout(false);

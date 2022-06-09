@@ -114,6 +114,7 @@ namespace HslCommunicationDemo
 			omronHostLink = new OmronHostLinkOverTcp( );
 			omronHostLink.IpAddress = textBox20.Text;
 			omronHostLink.Port = port;
+			omronHostLink.LogNet = LogNet;
 
 			try
 			{

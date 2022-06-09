@@ -83,6 +83,7 @@ namespace HslCommunicationDemo
 				return;
 			}
 
+			melsec_net.LogNet = LogNet;
 			melsec_net.Port = port;
 
 			button2.Enabled = true;

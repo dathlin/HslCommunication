@@ -111,6 +111,7 @@ namespace HslCommunicationDemo
 			melsecSerial?.Close( );
 			melsecSerial = new MelsecFxSerial( );
 			melsecSerial.IsNewVersion = checkBox1.Checked;
+			melsecSerial.LogNet = LogNet;
 
 			try
 			{

@@ -87,6 +87,7 @@ namespace HslCommunicationDemo
 			allenBradleyNet.IpAddress = textBox1.Text;
 			allenBradleyNet.Port = port;
 			allenBradleyNet.Slot = slot;
+			allenBradleyNet.LogNet = LogNet;
 
 			//if (!string.IsNullOrEmpty( textBox16.Text ))
 			//{

@@ -85,6 +85,7 @@ namespace HslCommunicationDemo
 			melsec_net.Port = port;
 
 			melsec_net.ConnectClose( );
+			melsec_net.LogNet = LogNet;
 
 			button1.Enabled = false;
 			melsec_net.ConnectTimeOut = 3000; // 连接3秒超时

@@ -32,12 +32,10 @@ namespace HslCommunicationDemo
         public FormModbusAlien( )
         {
             InitializeComponent( );
-            logNet = new HslCommunication.LogNet.LogNetSingle( "modbus.txt" );
         }
 
 
         private ModbusTcpNet busTcpClient = null;
-        private HslCommunication.LogNet.ILogNet logNet = null;
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
@@ -137,7 +135,6 @@ namespace HslCommunicationDemo
         {
             networkAlien = new NetworkAlienClient( );
             networkAlien.OnClientConnected += NetworkAlien_OnClientConnected;
-            networkAlien.LogNet = logNet;
             networkAlien.ServerStart( port );
         }
 
@@ -175,7 +172,7 @@ namespace HslCommunicationDemo
             }
 
             busTcpClient = new ModbusTcpNet( "127.0.0.1", port, station );
-            busTcpClient.LogNet = logNet;
+            busTcpClient.LogNet = LogNet;
             busTcpClient.AddressStartWithZero = checkBox1.Checked;
 
             try

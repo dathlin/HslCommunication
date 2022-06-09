@@ -154,6 +154,7 @@ namespace HslCommunicationDemo
 				omronHostLink.DA2 = DA2;
 				omronHostLink.SA2 = SA2;
 				omronHostLink.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
+				omronHostLink.LogNet = LogNet;
 
 
 				omronHostLink.Open( );

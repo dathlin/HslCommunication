@@ -94,8 +94,9 @@ namespace HslCommunicationDemo
 			}
 
 			omronCipNet.IpAddress = textBox1.Text;
-			omronCipNet.Port = port;
-			omronCipNet.Slot = slot;
+			omronCipNet.Port      = port;
+			omronCipNet.Slot      = slot;
+			omronCipNet.LogNet    = LogNet;
 
 			try
 			{

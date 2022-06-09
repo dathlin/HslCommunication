@@ -116,7 +116,7 @@ namespace HslCommunicationDemo
 
 			freedom?.Close( );
 			freedom = new FreedomSerial( );
-
+			freedom.LogNet = LogNet;
 
 			if (radioButton1.Checked) freedom.ByteTransform = new HslCommunication.Core.RegularByteTransform( );
 			if (radioButton2.Checked) freedom.ByteTransform = new HslCommunication.Core.ReverseBytesTransform( );

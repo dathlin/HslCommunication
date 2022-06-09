@@ -148,6 +148,7 @@ namespace HslCommunicationDemo
             busRtuClient = new ModbusRtu( station );
             busRtuClient.AddressStartWithZero = checkBox1.Checked;
             busRtuClient.IsClearCacheBeforeRead = checkBox2.Checked;
+            busRtuClient.LogNet = LogNet;
 
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );

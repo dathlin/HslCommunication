@@ -103,6 +103,7 @@ namespace HslCommunicationDemo
 			melsecA3C = new MelsecA3CNetOverTcp( );
 			melsecA3C.IpAddress = textBox1.Text;
 			melsecA3C.Port = port;
+			melsecA3C.LogNet = LogNet;
 
 			try
 			{

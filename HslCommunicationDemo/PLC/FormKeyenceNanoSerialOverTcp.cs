@@ -89,6 +89,7 @@ namespace HslCommunicationDemo
             keyence.Port = port;
             keyence.Station = station;
             keyence.UseStation = checkBox1.Checked;
+            keyence.LogNet = LogNet;
 
             try
             {

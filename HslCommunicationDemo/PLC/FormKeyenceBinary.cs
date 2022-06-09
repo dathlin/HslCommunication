@@ -82,6 +82,7 @@ namespace HslCommunicationDemo
 
 			keyence_net.Port = port;
 			keyence_net.ConnectClose( );
+			keyence_net.LogNet = LogNet;
 
 			try
 			{

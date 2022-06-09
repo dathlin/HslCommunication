@@ -84,6 +84,7 @@ namespace HslCommunicationDemo
 			melsec_net.Port = port;
 
 			melsec_net.ConnectClose( );
+			melsec_net.LogNet = LogNet;
 
 			try
 			{

@@ -74,6 +74,7 @@ namespace HslCommunicationDemo
             iec104?.ConnectClose( );
             iec104 = new IEC104( textBox3.Text, port );
 			iec104.OnIEC104MessageReceived += Iec104_IEC104MessageReceived;
+            iec104.LogNet = LogNet;
             try
             {
                 OperateResult connect = iec104.ConnectServer( );

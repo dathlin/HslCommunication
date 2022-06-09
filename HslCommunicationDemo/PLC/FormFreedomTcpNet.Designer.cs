@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label2 = new System.Windows.Forms.Label();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.panel3 = new System.Windows.Forms.Panel();
@@ -56,7 +57,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -84,6 +84,15 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 86);
 			this.panel1.TabIndex = 0;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(589, 40);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(368, 34);
+			this.label2.TabIndex = 31;
+			this.label2.Text = "注意：地址框框里使用原始字节报文信息，也可以加上偏移结果信息\r\nstx=6;00 00 00 00 00 06 01 03 00 00 00 01\r\n";
 			// 
 			// comboBox2
 			// 
@@ -371,15 +380,6 @@
 			this.userControlHead1.ProtocolInfo = "Freedom Tcp";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(589, 40);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(368, 34);
-			this.label2.TabIndex = 31;
-			this.label2.Text = "注意：地址框框里使用原始字节报文信息，也可以加上便宜结果信息\r\nstx=6;00 00 00 00 00 06 01 03 00 00 00 01\r\n";
 			// 
 			// FormFreedomTcpNet
 			// 

@@ -165,6 +165,7 @@ namespace HslCommunicationDemo
             dAM3601?.Close( );
             dAM3601 = new DAM3601( station );
             dAM3601.AddressStartWithZero = checkBox1.Checked;
+            dAM3601.LogNet = LogNet;
 
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );

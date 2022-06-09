@@ -92,6 +92,7 @@ namespace HslCommunicationDemo
 			omronFinsNet.Port = port;
 			omronFinsNet.DA2 = DA2;
 			omronFinsNet.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
+			omronFinsNet.LogNet = LogNet;
 
 			OperateResult connect = omronFinsNet.ConnectServer( );
 			if (connect.IsSuccess)

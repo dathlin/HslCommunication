@@ -115,6 +115,7 @@ namespace HslCommunicationDemo
 
 			cpl?.Close( );
 			cpl = new DigitronCPL( );
+			cpl.LogNet = LogNet;
 
 			try
 			{

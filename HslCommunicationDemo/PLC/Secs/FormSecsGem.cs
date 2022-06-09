@@ -227,6 +227,7 @@ namespace HslCommunicationDemo
 			secs.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 			secs.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			secs.OnSecsMessageReceived += Secs_OnSecsMessageReceived;
+			secs.LogNet = LogNet;
 			try
 			{
 				OperateResult connect = secs.ConnectServer( );

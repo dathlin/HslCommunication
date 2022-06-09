@@ -101,6 +101,7 @@ namespace HslCommunicationDemo
 
 			siemensPPI?.Close( );
 			siemensPPI = new SiemensPPI( );
+			siemensPPI.LogNet = LogNet;
 
 			try
 			{

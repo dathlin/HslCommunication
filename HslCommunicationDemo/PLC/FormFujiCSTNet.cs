@@ -78,6 +78,7 @@ namespace HslCommunicationDemo
 			fuji.IpAddress = textBox1.Text;
 			fuji.Port = port;
 			fuji.DataSwap = checkBox1.Checked;
+			fuji.LogNet = LogNet;
 
 			try
 			{

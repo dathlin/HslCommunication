@@ -134,6 +134,7 @@ namespace HslCommunicationDemo
 
 			melsecA3C?.Close( );
 			melsecA3C = new MelsecA3CNet( );
+			melsecA3C.LogNet = LogNet;
 			
 			try
 			{

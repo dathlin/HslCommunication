@@ -149,6 +149,7 @@ namespace HslCommunicationDemo
             inovance = new InovanceSerial( station );
             inovance.AddressStartWithZero = checkBox1.Checked;
             inovance.Series = (InovanceSeries)comboBox4.SelectedItem;
+            inovance.LogNet = LogNet;
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
             inovance.IsStringReverse = checkBox3.Checked;

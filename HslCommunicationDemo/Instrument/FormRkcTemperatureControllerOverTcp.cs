@@ -89,6 +89,7 @@ namespace HslCommunicationDemo
 			rkc.Station = station;
 			rkc.IpAddress = textBox1.Text;
 			rkc.Port = port;
+			rkc.LogNet = LogNet;
 
 			try
 			{

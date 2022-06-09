@@ -81,7 +81,7 @@ namespace HslCommunicationDemo
 			fatekProgram = new FatekProgramOverTcp( );
 			fatekProgram.IpAddress = textBox1.Text;
 			fatekProgram.Port = port;
-
+			fatekProgram.LogNet = LogNet;
 
 			try
 			{

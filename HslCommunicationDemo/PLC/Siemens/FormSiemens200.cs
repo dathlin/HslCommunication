@@ -107,7 +107,7 @@ namespace HslCommunicationDemo
                     siemensTcpNet.DestTSAP = Convert.ToInt32( textBox3.Text, 16 );
                 }
 
-
+                siemensTcpNet.LogNet = LogNet;
                 OperateResult connect = siemensTcpNet.ConnectServer( );
                 if (connect.IsSuccess)
                 {

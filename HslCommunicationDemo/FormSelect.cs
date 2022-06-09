@@ -17,12 +17,15 @@ using HslCommunication.Profinet.Siemens;
 using HslCommunicationDemo.Control;
 using HslCommunicationDemo.Redis;
 using HslCommunicationDemo.Toledo;
+using HslCommunication.LogNet;
 
 namespace HslCommunicationDemo
 {
 	public partial class FormSelect : Form
 	{
 		public static Color ThemeColor = Color.FromArgb( 64, 64, 64 );
+
+		private ILogNet logNet;
 
 		public FormSelect( )
 		{
@@ -73,9 +76,12 @@ namespace HslCommunicationDemo
 
 			treeView1.ImageList = imageList;
 			treeView2.ImageList = imageList;
+
+			logNet = new LogNetSingle( string.Empty );
 		}
 
 
+		private DemoControl.FormLogRender logRender;
 
 		private void FormLoad_Load( object sender, EventArgs e )
 		{
@@ -83,6 +89,7 @@ namespace HslCommunicationDemo
 			LoadActive( );
 			dockPanel1.Theme = vS2015BlueTheme1;
 
+			logRender = new DemoControl.FormLogRender( logNet );
 
 			ThemeColor = menuStrip1.BackColor;
 			verisonToolStripMenuItem.Text = "Version: " + HslCommunication.BasicFramework.SoftBasic.FrameworkVersion.ToString( );
@@ -205,7 +212,7 @@ namespace HslCommunicationDemo
 			{
 				Text = "HslCommunication 测试工具";
 				免责条款ToolStripMenuItem.Text = "全国使用分布";
-				论坛toolStripMenuItem.Text = "博客";
+				logToolStripMenuItem.Text = "报文日志";
 				日志ToolStripMenuItem.Text = "API 文档";
 				//授权ToolStripMenuItem.Text = "授权";
 				tabPage1.Text = "所有设备列表";
@@ -217,7 +224,7 @@ namespace HslCommunicationDemo
 			else
 			{
 				Text = "HslCommunication Test Tool";
-				论坛toolStripMenuItem.Text = "Blog";
+				logToolStripMenuItem.Text = "MsgLog";
 				免责条款ToolStripMenuItem.Text = "China Map";
 				日志ToolStripMenuItem.Text = "API Doc";
 				//授权ToolStripMenuItem.Text = "Authorize";
@@ -228,16 +235,20 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private void 论坛toolStripMenuItem_Click(object sender, EventArgs e)
+		private void logToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			try
-			{
-				System.Diagnostics.Process.Start( "http://blog.hslcommunication.cn/" );
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message);
-			}
+			//try
+			//{
+			//	System.Diagnostics.Process.Start( "http://blog.hslcommunication.cn/" );
+			//}
+			//catch (Exception ex)
+			//{
+			//	MessageBox.Show(ex.Message);
+			//}
+			if (this.logRender == null || this.logRender.IsDisposed)
+				logRender = new DemoControl.FormLogRender( logNet );
+
+			this.logRender.Show( dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.DockBottom );
 		}
 
 
@@ -363,7 +374,18 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				Process.Start( Application.StartupPath + "\\AutoUpdate.exe" );
+				if (System.IO.File.Exists(Path.Combine( Application.StartupPath , "Upgrade.exe" ) ))
+				{
+					Process.Start( Path.Combine( Application.StartupPath, "Upgrade.exe" ) );
+				}
+				else if (System.IO.File.Exists(Path.Combine( Application.StartupPath , "AutoUpdate.exe" ) ))
+				{
+					Process.Start( Path.Combine( Application.StartupPath, "AutoUpdate.exe" ) );
+				}
+				else
+				{
+					Process.Start( Path.Combine( Application.StartupPath, "软件自动更新.exe" ) );
+				}
 				System.Threading.Thread.Sleep( 50 );
 				Close( );
 			}
@@ -759,11 +781,15 @@ namespace HslCommunicationDemo
 			if (treeNode.Tag is Type type)
 			{
 				HslFormContent hslForm = (HslFormContent)type.GetConstructors( )[0].Invoke( null );
-				if (treeNode.ImageIndex >= 0)
-					hslForm.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[treeNode.ImageIndex]).GetHicon( ) );
-				else
-					hslForm.Icon = Icon.FromHandle( Properties.Resources.Method_636.GetHicon( ) );
-				if (hslForm != null) hslForm.Show( dockPanel1 );
+				if (hslForm != null)
+				{
+					hslForm.LogNet = this.logNet;
+					if (treeNode.ImageIndex >= 0)
+						hslForm.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[treeNode.ImageIndex]).GetHicon( ) );
+					else
+						hslForm.Icon = Icon.FromHandle( Properties.Resources.Method_636.GetHicon( ) );
+					if (hslForm != null) hslForm.Show( dockPanel1 );
+				}
 			}
 		}
 
@@ -904,6 +930,7 @@ namespace HslCommunicationDemo
 
 		private void treeView2_MouseDoubleClick( object sender, MouseEventArgs e )
 		{
+			// 从保存的配置文件创建的设备对象
 			TreeNode treeNode = treeView2.SelectedNode;
 			if (treeNode == null) return;
 			if (treeNode.Tag == null) return;
@@ -918,6 +945,7 @@ namespace HslCommunicationDemo
 					if(item.Name == type)
 					{
 						hslForm = (HslFormContent)item.GetConstructors( )[0].Invoke( null );
+						hslForm.LogNet = this.logNet;
 						break;
 					}
 				}

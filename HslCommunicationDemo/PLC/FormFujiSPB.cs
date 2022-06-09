@@ -107,6 +107,7 @@ namespace HslCommunicationDemo
 
 			fujiSPB?.Close( );
 			fujiSPB = new FujiSPB( );
+			fujiSPB.LogNet = LogNet;
 			
 			try
 			{

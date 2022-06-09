@@ -76,10 +76,10 @@
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(14, 36);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 54);
+			this.panel1.Size = new System.Drawing.Size(997, 54);
 			this.panel1.TabIndex = 0;
 			// 
 			// textBox1
@@ -172,17 +172,17 @@
 			this.panel2.Controls.Add(this.groupBox5);
 			this.panel2.Controls.Add(this.groupBox4);
 			this.panel2.Controls.Add(this.groupBox3);
-			this.panel2.Location = new System.Drawing.Point(14, 95);
+			this.panel2.Location = new System.Drawing.Point(3, 94);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 537);
+			this.panel2.Size = new System.Drawing.Size(997, 548);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
 			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(11, 3);
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 3);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 240);
 			this.userControlReadWriteOp1.TabIndex = 5;
 			// 
 			// groupBox5
@@ -201,9 +201,9 @@
 			this.groupBox4.Controls.Add(this.button26);
 			this.groupBox4.Controls.Add(this.textBox13);
 			this.groupBox4.Controls.Add(this.label16);
-			this.groupBox4.Location = new System.Drawing.Point(11, 403);
+			this.groupBox4.Location = new System.Drawing.Point(3, 403);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(518, 118);
+			this.groupBox4.Size = new System.Drawing.Size(537, 140);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "报文读取测试，此处需要填入16进制报文字符串";
@@ -214,7 +214,7 @@
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
 			this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox11.Size = new System.Drawing.Size(445, 52);
+			this.textBox11.Size = new System.Drawing.Size(468, 74);
 			this.textBox11.TabIndex = 10;
 			// 
 			// label14
@@ -261,26 +261,26 @@
 			this.groupBox3.Controls.Add(this.label12);
 			this.groupBox3.Controls.Add(this.textBox6);
 			this.groupBox3.Controls.Add(this.label11);
-			this.groupBox3.Location = new System.Drawing.Point(11, 243);
+			this.groupBox3.Location = new System.Drawing.Point(3, 243);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(518, 154);
+			this.groupBox3.Size = new System.Drawing.Size(537, 154);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
 			// 
 			// textBox10
 			// 
-			this.textBox10.Location = new System.Drawing.Point(63, 60);
+			this.textBox10.Location = new System.Drawing.Point(63, 57);
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(445, 78);
+			this.textBox10.Size = new System.Drawing.Size(468, 91);
 			this.textBox10.TabIndex = 10;
 			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(9, 62);
+			this.label13.Location = new System.Drawing.Point(9, 59);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(44, 17);
 			this.label13.TabIndex = 9;
@@ -289,7 +289,7 @@
 			// button25
 			// 
 			this.button25.Enabled = false;
-			this.button25.Location = new System.Drawing.Point(426, 24);
+			this.button25.Location = new System.Drawing.Point(426, 21);
 			this.button25.Name = "button25";
 			this.button25.Size = new System.Drawing.Size(82, 28);
 			this.button25.TabIndex = 8;
@@ -299,7 +299,7 @@
 			// 
 			// textBox9
 			// 
-			this.textBox9.Location = new System.Drawing.Point(239, 27);
+			this.textBox9.Location = new System.Drawing.Point(239, 24);
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(102, 23);
 			this.textBox9.TabIndex = 7;
@@ -308,7 +308,7 @@
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(185, 30);
+			this.label12.Location = new System.Drawing.Point(185, 27);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(44, 17);
 			this.label12.TabIndex = 6;
@@ -316,7 +316,7 @@
 			// 
 			// textBox6
 			// 
-			this.textBox6.Location = new System.Drawing.Point(63, 27);
+			this.textBox6.Location = new System.Drawing.Point(63, 24);
 			this.textBox6.Name = "textBox6";
 			this.textBox6.Size = new System.Drawing.Size(102, 23);
 			this.textBox6.TabIndex = 5;
@@ -325,7 +325,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(9, 30);
+			this.label11.Location = new System.Drawing.Point(9, 27);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(44, 17);
 			this.label11.TabIndex = 4;

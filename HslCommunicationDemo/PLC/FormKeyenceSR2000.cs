@@ -71,6 +71,7 @@ namespace HslCommunicationDemo
             
             keyence?.ConnectClose( );
             keyence = new KeyenceSR2000SeriesTcp( textBox1.Text, port );
+            keyence.LogNet = LogNet;
             try
             {
                 OperateResult connect = await keyence.ConnectServerAsync( );

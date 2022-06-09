@@ -116,6 +116,7 @@ namespace HslCommunicationDemo
 
 			melsecSerial?.Close( );
 			melsecSerial = new MelsecFxLinks( );
+			melsecSerial.LogNet = LogNet;
 			
 			try
 			{

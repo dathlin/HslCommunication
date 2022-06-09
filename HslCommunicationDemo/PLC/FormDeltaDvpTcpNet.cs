@@ -87,6 +87,7 @@ namespace HslCommunicationDemo
 
             delta?.ConnectClose( );
             delta = new DeltaTcpNet( textBox1.Text, port, station );
+            delta.LogNet = LogNet;
             delta.Series = (DeltaSeries)comboBox1.SelectedItem;
 
             try

@@ -106,7 +106,9 @@ namespace HslCommunicationDemo
 
 			fatekProgram?.Close( );
 			fatekProgram = new FatekProgram( );
-			
+			fatekProgram.LogNet = LogNet;
+
+
 			try
 			{
 				fatekProgram.SerialPortInni( sp =>

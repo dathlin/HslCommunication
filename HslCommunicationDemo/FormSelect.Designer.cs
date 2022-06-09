@@ -39,7 +39,7 @@
 			this.toolStripMenuItem_language = new System.Windows.Forms.ToolStripMenuItem();
 			this.简体中文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.论坛toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_homepage = new System.Windows.Forms.ToolStripMenuItem();
 			this.日志ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.verisonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +71,7 @@
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem,
             this.toolStripMenuItem_language,
-            this.论坛toolStripMenuItem,
+            this.logToolStripMenuItem,
             this.toolStripMenuItem_homepage,
             this.日志ToolStripMenuItem,
             this.verisonToolStripMenuItem,
@@ -151,13 +151,13 @@
 			this.englishToolStripMenuItem.Text = "English";
 			this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
 			// 
-			// 论坛toolStripMenuItem
+			// logToolStripMenuItem
 			// 
-			this.论坛toolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-			this.论坛toolStripMenuItem.Name = "论坛toolStripMenuItem";
-			this.论坛toolStripMenuItem.Size = new System.Drawing.Size(47, 21);
-			this.论坛toolStripMenuItem.Text = "Blog";
-			this.论坛toolStripMenuItem.Click += new System.EventHandler(this.论坛toolStripMenuItem_Click);
+			this.logToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.logToolStripMenuItem.Name = "logToolStripMenuItem";
+			this.logToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+			this.logToolStripMenuItem.Text = "报文日志";
+			this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem_homepage
 			// 
@@ -348,7 +348,7 @@
         private System.Windows.Forms.ToolStripMenuItem 日志ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verisonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 免责条款ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 论坛toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 授权ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem support赞助ToolStripMenuItem;
         private WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme vS2015BlueTheme1;

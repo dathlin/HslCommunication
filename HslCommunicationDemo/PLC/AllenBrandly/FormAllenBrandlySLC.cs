@@ -77,6 +77,7 @@ namespace HslCommunicationDemo
 
 			allenBradleyNet.IpAddress = textBox1.Text;
 			allenBradleyNet.Port = port;
+			allenBradleyNet.LogNet = LogNet;
 
 			try
 			{

@@ -121,6 +121,7 @@ namespace HslCommunicationDemo
 
 			omronHostLink?.Close( );
 			omronHostLink = new OmronHostLinkCMode( );
+			omronHostLink.LogNet = LogNet;
 
 			try
 			{

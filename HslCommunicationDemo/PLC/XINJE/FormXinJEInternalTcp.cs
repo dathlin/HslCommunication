@@ -78,6 +78,7 @@ namespace HslCommunicationDemo
 			xinJE = new XinJEInternalNet( );
 			xinJE.IpAddress = textBox1.Text;
 			xinJE.Port = port;
+			xinJE.LogNet = LogNet;
 
 			try
 			{

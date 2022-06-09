@@ -119,6 +119,7 @@ namespace HslCommunicationDemo
 
 			panasonicMewtocol?.Close( );
 			panasonicMewtocol = new PanasonicMewtocol( station );
+			panasonicMewtocol.LogNet = LogNet;
 
 			
 			try

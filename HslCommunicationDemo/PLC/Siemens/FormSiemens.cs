@@ -120,6 +120,7 @@ namespace HslCommunicationDemo
 
                 siemensTcpNet.ConnectionType = byte.Parse( textBox3.Text );
                 siemensTcpNet.LocalTSAP = int.Parse( textBox4.Text );
+                siemensTcpNet.LogNet = LogNet;
 
 
                 OperateResult connect = siemensTcpNet.ConnectServer( );

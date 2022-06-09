@@ -104,6 +104,7 @@ namespace HslCommunicationDemo
 			omronFinsUdp.GCT = gct;
 			omronFinsUdp.SID = sid;
 			omronFinsUdp.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
+			omronFinsUdp.LogNet = LogNet;
 
 			userControlReadWriteOp1.SetReadWriteNet( omronFinsUdp, "D100", false );
 

@@ -93,7 +93,7 @@ namespace HslCommunicationDemo
 			panasonicMewtocol = new PanasonicMewtocolOverTcp( station );
 			panasonicMewtocol.IpAddress = textBox1.Text;
 			panasonicMewtocol.Port = port;
-
+			panasonicMewtocol.LogNet = LogNet;
 
 			try
 			{

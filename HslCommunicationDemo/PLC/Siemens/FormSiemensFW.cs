@@ -79,6 +79,7 @@ namespace HslCommunicationDemo
 
 			siemensFWNet.IpAddress = textBox1.Text;
 			siemensFWNet.Port = port;
+			siemensFWNet.LogNet = LogNet;
 
 			try
 			{

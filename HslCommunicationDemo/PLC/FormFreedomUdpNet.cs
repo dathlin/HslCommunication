@@ -92,6 +92,7 @@ namespace HslCommunicationDemo
 				MessageBox.Show( DemoUtils.PortInputWrong );
 				return;
 			}
+			freedom.LogNet = LogNet;
 
 			if (radioButton1.Checked) freedom.ByteTransform = new HslCommunication.Core.RegularByteTransform( );
 			if (radioButton2.Checked) freedom.ByteTransform = new HslCommunication.Core.ReverseBytesTransform( );

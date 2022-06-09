@@ -87,6 +87,7 @@ namespace HslCommunicationDemo
 			cip.IpAddress = textBox1.Text;
 			cip.Port = port;
 			cip.Slot = slot;
+			cip.LogNet = LogNet;
 
 			try
 			{

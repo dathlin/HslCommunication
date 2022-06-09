@@ -118,6 +118,7 @@ namespace HslCommunicationDemo
             inovance = new InovanceSerialOverTcp( textBox1.Text, port, station );
             inovance.AddressStartWithZero = checkBox1.Checked;
             inovance.Series = (InovanceSeries)comboBox4.SelectedItem;
+            inovance.LogNet = LogNet;
 
             ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
             inovance.IsStringReverse = checkBox3.Checked;

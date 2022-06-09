@@ -54,7 +54,9 @@ namespace HslCommunicationDemo
                 label22.Text = "DataBit";
                 label23.Text = "StopBit";
                 label24.Text = "parity";
-                label21.Text = "station";
+                label_address.Text = "station";
+                label_password.Text = "Pwd:";
+                label_op_code.Text = "Op Code";
                 button1.Text = "Connect";
                 button2.Text = "Disconnect";
                 button3.Text = "Active";
@@ -106,7 +108,8 @@ namespace HslCommunicationDemo
             }
 
             dLT645?.Close( );
-            dLT645 = new DLT645( textBox15.Text );
+            dLT645 = new DLT645( textBox_station.Text, textBox_password.Text, textBox_op_code.Text );
+            dLT645.LogNet = LogNet;
 
             try
             {
@@ -209,6 +212,7 @@ namespace HslCommunicationDemo
             OperateResult<string> read = dLT645.ReadAddress( );
             if (read.IsSuccess)
             {
+                textBox_station.Text = read.Content;
                 textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Address:{read.Content}";
             }
             else
@@ -253,7 +257,7 @@ namespace HslCommunicationDemo
             element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
             element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
             element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
-            element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+            element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
             element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
         }
 
@@ -265,7 +269,7 @@ namespace HslCommunicationDemo
             textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
             textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
             comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
-            textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+            textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
             checkBox5.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
         }
 

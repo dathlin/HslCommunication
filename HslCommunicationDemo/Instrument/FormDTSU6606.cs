@@ -146,6 +146,7 @@ namespace HslCommunicationDemo
             delixi?.Close( );
             delixi = new DTSU6606Serial( station );
             delixi.AddressStartWithZero = checkBox1.Checked;
+            delixi.LogNet = LogNet;
 
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );

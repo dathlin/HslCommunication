@@ -73,6 +73,7 @@ namespace HslCommunicationDemo
 
 			siemensPPI?.ConnectClose( );
 			siemensPPI = new SiemensPPIOverTcp( textBox1.Text, port );
+			siemensPPI.LogNet = LogNet;
 
 			try
 			{

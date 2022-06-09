@@ -127,6 +127,7 @@ namespace HslCommunicationDemo
             allenBradley.Station = station;
             allenBradley.DstNode = dst;
             allenBradley.SrcNode = src;
+            allenBradley.LogNet = LogNet;
 
             try
             {

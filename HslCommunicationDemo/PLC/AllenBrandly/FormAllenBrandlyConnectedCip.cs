@@ -82,6 +82,7 @@ namespace HslCommunicationDemo
 			omronCipNet.Port = port;
 
 			omronCipNet.SetPersistentConnection( );
+			omronCipNet.LogNet = LogNet;
 
 			try
 			{

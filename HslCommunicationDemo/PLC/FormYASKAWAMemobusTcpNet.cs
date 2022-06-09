@@ -97,6 +97,7 @@ namespace HslCommunicationDemo
 			memobus.Port = port;
 			memobus.CpuFrom = cpuFrom;
 			memobus.CpuTo = cpuTo;
+			memobus.LogNet = LogNet;
 
 			try
 			{

@@ -87,6 +87,7 @@ namespace HslCommunicationDemo
 			yokogawa.IpAddress = textBox1.Text;
 			yokogawa.Port = port;
 			yokogawa.CpuNumber = cpu;
+			yokogawa.LogNet = LogNet;
 
 			OperateResult connect = yokogawa.ConnectServer( );
 			if (connect.IsSuccess)

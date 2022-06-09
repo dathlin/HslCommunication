@@ -101,14 +101,14 @@
 			// comboBox3
 			// 
 			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(74, 3);
+			this.comboBox3.Location = new System.Drawing.Point(57, 3);
 			this.comboBox3.Name = "comboBox3";
 			this.comboBox3.Size = new System.Drawing.Size(67, 25);
 			this.comboBox3.TabIndex = 41;
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(74, 33);
+			this.textBox1.Location = new System.Drawing.Point(59, 33);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(31, 23);
 			this.textBox1.TabIndex = 40;
@@ -117,7 +117,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(20, 36);
+			this.label1.Location = new System.Drawing.Point(5, 36);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 39;
@@ -131,7 +131,7 @@
             "无",
             "奇",
             "偶"});
-			this.comboBox2.Location = new System.Drawing.Point(518, 3);
+			this.comboBox2.Location = new System.Drawing.Point(501, 3);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(60, 25);
 			this.comboBox2.TabIndex = 38;
@@ -139,7 +139,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(453, 8);
+			this.label3.Location = new System.Drawing.Point(436, 8);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(44, 17);
 			this.label3.TabIndex = 37;
@@ -147,7 +147,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(424, 4);
+			this.textBox2.Location = new System.Drawing.Point(407, 4);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(23, 23);
 			this.textBox2.TabIndex = 36;
@@ -156,7 +156,7 @@
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(364, 7);
+			this.label26.Location = new System.Drawing.Point(347, 7);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(56, 17);
 			this.label26.TabIndex = 35;
@@ -164,7 +164,7 @@
 			// 
 			// textBox18
 			// 
-			this.textBox18.Location = new System.Drawing.Point(329, 4);
+			this.textBox18.Location = new System.Drawing.Point(312, 4);
 			this.textBox18.Name = "textBox18";
 			this.textBox18.Size = new System.Drawing.Size(24, 23);
 			this.textBox18.TabIndex = 34;
@@ -173,7 +173,7 @@
 			// label27
 			// 
 			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(266, 7);
+			this.label27.Location = new System.Drawing.Point(249, 7);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(56, 17);
 			this.label27.TabIndex = 33;
@@ -181,7 +181,7 @@
 			// 
 			// textBox19
 			// 
-			this.textBox19.Location = new System.Drawing.Point(206, 4);
+			this.textBox19.Location = new System.Drawing.Point(189, 4);
 			this.textBox19.Name = "textBox19";
 			this.textBox19.Size = new System.Drawing.Size(47, 23);
 			this.textBox19.TabIndex = 32;
@@ -190,7 +190,7 @@
 			// label28
 			// 
 			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(146, 7);
+			this.label28.Location = new System.Drawing.Point(129, 7);
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(56, 17);
 			this.label28.TabIndex = 31;
@@ -199,7 +199,7 @@
 			// label29
 			// 
 			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(20, 7);
+			this.label29.Location = new System.Drawing.Point(3, 7);
 			this.label29.Name = "label29";
 			this.label29.Size = new System.Drawing.Size(59, 17);
 			this.label29.TabIndex = 29;
@@ -209,7 +209,7 @@
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(145, 31);
+			this.comboBox1.Location = new System.Drawing.Point(130, 31);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(95, 25);
 			this.comboBox1.TabIndex = 14;
@@ -273,7 +273,7 @@
 			// 
 			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 1);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 236);
 			this.userControlReadWriteOp1.TabIndex = 5;
 			// 
 			// groupBox5
@@ -292,9 +292,9 @@
 			this.groupBox4.Controls.Add(this.button26);
 			this.groupBox4.Controls.Add(this.textBox13);
 			this.groupBox4.Controls.Add(this.label16);
-			this.groupBox4.Location = new System.Drawing.Point(11, 403);
+			this.groupBox4.Location = new System.Drawing.Point(3, 403);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(556, 133);
+			this.groupBox4.Size = new System.Drawing.Size(564, 133);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "报文读取测试，此处需要填入完整的16进制报文字符串";
@@ -305,7 +305,7 @@
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
 			this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox11.Size = new System.Drawing.Size(487, 68);
+			this.textBox11.Size = new System.Drawing.Size(495, 68);
 			this.textBox11.TabIndex = 10;
 			// 
 			// label14
@@ -319,7 +319,7 @@
 			// 
 			// button26
 			// 
-			this.button26.Location = new System.Drawing.Point(468, 24);
+			this.button26.Location = new System.Drawing.Point(476, 24);
 			this.button26.Name = "button26";
 			this.button26.Size = new System.Drawing.Size(82, 28);
 			this.button26.TabIndex = 8;
@@ -331,7 +331,7 @@
 			// 
 			this.textBox13.Location = new System.Drawing.Point(63, 27);
 			this.textBox13.Name = "textBox13";
-			this.textBox13.Size = new System.Drawing.Size(399, 23);
+			this.textBox13.Size = new System.Drawing.Size(407, 23);
 			this.textBox13.TabIndex = 5;
 			// 
 			// label16
@@ -352,9 +352,9 @@
 			this.groupBox3.Controls.Add(this.label12);
 			this.groupBox3.Controls.Add(this.textBox6);
 			this.groupBox3.Controls.Add(this.label11);
-			this.groupBox3.Location = new System.Drawing.Point(11, 243);
+			this.groupBox3.Location = new System.Drawing.Point(3, 243);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(556, 154);
+			this.groupBox3.Size = new System.Drawing.Size(564, 154);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
@@ -365,7 +365,7 @@
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(487, 88);
+			this.textBox10.Size = new System.Drawing.Size(495, 88);
 			this.textBox10.TabIndex = 10;
 			// 
 			// label13
@@ -379,7 +379,7 @@
 			// 
 			// button25
 			// 
-			this.button25.Location = new System.Drawing.Point(468, 24);
+			this.button25.Location = new System.Drawing.Point(476, 24);
 			this.button25.Name = "button25";
 			this.button25.Size = new System.Drawing.Size(82, 28);
 			this.button25.TabIndex = 8;

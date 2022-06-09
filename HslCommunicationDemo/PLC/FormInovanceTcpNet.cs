@@ -121,6 +121,7 @@ namespace HslCommunicationDemo
 
             ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
             inovanceH3UTcp.IsStringReverse = checkBox3.Checked;
+            inovanceH3UTcp.LogNet = LogNet;
 
             try
             {

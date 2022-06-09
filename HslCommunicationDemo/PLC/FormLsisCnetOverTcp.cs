@@ -89,6 +89,7 @@ namespace HslCommunicationDemo
 			xGBCnet.Station = station;
 			xGBCnet.IpAddress = textBox1.Text;
 			xGBCnet.Port = port;
+			xGBCnet.LogNet = LogNet;
 
 			try
 			{

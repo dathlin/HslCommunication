@@ -98,6 +98,7 @@ namespace HslCommunicationDemo
 
 			beckhoffAdsNet?.ConnectClose( );
 			beckhoffAdsNet = new BeckhoffAdsNet( textBox1.Text, port );
+			beckhoffAdsNet.LogNet = LogNet;
 			// adsNet.LogNet = new HslCommunication.LogNet.LogNetSingle( System.IO.Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "log.txt" ) );
 			try
 			{

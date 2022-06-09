@@ -78,6 +78,7 @@ namespace HslCommunicationDemo
 
 			siemensTcpNet.IpAddress = textBox1.Text;
 			siemensTcpNet.Port = port;
+			siemensTcpNet.LogNet = LogNet;
 			//siemensTcpNet.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Parse( "127.0.0.1" ), 12345 );
 			try
 			{

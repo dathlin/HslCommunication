@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.textBox12 = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -66,7 +67,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -101,6 +101,18 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 62);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Checked = true;
+			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox2.Location = new System.Drawing.Point(11, 34);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(111, 21);
+			this.checkBox2.TabIndex = 32;
+			this.checkBox2.Text = "检查消息号一致";
+			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// label5
 			// 
@@ -324,9 +336,9 @@
 			this.groupBox4.Controls.Add(this.button26);
 			this.groupBox4.Controls.Add(this.textBox13);
 			this.groupBox4.Controls.Add(this.label16);
-			this.groupBox4.Location = new System.Drawing.Point(11, 403);
+			this.groupBox4.Location = new System.Drawing.Point(3, 403);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(556, 135);
+			this.groupBox4.Size = new System.Drawing.Size(564, 135);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "报文读取测试，此处需要填入完整的16进制报文字符串";
@@ -340,7 +352,7 @@
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
 			this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox11.Size = new System.Drawing.Size(487, 69);
+			this.textBox11.Size = new System.Drawing.Size(495, 69);
 			this.textBox11.TabIndex = 10;
 			// 
 			// label14
@@ -355,7 +367,7 @@
 			// button26
 			// 
 			this.button26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button26.Location = new System.Drawing.Point(468, 24);
+			this.button26.Location = new System.Drawing.Point(476, 24);
 			this.button26.Name = "button26";
 			this.button26.Size = new System.Drawing.Size(82, 28);
 			this.button26.TabIndex = 8;
@@ -476,18 +488,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// checkBox2
-			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Checked = true;
-			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox2.Location = new System.Drawing.Point(11, 34);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(111, 21);
-			this.checkBox2.TabIndex = 32;
-			this.checkBox2.Text = "检查消息号一致";
-			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// FormModbus
 			// 

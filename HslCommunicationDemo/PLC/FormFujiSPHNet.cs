@@ -91,6 +91,7 @@ namespace HslCommunicationDemo
 			fujiSPB = new FujiSPHNet( );
 			fujiSPB.IpAddress = textBox1.Text;
 			fujiSPB.Port = port;
+			fujiSPB.LogNet = LogNet;
 
 			try
 			{

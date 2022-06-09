@@ -82,6 +82,7 @@ namespace HslCommunicationDemo
 
 			ge?.ConnectClose( );
 			ge = new GeSRTPNet( textBox1.Text, port );
+			ge.LogNet = LogNet;
 
 			try
 			{
