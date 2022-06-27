@@ -35,15 +35,15 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.0.1
-1. HslExtension: 新增了一些扩展方法，现在可以直接从short，int类型获取位及设置位的功能，例如 bool value = shortValue.GetBoolByIndex(10); 设置位也是同理。
-2. DLT645: Demo界面优化，无论是串口的，还是网口的，都支持了密码及操作者ID的输入。修复了站号输入后，但是站号初始化不成功的bug。
-3. LogStatisticsBase: 当传入的长度为-1时，表示不限制长度信息，会一直的新增。
-4. Upgrade.exe: 用于自动升级更新的项目重新优化，支持了下载时候的网速显示，支持了下载百分比显示，删除了自动创建快捷方式的代码。
-5. SerialBase: 初始化串口的方法SerialPortInni( string portName )支持格式化的输入，例如COM3-9600-8-N-1，COM5-19200-7-E-2。
-6. MelsecFxSerialOverTcp: 当启动GOT透传时，修复报文封装不正确导致写入失败，读写值不正常的bug。
-7. InovanceHelper): 汇川的PLC针对M地址的寄存器，支持使用 MX0.0 来对位进行读取操作。支持了MB100读取byte类型的数据。
-8. Demo: 在Demo所有的设备通信测试界面，几乎所有的设备都支持了显示报文信息，想要查看通信的报文协议，菜单里点击 报文日志 。
+			textBox1.Text = @"V11.0.2
+1. LogNet: 修复日志对象在配置了LogThreadID=False时，控制台输出界面仍然显示线程号信息的bug。
+2. AllenBradleyServer: 新增属性CreateTagWithWrite，当手动设置为true时，从服务器端写入不存在的标签将根据写入的类型自动创建标签。
+3. NetworkUdpBase: udp的通信基类修复某些设备通信情况下每9次通信就会跟随一次失败的bug，原因来自不停的创建socket，现在修改为连接正常就不重新创建socket
+4. AllenBradleyServer: ab虚拟plc修复写入short的类型分配不正确的bug，并且增加一个创建byte字节数组的标签的方法接口。
+5. AllenBradleyNet: 修复同步方法ReadString(string address); 读取字符串返回数据乱码的bug，原因来自调用了基类的字符串解析。
+6. DLT645: 大面积优化，支持了更多的地址读取，支持了一个地址多个数据读取，修复了部分数据(如电流，功率因数等)不识别正负号的bug。
+7. PipeSocket: 端口号信息由int型调整为数组，使用SetMultiPorts方法可以设置多个端口号信息，当PLC对象重连时，就会切换端口号，循环反复使用指定的端口号信息。
+8. PipeSocket: 多端口号使用方法为 plc.GetPipeSocket( ).SetMultiPorts( new int[] {6000, 6001} ); 实例化之后调用一次即可。
 9. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注。
 10. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}

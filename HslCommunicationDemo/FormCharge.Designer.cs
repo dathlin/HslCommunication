@@ -139,8 +139,8 @@
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(262, 158);
 			this.label7.TabIndex = 6;
-			this.label7.Text = "一次付费，永久授权\r\nC#+Java+Python所有代码\r\n支持后续更新\r\n支持windows+linux\r\n咨询QQ:200962190\r\nEmail: hs" +
-    "ltechnology@163.com";
+			this.label7.Text = "一次付费，永久授权\r\nC#+Java+Python所有代码\r\n支持后续更新\r\n支持windows+linux\r\n咨询QQ:200962190\r\n咨询微信：xyz2" +
+    "00962190\r\nEmail: hsltechnology@163.com";
 			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label9

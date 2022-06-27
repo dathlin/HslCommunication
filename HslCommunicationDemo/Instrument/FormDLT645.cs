@@ -249,6 +249,23 @@ namespace HslCommunicationDemo
             }
         }
 
+        private void button7_Click( object sender, EventArgs e )
+        {
+            OperateResult<string[]> read = dLT645.ReadStringArray( textBox1.Text );
+            if (read.IsSuccess)
+            {
+                textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Read Result: {Environment.NewLine}";
+                foreach (string item in read.Content)
+                {
+                    textBox12.AppendText( item );
+                    textBox12.AppendText( Environment.NewLine );
+                }
+            }
+            else
+            {
+                MessageBox.Show( "Read failed: " + read.Message );
+            }
+        }
 
         public override void SaveXmlParameter( XElement element )
         {
@@ -277,5 +294,6 @@ namespace HslCommunicationDemo
         {
             userControlHead1_SaveConnectEvent( sender, e );
         }
-    }
+
+	}
 }

@@ -73,6 +73,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.button7 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -305,6 +306,10 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox5.Controls.Add(this.button7);
 			this.groupBox5.Controls.Add(this.button6);
 			this.groupBox5.Controls.Add(this.button5);
 			this.groupBox5.Controls.Add(this.textBox1);
@@ -321,9 +326,9 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(241, 24);
+			this.button6.Location = new System.Drawing.Point(217, 24);
 			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(106, 28);
+			this.button6.Size = new System.Drawing.Size(81, 28);
 			this.button6.TabIndex = 17;
 			this.button6.Text = "广播时间";
 			this.button6.UseVisualStyleBackColor = true;
@@ -331,7 +336,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(241, 56);
+			this.button5.Location = new System.Drawing.Point(304, 24);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(106, 28);
 			this.button5.TabIndex = 16;
@@ -343,9 +348,9 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(65, 60);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(170, 23);
+			this.textBox1.Size = new System.Drawing.Size(188, 23);
 			this.textBox1.TabIndex = 15;
-			this.textBox1.Text = "2";
+			this.textBox1.Text = "02-01-01-00";
 			// 
 			// label2
 			// 
@@ -358,9 +363,9 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(126, 24);
+			this.button4.Location = new System.Drawing.Point(116, 24);
 			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(106, 28);
+			this.button4.Size = new System.Drawing.Size(95, 28);
 			this.button4.TabIndex = 13;
 			this.button4.Text = "读取通信地址";
 			this.button4.UseVisualStyleBackColor = true;
@@ -370,7 +375,7 @@
 			// 
 			this.button3.Location = new System.Drawing.Point(14, 24);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(106, 28);
+			this.button3.Size = new System.Drawing.Size(96, 28);
 			this.button3.TabIndex = 12;
 			this.button3.Text = "唤醒接收";
 			this.button3.UseVisualStyleBackColor = true;
@@ -378,11 +383,14 @@
 			// 
 			// textBox12
 			// 
-			this.textBox12.Location = new System.Drawing.Point(14, 104);
+			this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox12.Location = new System.Drawing.Point(14, 90);
 			this.textBox12.Multiline = true;
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox12.Size = new System.Drawing.Size(396, 187);
+			this.textBox12.Size = new System.Drawing.Size(396, 201);
 			this.textBox12.TabIndex = 11;
 			// 
 			// groupBox4
@@ -537,6 +545,16 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// button7
+			// 
+			this.button7.Location = new System.Drawing.Point(259, 57);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(151, 28);
+			this.button7.TabIndex = 18;
+			this.button7.Text = "读取原始字符串";
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.button7_Click);
+			// 
 			// FormDLT645
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -613,5 +631,6 @@
 		private System.Windows.Forms.Label label_op_code;
 		private System.Windows.Forms.TextBox textBox_password;
 		private System.Windows.Forms.Label label_password;
+		private System.Windows.Forms.Button button7;
 	}
 }

@@ -35,6 +35,7 @@ namespace HslCommunicationDemo
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
 				label11.Text = "This server is not a strict cip protocol and only supports perfect communication with HSL components.";
+				checkBox1.Text = "Create Tag when write";
 			}
 		}
 
@@ -62,6 +63,7 @@ namespace HslCommunicationDemo
 				cipServer = new HslCommunication.Profinet.AllenBradley.AllenBradleyServer( );                       // 实例化对象
 				cipServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				cipServer.OnDataReceived += BusTcpServer_OnDataReceived;
+				cipServer.CreateTagWithWrite = checkBox1.Checked;
 
 				short[] d = new short[2000];
 				float[] a1 = new float[2000];
