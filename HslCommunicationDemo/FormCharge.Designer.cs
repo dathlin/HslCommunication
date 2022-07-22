@@ -264,7 +264,8 @@
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(260, 141);
 			this.label3.TabIndex = 2;
-			this.label3.Text = "只能调用C#的dll\r\n连续运行10年\r\n软件重启重新计时\r\n扫描下方二维码付款然后加vip群\r\n高级API限制使用24小时\r\n注释带[商业授权]字样的";
+			this.label3.Text = "调用C#的dll或java的jar包\r\n连续运行10年\r\n软件重启重新计时\r\n扫描下方二维码付款然后加vip群\r\n高级API限制使用24小时\r\n注释带[商业授权]" +
+    "字样的";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label2

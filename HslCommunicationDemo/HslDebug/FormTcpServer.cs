@@ -84,6 +84,8 @@ namespace HslCommunicationDemo
                         label8.Text = Program.Language == 1 ? "已选择数据字节数：" : "Number of data bytes selected:" + select.Length;
                     }
                 }
+
+                label4.Text = "Onlines: " + sockets.Count;
             }
         }
 
@@ -110,7 +112,7 @@ namespace HslCommunicationDemo
             }
             catch (Exception ex)
             {
-                MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + Environment.NewLine + ex.Message );
+                MessageBox.Show( HslCommunication.StringResources.Language.NetEngineStart + Environment.NewLine + ex.Message );
             }
         }
 
@@ -152,7 +154,6 @@ namespace HslCommunicationDemo
                 catch (ObjectDisposedException)
                 {
                     // 服务器关闭时候触发的异常，不进行记录
-
                     lock (lockObject)
                     {
                         sockets.Remove( session );

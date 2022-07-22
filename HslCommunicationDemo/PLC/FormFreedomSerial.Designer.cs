@@ -63,6 +63,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -75,6 +76,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.checkBox5);
 			this.panel1.Controls.Add(this.comboBox3);
 			this.panel1.Controls.Add(this.comboBox1);
@@ -206,7 +208,7 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox2.Location = new System.Drawing.Point(551, 11);
+			this.comboBox2.Location = new System.Drawing.Point(525, 11);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(128, 25);
 			this.comboBox2.TabIndex = 30;
@@ -214,7 +216,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(551, 50);
+			this.checkBox3.Location = new System.Drawing.Point(525, 50);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 29;
@@ -226,7 +228,7 @@
 			this.panel3.Controls.Add(this.radioButton3);
 			this.panel3.Controls.Add(this.radioButton2);
 			this.panel3.Controls.Add(this.radioButton1);
-			this.panel3.Location = new System.Drawing.Point(346, -1);
+			this.panel3.Location = new System.Drawing.Point(331, -1);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(180, 86);
 			this.panel3.TabIndex = 6;
@@ -266,7 +268,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(831, 5);
+			this.button2.Location = new System.Drawing.Point(786, 5);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -276,7 +278,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(734, 5);
+			this.button1.Location = new System.Drawing.Point(689, 5);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -450,6 +452,15 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(667, 34);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(255, 51);
+			this.label2.TabIndex = 42;
+			this.label2.Text = "注意：地址框框里使用原始字节报文信息，\r\n也可以加上偏移结果信息\r\nstx=6;00 00 00 00 00 06 01 03 00 00 00 01\r\n";
+			// 
 			// FormFreedomSerial
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -516,5 +527,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label24;
-    }
+		private System.Windows.Forms.Label label2;
+	}
 }

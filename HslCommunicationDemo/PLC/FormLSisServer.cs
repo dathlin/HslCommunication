@@ -112,6 +112,7 @@ namespace HslCommunicationDemo
                 {
                     lSisServer.StartSerialSlave(textBox10.Text);
                     button5.Enabled = false;
+                    button2.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -143,6 +144,28 @@ namespace HslCommunicationDemo
         private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
         {
             userControlHead1_SaveConnectEvent( sender, e );
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // 启动串口
+            if (lSisServer != null)
+            {
+                try
+                {
+                    lSisServer.CloseSerialSlave();
+                    button2.Enabled = false;
+                    button5.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Start Failed：" + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Start tcp server first please!");
+            }
         }
     }
 }

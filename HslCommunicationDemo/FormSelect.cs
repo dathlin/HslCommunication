@@ -731,11 +731,12 @@ namespace HslCommunicationDemo
 
 			// Instrument 仪器仪表
 			TreeNode instrumentNode = new TreeNode( "Instrument [仪器仪表]" );
-			instrumentNode.Nodes.Add( new TreeNode( "DAM3601 [阿尔泰科技]" ) { Tag = typeof( FormDAM3601 ) } );
-			instrumentNode.Nodes.Add( new TreeNode( "DLT645 [电力规约]" ) { Tag = typeof( FormDLT645 ) } );
-			instrumentNode.Nodes.Add( new TreeNode( "DLT645 OverTcp" ) { Tag = typeof( FormDLT645OverTcp ) } );
-			instrumentNode.Nodes.Add( new TreeNode( "光源控制器" ) { Tag = typeof( Light.FormShineInLight ) } );
-			instrumentNode.Nodes.Add( new TreeNode( "DTSU6606 [德力西电表]" ) { Tag = typeof( FormDTSU6606 ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DAM3601 [阿尔泰科技]" ) {      Tag = typeof( FormDAM3601 ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DLT645 [电力规约]" ) {         Tag = typeof( FormDLT645 ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DLT645 OverTcp" ) {           Tag = typeof( FormDLT645OverTcp ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DLT698 [电力规约]" ) {         Tag = typeof( FormDLT698 ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "光源控制器" ) {                Tag = typeof( Light.FormShineInLight ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DTSU6606 [德力西电表]" ) {     Tag = typeof( FormDTSU6606 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "IEC104 [电力规约]", 37, 37 ) { Tag = typeof( FormIEC104 ) } );
 			treeView1.Nodes.Add( instrumentNode );
 

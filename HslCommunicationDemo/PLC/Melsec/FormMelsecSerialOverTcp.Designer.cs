@@ -60,6 +60,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -207,6 +208,7 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Controls.Add(this.label2);
 			this.groupBox5.Controls.Add(this.button_active_plc);
 			this.groupBox5.Controls.Add(this.textBox14);
 			this.groupBox5.Controls.Add(this.button3);
@@ -407,6 +409,15 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(10, 98);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(75, 17);
+			this.label2.TabIndex = 25;
+			this.label2.Text = "Test Now：";
+			// 
 			// FormMelsecSerialOverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -470,5 +481,6 @@
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Button button_active_plc;
 		private System.Windows.Forms.CheckBox checkBox_got;
+		private System.Windows.Forms.Label label2;
 	}
 }

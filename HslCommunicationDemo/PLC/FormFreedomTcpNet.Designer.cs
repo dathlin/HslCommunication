@@ -236,7 +236,7 @@
 			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 2);
 			this.userControlReadWriteOp1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 235);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 238);
 			this.userControlReadWriteOp1.TabIndex = 27;
 			// 
 			// groupBox4

@@ -47,6 +47,10 @@ namespace HslCommunicationDemo
                 checkBox3.Text = "str-reverse";
                 checkBox_remote_write.Text = "Whether to run remote write operation";
             }
+			else
+			{
+                checkBox_station_isolation.Text = "站号数据隔离";
+			}
         }
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -105,6 +109,11 @@ namespace HslCommunicationDemo
                 MessageBox.Show( DemoUtils.PortInputWrong );
                 return;
             }
+            if (!byte.TryParse( textBox_station.Text, out byte station ))
+            {
+                MessageBox.Show( "Station input wrong!" );
+                return;
+            }
 
             try
             {
@@ -113,7 +122,8 @@ namespace HslCommunicationDemo
                 busTcpServer.OnDataReceived           += BusTcpServer_OnDataReceived;
                 busTcpServer.EnableWrite              = checkBox_remote_write.Checked;
                 busTcpServer.EnableIPv6               = checkBox_ipv6.Checked;
-                busTcpServer.StationCheck             = checkBox_station_check.Checked;
+                busTcpServer.Station                  = station;
+                busTcpServer.StationDataIsolation     = checkBox_station_isolation.Checked;
                 busTcpServer.UseModbusRtuOverTcp      = checkBox4.Checked;
                 busTcpServer.IsUseAccountCertificate  = checkBox_account.Checked;
 
@@ -143,6 +153,7 @@ namespace HslCommunicationDemo
             // 停止服务
             busTcpServer?.CloseSerialSlave( );
             busTcpServer?.ServerClose( );
+            busTcpServer?.Dispose( );
             button1.Enabled = true;
             button5.Enabled = true;
             button11.Enabled = false;
@@ -211,6 +222,7 @@ namespace HslCommunicationDemo
             element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
             element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
             element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
+
         }
 
         public override void LoadXmlParameter( XElement element )

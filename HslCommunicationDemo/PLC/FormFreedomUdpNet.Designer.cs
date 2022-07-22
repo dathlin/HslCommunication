@@ -56,6 +56,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -68,6 +69,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.comboBox2);
 			this.panel1.Controls.Add(this.checkBox3);
 			this.panel1.Controls.Add(this.panel3);
@@ -370,6 +372,15 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(602, 43);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(368, 34);
+			this.label2.TabIndex = 32;
+			this.label2.Text = "注意：地址框框里使用原始字节报文信息，也可以加上偏移结果信息\r\nstx=6;00 00 00 00 00 06 01 03 00 00 00 01\r\n";
+			// 
 			// FormFreedomUdpNet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -429,5 +440,6 @@
 		private System.Windows.Forms.RadioButton radioButton1;
 		private System.Windows.Forms.ComboBox comboBox2;
 		private System.Windows.Forms.CheckBox checkBox3;
+		private System.Windows.Forms.Label label2;
 	}
 }

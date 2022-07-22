@@ -29,7 +29,9 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.checkBox_station_check = new System.Windows.Forms.CheckBox();
+			this.textBox_station = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.checkBox_station_isolation = new System.Windows.Forms.CheckBox();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.checkBox_ipv6 = new System.Windows.Forms.CheckBox();
@@ -58,7 +60,9 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.checkBox_station_check);
+			this.panel1.Controls.Add(this.textBox_station);
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.checkBox_station_isolation);
 			this.panel1.Controls.Add(this.textBox3);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.checkBox_ipv6);
@@ -81,21 +85,36 @@
 			this.panel1.Size = new System.Drawing.Size(997, 61);
 			this.panel1.TabIndex = 0;
 			// 
-			// checkBox_station_check
+			// textBox_station
 			// 
-			this.checkBox_station_check.AutoSize = true;
-			this.checkBox_station_check.Checked = true;
-			this.checkBox_station_check.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_station_check.Location = new System.Drawing.Point(315, 34);
-			this.checkBox_station_check.Name = "checkBox_station_check";
-			this.checkBox_station_check.Size = new System.Drawing.Size(112, 21);
-			this.checkBox_station_check.TabIndex = 38;
-			this.checkBox_station_check.Text = "Station Check?";
-			this.checkBox_station_check.UseVisualStyleBackColor = true;
+			this.textBox_station.Location = new System.Drawing.Point(613, 33);
+			this.textBox_station.Name = "textBox_station";
+			this.textBox_station.Size = new System.Drawing.Size(65, 23);
+			this.textBox_station.TabIndex = 40;
+			this.textBox_station.Text = "1";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(541, 36);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(68, 17);
+			this.label1.TabIndex = 39;
+			this.label1.Text = "默认站号：";
+			// 
+			// checkBox_station_isolation
+			// 
+			this.checkBox_station_isolation.AutoSize = true;
+			this.checkBox_station_isolation.Location = new System.Drawing.Point(309, 35);
+			this.checkBox_station_isolation.Name = "checkBox_station_isolation";
+			this.checkBox_station_isolation.Size = new System.Drawing.Size(127, 21);
+			this.checkBox_station_isolation.TabIndex = 38;
+			this.checkBox_station_isolation.Text = "Station Isolation?";
+			this.checkBox_station_isolation.UseVisualStyleBackColor = true;
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(756, 32);
+			this.textBox3.Location = new System.Drawing.Point(800, 32);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(68, 23);
 			this.textBox3.TabIndex = 37;
@@ -104,7 +123,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(649, 36);
+			this.label2.Location = new System.Drawing.Point(699, 36);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(92, 17);
 			this.label2.TabIndex = 36;
@@ -113,7 +132,7 @@
 			// checkBox_ipv6
 			// 
 			this.checkBox_ipv6.AutoSize = true;
-			this.checkBox_ipv6.Location = new System.Drawing.Point(451, 34);
+			this.checkBox_ipv6.Location = new System.Drawing.Point(442, 35);
 			this.checkBox_ipv6.Name = "checkBox_ipv6";
 			this.checkBox_ipv6.Size = new System.Drawing.Size(77, 21);
 			this.checkBox_ipv6.TabIndex = 33;
@@ -135,7 +154,7 @@
 			this.checkBox_remote_write.AutoSize = true;
 			this.checkBox_remote_write.Checked = true;
 			this.checkBox_remote_write.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_remote_write.Location = new System.Drawing.Point(168, 35);
+			this.checkBox_remote_write.Location = new System.Drawing.Point(165, 35);
 			this.checkBox_remote_write.Name = "checkBox_remote_write";
 			this.checkBox_remote_write.Size = new System.Drawing.Size(123, 21);
 			this.checkBox_remote_write.TabIndex = 31;
@@ -145,7 +164,7 @@
 			// checkBox_account
 			// 
 			this.checkBox_account.AutoSize = true;
-			this.checkBox_account.Location = new System.Drawing.Point(847, 35);
+			this.checkBox_account.Location = new System.Drawing.Point(884, 35);
 			this.checkBox_account.Name = "checkBox_account";
 			this.checkBox_account.Size = new System.Drawing.Size(75, 21);
 			this.checkBox_account.TabIndex = 30;
@@ -163,7 +182,7 @@
             "DCBA"});
 			this.comboBox2.Location = new System.Drawing.Point(726, 4);
 			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(98, 25);
+			this.comboBox2.Size = new System.Drawing.Size(142, 25);
 			this.comboBox2.TabIndex = 29;
 			// 
 			// button11
@@ -180,7 +199,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(847, 9);
+			this.checkBox3.Location = new System.Drawing.Point(884, 9);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 27;
@@ -335,6 +354,8 @@
 		private System.Windows.Forms.CheckBox checkBox_ipv6;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.CheckBox checkBox_station_check;
+		private System.Windows.Forms.CheckBox checkBox_station_isolation;
+		private System.Windows.Forms.TextBox textBox_station;
+		private System.Windows.Forms.Label label1;
 	}
 }

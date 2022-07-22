@@ -14,6 +14,7 @@ using HslCommunication.Profinet.AllenBradley;
 using HslCommunication.Reflection;
 using HslCommunication.Core;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -158,6 +159,13 @@ namespace HslCommunicationDemo
         {
             return id + 1;
         }
+
+        [HslMqttApi( HttpMethod = "POST" )]
+        public string GetJObjectTest( JObject json )
+        {
+            return json.ToString( );
+        }
+
 
         [HslMqttApi( "读取设备的Int16信息，address: 设备的地址 length: 读取的数据长度" )]
         public short ReadFloat( ISessionContext context, string address, short length = 12345 )

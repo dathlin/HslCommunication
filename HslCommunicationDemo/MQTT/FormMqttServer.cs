@@ -359,6 +359,13 @@ namespace HslCommunicationDemo
 			return OperateResult.CreateSuccessResult( random.Next( 10000 ) );
 		}
 
+		[HslMqttApi( HttpMethod = "POST" )]
+		public string GetJObjectTest( JObject json )
+		{
+			return json.ToString( );
+		}
+
+
 		private Random random = new Random( );
 
 		public class Student

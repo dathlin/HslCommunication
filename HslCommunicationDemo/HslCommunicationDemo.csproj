@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>HslCommunicationDemo</RootNamespace>
     <AssemblyName>HslCommunicationDemo</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.0.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.0.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.0.3\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -297,6 +297,12 @@
     </Compile>
     <Compile Include="Hsl\FormDtuServer.Designer.cs">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormDLT698.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDLT698.Designer.cs">
+      <DependentUpon>FormDLT698.cs</DependentUpon>
     </Compile>
     <Compile Include="Instrument\FormIEC104.cs">
       <SubType>Form</SubType>
@@ -1520,6 +1526,9 @@
     <EmbeddedResource Include="Hsl\FormDtuServer.resx">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDLT698.resx">
+      <DependentUpon>FormDLT698.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormIEC104.resx">
       <DependentUpon>FormIEC104.cs</DependentUpon>
     </EmbeddedResource>
@@ -2083,7 +2092,6 @@
       <DependentUpon>FormWebsocketServer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="HslCommunicationDemo_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

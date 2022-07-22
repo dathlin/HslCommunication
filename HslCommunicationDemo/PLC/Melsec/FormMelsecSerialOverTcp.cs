@@ -251,15 +251,18 @@ namespace HslCommunicationDemo
 		private int thread_status = 0;
 		private int failed = 0;
 		private DateTime thread_time_start = DateTime.Now;
+		private int test_count = 0;
 		// 压力测试，开3个线程，每个线程进行读写操作，看使用时间
 		private void button3_Click( object sender, EventArgs e )
 		{
 			thread_status = 3;
+			test_count = 0;
 			failed = 0;
 			thread_time_start = DateTime.Now;
 			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
 			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
 			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
+			new Thread( new ThreadStart( thread_test3 ) ) { IsBackground = true, }.Start( );
 			button3.Enabled = false;
 		}
 
@@ -268,11 +271,38 @@ namespace HslCommunicationDemo
 			int count = 500;
 			while (count > 0)
 			{
-				if (!melsec_net.Write( "D100", (short)1234 ).IsSuccess) failed++;
-				if (!melsec_net.ReadInt16( "D100" ).IsSuccess) failed++;
+				OperateResult write = melsec_net.Write( "D100", (short)1234 );
+				Interlocked.Increment( ref test_count );
+				if (!write.IsSuccess)
+				{
+					failed++;
+					MessageBox.Show( "Write failed: " + write.ToMessageShowString( ) );
+					break;
+				}
+				OperateResult<short> read = melsec_net.ReadInt16( "D100" );
+				Interlocked.Increment( ref test_count );
+				if (!read.IsSuccess)
+				{
+					failed++;
+					MessageBox.Show( "Read failed: " + write.ToMessageShowString( ) );
+					break;
+				}
 				count--;
 			}
 			thread_end( );
+		}
+
+		private void thread_test3( )
+		{
+			while(thread_status > 0)
+			{
+				Thread.Sleep( 1000 );
+
+				Invoke( new Action( ( ) =>
+				{
+					label2.Text = "Test Now: " + test_count;
+				} ) );
+			}
 		}
 
 		private void thread_end( )
