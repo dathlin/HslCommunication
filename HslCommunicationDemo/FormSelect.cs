@@ -735,6 +735,8 @@ namespace HslCommunicationDemo
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645 [电力规约]" ) {         Tag = typeof( FormDLT645 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645 OverTcp" ) {           Tag = typeof( FormDLT645OverTcp ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT698 [电力规约]" ) {         Tag = typeof( FormDLT698 ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DLT698 OverTcp" ) {           Tag = typeof( FormDLT698OverTcp ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DLT698 TcpNet" ) {            Tag = typeof( FormDLT698TcpNet ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "光源控制器" ) {                Tag = typeof( Light.FormShineInLight ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DTSU6606 [德力西电表]" ) {     Tag = typeof( FormDTSU6606 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "IEC104 [电力规约]", 37, 37 ) { Tag = typeof( FormIEC104 ) } );

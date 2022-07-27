@@ -149,6 +149,7 @@ namespace HslCommunicationDemo
             busRtuClient.AddressStartWithZero = checkBox1.Checked;
             busRtuClient.IsClearCacheBeforeRead = checkBox2.Checked;
             busRtuClient.LogNet = LogNet;
+            busRtuClient.Crc16CheckEnable = checkBox_crc16.Checked;
 
 
             ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
