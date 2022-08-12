@@ -14,15 +14,15 @@ using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormModbusRtuOverTcp : HslFormContent
+    public partial class FormModbusAsciiOverTcp : HslFormContent
     {
-        public FormModbusRtuOverTcp( )
+        public FormModbusAsciiOverTcp( )
         {
             InitializeComponent( );
         }
 
 
-        private ModbusRtuOverTcp busTcpClient = null;
+        private ModbusAsciiOverTcp busTcpClient = null;
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
@@ -41,7 +41,7 @@ namespace HslCommunicationDemo
         {
             if (language == 2)
             {
-                Text = "Modbus Rtu OverTcp Read Demo";
+                Text = "Modbus Ascii OverTcp Read Demo";
 
                 label1.Text = "Ip:";
                 label3.Text = "Port:";
@@ -120,7 +120,7 @@ namespace HslCommunicationDemo
             }
 
             busTcpClient?.ConnectClose( );
-            busTcpClient = new ModbusRtuOverTcp( textBox1.Text, port, station );
+            busTcpClient = new ModbusAsciiOverTcp( textBox1.Text, port, station );
             busTcpClient.AddressStartWithZero = checkBox1.Checked;
             busTcpClient.LogNet = LogNet;
 

@@ -8,33 +8,26 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet;
 using HslCommunication;
-using HslCommunication.ModBus;
 using System.Threading;
 using System.IO.Ports;
+using HslCommunication.Profinet.Delta;
 using System.Xml.Linq;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormModbusRtu : HslFormContent
+    public partial class FormDeltaDvpSerialAscii : HslFormContent
     {
-        public FormModbusRtu( )
+        public FormDeltaDvpSerialAscii( )
         {
             InitializeComponent( );
         }
 
-        private ModbusRtu busRtuClient = null;
+        private DeltaSerialAscii delta = null;
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
             panel2.Enabled = false;
-            comboBox1.SelectedIndex = 0;
-
-
-
-            comboBox2.SelectedIndex = 2;
-            comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
-            checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
-
             comboBox3.DataSource = SerialPort.GetPortNames( );
             try
             {
@@ -46,6 +39,8 @@ namespace HslCommunicationDemo
             }
 
             Language( Program.Language );
+            comboBox1.SelectedIndex = 2;
+            comboBox2.DataSource = SoftBasic.GetEnumValues<DeltaSeries>( );
         }
 
 
@@ -53,16 +48,15 @@ namespace HslCommunicationDemo
         {
             if (language == 2)
             {
-                Text = "Modbus Rtu Read Demo";
+                Text = "Delta DVP Read Demo";
 
                 label1.Text = "Com:";
+                label2.Text = "Series:";
                 label3.Text = "baudRate:";
                 label22.Text = "DataBit";
                 label23.Text = "StopBit";
                 label24.Text = "parity";
                 label21.Text = "station";
-                checkBox1.Text = "address from 0";
-                checkBox3.Text = "string reverse";
                 button1.Text = "Connect";
                 button2.Text = "Disconnect";
 
@@ -78,34 +72,9 @@ namespace HslCommunicationDemo
                 groupBox4.Text = "Message reading test, hex string needs to be filled in,without crc";
                 groupBox5.Text = "Special function test";
 
-                checkBox2.Text = "IsClearCacheBeforeRead";
                 comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
             }
         }
-
-        private void CheckBox3_CheckedChanged( object sender, EventArgs e )
-        {
-            if (busRtuClient != null)
-            {
-                busRtuClient.IsStringReverse = checkBox3.Checked;
-            }
-        }
-
-        private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            if (busRtuClient != null)
-            {
-                switch (comboBox2.SelectedIndex)
-                {
-                    case 0: busRtuClient.DataFormat = HslCommunication.Core.DataFormat.ABCD; break;
-                    case 1: busRtuClient.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
-                    case 2: busRtuClient.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
-                    case 3: busRtuClient.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
-                    default: break;
-                }
-            }
-        }
-
 
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
         {
@@ -114,8 +83,6 @@ namespace HslCommunicationDemo
         
 
         #region Connect And Close
-
-
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -144,20 +111,14 @@ namespace HslCommunicationDemo
                 return;
             }
 
-            busRtuClient?.Close( );
-            busRtuClient = new ModbusRtu( station );
-            busRtuClient.AddressStartWithZero = checkBox1.Checked;
-            busRtuClient.IsClearCacheBeforeRead = checkBox2.Checked;
-            busRtuClient.LogNet = LogNet;
-            busRtuClient.Crc16CheckEnable = checkBox_crc16.Checked;
-
-
-            ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
-            busRtuClient.IsStringReverse = checkBox3.Checked;
+            delta?.Close( );
+            delta = new DeltaSerialAscii( station );
+            delta.LogNet = LogNet;
+            delta.Series = (DeltaSeries)comboBox2.SelectedItem;
 
             try
             {
-                busRtuClient.SerialPortInni( sp =>
+                delta.SerialPortInni( sp =>
                  {
                      sp.PortName = comboBox3.Text;
                      sp.BaudRate = baudRate;
@@ -165,14 +126,14 @@ namespace HslCommunicationDemo
                      sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
                      sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
                  } );
-                busRtuClient.RtsEnable = checkBox5.Checked;
-                busRtuClient.Open( );
+                delta.RtsEnable = checkBox5.Checked;
+                delta.Open( );
 
                 button2.Enabled = true;
                 button1.Enabled = false;
                 panel2.Enabled = true;
 
-                userControlReadWriteOp1.SetReadWriteNet( busRtuClient, "100", false );
+                userControlReadWriteOp1.SetReadWriteNet( delta, "D100", false );
             }
             catch (Exception ex)
             {
@@ -183,7 +144,7 @@ namespace HslCommunicationDemo
         private void button2_Click( object sender, EventArgs e )
         {
             // 断开连接
-            busRtuClient.Close( );
+            delta.Close( );
             button2.Enabled = false;
             button1.Enabled = true;
             panel2.Enabled = false;
@@ -195,10 +156,8 @@ namespace HslCommunicationDemo
 
         private void button25_Click( object sender, EventArgs e )
         {
-            DemoUtils.BulkReadRenderResult( busRtuClient, textBox6, textBox9, textBox10 );
+            DemoUtils.BulkReadRenderResult( delta, textBox6, textBox9, textBox10 );
         }
-
-
 
         #endregion
 
@@ -207,7 +166,7 @@ namespace HslCommunicationDemo
 
         private void button26_Click( object sender, EventArgs e )
         {
-            OperateResult<byte[]> read = busRtuClient.ReadFromCoreServer( textBox13.Text.ToHexBytes( ) );
+            OperateResult<byte[]> read = delta.ReadFromCoreServer( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
             if (read.IsSuccess)
             {
                 textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -221,7 +180,6 @@ namespace HslCommunicationDemo
 
         #endregion
 
-
         public override void SaveXmlParameter( XElement element )
         {
             element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
@@ -230,9 +188,6 @@ namespace HslCommunicationDemo
             element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
             element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
             element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
-            element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
-            element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
-            element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
             element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
         }
 
@@ -245,9 +200,6 @@ namespace HslCommunicationDemo
             textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
             comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
             textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
-            checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
-            comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
-            checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
             checkBox5.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
         }
 

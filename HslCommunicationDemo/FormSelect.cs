@@ -477,6 +477,7 @@ namespace HslCommunicationDemo
 			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Rtu",                9, typeof( FormModbusRtu ) ) );
 			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Rtu OverTcp",        9, typeof( FormModbusRtuOverTcp ) ) );
 			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Ascii",              9, typeof( FormModbusAscii ) ) );
+			modbusNode.Nodes.Add( GetTreeNodeByIndex( "ModbusAscii OverTcp",       9, typeof( FormModbusAsciiOverTcp ) ) );
 			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Server",             9, typeof( FormModbusServer ) ) );
 			treeView1.Nodes.Add( modbusNode );
 
@@ -619,6 +620,7 @@ namespace HslCommunicationDemo
 			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Serial",          32, typeof( FormDeltaDvpSerial ) ) );
 			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Serial Over Tcp", 32, typeof( FormDeltaSerialOverTcp ) ) );
 			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Serial Ascii",    32, typeof( FormDeltaDvpSerialAscii ) ) );
+			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Ascii Over Tcp",  32, typeof( FormDeltaSerialAsciiOverTcp ) ) );
 			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Tcp Net",         32, typeof( FormDeltaDvpTcpNet ) ) );
 			treeView1.Nodes.Add( deltaNode );
 

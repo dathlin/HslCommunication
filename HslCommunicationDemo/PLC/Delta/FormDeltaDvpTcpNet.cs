@@ -8,46 +8,40 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet;
 using HslCommunication;
-using HslCommunication.ModBus;
 using System.Threading;
+using HslCommunication.Profinet.Delta;
 using System.Xml.Linq;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormModbusRtuOverTcp : HslFormContent
+    public partial class FormDeltaDvpTcpNet : HslFormContent
     {
-        public FormModbusRtuOverTcp( )
+        public FormDeltaDvpTcpNet( )
         {
             InitializeComponent( );
         }
 
-
-        private ModbusRtuOverTcp busTcpClient = null;
+        private DeltaTcpNet delta = null;
 
         private void FormSiemens_Load( object sender, EventArgs e )
         {
             panel2.Enabled = false;
 
-            comboBox1.SelectedIndex = 2;
-
-            comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
-            checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
-
             Language( Program.Language );
+            comboBox1.DataSource = SoftBasic.GetEnumValues<DeltaSeries>( );
         }
-
 
         private void Language( int language )
         {
             if (language == 2)
             {
-                Text = "Modbus Rtu OverTcp Read Demo";
+                Text = "DeltaDvpTcp Read Demo";
 
                 label1.Text = "Ip:";
+                label2.Text = "Series:";
                 label3.Text = "Port:";
                 label21.Text = "station";
-                checkBox1.Text = "address from 0";
-                checkBox3.Text = "string reverse";
                 button1.Text = "Connect";
                 button2.Text = "Disconnect";
                 
@@ -64,48 +58,20 @@ namespace HslCommunicationDemo
                 groupBox5.Text = "Special function test";
 
                 button3.Text = "Pressure test, r/w 3,000s";
-
-
             }
         }
 
-        private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            if (busTcpClient != null)
-            {
-                switch (comboBox1.SelectedIndex)
-                {
-                    case 0: busTcpClient.DataFormat = HslCommunication.Core.DataFormat.ABCD;break;
-                    case 1: busTcpClient.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
-                    case 2: busTcpClient.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
-                    case 3: busTcpClient.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
-                    default:break;
-                }
-            }
-        }
-
-        private void CheckBox3_CheckedChanged( object sender, EventArgs e )
-        {
-            if (busTcpClient != null)
-            {
-                busTcpClient.IsStringReverse = checkBox3.Checked;
-            }
-        }
-        
 
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
         {
 
         }
-        
 
         #region Connect And Close
 
-
-
         private void button1_Click( object sender, EventArgs e )
         {
-            // 连接
+
             if(!int.TryParse(textBox2.Text,out int port))
             {
                 MessageBox.Show( DemoUtils.PortInputWrong );
@@ -119,18 +85,14 @@ namespace HslCommunicationDemo
                 return;
             }
 
-            busTcpClient?.ConnectClose( );
-            busTcpClient = new ModbusRtuOverTcp( textBox1.Text, port, station );
-            busTcpClient.AddressStartWithZero = checkBox1.Checked;
-            busTcpClient.LogNet = LogNet;
-
-
-            ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
-            busTcpClient.IsStringReverse = checkBox3.Checked;
+            delta?.ConnectClose( );
+            delta = new DeltaTcpNet( textBox1.Text, port, station );
+            delta.LogNet = LogNet;
+            delta.Series = (DeltaSeries)comboBox1.SelectedItem;
 
             try
             {
-                OperateResult connect = busTcpClient.ConnectServer( );
+                OperateResult connect = delta.ConnectServer( );
                 if (connect.IsSuccess)
                 {
                     MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -138,7 +100,7 @@ namespace HslCommunicationDemo
                     button1.Enabled = false;
                     panel2.Enabled = true;
 
-                    userControlReadWriteOp1.SetReadWriteNet( busTcpClient, "100", false );
+                    userControlReadWriteOp1.SetReadWriteNet( delta, "M100", true );
                 }
                 else
                 {
@@ -154,7 +116,7 @@ namespace HslCommunicationDemo
         private void button2_Click( object sender, EventArgs e )
         {
             // 断开连接
-            busTcpClient.ConnectClose( );
+            delta.ConnectClose( );
             button2.Enabled = false;
             button1.Enabled = true;
             panel2.Enabled = false;
@@ -166,10 +128,8 @@ namespace HslCommunicationDemo
 
         private void button25_Click( object sender, EventArgs e )
         {
-            DemoUtils.BulkReadRenderResult( busTcpClient, textBox6, textBox9, textBox10 );
+            DemoUtils.BulkReadRenderResult( delta, textBox6, textBox9, textBox10 );
         }
-
-
 
         #endregion
 
@@ -178,7 +138,7 @@ namespace HslCommunicationDemo
 
         private void button26_Click( object sender, EventArgs e )
         {
-            OperateResult<byte[]> read = busTcpClient.ReadFromCoreServer( textBox13.Text.ToHexBytes( ) );
+            OperateResult<byte[]> read = delta.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
             if (read.IsSuccess)
             {
                 textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -219,8 +179,8 @@ namespace HslCommunicationDemo
             int count = 500;
             while (count > 0)
             {
-                if (!busTcpClient.Write( "100", (short)1234 ).IsSuccess) failed++;
-                if (!busTcpClient.ReadInt16( "100" ).IsSuccess) failed++;
+                if (!delta.Write( "100", (short)1234 ).IsSuccess) failed++;
+                if (!delta.ReadInt16( "100" ).IsSuccess) failed++;
                 count--;
             }
             thread_end( );
@@ -243,25 +203,17 @@ namespace HslCommunicationDemo
 
         public override void SaveXmlParameter( XElement element )
         {
-            element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text);
+            element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
             element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-
             element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
-            element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
-            element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
-            element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
         }
 
         public override void LoadXmlParameter( XElement element )
         {
             base.LoadXmlParameter( element );
-
             textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
             textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
             textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
-            checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
-            comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
-            checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
         }
 
         private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

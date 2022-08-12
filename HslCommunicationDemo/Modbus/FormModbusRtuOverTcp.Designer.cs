@@ -110,7 +110,7 @@
             "DCBA"});
 			this.comboBox1.Location = new System.Drawing.Point(576, 10);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(70, 25);
+			this.comboBox1.Size = new System.Drawing.Size(75, 25);
 			this.comboBox1.TabIndex = 26;
 			// 
 			// checkBox1
@@ -190,7 +190,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(652, 12);
+			this.checkBox3.Location = new System.Drawing.Point(657, 12);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 25;
@@ -237,12 +237,12 @@
 			this.textBox14.Multiline = true;
 			this.textBox14.Name = "textBox14";
 			this.textBox14.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox14.Size = new System.Drawing.Size(396, 150);
+			this.textBox14.Size = new System.Drawing.Size(396, 201);
 			this.textBox14.TabIndex = 24;
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(225, 240);
+			this.button3.Location = new System.Drawing.Point(229, 269);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(184, 28);
 			this.button3.TabIndex = 23;
@@ -257,9 +257,9 @@
 			this.groupBox4.Controls.Add(this.button26);
 			this.groupBox4.Controls.Add(this.textBox13);
 			this.groupBox4.Controls.Add(this.label16);
-			this.groupBox4.Location = new System.Drawing.Point(11, 403);
+			this.groupBox4.Location = new System.Drawing.Point(3, 403);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(550, 143);
+			this.groupBox4.Size = new System.Drawing.Size(564, 148);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "报文读取测试，此处需要填入完整的16进制报文字符串";
@@ -273,7 +273,7 @@
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
 			this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox11.Size = new System.Drawing.Size(481, 77);
+			this.textBox11.Size = new System.Drawing.Size(495, 82);
 			this.textBox11.TabIndex = 10;
 			// 
 			// label14
@@ -288,7 +288,7 @@
 			// button26
 			// 
 			this.button26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button26.Location = new System.Drawing.Point(460, 24);
+			this.button26.Location = new System.Drawing.Point(474, 24);
 			this.button26.Name = "button26";
 			this.button26.Size = new System.Drawing.Size(82, 28);
 			this.button26.TabIndex = 8;
@@ -302,7 +302,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox13.Location = new System.Drawing.Point(63, 27);
 			this.textBox13.Name = "textBox13";
-			this.textBox13.Size = new System.Drawing.Size(391, 23);
+			this.textBox13.Size = new System.Drawing.Size(405, 23);
 			this.textBox13.TabIndex = 5;
 			this.textBox13.Text = "01 03 00 00 00 05";
 			// 

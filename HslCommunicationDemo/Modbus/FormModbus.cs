@@ -28,7 +28,7 @@ namespace HslCommunicationDemo
 		{
 			panel2.Enabled = false;
 
-			comboBox1.SelectedIndex = 0;
+			comboBox1.SelectedIndex = 2;
 
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
 			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;

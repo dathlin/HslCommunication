@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.0.4.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.0.4\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.0.5.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.0.5\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -370,6 +370,12 @@
     <Compile Include="Light\FormShineInLight.Designer.cs">
       <DependentUpon>FormShineInLight.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modbus\FormModbusAsciiOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modbus\FormModbusAsciiOverTcp.Designer.cs">
+      <DependentUpon>FormModbusAsciiOverTcp.cs</DependentUpon>
+    </Compile>
     <Compile Include="MQTT\FormMqttFileClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -412,16 +418,22 @@
     <Compile Include="PLC\AllenBrandly\FormPcccServer.Designer.cs">
       <DependentUpon>FormPcccServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\Delta\FormDeltaSerialAsciiOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Delta\FormDeltaSerialAsciiOverTcp.Designer.cs">
+      <DependentUpon>FormDeltaSerialAsciiOverTcp.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Fatek\FormFatekProgrameServer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PLC\Fatek\FormFatekProgrameServer.Designer.cs">
       <DependentUpon>FormFatekProgrameServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormDeltaSerialOverTcp.cs">
+    <Compile Include="PLC\Delta\FormDeltaSerialOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormDeltaSerialOverTcp.Designer.cs">
+    <Compile Include="PLC\Delta\FormDeltaSerialOverTcp.Designer.cs">
       <DependentUpon>FormDeltaSerialOverTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormVigorSerialOverTcp.cs">
@@ -442,16 +454,16 @@
     <Compile Include="PLC\FormVigorSerial.Designer.cs">
       <DependentUpon>FormVigorSerial.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormFujiCSTNet.cs">
+    <Compile Include="PLC\Fuji\FormFujiCSTNet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormFujiCSTNet.Designer.cs">
+    <Compile Include="PLC\Fuji\FormFujiCSTNet.Designer.cs">
       <DependentUpon>FormFujiCSTNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormFujiSPHNet.cs">
+    <Compile Include="PLC\Fuji\FormFujiSPHNet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormFujiSPHNet.Designer.cs">
+    <Compile Include="PLC\Fuji\FormFujiSPHNet.Designer.cs">
       <DependentUpon>FormFujiSPHNet.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormBeckhoffAdsServer.cs">
@@ -460,10 +472,10 @@
     <Compile Include="PLC\FormBeckhoffAdsServer.Designer.cs">
       <DependentUpon>FormBeckhoffAdsServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormFujiCSTServer.cs">
+    <Compile Include="PLC\Fuji\FormFujiCSTServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormFujiCSTServer.Designer.cs">
+    <Compile Include="PLC\Fuji\FormFujiCSTServer.Designer.cs">
       <DependentUpon>FormFujiCSTServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormKeyenceNanoServer.cs">
@@ -472,10 +484,10 @@
     <Compile Include="PLC\FormKeyenceNanoServer.Designer.cs">
       <DependentUpon>FormKeyenceNanoServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormFujiSPHServer.cs">
+    <Compile Include="PLC\Fuji\FormFujiSPHServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormFujiSPHServer.Designer.cs">
+    <Compile Include="PLC\Fuji\FormFujiSPHServer.Designer.cs">
       <DependentUpon>FormFujiSPHServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Melsec\FormFxLinksServer.cs">
@@ -508,10 +520,10 @@
     <Compile Include="PLC\AllenBrandly\FormAllenBrandlySLC.Designer.cs">
       <DependentUpon>FormAllenBrandlySLC.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormDeltaDvpSerialAscii.cs">
+    <Compile Include="PLC\Delta\FormDeltaDvpSerialAscii.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormDeltaDvpSerialAscii.Designer.cs">
+    <Compile Include="PLC\Delta\FormDeltaDvpSerialAscii.Designer.cs">
       <DependentUpon>FormDeltaDvpSerialAscii.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Secs\FormSecsGem.cs">
@@ -532,22 +544,22 @@
     <Compile Include="PLC\Siemens\FormFetchWriteServer.Designer.cs">
       <DependentUpon>FormFetchWriteServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormDeltaDvpSerial.cs">
+    <Compile Include="PLC\Delta\FormDeltaDvpSerial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormDeltaDvpSerial.Designer.cs">
+    <Compile Include="PLC\Delta\FormDeltaDvpSerial.Designer.cs">
       <DependentUpon>FormDeltaDvpSerial.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormDeltaDvpTcpNet.cs">
+    <Compile Include="PLC\Delta\FormDeltaDvpTcpNet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormDeltaDvpTcpNet.Designer.cs">
+    <Compile Include="PLC\Delta\FormDeltaDvpTcpNet.Designer.cs">
       <DependentUpon>FormDeltaDvpTcpNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormFujiSPBServer.cs">
+    <Compile Include="PLC\Fuji\FormFujiSPBServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormFujiSPBServer.Designer.cs">
+    <Compile Include="PLC\Fuji\FormFujiSPBServer.Designer.cs">
       <DependentUpon>FormFujiSPBServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormGeSRTP.cs">
@@ -901,16 +913,16 @@
     <Compile Include="PLC\FormFreedomUdpNet.Designer.cs">
       <DependentUpon>FormFreedomUdpNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormFujiSPBOverTcp.cs">
+    <Compile Include="PLC\Fuji\FormFujiSPBOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormFujiSPBOverTcp.Designer.cs">
+    <Compile Include="PLC\Fuji\FormFujiSPBOverTcp.Designer.cs">
       <DependentUpon>FormFujiSPBOverTcp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormFujiSPB.cs">
+    <Compile Include="PLC\Fuji\FormFujiSPB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormFujiSPB.Designer.cs">
+    <Compile Include="PLC\Fuji\FormFujiSPB.Designer.cs">
       <DependentUpon>FormFujiSPB.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Fatek\FormFatekPrograme.cs">
@@ -1574,6 +1586,9 @@
     <EmbeddedResource Include="Light\FormShineInLight.resx">
       <DependentUpon>FormShineInLight.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modbus\FormModbusAsciiOverTcp.resx">
+      <DependentUpon>FormModbusAsciiOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MQTT\FormMqttFileClient.resx">
       <DependentUpon>FormMqttFileClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -1595,10 +1610,13 @@
     <EmbeddedResource Include="PLC\AllenBrandly\FormPcccServer.resx">
       <DependentUpon>FormPcccServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Delta\FormDeltaSerialAsciiOverTcp.resx">
+      <DependentUpon>FormDeltaSerialAsciiOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Fatek\FormFatekProgrameServer.resx">
       <DependentUpon>FormFatekProgrameServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormDeltaSerialOverTcp.resx">
+    <EmbeddedResource Include="PLC\Delta\FormDeltaSerialOverTcp.resx">
       <DependentUpon>FormDeltaSerialOverTcp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormVigorSerialOverTcp.resx">
@@ -1610,22 +1628,22 @@
     <EmbeddedResource Include="PLC\FormVigorSerial.resx">
       <DependentUpon>FormVigorSerial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormFujiCSTNet.resx">
+    <EmbeddedResource Include="PLC\Fuji\FormFujiCSTNet.resx">
       <DependentUpon>FormFujiCSTNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormFujiSPHNet.resx">
+    <EmbeddedResource Include="PLC\Fuji\FormFujiSPHNet.resx">
       <DependentUpon>FormFujiSPHNet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormBeckhoffAdsServer.resx">
       <DependentUpon>FormBeckhoffAdsServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormFujiCSTServer.resx">
+    <EmbeddedResource Include="PLC\Fuji\FormFujiCSTServer.resx">
       <DependentUpon>FormFujiCSTServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormKeyenceNanoServer.resx">
       <DependentUpon>FormKeyenceNanoServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormFujiSPHServer.resx">
+    <EmbeddedResource Include="PLC\Fuji\FormFujiSPHServer.resx">
       <DependentUpon>FormFujiSPHServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Melsec\FormFxLinksServer.resx">
@@ -1643,7 +1661,7 @@
     <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBrandlySLC.resx">
       <DependentUpon>FormAllenBrandlySLC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormDeltaDvpSerialAscii.resx">
+    <EmbeddedResource Include="PLC\Delta\FormDeltaDvpSerialAscii.resx">
       <DependentUpon>FormDeltaDvpSerialAscii.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Secs\FormSecsGem.resx">
@@ -1655,13 +1673,13 @@
     <EmbeddedResource Include="PLC\Siemens\FormFetchWriteServer.resx">
       <DependentUpon>FormFetchWriteServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormDeltaDvpSerial.resx">
+    <EmbeddedResource Include="PLC\Delta\FormDeltaDvpSerial.resx">
       <DependentUpon>FormDeltaDvpSerial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormDeltaDvpTcpNet.resx">
+    <EmbeddedResource Include="PLC\Delta\FormDeltaDvpTcpNet.resx">
       <DependentUpon>FormDeltaDvpTcpNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormFujiSPBServer.resx">
+    <EmbeddedResource Include="PLC\Fuji\FormFujiSPBServer.resx">
       <DependentUpon>FormFujiSPBServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormGeSRTP.resx">
@@ -1839,10 +1857,10 @@
     <EmbeddedResource Include="PLC\FormFreedomUdpNet.resx">
       <DependentUpon>FormFreedomUdpNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormFujiSPBOverTcp.resx">
+    <EmbeddedResource Include="PLC\Fuji\FormFujiSPBOverTcp.resx">
       <DependentUpon>FormFujiSPBOverTcp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormFujiSPB.resx">
+    <EmbeddedResource Include="PLC\Fuji\FormFujiSPB.resx">
       <DependentUpon>FormFujiSPB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Fatek\FormFatekPrograme.resx">

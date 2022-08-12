@@ -60,6 +60,7 @@ namespace HslCommunicationDemo
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
 				checkBox1.Text = "New Version Message?";
+				checkBox2.Text = "Change PLC BaudRate?";
 
 				label11.Text = "Address:";
 				label12.Text = "length:";
@@ -111,6 +112,7 @@ namespace HslCommunicationDemo
 			melsecSerial?.Close( );
 			melsecSerial = new MelsecFxSerial( );
 			melsecSerial.IsNewVersion = checkBox1.Checked;
+			melsecSerial.AutoChangeBaudRate = checkBox2.Checked;
 			melsecSerial.LogNet = LogNet;
 
 			try

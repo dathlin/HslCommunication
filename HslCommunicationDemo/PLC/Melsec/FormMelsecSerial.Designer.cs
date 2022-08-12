@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -47,6 +48,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button_active_plc = new System.Windows.Forms.Button();
 			this.textBox14 = new System.Windows.Forms.TextBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -64,7 +66,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button_active_plc = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -77,6 +78,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.comboBox3);
 			this.panel1.Controls.Add(this.comboBox1);
@@ -98,12 +100,22 @@
 			this.panel1.Size = new System.Drawing.Size(997, 63);
 			this.panel1.TabIndex = 0;
 			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(223, 37);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(144, 21);
+			this.checkBox2.TabIndex = 32;
+			this.checkBox2.Text = "动态修改PLC波特率？";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			// 
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(414, 37);
+			this.checkBox1.Location = new System.Drawing.Point(61, 37);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(99, 21);
 			this.checkBox1.TabIndex = 31;
@@ -126,7 +138,7 @@
             "无",
             "奇",
             "偶"});
-			this.comboBox1.Location = new System.Drawing.Point(501, 8);
+			this.comboBox1.Location = new System.Drawing.Point(512, 8);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(61, 25);
 			this.comboBox1.TabIndex = 25;
@@ -134,7 +146,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(450, 12);
+			this.label1.Location = new System.Drawing.Point(461, 12);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 24;
@@ -142,7 +154,7 @@
 			// 
 			// textBox17
 			// 
-			this.textBox17.Location = new System.Drawing.Point(414, 9);
+			this.textBox17.Location = new System.Drawing.Point(427, 9);
 			this.textBox17.Name = "textBox17";
 			this.textBox17.Size = new System.Drawing.Size(23, 23);
 			this.textBox17.TabIndex = 23;
@@ -151,7 +163,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(351, 12);
+			this.label3.Location = new System.Drawing.Point(366, 12);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 22;
@@ -159,7 +171,7 @@
 			// 
 			// textBox16
 			// 
-			this.textBox16.Location = new System.Drawing.Point(314, 9);
+			this.textBox16.Location = new System.Drawing.Point(332, 9);
 			this.textBox16.Name = "textBox16";
 			this.textBox16.Size = new System.Drawing.Size(24, 23);
 			this.textBox16.TabIndex = 21;
@@ -168,7 +180,7 @@
 			// label25
 			// 
 			this.label25.AutoSize = true;
-			this.label25.Location = new System.Drawing.Point(248, 12);
+			this.label25.Location = new System.Drawing.Point(271, 12);
 			this.label25.Name = "label25";
 			this.label25.Size = new System.Drawing.Size(56, 17);
 			this.label25.TabIndex = 20;
@@ -178,7 +190,7 @@
 			// 
 			this.textBox2.Location = new System.Drawing.Point(197, 9);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(47, 23);
+			this.textBox2.Size = new System.Drawing.Size(68, 23);
 			this.textBox2.TabIndex = 19;
 			this.textBox2.Text = "9600";
 			// 
@@ -202,7 +214,7 @@
 			// 
 			// label22
 			// 
-			this.label22.Location = new System.Drawing.Point(837, 2);
+			this.label22.Location = new System.Drawing.Point(845, 2);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(136, 45);
 			this.label22.TabIndex = 7;
@@ -211,7 +223,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(765, 2);
+			this.label21.Location = new System.Drawing.Point(771, 2);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(68, 17);
 			this.label21.TabIndex = 6;
@@ -220,7 +232,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(669, 6);
+			this.button2.Location = new System.Drawing.Point(681, 12);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -230,7 +242,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(568, 6);
+			this.button1.Location = new System.Drawing.Point(584, 12);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -272,6 +284,16 @@
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// button_active_plc
+			// 
+			this.button_active_plc.Location = new System.Drawing.Point(12, 19);
+			this.button_active_plc.Name = "button_active_plc";
+			this.button_active_plc.Size = new System.Drawing.Size(90, 28);
+			this.button_active_plc.TabIndex = 23;
+			this.button_active_plc.Text = "激活PLC";
+			this.button_active_plc.UseVisualStyleBackColor = true;
+			this.button_active_plc.Click += new System.EventHandler(this.button_active_plc_Click);
 			// 
 			// textBox14
 			// 
@@ -453,16 +475,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// button_active_plc
-			// 
-			this.button_active_plc.Location = new System.Drawing.Point(12, 19);
-			this.button_active_plc.Name = "button_active_plc";
-			this.button_active_plc.Size = new System.Drawing.Size(90, 28);
-			this.button_active_plc.TabIndex = 23;
-			this.button_active_plc.Text = "激活PLC";
-			this.button_active_plc.UseVisualStyleBackColor = true;
-			this.button_active_plc.Click += new System.EventHandler(this.button_active_plc_Click);
-			// 
 			// FormMelsecSerial
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -531,5 +543,6 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Button button_active_plc;
+		private System.Windows.Forms.CheckBox checkBox2;
 	}
 }

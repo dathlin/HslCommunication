@@ -27,7 +27,7 @@ namespace HslCommunicationDemo
             panel2.Enabled = false;
 
 
-            comboBox2.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 2;
             comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			checkBox_remote_write.CheckedChanged += CheckBox1_CheckedChanged;
             checkBox3.CheckedChanged += CheckBox3_CheckedChanged;

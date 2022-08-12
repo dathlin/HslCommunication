@@ -247,7 +247,7 @@ namespace HslCommunicationDemo
 			return OperateResult.CreateSuccessResult( "成功:" + name + " 年龄:" + value );
 		}
 
-		[HslMqttApi( "读取设备的信息，address: 设备的地址 length: 读取的数据长度" )]
+		[HslMqttApi( "读取设备的信息，\r\naddress: 设备的地址 \r\nlength: 读取的数据长度" )]
 		public OperateResult<string> ReadInt( string address, short length )
 		{
 			return OperateResult.CreateSuccessResult( "成功:" + address );
