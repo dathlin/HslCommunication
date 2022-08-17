@@ -98,7 +98,6 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				throw;
 				MessageBox.Show( ex.Message );
 			}
 		}

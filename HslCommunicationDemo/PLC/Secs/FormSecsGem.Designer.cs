@@ -73,6 +73,7 @@
 			this.label13 = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -96,6 +97,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox3);
@@ -262,7 +264,7 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.textBox_receive);
-			this.splitContainer2.Size = new System.Drawing.Size(656, 226);
+			this.splitContainer2.Size = new System.Drawing.Size(656, 230);
 			this.splitContainer2.SplitterDistance = 295;
 			this.splitContainer2.TabIndex = 26;
 			// 
@@ -273,7 +275,7 @@
 			this.textBox_data.Multiline = true;
 			this.textBox_data.Name = "textBox_data";
 			this.textBox_data.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_data.Size = new System.Drawing.Size(295, 226);
+			this.textBox_data.Size = new System.Drawing.Size(295, 230);
 			this.textBox_data.TabIndex = 20;
 			// 
 			// textBox_receive
@@ -283,7 +285,7 @@
 			this.textBox_receive.Multiline = true;
 			this.textBox_receive.Name = "textBox_receive";
 			this.textBox_receive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_receive.Size = new System.Drawing.Size(357, 226);
+			this.textBox_receive.Size = new System.Drawing.Size(357, 230);
 			this.textBox_receive.TabIndex = 12;
 			// 
 			// textBox_example
@@ -293,7 +295,7 @@
 			this.textBox_example.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.textBox_example.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.textBox_example.ForeColor = System.Drawing.Color.Green;
-			this.textBox_example.Location = new System.Drawing.Point(6, 279);
+			this.textBox_example.Location = new System.Drawing.Point(6, 283);
 			this.textBox_example.Multiline = true;
 			this.textBox_example.Name = "textBox_example";
 			this.textBox_example.ReadOnly = true;
@@ -307,7 +309,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.treeView1.Location = new System.Drawing.Point(5, 6);
 			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(311, 271);
+			this.treeView1.Size = new System.Drawing.Size(311, 275);
 			this.treeView1.TabIndex = 24;
 			// 
 			// button3
@@ -404,10 +406,10 @@
 			this.tabPage2.Controls.Add(this.textBox_s1);
 			this.tabPage2.Controls.Add(this.button_S1F1);
 			this.tabPage2.Controls.Add(this.label4);
-			this.tabPage2.Location = new System.Drawing.Point(4, 26);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(987, 326);
+			this.tabPage2.Size = new System.Drawing.Size(987, 330);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "S1";
 			// 
@@ -466,7 +468,7 @@
 			this.textBox_s1.Multiline = true;
 			this.textBox_s1.Name = "textBox_s1";
 			this.textBox_s1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_s1.Size = new System.Drawing.Size(259, 309);
+			this.textBox_s1.Size = new System.Drawing.Size(259, 313);
 			this.textBox_s1.TabIndex = 23;
 			// 
 			// button_S1F1
@@ -492,10 +494,10 @@
 			// 
 			this.tabPage_s2.BackColor = System.Drawing.SystemColors.Control;
 			this.tabPage_s2.Controls.Add(this.panel3);
-			this.tabPage_s2.Location = new System.Drawing.Point(4, 26);
+			this.tabPage_s2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage_s2.Name = "tabPage_s2";
 			this.tabPage_s2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage_s2.Size = new System.Drawing.Size(987, 326);
+			this.tabPage_s2.Size = new System.Drawing.Size(987, 330);
 			this.tabPage_s2.TabIndex = 2;
 			this.tabPage_s2.Text = "S2";
 			// 
@@ -507,7 +509,7 @@
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel3.Location = new System.Drawing.Point(3, 3);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(981, 320);
+			this.panel3.Size = new System.Drawing.Size(981, 324);
 			this.panel3.TabIndex = 0;
 			// 
 			// textBox_s2
@@ -518,7 +520,7 @@
 			this.textBox_s2.Multiline = true;
 			this.textBox_s2.Name = "textBox_s2";
 			this.textBox_s2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_s2.Size = new System.Drawing.Size(259, 314);
+			this.textBox_s2.Size = new System.Drawing.Size(259, 318);
 			this.textBox_s2.TabIndex = 24;
 			// 
 			// button_s2f13
@@ -589,6 +591,16 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(497, 8);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(136, 21);
+			this.checkBox2.TabIndex = 12;
+			this.checkBox2.Text = "初始化时发送 S0F0?";
+			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// FormSecsGem
 			// 
@@ -680,5 +692,6 @@
 		private System.Windows.Forms.TextBox textBox_example;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.SplitContainer splitContainer2;
+		private System.Windows.Forms.CheckBox checkBox2;
 	}
 }

@@ -35,21 +35,16 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.0.5
-1. ModbusAsciiOverTcp: 新增modbusascii协议的串口转网口透传的通信类。
-2. DeltaSerialAsciiOverTcp: 新增一个台达的ASCII通信协议的串口转网口透传通信类，和其他的基于modbus的台达类一致的用法，一致的地址格式。
-3. FujiCommandSettingType: 修复FujiCommandSettingType及其虚拟服务器再解析地址不正确的bug，导致大量的其他地址解析失败，并完善了注释说明。
-4. MelsecFxSerial: 新增属性AutoChangeBaudRate，默认false，当设置为true时，在串口打开时会和PLC交互改变PLC默认的波特率。
-5. SerialBase: 新增串口类基类属性ReceiveEmptyDataCount，用来表示接收空白数据次数，然后判断接收完成的标记，单次耗费的时间是 SleepTime。
-6. Modbus: DEMO相关的界面都默认的DataFormat都调整为 CDAB，因为大多数的设备数据大小端都是这个格式。
-7. OmronConnectedCipNet: 新增IReadWriteCip接口，欧姆龙的基于连接的CIP协议实现了日期及时间的读写接口。
-8. MqttServer: MQTT服务器支持向自定义规则的客户端会话发布指定的主题数据，详细查看PublishTopicPayload重载方法
-9. MqttSyncClient: 上传文件到服务器的功能接口里新增流数据的上传，需要指定服务器保存的文件的名称。
-10. NetworkConnectedCip: 基于连接的CIP协议的连接id信息初始化时及赋予一个随机数，增加一个新的错误描述信息，连接过多的错误。
-11. Upgrade.exe: 用于更新的exe修复当文件长度为0时，导致百分比计算异常的bug。
-12. OmronFinsAddress: 欧姆龙FINS协议的地址，增加支持了定时器TIM,计数器CNT，索引寄存器IR，数据寄存器DR的读写。
-13. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注，新官网：http://www.hsltechnology.cn/。
-14. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.0.6
+1. TcpForward: TCP转TCP类新增OnRemoteMessageReceived及OnClientMessageReceive事件，可以捕获所有的通信报文。
+2. TcpForward: TCP转TCP的对象新增ConnectTimeOut属性，支持设定连接超时
+3. NetSoftUpdateServer: 更新的服务器新增一个方法，GetDealSizeAndReset每秒调用即可获取当前的下载网速信息
+4. AllenBradleyNet: 完善了路由信息，支持了一种特殊的路由信息的消息，格式为 1.1.2.130.133.139.61.1.0。
+5. TcpFoward: TCP转发的类新增一个属性OnlineSessionsCount，获取当前在线会客户端会话数量信息。
+6. SecsHsms: 新增属性 InitializationS0F0，默认为false，指示是否在初始化的时候，发送功能码 S0F0。
+7. Lognet: 优化日志存储器在计算过期日志文件并删除的代码，现在触发新增文件时，才进行删除旧的文件信息。
+8. 官网地址： http://www.hslcommunication.cn/ 官网的界面全新设计过，感谢浏览关注，新官网：http://www.hsltechnology.cn/。
+9. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

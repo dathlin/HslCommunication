@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using HslCommunication.LogNet;
 
@@ -22,7 +24,8 @@ namespace HslCommunicationDemo
 
         private void FormLogNet_Load( object sender, EventArgs e )
         {
-            logNet = new LogNetSingle( "log.txt" );
+            logNet = new LogNetSingle( "log.txt" ); 
+            // logNet = new LogNetDateTime( Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "Logs" ), GenerateMode.ByEveryDay, 10 );
             comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslMessageDegree>( );
             comboBox1.SelectedItem = HslMessageDegree.DEBUG;
             comboBox2.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslMessageDegree>( );
@@ -109,32 +112,40 @@ namespace HslCommunicationDemo
             }
         }
 
+        private int threadCount = 3;
         private void button2_Click( object sender, EventArgs e )
         {
+            threadCount = 3;
             // 100万条日志写入测试
-            new System.Threading.Thread( new System.Threading.ThreadStart( ThreadLogTest ) )
+            for (int i = 0; i < threadCount; i++)
             {
-                IsBackground = true,
-            }.Start( );
+                new System.Threading.Thread( new System.Threading.ThreadStart( ThreadLogTest ) )
+                {
+                    IsBackground = true,
+                }.Start( );
+            }
+            
             button2.Enabled = false;
         }
 
         private void ThreadLogTest()
         {
             DateTime start = DateTime.Now;
-            for (int i = 0; i < 1000000; i++)
+            for (int i = 0; i < 330000; i++)
             {
                 logNet.WriteInfo( "key", "这是一条测试日志" );
             }
 
             TimeSpan ts = DateTime.Now - start;
 
-
-            Invoke( new Action( ( ) =>
-             {
-                 MessageBox.Show( "完成！耗时：" + ts.TotalMilliseconds.ToString( "F3" ) );
-                 button3.Enabled = true;
-             } ) );
+            if (Interlocked.Decrement(ref threadCount) == 0)
+            {
+                Invoke( new Action( ( ) =>
+                {
+                    MessageBox.Show( "完成！耗时：" + ts.TotalMilliseconds.ToString( "F3" ) + " 毫秒" );
+                    button2.Enabled = true;
+                } ) );
+            }
         }
 
         private void button3_Click( object sender, EventArgs e )

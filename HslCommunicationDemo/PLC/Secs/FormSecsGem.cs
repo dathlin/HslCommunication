@@ -227,6 +227,7 @@ namespace HslCommunicationDemo
 			secs.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 			secs.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			secs.OnSecsMessageReceived += Secs_OnSecsMessageReceived;
+			secs.InitializationS0F0 = checkBox2.Checked;
 			secs.LogNet = LogNet;
 			try
 			{
