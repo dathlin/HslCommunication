@@ -93,6 +93,9 @@ namespace HslCommunicationDemo
                 button4.Text = "hot-start";
                 button5.Text = "cold-start";
                 button6.Text = "stop";
+
+                button_read_date.Text = "r-date";
+                button_write_Date.Text = "w-date";
             }
         }
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -184,7 +187,20 @@ namespace HslCommunicationDemo
             }
         }
 
-        private async void button11_Click( object sender, EventArgs e )
+		private async void button_read_date_Click( object sender, EventArgs e )
+		{
+			OperateResult<DateTime> read = await siemensTcpNet.ReadDateAsync( textBox8.Text );
+			if (read.IsSuccess)
+			{
+				textBox7.Text = read.Content.ToString( );
+			}
+			else
+			{
+				MessageBox.Show( "Failed:" + read.Message );
+			}
+		}
+
+		private async void button11_Click( object sender, EventArgs e )
         {
             // WString 读取
             OperateResult<string> read = await siemensTcpNet.ReadWStringAsync( textBox8.Text );
@@ -223,12 +239,20 @@ namespace HslCommunicationDemo
                 MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
         }
 
+		private async void button_write_Date_Click( object sender, EventArgs e )
+		{
+			// date写入
+			if (DateTime.TryParse( textBox7.Text, out DateTime value ))
+				DemoUtils.WriteResultRender( await siemensTcpNet.WriteDateAsync( textBox8.Text, value ), textBox8.Text );
+			else
+				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
+		}
 
-        #endregion
+		#endregion
 
-        #region 批量读取测试
+		#region 批量读取测试
 
-        private void button25_Click( object sender, EventArgs e )
+		private void button25_Click( object sender, EventArgs e )
         {
             DemoUtils.BulkReadRenderResult( siemensTcpNet, textBox6, textBox9, textBox10 );
 
@@ -573,5 +597,5 @@ namespace HslCommunicationDemo
             userControlHead1_SaveConnectEvent( sender, e );
         }
 
-	}
+    }
 }

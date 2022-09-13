@@ -44,10 +44,10 @@ namespace HslCommunicationDemo
                 label7.Text = "指令头：";
                 label8.Text = "耗时";
                 label9.Text = "数据：";
-                button3.Text = "写入";
+                button_set_key.Text = "写入";
                 label10.Text = "次数：";
                 label11.Text = "耗时：";
-                button4.Text = "读取";
+                button_get_key.Text = "读取";
                 label12.Text = "接收：";
             }
             else
@@ -63,10 +63,8 @@ namespace HslCommunicationDemo
                 label7.Text = "Command:";
                 label8.Text = "Take:";
                 label9.Text = "Data:";
-                button3.Text = "Write";
                 label10.Text = "Times:";
                 label11.Text = "Take:";
-                button4.Text = "Read";
                 label12.Text = "Receive:";
             }
         }
@@ -79,6 +77,7 @@ namespace HslCommunicationDemo
             redisClient = new RedisClient( textBox3.Text );
             redisClient.IpAddress = textBox1.Text;
             redisClient.Port = int.Parse( textBox2.Text );
+            redisClient.LogNet = this.LogNet;
             OperateResult connect = redisClient.ConnectServer( );
 
             if(connect.IsSuccess)
@@ -130,14 +129,14 @@ namespace HslCommunicationDemo
             }
         }
 
-        private void button3_Click( object sender, EventArgs e )
+        private void button_set_key_Click( object sender, EventArgs e )
         {
             // 写入关键字
             DateTime start = DateTime.Now;
             int count = int.Parse( textBox6.Text );
             for (int i = 0; i < count; i++)
             {
-                OperateResult write = redisClient.WriteKey( textBox5.Text, textBox4.Text );
+                OperateResult write = redisClient.WriteKey( textBox_write_key.Text, textBox4.Text );
                 if (write.IsSuccess)
                 {
                     textBox7.Text = (DateTime.Now - start).TotalMilliseconds.ToString( "F2" );
@@ -166,38 +165,34 @@ namespace HslCommunicationDemo
             int count = int.Parse( textBox9.Text );
             for (int i = 0; i < count; i++)
             {
-                OperateResult<string> read = redisClient.ReadKey( textBox11.Text);
+                OperateResult<string> read = redisClient.ReadKey( textBox_get_key.Text);
                 if (read.IsSuccess)
                 {
-                    textBox10.Text = read.Content;
+                    textBox_get_result.Text = read.Content;
                 }
                 else
                 {
-                    textBox10.Text = Program.Language == 1 ? "读取失败：" + read.Message : "Read Failed:" + read.Message;
+                    textBox_get_result.Text = Program.Language == 1 ? "读取失败：" + read.Message : "Read Failed:" + read.Message;
                 }
 
             }
             textBox8.Text = (DateTime.Now - start).TotalMilliseconds.ToString( "F2" );
         }
 
-        private void button8_Click( object sender, EventArgs e )
+        private void button_execute_commands_Click( object sender, EventArgs e )
         {
-            //OperateResult<string[]> read2 = redisClient.ReadHashKey( "A", new string[] { "123", "456", "789" } );
-
-            //return;
-            // 读关键字
             DateTime start = DateTime.Now;
             int count = int.Parse( textBox9.Text );
             for (int i = 0; i < count; i++)
             {
-                OperateResult<string> read = redisClient.ReadCustomer( textBox11.Text );
+                OperateResult<string> read = redisClient.ReadCustomer( textBox_redis_cmd.Text );
                 if (read.IsSuccess)
                 {
-                    textBox10.Text = read.Content;
+                    textBox_get_result.Text = read.Content;
                 }
                 else
                 {
-                    textBox10.Text = Program.Language == 1 ? "读取失败：" + read.Message : "Read Failed:" + read.Message;
+                    textBox_get_result.Text = Program.Language == 1 ? "读取失败：" + read.Message : "Read Failed:" + read.Message;
                 }
 
             }
@@ -247,7 +242,7 @@ namespace HslCommunicationDemo
 
         private void button12_Click( object sender, EventArgs e )
         {
-            OperateResult write = redisClient.Publish( textBox5.Text, textBox4.Text );
+            OperateResult write = redisClient.Publish( textBox_write_key.Text, textBox4.Text );
             if (write.IsSuccess)
             {
                 MessageBox.Show( "success" );
@@ -255,6 +250,71 @@ namespace HslCommunicationDemo
             else
             {
                 MessageBox.Show( Program.Language == 1 ? "写入失败：" : "Write Failed:" + write.ToMessageShowString( ) );
+            }
+        }
+
+        private void button_redis_EXISTS_Click( object sender, EventArgs e )
+        {
+            OperateResult<int> exist = redisClient.ExistsKey( textBox_write_key.Text );
+            if (exist.IsSuccess)
+            {
+                MessageBox.Show( exist.Content == 1 ? "Exists!" : "None" );
+            }
+            else
+            {
+                MessageBox.Show( "request failed: " + exist.Message );
+            }
+        }
+
+        private void button_redis_PERSIST_Click( object sender, EventArgs e )
+        {
+            OperateResult<int> persist = redisClient.PersistKey( textBox_write_key.Text );
+            if (persist.IsSuccess)
+            {
+                MessageBox.Show( persist.Content == 1 ? "Persist success!" : "Persist failed" );
+            }
+            else
+            {
+                MessageBox.Show( "request failed: " + persist.Message );
+            }
+        }
+
+        private void button_redis_INCR_Click( object sender, EventArgs e )
+        {
+            OperateResult<long> incr = redisClient.IncrementKey( textBox_get_key.Text );
+            if (incr.IsSuccess)
+            {
+                textBox_get_result.Text = incr.Content.ToString( );
+            }
+            else
+            {
+                MessageBox.Show( "request failed: " + incr.Message );
+            }
+        }
+
+        private void button_redis_DECR_Click( object sender, EventArgs e )
+        {
+            OperateResult<long> decr = redisClient.DecrementKey( textBox_get_key.Text );
+            if (decr.IsSuccess)
+            {
+                textBox_get_result.Text = decr.Content.ToString( );
+            }
+            else
+            {
+                MessageBox.Show( "request failed: " + decr.Message );
+            }
+        }
+
+        private void button_redis_STRLEN_Click( object sender, EventArgs e )
+        {
+            OperateResult<int> strLen = redisClient.ReadKeyLength( textBox_get_key.Text );
+            if (strLen.IsSuccess)
+            {
+                textBox_get_result.Text = strLen.Content.ToString( );
+            }
+            else
+            {
+                MessageBox.Show( "request failed: " + strLen.Message );
             }
         }
     }

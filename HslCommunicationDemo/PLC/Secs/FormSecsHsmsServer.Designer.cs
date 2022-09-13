@@ -30,14 +30,17 @@
 		{
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.button11 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox_port = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.textBox_log = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.textBox_data = new System.Windows.Forms.TextBox();
 			this.textBox_example = new System.Windows.Forms.TextBox();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.button_save_tree = new System.Windows.Forms.Button();
@@ -47,7 +50,9 @@
 			this.button25 = new System.Windows.Forms.Button();
 			this.label12 = new System.Windows.Forms.Label();
 			this.D = new System.Windows.Forms.Label();
-			this.textBox_data = new System.Windows.Forms.TextBox();
+			this.button4 = new System.Windows.Forms.Button();
+			this.label13 = new System.Windows.Forms.Label();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -72,6 +77,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.comboBox1);
+			this.panel1.Controls.Add(this.label5);
 			this.panel1.Controls.Add(this.label11);
 			this.panel1.Controls.Add(this.button11);
 			this.panel1.Controls.Add(this.button1);
@@ -83,12 +90,36 @@
 			this.panel1.Size = new System.Drawing.Size(1013, 41);
 			this.panel1.TabIndex = 4;
 			// 
+			// comboBox1
+			// 
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Items.AddRange(new object[] {
+            "ASCII",
+            "Default",
+            "UTF8",
+            "Unicode",
+            "GB2312"});
+			this.comboBox1.Location = new System.Drawing.Point(399, 6);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(104, 25);
+			this.comboBox1.TabIndex = 31;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(331, 11);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(63, 17);
+			this.label5.TabIndex = 30;
+			this.label5.Text = "Encode：";
+			// 
 			// label11
 			// 
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(343, 4);
+			this.label11.Location = new System.Drawing.Point(512, 4);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(447, 41);
+			this.label11.Size = new System.Drawing.Size(467, 41);
 			this.label11.TabIndex = 29;
 			this.label11.Text = "本服务器不是严格的secs协议，仅支持和HSL组件完美通信。";
 			// 
@@ -135,7 +166,10 @@
 			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox3.Controls.Add(this.textBox10);
+			this.groupBox3.Controls.Add(this.button4);
+			this.groupBox3.Controls.Add(this.textBox_log);
+			this.groupBox3.Controls.Add(this.label13);
+			this.groupBox3.Controls.Add(this.checkBox1);
 			this.groupBox3.Location = new System.Drawing.Point(3, 439);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(1013, 171);
@@ -143,17 +177,17 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "日志";
 			// 
-			// textBox10
+			// textBox_log
 			// 
-			this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.textBox_log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox10.Location = new System.Drawing.Point(6, 17);
-			this.textBox10.Multiline = true;
-			this.textBox10.Name = "textBox10";
-			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(1001, 148);
-			this.textBox10.TabIndex = 10;
+			this.textBox_log.Location = new System.Drawing.Point(70, 17);
+			this.textBox_log.Multiline = true;
+			this.textBox_log.Name = "textBox_log";
+			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_log.Size = new System.Drawing.Size(937, 148);
+			this.textBox_log.TabIndex = 10;
 			// 
 			// groupBox1
 			// 
@@ -175,6 +209,14 @@
 			this.groupBox1.TabIndex = 6;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "数据定义区";
+			// 
+			// textBox_data
+			// 
+			this.textBox_data.Location = new System.Drawing.Point(332, 64);
+			this.textBox_data.Multiline = true;
+			this.textBox_data.Name = "textBox_data";
+			this.textBox_data.Size = new System.Drawing.Size(672, 235);
+			this.textBox_data.TabIndex = 38;
 			// 
 			// textBox_example
 			// 
@@ -263,13 +305,34 @@
 			this.D.TabIndex = 33;
 			this.D.Text = "Data：";
 			// 
-			// textBox_data
+			// button4
 			// 
-			this.textBox_data.Location = new System.Drawing.Point(332, 64);
-			this.textBox_data.Multiline = true;
-			this.textBox_data.Name = "textBox_data";
-			this.textBox_data.Size = new System.Drawing.Size(672, 235);
-			this.textBox_data.TabIndex = 38;
+			this.button4.Location = new System.Drawing.Point(6, 70);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(55, 26);
+			this.button4.TabIndex = 19;
+			this.button4.Text = "clear";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(11, 20);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(44, 17);
+			this.label13.TabIndex = 17;
+			this.label13.Text = "接收：";
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(9, 42);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(58, 21);
+			this.checkBox1.TabIndex = 18;
+			this.checkBox1.Text = "STOP";
+			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
 			// FormSecsHsmsServer
 			// 
@@ -305,7 +368,7 @@
 		private System.Windows.Forms.TextBox textBox_port;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.GroupBox groupBox3;
-		private System.Windows.Forms.TextBox textBox10;
+		private System.Windows.Forms.TextBox textBox_log;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.TextBox textBox_data;
 		private System.Windows.Forms.TextBox textBox_example;
@@ -317,5 +380,10 @@
 		private System.Windows.Forms.Button button25;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Label D;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.CheckBox checkBox1;
 	}
 }

@@ -425,7 +425,7 @@
 			this.groupBox3.Size = new System.Drawing.Size(564, 154);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "批量读取测试";
+			this.groupBox3.Text = "批量读取测试，支持随机字地址，例如 D100;A100;C100;H100";
 			// 
 			// textBox10
 			// 
@@ -457,16 +457,16 @@
 			// 
 			// textBox9
 			// 
-			this.textBox9.Location = new System.Drawing.Point(239, 27);
+			this.textBox9.Location = new System.Drawing.Point(400, 27);
 			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(102, 23);
+			this.textBox9.Size = new System.Drawing.Size(68, 23);
 			this.textBox9.TabIndex = 7;
 			this.textBox9.Text = "10";
 			// 
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(185, 30);
+			this.label12.Location = new System.Drawing.Point(346, 30);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(44, 17);
 			this.label12.TabIndex = 6;
@@ -476,7 +476,7 @@
 			// 
 			this.textBox6.Location = new System.Drawing.Point(63, 27);
 			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(102, 23);
+			this.textBox6.Size = new System.Drawing.Size(277, 23);
 			this.textBox6.TabIndex = 5;
 			this.textBox6.Text = "D100";
 			// 

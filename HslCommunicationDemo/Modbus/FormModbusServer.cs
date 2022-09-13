@@ -126,6 +126,7 @@ namespace HslCommunicationDemo
                 busTcpServer.StationDataIsolation     = checkBox_station_isolation.Checked;
                 busTcpServer.UseModbusRtuOverTcp      = checkBox4.Checked;
                 busTcpServer.IsUseAccountCertificate  = checkBox_account.Checked;
+                busTcpServer.ForceSerialReceiveOnce   = checkBox_forceReceiveOnce.Checked;
 
                 // add some accounts
                 busTcpServer.AddAccount( "admin", "123456" );

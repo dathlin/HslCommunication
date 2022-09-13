@@ -11,6 +11,7 @@ using HslCommunication.Robot.FANUC;
 using HslCommunication;
 using HslCommunication.BasicFramework;
 using System.Xml.Linq;
+using System.Diagnostics;
 
 namespace HslCommunicationDemo.Robot
 {
@@ -39,8 +40,13 @@ namespace HslCommunicationDemo.Robot
             }
 
             comboBox1.DataSource = typeof( FanucData ).GetProperties( ).Select( m => m.Name ).ToArray( );
+            this.linkLabel1.LinkClicked += LinkLabel1_LinkClicked;
         }
 
+        private void LinkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        {
+            Process.Start( this.linkLabel1.Text );
+        }
 
         private FanucInterfaceNet fanuc;
 
@@ -51,8 +57,10 @@ namespace HslCommunicationDemo.Robot
                 // 连接
                 fanuc = new FanucInterfaceNet( textBox1.Text, int.Parse( textBox2.Text ) );
                 fanuc.ConnectTimeOut = 2000;
+                fanuc.LogNet = this.LogNet;
 
-                button1.Enabled = false;
+
+				button1.Enabled = false;
                 OperateResult connect = await fanuc.ConnectServerAsync( );
                 if(connect.IsSuccess)
                 {

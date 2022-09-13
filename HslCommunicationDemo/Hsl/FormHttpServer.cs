@@ -91,18 +91,32 @@ namespace HslCommunicationDemo
         }
 
         private void DealWithHttpListenerRequest( HttpListenerRequest request, ISessionContext session )
-		{
+        {
             // 获取ClientID信息
             string[] values = request.Headers.GetValues( "ClientID" );
             if (values?.Length > 0)
-			{
+            {
                 session.ClientId = values[0];
             }
         }
 
-        private Dictionary<string, string> returnWeb = new Dictionary<string, string>( );
+        private Dictionary<string, string> getWeb = new Dictionary<string, string>( );
         private Dictionary<string, string> postWeb = new Dictionary<string, string>( );
         private Random random = new Random( );
+
+        private void RenderGetPost( )
+        {
+            List<string> list = new List<string>( );
+            foreach (var item in getWeb.Keys)
+            {
+                list.Add( $"[GET] " + item );
+            }
+            foreach (var item in postWeb.Keys)
+            {
+                list.Add( $"[POST] " + item );
+            }
+            listBox1.DataSource = list;
+        }
 
         [HslMqttApi( HttpMethod = "POST" )]
         public OperateResult CheckAccount( ISessionContext session, string name, string password )
@@ -113,10 +127,10 @@ namespace HslCommunicationDemo
                 if (password != "123456") return new OperateResult( "密码错误" );
                 return OperateResult.CreateSuccessResult( );
             }
-			else
-			{
+            else
+            {
                 return new OperateResult( "ClientID: " + session.ClientId );
-			}
+            }
         }
 
         [HslMqttApi( HttpMethod = "GET" )]
@@ -192,10 +206,10 @@ namespace HslCommunicationDemo
             {
                 if (request.HttpMethod == "GET")
                 {
-                    if (returnWeb.ContainsKey( request.RawUrl ))
+                    if (getWeb.ContainsKey( request.RawUrl ))
                     {
                         response.AddHeader( "Content-type", $"{comboBox1.SelectedItem.ToString( )}; charset=utf-8" );
-                        return returnWeb[request.RawUrl];
+                        return getWeb[request.RawUrl];
                     }
                     else
                     {
@@ -224,14 +238,16 @@ namespace HslCommunicationDemo
         private void button3_Click( object sender, EventArgs e )
         {
             // 设置GET
-            if (returnWeb.ContainsKey( textBox5.Text ))
+            if (getWeb.ContainsKey( textBox5.Text ))
             {
-                returnWeb[textBox5.Text] = textBox4.Text;
+                getWeb[textBox5.Text] = textBox4.Text;
             }
             else
             {
-                returnWeb.Add( textBox5.Text, textBox4.Text );
+                getWeb.Add( textBox5.Text, textBox4.Text );
             }
+            RenderGetPost( );
+
         }
 
         private void Button7_Click( object sender, EventArgs e )
@@ -245,6 +261,8 @@ namespace HslCommunicationDemo
             {
                 postWeb.Add( textBox5.Text, textBox4.Text );
             }
+            RenderGetPost( );
+
         }
 
         private void button2_Click( object sender, EventArgs e )

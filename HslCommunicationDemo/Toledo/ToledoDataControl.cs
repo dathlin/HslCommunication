@@ -70,8 +70,29 @@ namespace HslCommunicationDemo.Toledo
             }
 
             textBox1.Text = data.Weight.ToString( );
-            label10.Text = data.Unit;
+            label10.Text  = data.Unit;
             textBox2.Text = data.Tare.ToString( );
+
+            if (Program.Language == 1)
+                label13.Text = data.DataValid ? "有效" : "无效";
+            else
+                label13.Text = data.DataValid ? "Valid" : "Invalid";
+
+            if (data.IsTenExtend)
+            {
+                if (Program.Language == 1)
+                {
+                    textBox3.Text = data.TareType == 0 ? "无皮重" : data.TareType == 1 ? "按键去皮" : data.TareType == 2 ? "预置皮重" : "皮重内存";
+                }
+                else
+                {
+                    textBox3.Text = data.TareType == 0 ? "without tare" : data.TareType == 1 ? "key peeling" : data.TareType == 2 ? "Preset tare" : "Tare memory";
+                }
+            }
+            else
+            {
+                textBox3.Text = string.Empty;
+            }
         }
     }
 }

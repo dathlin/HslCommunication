@@ -18,6 +18,8 @@ using HslCommunicationDemo.Control;
 using HslCommunicationDemo.Redis;
 using HslCommunicationDemo.Toledo;
 using HslCommunication.LogNet;
+using HslCommunicationDemo.MQTT;
+using HslCommunicationDemo.HslDebug;
 
 namespace HslCommunicationDemo
 {
@@ -278,6 +280,11 @@ namespace HslCommunicationDemo
 		{
 			OpenWebside( "http://www.hsltechnology.cn" );
 		}
+		private void toolStripMenuItem_doc_Click( object sender, EventArgs e )
+		{
+			OpenWebside( "http://www.hsltechnology.cn/Doc/HslCommunication" );
+		}
+
 		private void 简体中文ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			// 简体中文
@@ -626,8 +633,8 @@ namespace HslCommunicationDemo
 
 			// 身份证阅读器
 			TreeNode idNode = new TreeNode( "ID Card[身份证]", 4, 4 );
-			idNode.Nodes.Add( GetTreeNodeByIndex( "SAM Serial", 27, typeof( FormSAMSerial ) ) );
-			idNode.Nodes.Add( GetTreeNodeByIndex( "SAM Tcp", 27, typeof( FormSAMTcpNet ) ) );
+			idNode.Nodes.Add( GetTreeNodeByIndex( "SAM Serial", 27,       typeof( FormSAMSerial ) ) );
+			idNode.Nodes.Add( GetTreeNodeByIndex( "SAM Tcp", 27,          typeof( FormSAMTcpNet ) ) );
 			treeView1.Nodes.Add( idNode );
 
 			// Redis 相关
@@ -645,6 +652,7 @@ namespace HslCommunicationDemo
 			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt RPC Client",  17, typeof( FormMqttSyncClient ) ) );
 			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt File Server", 17, typeof( FormMqttFileServer ) ) );
 			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt File Client", 17, typeof( FormMqttFileClient ) ) );
+			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt Rpc Device",  17, typeof( FormMqttRpcDevice ) ) );
 			treeView1.Nodes.Add( mqttNode );
 
 			// WebSocket 相关
@@ -671,7 +679,7 @@ namespace HslCommunicationDemo
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "ABB Web",                     21, typeof( Robot.FormABBWebApi ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "ABB Web Server",              21, typeof( FormAbbServer ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc [发那科]",              25, typeof( Robot.FormFanucRobot ) ) );
-			robotNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc Server [发那科服务器]", 25, typeof( FormFanucRobotServer ) ) );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc Server [发那科服务器]",  25, typeof( FormFanucRobotServer ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "Estun [埃斯顿]",              19, typeof( Robot.FormEstunTcp ) ) );
 			robotNode.Nodes.Add( new TreeNode( "Hyundai [现代]" )  { Tag = typeof( Robot.FormHyundaiUdp ) } );
 			robotNode.Nodes.Add( new TreeNode( "YamahaRCX [雅马哈]" )  { Tag = typeof( Robot.FormYamahaRCX ) } );
@@ -698,16 +706,17 @@ namespace HslCommunicationDemo
 
 			// Debug 相关
 			TreeNode debugNode = new TreeNode( "Debug About[调试技术]", 15, 15 );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regex [正则表达式]", 15, typeof( HslDebug.FormRegexTest ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口调试]", 15, typeof( FormSerialDebug ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Client [网口调试]", 15, typeof( FormTcpDebug ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]", 15, typeof( FormTcpServer ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial2Tcp [串口转网口]", 15, typeof( FormSerialToTcp ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp2Tcp [网口转网口]", 15, typeof( FormTcpToTcp ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Bytes Data [数据调试]", 15, typeof( FormByteTransfer ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Mail [邮件调试]", 15, typeof( FormMail ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regex [正则表达式]",        15, typeof( FormRegexTest ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Check [校验码调试]",        15, typeof( FormCheck ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口调试]",         15, typeof( FormSerialDebug ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Client [网口调试]",  15, typeof( FormTcpDebug ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]",  15, typeof( FormTcpServer ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial2Tcp [串口转网口]",   15, typeof( FormSerialToTcp ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp2Tcp [网口转网口]",      15, typeof( FormTcpToTcp ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Bytes Data [数据调试]",     15, typeof( FormByteTransfer ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Mail [邮件调试]",           15, typeof( FormMail ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Order Number [订单号调试]", 15, typeof( FormSeqCreate ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regist [注册码调试]", 15, typeof( FormRegister ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regist [注册码调试]",       15, typeof( FormRegister ) ) );
 			treeView1.Nodes.Add( debugNode );
 
 			// HSL 相关
@@ -972,6 +981,7 @@ namespace HslCommunicationDemo
 		{
 			mqttClient?.ConnectClose( );
 		}
+
 	}
 
 	public class FormSiemensS1200 : FormSiemens

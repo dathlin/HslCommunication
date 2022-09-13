@@ -58,6 +58,7 @@
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
+			this.toolStripMenuItem_doc = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -74,6 +75,7 @@
             this.logToolStripMenuItem,
             this.toolStripMenuItem_homepage,
             this.日志ToolStripMenuItem,
+            this.toolStripMenuItem_doc,
             this.verisonToolStripMenuItem,
             this.activeToolStripMenuItem,
             this.免责条款ToolStripMenuItem,
@@ -139,7 +141,7 @@
 			// 
 			this.简体中文ToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
 			this.简体中文ToolStripMenuItem.Name = "简体中文ToolStripMenuItem";
-			this.简体中文ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.简体中文ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
 			this.简体中文ToolStripMenuItem.Text = "简体中文";
 			this.简体中文ToolStripMenuItem.Click += new System.EventHandler(this.简体中文ToolStripMenuItem_Click);
 			// 
@@ -147,7 +149,7 @@
 			// 
 			this.englishToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
 			this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
-			this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.englishToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
 			this.englishToolStripMenuItem.Text = "English";
 			this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
 			// 
@@ -307,6 +309,14 @@
 			this.label2.TabIndex = 42;
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
+			// toolStripMenuItem_doc
+			// 
+			this.toolStripMenuItem_doc.ForeColor = System.Drawing.Color.White;
+			this.toolStripMenuItem_doc.Name = "toolStripMenuItem_doc";
+			this.toolStripMenuItem_doc.Size = new System.Drawing.Size(43, 21);
+			this.toolStripMenuItem_doc.Text = "Doc";
+			this.toolStripMenuItem_doc.Click += new System.EventHandler(this.toolStripMenuItem_doc_Click);
+			// 
 			// FormSelect
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -369,6 +379,7 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_language;
 		private System.Windows.Forms.ToolStripMenuItem 简体中文ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_doc;
 	}
 }
 

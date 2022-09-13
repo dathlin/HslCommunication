@@ -79,7 +79,7 @@ namespace HslCommunicationDemo
 		{
 			fanuc?.ConnectClose( );
 			fanuc = new FanucSeries0i( textBox1.Text, int.Parse( textBox2.Text ) );
-
+			fanuc.LogNet = this.LogNet;
 			button1.Enabled = false;
 			OperateResult connect = await fanuc.ConnectServerAsync( );
 
@@ -122,6 +122,19 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button34_Click( object sender, EventArgs e )
+		{
+			// 操作信息
+			OperateResult<FanucOperatorMessage[]> read = fanuc.ReadOperatorMessage( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = read.Content.ToJsonString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
 		private void button3_Click( object sender, EventArgs e )
 		{
 			OperateResult<SysStatusInfo> read= fanuc.ReadSysStatusInfo( );
@@ -721,6 +734,7 @@ namespace HslCommunicationDemo
 			//	MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			//}
 		}
+
 	}
 
 

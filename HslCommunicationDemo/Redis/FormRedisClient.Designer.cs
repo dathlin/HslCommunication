@@ -40,31 +40,39 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.textBox_redis_cmd = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.button_redis_PERSIST = new System.Windows.Forms.Button();
+			this.button_redis_EXISTS = new System.Windows.Forms.Button();
 			this.button12 = new System.Windows.Forms.Button();
 			this.button11 = new System.Windows.Forms.Button();
 			this.button10 = new System.Windows.Forms.Button();
 			this.button9 = new System.Windows.Forms.Button();
-			this.button8 = new System.Windows.Forms.Button();
+			this.button_redis_execute_cmd = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.textBox9 = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
-			this.button4 = new System.Windows.Forms.Button();
-			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.button_get_key = new System.Windows.Forms.Button();
+			this.textBox_get_result = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
-			this.textBox11 = new System.Windows.Forms.TextBox();
+			this.textBox_get_key = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
-			this.button3 = new System.Windows.Forms.Button();
+			this.button_set_key = new System.Windows.Forms.Button();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
-			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.textBox_write_key = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.button_redis_INCR = new System.Windows.Forms.Button();
+			this.button_redis_DECR = new System.Windows.Forms.Button();
+			this.button_redis_STRLEN = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -87,12 +95,12 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 83);
+			this.panel1.Size = new System.Drawing.Size(997, 67);
 			this.panel1.TabIndex = 7;
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(798, 45);
+			this.button6.Location = new System.Drawing.Point(820, 32);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(168, 28);
 			this.button6.TabIndex = 9;
@@ -101,7 +109,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(798, 11);
+			this.button5.Location = new System.Drawing.Point(820, 2);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(168, 28);
 			this.button5.TabIndex = 8;
@@ -111,7 +119,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(81, 47);
+			this.textBox3.Location = new System.Drawing.Point(81, 34);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(384, 23);
 			this.textBox3.TabIndex = 7;
@@ -119,7 +127,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(8, 50);
+			this.label6.Location = new System.Drawing.Point(8, 37);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(36, 17);
 			this.label6.TabIndex = 6;
@@ -128,7 +136,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(584, 11);
+			this.button2.Location = new System.Drawing.Point(653, 2);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -138,7 +146,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(477, 11);
+			this.button1.Location = new System.Drawing.Point(546, 2);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -148,16 +156,16 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(305, 14);
+			this.textBox2.Location = new System.Drawing.Point(418, 5);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(141, 23);
+			this.textBox2.Size = new System.Drawing.Size(91, 23);
 			this.textBox2.TabIndex = 3;
 			this.textBox2.Text = "6379";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(251, 17);
+			this.label3.Location = new System.Drawing.Point(364, 8);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(36, 17);
 			this.label3.TabIndex = 2;
@@ -165,16 +173,16 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(81, 14);
+			this.textBox1.Location = new System.Drawing.Point(81, 5);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(141, 23);
+			this.textBox1.Size = new System.Drawing.Size(257, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "127.0.0.1";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 17);
+			this.label1.Location = new System.Drawing.Point(8, 8);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(55, 17);
 			this.label1.TabIndex = 0;
@@ -182,35 +190,96 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button_redis_STRLEN);
+			this.panel2.Controls.Add(this.button_redis_DECR);
+			this.panel2.Controls.Add(this.button_redis_INCR);
+			this.panel2.Controls.Add(this.textBox_redis_cmd);
+			this.panel2.Controls.Add(this.label2);
+			this.panel2.Controls.Add(this.groupBox1);
+			this.panel2.Controls.Add(this.button_redis_PERSIST);
+			this.panel2.Controls.Add(this.button_redis_EXISTS);
 			this.panel2.Controls.Add(this.button12);
 			this.panel2.Controls.Add(this.button11);
 			this.panel2.Controls.Add(this.button10);
 			this.panel2.Controls.Add(this.button9);
-			this.panel2.Controls.Add(this.button8);
+			this.panel2.Controls.Add(this.button_redis_execute_cmd);
 			this.panel2.Controls.Add(this.button7);
 			this.panel2.Controls.Add(this.textBox8);
 			this.panel2.Controls.Add(this.label8);
 			this.panel2.Controls.Add(this.textBox9);
 			this.panel2.Controls.Add(this.label12);
-			this.panel2.Controls.Add(this.button4);
-			this.panel2.Controls.Add(this.textBox10);
+			this.panel2.Controls.Add(this.button_get_key);
+			this.panel2.Controls.Add(this.textBox_get_result);
 			this.panel2.Controls.Add(this.label13);
-			this.panel2.Controls.Add(this.textBox11);
+			this.panel2.Controls.Add(this.textBox_get_key);
 			this.panel2.Controls.Add(this.label14);
 			this.panel2.Controls.Add(this.textBox7);
 			this.panel2.Controls.Add(this.label11);
 			this.panel2.Controls.Add(this.textBox6);
 			this.panel2.Controls.Add(this.label10);
-			this.panel2.Controls.Add(this.button3);
+			this.panel2.Controls.Add(this.button_set_key);
 			this.panel2.Controls.Add(this.textBox4);
 			this.panel2.Controls.Add(this.label9);
-			this.panel2.Controls.Add(this.textBox5);
+			this.panel2.Controls.Add(this.textBox_write_key);
 			this.panel2.Controls.Add(this.label7);
-			this.panel2.Location = new System.Drawing.Point(3, 122);
+			this.panel2.Location = new System.Drawing.Point(3, 106);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 518);
+			this.panel2.Size = new System.Drawing.Size(997, 536);
 			this.panel2.TabIndex = 13;
+			// 
+			// textBox_redis_cmd
+			// 
+			this.textBox_redis_cmd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_redis_cmd.Location = new System.Drawing.Point(62, 506);
+			this.textBox_redis_cmd.Name = "textBox_redis_cmd";
+			this.textBox_redis_cmd.Size = new System.Drawing.Size(365, 23);
+			this.textBox_redis_cmd.TabIndex = 36;
+			this.textBox_redis_cmd.Text = "GET A";
+			// 
+			// label2
+			// 
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(7, 510);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(44, 17);
+			this.label2.TabIndex = 35;
+			this.label2.Text = "Cmds:";
+			// 
+			// groupBox1
+			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Location = new System.Drawing.Point(10, 211);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(978, 5);
+			this.groupBox1.TabIndex = 34;
+			this.groupBox1.TabStop = false;
+			// 
+			// button_redis_PERSIST
+			// 
+			this.button_redis_PERSIST.Location = new System.Drawing.Point(425, 5);
+			this.button_redis_PERSIST.Name = "button_redis_PERSIST";
+			this.button_redis_PERSIST.Size = new System.Drawing.Size(91, 28);
+			this.button_redis_PERSIST.TabIndex = 33;
+			this.button_redis_PERSIST.Text = "PERSIST";
+			this.button_redis_PERSIST.UseVisualStyleBackColor = true;
+			this.button_redis_PERSIST.Click += new System.EventHandler(this.button_redis_PERSIST_Click);
+			// 
+			// button_redis_EXISTS
+			// 
+			this.button_redis_EXISTS.Location = new System.Drawing.Point(328, 5);
+			this.button_redis_EXISTS.Name = "button_redis_EXISTS";
+			this.button_redis_EXISTS.Size = new System.Drawing.Size(91, 28);
+			this.button_redis_EXISTS.TabIndex = 32;
+			this.button_redis_EXISTS.Text = "EXISTS";
+			this.button_redis_EXISTS.UseVisualStyleBackColor = true;
+			this.button_redis_EXISTS.Click += new System.EventHandler(this.button_redis_EXISTS_Click);
 			// 
 			// button12
 			// 
@@ -252,19 +321,21 @@
 			this.button9.UseVisualStyleBackColor = true;
 			this.button9.Click += new System.EventHandler(this.button9_Click);
 			// 
-			// button8
+			// button_redis_execute_cmd
 			// 
-			this.button8.Location = new System.Drawing.Point(367, 234);
-			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(110, 28);
-			this.button8.TabIndex = 27;
-			this.button8.Text = "customer";
-			this.button8.UseVisualStyleBackColor = true;
-			this.button8.Click += new System.EventHandler(this.button8_Click);
+			this.button_redis_execute_cmd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_redis_execute_cmd.Location = new System.Drawing.Point(433, 504);
+			this.button_redis_execute_cmd.Name = "button_redis_execute_cmd";
+			this.button_redis_execute_cmd.Size = new System.Drawing.Size(110, 28);
+			this.button_redis_execute_cmd.TabIndex = 27;
+			this.button_redis_execute_cmd.Text = "execute cmd";
+			this.button_redis_execute_cmd.UseVisualStyleBackColor = true;
+			this.button_redis_execute_cmd.Click += new System.EventHandler(this.button_execute_commands_Click);
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(897, 235);
+			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button7.Location = new System.Drawing.Point(896, 504);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(91, 28);
 			this.button7.TabIndex = 26;
@@ -273,7 +344,8 @@
 			// 
 			// textBox8
 			// 
-			this.textBox8.Location = new System.Drawing.Point(769, 237);
+			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox8.Location = new System.Drawing.Point(768, 507);
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ReadOnly = true;
 			this.textBox8.Size = new System.Drawing.Size(88, 23);
@@ -282,8 +354,9 @@
 			// 
 			// label8
 			// 
+			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(719, 241);
+			this.label8.Location = new System.Drawing.Point(718, 511);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(47, 17);
 			this.label8.TabIndex = 24;
@@ -291,7 +364,8 @@
 			// 
 			// textBox9
 			// 
-			this.textBox9.Location = new System.Drawing.Point(633, 238);
+			this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox9.Location = new System.Drawing.Point(632, 507);
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(80, 23);
 			this.textBox9.TabIndex = 23;
@@ -299,53 +373,57 @@
 			// 
 			// label12
 			// 
+			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(583, 241);
+			this.label12.Location = new System.Drawing.Point(582, 510);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(51, 17);
 			this.label12.TabIndex = 22;
 			this.label12.Text = "times：";
 			// 
-			// button4
+			// button_get_key
 			// 
-			this.button4.Location = new System.Drawing.Point(270, 235);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(91, 28);
-			this.button4.TabIndex = 21;
-			this.button4.Text = "request";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click_1);
+			this.button_get_key.Location = new System.Drawing.Point(270, 222);
+			this.button_get_key.Name = "button_get_key";
+			this.button_get_key.Size = new System.Drawing.Size(91, 28);
+			this.button_get_key.TabIndex = 21;
+			this.button_get_key.Text = "Get Key";
+			this.button_get_key.UseVisualStyleBackColor = true;
+			this.button_get_key.Click += new System.EventHandler(this.button4_Click_1);
 			// 
-			// textBox10
+			// textBox_get_result
 			// 
-			this.textBox10.Location = new System.Drawing.Point(62, 266);
-			this.textBox10.Multiline = true;
-			this.textBox10.Name = "textBox10";
-			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(926, 244);
-			this.textBox10.TabIndex = 18;
+			this.textBox_get_result.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_get_result.Location = new System.Drawing.Point(62, 257);
+			this.textBox_get_result.Multiline = true;
+			this.textBox_get_result.Name = "textBox_get_result";
+			this.textBox_get_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_get_result.Size = new System.Drawing.Size(922, 244);
+			this.textBox_get_result.TabIndex = 18;
 			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(8, 269);
+			this.label13.Location = new System.Drawing.Point(8, 259);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(41, 17);
 			this.label13.TabIndex = 20;
 			this.label13.Text = "text：";
 			// 
-			// textBox11
+			// textBox_get_key
 			// 
-			this.textBox11.Location = new System.Drawing.Point(62, 237);
-			this.textBox11.Name = "textBox11";
-			this.textBox11.Size = new System.Drawing.Size(202, 23);
-			this.textBox11.TabIndex = 19;
-			this.textBox11.Text = "A";
+			this.textBox_get_key.Location = new System.Drawing.Point(62, 224);
+			this.textBox_get_key.Name = "textBox_get_key";
+			this.textBox_get_key.Size = new System.Drawing.Size(202, 23);
+			this.textBox_get_key.TabIndex = 19;
+			this.textBox_get_key.Text = "A";
 			// 
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(8, 241);
+			this.label14.Location = new System.Drawing.Point(8, 228);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(40, 17);
 			this.label14.TabIndex = 17;
@@ -386,23 +464,25 @@
 			this.label10.TabIndex = 13;
 			this.label10.Text = "times：";
 			// 
-			// button3
+			// button_set_key
 			// 
-			this.button3.Location = new System.Drawing.Point(62, 180);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(91, 28);
-			this.button3.TabIndex = 12;
-			this.button3.Text = "write key";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.button_set_key.Location = new System.Drawing.Point(62, 180);
+			this.button_set_key.Name = "button_set_key";
+			this.button_set_key.Size = new System.Drawing.Size(91, 28);
+			this.button_set_key.TabIndex = 12;
+			this.button_set_key.Text = "Set key";
+			this.button_set_key.UseVisualStyleBackColor = true;
+			this.button_set_key.Click += new System.EventHandler(this.button_set_key_Click);
 			// 
 			// textBox4
 			// 
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox4.Location = new System.Drawing.Point(62, 36);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(926, 138);
+			this.textBox4.Size = new System.Drawing.Size(922, 138);
 			this.textBox4.TabIndex = 8;
 			// 
 			// label9
@@ -414,13 +494,13 @@
 			this.label9.TabIndex = 11;
 			this.label9.Text = "text：";
 			// 
-			// textBox5
+			// textBox_write_key
 			// 
-			this.textBox5.Location = new System.Drawing.Point(62, 7);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(141, 23);
-			this.textBox5.TabIndex = 9;
-			this.textBox5.Text = "A";
+			this.textBox_write_key.Location = new System.Drawing.Point(62, 7);
+			this.textBox_write_key.Name = "textBox_write_key";
+			this.textBox_write_key.Size = new System.Drawing.Size(260, 23);
+			this.textBox_write_key.TabIndex = 9;
+			this.textBox_write_key.Text = "A";
 			// 
 			// label7
 			// 
@@ -444,6 +524,36 @@
 			this.userControlHead1.ProtocolInfo = "Redis";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
+			// 
+			// button_redis_INCR
+			// 
+			this.button_redis_INCR.Location = new System.Drawing.Point(367, 222);
+			this.button_redis_INCR.Name = "button_redis_INCR";
+			this.button_redis_INCR.Size = new System.Drawing.Size(60, 28);
+			this.button_redis_INCR.TabIndex = 37;
+			this.button_redis_INCR.Text = "INCR";
+			this.button_redis_INCR.UseVisualStyleBackColor = true;
+			this.button_redis_INCR.Click += new System.EventHandler(this.button_redis_INCR_Click);
+			// 
+			// button_redis_DECR
+			// 
+			this.button_redis_DECR.Location = new System.Drawing.Point(433, 222);
+			this.button_redis_DECR.Name = "button_redis_DECR";
+			this.button_redis_DECR.Size = new System.Drawing.Size(66, 28);
+			this.button_redis_DECR.TabIndex = 38;
+			this.button_redis_DECR.Text = "DECR";
+			this.button_redis_DECR.UseVisualStyleBackColor = true;
+			this.button_redis_DECR.Click += new System.EventHandler(this.button_redis_DECR_Click);
+			// 
+			// button_redis_STRLEN
+			// 
+			this.button_redis_STRLEN.Location = new System.Drawing.Point(505, 222);
+			this.button_redis_STRLEN.Name = "button_redis_STRLEN";
+			this.button_redis_STRLEN.Size = new System.Drawing.Size(66, 28);
+			this.button_redis_STRLEN.TabIndex = 39;
+			this.button_redis_STRLEN.Text = "STRLEN";
+			this.button_redis_STRLEN.UseVisualStyleBackColor = true;
+			this.button_redis_STRLEN.Click += new System.EventHandler(this.button_redis_STRLEN_Click);
 			// 
 			// FormRedisClient
 			// 
@@ -483,10 +593,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_set_key;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox_write_key;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
@@ -494,17 +604,25 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button button_get_key;
+        private System.Windows.Forms.TextBox textBox_get_result;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox_get_key;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button_redis_execute_cmd;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private DemoControl.UserControlHead userControlHead1;
-    }
+		private System.Windows.Forms.Button button_redis_EXISTS;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.Button button_redis_PERSIST;
+		private System.Windows.Forms.TextBox textBox_redis_cmd;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Button button_redis_INCR;
+		private System.Windows.Forms.Button button_redis_DECR;
+		private System.Windows.Forms.Button button_redis_STRLEN;
+	}
 }

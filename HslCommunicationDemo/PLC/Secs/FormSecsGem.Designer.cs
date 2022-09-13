@@ -29,6 +29,9 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
@@ -69,11 +72,11 @@
 			this.textBox_s2 = new System.Windows.Forms.TextBox();
 			this.button_s2f13 = new System.Windows.Forms.Button();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.button4 = new System.Windows.Forms.Button();
+			this.textBox_log = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -97,6 +100,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.comboBox1);
+			this.panel1.Controls.Add(this.label5);
 			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
@@ -111,6 +116,40 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 38);
 			this.panel1.TabIndex = 0;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Items.AddRange(new object[] {
+            "ASCII",
+            "Default",
+            "UTF8",
+            "Unicode",
+            "GB2312"});
+			this.comboBox1.Location = new System.Drawing.Point(668, 4);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(104, 25);
+			this.comboBox1.TabIndex = 14;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(600, 9);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(63, 17);
+			this.label5.TabIndex = 13;
+			this.label5.Text = "Encode：";
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(458, 8);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(136, 21);
+			this.checkBox2.TabIndex = 12;
+			this.checkBox2.Text = "初始化时发送 S0F0?";
+			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// textBox2
 			// 
@@ -148,16 +187,16 @@
 			// 
 			// textBox_deviceID
 			// 
-			this.textBox_deviceID.Location = new System.Drawing.Point(422, 6);
+			this.textBox_deviceID.Location = new System.Drawing.Point(408, 6);
 			this.textBox_deviceID.Name = "textBox_deviceID";
-			this.textBox_deviceID.Size = new System.Drawing.Size(56, 23);
+			this.textBox_deviceID.Size = new System.Drawing.Size(44, 23);
 			this.textBox_deviceID.TabIndex = 7;
 			this.textBox_deviceID.Text = "1";
 			// 
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(346, 9);
+			this.label21.Location = new System.Drawing.Point(332, 9);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(71, 17);
 			this.label21.TabIndex = 6;
@@ -264,7 +303,7 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.textBox_receive);
-			this.splitContainer2.Size = new System.Drawing.Size(656, 230);
+			this.splitContainer2.Size = new System.Drawing.Size(656, 227);
 			this.splitContainer2.SplitterDistance = 295;
 			this.splitContainer2.TabIndex = 26;
 			// 
@@ -275,7 +314,7 @@
 			this.textBox_data.Multiline = true;
 			this.textBox_data.Name = "textBox_data";
 			this.textBox_data.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_data.Size = new System.Drawing.Size(295, 230);
+			this.textBox_data.Size = new System.Drawing.Size(295, 227);
 			this.textBox_data.TabIndex = 20;
 			// 
 			// textBox_receive
@@ -285,7 +324,7 @@
 			this.textBox_receive.Multiline = true;
 			this.textBox_receive.Name = "textBox_receive";
 			this.textBox_receive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_receive.Size = new System.Drawing.Size(357, 230);
+			this.textBox_receive.Size = new System.Drawing.Size(357, 227);
 			this.textBox_receive.TabIndex = 12;
 			// 
 			// textBox_example
@@ -295,11 +334,11 @@
 			this.textBox_example.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.textBox_example.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.textBox_example.ForeColor = System.Drawing.Color.Green;
-			this.textBox_example.Location = new System.Drawing.Point(6, 283);
+			this.textBox_example.Location = new System.Drawing.Point(6, 281);
 			this.textBox_example.Multiline = true;
 			this.textBox_example.Name = "textBox_example";
 			this.textBox_example.ReadOnly = true;
-			this.textBox_example.Size = new System.Drawing.Size(978, 47);
+			this.textBox_example.Size = new System.Drawing.Size(978, 49);
 			this.textBox_example.TabIndex = 25;
 			this.textBox_example.Text = "Example:";
 			// 
@@ -309,7 +348,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.treeView1.Location = new System.Drawing.Point(5, 6);
 			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(311, 275);
+			this.treeView1.Size = new System.Drawing.Size(311, 272);
 			this.treeView1.TabIndex = 24;
 			// 
 			// button3
@@ -406,10 +445,10 @@
 			this.tabPage2.Controls.Add(this.textBox_s1);
 			this.tabPage2.Controls.Add(this.button_S1F1);
 			this.tabPage2.Controls.Add(this.label4);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Location = new System.Drawing.Point(4, 26);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(987, 330);
+			this.tabPage2.Size = new System.Drawing.Size(987, 326);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "S1";
 			// 
@@ -468,7 +507,7 @@
 			this.textBox_s1.Multiline = true;
 			this.textBox_s1.Name = "textBox_s1";
 			this.textBox_s1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_s1.Size = new System.Drawing.Size(259, 313);
+			this.textBox_s1.Size = new System.Drawing.Size(259, 309);
 			this.textBox_s1.TabIndex = 23;
 			// 
 			// button_S1F1
@@ -494,10 +533,10 @@
 			// 
 			this.tabPage_s2.BackColor = System.Drawing.SystemColors.Control;
 			this.tabPage_s2.Controls.Add(this.panel3);
-			this.tabPage_s2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage_s2.Location = new System.Drawing.Point(4, 26);
 			this.tabPage_s2.Name = "tabPage_s2";
 			this.tabPage_s2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage_s2.Size = new System.Drawing.Size(987, 330);
+			this.tabPage_s2.Size = new System.Drawing.Size(987, 326);
 			this.tabPage_s2.TabIndex = 2;
 			this.tabPage_s2.Text = "S2";
 			// 
@@ -509,7 +548,7 @@
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel3.Location = new System.Drawing.Point(3, 3);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(981, 324);
+			this.panel3.Size = new System.Drawing.Size(981, 320);
 			this.panel3.TabIndex = 0;
 			// 
 			// textBox_s2
@@ -520,7 +559,7 @@
 			this.textBox_s2.Multiline = true;
 			this.textBox_s2.Name = "textBox_s2";
 			this.textBox_s2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_s2.Size = new System.Drawing.Size(259, 318);
+			this.textBox_s2.Size = new System.Drawing.Size(259, 314);
 			this.textBox_s2.TabIndex = 24;
 			// 
 			// button_s2f13
@@ -535,7 +574,8 @@
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.textBox10);
+			this.groupBox3.Controls.Add(this.button4);
+			this.groupBox3.Controls.Add(this.textBox_log);
 			this.groupBox3.Controls.Add(this.label13);
 			this.groupBox3.Controls.Add(this.checkBox1);
 			this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -546,17 +586,27 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "日志";
 			// 
-			// textBox10
+			// button4
 			// 
-			this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.button4.Location = new System.Drawing.Point(4, 69);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(55, 26);
+			this.button4.TabIndex = 16;
+			this.button4.Text = "clear";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click_1);
+			// 
+			// textBox_log
+			// 
+			this.textBox_log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox10.Location = new System.Drawing.Point(63, 17);
-			this.textBox10.Multiline = true;
-			this.textBox10.Name = "textBox10";
-			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(926, 181);
-			this.textBox10.TabIndex = 10;
+			this.textBox_log.Location = new System.Drawing.Point(63, 17);
+			this.textBox_log.Multiline = true;
+			this.textBox_log.Name = "textBox_log";
+			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_log.Size = new System.Drawing.Size(926, 181);
+			this.textBox_log.TabIndex = 10;
 			// 
 			// label13
 			// 
@@ -591,16 +641,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// checkBox2
-			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(497, 8);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(136, 21);
-			this.checkBox2.TabIndex = 12;
-			this.checkBox2.Text = "初始化时发送 S0F0?";
-			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// FormSecsGem
 			// 
@@ -652,7 +692,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox_log;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.TextBox textBox_function;
@@ -693,5 +733,8 @@
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.SplitContainer splitContainer2;
 		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Button button4;
 	}
 }

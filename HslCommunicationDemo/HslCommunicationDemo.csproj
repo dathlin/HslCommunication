@@ -71,14 +71,14 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.0.6.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.0.6\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.1.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.1.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -250,6 +250,12 @@
     <Compile Include="FormNewVerison.Designer.cs">
       <DependentUpon>FormNewVerison.cs</DependentUpon>
     </Compile>
+    <Compile Include="HslDebug\FormCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HslDebug\FormCheck.Designer.cs">
+      <DependentUpon>FormCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="HslDebug\FormHandShake.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,6 +393,18 @@
     </Compile>
     <Compile Include="MQTT\FormMqttFileServer.Designer.cs">
       <DependentUpon>FormMqttFileServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MQTT\FormMqttRpcDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MQTT\FormMqttRpcDevice.Designer.cs">
+      <DependentUpon>FormMqttRpcDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MQTT\FormMqttSubscribe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MQTT\FormMqttSubscribe.Designer.cs">
+      <DependentUpon>FormMqttSubscribe.cs</DependentUpon>
     </Compile>
     <Compile Include="MQTT\FormWillTopicSetting.cs">
       <SubType>Form</SubType>
@@ -1526,6 +1544,9 @@
     <EmbeddedResource Include="FormNewVerison.resx">
       <DependentUpon>FormNewVerison.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HslDebug\FormCheck.resx">
+      <DependentUpon>FormCheck.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HslDebug\FormHandShake.resx">
       <DependentUpon>FormHandShake.cs</DependentUpon>
     </EmbeddedResource>
@@ -1594,6 +1615,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MQTT\FormMqttFileServer.resx">
       <DependentUpon>FormMqttFileServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MQTT\FormMqttRpcDevice.resx">
+      <DependentUpon>FormMqttRpcDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MQTT\FormMqttSubscribe.resx">
+      <DependentUpon>FormMqttSubscribe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MQTT\FormWillTopicSetting.resx">
       <DependentUpon>FormWillTopicSetting.cs</DependentUpon>

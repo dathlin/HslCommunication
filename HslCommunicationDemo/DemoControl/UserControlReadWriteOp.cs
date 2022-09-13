@@ -1128,7 +1128,11 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_write_string.Enabled = false;
 				DateTime start = DateTime.Now;
-				OperateResult write = await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text, GetEncodingFromIndex(comboBox_write_Encoding.SelectedIndex) );
+				OperateResult write;
+				if (comboBox_write_Encoding.SelectedIndex == 0)
+					write = await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text );
+				else
+					write = await readWriteNet.WriteAsync( textBox8.Text, textBox7.Text, GetEncodingFromIndex( comboBox_write_Encoding.SelectedIndex ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 				DemoUtils.WriteResultRender( write, textBox8.Text );
 				button_write_string.Enabled = true;
@@ -1136,7 +1140,11 @@ namespace HslCommunicationDemo.DemoControl
 			else
 			{
 				DateTime start = DateTime.Now;
-				OperateResult write = readWriteNet.Write( textBox8.Text, textBox7.Text, GetEncodingFromIndex( comboBox_write_Encoding.SelectedIndex ) );
+				OperateResult write;
+				if (comboBox_write_Encoding.SelectedIndex == 0)
+					write = readWriteNet.Write( textBox8.Text, textBox7.Text );
+				else
+					write = readWriteNet.Write( textBox8.Text, textBox7.Text, GetEncodingFromIndex( comboBox_write_Encoding.SelectedIndex ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 				DemoUtils.WriteResultRender( write, textBox8.Text );
 			}

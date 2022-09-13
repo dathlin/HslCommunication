@@ -48,6 +48,8 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button_write_Date = new System.Windows.Forms.Button();
+			this.button_read_date = new System.Windows.Forms.Button();
 			this.button12 = new System.Windows.Forms.Button();
 			this.button10 = new System.Windows.Forms.Button();
 			this.button11 = new System.Windows.Forms.Button();
@@ -280,6 +282,8 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Controls.Add(this.button_write_Date);
+			this.groupBox5.Controls.Add(this.button_read_date);
 			this.groupBox5.Controls.Add(this.button12);
 			this.groupBox5.Controls.Add(this.button10);
 			this.groupBox5.Controls.Add(this.button11);
@@ -304,6 +308,26 @@
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
 			// 
+			// button_write_Date
+			// 
+			this.button_write_Date.Location = new System.Drawing.Point(324, 163);
+			this.button_write_Date.Name = "button_write_Date";
+			this.button_write_Date.Size = new System.Drawing.Size(82, 28);
+			this.button_write_Date.TabIndex = 28;
+			this.button_write_Date.Text = "日期写入";
+			this.button_write_Date.UseVisualStyleBackColor = true;
+			this.button_write_Date.Click += new System.EventHandler(this.button_write_Date_Click);
+			// 
+			// button_read_date
+			// 
+			this.button_read_date.Location = new System.Drawing.Point(236, 163);
+			this.button_read_date.Name = "button_read_date";
+			this.button_read_date.Size = new System.Drawing.Size(82, 28);
+			this.button_read_date.TabIndex = 27;
+			this.button_read_date.Text = "日期读取";
+			this.button_read_date.UseVisualStyleBackColor = true;
+			this.button_read_date.Click += new System.EventHandler(this.button_read_date_Click);
+			// 
 			// button12
 			// 
 			this.button12.Location = new System.Drawing.Point(13, 233);
@@ -316,7 +340,7 @@
 			// 
 			// button10
 			// 
-			this.button10.Location = new System.Drawing.Point(324, 154);
+			this.button10.Location = new System.Drawing.Point(324, 128);
 			this.button10.Name = "button10";
 			this.button10.Size = new System.Drawing.Size(82, 28);
 			this.button10.TabIndex = 24;
@@ -326,7 +350,7 @@
 			// 
 			// button11
 			// 
-			this.button11.Location = new System.Drawing.Point(236, 155);
+			this.button11.Location = new System.Drawing.Point(236, 129);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(82, 28);
 			this.button11.TabIndex = 25;
@@ -355,7 +379,7 @@
 			// 
 			// button14
 			// 
-			this.button14.Location = new System.Drawing.Point(324, 120);
+			this.button14.Location = new System.Drawing.Point(324, 94);
 			this.button14.Name = "button14";
 			this.button14.Size = new System.Drawing.Size(82, 28);
 			this.button14.TabIndex = 16;
@@ -365,7 +389,7 @@
 			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(324, 88);
+			this.button8.Location = new System.Drawing.Point(324, 62);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(82, 28);
 			this.button8.TabIndex = 21;
@@ -375,7 +399,7 @@
 			// 
 			// button_read_string
 			// 
-			this.button_read_string.Location = new System.Drawing.Point(236, 121);
+			this.button_read_string.Location = new System.Drawing.Point(236, 95);
 			this.button_read_string.Name = "button_read_string";
 			this.button_read_string.Size = new System.Drawing.Size(82, 28);
 			this.button_read_string.TabIndex = 16;
@@ -385,7 +409,7 @@
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(236, 88);
+			this.button7.Location = new System.Drawing.Point(236, 62);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(82, 28);
 			this.button7.TabIndex = 17;
@@ -406,7 +430,7 @@
 			// label19
 			// 
 			this.label19.ForeColor = System.Drawing.Color.Red;
-			this.label19.Location = new System.Drawing.Point(62, 150);
+			this.label19.Location = new System.Drawing.Point(62, 124);
 			this.label19.Name = "label19";
 			this.label19.Size = new System.Drawing.Size(147, 58);
 			this.label19.TabIndex = 17;
@@ -434,7 +458,7 @@
 			// 
 			// textBox7
 			// 
-			this.textBox7.Location = new System.Drawing.Point(78, 124);
+			this.textBox7.Location = new System.Drawing.Point(78, 98);
 			this.textBox7.Name = "textBox7";
 			this.textBox7.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox7.Size = new System.Drawing.Size(152, 23);
@@ -443,7 +467,7 @@
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(10, 94);
+			this.label10.Location = new System.Drawing.Point(10, 68);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(44, 17);
 			this.label10.TabIndex = 2;
@@ -451,7 +475,7 @@
 			// 
 			// textBox8
 			// 
-			this.textBox8.Location = new System.Drawing.Point(78, 91);
+			this.textBox8.Location = new System.Drawing.Point(78, 65);
 			this.textBox8.Name = "textBox8";
 			this.textBox8.Size = new System.Drawing.Size(152, 23);
 			this.textBox8.TabIndex = 3;
@@ -460,7 +484,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(10, 126);
+			this.label9.Location = new System.Drawing.Point(10, 100);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(32, 17);
 			this.label9.TabIndex = 4;
@@ -722,5 +746,7 @@
 		private System.Windows.Forms.Button button10;
 		private System.Windows.Forms.Button button11;
 		private System.Windows.Forms.Button button12;
+		private System.Windows.Forms.Button button_read_date;
+		private System.Windows.Forms.Button button_write_Date;
 	}
 }

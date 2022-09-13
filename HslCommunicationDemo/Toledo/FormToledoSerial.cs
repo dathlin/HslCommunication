@@ -71,6 +71,7 @@ namespace HslCommunicationDemo.Toledo
                 label7.Text = "Data receiving Area:";
                 checkBox4.Text = "Whether to show time";
                 comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
+                checkBox1.Text = "Sum Check?";
             }
         }
 
@@ -100,7 +101,9 @@ namespace HslCommunicationDemo.Toledo
             toledoSerial = new ToledoSerial( );
             toledoSerial.OnToledoStandardDataReceived += ToledoSerial_OnToledoStandardDataReceived;
             toledoSerial.LogNet = LogNet;
-            toledoSerial.SerialPortInni( new Action<SerialPort>( m =>
+            toledoSerial.HasChk = checkBox1.Checked;
+
+			toledoSerial.SerialPortInni( new Action<SerialPort>( m =>
               {
                   m.PortName = comboBox3.Text;
                   m.BaudRate = baudRate;

@@ -61,7 +61,7 @@ namespace HslCommunicationDemo
 				button26.Text = "Read";
 
 				label4.Text = "Run Stop Please be cautious and confirm safety as the prerequisite";
-				groupBox3.Text = "Bulk Read test";
+				groupBox3.Text = "Batch read test, supports random word addresses, such as D100;A100;C100;H100";
 				groupBox4.Text = "Message reading test, hex string needs to be filled in";
 				groupBox5.Text = "Special function test";
 			}
@@ -93,6 +93,7 @@ namespace HslCommunicationDemo
 			omronFinsNet.DA2 = DA2;
 			omronFinsNet.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 			omronFinsNet.LogNet = LogNet;
+			omronFinsNet.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
 
 			OperateResult connect = omronFinsNet.ConnectServer( );
 			if (connect.IsSuccess)
@@ -128,7 +129,22 @@ namespace HslCommunicationDemo
 
 		private void button25_Click( object sender, EventArgs e )
 		{
-			DemoUtils.BulkReadRenderResult( omronFinsNet, textBox6, textBox9, textBox10 );
+			if (textBox6.Text.Contains( ";" ))
+			{
+				OperateResult<byte[]> read = omronFinsNet.Read( textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.None ) );
+				if (read.IsSuccess)
+				{
+					textBox10.Text = read.Content.ToHexString( ' ' );
+				}
+				else
+				{
+					MessageBox.Show( "Read Failed: " + read.Message );
+				}
+			}
+			else
+			{
+				DemoUtils.BulkReadRenderResult( omronFinsNet, textBox6, textBox9, textBox10 );
+			}
 		}
 
 

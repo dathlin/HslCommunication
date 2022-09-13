@@ -100,6 +100,7 @@
 			this.AddNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.readNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.button34 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -203,6 +204,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button34);
 			this.panel2.Controls.Add(this.label15);
 			this.panel2.Controls.Add(this.treeView1);
 			this.panel2.Controls.Add(this.button33);
@@ -829,6 +831,16 @@
 			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.deleteToolStripMenuItem.Text = "删除文件";
 			// 
+			// button34
+			// 
+			this.button34.Location = new System.Drawing.Point(521, 77);
+			this.button34.Name = "button34";
+			this.button34.Size = new System.Drawing.Size(96, 29);
+			this.button34.TabIndex = 68;
+			this.button34.Text = "操作信息";
+			this.button34.UseVisualStyleBackColor = true;
+			this.button34.Click += new System.EventHandler(this.button34_Click);
+			// 
 			// FormCncFanuc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -926,5 +938,6 @@
 		private System.Windows.Forms.ToolStripMenuItem readNCToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.Button button34;
 	}
 }

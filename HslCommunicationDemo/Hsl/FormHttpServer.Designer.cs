@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -49,9 +50,11 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -67,11 +70,21 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(15, 43);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 66);
+			this.panel1.Size = new System.Drawing.Size(997, 59);
 			this.panel1.TabIndex = 7;
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(62, 35);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(263, 21);
+			this.checkBox2.TabIndex = 20;
+			this.checkBox2.Text = "启动账户控制？Name:admin  pwd:123456";
+			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// label1
 			// 
@@ -140,6 +153,8 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.webBrowser1);
 			this.panel2.Controls.Add(this.button2);
@@ -152,9 +167,9 @@
 			this.panel2.Controls.Add(this.label8);
 			this.panel2.Controls.Add(this.textBox5);
 			this.panel2.Controls.Add(this.label7);
-			this.panel2.Location = new System.Drawing.Point(15, 116);
+			this.panel2.Location = new System.Drawing.Point(166, 97);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(977, 524);
+			this.panel2.Size = new System.Drawing.Size(834, 545);
 			this.panel2.TabIndex = 13;
 			// 
 			// webBrowser1
@@ -165,12 +180,13 @@
 			this.webBrowser1.Location = new System.Drawing.Point(62, 243);
 			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(892, 273);
+			this.webBrowser1.Size = new System.Drawing.Size(763, 294);
 			this.webBrowser1.TabIndex = 23;
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(863, 211);
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.Location = new System.Drawing.Point(734, 211);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 22;
@@ -180,9 +196,11 @@
 			// 
 			// textBox1
 			// 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox1.Location = new System.Drawing.Point(62, 214);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(786, 23);
+			this.textBox1.Size = new System.Drawing.Size(666, 23);
 			this.textBox1.TabIndex = 21;
 			this.textBox1.Text = "http://127.0.0.1:12345/GetA";
 			// 
@@ -217,10 +235,12 @@
 			// 
 			// textBox4
 			// 
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox4.Location = new System.Drawing.Point(62, 36);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(892, 138);
+			this.textBox4.Size = new System.Drawing.Size(763, 138);
 			this.textBox4.TabIndex = 8;
 			this.textBox4.Text = "<html><head><title>HslWebServer</title></head><body><p style=\"color:red\">这是一个测试的消" +
     "息内容</p></body></html>";
@@ -275,15 +295,27 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
 			// 
-			// checkBox2
+			// panel3
 			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(62, 37);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(263, 21);
-			this.checkBox2.TabIndex = 20;
-			this.checkBox2.Text = "启动账户控制？Name:admin  pwd:123456";
-			this.checkBox2.UseVisualStyleBackColor = true;
+			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel3.Controls.Add(this.listBox1);
+			this.panel3.Location = new System.Drawing.Point(3, 97);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(157, 545);
+			this.panel3.TabIndex = 15;
+			// 
+			// listBox1
+			// 
+			this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.listBox1.FormattingEnabled = true;
+			this.listBox1.ItemHeight = 17;
+			this.listBox1.Location = new System.Drawing.Point(3, 3);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.Size = new System.Drawing.Size(149, 531);
+			this.listBox1.TabIndex = 0;
 			// 
 			// FormHttpServer
 			// 
@@ -291,6 +323,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
@@ -304,6 +337,7 @@
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			this.panel3.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -331,5 +365,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.ListBox listBox1;
 	}
 }

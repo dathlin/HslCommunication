@@ -47,6 +47,8 @@
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.label42 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+			this.label8 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.button32 = new System.Windows.Forms.Button();
 			this.textBox6 = new System.Windows.Forms.TextBox();
@@ -105,10 +107,10 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(12, 41);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 43);
+			this.panel1.Size = new System.Drawing.Size(997, 43);
 			this.panel1.TabIndex = 12;
 			// 
 			// label2
@@ -182,9 +184,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.tabControl1);
-			this.panel2.Location = new System.Drawing.Point(12, 91);
+			this.panel2.Location = new System.Drawing.Point(3, 82);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 546);
+			this.panel2.Size = new System.Drawing.Size(1001, 568);
 			this.panel2.TabIndex = 13;
 			// 
 			// tabControl1
@@ -195,7 +197,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(976, 544);
+			this.tabControl1.Size = new System.Drawing.Size(999, 566);
 			this.tabControl1.TabIndex = 114;
 			// 
 			// tabPage1
@@ -210,7 +212,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(968, 514);
+			this.tabPage1.Size = new System.Drawing.Size(991, 536);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "通用读取";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -219,7 +221,7 @@
 			// 
 			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(545, 12);
+			this.label4.Location = new System.Drawing.Point(568, 12);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(93, 17);
 			this.label4.TabIndex = 117;
@@ -229,7 +231,7 @@
 			// 
 			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(641, 8);
+			this.comboBox1.Location = new System.Drawing.Point(664, 8);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(203, 25);
 			this.comboBox1.TabIndex = 116;
@@ -237,7 +239,7 @@
 			// button31
 			// 
 			this.button31.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button31.Location = new System.Drawing.Point(850, 6);
+			this.button31.Location = new System.Drawing.Point(873, 6);
 			this.button31.Name = "button31";
 			this.button31.Size = new System.Drawing.Size(112, 28);
 			this.button31.TabIndex = 115;
@@ -274,7 +276,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(901, 469);
+			this.textBox8.Size = new System.Drawing.Size(924, 491);
 			this.textBox8.TabIndex = 110;
 			// 
 			// label42
@@ -288,15 +290,36 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.linkLabel1);
+			this.tabPage2.Controls.Add(this.label8);
 			this.tabPage2.Controls.Add(this.groupBox1);
 			this.tabPage2.Controls.Add(this.userControlReadWriteOp1);
 			this.tabPage2.Location = new System.Drawing.Point(4, 26);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(968, 514);
+			this.tabPage2.Size = new System.Drawing.Size(991, 536);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "专业读写";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// linkLabel1
+			// 
+			this.linkLabel1.AutoSize = true;
+			this.linkLabel1.Location = new System.Drawing.Point(549, 247);
+			this.linkLabel1.Name = "linkLabel1";
+			this.linkLabel1.Size = new System.Drawing.Size(490, 17);
+			this.linkLabel1.TabIndex = 3;
+			this.linkLabel1.TabStop = true;
+			this.linkLabel1.Text = "http://api.hslcommunication.cn/html/9a252da5-4341-0437-0fb7-27da2b49d3c4.htm";
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(6, 248);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(546, 17);
+			this.label8.TabIndex = 2;
+			this.label8.Text = "Bool地址支持：SDO, SDI, RDI, RDO, UI, UO, SI, SO    字单位地址支持：GI, GO, D，其中D参考：\r\n";
 			// 
 			// groupBox1
 			// 
@@ -338,16 +361,16 @@
 			this.groupBox1.Controls.Add(this.button5);
 			this.groupBox1.Controls.Add(this.textBox3);
 			this.groupBox1.Controls.Add(this.button3);
-			this.groupBox1.Location = new System.Drawing.Point(7, 252);
+			this.groupBox1.Location = new System.Drawing.Point(7, 268);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(954, 256);
+			this.groupBox1.Size = new System.Drawing.Size(977, 262);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "特殊功能测试";
 			// 
 			// button32
 			// 
-			this.button32.Location = new System.Drawing.Point(773, 103);
+			this.button32.Location = new System.Drawing.Point(772, 103);
 			this.button32.Name = "button32";
 			this.button32.Size = new System.Drawing.Size(77, 25);
 			this.button32.TabIndex = 34;
@@ -675,7 +698,7 @@
 			this.textBox3.Multiline = true;
 			this.textBox3.Name = "textBox3";
 			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox3.Size = new System.Drawing.Size(942, 117);
+			this.textBox3.Size = new System.Drawing.Size(965, 123);
 			this.textBox3.TabIndex = 1;
 			// 
 			// button3
@@ -690,9 +713,11 @@
 			// 
 			// userControlReadWriteOp1
 			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(7, 6);
+			this.userControlReadWriteOp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(5, 6);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(979, 240);
 			this.userControlReadWriteOp1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -732,6 +757,7 @@
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
+			this.tabPage2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
@@ -796,5 +822,7 @@
 		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Button button32;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.LinkLabel linkLabel1;
 	}
 }

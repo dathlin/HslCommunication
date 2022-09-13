@@ -62,7 +62,7 @@ namespace HslCommunicationDemo
 				label14.Text = "Results:";
 				button26.Text = "Read";
 
-				groupBox3.Text = "Bulk Read test";
+				groupBox3.Text = "Batch read test, supports random word addresses, such as D100;A100;C100;H100";
 				groupBox4.Text = "Message reading test, hex string needs to be filled in";
 				groupBox5.Text = "Special function test";
 			}
@@ -162,7 +162,22 @@ namespace HslCommunicationDemo
 
 		private void button25_Click( object sender, EventArgs e )
 		{
-			DemoUtils.BulkReadRenderResult( omronHostLink, textBox6, textBox9, textBox10 );
+			if (textBox6.Text.Contains( ";" ))
+			{
+				OperateResult<byte[]> read = omronHostLink.Read( textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.None ) );
+				if (read.IsSuccess)
+				{
+					textBox10.Text = read.Content.ToHexString( ' ' );
+				}
+				else
+				{
+					MessageBox.Show( "Read Failed: " + read.Message );
+				}
+			}
+			else
+			{
+				DemoUtils.BulkReadRenderResult( omronHostLink, textBox6, textBox9, textBox10 );
+			}
 		}
 
 
