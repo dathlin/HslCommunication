@@ -565,15 +565,17 @@ namespace HslCommunicationDemo
 			treeView1.Nodes.Add( gePlc );
 
 			// Yaskawa PLC
-			TreeNode yaskawaPlc = new TreeNode( "Yaskawa Plc[安川]", 29, 29 );
-			yaskawaPlc.Nodes.Add( GetTreeNodeByIndex( "Memobus", 29, typeof( FormYASKAWAMemobusTcpNet ) ) );
+			TreeNode yaskawaPlc = new TreeNode( "Yaskawa Plc[安川]", 29,   29 );
+			yaskawaPlc.Nodes.Add( GetTreeNodeByIndex( "MemobusTcp",        29, typeof( FormYASKAWAMemobusTcpNet ) ) );
+			yaskawaPlc.Nodes.Add( GetTreeNodeByIndex( "MemobusUdp",        29, typeof( FormYASKAWAMemobusUdpNet ) ) );
+			yaskawaPlc.Nodes.Add( GetTreeNodeByIndex( "MemobusTcpServer",  29, typeof( FormMemobusTcpServer ) ) );
 			treeView1.Nodes.Add( yaskawaPlc );
 
 			// yamatake 山武 
 			TreeNode yamatakePlc = new TreeNode( "yamatake[山武]", 34, 34 );
-			yamatakePlc.Nodes.Add( GetTreeNodeByIndex( "DigitronCPL", 34, typeof( FormDigitronCPL ) ) );
+			yamatakePlc.Nodes.Add( GetTreeNodeByIndex( "DigitronCPL",         34, typeof( FormDigitronCPL ) ) );
 			yamatakePlc.Nodes.Add( GetTreeNodeByIndex( "DigitronCPL OverTcp", 34, typeof( FormDigitronCPLOverTcp ) ) );
-			yamatakePlc.Nodes.Add( GetTreeNodeByIndex( "DigitronCPL Server", 34, typeof( FormDigitronCPLServer ) ) );
+			yamatakePlc.Nodes.Add( GetTreeNodeByIndex( "DigitronCPL Server",  34, typeof( FormDigitronCPLServer ) ) );
 			treeView1.Nodes.Add( yamatakePlc );
 
 			// RKC 理化

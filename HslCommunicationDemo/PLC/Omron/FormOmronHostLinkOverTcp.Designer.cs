@@ -265,6 +265,8 @@
 			// 
 			// userControlReadWriteOp1
 			// 
+			this.userControlReadWriteOp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 3);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
 			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 240);
@@ -272,6 +274,7 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Location = new System.Drawing.Point(573, 243);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(419, 296);
@@ -281,6 +284,8 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Controls.Add(this.textBox11);
 			this.groupBox4.Controls.Add(this.label14);
 			this.groupBox4.Controls.Add(this.button26);
@@ -345,6 +350,8 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Controls.Add(this.textBox10);
 			this.groupBox3.Controls.Add(this.label13);
 			this.groupBox3.Controls.Add(this.button25);
@@ -393,6 +400,7 @@
 			// 
 			// textBox9
 			// 
+			this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox9.Location = new System.Drawing.Point(397, 27);
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(70, 23);
@@ -401,6 +409,7 @@
 			// 
 			// label12
 			// 
+			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label12.AutoSize = true;
 			this.label12.Location = new System.Drawing.Point(343, 30);
 			this.label12.Name = "label12";
@@ -410,6 +419,8 @@
 			// 
 			// textBox6
 			// 
+			this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox6.Location = new System.Drawing.Point(63, 27);
 			this.textBox6.Name = "textBox6";
 			this.textBox6.Size = new System.Drawing.Size(256, 23);

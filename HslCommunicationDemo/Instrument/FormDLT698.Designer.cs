@@ -76,6 +76,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox_enable_Fe = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -89,6 +90,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel1.Controls.Add(this.label4);
+			this.panel1.Controls.Add(this.checkBox_enable_Fe);
 			this.panel1.Controls.Add(this.textBox_op_code);
 			this.panel1.Controls.Add(this.label_op_code);
 			this.panel1.Controls.Add(this.textBox_password);
@@ -117,7 +119,8 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(761, 35);
+			this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.label4.Location = new System.Drawing.Point(843, 5);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(146, 17);
 			this.label4.TabIndex = 35;
@@ -160,7 +163,7 @@
 			// checkBox5
 			// 
 			this.checkBox5.AutoSize = true;
-			this.checkBox5.Location = new System.Drawing.Point(631, 5);
+			this.checkBox5.Location = new System.Drawing.Point(624, 5);
 			this.checkBox5.Name = "checkBox5";
 			this.checkBox5.Size = new System.Drawing.Size(84, 21);
 			this.checkBox5.TabIndex = 30;
@@ -242,7 +245,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(857, 3);
+			this.button2.Location = new System.Drawing.Point(834, 28);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -252,7 +255,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(760, 3);
+			this.button1.Location = new System.Drawing.Point(740, 28);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -580,6 +583,16 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// checkBox_enable_Fe
+			// 
+			this.checkBox_enable_Fe.AutoSize = true;
+			this.checkBox_enable_Fe.Location = new System.Drawing.Point(713, 5);
+			this.checkBox_enable_Fe.Name = "checkBox_enable_Fe";
+			this.checkBox_enable_Fe.Size = new System.Drawing.Size(130, 21);
+			this.checkBox_enable_Fe.TabIndex = 36;
+			this.checkBox_enable_Fe.Text = "FE FE FE FE head?";
+			this.checkBox_enable_Fe.UseVisualStyleBackColor = true;
+			// 
 			// FormDLT698
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -659,5 +672,6 @@
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.CheckBox checkBox_enable_Fe;
 	}
 }

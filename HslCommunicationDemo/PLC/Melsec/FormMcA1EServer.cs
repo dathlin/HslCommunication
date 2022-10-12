@@ -54,7 +54,7 @@ namespace HslCommunicationDemo
 
             try
             {
-                mcNetServer = new HslCommunication.Profinet.Melsec.MelsecA1EServer( checkBox2.Checked );                       // 实例化对象
+                mcNetServer = new HslCommunication.Profinet.Melsec.MelsecA1EServer( radioButton1.Checked );                       // 实例化对象
                 mcNetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 mcNetServer.OnDataReceived += MelsecMcServer_OnDataReceived;
                 mcNetServer.ServerStart( port );
@@ -102,14 +102,15 @@ namespace HslCommunicationDemo
         public override void SaveXmlParameter( XElement element )
         {
             element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-            element.SetAttributeValue( DemoDeviceList.XmlBinary, checkBox2.Checked );
+            element.SetAttributeValue( DemoDeviceList.XmlBinary, radioButton1.Checked );
         }
 
         public override void LoadXmlParameter( XElement element )
         {
             base.LoadXmlParameter( element );
             textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-            checkBox2.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlBinary ).Value );
+            radioButton1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlBinary ).Value );
+            radioButton2.Checked = !bool.Parse( element.Attribute( DemoDeviceList.XmlBinary ).Value );
         }
 
         private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

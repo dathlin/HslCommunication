@@ -40,6 +40,15 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button27 = new System.Windows.Forms.Button();
+			this.textBox14 = new System.Windows.Forms.TextBox();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.textBox12 = new System.Windows.Forms.TextBox();
+			this.label15 = new System.Windows.Forms.Label();
+			this.userCurve1 = new HslCommunication.Controls.UserCurve();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
@@ -55,20 +64,11 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
-			this.userCurve1 = new HslCommunication.Controls.UserCurve();
-			this.label15 = new System.Windows.Forms.Label();
-			this.textBox12 = new System.Windows.Forms.TextBox();
-			this.label17 = new System.Windows.Forms.Label();
-			this.label18 = new System.Windows.Forms.Label();
-			this.textBox14 = new System.Windows.Forms.TextBox();
-			this.button27 = new System.Windows.Forms.Button();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.groupBox5.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			this.groupBox5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -201,8 +201,102 @@
 			this.panel2.Size = new System.Drawing.Size(997, 564);
 			this.panel2.TabIndex = 1;
 			// 
+			// userControlReadWriteOp1
+			// 
+			this.userControlReadWriteOp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 2);
+			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 237);
+			this.userControlReadWriteOp1.TabIndex = 5;
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox5.Controls.Add(this.button27);
+			this.groupBox5.Controls.Add(this.textBox14);
+			this.groupBox5.Controls.Add(this.label18);
+			this.groupBox5.Controls.Add(this.label17);
+			this.groupBox5.Controls.Add(this.textBox12);
+			this.groupBox5.Controls.Add(this.label15);
+			this.groupBox5.Controls.Add(this.userCurve1);
+			this.groupBox5.Location = new System.Drawing.Point(573, 243);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(419, 316);
+			this.groupBox5.TabIndex = 4;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "定时读取，曲线显示";
+			// 
+			// button27
+			// 
+			this.button27.Location = new System.Drawing.Point(343, 25);
+			this.button27.Name = "button27";
+			this.button27.Size = new System.Drawing.Size(70, 28);
+			this.button27.TabIndex = 9;
+			this.button27.Text = "启动";
+			this.button27.UseVisualStyleBackColor = true;
+			this.button27.Click += new System.EventHandler(this.button27_Click);
+			// 
+			// textBox14
+			// 
+			this.textBox14.Location = new System.Drawing.Point(255, 28);
+			this.textBox14.Name = "textBox14";
+			this.textBox14.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox14.Size = new System.Drawing.Size(82, 23);
+			this.textBox14.TabIndex = 8;
+			this.textBox14.Text = "300";
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(212, 30);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(44, 17);
+			this.label18.TabIndex = 7;
+			this.label18.Text = "间隔：";
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label17.Location = new System.Drawing.Point(60, 53);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(218, 17);
+			this.label17.TabIndex = 6;
+			this.label17.Text = "此处假设确定了数据的类型，为short：";
+			// 
+			// textBox12
+			// 
+			this.textBox12.Location = new System.Drawing.Point(64, 27);
+			this.textBox12.Name = "textBox12";
+			this.textBox12.Size = new System.Drawing.Size(132, 23);
+			this.textBox12.TabIndex = 5;
+			this.textBox12.Text = "100";
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(10, 30);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(44, 17);
+			this.label15.TabIndex = 4;
+			this.label15.Text = "地址：";
+			// 
+			// userCurve1
+			// 
+			this.userCurve1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.userCurve1.Location = new System.Drawing.Point(13, 82);
+			this.userCurve1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.userCurve1.Name = "userCurve1";
+			this.userCurve1.Size = new System.Drawing.Size(400, 226);
+			this.userCurve1.TabIndex = 0;
+			this.userCurve1.ValueMaxLeft = 200F;
+			this.userCurve1.ValueMaxRight = 200F;
+			// 
 			// groupBox4
 			// 
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Controls.Add(this.textBox11);
 			this.groupBox4.Controls.Add(this.label14);
 			this.groupBox4.Controls.Add(this.button26);
@@ -268,6 +362,8 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Controls.Add(this.textBox10);
 			this.groupBox3.Controls.Add(this.label13);
 			this.groupBox3.Controls.Add(this.button25);
@@ -362,95 +458,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			// 
-			// userControlReadWriteOp1
-			// 
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 2);
-			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 237);
-			this.userControlReadWriteOp1.TabIndex = 5;
-			// 
-			// userCurve1
-			// 
-			this.userCurve1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-			this.userCurve1.Location = new System.Drawing.Point(13, 82);
-			this.userCurve1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.userCurve1.Name = "userCurve1";
-			this.userCurve1.Size = new System.Drawing.Size(400, 226);
-			this.userCurve1.TabIndex = 0;
-			this.userCurve1.ValueMaxLeft = 200F;
-			this.userCurve1.ValueMaxRight = 200F;
-			// 
-			// label15
-			// 
-			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(10, 30);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(44, 17);
-			this.label15.TabIndex = 4;
-			this.label15.Text = "地址：";
-			// 
-			// textBox12
-			// 
-			this.textBox12.Location = new System.Drawing.Point(64, 27);
-			this.textBox12.Name = "textBox12";
-			this.textBox12.Size = new System.Drawing.Size(132, 23);
-			this.textBox12.TabIndex = 5;
-			this.textBox12.Text = "100";
-			// 
-			// label17
-			// 
-			this.label17.AutoSize = true;
-			this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.label17.Location = new System.Drawing.Point(60, 53);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(218, 17);
-			this.label17.TabIndex = 6;
-			this.label17.Text = "此处假设确定了数据的类型，为short：";
-			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.Location = new System.Drawing.Point(212, 30);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(44, 17);
-			this.label18.TabIndex = 7;
-			this.label18.Text = "间隔：";
-			// 
-			// textBox14
-			// 
-			this.textBox14.Location = new System.Drawing.Point(255, 28);
-			this.textBox14.Name = "textBox14";
-			this.textBox14.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox14.Size = new System.Drawing.Size(82, 23);
-			this.textBox14.TabIndex = 8;
-			this.textBox14.Text = "300";
-			// 
-			// button27
-			// 
-			this.button27.Location = new System.Drawing.Point(343, 25);
-			this.button27.Name = "button27";
-			this.button27.Size = new System.Drawing.Size(70, 28);
-			this.button27.TabIndex = 9;
-			this.button27.Text = "启动";
-			this.button27.UseVisualStyleBackColor = true;
-			this.button27.Click += new System.EventHandler(this.button27_Click);
-			// 
-			// groupBox5
-			// 
-			this.groupBox5.Controls.Add(this.button27);
-			this.groupBox5.Controls.Add(this.textBox14);
-			this.groupBox5.Controls.Add(this.label18);
-			this.groupBox5.Controls.Add(this.label17);
-			this.groupBox5.Controls.Add(this.textBox12);
-			this.groupBox5.Controls.Add(this.label15);
-			this.groupBox5.Controls.Add(this.userCurve1);
-			this.groupBox5.Location = new System.Drawing.Point(573, 243);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 316);
-			this.groupBox5.TabIndex = 4;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "定时读取，曲线显示";
-			// 
 			// FormModbusAlien
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -470,12 +477,12 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			this.groupBox5.ResumeLayout(false);
-			this.groupBox5.PerformLayout();
 			this.ResumeLayout(false);
 
         }

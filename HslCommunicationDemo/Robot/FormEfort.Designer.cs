@@ -189,10 +189,10 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(12, 41);
+			this.panel1.Location = new System.Drawing.Point(3, 36);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 43);
+			this.panel1.Size = new System.Drawing.Size(997, 43);
 			this.panel1.TabIndex = 12;
 			// 
 			// button2
@@ -252,6 +252,9 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.label74);
 			this.panel2.Controls.Add(this.label71);
@@ -353,9 +356,9 @@
 			this.panel2.Controls.Add(this.label55);
 			this.panel2.Controls.Add(this.label53);
 			this.panel2.Controls.Add(this.label52);
-			this.panel2.Location = new System.Drawing.Point(12, 91);
+			this.panel2.Location = new System.Drawing.Point(3, 85);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 546);
+			this.panel2.Size = new System.Drawing.Size(997, 559);
 			this.panel2.TabIndex = 13;
 			// 
 			// label74

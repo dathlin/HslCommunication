@@ -111,6 +111,7 @@ namespace HslCommunicationDemo
 			dLT698?.Close( );
 			dLT698 = new DLT698( textBox_station.Text );
 			dLT698.LogNet = LogNet;
+			dLT698.EnableCodeFE = checkBox_enable_Fe.Checked;
 
 			try
 			{

@@ -24,7 +24,7 @@ namespace HslCommunicationDemo
             panel2.Enabled = false;
 
 
-            if(Program.Language == 2)
+            if (Program.Language == 2)
             {
                 Text = "S7 Virtual Server [data support i,q,m,db block read and write, db block only one, whether it is DB1.1 or DB100.1 refers to the same]";
                 label3.Text = "port:";
@@ -79,7 +79,7 @@ namespace HslCommunicationDemo
                 s7NetServer = new HslCommunication.Profinet.Siemens.SiemensS7Server( );                       // 实例化对象
                 s7NetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 s7NetServer.OnDataReceived += BusTcpServer_OnDataReceived;
-                
+
                 s7NetServer.ServerStart( port );
 
                 userControlReadWriteServer1.SetReadWriteServer( s7NetServer, "M100" );
@@ -121,5 +121,45 @@ namespace HslCommunicationDemo
         }
 
         #endregion
+
+        private void button_db_add_Click( object sender, EventArgs e )
+        {
+            if (int.TryParse( textBox_db.Text, out int db ))
+            {
+                if (s7NetServer == null)
+                    MessageBox.Show( "Must start s7 server first!" );
+                else
+                {
+                    s7NetServer.AddDbBlock( db );
+                    MessageBox.Show( "Add db block success" );
+                }
+            }
+            else
+            {
+                MessageBox.Show( "Please input correct db block number!" );
+            }
+        }
+
+        private void button_db_remove_Click( object sender, EventArgs e )
+        {
+            if (int.TryParse( textBox_db.Text, out int db ))
+            {
+                if (s7NetServer == null)
+                    MessageBox.Show( "Must start s7 server first!" );
+                else if (db == 1 || db == 2 || db == 3)
+                {
+                    MessageBox.Show( "Can not remove db block 1, 2, 3" );
+                }
+                else
+                {
+                    s7NetServer.RemoveDbBlock( db );
+                    MessageBox.Show( "Remove db block success" );
+                }
+            }
+            else
+            {
+                MessageBox.Show( "Please input correct db block number!" );
+            }
+        }
     }
 }

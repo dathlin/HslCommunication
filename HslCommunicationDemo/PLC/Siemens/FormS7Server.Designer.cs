@@ -37,6 +37,11 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.textBox_db = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.button_db_add = new System.Windows.Forms.Button();
+			this.button_db_remove = new System.Windows.Forms.Button();
+			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -46,11 +51,16 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.button_db_remove);
+			this.panel1.Controls.Add(this.button_db_add);
+			this.panel1.Controls.Add(this.textBox_db);
+			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.label11);
 			this.panel1.Controls.Add(this.button11);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
+			this.panel1.Controls.Add(this.label2);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
@@ -60,9 +70,9 @@
 			// label11
 			// 
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(343, 4);
+			this.label11.Location = new System.Drawing.Point(325, 4);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(447, 41);
+			this.label11.Size = new System.Drawing.Size(340, 41);
 			this.label11.TabIndex = 29;
 			this.label11.Text = "本服务器不是严格的s7协议，仅支持和HSL组件完美通信。";
 			// 
@@ -142,6 +152,53 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			// 
+			// textBox_db
+			// 
+			this.textBox_db.Location = new System.Drawing.Point(762, 3);
+			this.textBox_db.Name = "textBox_db";
+			this.textBox_db.Size = new System.Drawing.Size(65, 23);
+			this.textBox_db.TabIndex = 31;
+			this.textBox_db.Text = "10";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(683, 6);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(73, 17);
+			this.label1.TabIndex = 30;
+			this.label1.Text = "DB block：";
+			// 
+			// button_db_add
+			// 
+			this.button_db_add.Location = new System.Drawing.Point(833, 0);
+			this.button_db_add.Name = "button_db_add";
+			this.button_db_add.Size = new System.Drawing.Size(61, 28);
+			this.button_db_add.TabIndex = 32;
+			this.button_db_add.Text = "Add";
+			this.button_db_add.UseVisualStyleBackColor = true;
+			this.button_db_add.Click += new System.EventHandler(this.button_db_add_Click);
+			// 
+			// button_db_remove
+			// 
+			this.button_db_remove.Location = new System.Drawing.Point(900, 0);
+			this.button_db_remove.Name = "button_db_remove";
+			this.button_db_remove.Size = new System.Drawing.Size(70, 28);
+			this.button_db_remove.TabIndex = 33;
+			this.button_db_remove.Text = "Remove";
+			this.button_db_remove.UseVisualStyleBackColor = true;
+			this.button_db_remove.Click += new System.EventHandler(this.button_db_remove_Click);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Blue;
+			this.label2.Location = new System.Drawing.Point(683, 26);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(273, 17);
+			this.label2.TabIndex = 34;
+			this.label2.Text = "用来添加新的独立的DB块支持，无法移除DB1,2,3";
+			// 
 			// FormS7Server
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -176,5 +233,10 @@
         private System.Windows.Forms.Label label11;
         private DemoControl.UserControlHead userControlHead1;
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
-    }
+		private System.Windows.Forms.Button button_db_remove;
+		private System.Windows.Forms.Button button_db_add;
+		private System.Windows.Forms.TextBox textBox_db;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
+	}
 }

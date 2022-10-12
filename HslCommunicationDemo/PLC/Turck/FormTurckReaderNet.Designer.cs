@@ -81,7 +81,7 @@ namespace HslCommunicationDemo
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 42);
+			this.panel1.Size = new System.Drawing.Size(1015, 42);
 			this.panel1.TabIndex = 0;
 			// 
 			// button2
@@ -152,29 +152,29 @@ namespace HslCommunicationDemo
 			this.panel2.Location = new System.Drawing.Point(3, 81);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 561);
+			this.panel2.Size = new System.Drawing.Size(1015, 568);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
 			// 
+			this.userControlReadWriteOp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteOp1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteOp1.Location = new System.Drawing.Point(1, 2);
 			this.userControlReadWriteOp1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(991, 235);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(1009, 235);
 			this.userControlReadWriteOp1.TabIndex = 27;
 			// 
 			// groupBox5
 			// 
-			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.label5);
 			this.groupBox5.Controls.Add(this.label4);
 			this.groupBox5.Controls.Add(this.label2);
 			this.groupBox5.Controls.Add(this.textBox3);
 			this.groupBox5.Controls.Add(this.button7);
-			this.groupBox5.Location = new System.Drawing.Point(573, 243);
+			this.groupBox5.Location = new System.Drawing.Point(591, 243);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(419, 313);
 			this.groupBox5.TabIndex = 26;
@@ -232,8 +232,8 @@ namespace HslCommunicationDemo
 			// 
 			// groupBox4
 			// 
-			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Controls.Add(this.textBox11);
 			this.groupBox4.Controls.Add(this.label14);
 			this.groupBox4.Controls.Add(this.button26);
@@ -241,7 +241,7 @@ namespace HslCommunicationDemo
 			this.groupBox4.Controls.Add(this.label16);
 			this.groupBox4.Location = new System.Drawing.Point(1, 403);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(566, 153);
+			this.groupBox4.Size = new System.Drawing.Size(584, 153);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "报文读取测试，此处需要填入完整的16进制报文字符串";
@@ -255,7 +255,7 @@ namespace HslCommunicationDemo
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
 			this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox11.Size = new System.Drawing.Size(497, 87);
+			this.textBox11.Size = new System.Drawing.Size(515, 87);
 			this.textBox11.TabIndex = 10;
 			// 
 			// label14
@@ -270,7 +270,7 @@ namespace HslCommunicationDemo
 			// button26
 			// 
 			this.button26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button26.Location = new System.Drawing.Point(478, 24);
+			this.button26.Location = new System.Drawing.Point(496, 24);
 			this.button26.Name = "button26";
 			this.button26.Size = new System.Drawing.Size(82, 28);
 			this.button26.TabIndex = 8;
@@ -284,7 +284,7 @@ namespace HslCommunicationDemo
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox13.Location = new System.Drawing.Point(63, 27);
 			this.textBox13.Name = "textBox13";
-			this.textBox13.Size = new System.Drawing.Size(409, 23);
+			this.textBox13.Size = new System.Drawing.Size(427, 23);
 			this.textBox13.TabIndex = 5;
 			// 
 			// label16
@@ -298,6 +298,8 @@ namespace HslCommunicationDemo
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Controls.Add(this.textBox10);
 			this.groupBox3.Controls.Add(this.label13);
 			this.groupBox3.Controls.Add(this.button25);
@@ -307,7 +309,7 @@ namespace HslCommunicationDemo
 			this.groupBox3.Controls.Add(this.label11);
 			this.groupBox3.Location = new System.Drawing.Point(1, 243);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(566, 154);
+			this.groupBox3.Size = new System.Drawing.Size(584, 154);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
@@ -321,7 +323,7 @@ namespace HslCommunicationDemo
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(497, 88);
+			this.textBox10.Size = new System.Drawing.Size(515, 88);
 			this.textBox10.TabIndex = 10;
 			// 
 			// label13
@@ -336,7 +338,7 @@ namespace HslCommunicationDemo
 			// button25
 			// 
 			this.button25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button25.Location = new System.Drawing.Point(488, 24);
+			this.button25.Location = new System.Drawing.Point(506, 24);
 			this.button25.Name = "button25";
 			this.button25.Size = new System.Drawing.Size(72, 28);
 			this.button25.TabIndex = 8;
@@ -346,7 +348,8 @@ namespace HslCommunicationDemo
 			// 
 			// textBox9
 			// 
-			this.textBox9.Location = new System.Drawing.Point(222, 27);
+			this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox9.Location = new System.Drawing.Point(414, 27);
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(84, 23);
 			this.textBox9.TabIndex = 7;
@@ -354,8 +357,9 @@ namespace HslCommunicationDemo
 			// 
 			// label12
 			// 
+			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(182, 30);
+			this.label12.Location = new System.Drawing.Point(374, 30);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(44, 17);
 			this.label12.TabIndex = 6;
@@ -363,9 +367,11 @@ namespace HslCommunicationDemo
 			// 
 			// textBox6
 			// 
+			this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox6.Location = new System.Drawing.Point(63, 27);
 			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(116, 23);
+			this.textBox6.Size = new System.Drawing.Size(305, 23);
 			this.textBox6.TabIndex = 5;
 			this.textBox6.Text = "100";
 			// 
@@ -389,7 +395,7 @@ namespace HslCommunicationDemo
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Reader";
-			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(1022, 32);
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
@@ -399,7 +405,7 @@ namespace HslCommunicationDemo
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.ClientSize = new System.Drawing.Size(1022, 652);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);

@@ -35,26 +35,23 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.1.0
-1. SiemensS7Net: 新增ReadDate，WriteDate的功能方法，实现了对日期类型的变量的读写操作，PLC测标记为D#2022-8-19
-2. SecsHsms: 客户端和服务器的程序，都支持了字符串编码属性设置，可以支持其他的编码，默认的编码调整为Default，主要是支持了中文的消息。
-3. FanucInterfaceNet: fanuc机器人的地址支持了直接的地址，Bool地址支持：SDO, SDI, RDI, RDO, UI, UO, SI, SO ,字单位地址支持：GI, GO, D。修复日志重复记录。
-4. OmronFinsNet: OmronFinsNet，OmronFinsUdp, OmronHostLink, OmronHostLinkOverTcp支持0104功能码，批量读取随机字地址，使用方法 Read(string[])
-5. OmronFinsServer: fins虚拟服务器支持了0104随机读取地址的功能码，对代码进行了优化，提炼了重复的代码。
-6. MqttRpcDevice: 新增基于MQTT-RPC接口的设备对象，用来访问使用MQTTServer注册plc对象为RPC接口的设备，让单连接的PLC瞬间支持N连接，参考：https://www.cnblogs.com/dathlin/p/16632767.html
-7. Toledo: 托利多电子秤增加通信报文日志记录，支持了扩展模式下的输出格式，并对数据分析增加异常捕获，日志记录。优化串口的通信接收，增加是否配置和校验的属性。
-8. MqttClient: 每个订阅的主题升级为SubscribeTopic类对象，携带一个事件，支持每个主题绑定不同的事件内容。方便子窗体使用同一个MqttClient对象订阅不同的主题并触发不同的事件。
-9. SiemensS7Server: 优化字符串的读写操作，支持WString字符串的读写，自动使用S7格式的字符串，在demo写入字符串数据的时候，客户端也可以正确的读取。
-10. ILogNet: ILogNet日志接口新增一个属性LogStxAsciiCode用来配置是否在每条日志开头记录0x02的ASCII码字符，默认为true，设置false后也就无法使用hsl自带的日志分析工具。
-11. RedisClient: redis客户端类支持了集群的服务器情况，当标签A在另一个服务器时，redisclient会自动连接到对应的服务器进行获取。
-12. FanucSeries0i: fanuc机床的通信类支持了ReadOperatorMessage方法，用来读取机床的操作信息。
-13. MqttServer: 修复Mqtt服务器在进行订阅结果反馈时，没有将topic主题的Qos也返回的bug，在某些情况下，客户端会引发异常。
-14. NetworkDataServerBase: 新增加属性ForceSerialReceiveOnce，默认为false，当多个modbusserver使用485总线串到一起时，需要设置为true
-15, Iec104: 修复连接失败的bug，修复在I帧消息号返回接收的id信息数量不正确的bug，现在可以正确的接收设备的数据。
-16. Demo界面新增一个各种校验码测试的界面，主要用于测试CRC16，LRC，FCS（异或校验）,ACC(和校验)，欧姆龙的Fins协议Demo界面上支持配置字符串是否翻转。
-17. Json: 依赖的json组件 Newtonsoft.Json 更新到最新的 v13.0.1 版本。
-18. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
-19. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.1.1
+1. Demo: 修复山武设备串口通讯调试界面，站号设置无效的bug。
+2. MelsecMcServer： MC协议的虚拟服务器支持L寄存器的读写操作，原先的D寄存器范围为 D0~D65535 扩展到 D0~D131071
+3. MqttSession: Mqtt会话新增属性DeveloperPermissions，标记开发者权限，服务器可以自由控制会话是否具有遍历MRPC接口的权限。
+4. DLT: DLT645及DLT698协议及其网口透传类新增属性：EnableCodeFE, 莫认false，当设置为True时每次发报文到设备时都会追加FEFEFEFE的指令头。
+5. OmronConnectedCipNet: 新增属性ConnectionTimeoutMultiplier用来设置异常超时时间，默认02表示32秒。
+6. SiemensS7Server: 优化握手报文的数据信息，现在支持了node-red的s7功能节点的读写数据，支持了s7netplus组件的连接及读写。
+7. SoftBasic: 新增从XML元素获取泛型值的便捷方法，DEMO程序的一些界面优化，串口调试界面优化，webapi服务器接口界面支持接口存储。
+8. OmronFinsTcp: FinsTcp协议优化，在接收fins消息报文时，即使前面有多个无用字节数据，依然可以正确的接收并处理数据。
+9. SiemensS7Server: 西门子的s7虚拟服务器的DB块优化，采用词典存储，内置DB1，2，3，其他DB块需要使用AddDbBlock方法来手动增加，否则无法读写。
+10. YokogawaLinkServer: 修复横河PLC虚拟服务器的读取bool数据时，无论输入什么地址类型，都会读取m寄存器的bug。
+11. HslExtension: ToHexString 的扩展方法以及SoftBasic.ByteToHexString 方法在转换byte[]到string时，支持格式化的参数，默认 {0:X2}
+12. SerialBase: 修复在特殊情况下读取数据导致没有响应，也不触发超时的bug，优化modbusrtu在错误码报文下的接收完成判断。
+13. MemobusTcpNet: 安川PLC修复读写扩展寄存器失败的bug，通信细节进行优化，支持对扩展寄存器的随机字读取和写入操作。并增加MemobusUdpNet类，基于UDP的实现。
+14. MemobusTcpServer: 新增加安川PLC的虚拟服务器实现，支持功能码为 01 02 03 04 05 06 08 09 0A 0B 0D 0E 0F 10
+15. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
+16. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

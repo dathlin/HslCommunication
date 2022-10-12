@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_crc16 = new System.Windows.Forms.CheckBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.checkBox5 = new System.Windows.Forms.CheckBox();
 			this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -67,7 +68,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox_crc16 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -105,6 +105,18 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 62);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_crc16
+			// 
+			this.checkBox_crc16.AutoSize = true;
+			this.checkBox_crc16.Checked = true;
+			this.checkBox_crc16.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_crc16.Location = new System.Drawing.Point(225, 34);
+			this.checkBox_crc16.Name = "checkBox_crc16";
+			this.checkBox_crc16.Size = new System.Drawing.Size(99, 21);
+			this.checkBox_crc16.TabIndex = 32;
+			this.checkBox_crc16.Text = "Crc16 Check";
+			this.checkBox_crc16.UseVisualStyleBackColor = true;
 			// 
 			// checkBox2
 			// 
@@ -308,6 +320,8 @@
 			// 
 			// userControlReadWriteOp1
 			// 
+			this.userControlReadWriteOp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 2);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
 			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 240);
@@ -315,6 +329,7 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.textBox12);
 			this.groupBox5.Location = new System.Drawing.Point(572, 243);
 			this.groupBox5.Name = "groupBox5";
@@ -334,6 +349,8 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Controls.Add(this.textBox11);
 			this.groupBox4.Controls.Add(this.label14);
 			this.groupBox4.Controls.Add(this.button26);
@@ -399,6 +416,8 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Controls.Add(this.textBox10);
 			this.groupBox3.Controls.Add(this.label13);
 			this.groupBox3.Controls.Add(this.button25);
@@ -493,18 +512,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// checkBox_crc16
-			// 
-			this.checkBox_crc16.AutoSize = true;
-			this.checkBox_crc16.Checked = true;
-			this.checkBox_crc16.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_crc16.Location = new System.Drawing.Point(225, 34);
-			this.checkBox_crc16.Name = "checkBox_crc16";
-			this.checkBox_crc16.Size = new System.Drawing.Size(99, 21);
-			this.checkBox_crc16.TabIndex = 32;
-			this.checkBox_crc16.Text = "Crc16 Check";
-			this.checkBox_crc16.UseVisualStyleBackColor = true;
 			// 
 			// FormModbusRtu
 			// 

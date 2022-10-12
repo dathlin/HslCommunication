@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.1.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.1.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.1.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.1.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -598,10 +598,16 @@
     <Compile Include="PLC\Omron\FormOmronHostLinkCModeServer.Designer.cs">
       <DependentUpon>FormOmronHostLinkCModeServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormYASKAWAMemobusTcpNet.cs">
+    <Compile Include="PLC\YASKAWA\FormYASKAWAMemobusUdpNet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormYASKAWAMemobusTcpNet.Designer.cs">
+    <Compile Include="PLC\YASKAWA\FormYASKAWAMemobusUdpNet.Designer.cs">
+      <DependentUpon>FormYASKAWAMemobusUdpNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\YASKAWA\FormYASKAWAMemobusTcpNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\YASKAWA\FormYASKAWAMemobusTcpNet.Designer.cs">
       <DependentUpon>FormYASKAWAMemobusTcpNet.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Omron\FormOmronHostLinkServer.cs">
@@ -729,6 +735,12 @@
     </Compile>
     <Compile Include="PLC\Turck\FormTurckReaderServer.Designer.cs">
       <DependentUpon>FormTurckReaderServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\YASKAWA\FormMemobusTcpServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\YASKAWA\FormMemobusTcpServer.Designer.cs">
+      <DependentUpon>FormMemobusTcpServer.cs</DependentUpon>
     </Compile>
     <Compile Include="Robot\FormAbbServer.cs">
       <SubType>Form</SubType>
@@ -1718,7 +1730,10 @@
     <EmbeddedResource Include="PLC\Omron\FormOmronHostLinkCModeServer.resx">
       <DependentUpon>FormOmronHostLinkCModeServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormYASKAWAMemobusTcpNet.resx">
+    <EmbeddedResource Include="PLC\YASKAWA\FormYASKAWAMemobusUdpNet.resx">
+      <DependentUpon>FormYASKAWAMemobusUdpNet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\YASKAWA\FormYASKAWAMemobusTcpNet.resx">
       <DependentUpon>FormYASKAWAMemobusTcpNet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Omron\FormOmronHostLinkServer.resx">
@@ -1783,6 +1798,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Turck\FormTurckReaderServer.resx">
       <DependentUpon>FormTurckReaderServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\YASKAWA\FormMemobusTcpServer.resx">
+      <DependentUpon>FormMemobusTcpServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormAbbServer.resx">
       <DependentUpon>FormAbbServer.cs</DependentUpon>

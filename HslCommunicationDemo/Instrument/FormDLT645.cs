@@ -110,8 +110,10 @@ namespace HslCommunicationDemo
             dLT645?.Close( );
             dLT645 = new DLT645( textBox_station.Text, textBox_password.Text, textBox_op_code.Text );
             dLT645.LogNet = LogNet;
+            dLT645.EnableCodeFE = checkBox_enable_Fe.Checked;
 
-            try
+
+			try
             {
                 dLT645.SerialPortInni( sp =>
                  {

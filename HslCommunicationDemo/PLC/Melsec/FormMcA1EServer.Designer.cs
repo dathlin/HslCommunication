@@ -29,7 +29,6 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.button11 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -38,6 +37,9 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label1 = new System.Windows.Forms.Label();
+			this.radioButton1 = new System.Windows.Forms.RadioButton();
+			this.radioButton2 = new System.Windows.Forms.RadioButton();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -47,7 +49,9 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.checkBox2);
+			this.panel1.Controls.Add(this.radioButton2);
+			this.panel1.Controls.Add(this.radioButton1);
+			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.label11);
 			this.panel1.Controls.Add(this.button11);
 			this.panel1.Controls.Add(this.button1);
@@ -59,22 +63,10 @@
 			this.panel1.Size = new System.Drawing.Size(997, 68);
 			this.panel1.TabIndex = 0;
 			// 
-			// checkBox2
-			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Checked = true;
-			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox2.Location = new System.Drawing.Point(74, 40);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(63, 21);
-			this.checkBox2.TabIndex = 30;
-			this.checkBox2.Text = "Binary";
-			this.checkBox2.UseVisualStyleBackColor = true;
-			// 
 			// label11
 			// 
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(343, 2);
+			this.label11.Location = new System.Drawing.Point(334, 2);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(447, 41);
 			this.label11.TabIndex = 29;
@@ -83,7 +75,7 @@
 			// button11
 			// 
 			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(235, 6);
+			this.button11.Location = new System.Drawing.Point(226, 6);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(83, 28);
 			this.button11.TabIndex = 28;
@@ -93,7 +85,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(145, 6);
+			this.button1.Location = new System.Drawing.Point(136, 6);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(83, 28);
 			this.button1.TabIndex = 4;
@@ -103,7 +95,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(74, 9);
+			this.textBox2.Location = new System.Drawing.Point(65, 9);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
@@ -112,7 +104,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(20, 12);
+			this.label3.Location = new System.Drawing.Point(11, 12);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -156,6 +148,37 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(11, 40);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(68, 17);
+			this.label1.TabIndex = 31;
+			this.label1.Text = "Formate：";
+			// 
+			// radioButton1
+			// 
+			this.radioButton1.AutoSize = true;
+			this.radioButton1.Checked = true;
+			this.radioButton1.Location = new System.Drawing.Point(85, 38);
+			this.radioButton1.Name = "radioButton1";
+			this.radioButton1.Size = new System.Drawing.Size(62, 21);
+			this.radioButton1.TabIndex = 32;
+			this.radioButton1.TabStop = true;
+			this.radioButton1.Text = "Binary";
+			this.radioButton1.UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this.radioButton2.AutoSize = true;
+			this.radioButton2.Location = new System.Drawing.Point(157, 38);
+			this.radioButton2.Name = "radioButton2";
+			this.radioButton2.Size = new System.Drawing.Size(57, 21);
+			this.radioButton2.TabIndex = 33;
+			this.radioButton2.Text = "ASCII";
+			this.radioButton2.UseVisualStyleBackColor = true;
+			// 
 			// FormMcA1EServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -189,7 +212,9 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label11;
         private DemoControl.UserControlHead userControlHead1;
-		private System.Windows.Forms.CheckBox checkBox2;
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
-    }
+		private System.Windows.Forms.RadioButton radioButton2;
+		private System.Windows.Forms.RadioButton radioButton1;
+		private System.Windows.Forms.Label label1;
+	}
 }

@@ -66,6 +66,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox_enable_Fe = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -78,6 +79,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_enable_Fe);
 			this.panel1.Controls.Add(this.textBox_op_code);
 			this.panel1.Controls.Add(this.label_op_code);
 			this.panel1.Controls.Add(this.textBox_password);
@@ -457,6 +459,16 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// checkBox_enable_Fe
+			// 
+			this.checkBox_enable_Fe.AutoSize = true;
+			this.checkBox_enable_Fe.Location = new System.Drawing.Point(420, 6);
+			this.checkBox_enable_Fe.Name = "checkBox_enable_Fe";
+			this.checkBox_enable_Fe.Size = new System.Drawing.Size(130, 21);
+			this.checkBox_enable_Fe.TabIndex = 39;
+			this.checkBox_enable_Fe.Text = "FE FE FE FE head?";
+			this.checkBox_enable_Fe.UseVisualStyleBackColor = true;
+			// 
 			// FormDLT645OverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -526,5 +538,6 @@
 		private System.Windows.Forms.Label label_op_code;
 		private System.Windows.Forms.TextBox textBox_password;
 		private System.Windows.Forms.Label label_password;
+		private System.Windows.Forms.CheckBox checkBox_enable_Fe;
 	}
 }

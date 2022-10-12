@@ -81,6 +81,7 @@ namespace HslCommunicationDemo
             dLT698?.ConnectClose( );
             dLT698 = new DLT698OverTcp( textBox_ip.Text, port, textBox_station.Text);
             dLT698.LogNet = LogNet;
+            dLT698.EnableCodeFE = checkBox_enable_Fe.Checked;
 
             try
             {

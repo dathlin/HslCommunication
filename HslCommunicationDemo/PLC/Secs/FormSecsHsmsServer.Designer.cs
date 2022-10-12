@@ -38,7 +38,10 @@
 			this.textBox_port = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.button4 = new System.Windows.Forms.Button();
 			this.textBox_log = new System.Windows.Forms.TextBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.textBox_data = new System.Windows.Forms.TextBox();
 			this.textBox_example = new System.Windows.Forms.TextBox();
@@ -50,9 +53,6 @@
 			this.button25 = new System.Windows.Forms.Button();
 			this.label12 = new System.Windows.Forms.Label();
 			this.D = new System.Windows.Forms.Label();
-			this.button4 = new System.Windows.Forms.Button();
-			this.label13 = new System.Windows.Forms.Label();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -69,7 +69,7 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Secs gem HSMS Server";
-			this.userControlHead1.Size = new System.Drawing.Size(1019, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(1005, 32);
 			this.userControlHead1.TabIndex = 3;
 			// 
 			// panel1
@@ -87,7 +87,7 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1013, 41);
+			this.panel1.Size = new System.Drawing.Size(999, 41);
 			this.panel1.TabIndex = 4;
 			// 
 			// comboBox1
@@ -172,10 +172,20 @@
 			this.groupBox3.Controls.Add(this.checkBox1);
 			this.groupBox3.Location = new System.Drawing.Point(3, 439);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(1013, 171);
+			this.groupBox3.Size = new System.Drawing.Size(999, 173);
 			this.groupBox3.TabIndex = 5;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "日志";
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(6, 70);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(55, 26);
+			this.button4.TabIndex = 19;
+			this.button4.Text = "clear";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
 			// 
 			// textBox_log
 			// 
@@ -186,8 +196,27 @@
 			this.textBox_log.Multiline = true;
 			this.textBox_log.Name = "textBox_log";
 			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_log.Size = new System.Drawing.Size(937, 148);
+			this.textBox_log.Size = new System.Drawing.Size(923, 150);
 			this.textBox_log.TabIndex = 10;
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(11, 20);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(44, 17);
+			this.label13.TabIndex = 17;
+			this.label13.Text = "接收：";
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(9, 42);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(58, 21);
+			this.checkBox1.TabIndex = 18;
+			this.checkBox1.Text = "STOP";
+			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
 			// groupBox1
 			// 
@@ -205,17 +234,19 @@
 			this.groupBox1.Controls.Add(this.D);
 			this.groupBox1.Location = new System.Drawing.Point(3, 79);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(1013, 354);
+			this.groupBox1.Size = new System.Drawing.Size(999, 354);
 			this.groupBox1.TabIndex = 6;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "数据定义区";
 			// 
 			// textBox_data
 			// 
+			this.textBox_data.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_data.Location = new System.Drawing.Point(332, 64);
 			this.textBox_data.Multiline = true;
 			this.textBox_data.Name = "textBox_data";
-			this.textBox_data.Size = new System.Drawing.Size(672, 235);
+			this.textBox_data.Size = new System.Drawing.Size(661, 235);
 			this.textBox_data.TabIndex = 38;
 			// 
 			// textBox_example
@@ -229,7 +260,7 @@
 			this.textBox_example.Multiline = true;
 			this.textBox_example.Name = "textBox_example";
 			this.textBox_example.ReadOnly = true;
-			this.textBox_example.Size = new System.Drawing.Size(994, 47);
+			this.textBox_example.Size = new System.Drawing.Size(980, 47);
 			this.textBox_example.TabIndex = 37;
 			this.textBox_example.Text = "Example:";
 			// 
@@ -305,40 +336,11 @@
 			this.D.TabIndex = 33;
 			this.D.Text = "Data：";
 			// 
-			// button4
-			// 
-			this.button4.Location = new System.Drawing.Point(6, 70);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(55, 26);
-			this.button4.TabIndex = 19;
-			this.button4.Text = "clear";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click);
-			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(11, 20);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(44, 17);
-			this.label13.TabIndex = 17;
-			this.label13.Text = "接收：";
-			// 
-			// checkBox1
-			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(9, 42);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(58, 21);
-			this.checkBox1.TabIndex = 18;
-			this.checkBox1.Text = "STOP";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			// 
 			// FormSecsHsmsServer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1019, 614);
+			this.ClientSize = new System.Drawing.Size(1005, 616);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.panel1);

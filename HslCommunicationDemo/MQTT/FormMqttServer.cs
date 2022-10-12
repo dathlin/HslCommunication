@@ -144,14 +144,10 @@ namespace HslCommunicationDemo
 
 		private int MqttServer_ClientVerification( MqttSession mqttSession, string clientId, string userName, string passwrod )
 		{
-			if(userName == "admin" && passwrod == "123456")
-			{
-				return 0; // 成功
-			}
-			else
-			{
-				return 5; // 账号密码验证失败
-			}
+			if (userName == "hsl") mqttSession.DeveloperPermissions = false;      // hsl不具备开发者权限，无法遍历接口
+			if (userName == "admin" && passwrod == "123456") return 0; // 成功
+			if (userName == "hsl" && passwrod == "123456") return 0; // 成功
+			return 5; // 账号密码验证失败
 		}
 
 		private long receiveCount = 0;

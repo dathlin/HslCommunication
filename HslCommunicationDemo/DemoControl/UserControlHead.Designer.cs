@@ -80,6 +80,7 @@
 			// 
 			// linkLabel2
 			// 
+			this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.linkLabel2.LinkColor = System.Drawing.Color.Lavender;
 			this.linkLabel2.Location = new System.Drawing.Point(911, 2);
 			this.linkLabel2.Name = "linkLabel2";
@@ -92,6 +93,7 @@
 			// 
 			// linkLabel3
 			// 
+			this.linkLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.linkLabel3.LinkColor = System.Drawing.Color.Cyan;
 			this.linkLabel3.Location = new System.Drawing.Point(811, 2);
 			this.linkLabel3.Name = "linkLabel3";

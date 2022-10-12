@@ -107,7 +107,7 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			if (!byte.TryParse( textBox1.Text, out byte Station ))
+			if (!byte.TryParse( textBox_station.Text, out byte Station ))
 			{
 				MessageBox.Show( "PLC Station input wrong！" );
 				return;
@@ -116,6 +116,7 @@ namespace HslCommunicationDemo
 			cpl?.Close( );
 			cpl = new DigitronCPL( );
 			cpl.LogNet = LogNet;
+			cpl.Station = Station;
 
 			try
 			{
@@ -190,7 +191,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox2.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
-			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -202,7 +203,7 @@ namespace HslCommunicationDemo
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
 			comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

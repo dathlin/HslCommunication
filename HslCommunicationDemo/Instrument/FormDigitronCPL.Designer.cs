@@ -30,7 +30,7 @@
         {
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.comboBox3 = new System.Windows.Forms.ComboBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_station = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -76,7 +76,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel1.Controls.Add(this.comboBox3);
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.textBox_station);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.comboBox2);
 			this.panel1.Controls.Add(this.label3);
@@ -106,13 +106,13 @@
 			this.comboBox3.Size = new System.Drawing.Size(67, 25);
 			this.comboBox3.TabIndex = 41;
 			// 
-			// textBox1
+			// textBox_station
 			// 
-			this.textBox1.Location = new System.Drawing.Point(59, 33);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(31, 23);
-			this.textBox1.TabIndex = 40;
-			this.textBox1.Text = "0";
+			this.textBox_station.Location = new System.Drawing.Point(59, 33);
+			this.textBox_station.Name = "textBox_station";
+			this.textBox_station.Size = new System.Drawing.Size(31, 23);
+			this.textBox_station.TabIndex = 40;
+			this.textBox_station.Text = "0";
 			// 
 			// label1
 			// 
@@ -484,7 +484,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_station;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label3;

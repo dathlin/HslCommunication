@@ -101,9 +101,9 @@
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(11, 42);
+			this.panel1.Location = new System.Drawing.Point(4, 37);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1000, 56);
+			this.panel1.Size = new System.Drawing.Size(1017, 56);
 			this.panel1.TabIndex = 31;
 			// 
 			// button1
@@ -215,9 +215,9 @@
 			this.panel2.Controls.Add(this.label6);
 			this.panel2.Controls.Add(this.textBox5);
 			this.panel2.Controls.Add(this.label5);
-			this.panel2.Location = new System.Drawing.Point(11, 104);
+			this.panel2.Location = new System.Drawing.Point(4, 101);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1000, 518);
+			this.panel2.Size = new System.Drawing.Size(1017, 531);
 			this.panel2.TabIndex = 32;
 			// 
 			// button17
@@ -376,7 +376,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox7.Location = new System.Drawing.Point(99, 38);
 			this.textBox7.Name = "textBox7";
-			this.textBox7.Size = new System.Drawing.Size(690, 23);
+			this.textBox7.Size = new System.Drawing.Size(707, 23);
 			this.textBox7.TabIndex = 19;
 			// 
 			// label9
@@ -398,7 +398,7 @@
 			this.panel3.Controls.Add(this.webBrowser1);
 			this.panel3.Location = new System.Drawing.Point(76, 140);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(907, 367);
+			this.panel3.Size = new System.Drawing.Size(924, 380);
 			this.panel3.TabIndex = 17;
 			// 
 			// textBox6
@@ -408,7 +408,7 @@
 			this.textBox6.Multiline = true;
 			this.textBox6.Name = "textBox6";
 			this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox6.Size = new System.Drawing.Size(905, 365);
+			this.textBox6.Size = new System.Drawing.Size(922, 378);
 			this.textBox6.TabIndex = 5;
 			// 
 			// webBrowser1
@@ -417,14 +417,14 @@
 			this.webBrowser1.Location = new System.Drawing.Point(0, 0);
 			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(905, 365);
+			this.webBrowser1.Size = new System.Drawing.Size(922, 378);
 			this.webBrowser1.TabIndex = 14;
 			// 
 			// radioButton2
 			// 
 			this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.radioButton2.AutoSize = true;
-			this.radioButton2.Location = new System.Drawing.Point(888, 39);
+			this.radioButton2.Location = new System.Drawing.Point(905, 39);
 			this.radioButton2.Name = "radioButton2";
 			this.radioButton2.Size = new System.Drawing.Size(84, 21);
 			this.radioButton2.TabIndex = 16;
@@ -436,7 +436,7 @@
 			this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.radioButton1.AutoSize = true;
 			this.radioButton1.Checked = true;
-			this.radioButton1.Location = new System.Drawing.Point(821, 39);
+			this.radioButton1.Location = new System.Drawing.Point(838, 39);
 			this.radioButton1.Name = "radioButton1";
 			this.radioButton1.Size = new System.Drawing.Size(47, 21);
 			this.radioButton1.TabIndex = 15;
@@ -452,7 +452,7 @@
 			this.comboBox1.Items.AddRange(new object[] {
             "GET",
             "POST"});
-			this.comboBox1.Location = new System.Drawing.Point(708, 7);
+			this.comboBox1.Location = new System.Drawing.Point(725, 7);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(81, 25);
 			this.comboBox1.TabIndex = 13;
@@ -460,7 +460,7 @@
 			// button2
 			// 
 			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(811, 7);
+			this.button2.Location = new System.Drawing.Point(828, 7);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(84, 27);
 			this.button2.TabIndex = 9;
@@ -483,7 +483,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox5.Location = new System.Drawing.Point(76, 7);
 			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(626, 23);
+			this.textBox5.Size = new System.Drawing.Size(643, 23);
 			this.textBox5.TabIndex = 3;
 			// 
 			// label5

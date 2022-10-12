@@ -93,7 +93,7 @@
 			this.panel2.Controls.Add(this.label6);
 			this.panel2.Location = new System.Drawing.Point(3, 81);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 562);
+			this.panel2.Size = new System.Drawing.Size(997, 550);
 			this.panel2.TabIndex = 20;
 			// 
 			// label5
@@ -101,7 +101,7 @@
 			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label5.AutoSize = true;
 			this.label5.ForeColor = System.Drawing.Color.Gray;
-			this.label5.Location = new System.Drawing.Point(601, 540);
+			this.label5.Location = new System.Drawing.Point(601, 528);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(78, 17);
 			this.label5.TabIndex = 33;
@@ -111,7 +111,7 @@
 			// 
 			this.checkBox_stop_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox_stop_show.AutoSize = true;
-			this.checkBox_stop_show.Location = new System.Drawing.Point(884, 476);
+			this.checkBox_stop_show.Location = new System.Drawing.Point(884, 464);
 			this.checkBox_stop_show.Name = "checkBox_stop_show";
 			this.checkBox_stop_show.Size = new System.Drawing.Size(75, 21);
 			this.checkBox_stop_show.TabIndex = 32;
@@ -128,7 +128,7 @@
 			this.panel4.Controls.Add(this.radioButton_append_0a);
 			this.panel4.Controls.Add(this.radioButton_append_0d);
 			this.panel4.Controls.Add(this.label_append);
-			this.panel4.Location = new System.Drawing.Point(248, 443);
+			this.panel4.Location = new System.Drawing.Point(248, 431);
 			this.panel4.Name = "panel4";
 			this.panel4.Size = new System.Drawing.Size(348, 28);
 			this.panel4.TabIndex = 31;
@@ -200,7 +200,7 @@
 			this.panel3.BackColor = System.Drawing.SystemColors.Control;
 			this.panel3.Controls.Add(this.radioButton_ascii);
 			this.panel3.Controls.Add(this.radioButton_binary);
-			this.panel3.Location = new System.Drawing.Point(87, 443);
+			this.panel3.Location = new System.Drawing.Point(87, 431);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(155, 28);
 			this.panel3.TabIndex = 30;
@@ -232,7 +232,7 @@
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label2.AutoSize = true;
 			this.label2.ForeColor = System.Drawing.Color.Gray;
-			this.label2.Location = new System.Drawing.Point(296, 540);
+			this.label2.Location = new System.Drawing.Point(296, 528);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(273, 17);
 			this.label2.TabIndex = 29;
@@ -241,7 +241,7 @@
 			// button6
 			// 
 			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button6.Location = new System.Drawing.Point(635, 443);
+			this.button6.Location = new System.Drawing.Point(635, 431);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(120, 28);
 			this.button6.TabIndex = 26;
@@ -262,8 +262,8 @@
 			// 
 			// button4
 			// 
-			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button4.Location = new System.Drawing.Point(872, 444);
+			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button4.Location = new System.Drawing.Point(872, 432);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(120, 28);
 			this.button4.TabIndex = 23;
@@ -276,7 +276,7 @@
 			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label8.AutoSize = true;
 			this.label8.ForeColor = System.Drawing.Color.Gray;
-			this.label8.Location = new System.Drawing.Point(4, 540);
+			this.label8.Location = new System.Drawing.Point(4, 528);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(116, 17);
 			this.label8.TabIndex = 22;
@@ -291,7 +291,7 @@
 			this.textBox6.Multiline = true;
 			this.textBox6.Name = "textBox6";
 			this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox6.Size = new System.Drawing.Size(990, 410);
+			this.textBox6.Size = new System.Drawing.Size(990, 398);
 			this.textBox6.TabIndex = 21;
 			// 
 			// checkBox_show_time
@@ -330,7 +330,7 @@
 			// button_send
 			// 
 			this.button_send.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_send.Location = new System.Drawing.Point(881, 499);
+			this.button_send.Location = new System.Drawing.Point(881, 487);
 			this.button_send.Name = "button_send";
 			this.button_send.Size = new System.Drawing.Size(107, 37);
 			this.button_send.TabIndex = 17;
@@ -342,7 +342,7 @@
 			// 
 			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox5.Location = new System.Drawing.Point(5, 475);
+			this.textBox5.Location = new System.Drawing.Point(5, 463);
 			this.textBox5.Multiline = true;
 			this.textBox5.Name = "textBox5";
 			this.textBox5.Size = new System.Drawing.Size(869, 61);
@@ -352,7 +352,7 @@
 			// 
 			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(3, 448);
+			this.label6.Location = new System.Drawing.Point(3, 436);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(80, 17);
 			this.label6.TabIndex = 1;
@@ -468,7 +468,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.ClientSize = new System.Drawing.Size(1004, 633);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);

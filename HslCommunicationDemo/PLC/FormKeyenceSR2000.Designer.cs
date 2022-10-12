@@ -292,7 +292,8 @@
 			// 
 			// button_read_string
 			// 
-			this.button_read_string.Location = new System.Drawing.Point(840, 96);
+			this.button_read_string.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read_string.Location = new System.Drawing.Point(867, 96);
 			this.button_read_string.Name = "button_read_string";
 			this.button_read_string.Size = new System.Drawing.Size(116, 28);
 			this.button_read_string.TabIndex = 16;
@@ -323,9 +324,11 @@
 			// 
 			// textBox3
 			// 
+			this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox3.Location = new System.Drawing.Point(63, 99);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(771, 23);
+			this.textBox3.Size = new System.Drawing.Size(798, 23);
 			this.textBox3.TabIndex = 3;
 			this.textBox3.Text = "KEYENCE";
 			// 

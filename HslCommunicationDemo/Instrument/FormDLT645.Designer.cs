@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_enable_Fe = new System.Windows.Forms.CheckBox();
 			this.textBox_op_code = new System.Windows.Forms.TextBox();
 			this.label_op_code = new System.Windows.Forms.Label();
 			this.textBox_password = new System.Windows.Forms.TextBox();
@@ -51,6 +52,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button7 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
@@ -73,7 +75,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button7 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -86,6 +87,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_enable_Fe);
 			this.panel1.Controls.Add(this.textBox_op_code);
 			this.panel1.Controls.Add(this.label_op_code);
 			this.panel1.Controls.Add(this.textBox_password);
@@ -110,6 +112,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 59);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_enable_Fe
+			// 
+			this.checkBox_enable_Fe.AutoSize = true;
+			this.checkBox_enable_Fe.Location = new System.Drawing.Point(740, 5);
+			this.checkBox_enable_Fe.Name = "checkBox_enable_Fe";
+			this.checkBox_enable_Fe.Size = new System.Drawing.Size(130, 21);
+			this.checkBox_enable_Fe.TabIndex = 35;
+			this.checkBox_enable_Fe.Text = "FE FE FE FE head?";
+			this.checkBox_enable_Fe.UseVisualStyleBackColor = true;
 			// 
 			// textBox_op_code
 			// 
@@ -228,7 +240,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(857, 11);
+			this.button2.Location = new System.Drawing.Point(837, 27);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -238,7 +250,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(760, 11);
+			this.button1.Location = new System.Drawing.Point(740, 27);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -323,6 +335,16 @@
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
+			// 
+			// button7
+			// 
+			this.button7.Location = new System.Drawing.Point(259, 57);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(151, 28);
+			this.button7.TabIndex = 18;
+			this.button7.Text = "读取原始字符串";
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.button7_Click);
 			// 
 			// button6
 			// 
@@ -545,16 +567,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// button7
-			// 
-			this.button7.Location = new System.Drawing.Point(259, 57);
-			this.button7.Name = "button7";
-			this.button7.Size = new System.Drawing.Size(151, 28);
-			this.button7.TabIndex = 18;
-			this.button7.Text = "读取原始字符串";
-			this.button7.UseVisualStyleBackColor = true;
-			this.button7.Click += new System.EventHandler(this.button7_Click);
-			// 
 			// FormDLT645
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -632,5 +644,6 @@
 		private System.Windows.Forms.TextBox textBox_password;
 		private System.Windows.Forms.Label label_password;
 		private System.Windows.Forms.Button button7;
+		private System.Windows.Forms.CheckBox checkBox_enable_Fe;
 	}
 }

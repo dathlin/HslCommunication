@@ -189,10 +189,10 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(12, 42);
+			this.panel1.Location = new System.Drawing.Point(4, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 42);
+			this.panel1.Size = new System.Drawing.Size(975, 42);
 			this.panel1.TabIndex = 12;
 			// 
 			// button2
@@ -353,9 +353,9 @@
 			this.panel2.Controls.Add(this.label55);
 			this.panel2.Controls.Add(this.label53);
 			this.panel2.Controls.Add(this.label52);
-			this.panel2.Location = new System.Drawing.Point(12, 91);
+			this.panel2.Location = new System.Drawing.Point(4, 82);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 546);
+			this.panel2.Size = new System.Drawing.Size(974, 554);
 			this.panel2.TabIndex = 13;
 			// 
 			// label74
@@ -1525,7 +1525,7 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Previous";
-			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(982, 32);
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
@@ -1535,7 +1535,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.ClientSize = new System.Drawing.Size(982, 648);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);

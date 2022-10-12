@@ -81,6 +81,7 @@ namespace HslCommunicationDemo
             dLT645?.ConnectClose( );
             dLT645 = new DLT645OverTcp( textBox_ip.Text, port, textBox_station.Text, textBox_password.Text, textBox_op_code.Text );
             dLT645.LogNet = LogNet;
+            dLT645.EnableCodeFE = checkBox_enable_Fe.Checked;
 
             try
             {
