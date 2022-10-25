@@ -18,6 +18,8 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Xml.Linq;
 using HslCommunication.BasicFramework;
+using System.Text.RegularExpressions;
+using System.IO;
 
 namespace HslCommunicationDemo
 {
@@ -85,12 +87,13 @@ namespace HslCommunicationDemo
 				httpServer = new HttpServer( );
 				httpServer.Start( int.Parse( textBox2.Text ) );
 				httpServer.HandleRequestFunc = HandleRequest;
-				httpServer.IsCrossDomain = checkBox_IsCrossDomain.Checked;                        // 是否跨域的设置
-				httpServer.RegisterHttpRpcApi( "", this );                           // 注册当前窗体的接口到服务器的接口上去
-				httpServer.RegisterHttpRpcApi( "Siemens", siemens );                 // 注册一个西门子PLC的服务接口的示例
-				httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );    // 注册的类的静态方法和静态属性
+				httpServer.HandleFileUpload  = HandleFileUpload;
+				httpServer.IsCrossDomain = checkBox_IsCrossDomain.Checked;               // 是否跨域的设置
+				httpServer.RegisterHttpRpcApi( "", this );                               // 注册当前窗体的接口到服务器的接口上去
+				httpServer.RegisterHttpRpcApi( "Siemens", siemens );                     // 注册一个西门子PLC的服务接口的示例
+				httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );        // 注册的类的静态方法和静态属性
 				httpServer.RegisterHttpRpcApi( "PCCC", pcccNet );
-				httpServer.DealWithHttpListenerRequest = DealWithHttpListenerRequest; // 自定义处理请求的接口
+				httpServer.DealWithHttpListenerRequest = DealWithHttpListenerRequest;    // 自定义处理请求的接口，比如增加认证信息
 				if (checkBox2.Checked) httpServer.SetLoginAccessControl( new HslCommunication.MQTT.MqttCredential[] {
 				new HslCommunication.MQTT.MqttCredential("admin", "123456")} );
 
@@ -199,6 +202,15 @@ namespace HslCommunicationDemo
 			return OperateResult.CreateSuccessResult(HslHelper.HslRandom.Next( 1000 ), "成功:" + address );
 		}
 
+		// 处理文件信息
+		private string HandleFileUpload( HttpListenerRequest request, HttpListenerResponse response, HttpUploadFile file )
+		{
+			// 也可以获取 request.RawUrl 来获取客户端上传的url信息，例如 /Upload/File/ 才能上传文件之类的
+			File.WriteAllBytes( System.IO.Path.Combine( Application.StartupPath, file.FileName ), file.Content );
+			return $"GET/POST File";
+		}
+
+		// 处理请求信息
 		private string HandleRequest( HttpListenerRequest request, HttpListenerResponse response, string data )
 		{
 			if (request.RawUrl.StartsWith( "/FormHttpServer/" ))

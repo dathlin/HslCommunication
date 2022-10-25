@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.1.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.1.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.2.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.2.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -303,6 +303,30 @@
     </Compile>
     <Compile Include="Hsl\FormDtuServer.Designer.cs">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormCJT188OverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormCJT188OverTcp.Designer.cs">
+      <DependentUpon>FormCJT188OverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormCJT188.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormCJT188.Designer.cs">
+      <DependentUpon>FormCJT188.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormDLT645With1997OverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDLT645With1997OverTcp.Designer.cs">
+      <DependentUpon>FormDLT645With1997OverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormDLT645With1997.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDLT645With1997.Designer.cs">
+      <DependentUpon>FormDLT645With1997.cs</DependentUpon>
     </Compile>
     <Compile Include="Instrument\FormDLT698TcpNet.cs">
       <SubType>Form</SubType>
@@ -1582,6 +1606,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormDtuServer.resx">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormCJT188OverTcp.resx">
+      <DependentUpon>FormCJT188OverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormCJT188.resx">
+      <DependentUpon>FormCJT188.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDLT645With1997OverTcp.resx">
+      <DependentUpon>FormDLT645With1997OverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDLT645With1997.resx">
+      <DependentUpon>FormDLT645With1997.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormDLT698TcpNet.resx">
       <DependentUpon>FormDLT698TcpNet.cs</DependentUpon>

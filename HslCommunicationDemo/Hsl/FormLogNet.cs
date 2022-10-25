@@ -188,6 +188,10 @@ namespace HslCommunicationDemo
             formSiemensFW.AcceptButton = button1;
         }
 
-
+        private void button_hour_offset_Click( object sender, EventArgs e )
+        {
+            logNet.HourDeviation = int.Parse( textBox_hour_offset.Text );
+            MessageBox.Show( "Finish" );
+		}
     }
 }

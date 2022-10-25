@@ -53,6 +53,9 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label2 = new System.Windows.Forms.Label();
+			this.textBox_hour_offset = new System.Windows.Forms.TextBox();
+			this.button_hour_offset = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -62,6 +65,9 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.button_hour_offset);
+			this.panel1.Controls.Add(this.label2);
+			this.panel1.Controls.Add(this.textBox_hour_offset);
 			this.panel1.Controls.Add(this.button9);
 			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.label8);
@@ -97,7 +103,7 @@
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(313, 39);
+			this.checkBox1.Location = new System.Drawing.Point(251, 39);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(171, 21);
 			this.checkBox1.TabIndex = 17;
@@ -108,7 +114,7 @@
 			// 
 			this.label8.AutoSize = true;
 			this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.label8.Location = new System.Drawing.Point(588, 31);
+			this.label8.Location = new System.Drawing.Point(443, 43);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(221, 17);
 			this.label8.TabIndex = 16;
@@ -118,7 +124,7 @@
 			// 
 			this.label7.AutoSize = true;
 			this.label7.ForeColor = System.Drawing.Color.Blue;
-			this.label7.Location = new System.Drawing.Point(588, 6);
+			this.label7.Location = new System.Drawing.Point(679, 43);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(164, 17);
 			this.label7.TabIndex = 15;
@@ -128,7 +134,7 @@
 			// 
 			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(391, 3);
+			this.comboBox2.Location = new System.Drawing.Point(312, 5);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(121, 25);
 			this.comboBox2.TabIndex = 14;
@@ -136,7 +142,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(310, 6);
+			this.label6.Location = new System.Drawing.Point(231, 8);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(68, 17);
 			this.label6.TabIndex = 13;
@@ -222,7 +228,7 @@
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(84, 3);
+			this.comboBox1.Location = new System.Drawing.Point(84, 5);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(121, 25);
 			this.comboBox1.TabIndex = 4;
@@ -237,7 +243,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(3, 6);
+			this.label1.Location = new System.Drawing.Point(3, 8);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(68, 17);
 			this.label1.TabIndex = 2;
@@ -261,7 +267,7 @@
 			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(276, 10);
+			this.button8.Location = new System.Drawing.Point(276, 7);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(90, 28);
 			this.button8.TabIndex = 12;
@@ -271,7 +277,7 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(180, 10);
+			this.button4.Location = new System.Drawing.Point(180, 7);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(90, 28);
 			this.button4.TabIndex = 11;
@@ -281,7 +287,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(84, 10);
+			this.button3.Location = new System.Drawing.Point(84, 7);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(90, 28);
 			this.button3.TabIndex = 10;
@@ -323,6 +329,33 @@
 			this.userControlHead1.ProtocolInfo = "";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 27;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(452, 8);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(68, 17);
+			this.label2.TabIndex = 20;
+			this.label2.Text = "小时偏移：";
+			// 
+			// textBox_hour_offset
+			// 
+			this.textBox_hour_offset.Location = new System.Drawing.Point(525, 6);
+			this.textBox_hour_offset.Name = "textBox_hour_offset";
+			this.textBox_hour_offset.Size = new System.Drawing.Size(68, 23);
+			this.textBox_hour_offset.TabIndex = 19;
+			this.textBox_hour_offset.Text = "0";
+			// 
+			// button_hour_offset
+			// 
+			this.button_hour_offset.Location = new System.Drawing.Point(601, 4);
+			this.button_hour_offset.Name = "button_hour_offset";
+			this.button_hour_offset.Size = new System.Drawing.Size(90, 28);
+			this.button_hour_offset.TabIndex = 21;
+			this.button_hour_offset.Text = "设置";
+			this.button_hour_offset.UseVisualStyleBackColor = true;
+			this.button_hour_offset.Click += new System.EventHandler(this.button_hour_offset_Click);
 			// 
 			// FormLogNet
 			// 
@@ -373,5 +406,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.Button button9;
-    }
+		private System.Windows.Forms.Button button_hour_offset;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.TextBox textBox_hour_offset;
+	}
 }

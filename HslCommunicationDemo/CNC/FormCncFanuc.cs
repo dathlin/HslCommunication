@@ -735,6 +735,11 @@ namespace HslCommunicationDemo
 			//}
 		}
 
+		private void button35_Click( object sender, EventArgs e )
+		{
+			fanuc.OperatePath = short.Parse( textBox_op_path.Text );
+			MessageBox.Show( "Success!" );
+		}
 	}
 
 
