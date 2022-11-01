@@ -86,8 +86,10 @@ namespace HslCommunicationDemo
             cjt188.Port = port;
 			cjt188.LogNet = LogNet;
             cjt188.EnableCodeFE = checkBox_enable_Fe.Checked;
+            cjt188.StationMatch = checkBox_station_match.Checked;
 
-            try
+
+			try
             {
                 OperateResult connect = cjt188.ConnectServer( );
                 if (connect.IsSuccess)
@@ -212,6 +214,7 @@ namespace HslCommunicationDemo
             element.SetAttributeValue( DemoDeviceList.XmlBaudRate,  textBox_port.Text );
             element.SetAttributeValue( DemoDeviceList.XmlStation,   textBox_station.Text );
             element.SetAttributeValue( "InstrumentType",      textBox_type.Text );
+            element.SetAttributeValue( "StationMatch",        checkBox_station_match.Checked.ToString( ) );
         }
 
         public override void LoadXmlParameter( XElement element )
@@ -221,6 +224,7 @@ namespace HslCommunicationDemo
             textBox_port.Text    = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
             textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
             textBox_type.Text    = HslCommunication.BasicFramework.SoftBasic.GetXmlValue( element, "InstrumentType", "19" );
+            checkBox_station_match.Checked = HslCommunication.BasicFramework.SoftBasic.GetXmlValue( element, "StationMatch", false );
         }
 
         private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

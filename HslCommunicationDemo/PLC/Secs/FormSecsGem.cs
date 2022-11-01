@@ -15,6 +15,7 @@ using System.IO.Ports;
 using System.Xml.Linq;
 using HslCommunication.Secs.Helper;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
@@ -53,12 +54,12 @@ namespace HslCommunicationDemo
 
 			TreeNode s1Node = new TreeNode( "S1" );
 			AddTree( s1Node, new SecsTreeItem( 1, 1,  true,  null, "Are You Online" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 3,  true,  new SecsValue(new object[] { (uint)1, (uint)2 } ), "Selected Equipment Status" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 3,  true,  new SecsValue( new object[] { (uint)1, (uint)2 } ), "Selected Equipment Status" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 5,  true,  new SecsValue( new byte[] { 0x01 } ), "Formatted Status" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 7,  false, new SecsValue( new byte[] { 0x01 } ), "Fixed Form Request" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 9,  true,  null, "Material Transfer Status" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 11, true,  new SecsValue(new object[] { (uint)1, (uint)2 } ), "Status Variable Namelist" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 13, true,  null, "Establish Communications" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 13, true,  new SecsValue( new object[] { new byte[] { 0x01 }, new object[0]  } ), "Establish Communications" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 15, true,  null, "Request OFF-LINE" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 17, true,  null, "Request ON-LINE" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 19, true,  new SecsValue( new object[] { "object class name", new object[] { "Job0001", "Job0002" }, new object[] { "attribute1", "attribute2" } } ), "Get Attribute" ) );
@@ -86,6 +87,8 @@ namespace HslCommunicationDemo
 			AddTree( s2Node, new SecsTreeItem( 2, 33, true, new SecsValue( new object[] { (uint)1, new object[] { new object[] { (uint)4, new object[] { "810" } } } } ), "Define Report" ) );
 			AddTree( s2Node, new SecsTreeItem( 2, 35, true, new SecsValue( new object[] { (uint)1, new object[] { new object[] { (uint)4050, new object[] { (uint)1 } } } } ), "Link Event Report" ) );
 			AddTree( s2Node, new SecsTreeItem( 2, 37, true, new SecsValue( new object[] { (uint)1, new object[] { new object[] { (uint)4050, new object[] { (uint)1 } } } } ), "Enable/Disable Event Report" ) );
+			AddTree( s2Node, new SecsTreeItem( 2, 39, true, new SecsValue( new object[] { (uint)1, (uint)649 } ), "Multi-block Inquire" ) );
+			AddTree( s2Node, new SecsTreeItem( 2, 41, true, new SecsValue( new object[] { "pause", new object[] { new object[] { "ppexecname", "cmos168-zl0EC" } } } ), "Host Command Send" ) );
 			treeView1.Nodes.Add( s2Node );
 
 
@@ -141,6 +144,10 @@ namespace HslCommunicationDemo
 			AddTree( s6Node, new SecsTreeItem( 6, 9, true, new SecsValue( new object[] { new byte[] { 0x02 }, (uint)1, (uint)4050, new object[] { new object[] { "12", new object[] { "54" } } } } ), "Formatted Variable Send" ) );
 			treeView1.Nodes.Add( s6Node );
 
+			TreeNode s7Node = new TreeNode( "S7" );
+			AddTree( s7Node, new SecsTreeItem( 7, 1, true, new SecsValue( new object[] { "banana", (uint)322 } ), "Process Program Load Inquire" ) );
+			AddTree( s7Node, new SecsTreeItem( 7, 3, true, new SecsValue( new object[] { "banana", new byte[] { 0x00 } } ), "Process Program Send\t" ) );
+
 			treeView1.AfterSelect += TreeView1_AfterSelect;
 		}
 
@@ -183,13 +190,14 @@ namespace HslCommunicationDemo
 
 		public class SecsTreeItem
 		{
-			public SecsTreeItem( byte s, byte f, bool w, SecsValue value, string decs )
+			public SecsTreeItem( byte s, byte f, bool w, SecsValue value, string decs, SecsValue singular = null )
 			{
 				this.S = s;
 				this.F = f;
 				this.W = w;
 				this.Value = value;
 				this.Description = decs;
+				this.ValueSingular = singular;
 			}
 
 			public byte S { get; set; }
@@ -197,6 +205,7 @@ namespace HslCommunicationDemo
 			public bool W { get; set; }
 			public SecsValue Value { get; set; }
 			public string Description { get; set; }
+			public SecsValue ValueSingular { get; set; }
 		}
 
 		private void Language( int language )
@@ -233,17 +242,15 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox2.Text,out int port ))
+			if(!int.TryParse(textBox_port.Text,out int port ))
 			{
 				MessageBox.Show( DemoUtils.PortInputWrong );
 				return;
 			}
 
 			secs?.ConnectClose( );
-			secs = new SecsHsms( textBox3.Text, port );
+			secs = new SecsHsms( textBox_ip.Text, port );
 			secs.DeviceID = ushort.Parse( textBox_deviceID.Text );
-			secs.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
-			secs.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			secs.OnSecsMessageReceived += Secs_OnSecsMessageReceived;
 			secs.InitializationS0F0 = checkBox2.Checked;
 			ComboBox1_SelectedIndexChanged( comboBox1, e );
@@ -274,9 +281,15 @@ namespace HslCommunicationDemo
 
 		private void Secs_OnSecsMessageReceived( object sender, SecsMessage secsMessage )
 		{
-			// 当接收到数据返回的非应答数据时，需要处理的方法代码
-			secs.LogNet?.WriteDebug( secs.ToString( ), secsMessage.ToString( ) );
+			// 当接收到数据返回的非应答数据时，需要处理的方法代码，此处只是显示
+			if (InvokeRequired)
+			{
+				Invoke( new Action<object, SecsMessage>( Secs_OnSecsMessageReceived ), sender, secsMessage );
+				return;
+			}
 
+			if (!checkBox1.Checked)
+				textBox_log.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " " + secsMessage.ToString( ) + Environment.NewLine );
 		}
 
 		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
@@ -350,15 +363,21 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStation,  textBox_deviceID.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlBaudRate,  textBox_port.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStation,   textBox_deviceID.Text );
+			element.SetAttributeValue( "Encoding",                  comboBox1.SelectedIndex );
+			element.SetAttributeValue( "S0F0", checkBox2.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text         = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-			textBox_deviceID.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			textBox_ip.Text           = SoftBasic.GetXmlValue( element, DemoDeviceList.XmlIpAddress, "127.0.0.1" );
+			textBox_port.Text         = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+			textBox_deviceID.Text     = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			comboBox1.SelectedIndex   = SoftBasic.GetXmlValue( element, "Encoding", 1 );
+			checkBox2.Checked         = SoftBasic.GetXmlValue( element, "S0F0", false );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

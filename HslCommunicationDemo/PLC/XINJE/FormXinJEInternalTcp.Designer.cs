@@ -29,8 +29,8 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.textBox15 = new System.Windows.Forms.TextBox();
-			this.label21 = new System.Windows.Forms.Label();
+			this.textBox_station = new System.Windows.Forms.TextBox();
+			this.label_station = new System.Windows.Forms.Label();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label26 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
@@ -66,8 +66,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.textBox15);
-			this.panel1.Controls.Add(this.label21);
+			this.panel1.Controls.Add(this.textBox_station);
+			this.panel1.Controls.Add(this.label_station);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label26);
 			this.panel1.Controls.Add(this.textBox1);
@@ -80,26 +80,26 @@
 			this.panel1.Size = new System.Drawing.Size(997, 46);
 			this.panel1.TabIndex = 0;
 			// 
-			// textBox15
+			// textBox_station
 			// 
-			this.textBox15.Location = new System.Drawing.Point(389, 9);
-			this.textBox15.Name = "textBox15";
-			this.textBox15.Size = new System.Drawing.Size(45, 23);
-			this.textBox15.TabIndex = 28;
-			this.textBox15.Text = "0";
+			this.textBox_station.Location = new System.Drawing.Point(400, 9);
+			this.textBox_station.Name = "textBox_station";
+			this.textBox_station.Size = new System.Drawing.Size(79, 23);
+			this.textBox_station.TabIndex = 28;
+			this.textBox_station.Text = "0";
 			// 
-			// label21
+			// label_station
 			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(337, 12);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(44, 17);
-			this.label21.TabIndex = 27;
-			this.label21.Text = "站号：";
+			this.label_station.AutoSize = true;
+			this.label_station.Location = new System.Drawing.Point(337, 12);
+			this.label_station.Name = "label_station";
+			this.label_station.Size = new System.Drawing.Size(44, 17);
+			this.label_station.TabIndex = 27;
+			this.label_station.Text = "站号：";
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(250, 9);
+			this.textBox2.Location = new System.Drawing.Point(271, 9);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(47, 23);
 			this.textBox2.TabIndex = 19;
@@ -108,7 +108,7 @@
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(201, 12);
+			this.label26.Location = new System.Drawing.Point(222, 12);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(44, 17);
 			this.label26.TabIndex = 18;
@@ -118,7 +118,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(64, 9);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(128, 23);
+			this.textBox1.Size = new System.Drawing.Size(152, 23);
 			this.textBox1.TabIndex = 17;
 			this.textBox1.Text = "192.168.0.10";
 			// 
@@ -402,8 +402,8 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox textBox_station;
+        private System.Windows.Forms.Label label_station;
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.GroupBox groupBox5;
 		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;

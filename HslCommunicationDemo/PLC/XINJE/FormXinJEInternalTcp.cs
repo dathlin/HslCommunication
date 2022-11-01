@@ -43,7 +43,7 @@ namespace HslCommunicationDemo
 				label26.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
+				label_station.Text = "Station:";
 
 				label11.Text = "Address:";
 				label12.Text = "length:";
@@ -82,7 +82,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				xinJE.Station = byte.Parse( textBox15.Text );
+				xinJE.Station = byte.Parse( textBox_station.Text );
 				OperateResult connect = xinJE.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -212,7 +212,7 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -220,7 +220,7 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

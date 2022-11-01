@@ -254,7 +254,20 @@ namespace HslCommunicationDemo
 
 		private void button25_Click( object sender, EventArgs e )
         {
-            DemoUtils.BulkReadRenderResult( siemensTcpNet, textBox6, textBox9, textBox10 );
+            if (textBox6.Text.Contains(";") && textBox9.Text.Contains( ";" ))
+            {
+                OperateResult<byte[]> read = siemensTcpNet.Read( textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).ToArray( ),
+                   textBox9.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( m => ushort.Parse( m ) ).ToArray( ) );
+
+                if (read.IsSuccess)
+                    textBox10.Text = read.Content.ToHexString( ' ' );
+                else
+                    MessageBox.Show( "Read failed: " + read.Message );
+			}
+            else
+			{
+				DemoUtils.BulkReadRenderResult( siemensTcpNet, textBox6, textBox9, textBox10 );
+			}
 
 
             //siemensTcpNet.Write( "M100.0", true ).

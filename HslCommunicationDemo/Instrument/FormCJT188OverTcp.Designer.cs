@@ -71,6 +71,7 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox_station_match = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -83,6 +84,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_station_match);
 			this.panel1.Controls.Add(this.label5);
 			this.panel1.Controls.Add(this.textBox_type);
 			this.panel1.Controls.Add(this.label4);
@@ -231,7 +233,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(875, 11);
+			this.button2.Location = new System.Drawing.Point(881, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -241,7 +243,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(778, 11);
+			this.button1.Location = new System.Drawing.Point(784, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -517,6 +519,16 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// checkBox_station_match
+			// 
+			this.checkBox_station_match.AutoSize = true;
+			this.checkBox_station_match.Location = new System.Drawing.Point(763, 34);
+			this.checkBox_station_match.Name = "checkBox_station_match";
+			this.checkBox_station_match.Size = new System.Drawing.Size(113, 21);
+			this.checkBox_station_match.TabIndex = 43;
+			this.checkBox_station_match.Text = "Station Match?";
+			this.checkBox_station_match.UseVisualStyleBackColor = true;
+			// 
 			// FormCJT188OverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -591,5 +603,6 @@
 		private System.Windows.Forms.TextBox textBox_type;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button button_read_string_array;
+		private System.Windows.Forms.CheckBox checkBox_station_match;
 	}
 }
