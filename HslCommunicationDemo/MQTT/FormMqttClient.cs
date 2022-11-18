@@ -243,7 +243,7 @@ namespace HslCommunicationDemo
 				{
 					QualityOfServiceLevel = level,
 					Topic                 = textBox5.Text,
-					Payload               = Encoding.UTF8.GetBytes( textBox4.Text ),
+					Payload               = checkBox_publish_isHex.Checked ? textBox4.Text.ToHexBytes( ) : Encoding.UTF8.GetBytes( textBox4.Text ),
 					Retain                = checkBox1.Checked                        // 如果为TRUE，该消息在服务器上进行驻留保存，方便客户端连上立即推送
 				} );
 

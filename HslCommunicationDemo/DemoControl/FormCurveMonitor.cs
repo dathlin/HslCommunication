@@ -35,7 +35,7 @@ namespace HslCommunicationDemo.DemoControl
 		private void FormCurveMonitor_Load( object sender, EventArgs e )
 		{
 			propertyGrid1.SelectedObject = hslCurve1;
-			hslCurve1.SetLeftCurve( "Test", null );
+			hslCurve1.SetLeftCurve( "Test", null, Color.Blue );
 		}
 
 		private IReadWriteNet readWriteNet;
@@ -72,6 +72,7 @@ namespace HslCommunicationDemo.DemoControl
 							  {
 								  if (read.Content) hslCurve1.AddCurveData( "Test", 1 );
 								  else hslCurve1.AddCurveData( "Test", 0 );
+								  label_value.Text = "Value: " + read.Content.ToString( );
 							  } ) );
 						}
 						else
@@ -88,6 +89,7 @@ namespace HslCommunicationDemo.DemoControl
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
 								hslCurve1.AddCurveData( "Test", read.Content );
+								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
 						else
@@ -104,6 +106,7 @@ namespace HslCommunicationDemo.DemoControl
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
 								hslCurve1.AddCurveData( "Test", read.Content );
+								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
 						else
@@ -120,6 +123,7 @@ namespace HslCommunicationDemo.DemoControl
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
 								hslCurve1.AddCurveData( "Test", read.Content );
+								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
 						else
@@ -136,6 +140,7 @@ namespace HslCommunicationDemo.DemoControl
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
 								hslCurve1.AddCurveData( "Test", read.Content );
+								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
 						else
@@ -152,6 +157,7 @@ namespace HslCommunicationDemo.DemoControl
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
 								hslCurve1.AddCurveData( "Test", read.Content );
+								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
 						else
@@ -168,6 +174,7 @@ namespace HslCommunicationDemo.DemoControl
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
 								hslCurve1.AddCurveData( "Test", read.Content );
+								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
 						else
@@ -184,6 +191,7 @@ namespace HslCommunicationDemo.DemoControl
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
 								hslCurve1.AddCurveData( "Test", read.Content );
+								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
 						else
@@ -200,6 +208,7 @@ namespace HslCommunicationDemo.DemoControl
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
 								hslCurve1.AddCurveData( "Test", (float)read.Content );
+								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
 						else

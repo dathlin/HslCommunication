@@ -225,11 +225,17 @@ namespace HslCommunicationDemo
 					receiveCount++;
 					if (message.Payload?.Length > 100 && checkBox_long_message_hide.Checked)
 					{
-						textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload.SelectBegin( 100 ) )}...]" + Environment.NewLine );
+						if (checkBox_receive_isHex.Checked)
+							textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{message.Payload.SelectBegin( 100 ).ToHexString( ' ' )}...]" + Environment.NewLine );
+						else
+							textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload.SelectBegin( 100 ) )}...]" + Environment.NewLine );
 					}
 					else
 					{
-						textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
+						if (checkBox_receive_isHex.Checked)
+							textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{message.Payload.ToHexString(' ')}]" + Environment.NewLine );
+						else
+							textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
 					}
 				}
 			} ) );
@@ -392,7 +398,7 @@ namespace HslCommunicationDemo
 
 		private void button3_Click( object sender, EventArgs e )
 		{
-			mqttServer.PublishAllClientTopicPayload( textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ) );
+			mqttServer.PublishAllClientTopicPayload( textBox5.Text, checkBox_publish_isHex.Checked ? textBox4.Text.ToHexBytes( ) : Encoding.UTF8.GetBytes( textBox4.Text ) );
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -405,13 +411,13 @@ namespace HslCommunicationDemo
 		private void Button5_Click( object sender, EventArgs e )
 		{
 			// 发布到指定的客户端ID
-			mqttServer.PublishTopicPayload( textBox1.Text, textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ) );
+			mqttServer.PublishTopicPayload( textBox1.Text, textBox5.Text, checkBox_publish_isHex.Checked ? textBox4.Text.ToHexBytes( ) : Encoding.UTF8.GetBytes( textBox4.Text ) );
 		}
 
 		private void button6_Click_1( object sender, EventArgs e )
 		{
 			// 发布指定的主题
-			mqttServer.PublishTopicPayload( textBox5.Text, Encoding.UTF8.GetBytes( textBox4.Text ) );
+			mqttServer.PublishTopicPayload( textBox5.Text, checkBox_publish_isHex.Checked ? textBox4.Text.ToHexBytes( ) : Encoding.UTF8.GetBytes( textBox4.Text ) );
 		}
 
 		bool isStop = false;

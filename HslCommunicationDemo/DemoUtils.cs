@@ -194,5 +194,36 @@ namespace HslCommunicationDemo
 		public static readonly string BaudRateInputWrong = "Baud rate input wrong";
 		public static readonly string DataBitsInputWrong = "Data bit input wrong";
 		public static readonly string StopBitInputWrong = "Stop bit input wrong";
+
+
+
+		public static string[] GetEncodings( )
+		{
+			return new string[]
+			{
+				"ASCII",
+				"Unicode",
+				"Unicode-big",
+				"UTF8",
+				"UTF32",
+				"ANSI",
+				"GB2312"
+			};
+		}
+
+		public static Encoding GetEncodingFromIndex( int index )
+		{
+			switch (index)
+			{
+				case 0: return Encoding.ASCII;
+				case 1: return Encoding.Unicode;
+				case 2: return Encoding.BigEndianUnicode;
+				case 3: return Encoding.UTF8;
+				case 4: return Encoding.UTF32;
+				case 5: return Encoding.Default;
+				case 6: return Encoding.GetEncoding( "gb2312" );
+				default: return Encoding.ASCII;
+			}
+		}
 	}
 }

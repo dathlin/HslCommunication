@@ -110,7 +110,7 @@ namespace HslCommunicationDemo
                 return;
             }
             if (!byte.TryParse( textBox_station.Text, out byte station ))
-            {
+            { 
                 MessageBox.Show( "Station input wrong!" );
                 return;
             }

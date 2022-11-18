@@ -28,8 +28,9 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 			button2.Enabled = false;
 
-			
 
+			comboBox1.DataSource = DemoUtils.GetEncodings( );
+			comboBox1.SelectedIndex = 3;
 			Language( Program.Language );
 		}
 
@@ -130,30 +131,38 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				wsClient.LogNet?.WriteDebug( ToString( ), $"OpCode[{message.OpCode}] HasMask[{message.HasMask}] Payload: {message.Payload.ToHexString( )}" );
+				if (checkBox_logHex.Checked) wsClient.LogNet?.WriteDebug( wsClient.ToString( ), $"OpCode[{message.OpCode}] HasMask[{message.HasMask}] Payload: {message.Payload.ToHexString( ' ' )}" );
 				Invoke( new Action( ( ) =>
 				{
-					string msg = Encoding.UTF8.GetString( message.Payload );
-					if (radioButton4.Checked)
+					string msg = string.Empty;
+					if (radioButton_hex.Checked)
 					{
-						try
-						{
-							msg = XElement.Parse( msg ).ToString( );
-						}
-						catch
-						{
-
-						}
+						msg = message.Payload.ToHexString( ' ' );
 					}
-					else if (radioButton5.Checked)
+					else
 					{
-						try
+						msg = DemoUtils.GetEncodingFromIndex( comboBox1.SelectedIndex ).GetString( message.Payload );
+						if (radioButton4.Checked)
 						{
-							msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
-						}
-						catch
-						{
+							try
+							{
+								msg = XElement.Parse( msg ).ToString( );
+							}
+							catch
+							{
 
+							}
+						}
+						else if (radioButton5.Checked)
+						{
+							try
+							{
+								msg = Newtonsoft.Json.Linq.JObject.Parse( msg ).ToString( );
+							}
+							catch
+							{
+
+							}
 						}
 					}
 

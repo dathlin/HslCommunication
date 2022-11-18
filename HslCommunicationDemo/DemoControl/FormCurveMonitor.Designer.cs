@@ -47,11 +47,12 @@
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.label3 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
+			this.label_value = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(66, 11);
+			this.textBox3.Location = new System.Drawing.Point(59, 4);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(185, 23);
 			this.textBox3.TabIndex = 5;
@@ -59,7 +60,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(12, 14);
+			this.label6.Location = new System.Drawing.Point(5, 7);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(44, 17);
 			this.label6.TabIndex = 4;
@@ -67,7 +68,7 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(379, 11);
+			this.textBox1.Location = new System.Drawing.Point(372, 4);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(102, 23);
 			this.textBox1.TabIndex = 7;
@@ -76,7 +77,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(286, 14);
+			this.label1.Location = new System.Drawing.Point(279, 7);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(81, 17);
 			this.label1.TabIndex = 6;
@@ -84,7 +85,7 @@
 			// 
 			// button_read_double
 			// 
-			this.button_read_double.Location = new System.Drawing.Point(804, 49);
+			this.button_read_double.Location = new System.Drawing.Point(800, 33);
 			this.button_read_double.Name = "button_read_double";
 			this.button_read_double.Size = new System.Drawing.Size(82, 28);
 			this.button_read_double.TabIndex = 25;
@@ -94,7 +95,7 @@
 			// 
 			// button_read_float
 			// 
-			this.button_read_float.Location = new System.Drawing.Point(716, 49);
+			this.button_read_float.Location = new System.Drawing.Point(712, 33);
 			this.button_read_float.Name = "button_read_float";
 			this.button_read_float.Size = new System.Drawing.Size(82, 28);
 			this.button_read_float.TabIndex = 24;
@@ -104,7 +105,7 @@
 			// 
 			// button_read_ulong
 			// 
-			this.button_read_ulong.Location = new System.Drawing.Point(628, 49);
+			this.button_read_ulong.Location = new System.Drawing.Point(624, 33);
 			this.button_read_ulong.Name = "button_read_ulong";
 			this.button_read_ulong.Size = new System.Drawing.Size(82, 28);
 			this.button_read_ulong.TabIndex = 23;
@@ -114,7 +115,7 @@
 			// 
 			// button_read_long
 			// 
-			this.button_read_long.Location = new System.Drawing.Point(540, 49);
+			this.button_read_long.Location = new System.Drawing.Point(536, 33);
 			this.button_read_long.Name = "button_read_long";
 			this.button_read_long.Size = new System.Drawing.Size(82, 28);
 			this.button_read_long.TabIndex = 22;
@@ -124,7 +125,7 @@
 			// 
 			// button_read_uint
 			// 
-			this.button_read_uint.Location = new System.Drawing.Point(452, 49);
+			this.button_read_uint.Location = new System.Drawing.Point(448, 33);
 			this.button_read_uint.Name = "button_read_uint";
 			this.button_read_uint.Size = new System.Drawing.Size(82, 28);
 			this.button_read_uint.TabIndex = 21;
@@ -134,7 +135,7 @@
 			// 
 			// button_read_int
 			// 
-			this.button_read_int.Location = new System.Drawing.Point(364, 49);
+			this.button_read_int.Location = new System.Drawing.Point(360, 33);
 			this.button_read_int.Name = "button_read_int";
 			this.button_read_int.Size = new System.Drawing.Size(82, 28);
 			this.button_read_int.TabIndex = 20;
@@ -144,7 +145,7 @@
 			// 
 			// button_read_ushort
 			// 
-			this.button_read_ushort.Location = new System.Drawing.Point(276, 49);
+			this.button_read_ushort.Location = new System.Drawing.Point(272, 33);
 			this.button_read_ushort.Name = "button_read_ushort";
 			this.button_read_ushort.Size = new System.Drawing.Size(82, 28);
 			this.button_read_ushort.TabIndex = 19;
@@ -154,7 +155,7 @@
 			// 
 			// button_read_short
 			// 
-			this.button_read_short.Location = new System.Drawing.Point(188, 49);
+			this.button_read_short.Location = new System.Drawing.Point(184, 33);
 			this.button_read_short.Name = "button_read_short";
 			this.button_read_short.Size = new System.Drawing.Size(82, 28);
 			this.button_read_short.TabIndex = 18;
@@ -164,7 +165,7 @@
 			// 
 			// button_read_bool
 			// 
-			this.button_read_bool.Location = new System.Drawing.Point(12, 49);
+			this.button_read_bool.Location = new System.Drawing.Point(8, 33);
 			this.button_read_bool.Name = "button_read_bool";
 			this.button_read_bool.Size = new System.Drawing.Size(82, 28);
 			this.button_read_bool.TabIndex = 16;
@@ -178,9 +179,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslCurve1.BackColor = System.Drawing.Color.White;
-			this.hslCurve1.Location = new System.Drawing.Point(12, 83);
+			this.hslCurve1.Location = new System.Drawing.Point(8, 67);
 			this.hslCurve1.Name = "hslCurve1";
-			this.hslCurve1.Size = new System.Drawing.Size(673, 453);
+			this.hslCurve1.Size = new System.Drawing.Size(689, 473);
 			this.hslCurve1.TabIndex = 26;
 			// 
 			// propertyGrid1
@@ -188,16 +189,16 @@
 			this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.propertyGrid1.BackColor = System.Drawing.Color.White;
-			this.propertyGrid1.Location = new System.Drawing.Point(707, 84);
+			this.propertyGrid1.Location = new System.Drawing.Point(703, 68);
 			this.propertyGrid1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.propertyGrid1.Name = "propertyGrid1";
-			this.propertyGrid1.Size = new System.Drawing.Size(185, 452);
+			this.propertyGrid1.Size = new System.Drawing.Size(185, 471);
 			this.propertyGrid1.TabIndex = 27;
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(9, 543);
+			this.label2.Location = new System.Drawing.Point(9, 546);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(460, 17);
 			this.label2.TabIndex = 28;
@@ -206,7 +207,7 @@
 			// linkLabel1
 			// 
 			this.linkLabel1.AutoSize = true;
-			this.linkLabel1.Location = new System.Drawing.Point(490, 543);
+			this.linkLabel1.Location = new System.Drawing.Point(490, 546);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(120, 17);
 			this.linkLabel1.TabIndex = 29;
@@ -217,7 +218,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(657, 543);
+			this.label3.Location = new System.Drawing.Point(657, 546);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(115, 17);
 			this.label3.TabIndex = 30;
@@ -225,7 +226,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(804, 15);
+			this.button1.Location = new System.Drawing.Point(801, 2);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(82, 28);
 			this.button1.TabIndex = 31;
@@ -233,11 +234,21 @@
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
+			// label_value
+			// 
+			this.label_value.AutoSize = true;
+			this.label_value.Location = new System.Drawing.Point(490, 7);
+			this.label_value.Name = "label_value";
+			this.label_value.Size = new System.Drawing.Size(47, 17);
+			this.label_value.TabIndex = 32;
+			this.label_value.Text = "Value: ";
+			// 
 			// FormCurveMonitor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(894, 570);
+			this.Controls.Add(this.label_value);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.linkLabel1);
@@ -291,5 +302,6 @@
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Label label_value;
 	}
 }

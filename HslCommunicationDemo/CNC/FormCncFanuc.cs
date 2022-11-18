@@ -43,6 +43,13 @@ namespace HslCommunicationDemo
 			readNCToolStripMenuItem.Click += ReadNCToolStripMenuItem_Click;
 			deleteToolStripMenuItem.Click += DeleteToolStripMenuItem_Click;
 			Language( Program.Language );
+
+			panel4.Paint += Panel4_Paint;
+		}
+
+		private void Panel4_Paint( object sender, PaintEventArgs e )
+		{
+			e.Graphics.DrawRectangle( Pens.LightGray, new Rectangle( 0, 0, panel4.Width - 1, panel4.Height - 1 ) );
 		}
 
 		private void Language( int language )
@@ -365,11 +372,12 @@ namespace HslCommunicationDemo
 				return;
 			}
 			button28.Enabled = false;
+			//OperateResult<string> read = fanuc.ReadProgram( programNum, textBox_path.Text );
 			OperateResult<string> read = await fanuc.ReadProgramAsync( programNum, textBox_path.Text );
 			button28.Enabled = true;
 			if (read.IsSuccess)
 			{
-				textBox8.Text = "程序内容：" + Environment.NewLine + read.Content;
+				textBox_program.Text = "程序内容：" + Environment.NewLine + read.Content;
 			}
 			else
 			{
@@ -556,7 +564,7 @@ namespace HslCommunicationDemo
 
 		private void panel3_Paint( object sender, PaintEventArgs e )
 		{
-			e.Graphics.DrawRectangle( Pens.Gray, new Rectangle( 0, 0, panel3.Width - 1, panel3.Height - 1 ) );
+			e.Graphics.DrawRectangle( Pens.LightGray, new Rectangle( 0, 0, panel3.Width - 1, panel3.Height - 1 ) );
 		}
 
 		private string GetPathFromTree( TreeNode treeNode )
@@ -583,7 +591,7 @@ namespace HslCommunicationDemo
 			{
 				if (!fileDirInfo.IsDirectory)
 				{
-					textBox8.Text = fileDirInfo.ToString( );
+					textBox_program.Text = fileDirInfo.ToString( );
 				}
 				else
 				{
@@ -597,7 +605,7 @@ namespace HslCommunicationDemo
 								list.Add( file.ToString( ) );
 						}
 					}
-					textBox8.Text = list.ToJsonString( );
+					textBox_program.Text = list.ToJsonString( );
 				}
 			}
 		}
@@ -672,11 +680,11 @@ namespace HslCommunicationDemo
 				string path = GetPathFromTree( treeNode.Parent );
 				int program = int.Parse( fileDirInfo.Name.Substring( 1 ) );
 
-
+				//OperateResult<string> read = fanuc.ReadProgram( program, path );
 				OperateResult<string> read = await fanuc.ReadProgramAsync( program, path );
 				if (read.IsSuccess)
 				{
-					textBox8.Text = "Program Content：" + Environment.NewLine + read.Content;
+					textBox_program.Text = $"Program Content[{path}]：" + Environment.NewLine + read.Content;
 				}
 				else
 				{

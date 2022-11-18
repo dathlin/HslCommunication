@@ -48,6 +48,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.checkBox_publish_isHex = new System.Windows.Forms.CheckBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.checkBox_debug_info_show = new System.Windows.Forms.CheckBox();
 			this.checkBox_long_message_hide = new System.Windows.Forms.CheckBox();
@@ -275,6 +276,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.checkBox_publish_isHex);
 			this.panel2.Controls.Add(this.button3);
 			this.panel2.Controls.Add(this.checkBox_debug_info_show);
 			this.panel2.Controls.Add(this.checkBox_long_message_hide);
@@ -300,6 +302,16 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(852, 529);
 			this.panel2.TabIndex = 13;
+			// 
+			// checkBox_publish_isHex
+			// 
+			this.checkBox_publish_isHex.AutoSize = true;
+			this.checkBox_publish_isHex.Location = new System.Drawing.Point(7, 68);
+			this.checkBox_publish_isHex.Name = "checkBox_publish_isHex";
+			this.checkBox_publish_isHex.Size = new System.Drawing.Size(55, 21);
+			this.checkBox_publish_isHex.TabIndex = 35;
+			this.checkBox_publish_isHex.Text = "Hex?";
+			this.checkBox_publish_isHex.UseVisualStyleBackColor = true;
 			// 
 			// button3
 			// 
@@ -693,5 +705,6 @@
 		private System.Windows.Forms.CheckBox checkBox_debug_info_show;
 		private System.Windows.Forms.RadioButton radioButton_binary;
 		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.CheckBox checkBox_publish_isHex;
 	}
 }

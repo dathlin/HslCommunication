@@ -12,6 +12,8 @@ using HslCommunication.Profinet.Melsec;
 using HslCommunication;
 using System.Xml.Linq;
 using HslCommunicationDemo.Control;
+using HslCommunication.MQTT;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -25,12 +27,44 @@ namespace HslCommunicationDemo
 
 
 		private MelsecMcNet melsec_net = null;
-
+		private MqttClient mqttClient;
+		private string readTopic;
+		private string writeTopic;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 			Language( Program.Language );
+
+			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
+		}
+
+		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
+		{
+			if (checkBox1.Checked)
+			{
+				// 如果选中则，弹出MQTT信息输入
+				using(FormMqttInput input = new FormMqttInput( ))
+				{
+					if (input.ShowDialog() == DialogResult.OK)
+					{
+						mqttClient = new MqttClient( input.MqttConnectionOptions );
+						readTopic  = input.ReadTopic;
+						writeTopic = input.WriteTopic;
+						textBox_ip.Enabled = false;
+						textBox_port.Enabled = false;
+					}
+					else
+					{
+						checkBox1.Checked = false;
+					}
+				}
+			}
+			else
+			{
+				textBox_ip.Enabled = true;
+				textBox_port.Enabled = true;
+			}
 		}
 
 		private void Language( int language )
@@ -75,32 +109,61 @@ namespace HslCommunicationDemo
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
-			melsec_net.IpAddress = textBox1.Text;
-			if (!int.TryParse( textBox2.Text, out int port ))
+			if (checkBox1.Checked)
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
+				// 使用MQTT中转
+				OperateResult connect = this.mqttClient.ConnectServer( );
+				if (!connect.IsSuccess)
+				{
+					MessageBox.Show( connect.Message + Environment.NewLine + "ErrorCode: " + connect.ErrorCode );
+					button1.Enabled = true;
+					return;
+				}
 
-			melsec_net.Port = port;
-
-			melsec_net.ConnectClose( );
-			melsec_net.LogNet = LogNet;
-			button1.Enabled = false;
-			melsec_net.ConnectTimeOut = 3000; // 连接3秒超时
-			OperateResult connect = await melsec_net.ConnectServerAsync( );
-			if (connect.IsSuccess)
-			{
-				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
-				button2.Enabled = true;
-				button1.Enabled = false;
-				panel2.Enabled = true;
-				userControlReadWriteOp1.SetReadWriteNet( melsec_net, "D100", true );
+				connect = melsec_net.ConnectServer( this.mqttClient, readTopic, writeTopic );
+				if (connect.IsSuccess)
+				{
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					button2.Enabled = true;
+					button1.Enabled = false;
+					panel2.Enabled = true;
+					userControlReadWriteOp1.SetReadWriteNet( melsec_net, "D100", true );
+				}
+				else
+				{
+					MessageBox.Show( connect.Message + Environment.NewLine + "ErrorCode: " + connect.ErrorCode );
+					button1.Enabled = true;
+				}
 			}
 			else
 			{
-				MessageBox.Show( connect.Message + Environment.NewLine + "ErrorCode: " + connect.ErrorCode );
-				button1.Enabled = true;
+				melsec_net.IpAddress = textBox_ip.Text;
+				if (!int.TryParse( textBox_port.Text, out int port ))
+				{
+					MessageBox.Show( DemoUtils.PortInputWrong );
+					return;
+				}
+
+				melsec_net.Port = port;
+
+				melsec_net.ConnectClose( );
+				melsec_net.LogNet = LogNet;
+				button1.Enabled = false;
+				melsec_net.ConnectTimeOut = 3000; // 连接3秒超时
+				OperateResult connect = await melsec_net.ConnectServerAsync( );
+				if (connect.IsSuccess)
+				{
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					button2.Enabled = true;
+					button1.Enabled = false;
+					panel2.Enabled = true;
+					userControlReadWriteOp1.SetReadWriteNet( melsec_net, "D100", true );
+				}
+				else
+				{
+					MessageBox.Show( connect.Message + Environment.NewLine + "ErrorCode: " + connect.ErrorCode );
+					button1.Enabled = true;
+				}
 			}
 		}
 
@@ -403,15 +466,15 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
