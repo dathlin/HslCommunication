@@ -79,7 +79,9 @@ namespace HslCommunicationDemo
 				checkBox2.Text = "Start Topic Cache";
 				checkBox3.Text = "Send test message back when client connect";
 				button8.Text = "web test";
-			}
+				checkBox_willcard.Text = "Topic willcard?";
+
+            }
 		}
 
 		private WebSocketServer wsServer;
@@ -96,6 +98,7 @@ namespace HslCommunicationDemo
 				wsServer.ServerStart( int.Parse( textBox2.Text ) );
 				wsServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				wsServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+				wsServer.TopicWildcard = checkBox_willcard.Checked;
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;

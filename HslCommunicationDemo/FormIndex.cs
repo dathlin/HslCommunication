@@ -35,22 +35,18 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.2.2
-1. SharpList: 修复Add一个新的值的时候，每隔指定长度次数时数据丢失一次的bug。新增LastValue( )方法获取最后一个值。
-2. AllenBradleyNet: ReadBool(string address, short length); 支持读取以int类型为基础的bool数组，支持从中间任意位置开始读，返回任意长度。地址前加i=,例如i=AAA[10]
-3. NetSoftUpdateServer: 修复路径在linux下运行时，路径分隔符识别不正确，导致文件下载失败的bug。
-4. Modbus: modbus的地址支持自定义写入功能码，例如自定义的服务器有个数据区，读使用07功能码，写使用08功能码，那么地址可以表示为 x=7;w=8;100  依然支持站号指定。
-5. CJT188Helper: 修复CJT188协议再读取水表数据的时候，数据位颠倒的bug。
-6. Omron: 在欧姆龙Fins协议里，当读取位数据超过1998时会发生错误，现在根据1998长度自动切割，也就是支持任意长度了。
-7. ReverseBytesTransform: 修复指定DataFormat对象实例化的时候，指定DataFormat无效的bug。
-8. NetworkDoubleBase: 基础的网络设备通信基类支持了使用MQTT中转读取的方式，指定mqtt对象，读Topic，写Topic就可以远程读写PLC信息。可以配合我司的边缘网关系统的设备转MQTT使用。使用手册后面推出。
-9. DLT645With1997: 修复DLT645-2007解析数据异常的bug，修复读取电压倍率不对的bug。
-10. ModbusHelper: 修复汇川PLC读取bool时，当指定MX500.7能读bool值，但是MX501.7 这种地址时，获取不到正确的值的bug。
-11. Authorization: 支持一种在线激活方式，使用指定ip，端口，令牌获取远程激活码来激活的操作，后续扩展临时激活授权测试的功能。
-12. FanucSeries0i: 读取程序的API接口ReadProgram再接收完程序后，再接收一次0x18指令的报文。
-13. OmronHostLinkHelper: 欧姆龙HostLink协议在解析报文的错误码时，当解析失败时，增加错误捕获，并提示原始报文。
-14. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
-15. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.3.0
+1. byte[]: 类型byte[]新增加一个扩展方法，ReverseByWord，直接可以调用按照字反转字节数据信息。
+2. OmronCipNet: 欧姆龙的CIP协议优化，写入数组时，根据地址是否带索引，来自动确认写入的长度信息。
+3. MelsecMcServer: MC协议的虚拟PLC部分，在二进制下支持了随机字读取（0403）和块读取（0406）的功能码。
+4. WebSocketServer: 现在服务端新增属性：TopicWildcard，如果客户端使用通配符订阅数据点。规则和MQTT的通配符一致。
+5. HttpServer: 修复request.ContentType为空的情况下引发的异常，原因来自对文件上传的判断。
+6. SiemensS7Net: 修复西门子PLC在不连接的情况下，直接同步方法读写PLC相关的值的时候，因为pdu初始值不正常导致第一次读写失败的bug。
+7. Demo: Tcp的服务器调试界面里，修复点击发送客户端时，发送的数据不显示的bug。
+8. DLT645With1997OverTcp: 修复使用异步ReadDoubleAsync读取数据的时候，数据结果解析不正确的bug。
+9. OpenProtocolNet: 完善开放以太网协议，并且基本测试通过，支持自定义的功能码读取，支持订阅操作。
+10. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
+11. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

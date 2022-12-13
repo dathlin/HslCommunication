@@ -117,7 +117,7 @@ namespace HslCommunicationDemo
 			if (checkBox3.Checked)
 			{
 				// 显示发送信息
-				FormTcpDebug.GetTextHeader( checkBox_show_time.Checked, 1, radioButton_binary.Checked ? SoftBasic.ByteToHexString( send, ' ' ) : SoftBasic.GetAsciiStringRender( send ) );
+				textBox6.AppendText( FormTcpDebug.GetTextHeader( checkBox_show_time.Checked, 1, radioButton_binary.Checked ? SoftBasic.ByteToHexString( send, ' ' ) : SoftBasic.GetAsciiStringRender( send ) ) );
 			}
 			try
 			{

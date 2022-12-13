@@ -30,35 +30,41 @@
         {
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox_revision = new System.Windows.Forms.TextBox();
+            this.textBox_dataField = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox_spindleID = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_stationID = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.button_read_string = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox_result = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox_mid = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_port = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_ip = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // userControlHead1
             // 
-            this.userControlHead1.BackColor = System.Drawing.Color.MediumPurple;
+            this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
             this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.userControlHead1.Location = new System.Drawing.Point(0, 0);
@@ -75,75 +81,162 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Location = new System.Drawing.Point(12, 91);
+            this.panel2.Controls.Add(this.tabControl1);
+            this.panel2.Location = new System.Drawing.Point(2, 81);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(978, 537);
+            this.panel2.Size = new System.Drawing.Size(1001, 560);
             this.panel2.TabIndex = 5;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeView1.Location = new System.Drawing.Point(6, 6);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(309, 516);
+            this.treeView1.TabIndex = 1;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox8);
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.textBox_revision);
+            this.groupBox1.Controls.Add(this.textBox_dataField);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.textBox_spindleID);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.textBox_stationID);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox5);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.button_read_string);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.textBox_result);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.textBox_mid);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(11, 3);
+            this.groupBox1.Location = new System.Drawing.Point(321, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(521, 529);
+            this.groupBox1.Size = new System.Drawing.Size(664, 522);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Single Read";
             // 
+            // textBox_revision
+            // 
+            this.textBox_revision.Location = new System.Drawing.Point(175, 21);
+            this.textBox_revision.Name = "textBox_revision";
+            this.textBox_revision.Size = new System.Drawing.Size(50, 23);
+            this.textBox_revision.TabIndex = 18;
+            this.textBox_revision.Text = "10";
+            // 
+            // textBox_dataField
+            // 
+            this.textBox_dataField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_dataField.Location = new System.Drawing.Point(94, 59);
+            this.textBox_dataField.Multiline = true;
+            this.textBox_dataField.Name = "textBox_dataField";
+            this.textBox_dataField.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_dataField.Size = new System.Drawing.Size(564, 86);
+            this.textBox_dataField.TabIndex = 24;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(9, 59);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(87, 34);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "parameters：\r\n多个参数换行";
+            // 
+            // textBox_spindleID
+            // 
+            this.textBox_spindleID.Location = new System.Drawing.Point(444, 21);
+            this.textBox_spindleID.Name = "textBox_spindleID";
+            this.textBox_spindleID.Size = new System.Drawing.Size(48, 23);
+            this.textBox_spindleID.TabIndex = 22;
+            this.textBox_spindleID.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(367, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 17);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "spindleId：";
+            // 
+            // textBox_stationID
+            // 
+            this.textBox_stationID.Location = new System.Drawing.Point(313, 21);
+            this.textBox_stationID.Name = "textBox_stationID";
+            this.textBox_stationID.Size = new System.Drawing.Size(48, 23);
+            this.textBox_stationID.TabIndex = 20;
+            this.textBox_stationID.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(233, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 17);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "stationId：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(114, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 17);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "revison：";
+            // 
             // button_read_string
             // 
-            this.button_read_string.Location = new System.Drawing.Point(428, 59);
+            this.button_read_string.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_read_string.Location = new System.Drawing.Point(524, 19);
             this.button_read_string.Name = "button_read_string";
-            this.button_read_string.Size = new System.Drawing.Size(82, 28);
+            this.button_read_string.Size = new System.Drawing.Size(134, 28);
             this.button_read_string.TabIndex = 16;
             this.button_read_string.Text = "read";
             this.button_read_string.UseVisualStyleBackColor = true;
             this.button_read_string.Click += new System.EventHandler(this.Button_read_string_Click);
             // 
-            // textBox4
+            // textBox_result
             // 
-            this.textBox4.Location = new System.Drawing.Point(63, 138);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(447, 376);
-            this.textBox4.TabIndex = 5;
+            this.textBox_result.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_result.Location = new System.Drawing.Point(94, 151);
+            this.textBox_result.Multiline = true;
+            this.textBox_result.Name = "textBox_result";
+            this.textBox_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_result.Size = new System.Drawing.Size(564, 365);
+            this.textBox_result.TabIndex = 5;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 141);
+            this.label7.Location = new System.Drawing.Point(9, 156);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(55, 17);
             this.label7.TabIndex = 4;
             this.label7.Text = "Result：";
             // 
-            // textBox3
+            // textBox_mid
             // 
-            this.textBox3.Location = new System.Drawing.Point(63, 27);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(48, 23);
-            this.textBox3.TabIndex = 3;
-            this.textBox3.Text = "10";
+            this.textBox_mid.Location = new System.Drawing.Point(60, 21);
+            this.textBox_mid.Name = "textBox_mid";
+            this.textBox_mid.Size = new System.Drawing.Size(51, 23);
+            this.textBox_mid.TabIndex = 3;
+            this.textBox_mid.Text = "10";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 30);
+            this.label6.Location = new System.Drawing.Point(9, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 17);
             this.label6.TabIndex = 2;
@@ -156,14 +249,14 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBox_port);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textBox_ip);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 40);
+            this.panel1.Location = new System.Drawing.Point(2, 34);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(978, 42);
+            this.panel1.Size = new System.Drawing.Size(1001, 42);
             this.panel1.TabIndex = 4;
             // 
             // button2
@@ -186,30 +279,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // textBox2
+            // textBox_port
             // 
-            this.textBox2.Location = new System.Drawing.Point(305, 9);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(141, 23);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "1000";
+            this.textBox_port.Location = new System.Drawing.Point(318, 9);
+            this.textBox_port.Name = "textBox_port";
+            this.textBox_port.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_port.Size = new System.Drawing.Size(72, 23);
+            this.textBox_port.TabIndex = 3;
+            this.textBox_port.Text = "4545";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(251, 12);
+            this.label3.Location = new System.Drawing.Point(264, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 17);
             this.label3.TabIndex = 2;
             this.label3.Text = "port：";
             // 
-            // textBox1
+            // textBox_ip
             // 
-            this.textBox1.Location = new System.Drawing.Point(62, 9);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(141, 23);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "192.168.0.100";
+            this.textBox_ip.Location = new System.Drawing.Point(62, 9);
+            this.textBox_ip.Name = "textBox_ip";
+            this.textBox_ip.Size = new System.Drawing.Size(196, 23);
+            this.textBox_ip.TabIndex = 1;
+            this.textBox_ip.Text = "192.168.0.100";
             // 
             // label1
             // 
@@ -220,79 +314,44 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Ip：";
             // 
-            // textBox5
+            // tabControl1
             // 
-            this.textBox5.Location = new System.Drawing.Point(179, 27);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(50, 23);
-            this.textBox5.TabIndex = 18;
-            this.textBox5.Text = "10";
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(999, 558);
+            this.tabControl1.TabIndex = 2;
             // 
-            // label2
+            // tabPage1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(117, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 17);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "revison：";
+            this.tabPage1.Controls.Add(this.treeView1);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(991, 528);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Base Test";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // textBox6
+            // tabPage2
             // 
-            this.textBox6.Location = new System.Drawing.Point(318, 27);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(48, 23);
-            this.textBox6.TabIndex = 20;
-            this.textBox6.Text = "10";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(240, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 17);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "stationId：";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(462, 27);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(48, 23);
-            this.textBox7.TabIndex = 22;
-            this.textBox7.Text = "10";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(384, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 17);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "spindleId：";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(94, 59);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox8.Size = new System.Drawing.Size(328, 73);
-            this.textBox8.TabIndex = 24;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 59);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 17);
-            this.label8.TabIndex = 23;
-            this.label8.Text = "parameters：";
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(991, 528);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "API Test";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // FormOpenProtocol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1004, 645);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -308,6 +367,8 @@
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -318,24 +379,28 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button_read_string;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox_result;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox_mid;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_port;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_ip;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox_revision;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox_stationID;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox_spindleID;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox_dataField;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }

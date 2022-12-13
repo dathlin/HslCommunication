@@ -129,6 +129,7 @@ namespace HslCommunicationDemo
                 OperateResult connect = siemensTcpNet.ConnectServer( );
                 if (connect.IsSuccess)
                 {
+                    textBox_pdu.Text = siemensTcpNet.PDULength.ToString( );
                     MessageBox.Show( StringResources.Language.ConnectedSuccess );
                     button2.Enabled = true;
                     button1.Enabled = false;

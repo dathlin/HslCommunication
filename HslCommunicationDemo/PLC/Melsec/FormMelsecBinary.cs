@@ -86,10 +86,11 @@ namespace HslCommunicationDemo
 				label16.Text = "Message:";
 				label14.Text = "Results:";
 				button26.Text = "Read";
-				button9.Text = "random";
+				button9.Text = "r-random";
+                button12.Text = "r-block";
 
 
-				groupBox3.Text = "Bulk Read test";
+                groupBox3.Text = "Bulk Read test";
 				groupBox4.Text = "Message reading test, hex string needs to be filled in";
 				groupBox5.Text = "Special function test";
 
@@ -188,10 +189,8 @@ namespace HslCommunicationDemo
 		private void button9_Click( object sender, EventArgs e )
 		{
 			// 批量随机读取
-			// textBox9.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( m => ushort.Parse( m ) ).ToArray( )
 			OperateResult<byte[]> read = melsec_net.ReadRandom(
-				textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ),
-				textBox9.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( m => ushort.Parse( m ) ).ToArray( ) );
+				textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ) );
 			if (read.IsSuccess)
 			{
 				textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -202,12 +201,28 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		#endregion
+        private void button12_Click( object sender, EventArgs e )
+        {
+			// 块读
+            OperateResult<byte[]> read = melsec_net.ReadRandom(
+                textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ),
+                textBox9.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( m => ushort.Parse( m ) ).ToArray( ) );
+            if (read.IsSuccess)
+            {
+                textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
+            }
+            else
+            {
+                MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
+            }
+        }
 
-		#region 报文读取测试
+        #endregion
+
+        #region 报文读取测试
 
 
-		private void button26_Click( object sender, EventArgs e )
+        private void button26_Click( object sender, EventArgs e )
 		{
 			OperateResult<byte[]> read = melsec_net.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
 			if (read.IsSuccess)
@@ -482,9 +497,9 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
-	}
+    }
 
-	public class UserType : HslCommunication.IDataTransfer
+    public class UserType : HslCommunication.IDataTransfer
 	{
 		#region IDataTransfer
 
