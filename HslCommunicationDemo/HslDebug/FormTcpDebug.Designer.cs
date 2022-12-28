@@ -66,6 +66,7 @@
 			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox_auto_return = new System.Windows.Forms.CheckBox();
 			this.panel_main.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -79,6 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel_main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel_main.Controls.Add(this.checkBox_auto_return);
 			this.panel_main.Controls.Add(this.label5);
 			this.panel_main.Controls.Add(this.checkBox_stop_show);
 			this.panel_main.Controls.Add(this.panel4);
@@ -115,7 +117,7 @@
 			// 
 			this.checkBox_stop_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox_stop_show.AutoSize = true;
-			this.checkBox_stop_show.Location = new System.Drawing.Point(884, 442);
+			this.checkBox_stop_show.Location = new System.Drawing.Point(881, 413);
 			this.checkBox_stop_show.Name = "checkBox_stop_show";
 			this.checkBox_stop_show.Size = new System.Drawing.Size(75, 21);
 			this.checkBox_stop_show.TabIndex = 32;
@@ -245,7 +247,7 @@
 			// button6
 			// 
 			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button6.Location = new System.Drawing.Point(635, 409);
+			this.button6.Location = new System.Drawing.Point(602, 409);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(120, 28);
 			this.button6.TabIndex = 26;
@@ -267,7 +269,7 @@
 			// button4
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(872, 410);
+			this.button4.Location = new System.Drawing.Point(728, 408);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(120, 28);
 			this.button4.TabIndex = 23;
@@ -500,6 +502,17 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 21;
 			// 
+			// checkBox_auto_return
+			// 
+			this.checkBox_auto_return.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox_auto_return.AutoSize = true;
+			this.checkBox_auto_return.Location = new System.Drawing.Point(881, 438);
+			this.checkBox_auto_return.Name = "checkBox_auto_return";
+			this.checkBox_auto_return.Size = new System.Drawing.Size(75, 21);
+			this.checkBox_auto_return.TabIndex = 34;
+			this.checkBox_auto_return.Text = "暂停显示";
+			this.checkBox_auto_return.UseVisualStyleBackColor = true;
+			// 
 			// FormTcpDebug
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -569,5 +582,6 @@
 		private System.Windows.Forms.Panel panel_tcp_udp;
 		private System.Windows.Forms.RadioButton radioButton_udp;
 		private System.Windows.Forms.RadioButton radioButton_tcp;
+		private System.Windows.Forms.CheckBox checkBox_auto_return;
 	}
 }

@@ -71,13 +71,14 @@
 			this.checkBox_show_time = new System.Windows.Forms.CheckBox();
 			this.checkBox_send_show = new System.Windows.Forms.CheckBox();
 			this.label7 = new System.Windows.Forms.Label();
-			this.button3 = new System.Windows.Forms.Button();
+			this.button_send = new System.Windows.Forms.Button();
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox_auto_return = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -353,6 +354,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.checkBox_auto_return);
 			this.panel2.Controls.Add(this.panel4);
 			this.panel2.Controls.Add(this.panel5);
 			this.panel2.Controls.Add(this.checkBox_stop_show);
@@ -361,7 +363,7 @@
 			this.panel2.Controls.Add(this.checkBox_show_time);
 			this.panel2.Controls.Add(this.checkBox_send_show);
 			this.panel2.Controls.Add(this.label7);
-			this.panel2.Controls.Add(this.button3);
+			this.panel2.Controls.Add(this.button_send);
 			this.panel2.Controls.Add(this.textBox5);
 			this.panel2.Controls.Add(this.label6);
 			this.panel2.Controls.Add(this.label10);
@@ -486,7 +488,7 @@
 			// 
 			this.checkBox_stop_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox_stop_show.AutoSize = true;
-			this.checkBox_stop_show.Location = new System.Drawing.Point(874, 454);
+			this.checkBox_stop_show.Location = new System.Drawing.Point(874, 448);
 			this.checkBox_stop_show.Name = "checkBox_stop_show";
 			this.checkBox_stop_show.Size = new System.Drawing.Size(75, 21);
 			this.checkBox_stop_show.TabIndex = 37;
@@ -549,16 +551,16 @@
 			this.label7.TabIndex = 18;
 			this.label7.Text = "数据收发显示：";
 			// 
-			// button3
+			// button_send
 			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(871, 490);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(112, 38);
-			this.button3.TabIndex = 17;
-			this.button3.Text = "发送数据";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.button_send.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_send.Location = new System.Drawing.Point(871, 490);
+			this.button_send.Name = "button_send";
+			this.button_send.Size = new System.Drawing.Size(112, 38);
+			this.button_send.TabIndex = 17;
+			this.button_send.Text = "发送数据";
+			this.button_send.UseVisualStyleBackColor = true;
+			this.button_send.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// textBox5
 			// 
@@ -628,6 +630,17 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1000, 32);
 			this.userControlHead1.TabIndex = 14;
 			// 
+			// checkBox_auto_return
+			// 
+			this.checkBox_auto_return.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox_auto_return.AutoSize = true;
+			this.checkBox_auto_return.Location = new System.Drawing.Point(874, 468);
+			this.checkBox_auto_return.Name = "checkBox_auto_return";
+			this.checkBox_auto_return.Size = new System.Drawing.Size(75, 21);
+			this.checkBox_auto_return.TabIndex = 40;
+			this.checkBox_auto_return.Text = "自动返回";
+			this.checkBox_auto_return.UseVisualStyleBackColor = true;
+			// 
 			// FormSerialDebug
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -675,7 +688,7 @@
         private System.Windows.Forms.CheckBox checkBox_show_time;
         private System.Windows.Forms.CheckBox checkBox_send_show;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_send;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox2;
@@ -708,5 +721,6 @@
 		private System.Windows.Forms.Panel panel5;
 		private System.Windows.Forms.RadioButton radioButton_ascii;
 		private System.Windows.Forms.RadioButton radioButton_binary;
+		private System.Windows.Forms.CheckBox checkBox_auto_return;
 	}
 }

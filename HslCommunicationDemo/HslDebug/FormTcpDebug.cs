@@ -325,6 +325,7 @@ namespace HslCommunicationDemo
 				Invoke( new Action( ( ) =>
 				{
 					if(!checkBox_stop_show.Checked) textBox6.AppendText( GetTextHeader( 0, data ) );
+					if (checkBox_auto_return.Checked) button_send.PerformClick( );
 				} ) );
 			}
 			catch(ObjectDisposedException)

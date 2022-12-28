@@ -102,6 +102,11 @@ namespace HslCommunicationDemo
 			{
 				memobus.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
+				button2.Enabled = true;
+				button1.Enabled = false;
+				panel2.Enabled = true;
+
+				userControlReadWriteOp1.SetReadWriteNet( memobus, "100", true );
 				MessageBox.Show( StringResources.Language.ConnectedSuccess );
 			}
 			catch (Exception ex)

@@ -56,7 +56,7 @@ namespace HslCommunicationDemo
 				label7.Text = "数据接收区：";
 				checkBox_send_show.Text = "是否显示发送数据";
 				checkBox_show_time.Text = "是否显示时间";
-				button3.Text = "发送数据";
+				button_send.Text = "发送数据";
 				comboBox1.DataSource = new string[] { "无", "奇", "偶" };
 			}
 			else
@@ -73,7 +73,7 @@ namespace HslCommunicationDemo
 				label7.Text = "Data receiving Area:";
 				checkBox_send_show.Text = "Whether to display send data";
 				checkBox_show_time.Text = "Whether to show time";
-				button3.Text = "Send Data";
+				button_send.Text = "Send Data";
 				label8.Text = "Number of data bytes selected:";
 				checkBox_stop_show.Text = "Stop Show";
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
@@ -237,6 +237,7 @@ namespace HslCommunicationDemo
 			Invoke( new Action( ( ) =>
 			 {
 				 if (!checkBox_stop_show.Checked) textBox6.AppendText( GetTextHeader( 0, buffer.ToArray( ) ) );
+				 if (checkBox_auto_return.Checked) button_send.PerformClick( );
 			 } ) );
 		}
 
@@ -268,7 +269,7 @@ namespace HslCommunicationDemo
 			// 按下 ENTER 键的时候自动发送
 			if(e.KeyCode == Keys.Enter)
 			{
-				button3.PerformClick( );
+				button_send.PerformClick( );
 			}
 		}
 
