@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.3.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.3.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.3.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.3.2\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -526,10 +526,10 @@
     <Compile Include="PLC\Fuji\FormFujiCSTServer.Designer.cs">
       <DependentUpon>FormFujiCSTServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormKeyenceNanoServer.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceNanoServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormKeyenceNanoServer.Designer.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceNanoServer.Designer.cs">
       <DependentUpon>FormKeyenceNanoServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Fuji\FormFujiSPHServer.cs">
@@ -537,6 +537,30 @@
     </Compile>
     <Compile Include="PLC\Fuji\FormFujiSPHServer.Designer.cs">
       <DependentUpon>FormFujiSPHServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Keyence\FormKeyenceDLEN1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Keyence\FormKeyenceDLEN1.Designer.cs">
+      <DependentUpon>FormKeyenceDLEN1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\MegMeet\FormMegMeetSerialOverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\MegMeet\FormMegMeetSerialOverTcp.Designer.cs">
+      <DependentUpon>FormMegMeetSerialOverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\MegMeet\FormMegMeetSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\MegMeet\FormMegMeetSerial.Designer.cs">
+      <DependentUpon>FormMegMeetSerial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\MegMeet\FormMegMeetTcpNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\MegMeet\FormMegMeetTcpNet.Designer.cs">
+      <DependentUpon>FormMegMeetTcpNet.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Melsec\FormFxLinksServer.cs">
       <SubType>Form</SubType>
@@ -718,10 +742,10 @@
     <Compile Include="PLC\XINJE\FormXinJEXCSerial.Designer.cs">
       <DependentUpon>FormXinJEXCSerial.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormKeyenceSR2000.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceSR2000.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormKeyenceSR2000.Designer.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceSR2000.Designer.cs">
       <DependentUpon>FormKeyenceSR2000.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormLsisXGKCnet.cs">
@@ -997,10 +1021,10 @@
     <Compile Include="PLC\FormInovanceTcpNet.Designer.cs">
       <DependentUpon>FormInovanceTcpNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormKeyenceNanoSerialOverTcp.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceNanoSerialOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormKeyenceNanoSerialOverTcp.Designer.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceNanoSerialOverTcp.Designer.cs">
       <DependentUpon>FormKeyenceNanoSerialOverTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormKnx.cs">
@@ -1123,22 +1147,22 @@
     <Compile Include="PLC\Melsec\FormMelsec3C.Designer.cs">
       <DependentUpon>FormMelsec3C.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormKeyenceBinary.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceBinary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormKeyenceBinary.Designer.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceBinary.Designer.cs">
       <DependentUpon>FormKeyenceBinary.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormKeyenceAscii.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceAscii.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormKeyenceAscii.Designer.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceAscii.Designer.cs">
       <DependentUpon>FormKeyenceAscii.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\FormKeyenceNanoSerial.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceNanoSerial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PLC\FormKeyenceNanoSerial.Designer.cs">
+    <Compile Include="PLC\Keyence\FormKeyenceNanoSerial.Designer.cs">
       <DependentUpon>FormKeyenceNanoSerial.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\FormLsisCnet.cs">
@@ -1724,11 +1748,23 @@
     <EmbeddedResource Include="PLC\Fuji\FormFujiCSTServer.resx">
       <DependentUpon>FormFujiCSTServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormKeyenceNanoServer.resx">
+    <EmbeddedResource Include="PLC\Keyence\FormKeyenceNanoServer.resx">
       <DependentUpon>FormKeyenceNanoServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Fuji\FormFujiSPHServer.resx">
       <DependentUpon>FormFujiSPHServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Keyence\FormKeyenceDLEN1.resx">
+      <DependentUpon>FormKeyenceDLEN1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\MegMeet\FormMegMeetSerialOverTcp.resx">
+      <DependentUpon>FormMegMeetSerialOverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\MegMeet\FormMegMeetSerial.resx">
+      <DependentUpon>FormMegMeetSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\MegMeet\FormMegMeetTcpNet.resx">
+      <DependentUpon>FormMegMeetTcpNet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Melsec\FormFxLinksServer.resx">
       <DependentUpon>FormFxLinksServer.cs</DependentUpon>
@@ -1820,7 +1856,7 @@
     <EmbeddedResource Include="PLC\XINJE\FormXinJEXCSerial.resx">
       <DependentUpon>FormXinJEXCSerial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormKeyenceSR2000.resx">
+    <EmbeddedResource Include="PLC\Keyence\FormKeyenceSR2000.resx">
       <DependentUpon>FormKeyenceSR2000.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormLsisXGKCnet.resx">
@@ -1959,7 +1995,7 @@
     <EmbeddedResource Include="PLC\FormInovanceTcpNet.resx">
       <DependentUpon>FormInovanceTcpNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormKeyenceNanoSerialOverTcp.resx">
+    <EmbeddedResource Include="PLC\Keyence\FormKeyenceNanoSerialOverTcp.resx">
       <DependentUpon>FormKeyenceNanoSerialOverTcp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormKnx.resx">
@@ -2022,13 +2058,13 @@
     <EmbeddedResource Include="PLC\Melsec\FormMelsec3C.resx">
       <DependentUpon>FormMelsec3C.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormKeyenceBinary.resx">
+    <EmbeddedResource Include="PLC\Keyence\FormKeyenceBinary.resx">
       <DependentUpon>FormKeyenceBinary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormKeyenceAscii.resx">
+    <EmbeddedResource Include="PLC\Keyence\FormKeyenceAscii.resx">
       <DependentUpon>FormKeyenceAscii.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\FormKeyenceNanoSerial.resx">
+    <EmbeddedResource Include="PLC\Keyence\FormKeyenceNanoSerial.resx">
       <DependentUpon>FormKeyenceNanoSerial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\FormLsisCnet.resx">

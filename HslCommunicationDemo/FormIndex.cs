@@ -35,19 +35,20 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.3.1
-1. Dll: 用于激活的类Authorization新增一个方法SetDllContact，用于设置提醒激活的联系方式，可以设置自定义的联系方式。
-2. Demo: 修复安川的MemobusUdpNet的测试界面的点击实例化按钮后，界面还是灰的bug。
-3. AllenBradleyNet: 修复ab-plc的CIP协议，当触发0x64错误码的时候，一直重复读写无法恢复成功的bug，现在会自动重连操作。
-4. SiemensS7Net: 新增对DTL格式的时间数据读写的API接口，使用ReadDTLDataTime和WriteDTLTime来读写操作。
-5. LogStatisticsBase: 修复当系统的时间往回调的时候引发异常的bug，原因来自索引偏移位置会变成负数。
-6. websocketServer: Websocket服务器header接收订阅时，支持url转义，以及修复开启通配符模式情况下，消息驻留发送失败的bug。
-7. Demo: 串口调试界面以及网口调试界面，返回的数据支持勾选自动返回，只要在发送框里提前输入数据。
-8. Dlt645: DLT645的地址支持reverse标记，用来支持在某些不标准的协议的设备，数据顺序没有颠倒的情况，例如：reverse=false;02-01-01-00
-9. Inovance: 汇川的AM系列的地址，支持MD的地址格式解析，同时适用于读写操作，MD100=MW200
-10. SiemensS7Helper: 修复了西门子虚拟PLC及SiemensS7Net的写入字符串的同步方法，字符创长度信息和实际不匹配的bug。
-11. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
-12. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.3.2
+1. WebsocketServer: 在发布Topic数据的时候，新增一个API，允许指定reatain属性，如果不指定，则用对象自己的设置。
+2. InovanceHelper:汇川读取byte的方法新增错误异常捕获，返回失败的说明信息。
+3. SiemensS7Server: 修复虚拟服务器在接收远程客户端的写入定时器，计数器时，地址偏移不正确的bug。
+4. modbus: 当调用地址为 x=1;100 进行写入bool数据的时候，修复功能码不会自动修正为正确的默认功能码的bug。适用于 rtu, tcp, rtu overTcp
+5. BeckhoffAdsServer: 修复当远程客户端读取M100.0 的bool类型时，指定长度大于1时，返回数据不正确的bug。
+6. BeckhoffAdsNet: 修复在读写I,Q地址类型时，初始偏移位置不正确的bug，无论是字读写，还是位读写都测试通过。虚拟PLC侧自动识别偏移地址。
+7. DLT645: 修复DLT645的1997及2007版本串口通信时，在某些特殊情况下通信速度慢导致接收数据长度不够引发异常的bug。
+8. MegMeet: 新增麦格米特的PLC的通信类，底层使用Modbus协议，支持串口，网口，支持系列：MC80/MC100/MC200/MC280/MC200E
+9. KeyenceDLEN1: 新增基恩士的以太网模块通信协议实现，主要用于各种传感器的数据读写操作，提供DEMO测试。
+10. NetworkBase: NetworkBase基础通信基类，新增了一些基于SSL加密通信的报文收发的方法支持。
+11. MqttClient: MqttClient支持了使用证书的方式进行通信，设置MqttConnectionOptions.CertificateFile为证书路径即可实现证书加密及校验，已和EMQX测试通过。
+12. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
+13. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

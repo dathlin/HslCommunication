@@ -92,6 +92,8 @@ namespace HslCommunicationDemo
 					Payload = Encoding.UTF8.GetBytes( this.mqtt_will_message )
 				};
 			}
+			if (!string.IsNullOrEmpty( this.textBox_certificate.Text )) options.CertificateFile = textBox_certificate.Text;
+			options.SSLSecure = checkBox_sslSecure.Checked;
 
 			button1.Enabled = false;
 			mqttClient?.ConnectClose( );
@@ -313,6 +315,9 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox10.Text );
 			element.SetAttributeValue( "WillTopic", mqtt_will_topic );
 			element.SetAttributeValue( "WillMessage", mqtt_will_message );
+			element.SetAttributeValue( "certificate", textBox_certificate.Text );
+			element.SetAttributeValue( "sslSecure", checkBox_sslSecure.Checked );
+			element.SetAttributeValue( "rsa", checkBox_rsa.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -327,6 +332,9 @@ namespace HslCommunicationDemo
 			textBox10.Text  = element.Attribute( DemoDeviceList.XmlPassword ).Value;
 			mqtt_will_topic = element.Attribute( "WillTopic" ) == null ? string.Empty : element.Attribute( "WillTopic" ).Value;
 			mqtt_will_message = element.Attribute( "WillMessage" ) == null ? string.Empty : element.Attribute( "WillMessage" ).Value;
+			textBox_certificate.Text = element.Attribute( "certificate" ) == null ? string.Empty : element.Attribute( "certificate" ).Value;
+			checkBox_sslSecure.Checked = element.Attribute( "sslSecure" ) == null ? false : bool.Parse( element.Attribute( "sslSecure" ).Value );
+			checkBox_rsa.Checked = element.Attribute( "rsa" ) == null ? false : bool.Parse( element.Attribute( "rsa" ).Value );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
@@ -354,6 +362,17 @@ namespace HslCommunicationDemo
 		{
 			FormMqttSubscribe form = new FormMqttSubscribe( mqttClient );
 			form.Show( );
+		}
+
+		private void button_certificate_Click( object sender, EventArgs e )
+		{
+			using(OpenFileDialog ofd = new OpenFileDialog( ))
+			{
+				if(ofd.ShowDialog() == DialogResult.OK)
+				{
+					textBox_certificate.Text = ofd.FileName;
+				}
+			}
 		}
 	}
 

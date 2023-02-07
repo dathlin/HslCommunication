@@ -529,6 +529,7 @@ namespace HslCommunicationDemo
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Nano OverTcp",          6, typeof( FormKeyenceNanoSerialOverTcp ) ) );
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Nano Server",           6, typeof( FormKeyenceNanoServer ) ) );
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "SR2000 [读码]",         6, typeof( FormKeyenceSR2000 ) ) );
+			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "DL-EN1 [传感器]",       6, typeof( FormKeyenceDLEN1 ) ) );
 			treeView1.Nodes.Add( keyencePlc );
 
 			// Panasonic PLC
@@ -617,6 +618,13 @@ namespace HslCommunicationDemo
 			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE Server", 30, typeof( FormXinJEInternalServer ) ) );
 			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE TCP[专用]", 30, typeof( FormXinJEInternalTcp ) ) );
 			treeView1.Nodes.Add( xinjeNode );
+
+			// 麦格米特
+			TreeNode megMeetNode = new TreeNode( "MegMeet Plc[麦格米特]", 0, 0 );
+			megMeetNode.Nodes.Add( GetTreeNodeByIndex( "MegMeet Serial", 0, typeof( FormMegMeetSerial ) ) );
+			megMeetNode.Nodes.Add( GetTreeNodeByIndex( "MegMeet Serial OverTcp", 0, typeof( FormMegMeetSerialOverTcp ) ) );
+			megMeetNode.Nodes.Add( GetTreeNodeByIndex( "MegMeet TCP [Modbus]", 0, typeof( FormMegMeetTcpNet ) ) );
+			treeView1.Nodes.Add( megMeetNode );
 
 			// Yokogawa Plc
 			TreeNode YokogawaNode = new TreeNode( "Yokogawa Plc[横河]", 31, 31 );
