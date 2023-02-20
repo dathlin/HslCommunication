@@ -1,5 +1,7 @@
-﻿using System;
+﻿using HslCommunication;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -44,13 +46,26 @@ namespace HslCommunicationDemo
 				IsActive = true;
 			}
 
+			// 如果使用证书的情况
+			//OperateResult active = HslCommunication.Authorization.SetHslCertificate( File.ReadAllBytes( "hsl.cert" ) );
+			//if (active.IsSuccess)
+			//{
+			//	// active success
+			//	MessageBox.Show( "active success！" );
+			//}
+			//else
+			//{
+			//	// active failed
+			//	MessageBox.Show( "active failed: " + active.Message );
+			//}
+
 
 			Application.EnableVisualStyles( );
 			Application.SetCompatibleTextRenderingDefault( false );
 
 
 			System.Threading.ThreadPool.SetMaxThreads( 2000, 800 );
-			Application.Run( new FormSelect( ) ); // FormSelect
+			Application.Run( new FormMain( ) ); // FormSelect
 		}
 
 		private static void CurrentDomain_UnhandledException( object sender, UnhandledExceptionEventArgs e )

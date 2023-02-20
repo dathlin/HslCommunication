@@ -31,6 +31,7 @@
 			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Rpc Apis");
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.button2 = new System.Windows.Forms.Button();
@@ -48,11 +49,9 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.label10 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.label20 = new System.Windows.Forms.Label();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.hslBarChart1 = new HslControls.HslBarChart();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.label15 = new System.Windows.Forms.Label();
 			this.button7 = new System.Windows.Forms.Button();
 			this.textBox13 = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
@@ -73,7 +72,10 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.textBox_api_sign = new System.Windows.Forms.TextBox();
+			this.label24 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
+			this.textBox_api_description = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -116,6 +118,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1015, 56);
 			this.panel1.TabIndex = 31;
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(134, 31);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(124, 21);
+			this.checkBox2.TabIndex = 21;
+			this.checkBox2.Text = "UseEncodingISO";
+			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// label8
 			// 
@@ -276,11 +288,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel2.Controls.Add(this.label20);
+			this.panel2.Controls.Add(this.textBox_api_sign);
+			this.panel2.Controls.Add(this.label24);
+			this.panel2.Controls.Add(this.label15);
+			this.panel2.Controls.Add(this.textBox_api_description);
 			this.panel2.Controls.Add(this.comboBox2);
 			this.panel2.Controls.Add(this.hslBarChart1);
 			this.panel2.Controls.Add(this.comboBox1);
-			this.panel2.Controls.Add(this.label15);
 			this.panel2.Controls.Add(this.button7);
 			this.panel2.Controls.Add(this.textBox13);
 			this.panel2.Controls.Add(this.label14);
@@ -303,23 +317,11 @@
 			this.panel2.Size = new System.Drawing.Size(753, 534);
 			this.panel2.TabIndex = 34;
 			// 
-			// label20
-			// 
-			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label20.AutoSize = true;
-			this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.label20.Location = new System.Drawing.Point(60, 38);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(40, 17);
-			this.label20.TabIndex = 48;
-			this.label20.Text = "[签名]";
-			// 
 			// comboBox2
 			// 
 			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(217, 257);
+			this.comboBox2.Location = new System.Drawing.Point(217, 271);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(167, 25);
 			this.comboBox2.TabIndex = 46;
@@ -328,10 +330,10 @@
 			// 
 			this.hslBarChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslBarChart1.BackColor = System.Drawing.Color.White;
-			this.hslBarChart1.Location = new System.Drawing.Point(420, 99);
+			this.hslBarChart1.Location = new System.Drawing.Point(420, 121);
 			this.hslBarChart1.Name = "hslBarChart1";
 			this.hslBarChart1.ShowBarValueFormat = "{0}";
-			this.hslBarChart1.Size = new System.Drawing.Size(329, 151);
+			this.hslBarChart1.Size = new System.Drawing.Size(329, 143);
 			this.hslBarChart1.TabIndex = 45;
 			this.hslBarChart1.Text = "hslBarChart1";
 			this.hslBarChart1.Title = "Called Infomation";
@@ -341,25 +343,14 @@
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(62, 257);
+			this.comboBox1.Location = new System.Drawing.Point(62, 271);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(69, 25);
 			this.comboBox1.TabIndex = 43;
 			// 
-			// label15
-			// 
-			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.label15.Location = new System.Drawing.Point(60, 59);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(688, 37);
-			this.label15.TabIndex = 41;
-			this.label15.Text = "[注释]";
-			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(402, 256);
+			this.button7.Location = new System.Drawing.Point(402, 270);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(119, 28);
 			this.button7.TabIndex = 40;
@@ -408,7 +399,7 @@
 			// textBox7
 			// 
 			this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox7.Location = new System.Drawing.Point(667, 256);
+			this.textBox7.Location = new System.Drawing.Point(667, 270);
 			this.textBox7.Name = "textBox7";
 			this.textBox7.ReadOnly = true;
 			this.textBox7.Size = new System.Drawing.Size(81, 23);
@@ -418,7 +409,7 @@
 			// 
 			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(583, 258);
+			this.label11.Location = new System.Drawing.Point(583, 272);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(44, 17);
 			this.label11.TabIndex = 30;
@@ -430,7 +421,7 @@
 			this.panel3.Controls.Add(this.radioButton5);
 			this.panel3.Controls.Add(this.radioButton3);
 			this.panel3.Controls.Add(this.radioButton4);
-			this.panel3.Location = new System.Drawing.Point(494, 287);
+			this.panel3.Location = new System.Drawing.Point(494, 301);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(184, 28);
 			this.panel3.TabIndex = 26;
@@ -472,17 +463,17 @@
 			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox8.Location = new System.Drawing.Point(62, 321);
+			this.textBox8.Location = new System.Drawing.Point(62, 341);
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(686, 207);
+			this.textBox8.Size = new System.Drawing.Size(686, 187);
 			this.textBox8.TabIndex = 18;
 			// 
 			// button4
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(678, 287);
+			this.button4.Location = new System.Drawing.Point(678, 301);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(71, 28);
 			this.button4.TabIndex = 17;
@@ -491,7 +482,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(141, 256);
+			this.button3.Location = new System.Drawing.Point(141, 270);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(70, 28);
 			this.button3.TabIndex = 12;
@@ -503,17 +494,17 @@
 			// 
 			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox5.Location = new System.Drawing.Point(62, 99);
+			this.textBox5.Location = new System.Drawing.Point(62, 121);
 			this.textBox5.Multiline = true;
 			this.textBox5.Name = "textBox5";
 			this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox5.Size = new System.Drawing.Size(352, 153);
+			this.textBox5.Size = new System.Drawing.Size(352, 145);
 			this.textBox5.TabIndex = 8;
 			// 
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(-1, 102);
+			this.label9.Location = new System.Drawing.Point(-1, 121);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(50, 17);
 			this.label9.TabIndex = 11;
@@ -541,7 +532,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(-1, 321);
+			this.label5.Location = new System.Drawing.Point(-1, 341);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 17);
 			this.label5.TabIndex = 42;
@@ -551,20 +542,62 @@
 			// 
 			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.label6.Location = new System.Drawing.Point(60, 286);
+			this.label6.Location = new System.Drawing.Point(60, 300);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(428, 36);
 			this.label6.TabIndex = 44;
 			// 
-			// checkBox2
+			// textBox_api_sign
 			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(134, 31);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(124, 21);
-			this.checkBox2.TabIndex = 21;
-			this.checkBox2.Text = "UseEncodingISO";
-			this.checkBox2.UseVisualStyleBackColor = true;
+			this.textBox_api_sign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_api_sign.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox_api_sign.ForeColor = System.Drawing.Color.Gray;
+			this.textBox_api_sign.Location = new System.Drawing.Point(61, 38);
+			this.textBox_api_sign.Name = "textBox_api_sign";
+			this.textBox_api_sign.ReadOnly = true;
+			this.textBox_api_sign.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_api_sign.Size = new System.Drawing.Size(683, 16);
+			this.textBox_api_sign.TabIndex = 56;
+			this.textBox_api_sign.Text = "[签名]";
+			// 
+			// label24
+			// 
+			this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label24.AutoSize = true;
+			this.label24.ForeColor = System.Drawing.Color.Gray;
+			this.label24.Location = new System.Drawing.Point(-1, 37);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(40, 17);
+			this.label24.TabIndex = 55;
+			this.label24.Text = "[签名]";
+			// 
+			// label15
+			// 
+			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label15.AutoSize = true;
+			this.label15.ForeColor = System.Drawing.Color.Gray;
+			this.label15.Location = new System.Drawing.Point(-1, 59);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(40, 17);
+			this.label15.TabIndex = 54;
+			this.label15.Text = "[注释]";
+			// 
+			// textBox_api_description
+			// 
+			this.textBox_api_description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_api_description.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox_api_description.ForeColor = System.Drawing.Color.Gray;
+			this.textBox_api_description.Location = new System.Drawing.Point(61, 59);
+			this.textBox_api_description.Multiline = true;
+			this.textBox_api_description.Name = "textBox_api_description";
+			this.textBox_api_description.ReadOnly = true;
+			this.textBox_api_description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_api_description.Size = new System.Drawing.Size(683, 56);
+			this.textBox_api_description.TabIndex = 53;
 			// 
 			// FormHttpClient
 			// 
@@ -610,7 +643,6 @@
 		private System.Windows.Forms.TreeView treeView1;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.TextBox textBox13;
 		private System.Windows.Forms.Label label14;
@@ -637,7 +669,10 @@
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.ComboBox comboBox2;
 		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.TextBox textBox_api_sign;
+		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.TextBox textBox_api_description;
 	}
 }

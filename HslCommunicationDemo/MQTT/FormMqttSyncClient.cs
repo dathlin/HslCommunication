@@ -431,12 +431,12 @@ namespace HslCommunicationDemo
 				panel5.Visible = false;
 				panel2.Visible = true;
 
-				textBox5.Text  = apiInfo.ApiTopic;
-				textBox4.Text  = apiInfo.ExamplePayload;
-				textBox12.Text = apiInfo.CalledCount.ToString( );
-				textBox13.Text = apiInfo.SpendTotalTime.ToString( "F2" );
-				textBox11.Text = apiInfo.Description;
-				label20.Text   = apiInfo.MethodSignature;
+				textBox5.Text                = apiInfo.ApiTopic;
+				textBox4.Text                = apiInfo.ExamplePayload;
+				textBox12.Text               = apiInfo.CalledCount.ToString( );
+				textBox13.Text               = apiInfo.SpendTotalTime.ToString( "F2" );
+				textBox_api_description.Text = apiInfo.Description;
+				textBox_api_sign.Text        = apiInfo.MethodSignature;
 
 
 				OperateResult<long[]> read = mqttSyncClient.ReadRpcApiLog( apiInfo.ApiTopic );

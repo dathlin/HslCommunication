@@ -95,6 +95,11 @@ namespace HslCommunicationDemo
 				wsServer.OnClientConnected += WsServer_OnClientConnected;
 
 				wsServer.IsTopicRetain = checkBox2.Checked;
+
+				if (checkBox_ssl.Checked)
+				{
+					wsServer.UseSSL( textBox_certFile.Text );
+				}
 				wsServer.ServerStart( int.Parse( textBox2.Text ) );
 				wsServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				wsServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
@@ -201,17 +206,20 @@ namespace HslCommunicationDemo
 		}
 		private void ThreadTest( )
 		{
+			int timeCost = 0;
 			while (true)
 			{
 				System.Threading.Thread.Sleep( 200 );
 				if (startThreadPublish)
 				{
-					for (int i = 0; i < 100; i++)
+					DateTime start = DateTime.Now;
+					for (int i = 0; i < 10; i++)
 					{
-						byte[] buffer = new byte[4096];
+						byte[] buffer = new byte[1024];
 						random.NextBytes( buffer );
-						wsServer.PublishAllClientPayload( buffer.ToHexString( ) );
+						wsServer.PublishAllClientPayload( buffer.ToHexString( ) + "\r\n" + "上次平均耗时：" + timeCost + "ms" );
 					}
+					timeCost = Convert.ToInt32( (DateTime.Now - start).TotalSeconds / 10 );
 				}
 			}
 		}
@@ -239,7 +247,7 @@ namespace HslCommunicationDemo
 
 		private void button8_Click( object sender, EventArgs e )
 		{
-			string content = @"<html>
+			string content = $@"<html>
 	<head>
 		<title>
 			测试的websocket信息-hslcommunication
@@ -250,32 +258,32 @@ namespace HslCommunicationDemo
 	</body>
 	<script type=""text/javascript"">
 		if (""WebSocket"" in window)
-		{
+		{{
 			// 打开一个 web socket
-			var ws = new WebSocket('ws://127.0.0.1:1883');
+			var ws = new WebSocket('ws{(checkBox_ssl.Checked?"s":"")}://127.0.0.1:{textBox2.Text}');
 			var count = 0;
 			ws.onopen = function()
-			{
+			{{
 				 console.log('已经打开...');
-			};
+			}};
 			ws.onmessage = function (evt)
-			{
+			{{
 				var received_msg = evt.data;
 				var obj = document.getElementById('hsl');
 				obj.innerText = received_msg;
 				count++;
-			};
+			}};
 			var int=self.setInterval(""clock()"",1000);
 			function clock()
-			{
+			{{
 				 console.log('接收次数:' + count);
-			}
-		}
+			}}
+		}}
 		else
-		{
+		{{
 			var obj = document.getElementById('hsl');
 			obj.innerText = '您的浏览器不支持 WebSocket!';
-		}
+		}}
 	</script>
 </html>";
 			try
@@ -310,7 +318,17 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
-    }
+		private void button10_Click( object sender, EventArgs e )
+		{
+			using (OpenFileDialog ofd = new OpenFileDialog( ))
+			{
+				if (ofd.ShowDialog() == DialogResult.OK)
+				{
+					textBox_certFile.Text = ofd.FileName;
+				}
+			}
+		}
+	}
 
 
 	#endregion

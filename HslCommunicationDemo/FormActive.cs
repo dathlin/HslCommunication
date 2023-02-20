@@ -23,9 +23,16 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (HslCommunication.Authorization.SetAuthorizationCode( textBox1.Text ))
+			bool active = false;
+			if (textBox1.Text.Length < 100)
+				active = HslCommunication.Authorization.SetAuthorizationCode( textBox1.Text );
+			else
+				active = HslCommunication.Authorization.SetHslCertificate( Convert.FromBase64String( textBox1.Text ) ).IsSuccess;
+
+
+			if (active)
 			{
-				MessageBox.Show( "激活成功!" );
+				MessageBox.Show( Program.Language == 1 ? "激活成功!" : "Activation successful!" );
 				System.IO.File.WriteAllText( activePath, string.Empty, Encoding.UTF8 );
 				System.IO.FileInfo fileInfo = new System.IO.FileInfo( activePath );
 				string key = fileInfo.CreationTime.ToString( "yyyy-MM-dd-mm-ss" );
@@ -35,7 +42,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "激活失败！" );
+				MessageBox.Show( Program.Language == 1 ? "激活失败！" : "Activation failed!" );
 			}
 		}
 

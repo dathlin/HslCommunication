@@ -24,12 +24,12 @@
 ![Build status](https://img.shields.io/badge/Build-Success-green.svg) ![NetFramework](https://img.shields.io/badge/python-3.6-orange.svg) ![version](https://img.shields.io/pypi/v/HslCommunication) ![download](https://img.shields.io/pypi/dm/HslCommunication) ![IDE status](https://img.shields.io/badge/Visual%20Studio-Code-red.svg) ![copyright status](https://img.shields.io/badge/CopyRight-Richard.Hu-brightgreen.svg) 
 
 ## CopyRight
-(C) 2017 - 2020 Richard.Hu, All Rights Reserved
+(C) 2017 - 2023 Richard.Hu, All Rights Reserved
 
 ## Authorization(授权)
-具体可以参照 http://www.hslcommunication.cn/Cooperation
+具体可以参照 http://www.hsltechnology.cn/Home/Licence?area=HslCommunication
 
-试用授权： 加入 **技术支持VIP群** 即可以获得激活码，支持长时间测试使用。
+试用授权： 加入 **技术支持VIP群** 即可以获得激活码，支持长时间测试使用。企业用户可以联系微信:13516702732 申请试用的证书
 ```
         /// <summary>
         /// 应用程序的主入口点。
@@ -52,12 +52,10 @@
 ```
 
 商用授权（赠送源代码）: 
-   1. 签订合同。
-   2. 付款，支付宝，微信，银行卡都可以。
-   3. 开票，目前是增值税普票。
-   4. 加入 **Hsl超级VIP群** 即获得源代码和超级激活码，永久支持更新。
-   5. 注册官网的git账户
-   6. 企业专业培训额外付费，1000元人民币1小时，培训控件使用，控件开发。
+   1. 公对公签订合同。
+   2. 公对公打款，开具增值税发票。
+   3. 获取专用的软件，账户，来下载最新的源代码，激活码
+   4. 企业专业培训额外付费，1000元人民币1小时，培训控件使用，控件开发。
 
 ## Official Website
 Webside: [http://www.hslcommunication.cn/](http://www.hslcommunication.cn/)

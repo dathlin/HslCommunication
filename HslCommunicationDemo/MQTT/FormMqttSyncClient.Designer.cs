@@ -47,8 +47,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.label24 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
-			this.textBox11 = new System.Windows.Forms.TextBox();
-			this.label20 = new System.Windows.Forms.Label();
+			this.textBox_api_description = new System.Windows.Forms.TextBox();
 			this.hslBarChart1 = new HslControls.HslBarChart();
 			this.button7 = new System.Windows.Forms.Button();
 			this.textBox13 = new System.Windows.Forms.TextBox();
@@ -97,6 +96,7 @@
 			this.label21 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.panel7 = new System.Windows.Forms.Panel();
+			this.textBox_api_sign = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -249,10 +249,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.textBox_api_sign);
 			this.panel2.Controls.Add(this.label24);
 			this.panel2.Controls.Add(this.label15);
-			this.panel2.Controls.Add(this.textBox11);
-			this.panel2.Controls.Add(this.label20);
+			this.panel2.Controls.Add(this.textBox_api_description);
 			this.panel2.Controls.Add(this.hslBarChart1);
 			this.panel2.Controls.Add(this.button7);
 			this.panel2.Controls.Add(this.textBox13);
@@ -303,31 +303,19 @@
 			this.label15.TabIndex = 50;
 			this.label15.Text = "[注释]";
 			// 
-			// textBox11
+			// textBox_api_description
 			// 
-			this.textBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.textBox_api_description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox11.ForeColor = System.Drawing.Color.Gray;
-			this.textBox11.Location = new System.Drawing.Point(62, 60);
-			this.textBox11.Multiline = true;
-			this.textBox11.Name = "textBox11";
-			this.textBox11.ReadOnly = true;
-			this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox11.Size = new System.Drawing.Size(711, 56);
-			this.textBox11.TabIndex = 49;
-			// 
-			// label20
-			// 
-			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label20.AutoSize = true;
-			this.label20.ForeColor = System.Drawing.Color.Gray;
-			this.label20.Location = new System.Drawing.Point(59, 38);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(40, 17);
-			this.label20.TabIndex = 47;
-			this.label20.Text = "[签名]";
+			this.textBox_api_description.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox_api_description.ForeColor = System.Drawing.Color.Gray;
+			this.textBox_api_description.Location = new System.Drawing.Point(62, 60);
+			this.textBox_api_description.Multiline = true;
+			this.textBox_api_description.Name = "textBox_api_description";
+			this.textBox_api_description.ReadOnly = true;
+			this.textBox_api_description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_api_description.Size = new System.Drawing.Size(711, 56);
+			this.textBox_api_description.TabIndex = 49;
 			// 
 			// hslBarChart1
 			// 
@@ -842,6 +830,20 @@
 			this.panel7.Size = new System.Drawing.Size(843, 518);
 			this.panel7.TabIndex = 17;
 			// 
+			// textBox_api_sign
+			// 
+			this.textBox_api_sign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_api_sign.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox_api_sign.ForeColor = System.Drawing.Color.Gray;
+			this.textBox_api_sign.Location = new System.Drawing.Point(62, 39);
+			this.textBox_api_sign.Name = "textBox_api_sign";
+			this.textBox_api_sign.ReadOnly = true;
+			this.textBox_api_sign.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_api_sign.Size = new System.Drawing.Size(711, 16);
+			this.textBox_api_sign.TabIndex = 52;
+			this.textBox_api_sign.Text = "[签名]";
+			// 
 			// FormMqttSyncClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -937,11 +939,11 @@
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Panel panel7;
 		private HslControls.HslBarChart hslBarChart1;
-		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.CheckBox checkBox_rsa;
 		private System.Windows.Forms.Label label23;
-		private System.Windows.Forms.TextBox textBox11;
+		private System.Windows.Forms.TextBox textBox_api_description;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.TextBox textBox_api_sign;
 	}
 }

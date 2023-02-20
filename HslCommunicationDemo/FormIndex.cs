@@ -35,20 +35,17 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.3.2
-1. WebsocketServer: 在发布Topic数据的时候，新增一个API，允许指定reatain属性，如果不指定，则用对象自己的设置。
-2. InovanceHelper:汇川读取byte的方法新增错误异常捕获，返回失败的说明信息。
-3. SiemensS7Server: 修复虚拟服务器在接收远程客户端的写入定时器，计数器时，地址偏移不正确的bug。
-4. modbus: 当调用地址为 x=1;100 进行写入bool数据的时候，修复功能码不会自动修正为正确的默认功能码的bug。适用于 rtu, tcp, rtu overTcp
-5. BeckhoffAdsServer: 修复当远程客户端读取M100.0 的bool类型时，指定长度大于1时，返回数据不正确的bug。
-6. BeckhoffAdsNet: 修复在读写I,Q地址类型时，初始偏移位置不正确的bug，无论是字读写，还是位读写都测试通过。虚拟PLC侧自动识别偏移地址。
-7. DLT645: 修复DLT645的1997及2007版本串口通信时，在某些特殊情况下通信速度慢导致接收数据长度不够引发异常的bug。
-8. MegMeet: 新增麦格米特的PLC的通信类，底层使用Modbus协议，支持串口，网口，支持系列：MC80/MC100/MC200/MC280/MC200E
-9. KeyenceDLEN1: 新增基恩士的以太网模块通信协议实现，主要用于各种传感器的数据读写操作，提供DEMO测试。
-10. NetworkBase: NetworkBase基础通信基类，新增了一些基于SSL加密通信的报文收发的方法支持。
-11. MqttClient: MqttClient支持了使用证书的方式进行通信，设置MqttConnectionOptions.CertificateFile为证书路径即可实现证书加密及校验，已和EMQX测试通过。
-12. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
-13. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.3.3
+1. HslCertificate: 新增自定义的证书类，支持持有者颁发证书，对证书验证签名，例如可以使用证书实现对API接口权限验证，详细查看API文档。
+2. OmronCipNet: 修复异步写入字符串时，编码无法指定ASCII之外的bug，导致无法使用UTF8写入中文。
+3. ModbusTcpServer: 重新增加属性 StationCheck, ，当服务器只有一个站号的时候，设置为True表示校验客户端请求的站号，反之则不校验。
+4. DLT645及DLT645OverTcp: 支持写入字符串的方法，字符串将会转为二进制并且颠倒顺序，写入到仪表里去，写int及double数组也会转字符串数组写入。
+5. WebsocketServer: 服务器初步支持了SSL通信，使用证书通信，需要带私钥的证书才能成功创建，等待进一步的测试。
+6. LogNetBase: 日志获取相关的存储列表的方法中，增加一个错误捕获，在极端情况下可能会因为错误异常。
+7. Authorization: 激活系统的方法新增基于证书激活的方式，具体使用方法参考官网文档。
+8. Demo: Demo主界面的左侧的设备列表信息改为浮动窗体，可以自由隐藏，DEMO也支持了使用证书激活。
+9 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
+10. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

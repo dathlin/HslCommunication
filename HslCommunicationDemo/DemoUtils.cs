@@ -225,5 +225,7 @@ namespace HslCommunicationDemo
 				default: return Encoding.ASCII;
 			}
 		}
+
+
 	}
 }

@@ -53,7 +53,7 @@ namespace HslCommunicationDemo.DemoControl
 				linkLabel1.Visible = false;
 			}
 
-			BackColor = FormSelect.ThemeColor;
+			BackColor = FormMain.ThemeColor;
 		}
 
 		[Browsable(true)]

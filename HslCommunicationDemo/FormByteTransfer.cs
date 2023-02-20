@@ -274,13 +274,21 @@ namespace HslCommunicationDemo
 				if (string.IsNullOrEmpty( textBox1.Text ))
 				{
 					OpenFileDialog ofd = new OpenFileDialog( );
-					if (ofd.ShowDialog() == DialogResult.OK)
+					if (ofd.ShowDialog( ) == DialogResult.OK)
 					{
-						textBox2.Text = SoftBasic.ByteToHexString( File.ReadAllBytes( ofd.FileName ), ' ', 32 );
+						if (radioButton_base64.Checked)
+							textBox2.Text = Convert.ToBase64String( File.ReadAllBytes( ofd.FileName ) );
+						else
+							textBox2.Text = SoftBasic.ByteToHexString( File.ReadAllBytes( ofd.FileName ), ' ', 32 );
 					}
 				}
 				else
-					textBox2.Text = SoftBasic.ByteToHexString( File.ReadAllBytes( textBox1.Text ), ' ', 32 );
+				{
+					if (radioButton_base64.Checked)
+						textBox2.Text = Convert.ToBase64String( File.ReadAllBytes( textBox1.Text ) );
+					else
+						textBox2.Text = SoftBasic.ByteToHexString( File.ReadAllBytes( textBox1.Text ), ' ', 32 );
+				}
 			}
 			catch(Exception ex)
 			{

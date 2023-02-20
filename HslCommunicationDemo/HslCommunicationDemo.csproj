@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.3.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.3.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.3.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.3.3\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
@@ -182,6 +182,18 @@
     <Compile Include="DemoControl\FormMqttInput.Designer.cs">
       <DependentUpon>FormMqttInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoControl\FormPanelLeft.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormPanelLeft.Designer.cs">
+      <DependentUpon>FormPanelLeft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\FormSaveList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormSaveList.Designer.cs">
+      <DependentUpon>FormSaveList.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\UserControlHead.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -255,6 +267,18 @@
     </Compile>
     <Compile Include="FormNewVerison.Designer.cs">
       <DependentUpon>FormNewVerison.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HslDebug\FormHslCertificate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HslDebug\FormHslCertificate.Designer.cs">
+      <DependentUpon>FormHslCertificate.cs</DependentUpon>
     </Compile>
     <Compile Include="HslDebug\FormCheck.cs">
       <SubType>Form</SubType>
@@ -843,12 +867,6 @@
     </Compile>
     <Compile Include="FormImage.Designer.cs">
       <DependentUpon>FormImage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormSelect.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormSelect.Designer.cs">
-      <DependentUpon>FormSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="Hsl\FormLogNet.cs">
       <SubType>Form</SubType>
@@ -1574,6 +1592,12 @@
     <EmbeddedResource Include="DemoControl\FormMqttInput.resx">
       <DependentUpon>FormMqttInput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormPanelLeft.resx">
+      <DependentUpon>FormPanelLeft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormSaveList.resx">
+      <DependentUpon>FormSaveList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\UserControlCurve.resx">
       <DependentUpon>UserControlCurve.cs</DependentUpon>
     </EmbeddedResource>
@@ -1612,6 +1636,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewVerison.resx">
       <DependentUpon>FormNewVerison.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HslDebug\FormHslCertificate.resx">
+      <DependentUpon>FormHslCertificate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HslDebug\FormCheck.resx">
       <DependentUpon>FormCheck.cs</DependentUpon>
@@ -1906,9 +1936,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormImage.resx">
       <DependentUpon>FormImage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormSelect.resx">
-      <DependentUpon>FormSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormLogNet.resx">
       <DependentUpon>FormLogNet.cs</DependentUpon>

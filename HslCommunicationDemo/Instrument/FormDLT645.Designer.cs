@@ -305,6 +305,7 @@
 			this.panel2.Controls.Add(this.groupBox3);
 			this.panel2.Location = new System.Drawing.Point(4, 98);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.panel2.MinimumSize = new System.Drawing.Size(800, 525);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(1000, 545);
 			this.panel2.TabIndex = 1;
