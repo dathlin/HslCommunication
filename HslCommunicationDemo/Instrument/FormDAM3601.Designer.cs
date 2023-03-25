@@ -77,10 +77,10 @@
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.label24);
 			this.panel1.Controls.Add(this.checkBox3);
-			this.panel1.Location = new System.Drawing.Point(12, 40);
+			this.panel1.Location = new System.Drawing.Point(3, 34);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 65);
+			this.panel1.Size = new System.Drawing.Size(997, 65);
 			this.panel1.TabIndex = 0;
 			// 
 			// comboBox3
@@ -254,18 +254,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.groupBox1);
-			this.panel2.Location = new System.Drawing.Point(12, 113);
+			this.panel2.Location = new System.Drawing.Point(3, 101);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(983, 529);
+			this.panel2.Size = new System.Drawing.Size(997, 541);
 			this.panel2.TabIndex = 1;
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.button_read_bool);
-			this.groupBox1.Location = new System.Drawing.Point(11, 3);
+			this.groupBox1.Location = new System.Drawing.Point(7, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(945, 515);
+			this.groupBox1.Size = new System.Drawing.Size(981, 528);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "单数据读取测试";

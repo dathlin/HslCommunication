@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Yamatake;
 using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.Common;
 
 namespace HslCommunicationDemo
 {
@@ -24,12 +25,15 @@ namespace HslCommunicationDemo
 
 
 		private DigitronCPLOverTcp cpl = null;
-
+		private SpecialFeaturesControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 			Language( Program.Language );
+
+			control = new SpecialFeaturesControl( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -44,19 +48,6 @@ namespace HslCommunicationDemo
 				label21.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
 			}
 		}
 
@@ -101,7 +92,13 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( cpl, "100", true );
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( cpl, "100", true );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( cpl, "100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => cpl.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+					control.SetDevice( cpl, "100" );
 				}
 				else
 				{
@@ -123,36 +120,6 @@ namespace HslCommunicationDemo
 			button1.Enabled = true;
 			panel2.Enabled = false;
 		}
-
-		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( cpl, textBox6, textBox9, textBox10 );
-		}
-
-
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = cpl.ReadFromCoreServer( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
 
 		#endregion
 

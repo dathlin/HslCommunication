@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.comboBox_encoding = new System.Windows.Forms.ComboBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -100,6 +102,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.comboBox_encoding);
+			this.panel1.Controls.Add(this.label9);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
@@ -113,12 +117,29 @@
 			this.panel1.Size = new System.Drawing.Size(997, 43);
 			this.panel1.TabIndex = 12;
 			// 
+			// comboBox_encoding
+			// 
+			this.comboBox_encoding.FormattingEnabled = true;
+			this.comboBox_encoding.Location = new System.Drawing.Point(403, 9);
+			this.comboBox_encoding.Name = "comboBox_encoding";
+			this.comboBox_encoding.Size = new System.Drawing.Size(76, 25);
+			this.comboBox_encoding.TabIndex = 8;
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(332, 12);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(65, 17);
+			this.label9.TabIndex = 7;
+			this.label9.Text = "Encoding:";
+			// 
 			// label2
 			// 
 			this.label2.ForeColor = System.Drawing.Color.Red;
-			this.label2.Location = new System.Drawing.Point(332, 6);
+			this.label2.Location = new System.Drawing.Point(485, 6);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(434, 35);
+			this.label2.Size = new System.Drawing.Size(281, 35);
 			this.label2.TabIndex = 6;
 			this.label2.Text = "写入的操作需要小心，需要对数据进行检查。";
 			// 
@@ -305,7 +326,7 @@
 			// linkLabel1
 			// 
 			this.linkLabel1.AutoSize = true;
-			this.linkLabel1.Location = new System.Drawing.Point(549, 247);
+			this.linkLabel1.Location = new System.Drawing.Point(549, 281);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(490, 17);
 			this.linkLabel1.TabIndex = 3;
@@ -315,7 +336,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(6, 248);
+			this.label8.Location = new System.Drawing.Point(6, 282);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(546, 17);
 			this.label8.TabIndex = 2;
@@ -361,9 +382,9 @@
 			this.groupBox1.Controls.Add(this.button5);
 			this.groupBox1.Controls.Add(this.textBox3);
 			this.groupBox1.Controls.Add(this.button3);
-			this.groupBox1.Location = new System.Drawing.Point(7, 268);
+			this.groupBox1.Location = new System.Drawing.Point(7, 302);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(977, 262);
+			this.groupBox1.Size = new System.Drawing.Size(977, 228);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "特殊功能测试";
@@ -698,7 +719,7 @@
 			this.textBox3.Multiline = true;
 			this.textBox3.Name = "textBox3";
 			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox3.Size = new System.Drawing.Size(965, 123);
+			this.textBox3.Size = new System.Drawing.Size(965, 89);
 			this.textBox3.TabIndex = 1;
 			// 
 			// button3
@@ -717,7 +738,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteOp1.Location = new System.Drawing.Point(5, 6);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(979, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(979, 272);
 			this.userControlReadWriteOp1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -824,5 +845,7 @@
 		private System.Windows.Forms.Button button32;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.LinkLabel linkLabel1;
+		private System.Windows.Forms.ComboBox comboBox_encoding;
+		private System.Windows.Forms.Label label9;
 	}
 }

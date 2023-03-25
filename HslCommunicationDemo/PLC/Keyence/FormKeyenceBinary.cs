@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication.Profinet.Keyence;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.Melsec;
 
 namespace HslCommunicationDemo
 {
@@ -24,13 +25,15 @@ namespace HslCommunicationDemo
 
 
 		private KeyenceMcNet keyence_net = null;
-
+		private McQna3EControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 			
 			Language( Program.Language );
+			control = new McQna3EControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 		private void Language( int language )
@@ -44,20 +47,6 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
-				button3.Text = "Pressure test, r/w 3,000s";
 				label22.Text = "M100 D100 X1A0 Y1A0";
 			}
 		}
@@ -93,7 +82,17 @@ namespace HslCommunicationDemo
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
-					userControlReadWriteOp1.SetReadWriteNet( keyence_net, "D100", true );
+
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( keyence_net, "D100", true );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( keyence_net, "D100", string.Empty );
+					userControlReadWriteDevice1.BatchRead.SetReadRandom( keyence_net.ReadRandom, "D100;W100;D500" );
+					userControlReadWriteDevice1.BatchRead.SetReadWordRandom( keyence_net.ReadRandom, "D100;W100;D500" );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => keyence_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					// 特殊读取
+					control.SetDevice( keyence_net, "D100" );
 				}
 				else
 				{
@@ -116,34 +115,6 @@ namespace HslCommunicationDemo
 		}
 
 		
-		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( keyence_net, textBox6, textBox9, textBox10 );
-		}
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = keyence_net.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
 		#endregion
 
 		#region Use Exmaple
@@ -247,93 +218,6 @@ namespace HslCommunicationDemo
 		}
 		
 		#endregion
-
-		#region 压力测试
-
-		private int thread_status = 0;
-		private int failed = 0;
-		private DateTime thread_time_start = DateTime.Now;
-
-		private void button3_Click( object sender, EventArgs e )
-		{
-			thread_status = 3;
-			failed = 0;
-			thread_time_start = DateTime.Now;
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			button3.Enabled = false;
-		}
-
-		private void thread_test2( )
-		{
-			int count = 500;
-			while (count > 0)
-			{
-				if (!keyence_net.Write( "D100", (short)1234 ).IsSuccess) failed++;
-				if (!keyence_net.ReadInt16( "D100" ).IsSuccess) failed++;
-				count--;
-			}
-			thread_end( );
-		}
-
-		private void thread_end( )
-		{
-			if (Interlocked.Decrement( ref thread_status ) == 0)
-			{
-				// Right Down
-				Invoke( new Action( ( ) =>
-				{
-					button3.Enabled = true;
-					MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
-				} ) );
-			}
-		}
-		
-		#endregion
-
-		private void button4_Click( object sender, EventArgs e )
-		{
-			// 远程启动 -> Remote Start PLC
-			OperateResult runResult = keyence_net.RemoteRun( );
-			if (runResult.IsSuccess)
-			{
-				MessageBox.Show( "Run Success" );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + runResult.ToMessageShowString() );
-			}
-		}
-
-		private void button5_Click( object sender, EventArgs e )
-		{
-			// 远程停止 -> Remote Stop PLC
-			OperateResult runResult = keyence_net.RemoteStop( );
-			if (runResult.IsSuccess)
-			{
-				MessageBox.Show( "Stop Success" );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + runResult.ToMessageShowString( ) );
-			}
-		}
-
-		private void button6_Click( object sender, EventArgs e )
-		{
-			// 读取型号 -> Read Plc Type
-			OperateResult<string> readResult = keyence_net.ReadPlcType( );
-			if (readResult.IsSuccess)
-			{
-				MessageBox.Show( "Type:" + readResult.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + readResult.ToMessageShowString( ) );
-			}
-		}
-
 
 		public override void SaveXmlParameter( XElement element )
 		{

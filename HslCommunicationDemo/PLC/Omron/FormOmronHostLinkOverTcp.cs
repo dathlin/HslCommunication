@@ -53,18 +53,6 @@ namespace HslCommunicationDemo
 				label21.Text = "Address:";
 				label29.Text = "Ip:";
 				label28.Text = "Port:";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Batch read test, supports random word addresses, such as D100;A100;C100;H100";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
 			}
 		}
 
@@ -134,7 +122,16 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( omronHostLink, "D100", false );
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( omronHostLink, "D100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronHostLink, "D100", string.Empty );
+					// userControlReadWriteDevice1.BatchRead.SetReadRandom( omronFinsNet.ReadRandom );
+					userControlReadWriteDevice1.BatchRead.SetReadWordRandom( omronHostLink.Read, "D100;A100;C100;H100" );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronHostLink.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronHostLink.ReadFromCoreServer( m ), "Fins Core", "example: 01 01 B1 00 0A 00 00 01" );
+
 				}
 				else
 				{
@@ -158,51 +155,6 @@ namespace HslCommunicationDemo
 		
 		#endregion
 
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			if (textBox6.Text.Contains( ";" ))
-			{
-				OperateResult<byte[]> read = omronHostLink.Read( textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.None ) );
-				if (read.IsSuccess)
-				{
-					textBox10.Text = read.Content.ToHexString( ' ' );
-				}
-				else
-				{
-					MessageBox.Show( "Read Failed: " + read.Message );
-				}
-			}
-			else
-			{
-				DemoUtils.BulkReadRenderResult( omronHostLink, textBox6, textBox9, textBox10 );
-			}
-		}
-
-
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = omronHostLink.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-		
 		private void test()
 		{
 			// 读取操作，这里的D100可以替换成C100,A100,W100,H100效果时一样的

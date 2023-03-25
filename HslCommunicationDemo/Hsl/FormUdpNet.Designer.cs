@@ -65,10 +65,10 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(15, 44);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 71);
+			this.panel1.Size = new System.Drawing.Size(997, 71);
 			this.panel1.TabIndex = 7;
 			// 
 			// textBox3
@@ -133,6 +133,9 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.textBox8);
 			this.panel2.Controls.Add(this.label12);
@@ -145,18 +148,21 @@
 			this.panel2.Controls.Add(this.label8);
 			this.panel2.Controls.Add(this.textBox5);
 			this.panel2.Controls.Add(this.label7);
-			this.panel2.Location = new System.Drawing.Point(15, 122);
+			this.panel2.Location = new System.Drawing.Point(3, 110);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(977, 518);
+			this.panel2.Size = new System.Drawing.Size(997, 533);
 			this.panel2.TabIndex = 13;
 			// 
 			// textBox8
 			// 
+			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox8.Location = new System.Drawing.Point(62, 241);
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(892, 269);
+			this.textBox8.Size = new System.Drawing.Size(924, 284);
 			this.textBox8.TabIndex = 20;
 			// 
 			// label12
@@ -207,10 +213,12 @@
 			// 
 			// textBox4
 			// 
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox4.Location = new System.Drawing.Point(62, 36);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(892, 164);
+			this.textBox4.Size = new System.Drawing.Size(924, 164);
 			this.textBox4.TabIndex = 8;
 			// 
 			// label9

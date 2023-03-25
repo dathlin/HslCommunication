@@ -42,31 +42,10 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.button4 = new System.Windows.Forms.Button();
-			this.textBox11 = new System.Windows.Forms.TextBox();
-			this.label14 = new System.Windows.Forms.Label();
-			this.button26 = new System.Windows.Forms.Button();
-			this.textBox13 = new System.Windows.Forms.TextBox();
-			this.label16 = new System.Windows.Forms.Label();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.button3 = new System.Windows.Forms.Button();
-			this.textBox12 = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.textBox9 = new System.Windows.Forms.TextBox();
-			this.label12 = new System.Windows.Forms.Label();
-			this.textBox10 = new System.Windows.Forms.TextBox();
-			this.label13 = new System.Windows.Forms.Label();
-			this.button25 = new System.Windows.Forms.Button();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.groupBox4.SuspendLayout();
-			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -206,227 +185,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel2.Controls.Add(this.userControlReadWriteOp1);
-			this.panel2.Controls.Add(this.groupBox5);
-			this.panel2.Controls.Add(this.groupBox4);
-			this.panel2.Controls.Add(this.groupBox3);
+			this.panel2.Controls.Add(this.userControlReadWriteDevice1);
 			this.panel2.Location = new System.Drawing.Point(3, 81);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(997, 560);
 			this.panel2.TabIndex = 1;
-			// 
-			// userControlReadWriteOp1
-			// 
-			this.userControlReadWriteOp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 2);
-			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 240);
-			this.userControlReadWriteOp1.TabIndex = 5;
-			// 
-			// groupBox5
-			// 
-			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox5.Location = new System.Drawing.Point(573, 243);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 312);
-			this.groupBox5.TabIndex = 4;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "特殊功能测试";
-			// 
-			// groupBox4
-			// 
-			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox4.Controls.Add(this.button4);
-			this.groupBox4.Controls.Add(this.textBox11);
-			this.groupBox4.Controls.Add(this.label14);
-			this.groupBox4.Controls.Add(this.button26);
-			this.groupBox4.Controls.Add(this.textBox13);
-			this.groupBox4.Controls.Add(this.label16);
-			this.groupBox4.Location = new System.Drawing.Point(3, 403);
-			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(564, 152);
-			this.groupBox4.TabIndex = 3;
-			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "CIP报文读取测试，此处需要填入完整的16进制报文字符串";
-			// 
-			// button4
-			// 
-			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(510, 24);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(48, 28);
-			this.button4.TabIndex = 11;
-			this.button4.Text = "eip";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click);
-			// 
-			// textBox11
-			// 
-			this.textBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox11.Location = new System.Drawing.Point(63, 60);
-			this.textBox11.Multiline = true;
-			this.textBox11.Name = "textBox11";
-			this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox11.Size = new System.Drawing.Size(495, 86);
-			this.textBox11.TabIndex = 10;
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(9, 62);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(44, 17);
-			this.label14.TabIndex = 9;
-			this.label14.Text = "结果：";
-			// 
-			// button26
-			// 
-			this.button26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button26.Location = new System.Drawing.Point(456, 24);
-			this.button26.Name = "button26";
-			this.button26.Size = new System.Drawing.Size(48, 28);
-			this.button26.TabIndex = 8;
-			this.button26.Text = "cip";
-			this.button26.UseVisualStyleBackColor = true;
-			this.button26.Click += new System.EventHandler(this.button26_Click);
-			// 
-			// textBox13
-			// 
-			this.textBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox13.Location = new System.Drawing.Point(63, 27);
-			this.textBox13.Name = "textBox13";
-			this.textBox13.Size = new System.Drawing.Size(387, 23);
-			this.textBox13.TabIndex = 5;
-			// 
-			// label16
-			// 
-			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(9, 30);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(44, 17);
-			this.label16.TabIndex = 4;
-			this.label16.Text = "报文：";
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox3.Controls.Add(this.button3);
-			this.groupBox3.Controls.Add(this.textBox12);
-			this.groupBox3.Controls.Add(this.label2);
-			this.groupBox3.Controls.Add(this.textBox9);
-			this.groupBox3.Controls.Add(this.label12);
-			this.groupBox3.Controls.Add(this.textBox10);
-			this.groupBox3.Controls.Add(this.label13);
-			this.groupBox3.Controls.Add(this.button25);
-			this.groupBox3.Controls.Add(this.textBox6);
-			this.groupBox3.Controls.Add(this.label11);
-			this.groupBox3.Location = new System.Drawing.Point(3, 243);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(564, 154);
-			this.groupBox3.TabIndex = 2;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "批量读取测试，分号间隔";
-			// 
-			// button3
-			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(476, 24);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(82, 28);
-			this.button3.TabIndex = 15;
-			this.button3.Text = "报文生成";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.Button3_Click);
-			// 
-			// textBox12
-			// 
-			this.textBox12.Location = new System.Drawing.Point(229, 27);
-			this.textBox12.Name = "textBox12";
-			this.textBox12.Size = new System.Drawing.Size(34, 23);
-			this.textBox12.TabIndex = 14;
-			this.textBox12.Text = "0";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(178, 30);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(44, 17);
-			this.label2.TabIndex = 13;
-			this.label2.Text = "起始：";
-			// 
-			// textBox9
-			// 
-			this.textBox9.Location = new System.Drawing.Point(320, 27);
-			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(35, 23);
-			this.textBox9.TabIndex = 12;
-			this.textBox9.Text = "1";
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(266, 30);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(44, 17);
-			this.label12.TabIndex = 11;
-			this.label12.Text = "长度：";
-			// 
-			// textBox10
-			// 
-			this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox10.Location = new System.Drawing.Point(63, 60);
-			this.textBox10.Multiline = true;
-			this.textBox10.Name = "textBox10";
-			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(495, 88);
-			this.textBox10.TabIndex = 10;
-			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(9, 62);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(44, 17);
-			this.label13.TabIndex = 9;
-			this.label13.Text = "结果：";
-			// 
-			// button25
-			// 
-			this.button25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button25.Location = new System.Drawing.Point(408, 24);
-			this.button25.Name = "button25";
-			this.button25.Size = new System.Drawing.Size(62, 28);
-			this.button25.TabIndex = 8;
-			this.button25.Text = "读取";
-			this.button25.UseVisualStyleBackColor = true;
-			this.button25.Click += new System.EventHandler(this.button25_Click);
-			// 
-			// textBox6
-			// 
-			this.textBox6.Location = new System.Drawing.Point(63, 27);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(111, 23);
-			this.textBox6.TabIndex = 5;
-			this.textBox6.Text = "A1;A2";
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(9, 30);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(44, 17);
-			this.label11.TabIndex = 4;
-			this.label11.Text = "地址：";
 			// 
 			// userControlHead1
 			// 
@@ -443,6 +207,15 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 558);
+			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// FormAllenBrandlyMicroCip
 			// 
@@ -463,10 +236,6 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
-			this.groupBox4.ResumeLayout(false);
-			this.groupBox4.PerformLayout();
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -481,32 +250,13 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button26;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Label label23;
         private DemoControl.UserControlHead userControlHead1;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.GroupBox groupBox5;
-		private DemoControl.UserControlReadWriteOp userControlReadWriteOp1;
+		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 	}
 }

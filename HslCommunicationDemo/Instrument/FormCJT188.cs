@@ -13,6 +13,8 @@ using System.IO.Ports;
 using System.Xml.Linq;
 using HslCommunication.Instrument.CJT;
 using HslCommunication.Instrument.CJT.Helper;
+using HslCommunicationDemo.Modbus;
+using HslCommunicationDemo.Instrument;
 
 namespace HslCommunicationDemo
 {
@@ -24,6 +26,7 @@ namespace HslCommunicationDemo
 		}
 
 		private CJT188 cjt188 = null;
+		private CJT188Control control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -41,6 +44,9 @@ namespace HslCommunicationDemo
 			}
 
 			Language( Program.Language );
+
+			control = new CJT188Control( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -60,20 +66,6 @@ namespace HslCommunicationDemo
 				label_op_code.Text = "Op Code";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				button3.Text = "Active";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}
@@ -132,7 +124,15 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
-				userControlReadWriteOp1.SetReadWriteNet( cjt188, "90-1F", false );
+				// 68 00 00 00 00 00 01 68 11 04 00 00 00 00 10 16
+				// 设置子控件的读取能力
+				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( cjt188, "90-1F", false );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( cjt188, "90-1F", string.Empty );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => cjt188.ReadFromCoreServer( m, true, false ), string.Empty, "68 00 00 00 00 00 01 68 11 04 00 00 00 00 10 16" );
+
+				control.SetDevice( cjt188, "90-1F" );
 			}
 			catch (Exception ex)
 			{
@@ -150,126 +150,6 @@ namespace HslCommunicationDemo
 		}
 		
 		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			try
-			{
-				OperateResult<byte[]> read = cjt188.Read( textBox6.Text, ushort.Parse( textBox9.Text ) );
-				if (read.IsSuccess)
-				{
-					for (int i = 0; i < read.Content.Length; i++)
-					{
-						read.Content[i] = (byte)(read.Content[i] - 0x33);
-					}
-					textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content, ' ' );
-				}
-				else
-				{
-					MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( "Read Failed：" + ex.Message );
-			}
-		}
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = cjt188.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-
-		private void button3_Click( object sender, EventArgs e )
-		{
-			OperateResult active = cjt188.ActiveDeveice( );
-			if (active.IsSuccess)
-			{
-				MessageBox.Show( "Send Active Code Success" );
-			}
-			else
-			{
-				MessageBox.Show( "Active Code failed:" + active.Message );
-			}
-		}
-
-		private void button4_Click( object sender, EventArgs e )
-		{
-			OperateResult<string> read = cjt188.ReadAddress( );
-			if (read.IsSuccess)
-			{
-				textBox_station.Text = read.Content;
-				textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Address:{read.Content}";
-			}
-			else
-			{
-				MessageBox.Show( "Read failed: " + read.Message );
-			}
-		}
-
-		private void button6_Click( object sender, EventArgs e )
-		{
-			// 广播当前时间
-			//OperateResult read = dLT645.BroadcastTime( DateTime.Now );
-			//if (read.IsSuccess)
-			//{
-			//    textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] BroadcastTime Success";
-			//}
-			//else
-			//{
-			//    MessageBox.Show( "Read failed: " + read.Message );
-			//}
-		}
-
-		private void button5_Click( object sender, EventArgs e )
-		{
-			// 写通信地址
-			OperateResult read = cjt188.WriteAddress( textBox1.Text );
-			if (read.IsSuccess)
-			{
-				textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Write Success";
-			}
-			else
-			{
-				MessageBox.Show( "Read failed: " + read.Message );
-			}
-		}
-
-		private void button7_Click( object sender, EventArgs e )
-		{
-			OperateResult<string[]> read = cjt188.ReadStringArray( textBox1.Text );
-			if (read.IsSuccess)
-			{
-				textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Read Result: {Environment.NewLine}";
-				foreach (string item in read.Content)
-				{
-					textBox12.AppendText( item );
-					textBox12.AppendText( Environment.NewLine );
-				}
-			}
-			else
-			{
-				MessageBox.Show( "Read failed: " + read.Message );
-			}
-		}
 
 		public override void SaveXmlParameter( XElement element )
 		{

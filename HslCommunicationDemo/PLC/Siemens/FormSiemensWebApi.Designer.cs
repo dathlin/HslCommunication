@@ -197,7 +197,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteOp1.Location = new System.Drawing.Point(3, 2);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 240);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(989, 271);
 			this.userControlReadWriteOp1.TabIndex = 5;
 			// 
 			// groupBox5
@@ -214,16 +214,16 @@
 			this.groupBox5.Controls.Add(this.label10);
 			this.groupBox5.Controls.Add(this.textBox8);
 			this.groupBox5.Controls.Add(this.label9);
-			this.groupBox5.Location = new System.Drawing.Point(573, 243);
+			this.groupBox5.Location = new System.Drawing.Point(573, 279);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(419, 302);
+			this.groupBox5.Size = new System.Drawing.Size(419, 266);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(137, 138);
+			this.button5.Location = new System.Drawing.Point(137, 150);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(107, 30);
 			this.button5.TabIndex = 25;
@@ -233,7 +233,7 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(24, 138);
+			this.button4.Location = new System.Drawing.Point(24, 150);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(107, 30);
 			this.button4.TabIndex = 24;
@@ -244,7 +244,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(123, 250);
+			this.label2.Location = new System.Drawing.Point(108, 229);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(15, 17);
 			this.label2.TabIndex = 23;
@@ -252,7 +252,7 @@
 			// 
 			// button9
 			// 
-			this.button9.Location = new System.Drawing.Point(24, 244);
+			this.button9.Location = new System.Drawing.Point(9, 223);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(82, 28);
 			this.button9.TabIndex = 22;
@@ -333,9 +333,9 @@
 			this.groupBox3.Controls.Add(this.button25);
 			this.groupBox3.Controls.Add(this.textBox6);
 			this.groupBox3.Controls.Add(this.label11);
-			this.groupBox3.Location = new System.Drawing.Point(3, 243);
+			this.groupBox3.Location = new System.Drawing.Point(3, 279);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(564, 302);
+			this.groupBox3.Size = new System.Drawing.Size(564, 266);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "批量读取测试";
@@ -360,7 +360,7 @@
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(495, 236);
+			this.textBox10.Size = new System.Drawing.Size(495, 200);
 			this.textBox10.TabIndex = 10;
 			this.textBox10.Text = "批量读取时，多个标签按照 \';\' 英文的分号进行分割";
 			// 

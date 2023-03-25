@@ -12,6 +12,7 @@ using HslCommunication;
 using HslCommunication.Profinet.Omron;
 using System.IO.Ports;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.Omron;
 
 namespace HslCommunicationDemo
 {
@@ -26,7 +27,7 @@ namespace HslCommunicationDemo
 
 
 		private OmronHostLinkCMode omronHostLink = null;
-
+		private HostLinkCModeControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -45,6 +46,9 @@ namespace HslCommunicationDemo
 				comboBox3.Text = "COM3";
 			}
 			comboBox2.SelectedIndex = 2;
+
+			control = new HostLinkCModeControl( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -63,24 +67,6 @@ namespace HslCommunicationDemo
 				label28.Text = "BaudRate:";
 				label27.Text = "DataBit:";
 				label26.Text = "StopBit:";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
-				comboBox4.DataSource = new string[] { "programming", "running", "monitoring" };
-			}
-			else
-			{
-				comboBox4.DataSource = new string[] { "编程模式", "运行模式", "监视模式" };
 			}
 		}
 
@@ -142,7 +128,17 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
-				userControlReadWriteOp1.SetReadWriteNet( omronHostLink, "D100", false );
+				// 设置子控件的读取能力
+				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( omronHostLink, "D100", false );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronHostLink, "D100", string.Empty );
+				// userControlReadWriteDevice1.BatchRead.SetReadRandom( omronFinsNet.ReadRandom );
+				//userControlReadWriteDevice1.BatchRead.SetReadWordRandom( omronHostLink.Read );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronHostLink.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+
+				control.SetDevice( omronHostLink, "D100" );
 			}
 			catch (Exception ex)
 			{
@@ -160,77 +156,6 @@ namespace HslCommunicationDemo
 		}
 		
 		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( omronHostLink, textBox6, textBox9, textBox10 );
-		}
-
-
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = omronHostLink.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-
-		private void button3_Click( object sender, EventArgs e )
-		{
-			OperateResult<string> read = omronHostLink.ReadPlcType( );
-			if (read.IsSuccess)
-			{
-				textBox3.Text = "Result：" + read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-		private void button4_Click( object sender, EventArgs e )
-		{
-			OperateResult<int> read = omronHostLink.ReadPlcMode( );
-			if (read.IsSuccess)
-			{
-				textBox3.Text = "Result：" + read.Content + Environment.NewLine +
-					(read.Content == 0 ? "编程模式" : read.Content == 1 ? "运行模式" : "监视模式");
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		private void button5_Click( object sender, EventArgs e )
-		{
-			OperateResult op = omronHostLink.ChangePlcMode( (byte)comboBox4.SelectedIndex );
-			if (op.IsSuccess)
-			{
-				MessageBox.Show( "success" );
-			}
-			else
-			{
-				MessageBox.Show( "failed:" + op.Message );
-			}
-		}
 
 		public override void SaveXmlParameter( XElement element )
 		{
@@ -260,19 +185,5 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
-		private void comboBox4_SelectedIndexChanged( object sender, EventArgs e )
-		{
-
-		}
-
-		private void textBox3_TextChanged( object sender, EventArgs e )
-		{
-
-		}
-
-		private void label2_Click( object sender, EventArgs e )
-		{
-
-		}
 	}
 }

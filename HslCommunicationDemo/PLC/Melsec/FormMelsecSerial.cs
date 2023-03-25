@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Melsec;
 using HslCommunication;
 using System.Xml.Linq;
 using System.IO.Ports;
+using HslCommunicationDemo.PLC.Melsec;
 
 namespace HslCommunicationDemo
 {
@@ -25,6 +26,7 @@ namespace HslCommunicationDemo
 
 
 		private MelsecFxSerial melsecSerial = null;
+		private MelsecSerialControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -42,6 +44,9 @@ namespace HslCommunicationDemo
 			{
 				comboBox3.Text = "COM3";
 			}
+
+			control = new MelsecSerialControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -62,19 +67,6 @@ namespace HslCommunicationDemo
 				checkBox1.Text = "New Version Message?";
 				checkBox2.Text = "Change PLC BaudRate?";
 
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
-				button3.Text = "Pressure test, r/w 3,000s";
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 				userControlHead1.ProtocolInfo = "fx serial protocol";
 			}
@@ -131,7 +123,13 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
-				userControlReadWriteOp1.SetReadWriteNet( melsecSerial, "D100", false );
+				// 设置基本的读写信息
+				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( melsecSerial, "D100", false );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsecSerial, "D100", string.Empty );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsecSerial.ReadFromCoreServer( m ), string.Empty, string.Empty );
+				control.SetDevice( melsecSerial, "D100" );
 			}
 			catch (Exception ex)
 			{
@@ -149,35 +147,6 @@ namespace HslCommunicationDemo
 		}
 
 		
-
-		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( melsecSerial, textBox6, textBox9, textBox10 );
-		}
-
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = melsecSerial.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
 
 		#endregion
 
@@ -268,51 +237,6 @@ namespace HslCommunicationDemo
 
 		#endregion
 
-		#region 压力测试
-
-		private int thread_status = 0;
-		private int failed = 0;
-		private DateTime thread_time_start = DateTime.Now;
-		// 压力测试，开3个线程，每个线程进行读写操作，看使用时间
-		private void button3_Click( object sender, EventArgs e )
-		{
-			thread_status = 3;
-			failed = 0;
-			thread_time_start = DateTime.Now;
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			button3.Enabled = false;
-		}
-
-		private void thread_test2( )
-		{
-			int count = 500;
-			while (count > 0)
-			{
-				if (!melsecSerial.Write( "D100", (short)1234 ).IsSuccess) failed++;
-				if (!melsecSerial.ReadInt16( "D100" ).IsSuccess) failed++;
-				count--;
-			}
-			thread_end( );
-		}
-
-		private void thread_end( )
-		{
-			if (Interlocked.Decrement( ref thread_status ) == 0)
-			{
-				// 执行完成
-				Invoke( new Action( ( ) =>
-				{
-					button3.Enabled = true;
-					MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
-				} ) );
-			}
-		}
-
-
-
-		#endregion
 
 
 		public override void SaveXmlParameter( XElement element )
@@ -339,17 +263,5 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
-		private void button_active_plc_Click( object sender, EventArgs e )
-		{
-			OperateResult active = melsecSerial.ActivePlc( );
-			if (active.IsSuccess)
-			{
-				MessageBox.Show( "Active Successful" );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + active.ToMessageShowString( ) );
-			}
-		}
 	}
 }

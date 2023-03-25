@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication;
 using HslCommunication.Profinet.Omron;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.Omron;
 
 namespace HslCommunicationDemo
 {
@@ -23,6 +24,7 @@ namespace HslCommunicationDemo
 
 
 		private OmronFinsUdp omronFinsUdp = null;
+		private FinsTcpControl control;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -32,6 +34,9 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 
 			Language( Program.Language );
+
+			control = new FinsTcpControl( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -46,18 +51,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Create";
 				label21.Text = "Address:";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Batch read test, supports random word addresses, such as D100;A100;C100;H100";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
 			}
 		}
 
@@ -108,57 +101,22 @@ namespace HslCommunicationDemo
 			omronFinsUdp.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
 
 
-            userControlReadWriteOp1.SetReadWriteNet( omronFinsUdp, "D100", false );
+			// 设置子控件的读取能力
+			userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( omronFinsUdp, "D100", false );
+			// 设置批量读取
+			userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronFinsUdp, "D100", string.Empty );
+			// userControlReadWriteDevice1.BatchRead.SetReadRandom( omronFinsNet.ReadRandom );
+			userControlReadWriteDevice1.BatchRead.SetReadWordRandom( omronFinsUdp.Read, "D100;A100;C100;H100" );
+			// 设置报文读取
+			userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronFinsUdp.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+			userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronFinsUdp.ReadFromCoreServer( m ), "Fins Core", "example: 01 01 B1 00 0A 00 00 01" );
 
+			control.SetDevice( omronFinsUdp, "D100" );
 		}
 		
 
 		#endregion
 
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			if (textBox6.Text.Contains( ";" ))
-			{
-				OperateResult<byte[]> read = omronFinsUdp.Read( textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.None ) );
-				if (read.IsSuccess)
-				{
-					textBox10.Text = read.Content.ToHexString( ' ' );
-				}
-				else
-				{
-					MessageBox.Show( "Read Failed: " + read.Message );
-				}
-			}
-			else
-			{
-				DemoUtils.BulkReadRenderResult( omronFinsUdp, textBox6, textBox9, textBox10 );
-			}
-		}
-
-
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = omronFinsUdp.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
 
 		public override void SaveXmlParameter( XElement element )
 		{
@@ -226,44 +184,5 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private void button3_Click( object sender, EventArgs e )
-		{
-			// run
-			OperateResult run = omronFinsUdp.Run( );
-			if (run.IsSuccess)
-				MessageBox.Show( "Run success" );
-			else
-				MessageBox.Show( "Run failed:" + run.Message );
-		}
-
-		private void button4_Click( object sender, EventArgs e )
-		{
-			// stop
-			OperateResult stop = omronFinsUdp.Stop( );
-			if (stop.IsSuccess)
-				MessageBox.Show( "Run success" );
-			else
-				MessageBox.Show( "Run failed:" + stop.Message );
-		}
-
-		private void button5_Click( object sender, EventArgs e )
-		{
-			// read cpu data
-			OperateResult<OmronCpuUnitData> read = omronFinsUdp.ReadCpuUnitData( );
-			if (read.IsSuccess)
-				textBox4.Text = read.Content.ToJsonString( );
-			else
-				MessageBox.Show( "read failed:" + read.Message );
-		}
-
-		private void button6_Click( object sender, EventArgs e )
-		{
-			// read cpu status
-			OperateResult<OmronCpuUnitStatus> read = omronFinsUdp.ReadCpuUnitStatus( );
-			if (read.IsSuccess)
-				textBox4.Text = read.Content.ToJsonString( );
-			else
-				MessageBox.Show( "read failed:" + read.Message );
-		}
 	}
 }

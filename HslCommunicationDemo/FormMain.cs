@@ -421,6 +421,11 @@ namespace HslCommunicationDemo
 
 		public FormSaveList GetPanelLeft( ) => this.panelSave;
 
+		public void ShowDockForm( DockContent dockContent )
+		{
+			dockContent.Show( dockPanel1 );
+		}
+
 		private HslCommunication.MQTT.MqttClient mqttClient;
 		private System.Windows.Forms.Timer timer;
 		private Process cur = null;

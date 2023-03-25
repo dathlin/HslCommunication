@@ -46,19 +46,6 @@ namespace HslCommunicationDemo
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
 
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
-				button3.Text = "Pressure test, r/w 3,000s";
 				label22.Text = "M100 D100 X1A0 Y1A0";
 			}
 		}
@@ -95,7 +82,13 @@ namespace HslCommunicationDemo
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
-					userControlReadWriteOp1.SetReadWriteNet( melsec_net, "D100", true );
+
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( melsec_net, "D100", true );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsec_net, "D100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 				}
 				else
 				{
@@ -120,36 +113,6 @@ namespace HslCommunicationDemo
 		
 		#endregion
 
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( melsec_net, textBox6, textBox9, textBox10 );
-		}
-
-
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = melsec_net.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-		
 		#region 压力测试
 
 		private int thread_status = 0;
@@ -164,7 +127,7 @@ namespace HslCommunicationDemo
 			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
 			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
 			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			button3.Enabled = false;
+			//button3.Enabled = false;
 		}
 
 		private void thread_test2( )
@@ -186,7 +149,7 @@ namespace HslCommunicationDemo
 				// 执行完成
 				Invoke( new Action( ( ) =>
 				{
-					button3.Enabled = true;
+					//button3.Enabled = true;
 					MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
 				} ) );
 			}

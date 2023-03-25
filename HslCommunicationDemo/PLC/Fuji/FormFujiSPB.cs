@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Fuji;
 using HslCommunication;
 using System.IO.Ports;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.Common;
 
 namespace HslCommunicationDemo
 {
@@ -25,6 +26,7 @@ namespace HslCommunicationDemo
 
 
 		private FujiSPB fujiSPB = null;
+		private SpecialFeaturesControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -40,6 +42,9 @@ namespace HslCommunicationDemo
 				comboBox3.Text = "COM3";
 			}
 			Language( Program.Language );
+
+			control = new SpecialFeaturesControl( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -57,19 +62,6 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}
@@ -79,10 +71,7 @@ namespace HslCommunicationDemo
 
 		}
 		
-
 		#region Connect And Close
-
-
 
 		private void button1_Click( object sender, EventArgs e )
 		{
@@ -127,7 +116,14 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
-				userControlReadWriteOp1.SetReadWriteNet( fujiSPB, "M100", false );
+				// 设置基本的读写信息
+				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( fujiSPB, "M100", false );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( fujiSPB, "M100", string.Empty );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fujiSPB.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+				control.SetDevice( fujiSPB, "M100" );
 			}
 			catch (Exception ex)
 			{
@@ -144,38 +140,8 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 		}
 
-
-
 		#endregion
 
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( fujiSPB, textBox6, textBox9, textBox10 );
-		}
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = fujiSPB.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-		
 		#region 测试使用
 
 		private void test3( )

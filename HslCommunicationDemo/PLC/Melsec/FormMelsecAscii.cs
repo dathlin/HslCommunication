@@ -11,6 +11,8 @@ using HslCommunication.Profinet.Melsec;
 using System.Threading;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunicationDemo.DemoControl;
+using HslCommunicationDemo.PLC.Melsec;
 
 namespace HslCommunicationDemo
 {
@@ -31,6 +33,8 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 
 			Language( Program.Language );
+			control = new McQna3EControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -46,33 +50,16 @@ namespace HslCommunicationDemo
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
 
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
-				button3.Text = "Pressure test, r/w 3,000s";
 				label22.Text = "M100 D100 X1A0 Y1A0";
 			}
 		}
-
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
 
 		}
 
-
 		#region Connect And Close
-
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
@@ -95,7 +82,17 @@ namespace HslCommunicationDemo
 				button2.Enabled = true;
 				button1.Enabled = false;
 				panel2.Enabled = true;
-				userControlReadWriteOp1.SetReadWriteNet( melsec_net, "D100", true );
+
+				// 设置子控件的读取能力
+				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( melsec_net, "D100", true );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsec_net, "D100", string.Empty );
+				userControlReadWriteDevice1.BatchRead.SetReadRandom( melsec_net.ReadRandom, "D100;W100;D500" );
+				userControlReadWriteDevice1.BatchRead.SetReadWordRandom( melsec_net.ReadRandom, "D100;W100;D500" );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+				// 特殊读取
+				control.SetDevice( melsec_net, "D100" );
 			}
 			else
 			{
@@ -103,6 +100,8 @@ namespace HslCommunicationDemo
 				button1.Enabled = true;
 			}
 		}
+		private McQna3EControl control;
+
 
 		private void button2_Click( object sender, EventArgs e )
 		{
@@ -114,169 +113,6 @@ namespace HslCommunicationDemo
 		}
 		
 		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( melsec_net, textBox6, textBox9, textBox10 );
-		}
-
-
-		private void button9_Click( object sender, EventArgs e )
-		{
-
-			// 批量随机读取
-			OperateResult<byte[]> read = melsec_net.ReadRandom( 
-				textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ),
-				textBox9.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( m => ushort.Parse( m ) ).ToArray( ) );
-			if (read.IsSuccess)
-			{
-				textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = melsec_net.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-		
-		#region 压力测试
-
-		private int thread_status = 0;
-		private int failed = 0;
-		private DateTime thread_time_start = DateTime.Now;
-		// 压力测试，开3个线程，每个线程进行读写操作，看使用时间
-		private void button3_Click( object sender, EventArgs e )
-		{
-			thread_status = 3;
-			failed = 0;
-			thread_time_start = DateTime.Now;
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			button3.Enabled = false;
-		}
-
-		private void thread_test2( )
-		{
-			int count = 500;
-			while (count > 0)
-			{
-				if (!melsec_net.Write( "D100", (short)1234 ).IsSuccess) failed++;
-				if (!melsec_net.ReadInt16( "D100" ).IsSuccess) failed++;
-				count--;
-			}
-			thread_end( );
-		}
-
-		private void thread_end( )
-		{
-			if (Interlocked.Decrement( ref thread_status ) == 0)
-			{
-				// 执行完成
-				Invoke( new Action( ( ) =>
-				{
-					button3.Enabled = true;
-					MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
-				} ) );
-			}
-		}
-
-
-
-		#endregion
-
-		private void button4_Click( object sender, EventArgs e )
-		{
-			// 远程启动
-			OperateResult runResult = melsec_net.RemoteRun( );
-			if (runResult.IsSuccess)
-			{
-				MessageBox.Show( "Run Success" );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + runResult.ToMessageShowString( ) );
-			}
-		}
-
-		private void button5_Click( object sender, EventArgs e )
-		{
-			// 远程停止
-			OperateResult runResult = melsec_net.RemoteStop( );
-			if (runResult.IsSuccess)
-			{
-				MessageBox.Show( "Stop Success" );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + runResult.ToMessageShowString( ) );
-			}
-		}
-
-		private void button6_Click( object sender, EventArgs e )
-		{
-			// 读取型号
-			OperateResult<string> readResult = melsec_net.ReadPlcType( );
-			if (readResult.IsSuccess)
-			{
-				MessageBox.Show( "Type:" + readResult.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + readResult.ToMessageShowString( ) );
-			}
-		}
-
-		private void button7_Click( object sender, EventArgs e )
-		{
-			// 远程重置
-			OperateResult result = melsec_net.RemoteReset( );
-			if (result.IsSuccess)
-			{
-				MessageBox.Show( "RemoteReset Success" );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + result.ToMessageShowString( ) );
-			}
-		}
-
-		private void button8_Click( object sender, EventArgs e )
-		{
-			// 错误灯恢复
-			OperateResult result = melsec_net.ErrorStateReset( );
-			if (result.IsSuccess)
-			{
-				MessageBox.Show( "ErrorStateReset Success" );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + result.ToMessageShowString( ) );
-			}
-		}
-
 
 		public override void SaveXmlParameter( XElement element )
 		{

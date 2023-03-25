@@ -13,6 +13,7 @@ using HslCommunication;
 using System.Xml.Linq;
 using HslCommunication.LogNet;
 using HslCommunicationDemo.Control;
+using HslCommunicationDemo.PLC.Common;
 
 namespace HslCommunicationDemo
 {
@@ -26,21 +27,15 @@ namespace HslCommunicationDemo
 			//reader_net.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 		}
 
-		private void LogNet_BeforeSaveToFile( object sender, HslEventArgs e )
-		{
-			Invoke( new Action( ( ) =>
-			  {
-				  textBox3.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
-			  } ) );
-		}
-
 		private ReaderNet reader_net = null;
-
+		private SpecialFeaturesControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 			Language( Program.Language );
+			control = new SpecialFeaturesControl( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 		private void Language( int language )
@@ -53,20 +48,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
 			}
 		}
 
@@ -102,7 +83,16 @@ namespace HslCommunicationDemo
 				button2.Enabled = true;
 				button1.Enabled = false;
 				panel2.Enabled = true;
-				userControlReadWriteOp1.SetReadWriteNet( reader_net, "100", false );
+				//userControlReadWriteOp1.SetReadWriteNet( reader_net, "100", false );
+
+				// 设置基本的读写信息
+				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( reader_net, "100", false );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( reader_net, "100", string.Empty );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => reader_net.ReadFromCoreServer( m ), string.Empty, string.Empty );
+
+				control.SetDevice( reader_net, "100" );
 			}
 			else
 			{
@@ -121,50 +111,6 @@ namespace HslCommunicationDemo
 		}
 
 		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( reader_net, textBox6, textBox9, textBox10 );
-		}
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = reader_net.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-		
-
-		private void button7_Click( object sender, EventArgs e )
-		{
-			OperateResult<string> read = reader_net.ReadRFIDInfo( );
-			if (read.IsSuccess)
-			{
-				label2.Text = "UID: " + reader_net.UID;
-				label4.Text = "BytesOfBlock: " + reader_net.BytesOfBlock;
-				label5.Text = "NumberOfBlock: " + reader_net.NumberOfBlock;
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed: " + read.Message );
-			}
-		}
 
 		public override void SaveXmlParameter( XElement element )
 		{

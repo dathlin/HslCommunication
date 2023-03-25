@@ -44,18 +44,6 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
-
-				label11.Text = "Address:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "core reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
 				label22.Text = "plc tag name";
 			}
 		}
@@ -89,7 +77,13 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( allenBradleyNet, "A9:0", false, 1 );
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( allenBradleyNet, "A9:0", false, 1 );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( allenBradleyNet, "A9:0", "A9:0   B9:0   N9:0   F9:0   S:0   ST1:0" );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => allenBradleyNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
 				}
 				else
 				{
@@ -109,48 +103,6 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
-		}
-
-		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			try
-			{
-				OperateResult<byte[]> read = allenBradleyNet.Read( textBox6.Text, ushort.Parse( textBox9.Text ) );
-				if (read.IsSuccess)
-				{
-					textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-				}
-				else
-				{
-					MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( "Read failed：" + ex.Message );
-			}
-		}
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = allenBradleyNet.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
-			}
 		}
 
 		#endregion

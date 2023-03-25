@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Siemens;
 using HslCommunication;
 using System.IO.Ports;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.Siemens;
 
 namespace HslCommunicationDemo
 {
@@ -24,12 +25,15 @@ namespace HslCommunicationDemo
 
 
 		private SiemensPPIOverTcp siemensPPI = null;
+		private SiemensPPIControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 
 			Language( Program.Language );
+			control = new SiemensPPIControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 		private void Language( int language )
@@ -44,14 +48,6 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Special function test";
 			}
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -86,7 +82,15 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( siemensPPI, "V100", true );
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( siemensPPI, "V100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( siemensPPI, "V100", string.Empty );
+
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensPPI.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+					control.SetDevice( siemensPPI, "M100" );
 				}
 				else
 				{
@@ -111,23 +115,6 @@ namespace HslCommunicationDemo
 
 		#endregion
 
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( siemensPPI, textBox6, textBox9, textBox10 );
-		}
-
-		
-
-		#endregion
-
-		#region 报文读取测试
-
-		
-
-
-		#endregion
 
 		#region 测试功能代码
 
@@ -223,33 +210,6 @@ namespace HslCommunicationDemo
 		}
 
 		#endregion
-
-		private void button3_Click_1( object sender, EventArgs e )
-		{
-			OperateResult start = siemensPPI.Start( );
-			if (start.IsSuccess) MessageBox.Show( "Start Success!" );
-			else MessageBox.Show( start.Message );
-		}
-
-		private void button4_Click( object sender, EventArgs e )
-		{
-			OperateResult stop = siemensPPI.Stop( );
-			if (stop.IsSuccess) MessageBox.Show( "Stop Success!" );
-			else MessageBox.Show( stop.Message );
-		}
-
-		private void button5_Click( object sender, EventArgs e )
-		{
-			OperateResult<string> read = siemensPPI.ReadPlcType( );
-			if (read.IsSuccess)
-			{
-				textBox10.Text = read.Content;
-			}
-			else
-			{
-				MessageBox.Show( read.Message );
-			}
-		}
 
 		public override void SaveXmlParameter( XElement element )
 		{

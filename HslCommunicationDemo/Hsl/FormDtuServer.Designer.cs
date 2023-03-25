@@ -154,7 +154,7 @@
 			// 
 			this.userControlReadWriteOp1.Location = new System.Drawing.Point(5, 287);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-			this.userControlReadWriteOp1.Size = new System.Drawing.Size(987, 242);
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(987, 275);
 			this.userControlReadWriteOp1.TabIndex = 37;
 			// 
 			// comboBox1

@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Omron;
 using HslCommunication;
 using HslCommunication.Profinet.AllenBradley;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.AllenBrandly;
 
 namespace HslCommunicationDemo
 {
@@ -25,6 +26,7 @@ namespace HslCommunicationDemo
 
 
 		private OmronCipNet omronCipNet = null;
+		private AllenBrandlyControl control;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -32,6 +34,8 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 
 			Language( Program.Language );
+			control = new AllenBrandlyControl( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -45,29 +49,7 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
-
-				label11.Text = "Address:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-				button3.Text = "Build";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "CIP reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
 				label22.Text = "plc tag name";
-
-				groupBox1.Text = "Time Read Write";
-				label2.Text = "Address:";
-				label4.Text = "Address:";
-				label8.Text = "Data:";
-				label5.Text = "Type:";
-				label7.Text = "Length:";
-				label6.Text = "Data:";
-				button4.Text = "Write";
-				button5.Text = "Read Type Data";
 			}
 		}
 
@@ -107,7 +89,19 @@ namespace HslCommunicationDemo
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
-					userControlReadWriteOp1.SetReadWriteNet( omronCipNet, "A1", true );
+
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( omronCipNet, "A1", true, 1 );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronCipNet, "A1", string.Empty );
+					userControlReadWriteDevice1.BatchRead.SetReadRandom( omronCipNet.Read, "A1;A2    Length input \"1;1\"" );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronCipNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronCipNet.ReadEipFromServer( m ), "EIP", "EIP Message, example: " );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronCipNet.ReadCipFromServer( m ), "CIP", "CIP Message, example: " );
+					// TODO EIP及CIP的例子填充
+
+					control.SetDevice( omronCipNet, "A1" );
 				}
 				else
 				{
@@ -130,219 +124,7 @@ namespace HslCommunicationDemo
 		}
 
 
-
-
-
-
-
 		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			try
-			{
-				//    OperateResult write = allenBradleyNet.Write( "Array", new short[] { 101, 102, 103, 104, 105, 106 } );
-
-				// OperateResult<short[]> readResult = allenBradleyNet.ReadInt16( "Array", 300 );
-
-				OperateResult<byte[]> read = null;
-				if (!textBox6.Text.Contains( ";" ))
-				{
-					//MessageBox.Show( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( new string[] { textBox6.Text }, new int[] { int.Parse(textBox9.Text) } ).Content , ' ') );
-					read = omronCipNet.Read( new string[] { textBox6.Text }, new int[] { ushort.Parse( textBox9.Text ) } );
-				}
-				else
-				{
-					//MessageBox.Show( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( textBox6.Text.Split( ';' ) ).Content, ' ' ) );
-					read = omronCipNet.Read( textBox6.Text.Split( ';' ) );
-				}
-
-				if (read.IsSuccess)
-				{
-					textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-				}
-				else
-				{
-					MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( "Read failed：" + ex.Message );
-			}
-		}
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = omronCipNet.ReadCipFromServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-
-		private void Button3_Click( object sender, EventArgs e )
-		{
-			//try
-			//{
-			//	//    OperateResult write = allenBradleyNet.Write( "Array", new short[] { 101, 102, 103, 104, 105, 106 } );
-
-			//	// OperateResult<short[]> readResult = allenBradleyNet.ReadInt16( "Array", 300 );
-
-			//	//MessageBox.Show( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( new string[] { textBox6.Text }, new int[] { int.Parse(textBox9.Text) } ).Content , ' ') );
-			//	byte[] read = AllenBradleyHelper.PackRequestReadSegment( textBox6.Text, ushort.Parse( textBox12.Text ), ushort.Parse( textBox9.Text ) );
-
-			//	textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read, ' ' );
-			//}
-			//catch (Exception ex)
-			//{
-			//	MessageBox.Show( "Build failed：" + ex.Message );
-			//}
-		}
-
-		private void button4_Click( object sender, EventArgs e )
-		{
-			try
-			{
-				OperateResult write = omronCipNet.WriteTag(
-					textBox3.Text,
-					Convert.ToUInt16( textBox4.Text, 16 ),
-					textBox5.Text.ToHexBytes( ),
-					int.Parse( textBox7.Text ) );
-				DemoUtils.WriteResultRender( write, textBox3.Text );
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( "write failed：" + ex.Message );
-			}
-		}
-
-		private void button5_Click( object sender, EventArgs e )
-		{
-			OperateResult<ushort, byte[]> read = omronCipNet.ReadTag( textBox3.Text, int.Parse( textBox7.Text ) );
-			if(!read.IsSuccess)
-			{
-				MessageBox.Show( "Read failed! " + read.Message );
-			}
-			else
-			{
-				textBox4.Text = read.Content1.ToString( "X" );
-				textBox5.Text = read.Content2.ToHexString( ' ' );
-			}
-		}
-
-		private void button12_Click( object sender, EventArgs e )
-		{
-			// 读设备类型
-			OperateResult<string> read = omronCipNet.ReadPlcType( );
-			if (read.IsSuccess)
-			{
-				textBox5.Text = read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Read failed! " + read.Message );
-			}
-		}
-
-		private void button6_Click( object sender, EventArgs e )
-		{
-			// 读日期格式
-			OperateResult<DateTime> read = omronCipNet.ReadDate( textBox_date_address.Text );
-			if(!read.IsSuccess)
-			{
-				MessageBox.Show( "Read failed! " + read.Message );
-			}
-			else
-			{
-				textBox_date_render.Text = read.Content.ToString( );
-			}
-		}
-
-		private void button7_Click( object sender, EventArgs e )
-		{
-			// 写日期格式
-			OperateResult write = omronCipNet.WriteDate( textBox_date_address.Text, DateTime.Parse( textBox_date_render.Text ) );
-			if (!write.IsSuccess)
-			{
-				MessageBox.Show( "Write failed! " + write.Message );
-			}
-			else
-			{
-				MessageBox.Show( "Write Success" );
-			}
-		}
-
-		private void button8_Click( object sender, EventArgs e )
-		{
-			// 读时间
-			OperateResult<TimeSpan> read = omronCipNet.ReadTime( textBox_date_address.Text );
-			if (!read.IsSuccess)
-			{
-				MessageBox.Show( "Read failed! " + read.Message );
-			}
-			else
-			{
-				textBox_date_render.Text = read.Content.ToString( );
-			}
-		}
-
-		private void button9_Click( object sender, EventArgs e )
-		{
-			// 写时间
-			OperateResult write = omronCipNet.WriteTime( textBox_date_address.Text, TimeSpan.Parse( textBox_date_render.Text ) );
-			if (!write.IsSuccess)
-			{
-				MessageBox.Show( "Write failed! " + write.Message );
-			}
-			else
-			{
-				MessageBox.Show( "Write Success" );
-			}
-		}
-
-		private void button10_Click( object sender, EventArgs e )
-		{
-			// 写日期时间格式
-			OperateResult write = omronCipNet.WriteTimeAndDate( textBox_date_address.Text, DateTime.Parse( textBox_date_render.Text ) );
-			if (!write.IsSuccess)
-			{
-				MessageBox.Show( "Write failed! " + write.Message );
-			}
-			else
-			{
-				MessageBox.Show( "Write Success" );
-			}
-		}
-
-		private void button11_Click( object sender, EventArgs e )
-		{
-			// 写time of date格式数据
-			OperateResult write = omronCipNet.WriteTimeOfDate( textBox_date_address.Text, TimeSpan.Parse( textBox_date_render.Text ) );
-			if (!write.IsSuccess)
-			{
-				MessageBox.Show( "Write failed! " + write.Message );
-			}
-			else
-			{
-				MessageBox.Show( "Write Success" );
-			}
-		}
-
 
 		public override void SaveXmlParameter( XElement element )
 		{

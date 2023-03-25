@@ -92,8 +92,8 @@
 			this.hslPanelTextBack1.Controls.Add(this.label1);
 			this.hslPanelTextBack1.Location = new System.Drawing.Point(3, 35);
 			this.hslPanelTextBack1.Name = "hslPanelTextBack1";
-			this.hslPanelTextBack1.PanelBackColor = System.Drawing.Color.AliceBlue;
-			this.hslPanelTextBack1.PanelTextBackColor = System.Drawing.Color.PaleTurquoise;
+			this.hslPanelTextBack1.PanelBackColor = System.Drawing.SystemColors.Control;
+			this.hslPanelTextBack1.PanelTextBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
 			this.hslPanelTextBack1.Size = new System.Drawing.Size(318, 157);
 			this.hslPanelTextBack1.TabIndex = 16;
 			this.hslPanelTextBack1.Text = "原Redis";
@@ -182,8 +182,8 @@
 			this.hslPanelTextBack2.Controls.Add(this.label6);
 			this.hslPanelTextBack2.Location = new System.Drawing.Point(327, 35);
 			this.hslPanelTextBack2.Name = "hslPanelTextBack2";
-			this.hslPanelTextBack2.PanelBackColor = System.Drawing.Color.AliceBlue;
-			this.hslPanelTextBack2.PanelTextBackColor = System.Drawing.Color.PaleTurquoise;
+			this.hslPanelTextBack2.PanelBackColor = System.Drawing.SystemColors.Control;
+			this.hslPanelTextBack2.PanelTextBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
 			this.hslPanelTextBack2.Size = new System.Drawing.Size(320, 157);
 			this.hslPanelTextBack2.TabIndex = 17;
 			this.hslPanelTextBack2.Text = "新Redis";
@@ -275,6 +275,7 @@
 			this.hslPanelHead1.Size = new System.Drawing.Size(996, 395);
 			this.hslPanelHead1.TabIndex = 19;
 			this.hslPanelHead1.Text = "操作区域";
+			this.hslPanelHead1.ThemeColor = System.Drawing.Color.LightSkyBlue;
 			// 
 			// button8
 			// 
@@ -304,7 +305,7 @@
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(945, 229);
+			this.textBox10.Size = new System.Drawing.Size(945, 246);
 			this.textBox10.TabIndex = 27;
 			// 
 			// button7
@@ -376,6 +377,7 @@
 			this.hslPanelHead2.Size = new System.Drawing.Size(996, 205);
 			this.hslPanelHead2.TabIndex = 20;
 			this.hslPanelHead2.Text = "参数设置区域";
+			this.hslPanelHead2.ThemeColor = System.Drawing.Color.LightSkyBlue;
 			// 
 			// button3
 			// 
@@ -401,7 +403,7 @@
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
-			this.BackColor = System.Drawing.Color.Lavender;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.ClientSize = new System.Drawing.Size(1004, 645);
 			this.Controls.Add(this.hslPanelHead2);
 			this.Controls.Add(this.hslPanelHead1);

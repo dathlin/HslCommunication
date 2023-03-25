@@ -98,6 +98,16 @@ namespace HslCommunicationDemo.DemoControl
 			set => linkLabel3.Visible = value;
 		}
 
+		[Browsable( true )]
+		[Category( "HslCommunicationDemo" )]
+		[DefaultValue( true )]
+		public bool SaveDeviceVisiable
+		{
+			get => linkLabel2.Visible;
+			set => linkLabel2.Visible = value;
+		}
+
+
 		private void linkLabel2_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
 		{
 			if(SaveConnectEvent == null)

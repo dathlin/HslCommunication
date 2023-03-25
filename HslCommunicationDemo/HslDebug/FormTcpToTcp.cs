@@ -30,6 +30,16 @@ namespace HslCommunicationDemo
 			timer.Interval = 1000;
 			timer.Tick += Timer_Tick;
 			timer.Start( );
+
+			this.checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
+		}
+
+		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
+		{
+			if (this.tcpForward != null)
+			{
+				this.tcpForward.LogMsgFormatBinary = checkBox1.Checked;
+			}
 		}
 
 		private void Timer_Tick( object sender, EventArgs e )

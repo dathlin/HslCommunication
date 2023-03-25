@@ -48,11 +48,12 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.label_value = new System.Windows.Forms.Label();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.SuspendLayout();
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(59, 4);
+			this.textBox3.Location = new System.Drawing.Point(66, 40);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(185, 23);
 			this.textBox3.TabIndex = 5;
@@ -60,7 +61,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(5, 7);
+			this.label6.Location = new System.Drawing.Point(12, 43);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(44, 17);
 			this.label6.TabIndex = 4;
@@ -68,7 +69,7 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(372, 4);
+			this.textBox1.Location = new System.Drawing.Point(379, 40);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(102, 23);
 			this.textBox1.TabIndex = 7;
@@ -77,7 +78,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(279, 7);
+			this.label1.Location = new System.Drawing.Point(286, 43);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(81, 17);
 			this.label1.TabIndex = 6;
@@ -85,7 +86,7 @@
 			// 
 			// button_read_double
 			// 
-			this.button_read_double.Location = new System.Drawing.Point(800, 33);
+			this.button_read_double.Location = new System.Drawing.Point(712, 68);
 			this.button_read_double.Name = "button_read_double";
 			this.button_read_double.Size = new System.Drawing.Size(82, 28);
 			this.button_read_double.TabIndex = 25;
@@ -95,7 +96,7 @@
 			// 
 			// button_read_float
 			// 
-			this.button_read_float.Location = new System.Drawing.Point(712, 33);
+			this.button_read_float.Location = new System.Drawing.Point(624, 68);
 			this.button_read_float.Name = "button_read_float";
 			this.button_read_float.Size = new System.Drawing.Size(82, 28);
 			this.button_read_float.TabIndex = 24;
@@ -105,7 +106,7 @@
 			// 
 			// button_read_ulong
 			// 
-			this.button_read_ulong.Location = new System.Drawing.Point(624, 33);
+			this.button_read_ulong.Location = new System.Drawing.Point(536, 68);
 			this.button_read_ulong.Name = "button_read_ulong";
 			this.button_read_ulong.Size = new System.Drawing.Size(82, 28);
 			this.button_read_ulong.TabIndex = 23;
@@ -115,7 +116,7 @@
 			// 
 			// button_read_long
 			// 
-			this.button_read_long.Location = new System.Drawing.Point(536, 33);
+			this.button_read_long.Location = new System.Drawing.Point(448, 68);
 			this.button_read_long.Name = "button_read_long";
 			this.button_read_long.Size = new System.Drawing.Size(82, 28);
 			this.button_read_long.TabIndex = 22;
@@ -125,7 +126,7 @@
 			// 
 			// button_read_uint
 			// 
-			this.button_read_uint.Location = new System.Drawing.Point(448, 33);
+			this.button_read_uint.Location = new System.Drawing.Point(360, 68);
 			this.button_read_uint.Name = "button_read_uint";
 			this.button_read_uint.Size = new System.Drawing.Size(82, 28);
 			this.button_read_uint.TabIndex = 21;
@@ -135,7 +136,7 @@
 			// 
 			// button_read_int
 			// 
-			this.button_read_int.Location = new System.Drawing.Point(360, 33);
+			this.button_read_int.Location = new System.Drawing.Point(272, 68);
 			this.button_read_int.Name = "button_read_int";
 			this.button_read_int.Size = new System.Drawing.Size(82, 28);
 			this.button_read_int.TabIndex = 20;
@@ -145,7 +146,7 @@
 			// 
 			// button_read_ushort
 			// 
-			this.button_read_ushort.Location = new System.Drawing.Point(272, 33);
+			this.button_read_ushort.Location = new System.Drawing.Point(184, 68);
 			this.button_read_ushort.Name = "button_read_ushort";
 			this.button_read_ushort.Size = new System.Drawing.Size(82, 28);
 			this.button_read_ushort.TabIndex = 19;
@@ -155,7 +156,7 @@
 			// 
 			// button_read_short
 			// 
-			this.button_read_short.Location = new System.Drawing.Point(184, 33);
+			this.button_read_short.Location = new System.Drawing.Point(96, 68);
 			this.button_read_short.Name = "button_read_short";
 			this.button_read_short.Size = new System.Drawing.Size(82, 28);
 			this.button_read_short.TabIndex = 18;
@@ -165,7 +166,7 @@
 			// 
 			// button_read_bool
 			// 
-			this.button_read_bool.Location = new System.Drawing.Point(8, 33);
+			this.button_read_bool.Location = new System.Drawing.Point(8, 68);
 			this.button_read_bool.Name = "button_read_bool";
 			this.button_read_bool.Size = new System.Drawing.Size(82, 28);
 			this.button_read_bool.TabIndex = 16;
@@ -179,9 +180,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslCurve1.BackColor = System.Drawing.Color.White;
-			this.hslCurve1.Location = new System.Drawing.Point(8, 67);
+			this.hslCurve1.Location = new System.Drawing.Point(8, 101);
 			this.hslCurve1.Name = "hslCurve1";
-			this.hslCurve1.Size = new System.Drawing.Size(689, 473);
+			this.hslCurve1.Size = new System.Drawing.Size(656, 433);
 			this.hslCurve1.TabIndex = 26;
 			// 
 			// propertyGrid1
@@ -189,25 +190,27 @@
 			this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.propertyGrid1.BackColor = System.Drawing.Color.White;
-			this.propertyGrid1.Location = new System.Drawing.Point(703, 68);
+			this.propertyGrid1.Location = new System.Drawing.Point(670, 101);
 			this.propertyGrid1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.propertyGrid1.Name = "propertyGrid1";
-			this.propertyGrid1.Size = new System.Drawing.Size(185, 471);
+			this.propertyGrid1.Size = new System.Drawing.Size(219, 432);
 			this.propertyGrid1.TabIndex = 27;
 			// 
 			// label2
 			// 
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(9, 546);
+			this.label2.Location = new System.Drawing.Point(9, 544);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(460, 17);
+			this.label2.Size = new System.Drawing.Size(484, 17);
 			this.label2.TabIndex = 28;
-			this.label2.Text = "更高级的数据分析，诊断，曲线分析，诊断，请访问下面的优秀产品：PLC-Recorder";
+			this.label2.Text = "更高级的数据分析，诊断，曲线分析，诊断，请访问下面的优秀生态产品：PLC-Recorder";
 			// 
 			// linkLabel1
 			// 
+			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.linkLabel1.AutoSize = true;
-			this.linkLabel1.Location = new System.Drawing.Point(490, 546);
+			this.linkLabel1.Location = new System.Drawing.Point(526, 544);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(120, 17);
 			this.linkLabel1.TabIndex = 29;
@@ -217,8 +220,9 @@
 			// 
 			// label3
 			// 
+			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(657, 546);
+			this.label3.Location = new System.Drawing.Point(657, 544);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(115, 17);
 			this.label3.TabIndex = 30;
@@ -226,7 +230,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(801, 2);
+			this.button1.Location = new System.Drawing.Point(807, 40);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(82, 28);
 			this.button1.TabIndex = 31;
@@ -237,17 +241,33 @@
 			// label_value
 			// 
 			this.label_value.AutoSize = true;
-			this.label_value.Location = new System.Drawing.Point(490, 7);
+			this.label_value.Location = new System.Drawing.Point(497, 43);
 			this.label_value.Name = "label_value";
 			this.label_value.Size = new System.Drawing.Size(47, 17);
 			this.label_value.TabIndex = 32;
 			this.label_value.Text = "Value: ";
 			// 
+			// userControlHead1
+			// 
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlHead1.HelpLink = "http://www.cnblogs.com/dathlin/p/7469679.html";
+			this.userControlHead1.Location = new System.Drawing.Point(0, 0);
+			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
+			this.userControlHead1.Name = "userControlHead1";
+			this.userControlHead1.ProtocolInfo = "";
+			this.userControlHead1.SaveDeviceVisiable = false;
+			this.userControlHead1.Size = new System.Drawing.Size(895, 32);
+			this.userControlHead1.TabIndex = 33;
+			// 
 			// FormCurveMonitor
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(894, 570);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScroll = true;
+			this.ClientSize = new System.Drawing.Size(895, 564);
+			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.label_value);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label3);
@@ -273,7 +293,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FormCurveMonitor";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "曲线的实时监控";
+			this.Text = "实时曲线";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCurveMonitor_FormClosing);
 			this.Load += new System.EventHandler(this.FormCurveMonitor_Load);
 			this.ResumeLayout(false);
@@ -303,5 +323,6 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label_value;
+		private UserControlHead userControlHead1;
 	}
 }

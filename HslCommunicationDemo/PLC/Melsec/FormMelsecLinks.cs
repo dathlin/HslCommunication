@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Melsec;
 using HslCommunication;
 using System.Xml.Linq;
 using System.IO.Ports;
+using HslCommunicationDemo.PLC.Melsec;
 
 namespace HslCommunicationDemo
 {
@@ -24,7 +25,7 @@ namespace HslCommunicationDemo
 		}
 
 		private MelsecFxLinks melsecSerial = null;
-
+		private FxLinksControl control;
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
@@ -42,6 +43,9 @@ namespace HslCommunicationDemo
 			}
 
 			Language( Program.Language );
+
+			control = new FxLinksControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 		private void Language( int language )
@@ -57,28 +61,9 @@ namespace HslCommunicationDemo
 				label25.Text = "Data bits";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				button3.Text = "Start Plc";
-				button4.Text = "Stop Plc";
 				label21.Text = "Address:";
 
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
 				label2.Text = "Format:";
-
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
-				button3.Text = "Start";
-				button4.Text = "Stop";
-				button5.Text = "Plc Type";
-
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}
@@ -138,7 +123,13 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
-				userControlReadWriteOp1.SetReadWriteNet( melsecSerial, "D100", false );
+				// 设置基本的读写信息
+				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( melsecSerial, "D100", false );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsecSerial, "D100", string.Empty );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsecSerial.ReadFromCoreServer( m ), string.Empty, string.Empty );
+				control.SetDevice( melsecSerial, "D100" );
 			}
 			catch (Exception ex)
 			{
@@ -157,36 +148,6 @@ namespace HslCommunicationDemo
 
 		#endregion
 
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( melsecSerial, textBox6, textBox9, textBox10 );
-		}
-
-
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = melsecSerial.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-		
 		#region 测试使用
 
 		private void test1()
@@ -263,92 +224,6 @@ namespace HslCommunicationDemo
 
 		#endregion
 
-		#region 压力测试
-
-		private int thread_status = 0;
-		private int failed = 0;
-		private DateTime thread_time_start = DateTime.Now;
-		// 压力测试，开3个线程，每个线程进行读写操作，看使用时间
-		private void button3_Click( object sender, EventArgs e )
-		{
-			thread_status = 3;
-			failed = 0;
-			thread_time_start = DateTime.Now;
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			new Thread( new ThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( );
-			button3.Enabled = false;
-		}
-
-		private void thread_test2( )
-		{
-			int count = 500;
-			while (count > 0)
-			{
-				if (!melsecSerial.Write( "D100", (short)1234 ).IsSuccess) failed++;
-				if (!melsecSerial.ReadInt16( "D100" ).IsSuccess) failed++;
-				count--;
-			}
-			thread_end( );
-		}
-
-		private void thread_end( )
-		{
-			if (Interlocked.Decrement( ref thread_status ) == 0)
-			{
-				// 执行完成
-				Invoke( new Action( ( ) =>
-				{
-					button3.Enabled = true;
-					MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
-				} ) );
-			}
-		}
-
-
-
-
-		#endregion
-
-		private void button3_Click_1( object sender, EventArgs e )
-		{
-			OperateResult operate = melsecSerial.StartPLC( );
-			if(!operate.IsSuccess)
-			{
-				MessageBox.Show( "Start Failed：" + operate.Message );
-			}
-			else
-			{
-				MessageBox.Show( "Start Success" );
-			}
-		}
-
-		private void button4_Click( object sender, EventArgs e )
-		{
-
-			OperateResult operate = melsecSerial.StopPLC( );
-			if (!operate.IsSuccess)
-			{
-				MessageBox.Show( "Stop Failed：" + operate.Message );
-			}
-			else
-			{
-				MessageBox.Show( "Stop Success" );
-			}
-		}
-
-		private void button5_Click( object sender, EventArgs e )
-		{
-			OperateResult<string> read = melsecSerial.ReadPlcType( );
-			if (read.IsSuccess)
-			{
-				textBox14.Text = read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Read PLC Type failed:" + read.ToMessageShowString( ) );
-			}
-		}
 
 		public override void SaveXmlParameter( XElement element )
 		{

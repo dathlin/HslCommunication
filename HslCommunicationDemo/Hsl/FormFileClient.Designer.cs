@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("文件列表");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("文件列表");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label20 = new System.Windows.Forms.Label();
 			this.textBox4 = new System.Windows.Forms.TextBox();
@@ -66,6 +66,7 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.button13 = new System.Windows.Forms.Button();
 			this.label22 = new System.Windows.Forms.Label();
 			this.button12 = new System.Windows.Forms.Button();
 			this.button11 = new System.Windows.Forms.Button();
@@ -112,7 +113,6 @@
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button13 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -136,10 +136,10 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(15, 45);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 42);
+			this.panel1.Size = new System.Drawing.Size(997, 42);
 			this.panel1.TabIndex = 7;
 			// 
 			// label20
@@ -237,9 +237,9 @@
 			this.panel2.Controls.Add(this.groupBox2);
 			this.panel2.Controls.Add(this.groupBox1);
 			this.panel2.Enabled = false;
-			this.panel2.Location = new System.Drawing.Point(15, 94);
+			this.panel2.Location = new System.Drawing.Point(3, 81);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 539);
+			this.panel2.Size = new System.Drawing.Size(997, 561);
 			this.panel2.TabIndex = 13;
 			// 
 			// groupBox4
@@ -267,9 +267,9 @@
 			this.groupBox4.Controls.Add(this.textBox_file_fileName);
 			this.groupBox4.Controls.Add(this.label11);
 			this.groupBox4.Controls.Add(this.treeView1);
-			this.groupBox4.Location = new System.Drawing.Point(11, 289);
+			this.groupBox4.Location = new System.Drawing.Point(3, 289);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(955, 246);
+			this.groupBox4.Size = new System.Drawing.Size(985, 267);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "浏览服务器文件";
@@ -363,9 +363,11 @@
 			// 
 			// textBox_file_date
 			// 
+			this.textBox_file_date.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_file_date.Location = new System.Drawing.Point(576, 189);
 			this.textBox_file_date.Name = "textBox_file_date";
-			this.textBox_file_date.Size = new System.Drawing.Size(357, 23);
+			this.textBox_file_date.Size = new System.Drawing.Size(398, 23);
 			this.textBox_file_date.TabIndex = 31;
 			// 
 			// label32
@@ -379,9 +381,11 @@
 			// 
 			// textBox_file_tag
 			// 
+			this.textBox_file_tag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_file_tag.Location = new System.Drawing.Point(576, 216);
 			this.textBox_file_tag.Name = "textBox_file_tag";
-			this.textBox_file_tag.Size = new System.Drawing.Size(357, 23);
+			this.textBox_file_tag.Size = new System.Drawing.Size(398, 23);
 			this.textBox_file_tag.TabIndex = 29;
 			// 
 			// label26
@@ -395,9 +399,11 @@
 			// 
 			// textBox_file_upload
 			// 
+			this.textBox_file_upload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_file_upload.Location = new System.Drawing.Point(802, 161);
 			this.textBox_file_upload.Name = "textBox_file_upload";
-			this.textBox_file_upload.Size = new System.Drawing.Size(132, 23);
+			this.textBox_file_upload.Size = new System.Drawing.Size(172, 23);
 			this.textBox_file_upload.TabIndex = 27;
 			// 
 			// label25
@@ -427,9 +433,11 @@
 			// 
 			// textBox_file_fileSize
 			// 
+			this.textBox_file_fileSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_file_fileSize.Location = new System.Drawing.Point(576, 132);
 			this.textBox_file_fileSize.Name = "textBox_file_fileSize";
-			this.textBox_file_fileSize.Size = new System.Drawing.Size(357, 23);
+			this.textBox_file_fileSize.Size = new System.Drawing.Size(398, 23);
 			this.textBox_file_fileSize.TabIndex = 23;
 			// 
 			// label23
@@ -443,9 +451,11 @@
 			// 
 			// textBox_file_fileName
 			// 
+			this.textBox_file_fileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_file_fileName.Location = new System.Drawing.Point(576, 102);
 			this.textBox_file_fileName.Name = "textBox_file_fileName";
-			this.textBox_file_fileName.Size = new System.Drawing.Size(357, 23);
+			this.textBox_file_fileName.Size = new System.Drawing.Size(398, 23);
 			this.textBox_file_fileName.TabIndex = 15;
 			// 
 			// label11
@@ -459,19 +469,23 @@
 			// 
 			// treeView1
 			// 
+			this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.treeView1.Location = new System.Drawing.Point(9, 22);
 			this.treeView1.Name = "treeView1";
-			treeNode1.Name = "节点0";
-			treeNode1.Text = "文件列表";
+			treeNode2.Name = "节点0";
+			treeNode2.Text = "文件列表";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-			this.treeView1.Size = new System.Drawing.Size(409, 218);
+            treeNode2});
+			this.treeView1.Size = new System.Drawing.Size(409, 239);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeExpand);
 			this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Controls.Add(this.button13);
 			this.groupBox3.Controls.Add(this.label22);
 			this.groupBox3.Controls.Add(this.button12);
@@ -486,12 +500,22 @@
 			this.groupBox3.Controls.Add(this.button5);
 			this.groupBox3.Controls.Add(this.textBox_delete_factory);
 			this.groupBox3.Controls.Add(this.label17);
-			this.groupBox3.Location = new System.Drawing.Point(11, 213);
+			this.groupBox3.Location = new System.Drawing.Point(3, 213);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(955, 74);
+			this.groupBox3.Size = new System.Drawing.Size(985, 74);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "文件删除";
+			// 
+			// button13
+			// 
+			this.button13.Location = new System.Drawing.Point(765, 42);
+			this.button13.Name = "button13";
+			this.button13.Size = new System.Drawing.Size(95, 28);
+			this.button13.TabIndex = 22;
+			this.button13.Text = "子文件夹信息";
+			this.button13.UseVisualStyleBackColor = true;
+			this.button13.Click += new System.EventHandler(this.button13_Click);
 			// 
 			// label22
 			// 
@@ -611,6 +635,8 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.button10);
 			this.groupBox2.Controls.Add(this.label9);
 			this.groupBox2.Controls.Add(this.textBox_download_fileName);
@@ -624,16 +650,17 @@
 			this.groupBox2.Controls.Add(this.button4);
 			this.groupBox2.Controls.Add(this.textBox_download_factory);
 			this.groupBox2.Controls.Add(this.label13);
-			this.groupBox2.Location = new System.Drawing.Point(11, 125);
+			this.groupBox2.Location = new System.Drawing.Point(3, 125);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(955, 86);
+			this.groupBox2.Size = new System.Drawing.Size(985, 86);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "文件下载";
 			// 
 			// button10
 			// 
-			this.button10.Location = new System.Drawing.Point(874, 52);
+			this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button10.Location = new System.Drawing.Point(904, 52);
 			this.button10.Name = "button10";
 			this.button10.Size = new System.Drawing.Size(70, 28);
 			this.button10.TabIndex = 19;
@@ -643,8 +670,9 @@
 			// 
 			// label9
 			// 
+			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(762, 56);
+			this.label9.Location = new System.Drawing.Point(770, 56);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(27, 17);
 			this.label9.TabIndex = 18;
@@ -652,9 +680,11 @@
 			// 
 			// textBox_download_fileName
 			// 
+			this.textBox_download_fileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_download_fileName.Location = new System.Drawing.Point(517, 25);
 			this.textBox_download_fileName.Name = "textBox_download_fileName";
-			this.textBox_download_fileName.Size = new System.Drawing.Size(341, 23);
+			this.textBox_download_fileName.Size = new System.Drawing.Size(381, 23);
 			this.textBox_download_fileName.TabIndex = 17;
 			// 
 			// label16
@@ -702,9 +732,11 @@
 			// 
 			// progressBar2
 			// 
+			this.progressBar2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.progressBar2.Location = new System.Drawing.Point(80, 56);
 			this.progressBar2.Name = "progressBar2";
-			this.progressBar2.Size = new System.Drawing.Size(669, 17);
+			this.progressBar2.Size = new System.Drawing.Size(677, 17);
 			this.progressBar2.TabIndex = 9;
 			// 
 			// label12
@@ -718,7 +750,8 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(874, 22);
+			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button4.Location = new System.Drawing.Point(904, 22);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(70, 28);
 			this.button4.TabIndex = 7;
@@ -745,6 +778,8 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.label10);
 			this.groupBox1.Controls.Add(this.textBox_upload_tag);
 			this.groupBox1.Controls.Add(this.label31);
@@ -762,17 +797,18 @@
 			this.groupBox1.Controls.Add(this.button2);
 			this.groupBox1.Controls.Add(this.textBox3);
 			this.groupBox1.Controls.Add(this.label6);
-			this.groupBox1.Location = new System.Drawing.Point(11, 3);
+			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(955, 117);
+			this.groupBox1.Size = new System.Drawing.Size(985, 117);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "文件上传";
 			// 
 			// label10
 			// 
+			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(762, 87);
+			this.label10.Location = new System.Drawing.Point(770, 87);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(27, 17);
 			this.label10.TabIndex = 26;
@@ -780,9 +816,11 @@
 			// 
 			// textBox_upload_tag
 			// 
+			this.textBox_upload_tag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_upload_tag.Location = new System.Drawing.Point(709, 56);
 			this.textBox_upload_tag.Name = "textBox_upload_tag";
-			this.textBox_upload_tag.Size = new System.Drawing.Size(235, 23);
+			this.textBox_upload_tag.Size = new System.Drawing.Size(270, 23);
 			this.textBox_upload_tag.TabIndex = 25;
 			this.textBox_upload_tag.Text = "test test for example it is import";
 			// 
@@ -865,9 +903,11 @@
 			// 
 			// progressBar1
 			// 
+			this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.progressBar1.Location = new System.Drawing.Point(80, 87);
 			this.progressBar1.Name = "progressBar1";
-			this.progressBar1.Size = new System.Drawing.Size(669, 17);
+			this.progressBar1.Size = new System.Drawing.Size(677, 17);
 			this.progressBar1.TabIndex = 9;
 			// 
 			// label7
@@ -881,7 +921,8 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(874, 22);
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.Location = new System.Drawing.Point(904, 22);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(70, 28);
 			this.button3.TabIndex = 7;
@@ -891,7 +932,8 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(798, 22);
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.Location = new System.Drawing.Point(828, 22);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(70, 28);
 			this.button2.TabIndex = 6;
@@ -901,9 +943,11 @@
 			// 
 			// textBox3
 			// 
+			this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox3.Location = new System.Drawing.Point(80, 25);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(708, 23);
+			this.textBox3.Size = new System.Drawing.Size(735, 23);
 			this.textBox3.TabIndex = 5;
 			// 
 			// label6
@@ -929,16 +973,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// button13
-			// 
-			this.button13.Location = new System.Drawing.Point(765, 42);
-			this.button13.Name = "button13";
-			this.button13.Size = new System.Drawing.Size(95, 28);
-			this.button13.TabIndex = 22;
-			this.button13.Text = "子文件夹信息";
-			this.button13.UseVisualStyleBackColor = true;
-			this.button13.Click += new System.EventHandler(this.button13_Click);
 			// 
 			// FormFileClient
 			// 

@@ -13,7 +13,7 @@ using HslCommunication;
 
 namespace HslCommunicationDemo.DemoControl
 {
-	public partial class FormCurveMonitor : Form
+	public partial class FormCurveMonitor : HslFormContent
 	{
 		public FormCurveMonitor( )
 		{
@@ -52,6 +52,8 @@ namespace HslCommunicationDemo.DemoControl
 			thread = new Thread( ThreadRead );
 			thread.IsBackground = false;
 			thread.Start( );
+
+			if (readWrite != null) userControlHead1.HelpLink = readWrite.ToString( );
 		}
 
 		private void ThreadRead( )

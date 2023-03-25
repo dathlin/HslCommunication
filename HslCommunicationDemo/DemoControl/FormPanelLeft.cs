@@ -302,7 +302,7 @@ namespace HslCommunicationDemo.DemoControl
 			// Redis 相关
 			TreeNode redisNode = new TreeNode( "Redis", 12, 12 );
 			redisNode.Nodes.Add( GetTreeNodeByIndex( "Redis Client", 12, typeof( FormRedisClient ) ) );
-			redisNode.Nodes.Add( GetTreeNodeByIndex( "Redis Browser", 12, typeof( Redis.RedisBrowser ) ) );
+			redisNode.Nodes.Add( GetTreeNodeByIndex( "Redis Browser", 12, typeof( HslRedisDesktop.FormRedisMain ) ) );
 			redisNode.Nodes.Add( GetTreeNodeByIndex( "Redis Subscribe", 12, typeof( FormRedisSubscribe ) ) );
 			redisNode.Nodes.Add( GetTreeNodeByIndex( "Redis Copy", 12, typeof( FormRedisCopy ) ) );
 			treeView1.Nodes.Add( redisNode );

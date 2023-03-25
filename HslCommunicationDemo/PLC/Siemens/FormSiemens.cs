@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Siemens;
 using HslCommunication;
 using System.Xml.Linq;
 using HslCommunication.Core.Pipe;
+using HslCommunicationDemo.PLC.Siemens;
 
 namespace HslCommunicationDemo
 {
@@ -27,6 +28,7 @@ namespace HslCommunicationDemo
 
 		private SiemensS7Net siemensTcpNet = null;
 		private SiemensPLCS siemensPLCSelected = SiemensPLCS.S1200;
+		private SiemensS7Control control;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -55,6 +57,9 @@ namespace HslCommunicationDemo
 				textBox15.Text = "0";
 				textBox16.Text = "0";
 			}
+
+			control = new SiemensS7Control( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 		private void Language( int language )
@@ -68,34 +73,6 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
-
-				button_read_string.Text = "r-string";
-				button7.Text = "r-time";
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				label10.Text = "Address:";
-				label9.Text = "Value:";
-				label19.Text = "Note: The value of the string needs to be converted";
-				button14.Text = "w-string";
-				button8.Text = "w-time";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
-				button3.Text = "Order";
-				button4.Text = "hot-start";
-				button5.Text = "cold-start";
-				button6.Text = "stop";
-
-				button_read_date.Text = "r-date";
-				button_write_Date.Text = "w-date";
 			}
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -134,7 +111,17 @@ namespace HslCommunicationDemo
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
-					userControlReadWriteOp1.SetReadWriteNet( siemensTcpNet, "M100", true );
+
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( siemensTcpNet, "M100", true );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( siemensTcpNet, "M100", string.Empty );
+					userControlReadWriteDevice1.BatchRead.SetReadRandom( siemensTcpNet.Read, "M100;M200;DB1.0;Q0" );
+
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensTcpNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+					control.SetDevice( siemensTcpNet, "M100" );
 				}
 				else
 				{
@@ -156,194 +143,6 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 		}
 		
-		#endregion
-
-		#region 单数据读取测试
-
-
-		private async void button_read_string_Click( object sender, EventArgs e )
-		{
-			// 读取字符串
-			OperateResult<string> read = await siemensTcpNet.ReadStringAsync( textBox8.Text );
-			if (read.IsSuccess)
-			{
-				textBox7.Text = read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Failed:" + read.Message );
-			}
-		}
-
-		private async void Button7_Click( object sender, EventArgs e )
-		{
-			OperateResult<DateTime> read = await siemensTcpNet.ReadDateTimeAsync( textBox8.Text );
-			if (read.IsSuccess)
-			{
-				textBox7.Text = read.Content.ToString( );
-			}
-			else
-			{
-				MessageBox.Show( "Failed:" + read.Message );
-			}
-		}
-
-		private async void button_read_date_Click( object sender, EventArgs e )
-		{
-			OperateResult<DateTime> read = await siemensTcpNet.ReadDateAsync( textBox8.Text );
-			if (read.IsSuccess)
-			{
-				textBox7.Text = read.Content.ToString( );
-			}
-			else
-			{
-				MessageBox.Show( "Failed:" + read.Message );
-			}
-		}
-
-		private async void button11_Click( object sender, EventArgs e )
-		{
-			// WString 读取
-			OperateResult<string> read = await siemensTcpNet.ReadWStringAsync( textBox8.Text );
-			if (read.IsSuccess)
-			{
-				textBox7.Text = read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Failed:" + read.Message );
-			}
-		}
-
-		private async void button_read_dtltime_Click( object sender, EventArgs e )
-		{
-			OperateResult<DateTime> read = await siemensTcpNet.ReadDTLDataTimeAsync( textBox8.Text );
-			if (read.IsSuccess)
-			{
-				textBox7.Text = read.Content.ToString( );
-			}
-			else
-			{
-				MessageBox.Show( "Failed:" + read.Message );
-			}
-
-		}
-
-		#endregion
-
-		#region 单数据写入测试
-
-		private async void button14_Click( object sender, EventArgs e )
-		{
-			// string写入
-			DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
-		}
-
-		private async void button10_Click( object sender, EventArgs e )
-		{
-			// WString 写入
-			DemoUtils.WriteResultRender( await siemensTcpNet.WriteWStringAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
-		}
-
-		private async void Button8_Click( object sender, EventArgs e )
-		{
-			// time写入
-			if (DateTime.TryParse( textBox7.Text, out DateTime value ))
-				DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-			else
-				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
-		}
-
-		private async void button_write_dtltime_Click( object sender, EventArgs e )
-		{
-			// DTL时间写入操作
-			if (DateTime.TryParse( textBox7.Text, out DateTime value ))
-				DemoUtils.WriteResultRender( await siemensTcpNet.WriteDTLTimeAsync( textBox8.Text, value ), textBox8.Text );
-			else
-				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
-		}
-
-		private async void button_write_Date_Click( object sender, EventArgs e )
-		{
-			// date写入
-			if (DateTime.TryParse( textBox7.Text, out DateTime value ))
-				DemoUtils.WriteResultRender( await siemensTcpNet.WriteDateAsync( textBox8.Text, value ), textBox8.Text );
-			else
-				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
-		}
-
-		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			if (textBox6.Text.Contains(";") && textBox9.Text.Contains( ";" ))
-			{
-				OperateResult<byte[]> read = siemensTcpNet.Read( textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).ToArray( ),
-				   textBox9.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( m => ushort.Parse( m ) ).ToArray( ) );
-
-				if (read.IsSuccess)
-					textBox10.Text = read.Content.ToHexString( ' ' );
-				else
-					MessageBox.Show( "Read failed: " + read.Message );
-			}
-			else
-			{
-				DemoUtils.BulkReadRenderResult( siemensTcpNet, textBox6, textBox9, textBox10 );
-			}
-
-
-			//siemensTcpNet.Write( "M100.0", true ).
-			//    Then( ( ) => siemensTcpNet.ReadInt16( "M1100" ) ).
-			//    Then( content => siemensTcpNet.Write( "M200", true ) );
-
-			// 比如我有个简单的需求，先读M100.0，如果是true，我就写M101.0为true，否则返回确认没有件的失败消息
-			// 以前的写法
-			// OperateResult<bool> readbool = siemensTcpNet.ReadBool( "M100.0" );
-			// if (!readbool.IsSuccess) return readbool;
-
-			// if (readbool.Content) return siemensTcpNet.Write( "M101.0", true );
-			// else return new OperateResult( "当前位置没有件" );
-
-			// 现在写法
-			// var result = siemensTcpNet.ReadBool( "M100.0" ).Check( content => content == true, "当前位置没有件" ).Then( () => siemensTcpNet.Write( "M101.0", true ) );
-			// DemoUtils.WriteResultRender( result, "Test" );
-		}
-
-		private async void button3_Click( object sender, EventArgs e )
-		{
-			// 订货号
-			OperateResult<string> read = await siemensTcpNet.ReadOrderNumberAsync( );
-			if (read.IsSuccess)
-			{
-				textBox10.Text = "Order Number：" + read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private async void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = await siemensTcpNet.ReadFromCoreServerAsync( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
 		#endregion
 
 		#region 测试功能代码
@@ -440,176 +239,6 @@ namespace HslCommunicationDemo
 		}
 
 		#endregion
-
-		private async void button4_Click( object sender, EventArgs e )
-		{
-			// 热启动
-			OperateResult result = await siemensTcpNet.HotStartAsync( );
-			if (result.IsSuccess)
-			{
-				MessageBox.Show( "Success" );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + result.Message );
-			}
-		}
-
-		private async void button5_Click( object sender, EventArgs e )
-		{
-			// 冷启动
-			OperateResult result = await siemensTcpNet.ColdStartAsync( );
-			if (result.IsSuccess)
-			{
-				MessageBox.Show( "Success" );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + result.Message );
-			}
-		}
-
-		private async void button6_Click( object sender, EventArgs e )
-		{
-			// 停止
-			OperateResult result = await siemensTcpNet.StopAsync( );
-			if (result.IsSuccess)
-			{
-				MessageBox.Show( "Success" );
-			}
-			else
-			{
-				MessageBox.Show( "Failed: " + result.Message );
-			}
-		}
-
-		private int thread_status = 0;
-		private int failed = 0;
-		private DateTime thread_time_start = DateTime.Now;
-		private long successCount = 0;
-		private System.Windows.Forms.Timer timer;
-
-
-		private void button9_Click( object sender, EventArgs e )
-		{
-			thread_status = 3;
-			failed = 0;
-			thread_time_start = DateTime.Now;
-			new Thread( new ParameterizedThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( "M100" );
-			new Thread( new ParameterizedThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( "M200" );
-			new Thread( new ParameterizedThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( "M300" );
-			button9.Enabled = false;
-
-			timer = new System.Windows.Forms.Timer( );
-			timer.Interval = 1000;
-			timer.Tick += Timer_Tick;
-			timer.Start( );
-		}
-
-
-		private void Timer_Tick( object sender, EventArgs e )
-		{
-			label2.Text = successCount.ToString( );
-		}
-
-		private async void thread_test1( object add )
-		{
-			string address = (string)add;
-			int count = 10000;
-			while (count > 0)
-			{
-				if (!(await siemensTcpNet.WriteAsync( address, (short)count )).IsSuccess) failed++;
-				OperateResult<short> read = await siemensTcpNet.ReadInt16Async( address );
-				if (!read.IsSuccess) failed++;
-				else
-				{
-					if (read.Content != count) failed++;
-				}
-				count--;
-				successCount++;
-			}
-			thread_end( );
-		}
-
-		private PipeSocket pipeSocket;
-		private SiemensS7Net[] siemensS = new SiemensS7Net[3];
-
-		private void button12_Click( object sender, EventArgs e )
-		{
-			pipeSocket?.Socket?.Close( );
-			pipeSocket = new PipeSocket( "127.0.0.1", 102 );
-			siemensS[0] = new SiemensS7Net( SiemensPLCS.S1200 );
-			siemensS[1] = new SiemensS7Net( SiemensPLCS.S1200 );
-			siemensS[2] = new SiemensS7Net( SiemensPLCS.S1200 );
-			siemensS[0].SetPipeSocket( pipeSocket );
-			siemensS[1].SetPipeSocket( pipeSocket );
-			siemensS[2].SetPipeSocket( pipeSocket );
-
-			thread_status = 3;
-			failed = 0;
-			thread_time_start = DateTime.Now;
-			new Thread( new ParameterizedThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( "M100" );
-			new Thread( new ParameterizedThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( "M200" );
-			new Thread( new ParameterizedThreadStart( thread_test2 ) ) { IsBackground = true, }.Start( "M300" );
-			button12.Enabled = false;
-
-			timer = new System.Windows.Forms.Timer( );
-			timer.Interval = 1000;
-			timer.Tick += Timer_Tick;
-			timer.Start( );
-		}
-
-		private async void thread_test2( object add )
-		{
-			string address = (string)add;
-			SiemensS7Net plc = address == "M100" ? siemensS[0] : address == "M200" ? siemensS[1] : siemensS[2];
-			int count = 10000;
-			while (count > 0)
-			{
-				if (!(await plc.WriteAsync( address, (short)count )).IsSuccess) failed++;
-				OperateResult<short> read = await plc.ReadInt16Async( address );
-				if (!read.IsSuccess) failed++;
-				else
-				{
-					if (read.Content != count) failed++;
-				}
-				count--;
-				successCount++;
-			}
-			thread_end2( );
-		}
-
-		private void thread_end( )
-		{
-			if (Interlocked.Decrement( ref thread_status ) == 0)
-			{
-				// 执行完成
-				Invoke( new Action( ( ) =>
-				{
-					label2.Text = successCount.ToString( );
-					timer.Stop( );
-					button9.Enabled = true;
-					MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
-				} ) );
-			}
-		}
-
-
-		private void thread_end2( )
-		{
-			if (Interlocked.Decrement( ref thread_status ) == 0)
-			{
-				pipeSocket?.Socket?.Close( );
-				// 执行完成
-				Invoke( new Action( ( ) =>
-				{
-					label2.Text = successCount.ToString( );
-					timer.Stop( );
-					button12.Enabled = true;
-					MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
-				} ) );
-			}
-		}
 
 
 		public override void SaveXmlParameter( XElement element )

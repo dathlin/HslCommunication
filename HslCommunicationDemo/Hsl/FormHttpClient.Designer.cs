@@ -49,6 +49,10 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.label10 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.textBox_api_sign = new System.Windows.Forms.TextBox();
+			this.label24 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
+			this.textBox_api_description = new System.Windows.Forms.TextBox();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.hslBarChart1 = new HslControls.HslBarChart();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -72,10 +76,6 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.textBox_api_sign = new System.Windows.Forms.TextBox();
-			this.label24 = new System.Windows.Forms.Label();
-			this.label15 = new System.Windows.Forms.Label();
-			this.textBox_api_description = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -317,6 +317,58 @@
 			this.panel2.Size = new System.Drawing.Size(753, 534);
 			this.panel2.TabIndex = 34;
 			// 
+			// textBox_api_sign
+			// 
+			this.textBox_api_sign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_api_sign.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox_api_sign.ForeColor = System.Drawing.Color.Gray;
+			this.textBox_api_sign.Location = new System.Drawing.Point(61, 38);
+			this.textBox_api_sign.Name = "textBox_api_sign";
+			this.textBox_api_sign.ReadOnly = true;
+			this.textBox_api_sign.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_api_sign.Size = new System.Drawing.Size(683, 16);
+			this.textBox_api_sign.TabIndex = 56;
+			this.textBox_api_sign.Text = "[签名]";
+			// 
+			// label24
+			// 
+			this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label24.AutoSize = true;
+			this.label24.ForeColor = System.Drawing.Color.Gray;
+			this.label24.Location = new System.Drawing.Point(-1, 37);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(40, 17);
+			this.label24.TabIndex = 55;
+			this.label24.Text = "[签名]";
+			// 
+			// label15
+			// 
+			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label15.AutoSize = true;
+			this.label15.ForeColor = System.Drawing.Color.Gray;
+			this.label15.Location = new System.Drawing.Point(-1, 59);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(40, 17);
+			this.label15.TabIndex = 54;
+			this.label15.Text = "[注释]";
+			// 
+			// textBox_api_description
+			// 
+			this.textBox_api_description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_api_description.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox_api_description.ForeColor = System.Drawing.Color.Gray;
+			this.textBox_api_description.Location = new System.Drawing.Point(61, 59);
+			this.textBox_api_description.Multiline = true;
+			this.textBox_api_description.Name = "textBox_api_description";
+			this.textBox_api_description.ReadOnly = true;
+			this.textBox_api_description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_api_description.Size = new System.Drawing.Size(683, 56);
+			this.textBox_api_description.TabIndex = 53;
+			// 
 			// comboBox2
 			// 
 			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -330,10 +382,10 @@
 			// 
 			this.hslBarChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslBarChart1.BackColor = System.Drawing.Color.White;
-			this.hslBarChart1.Location = new System.Drawing.Point(420, 121);
+			this.hslBarChart1.Location = new System.Drawing.Point(445, 121);
 			this.hslBarChart1.Name = "hslBarChart1";
 			this.hslBarChart1.ShowBarValueFormat = "{0}";
-			this.hslBarChart1.Size = new System.Drawing.Size(329, 143);
+			this.hslBarChart1.Size = new System.Drawing.Size(304, 143);
 			this.hslBarChart1.TabIndex = 45;
 			this.hslBarChart1.Text = "hslBarChart1";
 			this.hslBarChart1.Title = "Called Infomation";
@@ -498,7 +550,7 @@
 			this.textBox5.Multiline = true;
 			this.textBox5.Name = "textBox5";
 			this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox5.Size = new System.Drawing.Size(352, 145);
+			this.textBox5.Size = new System.Drawing.Size(377, 145);
 			this.textBox5.TabIndex = 8;
 			// 
 			// label9
@@ -546,58 +598,6 @@
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(428, 36);
 			this.label6.TabIndex = 44;
-			// 
-			// textBox_api_sign
-			// 
-			this.textBox_api_sign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_api_sign.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox_api_sign.ForeColor = System.Drawing.Color.Gray;
-			this.textBox_api_sign.Location = new System.Drawing.Point(61, 38);
-			this.textBox_api_sign.Name = "textBox_api_sign";
-			this.textBox_api_sign.ReadOnly = true;
-			this.textBox_api_sign.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_api_sign.Size = new System.Drawing.Size(683, 16);
-			this.textBox_api_sign.TabIndex = 56;
-			this.textBox_api_sign.Text = "[签名]";
-			// 
-			// label24
-			// 
-			this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label24.AutoSize = true;
-			this.label24.ForeColor = System.Drawing.Color.Gray;
-			this.label24.Location = new System.Drawing.Point(-1, 37);
-			this.label24.Name = "label24";
-			this.label24.Size = new System.Drawing.Size(40, 17);
-			this.label24.TabIndex = 55;
-			this.label24.Text = "[签名]";
-			// 
-			// label15
-			// 
-			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label15.AutoSize = true;
-			this.label15.ForeColor = System.Drawing.Color.Gray;
-			this.label15.Location = new System.Drawing.Point(-1, 59);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(40, 17);
-			this.label15.TabIndex = 54;
-			this.label15.Text = "[注释]";
-			// 
-			// textBox_api_description
-			// 
-			this.textBox_api_description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_api_description.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox_api_description.ForeColor = System.Drawing.Color.Gray;
-			this.textBox_api_description.Location = new System.Drawing.Point(61, 59);
-			this.textBox_api_description.Multiline = true;
-			this.textBox_api_description.Name = "textBox_api_description";
-			this.textBox_api_description.ReadOnly = true;
-			this.textBox_api_description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_api_description.Size = new System.Drawing.Size(683, 56);
-			this.textBox_api_description.TabIndex = 53;
 			// 
 			// FormHttpClient
 			// 

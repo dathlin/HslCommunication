@@ -74,10 +74,10 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(12, 44);
+			this.panel1.Location = new System.Drawing.Point(2, 34);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1026, 63);
+			this.panel1.Size = new System.Drawing.Size(1052, 63);
 			this.panel1.TabIndex = 4;
 			// 
 			// label6
@@ -155,10 +155,10 @@
 			this.panel2.Controls.Add(this.label16);
 			this.panel2.Controls.Add(this.textBox1);
 			this.panel2.Controls.Add(this.label1);
-			this.panel2.Location = new System.Drawing.Point(12, 119);
+			this.panel2.Location = new System.Drawing.Point(2, 103);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1026, 379);
+			this.panel2.Size = new System.Drawing.Size(1052, 395);
 			this.panel2.TabIndex = 5;
 			// 
 			// button2
@@ -174,7 +174,7 @@
 			// 
 			// textBox4
 			// 
-			this.textBox4.Location = new System.Drawing.Point(793, 4);
+			this.textBox4.Location = new System.Drawing.Point(793, 8);
 			this.textBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.textBox4.Name = "textBox4";
 			this.textBox4.Size = new System.Drawing.Size(80, 23);
@@ -184,7 +184,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(730, 8);
+			this.label5.Location = new System.Drawing.Point(730, 12);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(56, 17);
 			this.label5.TabIndex = 20;
@@ -192,7 +192,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(535, 4);
+			this.textBox3.Location = new System.Drawing.Point(535, 8);
 			this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(173, 23);
@@ -202,7 +202,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(469, 8);
+			this.label4.Location = new System.Drawing.Point(469, 12);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(60, 17);
 			this.label4.TabIndex = 18;
@@ -238,7 +238,7 @@
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(997, 329);
+			this.textBox1.Size = new System.Drawing.Size(1023, 345);
 			this.textBox1.TabIndex = 6;
 			// 
 			// label1

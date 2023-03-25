@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication.Profinet.FATEK;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.Fatek;
 
 namespace HslCommunicationDemo
 {
@@ -24,12 +25,15 @@ namespace HslCommunicationDemo
 
 
 		private FatekProgramOverTcp fatekProgram = null;
+		private FatekProgrameControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 
 			Language( Program.Language );
+			control = new FatekProgrameControl( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -44,18 +48,6 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
 			}
 		}
 
@@ -95,7 +87,14 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( fatekProgram, "D100", true );
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( fatekProgram, "D100", true );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( fatekProgram, "D100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fatekProgram.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+					control.SetDevice( fatekProgram, "D100" );
 				}
 				else
 				{
@@ -118,40 +117,8 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 		}
 
-
-
 		#endregion
 
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( fatekProgram, textBox6, textBox9, textBox10 );
-		}
-
-
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = fatekProgram.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-		
 		#region 测试使用
 
 		private void test1()
@@ -227,7 +194,6 @@ namespace HslCommunicationDemo
 
 		#endregion
 
-
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
@@ -248,50 +214,5 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
-		private void button_run_Click( object sender, EventArgs e )
-		{
-			OperateResult run = fatekProgram.Run( );
-			if (run.IsSuccess)
-			{
-				MessageBox.Show( "Run Success!" );
-			}
-			else
-			{
-				MessageBox.Show( "Run failed: " + run.Message );
-			}
-		}
-
-		private void button_stop_Click( object sender, EventArgs e )
-		{
-			OperateResult stop = fatekProgram.Stop( );
-			if (stop.IsSuccess)
-			{
-				MessageBox.Show( "Stop Success!" );
-			}
-			else
-			{
-				MessageBox.Show( "Stop failed: " + stop.Message );
-			}
-		}
-
-		private void button_read_status_Click( object sender, EventArgs e )
-		{
-			OperateResult<bool[]> read = fatekProgram.ReadStatus( );
-			if (read.IsSuccess)
-			{
-				FormFatekPrograme.SetColorFromStatus( read.Content[0], label_bit0_true, label_bit0_false );
-				FormFatekPrograme.SetColorFromStatus( read.Content[1], label_bit1_true, label_bit1_false );
-				FormFatekPrograme.SetColorFromStatus( read.Content[2], label_bit2_true, label_bit2_false );
-				FormFatekPrograme.SetColorFromStatus( read.Content[3], label_bit3_true, label_bit3_false );
-				FormFatekPrograme.SetColorFromStatus( read.Content[4], label_bit4_true, label_bit4_false );
-				FormFatekPrograme.SetColorFromStatus( read.Content[5], label_bit5_true, label_bit5_false );
-				FormFatekPrograme.SetColorFromStatus( read.Content[6], label_bit6_true, label_bit6_false );
-			}
-			else
-			{
-				MessageBox.Show( "Read failed: " + read.Message );
-			}
-
-		}
 	}
 }

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using HslCommunicationDemo.Control;
 using HslCommunication.LogNet;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
@@ -66,6 +67,48 @@ namespace HslCommunicationDemo
 		}
 
 		private XElement xElement = null;
+
+
+
+		/// <summary>
+		/// 从XElement中提取相关的属性信息，如果不存在，就返回默认值
+		/// </summary>
+		/// <typeparam name="T">最终的类型信息</typeparam>
+		/// <param name="element">元素内容</param>
+		/// <param name="name">属性的名称</param>
+		/// <param name="defaultValue">默认提供的值</param>
+		/// <param name="trans">转换方式</param>
+		/// <returns>最终的值</returns>
+		public static T GetXmlValue<T>( XElement element, string name, T defaultValue, Func<string, T> trans )
+		{
+			XAttribute attribute = element.Attribute( name );
+			if (attribute == null) return defaultValue;
+
+			try
+			{
+				return trans( attribute.Value );
+			}
+			catch
+			{
+				return defaultValue;
+			}
+		}
+
+		/// <inheritdoc cref="GetXmlValue{T}(XElement, string, T, Func{string, T})"/>
+		public static T GetXmlEnum<T>( XElement element, string name, T defaultValue ) where T : struct
+		{
+			XAttribute attribute = element.Attribute( name );
+			if (attribute == null) return defaultValue;
+
+			try
+			{
+				return SoftBasic.GetEnumFromString<T>( attribute.Value );
+			}
+			catch
+			{
+				return defaultValue;
+			}
+		}
 
 	}
 }

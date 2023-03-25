@@ -12,6 +12,7 @@ using HslCommunication.Instrument.RKC;
 using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.Common;
 
 namespace HslCommunicationDemo
 {
@@ -24,12 +25,16 @@ namespace HslCommunicationDemo
 
 
 		private TemperatureControllerOverTcp rkc = null;
+		private SpecialFeaturesControl control;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 			Language( Program.Language );
+
+			control = new SpecialFeaturesControl( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -45,18 +50,6 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
 			}
 		}
 
@@ -67,7 +60,6 @@ namespace HslCommunicationDemo
 		
 
 		#region Connect And Close
-
 
 
 		private void button1_Click( object sender, EventArgs e )
@@ -101,8 +93,14 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( rkc, "M1", true );
-					userControlReadWriteOp1.EnableRKC( );
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( rkc, "M1", true );
+					userControlReadWriteDevice1.ReadWriteOp.EnableRKC( );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( rkc, "M1", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => rkc.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+					control.SetDevice( rkc, "M1" );
 				}
 				else
 				{
@@ -124,36 +122,6 @@ namespace HslCommunicationDemo
 			button1.Enabled = true;
 			panel2.Enabled = false;
 		}
-
-		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( rkc, textBox6, textBox9, textBox10 );
-		}
-
-
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = rkc.ReadFromCoreServer( HslCommunication.Serial.SoftCRC16.CRC16( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
 
 		#endregion
 

@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication.Profinet.AllenBradley;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.AllenBrandly;
 
 namespace HslCommunicationDemo
 {
@@ -24,13 +25,15 @@ namespace HslCommunicationDemo
 
 
 		private AllenBradleyNet allenBradleyNet = null;
-
+		private AllenBrandlyControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 
 			Language( Program.Language );
+			control = new AllenBrandlyControl( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -43,20 +46,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-
-				label11.Text = "Address:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-				button3.Text = "Build";
-				label2.Text = "Start:";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "CIP reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
-
 				label22.Text = "Tag name, if the bool array is of type int, access begin with \"i=\"";
 			}
 		}
@@ -108,7 +97,18 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteOp1.SetReadWriteNet( allenBradleyNet, "A1", true, 1 );
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( allenBradleyNet, "A1", true, 1 );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( allenBradleyNet, "A1", string.Empty );
+					userControlReadWriteDevice1.BatchRead.SetReadRandom( allenBradleyNet.Read, "A1;A2    Length input \"1;1\"" );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => allenBradleyNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => allenBradleyNet.ReadEipFromServer( m ), "EIP", "EIP Message, example: " );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => allenBradleyNet.ReadCipFromServer( m ), "CIP", "CIP Message, example: " );
+					// TODO EIP及CIP的例子填充
+
+					control.SetDevice( allenBradleyNet, "A1" );
 				}
 				else
 				{
@@ -131,114 +131,7 @@ namespace HslCommunicationDemo
 		}
 
 
-
-
-
-
-
 		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			try
-			{
-				//    OperateResult write = allenBradleyNet.Write( "Array", new short[] { 101, 102, 103, 104, 105, 106 } );
-
-				// OperateResult<short[]> readResult = allenBradleyNet.ReadInt16( "Array", 300 );
-
-				OperateResult<byte[]> read = null;
-				if (!textBox6.Text.Contains( ";" ))
-				{
-					//MessageBox.Show( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( new string[] { textBox6.Text }, new int[] { int.Parse(textBox9.Text) } ).Content , ' ') );
-					read = allenBradleyNet.ReadSegment( textBox6.Text, ushort.Parse( textBox12.Text ), ushort.Parse( textBox9.Text ) );
-				}
-				else
-				{
-					//MessageBox.Show( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( textBox6.Text.Split( ';' ) ).Content, ' ' ) );
-					read = allenBradleyNet.Read( textBox6.Text.Split( ';' ) );
-				}
-
-				if (read.IsSuccess)
-				{
-					textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-				}
-				else
-				{
-					MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( "Read failed：" + ex.Message );
-			}
-		}
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = allenBradleyNet.ReadCipFromServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content, ' ' );
-			}
-			else
-			{
-				MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-		private void button4_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = allenBradleyNet.ReadEipFromServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-		#endregion
-
-		private void Button3_Click( object sender, EventArgs e )
-		{
-			try
-			{
-				//    OperateResult write = allenBradleyNet.Write( "Array", new short[] { 101, 102, 103, 104, 105, 106 } );
-
-				// OperateResult<short[]> readResult = allenBradleyNet.ReadInt16( "Array", 300 );
-
-				//MessageBox.Show( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( new string[] { textBox6.Text }, new int[] { int.Parse(textBox9.Text) } ).Content , ' ') );
-				byte[] read = AllenBradleyHelper.PackRequestReadSegment( textBox6.Text, ushort.Parse( textBox12.Text ), ushort.Parse( textBox9.Text ) );
-
-				textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read, ' ' );
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( "Build failed：" + ex.Message );
-			}
-		}
-
-		private void button5_Click( object sender, EventArgs e )
-		{
-			OperateResult<bool[]> read = allenBradleyNet.ReadBoolArray( textBox3.Text );
-			if (read.IsSuccess)
-			{
-				textBox4.Text = $"Result[{DateTime.Now:HH:mm:ss}]：" + HslCommunication.BasicFramework.SoftBasic.ArrayFormat( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
-			}
-		}
 
 
 		public override void SaveXmlParameter( XElement element )
@@ -261,55 +154,5 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
-		private void button_type_read_Click( object sender, EventArgs e )
-		{
-			try
-			{
-				OperateResult<ushort, byte[]> read = allenBradleyNet.ReadTag( textBox_type_address.Text, ushort.Parse( textBox_type_length.Text ) );
-				if (read.IsSuccess)
-				{
-					textBox_type_code.Text = read.Content1.ToString( "X2" );
-					textBox_type_data.Text = read.Content2.ToHexString( ' ' );
-				}
-				else
-				{
-					MessageBox.Show( "read failed：" + read.Message );
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( "read failed：" + ex.Message );
-			}
-		}
-
-		private void button_type_write_Click( object sender, EventArgs e )
-		{
-			try
-			{
-				OperateResult write = allenBradleyNet.WriteTag(
-					textBox_type_address.Text,
-					Convert.ToUInt16( textBox_type_code.Text, 16 ),
-					textBox_type_data.Text.ToHexBytes( ),
-					int.Parse( textBox_type_length.Text ) );
-				DemoUtils.WriteResultRender( write, textBox_type_address.Text );
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( "write failed：" + ex.Message );
-			}
-		}
-
-		private void button_read_plc_type_Click( object sender, EventArgs e )
-		{
-			OperateResult<string> read = allenBradleyNet.ReadPlcType( );
-			if (read.IsSuccess)
-			{
-				textBox_type_data.Text = read.Content;
-			}
-			else
-			{
-				MessageBox.Show( "Read failed: " + read.Message );
-			}
-		}
 	}
 }

@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication;
 using HslCommunication.Profinet.YASKAWA;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.Common;
 
 namespace HslCommunicationDemo
 {
@@ -24,7 +25,7 @@ namespace HslCommunicationDemo
 
 
 		private MemobusUdpNet memobus = null;
-
+		private SpecialFeaturesControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -34,6 +35,8 @@ namespace HslCommunicationDemo
 
 			Language( Program.Language );
 
+			control = new SpecialFeaturesControl( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -48,18 +51,6 @@ namespace HslCommunicationDemo
 				button2.Text = "Close";
 				label29.Text = "Ip:";
 				label28.Text = "Port:";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-				label16.Text = "Message:";
-				label14.Text = "Results:";
-				button26.Text = "Read";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox4.Text = "Message reading test, hex string needs to be filled in";
-				groupBox5.Text = "Special function test";
 			}
 		}
 
@@ -106,7 +97,16 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
-				userControlReadWriteOp1.SetReadWriteNet( memobus, "100", true );
+				// 设置基本的读写信息
+				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( memobus, "100", true );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( memobus, "100", string.Empty );
+				userControlReadWriteDevice1.BatchRead.SetReadWordRandom( memobus.ReadRandom, "1;100;300   针对09功能码的扩展保持寄存器" );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => memobus.ReadFromCoreServer( m, hasResponseData: true, usePackAndUnpack: false ), string.Empty, string.Empty );
+
+				control.SetDevice( memobus, "100" );
+
 				MessageBox.Show( StringResources.Language.ConnectedSuccess );
 			}
 			catch (Exception ex)
@@ -125,36 +125,6 @@ namespace HslCommunicationDemo
 		
 		#endregion
 
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( memobus, textBox6, textBox9, textBox10 );
-		}
-
-
-
-		#endregion
-
-		#region 报文读取测试
-
-
-		private void button26_Click( object sender, EventArgs e )
-		{
-			OperateResult<byte[]> read = memobus.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
-			if (read.IsSuccess)
-			{
-				textBox11.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-			}
-			else
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-		}
-
-
-		#endregion
-		
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox20.Text );
@@ -177,22 +147,6 @@ namespace HslCommunicationDemo
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
-		}
-
-		private void button_read_random_Click( object sender, EventArgs e )
-		{
-			// 随机字读取
-			ushort[] address = textBox_read_random.Text.ToStringArray<ushort>( );
-			OperateResult<byte[]> read = this.memobus.ReadRandom( address );
-			if (read.IsSuccess)
-			{
-				ushort[] value = this.memobus.ByteTransform.TransUInt16( read.Content, 0, address.Length );
-				textBox_random_result.Text = value.ToArrayString( );
-			}
-			else
-			{
-				MessageBox.Show( "Read failed: " + read.Message );
-			}
 		}
 	}
 }

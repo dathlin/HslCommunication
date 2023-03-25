@@ -108,10 +108,10 @@ namespace HslCommunicationDemo.Robot
 			OperateResult<int> motor = yamahaRCX.ReadMotorStatus( );
 			if (motor.IsSuccess)
 			{
-				if (motor.Content == 0) textBox6.Text = "0 -> 马达电源关闭;";
-				else if(motor.Content == 1) textBox6.Text = "1 -> 马达电源开启;";
-				else if (motor.Content == 2) textBox6.Text = "2 -> 马达电源开启＋所有机器人伺服开启";
-				else textBox6.Text = motor.Content + " -> 未知的状态";
+				if (motor.Content == 0) textBox_result.Text = "0 -> 马达电源关闭;";
+				else if(motor.Content == 1) textBox_result.Text = "1 -> 马达电源开启;";
+				else if (motor.Content == 2) textBox_result.Text = "2 -> 马达电源开启＋所有机器人伺服开启";
+				else textBox_result.Text = motor.Content + " -> 未知的状态";
 			}
 			else
 			{
@@ -124,7 +124,7 @@ namespace HslCommunicationDemo.Robot
 			OperateResult<int> mode = yamahaRCX.ReadModeStatus( );
 			if (mode.IsSuccess)
 			{
-				textBox6.Text = mode.Content.ToString( );
+				textBox_result.Text = mode.Content.ToString( );
 			}
 			else
 			{
@@ -137,7 +137,7 @@ namespace HslCommunicationDemo.Robot
 			OperateResult<float[]> joints = yamahaRCX.ReadJoints( );
 			if (joints.IsSuccess)
 			{
-				textBox6.Text = SoftBasic.ArrayFormat( joints );
+				textBox_result.Text = SoftBasic.ArrayFormat( joints );
 			}
 			else
 			{
@@ -150,9 +150,9 @@ namespace HslCommunicationDemo.Robot
 			OperateResult<int> emergency = yamahaRCX.ReadEmergencyStatus( );
 			if (emergency.IsSuccess)
 			{
-				if (emergency.Content == 0) textBox6.Text = "0 -> 正常状态;";
-				else if (emergency.Content == 1) textBox6.Text = "1 -> 紧急停止状态;";
-				else textBox6.Text = emergency.Content + " -> 未知的状态";
+				if (emergency.Content == 0) textBox_result.Text = "0 -> 正常状态;";
+				else if (emergency.Content == 1) textBox_result.Text = "1 -> 紧急停止状态;";
+				else textBox_result.Text = emergency.Content + " -> 未知的状态";
 			}
 			else
 			{
@@ -177,6 +177,97 @@ namespace HslCommunicationDemo.Robot
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
+		}
+
+		private void button_execute_Click( object sender, EventArgs e )
+		{
+			// 自定义的命令
+			if (!int.TryParse(textBox_read_lines.Text, out int lines ))
+			{
+				MessageBox.Show( "Lines input wrong!" );
+				return;
+			}
+			OperateResult<string[]> read = yamahaRCX.ReadCommand( textBox_read_command.Text, lines );
+			if (read.IsSuccess)
+			{
+				textBox_result.Lines = read.Content;
+			}
+			else
+			{
+				MessageBox.Show( "Read failed: " + read.Message );
+			}
+		}
+
+		private void RenderJogResult( OperateResult result, string jog )
+		{
+			if (result.IsSuccess)
+			{
+				textBox_result.AppendText( DateTime.Now.ToString( ) + " " + jog + " Success" + Environment.NewLine );
+			}
+			else
+			{
+				MessageBox.Show( jog + " failed: " + result.Message );
+			}
+		}
+
+		private void button10_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( -1 ), "JOG 1-" );
+		}
+
+		private void button11_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( 1 ), "JOG 1+" );
+		}
+
+		private void button13_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( -2 ), "JOG 2-" );
+		}
+
+		private void button12_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( 2 ), "JOG 2+" );
+		}
+
+		private void button15_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( -3 ), "JOG 3-" );
+		}
+
+		private void button14_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( 3 ), "JOG 3+" );
+		}
+
+		private void button17_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( -4 ), "JOG 4-" );
+		}
+
+		private void button16_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( 4 ), "JOG 4+" );
+		}
+
+		private void button19_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( -5 ), "JOG 5-" );
+		}
+
+		private void button18_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( 5 ), "JOG 5+" );
+		}
+
+		private void button21_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( -6 ), "JOG 6-" );
+		}
+
+		private void button20_Click( object sender, EventArgs e )
+		{
+			RenderJogResult( yamahaRCX.JogXY( 6 ), "JOG 6+" );
 		}
 	}
 }

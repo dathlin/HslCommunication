@@ -31,6 +31,7 @@ namespace HslCommunicationDemo.Light
 		{
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox5 = new System.Windows.Forms.CheckBox();
 			this.label24 = new System.Windows.Forms.Label();
 			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -98,7 +99,6 @@ namespace HslCommunicationDemo.Light
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.checkBox5 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -139,11 +139,21 @@ namespace HslCommunicationDemo.Light
 			this.panel1.Controls.Add(this.label27);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
-			this.panel1.Location = new System.Drawing.Point(12, 40);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 66);
+			this.panel1.Size = new System.Drawing.Size(997, 66);
 			this.panel1.TabIndex = 4;
+			// 
+			// checkBox5
+			// 
+			this.checkBox5.AutoSize = true;
+			this.checkBox5.Location = new System.Drawing.Point(601, 11);
+			this.checkBox5.Name = "checkBox5";
+			this.checkBox5.Size = new System.Drawing.Size(84, 21);
+			this.checkBox5.TabIndex = 42;
+			this.checkBox5.Text = "RtsEnable";
+			this.checkBox5.UseVisualStyleBackColor = true;
 			// 
 			// label24
 			// 
@@ -276,15 +286,15 @@ namespace HslCommunicationDemo.Light
 			this.panel2.Controls.Add(this.textBox12);
 			this.panel2.Controls.Add(this.groupBox2);
 			this.panel2.Controls.Add(this.groupBox1);
-			this.panel2.Location = new System.Drawing.Point(12, 113);
+			this.panel2.Location = new System.Drawing.Point(3, 104);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 528);
+			this.panel2.Size = new System.Drawing.Size(997, 539);
 			this.panel2.TabIndex = 5;
 			// 
 			// label28
 			// 
 			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(13, 372);
+			this.label28.Location = new System.Drawing.Point(4, 372);
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(44, 17);
 			this.label28.TabIndex = 3;
@@ -294,15 +304,17 @@ namespace HslCommunicationDemo.Light
 			// 
 			this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-			this.textBox12.Location = new System.Drawing.Point(11, 392);
+			this.textBox12.Location = new System.Drawing.Point(3, 392);
 			this.textBox12.Multiline = true;
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox12.Size = new System.Drawing.Size(955, 131);
+			this.textBox12.Size = new System.Drawing.Size(989, 142);
 			this.textBox12.TabIndex = 2;
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.button4);
 			this.groupBox2.Controls.Add(this.panel4);
 			this.groupBox2.Controls.Add(this.panel3);
@@ -318,9 +330,9 @@ namespace HslCommunicationDemo.Light
 			this.groupBox2.Controls.Add(this.textBox14);
 			this.groupBox2.Controls.Add(this.label22);
 			this.groupBox2.Controls.Add(this.label23);
-			this.groupBox2.Location = new System.Drawing.Point(10, 165);
+			this.groupBox2.Location = new System.Drawing.Point(3, 165);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(955, 202);
+			this.groupBox2.Size = new System.Drawing.Size(985, 202);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Write";
@@ -568,6 +580,8 @@ namespace HslCommunicationDemo.Light
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.textBox15);
 			this.groupBox1.Controls.Add(this.label29);
 			this.groupBox1.Controls.Add(this.button3);
@@ -592,9 +606,9 @@ namespace HslCommunicationDemo.Light
 			this.groupBox1.Controls.Add(this.textBox1);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Location = new System.Drawing.Point(10, 3);
+			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(955, 156);
+			this.groupBox1.Size = new System.Drawing.Size(985, 156);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Read";
@@ -800,16 +814,6 @@ namespace HslCommunicationDemo.Light
 			this.label2.Size = new System.Drawing.Size(32, 17);
 			this.label2.TabIndex = 0;
 			this.label2.Text = "颜色";
-			// 
-			// checkBox5
-			// 
-			this.checkBox5.AutoSize = true;
-			this.checkBox5.Location = new System.Drawing.Point(601, 11);
-			this.checkBox5.Name = "checkBox5";
-			this.checkBox5.Size = new System.Drawing.Size(84, 21);
-			this.checkBox5.TabIndex = 42;
-			this.checkBox5.Text = "RtsEnable";
-			this.checkBox5.UseVisualStyleBackColor = true;
 			// 
 			// FormShineInLight
 			// 

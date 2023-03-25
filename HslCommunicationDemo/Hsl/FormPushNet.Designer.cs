@@ -65,10 +65,10 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(14, 38);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 54);
+			this.panel1.Size = new System.Drawing.Size(997, 54);
 			this.panel1.TabIndex = 1;
 			// 
 			// textBox3
@@ -161,23 +161,30 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.textBox4);
 			this.panel2.Controls.Add(this.label9);
 			this.panel2.Controls.Add(this.label10);
 			this.panel2.Controls.Add(this.label8);
 			this.panel2.Controls.Add(this.label7);
-			this.panel2.Location = new System.Drawing.Point(14, 99);
+			this.panel2.Location = new System.Drawing.Point(3, 93);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(978, 534);
+			this.panel2.Size = new System.Drawing.Size(997, 550);
 			this.panel2.TabIndex = 12;
 			// 
 			// textBox4
 			// 
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox4.Location = new System.Drawing.Point(11, 69);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(955, 450);
+			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox4.Size = new System.Drawing.Size(977, 470);
 			this.textBox4.TabIndex = 8;
 			// 
 			// label9

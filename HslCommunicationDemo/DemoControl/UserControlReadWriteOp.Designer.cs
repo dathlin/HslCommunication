@@ -29,6 +29,15 @@
 		private void InitializeComponent( )
 		{
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.label15 = new System.Windows.Forms.Label();
+			this.textBox_timer_write_interval = new System.Windows.Forms.TextBox();
+			this.checkBox_write_timer = new System.Windows.Forms.CheckBox();
+			this.comboBox_write_Encoding = new System.Windows.Forms.ComboBox();
+			this.label13 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
@@ -48,12 +57,19 @@
 			this.button_write_short = new System.Windows.Forms.Button();
 			this.button_write_byte = new System.Windows.Forms.Button();
 			this.button_write_bool = new System.Windows.Forms.Button();
-			this.textBox7 = new System.Windows.Forms.TextBox();
+			this.textBox_write_text = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
-			this.textBox8 = new System.Windows.Forms.TextBox();
+			this.textBox_write_address = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.label17 = new System.Windows.Forms.Label();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.label14 = new System.Windows.Forms.Label();
+			this.textBox_read_timer_interval = new System.Windows.Forms.TextBox();
+			this.checkBox_read_timer = new System.Windows.Forms.CheckBox();
+			this.comboBox_read_encoding = new System.Windows.Forms.ComboBox();
+			this.label12 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.textBox5 = new System.Windows.Forms.TextBox();
@@ -72,10 +88,8 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
-			this.label12 = new System.Windows.Forms.Label();
-			this.comboBox_read_encoding = new System.Windows.Forms.ComboBox();
-			this.comboBox_write_Encoding = new System.Windows.Forms.ComboBox();
-			this.label13 = new System.Windows.Forms.Label();
+			this.label21 = new System.Windows.Forms.Label();
+			this.label22 = new System.Windows.Forms.Label();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -83,6 +97,15 @@
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.label21);
+			this.groupBox2.Controls.Add(this.label22);
+			this.groupBox2.Controls.Add(this.label18);
+			this.groupBox2.Controls.Add(this.label16);
+			this.groupBox2.Controls.Add(this.label20);
+			this.groupBox2.Controls.Add(this.groupBox4);
+			this.groupBox2.Controls.Add(this.label15);
+			this.groupBox2.Controls.Add(this.textBox_timer_write_interval);
+			this.groupBox2.Controls.Add(this.checkBox_write_timer);
 			this.groupBox2.Controls.Add(this.comboBox_write_Encoding);
 			this.groupBox2.Controls.Add(this.label13);
 			this.groupBox2.Controls.Add(this.label5);
@@ -104,23 +127,110 @@
 			this.groupBox2.Controls.Add(this.button_write_short);
 			this.groupBox2.Controls.Add(this.button_write_byte);
 			this.groupBox2.Controls.Add(this.button_write_bool);
-			this.groupBox2.Controls.Add(this.textBox7);
+			this.groupBox2.Controls.Add(this.textBox_write_text);
 			this.groupBox2.Controls.Add(this.label9);
-			this.groupBox2.Controls.Add(this.textBox8);
+			this.groupBox2.Controls.Add(this.textBox_write_address);
 			this.groupBox2.Controls.Add(this.label10);
 			this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.groupBox2.Location = new System.Drawing.Point(535, 0);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(419, 234);
+			this.groupBox2.Size = new System.Drawing.Size(419, 270);
 			this.groupBox2.TabIndex = 3;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "单数据写入测试";
 			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.ForeColor = System.Drawing.Color.Gray;
+			this.label18.Location = new System.Drawing.Point(55, 219);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(34, 17);
+			this.label18.TabIndex = 34;
+			this.label18.Text = "- ms";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.ForeColor = System.Drawing.Color.Gray;
+			this.label16.Location = new System.Drawing.Point(205, 247);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(180, 17);
+			this.label16.TabIndex = 32;
+			this.label16.Text = "动态写入1-100，值输入 {1:100}";
+			this.label16.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.ForeColor = System.Drawing.Color.Gray;
+			this.label20.Location = new System.Drawing.Point(9, 219);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(41, 17);
+			this.label20.TabIndex = 33;
+			this.label20.Text = "Ave：";
+			// 
+			// groupBox4
+			// 
+			this.groupBox4.Location = new System.Drawing.Point(6, 237);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(407, 2);
+			this.groupBox4.TabIndex = 31;
+			this.groupBox4.TabStop = false;
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.ForeColor = System.Drawing.Color.Gray;
+			this.label15.Location = new System.Drawing.Point(174, 247);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(25, 17);
+			this.label15.TabIndex = 28;
+			this.label15.Text = "ms";
+			// 
+			// textBox_timer_write_interval
+			// 
+			this.textBox_timer_write_interval.Location = new System.Drawing.Point(101, 243);
+			this.textBox_timer_write_interval.Name = "textBox_timer_write_interval";
+			this.textBox_timer_write_interval.Size = new System.Drawing.Size(72, 23);
+			this.textBox_timer_write_interval.TabIndex = 30;
+			this.textBox_timer_write_interval.Text = "1000";
+			// 
+			// checkBox_write_timer
+			// 
+			this.checkBox_write_timer.AutoSize = true;
+			this.checkBox_write_timer.Location = new System.Drawing.Point(6, 245);
+			this.checkBox_write_timer.Name = "checkBox_write_timer";
+			this.checkBox_write_timer.Size = new System.Drawing.Size(75, 21);
+			this.checkBox_write_timer.TabIndex = 29;
+			this.checkBox_write_timer.Text = "定时写入";
+			this.checkBox_write_timer.UseVisualStyleBackColor = true;
+			// 
+			// comboBox_write_Encoding
+			// 
+			this.comboBox_write_Encoding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox_write_Encoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_write_Encoding.FormattingEnabled = true;
+			this.comboBox_write_Encoding.Location = new System.Drawing.Point(329, 205);
+			this.comboBox_write_Encoding.Name = "comboBox_write_Encoding";
+			this.comboBox_write_Encoding.Size = new System.Drawing.Size(84, 25);
+			this.comboBox_write_Encoding.TabIndex = 27;
+			// 
+			// label13
+			// 
+			this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(235, 209);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(44, 17);
+			this.label13.TabIndex = 26;
+			this.label13.Text = "编码：";
+			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.ForeColor = System.Drawing.Color.LightSeaGreen;
-			this.label5.Location = new System.Drawing.Point(168, 209);
+			this.label5.ForeColor = System.Drawing.Color.Gray;
+			this.label5.Location = new System.Drawing.Point(168, 201);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(34, 17);
 			this.label5.TabIndex = 25;
@@ -129,8 +239,8 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.ForeColor = System.Drawing.Color.LightSeaGreen;
-			this.label11.Location = new System.Drawing.Point(122, 209);
+			this.label11.ForeColor = System.Drawing.Color.Gray;
+			this.label11.Location = new System.Drawing.Point(122, 201);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(42, 17);
 			this.label11.TabIndex = 24;
@@ -139,8 +249,8 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.ForeColor = System.Drawing.Color.LightSeaGreen;
-			this.label3.Location = new System.Drawing.Point(55, 209);
+			this.label3.ForeColor = System.Drawing.Color.Gray;
+			this.label3.Location = new System.Drawing.Point(55, 202);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(34, 17);
 			this.label3.TabIndex = 23;
@@ -149,8 +259,8 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.ForeColor = System.Drawing.Color.LightSeaGreen;
-			this.label4.Location = new System.Drawing.Point(9, 209);
+			this.label4.ForeColor = System.Drawing.Color.Gray;
+			this.label4.Location = new System.Drawing.Point(9, 202);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(45, 17);
 			this.label4.TabIndex = 22;
@@ -160,8 +270,8 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label2.ForeColor = System.Drawing.Color.LightSeaGreen;
-			this.label2.Location = new System.Drawing.Point(133, 181);
+			this.label2.ForeColor = System.Drawing.Color.Teal;
+			this.label2.Location = new System.Drawing.Point(133, 177);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(44, 21);
 			this.label2.TabIndex = 21;
@@ -171,8 +281,8 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label1.ForeColor = System.Drawing.Color.LightSeaGreen;
-			this.label1.Location = new System.Drawing.Point(9, 181);
+			this.label1.ForeColor = System.Drawing.Color.Teal;
+			this.label1.Location = new System.Drawing.Point(8, 177);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(122, 21);
 			this.label1.TabIndex = 20;
@@ -190,12 +300,12 @@
 			// 
 			// label19
 			// 
-			this.label19.ForeColor = System.Drawing.Color.Red;
-			this.label19.Location = new System.Drawing.Point(61, 76);
+			this.label19.ForeColor = System.Drawing.Color.IndianRed;
+			this.label19.Location = new System.Drawing.Point(6, 79);
 			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(168, 85);
+			this.label19.Size = new System.Drawing.Size(226, 85);
 			this.label19.TabIndex = 17;
-			this.label19.Text = "注意：值的字符串需要能转化成对应的数据类型\r\n如果是数组：[1,2,3]";
+			this.label19.Text = "注意：值的字符串需要能转化成对应的数据类型\r\n如果是Bool使用 True, False, 0, 1\r\n如果是数组：[1,2,3]";
 			// 
 			// button_write_string
 			// 
@@ -307,14 +417,14 @@
 			this.button_write_bool.UseVisualStyleBackColor = true;
 			this.button_write_bool.Click += new System.EventHandler(this.button_write_bool_Click);
 			// 
-			// textBox7
+			// textBox_write_text
 			// 
-			this.textBox7.Location = new System.Drawing.Point(63, 50);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox7.Size = new System.Drawing.Size(166, 23);
-			this.textBox7.TabIndex = 5;
-			this.textBox7.Text = "False";
+			this.textBox_write_text.Location = new System.Drawing.Point(63, 50);
+			this.textBox_write_text.Name = "textBox_write_text";
+			this.textBox_write_text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_write_text.Size = new System.Drawing.Size(166, 23);
+			this.textBox_write_text.TabIndex = 5;
+			this.textBox_write_text.Text = "False";
 			// 
 			// label9
 			// 
@@ -325,12 +435,12 @@
 			this.label9.TabIndex = 4;
 			this.label9.Text = "值：";
 			// 
-			// textBox8
+			// textBox_write_address
 			// 
-			this.textBox8.Location = new System.Drawing.Point(63, 21);
-			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(166, 23);
-			this.textBox8.TabIndex = 3;
+			this.textBox_write_address.Location = new System.Drawing.Point(63, 21);
+			this.textBox_write_address.Name = "textBox_write_address";
+			this.textBox_write_address.Size = new System.Drawing.Size(166, 23);
+			this.textBox_write_address.TabIndex = 3;
 			// 
 			// label10
 			// 
@@ -343,7 +453,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(3, 199);
+			this.button1.Location = new System.Drawing.Point(3, 206);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(54, 27);
 			this.button1.TabIndex = 18;
@@ -355,6 +465,11 @@
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.label17);
+			this.groupBox1.Controls.Add(this.groupBox3);
+			this.groupBox1.Controls.Add(this.label14);
+			this.groupBox1.Controls.Add(this.textBox_read_timer_interval);
+			this.groupBox1.Controls.Add(this.checkBox_read_timer);
 			this.groupBox1.Controls.Add(this.comboBox_read_encoding);
 			this.groupBox1.Controls.Add(this.label12);
 			this.groupBox1.Controls.Add(this.textBox1);
@@ -379,10 +494,78 @@
 			this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(529, 234);
+			this.groupBox1.Size = new System.Drawing.Size(529, 270);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "单数据读取测试";
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.ForeColor = System.Drawing.Color.Gray;
+			this.label17.Location = new System.Drawing.Point(273, 246);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(46, 17);
+			this.label17.TabIndex = 26;
+			this.label17.Text = "次数: 0";
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Location = new System.Drawing.Point(65, 237);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(457, 2);
+			this.groupBox3.TabIndex = 25;
+			this.groupBox3.TabStop = false;
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.ForeColor = System.Drawing.Color.Gray;
+			this.label14.Location = new System.Drawing.Point(236, 247);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(25, 17);
+			this.label14.TabIndex = 5;
+			this.label14.Text = "ms";
+			// 
+			// textBox_read_timer_interval
+			// 
+			this.textBox_read_timer_interval.Location = new System.Drawing.Point(162, 243);
+			this.textBox_read_timer_interval.Name = "textBox_read_timer_interval";
+			this.textBox_read_timer_interval.Size = new System.Drawing.Size(72, 23);
+			this.textBox_read_timer_interval.TabIndex = 24;
+			this.textBox_read_timer_interval.Text = "1000";
+			// 
+			// checkBox_read_timer
+			// 
+			this.checkBox_read_timer.AutoSize = true;
+			this.checkBox_read_timer.Location = new System.Drawing.Point(63, 245);
+			this.checkBox_read_timer.Name = "checkBox_read_timer";
+			this.checkBox_read_timer.Size = new System.Drawing.Size(75, 21);
+			this.checkBox_read_timer.TabIndex = 23;
+			this.checkBox_read_timer.Text = "定时读取";
+			this.checkBox_read_timer.UseVisualStyleBackColor = true;
+			// 
+			// comboBox_read_encoding
+			// 
+			this.comboBox_read_encoding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox_read_encoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_read_encoding.FormattingEnabled = true;
+			this.comboBox_read_encoding.Location = new System.Drawing.Point(436, 205);
+			this.comboBox_read_encoding.Name = "comboBox_read_encoding";
+			this.comboBox_read_encoding.Size = new System.Drawing.Size(84, 25);
+			this.comboBox_read_encoding.TabIndex = 22;
+			// 
+			// label12
+			// 
+			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(342, 209);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(44, 17);
+			this.label12.TabIndex = 21;
+			this.label12.Text = "编码：";
 			// 
 			// textBox1
 			// 
@@ -571,45 +754,25 @@
 			this.label6.TabIndex = 2;
 			this.label6.Text = "地址：";
 			// 
-			// label12
+			// label21
 			// 
-			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(342, 209);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(44, 17);
-			this.label12.TabIndex = 21;
-			this.label12.Text = "编码：";
+			this.label21.AutoSize = true;
+			this.label21.ForeColor = System.Drawing.Color.Gray;
+			this.label21.Location = new System.Drawing.Point(168, 219);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(13, 17);
+			this.label21.TabIndex = 36;
+			this.label21.Text = "-";
 			// 
-			// comboBox_read_encoding
+			// label22
 			// 
-			this.comboBox_read_encoding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBox_read_encoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox_read_encoding.FormattingEnabled = true;
-			this.comboBox_read_encoding.Location = new System.Drawing.Point(436, 205);
-			this.comboBox_read_encoding.Name = "comboBox_read_encoding";
-			this.comboBox_read_encoding.Size = new System.Drawing.Size(84, 25);
-			this.comboBox_read_encoding.TabIndex = 22;
-			// 
-			// comboBox_write_Encoding
-			// 
-			this.comboBox_write_Encoding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBox_write_Encoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox_write_Encoding.FormattingEnabled = true;
-			this.comboBox_write_Encoding.Location = new System.Drawing.Point(329, 205);
-			this.comboBox_write_Encoding.Name = "comboBox_write_Encoding";
-			this.comboBox_write_Encoding.Size = new System.Drawing.Size(84, 25);
-			this.comboBox_write_Encoding.TabIndex = 27;
-			// 
-			// label13
-			// 
-			this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(235, 209);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(44, 17);
-			this.label13.TabIndex = 26;
-			this.label13.Text = "编码：";
+			this.label22.AutoSize = true;
+			this.label22.ForeColor = System.Drawing.Color.Gray;
+			this.label22.Location = new System.Drawing.Point(122, 219);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(43, 17);
+			this.label22.TabIndex = 35;
+			this.label22.Text = "Tick：";
 			// 
 			// UserControlReadWriteOp
 			// 
@@ -617,7 +780,7 @@
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "UserControlReadWriteOp";
-			this.Size = new System.Drawing.Size(954, 237);
+			this.Size = new System.Drawing.Size(954, 273);
 			this.Load += new System.EventHandler(this.UserControlReadWriteOp_Load);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
@@ -642,9 +805,9 @@
 		private System.Windows.Forms.Button button_write_short;
 		private System.Windows.Forms.Button button_write_byte;
 		private System.Windows.Forms.Button button_write_bool;
-		private System.Windows.Forms.TextBox textBox7;
+		private System.Windows.Forms.TextBox textBox_write_text;
 		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.TextBox textBox8;
+		private System.Windows.Forms.TextBox textBox_write_address;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.TextBox textBox5;
@@ -677,5 +840,19 @@
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.ComboBox comboBox_read_encoding;
 		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.GroupBox groupBox4;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.TextBox textBox_timer_write_interval;
+		private System.Windows.Forms.CheckBox checkBox_write_timer;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.TextBox textBox_read_timer_interval;
+		private System.Windows.Forms.CheckBox checkBox_read_timer;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.Label label22;
 	}
 }

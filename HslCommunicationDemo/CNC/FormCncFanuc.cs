@@ -457,7 +457,7 @@ namespace HslCommunicationDemo
 		}
 		private void button18_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox3.Text, out int address ))
+			if(!int.TryParse( textBox3.Text, out int address ))
 			{
 				MessageBox.Show( "宏变量地址输入错误！" );
 				return;
@@ -470,6 +470,32 @@ namespace HslCommunicationDemo
 			else
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
+
+		private void button36_Click( object sender, EventArgs e )
+		{
+			// 写数据到宏变量
+			if (!int.TryParse( textBox3.Text, out int address ))
+			{
+				MessageBox.Show( "宏变量地址输入错误！" );
+				return;
+			}
+
+			if (!double.TryParse(textBox4.Text, out double value ))
+			{
+				MessageBox.Show( "写入宏变量的值输入错误！" );
+				return;
+			}
+
+			OperateResult read = fanuc.WriteSystemMacroValue( address, new double[] { value } );
+			if (read.IsSuccess)
+			{
+				MessageBox.Show( "Write Success!"  );
+			}
+			else
+			{
+				MessageBox.Show( "Write Failed:" + read.ToMessageShowString( ) );
 			}
 		}
 
@@ -748,6 +774,7 @@ namespace HslCommunicationDemo
 			fanuc.OperatePath = short.Parse( textBox_op_path.Text );
 			MessageBox.Show( "Success!" );
 		}
+
 	}
 
 
