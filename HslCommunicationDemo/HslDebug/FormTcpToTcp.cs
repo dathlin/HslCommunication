@@ -80,6 +80,11 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
+			if (!int.TryParse( textBox_cache_size.Text, out int cacheSize ))
+			{
+				MessageBox.Show( Program.Language == 1 ? "缓存大小输入错误！" : "Cache size input error" );
+				return;
+			}
 			if (!int.TryParse( textBox2.Text, out int remotePort ))
 			{
 				MessageBox.Show( Program.Language == 1 ? "端口号输入错误！" : "IpAddress port input error" );
@@ -92,6 +97,7 @@ namespace HslCommunicationDemo
 				tcpForward.LogMsgFormatBinary = checkBox1.Checked;
 				tcpForward.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				tcpForward.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+				tcpForward.CacheSize = cacheSize;
 				tcpForward.ServerStart( );
 
 				button1.Enabled = false;

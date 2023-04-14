@@ -41,8 +41,9 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -52,6 +53,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_EnableWriteBitToWordRegister);
 			this.panel1.Controls.Add(this.comboBox2);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.checkBox1);
@@ -66,7 +68,7 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 46);
+			this.panel1.Size = new System.Drawing.Size(997, 62);
 			this.panel1.TabIndex = 0;
 			// 
 			// comboBox2
@@ -183,11 +185,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteDevice1);
-			this.panel2.Location = new System.Drawing.Point(3, 85);
+			this.panel2.Location = new System.Drawing.Point(3, 101);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 559);
+			this.panel2.Size = new System.Drawing.Size(997, 543);
 			this.panel2.TabIndex = 1;
+			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 541);
+			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// userControlHead1
 			// 
@@ -204,14 +215,15 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// userControlReadWriteDevice1
+			// checkBox_EnableWriteBitToWordRegister
 			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 557);
-			this.userControlReadWriteDevice1.TabIndex = 0;
+			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
+			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(329, 35);
+			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
+			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
+			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 41;
+			this.checkBox_EnableWriteBitToWordRegister.Text = "Enable Write Bit To Word Register";
+			this.checkBox_EnableWriteBitToWordRegister.UseVisualStyleBackColor = true;
 			// 
 			// FormMelsec3COverTcp
 			// 
@@ -253,5 +265,6 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox comboBox2;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
+		private System.Windows.Forms.CheckBox checkBox_EnableWriteBitToWordRegister;
 	}
 }

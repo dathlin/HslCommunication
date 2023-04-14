@@ -38,8 +38,9 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -49,6 +50,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_EnableWriteBitToWordRegister);
 			this.panel1.Controls.Add(this.label22);
 			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
@@ -60,7 +62,7 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 45);
+			this.panel1.Size = new System.Drawing.Size(997, 61);
 			this.panel1.TabIndex = 0;
 			// 
 			// label22
@@ -103,7 +105,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(305, 9);
+			this.textBox2.Location = new System.Drawing.Point(305, 5);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(141, 23);
 			this.textBox2.TabIndex = 3;
@@ -112,7 +114,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(251, 12);
+			this.label3.Location = new System.Drawing.Point(251, 8);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -120,16 +122,16 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(62, 9);
+			this.textBox1.Location = new System.Drawing.Point(62, 5);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(141, 23);
+			this.textBox1.Size = new System.Drawing.Size(164, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "192.168.0.100";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 12);
+			this.label1.Location = new System.Drawing.Point(8, 8);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 17);
 			this.label1.TabIndex = 0;
@@ -142,11 +144,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteDevice1);
-			this.panel2.Location = new System.Drawing.Point(3, 83);
+			this.panel2.Location = new System.Drawing.Point(3, 100);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 559);
+			this.panel2.Size = new System.Drawing.Size(997, 542);
 			this.panel2.TabIndex = 1;
+			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 540);
+			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// userControlHead1
 			// 
@@ -163,14 +174,15 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// userControlReadWriteDevice1
+			// checkBox_EnableWriteBitToWordRegister
 			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 557);
-			this.userControlReadWriteDevice1.TabIndex = 0;
+			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
+			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(254, 34);
+			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
+			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
+			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 11;
+			this.checkBox_EnableWriteBitToWordRegister.Text = "Enable Write Bit To Word Register";
+			this.checkBox_EnableWriteBitToWordRegister.UseVisualStyleBackColor = true;
 			// 
 			// FormKeyenceAscii
 			// 
@@ -209,5 +221,6 @@
         private System.Windows.Forms.Label label21;
         private DemoControl.UserControlHead userControlHead1;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
+		private System.Windows.Forms.CheckBox checkBox_EnableWriteBitToWordRegister;
 	}
 }

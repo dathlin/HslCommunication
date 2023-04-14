@@ -29,6 +29,7 @@ namespace HslCommunicationDemo.Robot
 				// 连接
 				yamahaRCX = new YamahaRCX( textBox1.Text, int.Parse( textBox2.Text ) );
 				yamahaRCX.ConnectTimeOut = 2000;
+				yamahaRCX.LogNet = this.LogNet;                                                // 设置之后支持界面显示日志信息
 
 				button1.Enabled = false;
 				OperateResult connect = await yamahaRCX.ConnectServerAsync( );

@@ -44,7 +44,7 @@ namespace HslCommunicationDemo.HslDebug
 			TreeNode melsec = new TreeNode( "Melsec" );
 			AddTreeChild( melsec, "Qna3E-Binary", ( address, length ) =>
 			{
-				OperateResult<McAddressData> addressResult = melsec1.McAnalysisAddress( address, length );
+				OperateResult<McAddressData> addressResult = melsec1.McAnalysisAddress( address, length, true );
 				if (!addressResult.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( addressResult );
 
 				byte[] command = McBinaryHelper.BuildReadMcCoreCommand( addressResult.Content, true );
@@ -52,7 +52,7 @@ namespace HslCommunicationDemo.HslDebug
 			},
 			( address, length ) =>
 			{
-				OperateResult<McAddressData> addressResult = melsec1.McAnalysisAddress( address, length );
+				OperateResult<McAddressData> addressResult = melsec1.McAnalysisAddress( address, length, true );
 				if (!addressResult.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( addressResult );
 
 				byte[] command = McBinaryHelper.BuildReadMcCoreCommand( addressResult.Content, false );
@@ -60,7 +60,7 @@ namespace HslCommunicationDemo.HslDebug
 			} );
 			AddTreeChild( melsec, "Qna3E-Ascii", ( address, length ) =>
 			{
-				OperateResult<McAddressData> addressResult = melsec1.McAnalysisAddress( address, length );
+				OperateResult<McAddressData> addressResult = melsec1.McAnalysisAddress( address, length, true );
 				if (!addressResult.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( addressResult );
 
 				byte[] command = McAsciiHelper.BuildAsciiReadMcCoreCommand( addressResult.Content, true );
@@ -68,7 +68,7 @@ namespace HslCommunicationDemo.HslDebug
 			},
 			( address, length ) =>
 			{
-				OperateResult<McAddressData> addressResult = melsec1.McAnalysisAddress( address, length );
+				OperateResult<McAddressData> addressResult = melsec1.McAnalysisAddress( address, length, true );
 				if (!addressResult.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( addressResult );
 
 				byte[] command = McAsciiHelper.BuildAsciiReadMcCoreCommand( addressResult.Content, false );

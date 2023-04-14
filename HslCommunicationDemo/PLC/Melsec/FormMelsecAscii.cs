@@ -52,6 +52,10 @@ namespace HslCommunicationDemo
 
 				label22.Text = "M100 D100 X1A0 Y1A0";
 			}
+			else
+			{
+				checkBox_EnableWriteBitToWordRegister.Text = "支持使用位写入字寄存器(实际读字，修改位，写字)";
+			}
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -73,6 +77,7 @@ namespace HslCommunicationDemo
 			melsec_net.Port = port;
 			melsec_net.ConnectClose( );
 			melsec_net.LogNet = LogNet;
+			melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
 
 			button1.Enabled = false;
 			OperateResult connect = await melsec_net.ConnectServerAsync( );
@@ -118,6 +123,7 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( "EnableWriteBitToWordRegister", checkBox_EnableWriteBitToWordRegister.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -125,6 +131,7 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

@@ -29,6 +29,9 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_cache_size = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
@@ -42,7 +45,6 @@
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -52,6 +54,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_cache_size);
+			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.listBox1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
@@ -67,9 +71,38 @@
 			this.panel1.Size = new System.Drawing.Size(995, 67);
 			this.panel1.TabIndex = 7;
 			// 
+			// textBox_cache_size
+			// 
+			this.textBox_cache_size.Location = new System.Drawing.Point(265, 35);
+			this.textBox_cache_size.Name = "textBox_cache_size";
+			this.textBox_cache_size.Size = new System.Drawing.Size(65, 23);
+			this.textBox_cache_size.TabIndex = 34;
+			this.textBox_cache_size.Text = "2048";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(183, 38);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(82, 17);
+			this.label4.TabIndex = 33;
+			this.label4.Text = "Cache Size：";
+			// 
+			// listBox1
+			// 
+			this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.listBox1.BackColor = System.Drawing.Color.LightGray;
+			this.listBox1.FormattingEnabled = true;
+			this.listBox1.ItemHeight = 17;
+			this.listBox1.Location = new System.Drawing.Point(568, 5);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.Size = new System.Drawing.Size(422, 55);
+			this.listBox1.TabIndex = 32;
+			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(438, 5);
+			this.textBox2.Location = new System.Drawing.Point(493, 5);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 23;
@@ -78,7 +111,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(339, 8);
+			this.label3.Location = new System.Drawing.Point(394, 8);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(93, 17);
 			this.label3.TabIndex = 22;
@@ -88,7 +121,7 @@
 			// 
 			this.textBox3.Location = new System.Drawing.Point(82, 5);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(249, 23);
+			this.textBox3.Size = new System.Drawing.Size(295, 23);
 			this.textBox3.TabIndex = 21;
 			this.textBox3.Text = "192.168.0.100";
 			// 
@@ -105,7 +138,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(81, 35);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(118, 23);
+			this.textBox1.Size = new System.Drawing.Size(90, 23);
 			this.textBox1.TabIndex = 19;
 			this.textBox1.Text = "2000";
 			// 
@@ -121,9 +154,9 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(368, 32);
+			this.button2.Location = new System.Drawing.Point(453, 32);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(135, 28);
+			this.button2.Size = new System.Drawing.Size(108, 28);
 			this.button2.TabIndex = 5;
 			this.button2.Text = "关闭转换";
 			this.button2.UseVisualStyleBackColor = true;
@@ -131,9 +164,9 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(240, 32);
+			this.button1.Location = new System.Drawing.Point(346, 32);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(122, 28);
+			this.button1.Size = new System.Drawing.Size(101, 28);
 			this.button1.TabIndex = 4;
 			this.button1.Text = "打开转换";
 			this.button1.UseVisualStyleBackColor = true;
@@ -162,7 +195,7 @@
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(135, 21);
 			this.checkBox1.TabIndex = 22;
-			this.checkBox1.Text = "是否使用二进制通信";
+			this.checkBox1.Text = "是否使用二进制显示";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
 			// textBox6
@@ -200,18 +233,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// listBox1
-			// 
-			this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.listBox1.BackColor = System.Drawing.Color.LightGray;
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.ItemHeight = 17;
-			this.listBox1.Location = new System.Drawing.Point(568, 5);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(422, 55);
-			this.listBox1.TabIndex = 32;
 			// 
 			// FormTcpToTcp
 			// 
@@ -252,5 +273,7 @@
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.TextBox textBox_cache_size;
+		private System.Windows.Forms.Label label4;
 	}
 }

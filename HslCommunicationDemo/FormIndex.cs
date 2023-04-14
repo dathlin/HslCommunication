@@ -35,26 +35,19 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.5.0
-1. DLT698: 698协议新增属性UseSecurityResquest，设置是否使用安全模式来通信，默认true，影响范围包括串口，透传，网口类，特殊的仪表需要设置 false。
-2. DLT698: 新增写入时间数据到地址地址的接口，WriteDateTime( string address, DateTime time )，新增698协议的接口 IDlt698
-3. FanucInterfaceNet: Fanuc机器人对象读取机器人数据时，FanucData解析字符串数据的编码可以手动调整指定。
-4. MelsecFxLinksHelper: 三菱的计算机链接协议里，如果传入的报文以ENQ开头的，则认为传入原始包，不进行封包处理。
-5. OmronFinsAddress: 欧姆龙的Fins协议支持CF地址，可以读取脉冲信号，地址一秒脉冲地址示例：CF1.2  新增IHostLinkCMode, IOmronFins接口。
-6. 新增三菱的编程口接口 IMelsecFxSerial，新增西门子PPI接口 ISiemensPPI，永宏编程提炼接口 IFatekProgram
-7. AllenBradleyNet: 批量读取地址数组的方法，传入长度数组参数由 int 改为 ushort 类型，所有的CIP协议实现了统一的IReadWriteCip接口。（可能不兼容）
-8. FanucSeries0i: ReadProgram方法取消再次接收0x18的命令，因为在 32i 的机子上是会触发超时接收。
-9. YamahaRCX: 雅马哈机器人新增 JogXY 接口，使用微动的方式操作六轴的动作信息，在demo界面上支持JOG的测试。
-10. AllenBradleyHelper: 修复CIP协议创建命令为0x4D写入数据报文时，数据长度过大导致溢出的bug，在解析返回结果数据时增加错误捕获操作。
-11. Modbus: 所有Modbus的客户端以及RTU主站类，接口IModbus新增使用功能码0x17的一条报文实现读写方法ReadWrite，虚拟服务器支持该功能码。
-12. SiemensS7Net: Read( string[] address, ushort[] length )方法不仅仅根据19个长度切割，还根据长度之和是否满足200字节切割。
-13. FinsTcp: Fins协议读取bool时，发现返回数据长度小于指定长度时，自动偏移地址并读取剩余数据，然后返回全部给调用者。
-14. SimpleHybirdLock: 通信的混合锁新增当前锁对象等待的计数属性：LockingTick，可以用来监视锁对象的竞争情况。
-15. Demo: TCP转TCP的支持二进制和ASCII格式的转换显示，完善MegMeet，Lsis的添加，批量读取控件增加提示功能。
-16. HslCommunication: 大部分PLC通信的消息解析代码增加合法性验证，并且增加异常捕获，防止及其特殊的情况导致系统奔溃。
-17. Demo: Demo程序大升级，测试界面支持定时读取，定时写入，写入支持动态数据变化。批量读取，报文读取，特殊功能测试优化，更加便捷。
-18. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
-19. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.5.1
+1. MelsecFxSerial: MelsecFxSerial的报文日志记录格式调整为ASCII格式，当设备的日志实例化时，就会自动当前的通信日志。
+2. IReadWriteMc,IReadWriteA3C: 新增属性EnableWriteBitToWordRegister，当开启后支持往D寄存器写入位数据，实现方式为读字，修改位，写字操作，具体风险查看该属性说明。
+3. KeyenceMcNet, KeyenceMcAsciiNet: 基恩士的MC协议的通信，修复ZR地址因为地址进制导致读取不到正确地址的bug，现在使用16进制地址表示。
+4. KeyenceMcNet, KeyenceMcAsciiNet: 地址兼容了基恩士自己的地址格式，可以直接输入 DM100, FM100, EM100, MR015, 或是直接 MR1.2 等
+5. HslHelper: 新增属性LockLimit表示竞争锁上限(默认1000)，NetworkDoubleBase,NetworkUdpBase,SerialBase检测当锁竞争达LockLimit次时，直接返回失败，不在增加竞争。
+6. HslTimeOut: 检查socket超时部分的功能代码，当处于linux系统下时，在确认超时close之前，增加一个 Disconnect操作，解决特殊情况close会卡时间的bug。
+7. HslHelper: HslHelper新增属性UseAsyncLock, 标记本通信库的单个通信对象在异步通信的时候是否使用异步锁，默认True, 当使用控制台或是纯后台线程采集时，配置 False 更好。
+8. Modbus: 在写入单个的short及ushort值时，默认使用06功能码，现在支持如果在地址里使用w标记，例如 w=16;100  时，写入时报文就使用16功能码。
+9. TcpForward: 新增属性CacheSize，表示中转时候的数据缓存大小，默认是2048
+10. Net2.0, 3.5, Standard项目添加缺失的类：VigorServer, OmronHostLinkCModeServer, MelsecFxLinksServer, KeyenceDLEN1
+11. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
+12. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

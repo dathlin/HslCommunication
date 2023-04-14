@@ -99,7 +99,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + " : " + connect.Message );
 				}
 			}
 			catch (Exception ex)
@@ -225,6 +225,7 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( "EnableWriteBitToWordRegister", this.checkBox_EnableWriteBitToWordRegister.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -232,6 +233,7 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
