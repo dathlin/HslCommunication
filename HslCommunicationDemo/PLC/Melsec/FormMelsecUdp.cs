@@ -79,6 +79,7 @@ namespace HslCommunicationDemo
 			melsec_net.Port = port;
 			melsec_net.LogNet = LogNet;
 			melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
+			//melsec_net.GetPipeSocket( ).SetMultiPorts( new int[] { port, 6001 } );
 			button2.Enabled = true;
 			button1.Enabled = false;
 			panel2.Enabled = true;

@@ -29,10 +29,10 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_SslTls = new System.Windows.Forms.CheckBox();
 			this.checkBox_sslSecure = new System.Windows.Forms.CheckBox();
 			this.button_certificate = new System.Windows.Forms.Button();
 			this.textBox_certificate = new System.Windows.Forms.TextBox();
-			this.label14 = new System.Windows.Forms.Label();
 			this.button_will_topic = new System.Windows.Forms.Button();
 			this.checkBox_rsa = new System.Windows.Forms.CheckBox();
 			this.textBox6 = new System.Windows.Forms.TextBox();
@@ -51,6 +51,7 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.checkBox_publish_isHex = new System.Windows.Forms.CheckBox();
 			this.button3 = new System.Windows.Forms.Button();
@@ -93,10 +94,10 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_SslTls);
 			this.panel1.Controls.Add(this.checkBox_sslSecure);
 			this.panel1.Controls.Add(this.button_certificate);
 			this.panel1.Controls.Add(this.textBox_certificate);
-			this.panel1.Controls.Add(this.label14);
 			this.panel1.Controls.Add(this.button_will_topic);
 			this.panel1.Controls.Add(this.checkBox_rsa);
 			this.panel1.Controls.Add(this.textBox6);
@@ -115,16 +116,27 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.label14);
 			this.panel1.Location = new System.Drawing.Point(4, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(996, 87);
 			this.panel1.TabIndex = 7;
 			// 
+			// checkBox_SslTls
+			// 
+			this.checkBox_SslTls.AutoSize = true;
+			this.checkBox_SslTls.Location = new System.Drawing.Point(11, 62);
+			this.checkBox_SslTls.Name = "checkBox_SslTls";
+			this.checkBox_SslTls.Size = new System.Drawing.Size(72, 21);
+			this.checkBox_SslTls.TabIndex = 37;
+			this.checkBox_SslTls.Text = "SSL/TLS";
+			this.checkBox_SslTls.UseVisualStyleBackColor = true;
+			// 
 			// checkBox_sslSecure
 			// 
 			this.checkBox_sslSecure.AutoSize = true;
-			this.checkBox_sslSecure.Location = new System.Drawing.Point(723, 63);
+			this.checkBox_sslSecure.Location = new System.Drawing.Point(742, 63);
 			this.checkBox_sslSecure.Name = "checkBox_sslSecure";
 			this.checkBox_sslSecure.Size = new System.Drawing.Size(181, 21);
 			this.checkBox_sslSecure.TabIndex = 36;
@@ -133,29 +145,20 @@
 			// 
 			// button_certificate
 			// 
-			this.button_certificate.Location = new System.Drawing.Point(655, 57);
+			this.button_certificate.Location = new System.Drawing.Point(660, 57);
 			this.button_certificate.Name = "button_certificate";
 			this.button_certificate.Size = new System.Drawing.Size(63, 28);
 			this.button_certificate.TabIndex = 35;
-			this.button_certificate.Text = "选择";
+			this.button_certificate.Text = "Select";
 			this.button_certificate.UseVisualStyleBackColor = true;
 			this.button_certificate.Click += new System.EventHandler(this.button_certificate_Click);
 			// 
 			// textBox_certificate
 			// 
-			this.textBox_certificate.Location = new System.Drawing.Point(87, 61);
+			this.textBox_certificate.Location = new System.Drawing.Point(142, 61);
 			this.textBox_certificate.Name = "textBox_certificate";
-			this.textBox_certificate.Size = new System.Drawing.Size(565, 23);
+			this.textBox_certificate.Size = new System.Drawing.Size(510, 23);
 			this.textBox_certificate.TabIndex = 34;
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(20, 63);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(68, 17);
-			this.label14.TabIndex = 33;
-			this.label14.Text = "使用证书：";
 			// 
 			// button_will_topic
 			// 
@@ -170,16 +173,16 @@
 			// checkBox_rsa
 			// 
 			this.checkBox_rsa.AutoSize = true;
-			this.checkBox_rsa.Location = new System.Drawing.Point(591, 9);
+			this.checkBox_rsa.Location = new System.Drawing.Point(616, 7);
 			this.checkBox_rsa.Name = "checkBox_rsa";
-			this.checkBox_rsa.Size = new System.Drawing.Size(192, 21);
+			this.checkBox_rsa.Size = new System.Drawing.Size(168, 21);
 			this.checkBox_rsa.TabIndex = 31;
-			this.checkBox_rsa.Text = "RSA加密 (需要HSL服务器支持)";
+			this.checkBox_rsa.Text = "RSA加密 (需要HSL服务器)";
 			this.checkBox_rsa.UseVisualStyleBackColor = true;
 			// 
 			// textBox6
 			// 
-			this.textBox6.Location = new System.Drawing.Point(529, 7);
+			this.textBox6.Location = new System.Drawing.Point(555, 7);
 			this.textBox6.Name = "textBox6";
 			this.textBox6.Size = new System.Drawing.Size(50, 23);
 			this.textBox6.TabIndex = 19;
@@ -188,7 +191,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(456, 10);
+			this.label11.Location = new System.Drawing.Point(482, 10);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(72, 17);
 			this.label11.TabIndex = 18;
@@ -212,7 +215,7 @@
 			// 
 			// textBox11
 			// 
-			this.textBox11.Location = new System.Drawing.Point(395, 7);
+			this.textBox11.Location = new System.Drawing.Point(423, 7);
 			this.textBox11.Name = "textBox11";
 			this.textBox11.Size = new System.Drawing.Size(54, 23);
 			this.textBox11.TabIndex = 15;
@@ -221,7 +224,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(329, 10);
+			this.label5.Location = new System.Drawing.Point(357, 10);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 17);
 			this.label5.TabIndex = 14;
@@ -231,6 +234,7 @@
 			// 
 			this.textBox10.Location = new System.Drawing.Point(720, 34);
 			this.textBox10.Name = "textBox10";
+			this.textBox10.PasswordChar = '*';
 			this.textBox10.Size = new System.Drawing.Size(196, 23);
 			this.textBox10.TabIndex = 13;
 			// 
@@ -282,7 +286,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(263, 7);
+			this.textBox2.Location = new System.Drawing.Point(299, 7);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(55, 23);
 			this.textBox2.TabIndex = 3;
@@ -291,7 +295,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(209, 10);
+			this.label3.Location = new System.Drawing.Point(245, 10);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -301,7 +305,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(62, 7);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(141, 23);
+			this.textBox1.Size = new System.Drawing.Size(177, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "127.0.0.1";
 			// 
@@ -313,6 +317,15 @@
 			this.label1.Size = new System.Drawing.Size(56, 17);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Ip地址：";
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(89, 64);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(50, 17);
+			this.label14.TabIndex = 33;
+			this.label14.Text = "CA File:";
 			// 
 			// panel2
 			// 
@@ -754,5 +767,6 @@
 		private System.Windows.Forms.TextBox textBox_certificate;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.CheckBox checkBox_sslSecure;
+		private System.Windows.Forms.CheckBox checkBox_SslTls;
 	}
 }

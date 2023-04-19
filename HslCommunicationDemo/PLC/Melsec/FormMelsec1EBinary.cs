@@ -92,7 +92,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)

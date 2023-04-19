@@ -35,19 +35,16 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.5.1
-1. MelsecFxSerial: MelsecFxSerial的报文日志记录格式调整为ASCII格式，当设备的日志实例化时，就会自动当前的通信日志。
-2. IReadWriteMc,IReadWriteA3C: 新增属性EnableWriteBitToWordRegister，当开启后支持往D寄存器写入位数据，实现方式为读字，修改位，写字操作，具体风险查看该属性说明。
-3. KeyenceMcNet, KeyenceMcAsciiNet: 基恩士的MC协议的通信，修复ZR地址因为地址进制导致读取不到正确地址的bug，现在使用16进制地址表示。
-4. KeyenceMcNet, KeyenceMcAsciiNet: 地址兼容了基恩士自己的地址格式，可以直接输入 DM100, FM100, EM100, MR015, 或是直接 MR1.2 等
-5. HslHelper: 新增属性LockLimit表示竞争锁上限(默认1000)，NetworkDoubleBase,NetworkUdpBase,SerialBase检测当锁竞争达LockLimit次时，直接返回失败，不在增加竞争。
-6. HslTimeOut: 检查socket超时部分的功能代码，当处于linux系统下时，在确认超时close之前，增加一个 Disconnect操作，解决特殊情况close会卡时间的bug。
-7. HslHelper: HslHelper新增属性UseAsyncLock, 标记本通信库的单个通信对象在异步通信的时候是否使用异步锁，默认True, 当使用控制台或是纯后台线程采集时，配置 False 更好。
-8. Modbus: 在写入单个的short及ushort值时，默认使用06功能码，现在支持如果在地址里使用w标记，例如 w=16;100  时，写入时报文就使用16功能码。
-9. TcpForward: 新增属性CacheSize，表示中转时候的数据缓存大小，默认是2048
-10. Net2.0, 3.5, Standard项目添加缺失的类：VigorServer, OmronHostLinkCModeServer, MelsecFxLinksServer, KeyenceDLEN1
-11. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
-12. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.5.2
+1. OmronCipNet: 修复写入单个Byte数据对象，或是奇数长度的byte[]时，plc报错31错误码的异常，现在可以正常的写入了。
+2. SiemensS7Net: 西门子批量读取地址数组的方法里，原先总长度按照200字节切割变更为按照自动获取的pdu长度进行切割。
+3. MqttClient: Mqtt客户端的连接类MqttConnectionOptions新增属性UseSSL指示是否开始SSL/TLS加密功能，验证证书时修复服务器名称输入错误导致有些服务器连接失败的bug。
+4. NetworkUdpBase: 优化UDP通信基类，增加设置获取PipeSocket方法, 支持设置多个端口，因网络读取失败时自动切换另一个端口。
+5. Modbus: ModbusRtu设备在提取接收到的报文时，校验数据长度并且如果发现长度太长，则按照标准报文长度切割，即使后面跟0xFF扰码也能正确读取
+6. Memobus, DigitronCPL, MegMeet, Delta 相关的通信类，补全缺失的 MPRC 接口注册功能。
+7. Demo: 三菱相关的PLC测试界面在连接PLC失败的时候，原先只提示连接失败，现在提示更加详细的信息。
+8. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
+9. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

@@ -101,7 +101,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( connect.Message );
+				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message );
 				button1.Enabled = true;
 			}
 		}

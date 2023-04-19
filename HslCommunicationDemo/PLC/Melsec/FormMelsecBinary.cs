@@ -135,7 +135,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( connect.Message + Environment.NewLine + "ErrorCode: " + connect.ErrorCode );
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 					button1.Enabled = true;
 				}
 			}
@@ -176,7 +176,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( connect.Message + Environment.NewLine + "ErrorCode: " + connect.ErrorCode );
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 					button1.Enabled = true;
 				}
 			}

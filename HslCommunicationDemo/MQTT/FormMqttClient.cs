@@ -71,6 +71,11 @@ namespace HslCommunicationDemo
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
+			if (checkBox_rsa.Checked && checkBox_SslTls.Checked)
+			{
+				MessageBox.Show( "无法同时勾选RSA加密通信及SSL加密通信！\r\nIt is not possible to check both RSA encryption and SSL encryption options." );
+				return;
+			}
 			// 连接
 			MqttConnectionOptions options = new MqttConnectionOptions( )
 			{
@@ -79,6 +84,8 @@ namespace HslCommunicationDemo
 				ClientId        = textBox3.Text,
 				KeepAlivePeriod = TimeSpan.FromSeconds(int.Parse(textBox6.Text)),
 				UseRSAProvider  = checkBox_rsa.Checked,
+				CleanSession    = true,
+				UseSSL          = checkBox_SslTls.Checked,
 			};
 			if(!string.IsNullOrEmpty(textBox9.Text) || !string.IsNullOrEmpty( textBox10.Text ))
 			{
@@ -92,7 +99,7 @@ namespace HslCommunicationDemo
 					Payload = Encoding.UTF8.GetBytes( this.mqtt_will_message )
 				};
 			}
-			if (!string.IsNullOrEmpty( this.textBox_certificate.Text )) options.CertificateFile = textBox_certificate.Text;
+			options.CertificateFile = textBox_certificate.Text;
 			options.SSLSecure = checkBox_sslSecure.Checked;
 
 			button1.Enabled = false;
@@ -318,6 +325,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( "certificate", textBox_certificate.Text );
 			element.SetAttributeValue( "sslSecure", checkBox_sslSecure.Checked );
 			element.SetAttributeValue( "rsa", checkBox_rsa.Checked );
+			element.SetAttributeValue( "SSLTLS", checkBox_SslTls.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -335,6 +343,7 @@ namespace HslCommunicationDemo
 			textBox_certificate.Text = element.Attribute( "certificate" ) == null ? string.Empty : element.Attribute( "certificate" ).Value;
 			checkBox_sslSecure.Checked = element.Attribute( "sslSecure" ) == null ? false : bool.Parse( element.Attribute( "sslSecure" ).Value );
 			checkBox_rsa.Checked = element.Attribute( "rsa" ) == null ? false : bool.Parse( element.Attribute( "rsa" ).Value );
+			checkBox_SslTls.Checked = GetXmlValue( element, "SSLTLS", false, bool.Parse );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
