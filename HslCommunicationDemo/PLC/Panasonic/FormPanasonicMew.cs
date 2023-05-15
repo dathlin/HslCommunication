@@ -12,6 +12,7 @@ using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Common;
+using HslCommunicationDemo.PLC.Panasonic;
 
 namespace HslCommunicationDemo
 {
@@ -24,7 +25,7 @@ namespace HslCommunicationDemo
 
 
 		private PanasonicMewtocol panasonicMewtocol = null;
-		private SpecialFeaturesControl control;
+		private MewtocolControl control;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -45,7 +46,7 @@ namespace HslCommunicationDemo
 			}
 
 			Language( Program.Language );
-			control = new SpecialFeaturesControl( );
+			control = new MewtocolControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 

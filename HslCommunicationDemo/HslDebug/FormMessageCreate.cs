@@ -76,7 +76,8 @@ namespace HslCommunicationDemo.HslDebug
 			}, false );
 			AddTreeChild( melsec, "A1E-Binary", ( address, length ) => MelsecA1ENet.BuildReadCommand( address, length, true, 0xFF ).Then( m => OperateResult.CreateSuccessResult( m[0] )), 
 				( address, length ) =>  MelsecA1ENet.BuildReadCommand( address, length, false, 0xFF ).Then( m => OperateResult.CreateSuccessResult( m[0] ) ) );
-			AddTreeChild( melsec, "A1E-Ascii", ( address, length )  => MelsecA1EAsciiNet.BuildReadCommand( address, length, true, 0xFF ), ( address, length ) => MelsecA1EAsciiNet.BuildReadCommand( address, length, false, 0xFF ), false );
+			AddTreeChild( melsec, "A1E-Ascii", ( address, length )  => MelsecA1EAsciiNet.BuildReadCommand( address, length, true, 0xFF ).Then( m => OperateResult.CreateSuccessResult( m[0] )), 
+				( address, length ) => MelsecA1EAsciiNet.BuildReadCommand( address, length, false, 0xFF ).Then( m => OperateResult.CreateSuccessResult( m[0] ) ), false );
 			AddTreeChild( melsec, "FxLinks", ( address, length ) =>
 			{
 				OperateResult<List<byte[]>> command = MelsecFxLinksHelper.BuildReadCommand( melsec2.Station, address, length, true, melsec2.WaittingTime );

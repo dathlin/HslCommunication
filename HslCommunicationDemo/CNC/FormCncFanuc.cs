@@ -471,6 +471,21 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+			//for (int i = 0; i < 10000; i++)
+			//{
+			//	OperateResult<double> read = await fanuc.ReadSystemMacroValueAsync( address + i );
+			//	if (read.IsSuccess)
+			//	{
+			//		textBox8.AppendText( $"{DateTime.Now} [{address + i}] : {read.Content}{Environment.NewLine}" );
+			//		if (read.Content.ToString( ) == "1000") break;
+			//	}
+			//	else
+			//	{
+			//		textBox8.AppendText( $"{DateTime.Now} [{address + i}] : failed{Environment.NewLine}" );
+			//		// MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			//	}
+			//}
+			//textBox8.AppendText( $"{DateTime.Now} Finish{Environment.NewLine}" );
 		}
 
 		private void button36_Click( object sender, EventArgs e )
@@ -704,10 +719,10 @@ namespace HslCommunicationDemo
 				if (fileDirInfo.IsDirectory) return;
 
 				string path = GetPathFromTree( treeNode.Parent );
-				int program = int.Parse( fileDirInfo.Name.Substring( 1 ) );
+				//int program = int.Parse( fileDirInfo.Name.Substring( 1 ) );
 
 				//OperateResult<string> read = fanuc.ReadProgram( program, path );
-				OperateResult<string> read = await fanuc.ReadProgramAsync( program, path );
+				OperateResult<string> read = await fanuc.ReadProgramAsync( fileDirInfo.Name, path );
 				if (read.IsSuccess)
 				{
 					textBox_program.Text = $"Program Content[{path}]：" + Environment.NewLine + read.Content;

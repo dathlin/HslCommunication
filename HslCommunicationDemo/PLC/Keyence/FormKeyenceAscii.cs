@@ -75,6 +75,7 @@ namespace HslCommunicationDemo
 			keyence_net.Port = port;
 			keyence_net.ConnectClose( );
 			keyence_net.LogNet = LogNet;
+			keyence_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
 
 			try
 			{

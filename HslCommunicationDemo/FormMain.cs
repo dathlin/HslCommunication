@@ -100,6 +100,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "vigor",            Properties.Resources.vigor );             // 36
 			imageList.Images.Add( "iec",              Properties.Resources.iec );               // 37
 			imageList.Images.Add( "turck",            Properties.Resources.Turck );             // 38
+			imageList.Images.Add( "toyota",           Properties.Resources.toyota );            // 39
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;

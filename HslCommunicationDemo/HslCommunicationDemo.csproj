@@ -71,11 +71,12 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.5.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.5.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.5.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.5.3\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
-    <Reference Include="HslControls, Version=2.4.1.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\HslControls.2.4.1\lib\net45\HslControls.dll</HintPath>
+    <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -553,8 +554,29 @@
     <Compile Include="PLC\Omron\FinsTcpControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PLC\Omron\FormOmronCipServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Omron\FormOmronCipServer.Designer.cs">
+      <DependentUpon>FormOmronCipServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Omron\HostLinkCModeControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\Panasonic\MewtocolControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\Toyota\FormToyoPucServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Toyota\FormToyoPucServer.Designer.cs">
+      <DependentUpon>FormToyoPucServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Toyota\FormToyoPuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Toyota\FormToyoPuc.Designer.cs">
+      <DependentUpon>FormToyoPuc.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Turck\TurckReaderControl.cs">
       <SubType>UserControl</SubType>
@@ -1972,8 +1994,20 @@
     <EmbeddedResource Include="PLC\Omron\FinsTcpControl.resx">
       <DependentUpon>FinsTcpControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Omron\FormOmronCipServer.resx">
+      <DependentUpon>FormOmronCipServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Omron\HostLinkCModeControl.resx">
       <DependentUpon>HostLinkCModeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Panasonic\MewtocolControl.resx">
+      <DependentUpon>MewtocolControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Toyota\FormToyoPucServer.resx">
+      <DependentUpon>FormToyoPucServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Toyota\FormToyoPuc.resx">
+      <DependentUpon>FormToyoPuc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Turck\TurckReaderControl.resx">
       <DependentUpon>TurckReaderControl.cs</DependentUpon>
@@ -2607,6 +2641,7 @@
     <None Include="img\disconnect.png" />
     <None Include="img\expand.png" />
     <None Include="img\redis_db.png" />
+    <None Include="img\toyota.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

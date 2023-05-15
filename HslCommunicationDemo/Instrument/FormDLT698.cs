@@ -33,6 +33,8 @@ namespace HslCommunicationDemo
 			comboBox1.SelectedIndex = 2;
 
 			comboBox3.DataSource = SerialPort.GetPortNames( );
+			control = new DLT698Control( );
+			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 			try
 			{
 				comboBox3.SelectedIndex = 0;
@@ -40,8 +42,6 @@ namespace HslCommunicationDemo
 			catch
 			{
 				comboBox3.Text = "COM3";
-				control = new DLT698Control( );
-				this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 			}
 
 			Language( Program.Language );
@@ -114,22 +114,28 @@ namespace HslCommunicationDemo
 					 sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
 				 } );
 				dLT698.RtsEnable = checkBox5.Checked;
-				dLT698.Open( );
+				OperateResult open = dLT698.Open( );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					panel2.Enabled = true;
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				panel2.Enabled = true;
+					//userControlReadWriteOp1.SetReadWriteNet( dLT698, "20-00-02-00", false );
 
-				//userControlReadWriteOp1.SetReadWriteNet( dLT698, "20-00-02-00", false );
+					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( dLT698, "20-00-02-00", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( dLT698, "20-00-02-00", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => dLT698.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => dLT698.ReadByApdu( m ), "Apdu", "Apdu Message: 05 01 01 20 10 02 00 00" );
 
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( dLT698, "20-00-02-00", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( dLT698, "20-00-02-00", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => dLT698.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => dLT698.ReadByApdu( m ), "Apdu", "Apdu Message: 05 01 01 20 10 02 00 00" );
-
-				control.SetDevice( dLT698, "20-00-02-00" );
+					control.SetDevice( dLT698, "20-00-02-00" );
+				}
+				else
+				{
+					MessageBox.Show( $"Open [{comboBox3.Text}] failed: " + open.Message );
+				}
 			}
 			catch (Exception ex)
 			{

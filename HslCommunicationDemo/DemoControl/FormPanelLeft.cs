@@ -153,6 +153,7 @@ namespace HslCommunicationDemo.DemoControl
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "Fins Udp", 10, typeof( FormOmronUdp ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "EtherNet/IP(CIP)", 10, typeof( FormOmronCip ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "Connected CIP", 10, typeof( FormOmronConnectedCip ) ) );
+			omronNode.Nodes.Add( GetTreeNodeByIndex( "Omron CIP Server", 10, typeof( FormOmronCipServer ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink 【串口】", 10, typeof( FormOmronHostLink ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink OverTcp", 10, typeof( FormOmronHostLinkOverTcp ) ) );
 			omronNode.Nodes.Add( GetTreeNodeByIndex( "HostLink C-Mode", 10, typeof( FormOmronHostLinkCMode ) ) );
@@ -283,6 +284,12 @@ namespace HslCommunicationDemo.DemoControl
 			YokogawaNode.Nodes.Add( GetTreeNodeByIndex( "Yokogawa Link Tcp", 31, typeof( FormYokogawaLinkTcp ) ) );
 			YokogawaNode.Nodes.Add( GetTreeNodeByIndex( "Yokogawa Link Server", 31, typeof( FormYokogawaLinkServer ) ) );
 			treeView1.Nodes.Add( YokogawaNode );
+
+			// Toyota Plc
+			TreeNode ToyotaNode = new TreeNode( "Toyota Plc[丰田]", 39, 39 );
+			ToyotaNode.Nodes.Add( GetTreeNodeByIndex( "ToyoPuc Tcp", 39, typeof( FormToyoPuc ) ) );
+			ToyotaNode.Nodes.Add( GetTreeNodeByIndex( "ToyoPuc Server", 39, typeof( FormToyoPucServer ) ) );
+			treeView1.Nodes.Add( ToyotaNode );
 
 			// delta Plc
 			TreeNode deltaNode = new TreeNode( "Delta Plc[台达]", 32, 32 );

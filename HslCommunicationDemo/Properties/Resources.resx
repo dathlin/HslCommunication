@@ -232,9 +232,6 @@
   <data name="asp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\asp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="flv" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\FileIcon\flv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Copy_6524" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\Copy_6524.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -274,11 +271,8 @@
   <data name="gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\gif.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="idcard" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\idcard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rb" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\FileIcon\rb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="barcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\barcode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ai" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\ai.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -313,9 +307,6 @@
   <data name="sxd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\sxd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pgp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\FileIcon\pgp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="asc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\asc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -331,9 +322,6 @@
   <data name="tar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\tar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="delta" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\delta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Event_594_exp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\Event_594_exp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -346,9 +334,6 @@
   <data name="rtf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\rtf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\FileIcon\exe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="divx" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\divx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -360,6 +345,9 @@
   </data>
   <data name="keyence" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\keyence.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="action_Cancel_16xLG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\action_Cancel_16xLG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\rar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -379,6 +367,9 @@
   <data name="file" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\file.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="js" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\FileIcon\js.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="htm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\htm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -396,9 +387,6 @@
   </data>
   <data name="sql" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\sql.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="doc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\FileIcon\doc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="kuka" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\kuka.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -421,17 +409,17 @@
   <data name="fujifilm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\fujifilm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\loading.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="vcf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\vcf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="glasses_16xLG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\glasses_16xLG.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hlp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\FileIcon\hlp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SupportRobot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\SupportRobot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="doc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\FileIcon\doc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Method_636" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\Method_636.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -441,9 +429,6 @@
   </data>
   <data name="pl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\pl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="barcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\barcode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mov" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\mov.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -505,6 +490,9 @@
   <data name="inovance" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\inovance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="rb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\FileIcon\rb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bmp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\bmp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -526,6 +514,15 @@
   <data name="csv" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\csv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="yokogawa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\yokogawa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rpm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\FileIcon\rpm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mpg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\FileIcon\mpg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="odc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\odc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -534,6 +531,9 @@
   </data>
   <data name="docx" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\docx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hlp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\FileIcon\hlp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="perl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\perl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -547,14 +547,17 @@
   <data name="video" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\video.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="redis_db" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\redis_db.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="console" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\console.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="action_add_16xLG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\action_add_16xLG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SupportRobot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\SupportRobot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\loading.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ppt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\ppt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -562,8 +565,8 @@
   <data name="eml" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\eml.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mpg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\FileIcon\mpg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pgp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\FileIcon\pgp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cfc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\cfc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -586,8 +589,8 @@
   <data name="class" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\class.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="js" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\FileIcon\js.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\FileIcon\exe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ogg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\ogg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -610,8 +613,8 @@
   <data name="wma" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\wma.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="rpm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\FileIcon\rpm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="delta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\delta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -652,8 +655,8 @@
   <data name="vdo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\FileIcon\vdo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="action_Cancel_16xLG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\action_Cancel_16xLG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="idcard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\idcard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tag_7213" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\Tag_7213.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -664,10 +667,10 @@
   <data name="websocket" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\websocket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="yokogawa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\yokogawa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="flv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\FileIcon\flv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="redis_db" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\redis_db.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="toyota" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\toyota.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

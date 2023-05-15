@@ -66,6 +66,7 @@ namespace HslCommunicationDemo
 				label21.Text = "Address:";
 				checkBox1.Text = "New Version Message?";
 				checkBox2.Text = "Change PLC BaudRate?";
+				label2.Text = "Sleep Time:";
 
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 				userControlHead1.ProtocolInfo = "fx serial protocol";
@@ -99,13 +100,19 @@ namespace HslCommunicationDemo
 				MessageBox.Show( DemoUtils.StopBitInputWrong );
 				return;
 			}
-			
+
+			if (!int.TryParse( textBox_sleepTime.Text, out int sleepTime ))
+			{
+				MessageBox.Show( DemoUtils.DataBitsInputWrong );
+				return;
+			}
 
 			melsecSerial?.Close( );
 			melsecSerial = new MelsecFxSerial( );
 			melsecSerial.IsNewVersion = checkBox1.Checked;
 			melsecSerial.AutoChangeBaudRate = checkBox2.Checked;
 			melsecSerial.LogNet = LogNet;
+			melsecSerial.SleepTime = sleepTime;
 
 			try
 			{

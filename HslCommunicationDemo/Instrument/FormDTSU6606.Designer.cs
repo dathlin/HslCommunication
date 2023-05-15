@@ -488,7 +488,7 @@
 			this.hslCurve1.Name = "hslCurve1";
 			this.hslCurve1.Size = new System.Drawing.Size(387, 153);
 			this.hslCurve1.TabIndex = 82;
-			this.hslCurve1.ValueMaxLeft = 250F;
+			this.hslCurve1.ReferenceAxisLeft.Max = 250F;
 			// 
 			// label51
 			// 

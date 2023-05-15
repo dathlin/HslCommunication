@@ -139,6 +139,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( busTcpClient, "100", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busTcpClient.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busTcpClient.ReadFromCoreServer( m ), "Modbus Core", "Example: 01 03 00 00 00 02" );
 
 					control.SetDevice( busTcpClient, "100" );
 				}

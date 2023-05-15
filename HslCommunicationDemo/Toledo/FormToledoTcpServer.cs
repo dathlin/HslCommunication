@@ -113,7 +113,7 @@ namespace HslCommunicationDemo.Toledo
         {
             if (float.TryParse( textBox4.Text, out float result ))
             {
-                hslCurve1.ValueMaxLeft = result;
+                hslCurve1.ReferenceAxisLeft.Max = result;
                 hslDialPlate1.MaxValue = result; 
             }
             else

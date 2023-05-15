@@ -35,7 +35,7 @@ namespace HslCommunicationDemo.Algorithms
 
             for (int i = 0; i < sources.Length; i++)
             {
-                sources[i] = (float)(Math.Sin( 2 * Math.PI * i / 500 ) * 40 + 50);
+                sources[i] = (float)(Math.Sin( 2 * Math.PI * i / 500 ) * 50 + 40);
                 values[i] = sources[i];
                 if (random.Next( 100 ) < 50) values[i] = sources[i] + random.Next( 101 ) / 20f - 2f;
 
