@@ -14,6 +14,7 @@ using HslCommunication.Profinet.Keyence;
 using System.Xml.Linq;
 using System.IO.Ports;
 using HslCommunicationDemo.PLC.Keyence;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -28,6 +29,7 @@ namespace HslCommunicationDemo
 
 		private KeyenceNanoSerial keyenceNanoSerial = null;
 		private NanoControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -45,6 +47,10 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			control = new NanoControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Keyence.Helper.GetKeyenceKvAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -61,7 +67,6 @@ namespace HslCommunicationDemo
 				label25.Text = "Data bits";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 				label2.Text = "Station:";
 
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
@@ -124,7 +129,7 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 
 				// 设置子控件的读取能力
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( keyenceNanoSerial, "DM100", true );
+				userControlReadWriteDevice1.SetReadWriteNet( keyenceNanoSerial, "DM100", true );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( keyenceNanoSerial, "DM100", string.Empty );
 				// 设置报文读取
@@ -156,6 +161,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -166,6 +173,9 @@ namespace HslCommunicationDemo
 			textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
 			textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

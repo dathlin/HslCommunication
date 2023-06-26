@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.PLC.Omron
 {
-	public class FinsTcpControl : SpecialFeaturesControl
+	public class FinsTcpControl : UserControl
 	{
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Button button6;
@@ -41,17 +41,17 @@ namespace HslCommunicationDemo.PLC.Omron
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.label5);
 			this.groupBox2.Controls.Add(this.button6);
 			this.groupBox2.Controls.Add(this.button5);
 			this.groupBox2.Controls.Add(this.button4);
 			this.groupBox2.Controls.Add(this.button3);
 			this.groupBox2.Controls.Add(this.textBox4);
-			this.groupBox2.Location = new System.Drawing.Point(251, 3);
+			this.groupBox2.Location = new System.Drawing.Point(3, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(591, 226);
+			this.groupBox2.Size = new System.Drawing.Size(839, 226);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Fins Function";
@@ -109,21 +109,21 @@ namespace HslCommunicationDemo.PLC.Omron
 			// textBox4
 			// 
 			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox4.Location = new System.Drawing.Point(9, 81);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(576, 139);
+			this.textBox4.Size = new System.Drawing.Size(824, 139);
 			this.textBox4.TabIndex = 17;
 			// 
 			// FinsTcpControl
 			// 
 			this.Controls.Add(this.groupBox2);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "FinsTcpControl";
 			this.Size = new System.Drawing.Size(845, 232);
-			this.Controls.SetChildIndex(this.groupBox2, 0);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
@@ -133,7 +133,6 @@ namespace HslCommunicationDemo.PLC.Omron
 		public void SetDevice( IOmronFins omron, string address )
 		{
 			this.omron = omron;
-			base.SetDevice( omron, address );
 		}
 
 		private IOmronFins omron;

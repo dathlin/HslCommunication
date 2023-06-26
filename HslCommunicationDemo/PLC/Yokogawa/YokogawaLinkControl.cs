@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.PLC.Yokogawa
 {
-	public class YokogawaLinkControl : SpecialFeaturesControl
+	public class YokogawaLinkControl : UserControl
 	{
 		private System.Windows.Forms.Button button11;
 		private System.Windows.Forms.Button button10;
@@ -69,9 +69,9 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			this.groupBox2.Controls.Add(this.button3);
 			this.groupBox2.Controls.Add(this.textBox5);
 			this.groupBox2.Controls.Add(this.label6);
-			this.groupBox2.Location = new System.Drawing.Point(251, 3);
+			this.groupBox2.Location = new System.Drawing.Point(3, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(650, 223);
+			this.groupBox2.Size = new System.Drawing.Size(898, 223);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "YokogawaLink";
@@ -208,9 +208,9 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// YokogawaLinkControl
 			// 
 			this.Controls.Add(this.groupBox2);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "YokogawaLinkControl";
 			this.Size = new System.Drawing.Size(904, 229);
-			this.Controls.SetChildIndex(this.groupBox2, 0);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
@@ -223,7 +223,6 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 		public void SetDevice( YokogawaLinkTcp yokogawa, string address )
 		{
 			this.yokogawa = yokogawa;
-			base.SetDevice( yokogawa, address );
 		}
 
 		private void button3_Click( object sender, EventArgs e )

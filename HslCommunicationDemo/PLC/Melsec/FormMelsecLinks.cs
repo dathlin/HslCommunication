@@ -13,6 +13,7 @@ using HslCommunication;
 using System.Xml.Linq;
 using System.IO.Ports;
 using HslCommunicationDemo.PLC.Melsec;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -26,6 +27,8 @@ namespace HslCommunicationDemo
 
 		private MelsecFxLinks melsecSerial = null;
 		private FxLinksControl control;
+		private AddressExampleControl addressExampleControl;
+
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
@@ -46,6 +49,10 @@ namespace HslCommunicationDemo
 
 			control = new FxLinksControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( Helper.GetFxLinksAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -124,7 +131,7 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 
 				// 设置基本的读写信息
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( melsecSerial, "D100", false );
+				userControlReadWriteDevice1.SetReadWriteNet( melsecSerial, "D100", false );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsecSerial, "D100", string.Empty );
 				// 设置报文读取
@@ -235,6 +242,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTimeout, textBox18.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlSumCheck, checkBox1.Checked );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -248,6 +257,9 @@ namespace HslCommunicationDemo
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			textBox18.Text = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlSumCheck ).Value );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

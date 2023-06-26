@@ -16,6 +16,8 @@ using HslCommunication.MQTT;
 using HslCommunicationDemo.DemoControl;
 using HslCommunicationDemo.PLC.Melsec;
 using HslCommunication.Profinet.Toyota;
+using HslCommunication.Core;
+using HslCommunication.Profinet.Melsec.Helper;
 
 namespace HslCommunicationDemo
 {
@@ -29,6 +31,7 @@ namespace HslCommunicationDemo
 
 
 		private ToyoPuc toyota = null;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -36,8 +39,9 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 
 
-			control = new McQna3EControl( );
-			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Toyota.Helper.GetToyotaAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -50,8 +54,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
-				label22.Text = "M100 D100 X1A0 Y1A0";
 			}
 			else
 			{
@@ -92,7 +94,7 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 
 				// 设置子控件的读取能力
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( toyota, "D100", true );
+				userControlReadWriteDevice1.SetReadWriteNet( toyota, "D100", true );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( toyota, "D100", string.Empty );
 				//userControlReadWriteDevice1.BatchRead.SetReadRandom( melsec_net.ReadRandom, "D100;W100;D500" );
@@ -100,7 +102,6 @@ namespace HslCommunicationDemo
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => toyota.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-				control.SetDevice( toyota, "D100" );
 			}
 			else
 			{
@@ -109,7 +110,6 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private McQna3EControl control;
 
 		private void button2_Click( object sender, EventArgs e )
 		{
@@ -127,6 +127,8 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -134,6 +136,9 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

@@ -14,6 +14,7 @@ using System.IO.Ports;
 using System.Xml.Linq;
 using HslCommunication.Instrument.CJT;
 using HslCommunicationDemo.Instrument;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -26,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private CJT188OverTcp cjt188 = null;
 		private CJT188Control control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -34,6 +36,10 @@ namespace HslCommunicationDemo
 
 			control = new CJT188Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.CJT188Helper.GetCJT188Address( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -93,12 +99,12 @@ namespace HslCommunicationDemo
 
 					// 68 00 00 00 00 00 01 68 11 04 00 00 00 00 10 16
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( cjt188, "90-1F", true );
+					userControlReadWriteDevice1.SetReadWriteNet( cjt188, "90-1F", true );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( cjt188, "90-1F", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => cjt188.ReadFromCoreServer( m, true, false ), string.Empty, "68 00 00 00 00 00 01 68 11 04 00 00 00 00 10 16" );
-
+					
 					control.SetDevice( cjt188, "90-1F" );
 				}
 				else
@@ -131,6 +137,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlStation,   textBox_station.Text );
 			element.SetAttributeValue( "InstrumentType",      textBox_type.Text );
 			element.SetAttributeValue( "StationMatch",        checkBox_station_match.Checked.ToString( ) );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -141,6 +149,9 @@ namespace HslCommunicationDemo
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			textBox_type.Text    = HslCommunication.BasicFramework.SoftBasic.GetXmlValue( element, "InstrumentType", "19" );
 			checkBox_station_match.Checked = HslCommunication.BasicFramework.SoftBasic.GetXmlValue( element, "StationMatch", false );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

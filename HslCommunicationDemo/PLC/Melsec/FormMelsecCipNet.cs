@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Melsec;
 using HslCommunication;
 using System.Xml.Linq;
 using HslCommunication.Profinet.AllenBradley;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {

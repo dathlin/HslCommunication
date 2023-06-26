@@ -11,6 +11,8 @@ using System.Threading;
 using HslCommunication.Profinet.Panasonic;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunicationDemo.DemoControl;
+using HslCommunicationDemo.PLC.Panasonic;
 
 namespace HslCommunicationDemo
 {
@@ -24,6 +26,7 @@ namespace HslCommunicationDemo
 
 
 		private PanasonicMcNet panasonic_net = null;
+		private AddressExampleControl addressExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -31,6 +34,10 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 			
 			Language( Program.Language );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( Helper.GetMCAddressExamples( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -43,8 +50,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
-				label22.Text = "M100 D100 X1A0 Y1A0";
 			}
 		}
 
@@ -84,14 +89,13 @@ namespace HslCommunicationDemo
 					//userControlReadWriteOp1.SetReadWriteNet( panasonic_net, "D100", true );
 
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( panasonic_net, "D100", true );
+					userControlReadWriteDevice1.SetReadWriteNet( panasonic_net, "D100", true );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( panasonic_net, "D100", string.Empty );
 					userControlReadWriteDevice1.BatchRead.SetReadRandom( panasonic_net.ReadRandom, "D100;D200;D500" );
 					userControlReadWriteDevice1.BatchRead.SetReadWordRandom( panasonic_net.ReadRandom, "D100;D200;D500" );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => panasonic_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-
 				}
 				else
 				{
@@ -223,6 +227,8 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -230,6 +236,9 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

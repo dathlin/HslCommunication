@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using HslCommunication.BasicFramework;
 using HslCommunication.Profinet.MegMeet;
 using HslCommunicationDemo.PLC.Common;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -26,7 +27,7 @@ namespace HslCommunicationDemo
 
 
 		private MegMeetTcpNet megMeet = null;
-		private SpecialFeaturesControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -37,8 +38,10 @@ namespace HslCommunicationDemo
 			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
 
 			Language( Program.Language );
-			control = new SpecialFeaturesControl( );
-			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.MegMeet.Helper.GetMegMeetAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -122,13 +125,11 @@ namespace HslCommunicationDemo
 					panel2.Enabled  = true;
 
 					// 设置基本的读写信息
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( megMeet, "D100", true );
+					userControlReadWriteDevice1.SetReadWriteNet( megMeet, "D100", true );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( megMeet, "D100", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => megMeet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-
-					control.SetDevice( megMeet, "D100" );
 				}
 				else
 				{
@@ -160,6 +161,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -171,6 +174,9 @@ namespace HslCommunicationDemo
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HslCommunication.Core;
+using HslCommunicationDemo.PLC.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +10,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -25,13 +28,19 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				tabPage1.Text = "Batch Read";
 				tabPage2.Text = "Frame Message Read";
+				tabPage3.Text = "Thread Test";
+				tabPage4.Text = "Data Table";
 			}
 		}
 
-		public UserControlReadWriteOp ReadWriteOp
-		{ 
-			get => this.userControlReadWriteOp1;
+		public void SetReadWriteNet( IReadWriteNet readWrite, string address, bool isAsync = false, int strLength = 10 )
+		{
+			this.userControlReadWriteOp1.SetReadWriteNet( readWrite, address, isAsync, strLength );
+			this.stressTesting1.SetReadWriteNet( readWrite, address );
+			this.dataTableControl1.SetReadWriteNet( readWrite );
 		}
+
+		public UserControlReadWriteOp ReadWriteOpControl => this.userControlReadWriteOp1;
 
 		public BatchReadControl BatchRead
 		{
@@ -43,8 +52,7 @@ namespace HslCommunicationDemo.DemoControl
 			get => this.batchReadControl2;
 		}
 
-
-		public void AddSpecialFunctionTab( UserControl control )
+		public void AddSpecialFunctionTab( UserControl control, bool show = false, string title = null )
 		{
 			TabPage tabPage = new TabPage( );
 			tabPage.SuspendLayout( );
@@ -57,11 +65,48 @@ namespace HslCommunicationDemo.DemoControl
 			tabPage.Padding = new System.Windows.Forms.Padding( 3 );
 			tabPage.Size = new System.Drawing.Size( 946, 252 );
 			tabPage.TabIndex = 0;
-			tabPage.Text = Program.Language == 1 ? "特殊功能测试" : "Special Function";
+			if (string.IsNullOrEmpty( title ))
+				tabPage.Text = Program.Language == 1 ? "特殊功能测试" : "Special Function";
+			else
+				tabPage.Text = title;
 
 			control.Dock = DockStyle.Fill;
 			tabPage.ResumeLayout( false );
 
+			if (show) this.tabControl1.SelectTab( tabPage );
+		}
+
+
+		private void stressTesting1_Load( object sender, EventArgs e )
+		{
+
+		}
+
+
+
+		public void RemoveReadBatch( )
+		{
+			tabControl1.TabPages.Remove( tabPage1 );
+		}
+
+		public void RemoveReadMessage( )
+		{
+			tabControl1.TabPages.Remove( tabPage2 );
+		}
+
+		public void GetDataTable( XElement element )
+		{
+			this.dataTableControl1.GetDataTable( element );
+		}
+
+		public int LoadDataTable( XElement element )
+		{
+			return this.dataTableControl1.LoadDataTable( element );
+		}
+
+		public void SelectTabDataTable( )
+		{
+			this.tabControl1.SelectTab( tabPage4 );
 		}
 	}
 }

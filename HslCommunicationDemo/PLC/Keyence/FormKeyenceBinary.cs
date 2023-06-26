@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Keyence;
 using HslCommunication;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Melsec;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -26,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private KeyenceMcNet keyence_net = null;
 		private McQna3EControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -34,6 +36,10 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			control = new McQna3EControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Keyence.Helper.GetKeyenceMcAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -46,8 +52,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
-				label22.Text = "M100 D100 X1A0 Y1A0";
 			}
 		}
 
@@ -85,7 +89,7 @@ namespace HslCommunicationDemo
 					panel2.Enabled = true;
 
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( keyence_net, "D100", true );
+					userControlReadWriteDevice1.SetReadWriteNet( keyence_net, "D100", true );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( keyence_net, "D100", string.Empty );
 					userControlReadWriteDevice1.BatchRead.SetReadRandom( keyence_net.ReadRandom, "D100;W100;D500" );
@@ -225,6 +229,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( "EnableWriteBitToWordRegister", this.checkBox_EnableWriteBitToWordRegister.Checked );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -233,6 +239,9 @@ namespace HslCommunicationDemo
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

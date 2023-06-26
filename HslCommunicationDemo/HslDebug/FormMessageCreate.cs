@@ -48,7 +48,7 @@ namespace HslCommunicationDemo.HslDebug
 				if (!addressResult.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( addressResult );
 
 				byte[] command = McBinaryHelper.BuildReadMcCoreCommand( addressResult.Content, true );
-				return OperateResult.CreateSuccessResult( McBinaryHelper.PackMcCommand( command, 0x00, 0x00 ) );
+				return OperateResult.CreateSuccessResult( McBinaryHelper.PackMcCommand( new MelsecMcNet( ), command ) );
 			},
 			( address, length ) =>
 			{
@@ -56,7 +56,7 @@ namespace HslCommunicationDemo.HslDebug
 				if (!addressResult.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( addressResult );
 
 				byte[] command = McBinaryHelper.BuildReadMcCoreCommand( addressResult.Content, false );
-				return OperateResult.CreateSuccessResult( McBinaryHelper.PackMcCommand( command, 0x00, 0x00 ) );
+				return OperateResult.CreateSuccessResult( McBinaryHelper.PackMcCommand( new MelsecMcNet( ), command ) );
 			} );
 			AddTreeChild( melsec, "Qna3E-Ascii", ( address, length ) =>
 			{

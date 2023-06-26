@@ -13,6 +13,7 @@ using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
 using HslCommunicationDemo.Instrument;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -25,6 +26,7 @@ namespace HslCommunicationDemo
 
 		private DLT645OverTcp dLT645 = null;
 		private DLT645Control control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -32,6 +34,10 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			control = new DLT645Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.DLTHelper.GetDlt645Address( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -86,7 +92,7 @@ namespace HslCommunicationDemo
 
 					//userControlReadWriteOp1.SetReadWriteNet( dLT645, "00-00-00-00", true );
 
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( dLT645, "00-00-00-00", false );
+					userControlReadWriteDevice1.SetReadWriteNet( dLT645, "00-00-00-00", false );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( dLT645, "00-00-00-00", string.Empty );
 					// 设置报文读取
@@ -121,6 +127,9 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox_port.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
+
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -128,6 +137,10 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox_port.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

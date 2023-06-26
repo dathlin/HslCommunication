@@ -30,8 +30,6 @@
         {
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
-			this.label22 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
@@ -51,8 +49,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel1.Controls.Add(this.checkBox_EnableWriteBitToWordRegister);
-			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
@@ -68,34 +64,17 @@
 			// checkBox_EnableWriteBitToWordRegister
 			// 
 			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
-			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(239, 32);
+			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(275, 32);
 			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
 			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
 			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 10;
 			this.checkBox_EnableWriteBitToWordRegister.Text = "Enable Write Bit To Word Register";
 			this.checkBox_EnableWriteBitToWordRegister.UseVisualStyleBackColor = true;
 			// 
-			// label22
-			// 
-			this.label22.Location = new System.Drawing.Point(776, 3);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(197, 45);
-			this.label22.TabIndex = 7;
-			this.label22.Text = "M100 D100 X1A0 Y1A0 详细参照文档";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(702, 3);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(68, 17);
-			this.label21.TabIndex = 6;
-			this.label21.Text = "地址示例：";
-			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(583, 7);
+			this.button2.Location = new System.Drawing.Point(619, 7);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -105,7 +84,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(486, 7);
+			this.button1.Location = new System.Drawing.Point(522, 7);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -115,7 +94,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(318, 4);
+			this.textBox2.Location = new System.Drawing.Point(354, 4);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(98, 23);
 			this.textBox2.TabIndex = 3;
@@ -124,7 +103,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(264, 7);
+			this.label3.Location = new System.Drawing.Point(300, 7);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -134,7 +113,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(62, 4);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(196, 23);
+			this.textBox1.Size = new System.Drawing.Size(232, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "192.168.0.100";
 			// 
@@ -217,8 +196,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private DemoControl.UserControlHead userControlHead1;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private System.Windows.Forms.CheckBox checkBox_EnableWriteBitToWordRegister;

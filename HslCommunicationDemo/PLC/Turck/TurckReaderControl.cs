@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.PLC.Turck
 {
-	public class TurckReaderControl : SpecialFeaturesControl
+	public class TurckReaderControl : UserControl
 	{
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
@@ -45,9 +45,9 @@ namespace HslCommunicationDemo.PLC.Turck
 			this.groupBox2.Controls.Add(this.label7);
 			this.groupBox2.Controls.Add(this.textBox3);
 			this.groupBox2.Controls.Add(this.button7);
-			this.groupBox2.Location = new System.Drawing.Point(251, 3);
+			this.groupBox2.Location = new System.Drawing.Point(3, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(685, 226);
+			this.groupBox2.Size = new System.Drawing.Size(933, 226);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Turck Reader Function";
@@ -88,7 +88,7 @@ namespace HslCommunicationDemo.PLC.Turck
 			this.textBox3.Multiline = true;
 			this.textBox3.Name = "textBox3";
 			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox3.Size = new System.Drawing.Size(670, 125);
+			this.textBox3.Size = new System.Drawing.Size(918, 125);
 			this.textBox3.TabIndex = 31;
 			// 
 			// button7
@@ -104,9 +104,9 @@ namespace HslCommunicationDemo.PLC.Turck
 			// TurckReaderControl
 			// 
 			this.Controls.Add(this.groupBox2);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "TurckReaderControl";
 			this.Size = new System.Drawing.Size(939, 232);
-			this.Controls.SetChildIndex(this.groupBox2, 0);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
@@ -116,7 +116,6 @@ namespace HslCommunicationDemo.PLC.Turck
 		public void SetDevice( ReaderNet reader_net, string address )
 		{
 			this.reader_net = reader_net;
-			base.SetDevice( reader_net, address );
 		}
 
 		private ReaderNet reader_net;

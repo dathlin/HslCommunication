@@ -71,12 +71,11 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.5.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.5.3\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.6.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.6.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -141,6 +140,12 @@
     <Compile Include="Control\FormBasicControl.Designer.cs">
       <DependentUpon>FormBasicControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\FormInputPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\FormInputPassword.Designer.cs">
+      <DependentUpon>FormInputPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\FormInputString.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +170,14 @@
     <Compile Include="DemoControl\BatchReadControl.Designer.cs">
       <DependentUpon>BatchReadControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoControl\DataTableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\DataTableControl.Designer.cs">
+      <DependentUpon>DataTableControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\DataTableItem.cs" />
+    <Compile Include="DemoControl\DeviceAddressExample.cs" />
     <Compile Include="DemoControl\FormCurveMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +213,18 @@
     </Compile>
     <Compile Include="DemoControl\FormSaveList.Designer.cs">
       <DependentUpon>FormSaveList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\AddressExampleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\AddressExampleControl.designer.cs">
+      <DependentUpon>AddressExampleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\StressTesting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\StressTesting.Designer.cs">
+      <DependentUpon>StressTesting.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\UserControlHead.cs">
       <SubType>UserControl</SubType>
@@ -344,12 +369,15 @@
     <Compile Include="Instrument\CJT188Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Instrument\CJT188Helper.cs" />
+    <Compile Include="Instrument\CPLHelper.cs" />
     <Compile Include="Instrument\DLT645Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Instrument\DLT698Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Instrument\DLTHelper.cs" />
     <Compile Include="Instrument\FormCJT188OverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -452,6 +480,7 @@
     <Compile Include="Modbus\FormModbusAsciiOverTcp.Designer.cs">
       <DependentUpon>FormModbusAsciiOverTcp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modbus\Helper.cs" />
     <Compile Include="Modbus\ModbusControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -515,21 +544,18 @@
     <Compile Include="PLC\AllenBrandly\FormPcccServer.Designer.cs">
       <DependentUpon>FormPcccServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\AllenBrandly\Helper.cs" />
     <Compile Include="PLC\Beckhoff\BeckhoffAdsNetControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PLC\Common\SpecialFeaturesControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PLC\Common\SpecialFeaturesControl.Designer.cs">
-      <DependentUpon>SpecialFeaturesControl.cs</DependentUpon>
-    </Compile>
+    <Compile Include="PLC\Beckhoff\Helper.cs" />
     <Compile Include="PLC\Delta\FormDeltaSerialAsciiOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PLC\Delta\FormDeltaSerialAsciiOverTcp.Designer.cs">
       <DependentUpon>FormDeltaSerialAsciiOverTcp.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\Delta\Helper.cs" />
     <Compile Include="PLC\Fatek\FatekProgrameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -545,12 +571,20 @@
     <Compile Include="PLC\Delta\FormDeltaSerialOverTcp.Designer.cs">
       <DependentUpon>FormDeltaSerialOverTcp.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\Fatek\Helper.cs" />
+    <Compile Include="PLC\Fuji\Helper.cs" />
     <Compile Include="PLC\Ge\GeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PLC\Ge\Helper.cs" />
+    <Compile Include="PLC\Inovance\Helper.cs" />
+    <Compile Include="PLC\Keyence\Helper.cs" />
     <Compile Include="PLC\Keyence\NanoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PLC\Lsis\Helper.cs" />
+    <Compile Include="PLC\MegMeet\Helper.cs" />
+    <Compile Include="PLC\Melsec\Helper.cs" />
     <Compile Include="PLC\Omron\FinsTcpControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -560,11 +594,20 @@
     <Compile Include="PLC\Omron\FormOmronCipServer.Designer.cs">
       <DependentUpon>FormOmronCipServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\Omron\Helper.cs" />
     <Compile Include="PLC\Omron\HostLinkCModeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PLC\Panasonic\Helper.cs" />
     <Compile Include="PLC\Panasonic\MewtocolControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\Siemens\Helper.cs" />
+    <Compile Include="PLC\Siemens\SiemensWebApiControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\Siemens\SiemensWebApiControl.Designer.cs">
+      <DependentUpon>SiemensWebApiControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Toyota\FormToyoPucServer.cs">
       <SubType>Form</SubType>
@@ -578,6 +621,7 @@
     <Compile Include="PLC\Toyota\FormToyoPuc.Designer.cs">
       <DependentUpon>FormToyoPuc.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\Toyota\Helper.cs" />
     <Compile Include="PLC\Turck\TurckReaderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -764,6 +808,8 @@
     <Compile Include="PLC\Siemens\SiemensS7Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PLC\Vigor\Helper.cs" />
+    <Compile Include="PLC\XINJE\Helper.cs" />
     <Compile Include="PLC\YASKAWA\FormYASKAWAMemobusUdpNet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -836,6 +882,7 @@
     <Compile Include="PLC\Siemens\FormSiemensDTU.Designer.cs">
       <DependentUpon>FormSiemensDTU.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\YASKAWA\Helper.cs" />
     <Compile Include="PLC\Yokogawa\FormYokogawaLinkServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -908,6 +955,7 @@
     <Compile Include="PLC\YASKAWA\FormMemobusTcpServer.Designer.cs">
       <DependentUpon>FormMemobusTcpServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\Yokogawa\Helper.cs" />
     <Compile Include="PLC\Yokogawa\YokogawaLinkControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1772,6 +1820,9 @@
     <EmbeddedResource Include="Control\FormBasicControl.resx">
       <DependentUpon>FormBasicControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\FormInputPassword.resx">
+      <DependentUpon>FormInputPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\FormInputString.resx">
       <DependentUpon>FormInputString.cs</DependentUpon>
     </EmbeddedResource>
@@ -1783,6 +1834,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\BatchReadControl.resx">
       <DependentUpon>BatchReadControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\DataTableControl.resx">
+      <DependentUpon>DataTableControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormCurveMonitor.resx">
       <DependentUpon>FormCurveMonitor.cs</DependentUpon>
@@ -1801,6 +1855,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormSaveList.resx">
       <DependentUpon>FormSaveList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\AddressExampleControl.resx">
+      <DependentUpon>AddressExampleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\StressTesting.resx">
+      <DependentUpon>StressTesting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\UserControlCurve.resx">
       <DependentUpon>UserControlCurve.cs</DependentUpon>
@@ -1970,9 +2030,6 @@
     <EmbeddedResource Include="PLC\Beckhoff\BeckhoffAdsNetControl.resx">
       <DependentUpon>BeckhoffAdsNetControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\Common\SpecialFeaturesControl.resx">
-      <DependentUpon>SpecialFeaturesControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Delta\FormDeltaSerialAsciiOverTcp.resx">
       <DependentUpon>FormDeltaSerialAsciiOverTcp.cs</DependentUpon>
     </EmbeddedResource>
@@ -2002,6 +2059,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Panasonic\MewtocolControl.resx">
       <DependentUpon>MewtocolControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Siemens\SiemensWebApiControl.resx">
+      <DependentUpon>SiemensWebApiControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Toyota\FormToyoPucServer.resx">
       <DependentUpon>FormToyoPucServer.cs</DependentUpon>
@@ -2819,6 +2879,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PLC\Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

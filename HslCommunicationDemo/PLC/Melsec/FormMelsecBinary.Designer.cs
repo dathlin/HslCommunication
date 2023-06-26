@@ -33,8 +33,6 @@ namespace HslCommunicationDemo
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.label22 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox_port = new System.Windows.Forms.TextBox();
@@ -55,8 +53,6 @@ namespace HslCommunicationDemo
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel1.Controls.Add(this.checkBox_EnableWriteBitToWordRegister);
 			this.panel1.Controls.Add(this.checkBox1);
-			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox_port);
@@ -72,7 +68,7 @@ namespace HslCommunicationDemo
 			// checkBox_EnableWriteBitToWordRegister
 			// 
 			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
-			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(154, 35);
+			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(130, 35);
 			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
 			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
 			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 9;
@@ -89,27 +85,10 @@ namespace HslCommunicationDemo
 			this.checkBox1.Text = "MQTT中转?";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
-			// label22
-			// 
-			this.label22.Location = new System.Drawing.Point(726, 1);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(262, 41);
-			this.label22.TabIndex = 7;
-			this.label22.Text = "M100 D100 X1A0 Y1A0 详细说明参照博客 X012就表示八进制";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(652, 1);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(68, 17);
-			this.label21.TabIndex = 6;
-			this.label21.Text = "地址示例：";
-			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(555, 5);
+			this.button2.Location = new System.Drawing.Point(631, 5);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -119,7 +98,7 @@ namespace HslCommunicationDemo
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(458, 5);
+			this.button1.Location = new System.Drawing.Point(534, 5);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -129,16 +108,16 @@ namespace HslCommunicationDemo
 			// 
 			// textBox_port
 			// 
-			this.textBox_port.Location = new System.Drawing.Point(315, 8);
+			this.textBox_port.Location = new System.Drawing.Point(412, 8);
 			this.textBox_port.Name = "textBox_port";
-			this.textBox_port.Size = new System.Drawing.Size(90, 23);
+			this.textBox_port.Size = new System.Drawing.Size(78, 23);
 			this.textBox_port.TabIndex = 3;
 			this.textBox_port.Text = "6000";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(252, 11);
+			this.label3.Location = new System.Drawing.Point(349, 11);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -148,7 +127,7 @@ namespace HslCommunicationDemo
 			// 
 			this.textBox_ip.Location = new System.Drawing.Point(62, 8);
 			this.textBox_ip.Name = "textBox_ip";
-			this.textBox_ip.Size = new System.Drawing.Size(176, 23);
+			this.textBox_ip.Size = new System.Drawing.Size(264, 23);
 			this.textBox_ip.TabIndex = 1;
 			this.textBox_ip.Text = "192.168.0.100";
 			// 
@@ -232,8 +211,6 @@ namespace HslCommunicationDemo
         private System.Windows.Forms.TextBox textBox_port;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox_ip;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private DemoControl.UserControlHead userControlHead1;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;

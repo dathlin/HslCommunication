@@ -35,9 +35,9 @@
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -119,6 +119,17 @@
 			this.panel2.Size = new System.Drawing.Size(997, 550);
 			this.panel2.TabIndex = 1;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.Green;
+			this.label1.Location = new System.Drawing.Point(5, 2);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(835, 17);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "预设地址：s=MAIN.bool1 (bool)     s=MAIN.a (short)     s=MAIN.cc (int)    s=MAIN.dd (f" +
+    "loat)     s=MAIN.ee  (boo[11])     s=MAIN.ff  (short[3])";
+			// 
 			// userControlReadWriteServer1
 			// 
 			this.userControlReadWriteServer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -143,17 +154,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.Color.Green;
-			this.label1.Location = new System.Drawing.Point(5, 2);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(690, 17);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "预设地址：s=MAIN.a (short)     s=MAIN.cc (int)    s=MAIN.dd (float)     s=MAIN.ee  (bo" +
-    "o[11])     s=MAIN.ff  (short[3])";
 			// 
 			// FormBeckhoffAdsServer
 			// 

@@ -14,6 +14,8 @@ using HslCommunication.Profinet.XINJE;
 using System.Xml.Linq;
 using HslCommunication.BasicFramework;
 using HslCommunicationDemo.PLC.Common;
+using HslCommunicationDemo.DemoControl;
+using HslCommunicationDemo.PLC.XINJE;
 
 namespace HslCommunicationDemo
 {
@@ -25,7 +27,7 @@ namespace HslCommunicationDemo
 		}
 
 		private XinJESerial xinje = null;
-		private SpecialFeaturesControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -48,8 +50,9 @@ namespace HslCommunicationDemo
 
 			Language( Program.Language );
 
-			control = new SpecialFeaturesControl( );
-			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( Helper.GetXinJEAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -159,14 +162,12 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 
 				// 设置基本的读写信息
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( xinje, "D100", false );
+				userControlReadWriteDevice1.SetReadWriteNet( xinje, "D100", false );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( xinje, "D100", string.Empty );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => xinje.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => xinje.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
-
-				control.SetDevice( xinje, "D100" );
 			}
 			catch (Exception ex)
 			{
@@ -198,6 +199,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
 			element.SetAttributeValue( nameof( XinJESeries ), comboBox4.SelectedItem );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -214,6 +217,9 @@ namespace HslCommunicationDemo
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
 			checkBox5.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
 			comboBox4.SelectedItem = SoftBasic.GetEnumFromString<XinJESeries>( element.Attribute( nameof( XinJESeries ) ).Value );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

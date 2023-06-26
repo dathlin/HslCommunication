@@ -12,6 +12,7 @@ using System.Threading;
 using HslCommunication.Profinet.LSIS;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Common;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -25,8 +26,8 @@ namespace HslCommunicationDemo
 
 
 		private XGKFastEnet fastEnet = null;
-		private SpecialFeaturesControl control;
-		
+		private AddressExampleControl addressExampleControl;
+
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -37,8 +38,9 @@ namespace HslCommunicationDemo
 			cboxModel.DataSource = Enum.GetNames( typeof( LSCpuInfo ) );
 			cboxCompanyID.SelectedIndex = 0;
 
-			control = new SpecialFeaturesControl( );
-			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Lsis.Helper.GetLsisCnetAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -99,13 +101,11 @@ namespace HslCommunicationDemo
 					panel2.Enabled = true;
 
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( fastEnet, "MB100", true );
+					userControlReadWriteDevice1.SetReadWriteNet( fastEnet, "MB100", true );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( fastEnet, "MB100", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fastEnet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-
-					control.SetDevice( fastEnet, "MB100" );
 				}
 				else
 				{
@@ -136,6 +136,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlCpuType, cboxModel.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlCompanyID, cboxCompanyID.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox12.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -146,6 +148,9 @@ namespace HslCommunicationDemo
 			cboxModel.Text = element.Attribute( DemoDeviceList.XmlCpuType ).Value;
 			cboxCompanyID.Text = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;
 			textBox12.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

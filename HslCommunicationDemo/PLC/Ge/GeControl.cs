@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.PLC.Ge
 {
-	public class GeControl : SpecialFeaturesControl
+	public class GeControl : UserControl
 	{
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.TextBox textBox14;
@@ -34,14 +34,15 @@ namespace HslCommunicationDemo.PLC.Ge
 			// groupBox1
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.button4);
 			this.groupBox1.Controls.Add(this.textBox14);
 			this.groupBox1.Controls.Add(this.button3);
-			this.groupBox1.Location = new System.Drawing.Point(251, 3);
+			this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(608, 226);
+			this.groupBox1.Size = new System.Drawing.Size(856, 226);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Ge Function";
@@ -59,13 +60,13 @@ namespace HslCommunicationDemo.PLC.Ge
 			// textBox14
 			// 
 			this.textBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox14.Location = new System.Drawing.Point(6, 56);
 			this.textBox14.Multiline = true;
 			this.textBox14.Name = "textBox14";
 			this.textBox14.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox14.Size = new System.Drawing.Size(596, 164);
+			this.textBox14.Size = new System.Drawing.Size(844, 164);
 			this.textBox14.TabIndex = 26;
 			// 
 			// button3
@@ -83,7 +84,6 @@ namespace HslCommunicationDemo.PLC.Ge
 			this.Controls.Add(this.groupBox1);
 			this.Name = "GeControl";
 			this.Size = new System.Drawing.Size(862, 232);
-			this.Controls.SetChildIndex(this.groupBox1, 0);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
@@ -93,7 +93,6 @@ namespace HslCommunicationDemo.PLC.Ge
 		public void SetDevice( GeSRTPNet ge, string address )
 		{
 			this.ge = ge;
-			base.SetDevice( ge, address );
 		}
 
 		private GeSRTPNet ge;

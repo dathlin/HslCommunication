@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Fuji;
 using HslCommunication;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Common;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -25,15 +26,18 @@ namespace HslCommunicationDemo
 
 
 		private FujiCommandSettingType fuji = null;
-		private SpecialFeaturesControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 
 			Language( Program.Language );
-			control = new SpecialFeaturesControl( );
-			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Fuji.Helper.GetCSTNAddressExamples( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -84,13 +88,12 @@ namespace HslCommunicationDemo
 					panel2.Enabled = true;
 
 					// 设置基本的读写信息
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( fuji, "BD100", true );
+					userControlReadWriteDevice1.SetReadWriteNet( fuji, "BD100", true );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( fuji, "BD100", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fuji.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-					control.SetDevice( fuji, "BD100" );
 				}
 				else
 				{
@@ -178,6 +181,8 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -185,6 +190,9 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

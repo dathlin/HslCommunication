@@ -13,6 +13,8 @@ using HslCommunication;
 using HslCommunication.Profinet.Keyence;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Keyence;
+using HslCommunication.Profinet.Melsec.Helper;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -27,6 +29,7 @@ namespace HslCommunicationDemo
 
 		private KeyenceNanoSerialOverTcp keyence = null;
 		private NanoControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -35,6 +38,10 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			control = new NanoControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Keyence.Helper.GetKeyenceKvAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -48,7 +55,6 @@ namespace HslCommunicationDemo
 				label26.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 				label1.Text = "Station:";
 			}
 		}
@@ -94,7 +100,7 @@ namespace HslCommunicationDemo
 					panel2.Enabled = true;
 
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( keyence, "DM100", false );
+					userControlReadWriteDevice1.SetReadWriteNet( keyence, "DM100", false );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( keyence, "DM100", string.Empty );
 					// 设置报文读取
@@ -131,6 +137,8 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -138,6 +146,9 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

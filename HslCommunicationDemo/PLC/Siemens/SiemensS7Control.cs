@@ -16,7 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace HslCommunicationDemo.PLC.Siemens
 {
-	public class SiemensS7Control : SpecialFeaturesControl
+	public class SiemensS7Control : UserControl
 	{
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button_write_dtltime;
@@ -76,8 +76,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.button3);
 			this.groupBox2.Controls.Add(this.button_write_dtltime);
 			this.groupBox2.Controls.Add(this.button_read_dtltime);
@@ -99,9 +99,9 @@ namespace HslCommunicationDemo.PLC.Siemens
 			this.groupBox2.Controls.Add(this.label10);
 			this.groupBox2.Controls.Add(this.textBox8);
 			this.groupBox2.Controls.Add(this.label9);
-			this.groupBox2.Location = new System.Drawing.Point(251, 3);
+			this.groupBox2.Location = new System.Drawing.Point(3, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(526, 226);
+			this.groupBox2.Size = new System.Drawing.Size(774, 226);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "S7 Functions";
@@ -312,10 +312,10 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// SiemensS7Control
 			// 
 			this.Controls.Add(this.groupBox2);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "SiemensS7Control";
 			this.Size = new System.Drawing.Size(780, 232);
 			this.Load += new System.EventHandler(this.SiemensS7Control_Load);
-			this.Controls.SetChildIndex(this.groupBox2, 0);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
@@ -327,7 +327,6 @@ namespace HslCommunicationDemo.PLC.Siemens
 		public void SetDevice( SiemensS7Net siemensTcpNet, string address )
 		{
 			this.siemensTcpNet = siemensTcpNet;
-			base.SetDevice( siemensTcpNet, address );
 		}
 
 		private async void button4_Click( object sender, EventArgs e )

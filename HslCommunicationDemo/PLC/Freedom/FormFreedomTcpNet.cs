@@ -105,7 +105,7 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( freedom, "", true );
+				userControlReadWriteDevice1.SetReadWriteNet( freedom, "", true );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( freedom, "", string.Empty );
 				// 设置报文读取
@@ -140,6 +140,8 @@ namespace HslCommunicationDemo
 
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -155,6 +157,9 @@ namespace HslCommunicationDemo
 
 			comboBox2.SelectedIndex = GetXmlValue( element, DemoDeviceList.XmlDataFormat, 0, int.Parse );
 			checkBox3.Checked = GetXmlValue( element, DemoDeviceList.XmlStringReverse, false, bool.Parse );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

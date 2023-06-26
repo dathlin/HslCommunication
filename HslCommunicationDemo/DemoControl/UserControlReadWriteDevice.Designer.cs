@@ -34,9 +34,15 @@
 			this.batchReadControl1 = new HslCommunicationDemo.DemoControl.BatchReadControl();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.batchReadControl2 = new HslCommunicationDemo.DemoControl.BatchReadControl();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.stressTesting1 = new HslCommunicationDemo.PLC.Common.StressTesting();
+			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.dataTableControl1 = new HslCommunicationDemo.DemoControl.DataTableControl();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
+			this.tabPage3.SuspendLayout();
+			this.tabPage4.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// userControlReadWriteOp1
@@ -55,6 +61,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Controls.Add(this.tabPage4);
 			this.tabControl1.Location = new System.Drawing.Point(0, 272);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
@@ -86,10 +94,10 @@
 			// 
 			this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
 			this.tabPage2.Controls.Add(this.batchReadControl2);
-			this.tabPage2.Location = new System.Drawing.Point(4, 26);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(946, 252);
+			this.tabPage2.Size = new System.Drawing.Size(192, 74);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "报文读取";
 			// 
@@ -100,8 +108,49 @@
 			this.batchReadControl2.IsSourceReadMode = true;
 			this.batchReadControl2.Location = new System.Drawing.Point(3, 3);
 			this.batchReadControl2.Name = "batchReadControl2";
-			this.batchReadControl2.Size = new System.Drawing.Size(940, 246);
+			this.batchReadControl2.Size = new System.Drawing.Size(186, 68);
 			this.batchReadControl2.TabIndex = 1;
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.stressTesting1);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(192, 74);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "线程测试";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// stressTesting1
+			// 
+			this.stressTesting1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.stressTesting1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.stressTesting1.Location = new System.Drawing.Point(3, 3);
+			this.stressTesting1.Name = "stressTesting1";
+			this.stressTesting1.Size = new System.Drawing.Size(186, 68);
+			this.stressTesting1.TabIndex = 0;
+			this.stressTesting1.Load += new System.EventHandler(this.stressTesting1_Load);
+			// 
+			// tabPage4
+			// 
+			this.tabPage4.Controls.Add(this.dataTableControl1);
+			this.tabPage4.Location = new System.Drawing.Point(4, 26);
+			this.tabPage4.Name = "tabPage4";
+			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage4.Size = new System.Drawing.Size(946, 252);
+			this.tabPage4.TabIndex = 3;
+			this.tabPage4.Text = "点位表";
+			this.tabPage4.UseVisualStyleBackColor = true;
+			// 
+			// dataTableControl1
+			// 
+			this.dataTableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataTableControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.dataTableControl1.Location = new System.Drawing.Point(3, 3);
+			this.dataTableControl1.Name = "dataTableControl1";
+			this.dataTableControl1.Size = new System.Drawing.Size(940, 246);
+			this.dataTableControl1.TabIndex = 0;
 			// 
 			// UserControlReadWriteDevice
 			// 
@@ -115,6 +164,8 @@
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage2.ResumeLayout(false);
+			this.tabPage3.ResumeLayout(false);
+			this.tabPage4.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -127,5 +178,9 @@
 		private BatchReadControl batchReadControl1;
 		private System.Windows.Forms.TabPage tabPage2;
 		private BatchReadControl batchReadControl2;
+		private System.Windows.Forms.TabPage tabPage3;
+		private PLC.Common.StressTesting stressTesting1;
+		private System.Windows.Forms.TabPage tabPage4;
+		private DataTableControl dataTableControl1;
 	}
 }

@@ -12,6 +12,7 @@ using HslCommunication;
 using HslCommunication.Profinet.YASKAWA;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Common;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -25,7 +26,7 @@ namespace HslCommunicationDemo
 
 
 		private MemobusTcpNet memobus = null;
-		private SpecialFeaturesControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -35,8 +36,9 @@ namespace HslCommunicationDemo
 
 			Language( Program.Language );
 
-			control = new SpecialFeaturesControl( );
-			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.YASKAWA.Helper.GetMemobusAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -104,14 +106,12 @@ namespace HslCommunicationDemo
 					panel2.Enabled = true;
 
 					// 设置基本的读写信息
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( memobus, "100", true );
+					userControlReadWriteDevice1.SetReadWriteNet( memobus, "100", true );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( memobus, "100", string.Empty );
 					userControlReadWriteDevice1.BatchRead.SetReadWordRandom( memobus.ReadRandom, "1;100;300   针对09功能码的扩展保持寄存器" );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => memobus.ReadFromCoreServer( m, hasResponseData: true, usePackAndUnpack: false ), string.Empty, string.Empty );
-
-					control.SetDevice( memobus, "100" );
 
 				}
 				else
@@ -143,6 +143,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( "cpu_from", textBox_cpu_from.Text );
 			element.SetAttributeValue( "cpu_to", textBox_cpu_to.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -153,6 +155,9 @@ namespace HslCommunicationDemo
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			textBox_cpu_from.Text = element.Attribute( "cpu_from" ).Value;
 			textBox_cpu_to.Text = element.Attribute( "cpu_to" ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

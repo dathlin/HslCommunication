@@ -7,11 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HslCommunicationDemo.PLC.Siemens
 {
-	public class SiemensPPIControl : SpecialFeaturesControl
+	public class SiemensPPIControl :  UserControl
 	{
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button4;
@@ -40,9 +39,9 @@ namespace HslCommunicationDemo.PLC.Siemens
 			this.groupBox2.Controls.Add(this.button5);
 			this.groupBox2.Controls.Add(this.button4);
 			this.groupBox2.Controls.Add(this.button3);
-			this.groupBox2.Location = new System.Drawing.Point(251, 3);
+			this.groupBox2.Location = new System.Drawing.Point(3, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(398, 226);
+			this.groupBox2.Size = new System.Drawing.Size(749, 255);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Siemens PPI";
@@ -50,7 +49,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// button5
 			// 
 			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button5.Location = new System.Drawing.Point(197, 25);
+			this.button5.Location = new System.Drawing.Point(548, 25);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(82, 28);
 			this.button5.TabIndex = 20;
@@ -81,8 +80,9 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// SiemensPPIControl
 			// 
 			this.Controls.Add(this.groupBox2);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "SiemensPPIControl";
-			this.Controls.SetChildIndex(this.groupBox2, 0);
+			this.Size = new System.Drawing.Size(755, 261);
 			this.groupBox2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -91,7 +91,6 @@ namespace HslCommunicationDemo.PLC.Siemens
 		public void SetDevice( ISiemensPPI siemensPPI, string address )
 		{
 			this.siemensPPI = siemensPPI;
-			base.SetDevice( siemensPPI, address );
 		}
 
 		private void button3_Click( object sender, EventArgs e )

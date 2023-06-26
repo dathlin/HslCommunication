@@ -30,7 +30,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 
 			textBox7.Text = System.IO.Path.Combine( Application.StartupPath, "O6.txt" );
-
+			textBox_path.Text = "//CNC_MEM/USER/PATH1/";
 
 			imageList = new ImageList( );
 			imageList.Images.Add( "Class_489", Properties.Resources.Class_489 );
@@ -366,14 +366,10 @@ namespace HslCommunicationDemo
 		private async void button28_Click( object sender, EventArgs e )
 		{
 			// 读取程序
-			if (!ushort.TryParse( textBox9.Text, out ushort programNum ))
-			{
-				MessageBox.Show( "主程序号输入错误！" );
-				return;
-			}
+
 			button28.Enabled = false;
 			//OperateResult<string> read = fanuc.ReadProgram( programNum, textBox_path.Text );
-			OperateResult<string> read = await fanuc.ReadProgramAsync( programNum, textBox_path.Text );
+			OperateResult<string> read = await fanuc.ReadProgramAsync( textBox9.Text, textBox_path.Text );
 			button28.Enabled = true;
 			if (read.IsSuccess)
 			{
@@ -388,16 +384,13 @@ namespace HslCommunicationDemo
 		private void button29_Click( object sender, EventArgs e )
 		{
 			// 删除程序
-			if (!ushort.TryParse( textBox9.Text, out ushort programNum ))
-			{
-				MessageBox.Show( "主程序号输入错误！" );
-				return;
-			}
+			string path = textBox_path.Text;
+			if (!path.EndsWith( "/" )) path = path + "/";
 
-			OperateResult read = fanuc.DeleteProgram( programNum );
+			OperateResult read = fanuc.DeleteFile( path + textBox9.Text );
 			if (read.IsSuccess)
 			{
-				textBox8.Text = "删除程序成功！";
+				MessageBox.Show( Program.Language == 1 ? "删除程序成功！" : "Delete program file success! path: " + path + textBox9.Text );
 			}
 			else
 			{
@@ -633,6 +626,11 @@ namespace HslCommunicationDemo
 				if (!fileDirInfo.IsDirectory)
 				{
 					textBox_program.Text = fileDirInfo.ToString( );
+					textBox9.Text = fileDirInfo.Name;
+					if (e.Node.Parent?.Tag is FileDirInfo parent)
+					{
+						textBox_path.Text = GetPathFromTree( e.Node.Parent );
+					}
 				}
 				else
 				{

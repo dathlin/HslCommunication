@@ -12,6 +12,7 @@ using HslCommunication.ModBus;
 using System.Threading;
 using System.Xml.Linq;
 using HslCommunicationDemo.Modbus;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -25,6 +26,7 @@ namespace HslCommunicationDemo
 
 		private ModbusTcpNet busTcpClient = null;
 		private ModbusControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -39,6 +41,11 @@ namespace HslCommunicationDemo
 
 			control = new ModbusControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( Helper.GetModbusAddressExamples( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -134,13 +141,12 @@ namespace HslCommunicationDemo
 					panel2.Enabled = true;
 
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( busTcpClient, "100", true );
+					userControlReadWriteDevice1.SetReadWriteNet( busTcpClient, "100", true );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( busTcpClient, "100", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busTcpClient.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busTcpClient.ReadFromCoreServer( m ), "Modbus Core", "Example: 01 03 00 00 00 02" );
-
 					control.SetDevice( busTcpClient, "100" );
 				}
 				else
@@ -182,6 +188,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox14.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox12.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -195,6 +203,10 @@ namespace HslCommunicationDemo
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
 			textBox14.Text = element.Attribute( DemoDeviceList.XmlUserName ).Value;
 			textBox12.Text = element.Attribute( DemoDeviceList.XmlPassword ).Value;
+
+
+			if( this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

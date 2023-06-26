@@ -14,6 +14,7 @@ using HslCommunication.Profinet.Delta;
 using System.Xml.Linq;
 using HslCommunication.BasicFramework;
 using HslCommunicationDemo.PLC.Common;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -25,7 +26,7 @@ namespace HslCommunicationDemo
 		}
 
 		private DeltaSerialAscii delta = null;
-		private SpecialFeaturesControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -44,8 +45,9 @@ namespace HslCommunicationDemo
 			comboBox1.SelectedIndex = 2;
 			comboBox2.DataSource = SoftBasic.GetEnumValues<DeltaSeries>( );
 
-			control = new SpecialFeaturesControl( );
-			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Delta.Helper.GetDeviceAddressExamples( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -126,14 +128,12 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 
 				// 设置基本的读写信息
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( delta, "D100", false );
+				userControlReadWriteDevice1.SetReadWriteNet( delta, "D100", false );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( delta, "D100", string.Empty );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => delta.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => delta.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
-
-				control.SetDevice( delta, "D100" );
 			}
 			catch (Exception ex)
 			{
@@ -161,6 +161,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -173,6 +175,9 @@ namespace HslCommunicationDemo
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox5.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.PLC.Melsec
 {
-	public class MelsecSerialControl : SpecialFeaturesControl
+	public class MelsecSerialControl : UserControl
 	{
 		private System.Windows.Forms.Button button_active_plc;
 		private System.Windows.Forms.GroupBox groupBox2;
@@ -30,12 +30,12 @@ namespace HslCommunicationDemo.PLC.Melsec
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.button_active_plc);
-			this.groupBox2.Location = new System.Drawing.Point(251, 3);
+			this.groupBox2.Location = new System.Drawing.Point(3, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(398, 226);
+			this.groupBox2.Size = new System.Drawing.Size(924, 237);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Serial Function";
@@ -53,8 +53,9 @@ namespace HslCommunicationDemo.PLC.Melsec
 			// MelsecSerialControl
 			// 
 			this.Controls.Add(this.groupBox2);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "MelsecSerialControl";
-			this.Controls.SetChildIndex(this.groupBox2, 0);
+			this.Size = new System.Drawing.Size(939, 243);
 			this.groupBox2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -76,7 +77,6 @@ namespace HslCommunicationDemo.PLC.Melsec
 		public void SetDevice( IMelsecFxSerial melsecFxSerial, string address )
 		{
 			this.melsec = melsecFxSerial;
-			base.SetDevice( melsecFxSerial, address );
 		}
 
 		private IMelsecFxSerial melsec;

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.PLC.Panasonic
 {
-	public class MewtocolControl : SpecialFeaturesControl
+	public class MewtocolControl : UserControl
 	{
 		public MewtocolControl( )
 		{
@@ -24,8 +24,8 @@ namespace HslCommunicationDemo.PLC.Panasonic
 		private void InitializeComponent( )
 		{
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.button5 = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.button5 = new System.Windows.Forms.Button();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -36,12 +36,24 @@ namespace HslCommunicationDemo.PLC.Panasonic
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.textBox1);
 			this.groupBox2.Controls.Add(this.button5);
-			this.groupBox2.Location = new System.Drawing.Point(251, 3);
+			this.groupBox2.Location = new System.Drawing.Point(3, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(398, 226);
+			this.groupBox2.Size = new System.Drawing.Size(807, 256);
 			this.groupBox2.TabIndex = 2;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Mewtocol Function";
+			// 
+			// textBox1
+			// 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox1.Location = new System.Drawing.Point(6, 59);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox1.Size = new System.Drawing.Size(795, 191);
+			this.textBox1.TabIndex = 29;
 			// 
 			// button5
 			// 
@@ -53,23 +65,12 @@ namespace HslCommunicationDemo.PLC.Panasonic
 			this.button5.UseVisualStyleBackColor = true;
 			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
-			// textBox1
-			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(6, 59);
-			this.textBox1.Multiline = true;
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(386, 161);
-			this.textBox1.TabIndex = 29;
-			// 
 			// MewtocolControl
 			// 
 			this.Controls.Add(this.groupBox2);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "MewtocolControl";
-			this.Controls.SetChildIndex(this.groupBox2, 0);
+			this.Size = new System.Drawing.Size(813, 259);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
@@ -92,14 +93,12 @@ namespace HslCommunicationDemo.PLC.Panasonic
 		public void SetDevice( PanasonicMewtocol mewtocol, string address )
 		{
 			this.mewtocol = mewtocol;
-			base.SetDevice( mewtocol, address );
 		}
 
 
 		public void SetDevice( PanasonicMewtocolOverTcp mewtocolOverTcp, string address )
 		{
 			this.mewtocolOverTcp = mewtocolOverTcp;
-			base.SetDevice( mewtocolOverTcp, address );
 		}
 
 		private PanasonicMewtocol mewtocol;

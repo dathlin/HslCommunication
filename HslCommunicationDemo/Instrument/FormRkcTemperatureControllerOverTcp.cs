@@ -25,16 +25,12 @@ namespace HslCommunicationDemo
 
 
 		private TemperatureControllerOverTcp rkc = null;
-		private SpecialFeaturesControl control;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 			Language( Program.Language );
-
-			control = new SpecialFeaturesControl( );
-			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 		}
 
 
@@ -93,14 +89,13 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( rkc, "M1", true );
-					userControlReadWriteDevice1.ReadWriteOp.EnableRKC( );
+					userControlReadWriteDevice1.SetReadWriteNet( rkc, "M1", true );
+					userControlReadWriteDevice1.ReadWriteOpControl.EnableRKC( );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( rkc, "M1", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => rkc.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-					control.SetDevice( rkc, "M1" );
 				}
 				else
 				{
@@ -130,6 +125,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -138,6 +135,10 @@ namespace HslCommunicationDemo
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

@@ -12,6 +12,10 @@ using HslCommunication.ModBus;
 using System.Threading;
 using HslCommunication.Core.Net;
 using HslCommunicationDemo.Modbus;
+using HslCommunicationDemo.DemoControl;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
 
 
 /***************************************************************************************************
@@ -38,6 +42,7 @@ namespace HslCommunicationDemo
 
 		private ModbusTcpNet busTcpClient = null;
 		private ModbusControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -45,6 +50,10 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			control = new ModbusControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( Helper.GetModbusAddressExamples( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -106,13 +115,13 @@ namespace HslCommunicationDemo
 		private void button1_Click( object sender, EventArgs e )
 		{
 			// 连接
-			if (!int.TryParse( textBox2.Text, out int port ))
+			if (!int.TryParse( textBox_port.Text, out int port ))
 			{
 				MessageBox.Show( "端口输入不正确！" );
 				return;
 			}
 
-			if (!byte.TryParse( textBox15.Text, out byte station ))
+			if (!byte.TryParse( textBox_station.Text, out byte station ))
 			{
 				MessageBox.Show( "站号输入不正确！" );
 				return;
@@ -124,16 +133,17 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				busTcpClient.ConnectionId = textBox1.Text; // 设置唯一的ID
+				busTcpClient.ConnectionId = textBox_dtu.Text; // 设置唯一的ID
 				NetworkAlienStart( port );
 				busTcpClient.ConnectServer( null );        // 切换为异形客户端，并等待服务器的连接。
 
 				// 设置子控件的读取能力
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( busTcpClient, "100", true );
+				userControlReadWriteDevice1.SetReadWriteNet( busTcpClient, "100", true );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( busTcpClient, "100", string.Empty );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busTcpClient.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
 
 				control.SetDevice( busTcpClient, "100" );
 
@@ -196,6 +206,35 @@ namespace HslCommunicationDemo
 
 		#endregion
 
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( "Dtu", textBox_dtu.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
+
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox_dtu.Text     = GetXmlValue( element, "Dtu", string.Empty, m => m );
+			textBox_port.Text    = GetXmlValue( element, DemoDeviceList.XmlPort, textBox_port.Text, m => m );
+			textBox_station.Text = GetXmlValue( element, DemoDeviceList.XmlStation, textBox_station.Text, m => m );
+			checkBox1.Checked    = GetXmlValue( element, DemoDeviceList.XmlAddressStartWithZero, true, bool.Parse );
+
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
 
 	}
 }

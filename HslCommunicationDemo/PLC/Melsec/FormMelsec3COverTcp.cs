@@ -11,6 +11,8 @@ using System.Threading;
 using HslCommunication.Profinet.Melsec;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunicationDemo.DemoControl;
+using HslCommunicationDemo.PLC.Melsec;
 
 namespace HslCommunicationDemo
 {
@@ -24,6 +26,7 @@ namespace HslCommunicationDemo
 
 
 		private MelsecA3CNetOverTcp melsecA3C = null;
+		private AddressExampleControl addressExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -34,6 +37,11 @@ namespace HslCommunicationDemo
 			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
 			Language( Program.Language );
+
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( Helper.GetMcAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -109,7 +117,7 @@ namespace HslCommunicationDemo
 					panel2.Enabled = true;
 
 					// 设置基本的读写信息
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( melsecA3C, "D100", false );
+					userControlReadWriteDevice1.SetReadWriteNet( melsecA3C, "D100", false );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsecA3C, "D100", string.Empty );
 					// 设置报文读取
@@ -248,6 +256,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( "EnableWriteBitToWordRegister", checkBox_EnableWriteBitToWordRegister.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -257,6 +267,9 @@ namespace HslCommunicationDemo
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

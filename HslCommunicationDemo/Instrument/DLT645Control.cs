@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.Instrument
 {
-	public class DLT645Control : SpecialFeaturesControl
+	public class DLT645Control : UserControl
 	{
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Button button6;
@@ -54,9 +54,9 @@ namespace HslCommunicationDemo.Instrument
 			this.groupBox1.Controls.Add(this.button4);
 			this.groupBox1.Controls.Add(this.button3);
 			this.groupBox1.Controls.Add(this.textBox12);
-			this.groupBox1.Location = new System.Drawing.Point(251, 3);
+			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(578, 226);
+			this.groupBox1.Size = new System.Drawing.Size(826, 226);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "DLT645 Function";
@@ -137,15 +137,15 @@ namespace HslCommunicationDemo.Instrument
 			this.textBox12.Multiline = true;
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox12.Size = new System.Drawing.Size(561, 132);
+			this.textBox12.Size = new System.Drawing.Size(809, 132);
 			this.textBox12.TabIndex = 19;
 			// 
 			// DLT645Control
 			// 
 			this.Controls.Add(this.groupBox1);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "DLT645Control";
 			this.Size = new System.Drawing.Size(832, 232);
-			this.Controls.SetChildIndex(this.groupBox1, 0);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
@@ -155,7 +155,6 @@ namespace HslCommunicationDemo.Instrument
 		public void SetDevice( IDlt645 dlt645, string address )
 		{
 			this.dlt645 = dlt645;
-			base.SetDevice( dlt645, address );
 		}
 
 		private IDlt645 dlt645;

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.Instrument
 {
-	public class CJT188Control : SpecialFeaturesControl
+	public class CJT188Control : UserControl
 	{
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Button button6;
@@ -59,9 +59,9 @@ namespace HslCommunicationDemo.Instrument
 			this.groupBox1.Controls.Add(this.button4);
 			this.groupBox1.Controls.Add(this.button3);
 			this.groupBox1.Controls.Add(this.textBox12);
-			this.groupBox1.Location = new System.Drawing.Point(251, 3);
+			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(635, 226);
+			this.groupBox1.Size = new System.Drawing.Size(883, 226);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "CJT188 Function";
@@ -143,15 +143,15 @@ namespace HslCommunicationDemo.Instrument
 			this.textBox12.Multiline = true;
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox12.Size = new System.Drawing.Size(620, 136);
+			this.textBox12.Size = new System.Drawing.Size(868, 136);
 			this.textBox12.TabIndex = 19;
 			// 
 			// CJT188Control
 			// 
 			this.Controls.Add(this.groupBox1);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "CJT188Control";
 			this.Size = new System.Drawing.Size(889, 232);
-			this.Controls.SetChildIndex(this.groupBox1, 0);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
@@ -161,7 +161,6 @@ namespace HslCommunicationDemo.Instrument
 		public void SetDevice( ICjt188 cjt188, string address )
 		{
 			this.cjt188 = cjt188;
-			base.SetDevice( cjt188, address );
 		}
 
 		private ICjt188 cjt188;

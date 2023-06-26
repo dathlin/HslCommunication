@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Siemens;
 using HslCommunication;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
+using HslCommunicationDemo.PLC.Siemens;
 
 namespace HslCommunicationDemo
 {
@@ -25,13 +26,19 @@ namespace HslCommunicationDemo
 
 
 		private SiemensWebApi siemensTcpNet = null;
-
+		private SiemensWebApiControl webApiControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 
 			Language( Program.Language );
+			userControlReadWriteDevice1.RemoveReadBatch( );
+			userControlReadWriteDevice1.RemoveReadMessage( );
+
+			webApiControl = new SiemensWebApiControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( webApiControl, true );
+
 		}
 
 		private void Language( int language )
@@ -45,20 +52,6 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 
-				button7.Text = "r-time";
-				label11.Text = "Address:";
-				button25.Text = "Bulk Read";
-				label13.Text = "Results:";
-
-				label10.Text = "Address:";
-				label9.Text = "Value:";
-				label19.Text = "Note: The value of the string needs to be converted";
-				button8.Text = "w-time";
-
-				groupBox3.Text = "Bulk Read test";
-				groupBox5.Text = "Special function test";
-
-				button3.Text = "Order";
 			}
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -92,7 +85,10 @@ namespace HslCommunicationDemo
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
-					userControlReadWriteOp1.SetReadWriteNet( siemensTcpNet, "\"全局DB\".Static_14", false );
+					// 设置读写操作
+					userControlReadWriteDevice1.SetReadWriteNet( siemensTcpNet, "\"全局DB\".Static_14", false );
+					// 设置特殊功能测试
+					webApiControl.SetReadWriteNet( siemensTcpNet );
 				}
 				else
 				{
@@ -116,140 +112,6 @@ namespace HslCommunicationDemo
 		
 		#endregion
 
-		#region 单数据读取测试
-
-
-		private async void Button7_Click( object sender, EventArgs e )
-		{
-			OperateResult<DateTime> read = await siemensTcpNet.ReadDateTimeAsync( textBox8.Text );
-			if (read.IsSuccess)
-			{
-				textBox7.Text = read.Content.ToString( );
-			}
-			else
-			{
-				MessageBox.Show( "Failed:" + read.Message );
-			}
-		}
-
-		#endregion
-
-		#region 单数据写入测试
-
-		private async void Button8_Click( object sender, EventArgs e )
-		{
-			// time写入
-			if (DateTime.TryParse( textBox7.Text, out DateTime value ))
-				DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
-			else
-				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
-		}
-
-
-		#endregion
-
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			try
-			{
-				OperateResult<byte[]> read = siemensTcpNet.Read( textBox6.Text, 0 );
-				if (read.IsSuccess)
-				{
-					textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
-				}
-				else
-				{
-					MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( "Read Failed：" + ex.Message );
-			}
-		}
-
-		private async void button3_Click( object sender, EventArgs e )
-		{
-			// 批量读取
-			OperateResult<JToken[]> read = await siemensTcpNet.ReadAsync( textBox6.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ) );
-
-			if (!read.IsSuccess)
-			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			}
-			else
-			{
-				JArray json = new JArray( );
-				for (int i = 0; i < read.Content.Length; i++)
-				{
-					json.Add( read.Content[i] );
-
-				}
-				textBox10.Text = json.ToString( );
-
-			}
-		}
-
-		#endregion
-
-		private int thread_status = 0;
-		private int failed = 0;
-		private DateTime thread_time_start = DateTime.Now;
-		private long successCount = 0;
-		private System.Windows.Forms.Timer timer;
-
-
-		private void button9_Click( object sender, EventArgs e )
-		{
-			thread_status = 3;
-			failed = 0;
-			thread_time_start = DateTime.Now;
-			new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
-			new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
-			new Thread( new ThreadStart( thread_test1 ) ) { IsBackground = true, }.Start( );
-			button9.Enabled = false;
-
-			timer = new System.Windows.Forms.Timer( );
-			timer.Interval = 1000;
-			timer.Tick += Timer_Tick;
-			timer.Start( );
-		}
-
-		private void Timer_Tick( object sender, EventArgs e )
-		{
-			label2.Text = successCount.ToString( );
-		}
-
-		private async void thread_test1( )
-		{
-			int count = 100000;
-			while (count > 0)
-			{
-				if (!(await siemensTcpNet.WriteAsync( "M100", (short)1234 )).IsSuccess) failed++;
-				if (!(await siemensTcpNet.ReadInt16Async( "M100" ) ).IsSuccess) failed++;
-				count--;
-				successCount++;
-			}
-			thread_end( );
-		}
-
-		private void thread_end( )
-		{
-			if (Interlocked.Decrement( ref thread_status ) == 0)
-			{
-				// 执行完成
-				Invoke( new Action( ( ) =>
-				{
-					label2.Text = successCount.ToString( );
-					timer.Stop( );
-					button9.Enabled = true;
-					MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
-				} ) );
-			}
-		}
-
 
 
 		public override void SaveXmlParameter( XElement element )
@@ -258,6 +120,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox16.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -267,6 +131,9 @@ namespace HslCommunicationDemo
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlUserName ).Value;
 			textBox16.Text = element.Attribute( DemoDeviceList.XmlPassword ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

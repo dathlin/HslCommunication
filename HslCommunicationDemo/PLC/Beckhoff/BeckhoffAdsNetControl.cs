@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.PLC.Beckhoff
 {
-	public class BeckhoffAdsNetControl : SpecialFeaturesControl
+	public class BeckhoffAdsNetControl : UserControl
 	{
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.TextBox textBox4;
@@ -45,9 +45,10 @@ namespace HslCommunicationDemo.PLC.Beckhoff
 			this.groupBox1.Controls.Add(this.button4);
 			this.groupBox1.Controls.Add(this.textBox3);
 			this.groupBox1.Controls.Add(this.button3);
-			this.groupBox1.Location = new System.Drawing.Point(251, 3);
+			this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(601, 226);
+			this.groupBox1.Size = new System.Drawing.Size(849, 226);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Ads Function";
@@ -89,7 +90,7 @@ namespace HslCommunicationDemo.PLC.Beckhoff
 			this.textBox3.Multiline = true;
 			this.textBox3.Name = "textBox3";
 			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox3.Size = new System.Drawing.Size(558, 120);
+			this.textBox3.Size = new System.Drawing.Size(806, 120);
 			this.textBox3.TabIndex = 16;
 			// 
 			// button3
@@ -107,7 +108,6 @@ namespace HslCommunicationDemo.PLC.Beckhoff
 			this.Controls.Add(this.groupBox1);
 			this.Name = "BeckhoffAdsNetControl";
 			this.Size = new System.Drawing.Size(864, 232);
-			this.Controls.SetChildIndex(this.groupBox1, 0);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
@@ -117,7 +117,6 @@ namespace HslCommunicationDemo.PLC.Beckhoff
 		public void SetDevice( BeckhoffAdsNet beckhoffAdsNet, string address )
 		{
 			this.beckhoffAdsNet = beckhoffAdsNet;
-			base.SetDevice( beckhoffAdsNet, address );
 		}
 
 		private BeckhoffAdsNet beckhoffAdsNet;

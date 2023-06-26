@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HslCommunicationDemo.PLC.Omron
 {
-	public class HostLinkCModeControl : SpecialFeaturesControl
+	public class HostLinkCModeControl : UserControl
 	{
 		private System.Windows.Forms.GroupBox groupBox5;
 		private System.Windows.Forms.ComboBox comboBox4;
@@ -51,17 +51,17 @@ namespace HslCommunicationDemo.PLC.Omron
 			// groupBox5
 			// 
 			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.comboBox4);
 			this.groupBox5.Controls.Add(this.button5);
 			this.groupBox5.Controls.Add(this.button4);
 			this.groupBox5.Controls.Add(this.button3);
 			this.groupBox5.Controls.Add(this.textBox3);
 			this.groupBox5.Controls.Add(this.label5);
-			this.groupBox5.Location = new System.Drawing.Point(251, 3);
+			this.groupBox5.Location = new System.Drawing.Point(3, 3);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(511, 226);
+			this.groupBox5.Size = new System.Drawing.Size(759, 226);
 			this.groupBox5.TabIndex = 5;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "HostLinkCMode Function";
@@ -108,13 +108,13 @@ namespace HslCommunicationDemo.PLC.Omron
 			// textBox3
 			// 
 			this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox3.Location = new System.Drawing.Point(9, 117);
 			this.textBox3.Multiline = true;
 			this.textBox3.Name = "textBox3";
 			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox3.Size = new System.Drawing.Size(496, 103);
+			this.textBox3.Size = new System.Drawing.Size(744, 103);
 			this.textBox3.TabIndex = 12;
 			// 
 			// label5
@@ -129,9 +129,9 @@ namespace HslCommunicationDemo.PLC.Omron
 			// HostLinkCModeControl
 			// 
 			this.Controls.Add(this.groupBox5);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "HostLinkCModeControl";
 			this.Size = new System.Drawing.Size(765, 232);
-			this.Controls.SetChildIndex(this.groupBox5, 0);
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox5.PerformLayout();
 			this.ResumeLayout(false);
@@ -141,7 +141,6 @@ namespace HslCommunicationDemo.PLC.Omron
 		public void SetDevice( IHostLinkCMode hostLink, string address )
 		{
 			this.hostLink = hostLink;
-			base.SetDevice( hostLink, address );
 		}
 
 		private IHostLinkCMode hostLink;

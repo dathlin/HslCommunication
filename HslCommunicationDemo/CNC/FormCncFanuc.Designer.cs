@@ -792,7 +792,7 @@
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(105, 23);
 			this.textBox9.TabIndex = 57;
-			this.textBox9.Text = "33";
+			this.textBox9.Text = "O33";
 			// 
 			// textBox_path
 			// 

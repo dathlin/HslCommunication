@@ -36,13 +36,11 @@
 			this.label26 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label27 = new System.Windows.Forms.Label();
-			this.label22 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -59,8 +57,6 @@
 			this.panel1.Controls.Add(this.label26);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label27);
-			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
@@ -72,7 +68,7 @@
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(329, 10);
+			this.checkBox1.Location = new System.Drawing.Point(349, 10);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(99, 21);
 			this.checkBox1.TabIndex = 43;
@@ -81,7 +77,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(499, 8);
+			this.textBox3.Location = new System.Drawing.Point(519, 8);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(40, 23);
 			this.textBox3.TabIndex = 21;
@@ -90,7 +86,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(434, 11);
+			this.label1.Location = new System.Drawing.Point(454, 11);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 20;
@@ -98,7 +94,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(253, 8);
+			this.textBox2.Location = new System.Drawing.Point(273, 8);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 19;
@@ -107,7 +103,7 @@
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(199, 11);
+			this.label26.Location = new System.Drawing.Point(219, 11);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(44, 17);
 			this.label26.TabIndex = 18;
@@ -117,7 +113,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(66, 8);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(126, 23);
+			this.textBox1.Size = new System.Drawing.Size(147, 23);
 			this.textBox1.TabIndex = 17;
 			this.textBox1.Text = "192.168.0.10";
 			// 
@@ -130,27 +126,10 @@
 			this.label27.TabIndex = 16;
 			this.label27.Text = "Ip地址：";
 			// 
-			// label22
-			// 
-			this.label22.Location = new System.Drawing.Point(817, 1);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(156, 45);
-			this.label22.TabIndex = 7;
-			this.label22.Text = "MR100 DM100.";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(743, 1);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(68, 17);
-			this.label21.TabIndex = 6;
-			this.label21.Text = "地址示例：";
-			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(646, 5);
+			this.button2.Location = new System.Drawing.Point(666, 5);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -160,7 +139,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(546, 5);
+			this.button1.Location = new System.Drawing.Point(566, 5);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -181,6 +160,15 @@
 			this.panel2.Size = new System.Drawing.Size(997, 560);
 			this.panel2.TabIndex = 1;
 			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 558);
+			this.userControlReadWriteDevice1.TabIndex = 0;
+			// 
 			// userControlHead1
 			// 
 			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -195,15 +183,6 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// userControlReadWriteDevice1
-			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 558);
-			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// FormKeyenceNanoSerialOverTcp
 			// 
@@ -234,8 +213,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox textBox1;

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet.Siemens;
 using HslCommunicationDemo.Control;
+using HslCommunicationDemo.PLC.Omron;
 
 namespace HslCommunicationDemo
 {

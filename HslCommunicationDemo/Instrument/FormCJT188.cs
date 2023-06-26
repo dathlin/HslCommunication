@@ -15,6 +15,7 @@ using HslCommunication.Instrument.CJT;
 using HslCommunication.Instrument.CJT.Helper;
 using HslCommunicationDemo.Modbus;
 using HslCommunicationDemo.Instrument;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -27,6 +28,7 @@ namespace HslCommunicationDemo
 
 		private CJT188 cjt188 = null;
 		private CJT188Control control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -47,6 +49,11 @@ namespace HslCommunicationDemo
 
 			control = new CJT188Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.CJT188Helper.GetCJT188Address( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -126,7 +133,7 @@ namespace HslCommunicationDemo
 
 				// 68 00 00 00 00 00 01 68 11 04 00 00 00 00 10 16
 				// 设置子控件的读取能力
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( cjt188, "90-1F", false );
+				userControlReadWriteDevice1.SetReadWriteNet( cjt188, "90-1F", false );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( cjt188, "90-1F", string.Empty );
 				// 设置报文读取
@@ -160,6 +167,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -172,6 +181,9 @@ namespace HslCommunicationDemo
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox5.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

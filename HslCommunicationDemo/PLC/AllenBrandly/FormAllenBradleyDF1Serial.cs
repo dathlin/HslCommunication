@@ -12,6 +12,7 @@ using System.Threading;
 using System.IO.Ports;
 using HslCommunication.Profinet.AllenBradley;
 using System.Xml.Linq;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -23,6 +24,7 @@ namespace HslCommunicationDemo
 		}
 
 		private AllenBradleyDF1Serial allenBradley = null;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -39,6 +41,10 @@ namespace HslCommunicationDemo
 
 			Language( Program.Language );
 			comboBox1.SelectedIndex = 0;
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.AllenBrandly.Helper.GetDF1AddressExamples( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -46,7 +52,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "Delta DVP Read Demo";
+				Text = "DF1 Read Demo";
 
 				label1.Text = "Com:";
 				label3.Text = "baudRate:";
@@ -135,7 +141,7 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 
 				// 设置子控件的读取能力
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( allenBradley, "N7:0", true );
+				userControlReadWriteDevice1.SetReadWriteNet( allenBradley, "N7:0", true );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( allenBradley, "N7:0", string.Empty );
 				// 设置报文读取
@@ -169,6 +175,9 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlTarget, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlSender, textBox3.Text );
+
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -183,6 +192,10 @@ namespace HslCommunicationDemo
 			checkBox5.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlTarget ).Value;
 			textBox3.Text = element.Attribute( DemoDeviceList.XmlSender ).Value;
+
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

@@ -54,7 +54,7 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 53);
+			this.panel1.Size = new System.Drawing.Size(997, 37);
 			this.panel1.TabIndex = 0;
 			// 
 			// label11
@@ -69,7 +69,7 @@
 			// button11
 			// 
 			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(226, 10);
+			this.button11.Location = new System.Drawing.Point(226, 2);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(83, 28);
 			this.button11.TabIndex = 28;
@@ -79,7 +79,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(136, 10);
+			this.button1.Location = new System.Drawing.Point(136, 2);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(83, 28);
 			this.button1.TabIndex = 4;
@@ -89,7 +89,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(65, 13);
+			this.textBox2.Location = new System.Drawing.Point(65, 5);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
@@ -98,7 +98,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(11, 16);
+			this.label3.Location = new System.Drawing.Point(11, 8);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -111,10 +111,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(3, 91);
+			this.panel2.Location = new System.Drawing.Point(3, 74);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 551);
+			this.panel2.Size = new System.Drawing.Size(997, 569);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -125,7 +125,7 @@
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteServer1.Location = new System.Drawing.Point(2, 3);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(990, 543);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(990, 561);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1

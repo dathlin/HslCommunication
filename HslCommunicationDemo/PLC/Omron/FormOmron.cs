@@ -12,6 +12,7 @@ using HslCommunication;
 using HslCommunication.Profinet.Omron;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Omron;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -28,6 +29,7 @@ namespace HslCommunicationDemo
 
 		private OmronFinsNet omronFinsNet = null;
 		private FinsTcpControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -38,6 +40,10 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			control = new FinsTcpControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( Helper.GetOmronAddressExamples( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -52,7 +58,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 			}
 		}
 
@@ -96,7 +101,7 @@ namespace HslCommunicationDemo
 				textBox3.Text = omronFinsNet.DA1.ToString( );
 
 				// 设置子控件的读取能力
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( omronFinsNet, "D100", true );
+				userControlReadWriteDevice1.SetReadWriteNet( omronFinsNet, "D100", true );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronFinsNet, "D100", string.Empty );
 				// userControlReadWriteDevice1.BatchRead.SetReadRandom( omronFinsNet.ReadRandom );
@@ -104,7 +109,6 @@ namespace HslCommunicationDemo
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronFinsNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronFinsNet.ReadFromCoreServer( m ), "Fins Core", "example: 01 01 B1 00 0A 00 00 01" );
-
 				control.SetDevice( omronFinsNet, "D100" );
 			}
 			else
@@ -132,6 +136,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlNetNumber, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUnitNumber, textBox16.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -142,6 +148,9 @@ namespace HslCommunicationDemo
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlNetNumber ).Value;
 			textBox16.Text = element.Attribute( DemoDeviceList.XmlUnitNumber ).Value;
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.PLC.Melsec
 {
-	public class McQna3EControl : SpecialFeaturesControl
+	public class McQna3EControl : UserControl
 	{
 		private Button button6;
 		private Button button7;
@@ -29,21 +29,21 @@ namespace HslCommunicationDemo.PLC.Melsec
 		private void InitializeComponent( )
 		{
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.button11 = new System.Windows.Forms.Button();
+			this.button10 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
-			this.button11 = new System.Windows.Forms.Button();
-			this.button10 = new System.Windows.Forms.Button();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.button11);
 			this.groupBox2.Controls.Add(this.button10);
 			this.groupBox2.Controls.Add(this.button6);
@@ -51,12 +51,33 @@ namespace HslCommunicationDemo.PLC.Melsec
 			this.groupBox2.Controls.Add(this.button5);
 			this.groupBox2.Controls.Add(this.button4);
 			this.groupBox2.Controls.Add(this.button8);
-			this.groupBox2.Location = new System.Drawing.Point(251, 3);
+			this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.groupBox2.Location = new System.Drawing.Point(2, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(442, 226);
+			this.groupBox2.Size = new System.Drawing.Size(725, 225);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "MC Functions";
+			// 
+			// button11
+			// 
+			this.button11.Location = new System.Drawing.Point(200, 192);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(194, 28);
+			this.button11.TabIndex = 32;
+			this.button11.Text = "Wait D100 123";
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.button11_Click);
+			// 
+			// button10
+			// 
+			this.button10.Location = new System.Drawing.Point(6, 192);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(190, 28);
+			this.button10.TabIndex = 31;
+			this.button10.Text = "Wait M100 True";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
 			// button6
 			// 
@@ -108,31 +129,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			this.button8.UseVisualStyleBackColor = true;
 			this.button8.Click += new System.EventHandler(this.button8_Click);
 			// 
-			// button11
-			// 
-			this.button11.Location = new System.Drawing.Point(200, 192);
-			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(194, 28);
-			this.button11.TabIndex = 32;
-			this.button11.Text = "Wait D100 123";
-			this.button11.UseVisualStyleBackColor = true;
-			this.button11.Click += new System.EventHandler(this.button11_Click);
-			// 
-			// button10
-			// 
-			this.button10.Location = new System.Drawing.Point(6, 192);
-			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(190, 28);
-			this.button10.TabIndex = 31;
-			this.button10.Text = "Wait M100 True";
-			this.button10.UseVisualStyleBackColor = true;
-			this.button10.Click += new System.EventHandler(this.button10_Click);
-			// 
 			// McQna3EControl
 			// 
 			this.Controls.Add(this.groupBox2);
 			this.Name = "McQna3EControl";
-			this.Controls.SetChildIndex(this.groupBox2, 0);
+			this.Size = new System.Drawing.Size(730, 231);
 			this.groupBox2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -141,7 +142,6 @@ namespace HslCommunicationDemo.PLC.Melsec
 		public void SetDevice( IReadWriteMc mc, string address )
 		{
 			this.mc = mc;
-			base.SetDevice( mc, address );
 		}
 
 

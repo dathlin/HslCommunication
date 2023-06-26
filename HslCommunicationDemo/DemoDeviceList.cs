@@ -85,6 +85,8 @@ namespace HslCommunicationDemo
 		public static readonly string XmlName = "Name";
 		public static readonly string XmlGuid = "Guid";
 		public static readonly string XmlType = "Type";
+        public static readonly string XmlEncrypt = "EncryptXml";
+		public static readonly string XmlEncrypt2 = "EncryptKeyXml";
 		public static readonly string XmlIpAddress = "IP";
 		public static readonly string XmlPort = "Port";
 		public static readonly string XmlRack = "Rack";

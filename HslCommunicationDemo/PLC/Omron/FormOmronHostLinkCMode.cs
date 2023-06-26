@@ -13,6 +13,7 @@ using HslCommunication.Profinet.Omron;
 using System.IO.Ports;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Omron;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -28,6 +29,7 @@ namespace HslCommunicationDemo
 
 		private OmronHostLinkCMode omronHostLink = null;
 		private HostLinkCModeControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -49,6 +51,10 @@ namespace HslCommunicationDemo
 
 			control = new HostLinkCModeControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( Helper.GetFinsCModeAddressExamples( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -129,11 +135,11 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 
 				// 设置子控件的读取能力
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( omronHostLink, "D100", false );
+				userControlReadWriteDevice1.SetReadWriteNet( omronHostLink, "D100", false );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronHostLink, "D100", string.Empty );
 				// userControlReadWriteDevice1.BatchRead.SetReadRandom( omronFinsNet.ReadRandom );
-				//userControlReadWriteDevice1.BatchRead.SetReadWordRandom( omronHostLink.Read );
+				// userControlReadWriteDevice1.BatchRead.SetReadWordRandom( omronHostLink.Read );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronHostLink.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
@@ -166,6 +172,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox2.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -178,6 +186,9 @@ namespace HslCommunicationDemo
 			comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

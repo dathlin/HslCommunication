@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.Modbus
 {
-	public class ModbusControl : SpecialFeaturesControl
+	public class ModbusControl : UserControl
 	{
 		private System.Windows.Forms.Button button_Readwrite;
 		private System.Windows.Forms.TextBox textBox_write_value;
@@ -63,9 +63,9 @@ namespace HslCommunicationDemo.Modbus
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.textBox_read_address);
 			this.groupBox1.Controls.Add(this.label1);
-			this.groupBox1.Location = new System.Drawing.Point(251, 3);
+			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(620, 226);
+			this.groupBox1.Size = new System.Drawing.Size(868, 226);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "0x17 Function Test";
@@ -78,7 +78,7 @@ namespace HslCommunicationDemo.Modbus
 			this.textBox_read_result.Location = new System.Drawing.Point(118, 85);
 			this.textBox_read_result.Multiline = true;
 			this.textBox_read_result.Name = "textBox_read_result";
-			this.textBox_read_result.Size = new System.Drawing.Size(496, 135);
+			this.textBox_read_result.Size = new System.Drawing.Size(744, 135);
 			this.textBox_read_result.TabIndex = 10;
 			// 
 			// label5
@@ -106,7 +106,7 @@ namespace HslCommunicationDemo.Modbus
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_write_value.Location = new System.Drawing.Point(346, 53);
 			this.textBox_write_value.Name = "textBox_write_value";
-			this.textBox_write_value.Size = new System.Drawing.Size(268, 23);
+			this.textBox_write_value.Size = new System.Drawing.Size(516, 23);
 			this.textBox_write_value.TabIndex = 7;
 			this.textBox_write_value.Text = "12 34 56 78";
 			// 
@@ -173,9 +173,9 @@ namespace HslCommunicationDemo.Modbus
 			// ModbusControl
 			// 
 			this.Controls.Add(this.groupBox1);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "ModbusControl";
 			this.Size = new System.Drawing.Size(874, 232);
-			this.Controls.SetChildIndex(this.groupBox1, 0);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
@@ -187,7 +187,6 @@ namespace HslCommunicationDemo.Modbus
 		public void SetDevice( IModbus modbus, string address )
 		{
 			this.modbus = modbus;
-			base.SetDevice( modbus, address );
 		}
 
 		private void button_Readwrite_Click( object sender, EventArgs e )

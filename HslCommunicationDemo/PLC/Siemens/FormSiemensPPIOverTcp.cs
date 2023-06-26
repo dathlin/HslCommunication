@@ -13,6 +13,7 @@ using HslCommunication;
 using System.IO.Ports;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Siemens;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -26,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private SiemensPPIOverTcp siemensPPI = null;
 		private SiemensPPIControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -34,6 +36,11 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			control = new SiemensPPIControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( Helper.GetSiemensPPIAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -83,10 +90,9 @@ namespace HslCommunicationDemo
 					panel2.Enabled = true;
 
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( siemensPPI, "V100", false );
+					userControlReadWriteDevice1.SetReadWriteNet( siemensPPI, "V100", false );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( siemensPPI, "V100", string.Empty );
-
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensPPI.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
@@ -216,6 +222,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -224,6 +232,9 @@ namespace HslCommunicationDemo
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

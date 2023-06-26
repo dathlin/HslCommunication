@@ -38,8 +38,8 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -65,7 +65,7 @@
 			// 
 			// textBox_station
 			// 
-			this.textBox_station.Location = new System.Drawing.Point(400, 9);
+			this.textBox_station.Location = new System.Drawing.Point(449, 9);
 			this.textBox_station.Name = "textBox_station";
 			this.textBox_station.Size = new System.Drawing.Size(79, 23);
 			this.textBox_station.TabIndex = 28;
@@ -74,7 +74,7 @@
 			// label_station
 			// 
 			this.label_station.AutoSize = true;
-			this.label_station.Location = new System.Drawing.Point(337, 12);
+			this.label_station.Location = new System.Drawing.Point(386, 12);
 			this.label_station.Name = "label_station";
 			this.label_station.Size = new System.Drawing.Size(44, 17);
 			this.label_station.TabIndex = 27;
@@ -82,7 +82,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(271, 9);
+			this.textBox2.Location = new System.Drawing.Point(320, 9);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(47, 23);
 			this.textBox2.TabIndex = 19;
@@ -91,7 +91,7 @@
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(222, 12);
+			this.label26.Location = new System.Drawing.Point(271, 12);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(44, 17);
 			this.label26.TabIndex = 18;
@@ -101,7 +101,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(64, 9);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(152, 23);
+			this.textBox1.Size = new System.Drawing.Size(181, 23);
 			this.textBox1.TabIndex = 17;
 			this.textBox1.Text = "192.168.0.10";
 			// 
@@ -117,7 +117,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(875, 6);
+			this.button2.Location = new System.Drawing.Point(679, 6);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -127,7 +127,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(778, 6);
+			this.button1.Location = new System.Drawing.Point(582, 6);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -148,6 +148,15 @@
 			this.panel2.Size = new System.Drawing.Size(997, 558);
 			this.panel2.TabIndex = 1;
 			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 556);
+			this.userControlReadWriteDevice1.TabIndex = 0;
+			// 
 			// userControlHead1
 			// 
 			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -162,15 +171,6 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// userControlReadWriteDevice1
-			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 556);
-			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// FormXinJEInternalTcp
 			// 

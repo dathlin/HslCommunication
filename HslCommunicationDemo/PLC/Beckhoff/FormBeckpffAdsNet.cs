@@ -12,6 +12,7 @@ using HslCommunication.Profinet.Beckhoff;
 using HslCommunication;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Beckhoff;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -25,6 +26,7 @@ namespace HslCommunicationDemo
 
 		private BeckhoffAdsNet beckhoffAdsNet = null;
 		private BeckhoffAdsNetControl control;
+		private AddressExampleControl addressExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -37,6 +39,10 @@ namespace HslCommunicationDemo
 
 			control = new BeckhoffAdsNetControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Beckhoff.Helper.GetDeviceAddressExamples( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 		private void CheckBox_auto_CheckedChanged( object sender, EventArgs e )
@@ -65,7 +71,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 				label8.Text = "case: 192.168.1.100.1.1:801 or 192.168.1.100.1.1";
 				checkBox_tag.Text = "Tag Cache";
 				label17.Text = "TwinCAT2, port number 801; TwinCAT3, port number 851";
@@ -115,13 +120,14 @@ namespace HslCommunicationDemo
 
 					// M100;s=MAIN.dd;s=MAIN.a
 					// 设置基本的读写信息
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( beckhoffAdsNet, "M100", true );
+					userControlReadWriteDevice1.SetReadWriteNet( beckhoffAdsNet, "M100", true );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( beckhoffAdsNet, "M100", string.Empty );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadRandom( beckhoffAdsNet.Read, "M100;s=MAIN.dd;s=MAIN.a         Length input: 2;4;2" );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => beckhoffAdsNet.ReadFromCoreServer( m, hasResponseData: true, usePackAndUnpack: false ), string.Empty, string.Empty );
+
 
 					control.SetDevice( beckhoffAdsNet, "M100" );
 
@@ -262,6 +268,9 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlTarget, textBox14.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlSender, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTagCache, checkBox_tag.Checked );
+
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -272,6 +281,10 @@ namespace HslCommunicationDemo
 			textBox14.Text = element.Attribute( DemoDeviceList.XmlTarget ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlSender ).Value;
 			checkBox_tag.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlTagCache ).Value );
+
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

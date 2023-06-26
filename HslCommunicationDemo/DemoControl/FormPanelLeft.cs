@@ -2,6 +2,7 @@
 using HslCommunicationDemo.Control;
 using HslCommunicationDemo.HslDebug;
 using HslCommunicationDemo.MQTT;
+using HslCommunicationDemo.PLC.Omron;
 using HslCommunicationDemo.Redis;
 using System;
 using System.Collections.Generic;

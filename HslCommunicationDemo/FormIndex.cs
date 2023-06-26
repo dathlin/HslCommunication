@@ -35,23 +35,24 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.5.3
-1. NetworkBase: 在ReceiveByMessage方法里，新增判断消息报文剩余长度小于0时，直接返回头报文信息，防止在万一接收到错乱数据导致小于0引发bug的异常。
-2. FFTFilter: 傅立叶变化的Filter滤波方法，修复当数据有负数的时候，只能得到正数结果的bug，现在可以还原出带有负数情况的波形图。
-3. SiemensS7Server: SiemensS7Server增加在握手报文处理时，对握手报文合法性的检查操作，防止收到一些奇怪数据时导致奔溃。
-4. DLT698: 修复在UseSecurityResquest为默认True情况下，APDU指令创建不正确的bug，涵盖DLT698, DLT698TcpNet, DLT698OverTcp类。
-5. FanucSeries0i: 新增根据字符串程序名读取程序的方法接口ReadProgram( string program, string path = "" )，用来支持读取非数字名称的程序号。
-6. Toyota: 新增丰田工机的计算机链接协议实现，ToyoPuc 类，通过2PORT-EFR模块实现对PLC的读写数据操作，同时增加ToyoPucServer虚拟PLC进行测试。
-7. DLT698: 修复698的协议中的CheckResponse，当请求类型不支持时，引发空对象的异常。
-8. SerialBase: 间歇时间SleepTime允许设置0及小于0，小于0就是不进行任何休眠，三菱编程口MelsecFxSerial增加对消息完整长度的校验机制。
-9. OmronCipServer: 新增欧姆龙自身的CIP服务器，支持客户端使用OmronCipNet类和OmronConnectedCipNet进行通信，支持普通点位，数组，字符串的读写操作。
-10. CipServer: AllenBradleyServer和OmronCipServer支持所有的标签数据存储到文件和从文件加载的操作，demo里服务器的存储加载支持路径选择。
-11. MelsecA1EServer: 新增模拟PLC的实际情况，针对bool读取长度超过256返回错误码，针对字单位读取长度超过64即返回错误。
-12. MelsecA1E: MelsecA1ENet及MelsecA1EAsciiNet类修复读取bool数组时长度超过256报错的bug，MelsecA1EServer完善读取bool超过256返回错误。
-13. Mewtocol: 松下的Mewtocol的串口及网口类对象新增支持读取PLC型号的方法ReadPlcType，虚拟服务器也支持了该功能码。
-14. SerialBase, NetworkDoubleBase: 优化通信代码，针对Thread.Sleep方法也进行错误捕获，防止可能的异常。
-15. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
-16. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.6.0
+1. DLT645: DLT645-2007 新增对设备返回的报文进行和校验码校验的步骤，如果校验失败，返回错误信息。
+2. MelsecA1EAsciiNet: 修复在字读取长度超过64字时，或是bool读取超过256位时，读取结果不正确的bug。现在支持读取任意的长度数据。
+3. AllenBradleyServe: 修复AllenBradleyServer及OmronCipServer在配置了写入时创建新标签后，写入字符串数据仍然报错，提示标签不存在的bug。
+4. IDlt645: DLT645接口新增Password属性及OpCode，方便在通信时动态修改这两个参数，主要针对DLT645/2007的,对于 DLT645/1997 协议来说无效
+5. MelsecMcServer: 修复MC虚拟服务器在ASCII模式下，写入D之外的寄存器，但是仍然写入D寄存器的bug，影响范围包括A3CServer。
+6. Melsec: 三菱的MC协议开放属性 PlcNumner，可以自由的设置，表示PLC编号。影响范围:MelsecMcNet, MelsecMcAsciiNet, MelsecMcUdp, MelsecMcAsciiUdp
+7. OmronFinsServer: 欧姆龙的FinTcp协议的虚拟PLC支持了CF数据地址，无论是服务器上，还是通过客户端来读写CF数据都可以正确的读取。
+8. FanucSeries0i: 客户端demo修复删除程序，只能删除主目录的程序号的bug，现在可以删除任意指定路径的程序文件信息。
+9. WebsocketServer: websocket服务器运行时，当客户端使用火狐浏览器连接服务器时，修复检测websocket连接失败的bug。
+10. ToyoPuc: 修复丰田工机PLC中，当地址是 U0 及 H0 的时候，地址输入解析不正确的bug，原先的bug是忽略第一个数字。
+11. AllenBradleyServer: CIP虚拟服务器优化通信的细节，正确的设置了基于连接模式下的各种连接ID信息，当PLC使用MSG模块读写虚拟PLC时也顺利通过。
+12. Demo: HslCommunicationDemo程序几乎所有的设备测试界面的线程压力测试界面单独拎出来，显示单次通信的平均耗时。
+13. Demo: HslCommunicationDemo程序几乎所有的设备测试界面增加设备的地址示例说明，带地址示例，含义，部分PLC提供地址范围说明。
+14. Demo: HslCommunicationDemo程序几乎所有的设备测试界面增加数据点位表的功能，可以配置点位表，保存，加载，然后多个点位同时刷新。
+15. .net standard 框架的dll依赖的 System.IO.Ports 版本由 6.0.0 升级到 7.0.0。
+16. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
+17. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

@@ -1,4 +1,6 @@
-﻿using HslCommunication.LogNet;
+﻿using HslCommunication.Core.Security;
+using HslCommunication.LogNet;
+using HslCommunicationDemo.Control;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -131,8 +133,33 @@ namespace HslCommunicationDemo.DemoControl
 					else
 						hslForm.Icon = Icon.FromHandle( Properties.Resources.Method_636.GetHicon( ) );
 
-					hslForm.Show( dockPanel1 );
-					hslForm.LoadXmlParameter( element );
+					// 判断是否加密了，如果是加密的话，需要先进行解密的操作
+					if (element.Attribute( DemoDeviceList.XmlEncrypt) != null)
+					{
+						FormInputPassword inputPassword = new FormInputPassword( );
+						if (inputPassword.ShowDialog() == DialogResult.OK)
+						{
+							AesCryptography aesCryptography = new AesCryptography( inputPassword.Password.PadRight( 32, '0' ) );
+							try
+							{
+								string encrypt = aesCryptography.Decrypt( element.Attribute( DemoDeviceList.XmlEncrypt ).Value );
+								hslForm.Show( dockPanel1 );
+								hslForm.LoadXmlParameter( XElement.Parse( encrypt ) ); ;
+								hslForm.SetXml( element );
+								hslForm.Password = inputPassword.Password;
+							}
+							catch( Exception ex )
+							{
+								MessageBox.Show( (Program.Language == 1 ? "解密失败，无法加载当前的配置信息" : "Decryption failed and the current configuration information could not be loaded") +
+									Environment.NewLine + ex.Message );
+							}
+						}
+					}
+					else
+					{
+						hslForm.Show( dockPanel1 );
+						hslForm.LoadXmlParameter( element );
+					}
 				}
 			}
 		}

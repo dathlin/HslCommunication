@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.PLC.Melsec
 {
-	public class FxLinksControl : SpecialFeaturesControl
+	public class FxLinksControl : UserControl
 	{
 		public FxLinksControl()
 		{
@@ -35,14 +35,14 @@ namespace HslCommunicationDemo.PLC.Melsec
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.button5);
 			this.groupBox2.Controls.Add(this.button4);
 			this.groupBox2.Controls.Add(this.button3);
-			this.groupBox2.Location = new System.Drawing.Point(251, 3);
+			this.groupBox2.Location = new System.Drawing.Point(3, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(398, 226);
+			this.groupBox2.Size = new System.Drawing.Size(1027, 277);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "FxLinks Function";
@@ -80,9 +80,10 @@ namespace HslCommunicationDemo.PLC.Melsec
 			// FxLinksControl
 			// 
 			this.Controls.Add(this.groupBox2);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "FxLinksControl";
+			this.Size = new System.Drawing.Size(1033, 283);
 			this.Load += new System.EventHandler(this.FxLinksControl_Load);
-			this.Controls.SetChildIndex(this.groupBox2, 0);
 			this.groupBox2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -140,7 +141,6 @@ namespace HslCommunicationDemo.PLC.Melsec
 		public void SetDevice( IReadWriteFxLinks melsecFxLinks, string address )
 		{
 			this.melsecFxLinks = melsecFxLinks;
-			base.SetDevice( melsecFxLinks, address );
 		}
 
 

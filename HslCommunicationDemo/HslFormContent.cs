@@ -7,6 +7,8 @@ using System.Xml.Linq;
 using HslCommunicationDemo.Control;
 using HslCommunication.LogNet;
 using HslCommunication.BasicFramework;
+using HslCommunication.Core.Security;
+using System.Security.Cryptography;
 
 namespace HslCommunicationDemo
 {
@@ -21,11 +23,21 @@ namespace HslCommunicationDemo
 		public ILogNet LogNet { get; set; }
 
 
-		public virtual void LoadXmlParameter(XElement element )
+		public virtual void LoadXmlParameter( XElement element )
 		{
 			xElement = element;
 			Text = xElement.Attribute( DemoDeviceList.XmlName ).Value;
 		}
+
+		public void SetXml( XElement element )
+		{
+			xElement = element;
+		}
+
+		/// <summary>
+		/// 当前的密码信息
+		/// </summary>
+		public string Password { get; set; }
 
 		public virtual void SaveXmlParameter(XElement element )
 		{
@@ -48,7 +60,25 @@ namespace HslCommunicationDemo
 							xElement.SetAttributeValue( DemoDeviceList.XmlGuid, Guid.NewGuid( ).ToString( "N" ) );
 							xElement.SetAttributeValue( DemoDeviceList.XmlType, this.GetType( ).Name );
 							xElement.SetAttributeValue( DemoDeviceList.XmlName, form.DeviceAlias );
-							SaveXmlParameter( xElement );
+
+							if (!string.IsNullOrEmpty( form.Password ))
+							{
+								RSACryptoServiceProvider rsa = RSAHelper.CreateRsaProviderFromPublicKey( "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqzFn3dRlmxu3qk+aCddTdIUFYhc6rxUpERe8XG+Vf8DQ70JnfWVcTmlCxpdIu6R0VWzk03o6F20rai0ZnBI1SkxRta34wm1mPDzEFs/vdY7FBFy153c7S3dwM5t9leSBSVRrV1SVWjlphwnGZ+FwMtGXlZ7W+kI5IY1ONhIRXwQIDAQAB" );
+								xElement.SetAttributeValue( DemoDeviceList.XmlEncrypt2, Convert.ToBase64String( rsa.Encrypt( Encoding.UTF8.GetBytes( form.Password ), false ) ) );
+
+								XElement encrypt = new XElement( "Device" );
+								encrypt.SetAttributeValue( DemoDeviceList.XmlType, this.GetType( ).Name );
+								encrypt.SetAttributeValue( DemoDeviceList.XmlName, form.DeviceAlias );
+
+								SaveXmlParameter( encrypt );
+								AesCryptography aesCryptography = new AesCryptography( form.Password.PadRight( 32, '0' ) );
+								xElement.SetAttributeValue( DemoDeviceList.XmlEncrypt, aesCryptography.Encrypt( encrypt.ToString( ) ) );
+							}
+							else
+							{
+								SaveXmlParameter( xElement );
+							}
+
 							FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement );
 							MessageBox.Show( "Save Success" );
 						}
@@ -56,8 +86,32 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					SaveXmlParameter( xElement );
-					FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement );
+					// 判断是否加密了，如果是加密的话，需要先进行解密的操作
+					if (xElement.Attribute( DemoDeviceList.XmlEncrypt ) != null)
+					{
+						AesCryptography aesCryptography = new AesCryptography( Password.PadRight( 32, '0' ) );
+						try
+						{
+							XElement encrypt = new XElement( "Device" );
+							encrypt.SetAttributeValue( DemoDeviceList.XmlType, this.GetType( ).Name );
+							encrypt.SetAttributeValue( DemoDeviceList.XmlName, xElement.Attribute( DemoDeviceList.XmlName )?.Value );
+
+							SaveXmlParameter( encrypt );
+							xElement.SetAttributeValue( DemoDeviceList.XmlEncrypt, aesCryptography.Encrypt( encrypt.ToString( ) ) );
+							FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement );
+							MessageBox.Show( "Save Success" );
+						}
+						catch (Exception ex)
+						{
+							MessageBox.Show( (Program.Language == 1 ? "加密失败，无法加载当前的配置信息" : "Encryption failed and the current configuration information could not be loaded ") + ex.Message );
+						}
+					}
+					else
+					{
+						SaveXmlParameter( xElement );
+						FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement );
+						MessageBox.Show( "Save Success" );
+					}
 				}
 			}
 			catch (Exception ex)

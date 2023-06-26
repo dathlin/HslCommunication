@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.PLC.Fatek
 {
-	public class FatekProgrameControl : SpecialFeaturesControl
+	public class FatekProgrameControl : UserControl
 	{
 		private System.Windows.Forms.Label label_bit6_false;
 		private System.Windows.Forms.Label label_bit6_true;
@@ -82,9 +82,10 @@ namespace HslCommunicationDemo.PLC.Fatek
 			this.groupBox1.Controls.Add(this.button_read_status);
 			this.groupBox1.Controls.Add(this.button_stop);
 			this.groupBox1.Controls.Add(this.button_run);
-			this.groupBox1.Location = new System.Drawing.Point(251, 3);
+			this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(547, 235);
+			this.groupBox1.Size = new System.Drawing.Size(795, 235);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Fatek Programe";
@@ -264,7 +265,6 @@ namespace HslCommunicationDemo.PLC.Fatek
 			this.Controls.Add(this.groupBox1);
 			this.Name = "FatekProgrameControl";
 			this.Size = new System.Drawing.Size(801, 241);
-			this.Controls.SetChildIndex(this.groupBox1, 0);
 			this.groupBox1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -273,7 +273,6 @@ namespace HslCommunicationDemo.PLC.Fatek
 		public void SetDevice( IFatekProgram fatekProgram, string address )
 		{
 			this.fatekProgram = fatekProgram;
-			base.SetDevice( fatekProgram, address );
 		}
 
 

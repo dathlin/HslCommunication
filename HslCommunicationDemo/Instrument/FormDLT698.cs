@@ -14,6 +14,7 @@ using System.IO.Ports;
 using System.Xml.Linq;
 using HslCommunication.Core;
 using HslCommunicationDemo.Instrument;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -26,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private DLT698 dLT698 = null;
 		private DLT698Control control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -45,6 +47,11 @@ namespace HslCommunicationDemo
 			}
 
 			Language( Program.Language );
+
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.DLTHelper.GetDlt698Address( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -123,7 +130,7 @@ namespace HslCommunicationDemo
 
 					//userControlReadWriteOp1.SetReadWriteNet( dLT698, "20-00-02-00", false );
 
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( dLT698, "20-00-02-00", false );
+					userControlReadWriteDevice1.SetReadWriteNet( dLT698, "20-00-02-00", false );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( dLT698, "20-00-02-00", string.Empty );
 					// 设置报文读取
@@ -165,6 +172,9 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
 			element.SetAttributeValue( "UseSecurityResquest", checkBox_useSecurityResquest.Checked );
+
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -178,6 +188,10 @@ namespace HslCommunicationDemo
 			textBox_station.Text    = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox5.Checked       = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
 			checkBox_useSecurityResquest.Checked = GetXmlValue( element, "UseSecurityResquest", checkBox_useSecurityResquest.Checked, bool.Parse );
+
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

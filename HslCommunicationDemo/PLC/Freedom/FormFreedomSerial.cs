@@ -131,7 +131,7 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( freedom, "", false );
+				userControlReadWriteDevice1.SetReadWriteNet( freedom, "", false );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( freedom, "", string.Empty );
 				// 设置报文读取

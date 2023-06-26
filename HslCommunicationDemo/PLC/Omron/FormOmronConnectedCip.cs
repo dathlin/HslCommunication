@@ -87,7 +87,7 @@ namespace HslCommunicationDemo
 					panel2.Enabled = true;
 
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( omronCipNet, "A1", true, 1 );
+					userControlReadWriteDevice1.SetReadWriteNet( omronCipNet, "A1", true, 1 );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronCipNet, "A1", string.Empty );
 					userControlReadWriteDevice1.BatchRead.SetReadRandom( omronCipNet.Read, "A1;A2    Length input \"1;1\"" );
@@ -124,6 +124,8 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -131,6 +133,9 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

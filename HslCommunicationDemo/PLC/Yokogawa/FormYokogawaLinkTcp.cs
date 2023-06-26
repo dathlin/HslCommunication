@@ -12,6 +12,7 @@ using HslCommunication;
 using HslCommunication.Profinet.Yokogawa;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Yokogawa;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -27,6 +28,7 @@ namespace HslCommunicationDemo
 
 		private YokogawaLinkTcp yokogawa = null;
 		private YokogawaLinkControl control;
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -35,6 +37,10 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			control = new YokogawaLinkControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Yokogawa.Helper.GetYokogawaAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 		}
 
 
@@ -48,7 +54,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 			}
 		}
 
@@ -91,12 +96,11 @@ namespace HslCommunicationDemo
 				//userControlReadWriteOp1.SetReadWriteNet( yokogawa, "D100", false );
 
 				// 设置基本的读写信息
-				userControlReadWriteDevice1.ReadWriteOp.SetReadWriteNet( yokogawa, "D100", true );
+				userControlReadWriteDevice1.SetReadWriteNet( yokogawa, "D100", true );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( yokogawa, "D100", string.Empty );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => yokogawa.ReadFromCoreServer( m, hasResponseData: true, usePackAndUnpack: false ), string.Empty, string.Empty );
-
 				control.SetDevice( yokogawa, "D100" );
 			}
 			else
@@ -122,6 +126,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUnitNumber, textBox16.Text );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -130,6 +136,9 @@ namespace HslCommunicationDemo
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox16.Text = element.Attribute( DemoDeviceList.XmlUnitNumber ).Value;
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
