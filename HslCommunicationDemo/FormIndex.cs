@@ -35,24 +35,20 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.6.0
-1. DLT645: DLT645-2007 新增对设备返回的报文进行和校验码校验的步骤，如果校验失败，返回错误信息。
-2. MelsecA1EAsciiNet: 修复在字读取长度超过64字时，或是bool读取超过256位时，读取结果不正确的bug。现在支持读取任意的长度数据。
-3. AllenBradleyServe: 修复AllenBradleyServer及OmronCipServer在配置了写入时创建新标签后，写入字符串数据仍然报错，提示标签不存在的bug。
-4. IDlt645: DLT645接口新增Password属性及OpCode，方便在通信时动态修改这两个参数，主要针对DLT645/2007的,对于 DLT645/1997 协议来说无效
-5. MelsecMcServer: 修复MC虚拟服务器在ASCII模式下，写入D之外的寄存器，但是仍然写入D寄存器的bug，影响范围包括A3CServer。
-6. Melsec: 三菱的MC协议开放属性 PlcNumner，可以自由的设置，表示PLC编号。影响范围:MelsecMcNet, MelsecMcAsciiNet, MelsecMcUdp, MelsecMcAsciiUdp
-7. OmronFinsServer: 欧姆龙的FinTcp协议的虚拟PLC支持了CF数据地址，无论是服务器上，还是通过客户端来读写CF数据都可以正确的读取。
-8. FanucSeries0i: 客户端demo修复删除程序，只能删除主目录的程序号的bug，现在可以删除任意指定路径的程序文件信息。
-9. WebsocketServer: websocket服务器运行时，当客户端使用火狐浏览器连接服务器时，修复检测websocket连接失败的bug。
-10. ToyoPuc: 修复丰田工机PLC中，当地址是 U0 及 H0 的时候，地址输入解析不正确的bug，原先的bug是忽略第一个数字。
-11. AllenBradleyServer: CIP虚拟服务器优化通信的细节，正确的设置了基于连接模式下的各种连接ID信息，当PLC使用MSG模块读写虚拟PLC时也顺利通过。
-12. Demo: HslCommunicationDemo程序几乎所有的设备测试界面的线程压力测试界面单独拎出来，显示单次通信的平均耗时。
-13. Demo: HslCommunicationDemo程序几乎所有的设备测试界面增加设备的地址示例说明，带地址示例，含义，部分PLC提供地址范围说明。
-14. Demo: HslCommunicationDemo程序几乎所有的设备测试界面增加数据点位表的功能，可以配置点位表，保存，加载，然后多个点位同时刷新。
-15. .net standard 框架的dll依赖的 System.IO.Ports 版本由 6.0.0 升级到 7.0.0。
-16. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
-17. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.6.1
+1. Demo: 保存设备的连接参数及点位数据的时候，支持了设置密码，设置密码后，加载该设备参数时，必须输入正确的密码才能打开。
+2. Demo: 串口调试界面，TCP调试界面，TCP Server调试界面大幅度的调整，优化，更好的区分收发数据，以及数据长度信息。
+3. Demo: 在demo界面的曲线控件界面，从实时曲线修改为历史曲线控件，新增设置颜色，曲线样式，显示最大值，最小值信息，自动滚动条往右。
+4. Demo: 调试的程序在连接成功，或是打开串口之后，直接在测试界面上显示当前的连接类的示例代码，初始化参数和demo界面保持一致，方便直接复制。
+5. ModbusTcpServer: modbus虚拟plc当属性UseModbusRtuOverTcp = true时，同时支持rtu over tcp报文及 ascii over tcp报文，并对 ascii 报文做了更加严格的区分，防止弄乱。
+6. ModbusRtuOverTcp: 通过调整底层基类的读取空消息的报文时，可能引发数据不完整的bug，针对部分回数据断断续续的设备，现在可以读取正确的值信息。
+7. AllenBradleyNet: 优化CIP协议的读写字符串功能，对长度判断更加的完善，当写入字符串时，可以指定额外的type值，例如地址为""type=0xD1;AA""，影响范围：AllenBradleyMicroCip
+8. HslTimeOut: 优化超时的代码信息，单独添加超时的日志信息，如需记录，可以实例化 HslTimeOut.TimeoutLogNet 属性，并且可以获取到当前所有的超时判断次数 HslTimeOut.TimeoutDealCount
+9. SecsHsms: 优化secs的代码，增加在解析secs消息的时候，对异常错误的消息捕获并记录日志，demo界面优化显示信息，并提供代码示例。
+10. AllenBradleyNet: 写入字符串的时候，如果类型为 DA 的情况，则使用另外的写入方式，在microcip上测试成功。
+11. PanasonicHelper: 修复松下的mewtocol协议使用字的方式写入数据到Y,R,L地址时，引发0x41错误码的bug，原因来自结尾地址偏移异常。
+12. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
+13. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

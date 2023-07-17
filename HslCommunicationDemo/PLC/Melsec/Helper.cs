@@ -73,6 +73,23 @@ namespace HslCommunicationDemo.PLC.Melsec
 			};
 		}
 
+		public static DeviceAddressExample[] GetMcServerAddress( )
+		{
+			return new DeviceAddressExample[]
+			{
+				new DeviceAddressExample( "M0",  "内部继电器",       true, true, "" ),
+				new DeviceAddressExample( "X0",  "输入继电器",       true, true, "默认16进制，如果需要8进制，使用0开头 X011" ),
+				new DeviceAddressExample( "Y0",  "输出继电器",       true, true, "默认16进制，如果需要8进制，使用0开头 Y011" ),
+				new DeviceAddressExample( "L0",  "锁存继电器",       true, true, "" ),
+				new DeviceAddressExample( "B0",  "链接继电器",       true, true, "16进制地址" ),
+				new DeviceAddressExample( "D0",  "数据寄存器",       false, true, "" ),
+				new DeviceAddressExample( "W0",  "链接寄存器",       false, true, "16进制地址" ),
+				new DeviceAddressExample( "R0",  "文件寄存器",       false, true, "" ),
+				new DeviceAddressExample( "Z0",  "变址寄存器",       false, true, "" ),
+				new DeviceAddressExample( "ZR0", "ZR文件寄存器",     false, true, "" )
+			};
+		}
+
 		public static DeviceAddressExample[] GetMc1EAddress( )
 		{
 			return new DeviceAddressExample[]

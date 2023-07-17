@@ -218,6 +218,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			while (threadEnable)
 			{
+				if (dataGridView1.FirstDisplayedCell == null) return;
 				int firstRow = dataGridView1.FirstDisplayedCell.RowIndex;
 				int rowCount = dataGridView1.DisplayedRowCount( true );
 				//Invoke( new Action( ( ) =>

@@ -56,13 +56,13 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 68);
+			this.panel1.Size = new System.Drawing.Size(997, 47);
 			this.panel1.TabIndex = 0;
 			// 
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(23, 40);
+			this.checkBox1.Location = new System.Drawing.Point(324, 11);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(158, 21);
 			this.checkBox1.TabIndex = 30;
@@ -123,10 +123,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(3, 107);
+			this.panel2.Location = new System.Drawing.Point(3, 85);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 534);
+			this.panel2.Size = new System.Drawing.Size(997, 558);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -137,7 +137,7 @@
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 3);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 523);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 547);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1

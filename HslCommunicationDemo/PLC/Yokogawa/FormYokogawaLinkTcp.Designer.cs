@@ -65,7 +65,7 @@
 			// 
 			// textBox16
 			// 
-			this.textBox16.Location = new System.Drawing.Point(449, 9);
+			this.textBox16.Location = new System.Drawing.Point(508, 9);
 			this.textBox16.Name = "textBox16";
 			this.textBox16.Size = new System.Drawing.Size(56, 23);
 			this.textBox16.TabIndex = 11;
@@ -74,7 +74,7 @@
 			// label24
 			// 
 			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(353, 12);
+			this.label24.Location = new System.Drawing.Point(412, 12);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(95, 17);
 			this.label24.TabIndex = 10;
@@ -83,7 +83,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(682, 6);
+			this.button2.Location = new System.Drawing.Point(706, 6);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(106, 28);
 			this.button2.TabIndex = 5;
@@ -93,7 +93,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(558, 6);
+			this.button1.Location = new System.Drawing.Point(589, 6);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(99, 28);
 			this.button1.TabIndex = 4;
@@ -103,7 +103,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(278, 9);
+			this.textBox2.Location = new System.Drawing.Point(337, 9);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(69, 23);
 			this.textBox2.TabIndex = 3;
@@ -112,7 +112,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(224, 12);
+			this.label3.Location = new System.Drawing.Point(283, 12);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -122,7 +122,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(62, 9);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(156, 23);
+			this.textBox1.Size = new System.Drawing.Size(215, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "192.168.0.2";
 			// 

@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private SiemensFetchWriteNet siemensFWNet = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -38,6 +39,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetSiemensFWAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -51,7 +55,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 
 			}
 		}
@@ -93,6 +96,9 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( siemensFWNet, "M100", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensFWNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( siemensFWNet );
 				}
 				else
 				{

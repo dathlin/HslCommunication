@@ -94,10 +94,10 @@
 			// 
 			this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
 			this.tabPage2.Controls.Add(this.batchReadControl2);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Location = new System.Drawing.Point(4, 26);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(192, 74);
+			this.tabPage2.Size = new System.Drawing.Size(946, 252);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "报文读取";
 			// 
@@ -105,10 +105,10 @@
 			// 
 			this.batchReadControl2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.batchReadControl2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.batchReadControl2.IsSourceReadMode = true;
+			this.batchReadControl2.IsSourceReadMode = false;
 			this.batchReadControl2.Location = new System.Drawing.Point(3, 3);
 			this.batchReadControl2.Name = "batchReadControl2";
-			this.batchReadControl2.Size = new System.Drawing.Size(186, 68);
+			this.batchReadControl2.Size = new System.Drawing.Size(940, 246);
 			this.batchReadControl2.TabIndex = 1;
 			// 
 			// tabPage3
@@ -130,15 +130,14 @@
 			this.stressTesting1.Name = "stressTesting1";
 			this.stressTesting1.Size = new System.Drawing.Size(186, 68);
 			this.stressTesting1.TabIndex = 0;
-			this.stressTesting1.Load += new System.EventHandler(this.stressTesting1_Load);
 			// 
 			// tabPage4
 			// 
 			this.tabPage4.Controls.Add(this.dataTableControl1);
-			this.tabPage4.Location = new System.Drawing.Point(4, 26);
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(946, 252);
+			this.tabPage4.Size = new System.Drawing.Size(192, 74);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "点位表";
 			this.tabPage4.UseVisualStyleBackColor = true;
@@ -149,7 +148,7 @@
 			this.dataTableControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.dataTableControl1.Location = new System.Drawing.Point(3, 3);
 			this.dataTableControl1.Name = "dataTableControl1";
-			this.dataTableControl1.Size = new System.Drawing.Size(940, 246);
+			this.dataTableControl1.Size = new System.Drawing.Size(186, 68);
 			this.dataTableControl1.TabIndex = 0;
 			// 
 			// UserControlReadWriteDevice
@@ -179,8 +178,8 @@
 		private System.Windows.Forms.TabPage tabPage2;
 		private BatchReadControl batchReadControl2;
 		private System.Windows.Forms.TabPage tabPage3;
-		private PLC.Common.StressTesting stressTesting1;
 		private System.Windows.Forms.TabPage tabPage4;
 		private DataTableControl dataTableControl1;
+		private PLC.Common.StressTesting stressTesting1;
 	}
 }

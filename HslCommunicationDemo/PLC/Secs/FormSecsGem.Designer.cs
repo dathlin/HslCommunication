@@ -47,7 +47,6 @@
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.textBox_data = new System.Windows.Forms.TextBox();
 			this.textBox_receive = new System.Windows.Forms.TextBox();
-			this.textBox_example = new System.Windows.Forms.TextBox();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.button3 = new System.Windows.Forms.Button();
 			this.label11 = new System.Windows.Forms.Label();
@@ -71,7 +70,8 @@
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.textBox_s2 = new System.Windows.Forms.TextBox();
 			this.button_s2f13 = new System.Windows.Forms.Button();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.tabControl_buttom = new System.Windows.Forms.TabControl();
+			this.tabPage_log = new System.Windows.Forms.TabPage();
 			this.button4 = new System.Windows.Forms.Button();
 			this.textBox_log = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
@@ -92,7 +92,8 @@
 			this.tabPage2.SuspendLayout();
 			this.tabPage_s2.SuspendLayout();
 			this.panel3.SuspendLayout();
-			this.groupBox3.SuspendLayout();
+			this.tabControl_buttom.SuspendLayout();
+			this.tabPage_log.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -249,9 +250,9 @@
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
+			this.splitContainer1.Panel2.Controls.Add(this.tabControl_buttom);
 			this.splitContainer1.Size = new System.Drawing.Size(987, 590);
-			this.splitContainer1.SplitterDistance = 372;
+			this.splitContainer1.SplitterDistance = 341;
 			this.splitContainer1.TabIndex = 7;
 			// 
 			// tabControl1
@@ -263,14 +264,13 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(987, 372);
+			this.tabControl1.Size = new System.Drawing.Size(987, 341);
 			this.tabControl1.TabIndex = 6;
 			// 
 			// tabPage1
 			// 
 			this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
 			this.tabPage1.Controls.Add(this.splitContainer2);
-			this.tabPage1.Controls.Add(this.textBox_example);
 			this.tabPage1.Controls.Add(this.treeView1);
 			this.tabPage1.Controls.Add(this.button3);
 			this.tabPage1.Controls.Add(this.label11);
@@ -284,7 +284,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(979, 342);
+			this.tabPage1.Size = new System.Drawing.Size(979, 311);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Base";
 			// 
@@ -303,7 +303,7 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.textBox_receive);
-			this.splitContainer2.Size = new System.Drawing.Size(648, 255);
+			this.splitContainer2.Size = new System.Drawing.Size(648, 257);
 			this.splitContainer2.SplitterDistance = 291;
 			this.splitContainer2.TabIndex = 26;
 			// 
@@ -314,7 +314,7 @@
 			this.textBox_data.Multiline = true;
 			this.textBox_data.Name = "textBox_data";
 			this.textBox_data.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_data.Size = new System.Drawing.Size(291, 255);
+			this.textBox_data.Size = new System.Drawing.Size(291, 257);
 			this.textBox_data.TabIndex = 20;
 			// 
 			// textBox_receive
@@ -324,23 +324,8 @@
 			this.textBox_receive.Multiline = true;
 			this.textBox_receive.Name = "textBox_receive";
 			this.textBox_receive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_receive.Size = new System.Drawing.Size(353, 255);
+			this.textBox_receive.Size = new System.Drawing.Size(353, 257);
 			this.textBox_receive.TabIndex = 12;
-			// 
-			// textBox_example
-			// 
-			this.textBox_example.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_example.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox_example.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.textBox_example.ForeColor = System.Drawing.Color.Green;
-			this.textBox_example.Location = new System.Drawing.Point(6, 309);
-			this.textBox_example.Multiline = true;
-			this.textBox_example.Name = "textBox_example";
-			this.textBox_example.ReadOnly = true;
-			this.textBox_example.Size = new System.Drawing.Size(970, 49);
-			this.textBox_example.TabIndex = 25;
-			this.textBox_example.Text = "Example:";
 			// 
 			// treeView1
 			// 
@@ -348,7 +333,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.treeView1.Location = new System.Drawing.Point(5, 6);
 			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(311, 300);
+			this.treeView1.Size = new System.Drawing.Size(311, 302);
 			this.treeView1.TabIndex = 24;
 			// 
 			// button3
@@ -448,7 +433,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(979, 346);
+			this.tabPage2.Size = new System.Drawing.Size(979, 315);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "S1";
 			// 
@@ -507,7 +492,7 @@
 			this.textBox_s1.Multiline = true;
 			this.textBox_s1.Name = "textBox_s1";
 			this.textBox_s1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_s1.Size = new System.Drawing.Size(259, 329);
+			this.textBox_s1.Size = new System.Drawing.Size(259, 298);
 			this.textBox_s1.TabIndex = 23;
 			// 
 			// button_S1F1
@@ -536,7 +521,7 @@
 			this.tabPage_s2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage_s2.Name = "tabPage_s2";
 			this.tabPage_s2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage_s2.Size = new System.Drawing.Size(979, 346);
+			this.tabPage_s2.Size = new System.Drawing.Size(979, 315);
 			this.tabPage_s2.TabIndex = 2;
 			this.tabPage_s2.Text = "S2";
 			// 
@@ -548,7 +533,7 @@
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel3.Location = new System.Drawing.Point(3, 3);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(973, 340);
+			this.panel3.Size = new System.Drawing.Size(973, 309);
 			this.panel3.TabIndex = 0;
 			// 
 			// textBox_s2
@@ -559,7 +544,7 @@
 			this.textBox_s2.Multiline = true;
 			this.textBox_s2.Name = "textBox_s2";
 			this.textBox_s2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_s2.Size = new System.Drawing.Size(259, 338);
+			this.textBox_s2.Size = new System.Drawing.Size(259, 307);
 			this.textBox_s2.TabIndex = 24;
 			// 
 			// button_s2f13
@@ -572,23 +557,33 @@
 			this.button_s2f13.UseVisualStyleBackColor = true;
 			this.button_s2f13.Click += new System.EventHandler(this.button_s2f13_Click);
 			// 
-			// groupBox3
+			// tabControl_buttom
 			// 
-			this.groupBox3.Controls.Add(this.button4);
-			this.groupBox3.Controls.Add(this.textBox_log);
-			this.groupBox3.Controls.Add(this.label13);
-			this.groupBox3.Controls.Add(this.checkBox1);
-			this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBox3.Location = new System.Drawing.Point(0, 0);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(987, 214);
-			this.groupBox3.TabIndex = 2;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "日志";
+			this.tabControl_buttom.Controls.Add(this.tabPage_log);
+			this.tabControl_buttom.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl_buttom.Location = new System.Drawing.Point(0, 0);
+			this.tabControl_buttom.Name = "tabControl_buttom";
+			this.tabControl_buttom.SelectedIndex = 0;
+			this.tabControl_buttom.Size = new System.Drawing.Size(987, 245);
+			this.tabControl_buttom.TabIndex = 3;
+			// 
+			// tabPage_log
+			// 
+			this.tabPage_log.Controls.Add(this.button4);
+			this.tabPage_log.Controls.Add(this.textBox_log);
+			this.tabPage_log.Controls.Add(this.label13);
+			this.tabPage_log.Controls.Add(this.checkBox1);
+			this.tabPage_log.Location = new System.Drawing.Point(4, 26);
+			this.tabPage_log.Name = "tabPage_log";
+			this.tabPage_log.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage_log.Size = new System.Drawing.Size(979, 215);
+			this.tabPage_log.TabIndex = 0;
+			this.tabPage_log.Text = "日志";
+			this.tabPage_log.UseVisualStyleBackColor = true;
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(4, 69);
+			this.button4.Location = new System.Drawing.Point(3, 58);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(55, 26);
 			this.button4.TabIndex = 16;
@@ -601,17 +596,17 @@
 			this.textBox_log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_log.Location = new System.Drawing.Point(63, 17);
+			this.textBox_log.Location = new System.Drawing.Point(62, 6);
 			this.textBox_log.Multiline = true;
 			this.textBox_log.Name = "textBox_log";
 			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_log.Size = new System.Drawing.Size(918, 191);
+			this.textBox_log.Size = new System.Drawing.Size(911, 203);
 			this.textBox_log.TabIndex = 10;
 			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(9, 19);
+			this.label13.Location = new System.Drawing.Point(8, 8);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(44, 17);
 			this.label13.TabIndex = 9;
@@ -620,7 +615,7 @@
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(7, 41);
+			this.checkBox1.Location = new System.Drawing.Point(6, 30);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(58, 21);
 			this.checkBox1.TabIndex = 15;
@@ -679,8 +674,9 @@
 			this.tabPage_s2.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
+			this.tabControl_buttom.ResumeLayout(false);
+			this.tabPage_log.ResumeLayout(false);
+			this.tabPage_log.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -691,7 +687,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBox_log;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button25;
@@ -729,12 +724,13 @@
 		private System.Windows.Forms.TextBox textBox_s2;
 		private System.Windows.Forms.Button button_s2f13;
 		private System.Windows.Forms.TreeView treeView1;
-		private System.Windows.Forms.TextBox textBox_example;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.SplitContainer splitContainer2;
 		private System.Windows.Forms.CheckBox checkBox2;
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.TabControl tabControl_buttom;
+		private System.Windows.Forms.TabPage tabPage_log;
 	}
 }

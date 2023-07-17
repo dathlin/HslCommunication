@@ -10,6 +10,7 @@ using HslCommunication.Robot.YAMAHA;
 using HslCommunication;
 using HslCommunication.BasicFramework;
 using System.Xml.Linq;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo.Robot
 {
@@ -21,6 +22,7 @@ namespace HslCommunicationDemo.Robot
 		}
 
 		private YamahaRCX yamahaRCX;
+		private CodeExampleControl codeExampleControl;
 
 		private async void Button1_Click( object sender, EventArgs e )
 		{
@@ -35,15 +37,18 @@ namespace HslCommunicationDemo.Robot
 				OperateResult connect = await yamahaRCX.ConnectServerAsync( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( "连接成功" );
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button1.Enabled = false;
 					button2.Enabled = true;
 					panel2.Enabled = true;
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( "robot", yamahaRCX );
 				}
 				else
 				{
 					button1.Enabled = true;
-					MessageBox.Show( "连接失败" );
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)
@@ -55,6 +60,9 @@ namespace HslCommunicationDemo.Robot
 		private void FormABBWebApi_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
+
+			codeExampleControl = new CodeExampleControl( );
+			DemoUtils.AddSpecialFunctionTab( this.tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void button2_Click( object sender, EventArgs e )

@@ -60,6 +60,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			return new DeviceAddressExample[]
 			{
 				new DeviceAddressExample( "A1", "全局变量名", true, true, "类型一定要和PLC实际数据对应上" ),
+				new DeviceAddressExample( "type=0xDA;A2", "携带类型", true, true, "当标签类型特殊时，可以手动携带类型才能正确写入" ),
 				new DeviceAddressExample( "Program:MainProgram.A1", "局部变量名", true, true, "如果变量是局部的，前面带上程序名" ),
 				new DeviceAddressExample( "slot=2;A1", "全局变量名", true, true, "地址也可以携带额外的slot信息" ),
 				new DeviceAddressExample( "i=A[0]", "全局变量名", true, true, "如果A在PLC是基于uint类型的bool数组，可以使用这种访问每个位" ),

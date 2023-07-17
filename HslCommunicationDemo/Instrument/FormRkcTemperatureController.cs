@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 
 
 		private TemperatureController rkc = null;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -45,6 +46,10 @@ namespace HslCommunicationDemo
 				comboBox3.Text = "COM3";
 			}
 			comboBox2.SelectedIndex = 0;
+
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -129,6 +134,9 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( rkc, "M1", string.Empty );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => rkc.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( "rkc", rkc, nameof( rkc.Station ) );
 
 			}
 			catch (Exception ex)

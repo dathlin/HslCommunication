@@ -10,6 +10,8 @@ using HslCommunication.Profinet;
 using HslCommunication;
 using HslCommunication.ModBus;
 using System.Threading;
+using HslCommunicationDemo.DemoControl;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -33,6 +35,13 @@ namespace HslCommunicationDemo
                 button11.Text = "Close Server";
                 label11.Text = "This server is not a strict fetch/write protocol and only supports perfect communication with HSL components.";
             }
+
+            addressExampleControl = new AddressExampleControl( );
+            addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Siemens.Helper.GetSiemensFWAddress( ) );
+            userControlReadWriteServer1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+            codeExampleControl = new CodeExampleControl( );
+            userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
         }
         
         private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -44,6 +53,8 @@ namespace HslCommunicationDemo
 
 
         private HslCommunication.Profinet.Siemens.SiemensFetchWriteServer s7NetServer;
+        private AddressExampleControl addressExampleControl;
+        private CodeExampleControl codeExampleControl;
 
         private void button1_Click( object sender, EventArgs e )
         {
@@ -66,6 +77,10 @@ namespace HslCommunicationDemo
                 button1.Enabled = false;
                 panel2.Enabled = true;
                 button11.Enabled = true;
+
+
+                // 设置代码示例
+                codeExampleControl.SetCodeText( "server", "", s7NetServer );
             }
             catch (Exception ex)
             {
@@ -101,5 +116,25 @@ namespace HslCommunicationDemo
         }
 
         #endregion
+
+
+        public override void SaveXmlParameter( XElement element )
+        {
+            element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+            this.userControlReadWriteServer1.GetDataTable( element );
+        }
+
+        public override void LoadXmlParameter( XElement element )
+        {
+            base.LoadXmlParameter( element );
+            textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+
+            this.userControlReadWriteServer1.LoadDataTable( element );
+        }
+
+        private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+        {
+            userControlHead1_SaveConnectEvent( sender, e );
+        }
     }
 }

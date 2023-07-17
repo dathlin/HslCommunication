@@ -28,7 +28,7 @@ namespace HslCommunicationDemo.PLC.Omron
 
 		private OmronHostLink omronHostLink = null;
 		private AddressExampleControl addressExampleControl;
-
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -53,6 +53,9 @@ namespace HslCommunicationDemo.PLC.Omron
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetOmronAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -165,6 +168,10 @@ namespace HslCommunicationDemo.PLC.Omron
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronHostLink.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronHostLink.ReadFromCoreServer( m ), "Fins Core", "example: 01 01 B1 00 0A 00 00 01" );
+
+				// 设置示例代码
+				codeExampleControl.SetCodeText( omronHostLink, nameof( omronHostLink.UnitNumber ), nameof( omronHostLink.SID ), nameof( omronHostLink.DA2 ),
+					nameof( omronHostLink.SA2 ), "ByteTransform.DataFormat" );
 			}
 			catch (Exception ex)
 			{

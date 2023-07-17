@@ -11,6 +11,7 @@ using HslCommunication;
 using HslCommunication.ModBus;
 using System.Threading;
 using System.Xml.Linq;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -37,6 +38,13 @@ namespace HslCommunicationDemo
 				label11.Text = "This server is not a strict cip protocol and only supports perfect communication with HSL components.";
 				checkBox1.Text = "Create Tag when write";
 			}
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.AllenBrandly.Helper.GetCIPAddressExamples( ) );
+			userControlReadWriteServer1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -47,6 +55,8 @@ namespace HslCommunicationDemo
 		#region Server Start
 
 		private HslCommunication.Profinet.Omron.OmronCipServer cipServer;
+		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void button1_Click( object sender, EventArgs e )
 		{
@@ -92,6 +102,10 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 				button11.Enabled = true;
 				userControlReadWriteServer1.SetReadWriteServer( cipServer, "A", 1 );
+
+
+				// 设置示例代码
+				codeExampleControl.SetCodeText( "server", "", cipServer, nameof( cipServer.CreateTagWithWrite ) );
 			}
 			catch (Exception ex)
 			{
@@ -136,12 +150,17 @@ namespace HslCommunicationDemo
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( "CreateTagWithWrite", checkBox1.Checked );
+
+			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			checkBox1.Checked = GetXmlValue( element, "CreateTagWithWrite", false, bool.Parse );
+			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

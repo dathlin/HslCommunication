@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 
 		private FujiSPHNet fujiSPB = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -42,6 +43,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Fuji.Helper.GetSPHAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 
 		}
 
@@ -84,11 +88,12 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			fujiSPB?.ConnectClose( );
-			fujiSPB = new FujiSPHNet( );
-			fujiSPB.IpAddress = textBox1.Text;
-			fujiSPB.Port = port;
-			fujiSPB.LogNet = LogNet;
+			this.fujiSPB?.ConnectClose( );
+			this.fujiSPB = new FujiSPHNet( );
+			this.fujiSPB.IpAddress = textBox1.Text;
+			this.fujiSPB.Port = port;
+			this.fujiSPB.LogNet = LogNet;
+			this.fujiSPB.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
 			try
 			{
@@ -111,6 +116,8 @@ namespace HslCommunicationDemo
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fujiSPB.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
+					// 设置代码示例
+					codeExampleControl.SetCodeText( fujiSPB, nameof( fujiSPB.ConnectionID ), "ByteTransform.DataFormat" );
 				}
 				else
 				{

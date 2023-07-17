@@ -10,6 +10,7 @@ using HslCommunication.MQTT;
 using HslCommunication;
 using System.Xml.Linq;
 using HslCommunicationDemo.MQTT;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -120,6 +121,8 @@ namespace HslCommunicationDemo
 				panel2.Enabled  = true;
 				listBox1.DataSource = mqttClient.SubcribeTopics;
 				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+
+				code = CodeExampleControl.CreateStringBulider( mqttClient );
 			}
 			else
 			{
@@ -127,7 +130,11 @@ namespace HslCommunicationDemo
 				button1.Enabled = true;
 				MessageBox.Show( connect.ToMessageShowString( ) );
 			}
+
+
 		}
+
+		private StringBuilder code = new StringBuilder( );
 
 		private void MqttClient_OnNetworkError( object sender, EventArgs e )
 		{
@@ -382,6 +389,11 @@ namespace HslCommunicationDemo
 					textBox_certificate.Text = ofd.FileName;
 				}
 			}
+		}
+
+		private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+		{
+			textBox8.Text = code.ToString( ); 
 		}
 	}
 

@@ -215,6 +215,8 @@
 			// 
 			// textBox7
 			// 
+			this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.textBox7.Location = new System.Drawing.Point(63, 56);
 			this.textBox7.Multiline = true;
 			this.textBox7.Name = "textBox7";
@@ -534,6 +536,7 @@
 			// 
 			// label8
 			// 
+			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label8.AutoSize = true;
 			this.label8.Location = new System.Drawing.Point(55, 534);
 			this.label8.Name = "label8";
@@ -553,6 +556,8 @@
 			// 
 			// textBox4
 			// 
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.textBox4.Location = new System.Drawing.Point(58, 179);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";

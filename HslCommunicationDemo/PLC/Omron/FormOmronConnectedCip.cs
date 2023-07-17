@@ -13,6 +13,7 @@ using HslCommunication;
 using HslCommunication.Profinet.AllenBradley;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.AllenBrandly;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -27,6 +28,8 @@ namespace HslCommunicationDemo
 
 		private OmronConnectedCipNet omronCipNet = null;
 		private AllenBrandlyControl control;
+		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -36,6 +39,13 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			control = new AllenBrandlyControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.AllenBrandly.Helper.GetCIPAddressExamples( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -48,8 +58,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
-				label22.Text = "plc tag name";
 			}
 		}
 
@@ -97,6 +105,9 @@ namespace HslCommunicationDemo
 					// TODO EIP及CIP的例子填充
 
 					control.SetDevice( omronCipNet, "A1" );
+
+					// 设置示例代码
+					codeExampleControl.SetCodeText( omronCipNet );
 				}
 				else
 				{

@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
 		private SiemensPLCS siemensPLCSelected = SiemensPLCS.S1200;
 		private SiemensS7Control control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -41,23 +42,23 @@ namespace HslCommunicationDemo
 
 			if (siemensPLCSelected == SiemensPLCS.S400)
 			{
-				textBox15.Text = "0";
-				textBox16.Text = "3";
+				textBox_rack.Text = "0";
+				textBox_slot.Text = "3";
 			}
 			else if(siemensPLCSelected == SiemensPLCS.S1200)
 			{
-				textBox15.Text = "0";
-				textBox16.Text = "0";
+				textBox_rack.Text = "0";
+				textBox_slot.Text = "0";
 			}
 			else if (siemensPLCSelected == SiemensPLCS.S300)
 			{
-				textBox15.Text = "0";
-				textBox16.Text = "2";
+				textBox_rack.Text = "0";
+				textBox_slot.Text = "2";
 			}
 			else if (siemensPLCSelected == SiemensPLCS.S1500)
 			{
-				textBox15.Text = "0";
-				textBox16.Text = "0";
+				textBox_rack.Text = "0";
+				textBox_slot.Text = "0";
 			}
 
 			control = new SiemensS7Control( );
@@ -66,6 +67,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetSiemensS7Address( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -78,7 +82,7 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
+				label_info.Text = "If it is not clear, do not set it";
 			}
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -90,22 +94,22 @@ namespace HslCommunicationDemo
 		
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox2.Text, out int port ))
+			if(!int.TryParse(textBox_port.Text, out int port ))
 			{
 				MessageBox.Show( DemoUtils.PortInputWrong );
 				return;
 			}
 
-			siemensTcpNet.IpAddress = textBox1.Text;
+			siemensTcpNet.IpAddress = textBox_ip.Text;
 			siemensTcpNet.Port = port;
 			//siemensTcpNet.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Parse( "127.0.0.1" ), 12345 );
 			try
 			{
-				siemensTcpNet.Rack = byte.Parse( textBox15.Text );
-				siemensTcpNet.Slot = byte.Parse( textBox16.Text );
+				siemensTcpNet.Rack = byte.Parse( textBox_rack.Text );
+				siemensTcpNet.Slot = byte.Parse( textBox_slot.Text );
 
-				siemensTcpNet.ConnectionType = byte.Parse( textBox3.Text );
-				siemensTcpNet.LocalTSAP = int.Parse( textBox4.Text );
+				if (!string.IsNullOrEmpty( textBox_connectType.Text )) siemensTcpNet.ConnectionType = byte.Parse( textBox_connectType.Text );
+				if (!string.IsNullOrEmpty( textBox_localTSAP.Text )) siemensTcpNet.LocalTSAP = int.Parse( textBox_localTSAP.Text );
 				siemensTcpNet.LogNet = LogNet;
 
 
@@ -127,6 +131,15 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensTcpNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					control.SetDevice( siemensTcpNet, "M100" );
+
+					List<string> parameters = new List<string>( );
+					parameters.Add( nameof( siemensTcpNet.Rack ) );
+					parameters.Add( nameof( siemensTcpNet.Slot ) );
+					if (!string.IsNullOrEmpty( textBox_connectType.Text )) parameters.Add( nameof( siemensTcpNet.ConnectionType ) );
+					if (!string.IsNullOrEmpty( textBox_localTSAP.Text )) parameters.Add( nameof( siemensTcpNet.LocalTSAP ) );
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( siemensTcpNet, parameters.ToArray( ) );
 				}
 				else
 				{
@@ -248,10 +261,12 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlRack, textBox15.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox16.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlRack, textBox_rack.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox_slot.Text );
+			element.SetAttributeValue( "ConnectType", textBox_connectType.Text );
+			element.SetAttributeValue( "LocalTSAP",   textBox_localTSAP.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -259,10 +274,12 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox15.Text = element.Attribute( DemoDeviceList.XmlRack ).Value;
-			textBox16.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox_rack.Text = element.Attribute( DemoDeviceList.XmlRack ).Value;
+			textBox_slot.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
+			textBox_connectType.Text = GetXmlValue( element, "ConnectType", string.Empty, m => m );
+			textBox_localTSAP.Text   = GetXmlValue( element, "LocalTSAP",   string.Empty, m => m );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );
@@ -272,6 +289,5 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
-
 	}
 }

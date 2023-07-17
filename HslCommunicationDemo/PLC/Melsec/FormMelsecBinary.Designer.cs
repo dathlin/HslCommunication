@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_string_reverse = new System.Windows.Forms.CheckBox();
 			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.button2 = new System.Windows.Forms.Button();
@@ -51,6 +52,7 @@ namespace HslCommunicationDemo
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_string_reverse);
 			this.panel1.Controls.Add(this.checkBox_EnableWriteBitToWordRegister);
 			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.button2);
@@ -64,6 +66,16 @@ namespace HslCommunicationDemo
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 59);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_string_reverse
+			// 
+			this.checkBox_string_reverse.AutoSize = true;
+			this.checkBox_string_reverse.Location = new System.Drawing.Point(477, 35);
+			this.checkBox_string_reverse.Name = "checkBox_string_reverse";
+			this.checkBox_string_reverse.Size = new System.Drawing.Size(87, 21);
+			this.checkBox_string_reverse.TabIndex = 27;
+			this.checkBox_string_reverse.Text = "字符串颠倒";
+			this.checkBox_string_reverse.UseVisualStyleBackColor = true;
 			// 
 			// checkBox_EnableWriteBitToWordRegister
 			// 
@@ -215,5 +227,6 @@ namespace HslCommunicationDemo
 		private System.Windows.Forms.CheckBox checkBox1;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private System.Windows.Forms.CheckBox checkBox_EnableWriteBitToWordRegister;
+		private System.Windows.Forms.CheckBox checkBox_string_reverse;
 	}
 }

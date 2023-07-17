@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 
 		private MelsecA3CNet melsecA3C = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -55,6 +56,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetMcAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -155,11 +159,31 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsecA3C, "D100", string.Empty );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsecA3C.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+				// 设置示例的代码
+				codeExampleControl.SetCodeText( melsecA3C, nameof( melsecA3C.Station), nameof( melsecA3C.EnableWriteBitToWordRegister ), nameof( melsecA3C.SumCheck),
+					nameof( melsecA3C.Format ) );
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show( ex.Message );
 			}
+			HslCommunication.Profinet.Melsec.MelsecA3CNet plc = new HslCommunication.Profinet.Melsec.MelsecA3CNet( );
+			plc.SerialPortInni( sp =>
+			{
+				sp.PortName = "COM1";
+				sp.BaudRate = 9600;
+				sp.DataBits = 8;
+				sp.StopBits = System.IO.Ports.StopBits.One;
+				sp.Parity = System.IO.Ports.Parity.None;
+				sp.RtsEnable = true;
+			} );
+			plc.ReceiveTimeout = 5000;   // 接收超时，单位毫秒
+			plc.Station = 0;
+			plc.EnableWriteBitToWordRegister = false;
+			plc.SumCheck = true;
+			plc.Format = 1;
+
 		}
 
 		private void button2_Click( object sender, EventArgs e )

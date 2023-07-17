@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 		private AllenBradleyNet allenBradleyNet = null;
 		private AllenBrandlyControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -40,6 +41,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.AllenBrandly.Helper.GetCIPAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -113,8 +117,13 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => allenBradleyNet.ReadCipFromServer( m ), "CIP", "CIP Message, example: " );
 
 					// TODO EIP及CIP的例子填充
-
 					control.SetDevice( allenBradleyNet, "A1" );
+
+					// 设置代码示例
+					if (string.IsNullOrEmpty( textBox_router.Text ))
+						codeExampleControl.SetCodeText( allenBradleyNet, nameof( allenBradleyNet.Slot ) );
+					else
+						codeExampleControl.SetCodeText( allenBradleyNet, nameof( allenBradleyNet.Slot ), nameof( allenBradleyNet.MessageRouter ) );
 				}
 				else
 				{

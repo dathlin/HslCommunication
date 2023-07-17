@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private PanasonicMcNet panasonic_net = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -38,6 +39,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetMCAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -96,6 +100,9 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.BatchRead.SetReadWordRandom( panasonic_net.ReadRandom, "D100;D200;D500" );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => panasonic_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+					// 设置示例代码
+					codeExampleControl.SetCodeText( panasonic_net );
 				}
 				else
 				{

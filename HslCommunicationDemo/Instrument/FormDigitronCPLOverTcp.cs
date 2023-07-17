@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private DigitronCPLOverTcp cpl = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -36,6 +37,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.CPLHelper.GetCPLAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -100,6 +104,8 @@ namespace HslCommunicationDemo
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => cpl.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
+					// 设置代码示例
+					codeExampleControl.SetCodeText( "cpl", cpl, nameof( cpl.Station ) );
 				}
 				else
 				{

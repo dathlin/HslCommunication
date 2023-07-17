@@ -30,6 +30,7 @@ namespace HslCommunicationDemo
 		private KeyenceNanoSerial keyenceNanoSerial = null;
 		private NanoControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -51,6 +52,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Keyence.Helper.GetKeyenceKvAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -136,6 +140,9 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => keyenceNanoSerial.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 				// 特殊读取
 				control.SetDevice( keyenceNanoSerial, "DM100" );
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( keyenceNanoSerial, nameof( keyenceNanoSerial.UseStation ), nameof( keyenceNanoSerial.Station ) );
 			}
 			catch (Exception ex)
 			{

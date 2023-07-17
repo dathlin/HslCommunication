@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.6.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.6.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.6.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.6.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
@@ -169,6 +169,18 @@
     </Compile>
     <Compile Include="DemoControl\BatchReadControl.Designer.cs">
       <DependentUpon>BatchReadControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\CodeExampleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\CodeExampleControl.Designer.cs">
+      <DependentUpon>CodeExampleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\CurveMonitorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\CurveMonitorControl.Designer.cs">
+      <DependentUpon>CurveMonitorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\DataTableControl.cs">
       <SubType>UserControl</SubType>
@@ -306,6 +318,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="HslDebug\DebugControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HslDebug\DebugControl.Designer.cs">
+      <DependentUpon>DebugControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="HslDebug\FormHslCertificate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +347,12 @@
     </Compile>
     <Compile Include="HslDebug\FormMessageCreate.Designer.cs">
       <DependentUpon>FormMessageCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HslDebug\FormPacketMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HslDebug\FormPacketMessage.Designer.cs">
+      <DependentUpon>FormPacketMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="HslDebug\FormRegexTest.cs">
       <SubType>Form</SubType>
@@ -354,6 +378,8 @@
     <Compile Include="HslDebug\FormSerialToTcp.Designer.cs">
       <DependentUpon>FormSerialToTcp.cs</DependentUpon>
     </Compile>
+    <Compile Include="HslDebug\PacketMessageItem.cs" />
+    <Compile Include="HslDebug\SocketDebugSession.cs" />
     <Compile Include="Hsl\FormHttpClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1074,6 +1100,12 @@
     </Compile>
     <Compile Include="Redis\ZSetKey\ZSetValueInsertForm.Designer.cs">
       <DependentUpon>ZSetValueInsertForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Robot\EfortRobotControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Robot\EfortRobotControl.Designer.cs">
+      <DependentUpon>EfortRobotControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Robot\FormAbbServer.cs">
       <SubType>Form</SubType>
@@ -1835,6 +1867,12 @@
     <EmbeddedResource Include="DemoControl\BatchReadControl.resx">
       <DependentUpon>BatchReadControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\CodeExampleControl.resx">
+      <DependentUpon>CodeExampleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\CurveMonitorControl.resx">
+      <DependentUpon>CurveMonitorControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\DataTableControl.resx">
       <DependentUpon>DataTableControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1904,6 +1942,9 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HslDebug\DebugControl.resx">
+      <DependentUpon>DebugControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HslDebug\FormHslCertificate.resx">
       <DependentUpon>FormHslCertificate.cs</DependentUpon>
     </EmbeddedResource>
@@ -1915,6 +1956,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HslDebug\FormMessageCreate.resx">
       <DependentUpon>FormMessageCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HslDebug\FormPacketMessage.resx">
+      <DependentUpon>FormPacketMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HslDebug\FormRegexTest.resx">
       <DependentUpon>FormRegexTest.cs</DependentUpon>
@@ -2302,6 +2346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Redis\ZSetKey\ZSetValueInsertForm.resx">
       <DependentUpon>ZSetValueInsertForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Robot\EfortRobotControl.resx">
+      <DependentUpon>EfortRobotControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Robot\FormAbbServer.resx">
       <DependentUpon>FormAbbServer.cs</DependentUpon>

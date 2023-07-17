@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 		private MelsecFxLinksOverTcp melsec = null;
 		private FxLinksControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -42,6 +43,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetFxLinksAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -104,6 +108,9 @@ namespace HslCommunicationDemo
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec.ReadFromCoreServer( m ), string.Empty, string.Empty );
 					control.SetDevice( melsec, "D100" );
+
+					// 设置示例的代码
+					codeExampleControl.SetCodeText( melsec, nameof( melsec.Station ), nameof( melsec.WaittingTime ), nameof( melsec.SumCheck ), nameof( melsec.Format ) );
 				}
 				else
 				{

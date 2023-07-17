@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 		private DLT645 dLT645 = null;
 		private DLT645Control control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -50,6 +51,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.DLTHelper.GetDlt645Address( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -138,6 +142,8 @@ namespace HslCommunicationDemo
 
 				control.SetDevice( dLT645, "00-00-00-00" );
 
+				// 设置代码示例
+				codeExampleControl.SetCodeText( "dlt", dLT645, nameof( dLT645.Station ), nameof( dLT645.EnableCodeFE ), nameof( dLT645.Password ), nameof( dLT645.OpCode ) );
 			}
 			catch (Exception ex)
 			{

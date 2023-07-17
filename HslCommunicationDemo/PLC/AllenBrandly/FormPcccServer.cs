@@ -11,6 +11,7 @@ using HslCommunication;
 using HslCommunication.ModBus;
 using System.Threading;
 using System.Xml.Linq;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -36,6 +37,14 @@ namespace HslCommunicationDemo
 				button11.Text = "Close Server";
 				label11.Text = "This server is not a strict cip protocol and only supports perfect communication with HSL components.";
 			}
+
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.AllenBrandly.Helper.GetPCCCAddressExamples( ) );
+			userControlReadWriteServer1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -46,6 +55,8 @@ namespace HslCommunicationDemo
 		#region Server Start
 
 		private HslCommunication.Profinet.AllenBradley.AllenBradleyPcccServer cipServer;
+		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void button1_Click( object sender, EventArgs e )
 		{
@@ -58,7 +69,6 @@ namespace HslCommunicationDemo
 
 			try
 			{
-
 				cipServer = new HslCommunication.Profinet.AllenBradley.AllenBradleyPcccServer( );                       // 实例化对象
 				cipServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				cipServer.OnDataReceived += BusTcpServer_OnDataReceived;
@@ -69,6 +79,9 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 				button11.Enabled = true;
 				userControlReadWriteServer1.SetReadWriteServer( cipServer, "F8:5", 10 );
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( "server", "", cipServer );
 			}
 			catch (Exception ex)
 			{
@@ -113,12 +126,16 @@ namespace HslCommunicationDemo
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+
+			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+
+			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

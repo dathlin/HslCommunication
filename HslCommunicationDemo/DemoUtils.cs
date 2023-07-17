@@ -188,6 +188,38 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		/// <summary>
+		/// 将指定的控件增加到分页控件中去
+		/// </summary>
+		/// <param name="tabControl"></param>
+		/// <param name="control"></param>
+		/// <param name="show"></param>
+		/// <param name="title"></param>
+		public static void AddSpecialFunctionTab( TabControl tabControl, UserControl control, bool show = false, string title = null )
+		{
+			TabPage tabPage = new TabPage( );
+			tabPage.SuspendLayout( );
+			tabControl.Controls.Add( tabPage );
+
+			tabPage.BackColor = System.Drawing.SystemColors.Control;
+			tabPage.Controls.Add( control );
+			tabPage.Location = new System.Drawing.Point( 4, 26 );
+			tabPage.Name = "tabPage3";
+			tabPage.Padding = new System.Windows.Forms.Padding( 3 );
+			tabPage.Size = new System.Drawing.Size( 946, 252 );
+			tabPage.TabIndex = 0;
+			if (string.IsNullOrEmpty( title ))
+				tabPage.Text = Program.Language == 1 ? "特殊功能测试" : "Special Function";
+			else
+				tabPage.Text = title;
+
+			control.Dock = DockStyle.Fill;
+			tabPage.ResumeLayout( false );
+
+			if (show) tabControl.SelectTab( tabPage );
+		}
+
+
 		public static readonly string IpAddressInputWrong = "IpAddress input wrong";
 		public static readonly string PortInputWrong = "Port input wrong";
 		public static readonly string SlotInputWrong = "Slot input wrong";

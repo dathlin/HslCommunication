@@ -37,7 +37,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.button10 = new System.Windows.Forms.Button();
 			this.button9 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
@@ -86,11 +86,15 @@
 			this.label12 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.button_read_short = new System.Windows.Forms.Button();
-			this.button10 = new System.Windows.Forms.Button();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.textBox_station = new System.Windows.Forms.TextBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// userControlHead1
@@ -103,7 +107,7 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "modbus tcp";
-			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(1033, 32);
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 15;
 			// 
@@ -112,6 +116,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_station);
+			this.panel1.Controls.Add(this.label9);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
@@ -121,13 +127,14 @@
 			this.panel1.Location = new System.Drawing.Point(2, 34);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1000, 43);
+			this.panel1.Size = new System.Drawing.Size(1029, 43);
 			this.panel1.TabIndex = 16;
 			// 
 			// button2
 			// 
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(875, 6);
+			this.button2.Location = new System.Drawing.Point(904, 6);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -137,7 +144,8 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(772, 6);
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Location = new System.Drawing.Point(801, 6);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -147,7 +155,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(250, 9);
+			this.textBox2.Location = new System.Drawing.Point(326, 9);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(76, 23);
 			this.textBox2.TabIndex = 3;
@@ -156,7 +164,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(196, 12);
+			this.label3.Location = new System.Drawing.Point(264, 12);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -166,7 +174,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(62, 9);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(128, 23);
+			this.textBox1.Size = new System.Drawing.Size(184, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "192.168.0.100";
 			// 
@@ -185,7 +193,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel2.Controls.Add(this.groupBox2);
+			this.panel2.Controls.Add(this.tabControl1);
 			this.panel2.Controls.Add(this.textBox11);
 			this.panel2.Controls.Add(this.label45);
 			this.panel2.Controls.Add(this.textBox10);
@@ -198,36 +206,22 @@
 			this.panel2.Controls.Add(this.button_read_short);
 			this.panel2.Location = new System.Drawing.Point(2, 81);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1000, 562);
+			this.panel2.Size = new System.Drawing.Size(1029, 495);
 			this.panel2.TabIndex = 17;
 			// 
-			// groupBox2
+			// button10
 			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.button10);
-			this.groupBox2.Controls.Add(this.button9);
-			this.groupBox2.Controls.Add(this.button8);
-			this.groupBox2.Controls.Add(this.button7);
-			this.groupBox2.Controls.Add(this.textBox4);
-			this.groupBox2.Controls.Add(this.label8);
-			this.groupBox2.Controls.Add(this.button6);
-			this.groupBox2.Controls.Add(this.textBox3);
-			this.groupBox2.Controls.Add(this.label7);
-			this.groupBox2.Controls.Add(this.button5);
-			this.groupBox2.Controls.Add(this.button4);
-			this.groupBox2.Controls.Add(this.button3);
-			this.groupBox2.Location = new System.Drawing.Point(252, 228);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(737, 323);
-			this.groupBox2.TabIndex = 38;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "特殊功能";
+			this.button10.Location = new System.Drawing.Point(578, 9);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(129, 30);
+			this.button10.TabIndex = 45;
+			this.button10.Text = "强制0x801命令";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
 			// button9
 			// 
-			this.button9.Location = new System.Drawing.Point(475, 30);
+			this.button9.Location = new System.Drawing.Point(458, 9);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(114, 30);
 			this.button9.TabIndex = 44;
@@ -237,7 +231,7 @@
 			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(340, 30);
+			this.button8.Location = new System.Drawing.Point(323, 9);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(129, 30);
 			this.button8.TabIndex = 43;
@@ -247,7 +241,7 @@
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(387, 98);
+			this.button7.Location = new System.Drawing.Point(372, 77);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(114, 30);
 			this.button7.TabIndex = 42;
@@ -257,7 +251,7 @@
 			// 
 			// textBox4
 			// 
-			this.textBox4.Location = new System.Drawing.Point(108, 102);
+			this.textBox4.Location = new System.Drawing.Point(93, 81);
 			this.textBox4.Name = "textBox4";
 			this.textBox4.Size = new System.Drawing.Size(263, 23);
 			this.textBox4.TabIndex = 41;
@@ -265,7 +259,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(22, 105);
+			this.label8.Location = new System.Drawing.Point(7, 84);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(68, 17);
 			this.label8.TabIndex = 40;
@@ -273,7 +267,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(387, 64);
+			this.button6.Location = new System.Drawing.Point(372, 43);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(114, 30);
 			this.button6.TabIndex = 39;
@@ -283,7 +277,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(108, 68);
+			this.textBox3.Location = new System.Drawing.Point(93, 47);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(263, 23);
 			this.textBox3.TabIndex = 38;
@@ -291,7 +285,7 @@
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(22, 71);
+			this.label7.Location = new System.Drawing.Point(7, 50);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(80, 17);
 			this.label7.TabIndex = 37;
@@ -299,7 +293,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(220, 30);
+			this.button5.Location = new System.Drawing.Point(203, 9);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(114, 30);
 			this.button5.TabIndex = 2;
@@ -309,7 +303,7 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(123, 30);
+			this.button4.Location = new System.Drawing.Point(106, 9);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(91, 30);
 			this.button4.TabIndex = 1;
@@ -319,7 +313,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(26, 30);
+			this.button3.Location = new System.Drawing.Point(9, 9);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(91, 30);
 			this.button3.TabIndex = 0;
@@ -329,10 +323,12 @@
 			// 
 			// textBox11
 			// 
+			this.textBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox11.Location = new System.Drawing.Point(340, 169);
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
-			this.textBox11.Size = new System.Drawing.Size(649, 42);
+			this.textBox11.Size = new System.Drawing.Size(678, 42);
 			this.textBox11.TabIndex = 37;
 			// 
 			// label45
@@ -346,10 +342,12 @@
 			// 
 			// textBox10
 			// 
+			this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox10.Location = new System.Drawing.Point(340, 114);
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(649, 42);
+			this.textBox10.Size = new System.Drawing.Size(678, 42);
 			this.textBox10.TabIndex = 35;
 			// 
 			// label44
@@ -363,10 +361,12 @@
 			// 
 			// textBox9
 			// 
+			this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox9.Location = new System.Drawing.Point(340, 61);
 			this.textBox9.Multiline = true;
 			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(649, 42);
+			this.textBox9.Size = new System.Drawing.Size(678, 42);
 			this.textBox9.TabIndex = 33;
 			// 
 			// label43
@@ -380,10 +380,12 @@
 			// 
 			// textBox8
 			// 
+			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox8.Location = new System.Drawing.Point(340, 11);
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(649, 42);
+			this.textBox8.Size = new System.Drawing.Size(678, 42);
 			this.textBox8.TabIndex = 31;
 			// 
 			// label42
@@ -426,7 +428,7 @@
 			this.groupBox1.Controls.Add(this.label11);
 			this.groupBox1.Location = new System.Drawing.Point(3, 37);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(243, 514);
+			this.groupBox1.Size = new System.Drawing.Size(243, 447);
 			this.groupBox1.TabIndex = 22;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "状态";
@@ -697,21 +699,62 @@
 			this.button_read_short.UseVisualStyleBackColor = true;
 			this.button_read_short.Click += new System.EventHandler(this.button_read_short_Click);
 			// 
-			// button10
+			// tabControl1
 			// 
-			this.button10.Location = new System.Drawing.Point(595, 30);
-			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(129, 30);
-			this.button10.TabIndex = 45;
-			this.button10.Text = "强制0x801命令";
-			this.button10.UseVisualStyleBackColor = true;
-			this.button10.Click += new System.EventHandler(this.button10_Click);
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Location = new System.Drawing.Point(252, 217);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(766, 267);
+			this.tabControl1.TabIndex = 39;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.button10);
+			this.tabPage1.Controls.Add(this.button3);
+			this.tabPage1.Controls.Add(this.button9);
+			this.tabPage1.Controls.Add(this.button4);
+			this.tabPage1.Controls.Add(this.button8);
+			this.tabPage1.Controls.Add(this.button5);
+			this.tabPage1.Controls.Add(this.button7);
+			this.tabPage1.Controls.Add(this.label7);
+			this.tabPage1.Controls.Add(this.textBox4);
+			this.tabPage1.Controls.Add(this.textBox3);
+			this.tabPage1.Controls.Add(this.label8);
+			this.tabPage1.Controls.Add(this.button6);
+			this.tabPage1.Location = new System.Drawing.Point(4, 26);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(758, 237);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Estun Function";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// textBox_station
+			// 
+			this.textBox_station.Location = new System.Drawing.Point(499, 9);
+			this.textBox_station.Name = "textBox_station";
+			this.textBox_station.Size = new System.Drawing.Size(76, 23);
+			this.textBox_station.TabIndex = 7;
+			this.textBox_station.Text = "1";
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(433, 12);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(44, 17);
+			this.label9.TabIndex = 6;
+			this.label9.Text = "站号：";
 			// 
 			// FormEstunTcp
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.ClientSize = new System.Drawing.Size(1033, 578);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.userControlHead1);
@@ -723,10 +766,11 @@
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -771,7 +815,6 @@
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.TextBox textBox11;
 		private System.Windows.Forms.Label label45;
 		private System.Windows.Forms.TextBox textBox10;
@@ -792,5 +835,9 @@
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button9;
 		private System.Windows.Forms.Button button10;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TextBox textBox_station;
+		private System.Windows.Forms.Label label9;
 	}
 }

@@ -32,28 +32,31 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.button_read_double = new System.Windows.Forms.Button();
-			this.button_read_float = new System.Windows.Forms.Button();
-			this.button_read_ulong = new System.Windows.Forms.Button();
-			this.button_read_long = new System.Windows.Forms.Button();
-			this.button_read_uint = new System.Windows.Forms.Button();
-			this.button_read_int = new System.Windows.Forms.Button();
-			this.button_read_ushort = new System.Windows.Forms.Button();
-			this.button_read_short = new System.Windows.Forms.Button();
-			this.button_read_bool = new System.Windows.Forms.Button();
-			this.hslCurve1 = new HslControls.HslCurve();
 			this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
 			this.label2 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.label3 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.button_cancel = new System.Windows.Forms.Button();
 			this.label_value = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.button_read = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
+			this.comboBox_type = new System.Windows.Forms.ComboBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label_color = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.comboBox_line_style = new System.Windows.Forms.ComboBox();
+			this.label_value_max = new System.Windows.Forms.Label();
+			this.label_value_min = new System.Windows.Forms.Label();
+			this.label_value_avg = new System.Windows.Forms.Label();
+			this.label_value_tick = new System.Windows.Forms.Label();
+			this.label_plus = new System.Windows.Forms.Label();
+			this.hslCurveHistory1 = new HslControls.HslCurveHistory();
 			this.SuspendLayout();
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(66, 40);
+			this.textBox3.Location = new System.Drawing.Point(59, 36);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(185, 23);
 			this.textBox3.TabIndex = 5;
@@ -61,7 +64,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(12, 43);
+			this.label6.Location = new System.Drawing.Point(5, 39);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(44, 17);
 			this.label6.TabIndex = 4;
@@ -69,131 +72,30 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(379, 40);
+			this.textBox1.Location = new System.Drawing.Point(344, 36);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(102, 23);
+			this.textBox1.Size = new System.Drawing.Size(52, 23);
 			this.textBox1.TabIndex = 7;
 			this.textBox1.Text = "1000";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(286, 43);
+			this.label1.Location = new System.Drawing.Point(256, 39);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(81, 17);
 			this.label1.TabIndex = 6;
 			this.label1.Text = "时间间隔(ms)";
-			// 
-			// button_read_double
-			// 
-			this.button_read_double.Location = new System.Drawing.Point(712, 68);
-			this.button_read_double.Name = "button_read_double";
-			this.button_read_double.Size = new System.Drawing.Size(82, 28);
-			this.button_read_double.TabIndex = 25;
-			this.button_read_double.Text = "double读取";
-			this.button_read_double.UseVisualStyleBackColor = true;
-			this.button_read_double.Click += new System.EventHandler(this.button_read_double_Click);
-			// 
-			// button_read_float
-			// 
-			this.button_read_float.Location = new System.Drawing.Point(624, 68);
-			this.button_read_float.Name = "button_read_float";
-			this.button_read_float.Size = new System.Drawing.Size(82, 28);
-			this.button_read_float.TabIndex = 24;
-			this.button_read_float.Text = "float读取";
-			this.button_read_float.UseVisualStyleBackColor = true;
-			this.button_read_float.Click += new System.EventHandler(this.button_read_float_Click);
-			// 
-			// button_read_ulong
-			// 
-			this.button_read_ulong.Location = new System.Drawing.Point(536, 68);
-			this.button_read_ulong.Name = "button_read_ulong";
-			this.button_read_ulong.Size = new System.Drawing.Size(82, 28);
-			this.button_read_ulong.TabIndex = 23;
-			this.button_read_ulong.Text = "ulong读取";
-			this.button_read_ulong.UseVisualStyleBackColor = true;
-			this.button_read_ulong.Click += new System.EventHandler(this.button_read_ulong_Click);
-			// 
-			// button_read_long
-			// 
-			this.button_read_long.Location = new System.Drawing.Point(448, 68);
-			this.button_read_long.Name = "button_read_long";
-			this.button_read_long.Size = new System.Drawing.Size(82, 28);
-			this.button_read_long.TabIndex = 22;
-			this.button_read_long.Text = "long读取";
-			this.button_read_long.UseVisualStyleBackColor = true;
-			this.button_read_long.Click += new System.EventHandler(this.button_read_long_Click);
-			// 
-			// button_read_uint
-			// 
-			this.button_read_uint.Location = new System.Drawing.Point(360, 68);
-			this.button_read_uint.Name = "button_read_uint";
-			this.button_read_uint.Size = new System.Drawing.Size(82, 28);
-			this.button_read_uint.TabIndex = 21;
-			this.button_read_uint.Text = "uint读取";
-			this.button_read_uint.UseVisualStyleBackColor = true;
-			this.button_read_uint.Click += new System.EventHandler(this.button_read_uint_Click);
-			// 
-			// button_read_int
-			// 
-			this.button_read_int.Location = new System.Drawing.Point(272, 68);
-			this.button_read_int.Name = "button_read_int";
-			this.button_read_int.Size = new System.Drawing.Size(82, 28);
-			this.button_read_int.TabIndex = 20;
-			this.button_read_int.Text = "int读取";
-			this.button_read_int.UseVisualStyleBackColor = true;
-			this.button_read_int.Click += new System.EventHandler(this.button_read_int_Click);
-			// 
-			// button_read_ushort
-			// 
-			this.button_read_ushort.Location = new System.Drawing.Point(184, 68);
-			this.button_read_ushort.Name = "button_read_ushort";
-			this.button_read_ushort.Size = new System.Drawing.Size(82, 28);
-			this.button_read_ushort.TabIndex = 19;
-			this.button_read_ushort.Text = "ushort读取";
-			this.button_read_ushort.UseVisualStyleBackColor = true;
-			this.button_read_ushort.Click += new System.EventHandler(this.button_read_ushort_Click);
-			// 
-			// button_read_short
-			// 
-			this.button_read_short.Location = new System.Drawing.Point(96, 68);
-			this.button_read_short.Name = "button_read_short";
-			this.button_read_short.Size = new System.Drawing.Size(82, 28);
-			this.button_read_short.TabIndex = 18;
-			this.button_read_short.Text = "short读取";
-			this.button_read_short.UseVisualStyleBackColor = true;
-			this.button_read_short.Click += new System.EventHandler(this.button_read_short_Click);
-			// 
-			// button_read_bool
-			// 
-			this.button_read_bool.Location = new System.Drawing.Point(8, 68);
-			this.button_read_bool.Name = "button_read_bool";
-			this.button_read_bool.Size = new System.Drawing.Size(82, 28);
-			this.button_read_bool.TabIndex = 16;
-			this.button_read_bool.Text = "bool读取";
-			this.button_read_bool.UseVisualStyleBackColor = true;
-			this.button_read_bool.Click += new System.EventHandler(this.button_read_bool_Click);
-			// 
-			// hslCurve1
-			// 
-			this.hslCurve1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.hslCurve1.BackColor = System.Drawing.Color.White;
-			this.hslCurve1.Location = new System.Drawing.Point(8, 101);
-			this.hslCurve1.Name = "hslCurve1";
-			this.hslCurve1.Size = new System.Drawing.Size(656, 433);
-			this.hslCurve1.TabIndex = 26;
 			// 
 			// propertyGrid1
 			// 
 			this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.propertyGrid1.BackColor = System.Drawing.Color.White;
-			this.propertyGrid1.Location = new System.Drawing.Point(670, 101);
+			this.propertyGrid1.Location = new System.Drawing.Point(725, 87);
 			this.propertyGrid1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.propertyGrid1.Name = "propertyGrid1";
-			this.propertyGrid1.Size = new System.Drawing.Size(219, 432);
+			this.propertyGrid1.Size = new System.Drawing.Size(219, 446);
 			this.propertyGrid1.TabIndex = 27;
 			// 
 			// label2
@@ -228,20 +130,21 @@
 			this.label3.TabIndex = 30;
 			this.label3.Text = "QQ群：877456127";
 			// 
-			// button1
+			// button_cancel
 			// 
-			this.button1.Location = new System.Drawing.Point(807, 40);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(82, 28);
-			this.button1.TabIndex = 31;
-			this.button1.Text = "取消";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.button_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_cancel.Location = new System.Drawing.Point(863, 35);
+			this.button_cancel.Name = "button_cancel";
+			this.button_cancel.Size = new System.Drawing.Size(82, 28);
+			this.button_cancel.TabIndex = 31;
+			this.button_cancel.Text = "取消";
+			this.button_cancel.UseVisualStyleBackColor = true;
+			this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
 			// 
 			// label_value
 			// 
 			this.label_value.AutoSize = true;
-			this.label_value.Location = new System.Drawing.Point(497, 43);
+			this.label_value.Location = new System.Drawing.Point(7, 66);
 			this.label_value.Name = "label_value";
 			this.label_value.Size = new System.Drawing.Size(47, 17);
 			this.label_value.TabIndex = 32;
@@ -259,31 +162,170 @@
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "";
 			this.userControlHead1.SaveDeviceVisiable = false;
-			this.userControlHead1.Size = new System.Drawing.Size(895, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(950, 32);
 			this.userControlHead1.TabIndex = 33;
+			// 
+			// button_read
+			// 
+			this.button_read.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_read.Location = new System.Drawing.Point(778, 35);
+			this.button_read.Name = "button_read";
+			this.button_read.Size = new System.Drawing.Size(82, 28);
+			this.button_read.TabIndex = 34;
+			this.button_read.Text = "读取";
+			this.button_read.UseVisualStyleBackColor = true;
+			this.button_read.Click += new System.EventHandler(this.button_read_Click);
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(403, 39);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(44, 17);
+			this.label4.TabIndex = 35;
+			this.label4.Text = "类型：";
+			// 
+			// comboBox_type
+			// 
+			this.comboBox_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_type.FormattingEnabled = true;
+			this.comboBox_type.Location = new System.Drawing.Point(454, 35);
+			this.comboBox_type.Name = "comboBox_type";
+			this.comboBox_type.Size = new System.Drawing.Size(74, 25);
+			this.comboBox_type.TabIndex = 36;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(535, 39);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(35, 17);
+			this.label5.TabIndex = 37;
+			this.label5.Text = "颜色:";
+			// 
+			// label_color
+			// 
+			this.label_color.BackColor = System.Drawing.Color.Blue;
+			this.label_color.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.label_color.Location = new System.Drawing.Point(583, 39);
+			this.label_color.Name = "label_color";
+			this.label_color.Size = new System.Drawing.Size(18, 17);
+			this.label_color.TabIndex = 38;
+			this.label_color.Click += new System.EventHandler(this.label_color_Click);
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(611, 39);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(35, 17);
+			this.label8.TabIndex = 39;
+			this.label8.Text = "样式:";
+			// 
+			// comboBox_line_style
+			// 
+			this.comboBox_line_style.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_line_style.FormattingEnabled = true;
+			this.comboBox_line_style.Location = new System.Drawing.Point(653, 36);
+			this.comboBox_line_style.Name = "comboBox_line_style";
+			this.comboBox_line_style.Size = new System.Drawing.Size(119, 25);
+			this.comboBox_line_style.TabIndex = 40;
+			// 
+			// label_value_max
+			// 
+			this.label_value_max.AutoSize = true;
+			this.label_value_max.Location = new System.Drawing.Point(178, 66);
+			this.label_value_max.Name = "label_value_max";
+			this.label_value_max.Size = new System.Drawing.Size(40, 17);
+			this.label_value_max.TabIndex = 41;
+			this.label_value_max.Text = "Max: ";
+			// 
+			// label_value_min
+			// 
+			this.label_value_min.AutoSize = true;
+			this.label_value_min.Location = new System.Drawing.Point(308, 66);
+			this.label_value_min.Name = "label_value_min";
+			this.label_value_min.Size = new System.Drawing.Size(37, 17);
+			this.label_value_min.TabIndex = 42;
+			this.label_value_min.Text = "Min: ";
+			// 
+			// label_value_avg
+			// 
+			this.label_value_avg.AutoSize = true;
+			this.label_value_avg.Location = new System.Drawing.Point(420, 66);
+			this.label_value_avg.Name = "label_value_avg";
+			this.label_value_avg.Size = new System.Drawing.Size(37, 17);
+			this.label_value_avg.TabIndex = 43;
+			this.label_value_avg.Text = "Avg: ";
+			// 
+			// label_value_tick
+			// 
+			this.label_value_tick.AutoSize = true;
+			this.label_value_tick.Location = new System.Drawing.Point(556, 66);
+			this.label_value_tick.Name = "label_value_tick";
+			this.label_value_tick.Size = new System.Drawing.Size(38, 17);
+			this.label_value_tick.TabIndex = 44;
+			this.label_value_tick.Text = "Tick: ";
+			// 
+			// label_plus
+			// 
+			this.label_plus.AutoSize = true;
+			this.label_plus.Location = new System.Drawing.Point(671, 66);
+			this.label_plus.Name = "label_plus";
+			this.label_plus.Size = new System.Drawing.Size(70, 17);
+			this.label_plus.TabIndex = 45;
+			this.label_plus.Text = "Plus[脉冲]: ";
+			// 
+			// hslCurveHistory1
+			// 
+			this.hslCurveHistory1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.hslCurveHistory1.BackColor = System.Drawing.Color.White;
+			this.hslCurveHistory1.CoordinateColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.hslCurveHistory1.CurveRanges = null;
+			this.hslCurveHistory1.DashCoordinateColor = System.Drawing.Color.LightGray;
+			this.hslCurveHistory1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.hslCurveHistory1.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.hslCurveHistory1.Location = new System.Drawing.Point(8, 88);
+			this.hslCurveHistory1.MarkBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.hslCurveHistory1.MarkLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.hslCurveHistory1.MarkTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.hslCurveHistory1.MoveLineColor = System.Drawing.Color.Red;
+			this.hslCurveHistory1.Name = "hslCurveHistory1";
+			this.hslCurveHistory1.ReferenceAxisLeft.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.hslCurveHistory1.ReferenceAxisLeft.Unit = null;
+			this.hslCurveHistory1.ReferenceAxisRight.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.hslCurveHistory1.ReferenceAxisRight.Unit = null;
+			this.hslCurveHistory1.Size = new System.Drawing.Size(711, 445);
+			this.hslCurveHistory1.TabIndex = 46;
+			this.hslCurveHistory1.Text = "hslCurveHistory1";
 			// 
 			// FormCurveMonitor
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(895, 564);
+			this.ClientSize = new System.Drawing.Size(950, 564);
+			this.Controls.Add(this.hslCurveHistory1);
+			this.Controls.Add(this.label_plus);
+			this.Controls.Add(this.label_value_tick);
+			this.Controls.Add(this.label_value_avg);
+			this.Controls.Add(this.label_value_min);
+			this.Controls.Add(this.label_value_max);
+			this.Controls.Add(this.comboBox_line_style);
+			this.Controls.Add(this.label8);
+			this.Controls.Add(this.label_color);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.comboBox_type);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.button_read);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.label_value);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.button_cancel);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.linkLabel1);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.propertyGrid1);
-			this.Controls.Add(this.hslCurve1);
-			this.Controls.Add(this.button_read_double);
-			this.Controls.Add(this.button_read_float);
-			this.Controls.Add(this.button_read_ulong);
-			this.Controls.Add(this.button_read_long);
-			this.Controls.Add(this.button_read_uint);
-			this.Controls.Add(this.button_read_int);
-			this.Controls.Add(this.button_read_ushort);
-			this.Controls.Add(this.button_read_short);
-			this.Controls.Add(this.button_read_bool);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.textBox3);
@@ -307,22 +349,25 @@
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Button button_read_double;
-		private System.Windows.Forms.Button button_read_float;
-		private System.Windows.Forms.Button button_read_ulong;
-		private System.Windows.Forms.Button button_read_long;
-		private System.Windows.Forms.Button button_read_uint;
-		private System.Windows.Forms.Button button_read_int;
-		private System.Windows.Forms.Button button_read_ushort;
-		private System.Windows.Forms.Button button_read_short;
-		private System.Windows.Forms.Button button_read_bool;
-		private HslControls.HslCurve hslCurve1;
 		private System.Windows.Forms.PropertyGrid propertyGrid1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button button_cancel;
 		private System.Windows.Forms.Label label_value;
 		private UserControlHead userControlHead1;
+		private System.Windows.Forms.Button button_read;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.ComboBox comboBox_type;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label_color;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.ComboBox comboBox_line_style;
+		private System.Windows.Forms.Label label_value_max;
+		private System.Windows.Forms.Label label_value_min;
+		private System.Windows.Forms.Label label_value_avg;
+		private System.Windows.Forms.Label label_value_tick;
+		private System.Windows.Forms.Label label_plus;
+		private HslControls.HslCurveHistory hslCurveHistory1;
 	}
 }

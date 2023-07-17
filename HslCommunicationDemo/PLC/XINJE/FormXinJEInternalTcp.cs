@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private XinJEInternalNet xinJE = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -37,6 +38,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.XINJE.Helper.GetXinJEInternalAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -93,6 +97,9 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( xinJE, "D100", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => xinJE.ReadFromCoreServer(m, hasResponseData: true, usePackAndUnpack: false ), string.Empty, string.Empty );
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( xinJE, nameof( xinJE.Station ) );
 				}
 				else
 				{

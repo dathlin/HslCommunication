@@ -13,6 +13,7 @@ using HslCommunication;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
 using HslCommunicationDemo.PLC.Siemens;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -27,6 +28,7 @@ namespace HslCommunicationDemo
 
 		private SiemensWebApi siemensTcpNet = null;
 		private SiemensWebApiControl webApiControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -39,6 +41,9 @@ namespace HslCommunicationDemo
 			webApiControl = new SiemensWebApiControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( webApiControl, true );
 
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -89,6 +94,9 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.SetReadWriteNet( siemensTcpNet, "\"全局DB\".Static_14", false );
 					// 设置特殊功能测试
 					webApiControl.SetReadWriteNet( siemensTcpNet );
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( siemensTcpNet, nameof( siemensTcpNet.UserName ), nameof( siemensTcpNet.Password ) );
 				}
 				else
 				{

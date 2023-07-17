@@ -28,11 +28,12 @@ namespace HslCommunicationDemo
 
 		private XinJESerialOverTcp xinJE = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
-			comboBox4.DataSource = SoftBasic.GetEnumValues<XinJESeries>( );
+			comboBox_series.DataSource = SoftBasic.GetEnumValues<XinJESeries>( );
 
 			comboBox1.SelectedIndex = 0;
 
@@ -44,6 +45,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetXinJEAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -115,7 +119,7 @@ namespace HslCommunicationDemo
 			}
 
 			xinJE?.ConnectClose( );
-			xinJE = new XinJESerialOverTcp( (XinJESeries)comboBox4.SelectedItem, textBox1.Text, port, station );
+			xinJE = new XinJESerialOverTcp( (XinJESeries)comboBox_series.SelectedItem, textBox1.Text, port, station );
 			xinJE.AddressStartWithZero = checkBox1.Checked;
 			xinJE.LogNet = LogNet;
 
@@ -140,6 +144,9 @@ namespace HslCommunicationDemo
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => xinJE.ReadFromCoreServer( m, hasResponseData: true, usePackAndUnpack: false ), string.Empty, string.Empty );
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => xinJE.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( xinJE, nameof( xinJE.Station ), nameof( xinJE.AddressStartWithZero ), nameof( xinJE.IsStringReverse ), nameof( xinJE.Series ), nameof( xinJE.DataFormat ) );
 				}
 				else
 				{
@@ -171,7 +178,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
-			element.SetAttributeValue( nameof( XinJESeries ), comboBox4.SelectedItem );
+			element.SetAttributeValue( nameof( XinJESeries ), comboBox_series.SelectedItem );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -186,7 +193,7 @@ namespace HslCommunicationDemo
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-			comboBox4.SelectedItem = SoftBasic.GetEnumFromString<XinJESeries>( element.Attribute( nameof( XinJESeries ) ).Value );
+			comboBox_series.SelectedItem = SoftBasic.GetEnumFromString<XinJESeries>( element.Attribute( nameof( XinJESeries ) ).Value );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

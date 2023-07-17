@@ -10,6 +10,7 @@ using HslCommunication.MQTT;
 using HslCommunication;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -46,9 +47,8 @@ namespace HslCommunicationDemo
 			treeView1.Nodes[1].ImageKey = "VirtualMachine";
 			treeView1.Nodes[1].SelectedImageKey = "VirtualMachine";
 
-			panel5.Visible = false;
-			panel2.Dock = DockStyle.Fill;
-			panel5.Dock = DockStyle.Fill;
+			codeExampleControl = new CodeExampleControl( );
+			DemoUtils.AddSpecialFunctionTab( this.tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -83,6 +83,7 @@ namespace HslCommunicationDemo
 		}
 
 		private MqttSyncClient mqttSyncClient;
+		private CodeExampleControl codeExampleControl;
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
@@ -113,12 +114,16 @@ namespace HslCommunicationDemo
 				MqttRpcApiRefresh( treeView1.Nodes[0] );
 				TopicsRefresh( treeView1.Nodes[1] );
 				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( CodeExampleControl.CreateStringBulider( mqttSyncClient ).ToString( ) );
 			}
 			else
 			{
 				button1.Enabled = true;
-				MessageBox.Show( connect.Message );
+				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message );
 			}
+
 		}
 
 		private void button2_Click( object sender, EventArgs e )
@@ -130,6 +135,7 @@ namespace HslCommunicationDemo
 			panel4.Enabled = false;
 
 			mqttSyncClient.ConnectClose( );
+
 		}
 
 		private void ProgressReport(long already, long total )
@@ -417,19 +423,16 @@ namespace HslCommunicationDemo
 			{
 				if(node.Text == "Rpc Apis")
 				{
-					panel5.Visible = false;
-					panel2.Visible = true;
+					tabControl1.SelectTab( this.tabPage1 );
 				}
 				else
 				{
-					panel5.Visible = true;
-					panel2.Visible = false;
+					tabControl1.SelectTab( this.tabPage2 );
 				}
 			}
 			else if(node.Tag is MqttRpcApiInfo apiInfo)
 			{
-				panel5.Visible = false;
-				panel2.Visible = true;
+				tabControl1.SelectTab( this.tabPage1 );
 
 				textBox5.Text                = apiInfo.ApiTopic;
 				textBox4.Text                = apiInfo.ExamplePayload;
@@ -459,8 +462,7 @@ namespace HslCommunicationDemo
 			}
 			else if(node.Tag is string topic)
 			{
-				panel5.Visible = true;
-				panel2.Visible = false;
+				tabControl1.SelectTab( this.tabPage2 );
 
 				hslProgress3.Value = 0;
 				OperateResult<MqttClientApplicationMessage> message = await mqttSyncClient.ReadTopicPayloadAsync( topic, ReceiveTopicProgressReport );

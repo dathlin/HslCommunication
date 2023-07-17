@@ -132,16 +132,16 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(14, 40);
+			this.panel1.Location = new System.Drawing.Point(2, 34);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(978, 42);
+			this.panel1.Size = new System.Drawing.Size(998, 34);
 			this.panel1.TabIndex = 4;
 			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(333, 6);
+			this.button2.Location = new System.Drawing.Point(315, 0);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -151,7 +151,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(236, 6);
+			this.button1.Location = new System.Drawing.Point(218, 0);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -161,7 +161,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(78, 9);
+			this.textBox2.Location = new System.Drawing.Point(60, 3);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(141, 23);
 			this.textBox2.TabIndex = 3;
@@ -170,7 +170,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(24, 12);
+			this.label3.Location = new System.Drawing.Point(6, 6);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -200,7 +200,7 @@
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.textBox1);
 			this.groupBox1.Controls.Add(this.label1);
-			this.groupBox1.Location = new System.Drawing.Point(14, 89);
+			this.groupBox1.Location = new System.Drawing.Point(2, 75);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(413, 208);
 			this.groupBox1.TabIndex = 5;
@@ -400,9 +400,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.textBox19);
-			this.groupBox2.Location = new System.Drawing.Point(14, 303);
+			this.groupBox2.Location = new System.Drawing.Point(2, 285);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(978, 330);
+			this.groupBox2.Size = new System.Drawing.Size(998, 357);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "日志记录";
@@ -416,7 +416,7 @@
 			this.textBox19.Multiline = true;
 			this.textBox19.Name = "textBox19";
 			this.textBox19.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox19.Size = new System.Drawing.Size(966, 302);
+			this.textBox19.Size = new System.Drawing.Size(986, 329);
 			this.textBox19.TabIndex = 0;
 			// 
 			// groupBox3
@@ -445,7 +445,7 @@
 			this.groupBox3.Controls.Add(this.label18);
 			this.groupBox3.Controls.Add(this.button3);
 			this.groupBox3.Controls.Add(this.textBox7);
-			this.groupBox3.Location = new System.Drawing.Point(433, 89);
+			this.groupBox3.Location = new System.Drawing.Point(421, 75);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(271, 208);
 			this.groupBox3.TabIndex = 7;
@@ -695,9 +695,9 @@
 			this.groupBox4.Controls.Add(this.label23);
 			this.groupBox4.Controls.Add(this.label24);
 			this.groupBox4.Controls.Add(this.textBox18);
-			this.groupBox4.Location = new System.Drawing.Point(710, 89);
+			this.groupBox4.Location = new System.Drawing.Point(698, 75);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(282, 208);
+			this.groupBox4.Size = new System.Drawing.Size(302, 208);
 			this.groupBox4.TabIndex = 8;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "增量数据写入";

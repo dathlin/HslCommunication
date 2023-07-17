@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 		private PanasonicMewtocol panasonicMewtocol = null;
 		private MewtocolControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -55,6 +56,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetMewtocolAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -142,6 +146,9 @@ namespace HslCommunicationDemo
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => panasonicMewtocol.ReadFromCoreServer( m ), string.Empty, string.Empty );
 				control.SetDevice( panasonicMewtocol, "R0" );
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( panasonicMewtocol, nameof( panasonicMewtocol.Station ) );
 			}
 			catch (Exception ex)
 			{

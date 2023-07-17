@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 		private OmronFinsUdp omronFinsUdp = null;
 		private FinsTcpControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -44,6 +45,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetOmronAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -117,6 +121,9 @@ namespace HslCommunicationDemo
 			userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronFinsUdp.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 			userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronFinsUdp.ReadFromCoreServer( m ), "Fins Core", "example: 01 01 B1 00 0A 00 00 01" );
 			control.SetDevice( omronFinsUdp, "D100" );
+
+			// 设置示例代码
+			codeExampleControl.SetCodeText( omronFinsUdp, nameof( omronFinsUdp.SA1 ), nameof( omronFinsUdp.GCT ), nameof( omronFinsUdp.SID ), "ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
 		}
 		
 

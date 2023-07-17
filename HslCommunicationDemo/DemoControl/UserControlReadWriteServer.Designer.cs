@@ -36,13 +36,23 @@
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.batchReadControl1 = new HslCommunicationDemo.DemoControl.BatchReadControl();
+			this.dataTableControl1 = new HslCommunicationDemo.DemoControl.DataTableControl();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			this.tabPage3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button10
 			// 
 			this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button10.Location = new System.Drawing.Point(858, 273);
+			this.button10.Location = new System.Drawing.Point(842, 2);
 			this.button10.Name = "button10";
 			this.button10.Size = new System.Drawing.Size(100, 28);
 			this.button10.TabIndex = 29;
@@ -53,17 +63,17 @@
 			// label15
 			// 
 			this.label15.AutoSize = true;
-			this.label15.Font = new System.Drawing.Font("微软雅黑", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label15.Location = new System.Drawing.Point(406, 270);
+			this.label15.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label15.Location = new System.Drawing.Point(313, 5);
 			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(31, 36);
+			this.label15.Size = new System.Drawing.Size(19, 21);
 			this.label15.TabIndex = 26;
 			this.label15.Text = "0";
 			// 
 			// button9
 			// 
 			this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button9.Location = new System.Drawing.Point(792, 273);
+			this.button9.Location = new System.Drawing.Point(776, 2);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(60, 28);
 			this.button9.TabIndex = 28;
@@ -74,17 +84,17 @@
 			// label16
 			// 
 			this.label16.AutoSize = true;
-			this.label16.Font = new System.Drawing.Font("微软雅黑", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label16.Location = new System.Drawing.Point(217, 269);
+			this.label16.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label16.Location = new System.Drawing.Point(192, 5);
 			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(183, 36);
+			this.label16.Size = new System.Drawing.Size(106, 21);
 			this.label16.TabIndex = 25;
 			this.label16.Text = "在线客户端：";
 			// 
 			// button8
 			// 
 			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button8.Location = new System.Drawing.Point(725, 273);
+			this.button8.Location = new System.Drawing.Point(709, 2);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(60, 28);
 			this.button8.TabIndex = 27;
@@ -97,7 +107,7 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(3, 280);
+			this.checkBox1.Location = new System.Drawing.Point(6, 6);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(123, 21);
 			this.checkBox1.TabIndex = 24;
@@ -109,23 +119,96 @@
 			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(1, 307);
+			this.textBox1.Location = new System.Drawing.Point(6, 33);
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(957, 196);
+			this.textBox1.Size = new System.Drawing.Size(936, 163);
 			this.textBox1.TabIndex = 23;
 			// 
 			// button1
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(611, 273);
+			this.button1.Location = new System.Drawing.Point(595, 2);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(108, 28);
 			this.button1.TabIndex = 30;
 			this.button1.Text = "连接异形服务器";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Location = new System.Drawing.Point(2, 272);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(956, 233);
+			this.tabControl1.TabIndex = 31;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.checkBox1);
+			this.tabPage1.Controls.Add(this.button1);
+			this.tabPage1.Controls.Add(this.label16);
+			this.tabPage1.Controls.Add(this.button10);
+			this.tabPage1.Controls.Add(this.textBox1);
+			this.tabPage1.Controls.Add(this.label15);
+			this.tabPage1.Controls.Add(this.button8);
+			this.tabPage1.Controls.Add(this.button9);
+			this.tabPage1.Location = new System.Drawing.Point(4, 26);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(948, 203);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "日志信息";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.batchReadControl1);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(948, 207);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "批量读取";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.dataTableControl1);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(948, 207);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "点位表";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// batchReadControl1
+			// 
+			this.batchReadControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.batchReadControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.batchReadControl1.IsSourceReadMode = false;
+			this.batchReadControl1.Location = new System.Drawing.Point(3, 3);
+			this.batchReadControl1.Name = "batchReadControl1";
+			this.batchReadControl1.Size = new System.Drawing.Size(942, 201);
+			this.batchReadControl1.TabIndex = 1;
+			// 
+			// dataTableControl1
+			// 
+			this.dataTableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataTableControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.dataTableControl1.Location = new System.Drawing.Point(3, 3);
+			this.dataTableControl1.Name = "dataTableControl1";
+			this.dataTableControl1.Size = new System.Drawing.Size(942, 201);
+			this.dataTableControl1.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
 			// 
@@ -139,21 +222,18 @@
 			// UserControlReadWriteServer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.button10);
-			this.Controls.Add(this.label15);
-			this.Controls.Add(this.button9);
-			this.Controls.Add(this.button8);
-			this.Controls.Add(this.checkBox1);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.userControlReadWriteOp1);
-			this.Controls.Add(this.label16);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "UserControlReadWriteServer";
 			this.Size = new System.Drawing.Size(960, 505);
 			this.Load += new System.EventHandler(this.UserControlReadWriteServer_Load);
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage1.PerformLayout();
+			this.tabPage2.ResumeLayout(false);
+			this.tabPage3.ResumeLayout(false);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
         }
 
@@ -168,5 +248,11 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TabPage tabPage2;
+		private BatchReadControl batchReadControl1;
+		private System.Windows.Forms.TabPage tabPage3;
+		private DataTableControl dataTableControl1;
 	}
 }

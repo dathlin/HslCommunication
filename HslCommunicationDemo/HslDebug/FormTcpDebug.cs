@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using HslCommunication;
-using HslCommunication.BasicFramework;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using HslCommunicationDemo.HslDebug;
 
 namespace HslCommunicationDemo
 {
@@ -30,34 +30,7 @@ namespace HslCommunicationDemo
 		private void FormTcpDebug_Load( object sender, EventArgs e )
 		{
 			panel_main.Enabled = false;
-			timer = new System.Windows.Forms.Timer( );
-			timer.Interval = 500;
-			timer.Tick += Timer_Tick;
-			timer.Start( );
-
 			Language( Program.Language );
-
-			panel3.Paint += Panel3_Paint;
-			panel4.Paint += Panel3_Paint;
-
-			radioButton_binary.CheckedChanged += RadioButton_binary_CheckedChanged;
-		}
-
-		private void RadioButton_binary_CheckedChanged( object sender, EventArgs e )
-		{
-			if (radioButton_binary.Checked)
-			{
-				isBinary = true;
-			}
-			else
-			{
-				isBinary = false;
-			}
-		}
-
-		private void Panel3_Paint( object sender, PaintEventArgs e )
-		{
-			e.Graphics.DrawRectangle( Pens.LightGray, new Rectangle( 0, 0, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1 ) );
 		}
 
 		private void Language( int language )
@@ -69,55 +42,19 @@ namespace HslCommunicationDemo
 				label3.Text             = "端口号：";
 				button1.Text            = "连接";
 				button2.Text            = "关闭连接";
-				label6.Text             = "数据发送区：";
-				label7.Text             = "数据收发显示：";
-				checkBox_show_send.Text = "是否显示发送数据";
-				checkBox_show_time.Text = "是否显示时间";
-				button_send.Text        = "发送数据";
-				label8.Text             = "已选择数据字节数：";
 			}
 			else
 			{
-				Text                    = "TCP/IP Debug Tools";
-				label1.Text             = "Ip:";
-				label3.Text             = "Port:";
-				button1.Text            = "Connect";
-				button2.Text            = "Disconnect";
-				button4.Text            = "Build Message";
-				label6.Text             = "Data sending Area:";
-				label7.Text             = "Data sending and receiving display:";
-				checkBox_show_send.Text = "Whether to display send data";
-				checkBox_show_time.Text = "Whether to show time";
-				button_send.Text        = "Send Data";
-				label8.Text             = "Number of data bytes selected:";
-				checkBox_stop_show.Text = "Stop Show";
+				Text                      = "TCP/IP Debug Tools";
+				label1.Text               = "Ip:";
+				label3.Text               = "Port:";
+				button1.Text              = "Connect";
+				button2.Text              = "Disconnect";
+				label9.Text               = "Local Port：";
+				label10.Text              = "(If empty, automatically assigned)";
+				button_edit_hand.Text     = "Edit handshake";
+				label2.Text               = "Buffer Len:";
 			}
-		}
-
-		private void Timer_Tick( object sender, EventArgs e )
-		{
-			if (!string.IsNullOrEmpty( textBox6.Text ))
-			{
-				string select = textBox6.SelectedText;
-				if(!string.IsNullOrEmpty(select))
-				{
-					if (isBinary)
-					{
-						// 二进制
-						byte[] bytes = SoftBasic.HexStringToBytes( select );
-						label8.Text = (Program.Language == 1? "已选择数据字节数：" : "Number of data bytes selected:") + bytes.Length;
-					}
-					else
-					{
-						label8.Text = (Program.Language == 1 ? "已选择数据字节数：" : "Number of data bytes selected:") + select.Length;
-					}
-				}
-			}
-		}
-
-		private void button5_Click( object sender, EventArgs e )
-		{
-			textBox6.Clear( );
 		}
 
 		private void button_edit_hand_Click( object sender, EventArgs e )
@@ -140,13 +77,32 @@ namespace HslCommunicationDemo
 		private void button1_Click( object sender, EventArgs e )
 		{
 			// 连接服务器
+			if (!int.TryParse( textBox_buffer_length.Text, out int bufferLength ))
+			{
+				MessageBox.Show( "Buffer length input wrong!" );
+				return;
+			}
+
 			try
 			{
-				socketCore?.Close( );
+				if (bufferLength != this.buffer.Length) this.buffer = new byte[bufferLength];
+
+				socketDebugSession?.WorkSocket?.Close( );
 				System.Net.IPAddress iPAddress = System.Net.IPAddress.Parse( HslCommunication.Core.HslHelper.GetIpAddressFromInput( textBox_ip.Text ) );
 				if (radioButton_tcp.Checked)
 				{
-					socketCore = new Socket( iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp );
+					Socket socketCore = new Socket( iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp );
+					// 如果需要绑定端口的话
+					if (!string.IsNullOrEmpty( textBox_localPort.Text ))
+					{
+						OperateResult<int> localPort = DemoUtils.ParseInt( textBox_localPort.Text );
+						if (!localPort.IsSuccess)
+						{
+							MessageBox.Show( "Local Port input failed: " + localPort.Message );
+							return;
+						}
+						socketCore.Bind( new IPEndPoint( IPAddress.Any, localPort.Content ) );
+					}
 					connectSuccess = false;
 					// 以下代码是5秒的超时
 					new Thread( ( ) =>
@@ -157,28 +113,38 @@ namespace HslCommunicationDemo
 					socketCore.Connect( iPAddress, int.Parse( textBox_port.Text ) );
 					connectSuccess = true;
 
+					socketDebugSession = new SocketDebugSession( socketCore );
+					this.debugControl1.AddSessions( socketDebugSession );
+
 					// 如果有握手的报文
 					if (this.connectHandShake.Count > 0)
 					{
 						for (int i = 0; i < this.connectHandShake.Count; i++)
 						{
 							// 发送
-							SendData( this.connectHandShake[i] );
+							this.debugControl1.SendSourceData( socketDebugSession, this.connectHandShake[i] );
 							// 接收
 							int len = socketCore.Receive( buffer, 0, buffer.Length, SocketFlags.None );
-							textBox6.AppendText( GetTextHeader( 0, buffer.SelectBegin( len ) ) );
+							this.debugControl1.RenderSendReceiveContent( socketDebugSession, 0, buffer.SelectBegin( len ) );
 						}
 					}
 
-					socketCore.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), socketCore );
+					socketDebugSession.WorkSocket.BeginReceive( buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), socketCore );
 				}
 				else
 				{
 					// UDP的情况
 					udpEndPoint = new IPEndPoint( iPAddress, int.Parse( textBox_port.Text ) );
-					socketCore = new Socket( iPAddress.AddressFamily, SocketType.Dgram, ProtocolType.Udp );
 
-					socketCore.SendTo( new byte[0], udpEndPoint );
+					Socket udpSocket = new Socket( iPAddress.AddressFamily, SocketType.Dgram, ProtocolType.Udp );
+					udpSocket.SendTo( new byte[0], udpEndPoint );
+
+					socketDebugSession = new SocketDebugSession( udpSocket, udpEndPoint );
+					this.debugControl1.AddSessions( socketDebugSession );
+
+					IsStarted = true;
+					threadReceive = new System.Threading.Thread( new System.Threading.ThreadStart( ThreadReceiveUdpCycle ) ) { IsBackground = true };
+					threadReceive.Start( );
 
 					// 如果有握手的报文
 					if (this.connectHandShake.Count > 0)
@@ -186,18 +152,16 @@ namespace HslCommunicationDemo
 						for (int i = 0; i < this.connectHandShake.Count; i++)
 						{
 							// 发送
-							SendData( this.connectHandShake[i] );
+							this.debugControl1.SendSourceData( socketDebugSession, this.connectHandShake[i] );
 
-							EndPoint Remote = (EndPoint)new IPEndPoint( udpEndPoint.AddressFamily == AddressFamily.InterNetworkV6 ? IPAddress.IPv6Any : IPAddress.Any, 0 );
+							Thread.Sleep( 100 );
+							//EndPoint Remote = (EndPoint)new IPEndPoint( udpEndPoint.AddressFamily == AddressFamily.InterNetworkV6 ? IPAddress.IPv6Any : IPAddress.Any, 0 );
 							// 接收
-							int len = socketCore.ReceiveFrom( buffer, 0, buffer.Length, SocketFlags.None, ref Remote );
-							textBox6.AppendText( GetTextHeader( 0, buffer.SelectBegin( len ) ) );
+							//int len = socketDebugSession.WorkSocket.ReceiveFrom( buffer, 0, buffer.Length, SocketFlags.None, ref Remote );
+							//this.debugControl1.RenderSendReceiveContent( socketDebugSession, 0, buffer.SelectBegin( len ) );
 						}
 					}
 
-					IsStarted = true;
-					threadReceive = new System.Threading.Thread( new System.Threading.ThreadStart( ThreadReceiveUdpCycle ) ) { IsBackground = true };
-					threadReceive.Start( );
 
 				}
 
@@ -205,7 +169,7 @@ namespace HslCommunicationDemo
 				button2.Enabled = true;
 				panel_main.Enabled = true;
 				panel_tcp_udp.Enabled = false;
-				button_send.Enabled = true;
+				//button_send.Enabled = true;
 
 				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
 			}
@@ -219,56 +183,14 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			IsStarted = false;
-			socketCore?.Close( );
 			button1.Enabled = true;
 			button2.Enabled = false;
 			panel_tcp_udp.Enabled = true;
-			button_send.Enabled = false;
+			this.debugControl1.RemoveSessionsAll( );
+			//button_send.Enabled = false;
 		}
 
 		#endregion
-
-
-		/// <inheritdoc cref="GetTextHeader(int, string)"/>
-		private string GetTextHeader( int code, byte[] info )
-		{
-			if (isBinary)
-			{
-				return GetTextHeader( checkBox_show_time.Checked, code, SoftBasic.ByteToHexString( info, ' ' ) );
-			}
-			else
-			{
-				return GetTextHeader( checkBox_show_time.Checked, code, SoftBasic.GetAsciiStringRender( info ) );
-			}
-		}
-
-		/// <summary>
-		/// code = 0 表示 收，code = 1 时表示 发, code = 2 时表示关闭
-		/// </summary>
-		/// <param name="timeShow">是否显示时间</param>
-		/// <param name="code">操作代码</param>
-		/// <param name="info">消息</param>
-		/// <returns>打包后的字符串</returns>
-		public static string GetTextHeader( bool timeShow, int code, string info )
-		{
-			string op = string.Empty;
-			if (Program.Language == 1)
-			{
-				op = code == 0 ? "收" : code == 1 ? "发" : code == 2 ? "关" : "None";
-			}
-			else
-			{
-				op = code == 0 ? "Recv" : code == 1 ? "Send" : code == 2 ? "Clos" : "None";
-			}
-
-			StringBuilder sb = new StringBuilder( );
-			if (timeShow) sb.Append( "[" + DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + "] " );
-
-			sb.Append( $"[{op}]   " );
-			sb.Append( info );
-			sb.AppendLine( );
-			return sb.ToString( );
-		}
 
 		/// <summary>
 		/// 后台接收数据的线程
@@ -282,18 +204,24 @@ namespace HslCommunicationDemo
 				int length = 0;
 				try
 				{
-					length = socketCore.ReceiveFrom( buffer, 0, buffer.Length, SocketFlags.None, ref Remote );
+					length = socketDebugSession.WorkSocket.ReceiveFrom( buffer, 0, buffer.Length, SocketFlags.None, ref Remote );
+				
+
 					if (length > 0) Invoke( new Action( ( ) =>
 					{
-						if (!checkBox_stop_show.Checked) textBox6.AppendText( GetTextHeader( 0, buffer.SelectBegin( length ) ) );
+						this.debugControl1.RenderSendReceiveContent( socketDebugSession, 0, buffer.SelectBegin( length ) );
 					} ) );
 				}
 				catch (Exception ex)
 				{
 					Invoke( new Action( ( ) =>
 					{
-						textBox6.AppendText( (Program.Language == 1 ? "服务器断开连接。原因：" : "DisConnect from remote, reason: ") + ex.Message + Environment.NewLine );
+						this.debugControl1.RenderSendReceiveContent( socketDebugSession, 2, null, (Program.Language == 1 ? "服务器断开连接。原因：" : "DisConnect from remote, reason: ") + ex.Message );
+						button1.Enabled = true;
+						button2.Enabled = false;
+						panel_tcp_udp.Enabled = true;
 					} ) );
+					break;
 				}
 			}
 		}
@@ -302,171 +230,166 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				int length = socketCore.EndReceive( ar );
+				int length = socketDebugSession.WorkSocket.EndReceive( ar );
 				byte[] data = new byte[length];
 				if (length > 0) Array.Copy( buffer, 0, data, 0, length );
 
-				socketCore.BeginReceive( buffer, 0, 2048, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), socketCore );
+				socketDebugSession.WorkSocket.BeginReceive( buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), socketDebugSession.WorkSocket );
 
 				if (length == 0)
 				{
 					// 大概率远程关闭了连接
 					Invoke( new Action( ( ) =>
 					{
-						textBox6.AppendText( GetTextHeader( checkBox_show_time.Checked, 2, Program.Language == 1 ? "远程关闭连接" : "Remote closes connection" ) );
-						socketCore?.Close( );
-						button_send.Enabled = false;
+						this.debugControl1.RenderSendReceiveContent( socketDebugSession, 2, null, (Program.Language == 1 ? "远程关闭连接" : "Remote closes connection") );
 						button1.Enabled     = true;
 						button2.Enabled     = false;
+						panel_tcp_udp.Enabled = true;
 					} ) );
 					return;
 				}
 
 				Invoke( new Action( ( ) =>
 				{
-					if(!checkBox_stop_show.Checked) textBox6.AppendText( GetTextHeader( 0, data ) );
-					if (checkBox_auto_return.Checked) button_send.PerformClick( );
+					this.debugControl1.RenderSendReceiveContent( socketDebugSession, 0, data );
 				} ) );
 			}
 			catch(ObjectDisposedException)
 			{
 				Invoke( new Action( ( ) =>
 				{
-					textBox6.AppendText( GetTextHeader( checkBox_show_time.Checked, 2, Program.Language == 1 ? "客户端关闭连接" : "Client closes connection" ) );
-					button_send.Enabled = false;
+					this.debugControl1.RenderSendReceiveContent( socketDebugSession, 2, null, (Program.Language == 1 ? "客户端关闭连接" : "Client closes connection") );
 					button1.Enabled = true;
 					button2.Enabled = false;
+					panel_tcp_udp.Enabled = true;
 				} ) );
 			}
 			catch(Exception ex)
 			{
 				Invoke( new Action( ( ) =>
 				{
-					textBox6.AppendText( GetTextHeader( checkBox_show_time.Checked, 2, (Program.Language == 1 ? "服务器断开连接: " : "DisConnect from remote: ") + ex.Message ) );
-					button_send.Enabled = false;
+					this.debugControl1.RenderSendReceiveContent( socketDebugSession, 2, null, (Program.Language == 1 ? "服务器断开连接: " : "DisConnect from remote: ") + ex.Message );
 					button1.Enabled = true;
 					button2.Enabled = false;
+					panel_tcp_udp.Enabled = true;
 				} ) );
 			}
 		}
 
-		private void SendData( byte[] send )
-		{
-			if (send == null) return;
-			try
-			{
-				if (radioButton_tcp.Checked)
-				{
-					socketCore?.Send( send, 0, send.Length, SocketFlags.None );
-				}
-				else
-				{
-					socketCore?.SendTo( send, 0, send.Length, SocketFlags.None, udpEndPoint );
-				}
-				textBox6.AppendText( GetTextHeader( 1, send ) );                         // 显示发送
-			}
-			catch (Exception ex)
-			{
-				// 发送失败的逻辑
-				SoftBasic.ShowExceptionMessage( ex );
-			}
-		}
-
-		private void button3_Click( object sender, EventArgs e )
-		{
-			// 发送数据
-			byte[] send = isBinary ? SoftBasic.HexStringToBytes( textBox5.Text ) : SoftBasic.GetFromAsciiStringRender( textBox5.Text );
-
-			if      (radioButton_append_0d.Checked)    send = SoftBasic.SpliceArray( send, new byte[] { 0x0D } );
-			else if (radioButton_append_0a.Checked)    send = SoftBasic.SpliceArray( send, new byte[] { 0x0A } );
-			else if (radioButton_append_0d0a.Checked)  send = SoftBasic.SpliceArray( send, new byte[] { 0x0D, 0x0A } );
-			else if (radioButton_append_crc16.Checked) send = HslCommunication.Serial.SoftCRC16.CRC16( send );
-
-			SendData( send );
-		}
-
-		private void button4_Click( object sender, EventArgs e )
-		{
-			using(HslDebug.FormMessageCreate form = new HslDebug.FormMessageCreate())
-			{
-				if ( form.ShowDialog() == DialogResult.OK)
-				{
-					if (form.MessageCreate != null)
-					{
-						if (form.MessageCreate.HexBinary)
-							radioButton_binary.Checked = true;
-						else
-							radioButton_ascii.Checked = true;
-
-						textBox5.Text = form.MessageCreate.Result;
-					}
-				}
-			}
-			//HslCommunication.Robot.EFORT.ER7BC10 eR7BC10 = new HslCommunication.Robot.EFORT.ER7BC10( "192.168.0.100",8008 );
-			//textBox5.Text = HslCommunication.BasicFramework.SoftBasic.ByteToHexString( eR7BC10.GetReadCommand( ), ' ' );
-		}
 
 		#region Toledo Test
 
-		private void button6_Click( object sender, EventArgs e )
+		// private float toledoWeight = 30f;
+		//private void button6_Click( object sender, EventArgs e )
+		//{
+		//	if (button6.BackColor != Color.Green)
+		//	{
+		//		toledoThread = true;
+		//		button6.BackColor = Color.Green;
+		//		new System.Threading.Thread( new System.Threading.ThreadStart( ToledoTest ) ) { IsBackground = true }.Start( );
+		//	}
+		//	else
+		//	{
+		//		toledoThread = false;
+		//		button6.BackColor = SystemColors.Control;
+		//	}
+		//}
+
+		//private void ToledoTest( )
+		//{
+		//	while (toledoThread)
+		//	{
+		//		System.Threading.Thread.Sleep( 30 );
+
+		//		byte[] send = "02 2C 30 20 20 20 33 38 36 32 20 20 20 30 30 30 0D".ToHexBytes( );
+		//		toledoWeight += random.Next( 200 ) / 100f - 1;
+		//		if (toledoWeight < 0) toledoWeight = 5f;
+		//		if (toledoWeight > 100) toledoWeight = 95f;
+		//		string tmp = toledoWeight.ToString( "F2" ).Replace( ".", "" ).PadLeft( 6, ' ' );
+		//		Encoding.ASCII.GetBytes( tmp ).CopyTo( send, 4 );
+
+		//		try
+		//		{
+		//			socketDebugSession.WorkSocket?.Send( send, 0, send.Length, SocketFlags.None );
+		//		}
+		//		catch (Exception ex)
+		//		{
+		//			HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+		//			return;
+		//		}
+		//	}
+		//}
+
+		#endregion
+
+		#region XML Save Load
+
+		public override void SaveXmlParameter( XElement element )
 		{
-			if (button6.BackColor != Color.Green)
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			element.SetAttributeValue( "Tcp", radioButton_tcp.Checked );
+			element.SetAttributeValue( "Local", textBox_localPort.Text );
+			element.SetAttributeValue( "BufferLength", textBox_buffer_length.Text );
+
+			element.RemoveNodes( );
+			if (this.connectHandShake?.Count > 0)
 			{
-				toledoThread = true;
-				button6.BackColor = Color.Green;
-				new System.Threading.Thread( new System.Threading.ThreadStart( ToledoTest ) ) { IsBackground = true }.Start( );
+				foreach (var item in this.connectHandShake)
+				{
+					XElement xml = new XElement( "HandShake" );
+					xml.SetAttributeValue( "Message", item.ToHexString( ) );
+					element.Add( xml );
+				}
 			}
-			else
-			{
-				toledoThread = false;
-				button6.BackColor = SystemColors.Control;
-			}
+			this.debugControl1.SaveXml( element );
 		}
 
-		private void ToledoTest( )
+		public override void LoadXmlParameter( XElement element )
 		{
-			while (toledoThread)
+			base.LoadXmlParameter( element );
+			textBox_ip.Text   = GetXmlValue( element, DemoDeviceList.XmlIpAddress, "127.0.0.1", m => m );
+			textBox_port.Text = GetXmlValue( element, DemoDeviceList.XmlPort,      "502",       m => m );
+			bool tcp = GetXmlValue( element, "Tcp", true, bool.Parse );
+			if (tcp)
+				radioButton_tcp.Checked = true;
+			else
+				radioButton_udp.Checked = true;
+			textBox_localPort.Text = GetXmlValue( element, "Local", "", m => m );
+			textBox_buffer_length.Text = GetXmlValue( element, "BufferLength", "2048", m => m );
+
+			this.debugControl1.LoadXml( element );
+			this.connectHandShake.Clear( );
+			foreach (var item in element.Elements( "HandShake" ))
 			{
-				System.Threading.Thread.Sleep( 30 );
-
-				byte[] send = "02 2C 30 20 20 20 33 38 36 32 20 20 20 30 30 30 0D".ToHexBytes( );
-				toledoWeight += random.Next( 200 ) / 100f - 1;
-				if (toledoWeight < 0) toledoWeight = 5f;
-				if (toledoWeight > 100) toledoWeight = 95f;
-				string tmp = toledoWeight.ToString( "F2" ).Replace( ".", "" ).PadLeft( 6, ' ' );
-				Encoding.ASCII.GetBytes( tmp ).CopyTo( send, 4 );
-
-				try
+				XAttribute message = item.Attribute( "Message" );
+				if (message != null)
 				{
-					socketCore?.Send( send, 0, send.Length, SocketFlags.None );
-				}
-				catch (Exception ex)
-				{
-					HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
-					return;
+					this.connectHandShake.Add( message.Value.ToHexBytes( ) );
 				}
 			}
+			this.label4.Text = (Program.Language == 1 ? "握手包：" : "HandShanke: ") + this.connectHandShake?.Count;
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
 		#endregion
 
 		#region Private Member
 
-		private Socket socketCore = null;
+		private SocketDebugSession socketDebugSession;
 		private bool connectSuccess = false;
 		private byte[] buffer = new byte[2048];
-		private System.Windows.Forms.Timer timer;
 		private List<byte[]> connectHandShake;
 		private EndPoint udpEndPoint = null;
 		private System.Threading.Thread threadReceive;
 		private bool IsStarted = false;
-
 		private bool isBinary = true;
-		private bool toledoThread = false;
-		private Random random = new Random( );
-		private float toledoWeight = 30f;
-
 
 		#endregion
+
 	}
 }

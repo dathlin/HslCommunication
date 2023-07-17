@@ -311,4 +311,12 @@ namespace HslCommunicationDemo
 		}
 
 	}
+	class ClientSession
+	{
+		public Socket Socket { get; set; }
+
+		public IPEndPoint EndPoint { get; set; }
+
+		public override string ToString( ) => EndPoint.ToString( );
+	}
 }

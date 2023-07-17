@@ -29,6 +29,7 @@ namespace HslCommunicationDemo
 		private SiemensPLCS siemensPLCSelected = SiemensPLCS.S1200;
 		private SiemensS7Control control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -44,6 +45,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetSiemensS7Address( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
@@ -162,6 +166,18 @@ namespace HslCommunicationDemo
 				MessageBox.Show( "等待服务器的连接！" );
 				button1.Enabled = false;
 				button2.Enabled = true;
+
+
+				List<string> parameters = new List<string>( );
+				parameters.Add( nameof( siemensTcpNet.ConnectionId ) );
+				if (siemensPLCSelected != SiemensPLCS.S200Smart)
+				{
+					parameters.Add( nameof( siemensTcpNet.Rack ) );
+					parameters.Add( nameof( siemensTcpNet.Slot ) );
+				}
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( siemensTcpNet, parameters.ToArray( ) );
 			}
 			catch (Exception ex)
 			{

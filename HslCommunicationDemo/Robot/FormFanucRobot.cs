@@ -12,6 +12,7 @@ using HslCommunication;
 using HslCommunication.BasicFramework;
 using System.Xml.Linq;
 using System.Diagnostics;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo.Robot
 {
@@ -21,7 +22,9 @@ namespace HslCommunicationDemo.Robot
 		{
 			InitializeComponent( );
 		}
+
 		private string[] encodingLists;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormEfort_Load( object sender, EventArgs e )
 		{
@@ -54,6 +57,9 @@ namespace HslCommunicationDemo.Robot
 			};
 			comboBox_encoding.DataSource = encodingLists;
 			comboBox_encoding.SelectedIndex = 0;
+
+			codeExampleControl = new CodeExampleControl( );
+			DemoUtils.AddSpecialFunctionTab( this.tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private Encoding GetEncoding( )
@@ -95,6 +101,9 @@ namespace HslCommunicationDemo.Robot
 					panel2.Enabled = true;
 
 					userControlReadWriteOp1.SetReadWriteNet( fanuc, "D1", true );
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( "robot", fanuc, nameof( fanuc.StringEncoding ) );
 				}
 				else
 				{

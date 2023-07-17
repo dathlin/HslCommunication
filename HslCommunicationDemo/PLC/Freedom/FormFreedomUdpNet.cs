@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication.Profinet.Freedom;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -24,6 +25,7 @@ namespace HslCommunicationDemo
 
 
 		private FreedomUdpNet freedom = null;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -34,6 +36,9 @@ namespace HslCommunicationDemo
 
 			comboBox2.SelectedIndex = 3;
 			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
@@ -104,6 +109,9 @@ namespace HslCommunicationDemo
 			userControlReadWriteDevice1.BatchRead.SetReadWriteNet( freedom, "", string.Empty );
 			// 设置报文读取
 			userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => freedom.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+			// 设置代码示例
+			codeExampleControl.SetCodeText( freedom, nameof( freedom.ByteTransform ) );
 		}
 
 		private void button2_Click( object sender, EventArgs e )

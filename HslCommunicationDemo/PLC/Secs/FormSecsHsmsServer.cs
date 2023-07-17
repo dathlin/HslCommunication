@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static HslCommunicationDemo.FormSecsGem;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo.PLC.Secs
 {
@@ -26,22 +27,12 @@ namespace HslCommunicationDemo.PLC.Secs
 			comboBox1.SelectedIndex = 1;
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
 
-			StringBuilder stringBuilder = new StringBuilder( "Example：" );
-			stringBuilder.Append( new SecsValue( (sbyte)1 ) );
-			stringBuilder.Append( new SecsValue( (byte)2 ) );
-			stringBuilder.Append( new SecsValue( (short)3 ) );
-			stringBuilder.Append( new SecsValue( (ushort)4 ) );
-			stringBuilder.Append( new SecsValue( (int)5 ) );
-			stringBuilder.Append( new SecsValue( (uint)6 ) );
-			stringBuilder.Append( new SecsValue( (long)7 ) );
-			stringBuilder.Append( new SecsValue( (ulong)8 ) );
-			stringBuilder.Append( new SecsValue( (float)9 ) );
-			stringBuilder.Append( new SecsValue( (double)10 ) );
-			stringBuilder.Append( new SecsValue( "ABC" ) );
-			stringBuilder.Append( new SecsValue( new byte[] { 0x01, 0x02, 0x03 } ) );
-			stringBuilder.Append( new SecsValue( true ) );
-			//stringBuilder.Append( new SecsValue( new object[] { (short)3, "ABC" } ) );
-			textBox_example.Text = stringBuilder.ToString();
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( GetSecsAddress( ) );
+			DemoUtils.AddSpecialFunctionTab( tabControl1, addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			DemoUtils.AddSpecialFunctionTab( tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 
 			TreeNode s1Node = new TreeNode( "S1" );
 			AddTree( s1Node, new SecsTreeItem( 1, 1,  true,  new SecsValue( new object[] { "MDLN", "SOFTRev" } ), "Are You Online" ) );
@@ -245,6 +236,8 @@ namespace HslCommunicationDemo.PLC.Secs
 
 
 		private SecsHsmsServer server;
+		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void button1_Click( object sender, EventArgs e )
 		{
@@ -254,6 +247,9 @@ namespace HslCommunicationDemo.PLC.Secs
 				server.OnSecsMessageReceived += Server_OnSecsMessageReceived;
 				server.ServerStart( int.Parse( textBox_port.Text ) );
 				ComboBox1_SelectedIndexChanged( comboBox1, e );
+
+				// 设置示例的代码
+				codeExampleControl.SetCodeText( "server", "", server, nameof( SecsHsms.StringEncoding ) );
 
 				button1.Enabled = false;
 				button11.Enabled = true;

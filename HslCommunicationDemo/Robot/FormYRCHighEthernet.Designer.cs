@@ -56,6 +56,7 @@
 			this.textBox_command = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.button28 = new System.Windows.Forms.Button();
 			this.button27 = new System.Windows.Forms.Button();
 			this.button26 = new System.Windows.Forms.Button();
 			this.button20 = new System.Windows.Forms.Button();
@@ -93,7 +94,6 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button28 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -177,7 +177,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(62, 9);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(141, 23);
+			this.textBox1.Size = new System.Drawing.Size(150, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "192.168.0.100";
 			// 
@@ -423,6 +423,16 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "单数据读取测试";
+			// 
+			// button28
+			// 
+			this.button28.Location = new System.Drawing.Point(320, 178);
+			this.button28.Name = "button28";
+			this.button28.Size = new System.Drawing.Size(82, 28);
+			this.button28.TabIndex = 55;
+			this.button28.Text = "字节写入";
+			this.button28.UseVisualStyleBackColor = true;
+			this.button28.Click += new System.EventHandler(this.button28_Click);
 			// 
 			// button27
 			// 
@@ -785,16 +795,6 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// button28
-			// 
-			this.button28.Location = new System.Drawing.Point(320, 178);
-			this.button28.Name = "button28";
-			this.button28.Size = new System.Drawing.Size(82, 28);
-			this.button28.TabIndex = 55;
-			this.button28.Text = "字节写入";
-			this.button28.UseVisualStyleBackColor = true;
-			this.button28.Click += new System.EventHandler(this.button28_Click);
 			// 
 			// FormYRCHighEthernet
 			// 

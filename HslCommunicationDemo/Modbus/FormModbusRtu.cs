@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 		private ModbusRtu busRtuClient = null;
 		private ModbusControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -57,6 +58,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetModbusAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -116,7 +120,7 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox2.Text,out int baudRate ))
+			if(!int.TryParse(textBox2.Text, out int baudRate ))
 			{
 				MessageBox.Show( DemoUtils.BaudRateInputWrong );
 				return;
@@ -135,7 +139,7 @@ namespace HslCommunicationDemo
 			}
 
 
-			if (!byte.TryParse(textBox15.Text,out byte station))
+			if (!byte.TryParse(textBox15.Text, out byte station))
 			{
 				MessageBox.Show( "Station input wrong！" );
 				return;
@@ -178,6 +182,10 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busRtuClient.ReadFromCoreServer( SoftCRC16.CRC16( m ), true, false ), "No CRC", "with no crc16, example: 01 03 00 00 00 01" );
 
 				control.SetDevice( busRtuClient, "100" );
+
+				// 设置示例代码
+				codeExampleControl.SetCodeText( "modbus", busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
+					nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.Crc16CheckEnable ), nameof( busRtuClient.IsClearCacheBeforeRead ) );
 			}
 			catch (Exception ex)
 			{

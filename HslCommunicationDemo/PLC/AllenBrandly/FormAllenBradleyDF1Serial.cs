@@ -25,6 +25,7 @@ namespace HslCommunicationDemo
 
 		private AllenBradleyDF1Serial allenBradley = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -45,6 +46,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.AllenBrandly.Helper.GetDF1AddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -146,6 +150,9 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( allenBradley, "N7:0", string.Empty );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => allenBradley.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( allenBradley, nameof( allenBradley.Station ), nameof( allenBradley.DstNode ), nameof( allenBradley.SrcNode ) );
 			}
 			catch (Exception ex)
 			{

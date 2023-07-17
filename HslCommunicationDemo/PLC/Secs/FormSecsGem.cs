@@ -16,6 +16,7 @@ using System.Xml.Linq;
 using HslCommunication.Secs.Helper;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using HslCommunication.BasicFramework;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -27,6 +28,33 @@ namespace HslCommunicationDemo
 		}
 
 		private SecsHsms secs = null;
+		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
+
+		/// <summary>
+		/// 获取MC协议的地址示例
+		/// </summary>
+		/// <returns>地址示例信息</returns>
+		public static DeviceAddressExample[] GetSecsAddress( )
+		{
+			return new DeviceAddressExample[]
+			{
+				new DeviceAddressExample( "sbyte",   "", true, true, new SecsValue( (sbyte)1 ).ToString( )       ),
+				new DeviceAddressExample( "byte",    "", true, true, new SecsValue( (byte)2 ).ToString( )        ),
+				new DeviceAddressExample( "short",   "", true, true, new SecsValue( (short)3 ).ToString( )       ),
+				new DeviceAddressExample( "ushort",  "", true, true, new SecsValue( (ushort)4 ).ToString( )      ),
+				new DeviceAddressExample( "int",     "", true, true, new SecsValue( (int)5 ).ToString( )         ),
+				new DeviceAddressExample( "uint",    "", true, true, new SecsValue( (uint)6 ).ToString( )        ),
+				new DeviceAddressExample( "long",    "", true, true, new SecsValue( (long)7 ).ToString( )        ),
+				new DeviceAddressExample( "ulong",   "", true, true, new SecsValue( (ulong)8 ).ToString( )       ),
+				new DeviceAddressExample( "float",   "", true, true, new SecsValue( (float)9 ).ToString( )       ),
+				new DeviceAddressExample( "double",  "", true, true, new SecsValue( (double)10 ).ToString( )     ),
+				new DeviceAddressExample( "string",  "", true, true, new SecsValue( "ABC" ).ToString( )          ),
+				new DeviceAddressExample( "bool",    "", true, true, new SecsValue( true ).ToString( )           ),
+				new DeviceAddressExample( "byte[]",  "", true, true, new SecsValue( new byte[] { 0x01, 0x02, 0x03 } ).ToString( ) ),
+				new DeviceAddressExample( "list",    "", true, true, new SecsValue( new object[] { (short)3 } ).ToString( )           ),
+			};
+		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -35,22 +63,29 @@ namespace HslCommunicationDemo
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
 			Language( Program.Language );
 
-			StringBuilder stringBuilder = new StringBuilder( "Example：" );
-			stringBuilder.Append( new SecsValue( (sbyte)1 ) );
-			stringBuilder.Append( new SecsValue( (byte)2 ) );
-			stringBuilder.Append( new SecsValue( (short)3 ) );
-			stringBuilder.Append( new SecsValue( (ushort)4 ) );
-			stringBuilder.Append( new SecsValue( (int)5 ) );
-			stringBuilder.Append( new SecsValue( (uint)6 ) );
-			stringBuilder.Append( new SecsValue( (long)7 ) );
-			stringBuilder.Append( new SecsValue( (ulong)8 ) );
-			stringBuilder.Append( new SecsValue( (float)9 ) );
-			stringBuilder.Append( new SecsValue( (double)10 ) );
-			stringBuilder.Append( new SecsValue( "ABC" ) );
-			stringBuilder.Append( new SecsValue( new byte[] { 0x01, 0x02, 0x03 } ) );
-			stringBuilder.Append( new SecsValue( true ) );
-			//stringBuilder.Append( new SecsValue( new object[] { (short)3, "ABC" } ) );
-			textBox_example.Text = stringBuilder.ToString();
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( GetSecsAddress( ) );
+			DemoUtils.AddSpecialFunctionTab( tabControl_buttom, addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			DemoUtils.AddSpecialFunctionTab( tabControl_buttom, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			//StringBuilder stringBuilder = new StringBuilder( "Example：" );
+			//stringBuilder.Append( new SecsValue( (sbyte)1 ) );
+			//stringBuilder.Append( new SecsValue( (byte)2 ) );
+			//stringBuilder.Append( new SecsValue( (short)3 ) );
+			//stringBuilder.Append( new SecsValue( (ushort)4 ) );
+			//stringBuilder.Append( new SecsValue( (int)5 ) );
+			//stringBuilder.Append( new SecsValue( (uint)6 ) );
+			//stringBuilder.Append( new SecsValue( (long)7 ) );
+			//stringBuilder.Append( new SecsValue( (ulong)8 ) );
+			//stringBuilder.Append( new SecsValue( (float)9 ) );
+			//stringBuilder.Append( new SecsValue( (double)10 ) );
+			//stringBuilder.Append( new SecsValue( "ABC" ) );
+			//stringBuilder.Append( new SecsValue( new byte[] { 0x01, 0x02, 0x03 } ) );
+			//stringBuilder.Append( new SecsValue( true ) );
+			////stringBuilder.Append( new SecsValue( new object[] { (short)3, "ABC" } ) );
+			//textBox_example.Text = stringBuilder.ToString();
 
 			TreeNode s1Node = new TreeNode( "S1" );
 			AddTree( s1Node, new SecsTreeItem( 1, 1,  true,  null, "Are You Online" ) );
@@ -226,7 +261,7 @@ namespace HslCommunicationDemo
 				button25.Text = "Bulk Read";
 				label13.Text = "Results:";
 
-				groupBox3.Text = "Log";
+				tabPage_log.Text = "Log";
 			}
 		}
 
@@ -253,6 +288,7 @@ namespace HslCommunicationDemo
 			secs.DeviceID = ushort.Parse( textBox_deviceID.Text );
 			secs.OnSecsMessageReceived += Secs_OnSecsMessageReceived;
 			secs.InitializationS0F0 = checkBox2.Checked;
+			secs.LogNet = this.LogNet;
 			ComboBox1_SelectedIndexChanged( comboBox1, e );
 
 			secs.LogNet = LogNet;
@@ -266,6 +302,9 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
+
+					// 设置示例的代码
+					codeExampleControl.SetCodeText( "secs", secs, nameof( SecsHsms.DeviceID ), nameof( SecsHsms.InitializationS0F0 ), nameof( SecsHsms.StringEncoding ) );
 				}
 				else
 				{

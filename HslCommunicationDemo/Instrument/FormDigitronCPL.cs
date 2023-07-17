@@ -29,11 +29,10 @@ namespace HslCommunicationDemo
 
 		private DigitronCPL cpl = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
-			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
 			panel2.Enabled = false;
 
 			Language( Program.Language );
@@ -51,6 +50,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.CPLHelper.GetCPLAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -122,7 +124,6 @@ namespace HslCommunicationDemo
 					sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
 					sp.Parity = comboBox2.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox2.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
 				} );
-				//yamateke.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
 				cpl.Open( );
 				button2.Enabled = true;
@@ -134,6 +135,9 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( cpl, "100", string.Empty );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => cpl.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( "cpl", cpl, nameof( cpl.Station ) );
 
 			}
 			catch (Exception ex)
@@ -160,7 +164,6 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox18.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox2.SelectedIndex );
-			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -174,7 +177,6 @@ namespace HslCommunicationDemo
 			textBox18.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
 			comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

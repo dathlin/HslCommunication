@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private XGKCnet xGBCnet = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -49,6 +50,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Lsis.Helper.GetLsisCnetAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -131,6 +135,9 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( xGBCnet, "MB100", string.Empty );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => xGBCnet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( xGBCnet, nameof( xGBCnet.Station ) );
 			}
 			catch (Exception ex)
 			{

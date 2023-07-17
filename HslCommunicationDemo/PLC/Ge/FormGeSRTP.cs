@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 		private GeSRTPNet ge = null;
 		private GeControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -42,6 +43,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Ge.Helper.GetDeviceAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -55,8 +59,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
-				label22.Text = "M100 D100 X1A0 Y1A0";
 			}
 		}
 
@@ -99,6 +101,10 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => ge.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					control.SetDevice( ge, "R1" );
+
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( ge );
 				}
 				else
 				{

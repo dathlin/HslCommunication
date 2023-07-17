@@ -29,8 +29,6 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.label22 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
@@ -38,6 +36,12 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+			this.label4 = new System.Windows.Forms.Label();
+			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+			this.label2 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.button14 = new System.Windows.Forms.Button();
 			this.textBox7 = new System.Windows.Forms.TextBox();
@@ -53,6 +57,8 @@
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -62,8 +68,6 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
@@ -76,27 +80,10 @@
 			this.panel1.Size = new System.Drawing.Size(997, 46);
 			this.panel1.TabIndex = 0;
 			// 
-			// label22
-			// 
-			this.label22.Location = new System.Drawing.Point(776, 1);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(197, 45);
-			this.label22.TabIndex = 7;
-			this.label22.Text = "机器人的参数名称";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(702, 1);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(68, 17);
-			this.label21.TabIndex = 6;
-			this.label21.Text = "地址示例：";
-			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(584, 5);
+			this.button2.Location = new System.Drawing.Point(600, 5);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -106,7 +93,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(477, 5);
+			this.button1.Location = new System.Drawing.Point(493, 5);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -116,16 +103,16 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(305, 8);
+			this.textBox2.Location = new System.Drawing.Point(368, 8);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(141, 23);
+			this.textBox2.Size = new System.Drawing.Size(94, 23);
 			this.textBox2.TabIndex = 3;
 			this.textBox2.Text = "7000";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(251, 11);
+			this.label3.Location = new System.Drawing.Point(314, 11);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -135,7 +122,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(62, 8);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(141, 23);
+			this.textBox1.Size = new System.Drawing.Size(231, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "192.168.0.100";
 			// 
@@ -154,6 +141,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.tabControl1);
 			this.panel2.Controls.Add(this.groupBox2);
 			this.panel2.Controls.Add(this.groupBox1);
 			this.panel2.Location = new System.Drawing.Point(3, 85);
@@ -162,8 +150,75 @@
 			this.panel2.Size = new System.Drawing.Size(997, 556);
 			this.panel2.TabIndex = 1;
 			// 
+			// tabControl1
+			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Location = new System.Drawing.Point(8, 327);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(980, 224);
+			this.tabControl1.TabIndex = 2;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.linkLabel2);
+			this.tabPage1.Controls.Add(this.label4);
+			this.tabPage1.Controls.Add(this.linkLabel1);
+			this.tabPage1.Controls.Add(this.label2);
+			this.tabPage1.Location = new System.Drawing.Point(4, 26);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(972, 194);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Doc";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// linkLabel2
+			// 
+			this.linkLabel2.AutoSize = true;
+			this.linkLabel2.Location = new System.Drawing.Point(10, 62);
+			this.linkLabel2.Name = "linkLabel2";
+			this.linkLabel2.Size = new System.Drawing.Size(322, 17);
+			this.linkLabel2.TabIndex = 4;
+			this.linkLabel2.TabStop = true;
+			this.linkLabel2.Text = "https://github.com/akselov/kukavarproxy-msg-format";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(10, 87);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(585, 17);
+			this.label4.TabIndex = 3;
+			this.label4.Text = "KukavarProxy is a TCP/IP server that enables reading and writing robot variables " +
+    "over the network.";
+			// 
+			// linkLabel1
+			// 
+			this.linkLabel1.AutoSize = true;
+			this.linkLabel1.Location = new System.Drawing.Point(10, 39);
+			this.linkLabel1.Name = "linkLabel1";
+			this.linkLabel1.Size = new System.Drawing.Size(264, 17);
+			this.linkLabel1.TabIndex = 2;
+			this.linkLabel1.TabStop = true;
+			this.linkLabel1.Text = "https://github.com/lionpeloux/KukavarProxy";
+			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(10, 12);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(345, 17);
+			this.label2.TabIndex = 1;
+			this.label2.Text = "需要在机器人控制器安装一个VB程序，该程序来自于 github： ";
+			// 
 			// groupBox2
 			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.button14);
 			this.groupBox2.Controls.Add(this.textBox7);
 			this.groupBox2.Controls.Add(this.label9);
@@ -171,14 +226,14 @@
 			this.groupBox2.Controls.Add(this.label10);
 			this.groupBox2.Location = new System.Drawing.Point(546, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(442, 544);
+			this.groupBox2.Size = new System.Drawing.Size(442, 318);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "单数据写入测试";
 			// 
 			// button14
 			// 
-			this.button14.Location = new System.Drawing.Point(307, 24);
+			this.button14.Location = new System.Drawing.Point(354, 24);
 			this.button14.Name = "button14";
 			this.button14.Size = new System.Drawing.Size(82, 28);
 			this.button14.TabIndex = 16;
@@ -191,14 +246,14 @@
 			this.textBox7.Location = new System.Drawing.Point(63, 56);
 			this.textBox7.Name = "textBox7";
 			this.textBox7.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox7.Size = new System.Drawing.Size(326, 23);
+			this.textBox7.Size = new System.Drawing.Size(373, 23);
 			this.textBox7.TabIndex = 5;
 			this.textBox7.Text = "10";
 			// 
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(9, 58);
+			this.label9.Location = new System.Drawing.Point(9, 60);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(32, 17);
 			this.label9.TabIndex = 4;
@@ -208,7 +263,7 @@
 			// 
 			this.textBox8.Location = new System.Drawing.Point(63, 27);
 			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(132, 23);
+			this.textBox8.Size = new System.Drawing.Size(285, 23);
 			this.textBox8.TabIndex = 3;
 			this.textBox8.Text = "$OV_PRO";
 			// 
@@ -223,6 +278,8 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.button_read_string);
 			this.groupBox1.Controls.Add(this.textBox4);
 			this.groupBox1.Controls.Add(this.label7);
@@ -230,16 +287,16 @@
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Location = new System.Drawing.Point(8, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(529, 544);
+			this.groupBox1.Size = new System.Drawing.Size(529, 318);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "单数据读取测试";
 			// 
 			// button_read_string
 			// 
-			this.button_read_string.Location = new System.Drawing.Point(426, 24);
+			this.button_read_string.Location = new System.Drawing.Point(418, 24);
 			this.button_read_string.Name = "button_read_string";
-			this.button_read_string.Size = new System.Drawing.Size(82, 28);
+			this.button_read_string.Size = new System.Drawing.Size(105, 28);
 			this.button_read_string.TabIndex = 16;
 			this.button_read_string.Text = "字符串读取";
 			this.button_read_string.UseVisualStyleBackColor = true;
@@ -247,11 +304,13 @@
 			// 
 			// textBox4
 			// 
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.textBox4.Location = new System.Drawing.Point(63, 56);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(445, 457);
+			this.textBox4.Size = new System.Drawing.Size(460, 256);
 			this.textBox4.TabIndex = 5;
 			// 
 			// label7
@@ -267,7 +326,7 @@
 			// 
 			this.textBox3.Location = new System.Drawing.Point(63, 27);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(344, 23);
+			this.textBox3.Size = new System.Drawing.Size(349, 23);
 			this.textBox3.TabIndex = 3;
 			this.textBox3.Text = "$OV_PRO";
 			// 
@@ -315,6 +374,9 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
@@ -345,8 +407,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private DemoControl.UserControlHead userControlHead1;
-    }
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.LinkLabel linkLabel1;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.LinkLabel linkLabel2;
+	}
 }

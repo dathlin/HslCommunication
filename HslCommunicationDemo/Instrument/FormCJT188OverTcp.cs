@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 		private CJT188OverTcp cjt188 = null;
 		private CJT188Control control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -40,6 +41,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.CJT188Helper.GetCJT188Address( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -106,6 +110,9 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => cjt188.ReadFromCoreServer( m, true, false ), string.Empty, "68 00 00 00 00 00 01 68 11 04 00 00 00 00 10 16" );
 					
 					control.SetDevice( cjt188, "90-1F" );
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( "cjt", cjt188, nameof( cjt188.Station ), nameof( cjt188.InstrumentType ), nameof( cjt188.EnableCodeFE ) );
 				}
 				else
 				{

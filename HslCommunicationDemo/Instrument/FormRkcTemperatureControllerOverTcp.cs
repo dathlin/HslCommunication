@@ -13,6 +13,7 @@ using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Common;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -25,12 +26,17 @@ namespace HslCommunicationDemo
 
 
 		private TemperatureControllerOverTcp rkc = null;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 			Language( Program.Language );
+
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -96,6 +102,8 @@ namespace HslCommunicationDemo
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => rkc.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
+					// 设置代码示例
+					codeExampleControl.SetCodeText( "rkc", rkc, nameof( rkc.Station ) );
 				}
 				else
 				{

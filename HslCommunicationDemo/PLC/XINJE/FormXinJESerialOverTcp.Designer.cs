@@ -29,7 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.comboBox_series = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -54,7 +54,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.comboBox4);
+			this.panel1.Controls.Add(this.comboBox_series);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.comboBox1);
@@ -73,23 +73,23 @@
 			this.panel1.Size = new System.Drawing.Size(997, 62);
 			this.panel1.TabIndex = 0;
 			// 
-			// comboBox4
+			// comboBox_series
 			// 
-			this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox4.FormattingEnabled = true;
-			this.comboBox4.Items.AddRange(new object[] {
+			this.comboBox_series.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_series.FormattingEnabled = true;
+			this.comboBox_series.Items.AddRange(new object[] {
             "无",
             "奇",
             "偶"});
-			this.comboBox4.Location = new System.Drawing.Point(500, 30);
-			this.comboBox4.Name = "comboBox4";
-			this.comboBox4.Size = new System.Drawing.Size(73, 25);
-			this.comboBox4.TabIndex = 34;
+			this.comboBox_series.Location = new System.Drawing.Point(474, 30);
+			this.comboBox_series.Name = "comboBox_series";
+			this.comboBox_series.Size = new System.Drawing.Size(99, 25);
+			this.comboBox_series.TabIndex = 34;
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(436, 34);
+			this.label2.Location = new System.Drawing.Point(416, 34);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(44, 17);
 			this.label2.TabIndex = 33;
@@ -114,9 +114,9 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox1.Location = new System.Drawing.Point(576, 7);
+			this.comboBox1.Location = new System.Drawing.Point(278, 32);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(70, 25);
+			this.comboBox1.Size = new System.Drawing.Size(108, 25);
 			this.comboBox1.TabIndex = 26;
 			// 
 			// checkBox1
@@ -124,7 +124,7 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(447, 9);
+			this.checkBox1.Location = new System.Drawing.Point(490, 9);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(106, 21);
 			this.checkBox1.TabIndex = 9;
@@ -133,7 +133,7 @@
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(392, 7);
+			this.textBox15.Location = new System.Drawing.Point(435, 7);
 			this.textBox15.Name = "textBox15";
 			this.textBox15.Size = new System.Drawing.Size(39, 23);
 			this.textBox15.TabIndex = 7;
@@ -142,7 +142,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(338, 10);
+			this.label21.Location = new System.Drawing.Point(381, 10);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(44, 17);
 			this.label21.TabIndex = 6;
@@ -161,16 +161,16 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(250, 7);
+			this.textBox2.Location = new System.Drawing.Point(302, 7);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(76, 23);
+			this.textBox2.Size = new System.Drawing.Size(62, 23);
 			this.textBox2.TabIndex = 3;
 			this.textBox2.Text = "502";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(196, 10);
+			this.label3.Location = new System.Drawing.Point(248, 10);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -180,7 +180,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(62, 7);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(128, 23);
+			this.textBox1.Size = new System.Drawing.Size(180, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "192.168.0.100";
 			// 
@@ -196,7 +196,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(652, 9);
+			this.checkBox3.Location = new System.Drawing.Point(600, 32);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 25;
@@ -280,7 +280,7 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.ComboBox comboBox1;
         private DemoControl.UserControlHead userControlHead1;
-		private System.Windows.Forms.ComboBox comboBox4;
+		private System.Windows.Forms.ComboBox comboBox_series;
 		private System.Windows.Forms.Label label2;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 	}

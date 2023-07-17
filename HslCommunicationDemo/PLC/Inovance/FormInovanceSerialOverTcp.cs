@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private InovanceSerialOverTcp inovance = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -43,6 +44,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -135,6 +139,10 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => inovance.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => inovance.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
 
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( inovance, nameof( inovance.Station ), nameof( inovance.AddressStartWithZero ), nameof( inovance.IsStringReverse ),
+						nameof( inovance.Series ), nameof( inovance.DataFormat ) );
 				}
 				else
 				{

@@ -60,7 +60,7 @@
 			this.panel1.Location = new System.Drawing.Point(4, 36);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(996, 68);
+			this.panel1.Size = new System.Drawing.Size(996, 45);
 			this.panel1.TabIndex = 0;
 			// 
 			// button5
@@ -95,7 +95,7 @@
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
 			this.label11.Location = new System.Drawing.Point(653, 5);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(338, 46);
+			this.label11.Size = new System.Drawing.Size(338, 40);
 			this.label11.TabIndex = 29;
 			this.label11.Text = "本服务器不是严格的上位链路协议，仅支持和HSL组件完美通信。";
 			// 
@@ -144,10 +144,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(4, 109);
+			this.panel2.Location = new System.Drawing.Point(4, 83);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(996, 532);
+			this.panel2.Size = new System.Drawing.Size(996, 560);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -158,7 +158,7 @@
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteServer1.Location = new System.Drawing.Point(2, 4);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 521);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 549);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1

@@ -225,9 +225,9 @@
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(108)))), ((int)(((byte)(124)))));
 			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-			this.label1.Location = new System.Drawing.Point(1031, 3);
+			this.label1.Location = new System.Drawing.Point(926, 3);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(209, 21);
+			this.label1.Size = new System.Drawing.Size(314, 21);
 			this.label1.TabIndex = 39;
 			this.label1.Text = "Thread:0  Lock:0";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -251,7 +251,7 @@
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(108)))), ((int)(((byte)(124)))));
 			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-			this.label2.Location = new System.Drawing.Point(816, 3);
+			this.label2.Location = new System.Drawing.Point(745, 3);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(209, 21);
 			this.label2.TabIndex = 42;

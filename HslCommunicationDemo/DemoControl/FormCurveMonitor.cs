@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Core;
 using HslCommunication;
+using HslCommunication.BasicFramework;
+using HslControls;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -34,8 +36,11 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void FormCurveMonitor_Load( object sender, EventArgs e )
 		{
-			propertyGrid1.SelectedObject = hslCurve1;
-			hslCurve1.SetLeftCurve( "Test", null, Color.Blue );
+			propertyGrid1.SelectedObject = hslCurveHistory1;
+			comboBox_line_style.DataSource = SoftBasic.GetEnumValues<HslControls.CurveStyle>( );
+			comboBox_type.DataSource = new string[] { "bool", "short", "ushort", "int", "uint", "long", "ulong", "float", "double" };
+			comboBox_type.SelectedIndex = 1;
+			// hslCurve1.SetLeftCurve( "Test", null, Color.Blue );
 		}
 
 		private IReadWriteNet readWriteNet;
@@ -44,6 +49,10 @@ namespace HslCommunicationDemo.DemoControl
 		private string readType = string.Empty;
 		private Thread thread;
 		private bool isQuit = false;
+		private Color lineColor = Color.Blue;
+		private ValueLimit valueLimit = new ValueLimit( );
+		private float[] data = new float[0];
+		private DateTime[] times = new DateTime[0];
 
 		public void SetReadWrite( IReadWriteNet readWrite, string address )
 		{
@@ -54,6 +63,17 @@ namespace HslCommunicationDemo.DemoControl
 			thread.Start( );
 
 			if (readWrite != null) userControlHead1.HelpLink = readWrite.ToString( );
+		}
+
+		private void AddData( float value )
+		{
+			CurveStyle curveStyle = (CurveStyle)comboBox_line_style.SelectedItem;
+			SoftBasic.AddArrayData( ref data, new float[] { value }, 3000 );
+			SoftBasic.AddArrayData( ref times, new DateTime[] { DateTime.Now }, 3000 );
+			hslCurveHistory1.SetLeftCurve( "Test", data, this.lineColor, curveStyle );
+			hslCurveHistory1.SetDateTimes( times );
+			hslCurveHistory1.ScrollToRight( );
+			hslCurveHistory1.RenderCurveUI( );   // 这步很重要
 		}
 
 		private void ThreadRead( )
@@ -72,8 +92,7 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							if (!isQuit) Invoke( new Action( ( ) =>
 							  {
-								  if (read.Content) hslCurve1.AddCurveData( "Test", 1 );
-								  else hslCurve1.AddCurveData( "Test", 0 );
+								  AddData( read.Content ? 100f : 0f );
 								  label_value.Text = "Value: " + read.Content.ToString( );
 							  } ) );
 						}
@@ -90,7 +109,9 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
-								hslCurve1.AddCurveData( "Test", read.Content );
+								AddData( read.Content );
+								valueLimit.SetNewValue( read.Content );
+								ShowValueLimit( valueLimit );
 								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
@@ -107,7 +128,9 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
-								hslCurve1.AddCurveData( "Test", read.Content );
+								AddData( read.Content );
+								valueLimit.SetNewValue( read.Content );
+								ShowValueLimit( valueLimit );
 								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
@@ -124,7 +147,9 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
-								hslCurve1.AddCurveData( "Test", read.Content );
+								AddData( read.Content );
+								valueLimit.SetNewValue( read.Content );
+								ShowValueLimit( valueLimit );
 								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
@@ -141,7 +166,9 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
-								hslCurve1.AddCurveData( "Test", read.Content );
+								AddData( read.Content );
+								valueLimit.SetNewValue( read.Content );
+								ShowValueLimit( valueLimit );
 								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
@@ -158,7 +185,9 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
-								hslCurve1.AddCurveData( "Test", read.Content );
+								AddData( read.Content );
+								valueLimit.SetNewValue( read.Content );
+								ShowValueLimit( valueLimit );
 								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
@@ -175,7 +204,9 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
-								hslCurve1.AddCurveData( "Test", read.Content );
+								AddData( read.Content );
+								valueLimit.SetNewValue( read.Content );
+								ShowValueLimit( valueLimit );
 								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
@@ -192,7 +223,9 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
-								hslCurve1.AddCurveData( "Test", read.Content );
+								AddData( read.Content );
+								valueLimit.SetNewValue( read.Content );
+								ShowValueLimit( valueLimit );
 								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
@@ -209,7 +242,9 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							if (!isQuit) Invoke( new Action( ( ) =>
 							{
-								hslCurve1.AddCurveData( "Test", (float)read.Content );
+								AddData( (float)read.Content );
+								valueLimit.SetNewValue( read.Content );
+								ShowValueLimit( valueLimit );
 								label_value.Text = "Value: " + read.Content.ToString( );
 							} ) );
 						}
@@ -222,7 +257,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch
 				{
-					if (isQuit) break; ;
+					if (isQuit) break;
 				}
 
 				if (isQuit) break;
@@ -235,105 +270,47 @@ namespace HslCommunicationDemo.DemoControl
 			await Task.Delay( 200 );
 		}
 
-		private void SetEnable(bool enable )
+		private void label_color_Click( object sender, EventArgs e )
 		{
-			button_read_bool.Enabled = enable;
-			button_read_short.Enabled = enable;
-			button_read_ushort.Enabled = enable;
-			button_read_int.Enabled = enable;
-			button_read_uint.Enabled = enable;
-			button_read_long.Enabled = enable;
-			button_read_ulong.Enabled = enable;
-			button_read_float.Enabled = enable;
-			button_read_double.Enabled = enable;
+			using(ColorDialog dialog = new ColorDialog( ))
+			{
+				if (dialog.ShowDialog() == DialogResult.OK)
+				{
+					this.lineColor = dialog.Color;
+					this.label_color.BackColor = dialog.Color;
+				}
+			}
 		}
 
-		private void button_read_bool_Click( object sender, EventArgs e )
+		private void ShowValueLimit( ValueLimit valueLimit )
 		{
-			readType = "bool";
+			//label_value.Text = "Value: " + valueLimit.Current;
+			label_value_max.Text = "Max: " + valueLimit.MaxValue;
+			label_value_min.Text = "Min: " + valueLimit.MinValue;
+			label_value_avg.Text = "Avg: " + valueLimit.Average;
+			label_value_tick.Text = "Tick: " + valueLimit.Count;
+		}
+
+		private void button_read_Click( object sender, EventArgs e )
+		{
+			CurveStyle curveStyle = (CurveStyle)comboBox_line_style.SelectedItem;
+			hslCurveHistory1.RemoveAllCurve( );
+			valueLimit = new ValueLimit( );
+			data = new float[0]; 
+			times = new DateTime[0];
+			hslCurveHistory1.SetLeftCurve( "Test", null, this.lineColor, curveStyle );
+			readType = comboBox_type.Text;
 			address = textBox3.Text;
 			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( false );
+			button_read.Enabled = false;
 		}
 
-		private void button_read_byte_Click( object sender, EventArgs e )
-		{
-			readType = "byte";
-			address = textBox3.Text;
-			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( false );
-		}
-
-		private void button_read_short_Click( object sender, EventArgs e )
-		{
-			readType = "short";
-			address = textBox3.Text;
-			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( false );
-		}
-
-		private void button_read_ushort_Click( object sender, EventArgs e )
-		{
-			readType = "ushort";
-			address = textBox3.Text;
-			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( false );
-		}
-
-		private void button_read_int_Click( object sender, EventArgs e )
-		{
-			readType = "int";
-			address = textBox3.Text;
-			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( false );
-		}
-
-		private void button_read_uint_Click( object sender, EventArgs e )
-		{
-			readType = "uint";
-			address = textBox3.Text;
-			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( false );
-		}
-
-		private void button_read_long_Click( object sender, EventArgs e )
-		{
-			readType = "long";
-			address = textBox3.Text;
-			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( false );
-		}
-
-		private void button_read_ulong_Click( object sender, EventArgs e )
-		{
-			readType = "ulong";
-			address = textBox3.Text;
-			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( false );
-		}
-
-		private void button_read_float_Click( object sender, EventArgs e )
-		{
-			readType = "float";
-			address = textBox3.Text;
-			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( false );
-		}
-
-		private void button_read_double_Click( object sender, EventArgs e )
-		{
-			readType = "double";
-			address = textBox3.Text;
-			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( false );
-		}
-
-		private void button1_Click( object sender, EventArgs e )
+		private void button_cancel_Click( object sender, EventArgs e )
 		{
 			readType = string.Empty;
 			address = textBox3.Text;
 			timeSpan = int.Parse( textBox1.Text );
-			SetEnable( true );
+			button_read.Enabled = true;
 		}
 	}
 }

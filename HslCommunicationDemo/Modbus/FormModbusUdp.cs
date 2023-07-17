@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 		private ModbusUdpNet busTcpClient = null;
 		private ModbusControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -45,6 +46,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetModbusAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -136,6 +140,9 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busTcpClient.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 				control.SetDevice( busTcpClient, "100" );
+
+				// 设置示例代码
+				codeExampleControl.SetCodeText( "modbus", busTcpClient, nameof( busTcpClient.Station ), nameof( busTcpClient.AddressStartWithZero ), nameof( busTcpClient.IsStringReverse ), nameof( busTcpClient.DataFormat ) );
 			}
 			catch (Exception ex)
 			{

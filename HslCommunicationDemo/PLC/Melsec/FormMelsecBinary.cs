@@ -34,6 +34,7 @@ namespace HslCommunicationDemo
 
 
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -48,6 +49,10 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetMcAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) ) ;
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -88,6 +93,7 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
+				checkBox_string_reverse.Text = "string reverse by word";
 			}
 			else
 			{
@@ -117,6 +123,7 @@ namespace HslCommunicationDemo
 				}
 
 				melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
+				melsec_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
 				connect = melsec_net.ConnectServer( this.mqttClient, readTopic, writeTopic );
 				if (connect.IsSuccess)
 				{
@@ -135,6 +142,8 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					control.SetDevice( melsec_net, "D100" );
+
+
 				}
 				else
 				{
@@ -158,6 +167,7 @@ namespace HslCommunicationDemo
 				melsec_net.ConnectTimeOut = 3000; // 连接3秒超时
 
 				melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
+				melsec_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
 				button1.Enabled = false;
 				OperateResult connect = await melsec_net.ConnectServerAsync( );
 				if (connect.IsSuccess)
@@ -177,6 +187,10 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					control.SetDevice( melsec_net, "D100" );
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( melsec_net, nameof( melsec_net.NetworkNumber ), nameof( melsec_net.NetworkStationNumber ), 
+						nameof( melsec_net.EnableWriteBitToWordRegister ), "ByteTransform.IsStringReverseByteWord" );
 				}
 				else
 				{
@@ -295,6 +309,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
 			element.SetAttributeValue( "EnableWriteBitToWordRegister", checkBox_EnableWriteBitToWordRegister.Text );
+			element.SetAttributeValue( "IsStringReverseByteWord", checkBox_string_reverse.Checked );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -305,6 +320,7 @@ namespace HslCommunicationDemo
 			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );
+			checkBox_string_reverse.Checked = GetXmlValue( element, "IsStringReverseByteWord", false, bool.Parse );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

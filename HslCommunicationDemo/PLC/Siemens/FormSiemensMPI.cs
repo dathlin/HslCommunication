@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication;
 using System.IO.Ports;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -24,6 +25,7 @@ namespace HslCommunicationDemo
 
 
 		private SiemensMPI siemensMPI = null;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -40,6 +42,10 @@ namespace HslCommunicationDemo
 				comboBox3.Text = "COM3";
 			}
 			comboBox1.SelectedIndex = 2;
+
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -125,6 +131,9 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( siemensMPI, "M100", string.Empty );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensMPI.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( siemensMPI, nameof( siemensMPI.Station ) );
 			}
 			catch (Exception ex)
 			{

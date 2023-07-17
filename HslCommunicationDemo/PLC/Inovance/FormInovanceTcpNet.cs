@@ -25,8 +25,9 @@ namespace HslCommunicationDemo
 		}
 
 
-		private InovanceTcpNet inovanceH3UTcp = null;
+		private InovanceTcpNet inovance = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -42,6 +43,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -63,14 +67,14 @@ namespace HslCommunicationDemo
 
 		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
 		{
-			if (inovanceH3UTcp != null)
+			if (inovance != null)
 			{
 				switch (comboBox1.SelectedIndex)
 				{
-					case 0: inovanceH3UTcp.DataFormat = HslCommunication.Core.DataFormat.ABCD;break;
-					case 1: inovanceH3UTcp.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
-					case 2: inovanceH3UTcp.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
-					case 3: inovanceH3UTcp.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
+					case 0: inovance.DataFormat = HslCommunication.Core.DataFormat.ABCD;break;
+					case 1: inovance.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
+					case 2: inovance.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
+					case 3: inovance.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
 					default:break;
 				}
 			}
@@ -78,9 +82,9 @@ namespace HslCommunicationDemo
 
 		private void CheckBox3_CheckedChanged( object sender, EventArgs e )
 		{
-			if (inovanceH3UTcp != null)
+			if (inovance != null)
 			{
-				inovanceH3UTcp.IsStringReverse = checkBox3.Checked;
+				inovance.IsStringReverse = checkBox3.Checked;
 			}
 		}
 		
@@ -107,18 +111,18 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			inovanceH3UTcp?.ConnectClose( );
-			inovanceH3UTcp = new InovanceTcpNet( textBox1.Text, port, station );
-			inovanceH3UTcp.AddressStartWithZero = checkBox1.Checked;
-			inovanceH3UTcp.Series = (InovanceSeries)comboBox4.SelectedItem;
+			inovance?.ConnectClose( );
+			inovance = new InovanceTcpNet( textBox1.Text, port, station );
+			inovance.AddressStartWithZero = checkBox1.Checked;
+			inovance.Series = (InovanceSeries)comboBox4.SelectedItem;
 
 			ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
-			inovanceH3UTcp.IsStringReverse = checkBox3.Checked;
-			inovanceH3UTcp.LogNet = LogNet;
+			inovance.IsStringReverse = checkBox3.Checked;
+			inovance.LogNet = LogNet;
 
 			try
 			{
-				OperateResult connect = inovanceH3UTcp.ConnectServer( );
+				OperateResult connect = inovance.ConnectServer( );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
@@ -127,12 +131,15 @@ namespace HslCommunicationDemo
 					panel2.Enabled  = true;
 
 					// 设置基本的读写信息
-					userControlReadWriteDevice1.SetReadWriteNet( inovanceH3UTcp, "D100", true );
+					userControlReadWriteDevice1.SetReadWriteNet( inovance, "D100", true );
 					// 设置批量读取
-					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( inovanceH3UTcp, "D100", string.Empty );
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( inovance, "D100", string.Empty );
 					// 设置报文读取
-					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => inovanceH3UTcp.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => inovance.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
+					// 设置代码示例
+					codeExampleControl.SetCodeText( inovance, nameof( inovance.Station ), nameof( inovance.AddressStartWithZero ), nameof( inovance.IsStringReverse ),
+						nameof( inovance.Series ), nameof( inovance.DataFormat ) );
 				}
 				else
 				{
@@ -148,7 +155,7 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			inovanceH3UTcp.ConnectClose( );
+			inovance.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;

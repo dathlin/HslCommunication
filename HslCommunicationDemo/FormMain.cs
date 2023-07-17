@@ -10,6 +10,7 @@ using HslCommunication.Profinet.Siemens;
 using HslCommunication.LogNet;
 using HslCommunicationDemo.DemoControl;
 using WeifenLuo.WinFormsUI.Docking;
+using System.Threading;
 
 namespace HslCommunicationDemo
 {
@@ -119,7 +120,7 @@ namespace HslCommunicationDemo
 			formIndex.Show( dockPanel1, DockState.Document );
 			// new FormHslMap( ).Show( dockPanel1 );
 
-			timer = new Timer( );
+			timer = new System.Windows.Forms.Timer( );
 			timer.Interval = 1000;
 			timer.Tick += Timer_Tick;
 			timer.Start( );
@@ -290,7 +291,8 @@ namespace HslCommunicationDemo
 				string RamInfo = (curpcp.NextValue( ) / MB_DIV).ToString( "F1" ) + "MB";
 				label2.Text = "Ram: " + RamInfo;
 			}
-			label1.Text = $"Timeout:{HslCommunication.HslTimeOut.TimeOutCheckCount}  Lock:{SimpleHybirdLock.SimpleHybirdLockCount}  Wait:{SimpleHybirdLock.SimpleHybirdLockWaitCount}";
+			long current = Interlocked.Exchange( ref HslCommunication.HslTimeOut.TimeoutDealCount, 0 );
+			label1.Text = $"Timeout:{HslCommunication.HslTimeOut.TimeOutCheckCount}/{current}  Lock:{SimpleHybirdLock.SimpleHybirdLockCount}  Wait:{SimpleHybirdLock.SimpleHybirdLockWaitCount}";
 		}
 
 		private void logToolStripMenuItem_Click( object sender, EventArgs e )

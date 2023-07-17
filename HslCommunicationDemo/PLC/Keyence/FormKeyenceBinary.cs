@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 		private KeyenceMcNet keyence_net = null;
 		private McQna3EControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -40,6 +41,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Keyence.Helper.GetKeyenceMcAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -52,6 +56,8 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
+
+				checkBox_string_reverse.Text = "string reverse by word";
 			}
 		}
 
@@ -77,6 +83,7 @@ namespace HslCommunicationDemo
 			keyence_net.ConnectClose( );
 			keyence_net.LogNet = LogNet;
 			keyence_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
+			keyence_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
 
 			try
 			{
@@ -98,6 +105,9 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => keyence_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 					// 特殊读取
 					control.SetDevice( keyence_net, "D100" );
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( keyence_net, nameof( keyence_net.EnableWriteBitToWordRegister ), "ByteTransform.IsStringReverseByteWord" );
 				}
 				else
 				{
@@ -229,6 +239,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( "EnableWriteBitToWordRegister", this.checkBox_EnableWriteBitToWordRegister.Checked );
+			element.SetAttributeValue( "IsStringReverseByteWord", checkBox_string_reverse.Checked );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -239,6 +250,7 @@ namespace HslCommunicationDemo
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );
+			checkBox_string_reverse.Checked = GetXmlValue( element, "IsStringReverseByteWord", false, bool.Parse );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

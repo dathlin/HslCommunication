@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private MelsecA3CNetOverTcp melsecA3C = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -42,6 +43,10 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetMcAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -122,6 +127,10 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsecA3C, "D100", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsecA3C.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+
+					// 设置示例的代码
+					codeExampleControl.SetCodeText( melsecA3C, nameof( melsecA3C.Station ), nameof( melsecA3C.EnableWriteBitToWordRegister ), nameof( melsecA3C.SumCheck ),
+						nameof( melsecA3C.Format ) );
 				}
 				else
 				{

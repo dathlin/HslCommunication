@@ -30,6 +30,7 @@ namespace HslCommunicationDemo
 		private SiemensPLCS siemensPLCSelected = SiemensPLCS.S200Smart;
 		private SiemensS7Control control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -43,6 +44,7 @@ namespace HslCommunicationDemo
 				label5.Visible = false;
 				textBox3.Visible = false;
 				textBox4.Visible = false;
+				label6.Visible = false;
 			}
 
 			control = new SiemensS7Control( );
@@ -52,6 +54,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetSiemensS7Address( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -112,6 +117,17 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensTcpNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					control.SetDevice( siemensTcpNet, "M100" );
+
+
+					List<string> parameters = new List<string>( );
+					if (siemensPLCSelected == SiemensPLCS.S200)
+					{
+						parameters.Add( nameof( siemensTcpNet.LocalTSAP ) );
+						parameters.Add( nameof( siemensTcpNet.DestTSAP ) );
+					}
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( siemensTcpNet, parameters.ToArray( ) );
 				}
 				else
 				{

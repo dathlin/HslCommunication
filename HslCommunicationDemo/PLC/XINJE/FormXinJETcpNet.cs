@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 
 		private XinJETcpNet xinJE = null;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -43,6 +44,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetXinJEAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -137,6 +141,10 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( xinJE, "D100", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => xinJE.ReadFromCoreServer( m, hasResponseData: true, usePackAndUnpack: false ), string.Empty, string.Empty );
+
+					// 设置示例代码
+					codeExampleControl.SetCodeText( xinJE, nameof( xinJE.AddressStartWithZero ),  nameof( xinJE.IsStringReverse ), nameof( xinJE.DataFormat ),
+						nameof( xinJE.Station), nameof( xinJE.Series ) );
 				}
 				else
 				{

@@ -45,7 +45,6 @@ namespace HslCommunicationDemo.PLC.Panasonic
 				new DeviceAddressExample( "F0",    "文件寄存器 FL",  false, true, "" ),
 				new DeviceAddressExample( "S0",    "目标值 SV",      false, true, "" ),
 				new DeviceAddressExample( "K0",    "经过值 EV",      false, true, "" ),
-				new DeviceAddressExample( "S0",    "目标值 SV",      false, true, "" ),
 				new DeviceAddressExample( "IX",    "索引寄存器 IX",  false, true, "" ),
 				new DeviceAddressExample( "IY",    "索引寄存器 IY",  false, true, "" ),
 				new DeviceAddressExample( "s=2;R2.1",  "内部继电器",     true, false, "支持额外指定其他的站号信息" ),

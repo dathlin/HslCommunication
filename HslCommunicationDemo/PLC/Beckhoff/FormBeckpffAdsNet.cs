@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 		private BeckhoffAdsNet beckhoffAdsNet = null;
 		private BeckhoffAdsNetControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -43,6 +44,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Beckhoff.Helper.GetDeviceAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void CheckBox_auto_CheckedChanged( object sender, EventArgs e )
@@ -135,11 +139,18 @@ namespace HslCommunicationDemo
 					{
 						textBox14.Text = beckhoffAdsNet.GetTargetAMSNetId( );
 						textBox15.Text = beckhoffAdsNet.GetSenderAMSNetId( );
+
+						// 设置代码示例
+						codeExampleControl.SetCodeText( beckhoffAdsNet, nameof( beckhoffAdsNet.UseAutoAmsNetID ), nameof( beckhoffAdsNet.UseTagCache ), nameof( beckhoffAdsNet.AmsPort ) );
 					}
 					else
 					{
 						if (string.IsNullOrEmpty( textBox14.Text )) textBox14.Text = beckhoffAdsNet.GetTargetAMSNetId( );
 						if (string.IsNullOrEmpty( textBox15.Text )) textBox15.Text = beckhoffAdsNet.GetSenderAMSNetId( );
+
+
+						// 设置代码示例
+						codeExampleControl.SetCodeText( beckhoffAdsNet, nameof( beckhoffAdsNet.UseAutoAmsNetID ), nameof( beckhoffAdsNet.UseTagCache ) );
 					}
 				}
 				else

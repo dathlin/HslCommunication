@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -49,7 +50,6 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -83,6 +83,16 @@
 			this.panel1.Size = new System.Drawing.Size(997, 56);
 			this.panel1.TabIndex = 0;
 			// 
+			// checkBox_EnableWriteBitToWordRegister
+			// 
+			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
+			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(333, 30);
+			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
+			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
+			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 40;
+			this.checkBox_EnableWriteBitToWordRegister.Text = "Enable Write Bit To Word Register";
+			this.checkBox_EnableWriteBitToWordRegister.UseVisualStyleBackColor = true;
+			// 
 			// comboBox2
 			// 
 			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -92,7 +102,7 @@
             "2",
             "3",
             "4"});
-			this.comboBox2.Location = new System.Drawing.Point(694, 27);
+			this.comboBox2.Location = new System.Drawing.Point(701, 27);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(68, 25);
 			this.comboBox2.TabIndex = 39;
@@ -100,7 +110,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(646, 31);
+			this.label2.Location = new System.Drawing.Point(653, 31);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(44, 17);
 			this.label2.TabIndex = 34;
@@ -121,7 +131,7 @@
 			// comboBox3
 			// 
 			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(73, 7);
+			this.comboBox3.Location = new System.Drawing.Point(73, 2);
 			this.comboBox3.Name = "comboBox3";
 			this.comboBox3.Size = new System.Drawing.Size(67, 25);
 			this.comboBox3.TabIndex = 32;
@@ -184,7 +194,7 @@
 			// 
 			// textBox16
 			// 
-			this.textBox16.Location = new System.Drawing.Point(324, 8);
+			this.textBox16.Location = new System.Drawing.Point(324, 3);
 			this.textBox16.Name = "textBox16";
 			this.textBox16.Size = new System.Drawing.Size(24, 23);
 			this.textBox16.TabIndex = 21;
@@ -193,7 +203,7 @@
 			// label25
 			// 
 			this.label25.AutoSize = true;
-			this.label25.Location = new System.Drawing.Point(260, 11);
+			this.label25.Location = new System.Drawing.Point(260, 6);
 			this.label25.Name = "label25";
 			this.label25.Size = new System.Drawing.Size(56, 17);
 			this.label25.TabIndex = 20;
@@ -201,7 +211,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(207, 8);
+			this.textBox2.Location = new System.Drawing.Point(207, 3);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(47, 23);
 			this.textBox2.TabIndex = 19;
@@ -210,7 +220,7 @@
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(153, 11);
+			this.label26.Location = new System.Drawing.Point(153, 6);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(56, 17);
 			this.label26.TabIndex = 18;
@@ -219,7 +229,7 @@
 			// label27
 			// 
 			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(8, 11);
+			this.label27.Location = new System.Drawing.Point(8, 6);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(59, 17);
 			this.label27.TabIndex = 16;
@@ -282,16 +292,6 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// checkBox_EnableWriteBitToWordRegister
-			// 
-			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
-			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(360, 30);
-			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
-			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
-			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 40;
-			this.checkBox_EnableWriteBitToWordRegister.Text = "Enable Write Bit To Word Register";
-			this.checkBox_EnableWriteBitToWordRegister.UseVisualStyleBackColor = true;
 			// 
 			// FormMelsec3C
 			// 

@@ -29,6 +29,7 @@ namespace HslCommunicationDemo
 		private SiemensPPI siemensPPI = null;
 		private SiemensPPIControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -51,6 +52,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetSiemensPPIAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -130,6 +134,10 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensPPI.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 				control.SetDevice( siemensPPI, "M100" );
+
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( siemensPPI, nameof( siemensPPI.Station ) );
 			}
 			catch (Exception ex)
 			{

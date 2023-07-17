@@ -41,8 +41,8 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -105,7 +105,7 @@
 			// 
 			// textBox19
 			// 
-			this.textBox19.Location = new System.Drawing.Point(233, 10);
+			this.textBox19.Location = new System.Drawing.Point(247, 10);
 			this.textBox19.Name = "textBox19";
 			this.textBox19.Size = new System.Drawing.Size(53, 23);
 			this.textBox19.TabIndex = 32;
@@ -114,7 +114,7 @@
 			// label28
 			// 
 			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(185, 13);
+			this.label28.Location = new System.Drawing.Point(199, 13);
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(44, 17);
 			this.label28.TabIndex = 31;
@@ -124,7 +124,7 @@
 			// 
 			this.textBox20.Location = new System.Drawing.Point(64, 10);
 			this.textBox20.Name = "textBox20";
-			this.textBox20.Size = new System.Drawing.Size(109, 23);
+			this.textBox20.Size = new System.Drawing.Size(129, 23);
 			this.textBox20.TabIndex = 30;
 			this.textBox20.Text = "192.168.0.10";
 			// 
@@ -141,7 +141,7 @@
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(307, 10);
+			this.comboBox1.Location = new System.Drawing.Point(321, 10);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(95, 25);
 			this.comboBox1.TabIndex = 14;
@@ -180,6 +180,15 @@
 			this.panel2.Size = new System.Drawing.Size(997, 553);
 			this.panel2.TabIndex = 1;
 			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 551);
+			this.userControlReadWriteDevice1.TabIndex = 0;
+			// 
 			// userControlHead1
 			// 
 			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -195,15 +204,6 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// userControlReadWriteDevice1
-			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 551);
-			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// FormYASKAWAMemobusUdpNet
 			// 

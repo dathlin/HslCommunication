@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Core.Net;
 using HslCommunication;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -28,6 +29,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.dataServerBase.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 			this.dataServerBase.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			userControlReadWriteOp1.SetReadWriteNet( dataServerBase, address, false, strLength );
+			batchReadControl1.SetReadWriteNet( dataServerBase, address, "" );
 
 			timerSecond?.Dispose( );
 			timerSecond = new System.Windows.Forms.Timer( );
@@ -186,6 +188,33 @@ namespace HslCommunicationDemo.DemoControl
 					}
 				}
 			}
+		}
+
+
+		public BatchReadControl BatchRead
+		{
+			get => this.batchReadControl1;
+		}
+
+
+		public void AddSpecialFunctionTab( UserControl control, bool show = false, string title = null )
+		{
+			DemoUtils.AddSpecialFunctionTab( this.tabControl1, control, show, title );
+		}
+
+		public void GetDataTable( XElement element )
+		{
+			this.dataTableControl1.GetDataTable( element );
+		}
+
+		public int LoadDataTable( XElement element )
+		{
+			return this.dataTableControl1.LoadDataTable( element );
+		}
+
+		public void SelectTabDataTable( )
+		{
+			this.tabControl1.SelectTab( tabPage3 );
 		}
 	}
 }

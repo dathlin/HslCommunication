@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 		private ReaderNet reader_net = null;
 		private TurckReaderControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -48,6 +49,9 @@ namespace HslCommunicationDemo
 					new DeviceAddressExample( "100.1",    "小数地址", false, true, "" ),
 				} );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -105,6 +109,10 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => reader_net.ReadFromCoreServer( m ), string.Empty, string.Empty );
 				// 特殊控件
 				control.SetDevice( reader_net, "100" );
+
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( reader_net );
 			}
 			else
 			{

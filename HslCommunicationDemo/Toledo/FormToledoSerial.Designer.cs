@@ -60,8 +60,12 @@
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// userControlHead1
@@ -100,16 +104,16 @@
 			this.panel2.Controls.Add(this.toledoDataControl1);
 			this.panel2.Controls.Add(this.checkBox4);
 			this.panel2.Controls.Add(this.label7);
-			this.panel2.Location = new System.Drawing.Point(3, 94);
+			this.panel2.Location = new System.Drawing.Point(2, 3);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 550);
+			this.panel2.Size = new System.Drawing.Size(981, 528);
 			this.panel2.TabIndex = 17;
 			// 
 			// label8
 			// 
 			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(8, 524);
+			this.label8.Location = new System.Drawing.Point(8, 502);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(272, 17);
 			this.label8.TabIndex = 47;
@@ -145,7 +149,7 @@
 			// textBox6
 			// 
 			this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox6.Location = new System.Drawing.Point(558, 99);
+			this.textBox6.Location = new System.Drawing.Point(542, 99);
 			this.textBox6.Multiline = true;
 			this.textBox6.Name = "textBox6";
 			this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -155,10 +159,9 @@
 			// hslDialPlate1
 			// 
 			this.hslDialPlate1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.hslDialPlate1.BoderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
 			this.hslDialPlate1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.hslDialPlate1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.hslDialPlate1.Location = new System.Drawing.Point(790, 326);
+			this.hslDialPlate1.Location = new System.Drawing.Point(774, 326);
 			this.hslDialPlate1.Name = "hslDialPlate1";
 			this.hslDialPlate1.Size = new System.Drawing.Size(192, 188);
 			this.hslDialPlate1.TabIndex = 43;
@@ -168,9 +171,10 @@
 			this.hslCurve1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.hslCurve1.FontCalibration = new System.Drawing.Font("微软雅黑", 9F);
 			this.hslCurve1.Location = new System.Drawing.Point(6, 117);
 			this.hslCurve1.Name = "hslCurve1";
-			this.hslCurve1.Size = new System.Drawing.Size(546, 397);
+			this.hslCurve1.Size = new System.Drawing.Size(530, 375);
 			this.hslCurve1.TabIndex = 42;
 			this.hslCurve1.Title = "重力曲线图";
 			// 
@@ -180,7 +184,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox3.Location = new System.Drawing.Point(65, 59);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(698, 23);
+			this.textBox3.Size = new System.Drawing.Size(682, 23);
 			this.textBox3.TabIndex = 41;
 			// 
 			// label4
@@ -207,7 +211,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox1.Location = new System.Drawing.Point(65, 32);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(698, 23);
+			this.textBox1.Size = new System.Drawing.Size(682, 23);
 			this.textBox1.TabIndex = 38;
 			// 
 			// label6
@@ -223,7 +227,7 @@
 			// 
 			this.toledoDataControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.toledoDataControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.toledoDataControl1.Location = new System.Drawing.Point(773, 1);
+			this.toledoDataControl1.Location = new System.Drawing.Point(757, 1);
 			this.toledoDataControl1.Name = "toledoDataControl1";
 			this.toledoDataControl1.Size = new System.Drawing.Size(216, 319);
 			this.toledoDataControl1.TabIndex = 36;
@@ -271,13 +275,13 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 54);
+			this.panel1.Size = new System.Drawing.Size(997, 41);
 			this.panel1.TabIndex = 16;
 			// 
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(677, 16);
+			this.checkBox1.Location = new System.Drawing.Point(677, 8);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(99, 21);
 			this.checkBox1.TabIndex = 18;
@@ -287,7 +291,7 @@
 			// checkBox5
 			// 
 			this.checkBox5.AutoSize = true;
-			this.checkBox5.Location = new System.Drawing.Point(585, 16);
+			this.checkBox5.Location = new System.Drawing.Point(585, 8);
 			this.checkBox5.Name = "checkBox5";
 			this.checkBox5.Size = new System.Drawing.Size(84, 21);
 			this.checkBox5.TabIndex = 17;
@@ -297,7 +301,7 @@
 			// comboBox3
 			// 
 			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(60, 12);
+			this.comboBox3.Location = new System.Drawing.Point(60, 4);
 			this.comboBox3.Name = "comboBox3";
 			this.comboBox3.Size = new System.Drawing.Size(84, 25);
 			this.comboBox3.TabIndex = 16;
@@ -310,7 +314,7 @@
             "无",
             "奇",
             "偶"});
-			this.comboBox1.Location = new System.Drawing.Point(511, 14);
+			this.comboBox1.Location = new System.Drawing.Point(511, 6);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(66, 25);
 			this.comboBox1.TabIndex = 15;
@@ -318,7 +322,7 @@
 			// label24
 			// 
 			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(465, 17);
+			this.label24.Location = new System.Drawing.Point(465, 9);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(44, 17);
 			this.label24.TabIndex = 14;
@@ -326,7 +330,7 @@
 			// 
 			// textBox17
 			// 
-			this.textBox17.Location = new System.Drawing.Point(433, 14);
+			this.textBox17.Location = new System.Drawing.Point(433, 6);
 			this.textBox17.Name = "textBox17";
 			this.textBox17.Size = new System.Drawing.Size(23, 23);
 			this.textBox17.TabIndex = 13;
@@ -335,7 +339,7 @@
 			// label23
 			// 
 			this.label23.AutoSize = true;
-			this.label23.Location = new System.Drawing.Point(369, 17);
+			this.label23.Location = new System.Drawing.Point(369, 9);
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(56, 17);
 			this.label23.TabIndex = 12;
@@ -343,7 +347,7 @@
 			// 
 			// textBox16
 			// 
-			this.textBox16.Location = new System.Drawing.Point(333, 14);
+			this.textBox16.Location = new System.Drawing.Point(333, 6);
 			this.textBox16.Name = "textBox16";
 			this.textBox16.Size = new System.Drawing.Size(24, 23);
 			this.textBox16.TabIndex = 11;
@@ -352,7 +356,7 @@
 			// label22
 			// 
 			this.label22.AutoSize = true;
-			this.label22.Location = new System.Drawing.Point(270, 17);
+			this.label22.Location = new System.Drawing.Point(270, 9);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(56, 17);
 			this.label22.TabIndex = 10;
@@ -361,7 +365,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(882, 11);
+			this.button2.Location = new System.Drawing.Point(882, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -371,7 +375,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(785, 11);
+			this.button1.Location = new System.Drawing.Point(785, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -381,7 +385,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(217, 14);
+			this.textBox2.Location = new System.Drawing.Point(217, 6);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(47, 23);
 			this.textBox2.TabIndex = 3;
@@ -390,7 +394,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(150, 17);
+			this.label3.Location = new System.Drawing.Point(150, 9);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -399,11 +403,31 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(6, 17);
+			this.label1.Location = new System.Drawing.Point(6, 9);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(59, 17);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Com口：";
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Location = new System.Drawing.Point(3, 79);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(997, 564);
+			this.tabControl1.TabIndex = 18;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.panel2);
+			this.tabPage1.Location = new System.Drawing.Point(4, 26);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(989, 534);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Basic Function";
+			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// FormToledoSerial
 			// 
@@ -411,7 +435,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(1004, 645);
-			this.Controls.Add(this.panel2);
+			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.userControlHead1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -423,6 +447,8 @@
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -461,5 +487,7 @@
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
 	}
 }

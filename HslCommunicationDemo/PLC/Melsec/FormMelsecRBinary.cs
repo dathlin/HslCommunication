@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 		private MelsecMcRNet melsec_net = null;
 		private McQna3EControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -41,6 +42,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetMcAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -104,6 +108,9 @@ namespace HslCommunicationDemo
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 				control.SetDevice( melsec_net, "D100" );
+
+				// 设置示例的代码
+				codeExampleControl.SetCodeText( melsec_net, nameof( melsec_net.EnableWriteBitToWordRegister ) );
 			}
 			else
 			{

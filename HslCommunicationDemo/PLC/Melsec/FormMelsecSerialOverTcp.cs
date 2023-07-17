@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 		private MelsecFxSerialOverTcp melsec_net = null;
 		private MelsecSerialControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -42,6 +43,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetFxSerialAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -107,6 +111,9 @@ namespace HslCommunicationDemo
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m ), string.Empty, string.Empty );
 					control.SetDevice( melsec_net, "D100" );
+
+					// 设置示例的代码
+					codeExampleControl.SetCodeText( melsec_net, nameof( melsec_net.IsNewVersion ), nameof( melsec_net.UseGOT ), nameof( melsec_net.SleepTime ) );
 				}
 				else
 				{

@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 		private OmronHostLinkCModeOverTcp omronHostLink = null;
 		private HostLinkCModeControl control;
 		private AddressExampleControl addressExampleControl;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -43,6 +44,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetFinsCModeAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -114,6 +118,9 @@ namespace HslCommunicationDemo
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronHostLink.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 					control.SetDevice( omronHostLink, "D100" );
+
+					// 设置示例代码
+					codeExampleControl.SetCodeText( omronHostLink, nameof( omronHostLink.UnitNumber ), "ByteTransform.DataFormat" );
 				}
 				else
 				{

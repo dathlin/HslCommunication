@@ -21,6 +21,14 @@ namespace HslCommunicationDemo.DemoControl
 		public UserControlReadWriteOp( )
 		{
 			InitializeComponent( );
+
+			Disposed += UserControlReadWriteOp_Disposed;
+		}
+
+		private void UserControlReadWriteOp_Disposed( object sender, EventArgs e )
+		{
+			if (checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
+			if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 		}
 
 		private string[] encodings = DemoUtils.GetEncodings( );
@@ -752,6 +760,7 @@ namespace HslCommunicationDemo.DemoControl
 			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 
 			if (isAsync) button.Enabled = true;
+			if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 			WriteResultRender( write, textBox_write_address.Text, input );
 		}
 
@@ -764,6 +773,7 @@ namespace HslCommunicationDemo.DemoControl
 			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 
 			if (isAsync) button.Enabled = true;
+			if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 			WriteResultRender( write, textBox_write_address.Text, input );
 		}
 
@@ -783,6 +793,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch(Exception ex)
 				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "Bool Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
@@ -798,7 +809,10 @@ namespace HslCommunicationDemo.DemoControl
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_bool, input );
 				}
 				else
+				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "Bool Data is not corrent: " + input );
+				}
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
@@ -819,6 +833,7 @@ namespace HslCommunicationDemo.DemoControl
 						OperateResult write = await readWriteNet.WriteAsync( textBox_write_address.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 						button_write_short.Enabled = true;
+						if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 						WriteResultRender( write, textBox_write_address.Text, string.Empty );
 					}
 					else
@@ -826,11 +841,13 @@ namespace HslCommunicationDemo.DemoControl
 						DateTime start = DateTime.Now;
 						OperateResult write = readWriteNet.Write( textBox_write_address.Text, value );
 						SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+						if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 						WriteResultRender( write, textBox_write_address.Text, string.Empty );
 					}
 				}
 				catch (Exception ex)
 				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "byte Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
@@ -842,10 +859,14 @@ namespace HslCommunicationDemo.DemoControl
 					DateTime start = DateTime.Now;
 					OperateResult write = (OperateResult)writeByteMethod.Invoke( readWriteNet, new object[] { textBox_write_address.Text, value } );
 					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+					if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					WriteResultRender( write, textBox_write_address.Text, input );
 				}
 				else
+				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "Byte Data is not corrent: " + input );
+				}
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
@@ -868,6 +889,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch (Exception ex)
 				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "short Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
@@ -882,7 +904,10 @@ namespace HslCommunicationDemo.DemoControl
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_short, input );
 				}
 				else
+				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "short Data is not corrent: " + input );
+				}
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
@@ -905,6 +930,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch (Exception ex)
 				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "ushort Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
@@ -918,7 +944,10 @@ namespace HslCommunicationDemo.DemoControl
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_ushort, input );
 				}
 				else
+				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "ushort Data is not corrent: " + input );
+				}
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
@@ -941,6 +970,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch (Exception ex)
 				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "int Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
@@ -954,7 +984,10 @@ namespace HslCommunicationDemo.DemoControl
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_int, input );
 				}
 				else
+				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "int Data is not corrent: " + input );
+				}
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
@@ -977,6 +1010,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch (Exception ex)
 				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "uint Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
@@ -990,7 +1024,10 @@ namespace HslCommunicationDemo.DemoControl
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_uint, input );
 				}
 				else
+				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "uint Data is not corrent: " + input );
+				}
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
@@ -1013,6 +1050,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch (Exception ex)
 				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "long Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
@@ -1026,7 +1064,10 @@ namespace HslCommunicationDemo.DemoControl
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_long, input );
 				}
 				else
+				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "long Data is not corrent: " + input );
+				}
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
@@ -1049,6 +1090,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch (Exception ex)
 				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "ulong Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
@@ -1062,7 +1104,10 @@ namespace HslCommunicationDemo.DemoControl
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_ulong, input );
 				}
 				else
+				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "ulong Data is not corrent: " + input );
+				}
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
@@ -1085,6 +1130,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch (Exception ex)
 				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "float Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
@@ -1098,7 +1144,10 @@ namespace HslCommunicationDemo.DemoControl
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_float, input );
 				}
 				else
+				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "float Data is not corrent: " + input );
+				}
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
@@ -1121,6 +1170,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch (Exception ex)
 				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "float Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
@@ -1134,7 +1184,10 @@ namespace HslCommunicationDemo.DemoControl
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_double, input );
 				}
 				else
+				{
+					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 					MessageBox.Show( "double Data is not corrent: " + input );
+				}
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
@@ -1153,6 +1206,8 @@ namespace HslCommunicationDemo.DemoControl
 				else
 					write = await readWriteNet.WriteAsync( textBox_write_address.Text, textBox_write_text.Text, DemoUtils.GetEncodingFromIndex( comboBox_write_Encoding.SelectedIndex ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+
+				if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 				WriteResultRender( write, textBox_write_address.Text, string.Empty );
 				button_write_string.Enabled = true;
 			}
@@ -1165,6 +1220,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 					write = readWriteNet.Write( textBox_write_address.Text, textBox_write_text.Text, DemoUtils.GetEncodingFromIndex( comboBox_write_Encoding.SelectedIndex ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 				WriteResultRender( write, textBox_write_address.Text, string.Empty );
 			}
 
@@ -1180,6 +1236,7 @@ namespace HslCommunicationDemo.DemoControl
 				DateTime start = DateTime.Now;
 				OperateResult write = await readWriteNet.WriteAsync( textBox_write_address.Text, textBox_write_text.Text.ToHexBytes( ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 				WriteResultRender( write, textBox_write_address.Text, string.Empty );
 				button_write_string.Enabled = true;
 			}
@@ -1188,6 +1245,7 @@ namespace HslCommunicationDemo.DemoControl
 				DateTime start = DateTime.Now;
 				OperateResult write = readWriteNet.Write( textBox_write_address.Text, textBox_write_text.Text.ToHexBytes( ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 				WriteResultRender( write, textBox_write_address.Text, string.Empty );
 			}
 

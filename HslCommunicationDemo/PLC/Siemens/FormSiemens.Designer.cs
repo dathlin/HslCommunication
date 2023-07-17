@@ -31,25 +31,24 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox_pdu = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.textBox_localTSAP = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.textBox_connectType = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.textBox16 = new System.Windows.Forms.TextBox();
+			this.textBox_slot = new System.Windows.Forms.TextBox();
 			this.label24 = new System.Windows.Forms.Label();
-			this.textBox15 = new System.Windows.Forms.TextBox();
+			this.textBox_rack = new System.Windows.Forms.TextBox();
 			this.label23 = new System.Windows.Forms.Label();
-			this.label22 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.textBox_port = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label_info = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -59,23 +58,22 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.label_info);
 			this.panel1.Controls.Add(this.textBox_pdu);
 			this.panel1.Controls.Add(this.label6);
-			this.panel1.Controls.Add(this.textBox4);
+			this.panel1.Controls.Add(this.textBox_localTSAP);
 			this.panel1.Controls.Add(this.label5);
-			this.panel1.Controls.Add(this.textBox3);
+			this.panel1.Controls.Add(this.textBox_connectType);
 			this.panel1.Controls.Add(this.label4);
-			this.panel1.Controls.Add(this.textBox16);
+			this.panel1.Controls.Add(this.textBox_slot);
 			this.panel1.Controls.Add(this.label24);
-			this.panel1.Controls.Add(this.textBox15);
+			this.panel1.Controls.Add(this.textBox_rack);
 			this.panel1.Controls.Add(this.label23);
-			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
-			this.panel1.Controls.Add(this.textBox2);
+			this.panel1.Controls.Add(this.textBox_port);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -85,7 +83,7 @@
 			// 
 			// textBox_pdu
 			// 
-			this.textBox_pdu.Location = new System.Drawing.Point(457, 27);
+			this.textBox_pdu.Location = new System.Drawing.Point(365, 27);
 			this.textBox_pdu.Name = "textBox_pdu";
 			this.textBox_pdu.ReadOnly = true;
 			this.textBox_pdu.Size = new System.Drawing.Size(40, 23);
@@ -94,103 +92,84 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(407, 30);
+			this.label6.Location = new System.Drawing.Point(315, 30);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(45, 17);
 			this.label6.TabIndex = 16;
 			this.label6.Text = "PDU：";
 			// 
-			// textBox4
+			// textBox_localTSAP
 			// 
-			this.textBox4.Location = new System.Drawing.Point(361, 27);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(33, 23);
-			this.textBox4.TabIndex = 15;
-			this.textBox4.Text = "258";
+			this.textBox_localTSAP.Location = new System.Drawing.Point(255, 27);
+			this.textBox_localTSAP.Name = "textBox_localTSAP";
+			this.textBox_localTSAP.Size = new System.Drawing.Size(41, 23);
+			this.textBox_localTSAP.TabIndex = 15;
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(280, 30);
+			this.label5.Location = new System.Drawing.Point(170, 30);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(79, 17);
 			this.label5.TabIndex = 14;
 			this.label5.Text = "LocalTSAP：";
 			// 
-			// textBox3
+			// textBox_connectType
 			// 
-			this.textBox3.Location = new System.Drawing.Point(241, 27);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(33, 23);
-			this.textBox3.TabIndex = 13;
-			this.textBox3.Text = "1";
+			this.textBox_connectType.Location = new System.Drawing.Point(120, 27);
+			this.textBox_connectType.Name = "textBox_connectType";
+			this.textBox_connectType.Size = new System.Drawing.Size(33, 23);
+			this.textBox_connectType.TabIndex = 13;
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(128, 30);
+			this.label4.Location = new System.Drawing.Point(7, 30);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(113, 17);
 			this.label4.TabIndex = 12;
 			this.label4.Text = "ConnectionType：";
 			// 
-			// textBox16
+			// textBox_slot
 			// 
-			this.textBox16.Location = new System.Drawing.Point(439, 2);
-			this.textBox16.Name = "textBox16";
-			this.textBox16.Size = new System.Drawing.Size(33, 23);
-			this.textBox16.TabIndex = 11;
-			this.textBox16.Text = "0";
+			this.textBox_slot.Location = new System.Drawing.Point(510, 2);
+			this.textBox_slot.Name = "textBox_slot";
+			this.textBox_slot.Size = new System.Drawing.Size(33, 23);
+			this.textBox_slot.TabIndex = 11;
+			this.textBox_slot.Text = "0";
 			// 
 			// label24
 			// 
 			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(393, 5);
+			this.label24.Location = new System.Drawing.Point(464, 5);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(42, 17);
 			this.label24.TabIndex = 10;
 			this.label24.Text = "Slot：";
 			// 
-			// textBox15
+			// textBox_rack
 			// 
-			this.textBox15.Location = new System.Drawing.Point(354, 2);
-			this.textBox15.Name = "textBox15";
-			this.textBox15.Size = new System.Drawing.Size(33, 23);
-			this.textBox15.TabIndex = 9;
-			this.textBox15.Text = "0";
+			this.textBox_rack.Location = new System.Drawing.Point(425, 2);
+			this.textBox_rack.Name = "textBox_rack";
+			this.textBox_rack.Size = new System.Drawing.Size(33, 23);
+			this.textBox_rack.TabIndex = 9;
+			this.textBox_rack.Text = "0";
 			// 
 			// label23
 			// 
 			this.label23.AutoSize = true;
-			this.label23.Location = new System.Drawing.Point(305, 5);
+			this.label23.Location = new System.Drawing.Point(376, 5);
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(48, 17);
 			this.label23.TabIndex = 8;
 			this.label23.Text = "Rack：";
 			// 
-			// label22
-			// 
-			this.label22.Location = new System.Drawing.Point(826, 7);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(147, 45);
-			this.label22.TabIndex = 7;
-			this.label22.Text = "M100  I100  Q100 DB100.20   T100 C100";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(756, 7);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(68, 17);
-			this.label21.TabIndex = 6;
-			this.label21.Text = "地址示例：";
-			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(650, 11);
+			this.button2.Location = new System.Drawing.Point(739, 1);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(91, 28);
+			this.button2.Size = new System.Drawing.Size(99, 28);
 			this.button2.TabIndex = 5;
 			this.button2.Text = "断开连接";
 			this.button2.UseVisualStyleBackColor = true;
@@ -198,38 +177,38 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(554, 11);
+			this.button1.Location = new System.Drawing.Point(631, 1);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(91, 28);
+			this.button1.Size = new System.Drawing.Size(102, 28);
 			this.button1.TabIndex = 4;
 			this.button1.Text = "连接";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
-			// textBox2
+			// textBox_port
 			// 
-			this.textBox2.Location = new System.Drawing.Point(238, 2);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(61, 23);
-			this.textBox2.TabIndex = 3;
-			this.textBox2.Text = "102";
+			this.textBox_port.Location = new System.Drawing.Point(309, 2);
+			this.textBox_port.Name = "textBox_port";
+			this.textBox_port.Size = new System.Drawing.Size(61, 23);
+			this.textBox_port.TabIndex = 3;
+			this.textBox_port.Text = "102";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(184, 5);
+			this.label3.Location = new System.Drawing.Point(255, 5);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "端口号：";
 			// 
-			// textBox1
+			// textBox_ip
 			// 
-			this.textBox1.Location = new System.Drawing.Point(62, 2);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(106, 23);
-			this.textBox1.TabIndex = 1;
-			this.textBox1.Text = "192.168.0.100";
+			this.textBox_ip.Location = new System.Drawing.Point(62, 2);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(183, 23);
+			this.textBox_ip.TabIndex = 1;
+			this.textBox_ip.Text = "192.168.0.100";
 			// 
 			// label1
 			// 
@@ -253,6 +232,15 @@
 			this.panel2.Size = new System.Drawing.Size(997, 549);
 			this.panel2.TabIndex = 1;
 			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 547);
+			this.userControlReadWriteDevice1.TabIndex = 0;
+			// 
 			// userControlHead1
 			// 
 			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -269,14 +257,15 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// userControlReadWriteDevice1
+			// label_info
 			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 547);
-			this.userControlReadWriteDevice1.TabIndex = 0;
+			this.label_info.AutoSize = true;
+			this.label_info.ForeColor = System.Drawing.Color.Gray;
+			this.label_info.Location = new System.Drawing.Point(412, 30);
+			this.label_info.Name = "label_info";
+			this.label_info.Size = new System.Drawing.Size(140, 17);
+			this.label_info.TabIndex = 18;
+			this.label_info.Text = "如果不清楚，不设置即可";
 			// 
 			// FormSiemens
 			// 
@@ -308,22 +297,21 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_port;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox textBox_ip;
+        private System.Windows.Forms.TextBox textBox_slot;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox textBox_rack;
         private System.Windows.Forms.Label label23;
         protected DemoControl.UserControlHead userControlHead1;
-		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.TextBox textBox_localTSAP;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox textBox_connectType;
 		private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox_pdu;
         private System.Windows.Forms.Label label6;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
+		private System.Windows.Forms.Label label_info;
 	}
 }
