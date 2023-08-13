@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using HslCommunication;
 using HslCommunication.BasicFramework;
 using HslCommunication.Core.Net;
@@ -23,13 +24,14 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			sessionUdp = new Dictionary<string, SocketDebugSession>( );
+
+			panel_tcp_udp.Paint += Panel3_Paint;
 		}
 
 		private void FormTcpDebug_Load( object sender, EventArgs e )
 		{
 			panel_main.Enabled = false;
 			Language( Program.Language );
-			panel_tcp_udp.Paint += Panel3_Paint;
 		}
 
 		private void Panel3_Paint( object sender, PaintEventArgs e )
@@ -263,6 +265,39 @@ namespace HslCommunicationDemo
 			// 关闭所有的多余的连接
 			this.debugControl1.RemoveSessionsAll( );
 			socketCore?.Close( );
+		}
+
+		#endregion
+
+		#region XML Save Load
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			element.SetAttributeValue( "Tcp", radioButton_tcp.Checked );
+			element.SetAttributeValue( "BufferLength", textBox_buffer_length.Text );
+
+			element.RemoveNodes( );
+			this.debugControl1.SaveXml( element );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox_port.Text = GetXmlValue( element, DemoDeviceList.XmlPort, "502", m => m );
+			bool tcp = GetXmlValue( element, "Tcp", true, bool.Parse );
+			if (tcp)
+				radioButton_tcp.Checked = true;
+			else
+				radioButton_udp.Checked = true;
+			textBox_buffer_length.Text = GetXmlValue( element, "BufferLength", "2048", m => m );
+
+			this.debugControl1.LoadXml( element );
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
 		#endregion

@@ -45,15 +45,18 @@
 			this.button5 = new System.Windows.Forms.Button();
 			this.textBox10 = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
-			this.button3 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.panel_tcp_udp = new System.Windows.Forms.Panel();
+			this.radioButton_udp = new System.Windows.Forms.RadioButton();
+			this.radioButton_tcp = new System.Windows.Forms.RadioButton();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.panel_tcp_udp.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -61,6 +64,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.panel_tcp_udp);
 			this.panel1.Controls.Add(this.checkBox_forceReceiveOnce);
 			this.panel1.Controls.Add(this.textBox_station);
 			this.panel1.Controls.Add(this.label1);
@@ -77,7 +81,6 @@
 			this.panel1.Controls.Add(this.button5);
 			this.panel1.Controls.Add(this.textBox10);
 			this.panel1.Controls.Add(this.label14);
-			this.panel1.Controls.Add(this.button3);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
@@ -192,9 +195,9 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox2.Location = new System.Drawing.Point(726, 4);
+			this.comboBox2.Location = new System.Drawing.Point(768, 4);
 			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(142, 25);
+			this.comboBox2.Size = new System.Drawing.Size(100, 25);
 			this.comboBox2.TabIndex = 29;
 			// 
 			// button11
@@ -220,7 +223,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(622, 3);
+			this.button5.Location = new System.Drawing.Point(672, 3);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(91, 28);
 			this.button5.TabIndex = 9;
@@ -230,7 +233,7 @@
 			// 
 			// textBox10
 			// 
-			this.textBox10.Location = new System.Drawing.Point(461, 6);
+			this.textBox10.Location = new System.Drawing.Point(511, 6);
 			this.textBox10.Name = "textBox10";
 			this.textBox10.Size = new System.Drawing.Size(155, 23);
 			this.textBox10.TabIndex = 8;
@@ -239,21 +242,11 @@
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(415, 9);
+			this.label14.Location = new System.Drawing.Point(465, 9);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(44, 17);
 			this.label14.TabIndex = 7;
 			this.label14.Text = "串口：";
-			// 
-			// button3
-			// 
-			this.button3.Location = new System.Drawing.Point(309, 3);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(102, 28);
-			this.button3.TabIndex = 5;
-			this.button3.Text = "客户端过滤";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// button1
 			// 
@@ -321,6 +314,37 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// panel_tcp_udp
+			// 
+			this.panel_tcp_udp.Controls.Add(this.radioButton_udp);
+			this.panel_tcp_udp.Controls.Add(this.radioButton_tcp);
+			this.panel_tcp_udp.Location = new System.Drawing.Point(307, 6);
+			this.panel_tcp_udp.Name = "panel_tcp_udp";
+			this.panel_tcp_udp.Size = new System.Drawing.Size(146, 23);
+			this.panel_tcp_udp.TabIndex = 42;
+			// 
+			// radioButton_udp
+			// 
+			this.radioButton_udp.AutoSize = true;
+			this.radioButton_udp.Location = new System.Drawing.Point(73, 1);
+			this.radioButton_udp.Name = "radioButton_udp";
+			this.radioButton_udp.Size = new System.Drawing.Size(51, 21);
+			this.radioButton_udp.TabIndex = 1;
+			this.radioButton_udp.Text = "UDP";
+			this.radioButton_udp.UseVisualStyleBackColor = true;
+			// 
+			// radioButton_tcp
+			// 
+			this.radioButton_tcp.AutoSize = true;
+			this.radioButton_tcp.Checked = true;
+			this.radioButton_tcp.Location = new System.Drawing.Point(10, 1);
+			this.radioButton_tcp.Name = "radioButton_tcp";
+			this.radioButton_tcp.Size = new System.Drawing.Size(48, 21);
+			this.radioButton_tcp.TabIndex = 0;
+			this.radioButton_tcp.TabStop = true;
+			this.radioButton_tcp.Text = "TCP";
+			this.radioButton_tcp.UseVisualStyleBackColor = true;
+			// 
 			// FormModbusServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -340,6 +364,8 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
+			this.panel_tcp_udp.ResumeLayout(false);
+			this.panel_tcp_udp.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -351,7 +377,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label14;
@@ -370,5 +395,8 @@
 		private System.Windows.Forms.TextBox textBox_station;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.CheckBox checkBox_forceReceiveOnce;
+		private System.Windows.Forms.Panel panel_tcp_udp;
+		private System.Windows.Forms.RadioButton radioButton_udp;
+		private System.Windows.Forms.RadioButton radioButton_tcp;
 	}
 }

@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.6.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.6.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.6.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.6.2\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
@@ -575,6 +575,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PLC\Beckhoff\Helper.cs" />
+    <Compile Include="PLC\Common\ConnectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\Common\ConnectControl.Designer.cs">
+      <DependentUpon>ConnectControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Delta\FormDeltaSerialAsciiOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -627,6 +633,12 @@
     <Compile Include="PLC\Panasonic\Helper.cs" />
     <Compile Include="PLC\Panasonic\MewtocolControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\Siemens\FormSiemensS7Plus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Siemens\FormSiemensS7Plus.Designer.cs">
+      <DependentUpon>FormSiemensS7Plus.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Siemens\Helper.cs" />
     <Compile Include="PLC\Siemens\SiemensWebApiControl.cs">
@@ -2074,6 +2086,9 @@
     <EmbeddedResource Include="PLC\Beckhoff\BeckhoffAdsNetControl.resx">
       <DependentUpon>BeckhoffAdsNetControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Common\ConnectControl.resx">
+      <DependentUpon>ConnectControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Delta\FormDeltaSerialAsciiOverTcp.resx">
       <DependentUpon>FormDeltaSerialAsciiOverTcp.cs</DependentUpon>
     </EmbeddedResource>
@@ -2103,6 +2118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Panasonic\MewtocolControl.resx">
       <DependentUpon>MewtocolControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Siemens\FormSiemensS7Plus.resx">
+      <DependentUpon>FormSiemensS7Plus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Siemens\SiemensWebApiControl.resx">
       <DependentUpon>SiemensWebApiControl.cs</DependentUpon>
@@ -2927,8 +2945,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PLC\Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

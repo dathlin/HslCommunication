@@ -35,7 +35,7 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 			Language( Program.Language );
 
-
+			control = new McQna3EControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetMcAddress( ) );

@@ -24,11 +24,27 @@ namespace HslCommunicationDemo.HslDebug
 			sessions = new List<SocketDebugSession>( );
 
 			Disposed += DebugControl_Disposed;
+
+			panel3.Paint += Panel3_Paint;
+			panel4.Paint += Panel3_Paint;
+			panel5.Paint += Panel3_Paint;
+
+
+			radioButton_binary.CheckedChanged += RadioButton_binary_CheckedChanged;
+			linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+			button_send.Click += button_send_Click;
+			linkLabel_build_message.Click += button_build_message_Click;
+
+			checkBox_send_cycle.CheckedChanged += CheckBox_send_cycle_CheckedChanged;
+			listBox1.MouseDoubleClick += ListBox1_MouseDoubleClick;
 		}
 
 		private void DebugControl_Disposed( object sender, EventArgs e )
 		{
 			if (checkBox_send_cycle.Checked) checkBox_send_cycle.Checked = false;
+
+			timer?.Dispose( );
+
 		}
 
 		#region Form Load
@@ -71,18 +87,7 @@ namespace HslCommunicationDemo.HslDebug
 			linkLabel1.Text = string.Format( GetLinkLabelPacketMessageText( ), 0 );
 			this.label_session_count.Text = string.Format( GetSessionCountText( ), this.sessions.Count );
 
-
-			panel3.Paint += Panel3_Paint;
-			panel4.Paint += Panel3_Paint;
-			panel5.Paint += Panel3_Paint;
-
-			radioButton_binary.CheckedChanged += RadioButton_binary_CheckedChanged;
-			linkLabel1.LinkClicked += linkLabel1_LinkClicked;
-			button_send.Click += button_send_Click;
-			linkLabel_build_message.Click += button_build_message_Click;
-
-			checkBox_send_cycle.CheckedChanged += CheckBox_send_cycle_CheckedChanged;
-			listBox1.MouseDoubleClick += ListBox1_MouseDoubleClick;
+			richTextBox_main.ScrollToCaret( );
 		}
 
 		private void ListBox1_MouseDoubleClick( object sender, MouseEventArgs e )

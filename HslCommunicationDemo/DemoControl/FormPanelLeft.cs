@@ -127,6 +127,7 @@ namespace HslCommunicationDemo.DemoControl
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7 PPI Server", 14, typeof( FormSiemensPPIServer ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Fetch Write Server", 14, typeof( FormFetchWriteServer ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Siemens DTU", 14, typeof( FormSiemensDTU ) ) );
+			//siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7-PLUS",     14, typeof( FormSiemensS7Plus ) ) );
 			treeView1.Nodes.Add( siemensNode );
 
 			// Modbus协议

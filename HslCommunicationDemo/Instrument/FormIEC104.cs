@@ -12,6 +12,7 @@ using HslCommunication.Instrument.IEC;
 using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace HslCommunicationDemo
 {
@@ -27,6 +28,8 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
+			comboBox_write_type.SelectedIndex = 0;
+			comboBox_write_reason.SelectedIndex = 5;
 			Language( Program.Language );
 		}
 
@@ -35,7 +38,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "DLT645 Read Demo";
+				Text = "IEC104 Read Demo";
 
 				label1.Text = "Com:";
 				label3.Text = "baudRate:";
@@ -43,13 +46,7 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				button3.Text = "Active";
-
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button_read_batch.Text = "Bulk Read";
 				label13.Text = "Results:";
-
-				groupBox3.Text = "Bulk Read test";
 			}
 		}
 
@@ -85,10 +82,6 @@ namespace HslCommunicationDemo
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
-
-					userControlReadWriteOp1.SetReadWriteNet( iec104, "0", true );
-					userControlReadWriteOp1.Enabled = false;
-					button_read_batch.Enabled = false;
 				}
 				else
 				{
@@ -103,30 +96,171 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void AppendText( IEC104MessageEventArgs e, string text, byte[] asdu = null )
+		{
+			if (asdu == null)
+				textBox10.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff " ) + e.ToString( ) + ":  " + text + Environment.NewLine );
+			else
+				textBox10.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff " ) + e.ToString( ) + ":  " + text + "  ASDU: " + asdu.ToHexString( ' ' ) + Environment.NewLine );
+		}
+
+		private void AppendText<T>( IEC104MessageEventArgs e, List<IecValueObject<T>> value )
+		{
+			StringBuilder sb = new StringBuilder( );
+			for (int i = 0; i < value.Count; i++)
+			{
+				if (e.WithTimeInfo( ))
+					sb.Append( $"Address[{value[i].Address}] 品质[{value[i].Quality}] 时标[{value[i].Time}] 值[{value[i].Value}]   " );
+				else
+					sb.Append( $"Address[{value[i].Address}] 品质[{value[i].Quality}] 值[{value[i].Value}]   " );
+			}
+			AppendText( e, sb.ToString( ), null );
+			return;
+		}
+
+		private void RenderDataGridView<T>( List<IecValueObject<T>> value )
+		{
+			DemoUtils.DataGridSpecifyRowCount( dataGridView1, value.Count );
+			for (int i = 0; i < value.Count; i++)
+			{
+				DataGridViewRow dgvr = dataGridView1.Rows[i];
+				dgvr.Cells[0].Value = value[i].Address;
+				dgvr.Cells[1].Value = value[i].Value.ToString( );
+				dgvr.Cells[2].Value = ((value[i].Quality & 0x10) >> 4).ToString( );
+				dgvr.Cells[3].Value = ((value[i].Quality & 0x20) >> 5).ToString( );
+				dgvr.Cells[4].Value = ((value[i].Quality & 0x40) >> 6).ToString( );
+				dgvr.Cells[5].Value = ((value[i].Quality & 0x80) >> 7).ToString( );
+				if (value[i].Time != DateTime.MinValue)
+					dgvr.Cells[6].Value = value[i].Time.ToString( "yyyy-MM-dd HH:mm:ss" );
+				else
+					dgvr.Cells[6].Value = string.Empty;
+			}
+		}
+
 		private void Iec104_IEC104MessageReceived( object sender, IEC104MessageEventArgs e )
 		{
 			if (!checkBox1.Checked)
 			{
 				Invoke( new Action( ( ) =>
 				  {
-					  if (e.TypeID == IEC104.TypeID.M_ME_TF_1)
+					  if (e.TypeID == IEC104.TypeID.M_ME_TF_1 || e.TypeID == IEC104.TypeID.M_ME_NC_1)
 					  {
-						  // 带时标的测量值浮点数
-						  if (e.InfoObjectCount == 1)
+						  // 短浮点遥测值，带不带时标都处理
+						  if (e.IsAddressContinuous)
 						  {
-							  try
+							  // 信息对象连续
+
+							  // 如果当前正在查看单点遥信界面
+							  if (tabControl1.SelectedTab == tabPage2)
 							  {
-								  IecValueObject<float> obj = IecValueObject<float>.PraseFloat( e.Body, 0 );
-								  textBox10.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff  " ) + $"Float, Address[{obj.Address}] 品质[{obj.Quality}] 值[{obj.Value}] 时标[{obj.Time}]" + Environment.NewLine );
+								  if (radioButton5.Checked)
+								  {
+									  RenderDataGridView( IecValueObject<float>.ParseFloatValue( e ) );
+								  }
 							  }
-							  catch
-							  {
-								  textBox10.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff  " ) + $"Float failed, Source: {e.ASDU.ToHexString( ' ' )}" + Environment.NewLine );
-							  }
+						  }
+						  else
+						  {
+							  // 信息对象不连续，直接显示到文本框
+							  AppendText( e, IecValueObject<float>.ParseFloatValue( e ) );
 							  return;
 						  }
 					  }
-					  textBox10.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff " ) + "Source: " + e.ASDU.ToHexString( ' ' ) + Environment.NewLine );
+					  else if (e.TypeID == IEC104.TypeID.M_SP_NA_1 || e.TypeID == IEC104.TypeID.M_SP_TB_1)
+					  {
+						  // 单点遥信，带品质描述，带不带时标都处理
+						  if (e.IsAddressContinuous)
+						  {
+							  // 信息对象连续
+
+							  // 如果当前正在查看单点遥信界面
+							  if (tabControl1.SelectedTab == tabPage2)
+							  {
+								  if (radioButton1.Checked)
+								  {
+									  RenderDataGridView( IecValueObject<byte>.ParseYaoXinValue( e ) );
+								  }
+							  }
+						  }
+						  else
+						  {
+							  // 信息对象不连续
+							  AppendText( e, IecValueObject<byte>.ParseYaoXinValue( e ) );
+							  return;
+						  }
+					  }
+					  else if (e.TypeID == IEC104.TypeID.M_DP_NA_1 || e.TypeID == IEC104.TypeID.M_DP_TB_1)
+					  {
+						  // 双点遥信，带品质描述，带不带时标都处理
+						  if (e.IsAddressContinuous)
+						  {
+							  // 信息对象连续
+
+							  // 如果当前正在查看单点遥信界面
+							  if (tabControl1.SelectedTab == tabPage2)
+							  {
+								  if (radioButton2.Checked)
+								  {
+									  RenderDataGridView( IecValueObject<byte>.ParseYaoXinValue( e ) );
+								  }
+							  }
+						  }
+						  else
+						  {
+							  // 信息对象不连续
+							  AppendText( e, IecValueObject<byte>.ParseYaoXinValue( e ));
+							  return;
+						  }
+					  }
+					  else if ( e.TypeID == IEC104.TypeID.M_ME_ND_1)
+					  {
+						  // 归一化标度值
+						  if (e.IsAddressContinuous)
+						  {
+							  // 如果当前正在查看单点遥信界面
+							  if (tabControl1.SelectedTab == tabPage2)
+							  {
+								  if (radioButton3.Checked)
+								  {
+									  RenderDataGridView( IecValueObject<short>.ParseInt16Value( e ) );
+								  }
+							  }
+						  }
+						  else
+						  {
+							  // 信息对象不连续
+							  AppendText( e, IecValueObject<short>.ParseInt16Value( e ) );
+							  return;
+						  }
+					  }
+					  else if (e.TypeID == IEC104.TypeID.M_ME_NB_1 || e.TypeID == IEC104.TypeID.M_ME_TE_1)
+					  {
+						  // 标度化遥测值，不带时标
+						  if (e.IsAddressContinuous)
+						  {
+							  // 如果当前正在查看遥信界面
+							  if (tabControl1.SelectedTab == tabPage2)
+							  {
+								  if (radioButton4.Checked)
+								  {
+									  RenderDataGridView( IecValueObject<short>.ParseInt16Value( e ) );
+								  }
+							  }
+						  }
+						  else
+						  {
+							  // 信息对象不连续
+							  AppendText( e, IecValueObject<short>.ParseInt16Value( e ) );
+							  return;
+						  }
+					  }
+					  else if ( e.TypeID == IEC104.TypeID.C_IC_NA_1)
+					  {
+						  // 总召唤
+						  AppendText( e, string.Empty, e.ASDU );
+						  return;
+					  }
+					  AppendText( e, string.Empty, e.ASDU );
 				  } ) );
 			}
 		}
@@ -142,15 +276,6 @@ namespace HslCommunicationDemo
 		
 		#endregion
 
-		#region 批量读取测试
-
-		private void button25_Click( object sender, EventArgs e )
-		{
-			DemoUtils.BulkReadRenderResult( iec104, textBox6, textBox9, textBox10 );
-		}
-
-		#endregion
-
 		#region 报文读取测试
 
 		private void button3_Click( object sender, EventArgs e )
@@ -158,15 +283,6 @@ namespace HslCommunicationDemo
 			OperateResult send = iec104.SendFrameIMessage( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ) );
 			if (!send.IsSuccess)
 				MessageBox.Show( "Send Failed：" + send.ToMessageShowString( ) );
-			//OperateResult<byte[]> read = iec104.ReadFromCoreServer( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ) );
-			//if (read.IsSuccess)
-			//{
-			//    textBox10.AppendText( DateTime.Now.ToString() + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content ) + Environment.NewLine );
-			//}
-			//else
-			//{
-			//    MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
-			//}
 		}
 
 		#endregion
@@ -233,5 +349,91 @@ namespace HslCommunicationDemo
 				MessageBox.Show("Send failed: " + send.Message);
 			}
 		}
+
+		private void button4_Click( object sender, EventArgs e )
+		{
+			// 响应总召唤
+			OperateResult send = iec104.TotalSubscriptions( );
+			if (send.IsSuccess)
+			{
+				MessageBox.Show( "Send Success!" );
+			}
+			else
+			{
+				MessageBox.Show( "Send failed: " + send.Message );
+			}
+		}
+
+		private void button6_Click( object sender, EventArgs e )
+		{
+			// 定时总召唤
+			OperateResult send = iec104.TotalSubscriptions( 0x01 );
+			if (send.IsSuccess)
+			{
+				MessageBox.Show( "Send Success!" );
+			}
+			else
+			{
+				MessageBox.Show( "Send failed: " + send.Message );
+			}
+		}
+
+		private void button7_Click( object sender, EventArgs e )
+		{
+			// 越限总召唤
+			OperateResult send = iec104.TotalSubscriptions( 0x03 );
+			if (send.IsSuccess)
+			{
+				MessageBox.Show( "Send Success!" );
+			}
+			else
+			{
+				MessageBox.Show( "Send failed: " + send.Message );
+			}
+		}
+
+		private void button8_Click( object sender, EventArgs e )
+		{
+			// 积累量总召唤
+			OperateResult send = iec104.SendFrameIMessage( new byte[] { 0x65, 0x01, 0x07, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01 } );
+			if (send.IsSuccess)
+			{
+				MessageBox.Show( "Send Success!" );
+			}
+			else
+			{
+				MessageBox.Show( "Send failed: " + send.Message );
+			}
+		}
+
+		private void WriteIec( byte[] value )
+		{
+			byte type = byte.Parse( Regex.Match( comboBox_write_type.SelectedItem.ToString( ), "^[0-9]+" ).Value );
+			ushort reason = ushort.Parse( Regex.Match( comboBox_write_reason.SelectedItem.ToString( ), "^[0-9]+" ).Value );
+			ushort address = ushort.Parse( textBox_write_address.Text );
+
+			OperateResult send = iec104.WriteIec( type, reason, address, value );
+		}
+
+		private void button_write_bool_Click( object sender, EventArgs e )
+		{
+			bool value = false;
+			if (textBox_write_value.Text == "1") value = true;
+			else if (textBox_write_value.Text == "0") value = false;
+			else value = bool.Parse( textBox_write_value.Text );
+
+			WriteIec( value ? new byte[] { 0x01 } : new byte[] { 0x00 } );
+		}
+
+		private void button_write_short_Click( object sender, EventArgs e )
+		{
+			WriteIec( BitConverter.GetBytes( short.Parse( textBox_write_value.Text ) ) );
+		}
+
+		private void button_write_float_Click( object sender, EventArgs e )
+		{
+			WriteIec( BitConverter.GetBytes( float.Parse( textBox_write_value.Text ) ) );
+		}
+
 	}
 }

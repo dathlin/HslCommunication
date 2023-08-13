@@ -13,9 +13,9 @@ namespace HslCommunicationDemo.PLC.Fatek
 		{
 			return new DeviceAddressExample[]
 			{
-				new DeviceAddressExample( "M100",  "内部继电器",     true, true, "范围 X0 ~ X9999" ),
-				new DeviceAddressExample( "X10",   "输入继电器",     true, true, "范围 Y0 ~ Y9999" ),
-				new DeviceAddressExample( "Y10",   "输出继电器",     true, true, "范围 M0 ~ M9999" ),
+				new DeviceAddressExample( "M100",  "内部继电器",     true, true, "范围 M0 ~ M9999" ),
+				new DeviceAddressExample( "X10",   "输入继电器",     true, true, "范围 X0 ~ X9999" ),
+				new DeviceAddressExample( "Y10",   "输出继电器",     true, true, "范围 Y0 ~ Y9999" ),
 				new DeviceAddressExample( "S100",  "步进继电器",     true, true, "范围 S0 ~ S9999" ),
 				new DeviceAddressExample( "T100",  "定时器的触点",   true, true, "范围 T0 ~ T9999" ),
 				new DeviceAddressExample( "RT100", "定时器的当前值", false, true, "范围 RT0 ~ RT9999" ),

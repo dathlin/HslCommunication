@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using HslCommunicationDemo.DemoControl;
 using HslCommunication.Serial;
 using HslCommunicationDemo.Modbus;
+using HslCommunication.Core.Net;
 
 namespace HslCommunicationDemo
 {
@@ -116,11 +117,18 @@ namespace HslCommunicationDemo
 				return;
 			}
 
+			if (!int.TryParse( textBox_connect_timeout.Text, out int connect_timeout ))
+			{
+				MessageBox.Show( "Connect timeout input is wrong！" );
+				return;
+			}
+
 			busRtuClient?.ConnectClose( );
 			busRtuClient = new ModbusRtuOverTcp( textBox1.Text, port, station );
+			busRtuClient.ConnectTimeOut       = connect_timeout;
 			busRtuClient.AddressStartWithZero = checkBox1.Checked;
-			busRtuClient.LogNet = LogNet;
-
+			busRtuClient.LogNet               = LogNet;
+			busRtuClient.SendBeforeHex        = textBox_lora_head.Text;
 
 			ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
 			busRtuClient.IsStringReverse = checkBox3.Checked;
@@ -145,9 +153,11 @@ namespace HslCommunicationDemo
 
 					control.SetDevice( busRtuClient, "100" );
 
+					List<string> props = new List<string>( ) { nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
+						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ) };
+					if (!string.IsNullOrEmpty( busRtuClient.SendBeforeHex )) props.Add( nameof( busRtuClient.SendBeforeHex ) );
 					// 设置示例代码
-					codeExampleControl.SetCodeText( "modbus", busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
-						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ) );
+					codeExampleControl.SetCodeText( "modbus", busRtuClient, props.ToArray( ) );
 				}
 				else
 				{
@@ -175,7 +185,8 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text);
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-
+			element.SetAttributeValue( nameof( NetworkDoubleBase.ConnectTimeOut ), textBox_connect_timeout.Text );
+			element.SetAttributeValue( nameof( NetworkDoubleBase.SendBeforeHex ), textBox_lora_head.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
@@ -189,13 +200,14 @@ namespace HslCommunicationDemo
 		{
 			base.LoadXmlParameter( element );
 
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
-			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
-			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-
+			textBox1.Text                = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox2.Text                = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox15.Text               = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			checkBox1.Checked            = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
+			comboBox1.SelectedIndex      = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+			checkBox3.Checked            = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
+			textBox_connect_timeout.Text = GetXmlValue( element, nameof( NetworkDoubleBase.ConnectTimeOut ), "5000", m => m );
+			textBox_lora_head.Text       = GetXmlValue( element, nameof( NetworkDoubleBase.SendBeforeHex ), "", m => m );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

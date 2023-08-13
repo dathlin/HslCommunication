@@ -56,7 +56,8 @@ namespace HslCommunicationDemo.DemoControl
 
 		public void AddSpecialFunctionTab( UserControl control, bool show = false, string title = null )
 		{
-			DemoUtils.AddSpecialFunctionTab( this.tabControl1, control, show, title );
+			if (control != null)
+				DemoUtils.AddSpecialFunctionTab( this.tabControl1, control, show, title );
 		}
 
 

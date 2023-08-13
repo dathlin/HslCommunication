@@ -788,6 +788,33 @@ namespace HslCommunicationDemo
 			MessageBox.Show( "Success!" );
 		}
 
+		private void button37_Click( object sender, EventArgs e )
+		{
+			// 轴名称列表
+			OperateResult<string[]> read = fanuc.ReadAxisNames( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "轴名称：" + Environment.NewLine + read.Content.ToJsonString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
+
+		private void button38_Click( object sender, EventArgs e )
+		{
+			// 主轴名称列表
+			OperateResult<string[]> read = fanuc.ReadSpindleNames( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "主轴：" + Environment.NewLine + read.Content.ToJsonString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
 	}
 
 

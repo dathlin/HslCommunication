@@ -11,6 +11,7 @@ using System.Threading;
 using HslCommunication.Robot.YASKAWA;
 using HslCommunication;
 using System.Xml.Linq;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -23,6 +24,7 @@ namespace HslCommunicationDemo
 
 
 		private YRCHighEthernet YRC1000Tcp = null;
+		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -31,6 +33,10 @@ namespace HslCommunicationDemo
 			comboBox1.DataSource = new string[] { "基坐标", "机器坐标", "用户1", "用户2", "用户3", "用户4", "用户5", "用户6", "用户7", "用户8", "用户9", "用户10" };
 			comboBox1.SelectedIndex = 0;
 			Language( Program.Language );
+
+
+			codeExampleControl = new CodeExampleControl( );
+			DemoUtils.AddSpecialFunctionTab( tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -50,8 +56,8 @@ namespace HslCommunicationDemo
 				label10.Text = "Address:";
 				label9.Text = "Value:";
 
-				groupBox1.Text = "Single Data Read test";
-				groupBox2.Text = "Single Data Write test";
+				tabPage1.Text = "Single Data Read test";
+				tabPage2.Text = "Single Data Write test";
 				label22.Text = "Parameter name of robot";
 			}
 		}
@@ -78,18 +84,13 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				//OperateResult connect = await YRC1000Tcp.ConnectServerAsync( );
-				//if (connect.IsSuccess)
-				//{
-					MessageBox.Show( "打开UDP成功！" );
-					button2.Enabled = true;
-					button1.Enabled = false;
-					panel2.Enabled = true;
-				//}
-				//else
-				//{
-					//MessageBox.Show( "连接失败！" );
-				//}
+				MessageBox.Show( "打开UDP成功！" );
+				button2.Enabled = true;
+				button1.Enabled = false;
+				panel2.Enabled = true;
+
+				// 设置代码示例
+				codeExampleControl.SetCodeText( "robot", YRC1000Tcp );
 			}
 			catch (Exception ex)
 			{
@@ -114,13 +115,31 @@ namespace HslCommunicationDemo
 		}
 
 
+		#endregion
 
+		#region XML Setting
 
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+		}
 
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+		}
 
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
 
 		#endregion
 
+		#region ButtonClick
 
 		private void button14_Click( object sender, EventArgs e )
 		{
@@ -168,24 +187,6 @@ namespace HslCommunicationDemo
 			{
 				textBox7.Text = HslCommunication.BasicFramework.SoftBasic.GetAsciiStringRender( read.Content );
 			}
-		}
-
-		public override void SaveXmlParameter( XElement element )
-		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-		}
-
-		public override void LoadXmlParameter( XElement element )
-		{
-			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-		}
-
-		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
-		{
-			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
 		private void button3_Click( object sender, EventArgs e )
@@ -502,6 +503,73 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void button32_Click( object sender, EventArgs e )
+		{
+			OperateResult<DateTime> read = YRC1000Tcp.ReadManagementTime( 110 );
+			if (read.IsSuccess)
+			{
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed: " + read.Message );
+			}
+		}
+		private void button31_Click( object sender, EventArgs e )
+		{
+			OperateResult<string> read = YRC1000Tcp.ReadManagementTimeSpan( 1 );
+			if (read.IsSuccess)
+			{
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed: " + read.Message );
+			}
+		}
+
+		private void button30_Click( object sender, EventArgs e )
+		{
+			OperateResult<string> read = YRC1000Tcp.ReadManagementTimeSpan( 10 );
+			if (read.IsSuccess)
+			{
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed: " + read.Message );
+			}
+		}
+
+		private void button29_Click( object sender, EventArgs e )
+		{
+			OperateResult<string> read = YRC1000Tcp.ReadManagementTimeSpan( 210 );
+			if (read.IsSuccess)
+			{
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed: " + read.Message );
+			}
+		}
+
+		private void button33_Click( object sender, EventArgs e )
+		{
+			OperateResult<string> read = YRC1000Tcp.ReadManagementTimeSpan( 110 );
+			if (read.IsSuccess)
+			{
+				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed: " + read.Message );
+			}
+		}
+		#endregion
+
+
+
 	}
-	
+
 }

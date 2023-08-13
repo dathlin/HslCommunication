@@ -21,6 +21,8 @@ namespace HslCommunicationDemo
 		public FormModbusServer( )
 		{
 			InitializeComponent( );
+
+			panel_tcp_udp.Paint += Panel3_Paint;
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -42,7 +44,6 @@ namespace HslCommunicationDemo
 				button11.Text = "Close Server";
 				checkBox_account.Text = "Account Login";
 
-				button3.Text = "filter-cli";
 				label14.Text = "Com:";
 				button5.Text = "Open Com";
 				checkBox3.Text = "str-reverse";
@@ -61,6 +62,11 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+		}
+
+		private void Panel3_Paint( object sender, PaintEventArgs e )
+		{
+			e.Graphics.DrawRectangle( Pens.LightGray, new Rectangle( 0, 0, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1 ) );
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -129,7 +135,10 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				busTcpServer = new HslCommunication.ModBus.ModbusTcpServer( );                       // 实例化对象
+				if (radioButton_tcp.Checked)
+					busTcpServer = new HslCommunication.ModBus.ModbusTcpServer( );                       // 实例化对象
+				else
+					busTcpServer = new HslCommunication.ModBus.ModbusUdpServer( );
 				busTcpServer.ActiveTimeSpan           = TimeSpan.FromHours( 1 );
 				busTcpServer.OnDataReceived           += BusTcpServer_OnDataReceived;
 				busTcpServer.EnableWrite              = checkBox_remote_write.Checked;
