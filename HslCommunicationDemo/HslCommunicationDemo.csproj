@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.6.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.6.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.6.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.6.3\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
@@ -181,6 +181,12 @@
     </Compile>
     <Compile Include="DemoControl\CurveMonitorControl.Designer.cs">
       <DependentUpon>CurveMonitorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\DataExportControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\DataExportControl.Designer.cs">
+      <DependentUpon>DataExportControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\DataTableControl.cs">
       <SubType>UserControl</SubType>
@@ -641,6 +647,18 @@
       <DependentUpon>FormSiemensS7Plus.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Siemens\Helper.cs" />
+    <Compile Include="PLC\Siemens\SiemensS7PlusControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\Siemens\SiemensS7PlusControl.Designer.cs">
+      <DependentUpon>SiemensS7PlusControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Siemens\SiemensS7WriteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\Siemens\SiemensS7WriteControl.Designer.cs">
+      <DependentUpon>SiemensS7WriteControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Siemens\SiemensWebApiControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1885,6 +1903,9 @@
     <EmbeddedResource Include="DemoControl\CurveMonitorControl.resx">
       <DependentUpon>CurveMonitorControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\DataExportControl.resx">
+      <DependentUpon>DataExportControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\DataTableControl.resx">
       <DependentUpon>DataTableControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -2121,6 +2142,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Siemens\FormSiemensS7Plus.resx">
       <DependentUpon>FormSiemensS7Plus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Siemens\SiemensS7PlusControl.resx">
+      <DependentUpon>SiemensS7PlusControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Siemens\SiemensS7WriteControl.resx">
+      <DependentUpon>SiemensS7WriteControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Siemens\SiemensWebApiControl.resx">
       <DependentUpon>SiemensWebApiControl.cs</DependentUpon>

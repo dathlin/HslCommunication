@@ -21,6 +21,8 @@ namespace HslCommunicationDemo.DemoControl
 		public DataTableControl( )
 		{
 			InitializeComponent( );
+			button1.Click += Button1_Click;
+			this.dataGridView1.SizeChanged += DataGridView1_SizeChanged;
 		}
 
 		public void SetReadWriteNet( IReadWriteNet device )
@@ -32,9 +34,6 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void DataTableControl_Load( object sender, EventArgs e )
 		{
-			button1.Click += Button1_Click;
-			this.dataGridView1.SizeChanged += DataGridView1_SizeChanged;
-
 			DataGridView1_SizeChanged( null, e );
 
 			button1.Text = Program.Language == 1 ? "开始刷新" : "Refresh";
@@ -367,5 +366,5 @@ namespace HslCommunicationDemo.DemoControl
 				MessageBox.Show( "Load failed: " + ex.Message );
 			}
 		}
-	}
+    }
 }

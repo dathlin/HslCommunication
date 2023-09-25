@@ -61,8 +61,24 @@ namespace HslCommunicationDemo.DemoControl
 
 			textBox_result.MouseDown += TextBox_result_MouseDown;
 			textBox_result.MouseMove += TextBox_result_MouseMove;
-			textBox_result.MouseUp += TextBox_result_MouseUp; ;
+			textBox_result.MouseUp += TextBox_result_MouseUp;
+
+			radioButton_hex.CheckedChanged += RadioButton_hex_CheckedChanged;
+			radioButton_ascii.CheckedChanged += RadioButton_hex_CheckedChanged;
+			radioButton_integer.CheckedChanged += RadioButton_hex_CheckedChanged;
 		}
+
+		private void RadioButton_hex_CheckedChanged( object sender, EventArgs e )
+		{
+			if (sender is RadioButton radio)
+			{
+				if (radio.Checked && this.buffer != null)
+				{
+					RenderReadBytes( this.buffer );
+				}
+			}
+		}
+
 		private bool isMouseMove = false;
 
 		private void TextBox_result_MouseMove( object sender, MouseEventArgs e )
@@ -148,6 +164,22 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		private void RenderReadBytes( byte[] buffer )
+		{
+			if (radioButton_hex.Checked)
+			{
+				textBox_result.Text = buffer.ToHexString( ' ' );
+			}
+			else if (radioButton_ascii.Checked)
+			{
+				textBox_result.Text = SoftBasic.GetAsciiStringRender( buffer );
+			}
+			else
+			{
+				textBox_result.Text = buffer.ToArrayString<byte>( );
+			}
+		}
+
 		private void RenderReadResult( OperateResult<byte[]> read, TimeSpan cost )
 		{
 			if (!read.IsSuccess)
@@ -162,14 +194,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				this.buffer = read.Content;
 				label1.Text = (Program.Language == 1 ? "字节数: " : "Byte Len: ") + read.Content?.Length.ToString( );
-				if (radioButton_hex.Checked)
-				{
-					textBox_result.Text = read.Content.ToHexString( ' ' );
-				}
-				else
-				{
-					textBox_result.Text = SoftBasic.GetAsciiStringRender( read.Content );
-				}
+				RenderReadBytes( read.Content );
 			}
 		}
 
@@ -368,5 +393,6 @@ namespace HslCommunicationDemo.DemoControl
 		private string buttonTips1 = "";
 		private string buttonTips2 = "";
 		private string buttonTips3= "";
+
 	}
 }

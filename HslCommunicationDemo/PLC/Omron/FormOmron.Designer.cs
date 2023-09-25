@@ -46,6 +46,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox_receive_until_empty = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -55,6 +56,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_receive_until_empty);
 			this.panel1.Controls.Add(this.checkBox_isstringreverse);
 			this.panel1.Controls.Add(this.textBox3);
 			this.panel1.Controls.Add(this.label2);
@@ -240,6 +242,16 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// checkBox_receive_until_empty
+			// 
+			this.checkBox_receive_until_empty.AutoSize = true;
+			this.checkBox_receive_until_empty.Location = new System.Drawing.Point(220, 34);
+			this.checkBox_receive_until_empty.Name = "checkBox_receive_until_empty";
+			this.checkBox_receive_until_empty.Size = new System.Drawing.Size(147, 21);
+			this.checkBox_receive_until_empty.TabIndex = 18;
+			this.checkBox_receive_until_empty.Text = "Receive Until Empty?";
+			this.checkBox_receive_until_empty.UseVisualStyleBackColor = true;
+			// 
 			// FormOmron
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -283,5 +295,6 @@
 		private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox_isstringreverse;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
+		private System.Windows.Forms.CheckBox checkBox_receive_until_empty;
 	}
 }

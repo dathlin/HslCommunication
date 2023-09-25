@@ -92,6 +92,7 @@ namespace HslCommunicationDemo
 			omronFinsNet.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 			omronFinsNet.LogNet = LogNet;
 			omronFinsNet.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
+			omronFinsNet.ReceiveUntilEmpty = checkBox_receive_until_empty.Checked;
 
 			OperateResult connect = omronFinsNet.ConnectServer( );
 			if (connect.IsSuccess)
@@ -116,7 +117,8 @@ namespace HslCommunicationDemo
 				control.SetDevice( omronFinsNet, "D100" );
 
 				// 设置示例代码
-				codeExampleControl.SetCodeText( omronFinsNet, nameof( omronFinsNet.DA2 ), "ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
+				codeExampleControl.SetCodeText( omronFinsNet, nameof( omronFinsNet.DA2 ), nameof( omronFinsNet.ReceiveUntilEmpty ), 
+					"ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
 			}
 			else
 			{

@@ -29,6 +29,7 @@ namespace HslCommunicationDemo
 		private SiemensS7Plus siemensTcpNet = null;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
+		private SiemensS7PlusControl siemensS7PlusControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -43,6 +44,9 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			siemensS7PlusControl = new SiemensS7PlusControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( siemensS7PlusControl, false, "Browser" );
 		}
 
 		private void Language( int language )
@@ -55,7 +59,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label_info.Text = "If it is not clear, do not set it";
 			}
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -67,7 +70,7 @@ namespace HslCommunicationDemo
 		
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox_port.Text, out int port ))
+			if (!int.TryParse(textBox_port.Text, out int port ))
 			{
 				MessageBox.Show( DemoUtils.PortInputWrong );
 				return;
@@ -89,20 +92,25 @@ namespace HslCommunicationDemo
 				if (connect.IsSuccess)
 				{
 					textBox_pdu.Text = siemensTcpNet.PDULength.ToString( );
+					textBox_session_id.Text = "0x" + siemensTcpNet.SessionID.ToString( "X8" );
+					textBox_order.Text = siemensTcpNet.OrderNumber;
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.SetReadWriteNet( siemensTcpNet, "M100", true );
+					userControlReadWriteDevice1.SetReadWriteNet( siemensTcpNet, "8A0E0001.A", false );
 					// 设置批量读取
-					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( siemensTcpNet, "M100", string.Empty );
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( siemensTcpNet, "8A0E0001.A", string.Empty );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensTcpNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					// 设置代码示例
 					codeExampleControl.SetCodeText( siemensTcpNet );
+
+					// 浏览节点的控件
+					siemensS7PlusControl.SetDevice( siemensTcpNet, "" );
 				}
 				else
 				{

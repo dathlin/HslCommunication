@@ -40,6 +40,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.userControlReadWriteOp1.SetReadWriteNet( readWrite, address, isAsync, strLength );
 			this.stressTesting1.SetReadWriteNet( readWrite, address );
 			this.dataTableControl1.SetReadWriteNet( readWrite );
+			this.dataExportControl1.SetReadWriteNet( readWrite );
 		}
 
 		public UserControlReadWriteOp ReadWriteOpControl => this.userControlReadWriteOp1;

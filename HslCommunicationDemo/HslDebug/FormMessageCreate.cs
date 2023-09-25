@@ -98,14 +98,14 @@ namespace HslCommunicationDemo.HslDebug
 			TreeNode siemens = new TreeNode( "Siemens" );
 			AddTreeChild( siemens, "S7", ( address, length ) =>
 			{
-				return SiemensS7Net.BuildBitReadCommand(address);
+				return SiemensS7Net.BuildBitReadCommand(address, 0x01);
 			},
 			( address, length ) =>
 			{
 				OperateResult<S7AddressData> addressResult = S7AddressData.ParseFrom( address, length );
 				if (!addressResult.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( addressResult );
 
-				return SiemensS7Net.BuildReadCommand( new S7AddressData[] { addressResult.Content } );
+				return SiemensS7Net.BuildReadCommand( new S7AddressData[] { addressResult.Content }, 0x01 );
 			} );
 			treeView1.Nodes.Add( siemens );
 

@@ -29,7 +29,8 @@
         private void InitializeComponent( )
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label_info = new System.Windows.Forms.Label();
+            this.textBox_session_id = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.textBox_pdu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox_localTSAP = new System.Windows.Forms.TextBox();
@@ -47,6 +48,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+            this.textBox_order = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +59,10 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label_info);
+            this.panel1.Controls.Add(this.textBox_order);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.textBox_session_id);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.textBox_pdu);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.textBox_localTSAP);
@@ -77,19 +83,26 @@
             this.panel1.Size = new System.Drawing.Size(997, 54);
             this.panel1.TabIndex = 0;
             // 
-            // label_info
+            // textBox_session_id
             // 
-            this.label_info.AutoSize = true;
-            this.label_info.ForeColor = System.Drawing.Color.Gray;
-            this.label_info.Location = new System.Drawing.Point(412, 30);
-            this.label_info.Name = "label_info";
-            this.label_info.Size = new System.Drawing.Size(140, 17);
-            this.label_info.TabIndex = 18;
-            this.label_info.Text = "如果不清楚，不设置即可";
+            this.textBox_session_id.Location = new System.Drawing.Point(220, 27);
+            this.textBox_session_id.Name = "textBox_session_id";
+            this.textBox_session_id.ReadOnly = true;
+            this.textBox_session_id.Size = new System.Drawing.Size(91, 23);
+            this.textBox_session_id.TabIndex = 20;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(156, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 17);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Session：";
             // 
             // textBox_pdu
             // 
-            this.textBox_pdu.Location = new System.Drawing.Point(365, 27);
+            this.textBox_pdu.Location = new System.Drawing.Point(370, 27);
             this.textBox_pdu.Name = "textBox_pdu";
             this.textBox_pdu.ReadOnly = true;
             this.textBox_pdu.Size = new System.Drawing.Size(40, 23);
@@ -98,7 +111,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(315, 30);
+            this.label6.Location = new System.Drawing.Point(320, 30);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 17);
             this.label6.TabIndex = 16;
@@ -247,6 +260,23 @@
             this.userControlHead1.TabIndex = 2;
             this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
             // 
+            // textBox_order
+            // 
+            this.textBox_order.Location = new System.Drawing.Point(472, 27);
+            this.textBox_order.Name = "textBox_order";
+            this.textBox_order.ReadOnly = true;
+            this.textBox_order.Size = new System.Drawing.Size(160, 23);
+            this.textBox_order.TabIndex = 22;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(422, 30);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 17);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Order：";
+            // 
             // FormSiemensS7Plus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -290,6 +320,9 @@
         private System.Windows.Forms.TextBox textBox_pdu;
         private System.Windows.Forms.Label label6;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
-		private System.Windows.Forms.Label label_info;
-	}
+		private System.Windows.Forms.TextBox textBox_session_id;
+		private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox_order;
+        private System.Windows.Forms.Label label4;
+    }
 }

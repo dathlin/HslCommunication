@@ -24,12 +24,27 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 			siemensPLCSelected = siemensPLCS;
 			siemensTcpNet = new SiemensS7Net( siemensPLCS );
+
+
+			control = new SiemensS7Control( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( Helper.GetSiemensS7Address( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			codeExampleControl = new CodeExampleControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			randomWriteControl = new SiemensS7WriteControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( randomWriteControl, false, Program.Language == 1 ? "离散写入" : "Random Write" );
 		}
 
 
 		private SiemensS7Net siemensTcpNet = null;
 		private SiemensPLCS siemensPLCSelected = SiemensPLCS.S1200;
 		private SiemensS7Control control;
+		private SiemensS7WriteControl randomWriteControl;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
 
@@ -61,15 +76,6 @@ namespace HslCommunicationDemo
 				textBox_slot.Text = "0";
 			}
 
-			control = new SiemensS7Control( );
-			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
-
-			addressExampleControl = new AddressExampleControl( );
-			addressExampleControl.SetAddressExample( Helper.GetSiemensS7Address( ) );
-			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
-
-			codeExampleControl = new CodeExampleControl( );
-			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
 
 		private void Language( int language )
@@ -131,6 +137,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensTcpNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					control.SetDevice( siemensTcpNet, "M100" );
+					randomWriteControl.SetDevice( siemensTcpNet, "M100" );
 
 					List<string> parameters = new List<string>( );
 					parameters.Add( nameof( siemensTcpNet.Rack ) );

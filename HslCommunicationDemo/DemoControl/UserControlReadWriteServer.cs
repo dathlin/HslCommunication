@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using HslCommunication.Core.Net;
 using HslCommunication;
 using System.Xml.Linq;
+using System.IO;
+using System.Threading;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -73,10 +75,13 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button8.Text = "Load";
 				button9.Text = "Save";
-				button10.Text = "Timed writing";
 				checkBox1.Text = "Display log data?";
 				label16.Text = "Client-Online:";
 				button1.Text = "Connecting Alien client";
+
+				checkBox_cycle.Text = "Cycle?";
+				button_data_import.Text = "DataImport";
+				button_import_abort.Text = "ImportAbort";
 			}
 		}
 
@@ -85,9 +90,9 @@ namespace HslCommunicationDemo.DemoControl
 			// 从文件加载服务器的数据池
 			if (dataServerBase != null)
 			{
-				using(OpenFileDialog ofd = new OpenFileDialog( ))
+				using (OpenFileDialog ofd = new OpenFileDialog( ))
 				{
-					if (ofd.ShowDialog() == DialogResult.OK)
+					if (ofd.ShowDialog( ) == DialogResult.OK)
 					{
 						if (System.IO.File.Exists( ofd.FileName ))
 						{
@@ -118,7 +123,7 @@ namespace HslCommunicationDemo.DemoControl
 				using (SaveFileDialog sfd = new SaveFileDialog( ))
 				{
 					sfd.FileName = "123.txt";
-					if (sfd.ShowDialog() == DialogResult.OK)
+					if (sfd.ShowDialog( ) == DialogResult.OK)
 					{
 						try
 						{
@@ -132,42 +137,6 @@ namespace HslCommunicationDemo.DemoControl
 					}
 				}
 			}
-		}
-
-
-		private Random random = new Random( );
-		private string timerAddress = string.Empty;
-		private long timerValue = 0;
-		private Timer timerWrite = null;
-		private bool timeWriteEnable = false;
-
-		private void button10_Click( object sender, EventArgs e )
-		{
-			if (timeWriteEnable)
-			{
-				// 停止定时器
-				timeWriteEnable = false;
-				timerWrite?.Dispose( );
-				button10.Text = Program.Language == 2 ? "Timed writing" : "定时写";
-			}
-			else
-			{
-				// 启动定时器
-				timeWriteEnable = true;
-				timerWrite = new Timer( );
-				timerWrite.Interval = 300;
-				timerWrite.Tick += TimerWrite_Tick;
-				timerWrite.Start( );
-				timerAddress = userControlReadWriteOp1.GetWriteAddress( );
-				button10.Text = Program.Language == 2 ? "Stop Timer" : "停止写入";
-			}
-		}
-
-		private void TimerWrite_Tick( object sender, EventArgs e )
-		{
-			ushort value = (ushort)(Math.Sin( 2 * Math.PI * timerValue / 100 ) * 100 + 100);
-			dataServerBase.Write( timerAddress, value );
-			timerValue++;
 		}
 
 		private void button1_Click( object sender, EventArgs e )
@@ -215,6 +184,169 @@ namespace HslCommunicationDemo.DemoControl
 		public void SelectTabDataTable( )
 		{
 			this.tabControl1.SelectTab( tabPage3 );
+		}
+
+		FileStream fs = null;
+		private int timeInterval = 1000;
+		private long tickCount = 0;
+		private Thread threadWrite;
+		private bool writeSuspended = false;
+		private bool writeCycle = false;
+		private bool abort = false;
+
+		private void button_data_import_Click( object sender, EventArgs e )
+		{
+			using (OpenFileDialog ofd = new OpenFileDialog( ))
+			{
+				ofd.Multiselect = false;
+				ofd.Filter = "数据文件(*.hsldata)|*.hsldata";
+
+				if (ofd.ShowDialog( ) == DialogResult.OK)
+				{
+					try
+					{
+						fs = new FileStream( ofd.FileName, FileMode.Open );
+						byte[] head = new byte[100];
+						fs.Read( head, 0, 100 );
+
+						if (Encoding.ASCII.GetString( head, 0, 7 ) != "HSLDemo")
+						{
+							MessageBox.Show( "Not the hsl data file! " );
+							fs.Dispose( );
+							return;
+						}
+
+						timeInterval = BitConverter.ToInt32( head, 26 );
+						threadWrite = new Thread( new ThreadStart( ThreadReadFile ) );
+						tickCount = BitConverter.ToInt64( head, 30 );
+
+						button_data_import.Enabled = false;
+						button_import_abort.Enabled = true;
+						abort = false;
+						threadWrite.Start( );
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show( "Data import failed: " + ex.Message );
+						return;
+					}
+
+				}
+			}
+		}
+
+		private int GetUInt32( Stream stream, out int value )
+		{
+			byte[] buffer = new byte[4];
+			int result = stream.Read( buffer, 0, 4 );
+			value = BitConverter.ToInt32( buffer, 0 );
+
+			return result;
+		}
+		private int GetString( Stream stream, int len, out string value )
+		{
+			byte[] buffer = new byte[len];
+			int result = stream.Read( buffer, 0, len );
+			value = Encoding.UTF8.GetString( buffer );
+			return result;
+		}
+
+		private void ThreadReadFile( )
+		{
+			DateTime lastTime = DateTime.Now.AddMilliseconds( -timeInterval );
+
+			while (true)
+			{
+				fs.Position = 100;
+				int dealCount = 0;
+				while (true)
+				{
+					if (timeInterval > 0) Thread.Sleep( timeInterval );
+					if (abort) break;
+					if (writeSuspended) continue;
+
+					if (GetUInt32( fs, out int count ) <= 0)
+					{
+						break;
+					}
+					dealCount++;
+
+					StringBuilder log = new StringBuilder( $"Write address[{dealCount}/{tickCount}]:" );
+					for (int i = 0; i < count; i++)
+					{
+						if (GetUInt32( fs, out int addressLength ) <= 0) break;
+						if (GetString( fs, addressLength, out string address ) <= 0) break;
+						if (GetUInt32( fs, out int readLength ) <= 0) break;
+						int success = fs.ReadByte( );
+						if (success == 0x00)
+						{
+							// 有成功的数据
+							if (GetUInt32( fs, out int contentLength ) <= 0) break;
+							// 准备写入服务器数据
+							byte[] buffer = new byte[contentLength];
+							int expect = fs.Read( buffer, 0, contentLength );
+							if (expect != contentLength) break;
+
+							OperateResult write = dataServerBase.Write( address, buffer );
+							if (write.IsSuccess)
+							{
+								log.Append( $"{address}[len:{buffer.Length}]" );
+								if (i != count - 1) log.Append( ";" );
+							}
+							else
+							{
+								dataServerBase.LogNet?.WriteError( dataServerBase.ToString( ), "Write address: " + address + " failed: " + write.Message );
+							}
+						}
+						else if (success == 0x01)
+						{
+							// Bool数据信息
+							if (GetUInt32( fs, out int contentLength ) <= 0) break;
+							// 准备写入服务器数据
+							int byteLength = (contentLength + 7) / 8;
+							byte[] buffer = new byte[byteLength];
+							int expect = fs.Read( buffer, 0, byteLength );
+							if (expect != byteLength) break;
+
+							OperateResult write = dataServerBase.Write( address, buffer.ToBoolArray( ).SelectBegin( contentLength ) );
+							if (write.IsSuccess)
+							{
+								log.Append( $"{address}[len-bool:{contentLength}]" );
+								if (i != count - 1) log.Append( ";" );
+							}
+							else
+							{
+								dataServerBase.LogNet?.WriteError( dataServerBase.ToString( ), "Write address[Bool]: " + address + " failed: " + write.Message );
+							}
+						}
+					}
+
+					dataServerBase.LogNet?.WriteInfo( dataServerBase.ToString( ), log.ToString( ) );
+				}
+
+				if (!writeCycle) break;
+				if (abort) break;
+			}
+
+			dataServerBase.LogNet?.WriteInfo( "Finish!" );
+			fs.Close( );
+			fs.Dispose( );
+			Invoke( new Action( ( ) =>
+			{
+				button_data_import.Enabled = true;
+			} ) );
+		}
+
+		private void checkBox_cycle_CheckedChanged( object sender, EventArgs e )
+		{
+			this.writeCycle = checkBox_cycle.Checked;
+		}
+
+		private void button_import_abort_Click( object sender, EventArgs e )
+		{
+			abort = true;
+			button_data_import.Enabled = true;
+			button_import_abort.Enabled = false;
 		}
 	}
 }
