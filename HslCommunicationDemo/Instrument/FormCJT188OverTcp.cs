@@ -32,7 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			Language( Program.Language );
 
 			control = new CJT188Control( );
@@ -44,6 +43,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -99,7 +99,7 @@ namespace HslCommunicationDemo
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// 68 00 00 00 00 00 01 68 11 04 00 00 00 00 10 16
 					// 设置子控件的读取能力
@@ -132,7 +132,7 @@ namespace HslCommunicationDemo
 			cjt188.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

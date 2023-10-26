@@ -32,8 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			Language( Program.Language );
 			control = new GeControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -46,6 +44,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -91,7 +90,7 @@ namespace HslCommunicationDemo
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置基本的读写信息
 					userControlReadWriteDevice1.SetReadWriteNet( ge, "R1", true );
@@ -123,7 +122,7 @@ namespace HslCommunicationDemo
 			ge.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		

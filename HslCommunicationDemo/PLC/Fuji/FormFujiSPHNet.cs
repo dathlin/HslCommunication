@@ -32,8 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			Language( Program.Language );
 			comboBox1.DataSource = SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = fujiSPB.ByteTransform.DataFormat;
@@ -46,6 +44,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 
 		}
 
@@ -105,7 +104,7 @@ namespace HslCommunicationDemo
 
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// userControlReadWriteOp1.SetReadWriteNet( fujiSPB, "M1.1000", true );
 
@@ -137,7 +136,7 @@ namespace HslCommunicationDemo
 			fujiSPB.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		#endregion

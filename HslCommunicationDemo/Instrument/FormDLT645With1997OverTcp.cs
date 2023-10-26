@@ -31,7 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			Language( Program.Language );
 			control = new DLT645Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -42,6 +41,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -49,7 +49,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "DLT645 Read Demo";
+				Text = "DLT645/1997 Read Demo";
 
 				label1.Text = "Com:";
 				label3.Text = "baudRate:";
@@ -92,7 +92,7 @@ namespace HslCommunicationDemo
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					userControlReadWriteDevice1.SetReadWriteNet( dLT645, "B6-11", true );
 					// 设置批量读取
@@ -123,7 +123,7 @@ namespace HslCommunicationDemo
 			dLT645.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

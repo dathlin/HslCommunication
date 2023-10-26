@@ -23,9 +23,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
-
 			if(Program.Language == 2)
 			{
 				Text = "Mewtocol Server [data support]";
@@ -46,6 +43,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 		}
 
 		private void button2_Click( object sender, EventArgs e )
@@ -98,7 +96,7 @@ namespace HslCommunicationDemo
 
 				userControlReadWriteServer1.SetReadWriteServer( mewtocolServer, "D100" );
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 				// 设置代码示例

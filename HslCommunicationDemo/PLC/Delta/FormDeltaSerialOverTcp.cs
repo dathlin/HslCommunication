@@ -30,8 +30,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			Language( Program.Language );
 			comboBox1.DataSource = SoftBasic.GetEnumValues<DeltaSeries>( );
 
@@ -41,13 +39,14 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		private void Language( int language )
 		{
 			if (language == 2)
 			{
-				Text = "DeltaDvpTcp Read Demo";
+				Text = "DeltaDvp Read Demo[RtuOverTcp]";
 
 				label1.Text = "Ip:";
 				label2.Text = "Series:";
@@ -95,7 +94,7 @@ namespace HslCommunicationDemo
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置基本的读写信息
 					userControlReadWriteDevice1.SetReadWriteNet( delta, "M100", true );
@@ -125,7 +124,7 @@ namespace HslCommunicationDemo
 			delta.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

@@ -25,8 +25,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
 
 			if (Program.Language == 2)
@@ -47,6 +45,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 		}
 
 		private void CheckBox3_CheckedChanged( object sender, EventArgs e )
@@ -90,7 +89,7 @@ namespace HslCommunicationDemo
 				fatekServer.ServerStart( port );
 
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 

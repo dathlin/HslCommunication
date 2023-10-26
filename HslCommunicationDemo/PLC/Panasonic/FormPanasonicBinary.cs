@@ -32,8 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-			
 			Language( Program.Language );
 
 			addressExampleControl = new AddressExampleControl( );
@@ -42,6 +40,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		private void Language( int language )
@@ -89,7 +88,7 @@ namespace HslCommunicationDemo
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 					//userControlReadWriteOp1.SetReadWriteNet( panasonic_net, "D100", true );
 
 					// 设置子控件的读取能力
@@ -121,7 +120,7 @@ namespace HslCommunicationDemo
 			panasonic_net.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		

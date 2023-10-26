@@ -33,7 +33,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			comboBox1.SelectedIndex = 0;
 			comboBox2.SelectedIndex = 0;
 			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
@@ -59,6 +58,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -151,7 +151,7 @@ namespace HslCommunicationDemo
 				melsecA3C.Open( );
 				button2.Enabled = true;
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteDevice1.SetEnable( true );
 
 				// 设置基本的读写信息
 				userControlReadWriteDevice1.SetReadWriteNet( melsecA3C, "D100", false );
@@ -192,7 +192,7 @@ namespace HslCommunicationDemo
 			melsecA3C.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		

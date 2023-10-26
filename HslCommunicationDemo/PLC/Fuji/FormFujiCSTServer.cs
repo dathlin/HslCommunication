@@ -24,11 +24,9 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			if(Program.Language == 2)
 			{
-				Text = "Fuji Virtual Server [data support B,M,K,F,A,D,S,W9,BD,WL,W21]";
+				Text = "FujiCST Virtual Server [data support B,M,K,F,A,D,S,W9,BD,WL,W21]";
 				label3.Text = "port:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
@@ -42,6 +40,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -73,7 +72,7 @@ namespace HslCommunicationDemo
 				userControlReadWriteServer1.SetReadWriteServer( fujiSPHServer, "BD100" );
 
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 

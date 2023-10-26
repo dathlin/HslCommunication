@@ -33,8 +33,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			Language( Program.Language );
 			comboBox3.DataSource = SerialPort.GetPortNames( );
 			try
@@ -50,6 +48,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -126,7 +125,7 @@ namespace HslCommunicationDemo
 				rkc.Station = Station;
 				button2.Enabled = true;
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteDevice1.SetEnable( true );
 
 				userControlReadWriteDevice1.SetReadWriteNet( rkc, "M1", false );
 				userControlReadWriteDevice1.ReadWriteOpControl.EnableRKC( );
@@ -151,7 +150,7 @@ namespace HslCommunicationDemo
 			rkc.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

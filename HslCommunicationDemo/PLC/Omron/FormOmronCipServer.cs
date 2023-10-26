@@ -26,9 +26,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
-
 			if(Program.Language == 2)
 			{
 				Text = "Omron Cip Virtual Server [support single value]";
@@ -45,6 +42,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -99,7 +97,7 @@ namespace HslCommunicationDemo
 				cipServer.AddTagValue( "N", 100L );
 
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 				userControlReadWriteServer1.SetReadWriteServer( cipServer, "A", 1 );
 

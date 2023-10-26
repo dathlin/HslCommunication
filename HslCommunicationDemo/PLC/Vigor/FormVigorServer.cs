@@ -25,8 +25,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			if (Program.Language == 2)
 			{
 				Text = "Vigor Virtual Server[]";
@@ -44,6 +42,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 		}
 
 		
@@ -82,7 +81,7 @@ namespace HslCommunicationDemo
 				vigorServer.ServerStart( port );
 
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 

@@ -31,12 +31,12 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			Language( Program.Language );
 
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -93,7 +93,7 @@ namespace HslCommunicationDemo
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					userControlReadWriteDevice1.SetReadWriteNet( rkc, "M1", true );
 					userControlReadWriteDevice1.ReadWriteOpControl.EnableRKC( );
@@ -123,7 +123,7 @@ namespace HslCommunicationDemo
 			rkc.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		#endregion

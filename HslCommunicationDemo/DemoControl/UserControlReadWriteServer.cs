@@ -12,6 +12,7 @@ using HslCommunication;
 using System.Xml.Linq;
 using System.IO;
 using System.Threading;
+using HslCommunicationDemo.PLC.Common;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -20,10 +21,15 @@ namespace HslCommunicationDemo.DemoControl
 		public UserControlReadWriteServer( )
 		{
 			InitializeComponent( );
+
+
+
+			allControls.Add( batchReadControl1 );
 		}
 
 
 		private System.Windows.Forms.Timer timerSecond;
+		private List<UserControl> allControls = new List<UserControl>( );
 
 		public void SetReadWriteServer( NetworkDataServerBase dataServerBase, string address, int strLength = 10 )
 		{
@@ -64,6 +70,23 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				return;
 			}
+		}
+
+		public void SetEnable( bool enbale )
+		{
+			userControlReadWriteOp1.Enabled = enbale;
+			for (int i = 0; i < allControls.Count; i++)
+			{
+				allControls[i].Enabled = enbale;
+			}
+			checkBox1.Enabled = enbale;
+			checkBox_cycle.Enabled = enbale;
+			button_data_import.Enabled = enbale;
+			button_import_abort.Enabled = enbale;
+			button1.Enabled = enbale;
+			button8.Enabled = enbale;
+			button9.Enabled = enbale;
+			textBox1.Enabled = enbale;
 		}
 
 		NetworkDataServerBase dataServerBase;
@@ -169,6 +192,14 @@ namespace HslCommunicationDemo.DemoControl
 		public void AddSpecialFunctionTab( UserControl control, bool show = false, string title = null )
 		{
 			DemoUtils.AddSpecialFunctionTab( this.tabControl1, control, show, title );
+			if (control is AddressExampleControl)
+			{
+
+			}
+			else
+			{
+				allControls.Add( control );
+			}
 		}
 
 		public void GetDataTable( XElement element )

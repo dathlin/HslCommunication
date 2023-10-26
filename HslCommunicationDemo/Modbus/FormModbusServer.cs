@@ -27,9 +27,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
-
 			comboBox2.SelectedIndex = 2;
 			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			checkBox_remote_write.CheckedChanged += CheckBox1_CheckedChanged;
@@ -62,6 +59,8 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			userControlReadWriteServer1.SetEnable( false );
 		}
 
 		private void Panel3_Paint( object sender, PaintEventArgs e )
@@ -160,7 +159,7 @@ namespace HslCommunicationDemo
 				busTcpServer.ServerStart( port );
 
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 

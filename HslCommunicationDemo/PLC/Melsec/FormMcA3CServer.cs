@@ -26,7 +26,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			comboBox_format.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			comboBox_format.SelectedIndex = 0;
 
@@ -47,6 +46,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 		}
 
 		private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
@@ -94,7 +94,7 @@ namespace HslCommunicationDemo
 				userControlReadWriteServer1.SetReadWriteServer( mcNetServer, "D100" );
 
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 

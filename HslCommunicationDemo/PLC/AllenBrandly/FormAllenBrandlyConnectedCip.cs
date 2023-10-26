@@ -33,8 +33,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			Language( Program.Language );
 			control = new AllenBrandlyControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -46,6 +44,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -53,7 +52,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "AllenBradly Read PLC Demo";
+				Text = "AllenBradly ConnectCIP Read Demo";
 				label1.Text = "Ip:";
 				label3.Text = "Port:";
 				button1.Text = "Connect";
@@ -93,7 +92,7 @@ namespace HslCommunicationDemo
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置子控件的读取能力
 					userControlReadWriteDevice1.SetReadWriteNet( allenBradleyNet, "A1", true, 1 );
@@ -126,7 +125,7 @@ namespace HslCommunicationDemo
 			OperateResult close = allenBradleyNet.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 			//if (!close.IsSuccess)
 			//{
 			//	MessageBox.Show( "关闭失败！" + close.Message );

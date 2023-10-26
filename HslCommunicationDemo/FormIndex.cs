@@ -35,23 +35,21 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.6.3
-1. ModbusTcpServer: 当客户端使用了0xff的站号（10进制为255）的时候，将自动忽略对站号的校验，直接可以进行读写操作。
-2. SiemensS7Net: 新增强制位ForceBool方法，以及取消强制CancelAllForce方法，目前针对200smart测试通过，支持对I,Q的点位强制操作。
-3. OmronFinsServer: 优化返回的报文信息，方便wireshark软件抓包进行分析操作，识别到正确的Fins协议。
-4. SiemensS7Net: 西门子s7协议的报文中，消息号id修改为自增，修复了在某些特殊的200smart型号读取超时的异常。
-5. OmronCipNet, OmronConnectedCipNet: 读取字符串的方法，在解析字符串数据内容的时候，增加错误捕获，并返回数据的二进制内容。
-6. NetworkDeviceBase: 写入数据的几个类型的重载方法，也更改为虚方法，支持子类重写操作。
-7. SiemensS7Net: 新增方法  Write( string[] address, List&lt;byte[]> data )支持同时写入多个数据块的地址数据，SiemensS7Server也支持多个数据块的写入功能。
-8. Melsec: 三菱的协议MelsecA1ENet，MelsecA1EAsciiNet, MelsecFxLinks(含串口及以太网), MelsecA3CNet(含串口及以太网), 读取bool时支持字地址的位，例如 D100.0
-9. CJT188Helper: 水表协议188修复再某些特殊的情况下解析结算累积量异常时，导致读取当前累积量也失败的bug。
-10. OmronFinsNet: 新增属性 ReceiveUntilEmpty, 默认false，设置true后可以在一些及其特殊的场景里防止数据错误的情况。
-11. LogNetManagment: 日志管理对象的一个静态方法优化，增加错误捕获，防止极小概率的意外情况。
-12. SiemensS7Plus: 新增基于s7plus协议的通信对象，使用SSL/TLS加密通信，支持读写数据，不需要开启put/get，支持遍历点位，仅支持.net framework平台，还需要依赖两个openssl的C++库。
-13. Demo: 支持将PLC数据定时读取，然后导出到单个文件。然后可以在虚拟服务器上进行加载文件，然后定时写入，可以本地模拟现场设备数据。
-14. Demo: 原始字节的批量读取功能显示效果，新增整型显示，当切换hex，ascii，整型的时候，自动更新显示数据，更加便捷。
-15. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
-16. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.6.4
+1. ByteTransformHelper: 一个转换的静态辅助方法GetSuccessResultFromOther增加异常的捕获，防止在一些极其特殊的情况下导致异常然后奔溃。
+2. IReadWriteMc: MC协议的接口新增属性TargetIOStation，用来表示目标模块IO编号，默认0x03FF, 表示管理的CPU，当访问多CPU时，需要设置本值。
+3. ABBWebApiClient: abb机器人的类新增接口GetUserValue，用来获取用户自定义的一些数据内容，返回double[]，demo增加测试功能。
+4. ModbusRtu: rtu报文的解析新增加对头部干扰码的支持，就算报文前跟了一个字节的无用报文，现在也可以正确的解析，也适用于rtuovertcp.
+5. MqttServer: 文件引擎新删除整个目录的接口方法，重命名目录的接口方法，MqttSyncClient代码优化，并且添加配套的接口实现。
+6. HttpServer: 新增Action类型属性ApiCalledAction，当一个接口调用完之后触发，可以获得该接口一些调用信息，方便二次处理。
+7. BeckhoffAdsNet: 新增加ReadStruct<T>( string address )方法及WriteStruct<T>( string address, T value )针对struct类型的对象读写。
+8. Demo: 在所有的PLC设备的读写测试的控件里，在点击了byte类型的读取时，支持了设置长度大于1的情况下，批量读取了byte数据，显示为十进制数据。
+9. Demo: DEMO中的所有的PLC测试界面优化，在没有连接PLC的情况下，也可以切换选项卡查看地址示例。
+10. Nuget: netstandard框架的项目依赖的System.IO.Ports组件版本从7.0降级为6.0，原因是7.0在某些特殊的ARM硬件里存在问题。
+11. HslHelper: 方法CalculateBitStartIndex优化匹配代码，使用了正则表达式进行判断，提升程序速度。
+12. SerialBase: 串口基类，网口基类的一点点代码优化，针对及其特殊情况的一点异常捕获。
+13. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
+14. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

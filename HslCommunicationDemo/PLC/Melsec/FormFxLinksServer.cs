@@ -26,13 +26,12 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			comboBox_format.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			comboBox_format.SelectedIndex = 0;
 
 			if(Program.Language == 2)
 			{
-				Text = "MC Virtual Server [data support, bool: x,y,m   word: x,y,m,d,w]";
+				Text = "FxLinks Virtual Server [data support, bool: x,y,m   word: x,y,m,d,w]";
 				label3.Text = "port:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
@@ -50,6 +49,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 		}
 
 		private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
@@ -98,7 +98,7 @@ namespace HslCommunicationDemo
 				userControlReadWriteServer1.SetReadWriteServer( fxLinksServer, "D100" );
 
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 

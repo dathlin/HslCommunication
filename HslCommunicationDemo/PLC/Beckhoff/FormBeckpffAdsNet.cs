@@ -32,8 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			Language( Program.Language );
 			checkBox_auto.CheckedChanged += CheckBox_auto_CheckedChanged;
 			CheckBox_auto_CheckedChanged( checkBox_auto, e );
@@ -47,6 +45,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		private void CheckBox_auto_CheckedChanged( object sender, EventArgs e )
@@ -120,7 +119,7 @@ namespace HslCommunicationDemo
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// M100;s=MAIN.dd;s=MAIN.a
 					// 设置基本的读写信息
@@ -170,7 +169,7 @@ namespace HslCommunicationDemo
 			beckhoffAdsNet.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

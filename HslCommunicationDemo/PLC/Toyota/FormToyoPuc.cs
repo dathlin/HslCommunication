@@ -36,7 +36,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			Language( Program.Language );
 
 
@@ -46,6 +45,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		private void Language( int language )
@@ -95,7 +95,7 @@ namespace HslCommunicationDemo
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
 				button2.Enabled = true;
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteDevice1.SetEnable( true );
 
 				// 设置子控件的读取能力
 				userControlReadWriteDevice1.SetReadWriteNet( toyota, "D100", true );
@@ -124,7 +124,7 @@ namespace HslCommunicationDemo
 			toyota.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		#endregion

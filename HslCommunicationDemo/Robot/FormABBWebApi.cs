@@ -295,6 +295,18 @@ namespace HslCommunicationDemo.Robot
 			}
 		}
 
+		private void button18_Click( object sender, EventArgs e )
+		{
+			OperateResult<double[]> read = webApiClient.GetUserValue( textBox_user_value_name.Text );
+			if (!read.IsSuccess)
+			{
+				MessageBox.Show( "Read Failed:" + read.Message );
+			}
+			else
+			{
+				textBox6.Text = read.Content.ToJsonString( );
+			}
+		}
 
 		public override void SaveXmlParameter( XElement element )
 		{
@@ -317,5 +329,6 @@ namespace HslCommunicationDemo.Robot
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

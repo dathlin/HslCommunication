@@ -24,9 +24,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
-
 			if(Program.Language == 2)
 			{
 				Text = "MemobusTcp Virtual Server[data support function: 01,02,03,04,05,06,08,09,0a,0b,0d,0e,0f,10]";
@@ -42,6 +39,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -74,7 +72,7 @@ namespace HslCommunicationDemo
 
 				userControlReadWriteServer1.SetReadWriteServer( tcpServer, "100" );
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 

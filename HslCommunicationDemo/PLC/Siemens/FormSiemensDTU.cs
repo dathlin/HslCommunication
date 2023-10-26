@@ -35,7 +35,6 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			comboBox1.SelectedIndex = 0;
-			panel2.Enabled = false;
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
 			Language( Program.Language );
 
@@ -48,6 +47,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
@@ -120,7 +120,7 @@ namespace HslCommunicationDemo
 				siemensTcpNet.ConnectServer( session );
 				Invoke( new Action( ( ) =>
 				{
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 					button2.Enabled = true;
 				} ) );
 			}
@@ -192,7 +192,7 @@ namespace HslCommunicationDemo
 			siemensTcpNet.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

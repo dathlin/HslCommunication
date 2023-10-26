@@ -19,6 +19,11 @@ namespace HslCommunicationDemo.DemoControl
 		public UserControlReadWriteDevice( )
 		{
 			InitializeComponent( );
+
+			allControls.Add( batchReadControl1 );
+			allControls.Add( batchReadControl2 );
+			allControls.Add( stressTesting1 );
+			allControls.Add( dataExportControl1 );
 		}
 
 		private void UserControlReadWriteDevice_Load( object sender, EventArgs e )
@@ -33,6 +38,17 @@ namespace HslCommunicationDemo.DemoControl
 			}
 
 			batchReadControl2.IsSourceReadMode = true;
+		}
+
+		private List<UserControl> allControls = new List<UserControl>( );
+
+		public void SetEnable( bool enbale )
+		{
+			userControlReadWriteOp1.Enabled = enbale;
+			for (int i = 0; i < allControls.Count; i++)
+			{
+				allControls[i].Enabled = enbale;
+			}
 		}
 
 		public void SetReadWriteNet( IReadWriteNet readWrite, string address, bool isAsync = false, int strLength = 10 )
@@ -58,7 +74,17 @@ namespace HslCommunicationDemo.DemoControl
 		public void AddSpecialFunctionTab( UserControl control, bool show = false, string title = null )
 		{
 			if (control != null)
+			{
 				DemoUtils.AddSpecialFunctionTab( this.tabControl1, control, show, title );
+				if (control is AddressExampleControl)
+				{
+
+				}
+				else
+				{
+					allControls.Add( control );
+				}
+			}
 		}
 
 

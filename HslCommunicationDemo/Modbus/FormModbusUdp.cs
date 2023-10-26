@@ -31,8 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			comboBox1.SelectedIndex = 2;
 
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
@@ -49,6 +47,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -130,7 +129,7 @@ namespace HslCommunicationDemo
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
 				button2.Enabled = true;
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteDevice1.SetEnable( true );
 
 				// 设置子控件的读取能力
 				userControlReadWriteDevice1.SetReadWriteNet( busTcpClient, "100", false );
@@ -155,7 +154,7 @@ namespace HslCommunicationDemo
 			// 断开连接
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

@@ -34,7 +34,6 @@ namespace HslCommunicationDemo
 		{
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
-			panel2.Enabled = false;
 
 			Language( Program.Language );
 
@@ -48,6 +47,8 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -102,7 +103,7 @@ namespace HslCommunicationDemo
 
 
 			omronFinsUdp = new OmronFinsUdp( textBox1.Text, port );
-			panel2.Enabled = true;
+			userControlReadWriteDevice1.SetEnable( true );
 			omronFinsUdp.SA1 = SA1;
 			omronFinsUdp.GCT = gct;
 			omronFinsUdp.SID = sid;

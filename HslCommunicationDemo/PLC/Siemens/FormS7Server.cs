@@ -23,9 +23,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
-
 			if (Program.Language == 2)
 			{
 				Text = "S7 Virtual Server [data support i,q,m,db block read and write, db block only one, whether it is DB1.1 or DB100.1 refers to the same]";
@@ -41,6 +38,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 			//timer = new Timer( );
 			//timer.Interval = 1000;
 			//timer.Tick += Timer_Tick;
@@ -95,7 +93,7 @@ namespace HslCommunicationDemo
 
 				userControlReadWriteServer1.SetReadWriteServer( s7NetServer, "M100" );
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 				// 设置代码示例

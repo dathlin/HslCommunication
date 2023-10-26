@@ -33,7 +33,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			comboBox1.SelectedIndex = 0;
 
 			comboBox3.DataSource = SerialPort.GetPortNames( );
@@ -58,6 +57,8 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -65,7 +66,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "DLT645 Read Demo";
+				Text = "CJT188 Read Demo";
 
 				label1.Text = "Com:";
 				label3.Text = "baudRate:";
@@ -131,7 +132,7 @@ namespace HslCommunicationDemo
 				cjt188.RtsEnable = checkBox5.Checked;
 				cjt188.Open( );
 
-				button2.Enabled = true;
+				userControlReadWriteDevice1.SetEnable( true );
 				button1.Enabled = false;
 				panel2.Enabled = true;
 
@@ -157,8 +158,8 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			cjt188.Close( );
-			button2.Enabled = false;
+			cjt188.Close( ); 
+			userControlReadWriteDevice1.SetEnable( false );
 			button1.Enabled = true;
 			panel2.Enabled = false;
 		}

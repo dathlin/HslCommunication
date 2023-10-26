@@ -26,8 +26,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			if(Program.Language == 2)
 			{
 				Text = "Turck Reader protocol";
@@ -47,6 +45,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 		}
 
 
@@ -77,7 +76,7 @@ namespace HslCommunicationDemo
 				userControlReadWriteServer1.SetReadWriteServer( readerServer, "100" );
 
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 

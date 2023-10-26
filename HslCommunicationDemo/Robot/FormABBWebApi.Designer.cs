@@ -40,6 +40,10 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button18 = new System.Windows.Forms.Button();
+			this.textBox_user_value_name = new System.Windows.Forms.TextBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
 			this.button17 = new System.Windows.Forms.Button();
 			this.button16 = new System.Windows.Forms.Button();
 			this.button15 = new System.Windows.Forms.Button();
@@ -86,7 +90,7 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "web api";
-			this.userControlHead1.Size = new System.Drawing.Size(1023, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(1006, 32);
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 30;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
@@ -107,7 +111,7 @@
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1017, 39);
+			this.panel1.Size = new System.Drawing.Size(1000, 39);
 			this.panel1.TabIndex = 31;
 			// 
 			// button1
@@ -190,6 +194,10 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.button18);
+			this.panel2.Controls.Add(this.textBox_user_value_name);
+			this.panel2.Controls.Add(this.label8);
+			this.panel2.Controls.Add(this.label7);
 			this.panel2.Controls.Add(this.button17);
 			this.panel2.Controls.Add(this.button16);
 			this.panel2.Controls.Add(this.button15);
@@ -218,8 +226,46 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(3, 3);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1003, 518);
+			this.panel2.Size = new System.Drawing.Size(986, 518);
 			this.panel2.TabIndex = 32;
+			// 
+			// button18
+			// 
+			this.button18.Location = new System.Drawing.Point(912, 105);
+			this.button18.Name = "button18";
+			this.button18.Size = new System.Drawing.Size(59, 27);
+			this.button18.TabIndex = 38;
+			this.button18.Text = "Read";
+			this.button18.UseVisualStyleBackColor = true;
+			this.button18.Click += new System.EventHandler(this.button18_Click);
+			// 
+			// textBox_user_value_name
+			// 
+			this.textBox_user_value_name.Location = new System.Drawing.Point(775, 107);
+			this.textBox_user_value_name.Name = "textBox_user_value_name";
+			this.textBox_user_value_name.Size = new System.Drawing.Size(130, 23);
+			this.textBox_user_value_name.TabIndex = 37;
+			this.textBox_user_value_name.Text = "nCurProgIndex";
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(726, 110);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(40, 17);
+			this.label8.TabIndex = 36;
+			this.label8.Text = "name";
+			// 
+			// label7
+			// 
+			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label7.AutoSize = true;
+			this.label7.ForeColor = System.Drawing.Color.Blue;
+			this.label7.Location = new System.Drawing.Point(892, 10);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(85, 17);
+			this.label7.TabIndex = 35;
+			this.label7.Text = "startwith url=";
 			// 
 			// button17
 			// 
@@ -377,7 +423,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox7.Location = new System.Drawing.Point(99, 38);
 			this.textBox7.Name = "textBox7";
-			this.textBox7.Size = new System.Drawing.Size(695, 23);
+			this.textBox7.Size = new System.Drawing.Size(678, 23);
 			this.textBox7.TabIndex = 19;
 			// 
 			// label9
@@ -399,7 +445,7 @@
 			this.panel3.Controls.Add(this.webBrowser1);
 			this.panel3.Location = new System.Drawing.Point(76, 140);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(912, 369);
+			this.panel3.Size = new System.Drawing.Size(907, 375);
 			this.panel3.TabIndex = 17;
 			// 
 			// textBox6
@@ -409,7 +455,7 @@
 			this.textBox6.Multiline = true;
 			this.textBox6.Name = "textBox6";
 			this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox6.Size = new System.Drawing.Size(910, 367);
+			this.textBox6.Size = new System.Drawing.Size(905, 373);
 			this.textBox6.TabIndex = 5;
 			// 
 			// webBrowser1
@@ -418,14 +464,14 @@
 			this.webBrowser1.Location = new System.Drawing.Point(0, 0);
 			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(910, 367);
+			this.webBrowser1.Size = new System.Drawing.Size(905, 373);
 			this.webBrowser1.TabIndex = 14;
 			// 
 			// radioButton2
 			// 
 			this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.radioButton2.AutoSize = true;
-			this.radioButton2.Location = new System.Drawing.Point(893, 39);
+			this.radioButton2.Location = new System.Drawing.Point(876, 39);
 			this.radioButton2.Name = "radioButton2";
 			this.radioButton2.Size = new System.Drawing.Size(84, 21);
 			this.radioButton2.TabIndex = 16;
@@ -437,7 +483,7 @@
 			this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.radioButton1.AutoSize = true;
 			this.radioButton1.Checked = true;
-			this.radioButton1.Location = new System.Drawing.Point(826, 39);
+			this.radioButton1.Location = new System.Drawing.Point(809, 39);
 			this.radioButton1.Name = "radioButton1";
 			this.radioButton1.Size = new System.Drawing.Size(47, 21);
 			this.radioButton1.TabIndex = 15;
@@ -453,7 +499,7 @@
 			this.comboBox1.Items.AddRange(new object[] {
             "GET",
             "POST"});
-			this.comboBox1.Location = new System.Drawing.Point(713, 7);
+			this.comboBox1.Location = new System.Drawing.Point(696, 7);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(81, 25);
 			this.comboBox1.TabIndex = 13;
@@ -461,7 +507,7 @@
 			// button2
 			// 
 			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(816, 7);
+			this.button2.Location = new System.Drawing.Point(799, 7);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(84, 27);
 			this.button2.TabIndex = 9;
@@ -484,7 +530,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox5.Location = new System.Drawing.Point(76, 7);
 			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(631, 23);
+			this.textBox5.Size = new System.Drawing.Size(614, 23);
 			this.textBox5.TabIndex = 3;
 			// 
 			// label5
@@ -505,7 +551,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(3, 78);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(1017, 554);
+			this.tabControl1.Size = new System.Drawing.Size(1000, 554);
 			this.tabControl1.TabIndex = 33;
 			// 
 			// tabPage1
@@ -514,7 +560,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(1009, 524);
+			this.tabPage1.Size = new System.Drawing.Size(992, 524);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Basic Function";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -523,7 +569,7 @@
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1023, 634);
+			this.ClientSize = new System.Drawing.Size(1006, 634);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.userControlHead1);
@@ -587,5 +633,9 @@
 		private System.Windows.Forms.Button button17;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Button button18;
+		private System.Windows.Forms.TextBox textBox_user_value_name;
+		private System.Windows.Forms.Label label8;
 	}
 }

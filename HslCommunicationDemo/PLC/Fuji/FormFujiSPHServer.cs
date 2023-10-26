@@ -24,8 +24,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			if(Program.Language == 2)
 			{
 				Text = "SPH Virtual Server [data support M1.0, M3.0, M10.0, I0, Q0]";
@@ -41,6 +39,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteServer1.SetEnable( false );
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -71,7 +70,7 @@ namespace HslCommunicationDemo
 				userControlReadWriteServer1.SetReadWriteServer( fujiSPHServer, "M1.100" );
 
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
 				// 设置代码示例

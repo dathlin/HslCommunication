@@ -33,7 +33,6 @@ namespace HslCommunicationDemo.PLC.Omron
 		{
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
-			panel2.Enabled = false;
 
 			Language( Program.Language );
 
@@ -44,6 +43,7 @@ namespace HslCommunicationDemo.PLC.Omron
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -128,7 +128,7 @@ namespace HslCommunicationDemo.PLC.Omron
 
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置子控件的读取能力
 					userControlReadWriteDevice1.SetReadWriteNet( omronHostLink, "D100", false );
@@ -161,7 +161,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			omronHostLink.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

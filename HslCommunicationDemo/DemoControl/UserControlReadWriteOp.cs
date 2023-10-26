@@ -306,11 +306,20 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			// byte，此处演示了基于反射的读取操作
 			DateTime start = DateTime.Now;
-			OperateResult<byte> read = (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } );
-			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-			DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-			if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-
+			if (textBox5.Text == "1")
+			{
+				OperateResult<byte> read = (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } );
+				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
+			}
+			else
+			{
+				OperateResult<byte[]> read = readWriteNet.Read( textBox3.Text, ushort.Parse( textBox5.Text ) );
+				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+				if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
+			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
 		}

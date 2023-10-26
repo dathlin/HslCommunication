@@ -29,7 +29,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			comboBox3.DataSource = SerialPort.GetPortNames( );
 			try
 			{
@@ -49,6 +48,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -56,7 +56,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "DF1 Read Demo";
+				Text = "AB-DF1 Read Demo";
 
 				label1.Text = "Com:";
 				label3.Text = "baudRate:";
@@ -142,7 +142,7 @@ namespace HslCommunicationDemo
 
 				button2.Enabled = true;
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteDevice1.SetEnable( true );
 
 				// 设置子控件的读取能力
 				userControlReadWriteDevice1.SetReadWriteNet( allenBradley, "N7:0", true );
@@ -166,7 +166,7 @@ namespace HslCommunicationDemo
 			allenBradley.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

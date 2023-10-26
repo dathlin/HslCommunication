@@ -46,7 +46,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			Language( Program.Language );
 			control = new ModbusControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -54,6 +53,7 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetModbusAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -101,7 +101,7 @@ namespace HslCommunicationDemo
 				busTcpClient.ConnectServer( session );
 				Invoke( new Action( ( ) =>
 				 {
-					 panel2.Enabled = true;
+					 userControlReadWriteDevice1.SetEnable( true );
 					 button2.Enabled = true;
 
 				 } ) );
@@ -161,7 +161,7 @@ namespace HslCommunicationDemo
 			// 断开连接
 			busTcpClient.ConnectClose( );
 			button2.Enabled = false;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 			// 通知下线
 		}
 

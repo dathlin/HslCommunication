@@ -13,6 +13,7 @@ using HslCommunication.Core;
 using HslCommunication.Enthernet;
 using HslCommunication.BasicFramework;
 using System.Threading.Tasks;
+using HslCommunicationDemo.MQTT;
 
 namespace HslCommunicationDemo
 {
@@ -115,6 +116,8 @@ namespace HslCommunicationDemo
 			}
 		}
 
+
+
 		private async void 批量上传ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			TreeNode node = treeView1.SelectedNode;
@@ -123,6 +126,8 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
+				// 获取路径信息
+				string path = GetGroupsFromNode( node );
 				using (OpenFileDialog ofd = new OpenFileDialog( ))
 				{
 					ofd.Multiselect = true;
@@ -131,9 +136,9 @@ namespace HslCommunicationDemo
 						foreach (var item in ofd.FileNames)
 						{
 							textBox3.Text = item;
-							await UploadFlieExample( );
+							await UploadFlieExample( path );
 						}
-						MessageBox.Show( "上传完成，共计文件：" + ofd.FileNames.Length );
+						MessageBox.Show( $"上传目录[{path}]完成，共计文件：" + ofd.FileNames.Length );
 					}
 				}
 			}
@@ -149,6 +154,11 @@ namespace HslCommunicationDemo
 					textBox3.Text = ofd.FileName;
 				}
 			}
+		}
+
+		private void 刷新目录ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			treeView1_BeforeExpand( sender, new TreeViewCancelEventArgs( treeView1.SelectedNode, false, TreeViewAction.Expand ) );
 		}
 
 		#region Upload File
@@ -179,7 +189,7 @@ namespace HslCommunicationDemo
 				}
 
 				DateTime uploadStartTime = DateTime.Now;
-				OperateResult result = await UploadFlieExample( );
+				OperateResult result = await UploadFlieExample( string.Empty );
 
 				if (result.IsSuccess)
 				{
@@ -200,17 +210,19 @@ namespace HslCommunicationDemo
 			uploadCacel = null;
 		}
 
-		private async Task<OperateResult> UploadFlieExample( )
+		private async Task<OperateResult> UploadFlieExample( string group )
 		{
 			button_upload.Enabled = false;             // 上传按钮禁用，取消上传按钮使能
 			button_upload_cancel.Enabled = true;
 			string fileName = textBox3.Text;           // 等待上传的完整文件路径
 			System.IO.FileInfo fileInfo = new System.IO.FileInfo( fileName );
+
+			group = string.IsNullOrEmpty( group ) ? textBox_upload_group.Text : group;
 			// 开始正式上传，关于三级分类，下面只是举个例子，上传成功后去服务器端寻找文件就能明白
 			// start to upload file to server , u shold specify the catgray about the file
 			OperateResult result = await mqttSyncClient.UploadFileAsync(
 				fileName,                       // 需要上传的原文件的完整路径，上传成功还需要个条件，该文件不能被占用
-				textBox_upload_group.Text,      // 类别信息，例如 Files/Personal/Admin
+				group,                          // 类别信息，例如 Files/Personal/Admin
 				fileInfo.Name,                  // 在服务器存储的文件名，带后缀，一般设置为原文件的文件名，当然您也可以重新设置名字
 				textBox_upload_tag.Text,        // 这个文件的额外描述文本，可以为空（""）
 				UpdateReportProgress,           // 文件上传时的进度报告，如果你不需要，指定为NULL就行，一般文件比较大，带宽比较小，都需要进度提示
@@ -473,6 +485,32 @@ namespace HslCommunicationDemo
 			TreeNode node = treeView1.SelectedNode;
 			if (node == null) return;
 
+			if (MessageBox.Show( $"是否确认删除目录: {GetGroupsFromNode( node )}?", "删除确认", MessageBoxButtons.YesNo ) == DialogResult.No) return;
+
+			// 文件的删除不需要放在后台线程，前台即可处理，无论多少大的文件，无论该文件是否在下载中，都是很快删除的
+			OperateResult result = await mqttSyncClient.DeleteFolderAsync(
+				GetGroupsFromNode( node )                                      // 类别信息，例如 Files/Personal/Admin
+				);
+			if (result.IsSuccess)
+			{
+				// delete file success
+				MessageBox.Show( "目录删除成功！" );
+			}
+			else
+			{
+				// 删除失败的原因除了一般的网络问题，还有因为服务器的文件不存在，会在Message里有显示。
+				// file not exsist or net work exception
+				MessageBox.Show( "目录删除失败，原因：" + result.ToMessageShowString( ) );
+			}
+		}
+
+		private async void 清除目录文件ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			TreeNode node = treeView1.SelectedNode;
+			if (node == null) return;
+
+			if (MessageBox.Show( $"是否确认清除目录[{GetGroupsFromNode( node )}]所有文件?", "删除确认", MessageBoxButtons.YesNo ) == DialogResult.No) return;
+
 			// 文件的删除不需要放在后台线程，前台即可处理，无论多少大的文件，无论该文件是否在下载中，都是很快删除的
 			OperateResult result = await mqttSyncClient.DeleteFolderFilesAsync(
 				GetGroupsFromNode( node )                                      // 类别信息，例如 Files/Personal/Admin
@@ -480,14 +518,42 @@ namespace HslCommunicationDemo
 			if (result.IsSuccess)
 			{
 				// delete file success
-				MessageBox.Show( "文件目录删除成功！" );
+				MessageBox.Show( "指定目录所有文件删除成功！" );
 			}
 			else
 			{
 				// 删除失败的原因除了一般的网络问题，还有因为服务器的文件不存在，会在Message里有显示。
 				// file not exsist or net work exception
-				MessageBox.Show( "文件目录删除失败，原因：" + result.ToMessageShowString( ) );
+				MessageBox.Show( "指定目录所有文件删除失败，原因：" + result.ToMessageShowString( ) );
 			}
+		}
+
+		private async void 重命名目录ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			TreeNode node = treeView1.SelectedNode;
+			if (node == null) return;
+
+			string path = GetGroupsFromNode( node );
+			FormInputNewPath form = new FormInputNewPath( path, path );
+			if(form.ShowDialog() == DialogResult.OK)
+			{
+				OperateResult result = await mqttSyncClient.RenameFolderAsync(
+					path,                                      // 类别信息，例如 Files/Personal/Admin
+					form.PathInput
+				);
+				if (result.IsSuccess)
+				{
+					// delete file success
+					MessageBox.Show( "修改目录名称成功！" );
+				}
+				else
+				{
+					// 删除失败的原因除了一般的网络问题
+					// file not exsist or net work exception
+					MessageBox.Show( "修改目录名称失败，原因：" + result.ToMessageShowString( ) );
+				}
+			}
+
 		}
 
 		private async void button9_Click( object sender, EventArgs e )

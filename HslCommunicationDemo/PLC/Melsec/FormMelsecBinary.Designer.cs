@@ -31,6 +31,12 @@ namespace HslCommunicationDemo
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_target_io_number = new System.Windows.Forms.TextBox();
+			this.label_target_io_number = new System.Windows.Forms.Label();
+			this.textBox_network_station_number = new System.Windows.Forms.TextBox();
+			this.label_network_station_number = new System.Windows.Forms.Label();
+			this.textBox_network_number = new System.Windows.Forms.TextBox();
+			this.label_network_number = new System.Windows.Forms.Label();
 			this.checkBox_string_reverse = new System.Windows.Forms.CheckBox();
 			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -52,6 +58,12 @@ namespace HslCommunicationDemo
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_target_io_number);
+			this.panel1.Controls.Add(this.label_target_io_number);
+			this.panel1.Controls.Add(this.textBox_network_station_number);
+			this.panel1.Controls.Add(this.label_network_station_number);
+			this.panel1.Controls.Add(this.textBox_network_number);
+			this.panel1.Controls.Add(this.label_network_number);
 			this.panel1.Controls.Add(this.checkBox_string_reverse);
 			this.panel1.Controls.Add(this.checkBox_EnableWriteBitToWordRegister);
 			this.panel1.Controls.Add(this.checkBox1);
@@ -67,10 +79,61 @@ namespace HslCommunicationDemo
 			this.panel1.Size = new System.Drawing.Size(997, 59);
 			this.panel1.TabIndex = 0;
 			// 
+			// textBox_target_io_number
+			// 
+			this.textBox_target_io_number.Location = new System.Drawing.Point(600, 3);
+			this.textBox_target_io_number.Name = "textBox_target_io_number";
+			this.textBox_target_io_number.Size = new System.Drawing.Size(80, 23);
+			this.textBox_target_io_number.TabIndex = 33;
+			this.textBox_target_io_number.Text = "0x03FF";
+			// 
+			// label_target_io_number
+			// 
+			this.label_target_io_number.AutoSize = true;
+			this.label_target_io_number.Location = new System.Drawing.Point(503, 6);
+			this.label_target_io_number.Name = "label_target_io_number";
+			this.label_target_io_number.Size = new System.Drawing.Size(100, 17);
+			this.label_target_io_number.TabIndex = 32;
+			this.label_target_io_number.Text = "TargetIONum：";
+			// 
+			// textBox_network_station_number
+			// 
+			this.textBox_network_station_number.Location = new System.Drawing.Point(686, 29);
+			this.textBox_network_station_number.Name = "textBox_network_station_number";
+			this.textBox_network_station_number.Size = new System.Drawing.Size(32, 23);
+			this.textBox_network_station_number.TabIndex = 31;
+			this.textBox_network_station_number.Text = "0";
+			// 
+			// label_network_station_number
+			// 
+			this.label_network_station_number.AutoSize = true;
+			this.label_network_station_number.Location = new System.Drawing.Point(605, 32);
+			this.label_network_station_number.Name = "label_network_station_number";
+			this.label_network_station_number.Size = new System.Drawing.Size(91, 17);
+			this.label_network_station_number.TabIndex = 30;
+			this.label_network_station_number.Text = "NetStatNum：";
+			// 
+			// textBox_network_number
+			// 
+			this.textBox_network_number.Location = new System.Drawing.Point(566, 29);
+			this.textBox_network_number.Name = "textBox_network_number";
+			this.textBox_network_number.Size = new System.Drawing.Size(32, 23);
+			this.textBox_network_number.TabIndex = 29;
+			this.textBox_network_number.Text = "0";
+			// 
+			// label_network_number
+			// 
+			this.label_network_number.AutoSize = true;
+			this.label_network_number.Location = new System.Drawing.Point(501, 32);
+			this.label_network_number.Name = "label_network_number";
+			this.label_network_number.Size = new System.Drawing.Size(69, 17);
+			this.label_network_number.TabIndex = 28;
+			this.label_network_number.Text = "NetNum：";
+			// 
 			// checkBox_string_reverse
 			// 
 			this.checkBox_string_reverse.AutoSize = true;
-			this.checkBox_string_reverse.Location = new System.Drawing.Point(477, 35);
+			this.checkBox_string_reverse.Location = new System.Drawing.Point(375, 35);
 			this.checkBox_string_reverse.Name = "checkBox_string_reverse";
 			this.checkBox_string_reverse.Size = new System.Drawing.Size(87, 21);
 			this.checkBox_string_reverse.TabIndex = 27;
@@ -80,7 +143,7 @@ namespace HslCommunicationDemo
 			// checkBox_EnableWriteBitToWordRegister
 			// 
 			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
-			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(130, 35);
+			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(124, 34);
 			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
 			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
 			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 9;
@@ -90,7 +153,7 @@ namespace HslCommunicationDemo
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(11, 35);
+			this.checkBox1.Location = new System.Drawing.Point(8, 33);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(93, 21);
 			this.checkBox1.TabIndex = 8;
@@ -100,7 +163,7 @@ namespace HslCommunicationDemo
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(631, 5);
+			this.button2.Location = new System.Drawing.Point(810, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -110,7 +173,7 @@ namespace HslCommunicationDemo
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(534, 5);
+			this.button1.Location = new System.Drawing.Point(713, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -120,7 +183,7 @@ namespace HslCommunicationDemo
 			// 
 			// textBox_port
 			// 
-			this.textBox_port.Location = new System.Drawing.Point(412, 8);
+			this.textBox_port.Location = new System.Drawing.Point(409, 3);
 			this.textBox_port.Name = "textBox_port";
 			this.textBox_port.Size = new System.Drawing.Size(78, 23);
 			this.textBox_port.TabIndex = 3;
@@ -129,7 +192,7 @@ namespace HslCommunicationDemo
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(349, 11);
+			this.label3.Location = new System.Drawing.Point(345, 7);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -137,7 +200,7 @@ namespace HslCommunicationDemo
 			// 
 			// textBox_ip
 			// 
-			this.textBox_ip.Location = new System.Drawing.Point(62, 8);
+			this.textBox_ip.Location = new System.Drawing.Point(63, 4);
 			this.textBox_ip.Name = "textBox_ip";
 			this.textBox_ip.Size = new System.Drawing.Size(264, 23);
 			this.textBox_ip.TabIndex = 1;
@@ -146,7 +209,7 @@ namespace HslCommunicationDemo
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 11);
+			this.label1.Location = new System.Drawing.Point(7, 6);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 17);
 			this.label1.TabIndex = 0;
@@ -228,5 +291,11 @@ namespace HslCommunicationDemo
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private System.Windows.Forms.CheckBox checkBox_EnableWriteBitToWordRegister;
 		private System.Windows.Forms.CheckBox checkBox_string_reverse;
+		private System.Windows.Forms.TextBox textBox_network_station_number;
+		private System.Windows.Forms.Label label_network_station_number;
+		private System.Windows.Forms.TextBox textBox_network_number;
+		private System.Windows.Forms.Label label_network_number;
+		private System.Windows.Forms.TextBox textBox_target_io_number;
+		private System.Windows.Forms.Label label_target_io_number;
 	}
 }

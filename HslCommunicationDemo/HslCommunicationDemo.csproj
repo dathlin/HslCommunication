@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.6.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.6.3\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.6.4.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.6.4\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
@@ -515,6 +515,12 @@
     <Compile Include="Modbus\Helper.cs" />
     <Compile Include="Modbus\ModbusControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MQTT\FormInputNewPath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MQTT\FormInputNewPath.Designer.cs">
+      <DependentUpon>FormInputNewPath.cs</DependentUpon>
     </Compile>
     <Compile Include="MQTT\FormMqttFileClient.cs">
       <SubType>Form</SubType>
@@ -2073,6 +2079,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modbus\ModbusControl.resx">
       <DependentUpon>ModbusControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MQTT\FormInputNewPath.resx">
+      <DependentUpon>FormInputNewPath.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MQTT\FormMqttFileClient.resx">
       <DependentUpon>FormMqttFileClient.cs</DependentUpon>

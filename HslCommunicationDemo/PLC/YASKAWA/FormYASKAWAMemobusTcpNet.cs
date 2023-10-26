@@ -33,7 +33,6 @@ namespace HslCommunicationDemo
 		{
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
-			panel2.Enabled = false;
 
 			Language( Program.Language );
 
@@ -43,6 +42,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -107,7 +107,7 @@ namespace HslCommunicationDemo
 
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置基本的读写信息
 					userControlReadWriteDevice1.SetReadWriteNet( memobus, "100", true );
@@ -137,7 +137,7 @@ namespace HslCommunicationDemo
 			memobus.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

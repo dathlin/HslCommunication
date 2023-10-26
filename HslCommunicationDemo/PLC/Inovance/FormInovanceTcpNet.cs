@@ -31,8 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			comboBox1.SelectedIndex = 2;
 			comboBox4.DataSource = SoftBasic.GetEnumValues<InovanceSeries>( );
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
@@ -46,6 +44,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -128,7 +127,7 @@ namespace HslCommunicationDemo
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled  = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置基本的读写信息
 					userControlReadWriteDevice1.SetReadWriteNet( inovance, "D100", true );
@@ -158,7 +157,7 @@ namespace HslCommunicationDemo
 			inovance.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion

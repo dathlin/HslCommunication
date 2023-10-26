@@ -32,8 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			Language( Program.Language );
 			control = new FatekProgrameControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -44,6 +42,7 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -51,7 +50,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "FATEK Read PLC Demo";
+				Text = "FATEK Read PLC Demo[OverTcp]";
 
 				label27.Text = "Ip:";
 				label26.Text = "Port:";
@@ -95,7 +94,7 @@ namespace HslCommunicationDemo
 
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置基本的读写信息
 					userControlReadWriteDevice1.SetReadWriteNet( fatekProgram, "D100", true );
@@ -127,7 +126,7 @@ namespace HslCommunicationDemo
 			fatekProgram.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		#endregion

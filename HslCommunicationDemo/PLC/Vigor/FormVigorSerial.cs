@@ -33,7 +33,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
 			comboBox1.SelectedIndex = 0;
 			comboBox3.DataSource = SerialPort.GetPortNames( );
 			try
@@ -53,6 +52,8 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 
@@ -124,7 +125,7 @@ namespace HslCommunicationDemo
 				vigor.Open( );
 				button2.Enabled = true;
 				button1.Enabled = false;
-				panel2.Enabled = true;
+				userControlReadWriteDevice1.SetEnable( true );
 
 				// 设置基本的读写信息
 				userControlReadWriteDevice1.SetReadWriteNet( vigor, "D100", false );
@@ -148,7 +149,7 @@ namespace HslCommunicationDemo
 			vigor.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		

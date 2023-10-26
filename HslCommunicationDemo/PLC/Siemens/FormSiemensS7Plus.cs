@@ -34,8 +34,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			panel2.Enabled = false;
-
 			Language( Program.Language );
 
 			addressExampleControl = new AddressExampleControl( );
@@ -47,6 +45,7 @@ namespace HslCommunicationDemo
 
 			siemensS7PlusControl = new SiemensS7PlusControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( siemensS7PlusControl, false, "Browser" );
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 
 		private void Language( int language )
@@ -97,7 +96,7 @@ namespace HslCommunicationDemo
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
-					panel2.Enabled = true;
+					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置子控件的读取能力
 					userControlReadWriteDevice1.SetReadWriteNet( siemensTcpNet, "8A0E0001.A", false );
@@ -129,7 +128,7 @@ namespace HslCommunicationDemo
 			siemensTcpNet.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-			panel2.Enabled = false;
+			userControlReadWriteDevice1.SetEnable( false );
 		}
 		
 		#endregion
