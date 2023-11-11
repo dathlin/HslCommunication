@@ -46,6 +46,8 @@ namespace HslCommunicationDemo.Instrument
 				new DeviceAddressExample( "02-80-00-08", "时钟电池电压", false, false, "读double", fill: true, unit:"V", dataType: "double" ),
 				new DeviceAddressExample( "02-80-00-09", "停电抄表电池电压", false, false, "读double", fill: true, unit:"V", dataType: "double" ),
 				new DeviceAddressExample( "02-80-00-0A", "内部电池工作时间", false, false, "读double", fill: true, unit:"min", dataType: "double" ),
+				new DeviceAddressExample( "04-00-01-01", "日期及星期(0表示星期天)", false, false, "ReadString(\"04-00-01-01\", 4)", fill: true, dataType: "string" ),
+				new DeviceAddressExample( "04-00-01-02", "时分秒", false, false, "ReadString(\"04-00-01-02\", 3)", fill: true, dataType: "string" ),
 				new DeviceAddressExample( "04-00-04-03", "资产管理编码", false, false, "ReadString(\"04-00-04-03\", 32)", fill: true, dataType: "string" ),
 				new DeviceAddressExample( "04-00-04-0B", "电表型号", false, false, "ReadString(\"04-00-04-0B\", 10)", fill: true, dataType: "string" ),
 				new DeviceAddressExample( "04-00-04-0C", "生产日期", false, false, "ReadString(\"04-00-04-0C\", 10)", fill: true, dataType: "string" ),

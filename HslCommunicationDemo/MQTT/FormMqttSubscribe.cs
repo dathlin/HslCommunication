@@ -49,11 +49,13 @@ namespace HslCommunicationDemo.MQTT
 			}
 		}
 
-		private void FormMqttSubscribe_OnMqttMessageReceived( MqttClient client, string topic, byte[] payload )
+		private void FormMqttSubscribe_OnMqttMessageReceived( MqttClient client, MqttApplicationMessage message )
 		{
 			// 订阅触发，这里举例是显示出来
 			try
 			{
+				string topic = message.Topic;
+				byte[] payload = message.Payload;
 				Invoke( new Action( ( ) =>
 				{
 					receiveCount++;

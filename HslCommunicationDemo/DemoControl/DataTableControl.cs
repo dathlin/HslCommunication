@@ -1,6 +1,7 @@
 ﻿using HslCommunication;
 using HslCommunication.BasicFramework;
 using HslCommunication.Core;
+using HslCommunicationDemo.Control;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -140,7 +141,7 @@ namespace HslCommunicationDemo.DemoControl
 					}
 					dgvr.Cells[6].Value = dataTableItem.Unit;
 					dgvr.Cells[7].Value = dataTableItem.Description;
-
+					dgvr.Tag = dataTableItem;
 					count++;
 				}
 			}
@@ -366,5 +367,101 @@ namespace HslCommunicationDemo.DemoControl
 				MessageBox.Show( "Load failed: " + ex.Message );
 			}
 		}
-    }
+
+		private void dataGridView1_CellMouseDoubleClick( object sender, DataGridViewCellMouseEventArgs e )
+		{
+			if (e.ColumnIndex == 5 && e.RowIndex >= 0)
+			{
+				DataTableItem dataTableItem = GetDataTableItem( dataGridView1.Rows[e.RowIndex] );
+				if (dataTableItem == null) return;
+				if (string.IsNullOrEmpty( dataTableItem.Address )) return;
+
+				object obj = dataGridView1.Rows[e.RowIndex].Cells[5].Value;
+				using (FormInputNewValue form = new FormInputNewValue( obj?.ToString() ))
+				{
+					if (form.ShowDialog() == DialogResult.OK)
+					{
+						OperateResult write = OperateResult.CreateSuccessResult( );
+						try
+						{
+							string value = form.InputValue;
+							if (dataTableItem.DataTypeCode == "bool")
+							{
+								if (dataTableItem.Length < 0) write = this.device.Write( dataTableItem.Address, bool.Parse( value ) );
+								else write = this.device.Write( dataTableItem.Address, value.ToStringArray<bool>( ) );
+							}
+							else if (dataTableItem.DataTypeCode == "short")
+							{
+								if (dataTableItem.Length < 0) write = this.device.Write( dataTableItem.Address, short.Parse( value ) );
+								else write = this.device.Write( dataTableItem.Address, value.ToStringArray<short>( ) );
+							}
+							else if (dataTableItem.DataTypeCode == "ushort")
+							{
+								if (dataTableItem.Length < 0) write = this.device.Write( dataTableItem.Address, ushort.Parse( value ) );
+								else write = this.device.Write( dataTableItem.Address, value.ToStringArray<ushort>( ) );
+							}
+							else if (dataTableItem.DataTypeCode == "int")
+							{
+								if (dataTableItem.Length < 0) write = this.device.Write( dataTableItem.Address, int.Parse( value ) );
+								else write = this.device.Write( dataTableItem.Address, value.ToStringArray<int>( ) );
+							}
+							else if (dataTableItem.DataTypeCode == "uint")
+							{
+								if (dataTableItem.Length < 0) write = this.device.Write( dataTableItem.Address, int.Parse( value ) );
+								else write = this.device.Write( dataTableItem.Address, value.ToStringArray<uint>( ) );
+							}
+							else if (dataTableItem.DataTypeCode == "long")
+							{
+								if (dataTableItem.Length < 0) write = this.device.Write( dataTableItem.Address, long.Parse( value ) );
+								else write = this.device.Write( dataTableItem.Address, value.ToStringArray<long>( ) );
+							}
+							else if (dataTableItem.DataTypeCode == "float")
+							{
+								if (dataTableItem.Length < 0) write = this.device.Write( dataTableItem.Address, float.Parse( value ) );
+								else write = this.device.Write( dataTableItem.Address, value.ToStringArray<float>( ) );
+							}
+							else if (dataTableItem.DataTypeCode == "double")
+							{
+								if (dataTableItem.Length < 0) write = this.device.Write( dataTableItem.Address, double.Parse( value ) );
+								else write = this.device.Write( dataTableItem.Address, value.ToStringArray<double>( ) );
+							}
+							else if (dataTableItem.DataTypeCode == "string")
+							{
+								int len = dataTableItem.Length < 0 ? 0 : dataTableItem.Length;
+								Encoding encoding =
+									dataTableItem.StringEncoding == StringEncoding.ASCII ? Encoding.ASCII :
+									dataTableItem.StringEncoding == StringEncoding.ANSI ? Encoding.Default :
+									dataTableItem.StringEncoding == StringEncoding.UTF16 ? Encoding.Unicode :
+									dataTableItem.StringEncoding == StringEncoding.UTF16Big ? Encoding.BigEndianUnicode :
+									dataTableItem.StringEncoding == StringEncoding.UTF8 ? Encoding.UTF8 :
+									dataTableItem.StringEncoding == StringEncoding.GB2312 ? Encoding.GetEncoding( "gb2312" ) : Encoding.ASCII;
+								OperateResult<string> read = device.ReadString( dataTableItem.Address, (ushort)len, encoding );
+
+								write = this.device.Write( dataTableItem.Address, value, encoding );
+							}
+							else
+							{
+								MessageBox.Show( "Not supported data type: " + dataTableItem.DataTypeCode );
+								return;
+							}
+
+							if (write.IsSuccess)
+							{
+								MessageBox.Show( "Write Success!" );
+							}
+							else
+							{
+								MessageBox.Show( "Write Failed: " + write.Message );
+							}
+						}
+						catch( Exception ex)
+						{
+							MessageBox.Show( "trans string to type " + dataTableItem.DataTypeCode + "failed: " + ex.Message );
+						}
+
+					}
+				}
+			}
+		}
+	}
 }

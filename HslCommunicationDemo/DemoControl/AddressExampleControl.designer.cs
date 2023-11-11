@@ -29,6 +29,7 @@ namespace HslCommunicationDemo.DemoControl
 		/// </summary>
 		private void InitializeComponent( )
 		{
+			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -38,7 +39,10 @@ namespace HslCommunicationDemo.DemoControl
 			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.copyAddressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// dataGridView1
@@ -82,6 +86,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView1.Size = new System.Drawing.Size(634, 410);
 			this.dataGridView1.TabIndex = 0;
+			this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
 			// 
 			// Column1
 			// 
@@ -119,6 +124,19 @@ namespace HslCommunicationDemo.DemoControl
 			this.Column5.ReadOnly = true;
 			this.Column5.Width = 150;
 			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyAddressToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(155, 26);
+			// 
+			// copyAddressToolStripMenuItem
+			// 
+			this.copyAddressToolStripMenuItem.Name = "copyAddressToolStripMenuItem";
+			this.copyAddressToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+			this.copyAddressToolStripMenuItem.Text = "CopyAddress";
+			// 
 			// AddressExampleControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -129,6 +147,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.Size = new System.Drawing.Size(634, 410);
 			this.Load += new System.EventHandler(this.RequestAddressExampleControl_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -141,5 +160,7 @@ namespace HslCommunicationDemo.DemoControl
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem copyAddressToolStripMenuItem;
 	}
 }

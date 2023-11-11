@@ -43,6 +43,11 @@ namespace HslCommunicationDemo.Control
 		/// </summary>
 		public string Password { get; set; }
 
+		/// <summary>
+		/// 获取消息提示
+		/// </summary>
+		public string Tip { get => label1.Text; set => label1.Text = value; }
+
 		private void FormInputPassword_Load( object sender, EventArgs e )
 		{
 			if (Program.Language == 1)

@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.6.4.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.6.4\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=11.7.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.11.7.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
@@ -207,6 +207,12 @@
     </Compile>
     <Compile Include="DemoControl\FormDeviceSupport.Designer.cs">
       <DependentUpon>FormDeviceSupport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\FormInputNewValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormInputNewValue.Designer.cs">
+      <DependentUpon>FormInputNewValue.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\FormLogRender.cs">
       <SubType>Form</SubType>
@@ -451,6 +457,12 @@
     </Compile>
     <Compile Include="Instrument\FormDLT698.Designer.cs">
       <DependentUpon>FormDLT698.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormDLT645Server.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDLT645Server.Designer.cs">
+      <DependentUpon>FormDLT645Server.cs</DependentUpon>
     </Compile>
     <Compile Include="Instrument\FormIEC104.cs">
       <SubType>Form</SubType>
@@ -1921,6 +1933,9 @@
     <EmbeddedResource Include="DemoControl\FormDeviceSupport.resx">
       <DependentUpon>FormDeviceSupport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormInputNewValue.resx">
+      <DependentUpon>FormInputNewValue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormLogRender.resx">
       <DependentUpon>FormLogRender.cs</DependentUpon>
     </EmbeddedResource>
@@ -2046,6 +2061,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormDLT698.resx">
       <DependentUpon>FormDLT698.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDLT645Server.resx">
+      <DependentUpon>FormDLT645Server.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormIEC104.resx">
       <DependentUpon>FormIEC104.cs</DependentUpon>

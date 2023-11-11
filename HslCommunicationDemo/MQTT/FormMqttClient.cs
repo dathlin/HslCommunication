@@ -163,8 +163,10 @@ namespace HslCommunicationDemo
 		}
 
 		private long receiveCount = 0;
-		private void MqttClient_OnMqttMessageReceived( MqttClient client, string topic, byte[] payload )
+		private void MqttClient_OnMqttMessageReceived( MqttClient client, MqttApplicationMessage message )
 		{
+			string topic = message.Topic;
+			byte[] payload = message.Payload;
 			try
 			{
 				Invoke( new Action( ( ) =>
@@ -211,9 +213,9 @@ namespace HslCommunicationDemo
 						}
 					}
 					if (radioButton2.Checked)
-						textBox8.AppendText( DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + $" Topic[{topic}]: " + msg + Environment.NewLine );
+						textBox8.AppendText( DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + $" Topic[{topic}] Retain[{message.Retain}]: " + Environment.NewLine + msg + Environment.NewLine );
 					else if (radioButton1.Checked)
-						textBox8.Text = DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Topic[{topic}]: " + msg;
+						textBox8.Text = DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Topic[{topic}] Retain[{message.Retain}]: " + Environment.NewLine + msg;
 				} ) );
 			}
 			catch

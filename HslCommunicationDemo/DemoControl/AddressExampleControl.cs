@@ -23,6 +23,7 @@ namespace HslCommunicationDemo.DemoControl
 				g.Clear( Color.Transparent );
 				g.Dispose( );
 			}
+			copyAddressToolStripMenuItem.Click += CopyAddressToolStripMenuItem_Click;
 		}
 
 		private void RequestAddressExampleControl_Load( object sender, EventArgs e )
@@ -38,6 +39,10 @@ namespace HslCommunicationDemo.DemoControl
 				dataGridView1.Columns[2].HeaderText = "Bit";
 				dataGridView1.Columns[3].HeaderText = "Word";
 				dataGridView1.Columns[4].HeaderText = "Special instructions";
+			}
+			else
+			{
+				copyAddressToolStripMenuItem.Text = "复制地址文本";
 			}
 		}
 
@@ -138,5 +143,25 @@ namespace HslCommunicationDemo.DemoControl
 		}
 
 		private static Bitmap emptyImage = null;
+
+		private void dataGridView1_MouseClick( object sender, MouseEventArgs e )
+		{
+			if (e.Button == MouseButtons.Right)
+			{
+				contextMenuStrip1.Show( dataGridView1, e.Location );
+			}
+		}
+
+		private void CopyAddressToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (dataGridView1.SelectedRows.Count > 0)
+			{
+				if (dataGridView1.SelectedRows[0].Cells[0].Value != null)
+				{
+					Clipboard.SetText( dataGridView1.SelectedRows[0].Cells[0].Value.ToString( ) );
+				}
+			}
+		}
+
 	}
 }

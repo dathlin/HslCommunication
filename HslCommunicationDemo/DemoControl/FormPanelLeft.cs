@@ -416,6 +416,7 @@ namespace HslCommunicationDemo.DemoControl
 			instrumentNode.Nodes.Add( new TreeNode( "DAM3601 [阿尔泰科技]" ) { Tag = typeof( FormDAM3601 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645 [电力规约]" ) { Tag = typeof( FormDLT645 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645 OverTcp" ) { Tag = typeof( FormDLT645OverTcp ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DLT645 Server" ) { Tag = typeof( FormDLT645Server ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645-1997" ) { Tag = typeof( FormDLT645With1997 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645-1997 OverTcp" ) { Tag = typeof( FormDLT645With1997OverTcp ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT698 [电力规约]" ) { Tag = typeof( FormDLT698 ) } );

@@ -38,6 +38,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.dataServerBase.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			userControlReadWriteOp1.SetReadWriteNet( dataServerBase, address, false, strLength );
 			batchReadControl1.SetReadWriteNet( dataServerBase, address, "" );
+			dataTableControl1.SetReadWriteNet( dataServerBase );
 
 			timerSecond?.Dispose( );
 			timerSecond = new System.Windows.Forms.Timer( );
