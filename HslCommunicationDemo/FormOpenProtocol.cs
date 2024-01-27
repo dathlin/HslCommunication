@@ -28,9 +28,16 @@ namespace HslCommunicationDemo
 				return;
 			}
 
+			if (!int.TryParse( textBox_revison_connect.Text, out int revison ))
+			{
+				MessageBox.Show( "revison input format wrong！" );
+				return;
+			}
+
 			openProtocol?.ConnectClose( );
 			openProtocol = new OpenProtocolNet( textBox_ip.Text, port );
 			openProtocol.LogNet = this.LogNet;
+			openProtocol.RevisonOnConnected = revison;                             // 如果设置小于0 则连接时不使用 MID0001
 			openProtocol.OnReceivedOpenMessage += OpenProtocol_ReceivedMessage;
 			try
 			{
@@ -43,7 +50,7 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					codeExampleControl.SetCodeText( "openProtocol", openProtocol );
+					codeExampleControl.SetCodeText( "openProtocol", openProtocol, nameof( openProtocol.RevisonOnConnected ) );
 				}
 				else
 				{

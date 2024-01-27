@@ -34,6 +34,7 @@ namespace HslCommunicationDemo
 		{
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
+			button2.Enabled = false;
 
 			Language( Program.Language );
 
@@ -95,18 +96,25 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			if (!byte.TryParse( textBox_sid.Text, out byte sid ))
-			{
-				MessageBox.Show( "SID Input Wrong！" );
-				return;
-			}
-
 
 			omronFinsUdp = new OmronFinsUdp( textBox1.Text, port );
 			userControlReadWriteDevice1.SetEnable( true );
+			button1.Enabled = false;
+			button2.Enabled = true;
+
 			omronFinsUdp.SA1 = SA1;
 			omronFinsUdp.GCT = gct;
-			omronFinsUdp.SID = sid;
+
+
+			if ( !string.IsNullOrEmpty( textBox_da1.Text ) )
+			{
+				if (!byte.TryParse( textBox_da1.Text, out byte da1 ))
+				{
+					MessageBox.Show( "DA1 Input Wrong！" );
+					return;
+				}
+				omronFinsUdp.DA1 = da1;
+			}
 			omronFinsUdp.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 			omronFinsUdp.LogNet = LogNet;
 			omronFinsUdp.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
@@ -124,9 +132,17 @@ namespace HslCommunicationDemo
 			control.SetDevice( omronFinsUdp, "D100" );
 
 			// 设置示例代码
-			codeExampleControl.SetCodeText( omronFinsUdp, nameof( omronFinsUdp.SA1 ), nameof( omronFinsUdp.GCT ), nameof( omronFinsUdp.SID ), "ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
+			codeExampleControl.SetCodeText( omronFinsUdp, nameof( omronFinsUdp.SA1 ), nameof( omronFinsUdp.GCT ), nameof( omronFinsUdp.DA1 ), 
+				"ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
+
 		}
-		
+
+		private void button2_Click( object sender, EventArgs e )
+		{
+			userControlReadWriteDevice1.SetEnable( false );
+			button1.Enabled = true;
+			button2.Enabled = false;
+		}
 
 		#endregion
 

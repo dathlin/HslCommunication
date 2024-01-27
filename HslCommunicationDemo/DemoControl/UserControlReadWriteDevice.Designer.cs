@@ -118,10 +118,10 @@
 			// tabPage3
 			// 
 			this.tabPage3.Controls.Add(this.stressTesting1);
-			this.tabPage3.Location = new System.Drawing.Point(4, 26);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(946, 252);
+			this.tabPage3.Size = new System.Drawing.Size(192, 74);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "线程测试";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@
 			this.stressTesting1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.stressTesting1.Location = new System.Drawing.Point(3, 3);
 			this.stressTesting1.Name = "stressTesting1";
-			this.stressTesting1.Size = new System.Drawing.Size(940, 246);
+			this.stressTesting1.Size = new System.Drawing.Size(186, 68);
 			this.stressTesting1.TabIndex = 0;
 			// 
 			// tabPage4

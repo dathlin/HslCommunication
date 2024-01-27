@@ -30,7 +30,8 @@
         {
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.button1 = new System.Windows.Forms.Button();
+			this.button_close = new System.Windows.Forms.Button();
+			this.button_open = new System.Windows.Forms.Button();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
@@ -40,6 +41,9 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.label_time_cost = new System.Windows.Forms.Label();
+			this.label_11 = new System.Windows.Forms.Label();
+			this.textBox_url_read = new System.Windows.Forms.TextBox();
 			this.button18 = new System.Windows.Forms.Button();
 			this.textBox_user_value_name = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -62,6 +66,7 @@
 			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.textBox_web_text = new System.Windows.Forms.TextBox();
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.webBrowser1 = new System.Windows.Forms.WebBrowser();
 			this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -100,7 +105,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.button1);
+			this.panel1.Controls.Add(this.button_close);
+			this.panel1.Controls.Add(this.button_open);
 			this.panel1.Controls.Add(this.textBox4);
 			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.textBox3);
@@ -114,19 +120,29 @@
 			this.panel1.Size = new System.Drawing.Size(1000, 39);
 			this.panel1.TabIndex = 31;
 			// 
-			// button1
+			// button_close
 			// 
-			this.button1.Location = new System.Drawing.Point(686, 5);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(99, 25);
-			this.button1.TabIndex = 17;
-			this.button1.Text = "open";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.Button1_Click);
+			this.button_close.Location = new System.Drawing.Point(791, 5);
+			this.button_close.Name = "button_close";
+			this.button_close.Size = new System.Drawing.Size(99, 25);
+			this.button_close.TabIndex = 18;
+			this.button_close.Text = "close";
+			this.button_close.UseVisualStyleBackColor = true;
+			this.button_close.Click += new System.EventHandler(this.button_close_Click);
+			// 
+			// button_open
+			// 
+			this.button_open.Location = new System.Drawing.Point(686, 5);
+			this.button_open.Name = "button_open";
+			this.button_open.Size = new System.Drawing.Size(99, 25);
+			this.button_open.TabIndex = 17;
+			this.button_open.Text = "open";
+			this.button_open.UseVisualStyleBackColor = true;
+			this.button_open.Click += new System.EventHandler(this.Button1_Click);
 			// 
 			// textBox4
 			// 
-			this.textBox4.Location = new System.Drawing.Point(571, 6);
+			this.textBox4.Location = new System.Drawing.Point(568, 6);
 			this.textBox4.Name = "textBox4";
 			this.textBox4.Size = new System.Drawing.Size(97, 23);
 			this.textBox4.TabIndex = 16;
@@ -135,7 +151,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(504, 9);
+			this.label4.Location = new System.Drawing.Point(497, 9);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(65, 17);
 			this.label4.TabIndex = 15;
@@ -169,7 +185,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(244, 9);
+			this.label2.Location = new System.Drawing.Point(246, 9);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(32, 17);
 			this.label2.TabIndex = 11;
@@ -181,19 +197,22 @@
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(156, 23);
 			this.textBox1.TabIndex = 10;
-			this.textBox1.Text = "192.168.125.1";
+			this.textBox1.Text = "127.0.0.1";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(7, 9);
+			this.label1.Location = new System.Drawing.Point(4, 9);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(72, 17);
+			this.label1.Size = new System.Drawing.Size(75, 17);
 			this.label1.TabIndex = 9;
-			this.label1.Text = "Ip Address";
+			this.label1.Text = "Ip Address:";
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.label_time_cost);
+			this.panel2.Controls.Add(this.label_11);
+			this.panel2.Controls.Add(this.textBox_url_read);
 			this.panel2.Controls.Add(this.button18);
 			this.panel2.Controls.Add(this.textBox_user_value_name);
 			this.panel2.Controls.Add(this.label8);
@@ -226,8 +245,40 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(3, 3);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(986, 518);
+			this.panel2.Size = new System.Drawing.Size(986, 520);
 			this.panel2.TabIndex = 32;
+			// 
+			// label_time_cost
+			// 
+			this.label_time_cost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_time_cost.AutoSize = true;
+			this.label_time_cost.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label_time_cost.Location = new System.Drawing.Point(154, 501);
+			this.label_time_cost.Name = "label_time_cost";
+			this.label_time_cost.Size = new System.Drawing.Size(36, 17);
+			this.label_time_cost.TabIndex = 41;
+			this.label_time_cost.Text = "0 ms";
+			// 
+			// label_11
+			// 
+			this.label_11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_11.AutoSize = true;
+			this.label_11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label_11.Location = new System.Drawing.Point(74, 501);
+			this.label_11.Name = "label_11";
+			this.label_11.Size = new System.Drawing.Size(74, 17);
+			this.label_11.TabIndex = 40;
+			this.label_11.Text = "Cost-Time: ";
+			// 
+			// textBox_url_read
+			// 
+			this.textBox_url_read.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_url_read.Location = new System.Drawing.Point(76, 140);
+			this.textBox_url_read.Name = "textBox_url_read";
+			this.textBox_url_read.ReadOnly = true;
+			this.textBox_url_read.Size = new System.Drawing.Size(906, 23);
+			this.textBox_url_read.TabIndex = 39;
 			// 
 			// button18
 			// 
@@ -241,7 +292,7 @@
 			// 
 			// textBox_user_value_name
 			// 
-			this.textBox_user_value_name.Location = new System.Drawing.Point(775, 107);
+			this.textBox_user_value_name.Location = new System.Drawing.Point(779, 107);
 			this.textBox_user_value_name.Name = "textBox_user_value_name";
 			this.textBox_user_value_name.Size = new System.Drawing.Size(130, 23);
 			this.textBox_user_value_name.TabIndex = 37;
@@ -250,11 +301,11 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(726, 110);
+			this.label8.Location = new System.Drawing.Point(736, 111);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(40, 17);
+			this.label8.Size = new System.Drawing.Size(43, 17);
 			this.label8.TabIndex = 36;
-			this.label8.Text = "name";
+			this.label8.Text = "name:";
 			// 
 			// label7
 			// 
@@ -269,7 +320,7 @@
 			// 
 			// button17
 			// 
-			this.button17.Location = new System.Drawing.Point(598, 105);
+			this.button17.Location = new System.Drawing.Point(566, 105);
 			this.button17.Name = "button17";
 			this.button17.Size = new System.Drawing.Size(119, 27);
 			this.button17.TabIndex = 34;
@@ -279,7 +330,7 @@
 			// 
 			// button16
 			// 
-			this.button16.Location = new System.Drawing.Point(473, 105);
+			this.button16.Location = new System.Drawing.Point(441, 105);
 			this.button16.Name = "button16";
 			this.button16.Size = new System.Drawing.Size(119, 27);
 			this.button16.TabIndex = 33;
@@ -319,7 +370,7 @@
 			// 
 			// button12
 			// 
-			this.button12.Location = new System.Drawing.Point(375, 105);
+			this.button12.Location = new System.Drawing.Point(370, 105);
 			this.button12.Name = "button12";
 			this.button12.Size = new System.Drawing.Size(67, 27);
 			this.button12.TabIndex = 29;
@@ -441,30 +492,46 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel3.Controls.Add(this.textBox_web_text);
 			this.panel3.Controls.Add(this.textBox6);
 			this.panel3.Controls.Add(this.webBrowser1);
-			this.panel3.Location = new System.Drawing.Point(76, 140);
+			this.panel3.Location = new System.Drawing.Point(76, 168);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(907, 375);
+			this.panel3.Size = new System.Drawing.Size(907, 332);
 			this.panel3.TabIndex = 17;
+			// 
+			// textBox_web_text
+			// 
+			this.textBox_web_text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_web_text.Location = new System.Drawing.Point(430, 0);
+			this.textBox_web_text.Multiline = true;
+			this.textBox_web_text.Name = "textBox_web_text";
+			this.textBox_web_text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_web_text.Size = new System.Drawing.Size(472, 327);
+			this.textBox_web_text.TabIndex = 15;
 			// 
 			// textBox6
 			// 
-			this.textBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.textBox6.Location = new System.Drawing.Point(0, 0);
 			this.textBox6.Multiline = true;
 			this.textBox6.Name = "textBox6";
 			this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox6.Size = new System.Drawing.Size(905, 373);
+			this.textBox6.Size = new System.Drawing.Size(424, 331);
 			this.textBox6.TabIndex = 5;
 			// 
 			// webBrowser1
 			// 
-			this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+			this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.webBrowser1.Location = new System.Drawing.Point(430, 0);
 			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(905, 373);
+			this.webBrowser1.Size = new System.Drawing.Size(472, 327);
 			this.webBrowser1.TabIndex = 14;
 			// 
 			// radioButton2
@@ -518,11 +585,11 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(16, 144);
+			this.label6.Location = new System.Drawing.Point(16, 168);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(51, 17);
+			this.label6.Size = new System.Drawing.Size(53, 51);
 			this.label6.TabIndex = 4;
-			this.label6.Text = "content";
+			this.label6.Text = "Content\r\nAnd\r\nHtml";
 			// 
 			// textBox5
 			// 
@@ -548,10 +615,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Location = new System.Drawing.Point(3, 78);
+			this.tabControl1.Location = new System.Drawing.Point(3, 76);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(1000, 554);
+			this.tabControl1.Size = new System.Drawing.Size(1000, 556);
 			this.tabControl1.TabIndex = 33;
 			// 
 			// tabPage1
@@ -560,7 +627,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(992, 524);
+			this.tabPage1.Size = new System.Drawing.Size(992, 526);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Basic Function";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -594,7 +661,7 @@
 
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_open;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox3;
@@ -637,5 +704,10 @@
 		private System.Windows.Forms.Button button18;
 		private System.Windows.Forms.TextBox textBox_user_value_name;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.TextBox textBox_url_read;
+		private System.Windows.Forms.TextBox textBox_web_text;
+		private System.Windows.Forms.Label label_time_cost;
+		private System.Windows.Forms.Label label_11;
+		private System.Windows.Forms.Button button_close;
 	}
 }

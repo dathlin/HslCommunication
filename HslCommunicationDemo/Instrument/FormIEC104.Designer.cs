@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.textBox_port = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.textBox15 = new System.Windows.Forms.TextBox();
+			this.textBox_station = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -101,11 +101,11 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.textBox2);
+			this.panel1.Controls.Add(this.textBox_port);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox3);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.textBox15);
+			this.panel1.Controls.Add(this.textBox_station);
 			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
@@ -115,13 +115,13 @@
 			this.panel1.Size = new System.Drawing.Size(997, 54);
 			this.panel1.TabIndex = 0;
 			// 
-			// textBox2
+			// textBox_port
 			// 
-			this.textBox2.Location = new System.Drawing.Point(250, 14);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(76, 23);
-			this.textBox2.TabIndex = 11;
-			this.textBox2.Text = "2404";
+			this.textBox_port.Location = new System.Drawing.Point(250, 14);
+			this.textBox_port.Name = "textBox_port";
+			this.textBox_port.Size = new System.Drawing.Size(76, 23);
+			this.textBox_port.TabIndex = 11;
+			this.textBox_port.Text = "2404";
 			// 
 			// label3
 			// 
@@ -132,13 +132,13 @@
 			this.label3.TabIndex = 10;
 			this.label3.Text = "端口号：";
 			// 
-			// textBox3
+			// textBox_ip
 			// 
-			this.textBox3.Location = new System.Drawing.Point(62, 14);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(128, 23);
-			this.textBox3.TabIndex = 9;
-			this.textBox3.Text = "127.0.0.1";
+			this.textBox_ip.Location = new System.Drawing.Point(62, 14);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(128, 23);
+			this.textBox_ip.TabIndex = 9;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label1
 			// 
@@ -149,22 +149,22 @@
 			this.label1.TabIndex = 8;
 			this.label1.Text = "Ip地址：";
 			// 
-			// textBox15
+			// textBox_station
 			// 
-			this.textBox15.Location = new System.Drawing.Point(394, 14);
-			this.textBox15.Name = "textBox15";
-			this.textBox15.Size = new System.Drawing.Size(37, 23);
-			this.textBox15.TabIndex = 7;
-			this.textBox15.Text = "1";
+			this.textBox_station.Location = new System.Drawing.Point(421, 14);
+			this.textBox_station.Name = "textBox_station";
+			this.textBox_station.Size = new System.Drawing.Size(97, 23);
+			this.textBox_station.TabIndex = 7;
+			this.textBox_station.Text = "1";
 			// 
 			// label21
 			// 
 			this.label21.AutoSize = true;
 			this.label21.Location = new System.Drawing.Point(346, 17);
 			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(44, 17);
+			this.label21.Size = new System.Drawing.Size(68, 17);
 			this.label21.TabIndex = 6;
-			this.label21.Text = "站号：";
+			this.label21.Text = "公共地址：";
 			// 
 			// button2
 			// 
@@ -391,8 +391,8 @@
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.Azure;
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -770,12 +770,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox textBox_station;
         private System.Windows.Forms.Label label21;
         private DemoControl.UserControlHead userControlHead1;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox textBox_port;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox textBox_ip;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.TextBox textBox1;

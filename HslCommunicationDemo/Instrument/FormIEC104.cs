@@ -62,15 +62,22 @@ namespace HslCommunicationDemo
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox2.Text,out int port ))
+			if(!int.TryParse(textBox_port.Text,out int port ))
 			{
 				MessageBox.Show( DemoUtils.PortInputWrong );
 				return;
 			}
 
+			if (!int.TryParse( textBox_station.Text, out int station ))
+			{
+				MessageBox.Show( "Station Input wrong!" );
+				return;
+			}
+
 			button1.Enabled = false;
 			iec104?.ConnectClose( );
-			iec104 = new IEC104( textBox3.Text, port );
+			iec104 = new IEC104( textBox_ip.Text, port );
+			iec104.Station = station;
 			iec104.OnIEC104MessageReceived += Iec104_IEC104MessageReceived;
 			iec104.LogNet = LogNet;
 			try
@@ -290,15 +297,17 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPort,      textBox_port.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStation,   textBox_station.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			textBox_ip.Text      = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_port.Text    = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

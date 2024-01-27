@@ -116,9 +116,16 @@ namespace HslCommunicationDemo
 			else
 				panelLeft.Activate( );
 
-			FormIndex formIndex = new FormIndex( );
-			formIndex.Show( dockPanel1, DockState.Document );
-			// new FormHslMap( ).Show( dockPanel1 );
+			if (Program.ShowAuthorInfomation)
+			{
+				FormIndex formIndex = new FormIndex( );
+				formIndex.Show( dockPanel1, DockState.Document );
+				// new FormHslMap( ).Show( dockPanel1 );
+			}
+			else
+			{
+				this.Text = "调试工具";
+			}
 
 			timer = new System.Windows.Forms.Timer( );
 			timer.Interval = 1000;
@@ -127,6 +134,11 @@ namespace HslCommunicationDemo
 
 			newVersionToolStripMenuItem.Visible = false;
 			activeToolStripMenuItem.Click += ActiveToolStripMenuItem_Click;
+
+			aboutToolStripMenuItem.Visible     = Program.ShowAuthorInfomation;
+			toolStripMenuItem_homepage.Visible = Program.ShowAuthorInfomation;
+			日志ToolStripMenuItem.Visible      = Program.ShowAuthorInfomation;
+			免责条款ToolStripMenuItem.Visible  = Program.ShowAuthorInfomation;
 		}
 
 		private void PanelLeft_FormClosing( object sender, FormClosingEventArgs e )

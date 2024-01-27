@@ -267,6 +267,13 @@ namespace HslCommunicationDemo
 			return OperateResult.CreateSuccessResult( (short)random.Next( 10000 ) );
 		}
 
+
+		[HslMqttApi( "获取两个数的除法信息，a: 第一个数 b: 第二个数" )]
+		public OperateResult<int> Devide( int a = 200, int b = 10 )
+		{
+			return OperateResult.CreateSuccessResult( a / b );
+		}
+
 		[HslMqttApi( "读取设备的Int16数组信息，address: 设备的地址 length: 读取的数据长度" )]
 		public OperateResult<short[]> ReadInt16Array( string address, short length )
 		{

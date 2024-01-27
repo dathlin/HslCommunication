@@ -35,20 +35,23 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V11.7.0
-1. SiemensS7Net: 西门子的用于计数的消息id在重连plc的时候，自动重置为1，然后重新开始计数。
-2. DLT645: DLT645协议新增对返回的站号检查是否一致的功能，如果刚好站号倒序，则也认为一致。优化消息接收，即使报文前面跟了几个字节的无用信息。
-3. ModbusRtuOverTcp: 优化通信机制，对于单次接收的报文支持了更多的容错，如果CRC校验失败，不再关闭当前的socket连接操作。
-4. MqttServer: 当客户端订阅一个主题之后，如果这个主题属于消息驻留的主题，给当前客户端返回的消息里增加Retain=true标记，方便客户端标记。
-5. MqttServer: 注册MRPC的接口时，如果之前已经有相关的接口注册，现在改为直接覆盖，然后变量参数名自动适配 value 和 values，这两个没找到就相互替换名称。
-6. DLT645Server: 新增DLT645-2007协议虚拟仪表实现，支持一些常见的数据的简单测试，例如电压，电流，频率，时间等信息。
-7. Newtonsoft.Json, NET20项目，NET35项目，NET451项目对JSON库的引用调整SpecificVersion为 False
-8. Demo: 地址示例的表格支持右键弹出上下文菜单，点击复制地址，即可复制当前的地址信息。
-9. Demo: 数据点位表控件DataTableControl修复虚拟服务器不能刷新数据的bug，新增了双击值表格写入数据的功能。
-10. Demo: 修复DEMO服务器的部分ip地址获取网址解析不出数据的bug，所有的襄阳地址均改为襄樊，方便旧版地址显示。
-11. MqttClient: 不兼容更新，收到MQTT的事件签名OnMqttMessageReceived修改为MqttMessageReceiveDelegate( MqttClient client, MqttApplicationMessage message );支持携带Retain信息。
-12. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
-13. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V11.8.0
+1. SiemensS7Server: 西门子PLC的虚拟服务器，当客户端连接的时候握手报文也进行输出到日志上面。
+2. OpenProtocolNet: 新增属性RevisonOnConnected，用来设置连接初始化时的MID0001的revison信息，如果小于0，初始化连接时则不使用MID0001
+3. AdsHelper: 倍福的ADS协议里的部分错误码提示的消息附带一些建议的解决方法，可以快速查找问题。
+4. SiemensS7Helper: s7协议里如果执行写入wstring类型的字符串时，当检测到字符串最大长度为0时，自动分配254长度的字符串。
+5. MC1EServer: MC协议的虚拟服务器及MC1EServer的虚拟服务器支持了S0,F0 地址，也支持远程客户端读写该地址。
+6. MqttRpc: 在Mqtt服务器注册了RPC服务器接口后，当注册的自定义的接口方法本身发生异常时，增加提供原始异常相关的本文及堆栈信息。
+7. SiemensS7Net: S7协议新增对地址 SM0.0 的支持，在200系列上测试成功。 新增 PIW0,  PQW0 外设地址，在S7-300上测试成功。
+8. HslReflectionHelper: 解析HslStructAttribute特性时，类型为字符串时，修复编码为GB2312，但是编码设置异常的bug，现在自动忽略大小写。
+9. OmronFinsTcpServer: 虚拟PLC支持了CF地址及DR地址类型的读写操作。
+10. OmronCipServer: 当服务器创建了bool[]数组的标签时，修复客户端读写该标签不一致的bug。
+11. IEC104: 104规约总召唤方法的传送原因默认值改为06，新增属性Station表示单元公共地址，并在DEMO上可设置。
+12. ABBWebApiClient: abb机器人代码优化精简，部分接口自动解析更多的数据，demo测试界面显示优化，同时显示解析结果和html文本。
+13. OmronFinsUdp: 报文里的SID字段每次通信将自增1，然后校验返回报文是否一致，虚拟服务器适配客户端。
+14. OmronFinsNetHelper: Fins协议针对EndCode结束码判断增加网络异常标记位判断，直接返回读写失败及错误消息。
+15. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址：http://www.hsltechnology.cn/Doc/HslCommunication
+16. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

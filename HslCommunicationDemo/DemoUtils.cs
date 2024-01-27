@@ -151,6 +151,19 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		public static string GetTimeCost( DateTime start )
+		{
+			TimeSpan ts = DateTime.Now - start;
+			if (ts.TotalSeconds < 60)
+				return ts.TotalMilliseconds.ToString( "F0" ) + " ms";
+			else if (ts.TotalSeconds < 3600)
+				return ts.TotalSeconds.ToString( "F1" ) + " s";
+			else if (ts.TotalMinutes < 1440)
+				return ts.TotalSeconds.ToString( "F1" ) + " min";
+			else
+				return ts.ToString( );
+		}
+
 		/// <summary>
 		/// 将消息文本添加到文本显示控件上去
 		/// </summary>

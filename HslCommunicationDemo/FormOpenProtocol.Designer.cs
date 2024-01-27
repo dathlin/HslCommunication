@@ -49,6 +49,8 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_revison_connect = new System.Windows.Forms.TextBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox_port = new System.Windows.Forms.TextBox();
@@ -280,6 +282,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_revison_connect);
+			this.panel1.Controls.Add(this.label9);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox_port);
@@ -292,32 +296,50 @@
 			this.panel1.Size = new System.Drawing.Size(1001, 42);
 			this.panel1.TabIndex = 4;
 			// 
+			// textBox_revison_connect
+			// 
+			this.textBox_revison_connect.Location = new System.Drawing.Point(549, 9);
+			this.textBox_revison_connect.Name = "textBox_revison_connect";
+			this.textBox_revison_connect.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_revison_connect.Size = new System.Drawing.Size(42, 23);
+			this.textBox_revison_connect.TabIndex = 7;
+			this.textBox_revison_connect.Text = "1";
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(402, 12);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(144, 17);
+			this.label9.TabIndex = 6;
+			this.label9.Text = "RevisonOnConnected：";
+			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(584, 6);
+			this.button2.Location = new System.Drawing.Point(701, 6);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
-			this.button2.Text = "disconnect";
+			this.button2.Text = "Disconnect";
 			this.button2.UseVisualStyleBackColor = true;
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(477, 6);
+			this.button1.Location = new System.Drawing.Point(602, 6);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
-			this.button1.Text = "connect";
+			this.button1.Text = "Connect";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.Button1_Click);
 			// 
 			// textBox_port
 			// 
-			this.textBox_port.Location = new System.Drawing.Point(334, 9);
+			this.textBox_port.Location = new System.Drawing.Point(331, 9);
 			this.textBox_port.Name = "textBox_port";
 			this.textBox_port.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_port.Size = new System.Drawing.Size(72, 23);
+			this.textBox_port.Size = new System.Drawing.Size(58, 23);
 			this.textBox_port.TabIndex = 3;
 			this.textBox_port.Text = "4545";
 			// 
@@ -402,5 +424,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-    }
+		private System.Windows.Forms.TextBox textBox_revison_connect;
+		private System.Windows.Forms.Label label9;
+	}
 }

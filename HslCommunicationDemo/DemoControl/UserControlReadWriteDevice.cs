@@ -35,6 +35,7 @@ namespace HslCommunicationDemo.DemoControl
 				tabPage2.Text = "Frame Message Read";
 				tabPage3.Text = "Thread Test";
 				tabPage4.Text = "Data Table";
+				tabPage5.Text = "Data Export";
 			}
 
 			batchReadControl2.IsSourceReadMode = true;

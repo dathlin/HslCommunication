@@ -19,8 +19,10 @@ namespace HslCommunicationDemo.PLC.Siemens
 				new DeviceAddressExample( "DB1.0", "数据寄存器", true, true, "位地址示例：DB1.0.1, 也可以输入 DB1.DBD100" ),
 				new DeviceAddressExample( "V0",    "数据寄存器", true, true, "等同于DB1.0" ),
 
-				new DeviceAddressExample( "T0",    "定时器寄存器", true, true, "smart200测试通过" ),
-				new DeviceAddressExample( "C0",    "计数器寄存器", true, true, "smart200测试通过" ),
+				new DeviceAddressExample( "SM0",   "系统寄存器", true, true, "System flags of 200 family, 位地址示例：SM1.6" ),
+				new DeviceAddressExample( "P0",    "外设寄存器", true, true, "Direct peripheral access, 也可以输入：PIW0, PQW0" ),
+				new DeviceAddressExample( "T0",    "定时器寄存器", true, true, "Smart200测试通过" ),
+				new DeviceAddressExample( "C0",    "计数器寄存器", true, true, "Smart200测试通过" ),
 				new DeviceAddressExample( "AI0",   "智能输入寄存器", false, true, "仅支持字单位" ),
 				new DeviceAddressExample( "AQ0",   "智能输出寄存器", false, true, "仅支持字单位" ),
 			};
