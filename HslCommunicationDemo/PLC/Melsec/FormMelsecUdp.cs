@@ -88,6 +88,7 @@ namespace HslCommunicationDemo
 			melsec_net.LogNet = LogNet;
 			melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
 			melsec_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
+			//melsec_net.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Any, 20000 );  // 如果需要固定本地的端口20000的例子
 			//melsec_net.GetPipeSocket( ).SetMultiPorts( new int[] { port, 6001 } );
 			button2.Enabled = true;
 			button1.Enabled = false;
