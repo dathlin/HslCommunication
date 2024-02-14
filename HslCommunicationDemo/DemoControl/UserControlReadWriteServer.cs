@@ -106,6 +106,10 @@ namespace HslCommunicationDemo.DemoControl
 				checkBox_cycle.Text = "Cycle?";
 				button_data_import.Text = "DataImport";
 				button_import_abort.Text = "ImportAbort";
+
+				tabPage1.Text = "LogInfo";
+				tabPage2.Text = "Batch Read";
+				tabPage3.Text = "Data Table";
 			}
 		}
 

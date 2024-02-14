@@ -54,6 +54,7 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.radioButton_hex = new System.Windows.Forms.RadioButton();
 			this.radioButton5 = new System.Windows.Forms.RadioButton();
 			this.radioButton3 = new System.Windows.Forms.RadioButton();
 			this.radioButton4 = new System.Windows.Forms.RadioButton();
@@ -66,7 +67,6 @@
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.radioButton_hex = new System.Windows.Forms.RadioButton();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -148,7 +148,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(8, 47);
+			this.label6.Location = new System.Drawing.Point(5, 47);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(44, 17);
 			this.label6.TabIndex = 16;
@@ -341,6 +341,16 @@
 			this.panel3.Size = new System.Drawing.Size(243, 28);
 			this.panel3.TabIndex = 26;
 			// 
+			// radioButton_hex
+			// 
+			this.radioButton_hex.AutoSize = true;
+			this.radioButton_hex.Location = new System.Drawing.Point(3, 3);
+			this.radioButton_hex.Name = "radioButton_hex";
+			this.radioButton_hex.Size = new System.Drawing.Size(48, 21);
+			this.radioButton_hex.TabIndex = 29;
+			this.radioButton_hex.Text = "Hex";
+			this.radioButton_hex.UseVisualStyleBackColor = true;
+			// 
 			// radioButton5
 			// 
 			this.radioButton5.AutoSize = true;
@@ -359,6 +369,7 @@
 			this.radioButton3.Name = "radioButton3";
 			this.radioButton3.Size = new System.Drawing.Size(50, 21);
 			this.radioButton3.TabIndex = 26;
+			this.radioButton3.TabStop = true;
 			this.radioButton3.Text = "Text";
 			this.radioButton3.UseVisualStyleBackColor = true;
 			// 
@@ -468,16 +479,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// radioButton_hex
-			// 
-			this.radioButton_hex.AutoSize = true;
-			this.radioButton_hex.Location = new System.Drawing.Point(3, 3);
-			this.radioButton_hex.Name = "radioButton_hex";
-			this.radioButton_hex.Size = new System.Drawing.Size(48, 21);
-			this.radioButton_hex.TabIndex = 29;
-			this.radioButton_hex.Text = "Hex";
-			this.radioButton_hex.UseVisualStyleBackColor = true;
 			// 
 			// FormWebsocketClient
 			// 

@@ -54,7 +54,9 @@ namespace HslCommunicationDemo
 			{
 				Text = "Websocket Client Test";
 				label1.Text = "Ip:";
+				label2.Text = "Name:";
 				label3.Text = "Port:";
+				label4.Text = "Pwd:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label6.Text = "Topic:";
@@ -63,6 +65,7 @@ namespace HslCommunicationDemo
 				button4.Text = "Clear";
 				label12.Text = "Receive:";
 				button5.Text = "Press Test";
+
 			}
 		}
 

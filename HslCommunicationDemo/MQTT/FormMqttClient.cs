@@ -65,6 +65,13 @@ namespace HslCommunicationDemo
 				button8.Text           = "unsubscribe";
 				button_publish.Text    = "Publish";
 				button_will_topic.Text = "Will";
+				label6.Text            = "ClientID:";
+				label2.Text            = "Name:";
+				label4.Text            = "Pwd:";
+				button3.Text           = "Window-Sub";
+				radioButton2.Text      = "Append";
+				radioButton1.Text      = "Cover";
+				label5.Text            = "Timeout";
 			}
 		}
 

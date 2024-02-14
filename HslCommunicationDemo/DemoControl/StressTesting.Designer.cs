@@ -81,7 +81,7 @@
 			this.groupBox_press.Controls.Add(this.label_thread_count);
 			this.groupBox_press.Location = new System.Drawing.Point(3, 3);
 			this.groupBox_press.Name = "groupBox_press";
-			this.groupBox_press.Size = new System.Drawing.Size(401, 230);
+			this.groupBox_press.Size = new System.Drawing.Size(401, 280);
 			this.groupBox_press.TabIndex = 0;
 			this.groupBox_press.TabStop = false;
 			this.groupBox_press.Text = "Thread Settings";
@@ -233,7 +233,7 @@
 			this.hslProgressBar1.Location = new System.Drawing.Point(105, 19);
 			this.hslProgressBar1.Name = "hslProgressBar1";
 			this.hslProgressBar1.ProgressStyle = HslControls.ProgressStyle.Percent;
-			this.hslProgressBar1.Size = new System.Drawing.Size(335, 23);
+			this.hslProgressBar1.Size = new System.Drawing.Size(422, 23);
 			this.hslProgressBar1.TabIndex = 11;
 			// 
 			// groupBox1
@@ -258,7 +258,7 @@
 			this.groupBox1.Controls.Add(this.label_pressure_progress);
 			this.groupBox1.Location = new System.Drawing.Point(410, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(446, 230);
+			this.groupBox1.Size = new System.Drawing.Size(533, 280);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Test Result";
@@ -389,7 +389,7 @@
 			this.Controls.Add(this.groupBox_press);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "StressTesting";
-			this.Size = new System.Drawing.Size(859, 236);
+			this.Size = new System.Drawing.Size(946, 286);
 			this.Load += new System.EventHandler(this.StressTesting_Load);
 			this.groupBox_press.ResumeLayout(false);
 			this.groupBox_press.PerformLayout();

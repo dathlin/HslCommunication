@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication.Core;
 using System.Security.Cryptography;
+using HslControls;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -26,6 +28,8 @@ namespace HslCommunicationDemo
 		public FormMqttServer( )
 		{
 			InitializeComponent( );
+
+			comboBox_session_select.SelectedIndexChanged += ComboBox_session_select_SelectedIndexChanged;
 		}
 
 		private void FormClient_Load( object sender, EventArgs e )
@@ -39,6 +43,44 @@ namespace HslCommunicationDemo
 			timer1s.Interval = 1000;
 			timer1s.Tick += Timer1s_Tick;
 			timer1s.Start( );
+
+
+		}
+
+		private Button button_publish = null;
+
+		private void checkBox_publish_timer_CheckedChanged( object sender, EventArgs e )
+		{
+			if (!checkBox_publish_timer.Checked)
+			{
+				button_publish = null;
+				timer_publish?.Stop( );
+				timer_publish?.Dispose( );
+			}
+			else
+			{
+				// 启动一个定时器
+				if (!int.TryParse(textBox1.Text, out int publishTimer ))
+				{
+					MessageBox.Show( "Timer interval input wrong!" );
+					return;
+				}
+				timer_publish = new Timer( );
+				timer_publish.Interval = publishTimer;
+				timer_publish.Tick += Timer_publish_Tick;
+				timer_publish.Start( );
+			}
+		}
+
+		private void Timer_publish_Tick( object sender, EventArgs e )
+		{
+			if (button_publish == null)
+			{
+			}
+			else
+			{
+				button_publish.PerformClick( );
+			}
 		}
 
 		private void Timer1s_Tick( object sender, EventArgs e )
@@ -52,6 +94,7 @@ namespace HslCommunicationDemo
 		}
 
 		private Timer timer1s;
+		private Timer timer_publish;
 
 		private void Language( int language )
 		{
@@ -69,11 +112,14 @@ namespace HslCommunicationDemo
 				label8.Text = "";
 				label9.Text = "Payload:";
 				button3.Text = "Publish All";
-				button4.Text = "Clear";
+				button_clear.Text = "Clear";
 				button6.Text = "Publish";
 				label12.Text = "Receive:";
 				checkBox3.Text = "Send test message back when client connect";
 				checkBox2.Text = "Willcards";
+				checkBox_publish_timer.Text = "Timer";
+				button_stop.Text = "Stop";
+				checkBox_long_message_hide.Text = "Long text for partial display";
 			}
 		}
 
@@ -90,6 +136,7 @@ namespace HslCommunicationDemo
 				mqttServer = new MqttServer( );
 				mqttServer.OnClientApplicationMessageReceive += MqttServer_OnClientApplicationMessageReceive;
 				mqttServer.OnClientConnected                 += MqttServer_OnClientConnected;
+				mqttServer.OnClientDisConnected              += MqttServer_OnClientDisConnected;
 				mqttServer.TopicWildcard = checkBox2.Checked;
 				if (checkBox1.Checked)
 				{
@@ -116,6 +163,7 @@ namespace HslCommunicationDemo
 			}
 		}
 
+
 		private void button8_Click( object sender, EventArgs e )
 		{
 			//button8.Enabled = false;
@@ -140,7 +188,32 @@ namespace HslCommunicationDemo
 				// 当客户端连接上来时，可以立即返回一些数据内容信息
 				mqttServer.PublishTopicPayload( session, "HslMqtt", Encoding.UTF8.GetBytes( "This is a test message" ) );
 			}
+
+			comboBox_session_select.DataSource = mqttServer.OnlineSessions;
 		}
+
+		private void MqttServer_OnClientDisConnected( MqttSession session )
+		{
+			comboBox_session_select.DataSource = mqttServer.OnlineSessions;
+		}
+
+		private void ComboBox_session_select_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			if (comboBox_session_select.SelectedItem is MqttSession session)
+			{
+				textBox_session_onlineTime.Text = session.OnlineTime.ToString( DemoUtils.DateTimeFormate );
+				textBox_session_activeTime.Text = session.ActiveTime.ToString( DemoUtils.DateTimeFormate );
+				textBox_session_ip.Text = session.EndPoint.Address.ToString( );
+				textBox_session_port.Text = session.EndPoint.Port.ToString( );
+				textBox_session_clientID.Text = session.ClientId;
+				textBox_session_rsa.Text = session.IsAesCryptography.ToString( );
+				textBox_session_userName.Text = session.UserName;
+				textBox_session_willTopic.Text = session.WillTopic;
+
+				textBox_session_topics.Lines = session.GetTopics( );
+			}
+		}
+
 
 		private int MqttServer_ClientVerification( MqttSession mqttSession, string clientId, string userName, string passwrod )
 		{
@@ -151,6 +224,36 @@ namespace HslCommunicationDemo
 		}
 
 		private long receiveCount = 0;
+
+		private TopicSaveItem GetSavedTopicItem( MqttSession session, MqttClientApplicationMessage message )
+		{
+			// 如果 session 为空，则是服务器自己发布的消息
+			TopicSaveItem currentItem;
+			lock (all_dicts)
+			{
+				if (all_dicts.ContainsKey( message.Topic ))
+				{
+					all_dicts[message.Topic].Session = session;
+					all_dicts[message.Topic].Message = message;
+					all_dicts[message.Topic].ReceiveDateTime = DateTime.Now;
+					all_dicts[message.Topic].Count++;
+					currentItem = all_dicts[message.Topic];
+				}
+				else
+				{
+					TopicSaveItem item = new TopicSaveItem( );
+					item.Topic = message.Topic;
+					item.Message = message;
+					item.ReceiveDateTime = DateTime.Now;
+					item.Session = session;
+					item.Count = 1;
+
+					currentItem = item;
+					all_dicts.Add( message.Topic, item );
+				}
+			}
+			return currentItem;
+		}
 
 		private void MqttServer_OnClientApplicationMessageReceive( MqttSession session, MqttClientApplicationMessage message )
 		{
@@ -217,28 +320,90 @@ namespace HslCommunicationDemo
 					// mqttServer.ReportObjectApiMethod( session, message, this );
 				}
 			}
+			else if (session.Protocol == "MQTT")
+			{
+				TopicSaveItem currentItem = GetSavedTopicItem( session, message );
+
+				Invoke( new Action( ( ) =>
+				{
+					if (currentItem != null)
+					{
+						if (currentItem.ViewRow != null)
+						{
+							currentItem.RenderRow( );
+						}
+						else
+						{
+							int index = dataGridView1.Rows.Add( );
+							currentItem.RenderRow( dataGridView1.Rows[index] );
+						}
+
+						if (object.ReferenceEquals( currentItem, selectedItem ))
+						{
+							RenderTopicSaveItem( currentItem );
+						}
+					}
+						//AddressExampleControl.DataGridSpecifyRowCount( dataGridView1, saveItems.Length );
+						//for (int i = 0; i < saveItems.Length; i++)
+						//{
+						//	dataGridView1.Rows[i].Cells[0].Value = (i + 1).ToString( );
+						//	dataGridView1.Rows[i].Cells[1].Value = saveItems[i].Topic;
+						//	dataGridView1.Rows[i].Cells[2].Value = saveItems[i].Count.ToString( );
+						//	dataGridView1.Rows[i].Tag = saveItems[i];
+						//}
+				} ) );
+			}
 
 			Invoke( new Action( ( ) =>
 			{
 				if (!isStop)
 				{
 					receiveCount++;
-					if (message.Payload?.Length > 100 && checkBox_long_message_hide.Checked)
-					{
-						if (checkBox_receive_isHex.Checked)
-							textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{message.Payload.SelectBegin( 100 ).ToHexString( ' ' )}...]" + Environment.NewLine );
-						else
-							textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload.SelectBegin( 100 ) )}...]" + Environment.NewLine );
-					}
-					else
-					{
-						if (checkBox_receive_isHex.Checked)
-							textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{message.Payload.ToHexString(' ')}]" + Environment.NewLine );
-						else
-							textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
-					}
+					textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) +
+						$" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload{(message.Retain ? "-Retain" : "")}:[{GetStringFromPayload( message.Payload )}]" + Environment.NewLine );
 				}
 			} ) );
+		}
+
+		private Dictionary<string, TopicSaveItem> all_dicts = new Dictionary<string, TopicSaveItem>( );
+		private TopicSaveItem selectedItem = null;
+
+		private void RenderTopicSaveItem( TopicSaveItem item )
+		{
+			textBox_topic_retain.Text = item.Message.Retain.ToString( );
+			textBox_topic_publishTime.Text = item.ReceiveDateTime.ToString( HslCommunicationDemo.DemoUtils.DateTimeFormate );
+			if (item.Session != null)
+				textBox_topic_publishSession.Text = item.Session.ToString( );
+			else
+				textBox_topic_publishSession.Text = string.Empty;
+			textBox_topic_payload.Text = GetStringFromPayload( item.Message.Payload );
+		}
+
+		private void dataGridView1_CellMouseDoubleClick( object sender, DataGridViewCellMouseEventArgs e )
+		{
+			if (dataGridView1.SelectedRows.Count > 0)
+			{
+				if (dataGridView1.SelectedRows[0].Tag is TopicSaveItem item)
+				{
+					RenderTopicSaveItem( item );
+					selectedItem = item;
+				}
+			}
+		}
+
+		private string GetStringFromPayload( byte[] payload )
+		{
+			string tmp = string.Empty;
+			if (payload == null) payload = new byte[0];
+
+			if (radioButton_recv_Hex.Checked) tmp = payload.ToHexString( ' ' );
+			else if (radioButton_recv_ASCII.Checked) tmp = Encoding.ASCII.GetString( payload );
+			else if (radioButton_recv_Unicode.Checked) tmp = Encoding.Unicode.GetString( payload );
+			else if (radioButton_recv_UTF8.Checked) tmp = Encoding.UTF8.GetString( payload );
+			else if (radioButton_recv_gb2312.Checked) tmp = Encoding.GetEncoding( "gb2312" ).GetString( payload );
+
+			if (tmp?.Length > 100 && checkBox_long_message_hide.Checked) tmp = tmp.Substring( 0, 100 ) + "...";
+			return tmp;
 		}
 
 		[HslMqttApi("检查账户的信息")]
@@ -405,7 +570,10 @@ namespace HslCommunicationDemo
 
 		private void button3_Click( object sender, EventArgs e )
 		{
-			mqttServer.PublishAllClientTopicPayload( textBox5.Text, checkBox_publish_isHex.Checked ? textBox4.Text.ToHexBytes( ) : Encoding.UTF8.GetBytes( textBox4.Text ) );
+			// 发布所有
+			mqttServer.PublishAllClientTopicPayload( textBox5.Text, checkBox_publish_isHex.Checked ? textBox4.Text.ToHexBytes( ) : Encoding.UTF8.GetBytes( textBox4.Text ), 
+				checkBox_retain.Checked);
+			button_publish = button3;
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -418,13 +586,15 @@ namespace HslCommunicationDemo
 		private void Button5_Click( object sender, EventArgs e )
 		{
 			// 发布到指定的客户端ID
-			mqttServer.PublishTopicPayload( textBox1.Text, textBox5.Text, checkBox_publish_isHex.Checked ? textBox4.Text.ToHexBytes( ) : Encoding.UTF8.GetBytes( textBox4.Text ) );
+			mqttServer.PublishTopicPayload( textBox_publish_clientID.Text, textBox5.Text, checkBox_publish_isHex.Checked ? textBox4.Text.ToHexBytes( ) : Encoding.UTF8.GetBytes( textBox4.Text ), checkBox_retain.Checked );
+			button_publish = button5;
 		}
 
 		private void button6_Click_1( object sender, EventArgs e )
 		{
 			// 发布指定的主题
-			mqttServer.PublishTopicPayload( textBox5.Text, checkBox_publish_isHex.Checked ? textBox4.Text.ToHexBytes( ) : Encoding.UTF8.GetBytes( textBox4.Text ) );
+			mqttServer.PublishTopicPayload( textBox5.Text, checkBox_publish_isHex.Checked ? textBox4.Text.ToHexBytes( ) : Encoding.UTF8.GetBytes( textBox4.Text ), checkBox_retain.Checked );
+			button_publish = button6;
 		}
 
 		bool isStop = false;
@@ -432,13 +602,13 @@ namespace HslCommunicationDemo
 		{
 			if (!isStop)
 			{
-				button7.Text = "继续";
+				button_stop.Text = "继续";
 				isStop = true;
 			}
 			else
 			{
 				isStop = false;
-				button7.Text = "暂停";
+				button_stop.Text = "暂停";
 			}
 		}
 
@@ -461,6 +631,70 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
+	}
+
+	public class TopicSaveItem
+	{
+		public TopicSaveItem( ) 
+		{
+			ID = System.Threading.Interlocked.Increment( ref newId );
+		}
+
+
+		/// <summary>
+		/// 序号信息
+		/// </summary>
+		public long ID { get; set; }
+
+		/// <summary>
+		/// 当前的主题
+		/// </summary>
+		public string Topic { get; set; }
+
+		/// <summary>
+		/// 收到的时间
+		/// </summary>
+		public DateTime ReceiveDateTime { get; set; }
+
+		/// <summary>
+		/// 收到的会话
+		/// </summary>
+		public MqttSession Session { get; set; }
+
+		/// <summary>
+		/// 消息信息
+		/// </summary>
+		public MqttClientApplicationMessage Message { get; set; }
+
+		/// <summary>
+		/// 收到的次数
+		/// </summary>
+		public long Count { get; set; }
+
+		/// <summary>
+		/// 显示的行信息
+		/// </summary>
+		public DataGridViewRow ViewRow { get; set; }
+
+		public void RenderRow( DataGridViewRow row )
+		{
+			row.Cells[0].Value = ID.ToString( );
+			row.Cells[1].Value = Topic;
+			row.Cells[2].Value = Count.ToString( );
+			row.Tag = this;
+			ViewRow = row;
+		}
+
+
+		public void RenderRow( )
+		{
+			if (ViewRow == null) return;
+			ViewRow.Cells[0].Value = ID.ToString( );
+			ViewRow.Cells[1].Value = Topic;
+			ViewRow.Cells[2].Value = Count.ToString( );
+		}
+
+		private static long newId = 0;
 	}
 
 

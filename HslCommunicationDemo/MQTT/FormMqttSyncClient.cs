@@ -22,6 +22,9 @@ namespace HslCommunicationDemo
 		public FormMqttSyncClient( )
 		{
 			InitializeComponent( );
+
+			treeView1.AfterSelect += TreeView1_AfterSelect;
+			treeView1.NodeMouseDoubleClick += TreeView1_NodeMouseDoubleClick;
 		}
 
 		private void FormClient_Load( object sender, EventArgs e )
@@ -39,13 +42,15 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "Method_636",            Properties.Resources.Method_636 );         // 哈希
 			imageList.Images.Add( "Module_648",            Properties.Resources.Module_648 );         // 集合
 			imageList.Images.Add( "Structure_507",         Properties.Resources.Structure_507 );   // 有序集合
+			imageList.Images.Add( "server_info",           Properties.Resources.server_info );   // 在线客户端
 
-			treeView1.AfterSelect += TreeView1_AfterSelect;
 			treeView1.ImageList = imageList;
 			treeView1.Nodes[0].ImageKey = "VirtualMachine";
 			treeView1.Nodes[0].SelectedImageKey = "VirtualMachine";
 			treeView1.Nodes[1].ImageKey = "VirtualMachine";
 			treeView1.Nodes[1].SelectedImageKey = "VirtualMachine";
+			treeView1.Nodes[2].ImageKey = "VirtualMachine";
+			treeView1.Nodes[2].SelectedImageKey = "VirtualMachine";
 
 			codeExampleControl = new CodeExampleControl( );
 			DemoUtils.AddSpecialFunctionTab( this.tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
@@ -113,6 +118,7 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 				MqttRpcApiRefresh( treeView1.Nodes[0] );
 				TopicsRefresh( treeView1.Nodes[1] );
+				SessionsRefresh( treeView1.Nodes[2] );
 				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
 
 				// 设置代码示例
@@ -254,6 +260,7 @@ namespace HslCommunicationDemo
 		{
 			MqttRpcApiRefresh( treeView1.Nodes[0] );
 			TopicsRefresh( treeView1.Nodes[1] );
+			SessionsRefresh( treeView1.Nodes[2] );
 		}
 
 		public void UpdateMqttTopicMessage( MqttClientApplicationMessage message )
@@ -313,6 +320,34 @@ namespace HslCommunicationDemo
 			foreach (var item in read.Content)
 			{
 				AddTreeNode( rootNode, item.ApiTopic, item.ApiTopic, item );
+			}
+
+			rootNode.Expand( );
+		}
+		private void SessionsRefresh( TreeNode rootNode )
+		{
+
+			rootNode.Nodes.Clear( );
+			// 加载所有的键值信息
+			OperateResult<MqttSessionInfo[]> read = mqttSyncClient.ReadSessions( );
+			if (!read.IsSuccess)
+			{
+				label_info.Text = "MqttServer not support Session API";
+				return;
+			}
+			else
+			{
+				label_info.Text = "Session Count: " + read.Content.Length.ToString( );
+			}
+
+			// 填充tree
+			foreach (var item in read.Content)
+			{
+				TreeNode node = new TreeNode( $"{item.EndPoint.ToString()}" );
+				node.Tag = item;
+				node.ImageKey = "server_info";
+				node.SelectedImageKey = "server_info";
+				rootNode.Nodes.Add( node );
 			}
 
 			rootNode.Expand( );
@@ -425,9 +460,13 @@ namespace HslCommunicationDemo
 				{
 					tabControl1.SelectTab( this.tabPage1 );
 				}
-				else
+				else if (node.Text == "Topics")
 				{
 					tabControl1.SelectTab( this.tabPage2 );
+				}
+				else if (node.Text == "Sessions")
+				{
+					tabControl1.SelectTab( this.tabPage3 );
 				}
 			}
 			else if(node.Tag is MqttRpcApiInfo apiInfo)
@@ -473,6 +512,43 @@ namespace HslCommunicationDemo
 				else
 				{
 					UpdateMqttTopicMessage( message.Content );
+				}
+			}
+			else if (node.Tag is MqttSessionInfo session)
+			{
+				if (!object.ReferenceEquals( tabControl1.SelectedTab, tabPage3 ))
+				{
+					tabControl1.SelectedTab = tabPage3;
+				}
+				textBox_session_onlineTime.Text = session.OnlineTime.ToString( HslCommunicationDemo.DemoUtils.DateTimeFormate );
+				textBox_session_activeTime.Text = session.ActiveTime.ToString( HslCommunicationDemo.DemoUtils.DateTimeFormate );
+				textBox_session_ip.Text = session.EndPoint;
+				textBox_session_protocol.Text = session.Protocol;
+				textBox_session_developer.Text = session.DeveloperPermissions.ToString( );
+				textBox_session_forbid.Text = session.ForbidPublishTopic.ToString( );
+				textBox_session_clientID.Text = session.ClientId;
+				textBox_session_rsa.Text = session.IsAesCryptography.ToString( );
+				textBox_session_userName.Text = session.UserName;
+				textBox_session_willTopic.Text = session.WillTopic;
+
+				textBox_session_topics.Lines = session.Topics;
+			}
+		}
+
+		private void TreeView1_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
+		{
+			TreeNode node = e.Node;
+			if (node.SelectedImageKey == "VirtualMachine")
+			{
+				if (node.Text == "Sessions")
+				{
+					SessionsRefresh( treeView1.Nodes[2] );
+					treeView1.Nodes[2].ExpandAll( );
+				}
+				else if (node.Text == "Topics")
+				{
+					TopicsRefresh( treeView1.Nodes[1] );
+					treeView1.Nodes[1].ExpandAll( );
 				}
 			}
 		}

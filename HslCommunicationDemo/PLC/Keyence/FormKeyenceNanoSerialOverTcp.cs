@@ -23,7 +23,6 @@ namespace HslCommunicationDemo
 		public FormKeyenceNanoSerialOverTcp( )
 		{
 			InitializeComponent( );
-			keyence = new KeyenceNanoSerialOverTcp( );
 		}
 
 
@@ -84,7 +83,6 @@ namespace HslCommunicationDemo
 			}
 
 
-			keyence?.ConnectClose( );
 			keyence = new KeyenceNanoSerialOverTcp( );
 			keyence.IpAddress = textBox1.Text;
 			keyence.Port = port;
@@ -103,7 +101,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.SetReadWriteNet( keyence, "DM100", false );
+					userControlReadWriteDevice1.SetReadWriteNet( keyence, "DM100", isAsync: true );
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( keyence, "DM100", string.Empty );
 					// 设置报文读取
@@ -116,7 +114,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + Environment.NewLine + "Reason: " + connect.Message );
 				}
 
 			}

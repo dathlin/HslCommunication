@@ -13,6 +13,7 @@ namespace HslCommunicationDemo
 	/// </summary>
 	public class DemoUtils
 	{
+		public static string DateTimeFormate = "yyyy-MM-dd HH:mm:ss.fff";
 
 		/// <summary>
 		/// 将 <see cref="DataGridView"/> 的行数控制在指定的行数
