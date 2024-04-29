@@ -33,6 +33,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 
 			control = new McQna3EControl( );
@@ -75,7 +76,7 @@ namespace HslCommunicationDemo
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
-			melsec_net.IpAddress = textBox1.Text;
+			melsec_net.IpAddress = textBox_ip.Text;
 
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
@@ -222,7 +223,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( "EnableWriteBitToWordRegister", checkBox_EnableWriteBitToWordRegister.Text );
 
@@ -232,7 +233,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );
 

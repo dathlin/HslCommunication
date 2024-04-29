@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
 			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			checkBox_remote_write.CheckedChanged += CheckBox1_CheckedChanged;
 			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
+			checkBox_maskcode.CheckedChanged += CheckBox_maskcode_CheckedChanged;
 			checkBox_account.CheckedChanged += CheckBox2_CheckedChanged;
 
 			if (Program.Language == 2)
@@ -44,7 +45,9 @@ namespace HslCommunicationDemo
 				label14.Text = "Com:";
 				button5.Text = "Open Com";
 				checkBox3.Text = "str-reverse";
-				checkBox_remote_write.Text = "Whether to run remote write operation";
+				checkBox_remote_write.Text = "Allow remote write";
+				checkBox_RtuOverTcp.Text = "Rtu over tcp";
+				label2.Text = "Least Time:";
 			}
 			else
 			{
@@ -61,6 +64,14 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 
 			userControlReadWriteServer1.SetEnable( false );
+		}
+
+		private void CheckBox_maskcode_CheckedChanged( object sender, EventArgs e )
+		{
+			if (busTcpServer != null)
+			{
+				busTcpServer.EnableWriteMaskCode = checkBox_maskcode.Checked;
+			}
 		}
 
 		private void Panel3_Paint( object sender, PaintEventArgs e )
@@ -80,7 +91,7 @@ namespace HslCommunicationDemo
 		{
 			if (busTcpServer != null)
 			{
-				busTcpServer.IsUseAccountCertificate = checkBox_account.Checked;
+				//busTcpServer.IsUseAccountCertificate = checkBox_account.Checked;
 			}
 		}
 
@@ -134,10 +145,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				if (radioButton_tcp.Checked)
-					busTcpServer = new HslCommunication.ModBus.ModbusTcpServer( );                       // 实例化对象
-				else
-					busTcpServer = new HslCommunication.ModBus.ModbusUdpServer( );
+				busTcpServer = new HslCommunication.ModBus.ModbusTcpServer( );                       // 实例化对象
 				busTcpServer.ActiveTimeSpan           = TimeSpan.FromHours( 1 );
 				busTcpServer.OnDataReceived           += BusTcpServer_OnDataReceived;
 				busTcpServer.EnableWrite              = checkBox_remote_write.Checked;
@@ -145,18 +153,19 @@ namespace HslCommunicationDemo
 				busTcpServer.Station                  = station;
 				busTcpServer.StationDataIsolation     = checkBox_station_isolation.Checked;
 				busTcpServer.UseModbusRtuOverTcp      = checkBox_RtuOverTcp.Checked;
-				busTcpServer.IsUseAccountCertificate  = checkBox_account.Checked;
+				busTcpServer.EnableWriteMaskCode      = checkBox_maskcode.Checked;
+				//busTcpServer.IsUseAccountCertificate  = checkBox_account.Checked;
 				busTcpServer.ForceSerialReceiveOnce   = checkBox_forceReceiveOnce.Checked;
 
 				// add some accounts
-				busTcpServer.AddAccount( "admin", "123456" );
-				busTcpServer.AddAccount( "hsl",   "test" );
+				//busTcpServer.AddAccount( "admin", "123456" );
+				//busTcpServer.AddAccount( "hsl",   "test" );
 
 				ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
 				busTcpServer.IsStringReverse = checkBox3.Checked;
 
 				userControlReadWriteServer1.SetReadWriteServer( busTcpServer, "100" );
-				busTcpServer.ServerStart( port );
+				busTcpServer.ServerStart( port, radioButton_tcp.Checked );
 
 				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
@@ -171,6 +180,7 @@ namespace HslCommunicationDemo
 					nameof( busTcpServer.StationDataIsolation ), 
 					nameof( busTcpServer.UseModbusRtuOverTcp ),
 					nameof( busTcpServer.IsStringReverse ),
+					nameof( busTcpServer.EnableWriteMaskCode ),
 					nameof( busTcpServer.DataFormat ) );
 			}
 			catch (Exception ex)
@@ -232,7 +242,7 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					busTcpServer.SerialReceiveAtleastTime = Convert.ToInt32( textBox3.Text );
+					busTcpServer.SerialReceiveAtleastTime = Convert.ToInt32( textBox_time_min.Text );
 					busTcpServer.StartSerialSlave( textBox10.Text );
 					button5.Enabled = false;
 
@@ -269,6 +279,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( "StationIsolation", checkBox_station_isolation.Checked );
 			element.SetAttributeValue( "Ipv6", checkBox_ipv6.Checked );
 			element.SetAttributeValue( "Station", textBox_station.Text );
+			element.SetAttributeValue( "MaskCode", checkBox_maskcode.Checked );
 
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
@@ -285,6 +296,7 @@ namespace HslCommunicationDemo
 			checkBox_station_isolation.Checked = GetXmlValue( element, "StationIsolation", false, bool.Parse );
 			checkBox_ipv6.Checked = GetXmlValue( element, "Ipv6", false, bool.Parse );
 			textBox_station.Text = GetXmlValue( element, "Station", "1", m => m );
+			checkBox_maskcode.Checked = GetXmlValue( element, "MaskCode", true, bool.Parse );
 
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}

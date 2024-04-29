@@ -58,7 +58,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "Melsec Read PLC Demo";
+				Text = "Turck Reader Demo";
 
 				label1.Text = "Ip:";
 				label3.Text = "Port:";

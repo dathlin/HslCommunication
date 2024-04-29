@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.SelectedIndex = 2;
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
 			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
@@ -111,7 +112,7 @@ namespace HslCommunicationDemo
 			}
 
 			megMeet?.ConnectClose( );
-			megMeet = new MegMeetSerialOverTcp( textBox1.Text, port, station );
+			megMeet = new MegMeetSerialOverTcp( textBox_ip.Text, port, station );
 			megMeet.AddressStartWithZero = checkBox1.Checked;
 			megMeet.LogNet = LogNet;
 
@@ -165,7 +166,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
@@ -178,7 +179,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );

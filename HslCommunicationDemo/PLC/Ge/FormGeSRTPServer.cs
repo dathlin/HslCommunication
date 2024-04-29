@@ -71,9 +71,9 @@ namespace HslCommunicationDemo
 				geSRTPServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				geSRTPServer.OnDataReceived += BusTcpServer_OnDataReceived;
 				
+				userControlReadWriteServer1.SetReadWriteServer( geSRTPServer, "R1" );
 				geSRTPServer.ServerStart( port );
 
-				userControlReadWriteServer1.SetReadWriteServer( geSRTPServer, "R1" );
 				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;

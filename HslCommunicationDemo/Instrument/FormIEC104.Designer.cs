@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox_port = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -117,7 +117,7 @@
 			// 
 			// textBox_port
 			// 
-			this.textBox_port.Location = new System.Drawing.Point(250, 14);
+			this.textBox_port.Location = new System.Drawing.Point(268, 14);
 			this.textBox_port.Name = "textBox_port";
 			this.textBox_port.Size = new System.Drawing.Size(76, 23);
 			this.textBox_port.TabIndex = 11;
@@ -126,7 +126,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(196, 17);
+			this.label3.Location = new System.Drawing.Point(214, 17);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 10;
@@ -136,7 +136,7 @@
 			// 
 			this.textBox_ip.Location = new System.Drawing.Point(62, 14);
 			this.textBox_ip.Name = "textBox_ip";
-			this.textBox_ip.Size = new System.Drawing.Size(128, 23);
+			this.textBox_ip.Size = new System.Drawing.Size(146, 23);
 			this.textBox_ip.TabIndex = 9;
 			this.textBox_ip.Text = "127.0.0.1";
 			// 
@@ -151,7 +151,7 @@
 			// 
 			// textBox_station
 			// 
-			this.textBox_station.Location = new System.Drawing.Point(421, 14);
+			this.textBox_station.Location = new System.Drawing.Point(439, 14);
 			this.textBox_station.Name = "textBox_station";
 			this.textBox_station.Size = new System.Drawing.Size(97, 23);
 			this.textBox_station.TabIndex = 7;
@@ -160,7 +160,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(346, 17);
+			this.label21.Location = new System.Drawing.Point(364, 17);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(68, 17);
 			this.label21.TabIndex = 6;
@@ -391,8 +391,8 @@
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.Azure;
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));

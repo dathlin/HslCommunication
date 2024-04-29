@@ -29,6 +29,7 @@ namespace HslCommunicationDemo
 
 		private void FormClient_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			panel2.Enabled = false;
 			panel4.Enabled = false;
 			button2.Enabled = false;
@@ -95,7 +96,7 @@ namespace HslCommunicationDemo
 			// 连接
 			MqttConnectionOptions options = new MqttConnectionOptions( )
 			{
-				IpAddress = textBox1.Text,
+				IpAddress = textBox_ip.Text,
 				Port = int.Parse( textBox2.Text ),
 				ClientId = textBox3.Text,
 				UseRSAProvider = checkBox_rsa.Checked,
@@ -569,7 +570,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlCompanyID, textBox3.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox9.Text );
@@ -579,7 +580,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox3.Text = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;
 			textBox9.Text = element.Attribute( DemoDeviceList.XmlUserName ).Value;

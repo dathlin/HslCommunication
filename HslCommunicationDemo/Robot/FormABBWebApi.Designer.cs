@@ -41,6 +41,8 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.label10 = new System.Windows.Forms.Label();
+			this.textBox_mechunit = new System.Windows.Forms.TextBox();
 			this.label_time_cost = new System.Windows.Forms.Label();
 			this.label_11 = new System.Windows.Forms.Label();
 			this.textBox_url_read = new System.Windows.Forms.TextBox();
@@ -78,6 +80,13 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.label11 = new System.Windows.Forms.Label();
+			this.textBox_io_network = new System.Windows.Forms.TextBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.textBox_io_unit = new System.Windows.Forms.TextBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.textBox_io_signal = new System.Windows.Forms.TextBox();
+			this.button_io_signal = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -210,6 +219,15 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.button_io_signal);
+			this.panel2.Controls.Add(this.label13);
+			this.panel2.Controls.Add(this.textBox_io_signal);
+			this.panel2.Controls.Add(this.label12);
+			this.panel2.Controls.Add(this.textBox_io_unit);
+			this.panel2.Controls.Add(this.label11);
+			this.panel2.Controls.Add(this.textBox_io_network);
+			this.panel2.Controls.Add(this.label10);
+			this.panel2.Controls.Add(this.textBox_mechunit);
 			this.panel2.Controls.Add(this.label_time_cost);
 			this.panel2.Controls.Add(this.label_11);
 			this.panel2.Controls.Add(this.textBox_url_read);
@@ -248,6 +266,23 @@
 			this.panel2.Size = new System.Drawing.Size(986, 520);
 			this.panel2.TabIndex = 32;
 			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(7, 74);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(63, 17);
+			this.label10.TabIndex = 43;
+			this.label10.Text = "mechunit:";
+			// 
+			// textBox_mechunit
+			// 
+			this.textBox_mechunit.Location = new System.Drawing.Point(77, 70);
+			this.textBox_mechunit.Name = "textBox_mechunit";
+			this.textBox_mechunit.Size = new System.Drawing.Size(101, 23);
+			this.textBox_mechunit.TabIndex = 42;
+			this.textBox_mechunit.Text = "ROB_1";
+			// 
 			// label_time_cost
 			// 
 			this.label_time_cost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -274,7 +309,7 @@
 			// 
 			this.textBox_url_read.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_url_read.Location = new System.Drawing.Point(76, 140);
+			this.textBox_url_read.Location = new System.Drawing.Point(76, 165);
 			this.textBox_url_read.Name = "textBox_url_read";
 			this.textBox_url_read.ReadOnly = true;
 			this.textBox_url_read.Size = new System.Drawing.Size(906, 23);
@@ -282,7 +317,7 @@
 			// 
 			// button18
 			// 
-			this.button18.Location = new System.Drawing.Point(912, 105);
+			this.button18.Location = new System.Drawing.Point(912, 130);
 			this.button18.Name = "button18";
 			this.button18.Size = new System.Drawing.Size(59, 27);
 			this.button18.TabIndex = 38;
@@ -292,7 +327,7 @@
 			// 
 			// textBox_user_value_name
 			// 
-			this.textBox_user_value_name.Location = new System.Drawing.Point(779, 107);
+			this.textBox_user_value_name.Location = new System.Drawing.Point(779, 132);
 			this.textBox_user_value_name.Name = "textBox_user_value_name";
 			this.textBox_user_value_name.Size = new System.Drawing.Size(130, 23);
 			this.textBox_user_value_name.TabIndex = 37;
@@ -301,7 +336,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(736, 111);
+			this.label8.Location = new System.Drawing.Point(736, 136);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(43, 17);
 			this.label8.TabIndex = 36;
@@ -320,7 +355,7 @@
 			// 
 			// button17
 			// 
-			this.button17.Location = new System.Drawing.Point(566, 105);
+			this.button17.Location = new System.Drawing.Point(566, 130);
 			this.button17.Name = "button17";
 			this.button17.Size = new System.Drawing.Size(119, 27);
 			this.button17.TabIndex = 34;
@@ -330,7 +365,7 @@
 			// 
 			// button16
 			// 
-			this.button16.Location = new System.Drawing.Point(441, 105);
+			this.button16.Location = new System.Drawing.Point(441, 130);
 			this.button16.Name = "button16";
 			this.button16.Size = new System.Drawing.Size(119, 27);
 			this.button16.TabIndex = 33;
@@ -340,7 +375,7 @@
 			// 
 			// button15
 			// 
-			this.button15.Location = new System.Drawing.Point(822, 68);
+			this.button15.Location = new System.Drawing.Point(739, 98);
 			this.button15.Name = "button15";
 			this.button15.Size = new System.Drawing.Size(102, 27);
 			this.button15.TabIndex = 32;
@@ -350,7 +385,7 @@
 			// 
 			// button14
 			// 
-			this.button14.Location = new System.Drawing.Point(714, 68);
+			this.button14.Location = new System.Drawing.Point(631, 98);
 			this.button14.Name = "button14";
 			this.button14.Size = new System.Drawing.Size(102, 27);
 			this.button14.TabIndex = 31;
@@ -360,7 +395,7 @@
 			// 
 			// button13
 			// 
-			this.button13.Location = new System.Drawing.Point(606, 68);
+			this.button13.Location = new System.Drawing.Point(523, 98);
 			this.button13.Name = "button13";
 			this.button13.Size = new System.Drawing.Size(102, 27);
 			this.button13.TabIndex = 30;
@@ -370,7 +405,7 @@
 			// 
 			// button12
 			// 
-			this.button12.Location = new System.Drawing.Point(370, 105);
+			this.button12.Location = new System.Drawing.Point(370, 130);
 			this.button12.Name = "button12";
 			this.button12.Size = new System.Drawing.Size(67, 27);
 			this.button12.TabIndex = 29;
@@ -380,7 +415,7 @@
 			// 
 			// button10
 			// 
-			this.button10.Location = new System.Drawing.Point(297, 105);
+			this.button10.Location = new System.Drawing.Point(297, 130);
 			this.button10.Name = "button10";
 			this.button10.Size = new System.Drawing.Size(67, 27);
 			this.button10.TabIndex = 28;
@@ -390,7 +425,7 @@
 			// 
 			// button11
 			// 
-			this.button11.Location = new System.Drawing.Point(223, 105);
+			this.button11.Location = new System.Drawing.Point(223, 130);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(68, 27);
 			this.button11.TabIndex = 27;
@@ -400,7 +435,7 @@
 			// 
 			// button9
 			// 
-			this.button9.Location = new System.Drawing.Point(150, 105);
+			this.button9.Location = new System.Drawing.Point(150, 130);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(67, 27);
 			this.button9.TabIndex = 26;
@@ -410,7 +445,7 @@
 			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(76, 105);
+			this.button8.Location = new System.Drawing.Point(76, 130);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(68, 27);
 			this.button8.TabIndex = 25;
@@ -420,7 +455,7 @@
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(498, 68);
+			this.button7.Location = new System.Drawing.Point(415, 98);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(102, 27);
 			this.button7.TabIndex = 24;
@@ -430,7 +465,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(375, 68);
+			this.button6.Location = new System.Drawing.Point(292, 98);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(117, 27);
 			this.button6.TabIndex = 23;
@@ -440,7 +475,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(267, 68);
+			this.button5.Location = new System.Drawing.Point(184, 98);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(102, 27);
 			this.button5.TabIndex = 22;
@@ -452,7 +487,7 @@
 			// 
 			this.button4.Location = new System.Drawing.Point(184, 68);
 			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(77, 27);
+			this.button4.Size = new System.Drawing.Size(102, 27);
 			this.button4.TabIndex = 21;
 			this.button4.Text = "Joints";
 			this.button4.UseVisualStyleBackColor = true;
@@ -460,7 +495,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(76, 68);
+			this.button3.Location = new System.Drawing.Point(76, 98);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(102, 27);
 			this.button3.TabIndex = 20;
@@ -480,7 +515,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(11, 40);
+			this.label9.Location = new System.Drawing.Point(3, 40);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(81, 17);
 			this.label9.TabIndex = 18;
@@ -495,9 +530,9 @@
 			this.panel3.Controls.Add(this.textBox_web_text);
 			this.panel3.Controls.Add(this.textBox6);
 			this.panel3.Controls.Add(this.webBrowser1);
-			this.panel3.Location = new System.Drawing.Point(76, 168);
+			this.panel3.Location = new System.Drawing.Point(76, 192);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(907, 332);
+			this.panel3.Size = new System.Drawing.Size(907, 308);
 			this.panel3.TabIndex = 17;
 			// 
 			// textBox_web_text
@@ -509,7 +544,7 @@
 			this.textBox_web_text.Multiline = true;
 			this.textBox_web_text.Name = "textBox_web_text";
 			this.textBox_web_text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_web_text.Size = new System.Drawing.Size(472, 327);
+			this.textBox_web_text.Size = new System.Drawing.Size(472, 303);
 			this.textBox_web_text.TabIndex = 15;
 			// 
 			// textBox6
@@ -520,7 +555,7 @@
 			this.textBox6.Multiline = true;
 			this.textBox6.Name = "textBox6";
 			this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox6.Size = new System.Drawing.Size(424, 331);
+			this.textBox6.Size = new System.Drawing.Size(424, 307);
 			this.textBox6.TabIndex = 5;
 			// 
 			// webBrowser1
@@ -531,7 +566,7 @@
 			this.webBrowser1.Location = new System.Drawing.Point(430, 0);
 			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(472, 327);
+			this.webBrowser1.Size = new System.Drawing.Size(472, 303);
 			this.webBrowser1.TabIndex = 14;
 			// 
 			// radioButton2
@@ -585,7 +620,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(16, 168);
+			this.label6.Location = new System.Drawing.Point(7, 192);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(53, 51);
 			this.label6.TabIndex = 4;
@@ -603,7 +638,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(12, 10);
+			this.label5.Location = new System.Drawing.Point(7, 10);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(26, 17);
 			this.label5.TabIndex = 2;
@@ -631,6 +666,67 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Basic Function";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(301, 74);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(58, 17);
+			this.label11.TabIndex = 45;
+			this.label11.Text = "network:";
+			// 
+			// textBox_io_network
+			// 
+			this.textBox_io_network.Location = new System.Drawing.Point(368, 70);
+			this.textBox_io_network.Name = "textBox_io_network";
+			this.textBox_io_network.Size = new System.Drawing.Size(69, 23);
+			this.textBox_io_network.TabIndex = 44;
+			this.textBox_io_network.Text = "Local";
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(443, 73);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(32, 17);
+			this.label12.TabIndex = 47;
+			this.label12.Text = "unit:";
+			// 
+			// textBox_io_unit
+			// 
+			this.textBox_io_unit.Location = new System.Drawing.Point(480, 70);
+			this.textBox_io_unit.Name = "textBox_io_unit";
+			this.textBox_io_unit.Size = new System.Drawing.Size(69, 23);
+			this.textBox_io_unit.TabIndex = 46;
+			this.textBox_io_unit.Text = "DRV_1";
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(553, 73);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(45, 17);
+			this.label13.TabIndex = 49;
+			this.label13.Text = "signal:";
+			// 
+			// textBox_io_signal
+			// 
+			this.textBox_io_signal.Location = new System.Drawing.Point(606, 70);
+			this.textBox_io_signal.Name = "textBox_io_signal";
+			this.textBox_io_signal.Size = new System.Drawing.Size(69, 23);
+			this.textBox_io_signal.TabIndex = 48;
+			this.textBox_io_signal.Text = "DRV1K1";
+			// 
+			// button_io_signal
+			// 
+			this.button_io_signal.Location = new System.Drawing.Point(684, 69);
+			this.button_io_signal.Name = "button_io_signal";
+			this.button_io_signal.Size = new System.Drawing.Size(102, 27);
+			this.button_io_signal.TabIndex = 50;
+			this.button_io_signal.Text = "IO Signal ";
+			this.button_io_signal.UseVisualStyleBackColor = true;
+			this.button_io_signal.Click += new System.EventHandler(this.button_io_signal_Click);
 			// 
 			// FormABBWebApi
 			// 
@@ -709,5 +805,14 @@
 		private System.Windows.Forms.Label label_time_cost;
 		private System.Windows.Forms.Label label_11;
 		private System.Windows.Forms.Button button_close;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.TextBox textBox_mechunit;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.TextBox textBox_io_network;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.TextBox textBox_io_unit;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.TextBox textBox_io_signal;
+		private System.Windows.Forms.Button button_io_signal;
 	}
 }

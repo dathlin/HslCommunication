@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet.Siemens;
 using HslCommunicationDemo.Control;
+using HslCommunicationDemo.DemoControl;
 using HslCommunicationDemo.PLC.Omron;
 
 namespace HslCommunicationDemo
@@ -133,7 +134,7 @@ namespace HslCommunicationDemo
 
         private void linkLabel2_Click( object sender, EventArgs e )
         {
-            HslCommunication.BasicFramework.FormSupport form = new HslCommunication.BasicFramework.FormSupport( );
+            FormSupport form = new FormSupport( );
             form.ShowDialog( );
         }
 
@@ -233,42 +234,6 @@ namespace HslCommunicationDemo
             Show( );
         }
 
-        private void button16_Click( object sender, EventArgs e )
-        {
-            Hide( );
-            System.Threading.Thread.Sleep( 200 );
-            using (FormBasicControl form = new FormBasicControl( ))
-            {
-                form.ShowDialog( );
-            }
-            System.Threading.Thread.Sleep( 200 );
-            Show( );
-        }
-
-        private void button17_Click( object sender, EventArgs e )
-        {
-            Hide( );
-            System.Threading.Thread.Sleep( 200 );
-            using (FormGauge form = new FormGauge( ))
-            {
-                form.ShowDialog( );
-            }
-            System.Threading.Thread.Sleep( 200 );
-            Show( );
-        }
-
-        private void button18_Click( object sender, EventArgs e )
-        {
-            Hide( );
-            System.Threading.Thread.Sleep( 200 );
-            using (FormCurve form = new FormCurve( ))
-            {
-                form.ShowDialog( );
-            }
-            System.Threading.Thread.Sleep( 200 );
-            Show( );
-        }
-
         private void button19_Click( object sender, EventArgs e )
         {
             Hide( );
@@ -312,7 +277,7 @@ namespace HslCommunicationDemo
 
         private void Support赞助ToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            using (HslCommunication.BasicFramework.FormSupport form = new HslCommunication.BasicFramework.FormSupport( ))
+            using (FormSupport form = new FormSupport( ))
             {
                 form.ShowDialog( );
             }
@@ -384,18 +349,6 @@ namespace HslCommunicationDemo
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void button20_Click( object sender, EventArgs e )
-        {
-            Hide( );
-            System.Threading.Thread.Sleep( 200 );
-            using (FormPieChart form = new FormPieChart( ))
-            {
-                form.ShowDialog( );
-            }
-            System.Threading.Thread.Sleep( 200 );
-            Show( );
         }
 
         private void button21_Click( object sender, EventArgs e )
@@ -648,7 +601,7 @@ namespace HslCommunicationDemo
 
         private void patronageToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            HslCommunication.BasicFramework.FormSupport form = new HslCommunication.BasicFramework.FormSupport( );
+            FormSupport form = new FormSupport( );
             form.ShowDialog( );
         }
 
@@ -694,12 +647,7 @@ namespace HslCommunicationDemo
         private void button41_Click( object sender, EventArgs e )
         {
             Hide( );
-            System.Threading.Thread.Sleep( 200 );
-            using (FormPipe form = new FormPipe( ))
-            {
-                form.ShowDialog( );
-            }
-            System.Threading.Thread.Sleep( 200 );
+
             Show( );
         }
 

@@ -31,6 +31,8 @@
 			this.panel_main = new System.Windows.Forms.Panel();
 			this.debugControl1 = new HslCommunicationDemo.HslDebug.DebugControl();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_buffer_length = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.textBox_localPort = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
@@ -46,8 +48,6 @@
 			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.textBox_buffer_length = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.panel_main.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel_tcp_udp.SuspendLayout();
@@ -98,6 +98,23 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(998, 60);
 			this.panel1.TabIndex = 14;
+			// 
+			// textBox_buffer_length
+			// 
+			this.textBox_buffer_length.Location = new System.Drawing.Point(688, 33);
+			this.textBox_buffer_length.Name = "textBox_buffer_length";
+			this.textBox_buffer_length.Size = new System.Drawing.Size(83, 23);
+			this.textBox_buffer_length.TabIndex = 24;
+			this.textBox_buffer_length.Text = "2048";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(615, 36);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(68, 17);
+			this.label2.TabIndex = 23;
+			this.label2.Text = "缓冲大小：";
 			// 
 			// label10
 			// 
@@ -243,23 +260,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1005, 32);
 			this.userControlHead1.TabIndex = 21;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// textBox_buffer_length
-			// 
-			this.textBox_buffer_length.Location = new System.Drawing.Point(617, 33);
-			this.textBox_buffer_length.Name = "textBox_buffer_length";
-			this.textBox_buffer_length.Size = new System.Drawing.Size(83, 23);
-			this.textBox_buffer_length.TabIndex = 24;
-			this.textBox_buffer_length.Text = "2048";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(544, 36);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(68, 17);
-			this.label2.TabIndex = 23;
-			this.label2.Text = "缓冲大小：";
 			// 
 			// FormTcpDebug
 			// 

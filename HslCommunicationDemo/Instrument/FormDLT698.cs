@@ -65,6 +65,7 @@ namespace HslCommunicationDemo
 			{
 				Text = "DLT698 Read Demo";
 
+				label_ca.Text = "        CA:";
 				label1.Text = "Com:";
 				label3.Text = "baudRate:";
 				label22.Text = "DataBit";
@@ -108,11 +109,19 @@ namespace HslCommunicationDemo
 				return;
 			}
 
+			if (!byte.TryParse(textBox_ca.Text, out byte ca ))
+			{
+				MessageBox.Show( "CA input wrong!" );
+				textBox_ca.Focus( );
+				return;
+			}
+
 			dLT698?.Close( );
 			dLT698 = new DLT698( textBox_station.Text );
 			dLT698.LogNet = LogNet;
 			dLT698.EnableCodeFE = checkBox_enable_Fe.Checked;
 			dLT698.UseSecurityResquest = checkBox_useSecurityResquest.Checked;
+			dLT698.CA = ca;
 
 			try
 			{
@@ -144,7 +153,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( dLT698, "20-00-02-00" );
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "dlt", dLT698, nameof( dLT698.Station ), nameof( dLT698.EnableCodeFE ), nameof( dLT698.UseSecurityResquest ) );
+					codeExampleControl.SetCodeText( "dlt", dLT698, nameof( dLT698.Station ), nameof( dLT698.EnableCodeFE ), nameof( dLT698.UseSecurityResquest ), nameof( dLT698.CA ) );
 				}
 				else
 				{
@@ -179,6 +188,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
 			element.SetAttributeValue( "UseSecurityResquest", checkBox_useSecurityResquest.Checked );
+			element.SetAttributeValue( "EnableFE",            checkBox_enable_Fe.Checked );
+			element.SetAttributeValue( "CA",                  textBox_ca.Text );
 
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -195,6 +206,8 @@ namespace HslCommunicationDemo
 			textBox_station.Text    = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox5.Checked       = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
 			checkBox_useSecurityResquest.Checked = GetXmlValue( element, "UseSecurityResquest", checkBox_useSecurityResquest.Checked, bool.Parse );
+			checkBox_enable_Fe.Checked           = GetXmlValue( element, "EnableFE", checkBox_enable_Fe.Checked, bool.Parse );
+			textBox_ca.Text                      = GetXmlValue( element, "CA", textBox_ca.Text, m => m );
 
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

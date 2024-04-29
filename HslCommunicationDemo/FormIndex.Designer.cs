@@ -49,10 +49,10 @@
 			// 
 			this.hslTitle1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.hslTitle1.EdgeColor = System.Drawing.Color.Bisque;
-			this.hslTitle1.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.hslTitle1.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.hslTitle1.FontLeft = null;
 			this.hslTitle1.FontRight = null;
-			this.hslTitle1.LeftRightEdgeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.hslTitle1.LeftRightEdgeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(81)))), ((int)(((byte)(119)))));
 			this.hslTitle1.Location = new System.Drawing.Point(0, 0);
 			this.hslTitle1.Name = "hslTitle1";
 			this.hslTitle1.Size = new System.Drawing.Size(700, 58);

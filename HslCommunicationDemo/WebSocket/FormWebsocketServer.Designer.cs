@@ -29,6 +29,10 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.button10 = new System.Windows.Forms.Button();
+			this.textBox_certFile = new System.Windows.Forms.TextBox();
+			this.checkBox_ssl = new System.Windows.Forms.CheckBox();
 			this.checkBox_willcard = new System.Windows.Forms.CheckBox();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -56,13 +60,11 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.checkBox_ssl = new System.Windows.Forms.CheckBox();
-			this.textBox_certFile = new System.Windows.Forms.TextBox();
-			this.button10 = new System.Windows.Forms.Button();
+			this.textBox_ssl_password = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
-			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
+			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -70,6 +72,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_ssl_password);
 			this.panel1.Controls.Add(this.panel3);
 			this.panel1.Controls.Add(this.checkBox_willcard);
 			this.panel1.Controls.Add(this.checkBox3);
@@ -79,16 +82,59 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
+			this.panel1.Controls.Add(this.label1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 72);
 			this.panel1.TabIndex = 7;
 			// 
+			// panel3
+			// 
+			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel3.Controls.Add(this.button10);
+			this.panel3.Controls.Add(this.textBox_certFile);
+			this.panel3.Controls.Add(this.checkBox_ssl);
+			this.panel3.Location = new System.Drawing.Point(442, 35);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(546, 31);
+			this.panel3.TabIndex = 10;
+			// 
+			// button10
+			// 
+			this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button10.Location = new System.Drawing.Point(502, 1);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(44, 28);
+			this.button10.TabIndex = 29;
+			this.button10.Text = "FILE";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
+			// 
+			// textBox_certFile
+			// 
+			this.textBox_certFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_certFile.Location = new System.Drawing.Point(83, 4);
+			this.textBox_certFile.Name = "textBox_certFile";
+			this.textBox_certFile.Size = new System.Drawing.Size(413, 23);
+			this.textBox_certFile.TabIndex = 11;
+			// 
+			// checkBox_ssl
+			// 
+			this.checkBox_ssl.AutoSize = true;
+			this.checkBox_ssl.Location = new System.Drawing.Point(18, 6);
+			this.checkBox_ssl.Name = "checkBox_ssl";
+			this.checkBox_ssl.Size = new System.Drawing.Size(59, 21);
+			this.checkBox_ssl.TabIndex = 10;
+			this.checkBox_ssl.Text = "SSL？";
+			this.checkBox_ssl.UseVisualStyleBackColor = true;
+			// 
 			// checkBox_willcard
 			// 
 			this.checkBox_willcard.AutoSize = true;
-			this.checkBox_willcard.Location = new System.Drawing.Point(162, 40);
+			this.checkBox_willcard.Location = new System.Drawing.Point(149, 41);
 			this.checkBox_willcard.Name = "checkBox_willcard";
 			this.checkBox_willcard.Size = new System.Drawing.Size(99, 21);
 			this.checkBox_willcard.TabIndex = 9;
@@ -100,7 +146,7 @@
 			this.checkBox3.AutoSize = true;
 			this.checkBox3.Checked = true;
 			this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox3.Location = new System.Drawing.Point(280, 40);
+			this.checkBox3.Location = new System.Drawing.Point(278, 41);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(147, 21);
 			this.checkBox3.TabIndex = 8;
@@ -122,7 +168,7 @@
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(468, 8);
+			this.checkBox1.Location = new System.Drawing.Point(390, 8);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(288, 21);
 			this.checkBox1.TabIndex = 6;
@@ -132,7 +178,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(353, 8);
+			this.button2.Location = new System.Drawing.Point(288, 4);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -142,7 +188,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(256, 8);
+			this.button1.Location = new System.Drawing.Point(191, 4);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -152,16 +198,16 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(62, 11);
+			this.textBox2.Location = new System.Drawing.Point(62, 7);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(160, 23);
+			this.textBox2.Size = new System.Drawing.Size(112, 23);
 			this.textBox2.TabIndex = 3;
 			this.textBox2.Text = "1883";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(8, 14);
+			this.label3.Location = new System.Drawing.Point(8, 10);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -379,47 +425,23 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// panel3
+			// textBox_ssl_password
 			// 
-			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.textBox_ssl_password.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.panel3.Controls.Add(this.button10);
-			this.panel3.Controls.Add(this.textBox_certFile);
-			this.panel3.Controls.Add(this.checkBox_ssl);
-			this.panel3.Location = new System.Drawing.Point(450, 32);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(541, 31);
-			this.panel3.TabIndex = 10;
+			this.textBox_ssl_password.Location = new System.Drawing.Point(810, 5);
+			this.textBox_ssl_password.Name = "textBox_ssl_password";
+			this.textBox_ssl_password.Size = new System.Drawing.Size(178, 23);
+			this.textBox_ssl_password.TabIndex = 13;
 			// 
-			// checkBox_ssl
+			// label1
 			// 
-			this.checkBox_ssl.AutoSize = true;
-			this.checkBox_ssl.Location = new System.Drawing.Point(18, 5);
-			this.checkBox_ssl.Name = "checkBox_ssl";
-			this.checkBox_ssl.Size = new System.Drawing.Size(59, 21);
-			this.checkBox_ssl.TabIndex = 10;
-			this.checkBox_ssl.Text = "SSL？";
-			this.checkBox_ssl.UseVisualStyleBackColor = true;
-			// 
-			// textBox_certFile
-			// 
-			this.textBox_certFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_certFile.Location = new System.Drawing.Point(83, 3);
-			this.textBox_certFile.Name = "textBox_certFile";
-			this.textBox_certFile.Size = new System.Drawing.Size(408, 23);
-			this.textBox_certFile.TabIndex = 11;
-			// 
-			// button10
-			// 
-			this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button10.Location = new System.Drawing.Point(497, 0);
-			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(44, 28);
-			this.button10.TabIndex = 29;
-			this.button10.Text = "FILE";
-			this.button10.UseVisualStyleBackColor = true;
-			this.button10.Click += new System.EventHandler(this.button10_Click);
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(710, 8);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(100, 17);
+			this.label1.TabIndex = 14;
+			this.label1.Text = "SSL Password：";
 			// 
 			// FormWebsocketServer
 			// 
@@ -438,10 +460,10 @@
 			this.Load += new System.EventHandler(this.FormClient_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
+			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -479,5 +501,7 @@
 		private System.Windows.Forms.Button button10;
 		private System.Windows.Forms.TextBox textBox_certFile;
 		private System.Windows.Forms.CheckBox checkBox_ssl;
+		private System.Windows.Forms.TextBox textBox_ssl_password;
+		private System.Windows.Forms.Label label1;
 	}
 }

@@ -19,6 +19,7 @@ namespace HslCommunicationDemo.PLC.Omron
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.TextBox textBox4;
+		private Button button_cpu_time;
 		private System.Windows.Forms.GroupBox groupBox2;
 
 		public FinsTcpControl( )
@@ -35,6 +36,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.button_cpu_time = new System.Windows.Forms.Button();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -43,6 +45,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.button_cpu_time);
 			this.groupBox2.Controls.Add(this.label5);
 			this.groupBox2.Controls.Add(this.button6);
 			this.groupBox2.Controls.Add(this.button5);
@@ -118,6 +121,16 @@ namespace HslCommunicationDemo.PLC.Omron
 			this.textBox4.Size = new System.Drawing.Size(824, 139);
 			this.textBox4.TabIndex = 17;
 			// 
+			// button_cpu_time
+			// 
+			this.button_cpu_time.Location = new System.Drawing.Point(396, 23);
+			this.button_cpu_time.Name = "button_cpu_time";
+			this.button_cpu_time.Size = new System.Drawing.Size(104, 28);
+			this.button_cpu_time.TabIndex = 23;
+			this.button_cpu_time.Text = "Cpu Time";
+			this.button_cpu_time.UseVisualStyleBackColor = true;
+			this.button_cpu_time.Click += new System.EventHandler(this.button_cpu_time_Click);
+			// 
 			// FinsTcpControl
 			// 
 			this.Controls.Add(this.groupBox2);
@@ -173,6 +186,16 @@ namespace HslCommunicationDemo.PLC.Omron
 			OperateResult<OmronCpuUnitStatus> read = omron.ReadCpuUnitStatus( );
 			if (read.IsSuccess)
 				textBox4.Text = read.Content.ToJsonString( );
+			else
+				MessageBox.Show( "read failed:" + read.Message );
+		}
+
+		private void button_cpu_time_Click( object sender, EventArgs e )
+		{
+			// read cpu status
+			OperateResult<DateTime> read = omron.ReadCpuTime( );
+			if (read.IsSuccess)
+				textBox4.Text = read.Content.ToString( );
 			else
 				MessageBox.Show( "read failed:" + read.Message );
 		}

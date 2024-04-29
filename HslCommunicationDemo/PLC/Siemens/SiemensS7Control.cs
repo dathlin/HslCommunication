@@ -606,7 +606,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 		}
 
-		private PipeSocket pipeSocket;
+		private PipeTcpNet pipeSocket;
 		private SiemensS7Net[] siemensS = new SiemensS7Net[3];
 
 		private int thread_status = 0;
@@ -618,13 +618,13 @@ namespace HslCommunicationDemo.PLC.Siemens
 		private void button12_Click( object sender, EventArgs e )
 		{
 			pipeSocket?.Socket?.Close( );
-			pipeSocket = new PipeSocket( "127.0.0.1", 102 );
+			pipeSocket = new PipeTcpNet( "127.0.0.1", 102 );
 			siemensS[0] = new SiemensS7Net( SiemensPLCS.S1200 );
 			siemensS[1] = new SiemensS7Net( SiemensPLCS.S1200 );
 			siemensS[2] = new SiemensS7Net( SiemensPLCS.S1200 );
-			siemensS[0].SetPipeSocket( pipeSocket );
-			siemensS[1].SetPipeSocket( pipeSocket );
-			siemensS[2].SetPipeSocket( pipeSocket );
+			siemensS[0].CommunicationPipe = pipeSocket;
+			siemensS[1].CommunicationPipe = pipeSocket;
+			siemensS[2].CommunicationPipe = pipeSocket;
 
 			thread_status = 3;
 			failed = 0;

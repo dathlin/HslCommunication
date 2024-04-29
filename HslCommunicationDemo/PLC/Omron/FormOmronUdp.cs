@@ -13,6 +13,7 @@ using HslCommunication.Profinet.Omron;
 using System.Xml.Linq;
 using HslCommunicationDemo.PLC.Omron;
 using HslCommunicationDemo.DemoControl;
+using System.Net;
 
 namespace HslCommunicationDemo
 {
@@ -32,8 +33,13 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
+
+
+			comboBox_plcType.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Profinet.Omron.OmronPlcType>( );
+			comboBox_plcType.SelectedItem = HslCommunication.Profinet.Omron.OmronPlcType.CSCJ;
 			button2.Enabled = false;
 
 			Language( Program.Language );
@@ -63,6 +69,7 @@ namespace HslCommunicationDemo
 				label1.Text = "Ip:";
 				label3.Text = "Port:";
 				button1.Text = "Create";
+				label_localport.Text = "LocalPort:";
 			}
 		}
 
@@ -97,7 +104,17 @@ namespace HslCommunicationDemo
 			}
 
 
-			omronFinsUdp = new OmronFinsUdp( textBox1.Text, port );
+			omronFinsUdp = new OmronFinsUdp( textBox_ip.Text, port );
+
+			if (!string.IsNullOrEmpty( textBox_localport.Text ))
+			{
+				if (!int.TryParse( textBox_localport.Text, out int localPort ))
+				{
+					MessageBox.Show( "localPort Input Wrong！" );
+					return;
+				}
+				omronFinsUdp.LocalBinding = new System.Net.IPEndPoint( IPAddress.Any, localPort );
+			}
 			userControlReadWriteDevice1.SetEnable( true );
 			button1.Enabled = false;
 			button2.Enabled = true;
@@ -118,6 +135,7 @@ namespace HslCommunicationDemo
 			omronFinsUdp.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 			omronFinsUdp.LogNet = LogNet;
 			omronFinsUdp.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
+			omronFinsUdp.PlcType = (OmronPlcType)comboBox_plcType.SelectedItem;
 
 
 			// 设置子控件的读取能力
@@ -149,7 +167,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlNetNumber, textBox_sa1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
@@ -160,7 +178,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox_sa1.Text = element.Attribute( DemoDeviceList.XmlNetNumber ).Value;
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );

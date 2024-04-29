@@ -35,7 +35,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBox19 = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
-			this.textBox20 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label29 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.button2 = new System.Windows.Forms.Button();
@@ -58,7 +58,7 @@
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.textBox19);
 			this.panel1.Controls.Add(this.label28);
-			this.panel1.Controls.Add(this.textBox20);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.label29);
 			this.panel1.Controls.Add(this.comboBox1);
 			this.panel1.Controls.Add(this.button2);
@@ -120,13 +120,13 @@
 			this.label28.TabIndex = 31;
 			this.label28.Text = "端口：";
 			// 
-			// textBox20
+			// textBox_ip
 			// 
-			this.textBox20.Location = new System.Drawing.Point(64, 10);
-			this.textBox20.Name = "textBox20";
-			this.textBox20.Size = new System.Drawing.Size(129, 23);
-			this.textBox20.TabIndex = 30;
-			this.textBox20.Text = "192.168.0.10";
+			this.textBox_ip.Location = new System.Drawing.Point(64, 10);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(129, 23);
+			this.textBox_ip.TabIndex = 30;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label29
 			// 
@@ -239,7 +239,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.TextBox textBox_ip;
         private System.Windows.Forms.Label label29;
         private DemoControl.UserControlHead userControlHead1;
 		private System.Windows.Forms.TextBox textBox_cpu_to;

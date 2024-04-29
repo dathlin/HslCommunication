@@ -59,9 +59,9 @@ namespace HslCommunicationDemo
                 fanucRobotServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
                 fanucRobotServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
-                fanucRobotServer.ServerStart( port );
+				userControlReadWriteServer1.SetReadWriteServer( fanucRobotServer, "D1" );
+				fanucRobotServer.ServerStart( port );
 
-                userControlReadWriteServer1.SetReadWriteServer( fanucRobotServer, "D0" );
                 button1.Enabled = false;
                 panel2.Enabled = true;
                 button11.Enabled = true;

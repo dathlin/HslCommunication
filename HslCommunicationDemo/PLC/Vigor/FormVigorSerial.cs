@@ -61,7 +61,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "FATEK Read PLC Demo";
+				Text = "Vigor Read PLC Demo";
 
 				label1.Text = "parity:";
 				label3.Text = "Stop bits";

@@ -254,7 +254,7 @@ namespace HslCommunicationDemo
 				label21.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				button3.Text = "Active";
+				button3.Text = "SendOnly";
 
 				label11.Text = "Address:";
 				label12.Text = "length:";

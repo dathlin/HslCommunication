@@ -67,10 +67,10 @@ namespace HslCommunicationDemo
 				tcpServer = new HslCommunication.Profinet.YASKAWA.MemobusTcpServer( );                       // 实例化对象
 				tcpServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				tcpServer.OnDataReceived += BusTcpServer_OnDataReceived;
-				
-				tcpServer.ServerStart( port );
-
 				userControlReadWriteServer1.SetReadWriteServer( tcpServer, "100" );
+
+				tcpServer.ServerStart( port, radioButton_tcp.Checked );
+
 				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;

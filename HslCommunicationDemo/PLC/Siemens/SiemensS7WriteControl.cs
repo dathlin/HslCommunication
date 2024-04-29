@@ -32,6 +32,10 @@ namespace HslCommunicationDemo.PLC.Siemens
 		{
 			DataGridView1_SizeChanged( dataGridView1, e );
 
+			if (Program.Language == 2)
+			{
+				button7.Text = "Single Msg Write";
+			}
 		}
 
 		private void DataGridView1_SizeChanged( object sender, EventArgs e )

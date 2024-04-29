@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.SelectedIndex = 2;
 			comboBox4.DataSource = SoftBasic.GetEnumValues<InovanceSeries>( );
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
@@ -111,7 +112,7 @@ namespace HslCommunicationDemo
 			}
 
 			inovance?.ConnectClose( );
-			inovance = new InovanceTcpNet( textBox1.Text, port, station );
+			inovance = new InovanceTcpNet( textBox_ip.Text, port, station );
 			inovance.AddressStartWithZero = checkBox1.Checked;
 			inovance.Series = (InovanceSeries)comboBox4.SelectedItem;
 
@@ -164,7 +165,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
@@ -178,7 +179,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );

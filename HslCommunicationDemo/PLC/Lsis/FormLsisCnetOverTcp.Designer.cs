@@ -29,7 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
@@ -39,8 +39,8 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -50,7 +50,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.label15);
 			this.panel1.Controls.Add(this.textBox15);
 			this.panel1.Controls.Add(this.label21);
@@ -65,13 +65,13 @@
 			this.panel1.Size = new System.Drawing.Size(997, 54);
 			this.panel1.TabIndex = 0;
 			// 
-			// textBox1
+			// textBox_ip
 			// 
-			this.textBox1.Location = new System.Drawing.Point(73, 14);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(118, 23);
-			this.textBox1.TabIndex = 31;
-			this.textBox1.Text = "192.168.0.10";
+			this.textBox_ip.Location = new System.Drawing.Point(73, 14);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(173, 23);
+			this.textBox_ip.TabIndex = 31;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label15
 			// 
@@ -83,7 +83,7 @@
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(449, 14);
+			this.textBox15.Location = new System.Drawing.Point(459, 14);
 			this.textBox15.Name = "textBox15";
 			this.textBox15.Size = new System.Drawing.Size(37, 23);
 			this.textBox15.TabIndex = 7;
@@ -92,7 +92,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(405, 17);
+			this.label21.Location = new System.Drawing.Point(415, 17);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(44, 17);
 			this.label21.TabIndex = 6;
@@ -121,7 +121,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(273, 14);
+			this.textBox2.Location = new System.Drawing.Point(306, 14);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(62, 23);
 			this.textBox2.TabIndex = 3;
@@ -130,7 +130,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(219, 17);
+			this.label3.Location = new System.Drawing.Point(252, 17);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(44, 17);
 			this.label3.TabIndex = 2;
@@ -158,6 +158,15 @@
 			this.panel2.Size = new System.Drawing.Size(997, 551);
 			this.panel2.TabIndex = 1;
 			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 549);
+			this.userControlReadWriteDevice1.TabIndex = 0;
+			// 
 			// userControlHead1
 			// 
 			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -172,15 +181,6 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// userControlReadWriteDevice1
-			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 549);
-			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// FormLsisCnetOverTcp
 			// 
@@ -218,7 +218,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label15;
         private DemoControl.UserControlHead userControlHead1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_ip;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 	}
 }

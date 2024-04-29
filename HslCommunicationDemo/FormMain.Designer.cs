@@ -31,18 +31,26 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.blogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.webSideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.support赞助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.authorization授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_language = new System.Windows.Forms.ToolStripMenuItem();
 			this.简体中文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem_homepage = new System.Windows.Forms.ToolStripMenuItem();
-			this.日志ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem_doc = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_Debug = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_CommunicationLog = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_SerialPort = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_tcpUDP = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_tcpUdpServer = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_serial2Tcp = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_tcp2Tcp = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_byteTransform = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_Help = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_HomePage = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_ApiDoc = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_Doc = new System.Windows.Forms.ToolStripMenuItem();
+			this.blogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem_SourceCode = new System.Windows.Forms.ToolStripMenuItem();
+			this.webSideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.support赞助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.authorization授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.verisonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.activeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.免责条款ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,14 +68,11 @@
 			// 
 			// menuStrip1
 			// 
-			this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(108)))), ((int)(((byte)(124)))));
+			this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem,
             this.toolStripMenuItem_language,
-            this.logToolStripMenuItem,
-            this.toolStripMenuItem_homepage,
-            this.日志ToolStripMenuItem,
-            this.toolStripMenuItem_doc,
+            this.toolStripMenuItem_Debug,
+            this.toolStripMenuItem_Help,
             this.verisonToolStripMenuItem,
             this.activeToolStripMenuItem,
             this.免责条款ToolStripMenuItem,
@@ -79,45 +84,6 @@
 			this.menuStrip1.TabIndex = 26;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
-			// aboutToolStripMenuItem
-			// 
-			this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.blogsToolStripMenuItem,
-            this.webSideToolStripMenuItem,
-            this.support赞助ToolStripMenuItem,
-            this.authorization授权ToolStripMenuItem});
-			this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(55, 21);
-			this.aboutToolStripMenuItem.Text = "About";
-			// 
-			// blogsToolStripMenuItem
-			// 
-			this.blogsToolStripMenuItem.Name = "blogsToolStripMenuItem";
-			this.blogsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-			this.blogsToolStripMenuItem.Text = "Blogs [博客]";
-			this.blogsToolStripMenuItem.Click += new System.EventHandler(this.blogsToolStripMenuItem_Click);
-			// 
-			// webSideToolStripMenuItem
-			// 
-			this.webSideToolStripMenuItem.Name = "webSideToolStripMenuItem";
-			this.webSideToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-			this.webSideToolStripMenuItem.Text = "WebSide [官网]";
-			this.webSideToolStripMenuItem.Click += new System.EventHandler(this.webSideToolStripMenuItem_Click);
-			// 
-			// support赞助ToolStripMenuItem
-			// 
-			this.support赞助ToolStripMenuItem.Name = "support赞助ToolStripMenuItem";
-			this.support赞助ToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-			this.support赞助ToolStripMenuItem.Text = "Support [赞助]";
-			// 
-			// authorization授权ToolStripMenuItem
-			// 
-			this.authorization授权ToolStripMenuItem.Name = "authorization授权ToolStripMenuItem";
-			this.authorization授权ToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-			this.authorization授权ToolStripMenuItem.Text = "Authorization [授权]";
-			this.authorization授权ToolStripMenuItem.Click += new System.EventHandler(this.authorization授权ToolStripMenuItem_Click);
-			// 
 			// toolStripMenuItem_language
 			// 
 			this.toolStripMenuItem_language.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -126,8 +92,8 @@
 			this.toolStripMenuItem_language.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.toolStripMenuItem_language.ImageTransparentColor = System.Drawing.Color.White;
 			this.toolStripMenuItem_language.Name = "toolStripMenuItem_language";
-			this.toolStripMenuItem_language.Size = new System.Drawing.Size(44, 21);
-			this.toolStripMenuItem_language.Text = "语言";
+			this.toolStripMenuItem_language.Size = new System.Drawing.Size(58, 21);
+			this.toolStripMenuItem_language.Text = "语言(&L)";
 			// 
 			// 简体中文ToolStripMenuItem
 			// 
@@ -145,51 +111,162 @@
 			this.englishToolStripMenuItem.Text = "English";
 			this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
 			// 
-			// logToolStripMenuItem
+			// toolStripMenuItem_Debug
 			// 
-			this.logToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-			this.logToolStripMenuItem.Name = "logToolStripMenuItem";
-			this.logToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-			this.logToolStripMenuItem.Text = "报文日志";
-			this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
+			this.toolStripMenuItem_Debug.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_CommunicationLog,
+            this.toolStripMenuItem_SerialPort,
+            this.toolStripMenuItem_tcpUDP,
+            this.toolStripMenuItem_tcpUdpServer,
+            this.toolStripMenuItem_serial2Tcp,
+            this.toolStripMenuItem_tcp2Tcp,
+            this.toolStripMenuItem_byteTransform});
+			this.toolStripMenuItem_Debug.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.toolStripMenuItem_Debug.Name = "toolStripMenuItem_Debug";
+			this.toolStripMenuItem_Debug.Size = new System.Drawing.Size(76, 21);
+			this.toolStripMenuItem_Debug.Text = "Debug(&D)";
 			// 
-			// toolStripMenuItem_homepage
+			// toolStripMenuItem_CommunicationLog
 			// 
-			this.toolStripMenuItem_homepage.ForeColor = System.Drawing.Color.WhiteSmoke;
-			this.toolStripMenuItem_homepage.Name = "toolStripMenuItem_homepage";
-			this.toolStripMenuItem_homepage.Size = new System.Drawing.Size(44, 21);
-			this.toolStripMenuItem_homepage.Text = "官网";
-			this.toolStripMenuItem_homepage.Click += new System.EventHandler(this.toolStripMenuItem_homepage_Click);
+			this.toolStripMenuItem_CommunicationLog.Image = global::HslCommunicationDemo.Properties.Resources.Log;
+			this.toolStripMenuItem_CommunicationLog.Name = "toolStripMenuItem_CommunicationLog";
+			this.toolStripMenuItem_CommunicationLog.Size = new System.Drawing.Size(188, 22);
+			this.toolStripMenuItem_CommunicationLog.Text = "CommunicationLog";
+			this.toolStripMenuItem_CommunicationLog.Click += new System.EventHandler(this.toolStripMenuItem_CommunicationLog_Click);
 			// 
-			// 日志ToolStripMenuItem
+			// toolStripMenuItem_SerialPort
 			// 
-			this.日志ToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-			this.日志ToolStripMenuItem.Name = "日志ToolStripMenuItem";
-			this.日志ToolStripMenuItem.Size = new System.Drawing.Size(67, 21);
-			this.日志ToolStripMenuItem.Text = "API 文档";
-			this.日志ToolStripMenuItem.Click += new System.EventHandler(this.日志ToolStripMenuItem_Click);
+			this.toolStripMenuItem_SerialPort.Image = global::HslCommunicationDemo.Properties.Resources.SerialPort;
+			this.toolStripMenuItem_SerialPort.Name = "toolStripMenuItem_SerialPort";
+			this.toolStripMenuItem_SerialPort.Size = new System.Drawing.Size(188, 22);
+			this.toolStripMenuItem_SerialPort.Text = "SerialPort";
+			this.toolStripMenuItem_SerialPort.Click += new System.EventHandler(this.toolStripMenuItem_SerialPort_Click);
 			// 
-			// toolStripMenuItem_doc
+			// toolStripMenuItem_tcpUDP
 			// 
-			this.toolStripMenuItem_doc.ForeColor = System.Drawing.Color.White;
-			this.toolStripMenuItem_doc.Name = "toolStripMenuItem_doc";
-			this.toolStripMenuItem_doc.Size = new System.Drawing.Size(43, 21);
-			this.toolStripMenuItem_doc.Text = "Doc";
-			this.toolStripMenuItem_doc.Click += new System.EventHandler(this.toolStripMenuItem_doc_Click);
+			this.toolStripMenuItem_tcpUDP.Image = global::HslCommunicationDemo.Properties.Resources.NetworkAdapter;
+			this.toolStripMenuItem_tcpUDP.Name = "toolStripMenuItem_tcpUDP";
+			this.toolStripMenuItem_tcpUDP.Size = new System.Drawing.Size(188, 22);
+			this.toolStripMenuItem_tcpUDP.Text = "Tcp/UDP";
+			this.toolStripMenuItem_tcpUDP.Click += new System.EventHandler(this.toolStripMenuItem_tcpUDP_Click);
+			// 
+			// toolStripMenuItem_tcpUdpServer
+			// 
+			this.toolStripMenuItem_tcpUdpServer.Image = global::HslCommunicationDemo.Properties.Resources.NetworkAdapter;
+			this.toolStripMenuItem_tcpUdpServer.Name = "toolStripMenuItem_tcpUdpServer";
+			this.toolStripMenuItem_tcpUdpServer.Size = new System.Drawing.Size(188, 22);
+			this.toolStripMenuItem_tcpUdpServer.Text = "Tcp/Udp Server";
+			this.toolStripMenuItem_tcpUdpServer.Click += new System.EventHandler(this.toolStripMenuItem_tcpUdpServer_Click);
+			// 
+			// toolStripMenuItem_serial2Tcp
+			// 
+			this.toolStripMenuItem_serial2Tcp.Name = "toolStripMenuItem_serial2Tcp";
+			this.toolStripMenuItem_serial2Tcp.Size = new System.Drawing.Size(188, 22);
+			this.toolStripMenuItem_serial2Tcp.Text = "Serial2Tcp";
+			this.toolStripMenuItem_serial2Tcp.Click += new System.EventHandler(this.toolStripMenuItem_serial2Tcp_Click);
+			// 
+			// toolStripMenuItem_tcp2Tcp
+			// 
+			this.toolStripMenuItem_tcp2Tcp.Name = "toolStripMenuItem_tcp2Tcp";
+			this.toolStripMenuItem_tcp2Tcp.Size = new System.Drawing.Size(188, 22);
+			this.toolStripMenuItem_tcp2Tcp.Text = "Tcp2Tcp";
+			this.toolStripMenuItem_tcp2Tcp.Click += new System.EventHandler(this.toolStripMenuItem_tcp2Tcp_Click);
+			// 
+			// toolStripMenuItem_byteTransform
+			// 
+			this.toolStripMenuItem_byteTransform.Image = global::HslCommunicationDemo.Properties.Resources.bin;
+			this.toolStripMenuItem_byteTransform.Name = "toolStripMenuItem_byteTransform";
+			this.toolStripMenuItem_byteTransform.Size = new System.Drawing.Size(188, 22);
+			this.toolStripMenuItem_byteTransform.Text = "ByteTransform";
+			this.toolStripMenuItem_byteTransform.Click += new System.EventHandler(this.toolStripMenuItem_byteTransform_Click);
+			// 
+			// toolStripMenuItem_Help
+			// 
+			this.toolStripMenuItem_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_HomePage,
+            this.toolStripMenuItem_ApiDoc,
+            this.toolStripMenuItem_Doc,
+            this.blogsToolStripMenuItem,
+            this.toolStripMenuItem_SourceCode,
+            this.webSideToolStripMenuItem,
+            this.support赞助ToolStripMenuItem,
+            this.authorization授权ToolStripMenuItem});
+			this.toolStripMenuItem_Help.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.toolStripMenuItem_Help.Name = "toolStripMenuItem_Help";
+			this.toolStripMenuItem_Help.Size = new System.Drawing.Size(64, 21);
+			this.toolStripMenuItem_Help.Text = "Help(&H)";
+			// 
+			// toolStripMenuItem_HomePage
+			// 
+			this.toolStripMenuItem_HomePage.Image = global::HslCommunicationDemo.Properties.Resources.house_16xLG;
+			this.toolStripMenuItem_HomePage.Name = "toolStripMenuItem_HomePage";
+			this.toolStripMenuItem_HomePage.Size = new System.Drawing.Size(195, 22);
+			this.toolStripMenuItem_HomePage.Text = "HomePage";
+			this.toolStripMenuItem_HomePage.Click += new System.EventHandler(this.toolStripMenuItem_HomePage_Click);
+			// 
+			// toolStripMenuItem_ApiDoc
+			// 
+			this.toolStripMenuItem_ApiDoc.Name = "toolStripMenuItem_ApiDoc";
+			this.toolStripMenuItem_ApiDoc.Size = new System.Drawing.Size(195, 22);
+			this.toolStripMenuItem_ApiDoc.Text = "ApiDoc";
+			this.toolStripMenuItem_ApiDoc.Click += new System.EventHandler(this.toolStripMenuItem_ApiDoc_Click);
+			// 
+			// toolStripMenuItem_Doc
+			// 
+			this.toolStripMenuItem_Doc.Name = "toolStripMenuItem_Doc";
+			this.toolStripMenuItem_Doc.Size = new System.Drawing.Size(195, 22);
+			this.toolStripMenuItem_Doc.Text = "Document";
+			this.toolStripMenuItem_Doc.Click += new System.EventHandler(this.toolStripMenuItem_Doc_Click_1);
+			// 
+			// blogsToolStripMenuItem
+			// 
+			this.blogsToolStripMenuItem.Name = "blogsToolStripMenuItem";
+			this.blogsToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+			this.blogsToolStripMenuItem.Text = "Blogs [博客]";
+			this.blogsToolStripMenuItem.Click += new System.EventHandler(this.blogsToolStripMenuItem_Click);
+			// 
+			// toolStripMenuItem_SourceCode
+			// 
+			this.toolStripMenuItem_SourceCode.Image = global::HslCommunicationDemo.Properties.Resources.GitHub_Symbol;
+			this.toolStripMenuItem_SourceCode.Name = "toolStripMenuItem_SourceCode";
+			this.toolStripMenuItem_SourceCode.Size = new System.Drawing.Size(195, 22);
+			this.toolStripMenuItem_SourceCode.Text = "SourceCode [源代码]";
+			this.toolStripMenuItem_SourceCode.Click += new System.EventHandler(this.toolStripMenuItem_SourceCode_Click);
+			// 
+			// webSideToolStripMenuItem
+			// 
+			this.webSideToolStripMenuItem.Name = "webSideToolStripMenuItem";
+			this.webSideToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+			this.webSideToolStripMenuItem.Text = "WebSide [官网]";
+			this.webSideToolStripMenuItem.Click += new System.EventHandler(this.webSideToolStripMenuItem_Click);
+			// 
+			// support赞助ToolStripMenuItem
+			// 
+			this.support赞助ToolStripMenuItem.Name = "support赞助ToolStripMenuItem";
+			this.support赞助ToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+			this.support赞助ToolStripMenuItem.Text = "Support [赞助]";
+			// 
+			// authorization授权ToolStripMenuItem
+			// 
+			this.authorization授权ToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.password;
+			this.authorization授权ToolStripMenuItem.Name = "authorization授权ToolStripMenuItem";
+			this.authorization授权ToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+			this.authorization授权ToolStripMenuItem.Text = "Authorization [授权]";
+			this.authorization授权ToolStripMenuItem.Click += new System.EventHandler(this.authorization授权ToolStripMenuItem_Click);
 			// 
 			// verisonToolStripMenuItem
 			// 
 			this.verisonToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.verisonToolStripMenuItem.Name = "verisonToolStripMenuItem";
-			this.verisonToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
-			this.verisonToolStripMenuItem.Text = "Verison";
+			this.verisonToolStripMenuItem.Size = new System.Drawing.Size(80, 21);
+			this.verisonToolStripMenuItem.Text = "Verison(&V)";
 			// 
 			// activeToolStripMenuItem
 			// 
 			this.activeToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.activeToolStripMenuItem.Name = "activeToolStripMenuItem";
-			this.activeToolStripMenuItem.Size = new System.Drawing.Size(54, 21);
-			this.activeToolStripMenuItem.Text = "Active";
+			this.activeToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
+			this.activeToolStripMenuItem.Text = "Active(&A)";
 			// 
 			// 免责条款ToolStripMenuItem
 			// 
@@ -206,7 +283,7 @@
 			// 
 			// newVersionToolStripMenuItem
 			// 
-			this.newVersionToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+			this.newVersionToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
 			this.newVersionToolStripMenuItem.Name = "newVersionToolStripMenuItem";
 			this.newVersionToolStripMenuItem.Size = new System.Drawing.Size(98, 21);
 			this.newVersionToolStripMenuItem.Text = "New Version!";
@@ -223,7 +300,7 @@
 			// label1
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(108)))), ((int)(((byte)(124)))));
+			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
 			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.label1.Location = new System.Drawing.Point(926, 3);
 			this.label1.Name = "label1";
@@ -249,7 +326,7 @@
 			// label2
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(108)))), ((int)(((byte)(124)))));
+			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
 			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.label2.Location = new System.Drawing.Point(745, 3);
 			this.label2.Name = "label2";
@@ -288,21 +365,13 @@
 
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem blogsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem webSideToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 日志ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verisonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 免责条款ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 授权ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem support赞助ToolStripMenuItem;
         private WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme vS2015BlueTheme1;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_homepage;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
 		private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-		private System.Windows.Forms.ToolStripMenuItem authorization授权ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem deleteDeviceToolStripMenuItem;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ToolStripMenuItem newVersionToolStripMenuItem;
@@ -310,7 +379,23 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_language;
 		private System.Windows.Forms.ToolStripMenuItem 简体中文ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_doc;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Help;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_HomePage;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_ApiDoc;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Doc;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Debug;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_CommunicationLog;
+		private System.Windows.Forms.ToolStripMenuItem blogsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem webSideToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem support赞助ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem authorization授权ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_SerialPort;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_tcpUDP;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_tcpUdpServer;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_SourceCode;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_serial2Tcp;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_tcp2Tcp;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_byteTransform;
 	}
 }
 

@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			control = new DLT698Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -56,6 +57,7 @@ namespace HslCommunicationDemo
 				label_address.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
+				label_ca.Text = "        CA:";
 			}
 		}
 
@@ -77,11 +79,19 @@ namespace HslCommunicationDemo
 				return;
 			}
 
+			if (!byte.TryParse( textBox_ca.Text, out byte ca ))
+			{
+				MessageBox.Show( "CA input wrong!" );
+				textBox_ca.Focus( );
+				return;
+			}
+
 			dLT698?.ConnectClose( );
 			dLT698 = new DLT698OverTcp( textBox_ip.Text, port, textBox_station.Text);
 			dLT698.LogNet = LogNet;
 			dLT698.EnableCodeFE = checkBox_enable_Fe.Checked;
 			dLT698.UseSecurityResquest = checkBox_useSecurityResquest.Checked;
+			dLT698.CA = ca;
 
 			try
 			{
@@ -103,7 +113,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( dLT698, "20-00-02-00" );
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "dlt", dLT698, nameof( dLT698.Station ), nameof( dLT698.EnableCodeFE ), nameof( dLT698.UseSecurityResquest ) );
+					codeExampleControl.SetCodeText( "dlt", dLT698, nameof( dLT698.Station ), nameof( dLT698.EnableCodeFE ), nameof( dLT698.UseSecurityResquest ), nameof( dLT698.CA ) );
 				}
 				else
 				{
@@ -133,6 +143,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox_port.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			element.SetAttributeValue( "UseSecurityResquest", checkBox_useSecurityResquest.Checked );
+			element.SetAttributeValue( "CA", textBox_ca.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -143,6 +154,7 @@ namespace HslCommunicationDemo
 			textBox_port.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox_useSecurityResquest.Checked = GetXmlValue( element, "UseSecurityResquest", checkBox_useSecurityResquest.Checked, bool.Parse );
+			textBox_ca.Text = GetXmlValue( element, "CA", textBox_ca.Text, m => m );
 
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

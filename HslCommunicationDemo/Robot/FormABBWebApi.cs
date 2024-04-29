@@ -143,8 +143,9 @@ namespace HslCommunicationDemo.Robot
 
 		private async void Button4_Click( object sender, EventArgs e )
 		{
+			string unit = string.IsNullOrEmpty( textBox_mechunit.Text ) ? "ROB_1" : textBox_mechunit.Text;
 			DateTime start = DateTime.Now;
-			OperateResult<string> read = await webApiClient.GetJointTargetAsync( );
+			OperateResult<string> read = await webApiClient.GetJointTargetAsync( unit );
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
@@ -155,7 +156,7 @@ namespace HslCommunicationDemo.Robot
 				textBox6.Text = read.Content;
 
 				// 为了方便调试，显示URL，并显示web文本的请求结果
-				await RenderWebUrl( "url=/rw/motionsystem/mechunits/ROB_1/jointtarget" );
+				await RenderWebUrl( $"url=/rw/motionsystem/mechunits/{unit}/jointtarget" );
 			}
 		}
 
@@ -282,6 +283,24 @@ namespace HslCommunicationDemo.Robot
 
 				// 为了方便调试，显示URL，并显示web文本的请求结果
 				await RenderWebUrl( "url=/rw/iosystem/devices/BK5250" );
+			}
+		}
+
+		private async void button_io_signal_Click( object sender, EventArgs e )
+		{
+			DateTime start = DateTime.Now;
+			OperateResult<string> read = await webApiClient.GetAnIOSignalAsync( textBox_io_network.Text, textBox_io_unit.Text, textBox_io_signal.Text );
+			label_time_cost.Text = DemoUtils.GetTimeCost( start );
+			if (!read.IsSuccess)
+			{
+				MessageBox.Show( "Read Failed:" + read.Message );
+			}
+			else
+			{
+				textBox6.Text = read.Content;
+
+				// 为了方便调试，显示URL，并显示web文本的请求结果
+				await RenderWebUrl( $"url=/rw/iosystem/signals/{textBox_io_network.Text}/{textBox_io_unit.Text}/{textBox_io_signal.Text}" );
 			}
 		}
 

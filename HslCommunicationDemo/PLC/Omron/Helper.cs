@@ -19,6 +19,7 @@ namespace HslCommunicationDemo.PLC.Omron
 				new DeviceAddressExample( "H0 / HR0",    "Holding Bit Area",   true, true, "支持两种写法，读取位使用 H10.11" ),
 				new DeviceAddressExample( "A0 / AR0",   "Auxiliary Bit Area",  true, true, "支持两种写法，读取位使用 A10.11" ),
 				new DeviceAddressExample( "E0.0 / EM0.0", "EM Area",           true, true, "支持两种写法，范围 E0.0-EF.0，读取位使用 EM1.0.0" ),
+				new DeviceAddressExample( "E100 / EM100", "EM Current Area",   true, true, "E0 ~ E32767 属于 EM current bank" ),
 				new DeviceAddressExample( "TIM0",   "Timer Area",              true, true, "读位就是完成标记，读字就是当前值" ),
 				new DeviceAddressExample( "CNT0",   "Counter Area",            true, true, "读位就是完成标记，读字就是当前值" ),
 				new DeviceAddressExample( "IR0",   "Index Register",           false, true, "只能读字" ),

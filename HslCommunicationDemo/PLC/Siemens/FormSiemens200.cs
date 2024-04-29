@@ -35,6 +35,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			if(siemensPLCSelected == SiemensPLCS.S200Smart)
 			{
@@ -87,7 +88,7 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			siemensTcpNet.IpAddress = textBox1.Text;
+			siemensTcpNet.IpAddress = textBox_ip.Text;
 			siemensTcpNet.Port = port;
 			//siemensTcpNet.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Parse( "127.0.0.1" ), 12345 );
 			try
@@ -247,7 +248,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -256,7 +257,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

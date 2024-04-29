@@ -31,6 +31,9 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.label1 = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBox_timer = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -43,9 +46,6 @@
 			this.button_start = new System.Windows.Forms.Button();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.label_rows = new System.Windows.Forms.Label();
-			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -73,8 +73,31 @@
 			this.dataGridView1.Location = new System.Drawing.Point(3, 24);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowTemplate.Height = 23;
-			this.dataGridView1.Size = new System.Drawing.Size(370, 247);
+			this.dataGridView1.Size = new System.Drawing.Size(370, 264);
 			this.dataGridView1.TabIndex = 1;
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "Address";
+			this.Column1.Name = "Column1";
+			this.Column1.Width = 167;
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "Type";
+			this.Column3.Items.AddRange(new object[] {
+            "Byte",
+            "Bool"});
+			this.Column3.Name = "Column3";
+			this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.Column3.Width = 70;
+			// 
+			// Column2
+			// 
+			this.Column2.HeaderText = "Length";
+			this.Column2.Name = "Column2";
+			this.Column2.Width = 70;
 			// 
 			// label2
 			// 
@@ -126,13 +149,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_path.Location = new System.Drawing.Point(519, 32);
 			this.textBox_path.Name = "textBox_path";
-			this.textBox_path.Size = new System.Drawing.Size(259, 23);
+			this.textBox_path.Size = new System.Drawing.Size(264, 23);
 			this.textBox_path.TabIndex = 7;
 			// 
 			// button_select
 			// 
 			this.button_select.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_select.Location = new System.Drawing.Point(783, 30);
+			this.button_select.Location = new System.Drawing.Point(788, 30);
 			this.button_select.Name = "button_select";
 			this.button_select.Size = new System.Drawing.Size(68, 27);
 			this.button_select.TabIndex = 8;
@@ -158,14 +181,14 @@
 			this.textBox_log.Multiline = true;
 			this.textBox_log.Name = "textBox_log";
 			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_log.Size = new System.Drawing.Size(469, 171);
+			this.textBox_log.Size = new System.Drawing.Size(474, 188);
 			this.textBox_log.TabIndex = 10;
 			// 
 			// button_start
 			// 
 			this.button_start.Location = new System.Drawing.Point(486, 60);
 			this.button_start.Name = "button_start";
-			this.button_start.Size = new System.Drawing.Size(180, 30);
+			this.button_start.Size = new System.Drawing.Size(139, 30);
 			this.button_start.TabIndex = 11;
 			this.button_start.Text = "开始";
 			this.button_start.UseVisualStyleBackColor = true;
@@ -175,7 +198,7 @@
 			// 
 			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.linkLabel1.AutoSize = true;
-			this.linkLabel1.Location = new System.Drawing.Point(816, 77);
+			this.linkLabel1.Location = new System.Drawing.Point(821, 77);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(35, 17);
 			this.linkLabel1.TabIndex = 12;
@@ -186,34 +209,11 @@
 			// 
 			this.label_rows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label_rows.AutoSize = true;
-			this.label_rows.Location = new System.Drawing.Point(706, 77);
+			this.label_rows.Location = new System.Drawing.Point(711, 77);
 			this.label_rows.Name = "label_rows";
 			this.label_rows.Size = new System.Drawing.Size(53, 17);
 			this.label_rows.TabIndex = 13;
 			this.label_rows.Text = "Rows: 0";
-			// 
-			// Column1
-			// 
-			this.Column1.HeaderText = "Address";
-			this.Column1.Name = "Column1";
-			this.Column1.Width = 167;
-			// 
-			// Column3
-			// 
-			this.Column3.HeaderText = "Type";
-			this.Column3.Items.AddRange(new object[] {
-            "Byte",
-            "Bool"});
-			this.Column3.Name = "Column3";
-			this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.Column3.Width = 70;
-			// 
-			// Column2
-			// 
-			this.Column2.HeaderText = "Length";
-			this.Column2.Name = "Column2";
-			this.Column2.Width = 70;
 			// 
 			// DataExportControl
 			// 
@@ -234,7 +234,7 @@
 			this.Controls.Add(this.label1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "DataExportControl";
-			this.Size = new System.Drawing.Size(855, 274);
+			this.Size = new System.Drawing.Size(860, 291);
 			this.Load += new System.EventHandler(this.DataExportControl_Load);
 			this.SizeChanged += new System.EventHandler(this.DataExportControl_SizeChanged);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

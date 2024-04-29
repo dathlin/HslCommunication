@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using System.IO;
 using System.Threading;
 using HslCommunicationDemo.PLC.Common;
+using HslCommunication.Core.Device;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -31,14 +32,24 @@ namespace HslCommunicationDemo.DemoControl
 		private System.Windows.Forms.Timer timerSecond;
 		private List<UserControl> allControls = new List<UserControl>( );
 
-		public void SetReadWriteServer( NetworkDataServerBase dataServerBase, string address, int strLength = 10 )
+
+		public void SetReadWriteServerLog( DeviceServer dataServerBase )
 		{
-			this.dataServerBase = dataServerBase;
-			this.dataServerBase.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
-			this.dataServerBase.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
-			userControlReadWriteOp1.SetReadWriteNet( dataServerBase, address, false, strLength );
-			batchReadControl1.SetReadWriteNet( dataServerBase, address, "" );
-			dataTableControl1.SetReadWriteNet( dataServerBase );
+			dataServerBase.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
+			dataServerBase.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+		}
+
+		public void SetReadWriteServer( DeviceServer dataServerBase, string address, int strLength = 10 )
+		{
+			if (dataServerBase.LogNet == null)
+			{
+				SetReadWriteServerLog( dataServerBase );
+			}
+
+			this.deviceServer = dataServerBase;
+			userControlReadWriteOp1.SetReadWriteNet( deviceServer, address, false, strLength );
+			batchReadControl1.SetReadWriteNet( deviceServer, address, "" );
+			dataTableControl1.SetReadWriteNet( deviceServer );
 
 			timerSecond?.Dispose( );
 			timerSecond = new System.Windows.Forms.Timer( );
@@ -49,7 +60,8 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void TimerSecond_Tick( object sender, EventArgs e )
 		{
-			label15.Text = dataServerBase.OnlineCount.ToString( );
+			if (deviceServer != null)
+				label15.Text = deviceServer.OnlineCount.ToString( );
 		}
 
 		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
@@ -90,7 +102,7 @@ namespace HslCommunicationDemo.DemoControl
 			textBox1.Enabled = enbale;
 		}
 
-		NetworkDataServerBase dataServerBase;
+		DeviceServer deviceServer;
 
 		private void UserControlReadWriteServer_Load( object sender, EventArgs e )
 		{
@@ -116,7 +128,7 @@ namespace HslCommunicationDemo.DemoControl
 		private void button8_Click( object sender, EventArgs e )
 		{
 			// 从文件加载服务器的数据池
-			if (dataServerBase != null)
+			if (deviceServer != null)
 			{
 				using (OpenFileDialog ofd = new OpenFileDialog( ))
 				{
@@ -126,7 +138,7 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							try
 							{
-								dataServerBase.LoadDataPool( ofd.FileName );
+								deviceServer.LoadDataPool( ofd.FileName );
 								MessageBox.Show( "Load data finish" );
 							}
 							catch (Exception ex)
@@ -146,7 +158,7 @@ namespace HslCommunicationDemo.DemoControl
 		private void button9_Click( object sender, EventArgs e )
 		{
 			// 将服务器的数据池存储起来
-			if (dataServerBase != null)
+			if (deviceServer != null)
 			{
 				using (SaveFileDialog sfd = new SaveFileDialog( ))
 				{
@@ -155,7 +167,7 @@ namespace HslCommunicationDemo.DemoControl
 					{
 						try
 						{
-							dataServerBase.SaveDataPool( sfd.FileName );
+							deviceServer.SaveDataPool( sfd.FileName );
 							MessageBox.Show( "Save file finish!" );
 						}
 						catch (Exception ex)
@@ -174,19 +186,31 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (form.ShowDialog( ) == DialogResult.OK)
 				{
-					OperateResult connect = dataServerBase.ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU, form.Pwd );
-					if (connect.IsSuccess)
+					if (form.UseRegistration)
 					{
-						MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+						deviceServer.GetCommunicationServer( ).ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU, form.Pwd );
 					}
 					else
 					{
-						MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+						deviceServer.GetCommunicationServer( ).ConnectRemoteServer( form.IpAddress, form.Port );
 					}
+
+					MessageBox.Show( "Add Connection success" );
+
+					//OperateResult connect = deviceServer.GetCommunicationServer().ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU, form.Pwd );
+					//if (connect.IsSuccess)
+					//{
+					//	MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					//}
+					//else
+					//{
+					//	MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+					//}
 				}
 			}
 		}
 
+		public UserControlReadWriteOp ReadWriteOpControl => this.userControlReadWriteOp1;
 
 		public BatchReadControl BatchRead
 		{
@@ -323,7 +347,7 @@ namespace HslCommunicationDemo.DemoControl
 							int expect = fs.Read( buffer, 0, contentLength );
 							if (expect != contentLength) break;
 
-							OperateResult write = dataServerBase.Write( address, buffer );
+							OperateResult write = deviceServer.Write( address, buffer );
 							if (write.IsSuccess)
 							{
 								log.Append( $"{address}[len:{buffer.Length}]" );
@@ -331,7 +355,7 @@ namespace HslCommunicationDemo.DemoControl
 							}
 							else
 							{
-								dataServerBase.LogNet?.WriteError( dataServerBase.ToString( ), "Write address: " + address + " failed: " + write.Message );
+								deviceServer.LogNet?.WriteError( deviceServer.ToString( ), "Write address: " + address + " failed: " + write.Message );
 							}
 						}
 						else if (success == 0x01)
@@ -344,7 +368,7 @@ namespace HslCommunicationDemo.DemoControl
 							int expect = fs.Read( buffer, 0, byteLength );
 							if (expect != byteLength) break;
 
-							OperateResult write = dataServerBase.Write( address, buffer.ToBoolArray( ).SelectBegin( contentLength ) );
+							OperateResult write = deviceServer.Write( address, buffer.ToBoolArray( ).SelectBegin( contentLength ) );
 							if (write.IsSuccess)
 							{
 								log.Append( $"{address}[len-bool:{contentLength}]" );
@@ -352,19 +376,19 @@ namespace HslCommunicationDemo.DemoControl
 							}
 							else
 							{
-								dataServerBase.LogNet?.WriteError( dataServerBase.ToString( ), "Write address[Bool]: " + address + " failed: " + write.Message );
+								deviceServer.LogNet?.WriteError( deviceServer.ToString( ), "Write address[Bool]: " + address + " failed: " + write.Message );
 							}
 						}
 					}
 
-					dataServerBase.LogNet?.WriteInfo( dataServerBase.ToString( ), log.ToString( ) );
+					deviceServer.LogNet?.WriteInfo( deviceServer.ToString( ), log.ToString( ) );
 				}
 
 				if (!writeCycle) break;
 				if (abort) break;
 			}
 
-			dataServerBase.LogNet?.WriteInfo( "Finish!" );
+			deviceServer.LogNet?.WriteInfo( "Finish!" );
 			fs.Close( );
 			fs.Dispose( );
 			Invoke( new Action( ( ) =>
@@ -383,6 +407,15 @@ namespace HslCommunicationDemo.DemoControl
 			abort = true;
 			button_data_import.Enabled = true;
 			button_import_abort.Enabled = false;
+		}
+
+		private void label16_Click( object sender, EventArgs e )
+		{
+			using (FormPipeSessionList form = new FormPipeSessionList( ))
+			{
+				form.SetPipeSessions( this.deviceServer.GetCommunicationServer( ) );
+				form.ShowDialog( );
+			}
 		}
 	}
 }

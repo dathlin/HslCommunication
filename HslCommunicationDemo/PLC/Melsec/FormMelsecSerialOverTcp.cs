@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
 
@@ -88,7 +89,7 @@ namespace HslCommunicationDemo
 
 			melsec_net?.ConnectClose( );
 			melsec_net              = new MelsecFxSerialOverTcp( );
-			melsec_net.IpAddress    = textBox1.Text;
+			melsec_net.IpAddress    = textBox_ip.Text;
 			melsec_net.Port         = port;
 			melsec_net.IsNewVersion = checkBox1.Checked;
 			melsec_net.UseGOT       = checkBox_got.Checked;
@@ -229,7 +230,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -238,7 +239,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

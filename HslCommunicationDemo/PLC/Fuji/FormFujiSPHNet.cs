@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			comboBox1.DataSource = SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = fujiSPB.ByteTransform.DataFormat;
@@ -89,7 +90,7 @@ namespace HslCommunicationDemo
 
 			this.fujiSPB?.ConnectClose( );
 			this.fujiSPB = new FujiSPHNet( );
-			this.fujiSPB.IpAddress = textBox1.Text;
+			this.fujiSPB.IpAddress = textBox_ip.Text;
 			this.fujiSPB.Port = port;
 			this.fujiSPB.LogNet = LogNet;
 			this.fujiSPB.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
@@ -202,7 +203,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 
@@ -212,7 +213,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 

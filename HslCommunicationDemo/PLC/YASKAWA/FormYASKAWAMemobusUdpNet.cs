@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
 
@@ -89,7 +90,7 @@ namespace HslCommunicationDemo
 			}
 
 			memobus = new MemobusUdpNet( );
-			memobus.IpAddress = textBox20.Text;
+			memobus.IpAddress = textBox_ip.Text;
 			memobus.Port = port;
 			memobus.CpuFrom = cpuFrom;
 			memobus.CpuTo = cpuTo;
@@ -133,7 +134,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox20.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox19.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( "cpu_from", textBox_cpu_from.Text );
@@ -145,7 +146,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox20.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox19.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			textBox_cpu_from.Text = element.Attribute( "cpu_from" ).Value;

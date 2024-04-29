@@ -265,7 +265,16 @@ namespace HslCommunicationDemo
 
 		private async Task<OperateResult<string>> ReadFromServer( NetworkWebApiBase webApiBase, HttpMethod httpMethod, string url, string body )
 		{
-			url = $"{(checkBox1.Checked ? "https" : "http")}://{webApiBase.IpAddress}:{webApiBase.Port}/{ (url.StartsWith( "/" ) ? url.Substring( 1 ) : url) }";
+			if (url.StartsWith( "http://", StringComparison.OrdinalIgnoreCase ) || url.StartsWith( "https://", StringComparison.OrdinalIgnoreCase ))
+			{
+
+			}
+			else
+			{
+				url = $"{(checkBox1.Checked ? "https" : "http")}://{webApiBase.Host}:{webApiBase.Port}/{(url.StartsWith( "/" ) ? url.Substring( 1 ) : url)}";
+			}
+
+			label_url.Text = url;
 			//textBox8.Text = url;
 			try
 			{
@@ -296,7 +305,7 @@ namespace HslCommunicationDemo
 			catch (Exception ex)
 			{
 				//HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
-				return new OperateResult<string>(  ex.Message );
+				return new OperateResult<string>( ex.Message + Environment.NewLine + "Url: " + url );
 			}
 		}
 

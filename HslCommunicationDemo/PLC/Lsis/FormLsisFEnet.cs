@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 
 			cboxModel.DataSource = Enum.GetNames( typeof( LSCpuInfo ) );
@@ -86,7 +87,7 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			fastEnet.IpAddress = textBox1.Text;
+			fastEnet.IpAddress = textBox_ip.Text;
 			fastEnet.Port = port;
 			fastEnet.SlotNo = slot;
 			fastEnet.SetCpuType = cboxModel.Text;
@@ -137,7 +138,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlCpuType, cboxModel.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlCompanyID, cboxCompanyID.Text );
@@ -149,7 +150,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			cboxModel.Text = element.Attribute( DemoDeviceList.XmlCpuType ).Value;
 			cboxCompanyID.Text = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;

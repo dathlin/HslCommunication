@@ -12,6 +12,8 @@ using HslCommunication.Profinet.Freedom;
 using HslCommunication;
 using System.IO.Ports;
 using HslCommunicationDemo.DemoControl;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HslCommunicationDemo
 {
@@ -113,9 +115,7 @@ namespace HslCommunicationDemo
 			freedom = new FreedomSerial( );
 			freedom.LogNet = LogNet;
 
-			if (radioButton1.Checked) freedom.ByteTransform = new HslCommunication.Core.RegularByteTransform( );
-			if (radioButton2.Checked) freedom.ByteTransform = new HslCommunication.Core.ReverseBytesTransform( );
-			if (radioButton3.Checked) freedom.ByteTransform = new HslCommunication.Core.ReverseWordTransform( );
+			freedom.ByteTransform = new HslCommunication.Core.RegularByteTransform( );
 			ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
 
 			freedom.ByteTransform.IsStringReverseByteWord = checkBox3.Checked;
@@ -163,6 +163,44 @@ namespace HslCommunicationDemo
 		}
 
 		#endregion
+
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
+
+			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
+
+			this.userControlReadWriteDevice1.GetDataTable( element );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			comboBox3.Text = GetXmlValue( element, DemoDeviceList.XmlCom, "COM1", m => m );
+			textBox2.Text = GetXmlValue( element, DemoDeviceList.XmlBaudRate, "9600", m => m );
+			textBox16.Text = GetXmlValue( element, DemoDeviceList.XmlDataBits, "8", m => m );
+			textBox17.Text = GetXmlValue( element, DemoDeviceList.XmlStopBit, "1", m => m );
+			comboBox1.SelectedIndex = GetXmlValue( element, DemoDeviceList.XmlParity, 0, int.Parse );
+			checkBox5.Checked = GetXmlValue( element, DemoDeviceList.XmlRtsEnable, true, bool.Parse );
+
+			comboBox2.SelectedIndex = GetXmlValue( element, DemoDeviceList.XmlDataFormat, 0, int.Parse );
+			checkBox3.Checked = GetXmlValue( element, DemoDeviceList.XmlStringReverse, false, bool.Parse );
+
+			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+				this.userControlReadWriteDevice1.SelectTabDataTable( );
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
 
 	}
 

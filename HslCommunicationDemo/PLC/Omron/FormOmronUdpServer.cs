@@ -64,9 +64,9 @@ namespace HslCommunicationDemo
 
 				omronFinsServer = new HslCommunication.Profinet.Omron.OmronFinsUdpServer( );                       // 实例化对象
 				omronFinsServer.OnDataReceived += BusTcpServer_OnDataReceived;
-				omronFinsServer.ServerStart( port );
 
 				userControlReadWriteServer1.SetReadWriteServer( omronFinsServer, "D100" );
+				omronFinsServer.ServerStart( port, radioButton_tcp.Checked );
 				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;

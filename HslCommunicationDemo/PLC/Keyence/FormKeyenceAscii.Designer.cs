@@ -29,17 +29,17 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_string_reverse = new System.Windows.Forms.CheckBox();
 			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox_string_reverse = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -55,13 +55,23 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 61);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_string_reverse
+			// 
+			this.checkBox_string_reverse.AutoSize = true;
+			this.checkBox_string_reverse.Location = new System.Drawing.Point(66, 34);
+			this.checkBox_string_reverse.Name = "checkBox_string_reverse";
+			this.checkBox_string_reverse.Size = new System.Drawing.Size(87, 21);
+			this.checkBox_string_reverse.TabIndex = 27;
+			this.checkBox_string_reverse.Text = "字符串颠倒";
+			this.checkBox_string_reverse.UseVisualStyleBackColor = true;
 			// 
 			// checkBox_EnableWriteBitToWordRegister
 			// 
@@ -111,13 +121,13 @@
 			this.label3.TabIndex = 2;
 			this.label3.Text = "端口号：";
 			// 
-			// textBox1
+			// textBox_ip
 			// 
-			this.textBox1.Location = new System.Drawing.Point(66, 5);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(205, 23);
-			this.textBox1.TabIndex = 1;
-			this.textBox1.Text = "192.168.0.100";
+			this.textBox_ip.Location = new System.Drawing.Point(66, 5);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(205, 23);
+			this.textBox_ip.TabIndex = 1;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label1
 			// 
@@ -165,16 +175,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// checkBox_string_reverse
-			// 
-			this.checkBox_string_reverse.AutoSize = true;
-			this.checkBox_string_reverse.Location = new System.Drawing.Point(66, 34);
-			this.checkBox_string_reverse.Name = "checkBox_string_reverse";
-			this.checkBox_string_reverse.Size = new System.Drawing.Size(87, 21);
-			this.checkBox_string_reverse.TabIndex = 27;
-			this.checkBox_string_reverse.Text = "字符串颠倒";
-			this.checkBox_string_reverse.UseVisualStyleBackColor = true;
-			// 
 			// FormKeyenceAscii
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -207,7 +207,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_ip;
         private DemoControl.UserControlHead userControlHead1;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private System.Windows.Forms.CheckBox checkBox_EnableWriteBitToWordRegister;

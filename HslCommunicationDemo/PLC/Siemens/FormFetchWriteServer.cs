@@ -68,10 +68,10 @@ namespace HslCommunicationDemo
 				s7NetServer = new HslCommunication.Profinet.Siemens.SiemensFetchWriteServer( );                       // 实例化对象
 				s7NetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				s7NetServer.OnDataReceived += BusTcpServer_OnDataReceived;
-				
-				s7NetServer.ServerStart( port );
 
 				userControlReadWriteServer1.SetReadWriteServer( s7NetServer, "M100" );
+				s7NetServer.ServerStart( port );
+
 				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;

@@ -39,6 +39,10 @@ namespace HslCommunicationDemo
 				button5.Text = "Open Com";
 				checkBox3.Text = "str-reverse";
 			}
+			else
+			{
+				checkBox_station_match.Text = "是否站号匹配";
+			}
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.DLTHelper.GetDlt645Address( ) );
@@ -84,6 +88,8 @@ namespace HslCommunicationDemo
 				dLT645Server.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				dLT645Server.OnDataReceived += BusTcpServer_OnDataReceived;
 				dLT645Server.StringReverse = checkBox3.Checked;
+				dLT645Server.EnableCodeFE = checkBox_enableFE.Checked;
+				dLT645Server.StationMatch = checkBox_station_match.Checked;
 
 				userControlReadWriteServer1.SetReadWriteServer( dLT645Server, "02-01-01-00" );
 				dLT645Server.ServerStart( port );
@@ -94,7 +100,7 @@ namespace HslCommunicationDemo
 
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", dLT645Server, nameof( dLT645Server.Station ) );
+				codeExampleControl.SetCodeText( "server", "", dLT645Server, nameof( dLT645Server.Station ), nameof( dLT645Server.StringReverse ), nameof( dLT645Server.EnableCodeFE ), nameof( dLT645Server.StationMatch ) );
 			}
 			catch (Exception ex)
 			{
@@ -107,6 +113,7 @@ namespace HslCommunicationDemo
 		{
 			// 停止服务
 			dLT645Server?.ServerClose( );
+			dLT645Server?.CloseSerialSlave( );
 			button1.Enabled = true;
 			button5.Enabled = true;
 			button11.Enabled = false;
@@ -139,11 +146,16 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					dLT645Server.StartSerialSlave( textBox10.Text );
+					OperateResult open = dLT645Server.StartSerialSlave( textBox10.Text );
+					if (!open.IsSuccess)
+					{
+						MessageBox.Show( "Start Failed：" + open.Message );
+						return;
+					}
 					button5.Enabled = false;
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "server", textBox10.Text, dLT645Server, nameof( dLT645Server.Station ) );
+					codeExampleControl.SetCodeText( "server", textBox10.Text, dLT645Server, nameof( dLT645Server.Station ), nameof( dLT645Server.StringReverse ), nameof( dLT645Server.EnableCodeFE ), nameof( dLT645Server.StationMatch ) );
 				}
 				catch(Exception ex)
 				{

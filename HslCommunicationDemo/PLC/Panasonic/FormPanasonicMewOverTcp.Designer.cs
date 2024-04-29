@@ -29,7 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.textBox15);
 			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
@@ -63,13 +63,13 @@
 			this.panel1.Size = new System.Drawing.Size(997, 43);
 			this.panel1.TabIndex = 0;
 			// 
-			// textBox1
+			// textBox_ip
 			// 
-			this.textBox1.Location = new System.Drawing.Point(73, 9);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(199, 23);
-			this.textBox1.TabIndex = 8;
-			this.textBox1.Text = "192.168.0.10";
+			this.textBox_ip.Location = new System.Drawing.Point(73, 9);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(199, 23);
+			this.textBox_ip.TabIndex = 8;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// textBox15
 			// 
@@ -208,7 +208,7 @@
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Label label21;
         private DemoControl.UserControlHead userControlHead1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_ip;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 	}
 }

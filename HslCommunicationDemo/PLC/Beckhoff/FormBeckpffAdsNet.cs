@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			checkBox_auto.CheckedChanged += CheckBox_auto_CheckedChanged;
 			CheckBox_auto_CheckedChanged( checkBox_auto, e );
@@ -96,7 +97,7 @@ namespace HslCommunicationDemo
 			}
 
 			beckhoffAdsNet?.ConnectClose( );
-			beckhoffAdsNet = new BeckhoffAdsNet( textBox1.Text, port );
+			beckhoffAdsNet = new BeckhoffAdsNet( textBox_ip.Text, port );
 			beckhoffAdsNet.LogNet = LogNet;
 			// adsNet.LogNet = new HslCommunication.LogNet.LogNetSingle( System.IO.Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "log.txt" ) );
 			try
@@ -273,7 +274,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTarget, textBox14.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlSender, textBox15.Text );
@@ -286,7 +287,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox14.Text = element.Attribute( DemoDeviceList.XmlTarget ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlSender ).Value;

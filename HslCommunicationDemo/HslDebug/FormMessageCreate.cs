@@ -16,6 +16,7 @@ using HslCommunication.Profinet.Omron;
 using HslCommunication.Profinet.Omron.Helper;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication.BasicFramework;
+using HslCommunication.Robot.Hyundai;
 
 namespace HslCommunicationDemo.HslDebug
 {
@@ -159,47 +160,75 @@ namespace HslCommunicationDemo.HslDebug
 			TreeNode omron = new TreeNode( "Omron" );
 			AddTreeChild( omron, "Fins Tcp", ( address, length ) =>
 			{
-				var command = OmronFinsNetHelper.BuildReadCommand( address, length, true, int.MaxValue );
+				var command = OmronFinsNetHelper.BuildReadCommand( OmronPlcType.CSCJ, address, length, true, int.MaxValue );
 				if (!command.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( command );
 
 				return OperateResult.CreateSuccessResult( omron1.PackCommandWithHeader( command.Content[0] ) );
 			},
 			( address, length ) =>
 			{
-				var command = OmronFinsNetHelper.BuildReadCommand( address, length, false, int.MaxValue );
+				var command = OmronFinsNetHelper.BuildReadCommand( OmronPlcType.CSCJ, address, length, false, int.MaxValue );
 				if (!command.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( command );
 
 				return OperateResult.CreateSuccessResult( omron1.PackCommandWithHeader( command.Content[0] ) );
 			} );
 			AddTreeChild( omron, "Fins Udp", ( address, length ) =>
 			{
-				var command = OmronFinsNetHelper.BuildReadCommand( address, length, true, int.MaxValue );
+				var command = OmronFinsNetHelper.BuildReadCommand( OmronPlcType.CSCJ, address, length, true, int.MaxValue );
 				if (!command.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( command );
 
 				return OperateResult.CreateSuccessResult( omron2.PackCommandWithHeader( command.Content[0] ) );
 			},
 			( address, length ) =>
 			{
-				var command = OmronFinsNetHelper.BuildReadCommand( address, length, false, int.MaxValue );
+				var command = OmronFinsNetHelper.BuildReadCommand( OmronPlcType.CSCJ, address, length, false, int.MaxValue );
 				if (!command.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( command );
 
 				return OperateResult.CreateSuccessResult( omron2.PackCommandWithHeader( command.Content[0] ) );
 			} );
 			AddTreeChild( omron, "Host Link", ( address, length ) =>
 			{
-				var command = OmronFinsNetHelper.BuildReadCommand( address, length, true, int.MaxValue );
+				var command = OmronFinsNetHelper.BuildReadCommand( OmronPlcType.CSCJ, address, length, true, int.MaxValue );
 				if (!command.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( command );
 
 				return OperateResult.CreateSuccessResult( OmronHostLinkHelper.PackCommand( omron3, 0x00, command.Content[0] ) );
 			},
 			( address, length ) =>
 			{
-				var command = OmronFinsNetHelper.BuildReadCommand( address, length, false, int.MaxValue );
+				var command = OmronFinsNetHelper.BuildReadCommand( OmronPlcType.CSCJ, address, length, false, int.MaxValue );
 				if (!command.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( command );
 
 				return OperateResult.CreateSuccessResult( OmronHostLinkHelper.PackCommand( omron3, 0x00, command.Content[0] ) );
 			}, false );
 			treeView1.Nodes.Add( omron );
+
+
+			// 机器人
+			TreeNode robot = new TreeNode( "Omron" );
+			AddTreeChild( robot, "Hyundai UdpNet", ( address, length ) =>
+			{
+				HyundaiData hyundaiReceive = new HyundaiData( );
+				hyundaiReceive.Command = 'S';
+				hyundaiReceive.CharDummy = "ABC";
+				hyundaiReceive.State = 5;
+				hyundaiReceive.Count = 6;
+				hyundaiReceive.Data = new double[] { 1.1d, 2.2d, 3.3d, 4.4d, 5.5d, 6.6d };
+
+				return OperateResult.CreateSuccessResult( hyundaiReceive.ToBytes( ) );
+			},
+			( address, length ) =>
+			{
+				HyundaiData hyundaiReceive = new HyundaiData( );
+				hyundaiReceive.Command = 'P';
+				hyundaiReceive.CharDummy = "CVD";
+				hyundaiReceive.State = 7;
+				hyundaiReceive.Count = 6;
+				hyundaiReceive.Data = new double[] { 5.1d, 5.2d, 5.3d, 5.4d, 6.5d, 100.6d };
+
+				return OperateResult.CreateSuccessResult( hyundaiReceive.ToBytes( ) );
+			}, 
+			hex: true );
+			treeView1.Nodes.Add( robot );
 
 		}
 

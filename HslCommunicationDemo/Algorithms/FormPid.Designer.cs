@@ -39,7 +39,7 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
-			this.userCurve1 = new HslCommunication.Controls.UserCurve();
+			this.userCurve1 = new HslControls.HslCurve();
 			this.button2 = new System.Windows.Forms.Button();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.SuspendLayout();
@@ -151,8 +151,8 @@
 			this.userCurve1.Size = new System.Drawing.Size(992, 508);
 			this.userCurve1.StrechDataCountMax = 100;
 			this.userCurve1.TabIndex = 0;
-			this.userCurve1.ValueMaxLeft = 400F;
-			this.userCurve1.ValueMaxRight = 400F;
+			this.userCurve1.ReferenceAxisLeft.Max = 400F;
+			this.userCurve1.ReferenceAxisRight.Max = 400F;
 			// 
 			// button2
 			// 
@@ -206,7 +206,7 @@
 
         #endregion
 
-        private HslCommunication.Controls.UserCurve userCurve1;
+        private HslControls.HslCurve userCurve1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;

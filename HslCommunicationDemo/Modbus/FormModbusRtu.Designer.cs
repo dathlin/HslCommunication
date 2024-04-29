@@ -52,6 +52,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox_station_check = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -61,6 +62,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_station_check);
 			this.panel1.Controls.Add(this.checkBox_crc16);
 			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.checkBox5);
@@ -102,7 +104,7 @@
 			// checkBox2
 			// 
 			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(622, 34);
+			this.checkBox2.Location = new System.Drawing.Point(622, 35);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(135, 21);
 			this.checkBox2.TabIndex = 31;
@@ -220,7 +222,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(871, 15);
+			this.button2.Location = new System.Drawing.Point(871, 5);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -230,7 +232,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(765, 15);
+			this.button1.Location = new System.Drawing.Point(765, 5);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -320,6 +322,18 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// checkBox_station_check
+			// 
+			this.checkBox_station_check.AutoSize = true;
+			this.checkBox_station_check.Checked = true;
+			this.checkBox_station_check.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_station_check.Location = new System.Drawing.Point(788, 35);
+			this.checkBox_station_check.Name = "checkBox_station_check";
+			this.checkBox_station_check.Size = new System.Drawing.Size(106, 21);
+			this.checkBox_station_check.TabIndex = 33;
+			this.checkBox_station_check.Text = "Station Check";
+			this.checkBox_station_check.UseVisualStyleBackColor = true;
+			// 
 			// FormModbusRtu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -369,5 +383,6 @@
 		private System.Windows.Forms.CheckBox checkBox2;
 		private System.Windows.Forms.CheckBox checkBox_crc16;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
+		private System.Windows.Forms.CheckBox checkBox_station_check;
 	}
 }

@@ -89,9 +89,9 @@ namespace HslCommunicationDemo
 				s7NetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				s7NetServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
+				userControlReadWriteServer1.SetReadWriteServer( s7NetServer, "M100" );
 				s7NetServer.ServerStart( port );
 
-				userControlReadWriteServer1.SetReadWriteServer( s7NetServer, "M100" );
 				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;

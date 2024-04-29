@@ -29,11 +29,14 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.panel_tcp_udp = new System.Windows.Forms.Panel();
+			this.radioButton_udp = new System.Windows.Forms.RadioButton();
+			this.radioButton_tcp = new System.Windows.Forms.RadioButton();
 			this.checkBox_forceReceiveOnce = new System.Windows.Forms.CheckBox();
 			this.textBox_station = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.checkBox_station_isolation = new System.Windows.Forms.CheckBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.textBox_time_min = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.checkBox_ipv6 = new System.Windows.Forms.CheckBox();
 			this.checkBox_RtuOverTcp = new System.Windows.Forms.CheckBox();
@@ -51,12 +54,10 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.panel_tcp_udp = new System.Windows.Forms.Panel();
-			this.radioButton_udp = new System.Windows.Forms.RadioButton();
-			this.radioButton_tcp = new System.Windows.Forms.RadioButton();
+			this.checkBox_maskcode = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
-			this.panel2.SuspendLayout();
 			this.panel_tcp_udp.SuspendLayout();
+			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -64,12 +65,13 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_maskcode);
 			this.panel1.Controls.Add(this.panel_tcp_udp);
 			this.panel1.Controls.Add(this.checkBox_forceReceiveOnce);
 			this.panel1.Controls.Add(this.textBox_station);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.checkBox_station_isolation);
-			this.panel1.Controls.Add(this.textBox3);
+			this.panel1.Controls.Add(this.textBox_time_min);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.checkBox_ipv6);
 			this.panel1.Controls.Add(this.checkBox_RtuOverTcp);
@@ -89,6 +91,37 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 61);
 			this.panel1.TabIndex = 0;
+			// 
+			// panel_tcp_udp
+			// 
+			this.panel_tcp_udp.Controls.Add(this.radioButton_udp);
+			this.panel_tcp_udp.Controls.Add(this.radioButton_tcp);
+			this.panel_tcp_udp.Location = new System.Drawing.Point(307, 6);
+			this.panel_tcp_udp.Name = "panel_tcp_udp";
+			this.panel_tcp_udp.Size = new System.Drawing.Size(115, 23);
+			this.panel_tcp_udp.TabIndex = 42;
+			// 
+			// radioButton_udp
+			// 
+			this.radioButton_udp.AutoSize = true;
+			this.radioButton_udp.Location = new System.Drawing.Point(55, 1);
+			this.radioButton_udp.Name = "radioButton_udp";
+			this.radioButton_udp.Size = new System.Drawing.Size(51, 21);
+			this.radioButton_udp.TabIndex = 1;
+			this.radioButton_udp.Text = "UDP";
+			this.radioButton_udp.UseVisualStyleBackColor = true;
+			// 
+			// radioButton_tcp
+			// 
+			this.radioButton_tcp.AutoSize = true;
+			this.radioButton_tcp.Checked = true;
+			this.radioButton_tcp.Location = new System.Drawing.Point(4, 1);
+			this.radioButton_tcp.Name = "radioButton_tcp";
+			this.radioButton_tcp.Size = new System.Drawing.Size(48, 21);
+			this.radioButton_tcp.TabIndex = 0;
+			this.radioButton_tcp.TabStop = true;
+			this.radioButton_tcp.Text = "TCP";
+			this.radioButton_tcp.UseVisualStyleBackColor = true;
 			// 
 			// checkBox_forceReceiveOnce
 			// 
@@ -127,13 +160,13 @@
 			this.checkBox_station_isolation.Text = "Station Isolation?";
 			this.checkBox_station_isolation.UseVisualStyleBackColor = true;
 			// 
-			// textBox3
+			// textBox_time_min
 			// 
-			this.textBox3.Location = new System.Drawing.Point(723, 32);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(39, 23);
-			this.textBox3.TabIndex = 37;
-			this.textBox3.Text = "20";
+			this.textBox_time_min.Location = new System.Drawing.Point(723, 32);
+			this.textBox_time_min.Name = "textBox_time_min";
+			this.textBox_time_min.Size = new System.Drawing.Size(39, 23);
+			this.textBox_time_min.TabIndex = 37;
+			this.textBox_time_min.Text = "20";
 			// 
 			// label2
 			// 
@@ -169,7 +202,7 @@
 			this.checkBox_remote_write.AutoSize = true;
 			this.checkBox_remote_write.Checked = true;
 			this.checkBox_remote_write.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_remote_write.Location = new System.Drawing.Point(165, 35);
+			this.checkBox_remote_write.Location = new System.Drawing.Point(157, 35);
 			this.checkBox_remote_write.Name = "checkBox_remote_write";
 			this.checkBox_remote_write.Size = new System.Drawing.Size(123, 21);
 			this.checkBox_remote_write.TabIndex = 31;
@@ -179,7 +212,7 @@
 			// checkBox_account
 			// 
 			this.checkBox_account.AutoSize = true;
-			this.checkBox_account.Location = new System.Drawing.Point(884, 35);
+			this.checkBox_account.Location = new System.Drawing.Point(905, 35);
 			this.checkBox_account.Name = "checkBox_account";
 			this.checkBox_account.Size = new System.Drawing.Size(75, 21);
 			this.checkBox_account.TabIndex = 30;
@@ -195,9 +228,9 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox2.Location = new System.Drawing.Point(768, 4);
+			this.comboBox2.Location = new System.Drawing.Point(714, 4);
 			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(100, 25);
+			this.comboBox2.Size = new System.Drawing.Size(84, 25);
 			this.comboBox2.TabIndex = 29;
 			// 
 			// button11
@@ -214,7 +247,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(884, 9);
+			this.checkBox3.Location = new System.Drawing.Point(905, 8);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 27;
@@ -223,7 +256,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(672, 3);
+			this.button5.Location = new System.Drawing.Point(619, 3);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(91, 28);
 			this.button5.TabIndex = 9;
@@ -233,16 +266,16 @@
 			// 
 			// textBox10
 			// 
-			this.textBox10.Location = new System.Drawing.Point(511, 6);
+			this.textBox10.Location = new System.Drawing.Point(472, 6);
 			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(155, 23);
+			this.textBox10.Size = new System.Drawing.Size(144, 23);
 			this.textBox10.TabIndex = 8;
 			this.textBox10.Text = "COM4-9600-8-N-1";
 			// 
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(465, 9);
+			this.label14.Location = new System.Drawing.Point(426, 9);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(44, 17);
 			this.label14.TabIndex = 7;
@@ -314,36 +347,17 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// panel_tcp_udp
+			// checkBox_maskcode
 			// 
-			this.panel_tcp_udp.Controls.Add(this.radioButton_udp);
-			this.panel_tcp_udp.Controls.Add(this.radioButton_tcp);
-			this.panel_tcp_udp.Location = new System.Drawing.Point(307, 6);
-			this.panel_tcp_udp.Name = "panel_tcp_udp";
-			this.panel_tcp_udp.Size = new System.Drawing.Size(146, 23);
-			this.panel_tcp_udp.TabIndex = 42;
-			// 
-			// radioButton_udp
-			// 
-			this.radioButton_udp.AutoSize = true;
-			this.radioButton_udp.Location = new System.Drawing.Point(73, 1);
-			this.radioButton_udp.Name = "radioButton_udp";
-			this.radioButton_udp.Size = new System.Drawing.Size(51, 21);
-			this.radioButton_udp.TabIndex = 1;
-			this.radioButton_udp.Text = "UDP";
-			this.radioButton_udp.UseVisualStyleBackColor = true;
-			// 
-			// radioButton_tcp
-			// 
-			this.radioButton_tcp.AutoSize = true;
-			this.radioButton_tcp.Checked = true;
-			this.radioButton_tcp.Location = new System.Drawing.Point(10, 1);
-			this.radioButton_tcp.Name = "radioButton_tcp";
-			this.radioButton_tcp.Size = new System.Drawing.Size(48, 21);
-			this.radioButton_tcp.TabIndex = 0;
-			this.radioButton_tcp.TabStop = true;
-			this.radioButton_tcp.Text = "TCP";
-			this.radioButton_tcp.UseVisualStyleBackColor = true;
+			this.checkBox_maskcode.AutoSize = true;
+			this.checkBox_maskcode.Checked = true;
+			this.checkBox_maskcode.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_maskcode.Location = new System.Drawing.Point(804, 8);
+			this.checkBox_maskcode.Name = "checkBox_maskcode";
+			this.checkBox_maskcode.Size = new System.Drawing.Size(96, 21);
+			this.checkBox_maskcode.TabIndex = 43;
+			this.checkBox_maskcode.Text = "MaskCode?";
+			this.checkBox_maskcode.UseVisualStyleBackColor = true;
 			// 
 			// FormModbusServer
 			// 
@@ -363,9 +377,9 @@
 			this.Load += new System.EventHandler(this.FormSiemens_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.panel2.ResumeLayout(false);
 			this.panel_tcp_udp.ResumeLayout(false);
 			this.panel_tcp_udp.PerformLayout();
+			this.panel2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -389,7 +403,7 @@
 		private System.Windows.Forms.CheckBox checkBox_remote_write;
 		private System.Windows.Forms.CheckBox checkBox_RtuOverTcp;
 		private System.Windows.Forms.CheckBox checkBox_ipv6;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox textBox_time_min;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.CheckBox checkBox_station_isolation;
 		private System.Windows.Forms.TextBox textBox_station;
@@ -398,5 +412,6 @@
 		private System.Windows.Forms.Panel panel_tcp_udp;
 		private System.Windows.Forms.RadioButton radioButton_udp;
 		private System.Windows.Forms.RadioButton radioButton_tcp;
+		private System.Windows.Forms.CheckBox checkBox_maskcode;
 	}
 }

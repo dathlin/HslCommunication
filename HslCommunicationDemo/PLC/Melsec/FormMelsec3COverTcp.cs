@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox2.SelectedIndex = 0;
 			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
@@ -102,7 +103,7 @@ namespace HslCommunicationDemo
 
 			melsecA3C?.ConnectClose( );
 			melsecA3C = new MelsecA3CNetOverTcp( );
-			melsecA3C.IpAddress = textBox1.Text;
+			melsecA3C.IpAddress = textBox_ip.Text;
 			melsecA3C.Port = port;
 			melsecA3C.LogNet = LogNet;
 			melsecA3C.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
@@ -260,7 +261,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( "EnableWriteBitToWordRegister", checkBox_EnableWriteBitToWordRegister.Text );
@@ -271,7 +272,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );

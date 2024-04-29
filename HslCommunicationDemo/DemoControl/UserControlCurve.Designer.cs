@@ -37,7 +37,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.userCurve1 = new HslCommunication.Controls.UserCurve();
+            this.userCurve1 = new HslControls.HslCurve();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,8 +119,8 @@
             this.userCurve1.Name = "userCurve1";
             this.userCurve1.Size = new System.Drawing.Size(400, 189);
             this.userCurve1.TabIndex = 0;
-            this.userCurve1.ValueMaxLeft = 200F;
-            this.userCurve1.ValueMaxRight = 200F;
+            this.userCurve1.ReferenceAxisLeft.Max = 200F;
+            this.userCurve1.ReferenceAxisRight.Max = 200F;
             // 
             // UserControlCurve
             // 
@@ -144,6 +144,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label15;
-        private HslCommunication.Controls.UserCurve userCurve1;
+        private HslControls.HslCurve userCurve1;
     }
 }

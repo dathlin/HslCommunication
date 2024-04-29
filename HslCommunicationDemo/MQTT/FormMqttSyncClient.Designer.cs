@@ -43,7 +43,7 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.textBox_api_sign = new System.Windows.Forms.TextBox();
@@ -156,7 +156,7 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -260,13 +260,13 @@
 			this.label3.TabIndex = 2;
 			this.label3.Text = "端口号：";
 			// 
-			// textBox1
+			// textBox_ip
 			// 
-			this.textBox1.Location = new System.Drawing.Point(62, 3);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(115, 23);
-			this.textBox1.TabIndex = 1;
-			this.textBox1.Text = "127.0.0.1";
+			this.textBox_ip.Location = new System.Drawing.Point(62, 3);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(115, 23);
+			this.textBox_ip.TabIndex = 1;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label1
 			// 
@@ -309,7 +309,7 @@
 			this.panel2.Location = new System.Drawing.Point(3, 3);
 			this.panel2.Margin = new System.Windows.Forms.Padding(0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(829, 482);
+			this.panel2.Size = new System.Drawing.Size(822, 490);
 			this.panel2.TabIndex = 13;
 			// 
 			// textBox_api_sign
@@ -322,7 +322,7 @@
 			this.textBox_api_sign.Name = "textBox_api_sign";
 			this.textBox_api_sign.ReadOnly = true;
 			this.textBox_api_sign.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_api_sign.Size = new System.Drawing.Size(762, 16);
+			this.textBox_api_sign.Size = new System.Drawing.Size(755, 16);
 			this.textBox_api_sign.TabIndex = 52;
 			this.textBox_api_sign.Text = "[签名]";
 			// 
@@ -361,14 +361,14 @@
 			this.textBox_api_description.Name = "textBox_api_description";
 			this.textBox_api_description.ReadOnly = true;
 			this.textBox_api_description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_api_description.Size = new System.Drawing.Size(762, 56);
+			this.textBox_api_description.Size = new System.Drawing.Size(755, 56);
 			this.textBox_api_description.TabIndex = 49;
 			// 
 			// hslBarChart1
 			// 
 			this.hslBarChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.hslBarChart1.BackColor = System.Drawing.Color.White;
-			this.hslBarChart1.Location = new System.Drawing.Point(495, 122);
+			this.hslBarChart1.Location = new System.Drawing.Point(488, 122);
 			this.hslBarChart1.Name = "hslBarChart1";
 			this.hslBarChart1.ShowBarValueFormat = "{0}";
 			this.hslBarChart1.Size = new System.Drawing.Size(329, 166);
@@ -390,7 +390,7 @@
 			// textBox13
 			// 
 			this.textBox13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox13.Location = new System.Drawing.Point(733, 8);
+			this.textBox13.Location = new System.Drawing.Point(726, 8);
 			this.textBox13.Name = "textBox13";
 			this.textBox13.ReadOnly = true;
 			this.textBox13.Size = new System.Drawing.Size(91, 23);
@@ -400,7 +400,7 @@
 			// 
 			this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(610, 11);
+			this.label14.Location = new System.Drawing.Point(603, 11);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(113, 17);
 			this.label14.TabIndex = 38;
@@ -409,7 +409,7 @@
 			// textBox12
 			// 
 			this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox12.Location = new System.Drawing.Point(507, 8);
+			this.textBox12.Location = new System.Drawing.Point(500, 8);
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ReadOnly = true;
 			this.textBox12.Size = new System.Drawing.Size(91, 23);
@@ -419,7 +419,7 @@
 			// 
 			this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(415, 11);
+			this.label13.Location = new System.Drawing.Point(408, 11);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(85, 17);
 			this.label13.TabIndex = 36;
@@ -434,7 +434,7 @@
 			this.hslProgress1.Name = "hslProgress1";
 			this.hslProgress1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.hslProgress1.ProgressStyle = HslControls.HslProgressStyle.Horizontal;
-			this.hslProgress1.Size = new System.Drawing.Size(427, 18);
+			this.hslProgress1.Size = new System.Drawing.Size(420, 18);
 			this.hslProgress1.TabIndex = 32;
 			this.hslProgress1.TextRenderFormat = "已发送 {0}%";
 			this.hslProgress1.Value = 0;
@@ -446,7 +446,7 @@
 			this.textBox7.Location = new System.Drawing.Point(296, 269);
 			this.textBox7.Name = "textBox7";
 			this.textBox7.ReadOnly = true;
-			this.textBox7.Size = new System.Drawing.Size(193, 23);
+			this.textBox7.Size = new System.Drawing.Size(186, 23);
 			this.textBox7.TabIndex = 31;
 			// 
 			// label11
@@ -464,7 +464,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox6.Location = new System.Drawing.Point(62, 298);
 			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(449, 23);
+			this.textBox6.Size = new System.Drawing.Size(442, 23);
 			this.textBox6.TabIndex = 29;
 			// 
 			// panel3
@@ -473,7 +473,7 @@
 			this.panel3.Controls.Add(this.radioButton5);
 			this.panel3.Controls.Add(this.radioButton3);
 			this.panel3.Controls.Add(this.radioButton4);
-			this.panel3.Location = new System.Drawing.Point(565, 294);
+			this.panel3.Location = new System.Drawing.Point(558, 294);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(184, 28);
 			this.panel3.TabIndex = 26;
@@ -519,7 +519,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(762, 150);
+			this.textBox8.Size = new System.Drawing.Size(755, 158);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
@@ -534,7 +534,7 @@
 			// button4
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(755, 294);
+			this.button4.Location = new System.Drawing.Point(748, 294);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(71, 28);
 			this.button4.TabIndex = 17;
@@ -560,7 +560,7 @@
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(427, 115);
+			this.textBox4.Size = new System.Drawing.Size(420, 115);
 			this.textBox4.TabIndex = 8;
 			// 
 			// label9
@@ -578,7 +578,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox5.Location = new System.Drawing.Point(62, 7);
 			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(347, 23);
+			this.textBox5.Size = new System.Drawing.Size(340, 23);
 			this.textBox5.TabIndex = 9;
 			this.textBox5.Text = "A";
 			// 
@@ -906,7 +906,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(835, 488);
+			this.tabPage1.Size = new System.Drawing.Size(828, 496);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Api Test";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -952,7 +952,7 @@
 			this.tabPage3.Location = new System.Drawing.Point(4, 26);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(835, 488);
+			this.tabPage3.Size = new System.Drawing.Size(828, 496);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Sessions";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -1211,7 +1211,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_ip;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox8;

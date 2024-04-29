@@ -131,7 +131,6 @@ namespace HslCommunicationDemo
 			try
 			{
 				siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
-				siemens.SetPersistentConnection( );
 
 				mqttServer = new MqttServer( );
 				mqttServer.OnClientApplicationMessageReceive += MqttServer_OnClientApplicationMessageReceive;

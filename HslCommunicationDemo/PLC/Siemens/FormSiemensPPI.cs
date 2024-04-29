@@ -70,7 +70,6 @@ namespace HslCommunicationDemo
 				label25.Text = "Data bits";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 			}
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )

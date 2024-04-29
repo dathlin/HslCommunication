@@ -15,6 +15,7 @@ using HslCommunicationDemo.Control;
 using HslCommunication.MQTT;
 using HslCommunicationDemo.DemoControl;
 using HslCommunicationDemo.PLC.Melsec;
+using HslCommunication.Core.Pipe;
 
 namespace HslCommunicationDemo
 {
@@ -38,7 +39,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			
+			DemoUtils.SetDeviveIp( textBox_ip ); 
 			Language( Program.Language );
 
 			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
@@ -129,8 +130,8 @@ namespace HslCommunicationDemo
 				melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
 				melsec_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
 
-
-				connect = melsec_net.ConnectServer( this.mqttClient, readTopic, writeTopic );
+				PipeMqttClient pipeMqtt = new PipeMqttClient( mqttClient, readTopic, writeTopic );
+				melsec_net.CommunicationPipe = pipeMqtt;
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );

@@ -84,12 +84,7 @@ namespace HslCommunicationDemo
 				sPBServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				sPBServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
-				// add some accounts
-				sPBServer.AddAccount( "admin", "123456" );
-				sPBServer.AddAccount( "hsl", "test" );
-
 				sPBServer.IsStringReverse = checkBox3.Checked;
-
 				userControlReadWriteServer1.SetReadWriteServer( sPBServer, "D100" );
 				sPBServer.ServerStart( port );
 

@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.SelectedIndex = 0;
 			comboBox4.DataSource = SoftBasic.GetEnumValues<XinJESeries>( );
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
@@ -118,7 +119,7 @@ namespace HslCommunicationDemo
 			}
 
 			xinJE?.ConnectClose( );
-			xinJE = new XinJETcpNet( (XinJESeries)comboBox4.SelectedItem, textBox1.Text, port, station );
+			xinJE = new XinJETcpNet( (XinJESeries)comboBox4.SelectedItem, textBox_ip.Text, port, station );
 			xinJE.AddressStartWithZero = checkBox1.Checked;
 			xinJE.LogNet = LogNet;
 			ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
@@ -170,7 +171,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
@@ -184,7 +185,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );

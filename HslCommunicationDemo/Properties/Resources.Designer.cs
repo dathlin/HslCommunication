@@ -723,6 +723,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap GitHub_Symbol {
+            get {
+                object obj = ResourceManager.GetObject("GitHub-Symbol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap glasses_16xLG {
             get {
                 object obj = ResourceManager.GetObject("glasses_16xLG", resourceCulture);
@@ -756,6 +766,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap hlp {
             get {
                 object obj = ResourceManager.GetObject("hlp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap house_16xLG {
+            get {
+                object obj = ResourceManager.GetObject("house_16xLG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -963,6 +983,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Log {
+            get {
+                object obj = ResourceManager.GetObject("Log", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap ls {
             get {
                 object obj = ResourceManager.GetObject("ls", resourceCulture);
@@ -1086,6 +1116,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap msi {
             get {
                 object obj = ResourceManager.GetObject("msi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap NetworkAdapter {
+            get {
+                object obj = ResourceManager.GetObject("NetworkAdapter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1416,6 +1456,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap schneider {
             get {
                 object obj = ResourceManager.GetObject("schneider", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap SerialPort {
+            get {
+                object obj = ResourceManager.GetObject("SerialPort", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

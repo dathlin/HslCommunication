@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label_info = new System.Windows.Forms.Label();
 			this.textBox_pdu = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.textBox_localTSAP = new System.Windows.Forms.TextBox();
@@ -48,7 +49,6 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.label_info = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -80,6 +80,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 54);
 			this.panel1.TabIndex = 0;
+			// 
+			// label_info
+			// 
+			this.label_info.AutoSize = true;
+			this.label_info.ForeColor = System.Drawing.Color.Gray;
+			this.label_info.Location = new System.Drawing.Point(412, 30);
+			this.label_info.Name = "label_info";
+			this.label_info.Size = new System.Drawing.Size(140, 17);
+			this.label_info.TabIndex = 18;
+			this.label_info.Text = "如果不清楚，不设置即可";
 			// 
 			// textBox_pdu
 			// 
@@ -208,7 +218,7 @@
 			this.textBox_ip.Name = "textBox_ip";
 			this.textBox_ip.Size = new System.Drawing.Size(183, 23);
 			this.textBox_ip.TabIndex = 1;
-			this.textBox_ip.Text = "192.168.0.100";
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label1
 			// 
@@ -256,16 +266,6 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// label_info
-			// 
-			this.label_info.AutoSize = true;
-			this.label_info.ForeColor = System.Drawing.Color.Gray;
-			this.label_info.Location = new System.Drawing.Point(412, 30);
-			this.label_info.Name = "label_info";
-			this.label_info.Size = new System.Drawing.Size(140, 17);
-			this.label_info.TabIndex = 18;
-			this.label_info.Text = "如果不清楚，不设置即可";
 			// 
 			// FormSiemens
 			// 

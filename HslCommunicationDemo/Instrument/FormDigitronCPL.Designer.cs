@@ -41,8 +41,6 @@
 			this.textBox19 = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
 			this.label29 = new System.Windows.Forms.Label();
-			this.label22 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -69,8 +67,6 @@
 			this.panel1.Controls.Add(this.textBox19);
 			this.panel1.Controls.Add(this.label28);
 			this.panel1.Controls.Add(this.label29);
-			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
@@ -84,16 +80,16 @@
 			this.comboBox3.FormattingEnabled = true;
 			this.comboBox3.Location = new System.Drawing.Point(57, 3);
 			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(67, 25);
+			this.comboBox3.Size = new System.Drawing.Size(90, 25);
 			this.comboBox3.TabIndex = 41;
 			// 
 			// textBox_station
 			// 
 			this.textBox_station.Location = new System.Drawing.Point(59, 33);
 			this.textBox_station.Name = "textBox_station";
-			this.textBox_station.Size = new System.Drawing.Size(31, 23);
+			this.textBox_station.Size = new System.Drawing.Size(65, 23);
 			this.textBox_station.TabIndex = 40;
-			this.textBox_station.Text = "0";
+			this.textBox_station.Text = "1";
 			// 
 			// label1
 			// 
@@ -112,7 +108,7 @@
             "无",
             "奇",
             "偶"});
-			this.comboBox2.Location = new System.Drawing.Point(501, 3);
+			this.comboBox2.Location = new System.Drawing.Point(549, 3);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(60, 25);
 			this.comboBox2.TabIndex = 38;
@@ -120,7 +116,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(436, 8);
+			this.label3.Location = new System.Drawing.Point(484, 8);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(44, 17);
 			this.label3.TabIndex = 37;
@@ -128,7 +124,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(407, 4);
+			this.textBox2.Location = new System.Drawing.Point(446, 4);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(23, 23);
 			this.textBox2.TabIndex = 36;
@@ -137,7 +133,7 @@
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(347, 7);
+			this.label26.Location = new System.Drawing.Point(386, 7);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(56, 17);
 			this.label26.TabIndex = 35;
@@ -145,7 +141,7 @@
 			// 
 			// textBox18
 			// 
-			this.textBox18.Location = new System.Drawing.Point(312, 4);
+			this.textBox18.Location = new System.Drawing.Point(351, 4);
 			this.textBox18.Name = "textBox18";
 			this.textBox18.Size = new System.Drawing.Size(24, 23);
 			this.textBox18.TabIndex = 34;
@@ -154,7 +150,7 @@
 			// label27
 			// 
 			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(249, 7);
+			this.label27.Location = new System.Drawing.Point(288, 7);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(56, 17);
 			this.label27.TabIndex = 33;
@@ -162,16 +158,16 @@
 			// 
 			// textBox19
 			// 
-			this.textBox19.Location = new System.Drawing.Point(189, 4);
+			this.textBox19.Location = new System.Drawing.Point(213, 4);
 			this.textBox19.Name = "textBox19";
-			this.textBox19.Size = new System.Drawing.Size(47, 23);
+			this.textBox19.Size = new System.Drawing.Size(69, 23);
 			this.textBox19.TabIndex = 32;
 			this.textBox19.Text = "9600";
 			// 
 			// label28
 			// 
 			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(129, 7);
+			this.label28.Location = new System.Drawing.Point(153, 7);
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(56, 17);
 			this.label28.TabIndex = 31;
@@ -186,27 +182,10 @@
 			this.label29.TabIndex = 29;
 			this.label29.Text = "Com口：";
 			// 
-			// label22
-			// 
-			this.label22.Location = new System.Drawing.Point(889, 7);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(84, 45);
-			this.label22.TabIndex = 7;
-			this.label22.Text = "100  200";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(831, 5);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(68, 17);
-			this.label21.TabIndex = 6;
-			this.label21.Text = "地址示例：";
-			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(710, 24);
+			this.button2.Location = new System.Drawing.Point(739, 13);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(87, 28);
 			this.button2.TabIndex = 5;
@@ -216,7 +195,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(622, 24);
+			this.button1.Location = new System.Drawing.Point(651, 13);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(82, 28);
 			this.button1.TabIndex = 4;
@@ -289,7 +268,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox textBox_station;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox2;
@@ -303,7 +281,6 @@
         private System.Windows.Forms.Label label29;
         private DemoControl.UserControlHead userControlHead1;
 		private System.Windows.Forms.ComboBox comboBox3;
-		private System.Windows.Forms.Label label22;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 	}
 }

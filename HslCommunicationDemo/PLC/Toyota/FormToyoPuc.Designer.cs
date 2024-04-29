@@ -105,7 +105,7 @@ namespace HslCommunicationDemo
 			this.textBox_ip.Name = "textBox_ip";
 			this.textBox_ip.Size = new System.Drawing.Size(246, 23);
 			this.textBox_ip.TabIndex = 1;
-			this.textBox_ip.Text = "192.168.0.100";
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label1
 			// 

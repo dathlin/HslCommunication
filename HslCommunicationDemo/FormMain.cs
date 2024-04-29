@@ -102,6 +102,9 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "iec",              Properties.Resources.iec );               // 37
 			imageList.Images.Add( "turck",            Properties.Resources.Turck );             // 38
 			imageList.Images.Add( "toyota",           Properties.Resources.toyota );            // 39
+			imageList.Images.Add( "SerialPort",       Properties.Resources.SerialPort );        // 40
+			imageList.Images.Add( "NetworkAdapter",   Properties.Resources.NetworkAdapter );    // 41
+			imageList.Images.Add( "bin",              Properties.Resources.bin );               // 42
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;
@@ -135,9 +138,8 @@ namespace HslCommunicationDemo
 			newVersionToolStripMenuItem.Visible = false;
 			activeToolStripMenuItem.Click += ActiveToolStripMenuItem_Click;
 
-			aboutToolStripMenuItem.Visible     = Program.ShowAuthorInfomation;
-			toolStripMenuItem_homepage.Visible = Program.ShowAuthorInfomation;
-			日志ToolStripMenuItem.Visible      = Program.ShowAuthorInfomation;
+			toolStripMenuItem_HomePage.Visible = Program.ShowAuthorInfomation;
+			toolStripMenuItem_ApiDoc.Visible   = Program.ShowAuthorInfomation;
 			免责条款ToolStripMenuItem.Visible  = Program.ShowAuthorInfomation;
 		}
 
@@ -257,22 +259,30 @@ namespace HslCommunicationDemo
 			{
 				Text = "HslCommunication 测试工具";
 				免责条款ToolStripMenuItem.Text = "全国使用分布";
-				logToolStripMenuItem.Text = "报文日志";
-				日志ToolStripMenuItem.Text = "API 文档";
+				toolStripMenuItem_CommunicationLog.Text = "报文日志";
+				toolStripMenuItem_ApiDoc.Text = "API 文档";
 				//授权ToolStripMenuItem.Text = "授权";
 				deleteDeviceToolStripMenuItem.Text = "删除设备";
-				toolStripMenuItem_language.Text = "语言";
-				toolStripMenuItem_homepage.Text = "官网";
+				toolStripMenuItem_language.Text = "语言(&L)";
+				toolStripMenuItem_HomePage.Text = "官方网站";
+				toolStripMenuItem_Debug.Text = "调试(&D)";
+				toolStripMenuItem_Help.Text = "帮助(&H)";
+				toolStripMenuItem_Doc.Text = "开发文档";
+				toolStripMenuItem_SerialPort.Text = "串口调试";
 			}
 			else
 			{
 				Text = "HslCommunication Test Tool";
-				logToolStripMenuItem.Text = "MsgLog";
+				toolStripMenuItem_CommunicationLog.Text = "MsgLog";
 				免责条款ToolStripMenuItem.Text = "China Map";
-				日志ToolStripMenuItem.Text = "API Doc";
+				toolStripMenuItem_ApiDoc.Text = "API Doc";
 				//授权ToolStripMenuItem.Text = "Authorize";
-				toolStripMenuItem_language.Text = "Language";
-				toolStripMenuItem_homepage.Text = "Home";
+				toolStripMenuItem_language.Text = "Language(&L)";
+				toolStripMenuItem_HomePage.Text = "HomePage";
+				toolStripMenuItem_Debug.Text = "Debug(&D)";
+				toolStripMenuItem_Help.Text = "Help(&H)";
+				toolStripMenuItem_Doc.Text = "Document";
+				toolStripMenuItem_SerialPort.Text = "SerialPort";
 			}
 		}
 
@@ -291,7 +301,7 @@ namespace HslCommunicationDemo
 
 		private void Support赞助ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			using (HslCommunication.BasicFramework.FormSupport form = new HslCommunication.BasicFramework.FormSupport( ))
+			using (FormSupport form = new FormSupport( ))
 			{
 				form.ShowDialog( );
 			}
@@ -307,16 +317,9 @@ namespace HslCommunicationDemo
 			label1.Text = $"Timeout:{HslCommunication.HslTimeOut.TimeOutCheckCount}/{current}  Lock:{SimpleHybirdLock.SimpleHybirdLockCount}  Wait:{SimpleHybirdLock.SimpleHybirdLockWaitCount}";
 		}
 
-		private void logToolStripMenuItem_Click( object sender, EventArgs e )
+
+		private void toolStripMenuItem_CommunicationLog_Click( object sender, EventArgs e )
 		{
-			//try
-			//{
-			//	System.Diagnostics.Process.Start( "http://blog.hslcommunication.cn/" );
-			//}
-			//catch (Exception ex)
-			//{
-			//	MessageBox.Show(ex.Message);
-			//}
 			if (this.logRender == null || this.logRender.IsDisposed)
 				logRender = new DemoControl.FormLogRender( logNet );
 
@@ -333,7 +336,6 @@ namespace HslCommunicationDemo
 			if (!finish)
 				this.logRender.Show( dockPanel1, DockState.DockBottom );
 		}
-
 
 		private void OpenWebside( string url )
 		{
@@ -357,11 +359,7 @@ namespace HslCommunicationDemo
 			OpenWebside( "http://www.hslcommunication.cn/" );
 		}
 
-		private void toolStripMenuItem_homepage_Click( object sender, EventArgs e )
-		{
-			OpenWebside( "http://www.hsltechnology.cn" );
-		}
-		private void toolStripMenuItem_doc_Click( object sender, EventArgs e )
+		private void toolStripMenuItem_Doc_Click_1( object sender, EventArgs e )
 		{
 			OpenWebside( "http://www.hsltechnology.cn/Doc/HslCommunication" );
 		}
@@ -392,19 +390,61 @@ namespace HslCommunicationDemo
 			MessageBox.Show( "Select English!" );
 		}
 
+		private void toolStripMenuItem_HomePage_Click( object sender, EventArgs e )
+		{
+			OpenWebside( "http://www.hsltechnology.cn" );
+		}
+
+		private void toolStripMenuItem_SourceCode_Click( object sender, EventArgs e )
+		{
+			OpenWebside( "https://github.com/dathlin/HslCommunication" );
+		}
 		private void 免责条款ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			new FormHslMap( ).Show( dockPanel1 );
+		}
+
+		private void toolStripMenuItem_ApiDoc_Click( object sender, EventArgs e )
+		{
+			OpenWebside( "http://api.hslcommunication.cn" );
 		}
 
 		private void authorization授权ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			new FormCharge( ).Show( dockPanel1 );
 		}
-		private void 日志ToolStripMenuItem_Click( object sender, EventArgs e )
+
+		private void toolStripMenuItem_SerialPort_Click( object sender, EventArgs e )
 		{
-			OpenWebside( "http://api.hslcommunication.cn" );
+			panelLeft?.RenderSerialDebug( );
 		}
+
+		private void toolStripMenuItem_tcpUDP_Click( object sender, EventArgs e )
+		{
+			panelLeft?.RenderTCPDebug( );
+		}
+
+		private void toolStripMenuItem_tcpUdpServer_Click( object sender, EventArgs e )
+		{
+			panelLeft?.RenderTCPServerDebug( );
+		}
+
+		private void toolStripMenuItem_serial2Tcp_Click( object sender, EventArgs e )
+		{
+			panelLeft?.RenderSerial2TcpDebug( );
+		}
+
+		private void toolStripMenuItem_tcp2Tcp_Click( object sender, EventArgs e )
+		{
+			panelLeft?.RenderTCP2TcpDebug( );
+		}
+
+
+		private void toolStripMenuItem_byteTransform_Click( object sender, EventArgs e )
+		{
+			panelLeft?.RenderByteTransformDebug( );
+		}
+
 		private void NewVersionToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			try
@@ -455,9 +495,9 @@ namespace HslCommunicationDemo
 		private ILogNet logNet;
 		private DemoControl.FormLogRender logRender;
 
+
+
 		#endregion
-
-
 
 	}
 

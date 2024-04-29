@@ -34,7 +34,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.comboBox_connect_type = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
@@ -89,13 +89,13 @@
 			this.label3.TabIndex = 33;
 			this.label3.Text = "端口号：";
 			// 
-			// textBox1
+			// textBox_ip
 			// 
-			this.textBox1.Location = new System.Drawing.Point(126, 3);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(175, 23);
-			this.textBox1.TabIndex = 32;
-			this.textBox1.Text = "192.168.0.100";
+			this.textBox_ip.Location = new System.Drawing.Point(126, 3);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(175, 23);
+			this.textBox_ip.TabIndex = 32;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label1
 			// 
@@ -125,7 +125,7 @@
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.textBox_ip);
 			this.Controls.Add(this.label1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "ConnectControl";
@@ -143,7 +143,7 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox textBox_ip;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox comboBox_connect_type;
 	}

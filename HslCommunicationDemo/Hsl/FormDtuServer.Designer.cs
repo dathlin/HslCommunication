@@ -141,7 +141,8 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox1.Location = new System.Drawing.Point(339, 3);
 			this.textBox1.Multiline = true;
@@ -152,6 +153,8 @@
 			// 
 			// userControlReadWriteOp1
 			// 
+			this.userControlReadWriteOp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteOp1.Location = new System.Drawing.Point(5, 287);
 			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
 			this.userControlReadWriteOp1.Size = new System.Drawing.Size(987, 275);
@@ -159,14 +162,16 @@
 			// 
 			// comboBox1
 			// 
+			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.comboBox1.FormattingEnabled = true;
 			this.comboBox1.Location = new System.Drawing.Point(52, 254);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(477, 25);
+			this.comboBox1.Size = new System.Drawing.Size(481, 25);
 			this.comboBox1.TabIndex = 36;
 			// 
 			// label7
 			// 
+			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label7.AutoSize = true;
 			this.label7.Location = new System.Drawing.Point(7, 258);
 			this.label7.Name = "label7";
@@ -176,6 +181,8 @@
 			// 
 			// listBox1
 			// 
+			this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.listBox1.BackColor = System.Drawing.Color.LightGray;
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.ItemHeight = 17;
@@ -186,8 +193,9 @@
 			// 
 			// label5
 			// 
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(783, 258);
+			this.label5.Location = new System.Drawing.Point(795, 258);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(95, 17);
 			this.label5.TabIndex = 33;
@@ -195,8 +203,9 @@
 			// 
 			// label2
 			// 
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(570, 258);
+			this.label2.Location = new System.Drawing.Point(643, 258);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(81, 17);
 			this.label2.TabIndex = 32;

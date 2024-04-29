@@ -56,12 +56,15 @@
 			// label15
 			// 
 			this.label15.AutoSize = true;
+			this.label15.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.label15.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label15.ForeColor = System.Drawing.Color.Blue;
 			this.label15.Location = new System.Drawing.Point(291, 5);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(19, 21);
 			this.label15.TabIndex = 26;
 			this.label15.Text = "0";
+			this.label15.Click += new System.EventHandler(this.label16_Click);
 			// 
 			// button9
 			// 
@@ -77,12 +80,15 @@
 			// label16
 			// 
 			this.label16.AutoSize = true;
+			this.label16.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.label16.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label16.ForeColor = System.Drawing.Color.Blue;
 			this.label16.Location = new System.Drawing.Point(170, 5);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(106, 21);
 			this.label16.TabIndex = 25;
 			this.label16.Text = "在线客户端：";
+			this.label16.Click += new System.EventHandler(this.label16_Click);
 			// 
 			// button8
 			// 
@@ -116,7 +122,7 @@
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(936, 155);
+			this.textBox1.Size = new System.Drawing.Size(936, 168);
 			this.textBox1.TabIndex = 23;
 			// 
 			// button1
@@ -207,10 +213,10 @@
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.batchReadControl1);
-			this.tabPage2.Location = new System.Drawing.Point(4, 26);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(948, 203);
+			this.tabPage2.Size = new System.Drawing.Size(948, 207);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "批量读取";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -222,16 +228,16 @@
 			this.batchReadControl1.IsSourceReadMode = false;
 			this.batchReadControl1.Location = new System.Drawing.Point(3, 3);
 			this.batchReadControl1.Name = "batchReadControl1";
-			this.batchReadControl1.Size = new System.Drawing.Size(942, 197);
+			this.batchReadControl1.Size = new System.Drawing.Size(942, 201);
 			this.batchReadControl1.TabIndex = 1;
 			// 
 			// tabPage3
 			// 
 			this.tabPage3.Controls.Add(this.dataTableControl1);
-			this.tabPage3.Location = new System.Drawing.Point(4, 26);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(948, 203);
+			this.tabPage3.Size = new System.Drawing.Size(948, 207);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "点位表";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -242,7 +248,7 @@
 			this.dataTableControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.dataTableControl1.Location = new System.Drawing.Point(3, 3);
 			this.dataTableControl1.Name = "dataTableControl1";
-			this.dataTableControl1.Size = new System.Drawing.Size(942, 197);
+			this.dataTableControl1.Size = new System.Drawing.Size(942, 201);
 			this.dataTableControl1.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1

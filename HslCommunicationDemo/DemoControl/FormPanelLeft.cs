@@ -2,6 +2,7 @@
 using HslCommunicationDemo.Control;
 using HslCommunicationDemo.HslDebug;
 using HslCommunicationDemo.MQTT;
+using HslCommunicationDemo.PLC;
 using HslCommunicationDemo.PLC.Omron;
 using HslCommunicationDemo.Redis;
 using System;
@@ -63,10 +64,8 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-
-		private void TreeView1_DoubleClick( object sender, EventArgs e )
+		private void RenderTreeNode( TreeNode treeNode )
 		{
-			TreeNode treeNode = treeView1.SelectedNode;
 			if (treeNode == null) return;
 			if (treeNode.Tag == null) return;
 
@@ -83,6 +82,12 @@ namespace HslCommunicationDemo.DemoControl
 					if (hslForm != null) hslForm.Show( dockPanel1 );
 				}
 			}
+		}
+
+		private void TreeView1_DoubleClick( object sender, EventArgs e )
+		{
+			TreeNode treeNode = treeView1.SelectedNode;
+			RenderTreeNode( treeNode );
 		}
 
 		private void TreeViewIni( )
@@ -107,7 +112,6 @@ namespace HslCommunicationDemo.DemoControl
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C OverTcp", 8, typeof( FormMelsec3COverTcp ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C Server", 8, typeof( FormMcA3CServer ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Mc Virtual Server", 8, typeof( FormMcServer ) ) );
-			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Mc Udp Server", 8, typeof( FormMcUdpServer ) ) );
 			treeView1.Nodes.Add( melsecNode );
 
 			// 西门子PLC相关
@@ -238,6 +242,7 @@ namespace HslCommunicationDemo.DemoControl
 			TreeNode rkc = new TreeNode( "RKC[理化]", 35, 35 );
 			rkc.Nodes.Add( GetTreeNodeByIndex( "温度控制器", 35, typeof( FormRkcTemperatureController ) ) );
 			rkc.Nodes.Add( GetTreeNodeByIndex( "温度控制器TCP", 35, typeof( FormRkcTemperatureControllerOverTcp ) ) );
+			rkc.Nodes.Add( GetTreeNodeByIndex( "温度控制器Server", 35, typeof( FormRkcTemperatureControllerServer ) ) );
 			treeView1.Nodes.Add( rkc );
 
 			// Fatek 永宏PLC
@@ -379,16 +384,17 @@ namespace HslCommunicationDemo.DemoControl
 			TreeNode debugNode = new TreeNode( "Debug About[调试技术]", 15, 15 );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regex [正则表达式]", 15, typeof( FormRegexTest ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Check [校验码调试]", 15, typeof( FormCheck ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口调试]", 15, typeof( FormSerialDebug ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Client [网口调试]", 15, typeof( FormTcpDebug ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]", 15, typeof( FormTcpServer ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial2Tcp [串口转网口]", 15, typeof( FormSerialToTcp ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp2Tcp [网口转网口]", 15, typeof( FormTcpToTcp ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Bytes Data [数据调试]", 15, typeof( FormByteTransfer ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口调试]", 40, typeof( FormSerialDebug ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Client [网口调试]", 41, typeof( FormTcpDebug ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]", 41, typeof( FormTcpServer ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial2Tcp [串口转网口]", 40, typeof( FormSerialToTcp ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp2Tcp [网口转网口]", 41, typeof( FormTcpToTcp ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Bytes Data [数据调试]", 42, typeof( FormByteTransfer ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Mail [邮件调试]", 15, typeof( FormMail ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Order Number [订单号调试]", 15, typeof( FormSeqCreate ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regist [注册码调试]", 15, typeof( FormRegister ) ) );
 			treeView1.Nodes.Add( debugNode );
+			treeNodeDebug = debugNode;
 
 			// HSL 相关
 			TreeNode hslNode = new TreeNode( "Hsl Protocal[HSL 协议]", 3, 3 );
@@ -431,18 +437,8 @@ namespace HslCommunicationDemo.DemoControl
 
 			// 托利多电子秤Toledo
 			TreeNode toledoNode = new TreeNode( "Toledo [托利多]", 18, 18 );
-			toledoNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口通讯]", 18, typeof( Toledo.FormToledoSerial ) ) );
-			toledoNode.Nodes.Add( GetTreeNodeByIndex( "Tcp Server [网口服务]", 18, typeof( Toledo.FormToledoTcpServer ) ) );
+			toledoNode.Nodes.Add( GetTreeNodeByIndex( "Toledo Server [网口串口]", 18, typeof( Toledo.FormToledoTcpServer ) ) );
 			treeView1.Nodes.Add( toledoNode );
-
-			// 控件库
-			TreeNode controlNode = new TreeNode( "Control [控件库]" );
-			controlNode.Nodes.Add( new TreeNode( "Simple Control" ) { Tag = typeof( FormBasicControl ) } );
-			controlNode.Nodes.Add( new TreeNode( "Gauge [仪表盘]" ) { Tag = typeof( FormGauge ) } );
-			controlNode.Nodes.Add( new TreeNode( "Curve [曲线]" ) { Tag = typeof( FormCurve ) } );
-			controlNode.Nodes.Add( new TreeNode( "Pie Chart [饼图]" ) { Tag = typeof( FormPieChart ) } );
-			controlNode.Nodes.Add( new TreeNode( "Pipe [管道组态]" ) { Tag = typeof( FormPipe ) } );
-			treeView1.Nodes.Add( controlNode );
 
 			// 算法相关 algorithms
 			TreeNode algorithmsNode = new TreeNode( "Algorithms [算法]" );
@@ -556,10 +552,42 @@ namespace HslCommunicationDemo.DemoControl
 		private Dictionary<string, int> formIconImageIndex = new Dictionary<string, int>( );
 		private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
 		public static Type[] formTypes = Assembly.GetExecutingAssembly( ).GetTypes( );
+		private TreeNode treeNodeDebug;
 
 		/// <summary>
 		/// 获取当前的图标信息
 		/// </summary>
 		public Dictionary<string, int> IconImageIndex => this.formIconImageIndex;
+
+		public void RenderSerialDebug( )
+		{
+			RenderTreeNode( treeNodeDebug.Nodes[2] );
+		}
+
+		public void RenderTCPDebug( )
+		{
+			RenderTreeNode( treeNodeDebug.Nodes[3] );
+		}
+
+
+		public void RenderTCPServerDebug( )
+		{
+			RenderTreeNode( treeNodeDebug.Nodes[4] );
+		}
+
+		public void RenderSerial2TcpDebug( )
+		{
+			RenderTreeNode( treeNodeDebug.Nodes[5] );
+		}
+
+		public void RenderTCP2TcpDebug( )
+		{
+			RenderTreeNode( treeNodeDebug.Nodes[6] );
+		}
+
+		public void RenderByteTransformDebug( )
+		{
+			RenderTreeNode( treeNodeDebug.Nodes[7] );
+		}
 	}
 }

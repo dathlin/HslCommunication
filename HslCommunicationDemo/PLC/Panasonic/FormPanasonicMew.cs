@@ -201,7 +201,6 @@ namespace HslCommunicationDemo
 				string err = write.Message;
 			}
 
-			HslCommunication.Core.IByteTransform ByteTransform = new HslCommunication.Core.ReverseWordTransform( );
 		}
 
 

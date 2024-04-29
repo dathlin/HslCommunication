@@ -1,4 +1,5 @@
 ﻿using HslCommunication.BasicFramework;
+using HslCommunication.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HslCommunicationDemo.HslDebug
 {
@@ -76,13 +78,14 @@ namespace HslCommunicationDemo.HslDebug
 				checkBox_stop_show.Text = "Stop Show";
 				checkBox_auto_return.Text = "Auto Ret";
 				button5.Text = "Clear";
-				checkBox_show_header.Text = "Display message header information";
+				checkBox_show_header.Text = "Display message header?";
 				label3.Text = "Msg(d-click)";
 				checkBox_send_cycle.Text = "Cycle";
-				radioButton_send_text.Text = "SendTxt";
+				radioButton_send_text.Text = "SendText";
 				radioButton_send_cycle.Text = "SendList";
 				radioButton_send_single.Text = "Single";
 				radioButton_send_all.Text = "All";
+				textBox_send_info.Text = "<sleep=100> Single line can split and delay send";
 			}
 			linkLabel1.Text = string.Format( GetLinkLabelPacketMessageText( ), 0 );
 			this.label_session_count.Text = string.Format( GetSessionCountText( ), this.sessions.Count );
@@ -429,14 +432,44 @@ namespace HslCommunicationDemo.HslDebug
 			}
 		}
 
-		private void button_send_Click( object sender, EventArgs e )
+		private async void button_send_Click( object sender, EventArgs e )
+		{
+			// 分析是否分多次发送，中间可以使用特殊标记分割
+			if (System.Text.RegularExpressions.Regex.IsMatch( textBox5.Text, @"<sleep=[0-9]+>" ))
+			{
+				string[] lines = textBox5.Lines;
+				if (lines == null) return;
+				button_send.Enabled = false;
+				for (int i = 0; i < lines.Length; i++)
+				{
+					string str = lines[i];
+					if (string.IsNullOrEmpty( str )) continue;
+					if (System.Text.RegularExpressions.Regex.IsMatch( str, @"^<sleep=[0-9]+>" ))
+					{
+						int time = Convert.ToInt32( System.Text.RegularExpressions.Regex.Match( str, @"[0-9]+" ).Value );
+						if (time > 0) await Task.Delay( time );
+					}
+					else
+					{
+						SendTextInfo( str );
+					}
+				}
+				button_send.Enabled = true;
+			}
+			else
+			{
+				SendTextInfo( textBox5.Text );
+			}
+		}
+
+		private void SendTextInfo( string text )
 		{
 			// 发送数据
-			byte[] send = isBinary ? SoftBasic.HexStringToBytes( textBox5.Text ) : SoftBasic.GetFromAsciiStringRender( textBox5.Text );
+			byte[] send = isBinary ? SoftBasic.HexStringToBytes( text ) : SoftBasic.GetFromAsciiStringRender( text );
 
-			if (radioButton_append_0d.Checked) send = SoftBasic.SpliceArray( send, new byte[] { 0x0D } );
-			else if (radioButton_append_0a.Checked) send = SoftBasic.SpliceArray( send, new byte[] { 0x0A } );
-			else if (radioButton_append_0d0a.Checked) send = SoftBasic.SpliceArray( send, new byte[] { 0x0D, 0x0A } );
+			if      (radioButton_append_0d.Checked)    send = SoftBasic.SpliceArray( send, new byte[] { AsciiControl.CR } );
+			else if (radioButton_append_0a.Checked)    send = SoftBasic.SpliceArray( send, new byte[] { AsciiControl.LF } );
+			else if (radioButton_append_0d0a.Checked)  send = SoftBasic.SpliceArray( send, new byte[] { AsciiControl.CR, AsciiControl.LF } );
 			else if (radioButton_append_crc16.Checked) send = HslCommunication.Serial.SoftCRC16.CRC16( send );
 
 			SendSourceData( send );

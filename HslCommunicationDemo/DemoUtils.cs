@@ -13,6 +13,11 @@ namespace HslCommunicationDemo
 	/// </summary>
 	public class DemoUtils
 	{
+		public static void SetDeviveIp( TextBox textBox )
+		{
+			//textBox.Text = "127.0.0.1";
+		}
+
 		public static string DateTimeFormate = "yyyy-MM-dd HH:mm:ss.fff";
 
 		/// <summary>

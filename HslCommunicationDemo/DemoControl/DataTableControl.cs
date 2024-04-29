@@ -55,6 +55,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_out_clip.Text = "ToClip";
 				button_out_file.Text = "ToFile";
 				label1.Text = "Interval";
+				label2.Text = "Double click to write";
 			}
 
 		}

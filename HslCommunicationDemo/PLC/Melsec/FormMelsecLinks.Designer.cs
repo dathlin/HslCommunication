@@ -49,8 +49,8 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -82,7 +82,7 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 55);
+			this.panel1.Size = new System.Drawing.Size(997, 65);
 			this.panel1.TabIndex = 0;
 			// 
 			// comboBox_format
@@ -92,7 +92,7 @@
 			this.comboBox_format.Items.AddRange(new object[] {
             "1",
             "4"});
-			this.comboBox_format.Location = new System.Drawing.Point(678, 26);
+			this.comboBox_format.Location = new System.Drawing.Point(330, 34);
 			this.comboBox_format.Name = "comboBox_format";
 			this.comboBox_format.Size = new System.Drawing.Size(68, 25);
 			this.comboBox_format.TabIndex = 40;
@@ -100,7 +100,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(622, 29);
+			this.label2.Location = new System.Drawing.Point(274, 37);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(44, 17);
 			this.label2.TabIndex = 39;
@@ -109,14 +109,14 @@
 			// comboBox3
 			// 
 			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(63, 8);
+			this.comboBox3.Location = new System.Drawing.Point(59, 3);
 			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(67, 25);
+			this.comboBox3.Size = new System.Drawing.Size(103, 25);
 			this.comboBox3.TabIndex = 31;
 			// 
 			// textBox18
 			// 
-			this.textBox18.Location = new System.Drawing.Point(658, 1);
+			this.textBox18.Location = new System.Drawing.Point(146, 33);
 			this.textBox18.Name = "textBox18";
 			this.textBox18.Size = new System.Drawing.Size(31, 23);
 			this.textBox18.TabIndex = 30;
@@ -125,7 +125,7 @@
 			// label22
 			// 
 			this.label22.AutoSize = true;
-			this.label22.Location = new System.Drawing.Point(616, 4);
+			this.label22.Location = new System.Drawing.Point(91, 36);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(44, 17);
 			this.label22.TabIndex = 29;
@@ -133,7 +133,7 @@
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(580, 9);
+			this.textBox15.Location = new System.Drawing.Point(50, 34);
 			this.textBox15.Name = "textBox15";
 			this.textBox15.Size = new System.Drawing.Size(31, 23);
 			this.textBox15.TabIndex = 28;
@@ -142,7 +142,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(538, 12);
+			this.label21.Location = new System.Drawing.Point(8, 37);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(44, 17);
 			this.label21.TabIndex = 27;
@@ -153,7 +153,7 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(700, 3);
+			this.checkBox1.Location = new System.Drawing.Point(189, 36);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(63, 21);
 			this.checkBox1.TabIndex = 26;
@@ -168,7 +168,7 @@
             "无",
             "奇",
             "偶"});
-			this.comboBox1.Location = new System.Drawing.Point(470, 9);
+			this.comboBox1.Location = new System.Drawing.Point(530, 4);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(63, 25);
 			this.comboBox1.TabIndex = 25;
@@ -176,7 +176,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(425, 12);
+			this.label1.Location = new System.Drawing.Point(485, 7);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 24;
@@ -184,7 +184,7 @@
 			// 
 			// textBox17
 			// 
-			this.textBox17.Location = new System.Drawing.Point(395, 9);
+			this.textBox17.Location = new System.Drawing.Point(443, 4);
 			this.textBox17.Name = "textBox17";
 			this.textBox17.Size = new System.Drawing.Size(23, 23);
 			this.textBox17.TabIndex = 23;
@@ -193,7 +193,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(341, 12);
+			this.label3.Location = new System.Drawing.Point(389, 7);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 22;
@@ -201,7 +201,7 @@
 			// 
 			// textBox16
 			// 
-			this.textBox16.Location = new System.Drawing.Point(317, 9);
+			this.textBox16.Location = new System.Drawing.Point(356, 4);
 			this.textBox16.Name = "textBox16";
 			this.textBox16.Size = new System.Drawing.Size(24, 23);
 			this.textBox16.TabIndex = 21;
@@ -210,7 +210,7 @@
 			// label25
 			// 
 			this.label25.AutoSize = true;
-			this.label25.Location = new System.Drawing.Point(263, 12);
+			this.label25.Location = new System.Drawing.Point(297, 7);
 			this.label25.Name = "label25";
 			this.label25.Size = new System.Drawing.Size(56, 17);
 			this.label25.TabIndex = 20;
@@ -218,7 +218,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(202, 9);
+			this.textBox2.Location = new System.Drawing.Point(230, 4);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(56, 23);
 			this.textBox2.TabIndex = 19;
@@ -227,7 +227,7 @@
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(140, 12);
+			this.label26.Location = new System.Drawing.Point(168, 7);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(56, 17);
 			this.label26.TabIndex = 18;
@@ -236,7 +236,7 @@
 			// label27
 			// 
 			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(8, 12);
+			this.label27.Location = new System.Drawing.Point(4, 7);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(59, 17);
 			this.label27.TabIndex = 16;
@@ -245,7 +245,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(875, 6);
+			this.button2.Location = new System.Drawing.Point(716, 15);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -255,7 +255,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(778, 6);
+			this.button1.Location = new System.Drawing.Point(610, 15);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -270,11 +270,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteDevice1);
-			this.panel2.Location = new System.Drawing.Point(3, 94);
+			this.panel2.Location = new System.Drawing.Point(3, 102);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 548);
+			this.panel2.Size = new System.Drawing.Size(997, 540);
 			this.panel2.TabIndex = 1;
+			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 538);
+			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// userControlHead1
 			// 
@@ -290,15 +299,6 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// userControlReadWriteDevice1
-			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 546);
-			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// FormMelsecLinks
 			// 

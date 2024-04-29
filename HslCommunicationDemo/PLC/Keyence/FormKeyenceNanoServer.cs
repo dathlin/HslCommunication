@@ -66,8 +66,8 @@ namespace HslCommunicationDemo
 				keyencdeServer = new KeyenceNanoServer( );                       // 实例化对象
 				keyencdeServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );     // 如果客户端1个小时不通信，就关闭连接
 				keyencdeServer.OnDataReceived += MelsecMcServer_OnDataReceived;
-				keyencdeServer.ServerStart( port );
 				userControlReadWriteServer1.SetReadWriteServer( keyencdeServer, "DM100" );
+				keyencdeServer.ServerStart( port );
 
 				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );

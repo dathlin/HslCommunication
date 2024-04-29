@@ -177,12 +177,20 @@ namespace HslCommunicationDemo.PLC.Secs
 			timer = new Timer( );
 			timer.Tick += Timer_Tick;
 			timer.Start( );
+
+			if (Program.Language == 2)
+			{
+				label3.Text = "Port:";
+				button1.Text = "Start";
+				button11.Text = "Close";
+				button_device_save.Text = "Save";
+			}
 		}
 
 		private void Timer_Tick( object sender, EventArgs e )
 		{
 			if (this.server != null)
-				listBox1.DataSource = this.server.GetOnlineSessions;
+				listBox1.DataSource = this.server.GetPipeSessions();
 		}
 
 		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
@@ -247,7 +255,6 @@ namespace HslCommunicationDemo.PLC.Secs
 				server.OnSecsMessageReceived += Server_OnSecsMessageReceived;
 				server.ServerStart( int.Parse( textBox_port.Text ) );
 				ComboBox1_SelectedIndexChanged( comboBox1, e );
-
 				// 设置示例的代码
 				codeExampleControl.SetCodeText( "server", "", server, nameof( SecsHsms.StringEncoding ) );
 
@@ -260,7 +267,7 @@ namespace HslCommunicationDemo.PLC.Secs
 			}
 		}
 
-		private void Server_OnSecsMessageReceived( object sender, HslCommunication.Core.Net.AppSession session, SecsMessage message )
+		private void Server_OnSecsMessageReceived( object sender, HslCommunication.Core.Net.PipeSession session, SecsMessage message )
 		{
 			SecsMessage secsMessage = null;
 			foreach (TreeNode treeNode in treeView1.Nodes)

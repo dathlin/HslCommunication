@@ -29,6 +29,10 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_lora_head = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.textBox_connect_timeout = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -37,16 +41,12 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.textBox_connect_timeout = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.textBox_lora_head = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -68,7 +68,7 @@
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.checkBox3);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
@@ -76,6 +76,39 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 62);
 			this.panel1.TabIndex = 0;
+			// 
+			// textBox_lora_head
+			// 
+			this.textBox_lora_head.Location = new System.Drawing.Point(600, 5);
+			this.textBox_lora_head.Name = "textBox_lora_head";
+			this.textBox_lora_head.Size = new System.Drawing.Size(109, 23);
+			this.textBox_lora_head.TabIndex = 30;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(529, 8);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(77, 17);
+			this.label4.TabIndex = 29;
+			this.label4.Text = "LoraHead：";
+			// 
+			// textBox_connect_timeout
+			// 
+			this.textBox_connect_timeout.Location = new System.Drawing.Point(441, 5);
+			this.textBox_connect_timeout.Name = "textBox_connect_timeout";
+			this.textBox_connect_timeout.Size = new System.Drawing.Size(69, 23);
+			this.textBox_connect_timeout.TabIndex = 28;
+			this.textBox_connect_timeout.Text = "5000";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(370, 8);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(68, 17);
+			this.label2.TabIndex = 27;
+			this.label2.Text = "连接超时：";
 			// 
 			// button1
 			// 
@@ -158,13 +191,13 @@
 			this.label3.TabIndex = 2;
 			this.label3.Text = "端口号：";
 			// 
-			// textBox1
+			// textBox_ip
 			// 
-			this.textBox1.Location = new System.Drawing.Point(62, 5);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(164, 23);
-			this.textBox1.TabIndex = 1;
-			this.textBox1.Text = "192.168.0.100";
+			this.textBox_ip.Location = new System.Drawing.Point(62, 5);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(164, 23);
+			this.textBox_ip.TabIndex = 1;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label1
 			// 
@@ -222,39 +255,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// textBox_connect_timeout
-			// 
-			this.textBox_connect_timeout.Location = new System.Drawing.Point(441, 5);
-			this.textBox_connect_timeout.Name = "textBox_connect_timeout";
-			this.textBox_connect_timeout.Size = new System.Drawing.Size(69, 23);
-			this.textBox_connect_timeout.TabIndex = 28;
-			this.textBox_connect_timeout.Text = "5000";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(370, 8);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(68, 17);
-			this.label2.TabIndex = 27;
-			this.label2.Text = "连接超时：";
-			// 
-			// textBox_lora_head
-			// 
-			this.textBox_lora_head.Location = new System.Drawing.Point(600, 5);
-			this.textBox_lora_head.Name = "textBox_lora_head";
-			this.textBox_lora_head.Size = new System.Drawing.Size(109, 23);
-			this.textBox_lora_head.TabIndex = 30;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(529, 8);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(77, 17);
-			this.label4.TabIndex = 29;
-			this.label4.Text = "LoraHead：";
-			// 
 			// FormModbusRtuOverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -287,7 +287,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_ip;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.CheckBox checkBox1;

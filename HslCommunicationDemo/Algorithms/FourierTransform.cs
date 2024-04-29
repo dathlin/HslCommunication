@@ -44,9 +44,9 @@ namespace HslCommunicationDemo.Algorithms
 				label1.Text = "方波及变换后的波形";
 				label3.Text = "正弦波及变换后的波形";
 				label6.Text = "混合波及变换后的波形";
-				userButton1.UIText = "专用图形";
-				userButton2.UIText = "专用图形";
-				userButton3.UIText = "专用图形";
+				userButton1.Text = "专用图形";
+				userButton2.Text = "专用图形";
+				userButton3.Text = "专用图形";
 			}
 			else
 			{
@@ -55,9 +55,9 @@ namespace HslCommunicationDemo.Algorithms
 				label1.Text = "The waveform of the square sweep and the transformed";
 				label3.Text = "Waveform after sine wave and transform";
 				label6.Text = "Waveform after mixed sweep and transform";
-				userButton1.UIText = "Graphics";
-				userButton2.UIText = "Graphics";
-				userButton3.UIText = "Graphics";
+				userButton1.Text = "Graphics";
+				userButton2.Text = "Graphics";
+				userButton3.Text = "Graphics";
 			}
 		}
 
@@ -66,13 +66,13 @@ namespace HslCommunicationDemo.Algorithms
 			// 信号一，方波信号
 			double[] data = GetWave1( );
 
-			userCurve1.SetCurve( key: "A", isLeft: true, data: data.Select( m => (float)m ).ToArray( ), lineColor: Color.Red, thickness: 1f );
+			userCurve1.SetCurve( key: "A", 0, data: data.Select( m => (float)m ).ToArray( ), lineColor: Color.Red, thickness: 1f, CurveStyle.Curve );
 
 			double[] trans = HslCommunication.Algorithms.Fourier.FFTHelper.FFT( data );
 			
-			userCurve2.ValueMaxLeft = (float)trans.Max( );
-			userCurve2.ValueMaxRight = (float)trans.Max( );
-			userCurve2.SetCurve( key: "A", isLeft: true, data: trans.Select( m => (float)m ).ToArray( ), lineColor: Color.Blue, thickness: 1f );
+			userCurve2.ReferenceAxisLeft.Max = (float)trans.Max( );
+			userCurve2.ReferenceAxisRight.Max = (float)trans.Max( );
+			userCurve2.SetCurve( key: "A", 0, data: trans.Select( m => (float)m ).ToArray( ), lineColor: Color.Blue, thickness: 1f, CurveStyle.Curve );
 		}
 
 		private void Sinawave( )
@@ -81,13 +81,13 @@ namespace HslCommunicationDemo.Algorithms
 
 			double[] data = GetWave2( );
 
-			userCurve4.SetCurve( key: "A", isLeft: true, data: data.Select( m => (float)m ).ToArray( ), lineColor: Color.Red, thickness: 1f );
+			userCurve4.SetCurve( key: "A", 0, data: data.Select( m => (float)m ).ToArray( ), lineColor: Color.Red, thickness: 1f, CurveStyle.Curve );
 
 			double[] trans = HslCommunication.Algorithms.Fourier.FFTHelper.FFT( data );
 
-			userCurve3.ValueMaxLeft = (float)trans.Max( );
-			userCurve3.ValueMaxRight = (float)trans.Max( );
-			userCurve3.SetCurve( key: "A", isLeft: true, data: trans.Select( m => (float)m ).ToArray( ), lineColor: Color.Blue, thickness: 1f );
+			userCurve3.ReferenceAxisLeft.Max = (float)trans.Max( );
+			userCurve3.ReferenceAxisRight.Max = (float)trans.Max( );
+			userCurve3.SetCurve( key: "A", 0, data: trans.Select( m => (float)m ).ToArray( ), lineColor: Color.Blue, thickness: 1f, CurveStyle.Curve );
 
 		}
 
@@ -96,13 +96,13 @@ namespace HslCommunicationDemo.Algorithms
 			// 信号三，阶跃信号
 			double[] data = GetWave3( );
 
-			userCurve6.SetCurve( key: "A", isLeft: true, data: data.Select( m => (float)m ).ToArray( ), lineColor: Color.Red, thickness: 1f );
+			userCurve6.SetCurve( key: "A", 0, data: data.Select( m => (float)m ).ToArray( ), lineColor: Color.Red, thickness: 1f, CurveStyle.Curve );
 
 			double[] trans = HslCommunication.Algorithms.Fourier.FFTHelper.FFT( data );
 
-			userCurve5.ValueMaxLeft = (float)trans.Max( );
-			userCurve5.ValueMaxRight = (float)trans.Max( );
-			userCurve5.SetCurve( key: "A", isLeft: true, data: trans.Select( m => (float)m ).ToArray( ), lineColor: Color.Blue, thickness: 1f );
+			userCurve5.ReferenceAxisLeft.Max = (float)trans.Max( );
+			userCurve5.ReferenceAxisRight.Max = (float)trans.Max( );
+			userCurve5.SetCurve( key: "A", 0, data: trans.Select( m => (float)m ).ToArray( ), lineColor: Color.Blue, thickness: 1f, CurveStyle.Curve );
 		}
 
 		private void userButton1_Click( object sender, EventArgs e )

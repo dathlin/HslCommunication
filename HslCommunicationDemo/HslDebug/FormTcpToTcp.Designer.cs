@@ -73,16 +73,16 @@
 			// 
 			// textBox_cache_size
 			// 
-			this.textBox_cache_size.Location = new System.Drawing.Point(265, 35);
+			this.textBox_cache_size.Location = new System.Drawing.Point(260, 35);
 			this.textBox_cache_size.Name = "textBox_cache_size";
-			this.textBox_cache_size.Size = new System.Drawing.Size(65, 23);
+			this.textBox_cache_size.Size = new System.Drawing.Size(56, 23);
 			this.textBox_cache_size.TabIndex = 34;
 			this.textBox_cache_size.Text = "2048";
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(183, 38);
+			this.label4.Location = new System.Drawing.Point(176, 38);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(82, 17);
 			this.label4.TabIndex = 33;
@@ -164,9 +164,9 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(346, 32);
+			this.button1.Location = new System.Drawing.Point(322, 32);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(101, 28);
+			this.button1.Size = new System.Drawing.Size(125, 28);
 			this.button1.TabIndex = 4;
 			this.button1.Text = "打开转换";
 			this.button1.UseVisualStyleBackColor = true;
@@ -247,7 +247,7 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormTcpToTcp";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "TCP转TCP调试工具";
+			this.Text = "Tcp2TCP";
 			this.Load += new System.EventHandler(this.FormSerialDebug_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

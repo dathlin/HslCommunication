@@ -5,10 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using HslCommunication;
 using HslCommunication.BasicFramework;
+using HslCommunication.Core;
 
 namespace HslCommunicationDemo
 {
@@ -17,7 +19,23 @@ namespace HslCommunicationDemo
 		public FormByteTransfer( )
 		{
 			InitializeComponent( );
+
+			comboBox1.SelectedIndex = 3;
+			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
 		}
+
+		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			switch (comboBox1.SelectedIndex)
+			{
+				case 0: byteTransform.DataFormat = DataFormat.ABCD; break;
+				case 1: byteTransform.DataFormat = DataFormat.BADC; break;
+				case 2: byteTransform.DataFormat = DataFormat.CDAB; break;
+				case 3: byteTransform.DataFormat = DataFormat.DCBA; break;
+			}
+		}
+
+		private IByteTransform byteTransform = new RegularByteTransform( );
 
 		private void button1_Click( object sender, EventArgs e )
 		{
@@ -28,97 +46,102 @@ namespace HslCommunicationDemo
 			{
 				if (radioButton1.Checked)
 				{
-					buffer = new byte[] { (byte.Parse( textBox1.Text )) };
+					buffer = textBox_input.Text.ToStringArray<byte>( );
 					radioButton = radioButton1;
 				}
 				else if(radioButton2.Checked)
 				{
-					buffer = BitConverter.GetBytes( short.Parse( textBox1.Text ) );
+					buffer = byteTransform.TransByte( textBox_input.Text.ToStringArray<short>( ) );
 					radioButton = radioButton2;
 				}
 				else if (radioButton3.Checked)
 				{
-					buffer = BitConverter.GetBytes( ushort.Parse( textBox1.Text ) );
+					buffer = byteTransform.TransByte( textBox_input.Text.ToStringArray<ushort>( ) );
 					radioButton = radioButton3;
 				}
 				else if (radioButton4.Checked)
 				{
-					buffer = BitConverter.GetBytes( int.Parse( textBox1.Text ) );
+					buffer = byteTransform.TransByte( textBox_input.Text.ToStringArray<int>( ) );
 					radioButton = radioButton4;
 				}
 				else if (radioButton5.Checked)
 				{
-					buffer = BitConverter.GetBytes( uint.Parse( textBox1.Text ) );
+					buffer = byteTransform.TransByte( textBox_input.Text.ToStringArray<uint>( ) );
 					radioButton = radioButton5;
 				}
 				else if (radioButton6.Checked)
 				{
-					buffer = BitConverter.GetBytes( long.Parse( textBox1.Text ) );
+					buffer = byteTransform.TransByte( textBox_input.Text.ToStringArray<long>( ) );
 					radioButton = radioButton6;
 				}
 				else if (radioButton7.Checked)
 				{
-					buffer = BitConverter.GetBytes( ulong.Parse( textBox1.Text ) );
+					buffer = byteTransform.TransByte( textBox_input.Text.ToStringArray<ulong>( ) );
 					radioButton = radioButton7;
 				}
 				else if (radioButton8.Checked)
 				{
-					buffer = BitConverter.GetBytes( float.Parse( textBox1.Text ) );
+					buffer = byteTransform.TransByte( textBox_input.Text.ToStringArray<float>( ) );
 					radioButton = radioButton8;
 				}
 				else if (radioButton9.Checked)
 				{
-					buffer = BitConverter.GetBytes( double.Parse( textBox1.Text ) );
+					buffer = byteTransform.TransByte( textBox_input.Text.ToStringArray<double>( ) );
 					radioButton = radioButton9;
 				}
 				else if (radioButton_ascii.Checked)
 				{
-					buffer = Encoding.ASCII.GetBytes( textBox1.Text );
+					buffer = Encoding.ASCII.GetBytes( textBox_input.Text );
+					if (checkBox_isStringReverseByWord.Checked) buffer = SoftBasic.BytesReverseByWord( buffer );
 					radioButton = radioButton_ascii;
 				}
 				else if (radioButton_unicode.Checked)
 				{
-					buffer = Encoding.Unicode.GetBytes( textBox1.Text );
+					buffer = Encoding.Unicode.GetBytes( textBox_input.Text );
+					if (checkBox_isStringReverseByWord.Checked) buffer = SoftBasic.BytesReverseByWord( buffer );
 					radioButton = radioButton_unicode;
 				}
 				else if (radioButton_utf8.Checked)
 				{
-					buffer = Encoding.UTF8.GetBytes( textBox1.Text );
+					buffer = Encoding.UTF8.GetBytes( textBox_input.Text );
+					if (checkBox_isStringReverseByWord.Checked) buffer = SoftBasic.BytesReverseByWord( buffer );
 					radioButton = radioButton_utf8;
 				}
 				else if (radioButton_utf32.Checked)
 				{
-					buffer = Encoding.UTF32.GetBytes( textBox1.Text );
+					buffer = Encoding.UTF32.GetBytes( textBox_input.Text );
+					if (checkBox_isStringReverseByWord.Checked) buffer = SoftBasic.BytesReverseByWord( buffer );
 					radioButton = radioButton_utf32;
 				}
 				else if (radioButton_ansi.Checked)
 				{
-					buffer = Encoding.Default.GetBytes( textBox1.Text );
+					buffer = Encoding.Default.GetBytes( textBox_input.Text );
+					if (checkBox_isStringReverseByWord.Checked) buffer = SoftBasic.BytesReverseByWord( buffer );
 					radioButton = radioButton_ansi;
 				}
-				else if (radioButton15.Checked)
+				else if (radioButton_dateTime_s.Checked)
 				{
 					DateTime dateTime = DateTime.Parse( textBox_datetime.Text );
-					double timestamp = double.Parse( textBox1.Text );
-					radioButton = radioButton15;
+					double timestamp = double.Parse( textBox_input.Text );
+					radioButton = radioButton_dateTime_s;
 
-					textBox2.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + textBox1.Text + "] [" + radioButton.Text.PadRight( 7, ' ' ) + "] Time " +
+					textBox2.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + textBox_input.Text + "] [" + radioButton.Text.PadRight( 7, ' ' ) + "] Time " +
 					dateTime.AddSeconds(timestamp).ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine );
 					return;
 				}
 				else if (radioButton_gb2312.Checked)
 				{
-					buffer = Encoding.GetEncoding( "gb2312" ).GetBytes( textBox1.Text );
+					buffer = Encoding.GetEncoding( "gb2312" ).GetBytes( textBox_input.Text );
 					radioButton = radioButton_gb2312;
 				}
 				else if (radioButton_unicode_big.Checked)
 				{
-					buffer = Encoding.BigEndianUnicode.GetBytes( textBox1.Text );
+					buffer = Encoding.BigEndianUnicode.GetBytes( textBox_input.Text );
 					radioButton = radioButton_unicode_big;
 				}
 				else if (radioButton_base64.Checked)
 				{
-					buffer = Convert.FromBase64String( textBox1.Text );
+					buffer = Convert.FromBase64String( textBox_input.Text );
 					radioButton = radioButton_base64;
 				}
 			}
@@ -129,8 +152,9 @@ namespace HslCommunicationDemo
 			}
 
 
-			textBox2.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + textBox1.Text + "] ["+ radioButton.Text.PadRight(7,' ') + "] Length[" + buffer.Length + "] " +
+			textBox2.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + textBox_input.Text + "] ["+ radioButton.Text.PadRight(7,' ') + "] Length[" + buffer.Length + "] " +
 				HslCommunication.BasicFramework.SoftBasic.ByteToHexString( buffer, ' ' ) + Environment.NewLine);
+			label_byte_count.Text = buffer == null ? "0" : buffer.Length.ToString( );
 
 		}
 
@@ -151,16 +175,37 @@ namespace HslCommunicationDemo
 				label3.Text = "Integer:";
 				label6.Text = "Float:";
 				label8.Text = "String:";
-				label1.Text = "Output:(Hex)";
+				label1.Text = "Output:\r\n(Hex)";
 				button1.Text = "Conver-byte[]";
 				button2.Text = "Re-conversion";
+				label5.Text = "DateTime:";
+				label4.Text = "Byte Count:";
+				label2.Text = "Start";
+				button_open_file.Text = "Open File";
+				button_save_file.Text = "Save File";
+				button4.Text = "Calcu MD5";
+				button5.Text = "ImageBase64";
 			}
 		}
 
 
 		private void FormByteTransfer_Shown( object sender, EventArgs e )
 		{
-			textBox1.Focus( );
+			textBox_input.Focus( );
+		}
+
+		private string GetRenderString<T>( Func<byte[], T[]> tarns )
+		{
+			byte[] buffer = SoftBasic.HexStringToBytes( textBox_input.Text );
+			T[] array = tarns( buffer );
+			return array.Length == 1 ? array[0].ToString( ) : array.ToArrayString( );
+		}
+
+		private string GetEncodingString( Func<byte[], string> encoding )
+		{
+			byte[] buffer = SoftBasic.HexStringToBytes( textBox_input.Text );
+			if (checkBox_isStringReverseByWord.Checked) buffer = SoftBasic.BytesReverseByWord( buffer );
+			return encoding( buffer );
 		}
 
 		private void button2_Click( object sender, EventArgs e )
@@ -172,87 +217,87 @@ namespace HslCommunicationDemo
 			{
 				if (radioButton1.Checked)
 				{
-					value = SoftBasic.HexStringToBytes( textBox1.Text )[0].ToString( );
+					value = SoftBasic.HexStringToBytes( textBox_input.Text )[0].ToString( );
 					radioButton = radioButton1;
 				}
 				else if (radioButton2.Checked)
 				{
-					value = BitConverter.ToInt16( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+					value = GetRenderString( m => byteTransform.TransInt16( m, 0, m.Length / 2 ) );
 					radioButton = radioButton2;
 				}
 				else if (radioButton3.Checked)
 				{
-					value = BitConverter.ToUInt16( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+					value = GetRenderString( m => byteTransform.TransUInt16( m, 0, m.Length / 2 ) );
 					radioButton = radioButton3;
 				}
 				else if (radioButton4.Checked)
 				{
-					value = BitConverter.ToInt32( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+					value = GetRenderString( m => byteTransform.TransInt32( m, 0, m.Length / 4 ) );
 					radioButton = radioButton4;
 				}
 				else if (radioButton5.Checked)
 				{
-					value = BitConverter.ToUInt32( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+					value = GetRenderString( m => byteTransform.TransUInt32( m, 0, m.Length / 4 ) );
 					radioButton = radioButton5;
 				}
 				else if (radioButton6.Checked)
 				{
-					value = BitConverter.ToInt64( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+					value = GetRenderString( m => byteTransform.TransInt64( m, 0, m.Length / 8 ) );
 					radioButton = radioButton6;
 				}
 				else if (radioButton7.Checked)
 				{
-					value = BitConverter.ToUInt64( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+					value = GetRenderString( m => byteTransform.TransUInt64( m, 0, m.Length / 8 ) );
 					radioButton = radioButton7;
 				}
 				else if (radioButton8.Checked)
 				{
-					value = BitConverter.ToSingle( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+					value = GetRenderString( m => byteTransform.TransSingle( m, 0, m.Length / 4 ) );
 					radioButton = radioButton8;
 				}
 				else if (radioButton9.Checked)
 				{
-					value = BitConverter.ToDouble( SoftBasic.HexStringToBytes( textBox1.Text ), 0 ).ToString( );
+					value = GetRenderString( m => byteTransform.TransDouble( m, 0, m.Length / 8 ) );
 					radioButton = radioButton9;
 				}
 				else if (radioButton_ascii.Checked)
 				{
-					value = Encoding.ASCII.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+					value = GetEncodingString( Encoding.ASCII.GetString );
 					radioButton = radioButton_ascii;
 				}
 				else if (radioButton_unicode.Checked)
 				{
-					value = Encoding.Unicode.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+					value = GetEncodingString( Encoding.Unicode.GetString );
 					radioButton = radioButton_unicode;
 				}
 				else if (radioButton_utf8.Checked)
 				{
-					value = Encoding.UTF8.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+					value = GetEncodingString( Encoding.UTF8.GetString );
 					radioButton = radioButton_utf8;
 				}
 				else if (radioButton_utf32.Checked)
 				{
-					value = Encoding.UTF32.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+					value = GetEncodingString( Encoding.UTF32.GetString );
 					radioButton = radioButton_utf32;
 				}
 				else if (radioButton_ansi.Checked)
 				{
-					value = Encoding.Default.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+					value = GetEncodingString( Encoding.Default.GetString );
 					radioButton = radioButton_utf32;
 				}
 				else if (radioButton_gb2312.Checked)
 				{
-					value = Encoding.GetEncoding("gb2312").GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+					value = GetEncodingString( Encoding.GetEncoding( "gb2312" ).GetString );
 					radioButton = radioButton_gb2312;
 				}
 				else if (radioButton_unicode_big.Checked)
 				{
-					value = Encoding.BigEndianUnicode.GetString( SoftBasic.HexStringToBytes( textBox1.Text ) ).ToString( );
+					value = GetEncodingString( Encoding.BigEndianUnicode.GetString );
 					radioButton = radioButton_unicode_big;
 				}
 				else if (radioButton_base64.Checked)
 				{
-					value = Convert.ToBase64String( SoftBasic.HexStringToBytes( textBox1.Text ) );
+					value = Convert.ToBase64String( SoftBasic.HexStringToBytes( textBox_input.Text ) );
 					radioButton = radioButton_base64;
 				}
 			}
@@ -263,36 +308,49 @@ namespace HslCommunicationDemo
 			}
 
 
-			textBox2.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + textBox1.Text + "] [" + radioButton.Text.PadRight( 7, ' ' ) + "]  " +
+			textBox2.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + textBox_input.Text + "] [" + radioButton.Text.PadRight( 7, ' ' ) + "]  " +
 				value + Environment.NewLine );
+		}
+
+		private void OpenFile( string filePath )
+		{
+			if (File.Exists( filePath ))
+			{
+				byte[] content = File.ReadAllBytes( filePath );
+				label_byte_count.Text = content == null ? "0" : content.Length.ToString( );
+
+				if (radioButton_base64.Checked)
+					textBox2.Text = Convert.ToBase64String( content );
+				else
+					textBox2.Text = SoftBasic.ByteToHexString( content, ' ', 32 );
+			}
+			else
+			{
+				MessageBox.Show( $"File[{filePath}] not exist" );
+			}
 		}
 
 		private void button3_Click( object sender, EventArgs e )
 		{
 			try
 			{
-				if (string.IsNullOrEmpty( textBox1.Text ))
+				if (string.IsNullOrEmpty( textBox_input.Text ))
 				{
 					OpenFileDialog ofd = new OpenFileDialog( );
 					if (ofd.ShowDialog( ) == DialogResult.OK)
 					{
-						if (radioButton_base64.Checked)
-							textBox2.Text = Convert.ToBase64String( File.ReadAllBytes( ofd.FileName ) );
-						else
-							textBox2.Text = SoftBasic.ByteToHexString( File.ReadAllBytes( ofd.FileName ), ' ', 32 );
+						textBox_input.Text = ofd.FileName;
+						OpenFile( ofd.FileName );
 					}
 				}
 				else
 				{
-					if (radioButton_base64.Checked)
-						textBox2.Text = Convert.ToBase64String( File.ReadAllBytes( textBox1.Text ) );
-					else
-						textBox2.Text = SoftBasic.ByteToHexString( File.ReadAllBytes( textBox1.Text ), ' ', 32 );
+					OpenFile( textBox_input.Text );
 				}
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( "Failed:" + ex.Message );
+				MessageBox.Show( "Open File Failed:" + ex.Message );
 			}
 		}
 
@@ -310,7 +368,7 @@ namespace HslCommunicationDemo
 			if (e.Data.GetDataPresent( DataFormats.FileDrop ))
 			{
 				e.Effect = DragDropEffects.Link;
-				this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;  //指定鼠标形状（更好看）  
+				this.textBox_input.Cursor = System.Windows.Forms.Cursors.Arrow;  //指定鼠标形状（更好看）  
 			}
 			else
 			{
@@ -321,19 +379,33 @@ namespace HslCommunicationDemo
 		private void textBox2_DragDrop( object sender, DragEventArgs e )
 		{
 			string fileName = ((System.Array)e.Data.GetData( DataFormats.FileDrop )).GetValue( 0 ).ToString( );
-			textBox1.Text = fileName;
+			textBox_input.Text = fileName;
 
 			button3_Click( sender, e );
-			this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam; //还原鼠标形状
+			this.textBox_input.Cursor = System.Windows.Forms.Cursors.IBeam; //还原鼠标形状
 		}
 
 		private void button4_Click( object sender, EventArgs e )
 		{
 			try
 			{
-				DateTime dateTime = DateTime.Now;
-				textBox2.Text = SoftBasic.CalculateFileMD5( textBox1.Text );
-				textBox2.AppendText( Environment.NewLine + "Total Coust:" + (DateTime.Now - dateTime).TotalSeconds.ToString( "F2" ) + " s" );
+				if (string.IsNullOrEmpty( textBox_input.Text ))
+				{
+					OpenFileDialog ofd = new OpenFileDialog( );
+					if (ofd.ShowDialog( ) == DialogResult.OK)
+					{
+						textBox_input.Text = ofd.FileName;
+						DateTime dateTime = DateTime.Now;
+						textBox2.Text = SoftBasic.CalculateFileMD5( ofd.FileName );
+						textBox2.AppendText( Environment.NewLine + "Total Coust:" + (DateTime.Now - dateTime).TotalSeconds.ToString( "F2" ) + " s" );
+					}
+				}
+				else
+				{
+					DateTime dateTime = DateTime.Now;
+					textBox2.Text = SoftBasic.CalculateFileMD5( textBox_input.Text );
+					textBox2.AppendText( Environment.NewLine + "Total Coust:" + (DateTime.Now - dateTime).TotalSeconds.ToString( "F2" ) + " s" );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -363,11 +435,11 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				if (!string.IsNullOrEmpty( textBox1.Text ))
+				if (!string.IsNullOrEmpty( textBox_input.Text ))
 				{
-					if (File.Exists( textBox1.Text ))
+					if (File.Exists( textBox_input.Text ))
 					{
-						byte[] content = File.ReadAllBytes( textBox1.Text );
+						byte[] content = File.ReadAllBytes( textBox_input.Text );
 						textBox2.Text = PrintBase64( content );
 					}
 				}
@@ -401,7 +473,7 @@ namespace HslCommunicationDemo
 			else if (radioButton_gb2312.Checked) encoding = Encoding.GetEncoding( "gb2312" );
 			else if (radioButton_unicode_big.Checked) encoding = Encoding.BigEndianUnicode;
 
-			textBox2.Text = SoftBasic.UrlEncode( textBox1.Text, encoding );
+			textBox2.Text = SoftBasic.UrlEncode( textBox_input.Text, encoding );
 		}
 
 		private void button_url_decode_Click( object sender, EventArgs e )
@@ -415,7 +487,7 @@ namespace HslCommunicationDemo
 			else if (radioButton_gb2312.Checked) encoding = Encoding.GetEncoding( "gb2312" );
 			else if (radioButton_unicode_big.Checked) encoding = Encoding.BigEndianUnicode;
 
-			textBox2.Text = SoftBasic.UrlDecode( textBox1.Text, encoding );
+			textBox2.Text = SoftBasic.UrlDecode( textBox_input.Text, encoding );
 		}
 
 	}

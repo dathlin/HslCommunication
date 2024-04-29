@@ -44,6 +44,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				copyAddressToolStripMenuItem.Text = "复制地址文本";
 			}
+
 		}
 
 		private void DataGridView1_SizeChanged( object sender, EventArgs e )
@@ -107,6 +108,11 @@ namespace HslCommunicationDemo.DemoControl
 					dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb( 160, 160, 160 );//Color.FromArgb(0xff, 0xa5, 0x50);
 					dataGridView1.Rows[i].Cells[0].Style.Font = new Font( this.Font, FontStyle.Bold );
 				}
+			}
+
+			if (dataGridView1.RowCount > 0 && dataGridView1.SelectedRows.Count > 0)
+			{
+				dataGridView1.SelectedRows[0].Selected = false;
 			}
 		}
 

@@ -86,7 +86,7 @@
 			// checkBox_EnableWriteBitToWordRegister
 			// 
 			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
-			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(333, 30);
+			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(11, 31);
 			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
 			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
 			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 40;
@@ -102,7 +102,7 @@
             "2",
             "3",
             "4"});
-			this.comboBox2.Location = new System.Drawing.Point(701, 27);
+			this.comboBox2.Location = new System.Drawing.Point(678, 27);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(68, 25);
 			this.comboBox2.TabIndex = 39;
@@ -110,7 +110,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(653, 31);
+			this.label2.Location = new System.Drawing.Point(617, 31);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(44, 17);
 			this.label2.TabIndex = 34;
@@ -121,7 +121,7 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(649, 4);
+			this.checkBox1.Location = new System.Drawing.Point(497, 30);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(87, 21);
 			this.checkBox1.TabIndex = 33;
@@ -138,7 +138,7 @@
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(606, 2);
+			this.textBox15.Location = new System.Drawing.Point(631, 2);
 			this.textBox15.Name = "textBox15";
 			this.textBox15.Size = new System.Drawing.Size(31, 23);
 			this.textBox15.TabIndex = 28;
@@ -147,7 +147,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(564, 5);
+			this.label21.Location = new System.Drawing.Point(578, 5);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(44, 17);
 			this.label21.TabIndex = 27;
@@ -238,7 +238,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(875, 5);
+			this.button2.Location = new System.Drawing.Point(869, 5);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -248,7 +248,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(778, 5);
+			this.button1.Location = new System.Drawing.Point(764, 5);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;

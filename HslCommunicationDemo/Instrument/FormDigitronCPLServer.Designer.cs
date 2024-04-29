@@ -92,14 +92,14 @@
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(546, 7);
+			this.comboBox1.Location = new System.Drawing.Point(496, 7);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(92, 25);
+			this.comboBox1.Size = new System.Drawing.Size(142, 25);
 			this.comboBox1.TabIndex = 33;
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(644, 6);
+			this.button5.Location = new System.Drawing.Point(649, 6);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(91, 28);
 			this.button5.TabIndex = 32;
@@ -110,7 +110,7 @@
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(495, 12);
+			this.label14.Location = new System.Drawing.Point(446, 12);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(44, 17);
 			this.label14.TabIndex = 30;

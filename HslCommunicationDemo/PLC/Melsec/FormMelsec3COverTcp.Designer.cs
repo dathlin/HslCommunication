@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -36,14 +37,13 @@
 			this.label21 = new System.Windows.Forms.Label();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label26 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label27 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -61,7 +61,7 @@
 			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label26);
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.label27);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
@@ -70,6 +70,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 62);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_EnableWriteBitToWordRegister
+			// 
+			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
+			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(329, 35);
+			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
+			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
+			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 41;
+			this.checkBox_EnableWriteBitToWordRegister.Text = "Enable Write Bit To Word Register";
+			this.checkBox_EnableWriteBitToWordRegister.UseVisualStyleBackColor = true;
 			// 
 			// comboBox2
 			// 
@@ -140,13 +150,13 @@
 			this.label26.TabIndex = 18;
 			this.label26.Text = "端口：";
 			// 
-			// textBox1
+			// textBox_ip
 			// 
-			this.textBox1.Location = new System.Drawing.Point(66, 8);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(138, 23);
-			this.textBox1.TabIndex = 17;
-			this.textBox1.Text = "192.168.0.100";
+			this.textBox_ip.Location = new System.Drawing.Point(66, 8);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(138, 23);
+			this.textBox_ip.TabIndex = 17;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label27
 			// 
@@ -215,16 +225,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// checkBox_EnableWriteBitToWordRegister
-			// 
-			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
-			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(329, 35);
-			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
-			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
-			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 41;
-			this.checkBox_EnableWriteBitToWordRegister.Text = "Enable Write Bit To Word Register";
-			this.checkBox_EnableWriteBitToWordRegister.UseVisualStyleBackColor = true;
-			// 
 			// FormMelsec3COverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -256,7 +256,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_ip;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Label label21;

@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_ca = new System.Windows.Forms.TextBox();
+			this.label_ca = new System.Windows.Forms.Label();
 			this.checkBox_useSecurityResquest = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.checkBox_enable_Fe = new System.Windows.Forms.CheckBox();
@@ -48,8 +50,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -59,6 +61,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_ca);
+			this.panel1.Controls.Add(this.label_ca);
 			this.panel1.Controls.Add(this.checkBox_useSecurityResquest);
 			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.checkBox_enable_Fe);
@@ -82,6 +86,23 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 59);
 			this.panel1.TabIndex = 0;
+			// 
+			// textBox_ca
+			// 
+			this.textBox_ca.Location = new System.Drawing.Point(195, 31);
+			this.textBox_ca.Name = "textBox_ca";
+			this.textBox_ca.Size = new System.Drawing.Size(56, 23);
+			this.textBox_ca.TabIndex = 39;
+			this.textBox_ca.Text = "0";
+			// 
+			// label_ca
+			// 
+			this.label_ca.AutoSize = true;
+			this.label_ca.Location = new System.Drawing.Point(119, 34);
+			this.label_ca.Name = "label_ca";
+			this.label_ca.Size = new System.Drawing.Size(71, 17);
+			this.label_ca.TabIndex = 38;
+			this.label_ca.Text = "客户机地址:";
 			// 
 			// checkBox_useSecurityResquest
 			// 
@@ -266,6 +287,15 @@
 			this.panel2.Size = new System.Drawing.Size(1000, 545);
 			this.panel2.TabIndex = 1;
 			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(998, 543);
+			this.userControlReadWriteDevice1.TabIndex = 0;
+			// 
 			// userControlHead1
 			// 
 			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -280,15 +310,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// userControlReadWriteDevice1
-			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(998, 543);
-			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// FormDLT698
 			// 
@@ -337,5 +358,7 @@
 		private System.Windows.Forms.CheckBox checkBox_enable_Fe;
 		private System.Windows.Forms.CheckBox checkBox_useSecurityResquest;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
+		private System.Windows.Forms.TextBox textBox_ca;
+		private System.Windows.Forms.Label label_ca;
 	}
 }

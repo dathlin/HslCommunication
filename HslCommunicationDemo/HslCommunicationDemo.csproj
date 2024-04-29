@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=11.8.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.11.8.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.0.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.0.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
@@ -134,12 +134,6 @@
     <Compile Include="CNC\FormCncFanuc.Designer.cs">
       <DependentUpon>FormCncFanuc.cs</DependentUpon>
     </Compile>
-    <Compile Include="Control\FormBasicControl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Control\FormBasicControl.Designer.cs">
-      <DependentUpon>FormBasicControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Control\FormInputPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,12 +146,6 @@
     <Compile Include="Control\FormInputString.Designer.cs">
       <DependentUpon>FormInputString.cs</DependentUpon>
     </Compile>
-    <Compile Include="Control\FormPipe.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Control\FormPipe.Designer.cs">
-      <DependentUpon>FormPipe.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dcs\FormDcsNanJingAuto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +157,9 @@
     </Compile>
     <Compile Include="DemoControl\BatchReadControl.Designer.cs">
       <DependentUpon>BatchReadControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\BorderPanel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DemoControl\CodeExampleControl.cs">
       <SubType>UserControl</SubType>
@@ -232,6 +223,12 @@
     <Compile Include="DemoControl\FormPanelLeft.Designer.cs">
       <DependentUpon>FormPanelLeft.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoControl\FormPipeSessionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormPipeSessionList.Designer.cs">
+      <DependentUpon>FormPipeSessionList.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\FormSaveList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +240,18 @@
     </Compile>
     <Compile Include="DemoControl\AddressExampleControl.designer.cs">
       <DependentUpon>AddressExampleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\FormSupport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormSupport.designer.cs">
+      <DependentUpon>FormSupport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\PipeSessionListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\PipeSessionListControl.Designer.cs">
+      <DependentUpon>PipeSessionListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\StressTesting.cs">
       <SubType>UserControl</SubType>
@@ -428,6 +437,12 @@
     <Compile Include="Instrument\FormCJT188.Designer.cs">
       <DependentUpon>FormCJT188.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instrument\FormRkcTemperatureControllerServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormRkcTemperatureControllerServer.Designer.cs">
+      <DependentUpon>FormRkcTemperatureControllerServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Instrument\FormDLT645With1997OverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -512,6 +527,7 @@
     <Compile Include="Instrument\FormDigitronCPLOverTcp.Designer.cs">
       <DependentUpon>FormDigitronCPLOverTcp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instrument\RkcHelper.cs" />
     <Compile Include="Light\FormShineInLight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -640,6 +656,9 @@
     </Compile>
     <Compile Include="PLC\Lsis\Helper.cs" />
     <Compile Include="PLC\MegMeet\Helper.cs" />
+    <Compile Include="PLC\Melsec\FormMcA1EServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PLC\Melsec\Helper.cs" />
     <Compile Include="PLC\Omron\FinsTcpControl.cs">
       <SubType>UserControl</SubType>
@@ -788,12 +807,6 @@
     </Compile>
     <Compile Include="PLC\Melsec\FormMcA3CServer.Designer.cs">
       <DependentUpon>FormMcA3CServer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PLC\Melsec\FormMcA1EServer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PLC\Melsec\FormMcA1EServer.Designer.cs">
-      <DependentUpon>FormMcA1EServer.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Melsec\FormMelsecCipNet.cs">
       <SubType>Form</SubType>
@@ -993,12 +1006,6 @@
     <Compile Include="PLC\Lsis\FormLsisXGKFEnet.Designer.cs">
       <DependentUpon>FormLsisXGKFEnet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\Melsec\FormMcUdpServer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PLC\Melsec\FormMcUdpServer.Designer.cs">
-      <DependentUpon>FormMcUdpServer.cs</DependentUpon>
-    </Compile>
     <Compile Include="PLC\Omron\FormOmronHostLinkCModeOverTcp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1173,12 +1180,6 @@
     <Compile Include="Hsl\FormComplexNet.Designer.cs">
       <DependentUpon>FormComplexNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Control\FormCurve.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Control\FormCurve.Designer.cs">
-      <DependentUpon>FormCurve.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormDisclaimer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1190,12 +1191,6 @@
     </Compile>
     <Compile Include="Hsl\FormFileClient.Designer.cs">
       <DependentUpon>FormFileClient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Control\FormGauge.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Control\FormGauge.Designer.cs">
-      <DependentUpon>FormGauge.cs</DependentUpon>
     </Compile>
     <Compile Include="FormImage.cs">
       <SubType>Form</SubType>
@@ -1680,12 +1675,6 @@
     <Compile Include="PLC\Omron\FormOmron.Designer.cs">
       <DependentUpon>FormOmron.cs</DependentUpon>
     </Compile>
-    <Compile Include="Control\FormPieChart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Control\FormPieChart.Designer.cs">
-      <DependentUpon>FormPieChart.cs</DependentUpon>
-    </Compile>
     <Compile Include="Hsl\FormPushNet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1843,12 +1832,6 @@
     <Compile Include="DemoControl\UserControlCurve.Designer.cs">
       <DependentUpon>UserControlCurve.cs</DependentUpon>
     </Compile>
-    <Compile Include="Toledo\FormToledoSerial.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Toledo\FormToledoSerial.Designer.cs">
-      <DependentUpon>FormToledoSerial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Toledo\FormToledoTcpServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1897,17 +1880,11 @@
     <EmbeddedResource Include="CNC\FormCncFanuc.resx">
       <DependentUpon>FormCncFanuc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control\FormBasicControl.resx">
-      <DependentUpon>FormBasicControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Control\FormInputPassword.resx">
       <DependentUpon>FormInputPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\FormInputString.resx">
       <DependentUpon>FormInputString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\FormPipe.resx">
-      <DependentUpon>FormPipe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dcs\FormDcsNanJingAuto.resx">
       <DependentUpon>FormDcsNanJingAuto.cs</DependentUpon>
@@ -1945,11 +1922,20 @@
     <EmbeddedResource Include="DemoControl\FormPanelLeft.resx">
       <DependentUpon>FormPanelLeft.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormPipeSessionList.resx">
+      <DependentUpon>FormPipeSessionList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormSaveList.resx">
       <DependentUpon>FormSaveList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\AddressExampleControl.resx">
       <DependentUpon>AddressExampleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormSupport.resx">
+      <DependentUpon>FormSupport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\PipeSessionListControl.resx">
+      <DependentUpon>PipeSessionListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\StressTesting.resx">
       <DependentUpon>StressTesting.cs</DependentUpon>
@@ -2046,6 +2032,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormCJT188.resx">
       <DependentUpon>FormCJT188.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormRkcTemperatureControllerServer.resx">
+      <DependentUpon>FormRkcTemperatureControllerServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormDLT645With1997OverTcp.resx">
       <DependentUpon>FormDLT645With1997OverTcp.cs</DependentUpon>
@@ -2233,9 +2222,6 @@
     <EmbeddedResource Include="PLC\Melsec\FormMcA3CServer.resx">
       <DependentUpon>FormMcA3CServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\Melsec\FormMcA1EServer.resx">
-      <DependentUpon>FormMcA1EServer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Melsec\FormMelsecCipNet.resx">
       <DependentUpon>FormMelsecCipNet.cs</DependentUpon>
     </EmbeddedResource>
@@ -2341,9 +2327,6 @@
     <EmbeddedResource Include="PLC\Lsis\FormLsisXGKFEnet.resx">
       <DependentUpon>FormLsisXGKFEnet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\Melsec\FormMcUdpServer.resx">
-      <DependentUpon>FormMcUdpServer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Omron\FormOmronHostLinkCModeOverTcp.resx">
       <DependentUpon>FormOmronHostLinkCModeOverTcp.cs</DependentUpon>
     </EmbeddedResource>
@@ -2431,17 +2414,11 @@
     <EmbeddedResource Include="Hsl\FormComplexNet.resx">
       <DependentUpon>FormComplexNet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control\FormCurve.resx">
-      <DependentUpon>FormCurve.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormDisclaimer.resx">
       <DependentUpon>FormDisclaimer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormFileClient.resx">
       <DependentUpon>FormFileClient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\FormGauge.resx">
-      <DependentUpon>FormGauge.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormImage.resx">
       <DependentUpon>FormImage.cs</DependentUpon>
@@ -2684,9 +2661,6 @@
     <EmbeddedResource Include="PLC\Omron\FormOmron.resx">
       <DependentUpon>FormOmron.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control\FormPieChart.resx">
-      <DependentUpon>FormPieChart.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormPushNet.resx">
       <DependentUpon>FormPushNet.cs</DependentUpon>
     </EmbeddedResource>
@@ -2769,9 +2743,6 @@
     <EmbeddedResource Include="Sensor\FormVibrationSensorClient.resx">
       <DependentUpon>FormVibrationSensorClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Toledo\FormToledoSerial.resx">
-      <DependentUpon>FormToledoSerial.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Toledo\FormToledoTcpServer.resx">
       <DependentUpon>FormToledoTcpServer.cs</DependentUpon>
     </EmbeddedResource>
@@ -2821,6 +2792,11 @@
     <None Include="img\expand.png" />
     <None Include="img\redis_db.png" />
     <None Include="img\toyota.png" />
+    <None Include="img\SerialPort.png" />
+    <None Include="img\Log.png" />
+    <None Include="img\NetworkAdapter.png" />
+    <None Include="img\house_16xLG.png" />
+    <None Include="img\GitHub-Symbol.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />
@@ -2999,6 +2975,5 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

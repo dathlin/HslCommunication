@@ -13,6 +13,7 @@ using HslCommunication;
 using HslCommunication.LogNet;
 using System.Text.RegularExpressions;
 using System.Security.Policy;
+using System.Reflection.Emit;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -139,6 +140,7 @@ namespace HslCommunicationDemo.DemoControl
 				label6.Text = "address:";
 				label7.Text = "result:";
 				label8.Text = "length:";
+				label17.Text = "Freq: 0";
 
 				button_read_bool.Text = "Read Bit";
 				button_read_byte.Text = "r-byte";
@@ -154,7 +156,7 @@ namespace HslCommunicationDemo.DemoControl
 
 				label10.Text = "Address:";
 				label9.Text = "Value:";
-				label19.Text = "Note: The value of the string needs to be converted\r\nif array：[1,2,3]";
+				label19.Text = "Note:The string can convert value\r\nif bool: true,false,0,1\r\nif array：[1,2,3]";
 				button_write_bool.Text = "Write Bit";
 				button_write_short.Text = "w-short";
 				button_write_ushort.Text = "w-ushort";
@@ -255,6 +257,13 @@ namespace HslCommunicationDemo.DemoControl
 			label21.Text = $"{valueLimit.Count}";
 		}
 
+		private void RenderReadResult<T>( DateTime start, OperateResult<T> read )
+		{
+			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+			if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
+			DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+		}
+
 		private async void button_read_bool_Click( object sender, EventArgs e )
 		{
 			// bool
@@ -262,41 +271,17 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_bool.Enabled = false;
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<bool> read = await readWriteNet.ReadBoolAsync( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false; 
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadBoolAsync( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<bool[]> read = await readWriteNet.ReadBoolAsync( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadBoolAsync( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 				button_read_bool.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<bool> read = readWriteNet.ReadBool( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadBool( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<bool[]> read = readWriteNet.ReadBool( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadBool( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
@@ -305,21 +290,10 @@ namespace HslCommunicationDemo.DemoControl
 		private void button_read_byte_Click( object sender, EventArgs e )
 		{
 			// byte，此处演示了基于反射的读取操作
-			DateTime start = DateTime.Now;
 			if (textBox5.Text == "1")
-			{
-				OperateResult<byte> read = (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } );
-				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-				DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-				if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-			}
+				RenderReadResult( DateTime.Now, (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } ) );
 			else
-			{
-				OperateResult<byte[]> read = readWriteNet.Read( textBox3.Text, ushort.Parse( textBox5.Text ) );
-				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-				DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-				if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-			}
+				RenderReadResult( DateTime.Now, readWriteNet.Read( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
 		}
@@ -331,41 +305,17 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_short.Enabled = false;
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<short> read = await readWriteNet.ReadInt16Async( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt16Async( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<short[]> read = await readWriteNet.ReadInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 				button_read_short.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<short> read = readWriteNet.ReadInt16( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt16( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<short[]> read = readWriteNet.ReadInt16( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt16( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
@@ -378,40 +328,18 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_ushort.Enabled = false;
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<ushort> read = await readWriteNet.ReadUInt16Async( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt16Async( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<ushort[]> read = await readWriteNet.ReadUInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) ); 
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 				button_read_ushort.Enabled = true;
 			}
 			else
 			{
 
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<ushort> read = readWriteNet.ReadUInt16( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt16( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<ushort[]> read = readWriteNet.ReadUInt16( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt16( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
@@ -424,41 +352,17 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_int.Enabled = false;
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<int> read = await readWriteNet.ReadInt32Async( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt32Async( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<int[]> read = await readWriteNet.ReadInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) ); 
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 				button_read_int.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<int> read = readWriteNet.ReadInt32( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt32( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<int[]> read = readWriteNet.ReadInt32( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt32( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
@@ -471,41 +375,17 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_uint.Enabled = false;
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<uint> read = await readWriteNet.ReadUInt32Async( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt32Async( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<uint[]> read = await readWriteNet.ReadUInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 				button_read_uint.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<uint> read = readWriteNet.ReadUInt32( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt32( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<uint[]> read = readWriteNet.ReadUInt32( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt32( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
@@ -518,41 +398,17 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_long.Enabled = false;
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<long> read = await readWriteNet.ReadInt64Async( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt64Async( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<long[]> read = await readWriteNet.ReadInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 				button_read_long.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<long> read = readWriteNet.ReadInt64( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt64( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<long[]> read = readWriteNet.ReadInt64( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt64( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
@@ -565,41 +421,17 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_ulong.Enabled = false;
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<ulong> read = await readWriteNet.ReadUInt64Async( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt64Async( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<ulong[]> read = await readWriteNet.ReadUInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 				button_read_ulong.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<ulong> read = readWriteNet.ReadUInt64( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt64( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<ulong[]> read = readWriteNet.ReadUInt64( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt64( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
@@ -612,41 +444,17 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_float.Enabled = false;
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<float> read = await readWriteNet.ReadFloatAsync( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadFloatAsync( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<float[]> read = await readWriteNet.ReadFloatAsync( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadFloatAsync( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 				button_read_float.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<float> read = readWriteNet.ReadFloat( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadFloat( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<float[]> read = readWriteNet.ReadFloat( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadFloat( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
@@ -659,41 +467,17 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				button_read_double.Enabled = false;
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<double> read = await readWriteNet.ReadDoubleAsync( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadDoubleAsync( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<double[]> read = await readWriteNet.ReadDoubleAsync( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadDoubleAsync( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 				button_read_double.Enabled = true;
 			}
 			else
 			{
 				if (textBox5.Text == "1")
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<double> read = readWriteNet.ReadDouble( textBox3.Text );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadDouble( textBox3.Text ) );
 				else
-				{
-					DateTime start = DateTime.Now;
-					OperateResult<double[]> read = readWriteNet.ReadDouble( textBox3.Text, ushort.Parse( textBox5.Text ) );
-					SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-					DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-					if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-				}
+					RenderReadResult( DateTime.Now, readWriteNet.ReadDouble( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
 			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;
@@ -705,20 +489,12 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_string.Enabled = false;
-				DateTime start = DateTime.Now;
-				OperateResult<string> read = await readWriteNet.ReadStringAsync( textBox3.Text, ushort.Parse( textBox1.Text ), DemoUtils.GetEncodingFromIndex( comboBox_read_encoding.SelectedIndex ) );
-				DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 ) ;
-				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
+				RenderReadResult( DateTime.Now, await readWriteNet.ReadStringAsync( textBox3.Text, ushort.Parse( textBox1.Text ), DemoUtils.GetEncodingFromIndex( comboBox_read_encoding.SelectedIndex ) ) );
 				button_read_string.Enabled = true;
-				if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
 			}
 			else
 			{
-				DateTime start = DateTime.Now;
-				OperateResult<string> read = readWriteNet.ReadString( textBox3.Text, ushort.Parse( textBox1.Text ), DemoUtils.GetEncodingFromIndex( comboBox_read_encoding.SelectedIndex ) );
-				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-				DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
-				if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
+				RenderReadResult( DateTime.Now, readWriteNet.ReadString( textBox3.Text, ushort.Parse( textBox1.Text ), DemoUtils.GetEncodingFromIndex( comboBox_read_encoding.SelectedIndex ) ) );
 			}
 
 			if (checkBox_read_timer.Checked) this.button_read_timer = sender as Button;

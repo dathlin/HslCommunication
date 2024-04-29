@@ -81,7 +81,10 @@ namespace HslCommunicationDemo
 					d[i] = (short)(i + 1);
 					a1[i] = d[i];
 				}
-				
+
+				userControlReadWriteServer1.SetReadWriteServerLog( cipServer );
+
+
 				cipServer.ServerStart( port );
 				//cipServer.AddTagValue( "TEST2", new bool[10000] );
 				cipServer.AddTagValue( "A", (short)10 );

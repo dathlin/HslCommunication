@@ -155,10 +155,11 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBinary, checkBox_sumCheck.Checked );
+			element.SetAttributeValue( DemoDeviceList.XmlPort,       textBox_port.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlBinary,     checkBox_sumCheck.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox_format.SelectedIndex );
-			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStation,    textBox_station.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlCom,        textBox_serial.Text );
 
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
@@ -166,13 +167,14 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			checkBox_sumCheck.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlBinary ).Value );
-			if (element.Attribute( DemoDeviceList.XmlDataFormat ) != null)
-				comboBox_format.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+			textBox_port.Text             = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			checkBox_sumCheck.Checked     = GetXmlValue( element, DemoDeviceList.XmlBinary, checkBox_sumCheck.Checked, bool.Parse );
+			comboBox_format.SelectedIndex = GetXmlValue( element, DemoDeviceList.XmlDataFormat, comboBox_format.SelectedIndex, int.Parse );
+
 			if (element.Attribute( DemoDeviceList.XmlStation ) != null)
 				textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 
+			textBox_serial.Text = GetXmlValue( element, DemoDeviceList.XmlCom, textBox_serial.Text, m => m );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

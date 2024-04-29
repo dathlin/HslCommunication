@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.SelectedIndex = 2;
 
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
@@ -117,7 +118,7 @@ namespace HslCommunicationDemo
 			}
 
 			busAsciiClient?.ConnectClose( );
-			busAsciiClient = new ModbusAsciiOverTcp( textBox1.Text, port, station );
+			busAsciiClient = new ModbusAsciiOverTcp( textBox_ip.Text, port, station );
 			busAsciiClient.AddressStartWithZero = checkBox1.Checked;
 			busAsciiClient.LogNet = LogNet;
 
@@ -173,7 +174,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text);
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text);
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
@@ -188,7 +189,7 @@ namespace HslCommunicationDemo
 		{
 			base.LoadXmlParameter( element );
 
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );

@@ -41,13 +41,11 @@
 			this.textBox19 = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
 			this.label29 = new System.Windows.Forms.Label();
-			this.label22 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -69,8 +67,6 @@
 			this.panel1.Controls.Add(this.textBox19);
 			this.panel1.Controls.Add(this.label28);
 			this.panel1.Controls.Add(this.label29);
-			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
@@ -82,23 +78,23 @@
 			// comboBox3
 			// 
 			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(74, 3);
+			this.comboBox3.Location = new System.Drawing.Point(59, 3);
 			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(67, 25);
+			this.comboBox3.Size = new System.Drawing.Size(80, 25);
 			this.comboBox3.TabIndex = 41;
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(74, 33);
+			this.textBox1.Location = new System.Drawing.Point(59, 33);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(58, 23);
+			this.textBox1.Size = new System.Drawing.Size(80, 23);
 			this.textBox1.TabIndex = 40;
 			this.textBox1.Text = "1";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(20, 36);
+			this.label1.Location = new System.Drawing.Point(5, 36);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 39;
@@ -180,33 +176,16 @@
 			// label29
 			// 
 			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(20, 7);
+			this.label29.Location = new System.Drawing.Point(5, 7);
 			this.label29.Name = "label29";
 			this.label29.Size = new System.Drawing.Size(59, 17);
 			this.label29.TabIndex = 29;
 			this.label29.Text = "Com口：";
 			// 
-			// label22
-			// 
-			this.label22.Location = new System.Drawing.Point(889, 5);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(107, 49);
-			this.label22.TabIndex = 7;
-			this.label22.Text = "M1, M2";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(831, 5);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(68, 17);
-			this.label21.TabIndex = 6;
-			this.label21.Text = "地址示例：";
-			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(710, 23);
+			this.button2.Location = new System.Drawing.Point(707, 15);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(87, 28);
 			this.button2.TabIndex = 5;
@@ -216,7 +195,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(622, 24);
+			this.button1.Location = new System.Drawing.Point(619, 16);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(82, 28);
 			this.button1.TabIndex = 4;
@@ -237,6 +216,15 @@
 			this.panel2.Size = new System.Drawing.Size(997, 542);
 			this.panel2.TabIndex = 1;
 			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 540);
+			this.userControlReadWriteDevice1.TabIndex = 0;
+			// 
 			// userControlHead1
 			// 
 			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -250,15 +238,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// userControlReadWriteDevice1
-			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 540);
-			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// FormRkcTemperatureController
 			// 
@@ -289,7 +268,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox2;
@@ -303,7 +281,6 @@
         private System.Windows.Forms.Label label29;
         private DemoControl.UserControlHead userControlHead1;
 		private System.Windows.Forms.ComboBox comboBox3;
-		private System.Windows.Forms.Label label22;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 	}
 }

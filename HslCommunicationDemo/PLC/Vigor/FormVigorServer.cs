@@ -27,7 +27,7 @@ namespace HslCommunicationDemo
 		{
 			if (Program.Language == 2)
 			{
-				Text = "Vigor Virtual Server[]";
+				Text = "Vigor Virtual Server";
 				label3.Text = "port:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";

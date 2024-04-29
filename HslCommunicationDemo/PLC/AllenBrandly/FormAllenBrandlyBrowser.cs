@@ -23,6 +23,7 @@ namespace HslCommunicationDemo
 
 		private void RedisBrowser_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			ImageList imageList = new ImageList( );
 			imageList.Images.Add( "VirtualMachine",               Properties.Resources.VirtualMachine );
 			imageList.Images.Add( "Class_489",                    Properties.Resources.Class_489 );               // 结构体
@@ -69,7 +70,7 @@ namespace HslCommunicationDemo
 
 			allenBradleyNet?.ConnectClose( );
 			allenBradleyNet = new AllenBradleyNet( );
-			allenBradleyNet.IpAddress = textBox1.Text;
+			allenBradleyNet.IpAddress = textBox_ip.Text;
 			allenBradleyNet.Port = port;
 			allenBradleyNet.Slot = slot;
 
@@ -333,6 +334,12 @@ namespace HslCommunicationDemo
 								OperateResult<double> read = allenBradleyNet.ReadDouble( item.Name );
 								if (read.IsSuccess) item.Tag = read.Content;
 							}
+							else if ((item.SymbolType | 0x0f00) == 0x0fc1)
+							{
+								int index = item.SymbolType >> 8;
+								OperateResult<byte[]> read = allenBradleyNet.Read( item.Name, 1 );
+								if (read.IsSuccess) item.Tag = read.Content[0].GetBoolByIndex( index );
+							}
 						}
 						else if (item.ArrayDimension == 1)
 						{
@@ -542,7 +549,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox15.Text );
 		}
@@ -550,7 +557,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text  = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text  = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text  = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
 		}

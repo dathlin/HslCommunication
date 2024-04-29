@@ -33,6 +33,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			control = new YokogawaLinkControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -83,7 +84,7 @@ namespace HslCommunicationDemo
 				return;
 			}
 			
-			yokogawa.IpAddress = textBox1.Text;
+			yokogawa.IpAddress = textBox_ip.Text;
 			yokogawa.Port = port;
 			yokogawa.CpuNumber = cpu;
 			yokogawa.LogNet = LogNet;
@@ -129,7 +130,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUnitNumber, textBox16.Text );
 
@@ -139,7 +140,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox16.Text = element.Attribute( DemoDeviceList.XmlUnitNumber ).Value;
 

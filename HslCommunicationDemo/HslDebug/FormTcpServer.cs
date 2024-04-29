@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using HslCommunication;
 using HslCommunication.BasicFramework;
+using HslCommunication.Core;
 using HslCommunication.Core.Net;
 using HslCommunicationDemo.HslDebug;
 
@@ -128,6 +129,7 @@ namespace HslCommunicationDemo
 				{
 					// 在原始套接字上调用EndAccept方法，返回新的套接字
 					client = server_socket.EndAccept( iar );
+
 					SocketDebugSession session = new SocketDebugSession( client );
 					session.Buffer = new byte[this.bufferLength];
 					client.BeginReceive( session.Buffer, 0, session.Buffer.Length, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), session );
@@ -157,8 +159,15 @@ namespace HslCommunicationDemo
 					client?.Close( );
 				}
 
+				try
+				{
+					server_socket.BeginAccept( new AsyncCallback( AsyncAcceptCallback ), server_socket );
+				}
+				catch (ObjectDisposedException)
+				{
+					// 这个时候已经是关闭了
 
-				server_socket.BeginAccept( new AsyncCallback( AsyncAcceptCallback ), server_socket );
+				}
 			}
 		}
 
@@ -263,8 +272,8 @@ namespace HslCommunicationDemo
 			panel_tcp_udp.Enabled = true;
 
 			// 关闭所有的多余的连接
-			this.debugControl1.RemoveSessionsAll( );
 			socketCore?.Close( );
+			this.debugControl1.RemoveSessionsAll( );
 		}
 
 		#endregion

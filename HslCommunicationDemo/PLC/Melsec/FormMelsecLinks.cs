@@ -73,6 +73,8 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
+				label22.Text = "TimeOut:";
+				checkBox1.Text = "SumCheck?";
 
 				label2.Text = "Format:";
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };

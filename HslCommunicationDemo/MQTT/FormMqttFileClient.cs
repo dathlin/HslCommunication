@@ -26,6 +26,7 @@ namespace HslCommunicationDemo
 
 		private void FormFileClient_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			ImageList imageList = new ImageList( );
 			imageList.Images.Add( "VirtualMachine",        Properties.Resources.VirtualMachine );
 			imageList.Images.Add( "Class_489",             Properties.Resources.Class_489 );
@@ -78,7 +79,7 @@ namespace HslCommunicationDemo
 			// 连接
 			MqttConnectionOptions options = new MqttConnectionOptions( )
 			{
-				IpAddress      = textBox4.Text,
+				IpAddress      = textBox_ip.Text,
 				Port           = int.Parse( textBox2.Text ),
 				ClientId       = textBox1.Text,
 				UseRSAProvider = checkBox_rsa.Checked,
@@ -774,7 +775,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox4.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlCompanyID, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox9.Text );
@@ -784,7 +785,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox4.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;
 			textBox9.Text = element.Attribute( DemoDeviceList.XmlUserName ).Value;

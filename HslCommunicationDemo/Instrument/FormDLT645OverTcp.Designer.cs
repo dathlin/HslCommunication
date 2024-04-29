@@ -138,7 +138,7 @@
 			this.textBox_ip.Name = "textBox_ip";
 			this.textBox_ip.Size = new System.Drawing.Size(176, 23);
 			this.textBox_ip.TabIndex = 9;
-			this.textBox_ip.Text = "192.168.0.100";
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label1
 			// 

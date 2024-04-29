@@ -661,7 +661,6 @@
             this.button20.TabIndex = 3;
             this.button20.Text = "Pie Chart (饼图)";
             this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // button18
             // 
@@ -672,7 +671,6 @@
             this.button18.TabIndex = 2;
             this.button18.Text = "Curve (曲线)";
             this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // button17
             // 
@@ -683,7 +681,6 @@
             this.button17.TabIndex = 1;
             this.button17.Text = "Gauge (仪表盘)";
             this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button16
             // 
@@ -694,7 +691,6 @@
             this.button16.TabIndex = 0;
             this.button16.Text = "Simple Control";
             this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // groupBox7
             // 

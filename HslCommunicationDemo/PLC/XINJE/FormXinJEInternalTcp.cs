@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 
 			addressExampleControl = new AddressExampleControl( );
@@ -74,7 +75,7 @@ namespace HslCommunicationDemo
 
 			xinJE?.ConnectClose( );
 			xinJE = new XinJEInternalNet( );
-			xinJE.IpAddress = textBox1.Text;
+			xinJE.IpAddress = textBox_ip.Text;
 			xinJE.Port = port;
 			xinJE.LogNet = LogNet;
 
@@ -102,7 +103,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 				}
 
 			}
@@ -186,7 +187,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 
@@ -196,7 +197,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 

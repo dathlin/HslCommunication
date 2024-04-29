@@ -177,7 +177,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(10, 11);
+			this.label3.Location = new System.Drawing.Point(9, 11);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -234,7 +234,7 @@
 			this.textBox_log.Multiline = true;
 			this.textBox_log.Name = "textBox_log";
 			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_log.Size = new System.Drawing.Size(644, 185);
+			this.textBox_log.Size = new System.Drawing.Size(644, 186);
 			this.textBox_log.TabIndex = 10;
 			// 
 			// label13
@@ -336,7 +336,7 @@
 			// 
 			// button_device_save
 			// 
-			this.button_device_save.Location = new System.Drawing.Point(206, 4);
+			this.button_device_save.Location = new System.Drawing.Point(193, 4);
 			this.button_device_save.Name = "button_device_save";
 			this.button_device_save.Size = new System.Drawing.Size(49, 28);
 			this.button_device_save.TabIndex = 46;
@@ -345,9 +345,9 @@
 			// 
 			// button_device_send
 			// 
-			this.button_device_send.Location = new System.Drawing.Point(261, 4);
+			this.button_device_send.Location = new System.Drawing.Point(248, 4);
 			this.button_device_send.Name = "button_device_send";
-			this.button_device_send.Size = new System.Drawing.Size(46, 28);
+			this.button_device_send.Size = new System.Drawing.Size(59, 28);
 			this.button_device_send.TabIndex = 45;
 			this.button_device_send.Text = "广播";
 			this.button_device_send.UseVisualStyleBackColor = true;

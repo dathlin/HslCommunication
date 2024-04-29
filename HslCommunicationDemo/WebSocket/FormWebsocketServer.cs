@@ -98,7 +98,7 @@ namespace HslCommunicationDemo
 
 				if (checkBox_ssl.Checked)
 				{
-					wsServer.UseSSL( textBox_certFile.Text );
+					wsServer.UseSSL( textBox_certFile.Text, textBox_ssl_password.Text );
 				}
 				wsServer.ServerStart( int.Parse( textBox2.Text ) );
 				wsServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );

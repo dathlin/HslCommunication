@@ -29,7 +29,7 @@ namespace HslCommunicationDemo
 
 		private TemperatureController rkc = null;
 		private CodeExampleControl codeExampleControl;
-
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -45,6 +45,9 @@ namespace HslCommunicationDemo
 			}
 			comboBox2.SelectedIndex = 0;
 
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.RkcHelper.GetRkcAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
@@ -62,7 +65,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Parity:";
 				button1.Text = "Open";
 				button2.Text = "Close";
-				label21.Text = "Address:";
 				label29.Text = "Com:";
 				label28.Text = "BaudRate:";
 				label27.Text = "DataBit:";

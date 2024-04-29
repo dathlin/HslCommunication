@@ -34,8 +34,12 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
+
+			comboBox_plcType.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Profinet.Omron.OmronPlcType>( );
+			comboBox_plcType.SelectedItem = HslCommunication.Profinet.Omron.OmronPlcType.CSCJ;
 
 			Language( Program.Language );
 			control = new FinsTcpControl( );
@@ -86,10 +90,11 @@ namespace HslCommunicationDemo
 				return;
 			}
 			
-			omronFinsNet.IpAddress = textBox1.Text;
+			omronFinsNet.IpAddress = textBox_ip.Text;
 			omronFinsNet.Port = port;
 			omronFinsNet.DA2 = DA2;
 			omronFinsNet.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
+			omronFinsNet.PlcType = (OmronPlcType)comboBox_plcType.SelectedItem;
 			omronFinsNet.LogNet = LogNet;
 			omronFinsNet.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
 			omronFinsNet.ReceiveUntilEmpty = checkBox_receive_until_empty.Checked;
@@ -140,7 +145,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlNetNumber, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUnitNumber, textBox16.Text );
@@ -152,7 +157,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlNetNumber ).Value;
 			textBox16.Text = element.Attribute( DemoDeviceList.XmlUnitNumber ).Value;

@@ -80,9 +80,7 @@ namespace HslCommunicationDemo
 			{
 				// 注册两个PLC为服务接口的示例
 				siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
-				siemens.SetPersistentConnection( );
 				pcccNet = new AllenBradleyPcccNet( "127.0.0.1" );
-				pcccNet.SetPersistentConnection( );
 
 				httpServer = new HttpServer( );
 				httpServer.Start( int.Parse( textBox2.Text ) );

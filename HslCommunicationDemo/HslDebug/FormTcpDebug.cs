@@ -137,6 +137,17 @@ namespace HslCommunicationDemo
 					udpEndPoint = new IPEndPoint( iPAddress, int.Parse( textBox_port.Text ) );
 
 					Socket udpSocket = new Socket( iPAddress.AddressFamily, SocketType.Dgram, ProtocolType.Udp );
+					// 如果需要绑定端口的话
+					if (!string.IsNullOrEmpty( textBox_localPort.Text ))
+					{
+						OperateResult<int> localPort = DemoUtils.ParseInt( textBox_localPort.Text );
+						if (!localPort.IsSuccess)
+						{
+							MessageBox.Show( "Local Port input failed: " + localPort.Message );
+							return;
+						}
+						udpSocket.Bind( new IPEndPoint( udpEndPoint.AddressFamily == AddressFamily.InterNetworkV6 ? IPAddress.IPv6Any : IPAddress.Any, localPort.Content ) );
+					}
 					udpSocket.SendTo( new byte[0], udpEndPoint );
 
 					socketDebugSession = new SocketDebugSession( udpSocket, udpEndPoint );

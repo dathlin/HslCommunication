@@ -30,6 +30,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 
 
@@ -90,9 +91,7 @@ namespace HslCommunicationDemo
 			}
 			freedom.LogNet = LogNet;
 
-			if (radioButton1.Checked) freedom.ByteTransform = new HslCommunication.Core.RegularByteTransform( );
-			if (radioButton2.Checked) freedom.ByteTransform = new HslCommunication.Core.ReverseBytesTransform( );
-			if (radioButton3.Checked) freedom.ByteTransform = new HslCommunication.Core.ReverseWordTransform( );
+			freedom.ByteTransform = new HslCommunication.Core.RegularByteTransform( );
 
 			ComboBox2_SelectedIndexChanged( null, null );
 			freedom.ByteTransform.IsStringReverseByteWord = checkBox3.Checked;
@@ -145,10 +144,6 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
 
-			if      (radioButton1.Checked) element.SetAttributeValue( "ByteTransform", 1 );
-			else if (radioButton2.Checked) element.SetAttributeValue( "ByteTransform", 2 );
-			else if (radioButton3.Checked) element.SetAttributeValue( "ByteTransform", 3 );
-
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
 
@@ -160,11 +155,6 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-
-			int index = GetXmlValue( element, "ByteTransform", 1, int.Parse );
-			if (index == 1) radioButton1.Checked = true;
-			else if (index == 2) radioButton2.Checked = true;
-			else if (index == 3) radioButton3.Checked = true;
 
 			comboBox2.SelectedIndex = GetXmlValue( element, DemoDeviceList.XmlDataFormat, 0, int.Parse );
 			checkBox3.Checked = GetXmlValue( element, DemoDeviceList.XmlStringReverse, false, bool.Parse );

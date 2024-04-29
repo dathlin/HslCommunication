@@ -40,7 +40,7 @@ namespace HslCommunicationDemo.PLC
                     new Thread( new ThreadStart( KNX_KEEP_RUN ) ) { IsBackground = true }.Start( );
                     button1.Enabled = false;
                     my_server = new my_modbus_server( this.kNX_Connection );
-                    my_server.IsUseAccountCertificate = false;
+                    //my_server.IsUseAccountCertificate = false;
                     my_server.ServerStart( 504 );
                     my_server.LogNet = new HslCommunication.LogNet.LogNetSingle( "logs.txt" );        // 配置日志信息
                     button2.Enabled = true;

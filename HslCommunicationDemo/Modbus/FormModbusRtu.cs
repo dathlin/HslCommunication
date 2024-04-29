@@ -149,6 +149,7 @@ namespace HslCommunicationDemo
 			busRtuClient.IsClearCacheBeforeRead = checkBox2.Checked;
 			busRtuClient.LogNet = LogNet;
 			busRtuClient.Crc16CheckEnable = checkBox_crc16.Checked;
+			busRtuClient.StationCheckMacth = checkBox_station_check.Checked;
 
 
 			ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
@@ -183,7 +184,8 @@ namespace HslCommunicationDemo
 
 				// 设置示例代码
 				codeExampleControl.SetCodeText( "modbus", busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
-					nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.Crc16CheckEnable ), nameof( busRtuClient.IsClearCacheBeforeRead ) );
+					nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.Crc16CheckEnable ), nameof( busRtuClient.IsClearCacheBeforeRead ),
+					nameof( busRtuClient.StationCheckMacth ));
 			}
 			catch (Exception ex)
 			{

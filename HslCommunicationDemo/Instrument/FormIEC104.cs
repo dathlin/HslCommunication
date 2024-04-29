@@ -27,6 +27,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			panel2.Enabled = false;
 			comboBox_write_type.SelectedIndex = 0;
 			comboBox_write_reason.SelectedIndex = 5;
@@ -40,13 +41,21 @@ namespace HslCommunicationDemo
 			{
 				Text = "IEC104 Read Demo";
 
-				label1.Text = "Com:";
-				label3.Text = "baudRate:";
-				label21.Text = "station";
+				label1.Text = "Ip:";
+				label3.Text = "Port:";
+				label21.Text = "Station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				button3.Text = "Active";
+				button5.Text = "Time";
 				label13.Text = "Results:";
+				label6.Text = "Type:";
+				label7.Text = "Reason:";
+				label8.Text = "Address:";
+				label9.Text = "Value:";
+
+				button_write_bool.Text = "w-bool";
+				button_write_short.Text = "w-short";
+				button_write_float.Text = "w-float";
 			}
 		}
 

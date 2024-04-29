@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox_format.SelectedIndex = 0;
 			Language( Program.Language );
 
@@ -59,6 +60,9 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Station:";
+				label22.Text = "TimeOut:";
+				checkBox1.Text = "SumCheck?";
+				label2.Text = "Format";
 				userControlHead1.ProtocolInfo = "fxlinks over tcp";
 			}
 		}
@@ -81,7 +85,7 @@ namespace HslCommunicationDemo
 
 			melsec?.ConnectClose( );
 			melsec = new MelsecFxLinksOverTcp( );
-			melsec.IpAddress = textBox1.Text;
+			melsec.IpAddress = textBox_ip.Text;
 			melsec.Port = port;
 			melsec.LogNet = LogNet;
 
@@ -213,7 +217,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTimeout, textBox18.Text );
@@ -225,7 +229,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			textBox18.Text = element.Attribute( DemoDeviceList.XmlTimeout ).Value;

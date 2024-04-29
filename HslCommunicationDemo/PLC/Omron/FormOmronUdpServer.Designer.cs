@@ -37,8 +37,12 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.borderPanel2 = new HslCommunicationDemo.DemoControl.BorderPanel();
+			this.radioButton_udp = new System.Windows.Forms.RadioButton();
+			this.radioButton_tcp = new System.Windows.Forms.RadioButton();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.borderPanel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -46,6 +50,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.borderPanel2);
 			this.panel1.Controls.Add(this.label11);
 			this.panel1.Controls.Add(this.button11);
 			this.panel1.Controls.Add(this.button1);
@@ -60,16 +65,16 @@
 			// label11
 			// 
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(343, 2);
+			this.label11.Location = new System.Drawing.Point(632, 0);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(447, 41);
+			this.label11.Size = new System.Drawing.Size(334, 41);
 			this.label11.TabIndex = 29;
 			this.label11.Text = "本服务器不是严格的fins协议，仅支持和HSL组件完美通信。";
 			// 
 			// button11
 			// 
 			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(235, 6);
+			this.button11.Location = new System.Drawing.Point(388, 6);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(83, 28);
 			this.button11.TabIndex = 28;
@@ -79,7 +84,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(145, 6);
+			this.button1.Location = new System.Drawing.Point(298, 6);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(83, 28);
 			this.button1.TabIndex = 4;
@@ -98,7 +103,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(20, 12);
+			this.label3.Location = new System.Drawing.Point(11, 12);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -142,6 +147,37 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// borderPanel2
+			// 
+			this.borderPanel2.Controls.Add(this.radioButton_udp);
+			this.borderPanel2.Controls.Add(this.radioButton_tcp);
+			this.borderPanel2.Location = new System.Drawing.Point(145, 6);
+			this.borderPanel2.Name = "borderPanel2";
+			this.borderPanel2.Size = new System.Drawing.Size(131, 28);
+			this.borderPanel2.TabIndex = 36;
+			// 
+			// radioButton_udp
+			// 
+			this.radioButton_udp.AutoSize = true;
+			this.radioButton_udp.Checked = true;
+			this.radioButton_udp.Location = new System.Drawing.Point(70, 3);
+			this.radioButton_udp.Name = "radioButton_udp";
+			this.radioButton_udp.Size = new System.Drawing.Size(51, 21);
+			this.radioButton_udp.TabIndex = 1;
+			this.radioButton_udp.TabStop = true;
+			this.radioButton_udp.Text = "Udp";
+			this.radioButton_udp.UseVisualStyleBackColor = true;
+			// 
+			// radioButton_tcp
+			// 
+			this.radioButton_tcp.AutoSize = true;
+			this.radioButton_tcp.Location = new System.Drawing.Point(6, 3);
+			this.radioButton_tcp.Name = "radioButton_tcp";
+			this.radioButton_tcp.Size = new System.Drawing.Size(47, 21);
+			this.radioButton_tcp.TabIndex = 0;
+			this.radioButton_tcp.Text = "Tcp";
+			this.radioButton_tcp.UseVisualStyleBackColor = true;
+			// 
 			// FormOmronUdpServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -161,6 +197,8 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
+			this.borderPanel2.ResumeLayout(false);
+			this.borderPanel2.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -176,5 +214,8 @@
         private System.Windows.Forms.Label label11;
         private DemoControl.UserControlHead userControlHead1;
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
-    }
+		private DemoControl.BorderPanel borderPanel2;
+		private System.Windows.Forms.RadioButton radioButton_udp;
+		private System.Windows.Forms.RadioButton radioButton_tcp;
+	}
 }

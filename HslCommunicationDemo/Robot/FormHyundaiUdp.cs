@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HslCommunication;
 using HslCommunication.Robot.Hyundai;
 
 namespace HslCommunicationDemo.Robot
@@ -56,7 +57,7 @@ namespace HslCommunicationDemo.Robot
 				hyundai.OnHyundaiMessageReceive += Hyundai_OnHyundaiMessageReceive;
 				hyundai.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				hyundai.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
-				hyundai.ServerStart( port );
+				hyundai.ServerStart( port, modeTcp: false );
 				MessageBox.Show( "Start Success" );
 
 				groupBox1.Enabled = true;
@@ -118,30 +119,41 @@ namespace HslCommunicationDemo.Robot
 			}
 		}
 
+		private void RenderMoveResult( OperateResult operate, string op )
+		{
+			if (operate.IsSuccess)
+			{
+				label29.Text = $"Op[{op}] Result: True   Time:" + DateTime.Now.ToString( "HH:mm:ss.fff" );
+			}
+			else
+			{
+				MessageBox.Show( $"Op[{op}] failed : " + operate.Message );
+			}
+		}
 
-		private void button3_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.MoveX( double.Parse( textBox7.Text ) ), "X" );
+		private void button3_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.MoveX( double.Parse( textBox7.Text ) ), "X" );
 
-		private void button4_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.MoveX( 0 - double.Parse( textBox7.Text ) ), "-X" );
+		private void button4_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.MoveX( 0 - double.Parse( textBox7.Text ) ), "-X" );
 
-		private void button6_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.MoveY( double.Parse( textBox8.Text ) ), "Y" );
+		private void button6_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.MoveY( double.Parse( textBox8.Text ) ), "Y" );
 
-		private void button5_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.MoveY( 0 - double.Parse( textBox8.Text ) ), "-Y" );
+		private void button5_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.MoveY( 0 - double.Parse( textBox8.Text ) ), "-Y" );
 
-		private void button8_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.MoveZ( double.Parse( textBox9.Text ) ), "Z" );
+		private void button8_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.MoveZ( double.Parse( textBox9.Text ) ), "Z" );
 
-		private void button7_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.MoveZ( 0 - double.Parse( textBox9.Text ) ), "-Z" );
+		private void button7_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.MoveZ( 0 - double.Parse( textBox9.Text ) ), "-Z" );
 
-		private void button10_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.RotateX( double.Parse( textBox10.Text ) ), "Rx" );
+		private void button10_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.RotateX( double.Parse( textBox10.Text ) ), "Rx" );
 
-		private void button9_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.RotateX( 0 - double.Parse( textBox10.Text ) ), "Rx" );
+		private void button9_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.RotateX( 0 - double.Parse( textBox10.Text ) ), "Rx" );
 
-		private void button12_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.RotateY( double.Parse( textBox11.Text ) ), "Ry" );
+		private void button12_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.RotateY( double.Parse( textBox11.Text ) ), "Ry" );
 
-		private void button11_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.RotateY( 0 - double.Parse( textBox11.Text ) ), "Ry" );
+		private void button11_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.RotateY( 0 - double.Parse( textBox11.Text ) ), "Ry" );
 
-		private void button14_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.RotateZ( double.Parse( textBox12.Text ) ), "Rz" );
+		private void button14_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.RotateZ( double.Parse( textBox12.Text ) ), "Rz" );
 
-		private void button13_Click( object sender, EventArgs e ) => DemoUtils.WriteResultRender( ( ) => hyundai.RotateZ( 0 - double.Parse( textBox12.Text ) ), "Rz" );
+		private void button13_Click( object sender, EventArgs e ) => RenderMoveResult( hyundai.RotateZ( 0 - double.Parse( textBox12.Text ) ), "Rz" );
 
 		private void button15_Click( object sender, EventArgs e )
 		{

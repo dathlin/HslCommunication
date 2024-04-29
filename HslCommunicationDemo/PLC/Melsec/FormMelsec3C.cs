@@ -88,10 +88,11 @@ namespace HslCommunicationDemo
 				label27.Text = "Com:";
 				label26.Text = "BaudRate";
 				label25.Text = "Data bits";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
+				button1.Text = "Open";
+				button2.Text = "Close";
 				label21.Text = "Address:";
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
+				label2.Text = "Format:";
 			}
 			else
 			{
@@ -178,7 +179,7 @@ namespace HslCommunicationDemo
 				sp.Parity = System.IO.Ports.Parity.None;
 				sp.RtsEnable = true;
 			} );
-			plc.ReceiveTimeout = 5000;   // 接收超时，单位毫秒
+			plc.ReceiveTimeOut = 5000;   // 接收超时，单位毫秒
 			plc.Station = 0;
 			plc.EnableWriteBitToWordRegister = false;
 			plc.SumCheck = true;

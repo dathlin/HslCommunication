@@ -46,7 +46,7 @@ namespace HslCommunicationDemo
 		{
 			if(this.tcpForward!=null)
 			{
-				listBox1.DataSource = this.tcpForward.GetSessionInfos( );
+				listBox1.DataSource = this.tcpForward.GetPipeSessions( );
 			}
 		}
 
@@ -54,16 +54,27 @@ namespace HslCommunicationDemo
 		{
 			if (language == 1)
 			{
-				Text = "网口转网口调试助手";
+				Text = "Tcp2TCP";
 				label7.Text = "数据接收区：";
+				checkBox1.Text = "使用二进制显示";
+				button1.Text = "打开转换";
+				button2.Text = "关闭转换";
+				label4.Text = "缓冲区:";
+				label1.Text = "远程IP:";
+				label3.Text = "远程端口:";
+				label2.Text = "本地端口:";
 			}
 			else
 			{
-				Text = "TCP TO TCP Debug Tools";
+				Text = "Tcp2TCP";
 				label7.Text = "Data receiving Area:";
 				checkBox1.Text = "use binary format to show";
 				button1.Text = "Open tcp to tcp";
 				button2.Text = "Close forward";
+				label4.Text = "Cache Size:";
+				label1.Text = "Remote IP:";
+				label3.Text = "Remote Port:";
+				label2.Text = "Local Port:";
 			}
 		}
 

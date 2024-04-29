@@ -27,12 +27,16 @@ namespace HslCommunicationDemo
 
 		private TemperatureControllerOverTcp rkc = null;
 		private CodeExampleControl codeExampleControl;
-
+		private AddressExampleControl addressExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 
+			addressExampleControl = new AddressExampleControl( );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.RkcHelper.GetRkcAddress( ) );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
@@ -81,7 +85,7 @@ namespace HslCommunicationDemo
 			rkc?.ConnectClose( );
 			rkc = new TemperatureControllerOverTcp( );
 			rkc.Station = station;
-			rkc.IpAddress = textBox1.Text;
+			rkc.IpAddress = textBox_ip.Text;
 			rkc.Port = port;
 			rkc.LogNet = LogNet;
 
@@ -130,7 +134,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 
@@ -140,7 +144,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 

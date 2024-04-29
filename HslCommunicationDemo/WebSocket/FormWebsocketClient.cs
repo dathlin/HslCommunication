@@ -80,11 +80,23 @@ namespace HslCommunicationDemo
 			}
 
 			wsClient?.ConnectClose( );
-			wsClient = new WebSocketClient( textBox1.Text, int.Parse( textBox2.Text ), textBox5.Text );//( textBox1.Text, int.Parse(textBox2.Text), textBox5.Text );
+			if (textBox1.Text.StartsWith( "ws://", StringComparison.OrdinalIgnoreCase ) ||
+				textBox1.Text.StartsWith( "wss://", StringComparison.OrdinalIgnoreCase ))
+			{
+				wsClient = new WebSocketClient( textBox1.Text );//( textBox1.Text, int.Parse(textBox2.Text), textBox5.Text );
+			}
+			else
+			{
+				wsClient = new WebSocketClient( textBox1.Text, int.Parse( textBox2.Text ), textBox5.Text );//( textBox1.Text, int.Parse(textBox2.Text), textBox5.Text );
+			}
 			wsClient.LogNet = new HslCommunication.LogNet.LogNetSingle( string.Empty );
 			wsClient.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			wsClient.OnClientApplicationMessageReceive += WebSocket_OnWebSocketMessageReceived;
 			//wsClient.OnNetworkError += WsClient_OnNetworkError; // 这里使用内置的处理方式，一般也就够用了。
+			if (checkBox_SSL.Checked){
+				wsClient.UseSSL( textBox_ssl_ca.Text );
+			}
+
 			OperateResult connect = null;
 			if(string.IsNullOrEmpty(textBox3.Text))
 				connect = wsClient.ConnectServer( );
@@ -257,6 +269,17 @@ namespace HslCommunicationDemo
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
+		}
+
+		private void button_ssl_file_Click( object sender, EventArgs e )
+		{
+			using (OpenFileDialog ofd = new OpenFileDialog( ))
+			{
+				if (ofd.ShowDialog( ) == DialogResult.OK)
+				{
+					textBox_ssl_ca.Text = ofd.FileName;
+				}
+			}
 		}
 	}
 

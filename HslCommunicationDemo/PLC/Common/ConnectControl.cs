@@ -25,6 +25,8 @@ namespace HslCommunicationDemo.PLC.Common
 			{
 				comboBox_connect_type.DataSource = new string[] { "Direct", "Lora", "MQTT" };
 			}
+
+			DemoUtils.SetDeviveIp( textBox_ip );
 		}
 
 		private void ComboBox_connect_type_SelectedIndexChanged( object sender, EventArgs e )

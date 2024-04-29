@@ -29,7 +29,7 @@
         private void InitializeComponent( )
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("文件列表");
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("文件列表");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.checkBox_rsa = new System.Windows.Forms.CheckBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
@@ -42,7 +42,7 @@
 			this.button7 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label20 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -139,7 +139,7 @@
 			this.panel1.Controls.Add(this.button7);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label20);
-			this.panel1.Controls.Add(this.textBox4);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.label21);
 			this.panel1.Location = new System.Drawing.Point(6, 37);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -243,13 +243,13 @@
 			this.label20.TabIndex = 20;
 			this.label20.Text = "端口号：";
 			// 
-			// textBox4
+			// textBox_ip
 			// 
-			this.textBox4.Location = new System.Drawing.Point(63, 4);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(115, 23);
-			this.textBox4.TabIndex = 19;
-			this.textBox4.Text = "127.0.0.1";
+			this.textBox_ip.Location = new System.Drawing.Point(63, 4);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(115, 23);
+			this.textBox_ip.TabIndex = 19;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label21
 			// 
@@ -828,10 +828,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.Location = new System.Drawing.Point(4, 42);
 			this.treeView1.Name = "treeView1";
-			treeNode2.Name = "节点0";
-			treeNode2.Text = "文件列表";
+			treeNode1.Name = "节点0";
+			treeNode1.Text = "文件列表";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
 			this.treeView1.Size = new System.Drawing.Size(379, 484);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeExpand);
@@ -885,47 +885,47 @@
             this.刷新目录ToolStripMenuItem,
             this.重命名目录ToolStripMenuItem});
 			this.contextMenuStrip2.Name = "contextMenuStrip2";
-			this.contextMenuStrip2.Size = new System.Drawing.Size(181, 158);
+			this.contextMenuStrip2.Size = new System.Drawing.Size(149, 136);
 			// 
 			// 删除目录ToolStripMenuItem
 			// 
 			this.删除目录ToolStripMenuItem.Name = "删除目录ToolStripMenuItem";
-			this.删除目录ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.删除目录ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
 			this.删除目录ToolStripMenuItem.Text = "删除目录";
 			this.删除目录ToolStripMenuItem.Click += new System.EventHandler(this.删除目录ToolStripMenuItem_Click);
 			// 
 			// 全部下载ToolStripMenuItem
 			// 
 			this.全部下载ToolStripMenuItem.Name = "全部下载ToolStripMenuItem";
-			this.全部下载ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.全部下载ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
 			this.全部下载ToolStripMenuItem.Text = "全部下载";
 			this.全部下载ToolStripMenuItem.Click += new System.EventHandler(this.全部下载ToolStripMenuItem_Click);
 			// 
 			// 批量上传ToolStripMenuItem
 			// 
 			this.批量上传ToolStripMenuItem.Name = "批量上传ToolStripMenuItem";
-			this.批量上传ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.批量上传ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
 			this.批量上传ToolStripMenuItem.Text = "批量上传";
 			this.批量上传ToolStripMenuItem.Click += new System.EventHandler(this.批量上传ToolStripMenuItem_Click);
 			// 
 			// 清除目录文件ToolStripMenuItem
 			// 
 			this.清除目录文件ToolStripMenuItem.Name = "清除目录文件ToolStripMenuItem";
-			this.清除目录文件ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.清除目录文件ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
 			this.清除目录文件ToolStripMenuItem.Text = "清除目录文件";
 			this.清除目录文件ToolStripMenuItem.Click += new System.EventHandler(this.清除目录文件ToolStripMenuItem_Click);
 			// 
 			// 刷新目录ToolStripMenuItem
 			// 
 			this.刷新目录ToolStripMenuItem.Name = "刷新目录ToolStripMenuItem";
-			this.刷新目录ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.刷新目录ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
 			this.刷新目录ToolStripMenuItem.Text = "刷新目录";
 			this.刷新目录ToolStripMenuItem.Click += new System.EventHandler(this.刷新目录ToolStripMenuItem_Click);
 			// 
 			// 重命名目录ToolStripMenuItem
 			// 
 			this.重命名目录ToolStripMenuItem.Name = "重命名目录ToolStripMenuItem";
-			this.重命名目录ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.重命名目录ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
 			this.重命名目录ToolStripMenuItem.Text = "重命名目录";
 			this.重命名目录ToolStripMenuItem.Click += new System.EventHandler(this.重命名目录ToolStripMenuItem_Click);
 			// 
@@ -1019,7 +1019,7 @@
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.Label label20;
-		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.TextBox textBox_ip;
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.TextBox textBox5;
 		private System.Windows.Forms.Label label2;

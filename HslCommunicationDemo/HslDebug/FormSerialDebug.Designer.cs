@@ -122,7 +122,7 @@
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(44, 17);
 			this.label8.TabIndex = 22;
-			this.label8.Text = "Pwd：";
+			this.label8.Text = "密码：";
 			// 
 			// textBox_mqtt_name
 			// 
@@ -136,9 +136,9 @@
 			this.label9.AutoSize = true;
 			this.label9.Location = new System.Drawing.Point(396, 7);
 			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(55, 17);
+			this.label9.Size = new System.Drawing.Size(56, 17);
 			this.label9.TabIndex = 20;
-			this.label9.Text = "Name：";
+			this.label9.Text = "用户名：";
 			// 
 			// textBox_mqtt_topic
 			// 
@@ -153,9 +153,9 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(736, 7);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(52, 17);
+			this.label2.Size = new System.Drawing.Size(44, 17);
 			this.label2.TabIndex = 18;
-			this.label2.Text = "Topic：";
+			this.label2.Text = "主题：";
 			// 
 			// textBox_mqtt_port
 			// 

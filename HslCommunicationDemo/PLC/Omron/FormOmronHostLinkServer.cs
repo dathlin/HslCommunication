@@ -30,9 +30,11 @@ namespace HslCommunicationDemo
 			if(Program.Language == 2)
 			{
 				Text = "Omron Virtual Server [data support, d, a, h, c, w]";
-				label3.Text = "port:";
+				label3.Text = "Port:";
+				label14.Text = "Serial:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
+				button5.Text = "Start Serial";
 				label11.Text = "This server is not a strict fins protocol and only supports perfect communication with HSL components.";
 			}
 

@@ -29,8 +29,10 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.button_ssl_file = new System.Windows.Forms.Button();
+			this.textBox_ssl_ca = new System.Windows.Forms.TextBox();
+			this.checkBox_SSL = new System.Windows.Forms.CheckBox();
 			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.label8 = new System.Windows.Forms.Label();
 			this.button5 = new System.Windows.Forms.Button();
 			this.label7 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
@@ -48,6 +50,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.checkBox_logHex = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -77,8 +80,10 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.button_ssl_file);
+			this.panel1.Controls.Add(this.textBox_ssl_ca);
+			this.panel1.Controls.Add(this.checkBox_SSL);
 			this.panel1.Controls.Add(this.textBox5);
-			this.panel1.Controls.Add(this.label8);
 			this.panel1.Controls.Add(this.button5);
 			this.panel1.Controls.Add(this.label7);
 			this.panel1.Controls.Add(this.textBox3);
@@ -96,31 +101,54 @@
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.label10);
+			this.panel1.Controls.Add(this.label8);
 			this.panel1.Location = new System.Drawing.Point(3, 36);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 72);
+			this.panel1.Size = new System.Drawing.Size(997, 97);
 			this.panel1.TabIndex = 7;
+			// 
+			// button_ssl_file
+			// 
+			this.button_ssl_file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_ssl_file.Location = new System.Drawing.Point(779, 66);
+			this.button_ssl_file.Name = "button_ssl_file";
+			this.button_ssl_file.Size = new System.Drawing.Size(91, 28);
+			this.button_ssl_file.TabIndex = 25;
+			this.button_ssl_file.Text = "FILE";
+			this.button_ssl_file.UseVisualStyleBackColor = true;
+			this.button_ssl_file.Click += new System.EventHandler(this.button_ssl_file_Click);
+			// 
+			// textBox_ssl_ca
+			// 
+			this.textBox_ssl_ca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_ssl_ca.Location = new System.Drawing.Point(62, 69);
+			this.textBox_ssl_ca.Name = "textBox_ssl_ca";
+			this.textBox_ssl_ca.Size = new System.Drawing.Size(711, 23);
+			this.textBox_ssl_ca.TabIndex = 24;
+			// 
+			// checkBox_SSL
+			// 
+			this.checkBox_SSL.AutoSize = true;
+			this.checkBox_SSL.Location = new System.Drawing.Point(8, 71);
+			this.checkBox_SSL.Name = "checkBox_SSL";
+			this.checkBox_SSL.Size = new System.Drawing.Size(51, 21);
+			this.checkBox_SSL.TabIndex = 23;
+			this.checkBox_SSL.Text = "证书";
+			this.checkBox_SSL.UseVisualStyleBackColor = true;
 			// 
 			// textBox5
 			// 
-			this.textBox5.Location = new System.Drawing.Point(346, 2);
+			this.textBox5.Location = new System.Drawing.Point(455, 2);
 			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(221, 23);
+			this.textBox5.Size = new System.Drawing.Size(209, 23);
 			this.textBox5.TabIndex = 21;
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(362, 25);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(127, 17);
-			this.label8.TabIndex = 20;
-			this.label8.Text = "举例 /A/B?C=123456";
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(897, 5);
+			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button5.Location = new System.Drawing.Point(897, 64);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(91, 28);
 			this.button5.TabIndex = 19;
@@ -132,7 +160,7 @@
 			// 
 			this.label7.AutoSize = true;
 			this.label7.ForeColor = System.Drawing.Color.Gray;
-			this.label7.Location = new System.Drawing.Point(646, 44);
+			this.label7.Location = new System.Drawing.Point(646, 42);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(338, 17);
 			this.label7.TabIndex = 18;
@@ -140,7 +168,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(62, 44);
+			this.textBox3.Location = new System.Drawing.Point(62, 42);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(181, 23);
 			this.textBox3.TabIndex = 17;
@@ -148,7 +176,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(5, 47);
+			this.label6.Location = new System.Drawing.Point(5, 45);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(44, 17);
 			this.label6.TabIndex = 16;
@@ -156,7 +184,7 @@
 			// 
 			// textBox11
 			// 
-			this.textBox11.Location = new System.Drawing.Point(639, 5);
+			this.textBox11.Location = new System.Drawing.Point(736, 5);
 			this.textBox11.Name = "textBox11";
 			this.textBox11.Size = new System.Drawing.Size(51, 23);
 			this.textBox11.TabIndex = 15;
@@ -165,7 +193,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(573, 8);
+			this.label5.Location = new System.Drawing.Point(670, 8);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 17);
 			this.label5.TabIndex = 14;
@@ -173,7 +201,7 @@
 			// 
 			// textBox10
 			// 
-			this.textBox10.Location = new System.Drawing.Point(527, 43);
+			this.textBox10.Location = new System.Drawing.Point(527, 41);
 			this.textBox10.Name = "textBox10";
 			this.textBox10.Size = new System.Drawing.Size(114, 23);
 			this.textBox10.TabIndex = 13;
@@ -181,7 +209,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(463, 46);
+			this.label4.Location = new System.Drawing.Point(463, 44);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(44, 17);
 			this.label4.TabIndex = 12;
@@ -189,7 +217,7 @@
 			// 
 			// textBox9
 			// 
-			this.textBox9.Location = new System.Drawing.Point(313, 44);
+			this.textBox9.Location = new System.Drawing.Point(313, 42);
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(144, 23);
 			this.textBox9.TabIndex = 11;
@@ -197,7 +225,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(249, 47);
+			this.label2.Location = new System.Drawing.Point(249, 45);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(56, 17);
 			this.label2.TabIndex = 10;
@@ -206,7 +234,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(795, 3);
+			this.button2.Location = new System.Drawing.Point(892, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -216,7 +244,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(698, 3);
+			this.button1.Location = new System.Drawing.Point(795, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -226,7 +254,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(250, 3);
+			this.textBox2.Location = new System.Drawing.Point(349, 3);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
@@ -235,7 +263,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(196, 6);
+			this.label3.Location = new System.Drawing.Point(294, 6);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -245,7 +273,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(59, 3);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(131, 23);
+			this.textBox1.Size = new System.Drawing.Size(228, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "127.0.0.1";
 			// 
@@ -261,11 +289,20 @@
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(317, 4);
+			this.label10.Location = new System.Drawing.Point(417, 4);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(35, 17);
 			this.label10.TabIndex = 22;
 			this.label10.Text = "url：";
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(471, 25);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(127, 17);
+			this.label8.TabIndex = 20;
+			this.label8.Text = "举例 /A/B?C=123456";
 			// 
 			// panel2
 			// 
@@ -286,9 +323,9 @@
 			this.panel2.Controls.Add(this.button3);
 			this.panel2.Controls.Add(this.textBox4);
 			this.panel2.Controls.Add(this.label9);
-			this.panel2.Location = new System.Drawing.Point(3, 113);
+			this.panel2.Location = new System.Drawing.Point(3, 136);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 530);
+			this.panel2.Size = new System.Drawing.Size(997, 507);
 			this.panel2.TabIndex = 13;
 			// 
 			// checkBox_logHex
@@ -414,7 +451,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(926, 311);
+			this.textBox8.Size = new System.Drawing.Size(926, 288);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
@@ -545,5 +582,8 @@
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.CheckBox checkBox_logHex;
 		private System.Windows.Forms.RadioButton radioButton_hex;
+		private System.Windows.Forms.CheckBox checkBox_SSL;
+		private System.Windows.Forms.Button button_ssl_file;
+		private System.Windows.Forms.TextBox textBox_ssl_ca;
 	}
 }

@@ -1,6 +1,8 @@
 ﻿using HslCommunication;
 using HslCommunication.Core;
+using HslCommunication.Core.Device;
 using HslCommunication.Core.Net;
+using HslCommunication.Core.Pipe;
 using HslCommunication.MQTT;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication.Robot.ABB;
@@ -191,6 +193,16 @@ namespace HslCommunicationDemo.DemoControl
 			SetCodeText( "plc", network, props );
 		}
 
+		public void SetCodeText( DeviceTcpNet network, params string[] props )
+		{
+			SetCodeText( "plc", network, props );
+		}
+
+		public void SetCodeText( DeviceUdpNet network, params string[] props )
+		{
+			SetCodeText( "plc", network, props );
+		}
+
 		public void SetCodeText( string deviceName, string com, NetworkServerBase serverBase, params string[] props )
 		{
 			StringBuilder stringBuilder = CreateFromObject( serverBase, deviceName );
@@ -200,11 +212,48 @@ namespace HslCommunicationDemo.DemoControl
 			stringBuilder.AppendLine( );
 			if (!string.IsNullOrEmpty( com ))
 			{
-				if (serverBase is NetworkDataServerBase dataServerBase)
-				{
-					stringBuilder.Append( deviceName + ".SerialReceiveAtleastTime = " + dataServerBase.SerialReceiveAtleastTime + ";" );
-					stringBuilder.AppendLine( );
-				}
+				stringBuilder.Append( deviceName + ".StartSerialSlave( \"" + com + "\" );" );
+				stringBuilder.AppendLine( );
+			}
+			this.textBox1.Text = stringBuilder.ToString( );
+		}
+
+		public void SetCodeText( string deviceName, string com, CommunicationServer serverBase, params string[] props )
+		{
+			StringBuilder stringBuilder = CreateFromObject( serverBase, deviceName );
+			SetPropties( deviceName, stringBuilder, serverBase, props );
+
+			stringBuilder.Append( deviceName + ".ServerStart( " + serverBase.Port + " );" );
+			stringBuilder.AppendLine( );
+			if (!string.IsNullOrEmpty( com ))
+			{
+				stringBuilder.Append( deviceName + ".SerialReceiveAtleastTime = " + serverBase.SerialReceiveAtleastTime + ";" );
+				stringBuilder.AppendLine( );
+
+				stringBuilder.Append( deviceName + ".StartSerialSlave( \"" + com + "\" );" );
+				stringBuilder.AppendLine( );
+			}
+			this.textBox1.Text = stringBuilder.ToString( );
+		}
+
+		public void SetCodeText( string deviceName, string com, DeviceServer serverBase, params string[] props )
+		{
+			StringBuilder stringBuilder = CreateFromObject( serverBase, deviceName );
+			SetPropties( deviceName, stringBuilder, serverBase, props );
+
+			stringBuilder.Append( deviceName + ".ActiveTimeSpan = TimeSpan.Parse( \"" + serverBase.ActiveTimeSpan.ToString( ) + "\" );" );
+			stringBuilder.AppendLine( );
+			stringBuilder.Append( deviceName + ".EnableIPv6 = " + serverBase.EnableIPv6.ToString( ).ToLower( ) + ";" );
+			stringBuilder.AppendLine( );
+			if (serverBase.IsTcpMode)
+				stringBuilder.Append( deviceName + ".ServerStart( " + serverBase.Port + " );" );
+			else
+				stringBuilder.Append( deviceName + ".ServerStart( " + serverBase.Port + ", false );" );
+			stringBuilder.AppendLine( );
+			if (!string.IsNullOrEmpty( com ))
+			{
+				stringBuilder.Append( deviceName + ".SerialReceiveAtleastTime = " + serverBase.SerialReceiveAtleastTime + ";" );
+				stringBuilder.AppendLine( );
 
 				stringBuilder.Append( deviceName + ".StartSerialSlave( \"" + com + "\" );" );
 				stringBuilder.AppendLine( );
@@ -219,7 +268,28 @@ namespace HslCommunicationDemo.DemoControl
 			this.textBox1.Text = stringBuilder.ToString( );
 		}
 
+		public void SetCodeText( string deviceName, DeviceTcpNet device, params string[] props )
+		{
+			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
+			SetPropties( deviceName, stringBuilder, device, props );
+			this.textBox1.Text = stringBuilder.ToString( );
+		}
+
+		public void SetCodeText( string deviceName, DeviceUdpNet device, params string[] props )
+		{
+			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
+			SetPropties( deviceName, stringBuilder, device, props );
+			this.textBox1.Text = stringBuilder.ToString( );
+		}
+
 		public void SetCodeText( NetworkWebApiBase network, params string[] props )
+		{
+			StringBuilder stringBuilder = CreateStringBulider( network );
+			SetPropties( "plc", stringBuilder, network, props );
+			this.textBox1.Text = stringBuilder.ToString( );
+		}
+
+		public void SetCodeText( DeviceWebApi network, params string[] props )
 		{
 			StringBuilder stringBuilder = CreateStringBulider( network );
 			SetPropties( "plc", stringBuilder, network, props );
@@ -241,7 +311,19 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			SetCodeText( "plc", network, props );
 		}
+		public void SetCodeText( DeviceSerialPort network, params string[] props )
+		{
+			SetCodeText( "plc", network, props );
+		}
+
 		public void SetCodeText( string deviceName, SerialBase network, params string[] props )
+		{
+			StringBuilder stringBuilder = CreateStringBulider( network, deviceName );
+			SetPropties( deviceName, stringBuilder, network, props );
+			this.textBox1.Text = stringBuilder.ToString( );
+		}
+
+		public void SetCodeText( string deviceName, DeviceSerialPort network, params string[] props )
 		{
 			StringBuilder stringBuilder = CreateStringBulider( network, deviceName );
 			SetPropties( deviceName, stringBuilder, network, props );
@@ -275,7 +357,18 @@ namespace HslCommunicationDemo.DemoControl
 			sb.AppendLine( );
 			return sb;
 		}
+		public static StringBuilder CreateStringBulider( DeviceWebApi network )
+		{
+			if (network == null) return new StringBuilder( );
 
+			StringBuilder sb = new StringBuilder( );
+			sb.Append( network.GetType( ).FullName );
+			sb.Append( " plc = new " );
+			sb.Append( network.GetType( ).FullName );
+			sb.Append( $"( \"{network.IpAddress}\", {network.Port}, \"{network.UserName}\", \"{network.Password}\" );" );
+			sb.AppendLine( );
+			return sb;
+		}
 
 		private static StringBuilder CreateFromObject( object obj, string deviceName )
 		{
@@ -348,6 +441,37 @@ namespace HslCommunicationDemo.DemoControl
 			return sb;
 		}
 
+		public static StringBuilder CreateStringBulider( DeviceTcpNet device, string deviceName )
+		{
+			if (device == null) return new StringBuilder( );
+
+			StringBuilder sb = CreateFromObject( device, deviceName );
+			sb.Append( deviceName + ".IpAddress = \"" + device.IpAddress + "\";" );
+			sb.AppendLine( );
+			sb.Append( deviceName + ".Port = " + device.Port + ";" );
+			sb.AppendLine( );
+			sb.Append( deviceName + ".ConnectTimeOut = " + device.ConnectTimeOut + ";     // 连接超时，单位毫秒" );
+			sb.AppendLine( );
+			sb.Append( deviceName + ".ReceiveTimeOut = " + device.ReceiveTimeOut + ";     // 接收超时，单位毫秒" );
+			sb.AppendLine( );
+			return sb;
+		}
+
+		public static StringBuilder CreateStringBulider( DeviceUdpNet network, string deviceName )
+		{
+			if (network == null) return new StringBuilder( );
+
+			StringBuilder sb = CreateFromObject( network, deviceName );
+
+			sb.Append( deviceName + ".IpAddress = \"" + network.IpAddress + "\";" );
+			sb.AppendLine( );
+			sb.Append( deviceName + ".Port = " + network.Port + ";" );
+			sb.AppendLine( );
+			sb.Append( deviceName + ".ReceiveTimeout = " + network.ReceiveTimeOut + ";   // 接收超时，单位毫秒" );
+			sb.AppendLine( );
+			return sb;
+		}
+
 		public static StringBuilder CreateStringBulider( NetworkUdpBase network, string deviceName )
 		{
 			if (network == null) return new StringBuilder( );
@@ -373,21 +497,38 @@ namespace HslCommunicationDemo.DemoControl
 			sb.AppendLine( );
 			sb.Append( "{" );
 			sb.AppendLine( );
-			sb.Append( $"	sp.PortName = \"{network.GetPipeSerial( ).GetPipe( ).PortName}\";" );
+			PipeSerialPort pipeSerialPort = network.CommunicationPipe as PipeSerialPort;
+			sb.Append( $"	sp.PortName = \"{pipeSerialPort.GetPipe( ).PortName}\";" );
 			sb.AppendLine( );
-			sb.Append( $"	sp.BaudRate = {network.GetPipeSerial( ).GetPipe( ).BaudRate};" );
+			sb.Append( $"	sp.BaudRate = {pipeSerialPort.GetPipe( ).BaudRate};" );
 			sb.AppendLine( );
-			sb.Append( $"	sp.DataBits = {network.GetPipeSerial( ).GetPipe( ).DataBits};" );
+			sb.Append( $"	sp.DataBits = {pipeSerialPort.GetPipe( ).DataBits};" );
 			sb.AppendLine( );
-			sb.Append( $"	sp.StopBits = System.IO.Ports.StopBits.{network.GetPipeSerial( ).GetPipe( ).StopBits};" );
+			sb.Append( $"	sp.StopBits = System.IO.Ports.StopBits.{pipeSerialPort.GetPipe( ).StopBits};" );
 			sb.AppendLine( );
-			sb.Append( $"	sp.Parity = System.IO.Ports.Parity.{network.GetPipeSerial( ).GetPipe( ).Parity};" );
+			sb.Append( $"	sp.Parity = System.IO.Ports.Parity.{pipeSerialPort.GetPipe( ).Parity};" );
 			sb.AppendLine( );
-			sb.Append( $"	sp.RtsEnable = {network.GetPipeSerial( ).GetPipe( ).RtsEnable.ToString( ).ToLower( )};" );
+			sb.Append( $"	sp.RtsEnable = {pipeSerialPort.GetPipe( ).RtsEnable.ToString( ).ToLower( )};" );
 			sb.AppendLine( );
 			sb.Append( "} ); " );
 			sb.AppendLine( );
-			sb.Append( deviceName + ".ReceiveTimeout = " + network.ReceiveTimeout + ";   // 接收超时，单位毫秒" );
+			sb.Append( deviceName + ".ReceiveTimeout = " + network.ReceiveTimeOut + ";   // 接收超时，单位毫秒" );
+			sb.AppendLine( );
+			return sb;
+		}
+
+		
+		public static StringBuilder CreateStringBulider( DeviceSerialPort network, string deviceName )
+		{
+			if (network == null) return new StringBuilder( );
+
+			StringBuilder sb = CreateFromObject( network, deviceName );
+
+			sb.Append( deviceName + $".SerialPortInni( \"{((PipeSerialPort)network.CommunicationPipe).GetPipe( ).ToFormatString()}\")" );
+			sb.AppendLine( );
+			sb.Append( deviceName + ".RtsEnable = " + ((PipeSerialPort)network.CommunicationPipe).GetPipe( ).RtsEnable.ToString( ).ToLower( ) + ";");
+			sb.AppendLine( );
+			sb.Append( deviceName + ".ReceiveTimeOut = " + network.ReceiveTimeOut + ";   // 接收超时，单位毫秒" );
 			sb.AppendLine( );
 			return sb;
 		}

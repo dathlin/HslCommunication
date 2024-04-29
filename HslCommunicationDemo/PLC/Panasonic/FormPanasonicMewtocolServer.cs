@@ -28,13 +28,10 @@ namespace HslCommunicationDemo
 				Text = "Mewtocol Server [data support]";
 				label3.Text = "port:";
 				button1.Text = "Start Server";
+				button2.Text = "Start Serial";
 				button11.Text = "Close Server";
 				label11.Text = "This server is not a strict Mewtocol protocol and only supports perfect communication with HSL components.";
 			}
-			//timer = new Timer( );
-			//timer.Interval = 1000;
-			//timer.Tick += Timer_Tick;
-			//timer.Start( );
 
 
 			addressExampleControl = new AddressExampleControl( );
@@ -92,9 +89,8 @@ namespace HslCommunicationDemo
 				mewtocolServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				mewtocolServer.OnDataReceived += BusTcpServer_OnDataReceived;
 				mewtocolServer.Station        = 238;
-				mewtocolServer.ServerStart( port );
-
 				userControlReadWriteServer1.SetReadWriteServer( mewtocolServer, "D100" );
+				mewtocolServer.ServerStart( port );
 				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;

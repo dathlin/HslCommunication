@@ -16,5 +16,10 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			InitializeComponent( );
 		}
+
+		protected override void OnPaint( PaintEventArgs e )
+		{
+			base.OnPaint( e );
+		}
 	}
 }

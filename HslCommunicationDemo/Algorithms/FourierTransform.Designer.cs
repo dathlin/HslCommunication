@@ -32,21 +32,21 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.userButton1 = new HslCommunication.Controls.UserButton();
-			this.userCurve5 = new HslCommunication.Controls.UserCurve();
-			this.userCurve6 = new HslCommunication.Controls.UserCurve();
-			this.userCurve3 = new HslCommunication.Controls.UserCurve();
-			this.userCurve4 = new HslCommunication.Controls.UserCurve();
-			this.userCurve2 = new HslCommunication.Controls.UserCurve();
-			this.userCurve1 = new HslCommunication.Controls.UserCurve();
-			this.userButton2 = new HslCommunication.Controls.UserButton();
-			this.userButton3 = new HslCommunication.Controls.UserButton();
-			this.userButton4 = new HslCommunication.Controls.UserButton();
+			this.userButton1 = new HslControls.HslButton();
+			this.userCurve5  = new HslControls.HslCurve();
+			this.userCurve6  = new HslControls.HslCurve();
+			this.userCurve3  = new HslControls.HslCurve();
+			this.userCurve4  = new HslControls.HslCurve();
+			this.userCurve2  = new HslControls.HslCurve();
+			this.userCurve1  = new HslControls.HslCurve();
+			this.userButton2 = new HslControls.HslButton();
+			this.userButton3 = new HslControls.HslButton();
+			this.userButton4 = new HslControls.HslButton( );
 			this.textBox_curve3 = new System.Windows.Forms.TextBox();
 			this.textBox_curve2 = new System.Windows.Forms.TextBox();
-			this.userButton5 = new HslCommunication.Controls.UserButton();
+			this.userButton5 = new HslControls.HslButton( );
 			this.textBox_curve1 = new System.Windows.Forms.TextBox();
-			this.userButton6 = new HslCommunication.Controls.UserButton();
+			this.userButton6 = new HslControls.HslButton( );
 			this.SuspendLayout();
 			// 
 			// label5
@@ -97,7 +97,7 @@
 			this.userButton1.Name = "userButton1";
 			this.userButton1.Size = new System.Drawing.Size(78, 25);
 			this.userButton1.TabIndex = 21;
-			this.userButton1.UIText = "专用图形";
+			this.userButton1.Text = "专用图形";
 			this.userButton1.Click += new System.EventHandler(this.userButton1_Click);
 			// 
 			// userCurve5
@@ -121,10 +121,10 @@
 			this.userCurve6.Size = new System.Drawing.Size(463, 190);
 			this.userCurve6.StrechDataCountMax = 256;
 			this.userCurve6.TabIndex = 18;
-			this.userCurve6.ValueMaxLeft = 10F;
-			this.userCurve6.ValueMaxRight = 10F;
-			this.userCurve6.ValueMinLeft = -10F;
-			this.userCurve6.ValueMinRight = -10F;
+			this.userCurve6.ReferenceAxisLeft.Max = 10F;
+			this.userCurve6.ReferenceAxisRight.Max = 10F;
+			this.userCurve6.ReferenceAxisLeft.Min = -10F;
+			this.userCurve6.ReferenceAxisRight.Min = -10F;
 			// 
 			// userCurve3
 			// 
@@ -147,10 +147,10 @@
 			this.userCurve4.Size = new System.Drawing.Size(463, 190);
 			this.userCurve4.StrechDataCountMax = 256;
 			this.userCurve4.TabIndex = 15;
-			this.userCurve4.ValueMaxLeft = 12F;
-			this.userCurve4.ValueMaxRight = 12F;
-			this.userCurve4.ValueMinLeft = -3F;
-			this.userCurve4.ValueMinRight = -3F;
+			this.userCurve4.ReferenceAxisLeft.Max = 12F;
+			this.userCurve4.ReferenceAxisRight.Max = 12F;
+			this.userCurve4.ReferenceAxisLeft.Min = -3F;
+			this.userCurve4.ReferenceAxisRight.Min = -3F;
 			// 
 			// userCurve2
 			// 
@@ -173,8 +173,8 @@
 			this.userCurve1.Size = new System.Drawing.Size(463, 190);
 			this.userCurve1.StrechDataCountMax = 256;
 			this.userCurve1.TabIndex = 12;
-			this.userCurve1.ValueMaxLeft = 10F;
-			this.userCurve1.ValueMaxRight = 10F;
+			this.userCurve1.ReferenceAxisLeft.Max = 10F;
+			this.userCurve1.ReferenceAxisRight.Max = 10F;
 			// 
 			// userButton2
 			// 
@@ -187,7 +187,7 @@
 			this.userButton2.Name = "userButton2";
 			this.userButton2.Size = new System.Drawing.Size(78, 25);
 			this.userButton2.TabIndex = 22;
-			this.userButton2.UIText = "专用图形";
+			this.userButton2.Text = "专用图形";
 			this.userButton2.Click += new System.EventHandler(this.userButton2_Click);
 			// 
 			// userButton3
@@ -201,7 +201,7 @@
 			this.userButton3.Name = "userButton3";
 			this.userButton3.Size = new System.Drawing.Size(78, 25);
 			this.userButton3.TabIndex = 23;
-			this.userButton3.UIText = "专用图形";
+			this.userButton3.Text = "专用图形";
 			this.userButton3.Click += new System.EventHandler(this.userButton3_Click);
 			// 
 			// userButton4
@@ -215,7 +215,7 @@
 			this.userButton4.Name = "userButton4";
 			this.userButton4.Size = new System.Drawing.Size(78, 25);
 			this.userButton4.TabIndex = 24;
-			this.userButton4.UIText = "逆变操作";
+			this.userButton4.Text = "逆变操作";
 			this.userButton4.Click += new System.EventHandler(this.userButton4_Click);
 			// 
 			// textBox_curve3
@@ -245,7 +245,7 @@
 			this.userButton5.Name = "userButton5";
 			this.userButton5.Size = new System.Drawing.Size(78, 25);
 			this.userButton5.TabIndex = 26;
-			this.userButton5.UIText = "逆变操作";
+			this.userButton5.Text = "逆变操作";
 			this.userButton5.Click += new System.EventHandler(this.userButton5_Click);
 			// 
 			// textBox_curve1
@@ -267,7 +267,7 @@
 			this.userButton6.Name = "userButton6";
 			this.userButton6.Size = new System.Drawing.Size(78, 25);
 			this.userButton6.TabIndex = 28;
-			this.userButton6.UIText = "逆变操作";
+			this.userButton6.Text = "逆变操作";
 			this.userButton6.Click += new System.EventHandler(this.userButton6_Click);
 			// 
 			// FourierTransform
@@ -308,23 +308,23 @@
 
         #endregion
         private System.Windows.Forms.Label label5;
-        private HslCommunication.Controls.UserCurve userCurve1;
-        private HslCommunication.Controls.UserCurve userCurve2;
+        private HslControls.HslCurve userCurve1;
+		private HslControls.HslCurve userCurve2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private HslCommunication.Controls.UserCurve userCurve3;
-        private HslCommunication.Controls.UserCurve userCurve4;
+        private HslControls.HslCurve userCurve3;
+        private HslControls.HslCurve userCurve4;
         private System.Windows.Forms.Label label6;
-        private HslCommunication.Controls.UserCurve userCurve5;
-        private HslCommunication.Controls.UserCurve userCurve6;
-        private HslCommunication.Controls.UserButton userButton1;
-        private HslCommunication.Controls.UserButton userButton2;
-        private HslCommunication.Controls.UserButton userButton3;
-		private HslCommunication.Controls.UserButton userButton4;
+        private HslControls.HslCurve userCurve5;
+        private HslControls.HslCurve userCurve6;
+        private HslControls.HslButton userButton1;
+        private HslControls.HslButton userButton2;
+        private HslControls.HslButton userButton3;
+		private HslControls.HslButton userButton4;
 		private System.Windows.Forms.TextBox textBox_curve3;
 		private System.Windows.Forms.TextBox textBox_curve2;
-		private HslCommunication.Controls.UserButton userButton5;
+		private HslControls.HslButton userButton5;
 		private System.Windows.Forms.TextBox textBox_curve1;
-		private HslCommunication.Controls.UserButton userButton6;
+		private HslControls.HslButton userButton6;
 	}
 }

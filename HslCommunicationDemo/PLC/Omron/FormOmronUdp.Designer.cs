@@ -29,6 +29,10 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.comboBox_plcType = new System.Windows.Forms.ComboBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.textBox_localport = new System.Windows.Forms.TextBox();
+			this.label_localport = new System.Windows.Forms.Label();
 			this.textBox_da1 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
@@ -41,11 +45,12 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label5 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -55,6 +60,11 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.label5);
+			this.panel1.Controls.Add(this.comboBox_plcType);
+			this.panel1.Controls.Add(this.label6);
+			this.panel1.Controls.Add(this.textBox_localport);
+			this.panel1.Controls.Add(this.label_localport);
 			this.panel1.Controls.Add(this.textBox_da1);
 			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.button2);
@@ -67,13 +77,48 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.textBox_ip);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 64);
 			this.panel1.TabIndex = 0;
+			// 
+			// comboBox_plcType
+			// 
+			this.comboBox_plcType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_plcType.FormattingEnabled = true;
+			this.comboBox_plcType.Location = new System.Drawing.Point(657, 34);
+			this.comboBox_plcType.Name = "comboBox_plcType";
+			this.comboBox_plcType.Size = new System.Drawing.Size(109, 25);
+			this.comboBox_plcType.TabIndex = 26;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label6.Location = new System.Drawing.Point(187, 38);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(79, 17);
+			this.label6.TabIndex = 25;
+			this.label6.Text = "(null is auto)";
+			// 
+			// textBox_localport
+			// 
+			this.textBox_localport.Location = new System.Drawing.Point(129, 35);
+			this.textBox_localport.Name = "textBox_localport";
+			this.textBox_localport.Size = new System.Drawing.Size(52, 23);
+			this.textBox_localport.TabIndex = 24;
+			// 
+			// label_localport
+			// 
+			this.label_localport.AutoSize = true;
+			this.label_localport.Location = new System.Drawing.Point(49, 38);
+			this.label_localport.Name = "label_localport";
+			this.label_localport.Size = new System.Drawing.Size(68, 17);
+			this.label_localport.TabIndex = 23;
+			this.label_localport.Text = "本地端口：";
 			// 
 			// textBox_da1
 			// 
@@ -106,7 +151,7 @@
 			this.checkBox_isstringreverse.AutoSize = true;
 			this.checkBox_isstringreverse.Checked = true;
 			this.checkBox_isstringreverse.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_isstringreverse.Location = new System.Drawing.Point(553, 38);
+			this.checkBox_isstringreverse.Location = new System.Drawing.Point(465, 38);
 			this.checkBox_isstringreverse.Name = "checkBox_isstringreverse";
 			this.checkBox_isstringreverse.Size = new System.Drawing.Size(127, 21);
 			this.checkBox_isstringreverse.TabIndex = 19;
@@ -183,13 +228,13 @@
 			this.label3.TabIndex = 2;
 			this.label3.Text = "端口号：";
 			// 
-			// textBox1
+			// textBox_ip
 			// 
-			this.textBox1.Location = new System.Drawing.Point(58, 7);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(133, 23);
-			this.textBox1.TabIndex = 1;
-			this.textBox1.Text = "192.168.0.100";
+			this.textBox_ip.Location = new System.Drawing.Point(58, 7);
+			this.textBox_ip.Name = "textBox_ip";
+			this.textBox_ip.Size = new System.Drawing.Size(133, 23);
+			this.textBox_ip.TabIndex = 1;
+			this.textBox_ip.Text = "127.0.0.1";
 			// 
 			// label1
 			// 
@@ -238,6 +283,15 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(612, 38);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(39, 17);
+			this.label5.TabIndex = 27;
+			this.label5.Text = "Type:";
+			// 
 			// FormOmronUdp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -269,7 +323,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_ip;
         private System.Windows.Forms.TextBox textBox_sa1;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -281,5 +335,10 @@
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.TextBox textBox_da1;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox textBox_localport;
+		private System.Windows.Forms.Label label_localport;
+		private System.Windows.Forms.ComboBox comboBox_plcType;
+		private System.Windows.Forms.Label label5;
 	}
 }

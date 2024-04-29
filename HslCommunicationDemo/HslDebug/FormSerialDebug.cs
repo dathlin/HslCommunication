@@ -13,8 +13,6 @@ using HslCommunication;
 using HslCommunication.BasicFramework;
 using HslCommunication.MQTT;
 using HslCommunicationDemo.HslDebug;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HslCommunicationDemo
 {
@@ -69,7 +67,10 @@ namespace HslCommunicationDemo
 				label24.Text = "parity:";
 				button1.Text = "Open";
 				button2.Text = "Close";
-				label8.Text = "Number of data bytes selected:";
+				label8.Text = "Pwd:";
+				label2.Text = "Topic:";
+				label9.Text = "Name:";
+				checkBox_useMqtt.Text = "Use MQTT";
 				comboBox_Parity.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}

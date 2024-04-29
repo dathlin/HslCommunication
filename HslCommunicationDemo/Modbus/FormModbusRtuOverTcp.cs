@@ -33,6 +33,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.SelectedIndex = 2;
 
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
@@ -123,7 +124,7 @@ namespace HslCommunicationDemo
 			}
 
 			busRtuClient?.ConnectClose( );
-			busRtuClient = new ModbusRtuOverTcp( textBox1.Text, port, station );
+			busRtuClient = new ModbusRtuOverTcp( textBox_ip.Text, port, station );
 			busRtuClient.ConnectTimeOut       = connect_timeout;
 			busRtuClient.AddressStartWithZero = checkBox1.Checked;
 			busRtuClient.LogNet               = LogNet;
@@ -182,7 +183,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text);
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text);
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( nameof( NetworkDoubleBase.ConnectTimeOut ), textBox_connect_timeout.Text );
 			element.SetAttributeValue( nameof( NetworkDoubleBase.SendBeforeHex ), textBox_lora_head.Text );
@@ -199,7 +200,7 @@ namespace HslCommunicationDemo
 		{
 			base.LoadXmlParameter( element );
 
-			textBox1.Text                = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text                = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text                = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text               = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox1.Checked            = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );

@@ -25,6 +25,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			panel2.Enabled = false;
 			
 			Language( Program.Language );
@@ -70,7 +71,7 @@ namespace HslCommunicationDemo
 			}
 			
 			keyence?.ConnectClose( );
-			keyence = new KeyenceDLEN1( textBox1.Text, port );
+			keyence = new KeyenceDLEN1( textBox_ip.Text, port );
 			keyence.LogNet = LogNet;
 			try
 			{
@@ -129,14 +130,14 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 		}
 

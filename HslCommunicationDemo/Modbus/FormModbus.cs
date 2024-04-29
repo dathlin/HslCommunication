@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.SelectedIndex = 2;
 
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
@@ -65,9 +66,6 @@ namespace HslCommunicationDemo
 				checkBox3.Text = "string reverse";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label4.Text = "Account";
-				label2.Text = "Pwd";
-				label5.Text = "When the server is a server built by hsl, login with account name and password is supported.";
 
 				checkBox2.Text = "Check Message ID";
 			}
@@ -123,12 +121,10 @@ namespace HslCommunicationDemo
 			}
 
 			busTcpClient?.ConnectClose( );
-			busTcpClient = new ModbusTcpNet( textBox1.Text, port, station );
+			busTcpClient = new ModbusTcpNet( textBox_ip.Text, port, station );
 			busTcpClient.AddressStartWithZero = checkBox1.Checked;
 			busTcpClient.IsCheckMessageId = checkBox2.Checked;
 			busTcpClient.LogNet = LogNet;
-
-			busTcpClient.SetLoginAccount( textBox14.Text, textBox12.Text );
 
 			ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
 			busTcpClient.IsStringReverse = checkBox3.Checked;
@@ -179,22 +175,14 @@ namespace HslCommunicationDemo
 		
 		#endregion
 
-		private void button4_Click_1( object sender, EventArgs e )
-		{
-			MessageBox.Show( busTcpClient.IpAddressPing( ).ToString( ) ) ;
-		}
-
-
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
-			element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox14.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox12.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -202,14 +190,12 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-			textBox14.Text = element.Attribute( DemoDeviceList.XmlUserName ).Value;
-			textBox12.Text = element.Attribute( DemoDeviceList.XmlPassword ).Value;
 
 
 			if( this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

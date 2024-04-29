@@ -65,7 +65,6 @@ namespace HslCommunicationDemo
 				label3.Text = "Parity:";
 				button1.Text = "Open";
 				button2.Text = "Close";
-				label21.Text = "Address:";
 				label29.Text = "Com:";
 				label28.Text = "BaudRate:";
 				label27.Text = "DataBit:";

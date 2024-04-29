@@ -12,6 +12,8 @@ using HslCommunication.ModBus;
 using System.Threading;
 using System.Xml.Linq;
 using HslCommunicationDemo.DemoControl;
+using HslCommunication.Core.Net;
+using HslCommunication.Core.Pipe;
 
 namespace HslCommunicationDemo
 {
@@ -30,7 +32,8 @@ namespace HslCommunicationDemo
 				label3.Text = "port:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
-				label11.Text = "This server is not a strict mc protocol and only supports perfect communication with HSL components.";
+				label14.Text = "Serial:";
+				button5.Text = "Start";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -40,6 +43,11 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+
+			button5.Enabled = false;
+			if (ServerMode == 1) this.userControlHead1.ProtocolInfo = "Mc Qna3E Udp Server";
+			if (ServerMode == 2) this.userControlHead1.ProtocolInfo = "Mc A1E Tcp Server";
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -49,6 +57,10 @@ namespace HslCommunicationDemo
 
 		#region Server Start
 
+		/// <summary>
+		/// 服务器模式，0： MC协议TCP，1：MC协议UDP，2：A1E协议TCP
+		/// </summary>
+		public int ServerMode { get; set; } = 0;
 		private HslCommunication.Profinet.Melsec.MelsecMcServer mcNetServer;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
@@ -63,13 +75,19 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				mcNetServer = new HslCommunication.Profinet.Melsec.MelsecMcServer( checkBox2.Checked );                       // 实例化对象
-				mcNetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
-				mcNetServer.OnDataReceived += MelsecMcServer_OnDataReceived;
-				mcNetServer.ServerStart( port );
+				if (ServerMode == 0) mcNetServer = new HslCommunication.Profinet.Melsec.MelsecMcServer( radioButton_binary.Checked );                       // 实例化对象
+				else if (ServerMode == 2) mcNetServer = new HslCommunication.Profinet.Melsec.MelsecA1EServer( radioButton_binary.Checked );
+
+				mcNetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );                            // 1小时不通信就断开
+				mcNetServer.EnableIPv6 = radioButton_ipv6.Checked;                               // 是否开启IPv6
+				mcNetServer.OnDataReceived += MelsecMcServer_OnDataReceived;                     // 接收到数据触发
+				userControlReadWriteServer1.SetReadWriteServerLog( mcNetServer );                // 设置日志
+
+				mcNetServer.ServerStart( port, radioButton_tcp.Checked );
 				userControlReadWriteServer1.SetReadWriteServer( mcNetServer, "D100" );
 
 				button1.Enabled = false;
+				button5.Enabled = true;
 				userControlReadWriteServer1.SetEnable( true );
 				button11.Enabled = true;
 
@@ -78,34 +96,42 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				MessageBox.Show( ex.Message + "\r\n" + ex.StackTrace );
 			}
 		}
 
 		private void button11_Click( object sender, EventArgs e )
 		{
 			// 停止服务
+			mcNetServer?.CloseSerialSlave( );
 			mcNetServer?.ServerClose( );
 			button1.Enabled = true;
 			button11.Enabled = false;
 		}
 
-		private void MelsecMcServer_OnDataReceived( object sender,  object source, byte[] receive )
+		private void MelsecMcServer_OnDataReceived( object sender, PipeSession session, byte[] receive )
 		{
 			// 我们可以捕获到接收到的客户端的modbus报文
 			// 如果是TCP接收的
-			if (source is HslCommunication.Core.Net.AppSession session)
+			if (session.Communication is PipeTcpNet pipeTcpNet)
 			{
 				// 获取当前客户的IP地址
-				string ip = session.IpAddress;
+				string ip = pipeTcpNet.IpAddress;
 			}
 
 			// 如果是串口接收的
-			if (source is System.IO.Ports.SerialPort serialPort)
+			if (session.Communication is PipeSerialPort serialPort)
 			{
 				// 获取当前的串口的名称
-				string portName = serialPort.PortName;
+				string portName = serialPort.GetPipe( ).PortName;
 			}
+		}
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+			// 启动串口
+			mcNetServer.StartSerialSlave( textBox_serialPort.Text );
+			button5.Enabled = false;
 		}
 
 		#endregion
@@ -114,7 +140,8 @@ namespace HslCommunicationDemo
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBinary, checkBox2.Checked );
+			element.SetAttributeValue( DemoDeviceList.XmlBinary, radioButton_binary.Checked );
+			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox_serialPort.Text );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
@@ -122,7 +149,12 @@ namespace HslCommunicationDemo
 		{
 			base.LoadXmlParameter( element );
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			checkBox2.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlBinary ).Value );
+			bool check = bool.Parse( element.Attribute( DemoDeviceList.XmlBinary ).Value );
+			if (check)
+				radioButton_binary.Checked = true;
+			else
+				radioButton_ascii.Checked = true;
+			textBox_serialPort.Text = GetXmlValue( element, DemoDeviceList.XmlCom, textBox_serialPort.Text, m => m );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 
@@ -130,5 +162,6 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

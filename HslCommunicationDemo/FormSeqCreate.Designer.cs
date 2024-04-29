@@ -29,10 +29,10 @@
         private void InitializeComponent( )
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.userButton3 = new HslCommunication.Controls.UserButton();
-            this.userButton2 = new HslCommunication.Controls.UserButton();
+            this.userButton3 = new HslControls.HslButton( );
+            this.userButton2 = new HslControls.HslButton( );
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.userButton1 = new HslCommunication.Controls.UserButton();
+            this.userButton1 = new HslControls.HslButton( );
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -62,7 +62,7 @@
             this.userButton3.Name = "userButton3";
             this.userButton3.Size = new System.Drawing.Size(136, 42);
             this.userButton3.TabIndex = 8;
-            this.userButton3.UIText = "获取流水号";
+            this.userButton3.Text = "获取流水号";
             this.userButton3.Click += new System.EventHandler(this.userButton3_Click);
             // 
             // userButton2
@@ -76,7 +76,7 @@
             this.userButton2.Name = "userButton2";
             this.userButton2.Size = new System.Drawing.Size(136, 42);
             this.userButton2.TabIndex = 7;
-            this.userButton2.UIText = "百万流水号性能测试";
+            this.userButton2.Text = "百万流水号性能测试";
             this.userButton2.Click += new System.EventHandler(this.userButton2_Click);
             // 
             // textBox1
@@ -103,7 +103,7 @@
             this.userButton1.Name = "userButton1";
             this.userButton1.Size = new System.Drawing.Size(136, 42);
             this.userButton1.TabIndex = 5;
-            this.userButton1.UIText = "获取流水号";
+            this.userButton1.Text = "获取流水号";
             this.userButton1.Click += new System.EventHandler(this.userButton1_Click);
             // 
             // linkLabel1
@@ -154,10 +154,10 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private HslCommunication.Controls.UserButton userButton3;
-        private HslCommunication.Controls.UserButton userButton2;
+        private HslControls.HslButton userButton3;
+        private HslControls.HslButton userButton2;
         private System.Windows.Forms.TextBox textBox1;
-        private HslCommunication.Controls.UserButton userButton1;
+        private HslControls.HslButton userButton1;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label2;
     }

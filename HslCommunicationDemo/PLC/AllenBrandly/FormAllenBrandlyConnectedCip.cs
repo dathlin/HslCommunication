@@ -33,6 +33,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			control = new AllenBrandlyControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -78,10 +79,9 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			allenBradleyNet.IpAddress = textBox1.Text;
+			allenBradleyNet.IpAddress = textBox_ip.Text;
 			allenBradleyNet.Port = port;
 
-			allenBradleyNet.SetPersistentConnection( );
 			allenBradleyNet.LogNet = LogNet;
 
 			try
@@ -139,7 +139,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -148,7 +148,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 
 
