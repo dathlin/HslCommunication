@@ -67,7 +67,7 @@ namespace HslCommunicationDemo
 				yokoServer = new HslCommunication.Profinet.Yokogawa.YokogawaLinkServer( );                       // 实例化对象
 				yokoServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				yokoServer.OnDataReceived += BusTcpServer_OnDataReceived;
-				
+				this.sslServerControl1.InitializeServer( yokoServer );
 				yokoServer.ServerStart( port );
 
 				userControlReadWriteServer1.SetReadWriteServer( yokoServer, "M100" );

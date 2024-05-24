@@ -29,6 +29,10 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
+			this.borderPanel3 = new HslCommunicationDemo.DemoControl.BorderPanel();
+			this.radioButton_ipv6 = new System.Windows.Forms.RadioButton();
+			this.radioButton_ipv4 = new System.Windows.Forms.RadioButton();
 			this.borderPanel2 = new HslCommunicationDemo.DemoControl.BorderPanel();
 			this.radioButton_udp = new System.Windows.Forms.RadioButton();
 			this.radioButton_tcp = new System.Windows.Forms.RadioButton();
@@ -45,14 +49,11 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.borderPanel3 = new HslCommunicationDemo.DemoControl.BorderPanel();
-			this.radioButton_ipv6 = new System.Windows.Forms.RadioButton();
-			this.radioButton_ipv4 = new System.Windows.Forms.RadioButton();
 			this.panel1.SuspendLayout();
+			this.borderPanel3.SuspendLayout();
 			this.borderPanel2.SuspendLayout();
 			this.borderPanel1.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.borderPanel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -70,11 +71,53 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
 			this.panel1.Controls.Add(this.label3);
+			this.panel1.Controls.Add(this.sslServerControl1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 38);
+			this.panel1.Size = new System.Drawing.Size(997, 68);
 			this.panel1.TabIndex = 0;
+			// 
+			// sslServerControl1
+			// 
+			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.sslServerControl1.Location = new System.Drawing.Point(4, 33);
+			this.sslServerControl1.Name = "sslServerControl1";
+			this.sslServerControl1.Size = new System.Drawing.Size(988, 30);
+			this.sslServerControl1.TabIndex = 37;
+			// 
+			// borderPanel3
+			// 
+			this.borderPanel3.Controls.Add(this.radioButton_ipv6);
+			this.borderPanel3.Controls.Add(this.radioButton_ipv4);
+			this.borderPanel3.Location = new System.Drawing.Point(380, 4);
+			this.borderPanel3.Name = "borderPanel3";
+			this.borderPanel3.Size = new System.Drawing.Size(113, 28);
+			this.borderPanel3.TabIndex = 36;
+			// 
+			// radioButton_ipv6
+			// 
+			this.radioButton_ipv6.AutoSize = true;
+			this.radioButton_ipv6.Location = new System.Drawing.Point(59, 3);
+			this.radioButton_ipv6.Name = "radioButton_ipv6";
+			this.radioButton_ipv6.Size = new System.Drawing.Size(50, 21);
+			this.radioButton_ipv6.TabIndex = 1;
+			this.radioButton_ipv6.Text = "IPv6";
+			this.radioButton_ipv6.UseVisualStyleBackColor = true;
+			// 
+			// radioButton_ipv4
+			// 
+			this.radioButton_ipv4.AutoSize = true;
+			this.radioButton_ipv4.Checked = true;
+			this.radioButton_ipv4.Location = new System.Drawing.Point(5, 3);
+			this.radioButton_ipv4.Name = "radioButton_ipv4";
+			this.radioButton_ipv4.Size = new System.Drawing.Size(50, 21);
+			this.radioButton_ipv4.TabIndex = 0;
+			this.radioButton_ipv4.TabStop = true;
+			this.radioButton_ipv4.Text = "IPv4";
+			this.radioButton_ipv4.UseVisualStyleBackColor = true;
 			// 
 			// borderPanel2
 			// 
@@ -210,10 +253,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(3, 75);
+			this.panel2.Location = new System.Drawing.Point(3, 105);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 570);
+			this.panel2.Size = new System.Drawing.Size(997, 540);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -224,7 +267,7 @@
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 3);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 562);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 532);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -240,37 +283,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// borderPanel3
-			// 
-			this.borderPanel3.Controls.Add(this.radioButton_ipv6);
-			this.borderPanel3.Controls.Add(this.radioButton_ipv4);
-			this.borderPanel3.Location = new System.Drawing.Point(380, 4);
-			this.borderPanel3.Name = "borderPanel3";
-			this.borderPanel3.Size = new System.Drawing.Size(113, 28);
-			this.borderPanel3.TabIndex = 36;
-			// 
-			// radioButton_ipv6
-			// 
-			this.radioButton_ipv6.AutoSize = true;
-			this.radioButton_ipv6.Location = new System.Drawing.Point(59, 3);
-			this.radioButton_ipv6.Name = "radioButton_ipv6";
-			this.radioButton_ipv6.Size = new System.Drawing.Size(50, 21);
-			this.radioButton_ipv6.TabIndex = 1;
-			this.radioButton_ipv6.Text = "IPv6";
-			this.radioButton_ipv6.UseVisualStyleBackColor = true;
-			// 
-			// radioButton_ipv4
-			// 
-			this.radioButton_ipv4.AutoSize = true;
-			this.radioButton_ipv4.Checked = true;
-			this.radioButton_ipv4.Location = new System.Drawing.Point(5, 3);
-			this.radioButton_ipv4.Name = "radioButton_ipv4";
-			this.radioButton_ipv4.Size = new System.Drawing.Size(50, 21);
-			this.radioButton_ipv4.TabIndex = 0;
-			this.radioButton_ipv4.TabStop = true;
-			this.radioButton_ipv4.Text = "IPv4";
-			this.radioButton_ipv4.UseVisualStyleBackColor = true;
 			// 
 			// FormMcServer
 			// 
@@ -290,13 +302,13 @@
 			this.Load += new System.EventHandler(this.FormSiemens_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			this.borderPanel3.ResumeLayout(false);
+			this.borderPanel3.PerformLayout();
 			this.borderPanel2.ResumeLayout(false);
 			this.borderPanel2.PerformLayout();
 			this.borderPanel1.ResumeLayout(false);
 			this.borderPanel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
-			this.borderPanel3.ResumeLayout(false);
-			this.borderPanel3.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -323,5 +335,6 @@
 		private DemoControl.BorderPanel borderPanel3;
 		private System.Windows.Forms.RadioButton radioButton_ipv6;
 		private System.Windows.Forms.RadioButton radioButton_ipv4;
+		private DemoControl.SslServerControl sslServerControl1;
 	}
 }

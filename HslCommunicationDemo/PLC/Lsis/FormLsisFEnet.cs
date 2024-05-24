@@ -21,18 +21,17 @@ namespace HslCommunicationDemo
 		public FormLsisFEnet( )
 		{
 			InitializeComponent( );
-			fastEnet = new XGBFastEnet( );
+			fastEnet = new LSFastEnet( );
 		}
 
 
-		private XGBFastEnet fastEnet = null;
+		private LSFastEnet fastEnet = null;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 
 			cboxModel.DataSource = Enum.GetNames( typeof( LSCpuInfo ) );
@@ -55,11 +54,8 @@ namespace HslCommunicationDemo
 				Text = "Lsis Read PLC Demo";
 			   
 
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 
 			}
 		}
@@ -75,20 +71,12 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			if(!byte.TryParse(textBox12.Text, out byte slot ))
 			{
 				MessageBox.Show( DemoUtils.SlotInputWrong );
 				return;
 			}
 
-			fastEnet.IpAddress = textBox_ip.Text;
-			fastEnet.Port = port;
 			fastEnet.SlotNo = slot;
 			fastEnet.SetCpuType = cboxModel.Text;
 			fastEnet.CompanyID = cboxCompanyID.Text;
@@ -96,6 +84,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( fastEnet );
 				OperateResult connect = fastEnet.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -138,8 +127,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlCpuType, cboxModel.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlCompanyID, cboxCompanyID.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox12.Text );
@@ -150,8 +138,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			cboxModel.Text = element.Attribute( DemoDeviceList.XmlCpuType ).Value;
 			cboxCompanyID.Text = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;
 			textBox12.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;

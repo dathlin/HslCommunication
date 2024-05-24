@@ -35,39 +35,30 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.0.0
-1. Controls: 删除controls控件，删除图标资源，FormSupport窗体移动到DEMO，FormPortraitSelect移动到hslcontrols组件，本库更加纯粹的负责通信及算法。
-2. SharpList: 更改锁的机制为lock，优化了代码注释以及部分代码逻辑，提升数组长度比较大的时候的性能，提升批量增加数据时候的性能。
-3. NetSoftUpdateServer: 用于程序升级的服务器修复当传送大文件（120M以上时）传送到一半会卡住，传送非常慢的bug。
-4. Modbus: 修复ModbusTcp协议当设备有前置干扰码但是数据长度判断不正确的bug，ModbusRtu新增站号不匹配时持续接收匹配站号的数据。
-5. SecsMessage: 修复secs消息解析的时候，屏蔽了function字段的最高位的bug，该bug会导致大于127的功能码解析异常，现在可以正确的识别。
-6. FormLogNetView: 日志显示的窗体新增带日志路径的构造函数，当指定路径后，显示页面时立即显示日志内容及统计信息。
-7. OmronFinsTcp: 增加对属性SID信息功能，每次请求的时候进行自增，然后校验PLC返回的数值信息，直到接收到一致为止。
-8. ABBWebApiClient: GetJointTarget方法新增mechunit参数，可以指定不同单元。新增GetAnIOSignal方法。
-9. CommunicationServer: 新增服务器类，可以开启TCP,UDP,SerialPort服务器，绑定事件即可接收到客户端发送的数据。
-10. FujiCommandSettingType: 修复写入数据到plc，提示写入失败但是实际成功的bug; 修复西门子PPI虚拟服务器对写入结果的报文返回不正确的bug。
-11. SecsHsms: 针对SendByCommand方法，如果通信异常，则自动连接操作，也就是所有的发送指令都会将管道标记为异常，下次发送时进行重连。
-12. DLT645Server: 修复主站读取时站号不一致时提示校验失败的bug，修复修改站号命令失败的bug，新增属性站号是否校验。
-13. HslHelper: 修复GetIpAddressFromInput方法输入ipv6地址时会导致解析失败的bug，现在同时支持输入ipv4地址，ipv6地址，域名。
-14. Modbus: 新增属性EnableWriteMaskCode，默认支持掩码功能码，如果发现设备不支持，会自动切换false，使用读字修改位写字的方式来实现写位到字寄存器。
-15. ModbusTcpServer: 新增自由控制是否支持掩码功能码; 台达，麦格米特，汇川，信捷的modbus类地址功能优化，并支持了部分字寄存器的写位操作。
-16. ByteTransform: ByteTransformBase基类删除，字节转换类优化，两个字节的整型short,ushort将根据ABCD,CDAB时使用大端，其他情况使用小端转换。
-17. AllenBradleyNet: 地址支持了x=0x52;A1 这种携带52功能码直接使用片段读写的方式，还支持了class=0x6b;0xf68f这种符号实例ID地址，服务器增加配合，修复相关bug。
-18. LogNet: 存储日志因为文件占用等问题发生异常的时候，不再记录存储失败的信息，存储多次才成功的日志加入[Retry:3]标志，相关代码精简优化。
-19. SecsValue: 新增加一个从string[]对象初始化的构造函数，直接生成一个list对象，包含多个字符串。
-20. DLT698: DLT698协议新增客户端地址CA属性，可以配置更改，代码优化，修复读取电能量数据的扩展参数属性时，缩小倍数不正确的bug。
-21. IOmronFins: FinsTcp,finsUdp,hostlink协议新增属性PlcType，可选CS/CJ 和 CV系列，在CV系列地址码略有不同，fins协议支持ReadCpuTime读取PLC时间。支持了地址 E100 当前数据区
-22. BeckhoffAdsNet: 倍福后台接收数据的地方针对设备通知消息（08功能码）的情况，进行数据屏蔽操作，demo添加ig=0xF030地址格式的示例。
-23. KeyenceMcNet: 修复基恩士MC协议在读取R100.5， MR100.5，LR100.5，CR100.5 地址格式转化真实位地址时地址有偏差的bug。
-24. WebSocketClient: 新增方法 UseSSL( string certificateFile )支持开启证书模式，可以连接 wss 的远程服务器。WebSocketServer也做了代码优化。
-25. V12: 通信类继承体系重新设计, BinaryCommunication(二进制通信)->DeviceCommunication(设备通信)->TCP,UDP,串口通信->每个设备的通信。
-26. V12: 重新设计通信的管道，CommunicationPipe(通信管道)->TCP,UDP,串口,MQTT管道，前者的二进制通信类，可以随意的设置不同的管道，具体参考手册。
-27. V12: 重新设计所有的虚拟PLC类，DeviceCommunication(设备通信)->DeviceServer(服务器)->各个PLC类，同时支持开启TCP，UDP，串口从站的功能。
-28. Demo: 串口网口的收发数据的控件，为了方便模拟设备，输入框支持分批并且延时发送，单独一行<sleep=100>即可，数字100表示休眠的时间，可以修改其他值。
-29. Demo: 修复demo的PLC测试界面里，定时读取的时候，PLC发生掉线后不停弹窗的bug，现在代码进行了优化精简。
-30. 请注意，本次升级可能会造成不兼容的情况，具体需要看使用了哪部分的功能，如果简单的使用PLC类例如ModbusTcpNet可以兼容升级，如果使用了基类NetworkDeviceBase，需要替换为DeviceCommunication。
-31. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn/Doc/HslCommunication
-32. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V12.0.1
+1. MqttServer: 当启动文件服务器时，客户端进行文件上传，下载，删除触发的OnFileChangedEvent事件里添加一个属性：映射文件名称。
+2. PipeSslNet: 新增基于 SSL/TLS 的管道信息类 PipeSslNet, 从PipeTcpNet类继承实现，可以配合 HslCommunication 自身的虚拟服务器实现加密通信，防止抓包。
+3. CommunicationTcpServer: TCP服务器基类代码优化，添加对SSL/TLS的支持，签名修改：ThreadPoolLogin( PipeTcpNet pipe, IPEndPoint endPoint ) 这里如有使用可能不兼容升级。
+4. ModbusTcpServer: 修复当DataFormat配置DCAB时，解析客户端的报文的时候，导致地址及长度信息高地位弄反的bug。
+5. PipeSerialPort: 串口管道新增属性DtrEnable控制，表示串行通信中是否启用数据终端就绪 (Drt) 信号
+6. WebSocketHelper: websocket消息接收使用了管道的实现，删除了原先部分多余的代码，mqtt管道公开一些额外的参数信息。
+7. DeviceSerialPort: 当串口管道调用关闭方法Close的时候，修复管道被重新指定其他非串口管道时，连接不会关闭的bug。
+8. DeviceCommunication: 设备类基类重新添加Dispose接口，然后调用管道的Dispose, 方便代码升级考虑兼容性。
+9. BeckhoffAdsNet: 修复管道配置为SSL及自动获取AMS的情况下，获取ams不使用ssl的bug。
+10. DeviceTcpNet: 重新添加回方法SetPersistentConnection()并标记弃用的状态，方便部分用户升级的时候可以保持向后兼容。
+11. DLT645-2007, DLT645-1997, DLT698添加无参的构造方法，这样DEMO生成的示例代码就可以复制使用，然后优化DEMO上的界面。
+12. MelsecMcServer: 三菱的虚拟服务器针对字地址支持了bool读写操作，也就是ReadBool(""D100.1"")，写入也是一样。
+13. HttpServer: 注册接口的时候，支持输入参数HttpListenerRequest request时，自动传入客户端的请求头，方便进行二次分析处理。
+14. Wecon: demo新增维控PLC的测试界面，如何实例化相关的对象及支持的地址列表参考demo界面上的地址示例及代码示例。
+15. KeyenceNanoServer: 针对客户端单次读写的数据长度从256，提升到1000长度，因为上位链路协议在某些型号里是1000长度的。
+16. Omron: 修复欧姆龙CV系列的情况下，针对CIO数据区执行bool写入操作异常的bug，原因来自PLC不支持bool的写入CIO功能码，使用读字修改位写字来实现。
+17. Inovance: 修复了Modbus协议地址映射后，针对写入字地址的位情况下可能引发了bug，修复汇川的AM系列读写QX，MX位不匹配的bug。
+18. PipeSerialPort: 优化串口管道的数据接收机制，当定义了报文消息的完整性校验对象后，就不再以收到空数据为终结点，如果数据不完整，就一直接收到超时为止。
+19. ModbusRtu: 修复当设备的数据分段延时返回的时候，设备数据的内容刚好符合一些错误规律的时候，会直接返回部分的报文给调用者，然后判断出 crc异常
+20. MqttClient: 修复调用ConnectServerAsync方法连接的情况下触发的OnClientConnected事件中，获取IsConnected属性还是未连接的bug。
+21. LSis: 删除原来按照XGB,XGK这种命名方式，改为了LsCnet, LSFastEnet类，具体类型的实例化，可以参考demo程序生成的代码示例。
+22. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn/Doc/HslCommunication
+23. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

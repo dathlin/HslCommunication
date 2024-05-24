@@ -21,7 +21,6 @@ namespace HslCommunicationDemo
 		public FormMelsecAscii( )
 		{
 			InitializeComponent( );
-			melsec_net = new MelsecMcAsciiNet( );
 		}
 
 
@@ -34,7 +33,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			control = new McQna3EControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -54,9 +52,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Melsec Read PLC Demo";
-
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				checkBox_string_reverse.Text = "string reverse by word";
@@ -76,18 +71,21 @@ namespace HslCommunicationDemo
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
-			melsec_net.IpAddress = textBox_ip.Text;
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
-			melsec_net.Port = port;
-			melsec_net.ConnectClose( );
+			melsec_net?.ConnectClose( );
+			melsec_net = new MelsecMcAsciiNet( );
 			melsec_net.LogNet = LogNet;
 			melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
 			melsec_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
+
+			try
+			{
+				this.pipeSelectControl1.IniPipe( melsec_net );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( ex.Message );
+				return;
+			}
 
 			button1.Enabled = false;
 			OperateResult connect = await melsec_net.ConnectServerAsync( );
@@ -133,8 +131,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( "EnableWriteBitToWordRegister", checkBox_EnableWriteBitToWordRegister.Text );
 			element.SetAttributeValue( "IsStringReverseByteWord", checkBox_string_reverse.Checked );
 
@@ -144,8 +141,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );
 			checkBox_string_reverse.Checked = GetXmlValue( element, "IsStringReverseByteWord", false, bool.Parse );
 

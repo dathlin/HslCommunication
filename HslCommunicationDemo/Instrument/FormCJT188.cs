@@ -33,18 +33,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			comboBox1.SelectedIndex = 0;
-
-			comboBox3.DataSource = SerialPort.GetPortNames( );
-			try
-			{
-				comboBox3.SelectedIndex = 0;
-			}
-			catch
-			{
-				comboBox3.Text = "COM3";
-			}
-
 			Language( Program.Language );
 
 			control = new CJT188Control( );
@@ -67,18 +55,11 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "CJT188 Read Demo";
-
-				label1.Text = "Com:";
-				label3.Text = "baudRate:";
-				label22.Text = "DataBit";
-				label23.Text = "StopBit";
-				label24.Text = "parity";
 				label_address.Text = "station";
 				label_password.Text = "Pwd:";
 				label_op_code.Text = "Op Code";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}
 
@@ -94,24 +75,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox2.Text,out int baudRate ))
-			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox16.Text, out int dataBits ))
-			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox17.Text, out int stopBits ))
-			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
-				return;
-			}
-
 			cjt188?.Close( );
 			cjt188 = new CJT188( textBox_station.Text );
 			cjt188.LogNet = LogNet;
@@ -121,15 +84,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				cjt188.SerialPortInni( sp =>
-				 {
-					 sp.PortName = comboBox3.Text;
-					 sp.BaudRate = baudRate;
-					 sp.DataBits = dataBits;
-					 sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
-					 sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
-				 } );
-				cjt188.RtsEnable = checkBox5.Checked;
+				this.pipeSelectControl1.IniPipe( cjt188 );
 				cjt188.Open( );
 
 				userControlReadWriteDevice1.SetEnable( true );
@@ -168,13 +123,10 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
+			element.SetAttributeValue( "InstrumentType", textBox_type.Text );
+			element.SetAttributeValue( "FeHead", checkBox_enable_Fe.Checked );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -182,13 +134,10 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-			textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
-			textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.SerialPipe );
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
-			checkBox5.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
+			textBox_type.Text = GetXmlValue( element, "InstrumentType", textBox_type.Text, m => m );
+			checkBox_enable_Fe.Checked = GetXmlValue( element, "FeHead", checkBox_enable_Fe.Checked, bool.Parse );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

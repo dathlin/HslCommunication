@@ -38,5 +38,10 @@ namespace HslCommunicationDemo.DemoControl
 		public string ReadTopic { get; set; }
 
 		public string WriteTopic { get; set; }
+
+		private void FormMqttInput_Load( object sender, EventArgs e )
+		{
+
+		}
 	}
 }

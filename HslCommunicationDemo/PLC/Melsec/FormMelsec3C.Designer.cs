@@ -29,22 +29,13 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.checkBox_EnableWriteBitToWordRegister = new System.Windows.Forms.CheckBox();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.comboBox_format = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
+			this.checkBox_sumcheck = new System.Windows.Forms.CheckBox();
 			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.textBox17 = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.textBox16 = new System.Windows.Forms.TextBox();
-			this.label25 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.label26 = new System.Windows.Forms.Label();
-			this.label27 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -59,186 +50,102 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.checkBox_EnableWriteBitToWordRegister);
-			this.panel1.Controls.Add(this.comboBox2);
+			this.panel1.Controls.Add(this.comboBox_format);
 			this.panel1.Controls.Add(this.label2);
-			this.panel1.Controls.Add(this.checkBox1);
-			this.panel1.Controls.Add(this.comboBox3);
+			this.panel1.Controls.Add(this.checkBox_sumcheck);
 			this.panel1.Controls.Add(this.textBox15);
 			this.panel1.Controls.Add(this.label21);
-			this.panel1.Controls.Add(this.comboBox1);
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.textBox17);
-			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox16);
-			this.panel1.Controls.Add(this.label25);
-			this.panel1.Controls.Add(this.textBox2);
-			this.panel1.Controls.Add(this.label26);
-			this.panel1.Controls.Add(this.label27);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 56);
+			this.panel1.Size = new System.Drawing.Size(997, 60);
 			this.panel1.TabIndex = 0;
+			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(4, 1);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.SerialPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 41;
+			this.pipeSelectControl1.TcpPortText = "2000";
+			this.pipeSelectControl1.UdpPortText = "2000";
 			// 
 			// checkBox_EnableWriteBitToWordRegister
 			// 
 			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
-			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(11, 31);
+			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(7, 33);
 			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
 			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
 			this.checkBox_EnableWriteBitToWordRegister.TabIndex = 40;
 			this.checkBox_EnableWriteBitToWordRegister.Text = "Enable Write Bit To Word Register";
 			this.checkBox_EnableWriteBitToWordRegister.UseVisualStyleBackColor = true;
 			// 
-			// comboBox2
+			// comboBox_format
 			// 
-			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Items.AddRange(new object[] {
+			this.comboBox_format.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_format.FormattingEnabled = true;
+			this.comboBox_format.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
             "4"});
-			this.comboBox2.Location = new System.Drawing.Point(678, 27);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(68, 25);
-			this.comboBox2.TabIndex = 39;
+			this.comboBox_format.Location = new System.Drawing.Point(650, 29);
+			this.comboBox_format.Name = "comboBox_format";
+			this.comboBox_format.Size = new System.Drawing.Size(68, 25);
+			this.comboBox_format.TabIndex = 39;
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(617, 31);
+			this.label2.Location = new System.Drawing.Point(589, 31);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(44, 17);
 			this.label2.TabIndex = 34;
 			this.label2.Text = "格式：";
 			// 
-			// checkBox1
+			// checkBox_sumcheck
 			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Checked = true;
-			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(497, 30);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(87, 21);
-			this.checkBox1.TabIndex = 33;
-			this.checkBox1.Text = "SumCheck";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			// 
-			// comboBox3
-			// 
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(73, 2);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(67, 25);
-			this.comboBox3.TabIndex = 32;
+			this.checkBox_sumcheck.AutoSize = true;
+			this.checkBox_sumcheck.Checked = true;
+			this.checkBox_sumcheck.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_sumcheck.Location = new System.Drawing.Point(467, 32);
+			this.checkBox_sumcheck.Name = "checkBox_sumcheck";
+			this.checkBox_sumcheck.Size = new System.Drawing.Size(87, 21);
+			this.checkBox_sumcheck.TabIndex = 33;
+			this.checkBox_sumcheck.Text = "SumCheck";
+			this.checkBox_sumcheck.UseVisualStyleBackColor = true;
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(631, 2);
+			this.textBox15.Location = new System.Drawing.Point(393, 32);
 			this.textBox15.Name = "textBox15";
-			this.textBox15.Size = new System.Drawing.Size(31, 23);
+			this.textBox15.Size = new System.Drawing.Size(43, 23);
 			this.textBox15.TabIndex = 28;
 			this.textBox15.Text = "0";
 			// 
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(578, 5);
+			this.label21.Location = new System.Drawing.Point(337, 35);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(44, 17);
 			this.label21.TabIndex = 27;
 			this.label21.Text = "站号：";
 			// 
-			// comboBox1
-			// 
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Items.AddRange(new object[] {
-            "无",
-            "奇",
-            "偶"});
-			this.comboBox1.Location = new System.Drawing.Point(497, 2);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(60, 25);
-			this.comboBox1.TabIndex = 25;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(443, 5);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(44, 17);
-			this.label1.TabIndex = 24;
-			this.label1.Text = "奇偶：";
-			// 
-			// textBox17
-			// 
-			this.textBox17.Location = new System.Drawing.Point(415, 2);
-			this.textBox17.Name = "textBox17";
-			this.textBox17.Size = new System.Drawing.Size(23, 23);
-			this.textBox17.TabIndex = 23;
-			this.textBox17.Text = "1";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(357, 6);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(56, 17);
-			this.label3.TabIndex = 22;
-			this.label3.Text = "停止位：";
-			// 
-			// textBox16
-			// 
-			this.textBox16.Location = new System.Drawing.Point(324, 3);
-			this.textBox16.Name = "textBox16";
-			this.textBox16.Size = new System.Drawing.Size(24, 23);
-			this.textBox16.TabIndex = 21;
-			this.textBox16.Text = "8";
-			// 
-			// label25
-			// 
-			this.label25.AutoSize = true;
-			this.label25.Location = new System.Drawing.Point(260, 6);
-			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(56, 17);
-			this.label25.TabIndex = 20;
-			this.label25.Text = "数据位：";
-			// 
-			// textBox2
-			// 
-			this.textBox2.Location = new System.Drawing.Point(207, 3);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(47, 23);
-			this.textBox2.TabIndex = 19;
-			this.textBox2.Text = "9600";
-			// 
-			// label26
-			// 
-			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(153, 6);
-			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(56, 17);
-			this.label26.TabIndex = 18;
-			this.label26.Text = "波特率：";
-			// 
-			// label27
-			// 
-			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(8, 6);
-			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(59, 17);
-			this.label27.TabIndex = 16;
-			this.label27.Text = "Com口：";
-			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(869, 5);
+			this.button2.Location = new System.Drawing.Point(893, 1);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -248,7 +155,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(764, 5);
+			this.button1.Location = new System.Drawing.Point(797, 2);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -263,10 +170,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteDevice1);
-			this.panel2.Location = new System.Drawing.Point(3, 94);
+			this.panel2.Location = new System.Drawing.Point(3, 97);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 549);
+			this.panel2.Size = new System.Drawing.Size(997, 546);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteDevice1
@@ -275,7 +182,7 @@
 			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
 			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 547);
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 544);
 			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -322,23 +229,14 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Label label21;
         private DemoControl.UserControlHead userControlHead1;
-		private System.Windows.Forms.ComboBox comboBox3;
-		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.CheckBox checkBox_sumcheck;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.ComboBox comboBox2;
+		private System.Windows.Forms.ComboBox comboBox_format;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private System.Windows.Forms.CheckBox checkBox_EnableWriteBitToWordRegister;
+		private DemoControl.PipeSelectControl pipeSelectControl1;
 	}
 }

@@ -40,6 +40,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -49,6 +50,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.sslServerControl1);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.textBox_serial);
 			this.panel1.Controls.Add(this.label1);
@@ -60,12 +62,12 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 45);
+			this.panel1.Size = new System.Drawing.Size(997, 67);
 			this.panel1.TabIndex = 0;
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(532, 7);
+			this.button2.Location = new System.Drawing.Point(531, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(103, 28);
 			this.button2.TabIndex = 32;
@@ -75,7 +77,7 @@
 			// 
 			// textBox_serial
 			// 
-			this.textBox_serial.Location = new System.Drawing.Point(380, 10);
+			this.textBox_serial.Location = new System.Drawing.Point(380, 6);
 			this.textBox_serial.Name = "textBox_serial";
 			this.textBox_serial.Size = new System.Drawing.Size(146, 23);
 			this.textBox_serial.TabIndex = 31;
@@ -84,7 +86,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(324, 13);
+			this.label1.Location = new System.Drawing.Point(324, 9);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(50, 17);
 			this.label1.TabIndex = 30;
@@ -93,9 +95,9 @@
 			// label11
 			// 
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(653, 0);
+			this.label11.Location = new System.Drawing.Point(629, 0);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(344, 41);
+			this.label11.Size = new System.Drawing.Size(368, 41);
 			this.label11.TabIndex = 29;
 			this.label11.Text = "本服务器不是严格的mewtocol协议，仅支持和HSL组件完美通信。";
 			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -103,7 +105,7 @@
 			// button11
 			// 
 			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(235, 7);
+			this.button11.Location = new System.Drawing.Point(235, 3);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(83, 28);
 			this.button11.TabIndex = 28;
@@ -113,7 +115,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(145, 7);
+			this.button1.Location = new System.Drawing.Point(145, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(83, 28);
 			this.button1.TabIndex = 4;
@@ -123,7 +125,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(74, 10);
+			this.textBox2.Location = new System.Drawing.Point(74, 6);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
@@ -132,7 +134,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(7, 13);
+			this.label3.Location = new System.Drawing.Point(7, 9);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -145,10 +147,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(3, 83);
+			this.panel2.Location = new System.Drawing.Point(3, 106);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 558);
+			this.panel2.Size = new System.Drawing.Size(997, 535);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -159,7 +161,7 @@
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteServer1.Location = new System.Drawing.Point(2, 2);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(991, 552);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(991, 529);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -176,6 +178,16 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// sslServerControl1
+			// 
+			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.sslServerControl1.Location = new System.Drawing.Point(3, 32);
+			this.sslServerControl1.Name = "sslServerControl1";
+			this.sslServerControl1.Size = new System.Drawing.Size(985, 30);
+			this.sslServerControl1.TabIndex = 33;
 			// 
 			// FormPanasonicMewtocolServer
 			// 
@@ -214,5 +226,6 @@
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.TextBox textBox_serial;
 		private System.Windows.Forms.Label label1;
+		private DemoControl.SslServerControl sslServerControl1;
 	}
 }

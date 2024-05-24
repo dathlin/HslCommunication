@@ -68,6 +68,14 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					// 这里需要判断带小数点的情况
 					string name = props[i];
+
+					if (name.StartsWith( "HslCommunication.ModBus.ModbusMappingAddress." ))
+					{
+						stringBuilder.Append( $"{iniName}.RegisteredAddressMapping( {name} );    // 重新指定地址映射，这一行很关键" );
+						stringBuilder.AppendLine( );
+						continue;
+					}
+
 					string propertyName = GetPropertyName( name );
 					object propertyObj = GetObject( obj, name );
 					if (propertyObj == null) continue;
@@ -261,6 +269,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.textBox1.Text = stringBuilder.ToString( );
 		}
 
+
 		public void SetCodeText( string deviceName, NetworkDoubleBase network, params string[] props )
 		{
 			StringBuilder stringBuilder = CreateStringBulider( network, deviceName );
@@ -307,21 +316,12 @@ namespace HslCommunicationDemo.DemoControl
 			this.textBox1.Text = stringBuilder.ToString( );
 		}
 
-		public void SetCodeText( SerialBase network, params string[] props )
-		{
-			SetCodeText( "plc", network, props );
-		}
+
 		public void SetCodeText( DeviceSerialPort network, params string[] props )
 		{
 			SetCodeText( "plc", network, props );
 		}
 
-		public void SetCodeText( string deviceName, SerialBase network, params string[] props )
-		{
-			StringBuilder stringBuilder = CreateStringBulider( network, deviceName );
-			SetPropties( deviceName, stringBuilder, network, props );
-			this.textBox1.Text = stringBuilder.ToString( );
-		}
 
 		public void SetCodeText( string deviceName, DeviceSerialPort network, params string[] props )
 		{
@@ -407,22 +407,94 @@ namespace HslCommunicationDemo.DemoControl
 			return sb;
 		}
 
-		public static StringBuilder CreateStringBulider( MqttClient network )
+		public static StringBuilder CreateStringBulider( MqttClient mqttClient )
 		{
-			if (network == null) return new StringBuilder( );
+			if (mqttClient == null) return new StringBuilder( );
 
-			StringBuilder sb = CreateFromObject( network.ConnectionOptions, "options" );
-			SetPropties( "options", sb, network.ConnectionOptions, nameof( MqttConnectionOptions.IpAddress ), nameof( MqttConnectionOptions.Port ),
+			StringBuilder sb = CreateFromObject( mqttClient.ConnectionOptions, "options" );
+			SetPropties( "options", sb, mqttClient.ConnectionOptions, nameof( MqttConnectionOptions.IpAddress ), nameof( MqttConnectionOptions.Port ),
 				nameof( MqttConnectionOptions.ClientId ), nameof( MqttConnectionOptions.UseRSAProvider ), nameof( MqttConnectionOptions.Credentials ),
 				nameof( MqttConnectionOptions.CleanSession ), nameof( MqttConnectionOptions.UseSSL ), nameof( MqttConnectionOptions.SSLSecure),
 				nameof( MqttConnectionOptions.CertificateFile), nameof( MqttConnectionOptions.KeepAlivePeriod ), nameof( MqttConnectionOptions.KeepAliveSendInterval ),
 				nameof( MqttConnectionOptions.WillMessage ));
 
-
-
-			sb.Append( network.GetType( ).FullName + $" mqtt = new {network.GetType( ).FullName}( options );" );
+			sb.Append( mqttClient.GetType( ).FullName + $" mqtt = new {mqttClient.GetType( ).FullName}( options );" );
 			sb.AppendLine( );
 			return sb;
+		}
+
+		private static void CreateCommunicationPipe( StringBuilder sb, CommunicationPipe pipe, string deviceName )
+		{
+			if (pipe.GetType( ) == typeof( PipeTcpNet ) || pipe.GetType( ) == typeof( PipeSslNet ) || pipe.GetType( ) == typeof( PipeUdpNet ))
+			{
+				PipeTcpNet pipeTcpNet = pipe as PipeTcpNet;
+				sb.Append( deviceName + $".CommunicationPipe = new {pipeTcpNet.GetType( ).FullName}(\"{pipeTcpNet.Host}\", {pipeTcpNet.Port})" );
+				sb.AppendLine( );
+				sb.Append( "{" );
+				sb.AppendLine( );
+				if (pipe.GetType( ) != typeof( PipeUdpNet ))
+				{
+					sb.Append( $"    ConnectTimeOut = {pipeTcpNet.ConnectTimeOut},    // 连接超时时间，单位毫秒" );
+					sb.AppendLine( );
+				}
+				sb.Append( $"    ReceiveTimeOut = {pipeTcpNet.ReceiveTimeOut},    // 接收设备数据反馈的超时时间" );
+				sb.AppendLine( );
+				sb.Append( $"    SleepTime = {pipeTcpNet.SleepTime}," );
+				sb.AppendLine( );
+				sb.Append( $"    SocketKeepAliveTime = {pipeTcpNet.SocketKeepAliveTime}," );
+				sb.AppendLine( );
+				sb.Append( $"    IsPersistentConnection = {pipeTcpNet.IsPersistentConnection.ToString( ).ToLower()}," );
+				sb.AppendLine( );
+				if (pipeTcpNet.LocalBinding != null)
+				{
+					//pipeTcpNet.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Parse( pipeTcpNet.LocalBinding.Address.ToString( ) ), pipeTcpNet.LocalBinding.Port );
+					sb.Append( $"    LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Parse( \"{pipeTcpNet.LocalBinding.Address}\" ), {pipeTcpNet.LocalBinding.Port} )," );
+					sb.AppendLine( );
+				}
+				sb.Append( "};" );
+				sb.AppendLine( );
+			}
+			else if (pipe.GetType( ) == typeof( PipeSerialPort ))
+			{
+				PipeSerialPort pipeSerialPort = pipe as PipeSerialPort;
+				sb.Append( $"{pipeSerialPort.GetType( ).FullName} pipe =  new {pipeSerialPort.GetType( ).FullName}( );" );
+				sb.AppendLine( );
+				sb.Append( $"pipe.SerialPortInni( \"{pipeSerialPort.GetPipe( ).ToFormatString( )}\" );" );
+				sb.AppendLine( );
+				sb.Append( $"pipe.RtsEnable = {pipeSerialPort.RtsEnable.ToString( ).ToLower( )};" );
+				sb.AppendLine( );
+				sb.Append( $"pipe.DtrEnable = {pipeSerialPort.DtrEnable.ToString( ).ToLower( )};" );
+				sb.AppendLine( );
+				sb.Append( $"pipe.SleepTime = {pipeSerialPort.SleepTime};" );
+				sb.AppendLine( );
+				sb.Append( deviceName + $".CommunicationPipe = pipe;" );
+				sb.AppendLine( );
+			}
+			else if (pipe.GetType( ) == typeof( PipeMqttClient ))
+			{
+				PipeMqttClient pipeMqttClient = pipe as PipeMqttClient;
+
+				sb.Append( $"HslCommunication.MQTT.MqttClient mqttClient = new HslCommunication.MQTT.MqttClient( new HslCommunication.MQTT.MqttConnectionOptions( ){{" );
+				sb.AppendLine( );
+				sb.Append( $"    IpAddress = \"{pipeMqttClient.MqttClient.ConnectionOptions.HostName}\"," );
+				sb.AppendLine( );
+				sb.Append( $"    Port = {pipeMqttClient.MqttClient.ConnectionOptions.Port}," );
+				sb.AppendLine( );
+				if (pipeMqttClient.MqttClient.ConnectionOptions.Credentials != null)
+				{
+					sb.Append( $"    Credentials = new HslCommunication.MQTT.MqttCredential( \"{pipeMqttClient.MqttClient.ConnectionOptions.Credentials.UserName}\", \"{pipeMqttClient.MqttClient.ConnectionOptions.Credentials.Password}\" )," );
+					sb.AppendLine( );
+				}
+				sb.Append( $"    ClientId = \"{pipeMqttClient.MqttClient.ConnectionOptions.ClientId}\"," );
+				sb.AppendLine( );
+				sb.Append( $"    UseRSAProvider = {pipeMqttClient.MqttClient.ConnectionOptions.UseRSAProvider.ToString( ).ToLower( )}," );
+				sb.AppendLine( );
+				sb.Append( "} );" );
+				sb.AppendLine( );
+				sb.Append( deviceName + $".CommunicationPipe = new {pipeMqttClient.GetType( ).FullName}( mqttClient, \"{pipeMqttClient.ReadTopic}\", \"{pipeMqttClient.WriteTopic}\" );" );
+				sb.AppendLine( );
+
+			}
 		}
 
 		public static StringBuilder CreateStringBulider( NetworkDoubleBase network, string deviceName )
@@ -446,29 +518,16 @@ namespace HslCommunicationDemo.DemoControl
 			if (device == null) return new StringBuilder( );
 
 			StringBuilder sb = CreateFromObject( device, deviceName );
-			sb.Append( deviceName + ".IpAddress = \"" + device.IpAddress + "\";" );
-			sb.AppendLine( );
-			sb.Append( deviceName + ".Port = " + device.Port + ";" );
-			sb.AppendLine( );
-			sb.Append( deviceName + ".ConnectTimeOut = " + device.ConnectTimeOut + ";     // 连接超时，单位毫秒" );
-			sb.AppendLine( );
-			sb.Append( deviceName + ".ReceiveTimeOut = " + device.ReceiveTimeOut + ";     // 接收超时，单位毫秒" );
-			sb.AppendLine( );
+			CreateCommunicationPipe( sb, device.CommunicationPipe, deviceName );
 			return sb;
 		}
 
-		public static StringBuilder CreateStringBulider( DeviceUdpNet network, string deviceName )
+		public static StringBuilder CreateStringBulider( DeviceUdpNet device, string deviceName )
 		{
-			if (network == null) return new StringBuilder( );
+			if (device == null) return new StringBuilder( );
 
-			StringBuilder sb = CreateFromObject( network, deviceName );
-
-			sb.Append( deviceName + ".IpAddress = \"" + network.IpAddress + "\";" );
-			sb.AppendLine( );
-			sb.Append( deviceName + ".Port = " + network.Port + ";" );
-			sb.AppendLine( );
-			sb.Append( deviceName + ".ReceiveTimeout = " + network.ReceiveTimeOut + ";   // 接收超时，单位毫秒" );
-			sb.AppendLine( );
+			StringBuilder sb = CreateFromObject( device, deviceName );
+			CreateCommunicationPipe( sb, device.CommunicationPipe, deviceName );
 			return sb;
 		}
 
@@ -486,50 +545,13 @@ namespace HslCommunicationDemo.DemoControl
 			sb.AppendLine( );
 			return sb;
 		}
-
-		public static StringBuilder CreateStringBulider( SerialBase network, string deviceName )
-		{
-			if (network == null) return new StringBuilder( );
-
-			StringBuilder sb = CreateFromObject( network, deviceName );
-
-			sb.Append( deviceName + ".SerialPortInni( sp =>" );
-			sb.AppendLine( );
-			sb.Append( "{" );
-			sb.AppendLine( );
-			PipeSerialPort pipeSerialPort = network.CommunicationPipe as PipeSerialPort;
-			sb.Append( $"	sp.PortName = \"{pipeSerialPort.GetPipe( ).PortName}\";" );
-			sb.AppendLine( );
-			sb.Append( $"	sp.BaudRate = {pipeSerialPort.GetPipe( ).BaudRate};" );
-			sb.AppendLine( );
-			sb.Append( $"	sp.DataBits = {pipeSerialPort.GetPipe( ).DataBits};" );
-			sb.AppendLine( );
-			sb.Append( $"	sp.StopBits = System.IO.Ports.StopBits.{pipeSerialPort.GetPipe( ).StopBits};" );
-			sb.AppendLine( );
-			sb.Append( $"	sp.Parity = System.IO.Ports.Parity.{pipeSerialPort.GetPipe( ).Parity};" );
-			sb.AppendLine( );
-			sb.Append( $"	sp.RtsEnable = {pipeSerialPort.GetPipe( ).RtsEnable.ToString( ).ToLower( )};" );
-			sb.AppendLine( );
-			sb.Append( "} ); " );
-			sb.AppendLine( );
-			sb.Append( deviceName + ".ReceiveTimeout = " + network.ReceiveTimeOut + ";   // 接收超时，单位毫秒" );
-			sb.AppendLine( );
-			return sb;
-		}
-
 		
-		public static StringBuilder CreateStringBulider( DeviceSerialPort network, string deviceName )
+		public static StringBuilder CreateStringBulider( DeviceSerialPort device, string deviceName )
 		{
-			if (network == null) return new StringBuilder( );
+			if (device == null) return new StringBuilder( );
 
-			StringBuilder sb = CreateFromObject( network, deviceName );
-
-			sb.Append( deviceName + $".SerialPortInni( \"{((PipeSerialPort)network.CommunicationPipe).GetPipe( ).ToFormatString()}\")" );
-			sb.AppendLine( );
-			sb.Append( deviceName + ".RtsEnable = " + ((PipeSerialPort)network.CommunicationPipe).GetPipe( ).RtsEnable.ToString( ).ToLower( ) + ";");
-			sb.AppendLine( );
-			sb.Append( deviceName + ".ReceiveTimeOut = " + network.ReceiveTimeOut + ";   // 接收超时，单位毫秒" );
-			sb.AppendLine( );
+			StringBuilder sb = CreateFromObject( device, deviceName );
+			CreateCommunicationPipe( sb, device.CommunicationPipe, deviceName );
 			return sb;
 		}
 	}

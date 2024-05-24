@@ -61,7 +61,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
-
+				this.sslServerControl1.InitializeServer( omronFinsServer );
 				omronFinsServer = new HslCommunication.Profinet.Omron.OmronFinsUdpServer( );                       // 实例化对象
 				omronFinsServer.OnDataReceived += BusTcpServer_OnDataReceived;
 

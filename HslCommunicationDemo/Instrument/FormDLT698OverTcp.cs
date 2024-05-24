@@ -31,7 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			control = new DLT698Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -51,9 +50,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "DLT698 Read Demo";
-
-				label1.Text = "Com:";
-				label3.Text = "baudRate:";
 				label_address.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
@@ -73,12 +69,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox_port.Text,out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			if (!byte.TryParse( textBox_ca.Text, out byte ca ))
 			{
 				MessageBox.Show( "CA input wrong!" );
@@ -87,7 +77,7 @@ namespace HslCommunicationDemo
 			}
 
 			dLT698?.ConnectClose( );
-			dLT698 = new DLT698OverTcp( textBox_ip.Text, port, textBox_station.Text);
+			dLT698 = new DLT698OverTcp( textBox_station.Text);
 			dLT698.LogNet = LogNet;
 			dLT698.EnableCodeFE = checkBox_enable_Fe.Checked;
 			dLT698.UseSecurityResquest = checkBox_useSecurityResquest.Checked;
@@ -95,6 +85,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( dLT698 );
 				OperateResult connect = dLT698.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -140,7 +131,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox_port.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			element.SetAttributeValue( "UseSecurityResquest", checkBox_useSecurityResquest.Checked );
 			element.SetAttributeValue( "CA", textBox_ca.Text );
@@ -151,7 +142,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox_useSecurityResquest.Checked = GetXmlValue( element, "UseSecurityResquest", checkBox_useSecurityResquest.Checked, bool.Parse );
 			textBox_ca.Text = GetXmlValue( element, "CA", textBox_ca.Text, m => m );

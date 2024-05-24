@@ -33,7 +33,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			control = new AllenBrandlyControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -54,12 +53,8 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "AllenBradly ConnectCIP Read Demo";
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
-				label22.Text = "plc tag name";
 			}
 		}
 
@@ -73,19 +68,11 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
-			allenBradleyNet.IpAddress = textBox_ip.Text;
-			allenBradleyNet.Port = port;
-
 			allenBradleyNet.LogNet = LogNet;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( allenBradleyNet );
 				OperateResult connect = allenBradleyNet.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -139,8 +126,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -148,8 +134,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

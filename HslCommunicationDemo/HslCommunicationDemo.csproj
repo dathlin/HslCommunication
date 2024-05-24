@@ -71,8 +71,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=12.0.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.0.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.0.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.0.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
@@ -229,6 +229,12 @@
     <Compile Include="DemoControl\FormPipeSessionList.Designer.cs">
       <DependentUpon>FormPipeSessionList.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoControl\FormPropertyModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormPropertyModify.Designer.cs">
+      <DependentUpon>FormPropertyModify.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\FormSaveList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,11 +253,23 @@
     <Compile Include="DemoControl\FormSupport.designer.cs">
       <DependentUpon>FormSupport.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoControl\PipeSelectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\PipeSelectControl.Designer.cs">
+      <DependentUpon>PipeSelectControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\PipeSessionListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DemoControl\PipeSessionListControl.Designer.cs">
       <DependentUpon>PipeSessionListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\SslServerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\SslServerControl.Designer.cs">
+      <DependentUpon>SslServerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\StressTesting.cs">
       <SubType>UserControl</SubType>
@@ -654,6 +672,12 @@
     <Compile Include="PLC\Keyence\NanoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PLC\Lsis\FormLsisCpu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Lsis\FormLsisCpu.Designer.cs">
+      <DependentUpon>FormLsisCpu.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Lsis\Helper.cs" />
     <Compile Include="PLC\MegMeet\Helper.cs" />
     <Compile Include="PLC\Melsec\FormMcA1EServer.cs">
@@ -896,6 +920,19 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PLC\Vigor\Helper.cs" />
+    <Compile Include="PLC\WeCon\FormWeConModbusRtu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\WeCon\FormWeConModbusRtu.Designer.cs">
+      <DependentUpon>FormWeConModbusRtu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\WeCon\FormWeConModbus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\WeCon\FormWeConModbus.Designer.cs">
+      <DependentUpon>FormWeConModbus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\WeCon\Helper.cs" />
     <Compile Include="PLC\XINJE\Helper.cs" />
     <Compile Include="PLC\YASKAWA\FormYASKAWAMemobusUdpNet.cs">
       <SubType>Form</SubType>
@@ -993,18 +1030,6 @@
     </Compile>
     <Compile Include="PLC\Keyence\FormKeyenceSR2000.Designer.cs">
       <DependentUpon>FormKeyenceSR2000.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PLC\Lsis\FormLsisXGKCnet.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PLC\Lsis\FormLsisXGKCnet.Designer.cs">
-      <DependentUpon>FormLsisXGKCnet.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PLC\Lsis\FormLsisXGKFEnet.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PLC\Lsis\FormLsisXGKFEnet.Designer.cs">
-      <DependentUpon>FormLsisXGKFEnet.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Omron\FormOmronHostLinkCModeOverTcp.cs">
       <SubType>Form</SubType>
@@ -1925,6 +1950,9 @@
     <EmbeddedResource Include="DemoControl\FormPipeSessionList.resx">
       <DependentUpon>FormPipeSessionList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormPropertyModify.resx">
+      <DependentUpon>FormPropertyModify.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormSaveList.resx">
       <DependentUpon>FormSaveList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1934,8 +1962,14 @@
     <EmbeddedResource Include="DemoControl\FormSupport.resx">
       <DependentUpon>FormSupport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\PipeSelectControl.resx">
+      <DependentUpon>PipeSelectControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\PipeSessionListControl.resx">
       <DependentUpon>PipeSessionListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\SslServerControl.resx">
+      <DependentUpon>SslServerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\StressTesting.resx">
       <DependentUpon>StressTesting.cs</DependentUpon>
@@ -2144,6 +2178,9 @@
     <EmbeddedResource Include="PLC\Keyence\NanoControl.resx">
       <DependentUpon>NanoControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Lsis\FormLsisCpu.resx">
+      <DependentUpon>FormLsisCpu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Omron\FinsTcpControl.resx">
       <DependentUpon>FinsTcpControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -2273,6 +2310,12 @@
     <EmbeddedResource Include="PLC\Siemens\SiemensS7Control.resx">
       <DependentUpon>SiemensS7Control.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\WeCon\FormWeConModbusRtu.resx">
+      <DependentUpon>FormWeConModbusRtu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\WeCon\FormWeConModbus.resx">
+      <DependentUpon>FormWeConModbus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\YASKAWA\FormYASKAWAMemobusUdpNet.resx">
       <DependentUpon>FormYASKAWAMemobusUdpNet.cs</DependentUpon>
     </EmbeddedResource>
@@ -2320,12 +2363,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Keyence\FormKeyenceSR2000.resx">
       <DependentUpon>FormKeyenceSR2000.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PLC\Lsis\FormLsisXGKCnet.resx">
-      <DependentUpon>FormLsisXGKCnet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PLC\Lsis\FormLsisXGKFEnet.resx">
-      <DependentUpon>FormLsisXGKFEnet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Omron\FormOmronHostLinkCModeOverTcp.resx">
       <DependentUpon>FormOmronHostLinkCModeOverTcp.cs</DependentUpon>
@@ -2797,6 +2834,8 @@
     <None Include="img\NetworkAdapter.png" />
     <None Include="img\house_16xLG.png" />
     <None Include="img\GitHub-Symbol.png" />
+    <None Include="img\wecon.png" />
+    <None Include="img\megmeet.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

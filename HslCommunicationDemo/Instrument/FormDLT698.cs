@@ -32,20 +32,8 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			comboBox1.SelectedIndex = 2;
-
-			comboBox3.DataSource = SerialPort.GetPortNames( );
 			control = new DLT698Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
-			try
-			{
-				comboBox3.SelectedIndex = 0;
-			}
-			catch
-			{
-				comboBox3.Text = "COM3";
-			}
-
 			Language( Program.Language );
 
 
@@ -66,16 +54,9 @@ namespace HslCommunicationDemo
 				Text = "DLT698 Read Demo";
 
 				label_ca.Text = "        CA:";
-				label1.Text = "Com:";
-				label3.Text = "baudRate:";
-				label22.Text = "DataBit";
-				label23.Text = "StopBit";
-				label24.Text = "parity";
 				label_address.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-
-				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}
 
@@ -91,24 +72,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox2.Text,out int baudRate ))
-			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox16.Text, out int dataBits ))
-			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox17.Text, out int stopBits ))
-			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
-				return;
-			}
-
 			if (!byte.TryParse(textBox_ca.Text, out byte ca ))
 			{
 				MessageBox.Show( "CA input wrong!" );
@@ -125,15 +88,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				dLT698.SerialPortInni( sp =>
-				 {
-					 sp.PortName = comboBox3.Text;
-					 sp.BaudRate = baudRate;
-					 sp.DataBits = dataBits;
-					 sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
-					 sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
-				 } );
-				dLT698.RtsEnable = checkBox5.Checked;
+				this.pipeSelectControl1.IniPipe( dLT698 );
 				OperateResult open = dLT698.Open( );
 				if (open.IsSuccess)
 				{
@@ -157,7 +112,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( $"Open [{comboBox3.Text}] failed: " + open.Message );
+					MessageBox.Show( $"Open [{dLT698.CommunicationPipe}] failed: " + open.Message );
 				}
 			}
 			catch (Exception ex)
@@ -180,13 +135,8 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
 			element.SetAttributeValue( "UseSecurityResquest", checkBox_useSecurityResquest.Checked );
 			element.SetAttributeValue( "EnableFE",            checkBox_enable_Fe.Checked );
 			element.SetAttributeValue( "CA",                  textBox_ca.Text );
@@ -198,13 +148,8 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			comboBox3.Text          = element.Attribute( DemoDeviceList.XmlCom ).Value;
-			textBox2.Text           = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-			textBox16.Text          = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
-			textBox17.Text          = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.SerialPipe );
 			textBox_station.Text    = element.Attribute( DemoDeviceList.XmlStation ).Value;
-			checkBox5.Checked       = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
 			checkBox_useSecurityResquest.Checked = GetXmlValue( element, "UseSecurityResquest", checkBox_useSecurityResquest.Checked, bool.Parse );
 			checkBox_enable_Fe.Checked           = GetXmlValue( element, "EnableFE", checkBox_enable_Fe.Checked, bool.Parse );
 			textBox_ca.Text                      = GetXmlValue( element, "CA", textBox_ca.Text, m => m );

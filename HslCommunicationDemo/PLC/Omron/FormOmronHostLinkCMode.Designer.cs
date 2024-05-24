@@ -29,26 +29,15 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.label26 = new System.Windows.Forms.Label();
-			this.textBox18 = new System.Windows.Forms.TextBox();
-			this.label27 = new System.Windows.Forms.Label();
-			this.textBox19 = new System.Windows.Forms.TextBox();
-			this.label28 = new System.Windows.Forms.Label();
-			this.label29 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.label22 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -58,40 +47,36 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.comboBox3);
+			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.comboBox2);
-			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox2);
-			this.panel1.Controls.Add(this.label26);
-			this.panel1.Controls.Add(this.textBox18);
-			this.panel1.Controls.Add(this.label27);
-			this.panel1.Controls.Add(this.textBox19);
-			this.panel1.Controls.Add(this.label28);
-			this.panel1.Controls.Add(this.label29);
 			this.panel1.Controls.Add(this.comboBox1);
-			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 59);
+			this.panel1.Size = new System.Drawing.Size(997, 65);
 			this.panel1.TabIndex = 0;
 			// 
-			// comboBox3
+			// pipeSelectControl1
 			// 
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(62, 2);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(67, 25);
-			this.comboBox3.TabIndex = 42;
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(6, 4);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "7";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.Even;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.SerialPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 41;
+			this.pipeSelectControl1.TcpPortText = "2000";
+			this.pipeSelectControl1.UdpPortText = "2000";
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(62, 31);
+			this.textBox1.Location = new System.Drawing.Point(62, 36);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(38, 23);
 			this.textBox1.TabIndex = 40;
@@ -100,126 +85,27 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 34);
+			this.label1.Location = new System.Drawing.Point(8, 39);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 39;
 			this.label1.Text = "站号：";
 			// 
-			// comboBox2
-			// 
-			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Items.AddRange(new object[] {
-            "无",
-            "奇",
-            "偶"});
-			this.comboBox2.Location = new System.Drawing.Point(504, 4);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(60, 25);
-			this.comboBox2.TabIndex = 38;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(455, 7);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(44, 17);
-			this.label3.TabIndex = 37;
-			this.label3.Text = "奇偶：";
-			// 
-			// textBox2
-			// 
-			this.textBox2.Location = new System.Drawing.Point(420, 4);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(23, 23);
-			this.textBox2.TabIndex = 36;
-			this.textBox2.Text = "1";
-			// 
-			// label26
-			// 
-			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(358, 7);
-			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(56, 17);
-			this.label26.TabIndex = 35;
-			this.label26.Text = "停止位：";
-			// 
-			// textBox18
-			// 
-			this.textBox18.Location = new System.Drawing.Point(320, 4);
-			this.textBox18.Name = "textBox18";
-			this.textBox18.Size = new System.Drawing.Size(24, 23);
-			this.textBox18.TabIndex = 34;
-			this.textBox18.Text = "7";
-			// 
-			// label27
-			// 
-			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(258, 7);
-			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(56, 17);
-			this.label27.TabIndex = 33;
-			this.label27.Text = "数据位：";
-			// 
-			// textBox19
-			// 
-			this.textBox19.Location = new System.Drawing.Point(205, 4);
-			this.textBox19.Name = "textBox19";
-			this.textBox19.Size = new System.Drawing.Size(47, 23);
-			this.textBox19.TabIndex = 32;
-			this.textBox19.Text = "9600";
-			// 
-			// label28
-			// 
-			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(135, 7);
-			this.label28.Name = "label28";
-			this.label28.Size = new System.Drawing.Size(56, 17);
-			this.label28.TabIndex = 31;
-			this.label28.Text = "波特率：";
-			// 
-			// label29
-			// 
-			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(8, 7);
-			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(59, 17);
-			this.label29.TabIndex = 29;
-			this.label29.Text = "Com口：";
-			// 
 			// comboBox1
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(131, 30);
+			this.comboBox1.Location = new System.Drawing.Point(131, 35);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(95, 25);
 			this.comboBox1.TabIndex = 14;
 			// 
-			// label22
-			// 
-			this.label22.Location = new System.Drawing.Point(865, 7);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(130, 45);
-			this.label22.TabIndex = 7;
-			this.label22.Text = "D100 C100 W100 H100 A100";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(801, 5);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(68, 17);
-			this.label21.TabIndex = 6;
-			this.label21.Text = "地址示例：";
-			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(712, 11);
+			this.button2.Location = new System.Drawing.Point(906, 4);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(64, 28);
+			this.button2.Size = new System.Drawing.Size(82, 28);
 			this.button2.TabIndex = 5;
 			this.button2.Text = "关闭串口";
 			this.button2.UseVisualStyleBackColor = true;
@@ -227,9 +113,9 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(641, 11);
+			this.button1.Location = new System.Drawing.Point(802, 4);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(64, 28);
+			this.button1.Size = new System.Drawing.Size(97, 28);
 			this.button1.TabIndex = 4;
 			this.button1.Text = "打开串口";
 			this.button1.UseVisualStyleBackColor = true;
@@ -242,11 +128,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteDevice1);
-			this.panel2.Location = new System.Drawing.Point(3, 98);
+			this.panel2.Location = new System.Drawing.Point(3, 102);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 545);
+			this.panel2.Size = new System.Drawing.Size(997, 541);
 			this.panel2.TabIndex = 1;
+			// 
+			// userControlReadWriteDevice1
+			// 
+			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 539);
+			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// userControlHead1
 			// 
@@ -263,15 +158,6 @@
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// userControlReadWriteDevice1
-			// 
-			this.userControlReadWriteDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
-			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 543);
-			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// FormOmronHostLinkCMode
 			// 
@@ -302,22 +188,11 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
         private DemoControl.UserControlHead userControlHead1;
-		private System.Windows.Forms.ComboBox comboBox3;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
+		private DemoControl.PipeSelectControl pipeSelectControl1;
 	}
 }

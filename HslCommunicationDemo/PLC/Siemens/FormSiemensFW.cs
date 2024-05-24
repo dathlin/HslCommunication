@@ -49,9 +49,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Siemens Read PLC Demo";
-
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 
@@ -69,18 +66,11 @@ namespace HslCommunicationDemo
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
-			siemensFWNet.IpAddress = textBox_ip.Text;
-			siemensFWNet.Port = port;
 			siemensFWNet.LogNet = LogNet;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( siemensFWNet );
 				OperateResult connect = await siemensFWNet.ConnectServerAsync( );
 				if (connect.IsSuccess)
 				{
@@ -123,8 +113,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -132,8 +121,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

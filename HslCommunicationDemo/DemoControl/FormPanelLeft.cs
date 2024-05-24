@@ -4,6 +4,7 @@ using HslCommunicationDemo.HslDebug;
 using HslCommunicationDemo.MQTT;
 using HslCommunicationDemo.PLC;
 using HslCommunicationDemo.PLC.Omron;
+using HslCommunicationDemo.PLC.WeCon;
 using HslCommunicationDemo.Redis;
 using System;
 using System.Collections.Generic;
@@ -75,10 +76,17 @@ namespace HslCommunicationDemo.DemoControl
 				if (hslForm != null)
 				{
 					hslForm.LogNet = this.logNet;
+
 					if (treeNode.ImageIndex >= 0)
+					{
 						hslForm.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[treeNode.ImageIndex]).GetHicon( ) );
+						hslForm.SetProtocolImage( (Bitmap)imageList.Images[treeNode.ImageIndex] );
+					}
 					else
+					{
 						hslForm.Icon = Icon.FromHandle( Properties.Resources.Method_636.GetHicon( ) );
+						hslForm.SetProtocolImage( Properties.Resources.Method_636 );
+					}
 					if (hslForm != null) hslForm.Show( dockPanel1 );
 				}
 			}
@@ -172,11 +180,10 @@ namespace HslCommunicationDemo.DemoControl
 
 			// Lsis PLC
 			TreeNode lsisNode = new TreeNode( "LSis Plc", 7, 7 );
-			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGB Fast Enet", 7, typeof( FormLsisFEnet ) ) );
-			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGB Cnet", 7, typeof( FormLsisCnet ) ) );
-			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGB Cnet OverTcp", 7, typeof( FormLsisCnetOverTcp ) ) );
-			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGK Cnet", 7, typeof( FormLsisXGKCnet ) ) );
-			lsisNode.Nodes.Add( GetTreeNodeByIndex( "XGK Fast Enet", 7, typeof( FormLsisXGKFEnet ) ) );
+			lsisNode.Nodes.Add( GetTreeNodeByIndex( "LSis Fast Enet", 7, typeof( FormLsisFEnet ) ) );
+			lsisNode.Nodes.Add( GetTreeNodeByIndex("LSis Cnet", 7, typeof( FormLsisCnet ) ) );
+            lsisNode.Nodes.Add(GetTreeNodeByIndex("LSis Cpu", 7, typeof(FormLsisCpu)));
+            lsisNode.Nodes.Add( GetTreeNodeByIndex("LSis Cnet OverTcp", 7, typeof( FormLsisCnetOverTcp ) ) );
 			lsisNode.Nodes.Add( GetTreeNodeByIndex( "LSis Virtual Server", 7, typeof( FormLSisServer ) ) );
 			treeView1.Nodes.Add( lsisNode );
 
@@ -279,11 +286,17 @@ namespace HslCommunicationDemo.DemoControl
 			xinjeNode.Nodes.Add( GetTreeNodeByIndex( "XinJE TCP[专用]", 30, typeof( FormXinJEInternalTcp ) ) );
 			treeView1.Nodes.Add( xinjeNode );
 
+			// 维控PLC
+			TreeNode weconNode = new TreeNode( "WeCon Plc[维控]", 43, 43 );
+			weconNode.Nodes.Add( GetTreeNodeByIndex( "WeCon ModbusTcp", 43, typeof( FormWeConModbus ) ) );
+			weconNode.Nodes.Add( GetTreeNodeByIndex( "WeCon ModbusRtu", 43, typeof( FormWeConModbusRtu ) ) );
+			treeView1.Nodes.Add( weconNode );
+
 			// 麦格米特
-			TreeNode megMeetNode = new TreeNode( "MegMeet Plc[麦格米特]", 0, 0 );
-			megMeetNode.Nodes.Add( GetTreeNodeByIndex( "MegMeet Serial", 0, typeof( FormMegMeetSerial ) ) );
-			megMeetNode.Nodes.Add( GetTreeNodeByIndex( "MegMeet Serial OverTcp", 0, typeof( FormMegMeetSerialOverTcp ) ) );
-			megMeetNode.Nodes.Add( GetTreeNodeByIndex( "MegMeet TCP [Modbus]", 0, typeof( FormMegMeetTcpNet ) ) );
+			TreeNode megMeetNode = new TreeNode( "MegMeet Plc[麦格米特]", 44, 44 );
+			megMeetNode.Nodes.Add( GetTreeNodeByIndex( "MegMeet Serial", 44, typeof( FormMegMeetSerial ) ) );
+			megMeetNode.Nodes.Add( GetTreeNodeByIndex( "MegMeet Serial OverTcp", 44, typeof( FormMegMeetSerialOverTcp ) ) );
+			megMeetNode.Nodes.Add( GetTreeNodeByIndex( "MegMeet TCP [Modbus]", 44, typeof( FormMegMeetTcpNet ) ) );
 			treeView1.Nodes.Add( megMeetNode );
 
 			// Yokogawa Plc

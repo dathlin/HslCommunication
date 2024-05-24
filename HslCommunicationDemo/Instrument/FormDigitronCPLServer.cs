@@ -27,15 +27,12 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			comboBox1.DataSource = SerialPort.GetPortNames( );
-
 			if(Program.Language == 2)
 			{
 				Text = "Yamatake CPL DigitronIK Virtual Server";
 				label3.Text = "port:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
-				label11.Text = "This server is not a strict cpl protocol and only supports perfect communication with HSL components.";
 			}
 			userControlReadWriteServer1.SetEnable( false );
 		}
@@ -57,7 +54,9 @@ namespace HslCommunicationDemo
 
 			try
 			{
+				digitronServer.Station = byte.Parse( textBox_station.Text );
 				digitronServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
+				this.sslServerControl1.InitializeServer( digitronServer );
 				digitronServer.ServerStart( port );
 				digitronServer.EnableWrite = checkBox1.Checked;
 
@@ -75,10 +74,14 @@ namespace HslCommunicationDemo
 
 		private void button5_Click( object sender, EventArgs e )
 		{
-			if(comboBox1.SelectedItem == null) { MessageBox.Show( "There is none serial port to use, try later!" ); return; }
 			try
 			{
-				digitronServer.StartSerialSlave( comboBox1.SelectedItem.ToString( ) );
+				OperateResult open = digitronServer.StartSerialSlave( textBox_serial.Text );
+				if (!open.IsSuccess) 
+				{
+					MessageBox.Show( open.Message );
+					return;
+				}
 
 				userControlReadWriteServer1.SetReadWriteServer( digitronServer, "100" );
 				button5.Enabled = false;

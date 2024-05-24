@@ -1023,6 +1023,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap megmeet {
+            get {
+                object obj = ResourceManager.GetObject("megmeet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap melsec {
             get {
                 object obj = ResourceManager.GetObject("melsec", resourceCulture);
@@ -1816,6 +1826,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap websocket {
             get {
                 object obj = ResourceManager.GetObject("websocket", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap wecon {
+            get {
+                object obj = ResourceManager.GetObject("wecon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

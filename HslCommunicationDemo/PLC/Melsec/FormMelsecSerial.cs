@@ -22,7 +22,6 @@ namespace HslCommunicationDemo
 		public FormMelsecSerial( )
 		{
 			InitializeComponent( );
-			melsecSerial = new MelsecFxSerial( );
 		}
 
 
@@ -33,20 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			comboBox1.SelectedIndex = 2;
-
 			Language( Program.Language );
-
-			comboBox3.DataSource = SerialPort.GetPortNames( );
-			try
-			{
-				comboBox3.SelectedIndex = 0;
-			}
-			catch
-			{
-				comboBox3.Text = "COM3";
-			}
-
 			control = new MelsecSerialControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 
@@ -66,18 +52,10 @@ namespace HslCommunicationDemo
 			{
 				Text = "Melsec Read PLC Demo";
 
-				label1.Text = "parity:";
-				label3.Text = "Stop bits";
-				label27.Text = "Com:";
-				label26.Text = "BaudRate";
-				label25.Text = "Data bits";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				checkBox1.Text = "New Version Message?";
-				checkBox2.Text = "Change PLC BaudRate?";
-				label2.Text = "Sleep Time:";
-
-				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
+				checkBox_newVersion.Text = "New Version Message?";
+				checkBox_changeAuto.Text = "Change PLC BaudRate?";
 				userControlHead1.ProtocolInfo = "fx serial protocol";
 			}
 		}
@@ -92,47 +70,15 @@ namespace HslCommunicationDemo
 		
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int baudRate ))
-			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox16.Text, out int dataBits ))
-			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox17.Text, out int stopBits ))
-			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox_sleepTime.Text, out int sleepTime ))
-			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
-				return;
-			}
-
 			melsecSerial?.Close( );
 			melsecSerial = new MelsecFxSerial( );
-			melsecSerial.IsNewVersion = checkBox1.Checked;
-			melsecSerial.AutoChangeBaudRate = checkBox2.Checked;
+			melsecSerial.IsNewVersion = checkBox_newVersion.Checked;
+			melsecSerial.AutoChangeBaudRate = checkBox_changeAuto.Checked;
 			melsecSerial.LogNet = LogNet;
-			melsecSerial.SleepTime = sleepTime;
 
 			try
 			{
-				melsecSerial.SerialPortInni( sp =>
-				{
-					sp.PortName = comboBox3.Text;
-					sp.BaudRate = baudRate;
-					sp.DataBits = dataBits;
-					sp.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
-					sp.Parity = comboBox1.SelectedIndex == 0 ? Parity.None : (comboBox1.SelectedIndex == 1 ? Parity.Odd : Parity.Even);
-				} );
+				this.pipeSelectControl1.IniPipe( melsecSerial );
 				melsecSerial.Open( );
 
 				button2.Enabled = true;
@@ -148,7 +94,7 @@ namespace HslCommunicationDemo
 				control.SetDevice( melsecSerial, "D100" );
 
 				// 设置示例的代码
-				codeExampleControl.SetCodeText( melsecSerial, nameof( melsecSerial.IsNewVersion ), nameof( melsecSerial.AutoChangeBaudRate ), nameof( melsecSerial.SleepTime ) );
+				codeExampleControl.SetCodeText( melsecSerial, nameof( melsecSerial.IsNewVersion ), nameof( melsecSerial.AutoChangeBaudRate ) );
 			}
 			catch (Exception ex)
 			{
@@ -260,11 +206,9 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+			this.pipeSelectControl1.SaveXmlParameter( element );
+			element.SetAttributeValue( "NewVersion", checkBox_newVersion.Checked );
+			element.SetAttributeValue( "ChangeAuto", checkBox_changeAuto.Checked );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -272,12 +216,9 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-			textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
-			textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
-
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.SerialPipe );
+			checkBox_newVersion.Checked = GetXmlValue( element, "NewVersion", checkBox_newVersion.Checked, bool.Parse );
+			checkBox_changeAuto.Checked = GetXmlValue( element, "ChangeAuto", checkBox_changeAuto.Checked, bool.Parse );
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}

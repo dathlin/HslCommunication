@@ -67,6 +67,7 @@ namespace HslCommunicationDemo
 				xinjeServer = new HslCommunication.Profinet.XINJE.XinJEServer(  );                       // 实例化对象
 				xinjeServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				xinjeServer.OnDataReceived += MelsecMcServer_OnDataReceived;
+				this.sslServerControl1.InitializeServer( xinjeServer );
 				xinjeServer.Station = byte.Parse( textBox_station.Text );
 				xinjeServer.ServerStart( port );
 				userControlReadWriteServer1.SetReadWriteServer( xinjeServer, "D100" );

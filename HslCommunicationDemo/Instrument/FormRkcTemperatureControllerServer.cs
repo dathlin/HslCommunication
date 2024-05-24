@@ -73,6 +73,7 @@ namespace HslCommunicationDemo
 				rkcServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				rkcServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
+				this.sslServerControl1.InitializeServer( rkcServer );
 				userControlReadWriteServer1.SetReadWriteServer( rkcServer, "M1" );
 				userControlReadWriteServer1.ReadWriteOpControl.EnableRKC( );
 				rkcServer.ServerStart( port );

@@ -70,7 +70,8 @@ namespace HslCommunicationDemo
 				geSRTPServer = new HslCommunication.Profinet.GE.GeSRTPServer( );                       // 实例化对象
 				geSRTPServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				geSRTPServer.OnDataReceived += BusTcpServer_OnDataReceived;
-				
+
+				this.sslServerControl1.InitializeServer( geSRTPServer );
 				userControlReadWriteServer1.SetReadWriteServer( geSRTPServer, "R1" );
 				geSRTPServer.ServerStart( port );
 

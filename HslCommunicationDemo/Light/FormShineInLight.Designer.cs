@@ -31,18 +31,7 @@ namespace HslCommunicationDemo.Light
 		{
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.checkBox5 = new System.Windows.Forms.CheckBox();
 			this.label24 = new System.Windows.Forms.Label();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.textBox17 = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.textBox16 = new System.Windows.Forms.TextBox();
-			this.label25 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.label26 = new System.Windows.Forms.Label();
-			this.label27 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -99,6 +88,7 @@ namespace HslCommunicationDemo.Light
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -119,24 +109,15 @@ namespace HslCommunicationDemo.Light
 			this.userControlHead1.ProtocolInfo = "专用协议";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 3;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// panel1
 			// 
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.checkBox5);
+			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.label24);
-			this.panel1.Controls.Add(this.comboBox3);
-			this.panel1.Controls.Add(this.comboBox1);
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.textBox17);
-			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox16);
-			this.panel1.Controls.Add(this.label25);
-			this.panel1.Controls.Add(this.textBox2);
-			this.panel1.Controls.Add(this.label26);
-			this.panel1.Controls.Add(this.label27);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
@@ -144,16 +125,6 @@ namespace HslCommunicationDemo.Light
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 66);
 			this.panel1.TabIndex = 4;
-			// 
-			// checkBox5
-			// 
-			this.checkBox5.AutoSize = true;
-			this.checkBox5.Location = new System.Drawing.Point(601, 11);
-			this.checkBox5.Name = "checkBox5";
-			this.checkBox5.Size = new System.Drawing.Size(84, 21);
-			this.checkBox5.TabIndex = 42;
-			this.checkBox5.Text = "RtsEnable";
-			this.checkBox5.UseVisualStyleBackColor = true;
 			// 
 			// label24
 			// 
@@ -165,100 +136,10 @@ namespace HslCommunicationDemo.Light
 			this.label24.TabIndex = 41;
 			this.label24.Text = "昱行智造科技（深圳）有限公司的光源控制器，用于视觉中补光操作";
 			// 
-			// comboBox3
-			// 
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(62, 9);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(67, 25);
-			this.comboBox3.TabIndex = 40;
-			// 
-			// comboBox1
-			// 
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Items.AddRange(new object[] {
-            "无",
-            "奇",
-            "偶"});
-			this.comboBox1.Location = new System.Drawing.Point(521, 9);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(57, 25);
-			this.comboBox1.TabIndex = 25;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(470, 12);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(44, 17);
-			this.label1.TabIndex = 24;
-			this.label1.Text = "奇偶：";
-			// 
-			// textBox17
-			// 
-			this.textBox17.Location = new System.Drawing.Point(430, 9);
-			this.textBox17.Name = "textBox17";
-			this.textBox17.Size = new System.Drawing.Size(23, 23);
-			this.textBox17.TabIndex = 23;
-			this.textBox17.Text = "1";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(371, 12);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(56, 17);
-			this.label3.TabIndex = 22;
-			this.label3.Text = "停止位：";
-			// 
-			// textBox16
-			// 
-			this.textBox16.Location = new System.Drawing.Point(333, 9);
-			this.textBox16.Name = "textBox16";
-			this.textBox16.Size = new System.Drawing.Size(24, 23);
-			this.textBox16.TabIndex = 21;
-			this.textBox16.Text = "8";
-			// 
-			// label25
-			// 
-			this.label25.AutoSize = true;
-			this.label25.Location = new System.Drawing.Point(270, 12);
-			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(56, 17);
-			this.label25.TabIndex = 20;
-			this.label25.Text = "数据位：";
-			// 
-			// textBox2
-			// 
-			this.textBox2.Location = new System.Drawing.Point(202, 9);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(47, 23);
-			this.textBox2.TabIndex = 19;
-			this.textBox2.Text = "57600";
-			// 
-			// label26
-			// 
-			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(135, 12);
-			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(56, 17);
-			this.label26.TabIndex = 18;
-			this.label26.Text = "波特率：";
-			// 
-			// label27
-			// 
-			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(8, 12);
-			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(59, 17);
-			this.label27.TabIndex = 16;
-			this.label27.Text = "Com口：";
-			// 
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(875, 6);
+			this.button2.Location = new System.Drawing.Point(897, 6);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -268,7 +149,7 @@ namespace HslCommunicationDemo.Light
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(778, 6);
+			this.button1.Location = new System.Drawing.Point(799, 6);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -815,6 +696,21 @@ namespace HslCommunicationDemo.Light
 			this.label2.TabIndex = 0;
 			this.label2.Text = "颜色";
 			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(6, 5);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "57600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.Even;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.SerialPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 42;
+			this.pipeSelectControl1.TcpPortText = "6000";
+			this.pipeSelectControl1.UdpPortText = "6000";
+			// 
 			// FormShineInLight
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -848,16 +744,6 @@ namespace HslCommunicationDemo.Light
 
 		private DemoControl.UserControlHead userControlHead1;
 		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.ComboBox comboBox3;
-		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox17;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox16;
-		private System.Windows.Forms.Label label25;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.Label label26;
-		private System.Windows.Forms.Label label27;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Panel panel2;
@@ -915,6 +801,6 @@ namespace HslCommunicationDemo.Light
 		private System.Windows.Forms.TextBox textBox12;
 		private System.Windows.Forms.TextBox textBox15;
 		private System.Windows.Forms.Label label29;
-		private System.Windows.Forms.CheckBox checkBox5;
+		private DemoControl.PipeSelectControl pipeSelectControl1;
 	}
 }

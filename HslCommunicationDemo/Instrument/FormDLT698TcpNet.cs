@@ -31,7 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			control = new DLT698Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -51,9 +50,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "DLT698-TCP Read Demo";
-
-				label1.Text = "Com:";
-				label3.Text = "baudRate:";
 				label_address.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
@@ -74,19 +70,14 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox_port.Text,out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			dLT698?.ConnectClose( );
-			dLT698 = new DLT698TcpNet( textBox_ip.Text, port, textBox_station.Text);
+			dLT698 = new DLT698TcpNet( textBox_station.Text);
 			dLT698.LogNet = LogNet;
 			dLT698.UseSecurityResquest = checkBox_useSecurityResquest.Checked;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( dLT698 );
 				OperateResult connect = dLT698.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -133,7 +124,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox_port.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			element.SetAttributeValue( "UseSecurityResquest", checkBox_useSecurityResquest.Checked );
 
@@ -143,7 +134,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox_useSecurityResquest.Checked = GetXmlValue( element, "UseSecurityResquest", true, bool.Parse );
 

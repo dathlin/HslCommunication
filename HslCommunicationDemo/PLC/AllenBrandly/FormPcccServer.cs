@@ -70,7 +70,7 @@ namespace HslCommunicationDemo
 				cipServer = new HslCommunication.Profinet.AllenBradley.AllenBradleyPcccServer( );                       // 实例化对象
 				cipServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				cipServer.OnDataReceived += BusTcpServer_OnDataReceived;
-				
+				this.sslServerControl1.InitializeServer( cipServer );
 				cipServer.ServerStart( port );
 
 				button1.Enabled = false;

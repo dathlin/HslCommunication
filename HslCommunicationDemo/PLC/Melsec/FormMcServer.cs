@@ -83,6 +83,8 @@ namespace HslCommunicationDemo
 				mcNetServer.OnDataReceived += MelsecMcServer_OnDataReceived;                     // 接收到数据触发
 				userControlReadWriteServer1.SetReadWriteServerLog( mcNetServer );                // 设置日志
 
+				this.sslServerControl1.InitializeServer( mcNetServer );  // 如果配置SSL，则初始化SSL
+
 				mcNetServer.ServerStart( port, radioButton_tcp.Checked );
 				userControlReadWriteServer1.SetReadWriteServer( mcNetServer, "D100" );
 

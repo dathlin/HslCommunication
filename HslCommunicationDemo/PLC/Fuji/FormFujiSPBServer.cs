@@ -83,7 +83,7 @@ namespace HslCommunicationDemo
 				sPBServer.Station = int.Parse( textBox1.Text );
 				sPBServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				sPBServer.OnDataReceived += BusTcpServer_OnDataReceived;
-
+				this.sslServerControl1.InitializeServer( sPBServer );
 				sPBServer.IsStringReverse = checkBox3.Checked;
 				userControlReadWriteServer1.SetReadWriteServer( sPBServer, "D100" );
 				sPBServer.ServerStart( port );

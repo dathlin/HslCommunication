@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Instrument.Light;
 using HslCommunication;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo.Light
 {
@@ -23,16 +24,6 @@ namespace HslCommunicationDemo.Light
 		private void FormShineInLight_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
-			comboBox1.SelectedIndex = 2;
-			comboBox3.DataSource = SerialPort.GetPortNames( );
-			try
-			{
-				comboBox3.SelectedIndex = 0;
-			}
-			catch
-			{
-				comboBox3.Text = "COM3";
-			}
 		}
 
 		private ShineInLightSourceController lightSourceController;
@@ -47,40 +38,12 @@ namespace HslCommunicationDemo.Light
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int baudRate ))
-			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox16.Text, out int dataBits ))
-			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox17.Text, out int stopBits ))
-			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
-				return;
-			}
-
-
 			lightSourceController?.Close( );
 			lightSourceController = new ShineInLightSourceController( );
 
 			try
 			{
-				lightSourceController.SerialPortInni( sp =>
-				{
-					sp.PortName = comboBox3.Text;
-					sp.BaudRate = baudRate;
-					sp.DataBits = dataBits;
-					sp.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
-					sp.Parity = comboBox1.SelectedIndex == 0 ? Parity.None : (comboBox1.SelectedIndex == 1 ? Parity.Odd : Parity.Even);
-					sp.RtsEnable = checkBox5.Checked;
-				} );
-
+				this.pipeSelectControl1.IniPipe( lightSourceController );
 				lightSourceController.LogNet = new HslCommunication.LogNet.LogNetFileSize( "" );
 				lightSourceController.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 				lightSourceController.Open( );
@@ -201,6 +164,22 @@ namespace HslCommunicationDemo.Light
 			{
 				MessageBox.Show( "写入失败:" + write.ToMessageShowString( ) );
 			}
+		}
+
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			this.pipeSelectControl1.SaveXmlParameter( element );
+		}
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			this.pipeSelectControl1.LoadXmlParameter( element, DemoControl.SettingPipe.SerialPipe );
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
 		}
 	}
 }

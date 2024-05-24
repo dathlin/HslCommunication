@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_maskcode = new System.Windows.Forms.CheckBox();
 			this.panel_tcp_udp = new System.Windows.Forms.Panel();
 			this.radioButton_udp = new System.Windows.Forms.RadioButton();
 			this.radioButton_tcp = new System.Windows.Forms.RadioButton();
@@ -41,7 +42,6 @@
 			this.checkBox_ipv6 = new System.Windows.Forms.CheckBox();
 			this.checkBox_RtuOverTcp = new System.Windows.Forms.CheckBox();
 			this.checkBox_remote_write = new System.Windows.Forms.CheckBox();
-			this.checkBox_account = new System.Windows.Forms.CheckBox();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.button11 = new System.Windows.Forms.Button();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
@@ -54,7 +54,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox_maskcode = new System.Windows.Forms.CheckBox();
+			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.panel1.SuspendLayout();
 			this.panel_tcp_udp.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -65,6 +65,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.sslServerControl1);
 			this.panel1.Controls.Add(this.checkBox_maskcode);
 			this.panel1.Controls.Add(this.panel_tcp_udp);
 			this.panel1.Controls.Add(this.checkBox_forceReceiveOnce);
@@ -76,7 +77,6 @@
 			this.panel1.Controls.Add(this.checkBox_ipv6);
 			this.panel1.Controls.Add(this.checkBox_RtuOverTcp);
 			this.panel1.Controls.Add(this.checkBox_remote_write);
-			this.panel1.Controls.Add(this.checkBox_account);
 			this.panel1.Controls.Add(this.comboBox2);
 			this.panel1.Controls.Add(this.button11);
 			this.panel1.Controls.Add(this.checkBox3);
@@ -89,8 +89,20 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 61);
+			this.panel1.Size = new System.Drawing.Size(997, 90);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_maskcode
+			// 
+			this.checkBox_maskcode.AutoSize = true;
+			this.checkBox_maskcode.Checked = true;
+			this.checkBox_maskcode.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_maskcode.Location = new System.Drawing.Point(892, 35);
+			this.checkBox_maskcode.Name = "checkBox_maskcode";
+			this.checkBox_maskcode.Size = new System.Drawing.Size(96, 21);
+			this.checkBox_maskcode.TabIndex = 43;
+			this.checkBox_maskcode.Text = "MaskCode?";
+			this.checkBox_maskcode.UseVisualStyleBackColor = true;
 			// 
 			// panel_tcp_udp
 			// 
@@ -209,16 +221,6 @@
 			this.checkBox_remote_write.Text = "是否允许远程写入";
 			this.checkBox_remote_write.UseVisualStyleBackColor = true;
 			// 
-			// checkBox_account
-			// 
-			this.checkBox_account.AutoSize = true;
-			this.checkBox_account.Location = new System.Drawing.Point(905, 35);
-			this.checkBox_account.Name = "checkBox_account";
-			this.checkBox_account.Size = new System.Drawing.Size(75, 21);
-			this.checkBox_account.TabIndex = 30;
-			this.checkBox_account.Text = "账户登录";
-			this.checkBox_account.UseVisualStyleBackColor = true;
-			// 
 			// comboBox2
 			// 
 			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -247,7 +249,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(905, 8);
+			this.checkBox3.Location = new System.Drawing.Point(814, 7);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 27;
@@ -315,10 +317,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(3, 100);
+			this.panel2.Location = new System.Drawing.Point(3, 128);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 541);
+			this.panel2.Size = new System.Drawing.Size(997, 513);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -329,7 +331,7 @@
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 0);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 536);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 508);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -347,17 +349,15 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// checkBox_maskcode
+			// sslServerControl1
 			// 
-			this.checkBox_maskcode.AutoSize = true;
-			this.checkBox_maskcode.Checked = true;
-			this.checkBox_maskcode.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_maskcode.Location = new System.Drawing.Point(804, 8);
-			this.checkBox_maskcode.Name = "checkBox_maskcode";
-			this.checkBox_maskcode.Size = new System.Drawing.Size(96, 21);
-			this.checkBox_maskcode.TabIndex = 43;
-			this.checkBox_maskcode.Text = "MaskCode?";
-			this.checkBox_maskcode.UseVisualStyleBackColor = true;
+			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.sslServerControl1.Location = new System.Drawing.Point(3, 57);
+			this.sslServerControl1.Name = "sslServerControl1";
+			this.sslServerControl1.Size = new System.Drawing.Size(989, 30);
+			this.sslServerControl1.TabIndex = 44;
 			// 
 			// FormModbusServer
 			// 
@@ -398,7 +398,6 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.ComboBox comboBox2;
         private DemoControl.UserControlHead userControlHead1;
-        private System.Windows.Forms.CheckBox checkBox_account;
 		private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
 		private System.Windows.Forms.CheckBox checkBox_remote_write;
 		private System.Windows.Forms.CheckBox checkBox_RtuOverTcp;
@@ -413,5 +412,6 @@
 		private System.Windows.Forms.RadioButton radioButton_udp;
 		private System.Windows.Forms.RadioButton radioButton_tcp;
 		private System.Windows.Forms.CheckBox checkBox_maskcode;
+		private DemoControl.SslServerControl sslServerControl1;
 	}
 }

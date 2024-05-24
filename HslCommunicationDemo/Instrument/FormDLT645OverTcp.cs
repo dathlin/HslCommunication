@@ -31,7 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			control = new DLT645Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -52,8 +51,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "DLT645 Read Demo";
 
-				label1.Text = "Com:";
-				label3.Text = "baudRate:";
 				label_address.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
@@ -74,19 +71,14 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox_port.Text,out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			dLT645?.ConnectClose( );
-			dLT645 = new DLT645OverTcp( textBox_ip.Text, port, textBox_station.Text, textBox_password.Text, textBox_op_code.Text );
+			dLT645 = new DLT645OverTcp( "127.0.0.1", 502,  textBox_station.Text, textBox_password.Text, textBox_op_code.Text );
 			dLT645.LogNet = LogNet;
 			dLT645.EnableCodeFE = checkBox_enable_Fe.Checked;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( dLT645 );
 				OperateResult connect = dLT645.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -133,8 +125,11 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox_port.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox_password.Text );
+			element.SetAttributeValue( "OpCode", textBox_op_code.Text );
+			element.SetAttributeValue( "FeHead", checkBox_enable_Fe.Checked );
 
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -143,8 +138,11 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			textBox_password.Text = GetXmlValue( element, DemoDeviceList.XmlPassword, textBox_password.Text, m => m );
+			textBox_op_code.Text = GetXmlValue( element, "OpCode", textBox_op_code.Text, m => m );
+			checkBox_enable_Fe.Checked = GetXmlValue( element, "FeHead", checkBox_enable_Fe.Checked, bool.Parse );
 
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

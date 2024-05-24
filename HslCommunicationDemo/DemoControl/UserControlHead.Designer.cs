@@ -34,13 +34,17 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.ForeColor = System.Drawing.Color.White;
-			this.label2.Location = new System.Drawing.Point(13, 6);
+			this.label2.Location = new System.Drawing.Point(29, 6);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(68, 17);
 			this.label2.TabIndex = 12;
@@ -50,7 +54,7 @@
 			// 
 			this.linkLabel1.AutoSize = true;
 			this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-			this.linkLabel1.Location = new System.Drawing.Point(80, 6);
+			this.linkLabel1.Location = new System.Drawing.Point(96, 6);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(194, 17);
 			this.linkLabel1.TabIndex = 13;
@@ -105,11 +109,29 @@
 			this.linkLabel3.Visible = false;
 			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
 			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.Color.White;
+			this.panel1.Controls.Add(this.pictureBox1);
+			this.panel1.Location = new System.Drawing.Point(6, 5);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(18, 18);
+			this.panel1.TabIndex = 18;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Location = new System.Drawing.Point(1, 1);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+			this.pictureBox1.TabIndex = 0;
+			this.pictureBox1.TabStop = false;
+			// 
 			// UserControlHead
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.linkLabel3);
 			this.Controls.Add(this.linkLabel2);
 			this.Controls.Add(this.label2);
@@ -122,6 +144,8 @@
 			this.Name = "UserControlHead";
 			this.Size = new System.Drawing.Size(1008, 32);
 			this.Load += new System.EventHandler(this.UserControlHead_Load);
+			this.panel1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -135,5 +159,7 @@
         private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.LinkLabel linkLabel2;
 		private System.Windows.Forms.LinkLabel linkLabel3;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.PictureBox pictureBox1;
 	}
 }

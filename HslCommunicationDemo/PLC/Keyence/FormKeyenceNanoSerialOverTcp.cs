@@ -33,7 +33,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			control = new NanoControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -53,9 +52,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Keyence Read PLC Demo";
-
-				label27.Text = "Ip:";
-				label26.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label1.Text = "Station:";
@@ -71,12 +67,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			if (!byte.TryParse( textBox3.Text, out byte station ))
 			{
 				MessageBox.Show( "Station int wrong, it needs 0 - 255" );
@@ -85,14 +75,13 @@ namespace HslCommunicationDemo
 
 
 			keyence = new KeyenceNanoSerialOverTcp( );
-			keyence.IpAddress = textBox_ip.Text;
-			keyence.Port = port;
 			keyence.Station = station;
 			keyence.UseStation = checkBox1.Checked;
 			keyence.LogNet = LogNet;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( keyence );
 				OperateResult connect = keyence.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -140,18 +129,18 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-
+			this.pipeSelectControl1.SaveXmlParameter( element );
+			element.SetAttributeValue( "UseStation", checkBox1.Checked );
+			element.SetAttributeValue( "Station", textBox3.Text );
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
+			this.checkBox1.Checked = GetXmlValue( element, "UseStation", this.checkBox1.Checked, bool.Parse );
+			this.textBox3.Text = GetXmlValue( element, "Station", textBox3.Text, m => m );
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}

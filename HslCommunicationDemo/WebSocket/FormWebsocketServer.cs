@@ -118,7 +118,8 @@ namespace HslCommunicationDemo
 		private void WsServer_OnClientConnected( WebSocketSession session )
 		{
 			// 当客户端刚连上来的时候可以选择回发数据操作，具体取决于你的业务逻辑
-			if (checkBox3.Checked)
+			// 这里的逻辑是并且这个会话不是"同步问答"会话的情况下
+			if (checkBox3.Checked && session.IsQASession == false)
 			{
 				wsServer.SendClientPayload( session, "This a test message when client connect, url:" + session.Url );
 			}
@@ -127,18 +128,16 @@ namespace HslCommunicationDemo
 		Random random = new Random( );
 		private void WebSocket_OnClientApplicationMessageReceive( WebSocketSession session, WebSocketMessage message )
 		{
+			// 应答客户端连接的情况下是需要进行返回数据的，此处演示返回的是原始的数据，追加一个随机数，你可以自己根据业务来决定返回什么数据
+			if (session.IsQASession)
+			{
+				wsServer.SendClientPayload( session, Encoding.UTF8.GetString( message.Payload ) + " " + random.Next( 1000, 10000 ) );
+			}
 			Invoke( new Action( ( ) =>
 			{
 				if(!isStop)
 					textBox8.AppendText( $"OpCode:[{message.OpCode}] Mask:[{message.HasMask}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
 			} ) );
-
-			// 应答客户端连接的情况下是需要进行返回数据的，此处演示返回的是原始的数据，追加一个随机数，你可以自己根据业务来决定返回什么数据
-			if (session.IsQASession)
-			{
-				wsServer.SendClientPayload( session, Encoding.UTF8.GetString( message.Payload ) + random.Next( 1000, 10000 ) );
-			}
-
 			// wsServer.AddSessionTopic( session, Encoding.UTF8.GetString( message.Payload ) );
 		}
 

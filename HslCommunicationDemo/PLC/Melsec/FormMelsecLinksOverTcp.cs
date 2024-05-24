@@ -21,7 +21,6 @@ namespace HslCommunicationDemo
 		public FormMelsecLinksOverTcp( )
 		{
 			InitializeComponent( );
-			melsec = new MelsecFxLinksOverTcp( );
 		}
 
 
@@ -32,7 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox_format.SelectedIndex = 0;
 			Language( Program.Language );
 
@@ -55,8 +53,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "Melsec Read PLC Demo";
 
-				label27.Text = "Ip:";
-				label26.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Station:";
@@ -77,20 +73,15 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
 
 			melsec?.ConnectClose( );
 			melsec = new MelsecFxLinksOverTcp( );
-			melsec.IpAddress = textBox_ip.Text;
-			melsec.Port = port;
+
 			melsec.LogNet = LogNet;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( melsec );
 				melsec.Station = byte.Parse( textBox15.Text );
 				melsec.WaittingTime = byte.Parse( textBox18.Text );
 				melsec.SumCheck = checkBox1.Checked;
@@ -217,11 +208,11 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTimeout, textBox18.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlSumCheck, checkBox1.Checked );
+			element.SetAttributeValue( "MelsecFormat", comboBox_format.SelectedIndex );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -229,11 +220,11 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			textBox18.Text = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlSumCheck ).Value );
+			comboBox_format.SelectedIndex = GetXmlValue( element, "MelsecFormat", comboBox_format.SelectedIndex, int.Parse );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

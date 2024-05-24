@@ -67,6 +67,7 @@ namespace HslCommunicationDemo
 				keyencdeServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );     // 如果客户端1个小时不通信，就关闭连接
 				keyencdeServer.OnDataReceived += MelsecMcServer_OnDataReceived;
 				userControlReadWriteServer1.SetReadWriteServer( keyencdeServer, "DM100" );
+				this.sslServerControl1.InitializeServer( keyencdeServer );
 				keyencdeServer.ServerStart( port );
 
 				button1.Enabled = false;

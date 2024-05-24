@@ -31,7 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 
 			addressExampleControl = new AddressExampleControl( );
@@ -49,9 +48,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Vigor Read PLC Demo";
-
-				label27.Text = "Ip:";
-				label26.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label21.Text = "Address:";
@@ -67,20 +63,14 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
 
 			vigor?.ConnectClose( );
 			vigor = new VigorSerialOverTcp( );
-			vigor.IpAddress = textBox_ip.Text;
-			vigor.Port = port;
 			vigor.LogNet = LogNet;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( vigor );
 				vigor.Station = byte.Parse( textBox15.Text );
 				OperateResult connect = vigor.ConnectServer( );
 				if (connect.IsSuccess)
@@ -128,8 +118,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -138,8 +127,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

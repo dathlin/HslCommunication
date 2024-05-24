@@ -129,9 +129,15 @@ namespace HslCommunicationDemo.DemoControl
 				if (hslForm != null)
 				{
 					if (treeNode.ImageIndex >= 0)
+					{
 						hslForm.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[treeNode.ImageIndex]).GetHicon( ) );
+						hslForm.SetProtocolImage( (Bitmap)imageList.Images[treeNode.ImageIndex] );
+					}
 					else
+					{
 						hslForm.Icon = Icon.FromHandle( Properties.Resources.Method_636.GetHicon( ) );
+						hslForm.SetProtocolImage( Properties.Resources.Method_636 );
+					}
 
 					// 判断是否加密了，如果是加密的话，需要先进行解密的操作
 					if (element.Attribute( DemoDeviceList.XmlEncrypt) != null)

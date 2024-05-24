@@ -22,7 +22,6 @@ namespace HslCommunicationDemo
 		public FormMelsec3C( )
 		{
 			InitializeComponent( );
-			melsecA3C = new MelsecA3CNet( );
 		}
 
 
@@ -33,24 +32,11 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			comboBox1.SelectedIndex = 0;
-			comboBox2.SelectedIndex = 0;
-			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
-			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
+			comboBox_format.SelectedIndex = 0;
+			comboBox_format.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
+			checkBox_sumcheck.CheckedChanged += CheckBox1_CheckedChanged;
 
 			Language( Program.Language );
-
-
-			comboBox3.DataSource = SerialPort.GetPortNames( );
-			try
-			{
-				comboBox3.SelectedIndex = 0;
-			}
-			catch
-			{
-				comboBox3.Text = "COM3";
-			}
-
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetMcAddress( ) );
@@ -65,7 +51,7 @@ namespace HslCommunicationDemo
 		{
 			if (melsecA3C != null)
 			{
-				melsecA3C.SumCheck = checkBox1.Checked;
+				melsecA3C.SumCheck = checkBox_sumcheck.Checked;
 			}
 		}
 
@@ -73,7 +59,7 @@ namespace HslCommunicationDemo
 		{
 			if (melsecA3C != null)
 			{
-				melsecA3C.Format = int.Parse( comboBox2.SelectedItem.ToString( ) );
+				melsecA3C.Format = int.Parse( comboBox_format.SelectedItem.ToString( ) );
 			}
 		}
 
@@ -82,16 +68,9 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Melsec Read PLC Demo";
-
-				label1.Text = "parity:";
-				label3.Text = "Stop bits";
-				label27.Text = "Com:";
-				label26.Text = "BaudRate";
-				label25.Text = "Data bits";
 				button1.Text = "Open";
 				button2.Text = "Close";
 				label21.Text = "Address:";
-				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 				label2.Text = "Format:";
 			}
 			else
@@ -111,43 +90,16 @@ namespace HslCommunicationDemo
 		
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int baudRate ))
-			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox16.Text, out int dataBits ))
-			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox17.Text, out int stopBits ))
-			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
-				return;
-			}
-			
-
 			melsecA3C?.Close( );
 			melsecA3C = new MelsecA3CNet( );
 			melsecA3C.LogNet = LogNet;
 			melsecA3C.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
 			try
 			{
-				melsecA3C.SerialPortInni( sp =>
-				{
-					sp.PortName = comboBox3.Text;
-					sp.BaudRate = baudRate;
-					sp.DataBits = dataBits;
-					sp.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
-					sp.Parity = comboBox1.SelectedIndex == 0 ? Parity.None : (comboBox1.SelectedIndex == 1 ? Parity.Odd : Parity.Even);
-					sp.RtsEnable = true;
-				} );
+				this.pipeSelectControl1.IniPipe( melsecA3C );
 				melsecA3C.Station = byte.Parse( textBox15.Text );
-				melsecA3C.SumCheck = checkBox1.Checked;
-				melsecA3C.Format = int.Parse( comboBox2.SelectedItem.ToString( ) );
+				melsecA3C.SumCheck = checkBox_sumcheck.Checked;
+				melsecA3C.Format = int.Parse( comboBox_format.SelectedItem.ToString( ) );
 
 				melsecA3C.Open( );
 				button2.Enabled = true;
@@ -305,13 +257,11 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( "EnableWriteBitToWordRegister", checkBox_EnableWriteBitToWordRegister.Text );
+			element.SetAttributeValue( "Sumcheck", checkBox_sumcheck.Checked );
+			element.SetAttributeValue( "MelsecFormat", comboBox_format.SelectedIndex );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -319,13 +269,11 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-			textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
-			textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.SerialPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );
+			checkBox_sumcheck.Checked = GetXmlValue( element, "Sumcheck", checkBox_sumcheck.Checked, bool.Parse );
+			comboBox_format.SelectedIndex = GetXmlValue( element, "MelsecFormat", comboBox_format.SelectedIndex, int.Parse );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

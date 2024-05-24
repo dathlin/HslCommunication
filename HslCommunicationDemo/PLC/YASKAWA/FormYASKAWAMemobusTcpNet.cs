@@ -31,7 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
 
@@ -56,8 +55,6 @@ namespace HslCommunicationDemo
 				label1.Text = "Station:";
 				button1.Text = "Open";
 				button2.Text = "Close";
-				label29.Text = "Ip:";
-				label28.Text = "Port:";
 			}
 		}
 
@@ -71,12 +68,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox19.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			if (!byte.TryParse( textBox_cpu_from.Text, out byte cpuFrom ))
 			{
 				MessageBox.Show( "PLC cpuFrom input wrong！" );
@@ -91,14 +82,13 @@ namespace HslCommunicationDemo
 
 			memobus?.ConnectClose( );
 			memobus = new MemobusTcpNet( );
-			memobus.IpAddress = textBox_ip.Text;
-			memobus.Port = port;
 			memobus.CpuFrom = cpuFrom;
 			memobus.CpuTo = cpuTo;
 			memobus.LogNet = LogNet;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( memobus );
 				memobus.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
 				OperateResult connect = memobus.ConnectServer( );
@@ -145,8 +135,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox19.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( "cpu_from", textBox_cpu_from.Text );
 			element.SetAttributeValue( "cpu_to", textBox_cpu_to.Text );
@@ -157,8 +146,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox19.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			textBox_cpu_from.Text = element.Attribute( "cpu_from" ).Value;
 			textBox_cpu_to.Text = element.Attribute( "cpu_to" ).Value;

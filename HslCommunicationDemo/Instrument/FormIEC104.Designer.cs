@@ -28,12 +28,8 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.textBox_port = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.textBox_ip = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.textBox_station = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
@@ -86,6 +82,7 @@
 			this.button_u_stop = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -101,10 +98,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.textBox_port);
-			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox_ip);
-			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.textBox_station);
 			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
@@ -112,46 +106,12 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 54);
+			this.panel1.Size = new System.Drawing.Size(997, 68);
 			this.panel1.TabIndex = 0;
-			// 
-			// textBox_port
-			// 
-			this.textBox_port.Location = new System.Drawing.Point(268, 14);
-			this.textBox_port.Name = "textBox_port";
-			this.textBox_port.Size = new System.Drawing.Size(76, 23);
-			this.textBox_port.TabIndex = 11;
-			this.textBox_port.Text = "2404";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(214, 17);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(56, 17);
-			this.label3.TabIndex = 10;
-			this.label3.Text = "端口号：";
-			// 
-			// textBox_ip
-			// 
-			this.textBox_ip.Location = new System.Drawing.Point(62, 14);
-			this.textBox_ip.Name = "textBox_ip";
-			this.textBox_ip.Size = new System.Drawing.Size(146, 23);
-			this.textBox_ip.TabIndex = 9;
-			this.textBox_ip.Text = "127.0.0.1";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 17);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(56, 17);
-			this.label1.TabIndex = 8;
-			this.label1.Text = "Ip地址：";
 			// 
 			// textBox_station
 			// 
-			this.textBox_station.Location = new System.Drawing.Point(439, 14);
+			this.textBox_station.Location = new System.Drawing.Point(81, 39);
 			this.textBox_station.Name = "textBox_station";
 			this.textBox_station.Size = new System.Drawing.Size(97, 23);
 			this.textBox_station.TabIndex = 7;
@@ -160,7 +120,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(364, 17);
+			this.label21.Location = new System.Drawing.Point(6, 42);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(68, 17);
 			this.label21.TabIndex = 6;
@@ -169,7 +129,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(875, 11);
+			this.button2.Location = new System.Drawing.Point(895, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -179,7 +139,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(778, 11);
+			this.button1.Location = new System.Drawing.Point(798, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -195,10 +155,10 @@
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.tabControl1);
 			this.panel2.Controls.Add(this.groupBox1);
-			this.panel2.Location = new System.Drawing.Point(3, 93);
+			this.panel2.Location = new System.Drawing.Point(3, 107);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 549);
+			this.panel2.Size = new System.Drawing.Size(997, 535);
 			this.panel2.TabIndex = 1;
 			// 
 			// tabControl1
@@ -211,7 +171,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(4, 151);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(988, 393);
+			this.tabControl1.Size = new System.Drawing.Size(988, 379);
 			this.tabControl1.TabIndex = 4;
 			// 
 			// tabPage1
@@ -227,7 +187,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(980, 363);
+			this.tabPage1.Size = new System.Drawing.Size(980, 349);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "IEC Log";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -308,7 +268,7 @@
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(910, 317);
+			this.textBox10.Size = new System.Drawing.Size(910, 303);
 			this.textBox10.TabIndex = 10;
 			// 
 			// tabPage2
@@ -391,8 +351,8 @@
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.Azure;
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -730,6 +690,21 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(5, 3);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 8;
+			this.pipeSelectControl1.TcpPortText = "2404";
+			this.pipeSelectControl1.UdpPortText = "2404";
+			// 
 			// FormIEC104
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -773,10 +748,6 @@
         private System.Windows.Forms.TextBox textBox_station;
         private System.Windows.Forms.Label label21;
         private DemoControl.UserControlHead userControlHead1;
-		private System.Windows.Forms.TextBox textBox_port;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox_ip;
-		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label2;
@@ -821,5 +792,6 @@
 		private System.Windows.Forms.Button button_write_bool;
 		private System.Windows.Forms.ComboBox comboBox_write_reason;
 		private System.Windows.Forms.Button button8;
+		private DemoControl.PipeSelectControl pipeSelectControl1;
 	}
 }

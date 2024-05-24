@@ -29,7 +29,6 @@ namespace HslCommunicationDemo
 				label3.Text = "port:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
-				label11.Text = "This server is not a strict S7 protocol and only supports perfect communication with HSL components.";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -88,6 +87,8 @@ namespace HslCommunicationDemo
 				s7NetServer = new HslCommunication.Profinet.Siemens.SiemensS7Server( );                       // 实例化对象
 				s7NetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				s7NetServer.OnDataReceived += BusTcpServer_OnDataReceived;
+
+				this.sslServerControl1.InitializeServer( s7NetServer );
 
 				userControlReadWriteServer1.SetReadWriteServer( s7NetServer, "M100" );
 				s7NetServer.ServerStart( port );

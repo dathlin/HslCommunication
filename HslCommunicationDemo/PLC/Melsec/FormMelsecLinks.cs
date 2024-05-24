@@ -32,17 +32,12 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			comboBox1.SelectedIndex = 2;
-
-			comboBox3.DataSource = SerialPort.GetPortNames( );
 			try
 			{
 				comboBox_format.SelectedIndex = 0;
-				comboBox3.SelectedIndex = 0;
 			}
 			catch
 			{
-				comboBox3.Text = "COM3";
 			}
 
 			Language( Program.Language );
@@ -64,20 +59,13 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Melsec Read PLC Demo";
-
-				label1.Text = "parity:";
-				label3.Text = "Stop bits";
-				label27.Text = "Com:";
-				label26.Text = "BaudRate";
-				label25.Text = "Data bits";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
+				label21.Text = "Station:";
 				label22.Text = "TimeOut:";
 				checkBox1.Text = "SumCheck?";
 
 				label2.Text = "Format:";
-				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}
 
@@ -93,39 +81,13 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int baudRate ))
-			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox16.Text, out int dataBits ))
-			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox17.Text, out int stopBits ))
-			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
-				return;
-			}
-			
-
 			melsecSerial?.Close( );
 			melsecSerial = new MelsecFxLinks( );
 			melsecSerial.LogNet = LogNet;
 			
 			try
 			{
-				melsecSerial.SerialPortInni( sp =>
-				{
-					sp.PortName = comboBox3.Text;
-					sp.BaudRate = baudRate;
-					sp.DataBits = dataBits;
-					sp.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
-					sp.Parity = comboBox1.SelectedIndex == 0 ? Parity.None : (comboBox1.SelectedIndex == 1 ? Parity.Odd : Parity.Even);
-				} );
+				this.pipeSelectControl1.IniPipe( melsecSerial );
 				melsecSerial.Station = byte.Parse( textBox15.Text );
 				melsecSerial.WaittingTime = byte.Parse( textBox18.Text );
 				melsecSerial.SumCheck = checkBox1.Checked;
@@ -243,14 +205,11 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTimeout, textBox18.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlSumCheck, checkBox1.Checked );
+			element.SetAttributeValue( "MelsecFormat", comboBox_format.SelectedIndex );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -258,14 +217,11 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-			textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
-			textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.SerialPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			textBox18.Text = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlSumCheck ).Value );
+			comboBox_format.SelectedIndex = GetXmlValue( element, "MelsecFormat", comboBox_format.SelectedIndex, int.Parse );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

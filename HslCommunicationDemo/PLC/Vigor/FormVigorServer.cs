@@ -72,7 +72,7 @@ namespace HslCommunicationDemo
 				vigorServer.Station = int.Parse( textBox_station.Text );
 				vigorServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				vigorServer.OnDataReceived += BusTcpServer_OnDataReceived;
-
+				this.sslServerControl1.InitializeServer( vigorServer );
 				// add some accounts
 				// vigorServer.AddAccount( "admin", "123456" );
 				// vigorServer.AddAccount( "hsl", "test" );

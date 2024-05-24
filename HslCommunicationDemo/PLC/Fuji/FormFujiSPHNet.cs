@@ -32,7 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			comboBox1.DataSource = SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = fujiSPB.ByteTransform.DataFormat;
@@ -65,9 +64,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Fuji Read PLC Demo";
-
-				label27.Text = "Ip:";
-				label26.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 			}
@@ -82,21 +78,14 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			this.fujiSPB?.ConnectClose( );
 			this.fujiSPB = new FujiSPHNet( );
-			this.fujiSPB.IpAddress = textBox_ip.Text;
-			this.fujiSPB.Port = port;
 			this.fujiSPB.LogNet = LogNet;
 			this.fujiSPB.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( fujiSPB );
 				fujiSPB.ConnectionID = byte.Parse( textBox15.Text );
 				OperateResult connect = fujiSPB.ConnectServer( );
 				if (connect.IsSuccess)
@@ -203,8 +192,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -213,8 +201,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

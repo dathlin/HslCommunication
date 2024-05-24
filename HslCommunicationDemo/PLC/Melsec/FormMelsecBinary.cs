@@ -16,6 +16,7 @@ using HslCommunication.MQTT;
 using HslCommunicationDemo.DemoControl;
 using HslCommunicationDemo.PLC.Melsec;
 using HslCommunication.Core.Pipe;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
@@ -29,20 +30,13 @@ namespace HslCommunicationDemo
 
 
 		private MelsecMcNet melsec_net = null;
-		private MqttClient mqttClient;
-		private string readTopic;
-		private string writeTopic;
-
-
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip ); 
 			Language( Program.Language );
 
-			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
 
 			control = new McQna3EControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -57,33 +51,6 @@ namespace HslCommunicationDemo
 			userControlReadWriteDevice1.SetEnable( false );
 		}
 
-		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
-		{
-			if (checkBox1.Checked)
-			{
-				// 如果选中则，弹出MQTT信息输入
-				using(FormMqttInput input = new FormMqttInput( ))
-				{
-					if (input.ShowDialog() == DialogResult.OK)
-					{
-						mqttClient = new MqttClient( input.MqttConnectionOptions );
-						readTopic  = input.ReadTopic;
-						writeTopic = input.WriteTopic;
-						textBox_ip.Enabled = false;
-						textBox_port.Enabled = false;
-					}
-					else
-					{
-						checkBox1.Checked = false;
-					}
-				}
-			}
-			else
-			{
-				textBox_ip.Enabled = true;
-				textBox_port.Enabled = true;
-			}
-		}
 
 		private void Language( int language )
 		{
@@ -91,8 +58,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "Melsec Read PLC Demo";
 
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				checkBox_string_reverse.Text = "string reverse by word";
@@ -115,136 +80,93 @@ namespace HslCommunicationDemo
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
-			if (checkBox1.Checked)
+			try
 			{
-				// 使用MQTT中转
-				melsec_net.LogNet = LogNet;
-				OperateResult connect = this.mqttClient.ConnectServer( );
-				if (!connect.IsSuccess)
+				this.pipeSelectControl1.IniPipe( melsec_net );
+			}
+			catch( Exception ex )
+			{
+				SoftBasic.ShowExceptionMessage( ex );
+				return;
+			}
+
+
+			if (!byte.TryParse( textBox_network_number.Text, out byte networkNumber ))
+			{
+				MessageBox.Show( "Network Number input wrong" );
+				return;
+			}
+			if (!byte.TryParse( textBox_network_station_number.Text, out byte networkStationNumber ))
+			{
+				MessageBox.Show( "Network Station Number input wrong" );
+				return;
+			}
+			ushort targetIONumber = 0;
+			if (textBox_target_io_number.Text.StartsWith( "0x", StringComparison.OrdinalIgnoreCase ))
+			{
+				try
 				{
-					MessageBox.Show( connect.Message + Environment.NewLine + "ErrorCode: " + connect.ErrorCode );
-					button1.Enabled = true;
+					targetIONumber = Convert.ToUInt16( textBox_target_io_number.Text.Substring( 2 ), 16 );
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show( "Target IO Number input wrong: " + ex.Message );
 					return;
-				}
-
-				melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
-				melsec_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
-
-				PipeMqttClient pipeMqtt = new PipeMqttClient( mqttClient, readTopic, writeTopic );
-				melsec_net.CommunicationPipe = pipeMqtt;
-				if (connect.IsSuccess)
-				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
-					button2.Enabled = true;
-					button1.Enabled = false;
-
-					userControlReadWriteDevice1.SetEnable( true );
-
-					// 设置子控件的读取能力
-					userControlReadWriteDevice1.SetReadWriteNet( melsec_net, "D100", true );
-					// 设置批量读取
-					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsec_net, "D100", string.Empty );
-					userControlReadWriteDevice1.BatchRead.SetReadRandom( melsec_net.ReadRandom, "D100;W100;D500" );
-					userControlReadWriteDevice1.BatchRead.SetReadWordRandom( melsec_net.ReadRandom, "D100;W100;D500" );
-					// 设置报文读取
-					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-
-					control.SetDevice( melsec_net, "D100" );
-
-
-				}
-				else
-				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
-					button1.Enabled = true;
 				}
 			}
 			else
 			{
-				melsec_net.IpAddress = textBox_ip.Text;
-				if (!int.TryParse( textBox_port.Text, out int port ))
+				try
 				{
-					MessageBox.Show( DemoUtils.PortInputWrong );
+					targetIONumber = Convert.ToUInt16( textBox_target_io_number.Text );
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show( "Target IO Number input wrong: " + ex.Message );
 					return;
 				}
-				if (!byte.TryParse( textBox_network_number.Text, out byte networkNumber ))
-				{
-					MessageBox.Show( "Network Number input wrong" );
-					return;
-				}
-				if (!byte.TryParse( textBox_network_station_number.Text, out byte networkStationNumber ))
-				{
-					MessageBox.Show( "Network Station Number input wrong" );
-					return;
-				}
-				ushort targetIONumber = 0;
-				if (textBox_target_io_number.Text.StartsWith("0x", StringComparison.OrdinalIgnoreCase ))
-				{
-					try
-					{
-						targetIONumber = Convert.ToUInt16( textBox_target_io_number.Text.Substring( 2 ), 16 );
-					}
-					catch( Exception ex )
-					{
-						MessageBox.Show( "Target IO Number input wrong: " + ex.Message );
-						return;
-					}
-				}
-				else
-				{
-					try
-					{
-						targetIONumber = Convert.ToUInt16( textBox_target_io_number.Text );
-					}
-					catch (Exception ex)
-					{
-						MessageBox.Show( "Target IO Number input wrong: " + ex.Message );
-						return;
-					}
-				}
+			}
 
-				melsec_net.Port = port;
-				melsec_net.NetworkNumber = networkNumber;
-				melsec_net.NetworkStationNumber = networkStationNumber;
-				melsec_net.TargetIOStation = targetIONumber;
+			melsec_net.NetworkNumber = networkNumber;
+			melsec_net.NetworkStationNumber = networkStationNumber;
+			melsec_net.TargetIOStation = targetIONumber;
 
-				melsec_net.ConnectClose( );
-				melsec_net.LogNet = LogNet;
-				melsec_net.ConnectTimeOut = 3000; // 连接3秒超时
+			melsec_net.ConnectClose( );
+			melsec_net.LogNet = LogNet;
+			melsec_net.ConnectTimeOut = 3000; // 连接3秒超时
 
-				melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
-				melsec_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
+			melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
+			melsec_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
+			button1.Enabled = false;
+			OperateResult connect = await melsec_net.ConnectServerAsync( );
+			if (connect.IsSuccess)
+			{
+				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+				button2.Enabled = true;
 				button1.Enabled = false;
-				OperateResult connect = await melsec_net.ConnectServerAsync( );
-				if (connect.IsSuccess)
-				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
-					button2.Enabled = true;
-					button1.Enabled = false;
 
-					userControlReadWriteDevice1.SetEnable( true );
+				userControlReadWriteDevice1.SetEnable( true );
 
-					// 设置子控件的读取能力
-					userControlReadWriteDevice1.SetReadWriteNet( melsec_net, "D100", true );
-					// 设置批量读取
-					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsec_net, "D100", string.Empty );
-					userControlReadWriteDevice1.BatchRead.SetReadRandom( melsec_net.ReadRandom, "D100;W100;D500" );
-					userControlReadWriteDevice1.BatchRead.SetReadWordRandom( melsec_net.ReadRandom, "D100;W100;D500" );
-					// 设置报文读取
-					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+				// 设置子控件的读取能力
+				userControlReadWriteDevice1.SetReadWriteNet( melsec_net, "D100", true );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsec_net, "D100", string.Empty );
+				userControlReadWriteDevice1.BatchRead.SetReadRandom( melsec_net.ReadRandom, "D100;W100;D500" );
+				userControlReadWriteDevice1.BatchRead.SetReadWordRandom( melsec_net.ReadRandom, "D100;W100;D500" );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-					control.SetDevice( melsec_net, "D100" );
+				control.SetDevice( melsec_net, "D100" );
 
-					// 设置代码示例
-					codeExampleControl.SetCodeText( melsec_net, nameof( melsec_net.NetworkNumber ), nameof( melsec_net.NetworkStationNumber ), 
-						nameof( melsec_net.TargetIOStation ),
-						nameof( melsec_net.EnableWriteBitToWordRegister ), "ByteTransform.IsStringReverseByteWord" );
-				}
-				else
-				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
-					button1.Enabled = true;
-				}
+				// 设置代码示例
+				codeExampleControl.SetCodeText( melsec_net, nameof( melsec_net.NetworkNumber ), nameof( melsec_net.NetworkStationNumber ),
+					nameof( melsec_net.TargetIOStation ),
+					nameof( melsec_net.EnableWriteBitToWordRegister ), "ByteTransform.IsStringReverseByteWord" );
+			}
+			else
+			{
+				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+				button1.Enabled = true;
 			}
 		}
 
@@ -355,8 +277,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( "EnableWriteBitToWordRegister", checkBox_EnableWriteBitToWordRegister.Text );
 			element.SetAttributeValue( "IsStringReverseByteWord", checkBox_string_reverse.Checked );
 			element.SetAttributeValue( nameof( MelsecMcNet.NetworkNumber ),        textBox_network_number.Text );
@@ -369,8 +290,9 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
+			//textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			//textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			checkBox_EnableWriteBitToWordRegister.Checked = GetXmlValue( element, "EnableWriteBitToWordRegister", false, bool.Parse );
 			checkBox_string_reverse.Checked     = GetXmlValue( element, "IsStringReverseByteWord", false, bool.Parse );
 			textBox_network_number.Text         = GetXmlValue( element, nameof( MelsecMcNet.NetworkNumber ),        textBox_network_number.Text, m => m );

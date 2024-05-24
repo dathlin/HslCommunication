@@ -32,7 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 
 			control = new CJT188Control( );
@@ -54,8 +53,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "CJT188 Read Demo";
 
-				label1.Text = "Com:";
-				label3.Text = "baudRate:";
 				label_address.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
@@ -76,17 +73,10 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox_port.Text,out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
 
 			cjt188?.ConnectClose( );
 			cjt188 = new CJT188OverTcp( textBox_station.Text );
-			cjt188.IpAddress = textBox_ip.Text;
 			cjt188.InstrumentType = Convert.ToByte( textBox_type.Text, 16 );
-			cjt188.Port = port;
 			cjt188.LogNet = LogNet;
 			cjt188.EnableCodeFE = checkBox_enable_Fe.Checked;
 			cjt188.StationMatch = checkBox_station_match.Checked;
@@ -94,6 +84,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( cjt188 );
 				OperateResult connect = cjt188.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -140,11 +131,11 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate,  textBox_port.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation,   textBox_station.Text );
 			element.SetAttributeValue( "InstrumentType",      textBox_type.Text );
 			element.SetAttributeValue( "StationMatch",        checkBox_station_match.Checked.ToString( ) );
+			element.SetAttributeValue( "FeHead", checkBox_enable_Fe.Checked );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -152,8 +143,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text      = HslCommunication.BasicFramework.SoftBasic.GetXmlValue( element, DemoDeviceList.XmlIpAddress, "192.168.0.100" );
-			textBox_port.Text    = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			textBox_type.Text    = HslCommunication.BasicFramework.SoftBasic.GetXmlValue( element, "InstrumentType", "19" );
 			checkBox_station_match.Checked = HslCommunication.BasicFramework.SoftBasic.GetXmlValue( element, "StationMatch", false );

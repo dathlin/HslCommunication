@@ -42,6 +42,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -51,6 +52,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.sslServerControl1);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.button11);
@@ -64,13 +66,13 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 40);
+			this.panel1.Size = new System.Drawing.Size(997, 65);
 			this.panel1.TabIndex = 0;
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(199, 7);
+			this.textBox1.Location = new System.Drawing.Point(192, 5);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(65, 23);
 			this.textBox1.TabIndex = 30;
@@ -79,7 +81,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(145, 10);
+			this.label1.Location = new System.Drawing.Point(138, 8);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 29;
@@ -88,7 +90,7 @@
 			// button11
 			// 
 			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(372, 4);
+			this.button11.Location = new System.Drawing.Point(365, 2);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(83, 28);
 			this.button11.TabIndex = 28;
@@ -99,7 +101,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(800, 9);
+			this.checkBox3.Location = new System.Drawing.Point(793, 7);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 27;
@@ -108,7 +110,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(696, 4);
+			this.button5.Location = new System.Drawing.Point(689, 2);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(91, 28);
 			this.button5.TabIndex = 9;
@@ -118,7 +120,7 @@
 			// 
 			// textBox10
 			// 
-			this.textBox10.Location = new System.Drawing.Point(533, 6);
+			this.textBox10.Location = new System.Drawing.Point(526, 4);
 			this.textBox10.Name = "textBox10";
 			this.textBox10.Size = new System.Drawing.Size(157, 23);
 			this.textBox10.TabIndex = 8;
@@ -127,7 +129,7 @@
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(478, 9);
+			this.label14.Location = new System.Drawing.Point(471, 7);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(44, 17);
 			this.label14.TabIndex = 7;
@@ -135,7 +137,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(282, 4);
+			this.button1.Location = new System.Drawing.Point(275, 2);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(83, 28);
 			this.button1.TabIndex = 4;
@@ -145,7 +147,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(74, 7);
+			this.textBox2.Location = new System.Drawing.Point(67, 5);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
@@ -154,7 +156,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(20, 10);
+			this.label3.Location = new System.Drawing.Point(13, 8);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -167,10 +169,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(3, 78);
+			this.panel2.Location = new System.Drawing.Point(3, 104);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 565);
+			this.panel2.Size = new System.Drawing.Size(997, 539);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -181,7 +183,7 @@
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 3);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 557);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 531);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -198,6 +200,16 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// sslServerControl1
+			// 
+			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.sslServerControl1.Location = new System.Drawing.Point(10, 31);
+			this.sslServerControl1.Name = "sslServerControl1";
+			this.sslServerControl1.Size = new System.Drawing.Size(978, 30);
+			this.sslServerControl1.TabIndex = 31;
 			// 
 			// FormFujiSPBServer
 			// 
@@ -238,5 +250,6 @@
 		private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label1;
+		private DemoControl.SslServerControl sslServerControl1;
 	}
 }

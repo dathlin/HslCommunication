@@ -37,18 +37,6 @@ namespace HslCommunicationDemo.PLC.Omron
 
 			Language( Program.Language );
 
-			comboBox3.DataSource = SerialPort.GetPortNames( );
-			try
-			{
-				comboBox3.SelectedIndex = 0;
-			}
-			catch
-			{
-				comboBox3.Text = "COM3";
-			}
-			comboBox2.SelectedIndex = 2;
-
-
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetOmronAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
@@ -69,13 +57,8 @@ namespace HslCommunicationDemo.PLC.Omron
 				label23.Text = "PC Net Num";
 
 				label1.Text = "Station:";
-				label3.Text = "Parity:";
 				button1.Text = "Open";
 				button2.Text = "Close";
-				label29.Text = "Com:";
-				label28.Text = "BaudRate:";
-				label27.Text = "DataBit:";
-				label26.Text = "StopBit:";
 			}
 		}
 
@@ -90,25 +73,7 @@ namespace HslCommunicationDemo.PLC.Omron
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox19.Text, out int baudRate ))
-			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox18.Text, out int dataBits ))
-			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox2.Text, out int stopBits ))
-			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
-				return;
-			}
-
-			if (!byte.TryParse( textBox1.Text, out byte Station ))
+			if (!byte.TryParse( textBox_station.Text, out byte Station ))
 			{
 				MessageBox.Show( "PLC Station input wrong！" );
 				return;
@@ -138,14 +103,8 @@ namespace HslCommunicationDemo.PLC.Omron
 
 			try
 			{
-				omronHostLink.SerialPortInni( sp =>
-				{
-					sp.PortName = comboBox3.Text;
-					sp.BaudRate = baudRate;
-					sp.DataBits = dataBits;
-					sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
-					sp.Parity = comboBox2.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox2.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
-				} );
+				this.pipeSelectControl1.IniPipe( omronHostLink );
+
 				omronHostLink.UnitNumber = Station;
 				omronHostLink.SID = SID;
 				omronHostLink.DA2 = DA2;
@@ -237,13 +196,9 @@ namespace HslCommunicationDemo.PLC.Omron
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox19.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox18.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox2.SelectedIndex );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
-			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUnitNumber, textBox16.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPCUnitNumber, textBox17.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlDeviceId, textBox15.Text );
@@ -254,13 +209,9 @@ namespace HslCommunicationDemo.PLC.Omron
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-			textBox19.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-			textBox18.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
-			comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.SerialPipe );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			textBox16.Text = element.Attribute( DemoDeviceList.XmlUnitNumber ).Value;
 			textBox17.Text = element.Attribute( DemoDeviceList.XmlPCUnitNumber ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlDeviceId ).Value;

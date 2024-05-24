@@ -66,6 +66,7 @@ namespace HslCommunicationDemo
 				server = new HslCommunication.Profinet.Toyota.ToyoPucServer( );                       // 实例化对象
 				server.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				server.OnDataReceived += MelsecMcServer_OnDataReceived;
+				this.sslServerControl1.InitializeServer( this.server );
 				server.ServerStart( port );
 				userControlReadWriteServer1.SetReadWriteServer( server, "D100" );
 

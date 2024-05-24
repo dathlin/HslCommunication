@@ -32,7 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			checkBox_auto.CheckedChanged += CheckBox_auto_CheckedChanged;
 			CheckBox_auto_CheckedChanged( checkBox_auto, e );
@@ -70,9 +69,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Beckhoff AdsNet Read PLC Demo";
-
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label8.Text = "case: 192.168.1.100.1.1:801 or 192.168.1.100.1.1";
@@ -90,18 +86,13 @@ namespace HslCommunicationDemo
 		
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			beckhoffAdsNet?.ConnectClose( );
-			beckhoffAdsNet = new BeckhoffAdsNet( textBox_ip.Text, port );
+			beckhoffAdsNet = new BeckhoffAdsNet( );
 			beckhoffAdsNet.LogNet = LogNet;
 			// adsNet.LogNet = new HslCommunication.LogNet.LogNetSingle( System.IO.Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "log.txt" ) );
 			try
 			{
+				this.pipeSelectControl1.IniPipe( beckhoffAdsNet );
 				if (checkBox_auto.Checked)
 				{
 					beckhoffAdsNet.UseAutoAmsNetID = true;
@@ -274,8 +265,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlTarget, textBox14.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlSender, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTagCache, checkBox_tag.Checked );
@@ -287,8 +277,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox14.Text = element.Attribute( DemoDeviceList.XmlTarget ).Value;
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlSender ).Value;
 			checkBox_tag.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlTagCache ).Value );
@@ -303,5 +292,9 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
+		private void userControlHead1_Load( object sender, EventArgs e )
+		{
+
+		}
 	}
 }

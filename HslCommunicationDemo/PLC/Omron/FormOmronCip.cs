@@ -34,7 +34,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 			control = new AllenBrandlyControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -54,8 +53,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Omron Read PLC Demo";
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 			}
@@ -71,25 +68,18 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			if (!byte.TryParse( textBox15.Text, out byte slot ))
 			{
 				MessageBox.Show( DemoUtils.SlotInputWrong );
 				return;
 			}
 
-			omronCipNet.IpAddress = textBox_ip.Text;
-			omronCipNet.Port      = port;
 			omronCipNet.Slot      = slot;
 			omronCipNet.LogNet    = LogNet;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( omronCipNet );
 				OperateResult connect = omronCipNet.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -139,8 +129,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox15.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -149,8 +138,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

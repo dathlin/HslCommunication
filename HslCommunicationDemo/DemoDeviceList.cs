@@ -89,6 +89,8 @@ namespace HslCommunicationDemo
 		public static readonly string XmlEncrypt2 = "EncryptKeyXml";
 		public static readonly string XmlIpAddress = "IP";
 		public static readonly string XmlPort = "Port";
+		public static readonly string XmlConnectTimeOut = "ConnectTimeOut";
+		public static readonly string XmlReceiveTimeOut = "ReceiveTimeOut";
 		public static readonly string XmlRack = "Rack";
 		public static readonly string XmlSlot = "Slot";
 		public static readonly string XmlCom = "ComPort";

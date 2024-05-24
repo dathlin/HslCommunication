@@ -89,6 +89,7 @@ namespace HslCommunicationDemo
 				mewtocolServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				mewtocolServer.OnDataReceived += BusTcpServer_OnDataReceived;
 				mewtocolServer.Station        = 238;
+				sslServerControl1.InitializeServer( mewtocolServer );
 				userControlReadWriteServer1.SetReadWriteServer( mewtocolServer, "D100" );
 				mewtocolServer.ServerStart( port );
 				button1.Enabled = false;

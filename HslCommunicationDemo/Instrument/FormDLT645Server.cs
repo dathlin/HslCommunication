@@ -90,7 +90,7 @@ namespace HslCommunicationDemo
 				dLT645Server.StringReverse = checkBox3.Checked;
 				dLT645Server.EnableCodeFE = checkBox_enableFE.Checked;
 				dLT645Server.StationMatch = checkBox_station_match.Checked;
-
+				this.sslServerControl1.InitializeServer( dLT645Server );
 				userControlReadWriteServer1.SetReadWriteServer( dLT645Server, "02-01-01-00" );
 				dLT645Server.ServerStart( port );
 

@@ -71,7 +71,7 @@ namespace HslCommunicationDemo
 			{
 				lSisServer = new HslCommunication.Profinet.LSIS.LSisServer(cboxModel.Text);                       // 实例化对象
 				lSisServer.OnDataReceived += BusTcpServer_OnDataReceived;
-				
+				this.sslServerControl1.InitializeServer( lSisServer );
 				lSisServer.ServerStart( port );
 
 				userControlReadWriteServer1.SetReadWriteServer( lSisServer, "MB100" );

@@ -10,6 +10,7 @@ using HslCommunication.WebSocket;
 using HslCommunication;
 using System.Threading;
 using System.Xml.Linq;
+using HslCommunication.Core.Pipe;
 
 namespace HslCommunicationDemo
 {
@@ -76,6 +77,12 @@ namespace HslCommunicationDemo
 			wsClient = new WebSocketQANet( textBox1.Text, int.Parse(textBox2.Text) );
 			wsClient.LogNet = new HslCommunication.LogNet.LogNetSingle( string.Empty );
 			wsClient.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+
+			if (checkBox_ssl_tls.Checked)
+			{
+				wsClient.CommunicationPipe = new PipeSslNet( textBox1.Text, int.Parse( textBox2.Text ), serverMode: false ); // 如果选中SSL的话，管道就切换为SSL
+			}
+
 			OperateResult connect = null;
 			connect = wsClient.ConnectServer( );
 			if (connect.IsSuccess)
@@ -97,8 +104,9 @@ namespace HslCommunicationDemo
 			{
 				Invoke( new Action( ( ) =>
 				 {
-					 if(radioButton2.Checked)
-						textBox8.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+					 if (checkBox_hex_log.Checked == false && e.HslMessage.Degree == HslCommunication.LogNet.HslMessageDegree.DEBUG) return;
+					 if (radioButton2.Checked)
+						 textBox8.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
 				 } ) );
 			}
 			catch
@@ -149,7 +157,7 @@ namespace HslCommunicationDemo
 
 
 				if (radioButton2.Checked)
-					textBox8.AppendText( msg + Environment.NewLine );
+					wsClient.LogNet?.WriteInfo( msg );
 				else if (radioButton1.Checked)
 					textBox8.Text = msg;
 			}

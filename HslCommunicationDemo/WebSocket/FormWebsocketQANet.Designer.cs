@@ -29,6 +29,7 @@
 		private void InitializeComponent( )
 		{
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_ssl_tls = new System.Windows.Forms.CheckBox();
 			this.button5 = new System.Windows.Forms.Button();
 			this.label7 = new System.Windows.Forms.Label();
 			this.textBox11 = new System.Windows.Forms.TextBox();
@@ -44,6 +45,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.checkBox_hex_log = new System.Windows.Forms.CheckBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.radioButton5 = new System.Windows.Forms.RadioButton();
 			this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -67,6 +69,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_ssl_tls);
 			this.panel1.Controls.Add(this.button5);
 			this.panel1.Controls.Add(this.label7);
 			this.panel1.Controls.Add(this.textBox11);
@@ -84,12 +87,22 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 72);
+			this.panel1.Size = new System.Drawing.Size(934, 72);
 			this.panel1.TabIndex = 7;
+			// 
+			// checkBox_ssl_tls
+			// 
+			this.checkBox_ssl_tls.AutoSize = true;
+			this.checkBox_ssl_tls.Location = new System.Drawing.Point(724, 41);
+			this.checkBox_ssl_tls.Name = "checkBox_ssl_tls";
+			this.checkBox_ssl_tls.Size = new System.Drawing.Size(78, 21);
+			this.checkBox_ssl_tls.TabIndex = 28;
+			this.checkBox_ssl_tls.Text = "SSL/TLS?";
+			this.checkBox_ssl_tls.UseVisualStyleBackColor = true;
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(882, 5);
+			this.button5.Location = new System.Drawing.Point(838, 3);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(91, 28);
 			this.button5.TabIndex = 19;
@@ -217,6 +230,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.checkBox_hex_log);
 			this.panel2.Controls.Add(this.panel3);
 			this.panel2.Controls.Add(this.radioButton2);
 			this.panel2.Controls.Add(this.radioButton1);
@@ -228,15 +242,26 @@
 			this.panel2.Controls.Add(this.label9);
 			this.panel2.Location = new System.Drawing.Point(3, 111);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 534);
+			this.panel2.Size = new System.Drawing.Size(934, 539);
 			this.panel2.TabIndex = 13;
+			// 
+			// checkBox_hex_log
+			// 
+			this.checkBox_hex_log.AutoSize = true;
+			this.checkBox_hex_log.Location = new System.Drawing.Point(181, 183);
+			this.checkBox_hex_log.Name = "checkBox_hex_log";
+			this.checkBox_hex_log.Size = new System.Drawing.Size(81, 21);
+			this.checkBox_hex_log.TabIndex = 27;
+			this.checkBox_hex_log.Text = "Hex Log?";
+			this.checkBox_hex_log.UseVisualStyleBackColor = true;
 			// 
 			// panel3
 			// 
+			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel3.Controls.Add(this.radioButton5);
 			this.panel3.Controls.Add(this.radioButton3);
 			this.panel3.Controls.Add(this.radioButton4);
-			this.panel3.Location = new System.Drawing.Point(651, 179);
+			this.panel3.Location = new System.Drawing.Point(621, 179);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(184, 28);
 			this.panel3.TabIndex = 26;
@@ -275,9 +300,10 @@
 			// 
 			// radioButton2
 			// 
+			this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.radioButton2.AutoSize = true;
 			this.radioButton2.Checked = true;
-			this.radioButton2.Location = new System.Drawing.Point(567, 174);
+			this.radioButton2.Location = new System.Drawing.Point(537, 174);
 			this.radioButton2.Name = "radioButton2";
 			this.radioButton2.Size = new System.Drawing.Size(74, 21);
 			this.radioButton2.TabIndex = 25;
@@ -287,8 +313,9 @@
 			// 
 			// radioButton1
 			// 
+			this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.radioButton1.AutoSize = true;
-			this.radioButton1.Location = new System.Drawing.Point(567, 193);
+			this.radioButton1.Location = new System.Drawing.Point(537, 193);
 			this.radioButton1.Name = "radioButton1";
 			this.radioButton1.Size = new System.Drawing.Size(74, 21);
 			this.radioButton1.TabIndex = 24;
@@ -304,7 +331,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(930, 315);
+			this.textBox8.Size = new System.Drawing.Size(867, 320);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
@@ -318,7 +345,8 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(863, 180);
+			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button4.Location = new System.Drawing.Point(833, 180);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(91, 28);
 			this.button4.TabIndex = 17;
@@ -343,7 +371,7 @@
 			this.textBox4.Location = new System.Drawing.Point(62, 3);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(930, 171);
+			this.textBox4.Size = new System.Drawing.Size(867, 171);
 			this.textBox4.TabIndex = 8;
 			// 
 			// label9
@@ -366,7 +394,7 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "WebSocket";
-			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(941, 32);
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
@@ -375,7 +403,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.ClientSize = new System.Drawing.Size(941, 650);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
@@ -425,5 +453,7 @@
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.CheckBox checkBox_hex_log;
+		private System.Windows.Forms.CheckBox checkBox_ssl_tls;
 	}
 }

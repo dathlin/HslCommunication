@@ -72,6 +72,7 @@ namespace HslCommunicationDemo
 				cipServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				cipServer.OnDataReceived += BusTcpServer_OnDataReceived;
 				cipServer.CreateTagWithWrite = checkBox1.Checked;
+				this.sslServerControl1.InitializeServer( cipServer );
 
 				short[] d = new short[2000];
 				float[] a1 = new float[2000];

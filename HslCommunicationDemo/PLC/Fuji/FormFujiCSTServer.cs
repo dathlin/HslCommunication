@@ -68,6 +68,7 @@ namespace HslCommunicationDemo
 				fujiSPHServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );     // 如果客户端1个小时不通信，就关闭连接
 				fujiSPHServer.OnDataReceived += MelsecMcServer_OnDataReceived;
 				fujiSPHServer.DataSwap = checkBox1.Checked;
+				this.sslServerControl1.InitializeServer( fujiSPHServer );
 				fujiSPHServer.ServerStart( port );
 				userControlReadWriteServer1.SetReadWriteServer( fujiSPHServer, "BD100" );
 

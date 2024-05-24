@@ -13,6 +13,8 @@ using System.Threading;
 using System.IO;
 using System.Xml.Linq;
 using HslCommunicationDemo.DemoControl;
+using HslCommunication.Core.Net;
+using HslCommunication.Core.Pipe;
 
 namespace HslCommunicationDemo
 {
@@ -32,7 +34,6 @@ namespace HslCommunicationDemo
 			checkBox_remote_write.CheckedChanged += CheckBox1_CheckedChanged;
 			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
 			checkBox_maskcode.CheckedChanged += CheckBox_maskcode_CheckedChanged;
-			checkBox_account.CheckedChanged += CheckBox2_CheckedChanged;
 
 			if (Program.Language == 2)
 			{
@@ -40,7 +41,6 @@ namespace HslCommunicationDemo
 				label3.Text = "port:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
-				checkBox_account.Text = "Account Login";
 
 				label14.Text = "Com:";
 				button5.Text = "Open Com";
@@ -87,13 +87,6 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private void CheckBox2_CheckedChanged( object sender, EventArgs e )
-		{
-			if (busTcpServer != null)
-			{
-				//busTcpServer.IsUseAccountCertificate = checkBox_account.Checked;
-			}
-		}
 
 		private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
 		{
@@ -154,12 +147,9 @@ namespace HslCommunicationDemo
 				busTcpServer.StationDataIsolation     = checkBox_station_isolation.Checked;
 				busTcpServer.UseModbusRtuOverTcp      = checkBox_RtuOverTcp.Checked;
 				busTcpServer.EnableWriteMaskCode      = checkBox_maskcode.Checked;
-				//busTcpServer.IsUseAccountCertificate  = checkBox_account.Checked;
 				busTcpServer.ForceSerialReceiveOnce   = checkBox_forceReceiveOnce.Checked;
 
-				// add some accounts
-				//busTcpServer.AddAccount( "admin", "123456" );
-				//busTcpServer.AddAccount( "hsl",   "test" );
+				this.sslServerControl1.InitializeServer( busTcpServer );
 
 				ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
 				busTcpServer.IsStringReverse = checkBox3.Checked;
@@ -201,21 +191,21 @@ namespace HslCommunicationDemo
 			button11.Enabled = false;
 		}
 
-		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] modbus )
+		private void BusTcpServer_OnDataReceived( object sender, PipeSession source, byte[] modbus )
 		{
 			// 我们可以捕获到接收到的客户端的modbus报文
 			// 如果是TCP接收的
-			if (source is HslCommunication.Core.Net.AppSession session)
+			if (source.Communication is PipeTcpNet session)
 			{
 				// 获取当前客户的IP地址
 				string ip = session.IpAddress;
 			}
 
 			// 如果是串口接收的
-			if (source is System.IO.Ports.SerialPort serialPort)
+			if (source.Communication is PipeSerialPort serialPort)
 			{
 				// 获取当前的串口的名称
-				string portName = serialPort.PortName;
+				string portName = serialPort.GetPipe( ).PortName;
 			}
 		}
 

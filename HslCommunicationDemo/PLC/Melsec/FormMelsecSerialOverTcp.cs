@@ -21,7 +21,6 @@ namespace HslCommunicationDemo
 		public FormMelsecSerialOverTcp( )
 		{
 			InitializeComponent( );
-			melsec_net = new MelsecFxSerialOverTcp( );
 		}
 
 
@@ -32,9 +31,8 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
-			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
+			checkBox_newVersion.CheckedChanged += CheckBox1_CheckedChanged;
 
 			control = new MelsecSerialControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -52,7 +50,7 @@ namespace HslCommunicationDemo
 		{
 			if (melsec_net != null)
 			{
-				melsec_net.IsNewVersion = checkBox1.Checked;
+				melsec_net.IsNewVersion = checkBox_newVersion.Checked;
 			}
 		}
 
@@ -62,10 +60,8 @@ namespace HslCommunicationDemo
 			{
 				Text = "Melsec Read PLC Demo";
 
-				checkBox1.Text = "New Version Message?";
+				checkBox_newVersion.Text = "New Version Message?";
 				checkBox_got.Text = "Use Got";
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 			}
@@ -81,21 +77,14 @@ namespace HslCommunicationDemo
 		
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			melsec_net?.ConnectClose( );
 			melsec_net              = new MelsecFxSerialOverTcp( );
-			melsec_net.IpAddress    = textBox_ip.Text;
-			melsec_net.Port         = port;
-			melsec_net.IsNewVersion = checkBox1.Checked;
+			melsec_net.IsNewVersion = checkBox_newVersion.Checked;
 			melsec_net.UseGOT       = checkBox_got.Checked;
 			melsec_net.LogNet       = LogNet;
 			try
 			{
+				this.pipeSelectControl1.IniPipe( melsec_net );
 				OperateResult connect = melsec_net.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -230,8 +219,9 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
+			element.SetAttributeValue( "NewVersion", checkBox_newVersion.Checked );
+			element.SetAttributeValue( "UseGOT", checkBox_got.Checked );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -239,8 +229,9 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
+			checkBox_newVersion.Checked = GetXmlValue( element, "NewVersion", checkBox_newVersion.Checked, bool.Parse );
+			checkBox_got.Checked = GetXmlValue( element, "UseGOT", checkBox_got.Checked, bool.Parse );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

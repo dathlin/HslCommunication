@@ -79,7 +79,7 @@
 			this.textBox_serial.Name = "textBox_serial";
 			this.textBox_serial.Size = new System.Drawing.Size(188, 23);
 			this.textBox_serial.TabIndex = 42;
-			this.textBox_serial.Text = "COM3-9600-8-N-1";
+			this.textBox_serial.Text = "COM3-9600-7-N-2";
 			// 
 			// textBox_station
 			// 

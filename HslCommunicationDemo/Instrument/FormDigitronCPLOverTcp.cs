@@ -31,7 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 
 			addressExampleControl = new AddressExampleControl( );
@@ -49,9 +48,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Yamatake CPL DigitronIK Read Demo";
-
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				label21.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
@@ -70,11 +66,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
 
 			if (!byte.TryParse(textBox15.Text,out byte station))
 			{
@@ -85,12 +76,11 @@ namespace HslCommunicationDemo
 			cpl?.ConnectClose( );
 			cpl = new DigitronCPLOverTcp( );
 			cpl.Station = station;
-			cpl.IpAddress = textBox_ip.Text;
-			cpl.Port = port;
 			cpl.LogNet = LogNet;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( cpl );
 				OperateResult connect = cpl.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -110,7 +100,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 				}
 
 			}
@@ -133,8 +123,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 
 
@@ -144,8 +133,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 
 

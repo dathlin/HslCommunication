@@ -29,30 +29,20 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
+			this.checkBox_station_check = new System.Windows.Forms.CheckBox();
 			this.checkBox_crc16 = new System.Windows.Forms.CheckBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
-			this.checkBox5 = new System.Windows.Forms.CheckBox();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.textBox17 = new System.Windows.Forms.TextBox();
-			this.label23 = new System.Windows.Forms.Label();
-			this.textBox16 = new System.Windows.Forms.TextBox();
-			this.label22 = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label24 = new System.Windows.Forms.Label();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox_station_check = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -62,26 +52,16 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.checkBox_station_check);
 			this.panel1.Controls.Add(this.checkBox_crc16);
 			this.panel1.Controls.Add(this.checkBox2);
-			this.panel1.Controls.Add(this.checkBox5);
-			this.panel1.Controls.Add(this.comboBox3);
 			this.panel1.Controls.Add(this.comboBox2);
-			this.panel1.Controls.Add(this.comboBox1);
-			this.panel1.Controls.Add(this.textBox17);
-			this.panel1.Controls.Add(this.label23);
-			this.panel1.Controls.Add(this.textBox16);
-			this.panel1.Controls.Add(this.label22);
 			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.textBox15);
 			this.panel1.Controls.Add(this.label21);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
-			this.panel1.Controls.Add(this.textBox2);
-			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.label24);
 			this.panel1.Controls.Add(this.checkBox3);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -89,12 +69,39 @@
 			this.panel1.Size = new System.Drawing.Size(997, 62);
 			this.panel1.TabIndex = 0;
 			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(5, 3);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.SerialPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 34;
+			this.pipeSelectControl1.TcpPortText = "502";
+			this.pipeSelectControl1.UdpPortText = "502";
+			// 
+			// checkBox_station_check
+			// 
+			this.checkBox_station_check.AutoSize = true;
+			this.checkBox_station_check.Checked = true;
+			this.checkBox_station_check.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_station_check.Location = new System.Drawing.Point(756, 35);
+			this.checkBox_station_check.Name = "checkBox_station_check";
+			this.checkBox_station_check.Size = new System.Drawing.Size(106, 21);
+			this.checkBox_station_check.TabIndex = 33;
+			this.checkBox_station_check.Text = "Station Check";
+			this.checkBox_station_check.UseVisualStyleBackColor = true;
+			// 
 			// checkBox_crc16
 			// 
 			this.checkBox_crc16.AutoSize = true;
 			this.checkBox_crc16.Checked = true;
 			this.checkBox_crc16.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_crc16.Location = new System.Drawing.Point(225, 34);
+			this.checkBox_crc16.Location = new System.Drawing.Point(236, 35);
 			this.checkBox_crc16.Name = "checkBox_crc16";
 			this.checkBox_crc16.Size = new System.Drawing.Size(99, 21);
 			this.checkBox_crc16.TabIndex = 32;
@@ -104,30 +111,12 @@
 			// checkBox2
 			// 
 			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(622, 35);
+			this.checkBox2.Location = new System.Drawing.Point(593, 35);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(135, 21);
 			this.checkBox2.TabIndex = 31;
 			this.checkBox2.Text = "读取前是否清空缓存";
 			this.checkBox2.UseVisualStyleBackColor = true;
-			// 
-			// checkBox5
-			// 
-			this.checkBox5.AutoSize = true;
-			this.checkBox5.Location = new System.Drawing.Point(330, 34);
-			this.checkBox5.Name = "checkBox5";
-			this.checkBox5.Size = new System.Drawing.Size(84, 21);
-			this.checkBox5.TabIndex = 30;
-			this.checkBox5.Text = "RtsEnable";
-			this.checkBox5.UseVisualStyleBackColor = true;
-			// 
-			// comboBox3
-			// 
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(61, 3);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(113, 25);
-			this.comboBox3.TabIndex = 29;
 			// 
 			// comboBox2
 			// 
@@ -138,64 +127,17 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox2.Location = new System.Drawing.Point(418, 32);
+			this.comboBox2.Location = new System.Drawing.Point(374, 32);
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(83, 25);
 			this.comboBox2.TabIndex = 28;
-			// 
-			// comboBox1
-			// 
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Items.AddRange(new object[] {
-            "无",
-            "奇",
-            "偶"});
-			this.comboBox1.Location = new System.Drawing.Point(624, 3);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(70, 25);
-			this.comboBox1.TabIndex = 15;
-			// 
-			// textBox17
-			// 
-			this.textBox17.Location = new System.Drawing.Point(537, 3);
-			this.textBox17.Name = "textBox17";
-			this.textBox17.Size = new System.Drawing.Size(35, 23);
-			this.textBox17.TabIndex = 13;
-			this.textBox17.Text = "1";
-			// 
-			// label23
-			// 
-			this.label23.AutoSize = true;
-			this.label23.Location = new System.Drawing.Point(465, 6);
-			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(56, 17);
-			this.label23.TabIndex = 12;
-			this.label23.Text = "停止位：";
-			// 
-			// textBox16
-			// 
-			this.textBox16.Location = new System.Drawing.Point(416, 3);
-			this.textBox16.Name = "textBox16";
-			this.textBox16.Size = new System.Drawing.Size(31, 23);
-			this.textBox16.TabIndex = 11;
-			this.textBox16.Text = "8";
-			// 
-			// label22
-			// 
-			this.label22.AutoSize = true;
-			this.label22.Location = new System.Drawing.Point(341, 6);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(56, 17);
-			this.label22.TabIndex = 10;
-			this.label22.Text = "数据位：";
 			// 
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(99, 34);
+			this.checkBox1.Location = new System.Drawing.Point(99, 35);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(106, 21);
 			this.checkBox1.TabIndex = 9;
@@ -204,7 +146,7 @@
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(52, 32);
+			this.textBox15.Location = new System.Drawing.Point(52, 33);
 			this.textBox15.Name = "textBox15";
 			this.textBox15.Size = new System.Drawing.Size(37, 23);
 			this.textBox15.TabIndex = 7;
@@ -213,7 +155,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(8, 35);
+			this.label21.Location = new System.Drawing.Point(8, 36);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(44, 17);
 			this.label21.TabIndex = 6;
@@ -222,7 +164,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(871, 5);
+			this.button2.Location = new System.Drawing.Point(899, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -232,7 +174,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(765, 5);
+			this.button1.Location = new System.Drawing.Point(805, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -240,45 +182,10 @@
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
-			// textBox2
-			// 
-			this.textBox2.Location = new System.Drawing.Point(258, 3);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(66, 23);
-			this.textBox2.TabIndex = 3;
-			this.textBox2.Text = "9600";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(192, 6);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(56, 17);
-			this.label3.TabIndex = 2;
-			this.label3.Text = "波特率：";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 6);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(59, 17);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Com口：";
-			// 
-			// label24
-			// 
-			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(586, 6);
-			this.label24.Name = "label24";
-			this.label24.Size = new System.Drawing.Size(44, 17);
-			this.label24.TabIndex = 14;
-			this.label24.Text = "奇偶：";
-			// 
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(507, 35);
+			this.checkBox3.Location = new System.Drawing.Point(468, 35);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 26;
@@ -322,18 +229,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// checkBox_station_check
-			// 
-			this.checkBox_station_check.AutoSize = true;
-			this.checkBox_station_check.Checked = true;
-			this.checkBox_station_check.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_station_check.Location = new System.Drawing.Point(788, 35);
-			this.checkBox_station_check.Name = "checkBox_station_check";
-			this.checkBox_station_check.Size = new System.Drawing.Size(106, 21);
-			this.checkBox_station_check.TabIndex = 33;
-			this.checkBox_station_check.Text = "Station Check";
-			this.checkBox_station_check.UseVisualStyleBackColor = true;
-			// 
 			// FormModbusRtu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -360,29 +255,19 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
         private DemoControl.UserControlHead userControlHead1;
-        private System.Windows.Forms.CheckBox checkBox5;
 		private System.Windows.Forms.CheckBox checkBox2;
 		private System.Windows.Forms.CheckBox checkBox_crc16;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private System.Windows.Forms.CheckBox checkBox_station_check;
+		private DemoControl.PipeSelectControl pipeSelectControl1;
 	}
 }

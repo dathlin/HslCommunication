@@ -32,7 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
 
@@ -60,9 +59,6 @@ namespace HslCommunicationDemo
 				label1.Text = "Station:";
 				button1.Text = "Open";
 				button2.Text = "Close";
-				label21.Text = "Address:";
-				label29.Text = "Ip:";
-				label28.Text = "Port:";
 			}
 		}
 
@@ -76,11 +72,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox19.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
 
 			if (!byte.TryParse( textBox1.Text, out byte Station ))
 			{
@@ -91,12 +82,11 @@ namespace HslCommunicationDemo
 
 			omronHostLink?.ConnectClose( );
 			omronHostLink = new OmronHostLinkCModeOverTcp( );
-			omronHostLink.IpAddress = textBox_ip.Text;
-			omronHostLink.Port = port;
 			omronHostLink.LogNet = LogNet;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( omronHostLink );
 				
 				omronHostLink.UnitNumber = Station;
 				omronHostLink.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
@@ -191,8 +181,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox19.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
 
@@ -202,8 +191,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox19.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 

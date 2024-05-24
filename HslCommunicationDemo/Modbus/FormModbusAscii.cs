@@ -32,21 +32,9 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			comboBox1.SelectedIndex = 0;
-
 			comboBox2.SelectedIndex = 2;
 			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
-
-			comboBox3.DataSource = SerialPort.GetPortNames( );
-			try
-			{
-				comboBox3.SelectedIndex = 0;
-			}
-			catch
-			{
-				comboBox3.Text = "COM3";
-			}
 
 			Language( Program.Language );
 			control = new ModbusControl( );
@@ -69,18 +57,11 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Modbus Ascii Read Demo";
-
-				label1.Text = "Com:";
-				label3.Text = "baudRate:";
-				label22.Text = "DataBit";
-				label23.Text = "StopBit";
-				label24.Text = "parity";
 				label21.Text = "station";
 				checkBox1.Text = "address from 0";
 				checkBox3.Text = "string reverse";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}
 
@@ -118,25 +99,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox2.Text,out int baudRate ))
-			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox16.Text, out int dataBits ))
-			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
-				return;
-			}
-
-			if (!int.TryParse( textBox17.Text, out int stopBits ))
-			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
-				return;
-			}
-
-
 			if (!byte.TryParse(textBox15.Text,out byte station))
 			{
 				MessageBox.Show( "station input wrong！" );
@@ -150,18 +112,10 @@ namespace HslCommunicationDemo
 
 			ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
 			busAsciiClient.IsStringReverse = checkBox3.Checked;
-			busAsciiClient.RtsEnable = checkBox5.Checked;
 
 			try
 			{
-				busAsciiClient.SerialPortInni( sp =>
-				 {
-					 sp.PortName = comboBox3.Text;
-					 sp.BaudRate = baudRate;
-					 sp.DataBits = dataBits;
-					 sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
-					 sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
-				 } );
+				this.pipeSelectControl1.IniPipe( busAsciiClient );
 				busAsciiClient.Open( );
 
 				button2.Enabled = true;
@@ -203,16 +157,11 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
-			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox5.Checked );
 
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -221,16 +170,11 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-			textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
-			textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.SerialPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
 			comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-			checkBox5.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRtsEnable ).Value );
 
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

@@ -64,6 +64,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
+				this.sslServerControl1.InitializeServer( omronFinsServer );
 				omronFinsServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				omronFinsServer.ServerStart( port );
 

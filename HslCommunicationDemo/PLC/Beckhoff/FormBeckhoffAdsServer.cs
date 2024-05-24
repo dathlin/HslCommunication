@@ -67,6 +67,7 @@ namespace HslCommunicationDemo
 				adsServer = new BeckhoffAdsServer( );                       // 实例化对象
 				adsServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );         // 如果客户端1个小时不通信，就关闭连接
 				adsServer.OnDataReceived += MelsecMcServer_OnDataReceived;
+				this.sslServerControl1.InitializeServer( adsServer );
 				// 添加几个符号数据
 				adsServer.AddTagValue( "MAIN.bool1", true );
 				adsServer.AddTagValue( "MAIN.a", (short)0 );

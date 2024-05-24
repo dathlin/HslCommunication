@@ -30,9 +30,8 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
-			comboBox1.DataSource = SoftBasic.GetEnumValues<DeltaSeries>( );
+			comboBox_plcType.DataSource = SoftBasic.GetEnumValues<DeltaSeries>( );
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Delta.Helper.GetDeviceAddressExamples( ) );
@@ -49,9 +48,7 @@ namespace HslCommunicationDemo
 			{
 				Text = "DeltaDvpTcp Read Demo[ModbusTcp]";
 
-				label1.Text = "Ip:";
 				label2.Text = "Series:";
-				label3.Text = "Port:";
 				label21.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
@@ -69,13 +66,6 @@ namespace HslCommunicationDemo
 		private void button1_Click( object sender, EventArgs e )
 		{
 
-			if(!int.TryParse(textBox2.Text, out int port))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
-
 			if(!byte.TryParse(textBox15.Text,out byte station))
 			{
 				MessageBox.Show( "Station input is wrong！" );
@@ -83,12 +73,14 @@ namespace HslCommunicationDemo
 			}
 
 			delta?.ConnectClose( );
-			delta = new DeltaTcpNet( textBox_ip.Text, port, station );
+			delta = new DeltaTcpNet( );
 			delta.LogNet = LogNet;
-			delta.Series = (DeltaSeries)comboBox1.SelectedItem;
+			delta.Station = station;
+			delta.Series = (DeltaSeries)comboBox_plcType.SelectedItem;
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( delta );
 				OperateResult connect = delta.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -131,9 +123,9 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
+			element.SetAttributeValue( "PlcType", comboBox_plcType.SelectedIndex );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -141,9 +133,9 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			comboBox_plcType.SelectedIndex = GetXmlValue( element, "PlcType", comboBox_plcType.SelectedIndex, int.Parse );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

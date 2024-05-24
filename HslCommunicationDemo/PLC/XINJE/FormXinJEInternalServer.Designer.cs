@@ -28,162 +28,173 @@
         /// </summary>
         private void InitializeComponent( )
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox_station = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox_port = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
-            this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_station = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
+			this.button11 = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
+			this.textBox_port = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
+			this.panel1.SuspendLayout();
+			this.panel2.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// panel1
+			// 
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.textBox_station);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.button11);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox_port);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(3, 35);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(997, 37);
-            this.panel1.TabIndex = 0;
-            // 
-            // textBox_station
-            // 
-            this.textBox_station.Location = new System.Drawing.Point(219, 6);
-            this.textBox_station.Name = "textBox_station";
-            this.textBox_station.Size = new System.Drawing.Size(65, 23);
-            this.textBox_station.TabIndex = 31;
-            this.textBox_station.Text = "1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(163, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 17);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "站号：";
-            // 
-            // label11
-            // 
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label11.Location = new System.Drawing.Point(541, 1);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(447, 35);
-            this.label11.TabIndex = 29;
-            this.label11.Text = "本服务器不是严格的xinje协议，仅支持和HSL组件完美通信。";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button11
-            // 
-            this.button11.Enabled = false;
-            this.button11.Location = new System.Drawing.Point(420, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(83, 28);
-            this.button11.TabIndex = 28;
-            this.button11.Text = "关闭服务";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(330, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 28);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "启动服务";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox_port
-            // 
-            this.textBox_port.Location = new System.Drawing.Point(74, 6);
-            this.textBox_port.Name = "textBox_port";
-            this.textBox_port.Size = new System.Drawing.Size(65, 23);
-            this.textBox_port.TabIndex = 3;
-            this.textBox_port.Text = "502";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 17);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "端口号：";
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.sslServerControl1);
+			this.panel1.Controls.Add(this.textBox_station);
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.label11);
+			this.panel1.Controls.Add(this.button11);
+			this.panel1.Controls.Add(this.button1);
+			this.panel1.Controls.Add(this.textBox_port);
+			this.panel1.Controls.Add(this.label3);
+			this.panel1.Location = new System.Drawing.Point(3, 35);
+			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(997, 65);
+			this.panel1.TabIndex = 0;
+			// 
+			// textBox_station
+			// 
+			this.textBox_station.Location = new System.Drawing.Point(188, 4);
+			this.textBox_station.Name = "textBox_station";
+			this.textBox_station.Size = new System.Drawing.Size(65, 23);
+			this.textBox_station.TabIndex = 31;
+			this.textBox_station.Text = "1";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(132, 7);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(44, 17);
+			this.label1.TabIndex = 30;
+			this.label1.Text = "站号：";
+			// 
+			// label11
+			// 
+			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+			this.label11.Location = new System.Drawing.Point(480, -1);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(512, 32);
+			this.label11.TabIndex = 29;
+			this.label11.Text = "本服务器不是严格的xinje协议，仅支持和HSL组件完美通信。";
+			// 
+			// button11
+			// 
+			this.button11.Enabled = false;
+			this.button11.Location = new System.Drawing.Point(391, 3);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(83, 28);
+			this.button11.TabIndex = 28;
+			this.button11.Text = "关闭服务";
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.button11_Click);
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(301, 3);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(83, 28);
+			this.button1.TabIndex = 4;
+			this.button1.Text = "启动服务";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// textBox_port
+			// 
+			this.textBox_port.Location = new System.Drawing.Point(61, 4);
+			this.textBox_port.Name = "textBox_port";
+			this.textBox_port.Size = new System.Drawing.Size(65, 23);
+			this.textBox_port.TabIndex = 3;
+			this.textBox_port.Text = "502";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(7, 7);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(56, 17);
+			this.label3.TabIndex = 2;
+			this.label3.Text = "端口号：";
+			// 
+			// panel2
+			// 
+			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.userControlReadWriteServer1);
-            this.panel2.Location = new System.Drawing.Point(3, 76);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(997, 568);
-            this.panel2.TabIndex = 1;
-            // 
-            // userControlReadWriteServer1
-            // 
-            this.userControlReadWriteServer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.userControlReadWriteServer1);
+			this.panel2.Location = new System.Drawing.Point(3, 105);
+			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(997, 539);
+			this.panel2.TabIndex = 1;
+			// 
+			// userControlReadWriteServer1
+			// 
+			this.userControlReadWriteServer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 3);
-            this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-            this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 560);
-            this.userControlReadWriteServer1.TabIndex = 0;
-            // 
-            // userControlHead1
-            // 
-            this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.userControlHead1.Location = new System.Drawing.Point(0, 0);
-            this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
-            this.userControlHead1.Name = "userControlHead1";
-            this.userControlHead1.ProtocolInfo = "XINJE Server";
-            this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
-            this.userControlHead1.TabIndex = 2;
-            this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-            // 
-            // FormXinJEInternalServer
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1004, 645);
-            this.Controls.Add(this.userControlHead1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "FormXinJEInternalServer";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "信捷虚拟服务器【数据支持，bool是M,SM，字操作是D,SD,HD】";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
-            this.Load += new System.EventHandler(this.FormSiemens_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.ResumeLayout(false);
+			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlReadWriteServer1.Location = new System.Drawing.Point(3, 3);
+			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 531);
+			this.userControlReadWriteServer1.TabIndex = 0;
+			// 
+			// userControlHead1
+			// 
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlHead1.Location = new System.Drawing.Point(0, 0);
+			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
+			this.userControlHead1.Name = "userControlHead1";
+			this.userControlHead1.ProtocolInfo = "XINJE Server";
+			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.TabIndex = 2;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// sslServerControl1
+			// 
+			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.sslServerControl1.Location = new System.Drawing.Point(5, 32);
+			this.sslServerControl1.Name = "sslServerControl1";
+			this.sslServerControl1.Size = new System.Drawing.Size(987, 30);
+			this.sslServerControl1.TabIndex = 32;
+			// 
+			// FormXinJEInternalServer
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScroll = true;
+			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.Controls.Add(this.userControlHead1);
+			this.Controls.Add(this.panel2);
+			this.Controls.Add(this.panel1);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.Name = "FormXinJEInternalServer";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "信捷虚拟服务器【数据支持，bool是M,SM，字操作是D,SD,HD】";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
+			this.Load += new System.EventHandler(this.FormSiemens_Load);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			this.panel2.ResumeLayout(false);
+			this.ResumeLayout(false);
 
         }
 
@@ -200,5 +211,6 @@
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
 		private System.Windows.Forms.TextBox textBox_station;
 		private System.Windows.Forms.Label label1;
+		private DemoControl.SslServerControl sslServerControl1;
 	}
 }

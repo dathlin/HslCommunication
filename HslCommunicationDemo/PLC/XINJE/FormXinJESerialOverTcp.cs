@@ -32,7 +32,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox_series.DataSource = SoftBasic.GetEnumValues<XinJESeries>( );
 
 			comboBox1.SelectedIndex = 0;
@@ -57,9 +56,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Modbus Tcp Read Demo";
-
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				label21.Text = "station";
 				checkBox1.Text = "address from 0";
 				checkBox3.Text = "string reverse";
@@ -106,12 +102,6 @@ namespace HslCommunicationDemo
 		private void button1_Click( object sender, EventArgs e )
 		{
 			// 连接
-			if(!int.TryParse(textBox2.Text,out int port))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
 
 			if(!byte.TryParse(textBox15.Text,out byte station))
 			{
@@ -120,7 +110,9 @@ namespace HslCommunicationDemo
 			}
 
 			xinJE?.ConnectClose( );
-			xinJE = new XinJESerialOverTcp( (XinJESeries)comboBox_series.SelectedItem, textBox_ip.Text, port, station );
+			xinJE = new XinJESerialOverTcp( );
+			xinJE.Series = (XinJESeries)comboBox_series.SelectedItem;
+			xinJE.Station = station;
 			xinJE.AddressStartWithZero = checkBox1.Checked;
 			xinJE.LogNet = LogNet;
 
@@ -130,6 +122,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
+				this.pipeSelectControl1.IniPipe( xinJE );
 				OperateResult connect = xinJE.ConnectServer( );
 				if (connect.IsSuccess)
 				{
@@ -173,8 +166,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text);
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
@@ -187,9 +179,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );

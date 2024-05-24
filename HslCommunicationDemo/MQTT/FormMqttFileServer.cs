@@ -133,6 +133,7 @@ namespace HslCommunicationDemo
 				mqttServer.LogNet.SetMessageDegree( HslCommunication.LogNet.HslMessageDegree.INFO ); // 屏蔽DEBUG等级日志
 				mqttServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 				mqttServer.UseFileServer( textBox1.Text );                                           // 启动文件服务功能
+				mqttServer.OnFileChangedEvent += MqttServer_OnFileChangedEvent;                      // 当有文件上传，下载，删除时触发的时间
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
@@ -142,6 +143,11 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Start Failed : " + ex.Message );
 			}
+		}
+
+		private void MqttServer_OnFileChangedEvent( MqttSession session, HslCommunication.Core.MqttFileOperateInfo operateInfo )
+		{
+			//mqttServer.LogNet?.WriteInfo( mqttServer.ToString( ), operateInfo.ToJsonString( ) );
 		}
 
 		private OperateResult MqttServer_FileOperateVerification( MqttSession session, byte code, string[] groups, string[] fileNames )

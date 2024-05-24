@@ -84,7 +84,7 @@ namespace HslCommunicationDemo
 				fatekServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
 				//sPBServer.IsStringReverse = checkBox3.Checked;
-
+				this.sslServerControl1.InitializeServer( fatekServer );
 				userControlReadWriteServer1.SetReadWriteServer( fatekServer, "D100" );
 				fatekServer.ServerStart( port );
 

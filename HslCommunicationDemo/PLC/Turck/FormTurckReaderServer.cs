@@ -72,6 +72,7 @@ namespace HslCommunicationDemo
 			{
 				readerServer.BytesOfBlock   = int.Parse( textBox1.Text );
 				readerServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
+				this.sslServerControl1.InitializeServer( readerServer );
 				readerServer.ServerStart( port );
 				userControlReadWriteServer1.SetReadWriteServer( readerServer, "100" );
 

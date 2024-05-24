@@ -76,8 +76,8 @@ namespace HslCommunicationDemo
 		private void button1_Click( object sender, EventArgs e )
 		{
 			// 启动服务
-			try
-			{
+			//try
+			//{
 				// 注册两个PLC为服务接口的示例
 				siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
 				pcccNet = new AllenBradleyPcccNet( "127.0.0.1" );
@@ -97,11 +97,11 @@ namespace HslCommunicationDemo
 
 				panel2.Enabled = true;
 				button1.Enabled = false;
-			}
-			catch(Exception ex)
-			{
-				MessageBox.Show( "Started Failed:" + ex.Message );
-			}
+			//}
+			//catch(Exception ex)
+			//{
+			//	MessageBox.Show( "Started Failed:" + ex.Message );
+			//}
 		}
 
 		private void DealWithHttpListenerRequest( HttpListenerRequest request, ISessionContext session )
@@ -183,6 +183,12 @@ namespace HslCommunicationDemo
 		public string GetJObjectTest( JObject json )
 		{
 			return json.ToString( );
+		}
+
+		[HslMqttApi( HttpMethod = "POST" )]
+		public string RequestHeaderTest( HttpListenerRequest request, int a )
+		{
+			return request.RawUrl + ":" + request.LocalEndPoint + " -> " + a;
 		}
 
 

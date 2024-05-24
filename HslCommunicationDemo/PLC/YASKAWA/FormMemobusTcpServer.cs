@@ -68,7 +68,7 @@ namespace HslCommunicationDemo
 				tcpServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				tcpServer.OnDataReceived += BusTcpServer_OnDataReceived;
 				userControlReadWriteServer1.SetReadWriteServer( tcpServer, "100" );
-
+				this.sslServerControl1.InitializeServer( tcpServer );
 				tcpServer.ServerStart( port, radioButton_tcp.Checked );
 
 				button1.Enabled = false;

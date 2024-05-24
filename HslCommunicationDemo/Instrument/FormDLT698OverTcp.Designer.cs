@@ -29,12 +29,10 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_ca = new System.Windows.Forms.TextBox();
+			this.label_ca = new System.Windows.Forms.Label();
 			this.checkBox_useSecurityResquest = new System.Windows.Forms.CheckBox();
 			this.checkBox_enable_Fe = new System.Windows.Forms.CheckBox();
-			this.textBox_port = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.textBox_ip = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.textBox_station = new System.Windows.Forms.TextBox();
 			this.label_address = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
@@ -42,8 +40,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.textBox_ca = new System.Windows.Forms.TextBox();
-			this.label_ca = new System.Windows.Forms.Label();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -53,14 +50,11 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.textBox_ca);
 			this.panel1.Controls.Add(this.label_ca);
 			this.panel1.Controls.Add(this.checkBox_useSecurityResquest);
 			this.panel1.Controls.Add(this.checkBox_enable_Fe);
-			this.panel1.Controls.Add(this.textBox_port);
-			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox_ip);
-			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.textBox_station);
 			this.panel1.Controls.Add(this.label_address);
 			this.panel1.Controls.Add(this.button2);
@@ -71,12 +65,29 @@
 			this.panel1.Size = new System.Drawing.Size(997, 62);
 			this.panel1.TabIndex = 0;
 			// 
+			// textBox_ca
+			// 
+			this.textBox_ca.Location = new System.Drawing.Point(84, 32);
+			this.textBox_ca.Name = "textBox_ca";
+			this.textBox_ca.Size = new System.Drawing.Size(56, 23);
+			this.textBox_ca.TabIndex = 42;
+			this.textBox_ca.Text = "0";
+			// 
+			// label_ca
+			// 
+			this.label_ca.AutoSize = true;
+			this.label_ca.Location = new System.Drawing.Point(8, 35);
+			this.label_ca.Name = "label_ca";
+			this.label_ca.Size = new System.Drawing.Size(71, 17);
+			this.label_ca.TabIndex = 41;
+			this.label_ca.Text = "客户机地址:";
+			// 
 			// checkBox_useSecurityResquest
 			// 
 			this.checkBox_useSecurityResquest.AutoSize = true;
 			this.checkBox_useSecurityResquest.Checked = true;
 			this.checkBox_useSecurityResquest.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_useSecurityResquest.Location = new System.Drawing.Point(311, 31);
+			this.checkBox_useSecurityResquest.Location = new System.Drawing.Point(172, 34);
 			this.checkBox_useSecurityResquest.Name = "checkBox_useSecurityResquest";
 			this.checkBox_useSecurityResquest.Size = new System.Drawing.Size(129, 21);
 			this.checkBox_useSecurityResquest.TabIndex = 40;
@@ -86,50 +97,16 @@
 			// checkBox_enable_Fe
 			// 
 			this.checkBox_enable_Fe.AutoSize = true;
-			this.checkBox_enable_Fe.Location = new System.Drawing.Point(420, 6);
+			this.checkBox_enable_Fe.Location = new System.Drawing.Point(593, 34);
 			this.checkBox_enable_Fe.Name = "checkBox_enable_Fe";
 			this.checkBox_enable_Fe.Size = new System.Drawing.Size(130, 21);
 			this.checkBox_enable_Fe.TabIndex = 39;
 			this.checkBox_enable_Fe.Text = "FE FE FE FE head?";
 			this.checkBox_enable_Fe.UseVisualStyleBackColor = true;
 			// 
-			// textBox_port
-			// 
-			this.textBox_port.Location = new System.Drawing.Point(299, 4);
-			this.textBox_port.Name = "textBox_port";
-			this.textBox_port.Size = new System.Drawing.Size(105, 23);
-			this.textBox_port.TabIndex = 11;
-			this.textBox_port.Text = "2000";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(245, 7);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(56, 17);
-			this.label3.TabIndex = 10;
-			this.label3.Text = "端口号：";
-			// 
-			// textBox_ip
-			// 
-			this.textBox_ip.Location = new System.Drawing.Point(62, 4);
-			this.textBox_ip.Name = "textBox_ip";
-			this.textBox_ip.Size = new System.Drawing.Size(176, 23);
-			this.textBox_ip.TabIndex = 9;
-			this.textBox_ip.Text = "127.0.0.1";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 7);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(56, 17);
-			this.label1.TabIndex = 8;
-			this.label1.Text = "Ip地址：";
-			// 
 			// textBox_station
 			// 
-			this.textBox_station.Location = new System.Drawing.Point(554, 32);
+			this.textBox_station.Location = new System.Drawing.Point(386, 32);
 			this.textBox_station.Name = "textBox_station";
 			this.textBox_station.Size = new System.Drawing.Size(190, 23);
 			this.textBox_station.TabIndex = 7;
@@ -138,7 +115,7 @@
 			// label_address
 			// 
 			this.label_address.AutoSize = true;
-			this.label_address.Location = new System.Drawing.Point(506, 35);
+			this.label_address.Location = new System.Drawing.Point(338, 35);
 			this.label_address.Name = "label_address";
 			this.label_address.Size = new System.Drawing.Size(44, 17);
 			this.label_address.TabIndex = 6;
@@ -147,7 +124,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(875, 11);
+			this.button2.Location = new System.Drawing.Point(901, 4);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -157,7 +134,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(778, 11);
+			this.button1.Location = new System.Drawing.Point(804, 4);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -202,22 +179,20 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// textBox_ca
+			// pipeSelectControl1
 			// 
-			this.textBox_ca.Location = new System.Drawing.Point(219, 32);
-			this.textBox_ca.Name = "textBox_ca";
-			this.textBox_ca.Size = new System.Drawing.Size(56, 23);
-			this.textBox_ca.TabIndex = 42;
-			this.textBox_ca.Text = "0";
-			// 
-			// label_ca
-			// 
-			this.label_ca.AutoSize = true;
-			this.label_ca.Location = new System.Drawing.Point(143, 35);
-			this.label_ca.Name = "label_ca";
-			this.label_ca.Size = new System.Drawing.Size(71, 17);
-			this.label_ca.TabIndex = 41;
-			this.label_ca.Text = "客户机地址:";
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(6, 3);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.Even;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 43;
+			this.pipeSelectControl1.TcpPortText = "2000";
+			this.pipeSelectControl1.UdpPortText = "2000";
 			// 
 			// FormDLT698OverTcp
 			// 
@@ -251,14 +226,11 @@
         private System.Windows.Forms.TextBox textBox_station;
         private System.Windows.Forms.Label label_address;
         private DemoControl.UserControlHead userControlHead1;
-		private System.Windows.Forms.TextBox textBox_port;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox_ip;
-		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.CheckBox checkBox_enable_Fe;
 		private System.Windows.Forms.CheckBox checkBox_useSecurityResquest;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private System.Windows.Forms.TextBox textBox_ca;
 		private System.Windows.Forms.Label label_ca;
+		private DemoControl.PipeSelectControl pipeSelectControl1;
 	}
 }

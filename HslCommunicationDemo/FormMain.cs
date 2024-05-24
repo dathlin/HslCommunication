@@ -105,6 +105,8 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "SerialPort",       Properties.Resources.SerialPort );        // 40
 			imageList.Images.Add( "NetworkAdapter",   Properties.Resources.NetworkAdapter );    // 41
 			imageList.Images.Add( "bin",              Properties.Resources.bin );               // 42
+			imageList.Images.Add( "wecon",            Properties.Resources.wecon );             // 43
+			imageList.Images.Add( "megmeet",          Properties.Resources.megmeet );           // 44
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;

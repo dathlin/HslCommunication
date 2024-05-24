@@ -54,8 +54,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "ToyoPuc Read PLC Demo";
 
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 			}
@@ -76,19 +74,21 @@ namespace HslCommunicationDemo
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
-			toyota.IpAddress = textBox_ip.Text;
-			if (!int.TryParse( textBox_port.Text, out int port ))
+			toyota.ConnectClose( );
+			toyota.LogNet = LogNet;
+
+			try
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				this.pipeSelectControl1.IniPipe( toyota );
+			}
+			catch( Exception ex )
+			{
+				MessageBox.Show( ex.Message );
 				return;
 			}
 
-			toyota.Port = port;
 
-			toyota.ConnectClose( );
-			toyota.LogNet = LogNet;
 			button1.Enabled = false;
-			toyota.ConnectTimeOut = 3000; // 连接3秒超时
 			OperateResult connect = await toyota.ConnectServerAsync( );
 			if (connect.IsSuccess)
 			{
@@ -132,8 +132,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -141,8 +140,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

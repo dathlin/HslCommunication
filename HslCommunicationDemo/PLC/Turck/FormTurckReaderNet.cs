@@ -59,9 +59,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Turck Reader Demo";
-
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 			}
@@ -78,20 +75,19 @@ namespace HslCommunicationDemo
 
 		private async void button1_Click( object sender, EventArgs e )
 		{
-			reader_net.IpAddress = textBox1.Text;
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
-			reader_net.Port = port;
-
 			reader_net.ConnectClose( );
 			reader_net.LogNet = LogNet;
 
+			try
+			{
+				this.pipeSelectControl1.IniPipe( reader_net );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( ex.Message );
+				return;
+			}
 			button1.Enabled = false;
-			reader_net.ConnectTimeOut = 3000; // 连接3秒超时
 			OperateResult connect = await reader_net.ConnectServerAsync( );
 			if (connect.IsSuccess)
 			{
@@ -134,8 +130,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -143,8 +138,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

@@ -31,10 +31,6 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.textBox19 = new System.Windows.Forms.TextBox();
-			this.label28 = new System.Windows.Forms.Label();
-			this.textBox_ip = new System.Windows.Forms.TextBox();
-			this.label29 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.textBox17 = new System.Windows.Forms.TextBox();
 			this.label25 = new System.Windows.Forms.Label();
@@ -47,6 +43,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -56,12 +53,9 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.textBox19);
-			this.panel1.Controls.Add(this.label28);
-			this.panel1.Controls.Add(this.textBox_ip);
-			this.panel1.Controls.Add(this.label29);
 			this.panel1.Controls.Add(this.comboBox1);
 			this.panel1.Controls.Add(this.textBox17);
 			this.panel1.Controls.Add(this.label25);
@@ -79,7 +73,7 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(537, 30);
+			this.textBox1.Location = new System.Drawing.Point(524, 31);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(31, 23);
 			this.textBox1.TabIndex = 40;
@@ -88,58 +82,24 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(486, 33);
+			this.label1.Location = new System.Drawing.Point(473, 34);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 39;
 			this.label1.Text = "站号：";
 			// 
-			// textBox19
-			// 
-			this.textBox19.Location = new System.Drawing.Point(296, 3);
-			this.textBox19.Name = "textBox19";
-			this.textBox19.Size = new System.Drawing.Size(53, 23);
-			this.textBox19.TabIndex = 32;
-			this.textBox19.Text = "2000";
-			// 
-			// label28
-			// 
-			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(248, 6);
-			this.label28.Name = "label28";
-			this.label28.Size = new System.Drawing.Size(44, 17);
-			this.label28.TabIndex = 31;
-			this.label28.Text = "端口：";
-			// 
-			// textBox_ip
-			// 
-			this.textBox_ip.Location = new System.Drawing.Point(74, 3);
-			this.textBox_ip.Name = "textBox_ip";
-			this.textBox_ip.Size = new System.Drawing.Size(168, 23);
-			this.textBox_ip.TabIndex = 30;
-			this.textBox_ip.Text = "127.0.0.1";
-			// 
-			// label29
-			// 
-			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(20, 6);
-			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(56, 17);
-			this.label29.TabIndex = 29;
-			this.label29.Text = "Ip地址：";
-			// 
 			// comboBox1
 			// 
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(370, 3);
+			this.comboBox1.Location = new System.Drawing.Point(584, 31);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(95, 25);
 			this.comboBox1.TabIndex = 14;
 			// 
 			// textBox17
 			// 
-			this.textBox17.Location = new System.Drawing.Point(256, 30);
+			this.textBox17.Location = new System.Drawing.Point(243, 31);
 			this.textBox17.Name = "textBox17";
 			this.textBox17.Size = new System.Drawing.Size(56, 23);
 			this.textBox17.TabIndex = 13;
@@ -148,7 +108,7 @@
 			// label25
 			// 
 			this.label25.AutoSize = true;
-			this.label25.Location = new System.Drawing.Point(163, 33);
+			this.label25.Location = new System.Drawing.Point(150, 34);
 			this.label25.Name = "label25";
 			this.label25.Size = new System.Drawing.Size(92, 17);
 			this.label25.TabIndex = 12;
@@ -156,7 +116,7 @@
 			// 
 			// textBox16
 			// 
-			this.textBox16.Location = new System.Drawing.Point(96, 30);
+			this.textBox16.Location = new System.Drawing.Point(83, 31);
 			this.textBox16.Name = "textBox16";
 			this.textBox16.Size = new System.Drawing.Size(56, 23);
 			this.textBox16.TabIndex = 11;
@@ -165,7 +125,7 @@
 			// label24
 			// 
 			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(20, 33);
+			this.label24.Location = new System.Drawing.Point(7, 34);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(77, 17);
 			this.label24.TabIndex = 10;
@@ -173,7 +133,7 @@
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(417, 30);
+			this.textBox15.Location = new System.Drawing.Point(404, 31);
 			this.textBox15.Name = "textBox15";
 			this.textBox15.Size = new System.Drawing.Size(56, 23);
 			this.textBox15.TabIndex = 9;
@@ -182,7 +142,7 @@
 			// label23
 			// 
 			this.label23.AutoSize = true;
-			this.label23.Location = new System.Drawing.Point(332, 33);
+			this.label23.Location = new System.Drawing.Point(319, 34);
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(80, 17);
 			this.label23.TabIndex = 8;
@@ -191,7 +151,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(710, 14);
+			this.button2.Location = new System.Drawing.Point(898, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(90, 28);
 			this.button2.TabIndex = 5;
@@ -201,7 +161,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(603, 14);
+			this.button1.Location = new System.Drawing.Point(803, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -247,6 +207,21 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(5, 2);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 41;
+			this.pipeSelectControl1.TcpPortText = "2000";
+			this.pipeSelectControl1.UdpPortText = "2000";
+			// 
 			// FormOmronHostLinkOverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -285,11 +260,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox textBox_ip;
-        private System.Windows.Forms.Label label29;
         private DemoControl.UserControlHead userControlHead1;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
+		private DemoControl.PipeSelectControl pipeSelectControl1;
 	}
 }

@@ -59,7 +59,7 @@
 			// textBox_ip
 			// 
 			this.textBox_ip.Location = new System.Drawing.Point(111, 30);
-			this.textBox_ip.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.textBox_ip.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox_ip.Name = "textBox_ip";
 			this.textBox_ip.Size = new System.Drawing.Size(306, 23);
 			this.textBox_ip.TabIndex = 1;
@@ -213,10 +213,11 @@
 			this.Controls.Add(this.textBox_ip);
 			this.Controls.Add(this.label1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "FormMqttInput";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "FormMqttInput";
+			this.Load += new System.EventHandler(this.FormMqttInput_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

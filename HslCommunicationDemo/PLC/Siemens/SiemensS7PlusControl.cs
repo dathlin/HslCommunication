@@ -69,7 +69,10 @@ namespace HslCommunicationDemo.PLC.Siemens
 				nodes.Add( treeNode );
 
 				if (s7Object[i].RelationId2 > 0)
-					s7Nodes.Add( s7Object[i].RelationId2, new S7ObjectNode( ) { S7Object = s7Object[i], Node = treeNode } );
+				{
+					if (!s7Nodes.ContainsKey( s7Object[i].RelationId2 ))
+						s7Nodes.Add( s7Object[i].RelationId2, new S7ObjectNode( ) { S7Object = s7Object[i], Node = treeNode } );
+				}
 			}
 		}
 

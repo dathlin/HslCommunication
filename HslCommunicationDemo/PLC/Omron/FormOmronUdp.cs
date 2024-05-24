@@ -33,7 +33,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
 
@@ -65,11 +64,7 @@ namespace HslCommunicationDemo
 			{
 				Text = "Omron Read PLC Demo";
 				label23.Text = "PC Net Num";
-
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Create";
-				label_localport.Text = "LocalPort:";
 			}
 		}
 
@@ -84,13 +79,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
-
-
 			if (!byte.TryParse( textBox_sa1.Text, out byte SA1 ))
 			{
 				MessageBox.Show( "SA1 Input Wrong！" );
@@ -104,17 +92,16 @@ namespace HslCommunicationDemo
 			}
 
 
-			omronFinsUdp = new OmronFinsUdp( textBox_ip.Text, port );
-
-			if (!string.IsNullOrEmpty( textBox_localport.Text ))
+			omronFinsUdp = new OmronFinsUdp( );
+			try
 			{
-				if (!int.TryParse( textBox_localport.Text, out int localPort ))
-				{
-					MessageBox.Show( "localPort Input Wrong！" );
-					return;
-				}
-				omronFinsUdp.LocalBinding = new System.Net.IPEndPoint( IPAddress.Any, localPort );
+				this.pipeSelectControl1.IniPipe( omronFinsUdp );
 			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( ex.Message );
+			}
+
 			userControlReadWriteDevice1.SetEnable( true );
 			button1.Enabled = false;
 			button2.Enabled = true;
@@ -150,7 +137,7 @@ namespace HslCommunicationDemo
 			control.SetDevice( omronFinsUdp, "D100" );
 
 			// 设置示例代码
-			codeExampleControl.SetCodeText( omronFinsUdp, nameof( omronFinsUdp.SA1 ), nameof( omronFinsUdp.GCT ), nameof( omronFinsUdp.DA1 ), 
+			codeExampleControl.SetCodeText( omronFinsUdp, nameof(omronFinsUdp.PlcType), nameof( omronFinsUdp.SA1 ), nameof( omronFinsUdp.GCT ), nameof( omronFinsUdp.DA1 ), 
 				"ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
 
 		}
@@ -167,10 +154,13 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlNetNumber, textBox_sa1.Text );
+			element.SetAttributeValue( "DA1", textBox_da1.Text );
+			element.SetAttributeValue( "GCT", textBox_gct.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox_isstringreverse.Checked );
+			element.SetAttributeValue( "OmronType", comboBox_plcType.SelectedIndex );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -178,9 +168,12 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.UdpPipe );
 			textBox_sa1.Text = element.Attribute( DemoDeviceList.XmlNetNumber ).Value;
+			textBox_da1.Text = GetXmlValue( element, "DA1", textBox_da1.Text, m => m );
+			textBox_gct.Text = GetXmlValue( element, "GCT", textBox_gct.Text, m => m );
+			checkBox_isstringreverse.Checked = GetXmlValue( element, DemoDeviceList.XmlStringReverse, checkBox_isstringreverse.Checked, bool.Parse );
+			comboBox_plcType.SelectedIndex = GetXmlValue( element, "OmronType", comboBox_plcType.SelectedIndex, int.Parse );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

@@ -21,7 +21,10 @@ namespace HslCommunicationDemo.DemoControl
 
 			button_read_word.Visible = false;
 			button_read_random.Visible = false;
-
+			if (this.isSourceReadMode)
+			{
+				button_write.Visible = false;
+			}
 			if (Program.Language == 2)
 			{
 				label_address.Text = "Address:";
@@ -29,9 +32,14 @@ namespace HslCommunicationDemo.DemoControl
 				label_result.Text = "Result:";
 
 				if (this.isSourceReadMode)
+				{
 					button_read.Text = "r-Message";
+				}
 				else
+				{
 					button_read.Text = "r-Batch";
+					button_write.Text = "w-Batch";
+				}
 				label3.Text = "Search:";
 				button_search.Text = "Search";
 				button_read_random.Text = "r-random";
@@ -43,6 +51,7 @@ namespace HslCommunicationDemo.DemoControl
 
 
 			button_read.Click += Button_read_Click;
+			button_write.Click += Button_write_Click;
 			button_search.Click += Button_search_Click;
 			textBox_search.TextChanged += TextBox_search_TextChanged;
 
@@ -67,6 +76,7 @@ namespace HslCommunicationDemo.DemoControl
 			radioButton_ascii.CheckedChanged += RadioButton_hex_CheckedChanged;
 			radioButton_integer.CheckedChanged += RadioButton_hex_CheckedChanged;
 		}
+
 
 		private void RadioButton_hex_CheckedChanged( object sender, EventArgs e )
 		{
@@ -227,6 +237,45 @@ namespace HslCommunicationDemo.DemoControl
 
 		}
 
+		private void Button_write_Click( object sender, EventArgs e )
+		{
+			if (readWriteNet == null)
+			{
+				MessageBox.Show( "Current operate not success! readWriteNet is null" );
+				return;
+			}
+
+			byte[] buffer = null;
+			if (radioButton_hex.Checked)
+			{
+				buffer = textBox_result.Text.ToHexBytes( );
+			}
+			else if (radioButton_ascii.Checked)
+			{
+				buffer = SoftBasic.GetFromAsciiStringRender( textBox_result.Text );
+			}
+			else
+			{
+				buffer = textBox_result.Text.ToStringArray<byte>( );
+			}
+
+			DateTime start = DateTime.Now;
+			OperateResult write = readWriteNet.Write( textBox_address.Text, buffer );
+
+			string timeCount = (DateTime.Now - start).TotalMilliseconds.ToString( "F0" );
+			label2.Text = (Program.Language == 1 ? "耗时：" : "TimeCount: ") + timeCount + " ms";
+
+			if (!write.IsSuccess)
+			{
+				MessageBox.Show( "write failed: " + write.Message );
+			}
+			else
+			{
+
+				MessageBox.Show( "write success!" );
+			}
+		}
+
 		private void Button_read_random_Click( object sender, EventArgs e )
 		{
 			if (button_read_random.Tag is Func<byte[], OperateResult<byte[]>> readFunc)
@@ -353,6 +402,7 @@ namespace HslCommunicationDemo.DemoControl
 					textBox_address.Width = textBox_result.Width;
 					label_address.Text = Program.Language == 1 ? "报文:" : "Message:";
 					button_read.Text = Program.Language == 1 ? "完整报文" : "r-Message";
+					button_write.Visible = false;
 
 
 					textBox_address.Multiline = true;
@@ -393,6 +443,5 @@ namespace HslCommunicationDemo.DemoControl
 		private string buttonTips1 = "";
 		private string buttonTips2 = "";
 		private string buttonTips3= "";
-
 	}
 }

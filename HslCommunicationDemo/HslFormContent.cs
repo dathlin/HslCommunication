@@ -9,6 +9,7 @@ using HslCommunication.LogNet;
 using HslCommunication.BasicFramework;
 using HslCommunication.Core.Security;
 using System.Security.Cryptography;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -42,6 +43,18 @@ namespace HslCommunicationDemo
 		public virtual void SaveXmlParameter(XElement element )
 		{
 			throw new NotImplementedException( "SaveXmlParameter Not Implemented" );
+		}
+
+		public void SetProtocolImage( System.Drawing.Image image )
+		{
+			foreach (System.Windows.Forms.Control control in this.Controls)
+			{
+				if (control is UserControlHead userControlHead)
+				{
+					userControlHead.SetProtocolImage( image );
+					break;
+				}
+			}
 		}
 
 

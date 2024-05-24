@@ -30,7 +30,6 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			Language( Program.Language );
 
 
@@ -63,9 +62,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Free protocol access based on Tcp ip";
-
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 			}
@@ -80,15 +76,8 @@ namespace HslCommunicationDemo
 
 
 
-		private async void button1_Click( object sender, EventArgs e )
+		private void button1_Click( object sender, EventArgs e )
 		{
-			freedom.IpAddress = textBox_ip.Text;
-
-			if (!int.TryParse( textBox_port.Text, out int port ))
-			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
-			}
 			freedom.LogNet = LogNet;
 
 			freedom.ByteTransform = new HslCommunication.Core.RegularByteTransform( );
@@ -96,13 +85,20 @@ namespace HslCommunicationDemo
 			ComboBox2_SelectedIndexChanged( null, null );
 			freedom.ByteTransform.IsStringReverseByteWord = checkBox3.Checked;
 
-			freedom.Port = port;
-
 			freedom.ConnectClose( );
+			try
+			{
+				this.pipeSelectControl1.IniPipe( freedom );
+			}
+			catch( Exception ex )
+			{
+				MessageBox.Show( ex.Message );
+				return;
+			}
 
 			button1.Enabled = false;
 			freedom.ConnectTimeOut = 3000; // 连接3秒超时
-			OperateResult connect = await freedom.ConnectServerAsync( );
+			OperateResult connect = freedom.ConnectServer( );
 			if (connect.IsSuccess)
 			{
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -141,8 +137,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
@@ -153,8 +148,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 
 			comboBox2.SelectedIndex = GetXmlValue( element, DemoDeviceList.XmlDataFormat, 0, int.Parse );
 			checkBox3.Checked = GetXmlValue( element, DemoDeviceList.XmlStringReverse, false, bool.Parse );

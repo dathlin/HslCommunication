@@ -29,23 +29,12 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
-			comboBox1.SelectedIndex = 0;
 
 
 
-			comboBox2.SelectedIndex = 0;
-			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
-			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
-
-			comboBox3.DataSource = SerialPort.GetPortNames( );
-			try
-			{
-				comboBox3.SelectedIndex = 0;
-			}
-			catch
-			{
-				comboBox3.Text = "COM3";
-			}
+			comboBox_dataformat.SelectedIndex = 2;
+			comboBox_dataformat.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
+			checkBox_stringreverse.CheckedChanged += CheckBox3_CheckedChanged;
 
 			Language( Program.Language );
 			
@@ -79,26 +68,13 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Modbus Rtu Read Demo";
-
-				label1.Text = "Com:";
-				label3.Text = "baudRate:";
-				label22.Text = "DataBit";
-				label23.Text = "StopBit";
-				label24.Text = "parity";
 				label21.Text = "station";
-				checkBox1.Text = "address from 0";
-				checkBox3.Text = "string reverse";
+				checkBox_startwith0.Text = "address from 0";
+				checkBox_stringreverse.Text = "string reverse";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-
 				button_read_bool.Text = "r-coil";
-				
-
-
 				groupBox1.Text = "read test";
-			
-
-				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 		}
 
@@ -106,7 +82,7 @@ namespace HslCommunicationDemo
 		{
 			if (dAM3601 != null)
 			{
-				dAM3601.IsStringReverse = checkBox3.Checked;
+				dAM3601.IsStringReverse = checkBox_stringreverse.Checked;
 			}
 		}
 
@@ -114,7 +90,7 @@ namespace HslCommunicationDemo
 		{
 			if (dAM3601 != null)
 			{
-				switch (comboBox2.SelectedIndex)
+				switch (comboBox_dataformat.SelectedIndex)
 				{
 					case 0: dAM3601.DataFormat = HslCommunication.Core.DataFormat.ABCD; break;
 					case 1: dAM3601.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
@@ -137,26 +113,7 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!int.TryParse(textBox2.Text,out int baudRate ))
-			{
-				MessageBox.Show( "波特率输入错误！" );
-				return;
-			}
-
-			if (!int.TryParse( textBox16.Text, out int dataBits ))
-			{
-				MessageBox.Show( "数据位输入错误！" );
-				return;
-			}
-
-			if (!int.TryParse( textBox17.Text, out int stopBits ))
-			{
-				MessageBox.Show( "停止位输入错误！" );
-				return;
-			}
-
-
-			if (!byte.TryParse(textBox15.Text,out byte station))
+			if (!byte.TryParse(textBox_station.Text,out byte station))
 			{
 				MessageBox.Show( "站号输入不正确！" );
 				return;
@@ -164,24 +121,17 @@ namespace HslCommunicationDemo
 
 			dAM3601?.Close( );
 			dAM3601 = new DAM3601( station );
-			dAM3601.AddressStartWithZero = checkBox1.Checked;
+			dAM3601.AddressStartWithZero = checkBox_startwith0.Checked;
 			dAM3601.LogNet = LogNet;
 
 
 			ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
-			dAM3601.IsStringReverse = checkBox3.Checked;
+			dAM3601.IsStringReverse = checkBox_stringreverse.Checked;
 
 
 			try
 			{
-				dAM3601.SerialPortInni( sp =>
-				 {
-					 sp.PortName = comboBox3.Text;
-					 sp.BaudRate = baudRate;
-					 sp.DataBits = dataBits;
-					 sp.StopBits = stopBits == 0 ? System.IO.Ports.StopBits.None : (stopBits == 1 ? System.IO.Ports.StopBits.One : System.IO.Ports.StopBits.Two);
-					 sp.Parity = comboBox1.SelectedIndex == 0 ? System.IO.Ports.Parity.None : (comboBox1.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even);
-				 } );
+				this.pipeSelectControl1.IniPipe( dAM3601 );
 				dAM3601.Open( );
 
 				button2.Enabled = true;
@@ -232,29 +182,21 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox3.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox16.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox17.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
-			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
-			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
-			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
+			this.pipeSelectControl1.SaveXmlParameter( element );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox_startwith0.Checked );
+			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox_dataformat.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox_stringreverse.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			comboBox3.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlBaudRate ).Value;
-			textBox16.Text = element.Attribute( DemoDeviceList.XmlDataBits ).Value;
-			textBox17.Text = element.Attribute( DemoDeviceList.XmlStopBit ).Value;
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlParity ).Value );
-			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
-			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
-			comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
-			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
+			this.pipeSelectControl1.LoadXmlParameter( element, DemoControl.SettingPipe.SerialPipe );
+			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			checkBox_startwith0.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
+			comboBox_dataformat.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+			checkBox_stringreverse.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

@@ -73,6 +73,7 @@ namespace HslCommunicationDemo
 				ppiServer.Station        = byte.Parse( textBox1.Text );
 				ppiServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				ppiServer.OnDataReceived += BusTcpServer_OnDataReceived;
+				this.sslServerControl1.InitializeServer( ppiServer );
 
 				userControlReadWriteServer1.SetReadWriteServer( ppiServer, "M100" );
 				ppiServer.ServerStart( port );
