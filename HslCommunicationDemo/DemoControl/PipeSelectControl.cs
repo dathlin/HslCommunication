@@ -413,6 +413,7 @@ namespace HslCommunicationDemo.DemoControl
 				if (!string.IsNullOrEmpty( settingTcpIP.SendBeforeHex ))
 					binaryCommunication.SendBeforeHex = settingTcpIP.SendBeforeHex;
 			}
+
 			return pipe;
 		}
 

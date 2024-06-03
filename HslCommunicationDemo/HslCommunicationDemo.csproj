@@ -71,12 +71,16 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HslCommunication, Version=12.0.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.0.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="DynamicExpresso.Core, Version=2.16.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicExpresso.Core.2.16.1\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HslCommunication, Version=12.0.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.0.2\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -178,6 +182,12 @@
     </Compile>
     <Compile Include="DemoControl\DataExportControl.Designer.cs">
       <DependentUpon>DataExportControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\DataSimulateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\DataSimulateControl.Designer.cs">
+      <DependentUpon>DataSimulateControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\DataTableControl.cs">
       <SubType>UserControl</SubType>
@@ -1925,6 +1935,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\DataExportControl.resx">
       <DependentUpon>DataExportControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\DataSimulateControl.resx">
+      <DependentUpon>DataSimulateControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\DataTableControl.resx">
       <DependentUpon>DataTableControl.cs</DependentUpon>

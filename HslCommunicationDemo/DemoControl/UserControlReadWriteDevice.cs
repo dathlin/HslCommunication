@@ -108,6 +108,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		public void GetDataTable( XElement element )
 		{
+			element.RemoveNodes( );
 			this.dataTableControl1.GetDataTable( element );
 		}
 

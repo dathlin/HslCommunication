@@ -42,15 +42,18 @@
 			this.checkBox_cycle = new System.Windows.Forms.CheckBox();
 			this.button_data_import = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.batchReadControl1 = new HslCommunicationDemo.DemoControl.BatchReadControl();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.batchReadControl1 = new HslCommunicationDemo.DemoControl.BatchReadControl();
 			this.dataTableControl1 = new HslCommunicationDemo.DemoControl.DataTableControl();
+			this.dataSimulateControl1 = new HslCommunicationDemo.DemoControl.DataSimulateControl();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
+			this.tabPage4.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label15
@@ -122,7 +125,7 @@
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(936, 168);
+			this.textBox1.Size = new System.Drawing.Size(936, 164);
 			this.textBox1.TabIndex = 23;
 			// 
 			// button1
@@ -144,6 +147,7 @@
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Controls.Add(this.tabPage4);
 			this.tabControl1.Location = new System.Drawing.Point(2, 272);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
@@ -221,16 +225,6 @@
 			this.tabPage2.Text = "批量读取";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// batchReadControl1
-			// 
-			this.batchReadControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.batchReadControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.batchReadControl1.IsSourceReadMode = false;
-			this.batchReadControl1.Location = new System.Drawing.Point(3, 3);
-			this.batchReadControl1.Name = "batchReadControl1";
-			this.batchReadControl1.Size = new System.Drawing.Size(942, 201);
-			this.batchReadControl1.TabIndex = 1;
-			// 
 			// tabPage3
 			// 
 			this.tabPage3.Controls.Add(this.dataTableControl1);
@@ -242,6 +236,27 @@
 			this.tabPage3.Text = "点位表";
 			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
+			// tabPage4
+			// 
+			this.tabPage4.Controls.Add(this.dataSimulateControl1);
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
+			this.tabPage4.Name = "tabPage4";
+			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage4.Size = new System.Drawing.Size(948, 207);
+			this.tabPage4.TabIndex = 3;
+			this.tabPage4.Text = "数据模拟";
+			this.tabPage4.UseVisualStyleBackColor = true;
+			// 
+			// batchReadControl1
+			// 
+			this.batchReadControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.batchReadControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.batchReadControl1.IsSourceReadMode = false;
+			this.batchReadControl1.Location = new System.Drawing.Point(3, 3);
+			this.batchReadControl1.Name = "batchReadControl1";
+			this.batchReadControl1.Size = new System.Drawing.Size(942, 201);
+			this.batchReadControl1.TabIndex = 1;
+			// 
 			// dataTableControl1
 			// 
 			this.dataTableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -250,6 +265,15 @@
 			this.dataTableControl1.Name = "dataTableControl1";
 			this.dataTableControl1.Size = new System.Drawing.Size(942, 201);
 			this.dataTableControl1.TabIndex = 1;
+			// 
+			// dataSimulateControl1
+			// 
+			this.dataSimulateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataSimulateControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.dataSimulateControl1.Location = new System.Drawing.Point(3, 3);
+			this.dataSimulateControl1.Name = "dataSimulateControl1";
+			this.dataSimulateControl1.Size = new System.Drawing.Size(942, 201);
+			this.dataSimulateControl1.TabIndex = 0;
 			// 
 			// userControlReadWriteOp1
 			// 
@@ -276,6 +300,7 @@
 			this.panel1.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
+			this.tabPage4.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -300,5 +325,7 @@
         private System.Windows.Forms.CheckBox checkBox_cycle;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button_import_abort;
-    }
+		private System.Windows.Forms.TabPage tabPage4;
+		private DataSimulateControl dataSimulateControl1;
+	}
 }

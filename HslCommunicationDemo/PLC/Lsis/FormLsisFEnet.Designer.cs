@@ -29,18 +29,20 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_baseNo = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.label4 = new System.Windows.Forms.Label();
 			this.cboxCompanyID = new System.Windows.Forms.ComboBox();
 			this.cboxModel = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox12 = new System.Windows.Forms.TextBox();
+			this.textBox_slot = new System.Windows.Forms.TextBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -50,12 +52,14 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_baseNo);
+			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.cboxCompanyID);
 			this.panel1.Controls.Add(this.cboxModel);
 			this.panel1.Controls.Add(this.label2);
-			this.panel1.Controls.Add(this.textBox12);
+			this.panel1.Controls.Add(this.textBox_slot);
 			this.panel1.Controls.Add(this.label15);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
@@ -65,10 +69,42 @@
 			this.panel1.Size = new System.Drawing.Size(997, 66);
 			this.panel1.TabIndex = 0;
 			// 
+			// textBox_baseNo
+			// 
+			this.textBox_baseNo.Location = new System.Drawing.Point(204, 37);
+			this.textBox_baseNo.Name = "textBox_baseNo";
+			this.textBox_baseNo.Size = new System.Drawing.Size(52, 23);
+			this.textBox_baseNo.TabIndex = 16;
+			this.textBox_baseNo.Text = "0";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(137, 40);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(66, 17);
+			this.label1.TabIndex = 15;
+			this.label1.Text = "BaseNo：";
+			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(5, 4);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 14;
+			this.pipeSelectControl1.TcpPortText = "2004";
+			this.pipeSelectControl1.UdpPortText = "2004";
+			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(326, 39);
+			this.label4.Location = new System.Drawing.Point(446, 39);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(79, 17);
 			this.label4.TabIndex = 13;
@@ -81,7 +117,7 @@
             "LSIS-XGT",
             "LGIS-GLOGA",
             "MASTER-K"});
-			this.cboxCompanyID.Location = new System.Drawing.Point(413, 36);
+			this.cboxCompanyID.Location = new System.Drawing.Point(533, 36);
 			this.cboxCompanyID.Name = "cboxCompanyID";
 			this.cboxCompanyID.Size = new System.Drawing.Size(89, 25);
 			this.cboxCompanyID.TabIndex = 12;
@@ -89,7 +125,7 @@
 			// cboxModel
 			// 
 			this.cboxModel.FormattingEnabled = true;
-			this.cboxModel.Location = new System.Drawing.Point(237, 36);
+			this.cboxModel.Location = new System.Drawing.Point(357, 36);
 			this.cboxModel.Name = "cboxModel";
 			this.cboxModel.Size = new System.Drawing.Size(71, 25);
 			this.cboxModel.TabIndex = 11;
@@ -97,19 +133,19 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(175, 39);
+			this.label2.Location = new System.Drawing.Point(295, 39);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(60, 17);
 			this.label2.TabIndex = 10;
 			this.label2.Text = "cpuType:";
 			// 
-			// textBox12
+			// textBox_slot
 			// 
-			this.textBox12.Location = new System.Drawing.Point(69, 37);
-			this.textBox12.Name = "textBox12";
-			this.textBox12.Size = new System.Drawing.Size(71, 23);
-			this.textBox12.TabIndex = 9;
-			this.textBox12.Text = "3";
+			this.textBox_slot.Location = new System.Drawing.Point(69, 37);
+			this.textBox_slot.Name = "textBox_slot";
+			this.textBox_slot.Size = new System.Drawing.Size(52, 23);
+			this.textBox_slot.TabIndex = 9;
+			this.textBox_slot.Text = "3";
 			// 
 			// label15
 			// 
@@ -172,26 +208,11 @@
 			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
-			this.userControlHead1.ProtocolInfo = "XGB Fast Enet 协议";
+			this.userControlHead1.ProtocolInfo = "Fast Enet 协议";
 			this.userControlHead1.Size = new System.Drawing.Size(1005, 32);
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 3;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// pipeSelectControl1
-			// 
-			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.pipeSelectControl1.Location = new System.Drawing.Point(5, 4);
-			this.pipeSelectControl1.Name = "pipeSelectControl1";
-			this.pipeSelectControl1.SerialBaudRate = "9600";
-			this.pipeSelectControl1.SerialDataBits = "8";
-			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
-			this.pipeSelectControl1.SerialStopBits = "1";
-			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
-			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
-			this.pipeSelectControl1.TabIndex = 14;
-			this.pipeSelectControl1.TcpPortText = "2004";
-			this.pipeSelectControl1.UdpPortText = "2004";
 			// 
 			// FormLsisFEnet
 			// 
@@ -222,7 +243,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBox_slot;
         private System.Windows.Forms.Label label15;
         private DemoControl.UserControlHead userControlHead1;
         private System.Windows.Forms.ComboBox cboxModel;
@@ -231,5 +252,7 @@
         private System.Windows.Forms.ComboBox cboxCompanyID;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private DemoControl.PipeSelectControl pipeSelectControl1;
+		private System.Windows.Forms.TextBox textBox_baseNo;
+		private System.Windows.Forms.Label label1;
 	}
 }

@@ -815,6 +815,20 @@ namespace HslCommunicationDemo
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 		}
+
+		private void button39_Click( object sender, EventArgs e )
+		{
+			// 读诊断
+			OperateResult<double[]> read = fanuc.ReadDiagnoss( int.Parse( textBox_read_diagnoss.Text ), int.Parse( textBox_diagnoss_length.Text ), int.Parse( textBox_diagnoss_axis.Text ) );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "诊断：" + Environment.NewLine + read.Content.ToJsonString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
 	}
 
 

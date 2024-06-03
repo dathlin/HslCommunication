@@ -71,13 +71,20 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if(!byte.TryParse(textBox12.Text, out byte slot ))
+			if(!byte.TryParse(textBox_slot.Text, out byte slot ))
 			{
 				MessageBox.Show( DemoUtils.SlotInputWrong );
 				return;
 			}
 
+			if (!byte.TryParse( textBox_baseNo.Text, out byte baseNo ))
+			{
+				MessageBox.Show( "BaseNo input wrong" );
+				return;
+			}
+
 			fastEnet.SlotNo = slot;
+			fastEnet.BaseNo = baseNo;
 			fastEnet.SetCpuType = cboxModel.Text;
 			fastEnet.CompanyID = cboxCompanyID.Text;
 			fastEnet.LogNet = LogNet;
@@ -101,7 +108,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fastEnet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( fastEnet, nameof( fastEnet.SlotNo ), nameof( fastEnet.SetCpuType ), nameof( fastEnet.CompanyID ) );
+					codeExampleControl.SetCodeText( fastEnet, nameof( fastEnet.SlotNo ), nameof( fastEnet.BaseNo ), nameof( fastEnet.SetCpuType ), nameof( fastEnet.CompanyID ) );
 				}
 				else
 				{
@@ -130,7 +137,8 @@ namespace HslCommunicationDemo
 			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlCpuType, cboxModel.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlCompanyID, cboxCompanyID.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox12.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox_slot.Text );
+			element.SetAttributeValue( "BaseNo", textBox_baseNo.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -141,7 +149,8 @@ namespace HslCommunicationDemo
 			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			cboxModel.Text = element.Attribute( DemoDeviceList.XmlCpuType ).Value;
 			cboxCompanyID.Text = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;
-			textBox12.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
+			textBox_slot.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
+			textBox_baseNo.Text = GetXmlValue( element, "BaseNo", textBox_baseNo.Text, m => m );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

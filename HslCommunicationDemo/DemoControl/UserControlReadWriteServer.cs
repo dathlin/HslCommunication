@@ -50,6 +50,7 @@ namespace HslCommunicationDemo.DemoControl
 			userControlReadWriteOp1.SetReadWriteNet( deviceServer, address, false, strLength );
 			batchReadControl1.SetReadWriteNet( deviceServer, address, "" );
 			dataTableControl1.SetReadWriteNet( deviceServer );
+			dataSimulateControl1.SetReadWriteNet( deviceServer );
 
 			timerSecond?.Dispose( );
 			timerSecond = new System.Windows.Forms.Timer( );
@@ -122,6 +123,7 @@ namespace HslCommunicationDemo.DemoControl
 				tabPage1.Text = "LogInfo";
 				tabPage2.Text = "Batch Read";
 				tabPage3.Text = "Data Table";
+				tabPage4.Text = "Simulate";
 			}
 		}
 
@@ -233,11 +235,14 @@ namespace HslCommunicationDemo.DemoControl
 
 		public void GetDataTable( XElement element )
 		{
+			element.RemoveNodes( );
 			this.dataTableControl1.GetDataTable( element );
+			this.dataSimulateControl1.GetSimulateTable( element );
 		}
 
 		public int LoadDataTable( XElement element )
 		{
+			this.dataSimulateControl1.LoadSimulateTable( element );
 			return this.dataTableControl1.LoadDataTable( element );
 		}
 

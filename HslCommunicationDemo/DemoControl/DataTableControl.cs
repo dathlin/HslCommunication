@@ -100,7 +100,6 @@ namespace HslCommunicationDemo.DemoControl
 
 		public void GetDataTable( XElement element )
 		{
-			element.RemoveNodes( );
 			for (int i = 0; i < dataGridView1.Rows.Count; i++)
 			{
 				DataGridViewRow dgvr = dataGridView1.Rows[i];
@@ -116,35 +115,32 @@ namespace HslCommunicationDemo.DemoControl
 		public int LoadDataTable( XElement element )
 		{
 			int count = 0;
-			foreach (var item in element.Elements())
+			foreach (var item in element.Elements( nameof( DataTableItem ) ))
 			{
-				if (item.Name == nameof( DataTableItem ))
+				DataTableItem dataTableItem = new DataTableItem( );
+				dataTableItem.LoadByXmlElement( item );
+
+				int rowIndex = dataGridView1.Rows.Add( );
+				DataGridViewRow dgvr = dataGridView1.Rows[rowIndex];
+
+				dgvr.Cells[0].Value = dataTableItem.Name;
+				dgvr.Cells[1].Value = dataTableItem.Address;
+				if (!string.IsNullOrEmpty( dataTableItem.DataTypeCode ))
 				{
-					DataTableItem dataTableItem = new DataTableItem( );
-					dataTableItem.LoadByXmlElement( item );
-
-					int rowIndex = dataGridView1.Rows.Add( );
-					DataGridViewRow dgvr = dataGridView1.Rows[rowIndex];
-
-					dgvr.Cells[0].Value = dataTableItem.Name;
-					dgvr.Cells[1].Value = dataTableItem.Address;
-					if (!string.IsNullOrEmpty( dataTableItem.DataTypeCode ))
+					dgvr.Cells[2].Value = dataTableItem.DataTypeCode;
+					if (dataTableItem.DataTypeCode == "string")
 					{
-						dgvr.Cells[2].Value = dataTableItem.DataTypeCode;
-						if (dataTableItem.DataTypeCode == "string")
-						{
-							dgvr.Cells[3].Value = dataTableItem.StringEncoding.ToString( );
-						}
+						dgvr.Cells[3].Value = dataTableItem.StringEncoding.ToString( );
 					}
-					if (dataTableItem.Length >=0)
-					{
-						dgvr.Cells[4].Value = dataTableItem.Length.ToString( );
-					}
-					dgvr.Cells[6].Value = dataTableItem.Unit;
-					dgvr.Cells[7].Value = dataTableItem.Description;
-					dgvr.Tag = dataTableItem;
-					count++;
 				}
+				if (dataTableItem.Length >= 0)
+				{
+					dgvr.Cells[4].Value = dataTableItem.Length.ToString( );
+				}
+				dgvr.Cells[6].Value = dataTableItem.Unit;
+				dgvr.Cells[7].Value = dataTableItem.Description;
+				dgvr.Tag = dataTableItem;
+				count++;
 			}
 			return count;
 		}
