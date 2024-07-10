@@ -113,10 +113,18 @@ namespace HslCommunicationDemo.DemoControl
 			ThreadPool.QueueUserWorkItem( new WaitCallback( ThreadPoolCheckState ), 123 );
 		}
 
+		public void Close( )
+		{
+			if (threadEnable)
+			{
+				Button_finish_Click( button_finish, EventArgs.Empty );
+			}
+		}
+
 		private void ThreadPoolCheckState( object obj )
 		{
 			Thread.Sleep( 200 );
-			if (threadEnable == false && threadWrite.ThreadState == ThreadState.Running) threadWrite?.Abort( );
+			if (threadWrite != null && threadEnable == false && threadWrite.ThreadState == ThreadState.Running) threadWrite?.Abort( );
 		}
 
 		private void ThreadWriteMethod()

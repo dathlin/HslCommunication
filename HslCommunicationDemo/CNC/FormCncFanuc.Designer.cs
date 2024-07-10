@@ -29,7 +29,7 @@
         private void InitializeComponent( )
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("CNC_MEM");
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("CNC_MEM");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -120,6 +120,7 @@
 			this.AddNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.readNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.readNcLocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -993,10 +994,10 @@
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.treeView1.Location = new System.Drawing.Point(5, 99);
 			this.treeView1.Name = "treeView1";
-			treeNode2.Name = "节点0";
-			treeNode2.Text = "CNC_MEM";
+			treeNode1.Name = "节点0";
+			treeNode1.Text = "CNC_MEM";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
 			this.treeView1.Size = new System.Drawing.Size(204, 417);
 			this.treeView1.TabIndex = 66;
 			// 
@@ -1038,27 +1039,34 @@
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddNCToolStripMenuItem,
             this.readNCToolStripMenuItem,
-            this.deleteToolStripMenuItem});
+            this.deleteToolStripMenuItem,
+            this.readNcLocalToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(143, 70);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(155, 92);
 			// 
 			// AddNCToolStripMenuItem
 			// 
 			this.AddNCToolStripMenuItem.Name = "AddNCToolStripMenuItem";
-			this.AddNCToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.AddNCToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
 			this.AddNCToolStripMenuItem.Text = "添加NC程序";
 			// 
 			// readNCToolStripMenuItem
 			// 
 			this.readNCToolStripMenuItem.Name = "readNCToolStripMenuItem";
-			this.readNCToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.readNCToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
 			this.readNCToolStripMenuItem.Text = "读取NC程序";
 			// 
 			// deleteToolStripMenuItem
 			// 
 			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
 			this.deleteToolStripMenuItem.Text = "删除文件";
+			// 
+			// readNcLocalToolStripMenuItem
+			// 
+			this.readNcLocalToolStripMenuItem.Name = "readNcLocalToolStripMenuItem";
+			this.readNcLocalToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+			this.readNcLocalToolStripMenuItem.Text = "读取NC到本地";
 			// 
 			// FormCncFanuc
 			// 
@@ -1183,5 +1191,6 @@
 		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.TextBox textBox_diagnoss_axis;
 		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.ToolStripMenuItem readNcLocalToolStripMenuItem;
 	}
 }

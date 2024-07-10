@@ -23,7 +23,7 @@ namespace HslCommunicationDemo.PLC.WeCon
 				new DeviceAddressExample( "X0",    "输入继电器", bit: true, word: false, "X0~X1777  地址8进制" ),
 				new DeviceAddressExample( "Y0",    "输出继电器", bit: true, word: false, "X0~X1777  地址8进制" ),
 				new DeviceAddressExample( "D0",    "数据寄存器", bit: false, word: true, "D0~D7999" ),
-				new DeviceAddressExample( "SD0",   "特殊寄存器", bit: false, word: true, "SD0~D4095" ),
+				new DeviceAddressExample( "SD0",   "特殊寄存器", bit: false, word: true, "SD0~SD4095" ),
 				new DeviceAddressExample( "R0",    "数据寄存器", bit: false, word: true, "R0~R30000" ),
 				new DeviceAddressExample( "s=2;D0", "寄存器", bit: false, word: true, "支持额外指定站号信息" ),
 				new DeviceAddressExample( "D0.4",   "数据寄存器", bit: true, word: false, "支持直接访问寄存器的某个位" ),

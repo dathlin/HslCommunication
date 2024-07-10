@@ -52,7 +52,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "Melsec Read PLC Demo";
+				Text = "GE Read PLC Demo";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 			}

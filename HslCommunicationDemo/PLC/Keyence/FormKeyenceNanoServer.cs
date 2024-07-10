@@ -105,6 +105,7 @@ namespace HslCommunicationDemo
 			// 停止服务
 			keyencdeServer?.CloseSerialSlave( );
 			keyencdeServer?.ServerClose( );
+			userControlReadWriteServer1.Close( );
 			button1.Enabled = true;
 			button5.Enabled = true;
 			button11.Enabled = false;

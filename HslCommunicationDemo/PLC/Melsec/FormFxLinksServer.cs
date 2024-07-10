@@ -127,6 +127,7 @@ namespace HslCommunicationDemo
 			// 停止服务
 			fxLinksServer?.CloseSerialSlave( );
 			fxLinksServer?.ServerClose( );
+			userControlReadWriteServer1.Close( );
 			button5.Enabled = true;
 			button1.Enabled = true;
 			button11.Enabled = false;

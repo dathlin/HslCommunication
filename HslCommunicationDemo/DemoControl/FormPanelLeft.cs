@@ -3,6 +3,7 @@ using HslCommunicationDemo.Control;
 using HslCommunicationDemo.HslDebug;
 using HslCommunicationDemo.MQTT;
 using HslCommunicationDemo.PLC;
+using HslCommunicationDemo.PLC.Invt;
 using HslCommunicationDemo.PLC.Omron;
 using HslCommunicationDemo.PLC.WeCon;
 using HslCommunicationDemo.Redis;
@@ -299,6 +300,12 @@ namespace HslCommunicationDemo.DemoControl
 			megMeetNode.Nodes.Add( GetTreeNodeByIndex( "MegMeet TCP [Modbus]", 44, typeof( FormMegMeetTcpNet ) ) );
 			treeView1.Nodes.Add( megMeetNode );
 
+			// 英威腾PLC
+			TreeNode invtNode = new TreeNode( "Invt Plc[英威腾]", 45, 45 );
+			invtNode.Nodes.Add( GetTreeNodeByIndex( "Invt ModbusTcp", 45, typeof( FormInvtModbus ) ) );
+			invtNode.Nodes.Add( GetTreeNodeByIndex( "Invt ModbusRtu", 45, typeof( FormInvtModbusRtu ) ) );
+			treeView1.Nodes.Add( invtNode );
+
 			// Yokogawa Plc
 			TreeNode YokogawaNode = new TreeNode( "Yokogawa Plc[横河]", 31, 31 );
 			YokogawaNode.Nodes.Add( GetTreeNodeByIndex( "Yokogawa Link Tcp", 31, typeof( FormYokogawaLinkTcp ) ) );
@@ -465,6 +472,7 @@ namespace HslCommunicationDemo.DemoControl
 			// 其他界面
 			TreeNode othersNode = new TreeNode( "Special [特殊协议]" );
 			othersNode.Nodes.Add( new TreeNode( "Open Protocol" ) { Tag = typeof( FormOpenProtocol ) } );
+			othersNode.Nodes.Add( new TreeNode( "Open ProtocolServer" ) { Tag = typeof( FormOpenProtocolServer ) } );
 			othersNode.Nodes.Add( new TreeNode( "南京自动化 DCS" ) { Tag = typeof( FormDcsNanJingAuto ) } );
 			othersNode.Nodes.Add( new TreeNode( "Knx" ) { Tag = typeof( PLC.FormKnx ) } );
 			treeView1.Nodes.Add( othersNode );
@@ -601,6 +609,11 @@ namespace HslCommunicationDemo.DemoControl
 		public void RenderByteTransformDebug( )
 		{
 			RenderTreeNode( treeNodeDebug.Nodes[7] );
+		}
+
+		public void RenderRegexDebug( )
+		{
+			RenderTreeNode( treeNodeDebug.Nodes[0] );
 		}
 	}
 }

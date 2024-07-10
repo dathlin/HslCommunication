@@ -215,7 +215,7 @@ namespace HslCommunicationDemo
 		}
 
 		// 处理请求信息
-		private string HandleRequest( HttpListenerRequest request, HttpListenerResponse response, string data )
+		private object HandleRequest( HttpListenerRequest request, HttpListenerResponse response, string data )
 		{
 			if (request.RawUrl.StartsWith( "/FormHttpServer/" ))
 			{
@@ -224,11 +224,17 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				if (userApis.ContainsKey(request.RawUrl))
+				if (request.RawUrl == "/images/Doc/HslCommChapter3-6-6.png")    // 一个回复图片的例子
+				{
+					byte[] buffer = File.ReadAllBytes( "D:\\HslCommChapter6-1-4.png" );
+					response.ContentType = "image/png";
+					return buffer;
+				}
+				else if (userApis.ContainsKey( request.RawUrl ))
 				{
 					if (request.HttpMethod == userApis[request.RawUrl].HttpMethod)
 					{
-						response.AddHeader("Content-type", $"{userApis[request.RawUrl].ContentType}; charset=utf-8");
+						response.AddHeader( "Content-type", $"{userApis[request.RawUrl].ContentType}; charset=utf-8" );
 						return userApis[request.RawUrl].Body;
 					}
 					else

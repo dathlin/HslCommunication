@@ -83,6 +83,12 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		public void Close( )
+		{
+			if (checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
+			if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
+		}
+
 		private void Timer_write_Tick( object sender, EventArgs e )
 		{
 			this.button_write_timer?.PerformClick( );

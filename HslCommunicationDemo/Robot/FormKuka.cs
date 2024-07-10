@@ -40,9 +40,28 @@ namespace HslCommunicationDemo
 					new DeviceAddressExample( "$OV_PRO",    "OV_PRO variable",   false, false, "ReadString / ReadStringAsync" ),
 					new DeviceAddressExample( "$OV_JOG",    "OV_JOG variable",   false, false, "ReadString / ReadStringAsync" ),
 					new DeviceAddressExample( "$AXIS_ACT",  "AXIS_ACT variable", false, false, "ReadString / ReadStringAsync" ),
-					new DeviceAddressExample( "$POS_ACT",   "POS_ACT variable",  false, false, "ReadString / ReadStringAsync" ),
-					new DeviceAddressExample( "$MODE_OP",   "MODE_OP variable",  false, false, "ReadString / ReadStringAsync" ),
+					new DeviceAddressExample( "$AUT",      "",  false, false, "[String] “自动模式”信号声明" ),
+					new DeviceAddressExample( "$AXIS_INT",      "",  false, false, "[String] 中断时机器人的位置" ),
+					new DeviceAddressExample( "$MODE_OP",   "MODE_OP variable",  false, false, "[String] 显示当前操作模式" ),
 					new DeviceAddressExample( "$OUT[1]",    "OUT[1] variable",   false, false, "ReadString / ReadStringAsync" ),
+					new DeviceAddressExample( "$ACC_C",      "",  false, false, "[String] 在主运行中的轨迹、旋转和转动加速度" ),
+					new DeviceAddressExample( "$ACT_TOOL",      "",  false, false, "[String] 当前的刀具坐标系统号" ),
+					new DeviceAddressExample( "$COSYS",      "",  false, false, "[String] 步进坐标系统" ),
+					new DeviceAddressExample( "$COUNT_I[32]",      "",  false, false, "String 自由使用整数变量" ),
+					new DeviceAddressExample( "$PHGINFO",      "",  false, false, "[String] KCP CPU和软件版本的系列号" ),
+					new DeviceAddressExample( "$POS_ACT",      "",  false, false, "[String] 笛卡儿坐标系中当前机器人位置" ),
+					new DeviceAddressExample( "$POS_FOR",      "",  false, false, "[String] 笛卡儿坐标系中当前运动程序段的目标位置" ),
+					new DeviceAddressExample( "$PRO_IP.NAME[32]",      "",  false, false, "[String] 主运行的程序段名称" ),
+					new DeviceAddressExample( "$PRO_IP.SNR_C",      "",  false, false, "[String] 提前运行的程序段号" ),
+					new DeviceAddressExample( "$PRO_START",      "",  false, false, "[String] 开始程序/命令执行" ),
+					new DeviceAddressExample( "$ROBROOT",      "",  false, false, "[String] 机器人在world坐标系中的位置" ),
+					new DeviceAddressExample( "$ROBTRAFO",      "",  false, false, "[String] 机器人名称" ),
+					new DeviceAddressExample( "$TIME_POS[n]",      "",  false, false, "[String] 轴定位时间" ),
+					new DeviceAddressExample( "$TOOL.A",      "",  false, false, "[String] 绕Z轴旋转" ),
+					new DeviceAddressExample( "$KR_SERIALNO",      "",  false, false, "[String] 机器人序列号" ),
+					new DeviceAddressExample( "$MODEL_NAME",      "",  false, false, "[String] 机器人类" ),
+					new DeviceAddressExample( "$JUS_TOOL_NO",      "",  false, false, "[String] EMT 控制当前的刀具号" ),
+					new DeviceAddressExample( "tool_data[1]", "frame variable",  false, false, "ReadString / ReadStringAsync" ),
 				} );
 			DemoUtils.AddSpecialFunctionTab( this.tabControl1, addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
@@ -64,6 +83,8 @@ namespace HslCommunicationDemo
 				button2.Text = "Disconnect";
 				label6.Text = "address:";
 				label7.Text = "result:";
+				label5.Text = "If you need more robot system variable names, please become an enterprise user object, thanks for the support.";
+
 
 				button_read_string.Text = "r-string";
 

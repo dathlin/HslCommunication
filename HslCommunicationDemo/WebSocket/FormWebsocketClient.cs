@@ -10,6 +10,7 @@ using HslCommunication.WebSocket;
 using HslCommunication;
 using System.Threading;
 using System.Xml.Linq;
+using System.Runtime.Remoting.Contexts;
 
 namespace HslCommunicationDemo
 {
@@ -48,15 +49,12 @@ namespace HslCommunicationDemo
 				button3.Text = "发送";
 				button4.Text = "清空";
 				label12.Text = "接收：";
-				button5.Text = "压力测试";
 			}
 			else
 			{
 				Text = "Websocket Client Test";
 				label1.Text = "Ip:";
-				label2.Text = "Name:";
 				label3.Text = "Port:";
-				label4.Text = "Pwd:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label6.Text = "Topic:";
@@ -64,8 +62,8 @@ namespace HslCommunicationDemo
 				button3.Text = "Send";
 				button4.Text = "Clear";
 				label12.Text = "Receive:";
-				button5.Text = "Press Test";
-
+				label5.Text = "Connect-T:";
+				checkBox2.Text = "GET Carray Host?";
 			}
 		}
 
@@ -74,10 +72,6 @@ namespace HslCommunicationDemo
 		private void button1_Click( object sender, EventArgs e )
 		{
 			panel2.Enabled = true;
-			if(!string.IsNullOrEmpty(textBox9.Text) || !string.IsNullOrEmpty( textBox10.Text ))
-			{
-				
-			}
 
 			wsClient?.ConnectClose( );
 			if (textBox1.Text.StartsWith( "ws://", StringComparison.OrdinalIgnoreCase ) ||
@@ -92,6 +86,13 @@ namespace HslCommunicationDemo
 			wsClient.LogNet = new HslCommunication.LogNet.LogNetSingle( string.Empty );
 			wsClient.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			wsClient.OnClientApplicationMessageReceive += WebSocket_OnWebSocketMessageReceived;
+			wsClient.GetCarryHostAndPort = checkBox2.Checked;
+
+			if (!int.TryParse( textBox11.Text, out int connectTimeout )){
+				MessageBox.Show( "Connect time is not correct!" );
+				return;
+			}
+			wsClient.ConnectTimeOut = connectTimeout;
 			//wsClient.OnNetworkError += WsClient_OnNetworkError; // 这里使用内置的处理方式，一般也就够用了。
 			if (checkBox_SSL.Checked){
 				wsClient.UseSSL( textBox_ssl_ca.Text );
@@ -114,6 +115,33 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
 			}
+		}
+
+		private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+		{
+			StringBuilder sb = new StringBuilder( );
+			if (textBox1.Text.StartsWith( "ws://", StringComparison.OrdinalIgnoreCase ) ||
+				textBox1.Text.StartsWith( "wss://", StringComparison.OrdinalIgnoreCase ))
+			{
+				sb.AppendLine( $"WebSocketClient wsClient = new WebSocketClient( \"{textBox1.Text}\" );" ); //( textBox1.Text, int.Parse(textBox2.Text), textBox5.Text );
+			}
+			else
+			{
+				sb.AppendLine( $"WebSocketClient wsClient = new WebSocketClient( \"{textBox1.Text}\", {int.Parse( textBox2.Text )}, \"{textBox5.Text}\" );" );//( textBox1.Text, int.Parse(textBox2.Text), textBox5.Text );
+			}
+			sb.AppendLine( $"wsClient.GetCarryHostAndPort = {checkBox2.Checked.ToString( ).ToLower( )};" );
+			if (checkBox_SSL.Checked)
+			{
+				sb.AppendLine( $"wsClient.UseSSL( \"{textBox_ssl_ca.Text}\" );");
+			}
+			sb.AppendLine( $"wsClient.ConnectTimeOut = {textBox11.Text};" );
+			if (string.IsNullOrEmpty( textBox3.Text ))
+				sb.AppendLine( $"OperateResult connect = wsClient.ConnectServer( );" );
+			else
+				sb.AppendLine( $"OperateResult connect = wsClient.ConnectServer( \"{textBox3.Text}\".Split( new char[] {{','}}, StringSplitOptions.RemoveEmptyEntries ) );" );
+			sb.AppendLine( $"//wsClient.OnClientApplicationMessageReceive += WebSocket_OnWebSocketMessageReceived;  // 收到数据触发事件" );
+			sb.AppendLine( $"//wsClient.SendServer( \"ABCD1234\" );   // 发送数据到服务器上去" );
+			textBox8.Text = sb.ToString( );
 		}
 
 		private void WsClient_OnNetworkError( object sender, EventArgs e )
@@ -234,15 +262,6 @@ namespace HslCommunicationDemo
 			textBox8.Clear( );
 		}
 
-		private void button5_Click( object sender, EventArgs e )
-		{
-			button5.Enabled = false;
-			MessageBox.Show( "暂时不支持" );
-			//for (int i = 0; i < testThreadCount; i++)
-			//	new Thread( new ThreadStart( ThreadPoolTest ) ) { IsBackground = true }.Start( );
-		}
-
-
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
@@ -250,8 +269,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlUrl, textBox5.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTimeout, textBox11.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTopic, textBox3.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox9.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox10.Text );
+			element.SetAttributeValue( nameof( WebSocketClient.GetCarryHostAndPort ), checkBox2.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -262,8 +280,7 @@ namespace HslCommunicationDemo
 			textBox5.Text = element.Attribute( DemoDeviceList.XmlUrl ).Value;
 			textBox11.Text = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
 			textBox3.Text = element.Attribute( DemoDeviceList.XmlTopic ).Value;
-			textBox9.Text = element.Attribute( DemoDeviceList.XmlUserName ).Value;
-			textBox10.Text = element.Attribute( DemoDeviceList.XmlPassword ).Value;
+			checkBox2.Checked = GetXmlValue( element, nameof( WebSocketClient.GetCarryHostAndPort ), false, bool.Parse );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
@@ -281,6 +298,7 @@ namespace HslCommunicationDemo
 				}
 			}
 		}
+
 	}
 
 

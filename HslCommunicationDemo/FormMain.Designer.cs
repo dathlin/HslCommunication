@@ -62,6 +62,7 @@
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
+			this.regexRegularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -120,7 +121,8 @@
             this.toolStripMenuItem_tcpUdpServer,
             this.toolStripMenuItem_serial2Tcp,
             this.toolStripMenuItem_tcp2Tcp,
-            this.toolStripMenuItem_byteTransform});
+            this.toolStripMenuItem_byteTransform,
+            this.regexRegularToolStripMenuItem});
 			this.toolStripMenuItem_Debug.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.toolStripMenuItem_Debug.Name = "toolStripMenuItem_Debug";
 			this.toolStripMenuItem_Debug.Size = new System.Drawing.Size(76, 21);
@@ -334,6 +336,13 @@
 			this.label2.TabIndex = 42;
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
+			// regexRegularToolStripMenuItem
+			// 
+			this.regexRegularToolStripMenuItem.Name = "regexRegularToolStripMenuItem";
+			this.regexRegularToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.regexRegularToolStripMenuItem.Text = "RegexRegular";
+			this.regexRegularToolStripMenuItem.Click += new System.EventHandler(this.regexRegularToolStripMenuItem_Click);
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -396,6 +405,7 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_serial2Tcp;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_tcp2Tcp;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_byteTransform;
+		private System.Windows.Forms.ToolStripMenuItem regexRegularToolStripMenuItem;
 	}
 }
 

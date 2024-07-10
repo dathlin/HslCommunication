@@ -38,7 +38,7 @@ namespace HslCommunicationDemo
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 
 			addressExampleControl = new AddressExampleControl( );
-			addressExampleControl.SetAddressExample( Helper.GetMcAddress( ) );
+			addressExampleControl.SetAddressExample( Helper.GetMcAddress( advance: true ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
 			codeExampleControl = new CodeExampleControl( );

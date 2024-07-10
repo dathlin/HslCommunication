@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_login_password = new System.Windows.Forms.TextBox();
+			this.label_login_password = new System.Windows.Forms.Label();
+			this.textBox_login_name = new System.Windows.Forms.TextBox();
+			this.label_login_name = new System.Windows.Forms.Label();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -47,6 +51,7 @@
 			this.button_stop = new System.Windows.Forms.Button();
 			this.button_clear = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.button4 = new System.Windows.Forms.Button();
 			this.textBox_session_activeTime = new System.Windows.Forms.TextBox();
 			this.label23 = new System.Windows.Forms.Label();
 			this.textBox_session_willTopic = new System.Windows.Forms.TextBox();
@@ -119,6 +124,10 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_login_password);
+			this.panel1.Controls.Add(this.label_login_password);
+			this.panel1.Controls.Add(this.textBox_login_name);
+			this.panel1.Controls.Add(this.label_login_name);
 			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.checkBox3);
 			this.panel1.Controls.Add(this.checkBox1);
@@ -131,6 +140,40 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(999, 60);
 			this.panel1.TabIndex = 7;
+			// 
+			// textBox_login_password
+			// 
+			this.textBox_login_password.Location = new System.Drawing.Point(770, 31);
+			this.textBox_login_password.Name = "textBox_login_password";
+			this.textBox_login_password.Size = new System.Drawing.Size(100, 23);
+			this.textBox_login_password.TabIndex = 14;
+			this.textBox_login_password.Text = "123456";
+			// 
+			// label_login_password
+			// 
+			this.label_login_password.AutoSize = true;
+			this.label_login_password.Location = new System.Drawing.Point(701, 34);
+			this.label_login_password.Name = "label_login_password";
+			this.label_login_password.Size = new System.Drawing.Size(44, 17);
+			this.label_login_password.TabIndex = 13;
+			this.label_login_password.Text = "密码：";
+			// 
+			// textBox_login_name
+			// 
+			this.textBox_login_name.Location = new System.Drawing.Point(582, 31);
+			this.textBox_login_name.Name = "textBox_login_name";
+			this.textBox_login_name.Size = new System.Drawing.Size(100, 23);
+			this.textBox_login_name.TabIndex = 12;
+			this.textBox_login_name.Text = "admin";
+			// 
+			// label_login_name
+			// 
+			this.label_login_name.AutoSize = true;
+			this.label_login_name.Location = new System.Drawing.Point(520, 34);
+			this.label_login_name.Name = "label_login_name";
+			this.label_login_name.Size = new System.Drawing.Size(56, 17);
+			this.label_login_name.TabIndex = 11;
+			this.label_login_name.Text = "用户名：";
 			// 
 			// checkBox2
 			// 
@@ -157,9 +200,9 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Location = new System.Drawing.Point(523, 7);
 			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(288, 21);
+			this.checkBox1.Size = new System.Drawing.Size(159, 21);
 			this.checkBox1.TabIndex = 6;
-			this.checkBox1.Text = "启用用户名和密码(用户名 admin  密码: 123456)";
+			this.checkBox1.Text = "启用下面的用户名和密码";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
 			// button2
@@ -327,6 +370,7 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.button4);
 			this.tabPage2.Controls.Add(this.textBox_session_activeTime);
 			this.tabPage2.Controls.Add(this.label23);
 			this.tabPage2.Controls.Add(this.textBox_session_willTopic);
@@ -354,6 +398,16 @@
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Sessions";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(388, 241);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(104, 28);
+			this.button4.TabIndex = 27;
+			this.button4.Text = "Logoff";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click_1);
 			// 
 			// textBox_session_activeTime
 			// 
@@ -408,11 +462,11 @@
 			this.textBox_session_topics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_session_topics.Location = new System.Drawing.Point(483, 37);
+			this.textBox_session_topics.Location = new System.Drawing.Point(498, 37);
 			this.textBox_session_topics.Multiline = true;
 			this.textBox_session_topics.Name = "textBox_session_topics";
 			this.textBox_session_topics.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_session_topics.Size = new System.Drawing.Size(499, 230);
+			this.textBox_session_topics.Size = new System.Drawing.Size(484, 230);
 			this.textBox_session_topics.TabIndex = 20;
 			// 
 			// label15
@@ -620,8 +674,8 @@
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
@@ -1024,5 +1078,10 @@
 		private System.Windows.Forms.TextBox textBox_session_activeTime;
 		private System.Windows.Forms.Label label23;
 		private System.Windows.Forms.CheckBox checkBox_retain;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.TextBox textBox_login_password;
+		private System.Windows.Forms.Label label_login_password;
+		private System.Windows.Forms.TextBox textBox_login_name;
+		private System.Windows.Forms.Label label_login_name;
 	}
 }

@@ -107,6 +107,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "bin",              Properties.Resources.bin );               // 42
 			imageList.Images.Add( "wecon",            Properties.Resources.wecon );             // 43
 			imageList.Images.Add( "megmeet",          Properties.Resources.megmeet );           // 44
+			imageList.Images.Add( "invt",             Properties.Resources.invt );              // 45
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;
@@ -470,6 +471,12 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "更新软件丢失，无法启动更新： " + ex.Message );
 			}
+		}
+
+		private void regexRegularToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			// 正则表达式
+			panelLeft?.RenderRegexDebug( );
 		}
 
 		#endregion

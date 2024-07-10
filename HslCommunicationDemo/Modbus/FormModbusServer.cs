@@ -185,7 +185,7 @@ namespace HslCommunicationDemo
 			// 停止服务
 			busTcpServer?.CloseSerialSlave( );
 			busTcpServer?.ServerClose( );
-			busTcpServer?.Dispose( );
+			this.userControlReadWriteServer1.Close( );
 			button1.Enabled = true;
 			button5.Enabled = true;
 			button11.Enabled = false;

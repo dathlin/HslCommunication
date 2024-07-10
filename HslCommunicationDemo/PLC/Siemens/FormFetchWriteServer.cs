@@ -92,6 +92,7 @@ namespace HslCommunicationDemo
 		{
 			// 停止服务
 			s7NetServer?.ServerClose( );
+			userControlReadWriteServer1.Close( );
 			button1.Enabled = true;
 			button11.Enabled = false;
 		}

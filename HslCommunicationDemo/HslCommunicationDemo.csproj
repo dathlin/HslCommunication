@@ -74,11 +74,12 @@
     <Reference Include="DynamicExpresso.Core, Version=2.16.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicExpresso.Core.2.16.1\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.0.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.0.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.0.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.0.3\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
-    <Reference Include="HslControls, Version=3.3.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\HslControls.3.3.2\lib\net45\HslControls.dll</HintPath>
+    <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -608,6 +609,12 @@
     <Compile Include="MQTT\FormWillTopicSetting.Designer.cs">
       <DependentUpon>FormWillTopicSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpenProtocol\FormOpenProtocolServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenProtocol\FormOpenProtocolServer.Designer.cs">
+      <DependentUpon>FormOpenProtocolServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\AllenBrandly\AllenBrandlyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -678,6 +685,19 @@
     </Compile>
     <Compile Include="PLC\Ge\Helper.cs" />
     <Compile Include="PLC\Inovance\Helper.cs" />
+    <Compile Include="PLC\Invt\FormInvtModbus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Invt\FormInvtModbus.Designer.cs">
+      <DependentUpon>FormInvtModbus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Invt\FormInvtModbusRtu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Invt\FormInvtModbusRtu.Designer.cs">
+      <DependentUpon>FormInvtModbusRtu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Invt\Helper.cs" />
     <Compile Include="PLC\Keyence\Helper.cs" />
     <Compile Include="PLC\Keyence\NanoControl.cs">
       <SubType>UserControl</SubType>
@@ -1245,10 +1265,10 @@
     <Compile Include="FormMail.Designer.cs">
       <DependentUpon>FormMail.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormOpenProtocol.cs">
+    <Compile Include="OpenProtocol\FormOpenProtocol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOpenProtocol.Designer.cs">
+    <Compile Include="OpenProtocol\FormOpenProtocol.Designer.cs">
       <DependentUpon>FormOpenProtocol.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRegister.cs">
@@ -2152,6 +2172,9 @@
     <EmbeddedResource Include="MQTT\FormWillTopicSetting.resx">
       <DependentUpon>FormWillTopicSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OpenProtocol\FormOpenProtocolServer.resx">
+      <DependentUpon>FormOpenProtocolServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\AllenBrandly\AllenBrandlyControl.resx">
       <DependentUpon>AllenBrandlyControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -2187,6 +2210,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Ge\GeControl.resx">
       <DependentUpon>GeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Invt\FormInvtModbus.resx">
+      <DependentUpon>FormInvtModbus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Invt\FormInvtModbusRtu.resx">
+      <DependentUpon>FormInvtModbusRtu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Keyence\NanoControl.resx">
       <DependentUpon>NanoControl.cs</DependentUpon>
@@ -2479,7 +2508,7 @@
     <EmbeddedResource Include="FormMail.resx">
       <DependentUpon>FormMail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormOpenProtocol.resx">
+    <EmbeddedResource Include="OpenProtocol\FormOpenProtocol.resx">
       <DependentUpon>FormOpenProtocol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegister.resx">
@@ -2849,6 +2878,7 @@
     <None Include="img\GitHub-Symbol.png" />
     <None Include="img\wecon.png" />
     <None Include="img\megmeet.png" />
+    <None Include="img\invt.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

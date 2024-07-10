@@ -42,10 +42,12 @@ namespace HslCommunicationDemo
 			AddNCToolStripMenuItem.Click += AddNCToolStripMenuItem_Click;
 			readNCToolStripMenuItem.Click += ReadNCToolStripMenuItem_Click;
 			deleteToolStripMenuItem.Click += DeleteToolStripMenuItem_Click;
+			readNcLocalToolStripMenuItem.Click += ReadNcLocalToolStripMenuItem_Click;
 			Language( Program.Language );
 
 			panel4.Paint += Panel4_Paint;
 		}
+
 
 		private void Panel4_Paint( object sender, PaintEventArgs e )
 		{
@@ -77,6 +79,8 @@ namespace HslCommunicationDemo
 				button28.Text = "Read Program";
 				button29.Text = "Del Program";
 				label15.Text = "Right Mouse Click";
+
+
 			}
 		}
 
@@ -732,6 +736,37 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private async void ReadNcLocalToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			TreeNode treeNode = treeView1.SelectedNode;
+			if (treeNode == null) return;
+
+			if (treeNode.Tag is FileDirInfo fileDirInfo)
+			{
+				if (fileDirInfo.IsDirectory) return;
+
+				string path = GetPathFromTree( treeNode.Parent );
+				//int program = int.Parse( fileDirInfo.Name.Substring( 1 ) );
+
+				//OperateResult<string> read = fanuc.ReadProgram( program, path );
+				OperateResult<string> read = await fanuc.ReadProgramAsync( fileDirInfo.Name, path );
+				if (read.IsSuccess)
+				{
+					// 弹窗让用户选择保存的文件路径
+					SaveFileDialog sfd = new SaveFileDialog( );
+					if (sfd.ShowDialog() == DialogResult.OK)
+					{
+						string fileName = sfd.FileName;
+						System.IO.File.WriteAllText( fileName, read.Content );
+						MessageBox.Show( "Save success!" );
+					}
+				}
+				else
+				{
+					MessageBox.Show( "read failed！" + read.ToMessageShowString( ) );
+				}
+			}
+		}
 		private async void AddNCToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			TreeNode treeNode = treeView1.SelectedNode;

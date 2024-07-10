@@ -42,10 +42,10 @@
 			this.checkBox_cycle = new System.Windows.Forms.CheckBox();
 			this.button_data_import = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.batchReadControl1 = new HslCommunicationDemo.DemoControl.BatchReadControl();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.dataTableControl1 = new HslCommunicationDemo.DemoControl.DataTableControl();
+			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.dataSimulateControl1 = new HslCommunicationDemo.DemoControl.DataSimulateControl();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
 			this.tabControl1.SuspendLayout();
@@ -125,7 +125,7 @@
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(936, 164);
+			this.textBox1.Size = new System.Drawing.Size(936, 160);
 			this.textBox1.TabIndex = 23;
 			// 
 			// button1
@@ -217,35 +217,13 @@
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.batchReadControl1);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Location = new System.Drawing.Point(4, 26);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(948, 207);
+			this.tabPage2.Size = new System.Drawing.Size(948, 203);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "批量读取";
 			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// tabPage3
-			// 
-			this.tabPage3.Controls.Add(this.dataTableControl1);
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(948, 207);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "点位表";
-			this.tabPage3.UseVisualStyleBackColor = true;
-			// 
-			// tabPage4
-			// 
-			this.tabPage4.Controls.Add(this.dataSimulateControl1);
-			this.tabPage4.Location = new System.Drawing.Point(4, 22);
-			this.tabPage4.Name = "tabPage4";
-			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(948, 207);
-			this.tabPage4.TabIndex = 3;
-			this.tabPage4.Text = "数据模拟";
-			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
 			// batchReadControl1
 			// 
@@ -254,8 +232,19 @@
 			this.batchReadControl1.IsSourceReadMode = false;
 			this.batchReadControl1.Location = new System.Drawing.Point(3, 3);
 			this.batchReadControl1.Name = "batchReadControl1";
-			this.batchReadControl1.Size = new System.Drawing.Size(942, 201);
+			this.batchReadControl1.Size = new System.Drawing.Size(942, 197);
 			this.batchReadControl1.TabIndex = 1;
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.dataTableControl1);
+			this.tabPage3.Location = new System.Drawing.Point(4, 26);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(948, 203);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "点位表";
+			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
 			// dataTableControl1
 			// 
@@ -263,8 +252,19 @@
 			this.dataTableControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.dataTableControl1.Location = new System.Drawing.Point(3, 3);
 			this.dataTableControl1.Name = "dataTableControl1";
-			this.dataTableControl1.Size = new System.Drawing.Size(942, 201);
+			this.dataTableControl1.Size = new System.Drawing.Size(942, 197);
 			this.dataTableControl1.TabIndex = 1;
+			// 
+			// tabPage4
+			// 
+			this.tabPage4.Controls.Add(this.dataSimulateControl1);
+			this.tabPage4.Location = new System.Drawing.Point(4, 26);
+			this.tabPage4.Name = "tabPage4";
+			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage4.Size = new System.Drawing.Size(948, 203);
+			this.tabPage4.TabIndex = 3;
+			this.tabPage4.Text = "数据模拟";
+			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
 			// dataSimulateControl1
 			// 
@@ -272,7 +272,7 @@
 			this.dataSimulateControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.dataSimulateControl1.Location = new System.Drawing.Point(3, 3);
 			this.dataSimulateControl1.Name = "dataSimulateControl1";
-			this.dataSimulateControl1.Size = new System.Drawing.Size(942, 201);
+			this.dataSimulateControl1.Size = new System.Drawing.Size(942, 197);
 			this.dataSimulateControl1.TabIndex = 0;
 			// 
 			// userControlReadWriteOp1

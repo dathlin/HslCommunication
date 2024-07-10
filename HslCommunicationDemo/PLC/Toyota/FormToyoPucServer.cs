@@ -88,6 +88,7 @@ namespace HslCommunicationDemo
 		{
 			// 停止服务
 			server?.ServerClose( );
+			userControlReadWriteServer1.Close( );
 			button1.Enabled = true;
 			button11.Enabled = false;
 		}

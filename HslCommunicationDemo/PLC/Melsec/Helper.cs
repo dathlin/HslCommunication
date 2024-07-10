@@ -38,9 +38,9 @@ namespace HslCommunicationDemo.PLC.Melsec
 		/// 获取MC协议的地址示例
 		/// </summary>
 		/// <returns>地址示例信息</returns>
-		public static DeviceAddressExample[] GetMcAddress( )
+		public static DeviceAddressExample[] GetMcAddress( bool advance = false )
 		{
-			return new DeviceAddressExample[]
+			List< DeviceAddressExample> list = new List<DeviceAddressExample>()
 			{
 				new DeviceAddressExample( "M0",  "内部继电器",       true, true, "" ),
 				new DeviceAddressExample( "X0",  "输入继电器",       true, true, "默认16进制，如果需要8进制，使用0开头 X011" ),
@@ -71,6 +71,14 @@ namespace HslCommunicationDemo.PLC.Melsec
 				new DeviceAddressExample( "SN0", "累计定时器当前值", false, true, "" ),
 				new DeviceAddressExample( "CN0", "计数器当前值",     false, true, "" )
 			};
+			if (advance)
+			{
+				list.Add( new DeviceAddressExample( "ext=1;W100", "扩展的数据地址", false, true, "[商业授权] 访问扩展区域为1的W100的地址信息" ) );
+				list.Add( new DeviceAddressExample( "mem=32", "缓冲存储器地址", false, true, "[商业授权] 访问地址为32的本站缓冲存储器地址" ) );
+				list.Add( new DeviceAddressExample( "module=3;4106", "智能模块地址", false, true, "[商业授权] 访问模块号3，偏移地址是4106的数据，偏移地址需要根据模块的详细信息来确认。" ) );
+				list.Add( new DeviceAddressExample( "s=AAA", "基于标签的地址", false, true, "[商业授权] 仅支持GX Works3的全局标签并且配置对外公开" ) );
+			}
+			return list.ToArray( );
 		}
 
 		public static DeviceAddressExample[] GetMcServerAddress( )

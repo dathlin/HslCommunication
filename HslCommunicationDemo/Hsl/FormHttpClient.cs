@@ -414,6 +414,10 @@ namespace HslCommunicationDemo
 
 				}
 			}
+			else if (radioButton_response_hex.Checked)
+			{
+				msg = Encoding.UTF8.GetBytes( msg ).ToHexString( ' ' );
+			}
 
 			textBox8.Text = msg;
 		}

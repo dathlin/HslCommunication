@@ -120,6 +120,9 @@ namespace HslCommunicationDemo
 				checkBox_publish_timer.Text = "Timer";
 				button_stop.Text = "Stop";
 				checkBox_long_message_hide.Text = "Long text for partial display";
+				checkBox1.Text = "Enable the username and password below:";
+				label_login_name.Text = "Name:";
+				label_login_password.Text = "Password:";
 			}
 		}
 
@@ -188,12 +191,18 @@ namespace HslCommunicationDemo
 				mqttServer.PublishTopicPayload( session, "HslMqtt", Encoding.UTF8.GetBytes( "This is a test message" ) );
 			}
 
-			comboBox_session_select.DataSource = mqttServer.OnlineSessions;
+			Invoke( new Action( ( ) =>
+			{
+				comboBox_session_select.DataSource = mqttServer.OnlineSessions;
+			} ) );
 		}
 
 		private void MqttServer_OnClientDisConnected( MqttSession session )
 		{
-			comboBox_session_select.DataSource = mqttServer.OnlineSessions;
+			Invoke( new Action( ( ) =>
+			{
+				comboBox_session_select.DataSource = mqttServer.OnlineSessions;
+			} ) );
 		}
 
 		private void ComboBox_session_select_SelectedIndexChanged( object sender, EventArgs e )
@@ -216,9 +225,12 @@ namespace HslCommunicationDemo
 
 		private int MqttServer_ClientVerification( MqttSession mqttSession, string clientId, string userName, string passwrod )
 		{
-			if (userName == "hsl") mqttSession.DeveloperPermissions = false;      // hsl不具备开发者权限，无法遍历接口
-			if (userName == "admin" && passwrod == "123456") return 0; // 成功
-			if (userName == "hsl" && passwrod == "123456") return 0; // 成功
+			if (userName == textBox_login_name.Text.Trim( ) && passwrod == textBox_login_password.Text.Trim( )) return 0; // 成功
+			if (userName == "hsl" && passwrod == "123456")
+			{
+				mqttSession.DeveloperPermissions = true;   // 例如也让hsl账户拥有开发者权限，可以遍历接口，请求主题信息等操作
+				return 0; // 成功
+			}
 			return 5; // 账号密码验证失败
 		}
 
@@ -630,6 +642,13 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
+		private void button4_Click_1( object sender, EventArgs e )
+		{
+			if (comboBox_session_select.SelectedItem is MqttSession session)
+			{
+				mqttServer.RemoveAndCloseSession( session, "" );
+			}
+		}
 	}
 
 	public class TopicSaveItem

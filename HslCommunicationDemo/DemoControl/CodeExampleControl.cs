@@ -284,6 +284,13 @@ namespace HslCommunicationDemo.DemoControl
 			this.textBox1.Text = stringBuilder.ToString( );
 		}
 
+		public void SetCodeText( string deviceName,TcpNetCommunication device, params string[] props )
+		{
+			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
+			SetPropties( deviceName, stringBuilder, device, props );
+			this.textBox1.Text = stringBuilder.ToString( );
+		}
+
 		public void SetCodeText( string deviceName, DeviceUdpNet device, params string[] props )
 		{
 			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
@@ -523,6 +530,15 @@ namespace HslCommunicationDemo.DemoControl
 		}
 
 		public static StringBuilder CreateStringBulider( DeviceUdpNet device, string deviceName )
+		{
+			if (device == null) return new StringBuilder( );
+
+			StringBuilder sb = CreateFromObject( device, deviceName );
+			CreateCommunicationPipe( sb, device.CommunicationPipe, deviceName );
+			return sb;
+		}
+
+		public static StringBuilder CreateStringBulider( TcpNetCommunication device, string deviceName )
 		{
 			if (device == null) return new StringBuilder( );
 

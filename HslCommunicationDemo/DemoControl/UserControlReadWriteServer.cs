@@ -103,6 +103,13 @@ namespace HslCommunicationDemo.DemoControl
 			textBox1.Enabled = enbale;
 		}
 
+		public void Close( )
+		{
+			this.userControlReadWriteOp1.Close( );
+			this.dataTableControl1.Close( );
+			this.dataSimulateControl1.Close( );
+		}
+
 		DeviceServer deviceServer;
 
 		private void UserControlReadWriteServer_Load( object sender, EventArgs e )

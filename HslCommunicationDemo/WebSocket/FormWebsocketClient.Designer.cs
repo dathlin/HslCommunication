@@ -29,20 +29,17 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.button_ssl_file = new System.Windows.Forms.Button();
 			this.textBox_ssl_ca = new System.Windows.Forms.TextBox();
 			this.checkBox_SSL = new System.Windows.Forms.CheckBox();
 			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.button5 = new System.Windows.Forms.Button();
 			this.label7 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.textBox10 = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.textBox9 = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
@@ -80,20 +77,17 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.linkLabel1);
+			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.button_ssl_file);
 			this.panel1.Controls.Add(this.textBox_ssl_ca);
 			this.panel1.Controls.Add(this.checkBox_SSL);
 			this.panel1.Controls.Add(this.textBox5);
-			this.panel1.Controls.Add(this.button5);
 			this.panel1.Controls.Add(this.label7);
 			this.panel1.Controls.Add(this.textBox3);
 			this.panel1.Controls.Add(this.label6);
 			this.panel1.Controls.Add(this.textBox11);
 			this.panel1.Controls.Add(this.label5);
-			this.panel1.Controls.Add(this.textBox10);
-			this.panel1.Controls.Add(this.label4);
-			this.panel1.Controls.Add(this.textBox9);
-			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox2);
@@ -107,6 +101,28 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 97);
 			this.panel1.TabIndex = 7;
+			// 
+			// linkLabel1
+			// 
+			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.linkLabel1.AutoSize = true;
+			this.linkLabel1.Location = new System.Drawing.Point(897, 72);
+			this.linkLabel1.Name = "linkLabel1";
+			this.linkLabel1.Size = new System.Drawing.Size(57, 17);
+			this.linkLabel1.TabIndex = 27;
+			this.linkLabel1.TabStop = true;
+			this.linkLabel1.Text = "<Code>";
+			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(669, 38);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(143, 21);
+			this.checkBox2.TabIndex = 26;
+			this.checkBox2.Text = "GET 携带 Host 信息?";
+			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// button_ssl_file
 			// 
@@ -140,35 +156,24 @@
 			// 
 			// textBox5
 			// 
-			this.textBox5.Location = new System.Drawing.Point(455, 2);
+			this.textBox5.Location = new System.Drawing.Point(498, 6);
 			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(209, 23);
+			this.textBox5.Size = new System.Drawing.Size(291, 23);
 			this.textBox5.TabIndex = 21;
-			// 
-			// button5
-			// 
-			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button5.Location = new System.Drawing.Point(897, 64);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(91, 28);
-			this.button5.TabIndex = 19;
-			this.button5.Text = "压力测试";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.ForeColor = System.Drawing.Color.Gray;
-			this.label7.Location = new System.Drawing.Point(646, 42);
+			this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+			this.label7.Location = new System.Drawing.Point(249, 42);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(338, 17);
+			this.label7.Size = new System.Drawing.Size(206, 17);
 			this.label7.TabIndex = 18;
-			this.label7.Text = "主题只对hsl的websocket服务器有效，用户名密码暂时不支持";
+			this.label7.Text = "主题只对hsl的websocket服务器有效";
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(62, 42);
+			this.textBox3.Location = new System.Drawing.Point(62, 38);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(181, 23);
 			this.textBox3.TabIndex = 17;
@@ -176,7 +181,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(5, 45);
+			this.label6.Location = new System.Drawing.Point(5, 41);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(44, 17);
 			this.label6.TabIndex = 16;
@@ -184,7 +189,7 @@
 			// 
 			// textBox11
 			// 
-			this.textBox11.Location = new System.Drawing.Point(736, 5);
+			this.textBox11.Location = new System.Drawing.Point(929, 36);
 			this.textBox11.Name = "textBox11";
 			this.textBox11.Size = new System.Drawing.Size(51, 23);
 			this.textBox11.TabIndex = 15;
@@ -193,43 +198,11 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(670, 8);
+			this.label5.Location = new System.Drawing.Point(845, 39);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 17);
 			this.label5.TabIndex = 14;
-			this.label5.Text = "接收超时：";
-			// 
-			// textBox10
-			// 
-			this.textBox10.Location = new System.Drawing.Point(527, 41);
-			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(114, 23);
-			this.textBox10.TabIndex = 13;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(463, 44);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(44, 17);
-			this.label4.TabIndex = 12;
-			this.label4.Text = "密码：";
-			// 
-			// textBox9
-			// 
-			this.textBox9.Location = new System.Drawing.Point(313, 42);
-			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(144, 23);
-			this.textBox9.TabIndex = 11;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(249, 45);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(56, 17);
-			this.label2.TabIndex = 10;
-			this.label2.Text = "用户名：";
+			this.label5.Text = "连接超时：";
 			// 
 			// button2
 			// 
@@ -254,7 +227,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(349, 3);
+			this.textBox2.Location = new System.Drawing.Point(392, 7);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
@@ -263,7 +236,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(294, 6);
+			this.label3.Location = new System.Drawing.Point(337, 10);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -271,16 +244,16 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(59, 3);
+			this.textBox1.Location = new System.Drawing.Point(59, 7);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(228, 23);
+			this.textBox1.Size = new System.Drawing.Size(274, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "127.0.0.1";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(5, 6);
+			this.label1.Location = new System.Drawing.Point(5, 10);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 17);
 			this.label1.TabIndex = 0;
@@ -289,7 +262,7 @@
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(417, 4);
+			this.label10.Location = new System.Drawing.Point(460, 9);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(35, 17);
 			this.label10.TabIndex = 22;
@@ -298,11 +271,12 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(471, 25);
+			this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label8.Location = new System.Drawing.Point(495, 33);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(127, 17);
+			this.label8.Size = new System.Drawing.Size(145, 17);
 			this.label8.TabIndex = 20;
-			this.label8.Text = "举例 /A/B?C=123456";
+			this.label8.Text = "url举例: /A/B?C=123456";
 			// 
 			// panel2
 			// 
@@ -558,10 +532,6 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label9;
         private DemoControl.UserControlHead userControlHead1;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox3;
@@ -573,7 +543,6 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.TextBox textBox5;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label label10;
@@ -585,5 +554,7 @@
 		private System.Windows.Forms.CheckBox checkBox_SSL;
 		private System.Windows.Forms.Button button_ssl_file;
 		private System.Windows.Forms.TextBox textBox_ssl_ca;
+		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.LinkLabel linkLabel1;
 	}
 }

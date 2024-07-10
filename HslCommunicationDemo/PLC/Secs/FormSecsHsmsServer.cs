@@ -339,7 +339,7 @@ namespace HslCommunicationDemo.PLC.Secs
 		private void button_device_send_Click( object sender, EventArgs e )
 		{
 			OperateResult publish = server.PublishSecsMessage( byte.Parse( textBox_device_s.Text ), byte.Parse( textBox_device_f.Text ),
-				string.IsNullOrEmpty( textBox_device_send.Text ) ? null : new SecsValue( System.Xml.Linq.XElement.Parse( textBox_device_send.Text ) ) );
+				string.IsNullOrEmpty( textBox_device_send.Text ) ? null : new SecsValue( System.Xml.Linq.XElement.Parse( textBox_device_send.Text ) ), checkBox_device_w.Checked );
 
 			if (publish.IsSuccess)
 			{

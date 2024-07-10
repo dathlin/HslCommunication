@@ -24,6 +24,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		public StringEncoding StringEncoding { get; set; }
 
+		public string Expression { get; set; }  // 表达式 例如  x * 0.1 + 10     x 就是读取的输入值
 
 		#region IXmlConvert Implement
 
@@ -40,6 +41,7 @@ namespace HslCommunicationDemo.DemoControl
 			Length = GetXmlValue( element, nameof( Length ), Length, int.Parse );
 			Unit = GetXmlValue( element, nameof( Unit ), Unit, m => m );
 			StringEncoding = GetXmlEnum( element, nameof( StringEncoding ), StringEncoding.ASCII );
+			Expression = GetXmlValue( element, nameof( Expression ), Expression, m => m );
 		}
 
 		/// <summary>
@@ -60,6 +62,8 @@ namespace HslCommunicationDemo.DemoControl
 				element.SetAttributeValue( nameof( Unit ), Unit );
 			if (DataTypeCode == "string")
 				element.SetAttributeValue( nameof( StringEncoding ), StringEncoding.ToString( ) );
+			if (!string.IsNullOrEmpty( Expression ))
+				element.SetAttributeValue( nameof( Expression ), Expression );
 			return element;
 		}
 

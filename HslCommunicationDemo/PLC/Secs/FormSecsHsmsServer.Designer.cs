@@ -192,7 +192,7 @@
 			this.listBox1.ItemHeight = 17;
 			this.listBox1.Location = new System.Drawing.Point(714, 31);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(269, 157);
+			this.listBox1.Size = new System.Drawing.Size(269, 140);
 			this.listBox1.TabIndex = 34;
 			// 
 			// label2
@@ -234,7 +234,7 @@
 			this.textBox_log.Multiline = true;
 			this.textBox_log.Name = "textBox_log";
 			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_log.Size = new System.Drawing.Size(644, 186);
+			this.textBox_log.Size = new System.Drawing.Size(644, 182);
 			this.textBox_log.TabIndex = 10;
 			// 
 			// label13
