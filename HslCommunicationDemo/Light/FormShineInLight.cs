@@ -34,6 +34,7 @@ namespace HslCommunicationDemo.Light
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
+			this.pipeSelectControl1.ExtraCloseAction( lightSourceController );
 		}
 
 		private void button1_Click( object sender, EventArgs e )
@@ -46,10 +47,18 @@ namespace HslCommunicationDemo.Light
 				this.pipeSelectControl1.IniPipe( lightSourceController );
 				lightSourceController.LogNet = new HslCommunication.LogNet.LogNetFileSize( "" );
 				lightSourceController.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
-				lightSourceController.Open( );
-				button2.Enabled = true;
-				button1.Enabled = false;
-				panel2.Enabled = true;
+				OperateResult open = DeviceConnectPLC( lightSourceController );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					panel2.Enabled = true;
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{

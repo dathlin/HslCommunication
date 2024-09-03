@@ -67,7 +67,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
 		{
-			if (!checkBox1.Checked) return;
+			if (!checkBox1.Checked && e.HslMessage.Degree != HslCommunication.LogNet.HslMessageDegree.FATAL) return;
 
 			try
 			{
@@ -195,13 +195,13 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (form.ShowDialog( ) == DialogResult.OK)
 				{
-					if (form.UseRegistration)
+					if (form.UseHslDtuServer)
 					{
-						deviceServer.GetCommunicationServer( ).ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU, form.Pwd );
+						deviceServer.GetCommunicationServer( ).ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU, form.Pwd, form.NeedAckDtuResult );
 					}
 					else
 					{
-						deviceServer.GetCommunicationServer( ).ConnectRemoteServer( form.IpAddress, form.Port );
+						deviceServer.GetCommunicationServer( ).ConnectRemoteServer( form.IpAddress, form.Port, form.CustomizeDTU );
 					}
 
 					MessageBox.Show( "Add Connection success" );

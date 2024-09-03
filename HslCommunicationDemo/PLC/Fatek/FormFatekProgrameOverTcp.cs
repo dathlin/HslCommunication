@@ -75,9 +75,9 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				this.pipeSelectControl1.IniPipe( fatekProgram );
 				fatekProgram.Station = byte.Parse( textBox15.Text );
-				OperateResult connect = fatekProgram.ConnectServer( );
+				this.pipeSelectControl1.IniPipe( fatekProgram );
+				OperateResult connect = DeviceConnectPLC( fatekProgram );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -100,7 +100,8 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed );
+					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+						"Error: " + connect.ErrorCode );
 				}
 
 			}
@@ -117,6 +118,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( fatekProgram );
 		}
 
 		#endregion

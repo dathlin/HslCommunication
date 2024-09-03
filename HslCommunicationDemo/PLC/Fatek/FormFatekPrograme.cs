@@ -77,26 +77,33 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				this.pipeSelectControl1.IniPipe( fatekProgram );
 				fatekProgram.Station = byte.Parse( textBox15.Text );
+				this.pipeSelectControl1.IniPipe( fatekProgram );
 
+				OperateResult open = DeviceConnectPLC( fatekProgram );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				fatekProgram.Open( );
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.SetReadWriteNet( fatekProgram, "D100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( fatekProgram, "D100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fatekProgram.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-				// 设置基本的读写信息
-				userControlReadWriteDevice1.SetReadWriteNet( fatekProgram, "D100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( fatekProgram, "D100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fatekProgram.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					control.SetDevice( fatekProgram, "D100" );
 
-				control.SetDevice( fatekProgram, "D100" );
-
-				// 设置代码示例
-				codeExampleControl.SetCodeText( fatekProgram, nameof( fatekProgram.Station ) );
+					// 设置代码示例
+					codeExampleControl.SetCodeText( fatekProgram, nameof( fatekProgram.Station ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -111,6 +118,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( fatekProgram );
 		}
 
 		

@@ -89,7 +89,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( dLT698 );
-				OperateResult open = dLT698.Open( );
+				OperateResult open = DeviceConnectPLC( dLT698 );
 				if (open.IsSuccess)
 				{
 					button2.Enabled = true;
@@ -128,6 +128,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( dLT698 );
 		}
 
 		#endregion

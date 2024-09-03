@@ -123,26 +123,34 @@ namespace HslCommunicationDemo.PLC.WeCon
 			try
 			{
 				this.pipeSelectControl1.IniPipe( busRtuClient );
-				busRtuClient.Open( );
+				OperateResult open = DeviceConnectPLC( busRtuClient );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.SetReadWriteNet( busRtuClient, "D100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( busRtuClient, "D100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busRtuClient.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busRtuClient.ReadFromCoreServer( SoftCRC16.CRC16( m ), true, false ), "No CRC", "with no crc16, example: 01 03 00 00 00 01" );
 
-				// 设置子控件的读取能力
-				userControlReadWriteDevice1.SetReadWriteNet( busRtuClient, "D100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( busRtuClient, "D100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busRtuClient.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busRtuClient.ReadFromCoreServer( SoftCRC16.CRC16( m ), true, false ), "No CRC", "with no crc16, example: 01 03 00 00 00 01" );
+					control.SetDevice( busRtuClient, "D100" );
 
-				control.SetDevice( busRtuClient, "D100" );
+					// 设置示例代码
+					codeExampleControl.SetCodeText( "modbus", busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
+						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.Crc16CheckEnable ), nameof( busRtuClient.IsClearCacheBeforeRead ),
+						nameof( busRtuClient.StationCheckMacth ), "HslCommunication.ModBus.ModbusMappingAddress.WeCon_Lx5v" );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 
-				// 设置示例代码
-				codeExampleControl.SetCodeText( "modbus", busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
-					nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.Crc16CheckEnable ), nameof( busRtuClient.IsClearCacheBeforeRead ),
-					nameof( busRtuClient.StationCheckMacth ), "HslCommunication.ModBus.ModbusMappingAddress.WeCon_Lx5v" );
 			}
 			catch (Exception ex)
 			{
@@ -157,6 +165,7 @@ namespace HslCommunicationDemo.PLC.WeCon
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( busRtuClient );
 		}
 		
 		#endregion

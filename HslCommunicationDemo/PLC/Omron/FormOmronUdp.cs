@@ -65,6 +65,7 @@ namespace HslCommunicationDemo
 				Text = "Omron Read PLC Demo";
 				label23.Text = "PC Net Num";
 				button1.Text = "Create";
+				button2.Text = "Close";
 			}
 		}
 
@@ -93,21 +94,12 @@ namespace HslCommunicationDemo
 
 
 			omronFinsUdp = new OmronFinsUdp( );
-			try
-			{
-				this.pipeSelectControl1.IniPipe( omronFinsUdp );
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show( ex.Message );
-			}
-
-			userControlReadWriteDevice1.SetEnable( true );
-			button1.Enabled = false;
-			button2.Enabled = true;
-
+			omronFinsUdp.LogNet = LogNet;
 			omronFinsUdp.SA1 = SA1;
 			omronFinsUdp.GCT = gct;
+
+
+			userControlReadWriteDevice1.SetEnable( true );
 
 
 			if ( !string.IsNullOrEmpty( textBox_da1.Text ) )
@@ -120,26 +112,43 @@ namespace HslCommunicationDemo
 				omronFinsUdp.DA1 = da1;
 			}
 			omronFinsUdp.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
-			omronFinsUdp.LogNet = LogNet;
 			omronFinsUdp.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
 			omronFinsUdp.PlcType = (OmronPlcType)comboBox_plcType.SelectedItem;
 
+			try
+			{
+				this.pipeSelectControl1.IniPipe( omronFinsUdp );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( ex.Message );
+			}
 
-			// 设置子控件的读取能力
-			userControlReadWriteDevice1.SetReadWriteNet( omronFinsUdp, "D100", false );
-			// 设置批量读取
-			userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronFinsUdp, "D100", string.Empty );
-			// userControlReadWriteDevice1.BatchRead.SetReadRandom( omronFinsNet.ReadRandom );
-			userControlReadWriteDevice1.BatchRead.SetReadWordRandom( omronFinsUdp.Read, "D100;A100;C100;H100" );
-			// 设置报文读取
-			userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronFinsUdp.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-			userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronFinsUdp.ReadFromCoreServer( m ), "Fins Core", "example: 01 01 B1 00 0A 00 00 01" );
-			control.SetDevice( omronFinsUdp, "D100" );
+			OperateResult open = DeviceConnectPLC( omronFinsUdp );
+			if (open.IsSuccess)
+			{
+				button1.Enabled = false;
+				button2.Enabled = true;
+				// 设置子控件的读取能力
+				userControlReadWriteDevice1.SetReadWriteNet( omronFinsUdp, "D100", false );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronFinsUdp, "D100", string.Empty );
+				// userControlReadWriteDevice1.BatchRead.SetReadRandom( omronFinsNet.ReadRandom );
+				userControlReadWriteDevice1.BatchRead.SetReadWordRandom( omronFinsUdp.Read, "D100;A100;C100;H100" );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronFinsUdp.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronFinsUdp.ReadFromCoreServer( m ), "Fins Core", "example: 01 01 B1 00 0A 00 00 01" );
+				control.SetDevice( omronFinsUdp, "D100" );
 
-			// 设置示例代码
-			codeExampleControl.SetCodeText( omronFinsUdp, nameof(omronFinsUdp.PlcType), nameof( omronFinsUdp.SA1 ), nameof( omronFinsUdp.GCT ), nameof( omronFinsUdp.DA1 ), 
-				"ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
-
+				// 设置示例代码
+				codeExampleControl.SetCodeText( omronFinsUdp, nameof( omronFinsUdp.PlcType ), nameof( omronFinsUdp.SA1 ), nameof( omronFinsUdp.GCT ), nameof( omronFinsUdp.DA1 ),
+					"ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
+			}
+			else
+			{
+				MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+					"Error: " + open.ErrorCode );
+			}
 		}
 
 		private void button2_Click( object sender, EventArgs e )
@@ -147,6 +156,8 @@ namespace HslCommunicationDemo
 			userControlReadWriteDevice1.SetEnable( false );
 			button1.Enabled = true;
 			button2.Enabled = false;
+			omronFinsUdp.CommunicationPipe?.CloseCommunication( );
+			this.pipeSelectControl1.ExtraCloseAction( omronFinsUdp );
 		}
 
 		#endregion

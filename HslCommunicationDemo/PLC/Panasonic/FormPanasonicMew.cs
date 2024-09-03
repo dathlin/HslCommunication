@@ -85,22 +85,30 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( panasonicMewtocol );
-				panasonicMewtocol.Open( );
+				OperateResult open = DeviceConnectPLC( panasonicMewtocol );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置基本的读写信息
-				userControlReadWriteDevice1.SetReadWriteNet( panasonicMewtocol, "R0", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( panasonicMewtocol, "R0", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => panasonicMewtocol.ReadFromCoreServer( m ), string.Empty, string.Empty );
-				control.SetDevice( panasonicMewtocol, "R0" );
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.SetReadWriteNet( panasonicMewtocol, "R0", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( panasonicMewtocol, "R0", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => panasonicMewtocol.ReadFromCoreServer( m ), string.Empty, string.Empty );
+					control.SetDevice( panasonicMewtocol, "R0" );
 
-				// 设置代码示例
-				codeExampleControl.SetCodeText( panasonicMewtocol, nameof( panasonicMewtocol.Station ) );
+					// 设置代码示例
+					codeExampleControl.SetCodeText( panasonicMewtocol, nameof( panasonicMewtocol.Station ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -115,6 +123,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( panasonicMewtocol );
 		}
 		
 

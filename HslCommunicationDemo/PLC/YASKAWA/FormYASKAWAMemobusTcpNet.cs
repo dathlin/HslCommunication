@@ -52,8 +52,7 @@ namespace HslCommunicationDemo
 			{
 				Text = "YASKAWA Read PLC Demo";
 
-				label1.Text = "Station:";
-				button1.Text = "Open";
+				button1.Text = "Connect";
 				button2.Text = "Close";
 			}
 		}
@@ -91,7 +90,7 @@ namespace HslCommunicationDemo
 				this.pipeSelectControl1.IniPipe( memobus );
 				memobus.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
-				OperateResult connect = memobus.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( memobus );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
@@ -129,6 +128,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( memobus );
 		}
 		
 		#endregion

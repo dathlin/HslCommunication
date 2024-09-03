@@ -20,6 +20,7 @@ using System.Xml.Linq;
 using HslCommunication.BasicFramework;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Security.Policy;
 
 namespace HslCommunicationDemo
 {
@@ -78,25 +79,29 @@ namespace HslCommunicationDemo
 			// 启动服务
 			//try
 			//{
-				// 注册两个PLC为服务接口的示例
-				siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
-				pcccNet = new AllenBradleyPcccNet( "127.0.0.1" );
+			// 注册两个PLC为服务接口的示例
+			siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
+			pcccNet = new AllenBradleyPcccNet( "127.0.0.1" );
 
-				httpServer = new HttpServer( );
-				httpServer.Start( int.Parse( textBox2.Text ) );
-				httpServer.HandleRequestFunc = HandleRequest;
-				httpServer.HandleFileUpload  = HandleFileUpload;
-				httpServer.IsCrossDomain = checkBox_IsCrossDomain.Checked;               // 是否跨域的设置
-				httpServer.RegisterHttpRpcApi( "", this );                               // 注册当前窗体的接口到服务器的接口上去
-				httpServer.RegisterHttpRpcApi( "Siemens", siemens );                     // 注册一个西门子PLC的服务接口的示例
-				httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );        // 注册的类的静态方法和静态属性
-				httpServer.RegisterHttpRpcApi( "PCCC", pcccNet );
-				httpServer.DealWithHttpListenerRequest = DealWithHttpListenerRequest;    // 自定义处理请求的接口，比如增加认证信息
-				if (checkBox2.Checked) httpServer.SetLoginAccessControl( new HslCommunication.MQTT.MqttCredential[] {
+			httpServer = new HttpServer( );
+			if (checkBox_https.Checked)
+			{
+				httpServer.UseHttps( );
+			}
+			httpServer.Start( int.Parse( textBox2.Text ) );
+			httpServer.HandleRequestFunc = HandleRequest;
+			httpServer.HandleFileUpload = HandleFileUpload;
+			httpServer.IsCrossDomain = checkBox_IsCrossDomain.Checked;               // 是否跨域的设置
+			httpServer.RegisterHttpRpcApi( "", this );                               // 注册当前窗体的接口到服务器的接口上去
+			httpServer.RegisterHttpRpcApi( "Siemens", siemens );                     // 注册一个西门子PLC的服务接口的示例
+			httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );        // 注册的类的静态方法和静态属性
+			httpServer.RegisterHttpRpcApi( "PCCC", pcccNet );
+			httpServer.DealWithHttpListenerRequest = DealWithHttpListenerRequest;    // 自定义处理请求的接口，比如增加认证信息
+			if (checkBox2.Checked) httpServer.SetLoginAccessControl( new HslCommunication.MQTT.MqttCredential[] {
 				new HslCommunication.MQTT.MqttCredential("admin", "123456")} );
 
-				panel2.Enabled = true;
-				button1.Enabled = false;
+			panel2.Enabled = true;
+			button1.Enabled = false;
 			//}
 			//catch(Exception ex)
 			//{
@@ -169,6 +174,12 @@ namespace HslCommunicationDemo
 
 		[HslMqttApi( HttpMethod = "GET" )]
 		public int GetHslCommunication( int id )
+		{
+			return id + 1;
+		}
+
+		[HslMqttApi( HttpMethod = "PUT" )]
+		public int PutHslCommunication( int id )
 		{
 			return id + 1;
 		}
@@ -348,6 +359,23 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent(sender, e);
 		}
 
+
+		private void userControlHead1_Load( object sender, EventArgs e )
+		{
+
+		}
+
+		private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+		{
+			try
+			{
+				System.Diagnostics.Process.Start( linkLabel1.Text );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( ex.Message );
+			}
+		}
 	}
 
 	public class UserWebApis

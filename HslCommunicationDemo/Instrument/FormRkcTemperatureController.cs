@@ -80,25 +80,30 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				this.pipeSelectControl1.IniPipe( rkc );
-				//yamateke.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
-
-				rkc.Open( );
 				rkc.Station = Station;
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				this.pipeSelectControl1.IniPipe( rkc );
+				OperateResult open = DeviceConnectPLC( rkc );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				userControlReadWriteDevice1.SetReadWriteNet( rkc, "M1", false );
-				userControlReadWriteDevice1.ReadWriteOpControl.EnableRKC( );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( rkc, "M1", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => rkc.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.SetReadWriteNet( rkc, "M1", false );
+					userControlReadWriteDevice1.ReadWriteOpControl.EnableRKC( );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( rkc, "M1", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => rkc.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-				// 设置代码示例
-				codeExampleControl.SetCodeText( "rkc", rkc, nameof( rkc.Station ) );
-
+					// 设置代码示例
+					codeExampleControl.SetCodeText( "rkc", rkc, nameof( rkc.Station ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -113,6 +118,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( rkc );
 		}
 		
 		#endregion

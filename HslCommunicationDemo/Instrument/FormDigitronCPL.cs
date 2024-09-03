@@ -83,20 +83,27 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( cpl );
-				cpl.Open( );
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				OperateResult open = DeviceConnectPLC( cpl );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				userControlReadWriteDevice1.SetReadWriteNet( cpl, "100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( cpl, "100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => cpl.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.SetReadWriteNet( cpl, "100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( cpl, "100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => cpl.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-				// 设置代码示例
-				codeExampleControl.SetCodeText( "cpl", cpl, nameof( cpl.Station ) );
-
+					// 设置代码示例
+					codeExampleControl.SetCodeText( "cpl", cpl, nameof( cpl.Station ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -111,6 +118,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( cpl );
 		}
 		
 		#endregion

@@ -81,23 +81,31 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( delta );
-				delta.Open( );
+				OperateResult open = DeviceConnectPLC( delta );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置基本的读写信息
-				userControlReadWriteDevice1.SetReadWriteNet( delta, "D100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( delta, "D100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => delta.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => delta.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.SetReadWriteNet( delta, "D100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( delta, "D100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => delta.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => delta.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
 
 
-				// 设置代码示例
-				codeExampleControl.SetCodeText( delta, nameof( delta.Station ), nameof( delta.Series ) );
+					// 设置代码示例
+					codeExampleControl.SetCodeText( delta, nameof( delta.Station ), nameof( delta.Series ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -112,6 +120,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( delta );
 		}
 		
 		#endregion

@@ -96,7 +96,8 @@ namespace HslCommunicationDemo.PLC.Melsec
 				new DeviceAddressExample( "W0",  "链接寄存器",       false, true, "16进制地址" ),
 				new DeviceAddressExample( "R0",  "文件寄存器",       false, true, "" ),
 				new DeviceAddressExample( "Z0",  "变址寄存器",       false, true, "" ),
-				new DeviceAddressExample( "ZR0", "ZR文件寄存器",     false, true, "" )
+				new DeviceAddressExample( "ZR0", "ZR文件寄存器",     false, true, "" ),
+				new DeviceAddressExample( "D100.1",  "数据寄存器",       true, false, "可以访问字寄存器的位" )
 			};
 		}
 

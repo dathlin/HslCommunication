@@ -90,21 +90,30 @@ namespace HslCommunicationDemo
 				this.pipeSelectControl1.IniPipe( memobus );
 				memobus.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				OperateResult connect = DeviceConnectPLC( memobus );
+				if (connect.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置基本的读写信息
-				userControlReadWriteDevice1.SetReadWriteNet( memobus, "100", true );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( memobus, "100", string.Empty );
-				userControlReadWriteDevice1.BatchRead.SetReadWordRandom( memobus.ReadRandom, "1;100;300   针对09功能码的扩展保持寄存器" );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => memobus.ReadFromCoreServer( m, hasResponseData: true, usePackAndUnpack: false ), string.Empty, string.Empty );
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.SetReadWriteNet( memobus, "100", true );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( memobus, "100", string.Empty );
+					userControlReadWriteDevice1.BatchRead.SetReadWordRandom( memobus.ReadRandom, "1;100;300   针对09功能码的扩展保持寄存器" );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => memobus.ReadFromCoreServer( m, hasResponseData: true, usePackAndUnpack: false ), string.Empty, string.Empty );
 
-				// 设置代码示例
-				codeExampleControl.SetCodeText( memobus, nameof( memobus.CpuFrom ), nameof( memobus.CpuTo ), "ByteTransform.DataFormat" );
-				MessageBox.Show( StringResources.Language.ConnectedSuccess );
+					// 设置代码示例
+					codeExampleControl.SetCodeText( memobus, nameof( memobus.CpuFrom ), nameof( memobus.CpuTo ), "ByteTransform.DataFormat" );
+					MessageBox.Show( StringResources.Language.ConnectedSuccess );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+						"Error: " + connect.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -115,9 +124,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
+			memobus.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( memobus );
 		}
 		
 		#endregion

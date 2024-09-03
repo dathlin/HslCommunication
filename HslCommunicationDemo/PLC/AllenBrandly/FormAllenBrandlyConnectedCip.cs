@@ -73,7 +73,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( allenBradleyNet );
-				OperateResult connect = allenBradleyNet.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( allenBradleyNet );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -113,10 +113,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
-			//if (!close.IsSuccess)
-			//{
-			//	MessageBox.Show( "关闭失败！" + close.Message );
-			//}
+			this.pipeSelectControl1.ExtraCloseAction( allenBradleyNet );
 		}
 
 

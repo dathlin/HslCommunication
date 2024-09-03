@@ -72,7 +72,7 @@ namespace HslCommunicationDemo
 			{
 				this.pipeSelectControl1.IniPipe( melsec_net );
 
-				OperateResult connect = melsec_net.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( melsec_net );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -108,6 +108,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( melsec_net );
 		}
 
 		

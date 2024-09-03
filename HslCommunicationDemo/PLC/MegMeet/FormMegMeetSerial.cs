@@ -115,23 +115,31 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( megMeet );
-				megMeet.Open( );
+				OperateResult open = DeviceConnectPLC( megMeet );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置基本的读写信息
-				userControlReadWriteDevice1.SetReadWriteNet( megMeet, "D100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( megMeet, "D100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => megMeet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => megMeet.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.SetReadWriteNet( megMeet, "D100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( megMeet, "D100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => megMeet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => megMeet.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
 
-				// 设置示例代码
-				codeExampleControl.SetCodeText( megMeet, nameof( megMeet.AddressStartWithZero ), nameof( megMeet.IsStringReverse ),
-					nameof( megMeet.DataFormat ), nameof( megMeet.Station ) );
+					// 设置示例代码
+					codeExampleControl.SetCodeText( megMeet, nameof( megMeet.AddressStartWithZero ), nameof( megMeet.IsStringReverse ),
+						nameof( megMeet.DataFormat ), nameof( megMeet.Station ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -146,6 +154,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( megMeet );
 		}
 		
 		#endregion

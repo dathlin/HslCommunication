@@ -116,25 +116,33 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( busAsciiClient );
-				busAsciiClient.Open( );
+				OperateResult open = DeviceConnectPLC( busAsciiClient );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置子控件的读取能力
-				userControlReadWriteDevice1.SetReadWriteNet( busAsciiClient, "100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( busAsciiClient, "100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busAsciiClient.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busAsciiClient.ReadFromCoreServer( ModbusInfo.TransModbusCoreToAsciiPackCommand( m ), true, false ), "Modbus Core", "example: 01 03 00 00 00 01" );
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.SetReadWriteNet( busAsciiClient, "100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( busAsciiClient, "100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busAsciiClient.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busAsciiClient.ReadFromCoreServer( ModbusInfo.TransModbusCoreToAsciiPackCommand( m ), true, false ), "Modbus Core", "example: 01 03 00 00 00 01" );
 
-				control.SetDevice( busAsciiClient, "100" );
+					control.SetDevice( busAsciiClient, "100" );
 
-				// 设置示例代码
-				codeExampleControl.SetCodeText( "modbus", busAsciiClient, nameof( busAsciiClient.AddressStartWithZero ), nameof( busAsciiClient.IsStringReverse ), 
-					nameof( busAsciiClient.DataFormat ), nameof( busAsciiClient.Station ) );
+					// 设置示例代码
+					codeExampleControl.SetCodeText( "modbus", busAsciiClient, nameof( busAsciiClient.AddressStartWithZero ), nameof( busAsciiClient.IsStringReverse ),
+						nameof( busAsciiClient.DataFormat ), nameof( busAsciiClient.Station ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -149,6 +157,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( busAsciiClient );
 		}
 
 		

@@ -91,26 +91,33 @@ namespace HslCommunicationDemo
 				omronHostLink.UnitNumber = Station;
 				omronHostLink.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
+				OperateResult open = DeviceConnectPLC( omronHostLink );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				omronHostLink.Open( );
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
-
-				// 设置子控件的读取能力
-				userControlReadWriteDevice1.SetReadWriteNet( omronHostLink, "D100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronHostLink, "D100", string.Empty );
-				// userControlReadWriteDevice1.BatchRead.SetReadRandom( omronFinsNet.ReadRandom );
-				// userControlReadWriteDevice1.BatchRead.SetReadWordRandom( omronHostLink.Read );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronHostLink.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.SetReadWriteNet( omronHostLink, "D100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( omronHostLink, "D100", string.Empty );
+					// userControlReadWriteDevice1.BatchRead.SetReadRandom( omronFinsNet.ReadRandom );
+					// userControlReadWriteDevice1.BatchRead.SetReadWordRandom( omronHostLink.Read );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronHostLink.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 
-				control.SetDevice( omronHostLink, "D100" );
+					control.SetDevice( omronHostLink, "D100" );
 
-				// 设置示例代码
-				codeExampleControl.SetCodeText( omronHostLink, nameof( omronHostLink.UnitNumber ), "ByteTransform.DataFormat" );
+					// 设置示例代码
+					codeExampleControl.SetCodeText( omronHostLink, nameof( omronHostLink.UnitNumber ), "ByteTransform.DataFormat" );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -125,6 +132,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( omronHostLink );
 		}
 		
 		#endregion

@@ -13,6 +13,11 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using HslCommunication;
 using HslCommunicationDemo.HslDebug;
+using HslCommunication.Core.Net;
+using HslCommunication.Core.Pipe;
+using HslCommunication.Core;
+using System.Runtime.Remoting.Contexts;
+using HslCommunication.Core.IMessage;
 
 namespace HslCommunicationDemo
 {
@@ -54,6 +59,7 @@ namespace HslCommunicationDemo
 				label10.Text              = "(If empty, automatically assigned)";
 				button_edit_hand.Text     = "Edit handshake";
 				label2.Text               = "Buffer Len:";
+				checkBox1.Text            = "Go to Dtu?";
 			}
 		}
 
@@ -176,6 +182,11 @@ namespace HslCommunicationDemo
 
 				}
 
+				if (checkBox1.Checked)
+				{
+					System.Threading.ThreadPool.QueueUserWorkItem( new System.Threading.WaitCallback( ConnectDtuIp ), dtuRemoteConnect );
+				}
+
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel_main.Enabled = true;
@@ -199,6 +210,10 @@ namespace HslCommunicationDemo
 			panel_tcp_udp.Enabled = true;
 			this.debugControl1.RemoveSessionsAll( );
 			//button_send.Enabled = false;
+			if (dtuRemoteConnect != null)
+			{
+				dtuRemoteConnect.Session?.Communication?.CloseCommunication( );
+			}
 		}
 
 		#endregion
@@ -216,12 +231,18 @@ namespace HslCommunicationDemo
 				try
 				{
 					length = socketDebugSession.WorkSocket.ReceiveFrom( buffer, 0, buffer.Length, SocketFlags.None, ref Remote );
-				
+					byte[] data = buffer.SelectBegin( length );
 
 					if (length > 0) Invoke( new Action( ( ) =>
 					{
-						this.debugControl1.RenderSendReceiveContent( socketDebugSession, 0, buffer.SelectBegin( length ) );
+						this.debugControl1.RenderSendReceiveContent( socketDebugSession, 0, data );
 					} ) );
+
+					if (checkBox1.Checked && this.pipeDtu != null && dtuRemoteConnect != null)
+					{
+						this.pipeDtu.Send( data );
+						RenderDtuData( dtuRemoteConnect, pipeDtu, null, 4, data, string.Empty, $"Send DTU {dtuRemoteConnect.EndPoint}" );
+					}
 				}
 				catch (Exception ex)
 				{
@@ -264,6 +285,12 @@ namespace HslCommunicationDemo
 				{
 					this.debugControl1.RenderSendReceiveContent( socketDebugSession, 0, data );
 				} ) );
+
+				if (checkBox1.Checked && this.pipeDtu != null && dtuRemoteConnect != null)
+				{
+					this.pipeDtu.Send( data );
+					RenderDtuData( dtuRemoteConnect, pipeDtu, null, 4, data, string.Empty, $"Send DTU {dtuRemoteConnect.EndPoint}" );
+				}
 			}
 			catch(ObjectDisposedException)
 			{
@@ -287,6 +314,208 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		#region DTU Support
+
+
+		private void checkBox1_CheckedChanged( object sender, EventArgs e )
+		{
+			if (checkBox1.Checked)
+			{
+				// 开启DTU
+				// 连接异形客户端
+				using (FormInputAlien form = new FormInputAlien( ))
+				{
+					if (form.ShowDialog( ) == DialogResult.OK)
+					{
+						if (form.UseHslDtuServer)
+						{
+							dtuRemoteConnect = new RemoteConnectInfo( form.IpAddress, form.Port, form.DTU, form.Pwd, form.NeedAckDtuResult );
+							//System.Threading.ThreadPool.QueueUserWorkItem( new System.Threading.WaitCallback( ConnectDtuIp ), dtuRemoteConnect );
+						}
+						else
+						{
+							dtuRemoteConnect = new RemoteConnectInfo( form.IpAddress, form.Port, form.CustomizeDTU );
+							//System.Threading.ThreadPool.QueueUserWorkItem( new System.Threading.WaitCallback( ConnectDtuIp ), dtuRemoteConnect );
+						}
+
+					}
+				}
+			}
+			else
+			{
+				// 关闭DTU
+				dtuRemoteConnect = null;
+			}
+		}
+
+		private void RenderDtuData( RemoteConnectInfo remoteConnect, PipeTcpNet pipeDtu, SocketDebugSession session, int code, byte[] data, string msg = null, string head = null )
+		{
+			if (code == 2)
+			{
+				if (button1.Enabled == false && checkBox1.Checked)
+				{
+
+				}
+				else
+				{
+					pipeDtu.CloseCommunication( );
+					pipeDtu = null;
+					Invoke( new Action( ( ) =>
+					{
+						this.debugControl1.RenderSendReceiveContent( session, code, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] Finish", head );
+					} ) );
+					return;
+				}
+			}
+
+			Invoke( new Action( ( ) =>
+			{
+				this.debugControl1.RenderSendReceiveContent( session, code, data, msg, head );
+			} ) );
+
+			if (code == 2)
+			{
+				// code = 2 的时候执行关闭的操作
+				pipeDtu.CloseCommunication( );
+				pipeDtu = null;
+				
+				HslHelper.ThreadSleep( 10_000 );
+				if (button1.Enabled == false && checkBox1.Checked) ThreadPool.QueueUserWorkItem( new System.Threading.WaitCallback( ConnectDtuIp ), remoteConnect );
+				else
+				{
+					Invoke( new Action( ( ) =>
+					{
+						this.debugControl1.RenderSendReceiveContent( session, code, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] Finish", head );
+					} ) );
+				}
+			}
+		}
+
+		private byte[] dtuBuffer = new byte[2048];
+		private PipeTcpNet pipeDtu;
+		private RemoteConnectInfo dtuRemoteConnect = null;
+
+		public void ConnectDtuIp( object obj )
+		{
+			if (obj is RemoteConnectInfo remoteConnect)
+			{
+				pipeDtu = new HslCommunication.Core.Pipe.PipeTcpNet( remoteConnect.EndPoint.Address.ToString( ), remoteConnect.EndPoint.Port );
+				pipeDtu.ConnectTimeOut = 10_000;
+
+				OperateResult<bool> connect = pipeDtu.OpenCommunication( );
+				if (!connect.IsSuccess)
+				{
+					RenderDtuData( remoteConnect, pipeDtu, null, 2, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] Socket Connected Failed : {connect.Message} 10s later retry..." );
+					return;
+				}
+
+				// 连接成功后，先发送注册包
+				if (remoteConnect.DtuBytes != null)
+				{
+					OperateResult send = pipeDtu.Send( remoteConnect.DtuBytes );
+					if (send.IsSuccess)
+					{
+						Invoke( new Action( ( ) => this.debugControl1.RenderSendReceiveContent( null, 4, remoteConnect.DtuBytes, null, $"Ini DTU {remoteConnect.EndPoint}" ) ) );
+					}
+					else
+					{
+						RenderDtuData( remoteConnect, pipeDtu, null, 2, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] Socket Connected Failed : {connect.Message} 10s later retry..." );
+						return;
+					}
+				}
+
+				if (remoteConnect.NeedAckResult)
+				{
+					// 如果需要返回的情况
+					OperateResult<byte[]> check = pipeDtu.ReceiveMessage( new AlienMessage( ), null, useActivePush: false );
+					if (check.IsSuccess)
+					{
+						Invoke( new Action( ( ) => this.debugControl1.RenderSendReceiveContent( null, 0, check.Content, null, $"Ini DTU {remoteConnect.EndPoint} Back" ) ) );
+						if (check.Content.Length >= 6)
+						{
+							switch (check.Content[5])
+							{
+								case 0x01:
+									{
+										RenderDtuData( remoteConnect, pipeDtu, null, 2, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] {StringResources.Language.DeviceCurrentIsLoginRepeat} 10s later retry..." );
+										return;
+									}
+								case 0x02:
+									{
+										RenderDtuData( remoteConnect, pipeDtu, null, 2, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] {StringResources.Language.DeviceCurrentIsLoginForbidden} 10s later retry..." );
+										return;
+									}
+								case 0x03:
+									{
+										RenderDtuData( remoteConnect, pipeDtu, null, 2, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] {StringResources.Language.PasswordCheckFailed} 10s later retry..." );
+										return;
+									}
+							}
+						}
+					}
+				}
+				remoteConnect.Session = new PipeSession( ) { Communication = pipeDtu };
+				try
+				{
+					pipeDtu.Socket.BeginReceive( dtuBuffer, 0, dtuBuffer.Length, SocketFlags.None, new AsyncCallback( DtuAsyncCallback ), remoteConnect );
+				}
+				catch (Exception ex)
+				{
+					RenderDtuData( remoteConnect, pipeDtu, null, 2, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] {ex.Message} 10s later retry..." );
+				}
+			}
+		}
+
+		private void DtuAsyncCallback( IAsyncResult ar )
+		{
+			if (ar.AsyncState is RemoteConnectInfo remoteConnect)
+			{
+				try
+				{
+					int len = (remoteConnect.Session.Communication as PipeTcpNet).Socket.EndReceive( ar );
+					if (len == 0)
+					{
+						// DTU关闭了连接
+						RenderDtuData( remoteConnect, pipeDtu, null, 2, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] Closed, 10s later retry..." );
+						return;
+					}
+
+					byte[] data = dtuBuffer.SelectBegin( len );
+					RenderDtuData( remoteConnect, pipeDtu, null, 4, data, string.Empty, $"Revc DTU {remoteConnect.EndPoint}" );
+
+					// 然后发送给本地的socket
+					if (socketDebugSession != null)
+					{
+						try
+						{
+							socketDebugSession.SendData( data );
+							Invoke( new Action( ( ) => this.debugControl1.RenderSendReceiveContent( socketDebugSession, 1, data, null, $"Send DTU {remoteConnect.EndPoint}" ) ) );
+						}
+						catch( Exception ex )
+						{
+							Invoke( new Action( ( ) => this.debugControl1.RenderSendReceiveContent( socketDebugSession, -1, null, "socketDebugSession.SendData failed: " + ex.Message ) ) );
+						}
+					}
+				}
+				catch(Exception ex)
+				{
+					RenderDtuData( remoteConnect, pipeDtu, null, 2, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] {ex.Message} 10s later retry..." );
+					return;
+				}
+
+				try
+				{
+					pipeDtu.Socket.BeginReceive( dtuBuffer, 0, dtuBuffer.Length, SocketFlags.None, new AsyncCallback( DtuAsyncCallback ), remoteConnect );
+				}
+				catch (Exception ex)
+				{
+					RenderDtuData( remoteConnect, pipeDtu, null, 2, null, $"RemoteConnectInfo[{remoteConnect.EndPoint}] {ex.Message} 10s later retry..." );
+				}
+			}
+		}
+
+
+		#endregion
 
 		#region Toledo Test
 

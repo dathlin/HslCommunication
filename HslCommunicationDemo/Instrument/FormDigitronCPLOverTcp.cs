@@ -81,7 +81,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( cpl );
-				OperateResult connect = cpl.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( cpl );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -117,6 +117,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( cpl );
 		}
 
 		#endregion

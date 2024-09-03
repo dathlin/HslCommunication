@@ -280,7 +280,8 @@ namespace HslCommunicationDemo.DemoControl
 		public void SetCodeText( string deviceName, DeviceTcpNet device, params string[] props )
 		{
 			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
-			SetPropties( deviceName, stringBuilder, device, props );
+			SetPropties( deviceName, stringBuilder, device, props ); 
+			CreateCommunicationPipe( stringBuilder, device.CommunicationPipe, deviceName );
 			this.textBox1.Text = stringBuilder.ToString( );
 		}
 
@@ -334,6 +335,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			StringBuilder stringBuilder = CreateStringBulider( network, deviceName );
 			SetPropties( deviceName, stringBuilder, network, props );
+			CreateCommunicationPipe( stringBuilder, network.CommunicationPipe, deviceName );
 			this.textBox1.Text = stringBuilder.ToString( );
 		}
 
@@ -435,6 +437,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (pipe.GetType( ) == typeof( PipeTcpNet ) || pipe.GetType( ) == typeof( PipeSslNet ) || pipe.GetType( ) == typeof( PipeUdpNet ))
 			{
 				PipeTcpNet pipeTcpNet = pipe as PipeTcpNet;
+
 				sb.Append( deviceName + $".CommunicationPipe = new {pipeTcpNet.GetType( ).FullName}(\"{pipeTcpNet.Host}\", {pipeTcpNet.Port})" );
 				sb.AppendLine( );
 				sb.Append( "{" );
@@ -450,8 +453,13 @@ namespace HslCommunicationDemo.DemoControl
 				sb.AppendLine( );
 				sb.Append( $"    SocketKeepAliveTime = {pipeTcpNet.SocketKeepAliveTime}," );
 				sb.AppendLine( );
-				sb.Append( $"    IsPersistentConnection = {pipeTcpNet.IsPersistentConnection.ToString( ).ToLower()}," );
+				sb.Append( $"    IsPersistentConnection = {pipeTcpNet.IsPersistentConnection.ToString( ).ToLower( )}," );
 				sb.AppendLine( );
+				if (pipeTcpNet.UseServerActivePush)
+				{
+					sb.Append( $"    UseServerActivePush = {pipeTcpNet.UseServerActivePush.ToString( ).ToLower( )}," );
+					sb.AppendLine( );
+				}
 				if (pipeTcpNet.LocalBinding != null)
 				{
 					//pipeTcpNet.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Parse( pipeTcpNet.LocalBinding.Address.ToString( ) ), pipeTcpNet.LocalBinding.Port );
@@ -473,6 +481,24 @@ namespace HslCommunicationDemo.DemoControl
 				sb.Append( $"pipe.DtrEnable = {pipeSerialPort.DtrEnable.ToString( ).ToLower( )};" );
 				sb.AppendLine( );
 				sb.Append( $"pipe.SleepTime = {pipeSerialPort.SleepTime};" );
+				sb.AppendLine( );
+				sb.Append( deviceName + $".CommunicationPipe = pipe;" );
+				sb.AppendLine( );
+			}
+			else if (pipe.GetType( ) == typeof( PipeMoxa ))
+			{
+				PipeMoxa pipeMoxa = pipe as PipeMoxa;
+				sb.Append( $"{pipeMoxa.GetType( ).FullName} pipe =  new {pipeMoxa.GetType( ).FullName}( );" );
+				sb.AppendLine( );
+				sb.Append( $"pipe.SerialPortInni( \"{pipeMoxa.ToFormatString( )}\" );" );
+				sb.AppendLine( );
+				sb.Append( $"pipe.RtsEnable = {pipeMoxa.RtsEnable.ToString( ).ToLower( )};" );
+				sb.AppendLine( );
+				sb.Append( $"pipe.DtrEnable = {pipeMoxa.DtrEnable.ToString( ).ToLower( )};" );
+				sb.AppendLine( );
+				sb.Append( $"pipe.SleepTime = {pipeMoxa.SleepTime};" );
+				sb.AppendLine( );
+				sb.Append( $"pipe.ReceiveEmptyDataCount = {pipeMoxa.ReceiveEmptyDataCount};" );
 				sb.AppendLine( );
 				sb.Append( deviceName + $".CommunicationPipe = pipe;" );
 				sb.AppendLine( );
@@ -502,6 +528,38 @@ namespace HslCommunicationDemo.DemoControl
 				sb.AppendLine( );
 
 			}
+			else if (pipe.GetType( ) == typeof( PipeDtuNet ))
+			{
+				// 使用了DTU的模式
+				PipeDtuNet pipeDtu = pipe as PipeDtuNet;
+				sb.AppendLine( );
+				sb.Append( "NetworkAlienClient dtuServer = new NetworkAlienClient( );" );
+				sb.AppendLine( );
+				sb.Append( $"dtuServer.IsResponseAck = {pipeDtu.DtuServer.IsResponseAck.ToString( ).ToLower( )};" );
+				sb.AppendLine( );
+				if (!string.IsNullOrEmpty(pipeDtu.Pwd))
+				{
+					sb.Append( $"dtuServer.SetPassword( Encoding.ASCII.GetBytes( \"{pipeDtu.Pwd}\" ) );" );
+					sb.AppendLine( );
+				}
+				sb.Append( @"dtuServer.OnClientConnected += ( PipeDtuNet session ) =>
+{
+    if (session.DTU == """ + pipeDtu.DTU + @""")
+    {
+        OperateResult connect = " + deviceName + @".SetDtuPipe( session );
+        if (connect.IsSuccess)
+        {
+            Console.WriteLine( ""connect success"" );
+        }
+    }
+};" );
+				sb.AppendLine( );
+				sb.Append( $"dtuServer.ServerStart( {pipeDtu.DtuServer.Port} );" );
+				sb.AppendLine( );
+                sb.AppendLine( );
+                sb.Append( deviceName + $".SetDtuPipe( new PipeDtuNet( ) );   // 在连接上来之前，先给一个默认的空的DTU会话" );
+				sb.AppendLine( );
+			}
 		}
 
 		public static StringBuilder CreateStringBulider( NetworkDoubleBase network, string deviceName )
@@ -525,7 +583,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (device == null) return new StringBuilder( );
 
 			StringBuilder sb = CreateFromObject( device, deviceName );
-			CreateCommunicationPipe( sb, device.CommunicationPipe, deviceName );
+			//CreateCommunicationPipe( sb, device.CommunicationPipe, deviceName );
 			return sb;
 		}
 
@@ -567,7 +625,6 @@ namespace HslCommunicationDemo.DemoControl
 			if (device == null) return new StringBuilder( );
 
 			StringBuilder sb = CreateFromObject( device, deviceName );
-			CreateCommunicationPipe( sb, device.CommunicationPipe, deviceName );
 			return sb;
 		}
 	}

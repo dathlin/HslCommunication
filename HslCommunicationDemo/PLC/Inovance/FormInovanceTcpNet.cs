@@ -114,7 +114,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( inovance );
-				OperateResult connect = inovance.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( inovance );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
@@ -151,6 +151,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( inovance );
 		}
 		
 		#endregion

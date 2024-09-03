@@ -64,7 +64,7 @@ namespace HslCommunicationDemo
 
 
 
-		private async void button1_Click( object sender, EventArgs e )
+		private void button1_Click( object sender, EventArgs e )
 		{
 			siemensPPI?.ConnectClose( );
 			siemensPPI = new SiemensPPIOverTcp( );
@@ -74,7 +74,7 @@ namespace HslCommunicationDemo
 			{
 				this.pipeSelectControl1.IniPipe( siemensPPI );
 				siemensPPI.Station = byte.Parse( textBox15.Text );
-				OperateResult connect = await siemensPPI.ConnectServerAsync( );
+				OperateResult connect = DeviceConnectPLC( siemensPPI );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -97,7 +97,8 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+						"Error: " + connect.ErrorCode );
 				}
 			}
 			catch (Exception ex)
@@ -106,13 +107,14 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private async void button2_Click( object sender, EventArgs e )
+		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			await siemensPPI?.ConnectCloseAsync( );
+			siemensPPI?.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( siemensPPI );
 		}
 
 

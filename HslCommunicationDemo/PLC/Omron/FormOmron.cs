@@ -99,7 +99,7 @@ namespace HslCommunicationDemo
 			omronFinsNet.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
 			omronFinsNet.ReceiveUntilEmpty = checkBox_receive_until_empty.Checked;
 
-			OperateResult connect = omronFinsNet.ConnectServer( );
+			OperateResult connect = DeviceConnectPLC( omronFinsNet );
 			if (connect.IsSuccess)
 			{
 				MessageBox.Show( StringResources.Language.ConnectedSuccess );
@@ -138,6 +138,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( omronFinsNet );
 		}
 		
 

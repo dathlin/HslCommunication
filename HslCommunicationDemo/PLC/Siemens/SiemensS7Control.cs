@@ -42,6 +42,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 		private System.Windows.Forms.Button button_force_on;
 		private System.Windows.Forms.Button button_force_off;
 		private System.Windows.Forms.Label label2;
+		private ToolTip toolTip1;
+		private System.ComponentModel.IContainer components;
 		private System.Windows.Forms.GroupBox groupBox2;
 
 		public SiemensS7Control( )
@@ -51,7 +53,9 @@ namespace HslCommunicationDemo.PLC.Siemens
 
 		private void InitializeComponent( )
 		{
+			this.components = new System.ComponentModel.Container();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.button_force_off = new System.Windows.Forms.Button();
 			this.button_force_clear = new System.Windows.Forms.Button();
 			this.button_force_on = new System.Windows.Forms.Button();
@@ -78,7 +82,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			this.label10 = new System.Windows.Forms.Label();
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -120,6 +124,16 @@ namespace HslCommunicationDemo.PLC.Siemens
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "S7 Functions";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Red;
+			this.label2.Location = new System.Drawing.Point(487, 28);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(190, 17);
+			this.label2.TabIndex = 57;
+			this.label2.Text = "强制功能暂时只对 200smart 有效";
 			// 
 			// button_force_off
 			// 
@@ -370,16 +384,6 @@ namespace HslCommunicationDemo.PLC.Siemens
 			this.label9.Size = new System.Drawing.Size(32, 17);
 			this.label9.TabIndex = 33;
 			this.label9.Text = "值：";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.ForeColor = System.Drawing.Color.Red;
-			this.label2.Location = new System.Drawing.Point(487, 28);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(190, 17);
-			this.label2.TabIndex = 57;
-			this.label2.Text = "强制功能暂时只对 200smart 有效";
 			// 
 			// SiemensS7Control
 			// 
@@ -707,6 +711,25 @@ namespace HslCommunicationDemo.PLC.Siemens
 
 				label2.Text = "The enforcement feature is currently only valid for 200smart";
 			}
+
+			toolTip1.SetToolTip( button7, "plc.ReadDateTime( string address )" );
+			toolTip1.SetToolTip( button8, "plc.Write( string address, DateTime dateTime )" );
+			toolTip1.SetToolTip( button_read_string, "plc.ReadString( string address )" );
+			toolTip1.SetToolTip( button14, "plc.Write( string address, string value )" );
+			toolTip1.SetToolTip( button11, "plc.ReadWString( string address )" );
+			toolTip1.SetToolTip( button10, "plc.WriteWString( string address, string value )" );
+			toolTip1.SetToolTip( button_read_date, "plc.ReadDate( string address )" );
+			toolTip1.SetToolTip( button_write_Date, "plc.WriteDate( string address, DateTime dateTime )" );
+			toolTip1.SetToolTip( button_read_dtltime, "plc.ReadDTLDataTime( string address )" );
+			toolTip1.SetToolTip( button_write_dtltime, "plc.WriteDTLTime( string address, DateTime dateTime )" );
+
+			toolTip1.SetToolTip( button_force_on, "plc.ForceBool( string address, true )" );
+			toolTip1.SetToolTip( button_force_off, "plc.ForceBool( string address, false )" );
+			toolTip1.SetToolTip( button_force_clear, "plc.CancelAllForce( );" );
+			toolTip1.SetToolTip( button4, "plc.HotStart( )" );
+			toolTip1.SetToolTip( button5, "plc.ColdStart( )" );
+			toolTip1.SetToolTip( button6, "plc.Stop( )" );
+			toolTip1.SetToolTip( button3, "plc.ReadOrderNumber( )" );
 		}
 
 	}

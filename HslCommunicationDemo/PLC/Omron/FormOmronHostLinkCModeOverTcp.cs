@@ -91,7 +91,7 @@ namespace HslCommunicationDemo
 				omronHostLink.UnitNumber = Station;
 				omronHostLink.ByteTransform.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 
-				OperateResult connect = omronHostLink.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( omronHostLink );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -115,7 +115,8 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+						"Error: " + connect.ErrorCode );
 				}
 			}
 			catch (Exception ex)
@@ -131,6 +132,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( omronHostLink );
 		}
 		
 		#endregion

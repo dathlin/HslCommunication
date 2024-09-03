@@ -30,9 +30,12 @@
 		{
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_online_max = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.textBox_device_id = new System.Windows.Forms.TextBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.label11 = new System.Windows.Forms.Label();
 			this.button11 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox_port = new System.Windows.Forms.TextBox();
@@ -99,9 +102,12 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_online_max);
+			this.panel1.Controls.Add(this.label10);
+			this.panel1.Controls.Add(this.textBox_device_id);
+			this.panel1.Controls.Add(this.label9);
 			this.panel1.Controls.Add(this.comboBox1);
 			this.panel1.Controls.Add(this.label5);
-			this.panel1.Controls.Add(this.label11);
 			this.panel1.Controls.Add(this.button11);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox_port);
@@ -111,6 +117,39 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1001, 41);
 			this.panel1.TabIndex = 4;
+			// 
+			// textBox_online_max
+			// 
+			this.textBox_online_max.Location = new System.Drawing.Point(423, 8);
+			this.textBox_online_max.Name = "textBox_online_max";
+			this.textBox_online_max.Size = new System.Drawing.Size(57, 23);
+			this.textBox_online_max.TabIndex = 35;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(329, 11);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(95, 17);
+			this.label10.TabIndex = 34;
+			this.label10.Text = "SessionsMax：";
+			// 
+			// textBox_device_id
+			// 
+			this.textBox_device_id.Location = new System.Drawing.Point(576, 8);
+			this.textBox_device_id.Name = "textBox_device_id";
+			this.textBox_device_id.Size = new System.Drawing.Size(57, 23);
+			this.textBox_device_id.TabIndex = 33;
+			this.textBox_device_id.Text = "1";
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(498, 11);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(75, 17);
+			this.label9.TabIndex = 32;
+			this.label9.Text = "Device ID：";
 			// 
 			// comboBox1
 			// 
@@ -122,7 +161,7 @@
             "UTF8",
             "Unicode",
             "GB2312"});
-			this.comboBox1.Location = new System.Drawing.Point(399, 6);
+			this.comboBox1.Location = new System.Drawing.Point(722, 6);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(104, 25);
 			this.comboBox1.TabIndex = 31;
@@ -130,20 +169,11 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(331, 11);
+			this.label5.Location = new System.Drawing.Point(654, 11);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(63, 17);
 			this.label5.TabIndex = 30;
 			this.label5.Text = "Encode：";
-			// 
-			// label11
-			// 
-			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(512, 3);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(467, 35);
-			this.label11.TabIndex = 29;
-			this.label11.Text = "本服务器不是严格的secs协议，仅支持和HSL组件完美通信。";
 			// 
 			// button11
 			// 
@@ -192,7 +222,7 @@
 			this.listBox1.ItemHeight = 17;
 			this.listBox1.Location = new System.Drawing.Point(714, 31);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(269, 140);
+			this.listBox1.Size = new System.Drawing.Size(269, 89);
 			this.listBox1.TabIndex = 34;
 			// 
 			// label2
@@ -234,7 +264,7 @@
 			this.textBox_log.Multiline = true;
 			this.textBox_log.Name = "textBox_log";
 			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_log.Size = new System.Drawing.Size(644, 182);
+			this.textBox_log.Size = new System.Drawing.Size(644, 170);
 			this.textBox_log.TabIndex = 10;
 			// 
 			// label13
@@ -556,7 +586,6 @@
 
 		private DemoControl.UserControlHead userControlHead1;
 		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.Button button11;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.TextBox textBox_port;
@@ -594,5 +623,9 @@
 		private System.Windows.Forms.CheckBox checkBox_device_w;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TextBox textBox_device_id;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.TextBox textBox_online_max;
+		private System.Windows.Forms.Label label10;
 	}
 }

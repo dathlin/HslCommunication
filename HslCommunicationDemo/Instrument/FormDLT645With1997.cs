@@ -78,22 +78,30 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( dLT645 );
-				dLT645.Open( );
+				OperateResult open = DeviceConnectPLC( dLT645 );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				userControlReadWriteDevice1.SetReadWriteNet( dLT645, "B6-11", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( dLT645, "B6-11", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => dLT645.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.SetReadWriteNet( dLT645, "B6-11", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( dLT645, "B6-11", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => dLT645.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-				control.SetDevice( dLT645, "B6-11" );
+					control.SetDevice( dLT645, "B6-11" );
 
-				// 设置代码示例
-				codeExampleControl.SetCodeText( "dlt", dLT645, nameof( dLT645.Station ), nameof( dLT645.EnableCodeFE ) );
+					// 设置代码示例
+					codeExampleControl.SetCodeText( "dlt", dLT645, nameof( dLT645.Station ), nameof( dLT645.EnableCodeFE ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -108,6 +116,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( dLT645 );
 		}
 		
 		#endregion

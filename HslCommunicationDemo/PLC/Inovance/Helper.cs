@@ -18,6 +18,8 @@ namespace HslCommunicationDemo.PLC.Inovance
 				new DeviceAddressExample( "IX0.0", "输入", true, false, "IX0.0-IX8191.7 或是 I0-I65535" ),
 				new DeviceAddressExample( "MX0.0", "M寄存器", true, false, "MX0.0-MX1000.10" ),
 				new DeviceAddressExample( "MW0", "M寄存器", false, true, "MW0-MW65535" ),
+				new DeviceAddressExample( "MD0", "M寄存器", false, true, "MD100 = MW200" ),
+				new DeviceAddressExample( "MB0", "M寄存器", false, true, "MB100 = MW50 必须偶数的地址" ),
 				new DeviceAddressExample( "SM0", "", false, true, "AM600系列还支持 SM0-SM65535" ),
 				new DeviceAddressExample( "SD0", "", false, true, "AM600系列还支持 SDW0-SDW65535" ),
 				new DeviceAddressExample( "s=2;SD0", "", false, true, "以上所有地址支持额外指定站号" ),

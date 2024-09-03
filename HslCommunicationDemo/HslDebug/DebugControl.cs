@@ -237,6 +237,8 @@ namespace HslCommunicationDemo.HslDebug
 					richTextBox_main.SelectionColor = Color.Green;
 				else if (code == 1)
 					richTextBox_main.SelectionColor = Color.Blue;
+				else if (code == 4)
+					richTextBox_main.SelectionColor = Color.Purple;
 				else
 					richTextBox_main.SelectionColor = Color.Red;
 				richTextBox_main.AppendText( Environment.NewLine );
@@ -246,12 +248,13 @@ namespace HslCommunicationDemo.HslDebug
 
 
 		/// <summary>
-		/// code = 0 表示 收，code = 1 时表示 发, code = 2 时表示关闭
+		/// code = 0 表示 收，code = 1 时表示 发, code = 2 时表示关闭, code = 3 时上线， code = 4: DTU相关
 		/// </summary>
 		/// <param name="session">会话信息</param>
 		/// <param name="code">代号</param>
 		/// <param name="data">数据</param>
-		public void RenderSendReceiveContent( SocketDebugSession session, int code, byte[] data, string msg = null )
+		/// <param name="head">额外的头信息</param>
+		public void RenderSendReceiveContent( SocketDebugSession session, int code, byte[] data, string msg = null, string head = null )
 		{
 			if (checkBox_stop_show.Checked) return;
 			if (code == 1)
@@ -262,7 +265,7 @@ namespace HslCommunicationDemo.HslDebug
 
 			if (checkBox_show_header.Checked)
 			{
-				string header = GetTextHeader( session, code, data == null ? -1 : data.Length );
+				string header = GetTextHeader( session, code, data == null ? -1 : data.Length, head );
 				RenderMessage( -1, header );
 			}
 
@@ -301,56 +304,64 @@ namespace HslCommunicationDemo.HslDebug
 		}
 
 		/// <summary>
-		/// code = 0 表示 收，code = 1 时表示 发, code = 2 时表示关闭
+		/// code = 0 表示 收，code = 1 时表示 发, code = 2 时表示关闭, code = 3 时上线， code = 4: DTU相关
 		/// </summary>
 		/// <param name="session">目标的节点信息</param>
 		/// <param name="code">操作代码</param>
 		/// <param name="length">消息的长度信息</param>
 		/// <returns>打包后的字符串</returns>
-		private static string GetTextHeader( SocketDebugSession session, int code, int length )
+		private static string GetTextHeader( SocketDebugSession session, int code, int length, string head = null )
 		{
 			string op = string.Empty;
 			if (Program.Language == 1)
 			{
-				op = code == 0 ? "收" : code == 1 ? "发" : code == 2 ? "关" : code == 3 ? "上线" : "None";
+				op = code == 0 ? "收" : code == 1 ? "发" : code == 2 ? "关" : code == 3 ? "上线" : code == 4 ? "DTU" : "无";
 			}
 			else
 			{
-				op = code == 0 ? "Recv" : code == 1 ? "Send" : code == 2 ? "Clos" : code == 3 ? "Online" : "None";
+				op = code == 0 ? "Recv" : code == 1 ? "Send" : code == 2 ? "Clos" : code == 3 ? "Online" : code == 4 ? "DTU" : "None";
 			}
 
 			StringBuilder sb = new StringBuilder( );
 			sb.Append( "[" + DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + "] " );
 
-			if (session.UseMode < 2)
+			if (session != null)
 			{
-				if (code == 0)
+				if (session.UseMode < 2)
 				{
-					sb.Append( $"[{op} {session.RemoteEndPoint} To {session.LocalEndPoint}]" );
+					if (code == 0)
+					{
+						sb.Append( $"[{op} {session.RemoteEndPoint} To {session.LocalEndPoint}]" );
+					}
+					else if (code == 1)
+					{
+						sb.Append( $"[{op} {session.LocalEndPoint} To {session.RemoteEndPoint}]" );
+					}
+					else
+					{
+						sb.Append( $"[{op} {session.RemoteEndPoint}]" );
+					}
 				}
-				else if (code == 1)
+				else if (session.UseMode == 2)
 				{
-					sb.Append( $"[{op} {session.LocalEndPoint} To {session.RemoteEndPoint}]" );
-				}
-				else
-				{
-					sb.Append( $"[{op} {session.RemoteEndPoint}]" );
+					if (code == 0)
+					{
+						sb.Append( $"[{op} From {session.PortName}]" );
+					}
+					else if (code == 1)
+					{
+						sb.Append( $"[{op} To {session.PortName}]" );
+					}
+					else
+					{
+						sb.Append( $"[{op} {session.PortName}]" );
+					}
 				}
 			}
 			else
 			{
-				if (code == 0)
-				{
-					sb.Append( $"[{op} From {session.PortName}]" );
-				}
-				else if (code == 1)
-				{
-					sb.Append( $"[{op} To {session.PortName}]" );
-				}
-				else
-				{
-					sb.Append( $"[{op} {session.PortName}]" );
-				}
+				if (!string.IsNullOrEmpty( head ))
+					sb.Append( $"[{head}]" );
 			}
 
 			if (length >= 0) sb.Append( $"  Bytes Length: {length}" );
@@ -488,8 +499,8 @@ namespace HslCommunicationDemo.HslDebug
 			{
 				if (comboBox_sessions.SelectedItem == null)
 				{
-					MessageBox.Show( Program.Language == 1 ? "当前没有可用的连接通道，请先连接上。" : "There are currently no connection channels available, please connect them first." );
 					if (checkBox_send_cycle.Checked) checkBox_send_cycle.Checked = false;
+					MessageBox.Show( Program.Language == 1 ? "当前没有可用的连接通道，请先连接上。" : "There are currently no connection channels available, please connect them first." );
 					return;
 				}
 				if (comboBox_sessions.SelectedItem is SocketDebugSession session)
@@ -501,8 +512,8 @@ namespace HslCommunicationDemo.HslDebug
 			{
 				if (sessions == null || sessions.Count == 0)
 				{
-					MessageBox.Show( Program.Language == 1 ? "当前没有可用的连接通道，请先连接上。" : "There are currently no connection channels available, please connect them first." );
 					if (checkBox_send_cycle.Checked) checkBox_send_cycle.Checked = false;
+					MessageBox.Show( Program.Language == 1 ? "当前没有可用的连接通道，请先连接上。" : "There are currently no connection channels available, please connect them first." );
 					return;
 				}
 

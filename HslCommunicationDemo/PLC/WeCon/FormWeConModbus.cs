@@ -126,7 +126,7 @@ namespace HslCommunicationDemo.PLC.WeCon
 			try
 			{
 				this.pipeSelectControl1.IniPipe( busTcpClient );
-				OperateResult connect = busTcpClient.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( busTcpClient );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
@@ -166,6 +166,7 @@ namespace HslCommunicationDemo.PLC.WeCon
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( busTcpClient );
 		}
 		
 		#endregion

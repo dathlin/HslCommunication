@@ -56,7 +56,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Modbus Tcp Over Udp Read Demo";
-
 				label21.Text = "station";
 				checkBox1.Text = "address from 0";
 				checkBox3.Text = "string reverse";
@@ -102,7 +101,7 @@ namespace HslCommunicationDemo
 		private void button1_Click( object sender, EventArgs e )
 		{
 			// 连接
-			if(!byte.TryParse(textBox15.Text,out byte station))
+			if (!byte.TryParse( textBox15.Text, out byte station ))
 			{
 				MessageBox.Show( "Station input is wrong！" );
 				return;
@@ -120,22 +119,31 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( busTcpClient );
-				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				OperateResult connect = DeviceConnectPLC( busTcpClient );
+				if (connect.IsSuccess)
+				{
+					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置子控件的读取能力
-				userControlReadWriteDevice1.SetReadWriteNet( busTcpClient, "100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( busTcpClient, "100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busTcpClient.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.SetReadWriteNet( busTcpClient, "100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( busTcpClient, "100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busTcpClient.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-				control.SetDevice( busTcpClient, "100" );
+					control.SetDevice( busTcpClient, "100" );
 
-				// 设置示例代码
-				codeExampleControl.SetCodeText( "modbus", busTcpClient, nameof( busTcpClient.Station ), nameof( busTcpClient.AddressStartWithZero ), nameof( busTcpClient.IsStringReverse ), nameof( busTcpClient.DataFormat ) );
+					// 设置示例代码
+					codeExampleControl.SetCodeText( "modbus", busTcpClient, nameof( busTcpClient.Station ), nameof( busTcpClient.AddressStartWithZero ), nameof( busTcpClient.IsStringReverse ), nameof( busTcpClient.DataFormat ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+						"Error: " + connect.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -149,6 +157,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( busTcpClient );
 		}
 		
 		#endregion

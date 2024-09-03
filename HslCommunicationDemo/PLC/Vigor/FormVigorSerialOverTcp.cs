@@ -72,7 +72,7 @@ namespace HslCommunicationDemo
 			{
 				this.pipeSelectControl1.IniPipe( vigor );
 				vigor.Station = byte.Parse( textBox15.Text );
-				OperateResult connect = vigor.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( vigor );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -93,9 +93,9 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+						"Error: " + connect.ErrorCode );
 				}
-
 			}
 			catch (Exception ex)
 			{
@@ -110,6 +110,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( vigor );
 		}
 
 

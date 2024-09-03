@@ -73,26 +73,34 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( siemensPPI );
-				siemensPPI.Open( );
 				siemensPPI.Station = byte.Parse( textBox15.Text );
 				siemensPPI.RtsEnable = true;
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				OperateResult open = DeviceConnectPLC( siemensPPI );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置子控件的读取能力
-				userControlReadWriteDevice1.SetReadWriteNet( siemensPPI, "V100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( siemensPPI, "V100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensPPI.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.SetReadWriteNet( siemensPPI, "V100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( siemensPPI, "V100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensPPI.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-				control.SetDevice( siemensPPI, "M100" );
+					control.SetDevice( siemensPPI, "M100" );
 
+					// 设置代码示例
+					codeExampleControl.SetCodeText( siemensPPI, nameof( siemensPPI.Station ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 
-				// 设置代码示例
-				codeExampleControl.SetCodeText( siemensPPI, nameof( siemensPPI.Station ) );
 			}
 			catch (Exception ex)
 			{
@@ -107,6 +115,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( siemensPPI );
 		}
 		
 

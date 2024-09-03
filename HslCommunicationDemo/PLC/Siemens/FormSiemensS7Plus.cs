@@ -77,7 +77,7 @@ namespace HslCommunicationDemo
 				siemensTcpNet.LogNet = LogNet;
 
 
-				OperateResult connect = siemensTcpNet.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( siemensTcpNet );
 				if (connect.IsSuccess)
 				{
 					textBox_pdu.Text = siemensTcpNet.PDULength.ToString( );
@@ -119,6 +119,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( siemensTcpNet );
 		}
 		
 		#endregion

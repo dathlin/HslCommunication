@@ -102,6 +102,27 @@ namespace HslCommunicationDemo.HslDebug
 		/// </summary>
 		public byte[] Buffer { get; set; }
 
+		/// <summary>
+		/// 将数据发送到会话中去
+		/// </summary>
+		/// <param name="data"></param>
+		public void SendData( byte[] data )
+		{
+			if (data == null) return;
+			if (useMode == 0)
+			{
+				WorkSocket.Send( data );
+			}
+			else if (useMode == 1)
+			{
+				WorkSocket.SendTo( data, RemoteEndPoint );
+			}
+			else if (useMode == 2)
+			{
+				this.SerialPort.Write( data, 0, data.Length );
+			}
+		}
+
 		#region Private Member
 
 		private int useMode = 0;

@@ -76,7 +76,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( ge );
-				OperateResult connect = ge.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( ge );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -99,7 +99,8 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+						"Error: " + connect.ErrorCode );
 				}
 			}
 			catch (Exception ex)
@@ -115,6 +116,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( ge );
 		}
 
 		

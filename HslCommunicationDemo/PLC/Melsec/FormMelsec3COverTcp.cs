@@ -102,7 +102,7 @@ namespace HslCommunicationDemo
 				melsecA3C.Station = byte.Parse( textBox15.Text );
 				melsecA3C.SumCheck = checkBox_sumcheck.Checked;
 				melsecA3C.Format = int.Parse( comboBox_format.SelectedItem.ToString( ) );
-				OperateResult connect = melsecA3C.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( melsecA3C );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
@@ -139,6 +139,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( melsecA3C );
 		}
 
 

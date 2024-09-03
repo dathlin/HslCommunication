@@ -10,6 +10,10 @@ using HslCommunication.BasicFramework;
 using HslCommunication.Core.Security;
 using System.Security.Cryptography;
 using HslCommunicationDemo.DemoControl;
+using HslCommunication;
+using HslCommunication.Core.Device;
+using HslCommunication.Core.Pipe;
+using HslCommunication.Serial;
 
 namespace HslCommunicationDemo
 {
@@ -177,5 +181,39 @@ namespace HslCommunicationDemo
 			}
 		}
 
+
+		protected OperateResult DeviceConnectPLC( DeviceTcpNet device )
+		{
+			if (device.CommunicationPipe.GetType( ) == typeof( PipeDtuNet ))
+			{
+				return OperateResult.CreateSuccessResult( );
+			}
+			else
+				return device.ConnectServer( );
+		}
+
+		protected OperateResult DeviceConnectPLC( DeviceSerialPort device )
+		{
+			if (device.CommunicationPipe.GetType( ) == typeof( PipeDtuNet ))
+			{
+				return OperateResult.CreateSuccessResult( );
+			}
+			else
+				return device.Open( );
+		}
+		protected OperateResult DeviceConnectPLC( SerialBase device )
+		{
+			if (device.CommunicationPipe.GetType( ) == typeof( PipeDtuNet ))
+			{
+				return OperateResult.CreateSuccessResult( );
+			}
+			else
+				return device.Open( );
+		}
+
+		protected OperateResult DeviceConnectPLC( DeviceUdpNet device )
+		{
+			return OperateResult.CreateSuccessResult( );
+		}
 	}
 }

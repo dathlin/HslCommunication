@@ -101,41 +101,34 @@ namespace HslCommunicationDemo
 				melsecA3C.SumCheck = checkBox_sumcheck.Checked;
 				melsecA3C.Format = int.Parse( comboBox_format.SelectedItem.ToString( ) );
 
-				melsecA3C.Open( );
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				OperateResult open = DeviceConnectPLC( melsecA3C );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置基本的读写信息
-				userControlReadWriteDevice1.SetReadWriteNet( melsecA3C, "D100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsecA3C, "D100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsecA3C.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.SetReadWriteNet( melsecA3C, "D100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsecA3C, "D100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsecA3C.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-				// 设置示例的代码
-				codeExampleControl.SetCodeText( melsecA3C, nameof( melsecA3C.Station), nameof( melsecA3C.EnableWriteBitToWordRegister ), nameof( melsecA3C.SumCheck),
-					nameof( melsecA3C.Format ) );
+					// 设置示例的代码
+					codeExampleControl.SetCodeText( melsecA3C, nameof( melsecA3C.Station ), nameof( melsecA3C.EnableWriteBitToWordRegister ), nameof( melsecA3C.SumCheck ),
+						nameof( melsecA3C.Format ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show( ex.Message );
 			}
-			HslCommunication.Profinet.Melsec.MelsecA3CNet plc = new HslCommunication.Profinet.Melsec.MelsecA3CNet( );
-			plc.SerialPortInni( sp =>
-			{
-				sp.PortName = "COM1";
-				sp.BaudRate = 9600;
-				sp.DataBits = 8;
-				sp.StopBits = System.IO.Ports.StopBits.One;
-				sp.Parity = System.IO.Ports.Parity.None;
-				sp.RtsEnable = true;
-			} );
-			plc.ReceiveTimeOut = 5000;   // 接收超时，单位毫秒
-			plc.Station = 0;
-			plc.EnableWriteBitToWordRegister = false;
-			plc.SumCheck = true;
-			plc.Format = 1;
 
 		}
 
@@ -146,6 +139,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( melsecA3C );
 		}
 
 		

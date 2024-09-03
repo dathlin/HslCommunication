@@ -78,18 +78,8 @@ namespace HslCommunicationDemo
 
 		#region Connect And Close
 
-		private async void button1_Click( object sender, EventArgs e )
+		private void button1_Click( object sender, EventArgs e )
 		{
-			try
-			{
-				this.pipeSelectControl1.IniPipe( melsec_net );
-			}
-			catch( Exception ex )
-			{
-				SoftBasic.ShowExceptionMessage( ex );
-				return;
-			}
-
 
 			if (!byte.TryParse( textBox_network_number.Text, out byte networkNumber ))
 			{
@@ -133,12 +123,21 @@ namespace HslCommunicationDemo
 
 			melsec_net.ConnectClose( );
 			melsec_net.LogNet = LogNet;
-			melsec_net.ConnectTimeOut = 3000; // 连接3秒超时
+
+			try
+			{
+				this.pipeSelectControl1.IniPipe( melsec_net );
+			}
+			catch (Exception ex)
+			{
+				SoftBasic.ShowExceptionMessage( ex );
+				return;
+			}
 
 			melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
 			melsec_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
-			button1.Enabled = false;
-			OperateResult connect = await melsec_net.ConnectServerAsync( );
+			OperateResult connect = DeviceConnectPLC( melsec_net );
+
 			if (connect.IsSuccess)
 			{
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -166,7 +165,6 @@ namespace HslCommunicationDemo
 			else
 			{
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
-				button1.Enabled = true;
 			}
 		}
 
@@ -178,8 +176,8 @@ namespace HslCommunicationDemo
 			melsec_net.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
-
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( melsec_net );
 		}
 
 		#endregion

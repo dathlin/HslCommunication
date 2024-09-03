@@ -37,7 +37,7 @@ namespace HslCommunicationDemo.DemoControl
 			Name = GetXmlValue( element, nameof( Name ), Name, m => m );
 			Description = GetXmlValue( element, nameof( Description ), Description, m => m );
 			Address = element.Attribute( nameof( Address ) ).Value;
-			DataTypeCode = GetXmlValue( element, nameof( DataTypeCode ), DataTypeCode, m => m );
+			DataTypeCode = GetXmlValue( element, nameof( DataTypeCode ), DataTypeCode, m => m ).ToLower( );
 			Length = GetXmlValue( element, nameof( Length ), Length, int.Parse );
 			Unit = GetXmlValue( element, nameof( Unit ), Unit, m => m );
 			StringEncoding = GetXmlEnum( element, nameof( StringEncoding ), StringEncoding.ASCII );

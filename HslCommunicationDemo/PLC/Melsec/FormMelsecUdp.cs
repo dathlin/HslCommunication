@@ -91,29 +91,41 @@ namespace HslCommunicationDemo
 			melsec_net.ByteTransform.IsStringReverseByteWord = checkBox_string_reverse.Checked;
 			//melsec_net.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Any, 20000 );  // 如果需要固定本地的端口20000的例子
 			//melsec_net.GetPipeSocket( ).SetMultiPorts( new int[] { port, 6001 } );
-			button2.Enabled = true;
-			button1.Enabled = false;
-			userControlReadWriteDevice1.SetEnable( true );
-			// 设置子控件的读取能力
-			userControlReadWriteDevice1.SetReadWriteNet( melsec_net, "D100", false );
-			// 设置批量读取
-			userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsec_net, "D100", string.Empty );
-			userControlReadWriteDevice1.BatchRead.SetReadRandom( melsec_net.ReadRandom, "D100;W100;D500" );
-			userControlReadWriteDevice1.BatchRead.SetReadWordRandom( melsec_net.ReadRandom, "D100;W100;D500" );
-			// 设置报文读取
-			userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-			control.SetDevice( melsec_net, "D100" );
+			OperateResult connect = DeviceConnectPLC( melsec_net );
+			if (connect.IsSuccess)
+			{
+				button2.Enabled = true;
+				button1.Enabled = false;
+				userControlReadWriteDevice1.SetEnable( true );
+				// 设置子控件的读取能力
+				userControlReadWriteDevice1.SetReadWriteNet( melsec_net, "D100", false );
+				// 设置批量读取
+				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsec_net, "D100", string.Empty );
+				userControlReadWriteDevice1.BatchRead.SetReadRandom( melsec_net.ReadRandom, "D100;W100;D500" );
+				userControlReadWriteDevice1.BatchRead.SetReadWordRandom( melsec_net.ReadRandom, "D100;W100;D500" );
+				// 设置报文读取
+				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+				control.SetDevice( melsec_net, "D100" );
 
 
-			codeExampleControl.SetCodeText( melsec_net, nameof( MelsecMcUdp.EnableWriteBitToWordRegister ), "ByteTransform.IsStringReverseByteWord" );
+				codeExampleControl.SetCodeText( melsec_net, nameof( MelsecMcUdp.EnableWriteBitToWordRegister ), "ByteTransform.IsStringReverseByteWord" );
+			}
+			else
+			{
+				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+					"Error: " + connect.ErrorCode );
+			}
+
 		}
 
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
+			melsec_net.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( melsec_net );
 		}
 
 		#endregion

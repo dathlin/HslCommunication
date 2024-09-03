@@ -194,7 +194,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "read failed: " + read.Message );
+				MessageBox.Show( "read failed: " + read.ToMessageShowString( ) );
 			}
 
 			string timeCount = cost.TotalMilliseconds.ToString( "F0" );
@@ -267,7 +267,7 @@ namespace HslCommunicationDemo.DemoControl
 
 			if (!write.IsSuccess)
 			{
-				MessageBox.Show( "write failed: " + write.Message );
+				MessageBox.Show( "write failed: " + write.ToMessageShowString( ) );
 			}
 			else
 			{

@@ -29,7 +29,7 @@
         private void InitializeComponent( )
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("CNC_MEM");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("CNC_MEM");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -42,6 +42,10 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.button41 = new System.Windows.Forms.Button();
+			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.label20 = new System.Windows.Forms.Label();
+			this.button40 = new System.Windows.Forms.Button();
 			this.textBox_diagnoss_axis = new System.Windows.Forms.TextBox();
 			this.label19 = new System.Windows.Forms.Label();
 			this.textBox_diagnoss_length = new System.Windows.Forms.TextBox();
@@ -121,6 +125,7 @@
 			this.readNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.readNcLocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.button42 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -249,6 +254,11 @@
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.button42);
+			this.tabPage1.Controls.Add(this.button41);
+			this.tabPage1.Controls.Add(this.textBox5);
+			this.tabPage1.Controls.Add(this.label20);
+			this.tabPage1.Controls.Add(this.button40);
 			this.tabPage1.Controls.Add(this.textBox_diagnoss_axis);
 			this.tabPage1.Controls.Add(this.label19);
 			this.tabPage1.Controls.Add(this.textBox_diagnoss_length);
@@ -300,6 +310,43 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "基本操作";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// button41
+			// 
+			this.button41.Location = new System.Drawing.Point(736, 176);
+			this.button41.Name = "button41";
+			this.button41.Size = new System.Drawing.Size(96, 29);
+			this.button41.TabIndex = 86;
+			this.button41.Text = "读刀组寿命";
+			this.button41.UseVisualStyleBackColor = true;
+			this.button41.Click += new System.EventHandler(this.button41_Click);
+			// 
+			// textBox5
+			// 
+			this.textBox5.Location = new System.Drawing.Point(675, 179);
+			this.textBox5.Name = "textBox5";
+			this.textBox5.Size = new System.Drawing.Size(55, 23);
+			this.textBox5.TabIndex = 85;
+			this.textBox5.Text = "2";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(619, 182);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(56, 17);
+			this.label20.TabIndex = 84;
+			this.label20.Text = "刀组号：";
+			// 
+			// button40
+			// 
+			this.button40.Location = new System.Drawing.Point(4, 180);
+			this.button40.Name = "button40";
+			this.button40.Size = new System.Drawing.Size(96, 29);
+			this.button40.TabIndex = 83;
+			this.button40.Text = "读当前刀组";
+			this.button40.UseVisualStyleBackColor = true;
+			this.button40.Click += new System.EventHandler(this.button40_Click);
 			// 
 			// textBox_diagnoss_axis
 			// 
@@ -432,7 +479,7 @@
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(9, 205);
+			this.label12.Location = new System.Drawing.Point(9, 214);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(61, 17);
 			this.label12.TabIndex = 19;
@@ -451,11 +498,11 @@
 			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox8.Location = new System.Drawing.Point(6, 227);
+			this.textBox8.Location = new System.Drawing.Point(6, 239);
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(973, 292);
+			this.textBox8.Size = new System.Drawing.Size(973, 280);
 			this.textBox8.TabIndex = 18;
 			// 
 			// button34
@@ -994,10 +1041,10 @@
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.treeView1.Location = new System.Drawing.Point(5, 99);
 			this.treeView1.Name = "treeView1";
-			treeNode1.Name = "节点0";
-			treeNode1.Text = "CNC_MEM";
+			treeNode2.Name = "节点0";
+			treeNode2.Text = "CNC_MEM";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
 			this.treeView1.Size = new System.Drawing.Size(204, 417);
 			this.treeView1.TabIndex = 66;
 			// 
@@ -1067,6 +1114,16 @@
 			this.readNcLocalToolStripMenuItem.Name = "readNcLocalToolStripMenuItem";
 			this.readNcLocalToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
 			this.readNcLocalToolStripMenuItem.Text = "读取NC到本地";
+			// 
+			// button42
+			// 
+			this.button42.Location = new System.Drawing.Point(838, 176);
+			this.button42.Name = "button42";
+			this.button42.Size = new System.Drawing.Size(96, 29);
+			this.button42.TabIndex = 87;
+			this.button42.Text = "清除刀组号";
+			this.button42.UseVisualStyleBackColor = true;
+			this.button42.Click += new System.EventHandler(this.button42_Click);
 			// 
 			// FormCncFanuc
 			// 
@@ -1192,5 +1249,10 @@
 		private System.Windows.Forms.TextBox textBox_diagnoss_axis;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.ToolStripMenuItem readNcLocalToolStripMenuItem;
+		private System.Windows.Forms.Button button40;
+		private System.Windows.Forms.Button button41;
+		private System.Windows.Forms.TextBox textBox5;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.Button button42;
 	}
 }

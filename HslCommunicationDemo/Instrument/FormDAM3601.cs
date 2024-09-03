@@ -132,11 +132,19 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( dAM3601 );
-				dAM3601.Open( );
+				OperateResult open = DeviceConnectPLC( dAM3601 );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				panel2.Enabled = true;
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					panel2.Enabled = true;
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -151,6 +159,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
+			this.pipeSelectControl1.ExtraCloseAction( dAM3601 );
 		}
 
 

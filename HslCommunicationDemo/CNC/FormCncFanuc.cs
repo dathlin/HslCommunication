@@ -864,6 +864,69 @@ namespace HslCommunicationDemo
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 		}
+
+		private void button40_Click( object sender, EventArgs e )
+		{
+			// 读当前刀组
+			OperateResult<int> read = fanuc.ReadUseToolGroupId( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "当前刀组：" + read.Content;
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
+
+		private void button41_Click( object sender, EventArgs e )
+		{
+			// 读刀组寿命
+			short id = 0;
+			try
+			{
+				id = Convert.ToInt16( textBox5.Text );
+			}
+			catch( Exception ex )
+			{
+				MessageBox.Show( "刀组号输入不正确：" + ex.Message );
+				return;
+			}
+			OperateResult<ToolInformation> read = fanuc.ReadToolInfoByGroup( id );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "刀具信息：" + Environment.NewLine + read.Content.ToJsonString( );
+			}
+			else
+			{
+				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+		}
+
+		private void button42_Click( object sender, EventArgs e )
+		{
+			// 清除刀组号
+			short id = 0;
+			try
+			{
+				id = Convert.ToInt16( textBox5.Text );
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( "刀组号输入不正确：" + ex.Message );
+				return;
+			}
+			OperateResult read = fanuc.ClearToolGroup( id, id );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "清除成功";
+				MessageBox.Show( "清除成功" );
+			}
+			else
+			{
+				MessageBox.Show( "Clear Failed:" + read.ToMessageShowString( ) );
+			}
+		}
 	}
 
 

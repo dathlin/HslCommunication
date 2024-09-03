@@ -73,7 +73,7 @@ namespace HslCommunicationDemo
 
 
 
-		private async void button1_Click( object sender, EventArgs e )
+		private void button1_Click( object sender, EventArgs e )
 		{
 			reader_net.ConnectClose( );
 			reader_net.LogNet = LogNet;
@@ -87,8 +87,7 @@ namespace HslCommunicationDemo
 				MessageBox.Show( ex.Message );
 				return;
 			}
-			button1.Enabled = false;
-			OperateResult connect = await reader_net.ConnectServerAsync( );
+			OperateResult connect = DeviceConnectPLC( reader_net );
 			if (connect.IsSuccess)
 			{
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -112,8 +111,8 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( connect.Message + Environment.NewLine + "ErrorCode: " + connect.ErrorCode );
-				button1.Enabled = true;
+				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+					"Error: " + connect.ErrorCode );
 			}
 		}
 
@@ -124,6 +123,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( reader_net );
 		}
 
 		#endregion

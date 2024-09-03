@@ -10,7 +10,10 @@ using System.Data;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
+using System.Net;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -29,7 +32,9 @@ namespace HslCommunicationDemo.DemoControl
 				"UdpIp",
 				"Serial",
 				"Mqtt",
-				"SSL/TLS"
+				"SSL/TLS",
+				"DTU",
+				"MoxaCom"
 			};
 
 			string[] ports = SerialPort.GetPortNames( );
@@ -44,6 +49,9 @@ namespace HslCommunicationDemo.DemoControl
 
 			this.panel_udp.Visible = false;
 			this.panel_udp.Location = this.panel_tcp.Location;
+
+			this.panel_dtu.Visible = false;
+			this.panel_dtu.Location = this.panel_tcp.Location;
 
 			comboBox_pipe_select.SelectedIndex = 0;
 			comboBox_pipe_select.SelectedIndexChanged += ComboBox_pipe_select_SelectedIndexChanged;
@@ -64,6 +72,8 @@ namespace HslCommunicationDemo.DemoControl
 				case 2: SetVisible( SettingPipe.SerialPipe ); break;
 				case 3: SetVisible( SettingPipe.MqttPipe ); break;
 				case 4: SetVisible( SettingPipe.SslPipe ); break;
+				case 5: SetVisible( SettingPipe.DTU ); break;
+				case 6: SetVisible( SettingPipe.MoxaCom ); break;
 			}
 		}
 
@@ -86,8 +96,12 @@ namespace HslCommunicationDemo.DemoControl
 				label5.Text = "Parity:";
 				label25.Text = "Databits:";
 				label_info_pipe.Text = "Pipe";
-			}
 
+				linkLabel_dtu_message.Text = "MSG";
+				label13.Text = "Pwd:";
+				label11.Text = "Port:";
+				checkBox_dtu_back.Text = "Back MSG?";
+			}
 		}
 
 
@@ -127,7 +141,7 @@ namespace HslCommunicationDemo.DemoControl
 					if (!string.IsNullOrEmpty( settingUdpIP.SendBeforeHex )) element.SetAttributeValue( "SendBeforeHex", settingUdpIP.SendBeforeHex );
 				}
 			}
-			else if (settingPipe == SettingPipe.SerialPipe)
+			else if (settingPipe == SettingPipe.SerialPipe || settingPipe == SettingPipe.MoxaCom)
 			{
 				element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox_com_port.Text );
 				element.SetAttributeValue( DemoDeviceList.XmlBaudRate, comboBox_com_baudrate.Text );
@@ -153,6 +167,13 @@ namespace HslCommunicationDemo.DemoControl
 				element.SetAttributeValue( "MqttUseRSAProvider", this.settingMqtt.UseRSAProvider );
 				element.SetAttributeValue( "Device2Mqtt", this.settingMqtt.Device2Mqtt );
 				element.SetAttributeValue( "Mqtt2Device", this.settingMqtt.Mqtt2Device );
+			}
+			else if (settingPipe == SettingPipe.DTU)
+			{
+				element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_dtu_port.Text );
+				element.SetAttributeValue( "DTUBack",              checkBox_dtu_back.Checked );
+				element.SetAttributeValue( "DTUId",                textBox_dtu_id.Text );
+				element.SetAttributeValue( "DTUPwd",               textBox_dtu_pwd.Text );
 			}
 		}
 
@@ -193,7 +214,7 @@ namespace HslCommunicationDemo.DemoControl
 					this.settingUdpIP.SendBeforeHex = HslFormContent.GetXmlValue( element, "SendBeforeHex", this.settingUdpIP.SendBeforeHex, m => m );
 				}
 			}
-			else if (setting == SettingPipe.SerialPipe)
+			else if (setting == SettingPipe.SerialPipe || setting == SettingPipe.MoxaCom)
 			{
 				comboBox_com_port.Text = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlCom, comboBox_com_port.Text, m => m );
 				comboBox_com_baudrate.Text = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlBaudRate, comboBox_com_baudrate.Text, m => m );
@@ -219,6 +240,13 @@ namespace HslCommunicationDemo.DemoControl
 				this.settingMqtt.UseRSAProvider = HslFormContent.GetXmlValue( element, "MqttUseRSAProvider", this.settingMqtt.UseRSAProvider, bool.Parse );
 				this.settingMqtt.Device2Mqtt = HslFormContent.GetXmlValue( element, "Device2Mqtt", this.settingMqtt.Device2Mqtt, m => m );
 				this.settingMqtt.Mqtt2Device = HslFormContent.GetXmlValue( element, "Mqtt2Device", this.settingMqtt.Mqtt2Device, m => m );
+			}
+			else if (setting == SettingPipe.DTU)
+			{
+				textBox_dtu_port.Text     = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlPort, textBox_dtu_port.Text, m => m );
+				checkBox_dtu_back.Checked = HslFormContent.GetXmlValue( element, "DTUBack", checkBox_dtu_back.Checked, bool.Parse );
+				textBox_dtu_id.Text       = HslFormContent.GetXmlValue( element, "DTUId", textBox_dtu_id.Text, m => m );
+				textBox_dtu_pwd.Text      = HslFormContent.GetXmlValue( element, "DTUPwd", textBox_dtu_pwd.Text, m => m );
 			}
 		}
 
@@ -298,9 +326,11 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					case SettingPipe.TcpPipe: comboBox_pipe_select.SelectedIndex = 0; break;
 					case SettingPipe.UdpPipe: comboBox_pipe_select.SelectedIndex = 1; break;
+					case SettingPipe.MoxaCom:
 					case SettingPipe.SerialPipe: comboBox_pipe_select.SelectedIndex = 2; break;
 					case SettingPipe.MqttPipe: comboBox_pipe_select.SelectedIndex = 3; break;
 					case SettingPipe.SslPipe: comboBox_pipe_select.SelectedIndex = 4; break;
+					case SettingPipe.DTU: comboBox_pipe_select.SelectedIndex = 5; break;
 					default: SetVisible( value ); break;
 				}
 				SetVisible( value );
@@ -315,6 +345,7 @@ namespace HslCommunicationDemo.DemoControl
 				this.panel_udp.Visible = false;
 				this.panel_mqtt.Visible = false;
 				this.panel_serial.Visible = false;
+				this.panel_dtu.Visible = false;
 			}
 			else if ( settingPipe == SettingPipe.SslPipe)
 			{
@@ -322,6 +353,7 @@ namespace HslCommunicationDemo.DemoControl
 				this.panel_udp.Visible = false;
 				this.panel_mqtt.Visible = false;
 				this.panel_serial.Visible = false;
+				this.panel_dtu.Visible = false;
 			}
 			else if (settingPipe == SettingPipe.UdpPipe)
 			{
@@ -329,13 +361,15 @@ namespace HslCommunicationDemo.DemoControl
 				this.panel_tcp.Visible = false;
 				this.panel_mqtt.Visible = false;
 				this.panel_serial.Visible = false;
+				this.panel_dtu.Visible = false;
 			}
-			else if (settingPipe == SettingPipe.SerialPipe)
+			else if (settingPipe == SettingPipe.SerialPipe || settingPipe == SettingPipe.MoxaCom)
 			{
 				this.panel_serial.Visible = true;
 				this.panel_udp.Visible = false;
 				this.panel_tcp.Visible = false;
 				this.panel_mqtt.Visible = false;
+				this.panel_dtu.Visible = false;
 			}
 			else if (settingPipe == SettingPipe.MqttPipe)
 			{
@@ -343,6 +377,15 @@ namespace HslCommunicationDemo.DemoControl
 				this.panel_serial.Visible = false;
 				this.panel_udp.Visible = false;
 				this.panel_tcp.Visible = false;
+				this.panel_dtu.Visible = false;
+			}
+			else if (settingPipe == SettingPipe.DTU)
+			{
+				this.panel_mqtt.Visible = false;
+				this.panel_serial.Visible = false;
+				this.panel_udp.Visible = false;
+				this.panel_tcp.Visible = false;
+				this.panel_dtu.Visible = true;
 			}
 			this.settingPipe = settingPipe;
 		}
@@ -350,6 +393,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		public void IniPipe( BinaryCommunication device )
 		{
+			this.deviceTcpNet = device;
 			if (this.settingPipe == SettingPipe.TcpPipe)
 			{
 				device.CommunicationPipe = CreatePipeTcpNet( device );
@@ -362,6 +406,10 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				device.CommunicationPipe = CreatePipeSerialPort( device );
 			}
+			else if (this.settingPipe == SettingPipe.MoxaCom)
+			{
+				device.CommunicationPipe = CreatePipeMoxa( device );
+			}
 			else if (this.settingPipe == SettingPipe.SslPipe)
 			{
 				device.CommunicationPipe = CreatePipeSSLNet( device );
@@ -369,6 +417,111 @@ namespace HslCommunicationDemo.DemoControl
 			else if (this.settingPipe == SettingPipe.MqttPipe)
 			{
 				device.CommunicationPipe = CreatePipeMqttClient( );
+			}
+			else if (this.settingPipe == SettingPipe.DTU)
+			{
+				if (this.deviceTcpNet == null) throw new Exception( "当前的协议不支持DTU模式" );
+
+
+				if (dtuServer != null) dtuServer.ServerClose( );
+				dtuServer = new NetworkAlienClient( );
+				dtuServer.LogNet = this.deviceTcpNet.LogNet;
+				dtuServer.IsResponseAck = checkBox_dtu_back.Checked;                         // 是否返回注册包
+
+				if (!string.IsNullOrEmpty(textBox_dtu_pwd.Text))
+				{
+					dtuServer.SetPassword( Encoding.ASCII.GetBytes( textBox_dtu_pwd.Text ) );
+				}
+				// dtuServer.OnClientConnected += DtuServer_OnClientConnected;
+				dtuServer.OnClientConnected += ( PipeDtuNet session ) =>
+				{
+					if (session.DTU == "123")
+					{
+						OperateResult connect = this.deviceTcpNet.SetDtuPipe( session );
+						if (connect.IsSuccess)
+						{
+							Console.WriteLine( "connect success" );
+						}
+					}
+				};
+				dtuServer.ServerStart( int.Parse( textBox_dtu_port.Text ) );
+
+
+				linkLabel_dtu_state.Text = "Wait Connect...";
+				linkLabel_dtu_state.LinkColor = Color.DodgerBlue;
+
+				this.deviceTcpNet.SetDtuPipe( new PipeDtuNet( ) { DtuServer = dtuServer, DTU = textBox_dtu_id.Text, Pwd = textBox_dtu_pwd.Text } );
+			}
+		}
+
+		public void ExtraCloseAction( BinaryCommunication device )
+		{
+			if (dtuServer != null)
+			{
+				dtu_connected = 0;
+				linkLabel_dtu_state.Text = "Stopped";
+				linkLabel_dtu_state.LinkColor = Color.Gray;
+
+				dtuServer.ServerClose( );
+				dtuServer = null;
+			}
+		}
+
+		private void DeviceTcpNet_OnConnectClose( object sender, EventArgs e )
+		{
+			dtu_connected = 0;
+			linkLabel_dtu_state.Text = "Stopped";
+			linkLabel_dtu_state.LinkColor = Color.Gray;
+
+			if (dtuServer != null)
+			{
+				dtuServer.ServerClose( );
+				dtuServer = null;
+			}
+			//this.deviceTcpNet.OnConnectClose -= DeviceTcpNet_OnConnectClose;
+		}
+
+		private int dtu_connected = 0;
+		private void DtuServer_OnClientConnected( PipeDtuNet session )
+		{
+			if (session.DTU == textBox_dtu_id.Text)
+			{
+				if (this.deviceTcpNet.CommunicationPipe != null && !this.deviceTcpNet.CommunicationPipe.IsConnectError( ))
+				{
+					// 当前已经在线，提示重复登录消息
+					dtuServer.LogNet?.WriteDebug( dtuServer.ToString( ), $"DTU:{session.DTU} Login Repeat" );
+					session?.CloseCommunication( );  // 关闭连接
+					return;
+				}
+				OperateResult connect = this.deviceTcpNet.SetDtuPipe( session );
+				dtu_connected++;
+				Invoke( new Action( ( ) =>
+				{
+					if (connect.IsSuccess)
+					{
+						linkLabel_dtu_state.Text = $"Connected[{dtu_connected}]";
+						linkLabel_dtu_state.LinkColor = Color.Green;
+						linkLabel_dtu_state.BackColor = Color.Cyan;
+					}
+					else
+					{
+						MessageBox.Show( "Connect failed: " + connect.Message );
+						linkLabel_dtu_state.Text = "Connect failed";
+						linkLabel_dtu_state.LinkColor = Color.Tomato;
+					}
+				} ) );
+				HslCommunication.Core.HslHelper.ThreadSleep( 2000 );
+				if (connect.IsSuccess) linkLabel_dtu_state.BackColor = System.Windows.Forms.Control.DefaultBackColor;
+			}
+			else
+			{
+				dtuServer.LogNet?.WriteDebug( dtuServer.ToString( ), $"DTU:{session.DTU} Login Forbidden" );
+				session?.CloseCommunication( );  // 关闭连接
+				Invoke( new Action( ( ) =>
+				{
+					linkLabel_dtu_state.Text = "ID not same";
+					linkLabel_dtu_state.LinkColor = Color.Tomato;
+				} ) );
 			}
 		}
 
@@ -438,22 +591,28 @@ namespace HslCommunicationDemo.DemoControl
 			return pipeUdpNet;
 		}
 
+		private Parity GetSerialParity( )
+		{
+			return comboBox_com_parity.SelectedIndex == 0 ? System.IO.Ports.Parity.None : comboBox_com_parity.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even; 
+		}
+
+		private StopBits GetSerialStopBits( )
+		{
+			return textBox_com_stopbits.Text.Trim( ) == "1" ? System.IO.Ports.StopBits.One : textBox_com_stopbits.Text.Trim( ) == "2" ? System.IO.Ports.StopBits.Two :
+				textBox_com_stopbits.Text.Trim( ) == "0" ? System.IO.Ports.StopBits.None : System.IO.Ports.StopBits.OnePointFive;
+		}
 
 		public PipeSerialPort CreatePipeSerialPort( BinaryCommunication binaryCommunication )
 		{
 			PipeSerialPort pipeSerialPort = new PipeSerialPort( );
-
-			System.IO.Ports.Parity parity = comboBox_com_parity.SelectedIndex == 0 ? System.IO.Ports.Parity.None : comboBox_com_parity.SelectedIndex == 1 ? System.IO.Ports.Parity.Odd : System.IO.Ports.Parity.Even;
-			System.IO.Ports.StopBits stopBits = textBox_com_stopbits.Text.Trim( ) == "1" ? System.IO.Ports.StopBits.One : textBox_com_stopbits.Text.Trim( ) == "2" ? System.IO.Ports.StopBits.Two :
-				textBox_com_stopbits.Text.Trim( ) == "0" ? System.IO.Ports.StopBits.None : System.IO.Ports.StopBits.OnePointFive;
 
 			pipeSerialPort.SerialPortInni( p =>
 			{
 				p.PortName = comboBox_com_port.Text;
 				p.BaudRate = int.Parse( comboBox_com_baudrate.Text );
 				p.DataBits = int.Parse( textBox_com_databits.Text );
-				p.StopBits = stopBits;
-				p.Parity = parity;
+				p.StopBits = GetSerialStopBits( );
+				p.Parity = GetSerialParity( );
 				if (this.settingSerial != null)
 				{
 					p.RtsEnable = this.settingSerial.RtsEnable;
@@ -468,6 +627,21 @@ namespace HslCommunicationDemo.DemoControl
 			}
 
 			return pipeSerialPort;
+		}
+
+		public PipeMoxa CreatePipeMoxa( BinaryCommunication binaryCommunication )
+		{
+			PipeMoxa pipeMoxa = new PipeMoxa( );
+			pipeMoxa.SerialPortInni( comboBox_com_port.Text, int.Parse( comboBox_com_baudrate.Text ), int.Parse( textBox_com_databits.Text ), GetSerialStopBits( ), GetSerialParity( ) );
+
+			if (this.settingSerial != null)
+			{
+				pipeMoxa.SleepTime = this.settingSerial.SleepTime;
+				if (!string.IsNullOrEmpty( settingSerial.SendBeforeHex ))
+					binaryCommunication.SendBeforeHex = settingSerial.SendBeforeHex;
+			}
+
+			return pipeMoxa;
 		}
 
 		public PipeMqttClient CreatePipeMqttClient( )
@@ -498,6 +672,8 @@ namespace HslCommunicationDemo.DemoControl
 		private SettingTcpIP settingUdpIP = null;
 		private SettingMqtt settingMqtt = new SettingMqtt( );
 		private SettingSerial settingSerial = null;
+		private HslCommunication.Core.Net.NetworkAlienClient dtuServer;
+		private BinaryCommunication deviceTcpNet;
 
 		private void linkLabel_tcp_more_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
 		{
@@ -550,6 +726,18 @@ namespace HslCommunicationDemo.DemoControl
 				}
 			}
 		}
+
+		private void linkLabel_dtu_message_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+		{
+			using (FormDtuMessageCreate form = new FormDtuMessageCreate( ))
+			{
+				form.SetDtuId( textBox_dtu_id.Text, textBox_dtu_pwd.Text );
+				if (form.ShowDialog( ) == DialogResult.OK)
+				{
+
+				}
+			}
+		}
 	}
 
 	public enum SettingPipe
@@ -558,7 +746,9 @@ namespace HslCommunicationDemo.DemoControl
 		UdpPipe,
 		SslPipe,
 		SerialPipe,
-		MqttPipe
+		MqttPipe,
+		DTU,
+		MoxaCom,
 	}
 
 	public class SettingTcpIP

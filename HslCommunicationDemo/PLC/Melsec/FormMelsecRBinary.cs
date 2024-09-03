@@ -71,7 +71,7 @@ namespace HslCommunicationDemo
 
 
 
-		private async void button1_Click( object sender, EventArgs e )
+		private void button1_Click( object sender, EventArgs e )
 		{
 			melsec_net?.ConnectClose( );
 			melsec_net.LogNet = LogNet;
@@ -86,10 +86,9 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			button1.Enabled = false;
 			melsec_net.ConnectTimeOut = 3000; // 连接3秒超时
 			melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
-			OperateResult connect = await melsec_net.ConnectServerAsync( );
+			OperateResult connect = DeviceConnectPLC( melsec_net );
 			if (connect.IsSuccess)
 			{
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -113,7 +112,6 @@ namespace HslCommunicationDemo
 			else
 			{
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
-				button1.Enabled = true;
 			}
 		}
 
@@ -124,6 +122,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( melsec_net );
 		}
 
 		#endregion

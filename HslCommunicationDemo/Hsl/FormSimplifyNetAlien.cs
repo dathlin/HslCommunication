@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using HslCommunication.Enthernet;
 using HslCommunication;
 using HslCommunication.Core.Net;
+using HslCommunication.Core.Pipe;
 
 namespace HslCommunicationDemo
 {
@@ -118,11 +119,11 @@ namespace HslCommunicationDemo
             networkAlien.ServerStart( port );
         }
 
-        private void NetworkAlien_OnClientConnected(  AlienSession session )
+        private void NetworkAlien_OnClientConnected(  PipeDtuNet session )
         {
             if (session.DTU == simplifyClient.ConnectionId)
             {
-                simplifyClient.ConnectServer( session );
+                //simplifyClient.setd( session );
                 Invoke( new Action( ( ) =>
                 {
                     panel2.Enabled = true;

@@ -115,13 +115,22 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( delixi );
-				delixi.Open( );
+				OperateResult open = DeviceConnectPLC( delixi );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				panel2.Enabled = true;
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					panel2.Enabled = true;
 
-				userControlReadWriteOp1.SetReadWriteNet( delixi, "100", false );
+					userControlReadWriteOp1.SetReadWriteNet( delixi, "100", false );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
+
 			}
 			catch (Exception ex)
 			{
@@ -136,6 +145,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
+			this.pipeSelectControl1.ExtraCloseAction( delixi );
 		}
 
 		#endregion

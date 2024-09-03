@@ -92,21 +92,29 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( allenBradley );
-				allenBradley.Open( );
+				OperateResult open = DeviceConnectPLC( allenBradley );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置子控件的读取能力
-				userControlReadWriteDevice1.SetReadWriteNet( allenBradley, "N7:0", true );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( allenBradley, "N7:0", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => allenBradley.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					// 设置子控件的读取能力
+					userControlReadWriteDevice1.SetReadWriteNet( allenBradley, "N7:0", true );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( allenBradley, "N7:0", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => allenBradley.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-				// 设置代码示例
-				codeExampleControl.SetCodeText( allenBradley, nameof( allenBradley.Station ), nameof( allenBradley.DstNode ), nameof( allenBradley.SrcNode ) );
+					// 设置代码示例
+					codeExampleControl.SetCodeText( allenBradley, nameof( allenBradley.Station ), nameof( allenBradley.DstNode ), nameof( allenBradley.SrcNode ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -121,6 +129,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( allenBradley );
 		}
 		
 		#endregion

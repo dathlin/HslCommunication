@@ -118,23 +118,31 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( inovance );
-				inovance.Open( );
+				OperateResult open = DeviceConnectPLC( inovance );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置基本的读写信息
-				userControlReadWriteDevice1.SetReadWriteNet( inovance, "M100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( inovance, "M100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => inovance.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => inovance.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.SetReadWriteNet( inovance, "M100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( inovance, "M100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => inovance.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => inovance.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
 
-				// 设置代码示例
-				codeExampleControl.SetCodeText( inovance, nameof( inovance.Station ), nameof( inovance.AddressStartWithZero ), nameof( inovance.IsStringReverse ),
-					nameof( inovance.Series ), nameof( inovance.DataFormat ) );
+					// 设置代码示例
+					codeExampleControl.SetCodeText( inovance, nameof( inovance.Station ), nameof( inovance.AddressStartWithZero ), nameof( inovance.IsStringReverse ),
+						nameof( inovance.Series ), nameof( inovance.DataFormat ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -149,6 +157,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( inovance );
 		}
 		
 		#endregion

@@ -139,7 +139,6 @@ namespace HslCommunicationDemo.DemoControl
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7 Virtual Server", 14, typeof( FormS7Server ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7 PPI Server", 14, typeof( FormSiemensPPIServer ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Fetch Write Server", 14, typeof( FormFetchWriteServer ) ) );
-			siemensNode.Nodes.Add( GetTreeNodeByIndex( "Siemens DTU", 14, typeof( FormSiemensDTU ) ) );
 			siemensNode.Nodes.Add( GetTreeNodeByIndex( "S7-PLUS",     14, typeof( FormSiemensS7Plus ) ) );
 			treeView1.Nodes.Add( siemensNode );
 
@@ -147,7 +146,6 @@ namespace HslCommunicationDemo.DemoControl
 			TreeNode modbusNode = new TreeNode( "Modbus", 9, 9 );
 			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Tcp", 9, typeof( FormModbus ) ) );
 			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Udp", 9, typeof( FormModbusUdp ) ) );
-			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Tcp[Alien]", 9, typeof( FormModbusAlien ) ) );
 			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Rtu", 9, typeof( FormModbusRtu ) ) );
 			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Rtu OverTcp", 9, typeof( FormModbusRtuOverTcp ) ) );
 			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Ascii", 9, typeof( FormModbusAscii ) ) );

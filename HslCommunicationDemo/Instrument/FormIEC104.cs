@@ -65,7 +65,7 @@ namespace HslCommunicationDemo
 
 
 
-		private async void button1_Click( object sender, EventArgs e )
+		private void button1_Click( object sender, EventArgs e )
 		{
 			if (!int.TryParse( textBox_station.Text, out int station ))
 			{
@@ -73,7 +73,6 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-			button1.Enabled = false;
 			iec104?.ConnectClose( );
 			iec104 = new IEC104( );
 			iec104.Station = station;
@@ -82,7 +81,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( iec104 );
-				OperateResult connect = await iec104.ConnectServerAsync( );
+				OperateResult connect = DeviceConnectPLC( iec104 );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -92,7 +91,6 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					button1.Enabled = true;
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 						"Error: " + connect.ErrorCode );
 				}
@@ -279,6 +277,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
+			this.pipeSelectControl1.ExtraCloseAction( iec104 );
 		}
 		
 		#endregion

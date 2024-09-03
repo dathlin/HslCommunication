@@ -180,6 +180,7 @@ namespace HslCommunicationDemo
 			{
 				using (FormLogNetView form = new FormLogNetView( "log.txt" ))
 				{
+					form.OpenDialogDefaultPath = Application.StartupPath;        // 如果需要指定默认的打开文件的路径
 					form.ShowDialog( );
 				}
 			}

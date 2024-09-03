@@ -236,14 +236,6 @@ namespace HslCommunicationDemo
 
         private void button19_Click( object sender, EventArgs e )
         {
-            Hide( );
-            System.Threading.Thread.Sleep( 200 );
-            using (FormModbusAlien form = new FormModbusAlien( ))
-            {
-                form.ShowDialog( );
-            }
-            System.Threading.Thread.Sleep( 200 );
-            Show( );
         }
 
         private void FormLoad_Load( object sender, EventArgs e )

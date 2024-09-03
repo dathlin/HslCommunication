@@ -79,22 +79,30 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( melsecSerial );
-				melsecSerial.Open( );
+				OperateResult open = DeviceConnectPLC( melsecSerial );
 
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				// 设置基本的读写信息
-				userControlReadWriteDevice1.SetReadWriteNet( melsecSerial, "D100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsecSerial, "D100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsecSerial.ReadFromCoreServer( m ), string.Empty, string.Empty );
-				control.SetDevice( melsecSerial, "D100" );
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.SetReadWriteNet( melsecSerial, "D100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( melsecSerial, "D100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsecSerial.ReadFromCoreServer( m ), string.Empty, string.Empty );
+					control.SetDevice( melsecSerial, "D100" );
 
-				// 设置示例的代码
-				codeExampleControl.SetCodeText( melsecSerial, nameof( melsecSerial.IsNewVersion ), nameof( melsecSerial.AutoChangeBaudRate ) );
+					// 设置示例的代码
+					codeExampleControl.SetCodeText( melsecSerial, nameof( melsecSerial.IsNewVersion ), nameof( melsecSerial.AutoChangeBaudRate ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -109,6 +117,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( melsecSerial );
 		}
 
 		

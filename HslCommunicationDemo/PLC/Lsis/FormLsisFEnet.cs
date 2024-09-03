@@ -92,7 +92,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( fastEnet );
-				OperateResult connect = fastEnet.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( fastEnet );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -128,6 +128,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( fastEnet );
 		}
 
 		#endregion

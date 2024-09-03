@@ -34,7 +34,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			OperateResult<DateTime> read = cipNet.ReadDate( textBox_date_address.Text );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read failed! " + read.Message );
+				MessageBox.Show( "Read failed! " + read.ToMessageShowString( ) );
 			}
 			else
 			{
@@ -48,7 +48,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			OperateResult write = cipNet.WriteDate( textBox_date_address.Text, DateTime.Parse( textBox_date_render.Text ) );
 			if (!write.IsSuccess)
 			{
-				MessageBox.Show( "Write failed! " + write.Message );
+				MessageBox.Show( "Write failed! " + write.ToMessageShowString( ) );
 			}
 			else
 			{
@@ -62,7 +62,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			OperateResult write = cipNet.WriteTimeAndDate( textBox_date_address.Text, DateTime.Parse( textBox_date_render.Text ) );
 			if (!write.IsSuccess)
 			{
-				MessageBox.Show( "Write failed! " + write.Message );
+				MessageBox.Show( "Write failed! " + write.ToMessageShowString( ) );
 			}
 			else
 			{
@@ -76,7 +76,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			OperateResult<TimeSpan> read = cipNet.ReadTime( textBox_date_address.Text );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read failed! " + read.Message );
+				MessageBox.Show( "Read failed! " + read.ToMessageShowString( ) );
 			}
 			else
 			{
@@ -90,7 +90,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			OperateResult write = cipNet.WriteTime( textBox_date_address.Text, TimeSpan.Parse( textBox_date_render.Text ) );
 			if (!write.IsSuccess)
 			{
-				MessageBox.Show( "Write failed! " + write.Message );
+				MessageBox.Show( "Write failed! " + write.ToMessageShowString( ) );
 			}
 			else
 			{
@@ -104,7 +104,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			OperateResult write = cipNet.WriteTimeOfDate( textBox_date_address.Text, TimeSpan.Parse( textBox_date_render.Text ) );
 			if (!write.IsSuccess)
 			{
-				MessageBox.Show( "Write failed! " + write.Message );
+				MessageBox.Show( "Write failed! " + write.ToMessageShowString( ) );
 			}
 			else
 			{
@@ -134,7 +134,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			OperateResult<ushort, byte[]> read = cipNet.ReadTag( textBox3.Text, ushort.Parse( textBox7.Text ) );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read failed! " + read.Message );
+				MessageBox.Show( $"Read failed! " + read.ToMessageShowString( ) );
 			}
 			else
 			{
@@ -153,7 +153,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			}
 			else
 			{
-				MessageBox.Show( "Read failed! " + read.Message );
+				MessageBox.Show( $"Read failed! " + read.ToMessageShowString( ) );
 			}
 		}
 

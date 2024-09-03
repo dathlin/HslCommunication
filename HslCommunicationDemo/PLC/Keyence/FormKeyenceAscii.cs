@@ -79,7 +79,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( keyence_net );
-				OperateResult connect = keyence_net.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( keyence_net );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -119,6 +119,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( keyence_net );
 		}
 		
 		#endregion

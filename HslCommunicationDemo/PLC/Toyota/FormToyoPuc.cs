@@ -72,7 +72,7 @@ namespace HslCommunicationDemo
 
 
 
-		private async void button1_Click( object sender, EventArgs e )
+		private void button1_Click( object sender, EventArgs e )
 		{
 			toyota.ConnectClose( );
 			toyota.LogNet = LogNet;
@@ -88,8 +88,7 @@ namespace HslCommunicationDemo
 			}
 
 
-			button1.Enabled = false;
-			OperateResult connect = await toyota.ConnectServerAsync( );
+			OperateResult connect = DeviceConnectPLC( toyota );
 			if (connect.IsSuccess)
 			{
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -113,7 +112,6 @@ namespace HslCommunicationDemo
 			else
 			{
 				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
-				button1.Enabled = true;
 			}
 		}
 
@@ -125,6 +123,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( toyota );
 		}
 
 		#endregion

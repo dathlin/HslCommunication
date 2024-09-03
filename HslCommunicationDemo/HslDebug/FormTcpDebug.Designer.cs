@@ -48,6 +48,7 @@
 			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.panel_main.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel_tcp_udp.SuspendLayout();
@@ -79,6 +80,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.textBox_buffer_length);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.label10);
@@ -101,7 +103,7 @@
 			// 
 			// textBox_buffer_length
 			// 
-			this.textBox_buffer_length.Location = new System.Drawing.Point(688, 33);
+			this.textBox_buffer_length.Location = new System.Drawing.Point(635, 33);
 			this.textBox_buffer_length.Name = "textBox_buffer_length";
 			this.textBox_buffer_length.Size = new System.Drawing.Size(83, 23);
 			this.textBox_buffer_length.TabIndex = 24;
@@ -110,7 +112,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(615, 36);
+			this.label2.Location = new System.Drawing.Point(562, 36);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(68, 17);
 			this.label2.TabIndex = 23;
@@ -261,6 +263,17 @@
 			this.userControlHead1.TabIndex = 21;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(740, 35);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(94, 21);
+			this.checkBox1.TabIndex = 25;
+			this.checkBox1.Text = "转远程DTU?";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+			// 
 			// FormTcpDebug
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -307,5 +320,6 @@
 		private HslDebug.DebugControl debugControl1;
 		private System.Windows.Forms.TextBox textBox_buffer_length;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.CheckBox checkBox1;
 	}
 }

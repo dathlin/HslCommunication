@@ -74,12 +74,11 @@
     <Reference Include="DynamicExpresso.Core, Version=2.16.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicExpresso.Core.2.16.1\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.0.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.0.3\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.1.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.1.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -233,6 +232,12 @@
     </Compile>
     <Compile Include="DemoControl\FormPanelLeft.Designer.cs">
       <DependentUpon>FormPanelLeft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\FormDtuMessageCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormDtuMessageCreate.Designer.cs">
+      <DependentUpon>FormDtuMessageCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\FormPipeSessionList.cs">
       <SubType>Form</SubType>
@@ -1030,12 +1035,6 @@
     <Compile Include="PLC\Siemens\FormSiemens200.Designer.cs">
       <DependentUpon>FormSiemens200.cs</DependentUpon>
     </Compile>
-    <Compile Include="PLC\Siemens\FormSiemensDTU.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PLC\Siemens\FormSiemensDTU.Designer.cs">
-      <DependentUpon>FormSiemensDTU.cs</DependentUpon>
-    </Compile>
     <Compile Include="PLC\YASKAWA\Helper.cs" />
     <Compile Include="PLC\Yokogawa\FormYokogawaLinkServer.cs">
       <SubType>Form</SubType>
@@ -1700,12 +1699,6 @@
     <Compile Include="Modbus\FormModbusRtu.Designer.cs">
       <DependentUpon>FormModbusRtu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modbus\FormModbusAlien.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modbus\FormModbusAlien.Designer.cs">
-      <DependentUpon>FormModbusAlien.cs</DependentUpon>
-    </Compile>
     <Compile Include="PLC\Melsec\FormMelsecLinks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1979,6 +1972,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormPanelLeft.resx">
       <DependentUpon>FormPanelLeft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormDtuMessageCreate.resx">
+      <DependentUpon>FormDtuMessageCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormPipeSessionList.resx">
       <DependentUpon>FormPipeSessionList.cs</DependentUpon>
@@ -2391,9 +2387,6 @@
     <EmbeddedResource Include="PLC\Siemens\FormSiemens200.resx">
       <DependentUpon>FormSiemens200.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PLC\Siemens\FormSiemensDTU.resx">
-      <DependentUpon>FormSiemensDTU.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Yokogawa\FormYokogawaLinkServer.resx">
       <DependentUpon>FormYokogawaLinkServer.cs</DependentUpon>
     </EmbeddedResource>
@@ -2724,9 +2717,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modbus\FormModbusRtu.resx">
       <DependentUpon>FormModbusRtu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modbus\FormModbusAlien.resx">
-      <DependentUpon>FormModbusAlien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Melsec\FormMelsecLinks.resx">
       <DependentUpon>FormMelsecLinks.cs</DependentUpon>

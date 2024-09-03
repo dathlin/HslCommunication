@@ -167,7 +167,7 @@ namespace HslCommunicationDemo
 			node8.Nodes.Add( new TreeNode( "MID 0093 Multi-spindle status unsubscribe" ) { Tag = new OpenMessage( mID: 93, revision: 1, stationID: -1, spindleID: -1, dataField: null ) } );
 			treeView1.Nodes.Add( node8 );
 
-			TreeNode node9 = new TreeNode( "Multi-spindle status messages" );
+			TreeNode node9 = new TreeNode( "Multi-spindle result messages" );
 			node9.Nodes.Add( new TreeNode( "MID 0100 Multi-spindle result subscribe" )   { Tag = new OpenMessage( mID: 100, revision: 1, stationID: -1, spindleID: -1, dataField: null ) } );
 			node9.Nodes.Add( new TreeNode( "MID 0103 Multi spindle result unsubscribe" ) { Tag = new OpenMessage( mID: 103, revision: 1, stationID: -1, spindleID: -1, dataField: null ) } );
 			treeView1.Nodes.Add( node9 );

@@ -13,6 +13,7 @@ using System.Threading;
 using System.Xml.Linq;
 using HslCommunicationDemo.Modbus;
 using HslCommunicationDemo.DemoControl;
+using HslCommunication.Core.Pipe;
 
 namespace HslCommunicationDemo
 {
@@ -124,7 +125,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				this.pipeSelectControl1.IniPipe( busTcpClient );
-				OperateResult connect = busTcpClient.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( busTcpClient );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( StringResources.Language.ConnectedSuccess );
@@ -164,6 +165,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( busTcpClient );
 		}
 		
 		#endregion

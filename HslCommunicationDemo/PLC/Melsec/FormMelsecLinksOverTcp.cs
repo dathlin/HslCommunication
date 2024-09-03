@@ -87,7 +87,7 @@ namespace HslCommunicationDemo
 				melsec.SumCheck = checkBox1.Checked;
 				melsec.Format = int.Parse( comboBox_format.SelectedItem.ToString( ) );
 
-				OperateResult connect = melsec.ConnectServer( );
+				OperateResult connect = DeviceConnectPLC( melsec );
 				if (connect.IsSuccess)
 				{
 					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
@@ -124,6 +124,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( melsec );
 		}
 
 		

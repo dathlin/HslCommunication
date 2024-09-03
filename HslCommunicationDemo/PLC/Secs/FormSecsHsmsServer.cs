@@ -252,11 +252,19 @@ namespace HslCommunicationDemo.PLC.Secs
 			try
 			{
 				server = new SecsHsmsServer( );
+				server.DeviceId = ushort.Parse( textBox_device_id.Text );
 				server.OnSecsMessageReceived += Server_OnSecsMessageReceived;
+				server.LogNet = this.LogNet;
+
+				if (!string.IsNullOrEmpty( textBox_online_max.Text ))
+				{
+					server.SessionsMax = Convert.ToUInt32( textBox_online_max.Text );
+				}
 				server.ServerStart( int.Parse( textBox_port.Text ) );
+
 				ComboBox1_SelectedIndexChanged( comboBox1, e );
 				// 设置示例的代码
-				codeExampleControl.SetCodeText( "server", "", server, nameof( SecsHsms.StringEncoding ) );
+				codeExampleControl.SetCodeText( "server", "", server, nameof( SecsHsms.StringEncoding ), nameof( SecsHsmsServer.SessionsMax ) );
 
 				button1.Enabled = false;
 				button11.Enabled = true;
@@ -266,6 +274,7 @@ namespace HslCommunicationDemo.PLC.Secs
 				MessageBox.Show( "Start failed: " + ex.Message );
 			}
 		}
+
 
 		private void Server_OnSecsMessageReceived( object sender, HslCommunication.Core.Net.PipeSession session, SecsMessage message )
 		{

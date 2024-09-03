@@ -74,21 +74,28 @@ namespace HslCommunicationDemo
 				this.pipeSelectControl1.IniPipe( fujiSPB );
 				fujiSPB.Station = byte.Parse( textBox15.Text );
 
+				OperateResult open = DeviceConnectPLC( fujiSPB );
+				if (open.IsSuccess)
+				{
+					button2.Enabled = true;
+					button1.Enabled = false;
+					userControlReadWriteDevice1.SetEnable( true );
 
-				fujiSPB.Open( );
-				button2.Enabled = true;
-				button1.Enabled = false;
-				userControlReadWriteDevice1.SetEnable( true );
+					// 设置基本的读写信息
+					userControlReadWriteDevice1.SetReadWriteNet( fujiSPB, "M100", false );
+					// 设置批量读取
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( fujiSPB, "M100", string.Empty );
+					// 设置报文读取
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fujiSPB.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
-				// 设置基本的读写信息
-				userControlReadWriteDevice1.SetReadWriteNet( fujiSPB, "M100", false );
-				// 设置批量读取
-				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( fujiSPB, "M100", string.Empty );
-				// 设置报文读取
-				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fujiSPB.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
-
-				// 设置代码示例
-				codeExampleControl.SetCodeText( fujiSPB, nameof( fujiSPB.Station ) );
+					// 设置代码示例
+					codeExampleControl.SetCodeText( fujiSPB, nameof( fujiSPB.Station ) );
+				}
+				else
+				{
+					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+						"Error: " + open.ErrorCode );
+				}
 			}
 			catch (Exception ex)
 			{
@@ -103,6 +110,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			this.pipeSelectControl1.ExtraCloseAction( fujiSPB );
 		}
 
 		#endregion
