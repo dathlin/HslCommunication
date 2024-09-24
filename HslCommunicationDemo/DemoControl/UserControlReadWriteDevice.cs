@@ -60,6 +60,12 @@ namespace HslCommunicationDemo.DemoControl
 			this.dataExportControl1.SetReadWriteNet( readWrite );
 		}
 
+		public void SetDeviceVariableName( string name )
+		{
+			this.batchReadControl1.SetVariableName( name );
+			this.batchReadControl2.SetVariableName( name );
+		}
+
 		public UserControlReadWriteOp ReadWriteOpControl => this.userControlReadWriteOp1;
 
 		public BatchReadControl BatchRead
@@ -84,6 +90,13 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					allControls.Add( control );
+					if (control is CodeExampleControl codeExampleControl)
+					{
+						this.userControlReadWriteOp1.MethodCodeClick += ( object sender, string e ) =>
+						{
+							codeExampleControl.ReaderReadCode( e );
+						};
+					}
 				}
 			}
 		}

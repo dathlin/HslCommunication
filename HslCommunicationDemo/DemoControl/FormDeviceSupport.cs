@@ -13,7 +13,7 @@ using Newtonsoft.Json.Linq;
 
 namespace HslCommunicationDemo.DemoControl
 {
-	public partial class FormDeviceSupport : Form
+	public partial class FormDeviceSupport : System.Windows.Forms.Form
 	{
 		public FormDeviceSupport( string formName )
 		{

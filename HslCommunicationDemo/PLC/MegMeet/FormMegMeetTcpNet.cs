@@ -130,6 +130,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => megMeet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					// 设置示例代码
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( megMeet, nameof( megMeet.AddressStartWithZero ), nameof( megMeet.IsStringReverse ),
 						nameof( megMeet.DataFormat ), nameof( megMeet.Station ) );
 				}

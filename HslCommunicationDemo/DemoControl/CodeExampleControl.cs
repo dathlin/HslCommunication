@@ -3,6 +3,7 @@ using HslCommunication.Core;
 using HslCommunication.Core.Device;
 using HslCommunication.Core.Net;
 using HslCommunication.Core.Pipe;
+using HslCommunication.Instrument.IEC;
 using HslCommunication.MQTT;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication.Robot.ABB;
@@ -17,6 +18,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,6 +29,22 @@ namespace HslCommunicationDemo.DemoControl
 		public CodeExampleControl( )
 		{
 			InitializeComponent( );
+			this.SizeChanged += CodeExampleControl_SizeChanged;
+		}
+
+		private void CodeExampleControl_SizeChanged( object sender, EventArgs e )
+		{
+			int width = this.Width;
+			if (width > 50)
+			{
+				int width1 = width * 3 / 5;
+				if (width1 > 200) width1 = width1 - 43;
+				int width2 = width - width1;
+
+				textBox1.Width = width1 - 1;
+				textBox2.Location = new Point( width1 + 1, 0 );
+				textBox2.Width = width2 - 1;
+			}
 		}
 
 		public static string GetTitle( ) => Program.Language == 1 ? "代码示例" : "Code Example";
@@ -34,10 +52,13 @@ namespace HslCommunicationDemo.DemoControl
 		/// <summary>
 		/// 设置当前的文本信息
 		/// </summary>
-		/// <param name="code">代码信息</param>
-		public void SetCodeText( string code )
+		/// <param name="stringBuilder">代码信息</param>
+		public void SetCodeText( MqttSyncClient network, params string[] props )
 		{
-			this.textBox1.Text = code;
+			this.deviceName = "rpc";
+			StringBuilder stringBuilder = CodeExampleControl.CreateStringBulider( network, this.deviceName );
+			SetPropties( this.deviceName, stringBuilder, network, props );
+			RenderExampleCode( stringBuilder );
 		}
 
 		private static object GetObject( object obj, string names )
@@ -198,21 +219,25 @@ namespace HslCommunicationDemo.DemoControl
 
 		public void SetCodeText( NetworkDoubleBase network, params string[] props )
 		{
-			SetCodeText( "plc", network, props );
+			this.deviceName = DemoUtils.PlcDeviceName;
+			SetCodeText( this.deviceName, network, props );
 		}
 
 		public void SetCodeText( DeviceTcpNet network, params string[] props )
 		{
-			SetCodeText( "plc", network, props );
+			this.deviceName = DemoUtils.PlcDeviceName;
+			SetCodeText( this.deviceName, network, props );
 		}
 
 		public void SetCodeText( DeviceUdpNet network, params string[] props )
 		{
-			SetCodeText( "plc", network, props );
+			this.deviceName = DemoUtils.PlcDeviceName;
+			SetCodeText( this.deviceName, network, props );
 		}
 
 		public void SetCodeText( string deviceName, string com, NetworkServerBase serverBase, params string[] props )
 		{
+			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateFromObject( serverBase, deviceName );
 			SetPropties( deviceName, stringBuilder, serverBase, props );
 
@@ -223,11 +248,12 @@ namespace HslCommunicationDemo.DemoControl
 				stringBuilder.Append( deviceName + ".StartSerialSlave( \"" + com + "\" );" );
 				stringBuilder.AppendLine( );
 			}
-			this.textBox1.Text = stringBuilder.ToString( );
+			RenderExampleCode( stringBuilder );
 		}
 
 		public void SetCodeText( string deviceName, string com, CommunicationServer serverBase, params string[] props )
 		{
+			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateFromObject( serverBase, deviceName );
 			SetPropties( deviceName, stringBuilder, serverBase, props );
 
@@ -241,11 +267,12 @@ namespace HslCommunicationDemo.DemoControl
 				stringBuilder.Append( deviceName + ".StartSerialSlave( \"" + com + "\" );" );
 				stringBuilder.AppendLine( );
 			}
-			this.textBox1.Text = stringBuilder.ToString( );
+			RenderExampleCode( stringBuilder );
 		}
 
 		public void SetCodeText( string deviceName, string com, DeviceServer serverBase, params string[] props )
 		{
+			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateFromObject( serverBase, deviceName );
 			SetPropties( deviceName, stringBuilder, serverBase, props );
 
@@ -253,10 +280,12 @@ namespace HslCommunicationDemo.DemoControl
 			stringBuilder.AppendLine( );
 			stringBuilder.Append( deviceName + ".EnableIPv6 = " + serverBase.EnableIPv6.ToString( ).ToLower( ) + ";" );
 			stringBuilder.AppendLine( );
-			if (serverBase.IsTcpMode)
+			if (serverBase.ServerMode == 0)
 				stringBuilder.Append( deviceName + ".ServerStart( " + serverBase.Port + " );" );
-			else
+			else if (serverBase.ServerMode == 1)
 				stringBuilder.Append( deviceName + ".ServerStart( " + serverBase.Port + ", false );" );
+			else
+				stringBuilder.Append( deviceName + ".ServerStart( " + serverBase.Port + ", " + serverBase.BothModeUdpPort + " );" );
 			stringBuilder.AppendLine( );
 			if (!string.IsNullOrEmpty( com ))
 			{
@@ -266,86 +295,100 @@ namespace HslCommunicationDemo.DemoControl
 				stringBuilder.Append( deviceName + ".StartSerialSlave( \"" + com + "\" );" );
 				stringBuilder.AppendLine( );
 			}
-			this.textBox1.Text = stringBuilder.ToString( );
+			RenderExampleCode( stringBuilder );
 		}
 
 
 		public void SetCodeText( string deviceName, NetworkDoubleBase network, params string[] props )
 		{
+			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateStringBulider( network, deviceName );
 			SetPropties( deviceName, stringBuilder, network, props );
-			this.textBox1.Text = stringBuilder.ToString( );
+			RenderExampleCode( stringBuilder );
 		}
 
 		public void SetCodeText( string deviceName, DeviceTcpNet device, params string[] props )
 		{
+			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
 			SetPropties( deviceName, stringBuilder, device, props ); 
 			CreateCommunicationPipe( stringBuilder, device.CommunicationPipe, deviceName );
-			this.textBox1.Text = stringBuilder.ToString( );
+
+			if (device.GetType() == typeof(IEC104))
+			{
+				stringBuilder.Append( FormIEC104.Example( ) );
+			}
+			RenderExampleCode( stringBuilder );
 		}
 
-		public void SetCodeText( string deviceName,TcpNetCommunication device, params string[] props )
+		public void SetCodeText( string deviceName, TcpNetCommunication device, params string[] props )
 		{
+			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
 			SetPropties( deviceName, stringBuilder, device, props );
-			this.textBox1.Text = stringBuilder.ToString( );
+			RenderExampleCode( stringBuilder );
 		}
 
 		public void SetCodeText( string deviceName, DeviceUdpNet device, params string[] props )
 		{
+			this.deviceName = deviceName;	
 			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
 			SetPropties( deviceName, stringBuilder, device, props );
-			this.textBox1.Text = stringBuilder.ToString( );
+			RenderExampleCode( stringBuilder );
 		}
 
 		public void SetCodeText( NetworkWebApiBase network, params string[] props )
 		{
+			this.deviceName = DemoUtils.PlcDeviceName;
 			StringBuilder stringBuilder = CreateStringBulider( network );
-			SetPropties( "plc", stringBuilder, network, props );
-			this.textBox1.Text = stringBuilder.ToString( );
+			SetPropties( this.deviceName, stringBuilder, network, props );
+			RenderExampleCode( stringBuilder );
 		}
 
 		public void SetCodeText( DeviceWebApi network, params string[] props )
 		{
+			this.deviceName = DemoUtils.PlcDeviceName;
 			StringBuilder stringBuilder = CreateStringBulider( network );
-			SetPropties( "plc", stringBuilder, network, props );
-			this.textBox1.Text = stringBuilder.ToString( );
+			SetPropties( this.deviceName, stringBuilder, network, props );
+			RenderExampleCode( stringBuilder );
 		}
 
 		public void SetCodeText( NetworkUdpBase network, params string[] props )
 		{
-			SetCodeText( "plc", network, props );
+			SetCodeText( DemoUtils.PlcDeviceName, network, props );
 		}
 		public void SetCodeText( string deviceName, NetworkUdpBase network, params string[] props )
 		{
+			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateStringBulider( network, deviceName );
 			SetPropties( deviceName, stringBuilder, network, props );
-			this.textBox1.Text = stringBuilder.ToString( );
+			RenderExampleCode( stringBuilder );
 		}
 
 
 		public void SetCodeText( DeviceSerialPort network, params string[] props )
 		{
-			SetCodeText( "plc", network, props );
+			SetCodeText( DemoUtils.PlcDeviceName, network, props );
 		}
 
 
 		public void SetCodeText( string deviceName, DeviceSerialPort network, params string[] props )
 		{
+			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateStringBulider( network, deviceName );
 			SetPropties( deviceName, stringBuilder, network, props );
 			CreateCommunicationPipe( stringBuilder, network.CommunicationPipe, deviceName );
-			this.textBox1.Text = stringBuilder.ToString( );
+			RenderExampleCode( stringBuilder );
 		}
 
 		public static StringBuilder CreateStringBulider( NetworkWebApiBase network )
 		{
 			if (network == null) return new StringBuilder( );
+			string deviceName = DemoUtils.PlcDeviceName;
 
 			StringBuilder sb = new StringBuilder( );
 			sb.Append( network.GetType( ).FullName );
-			sb.Append( " plc = new " );
+			sb.Append( $" {deviceName} = new " );
 			sb.Append( network.GetType( ).FullName );
 			if (network.GetType( ) == typeof( ABBWebApiClient ))
 			{
@@ -360,9 +403,9 @@ namespace HslCommunicationDemo.DemoControl
 			}
 
 			sb.AppendLine( );
-			sb.Append( "plc.IpAddress = \"" + network.IpAddress + "\";" );
+			sb.Append( $"{deviceName}.IpAddress = \"" + network.IpAddress + "\";" );
 			sb.AppendLine( );
-			sb.Append( "plc.Port = " + network.Port + ";" );
+			sb.Append( $"{deviceName}.Port = " + network.Port + ";" );
 			sb.AppendLine( );
 			return sb;
 		}
@@ -372,7 +415,7 @@ namespace HslCommunicationDemo.DemoControl
 
 			StringBuilder sb = new StringBuilder( );
 			sb.Append( network.GetType( ).FullName );
-			sb.Append( " plc = new " );
+			sb.Append( $" {DemoUtils.PlcDeviceName} = new " );
 			sb.Append( network.GetType( ).FullName );
 			sb.Append( $"( \"{network.IpAddress}\", {network.Port}, \"{network.UserName}\", \"{network.Password}\" );" );
 			sb.AppendLine( );
@@ -400,7 +443,7 @@ namespace HslCommunicationDemo.DemoControl
 			return sb;
 		}
 
-		public static StringBuilder CreateStringBulider( MqttSyncClient network )
+		public static StringBuilder CreateStringBulider( MqttSyncClient network, string deviceName )
 		{
 			if (network == null) return new StringBuilder( );
 
@@ -409,9 +452,7 @@ namespace HslCommunicationDemo.DemoControl
 				nameof( MqttConnectionOptions.ClientId ), nameof( MqttConnectionOptions.UseRSAProvider ), nameof( MqttConnectionOptions.Credentials ),
 				nameof( MqttConnectionOptions.ConnectTimeout ) );
 
-			sb.Append( network.GetType().FullName + $" rpc = new {network.GetType( ).FullName}( options );" );
-			sb.AppendLine( );
-			sb.Append( "rpc.SetPersistentConnection( );" );
+			sb.Append( network.GetType().FullName + $" {deviceName} = new {network.GetType( ).FullName}( options );" );
 			sb.AppendLine( );
 			return sb;
 		}
@@ -623,9 +664,36 @@ namespace HslCommunicationDemo.DemoControl
 		public static StringBuilder CreateStringBulider( DeviceSerialPort device, string deviceName )
 		{
 			if (device == null) return new StringBuilder( );
-
 			StringBuilder sb = CreateFromObject( device, deviceName );
 			return sb;
 		}
+
+
+		#region Private Member
+
+		private void RenderExampleCode( StringBuilder sb )
+		{
+			deviceCreateCode = sb.ToString( );
+			this.textBox1.Text = deviceCreateCode;
+		}
+
+		public void ReaderReadCode( string methodCode )
+		{
+			if (string.IsNullOrEmpty( deviceName )) return;
+			try
+			{
+				this.textBox2.Text = Regex.Replace( methodCode, "@deviceName", this.deviceName );
+			}
+			catch
+			{
+
+			}
+		}
+
+		private string deviceName = string.Empty;
+		private string deviceCreateCode = string.Empty;                      // 设备创建的代码
+		private string deviceMethodCode = string.Empty;
+
+		#endregion
 	}
 }

@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using HslCommunicationDemo.DemoControl;
 using HslCommunication.Core.Net;
 using HslCommunication.Core.Pipe;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HslCommunicationDemo
 {
@@ -34,6 +35,12 @@ namespace HslCommunicationDemo
 				button11.Text = "Close Server";
 				label14.Text = "Serial:";
 				button5.Text = "Start";
+				toolTip1.SetToolTip( radioButton_both, "The port number of the UDP defaults to the tcp port number +1" );
+			}
+			else
+			{
+
+				toolTip1.SetToolTip( radioButton_both, "Udp的端口号默认为 Tcp 的端口号 +1" );
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -48,6 +55,7 @@ namespace HslCommunicationDemo
 			button5.Enabled = false;
 			if (ServerMode == 1) this.userControlHead1.ProtocolInfo = "Mc Qna3E Udp Server";
 			if (ServerMode == 2) this.userControlHead1.ProtocolInfo = "Mc A1E Tcp Server";
+
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
@@ -67,10 +75,34 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
+			int port1 = 0;
+			int port2 = 0;
+			if (textBox2.Text.Contains( ";" ) || textBox2.Text.Contains( ":" ) || textBox2.Text.Contains( "-" ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
-				return;
+				string[] ports = textBox2.Text.Split( new char[] { ';', ':', '-' }, StringSplitOptions.RemoveEmptyEntries );
+				if (ports.Length >= 1)
+				{
+					if (!int.TryParse( ports[0], out port1 ))
+					{
+						MessageBox.Show( DemoUtils.PortInputWrong );
+						return;
+					}
+
+					if (!int.TryParse( ports[1], out port2 ))
+					{
+						MessageBox.Show( DemoUtils.PortInputWrong );
+						return;
+					}
+				}
+			}
+			else
+			{
+				if (!int.TryParse( textBox2.Text, out port1 ))
+				{
+					MessageBox.Show( DemoUtils.PortInputWrong );
+					return;
+				}
+				port2 = port1 + 1;
 			}
 
 			try
@@ -85,7 +117,18 @@ namespace HslCommunicationDemo
 
 				this.sslServerControl1.InitializeServer( mcNetServer );  // 如果配置SSL，则初始化SSL
 
-				mcNetServer.ServerStart( port, radioButton_tcp.Checked );
+				if (radioButton_tcp.Checked)
+				{
+					mcNetServer.ServerStart( port1, modeTcp: true );
+				}
+				else if (radioButton_udp.Checked)
+				{
+					mcNetServer.ServerStart( port1, modeTcp: false );
+				}
+				else
+				{
+					mcNetServer.ServerStart( port1,  port2 );
+				}
 				userControlReadWriteServer1.SetReadWriteServer( mcNetServer, "D100" );
 
 				button1.Enabled = false;
@@ -135,6 +178,10 @@ namespace HslCommunicationDemo
 			// 启动串口
 			mcNetServer.StartSerialSlave( textBox_serialPort.Text );
 			button5.Enabled = false;
+
+			// 设置示例代码
+			codeExampleControl.SetCodeText( "server", textBox_serialPort.Text, mcNetServer, nameof( mcNetServer.IsBinary ) );
+
 		}
 
 		#endregion

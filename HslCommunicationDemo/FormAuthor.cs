@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormAuthor : Form
+    public partial class FormAuthor : System.Windows.Forms.Form
     {
         public FormAuthor( )
         {

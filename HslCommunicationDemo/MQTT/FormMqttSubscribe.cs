@@ -15,7 +15,7 @@ using System.Xml.Linq;
 
 namespace HslCommunicationDemo.MQTT
 {
-	public partial class FormMqttSubscribe : Form
+	public partial class FormMqttSubscribe : System.Windows.Forms.Form
 	{
 		// 将 mqttClient 传递给子窗体
 		public FormMqttSubscribe( MqttClient mqttClient )

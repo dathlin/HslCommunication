@@ -142,7 +142,8 @@ namespace HslCommunicationDemo.PLC.Invt
 					control.SetDevice( busRtuClient, "D100" );
 
 					// 设置示例代码
-					codeExampleControl.SetCodeText( "modbus", busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
+					codeExampleControl.SetCodeText( busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
 						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.Crc16CheckEnable ), nameof( busRtuClient.IsClearCacheBeforeRead ),
 						nameof( busRtuClient.StationCheckMacth ), "HslCommunication.ModBus.ModbusMappingAddress.Invt_Ts" );
 				}

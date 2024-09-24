@@ -37,6 +37,16 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label_code = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.textBox_read_command = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.textBox_read_lines = new System.Windows.Forms.TextBox();
+			this.button_execute = new System.Windows.Forms.Button();
+			this.textBox_result = new System.Windows.Forms.TextBox();
 			this.button20 = new System.Windows.Forms.Button();
 			this.button21 = new System.Windows.Forms.Button();
 			this.button18 = new System.Windows.Forms.Button();
@@ -49,12 +59,6 @@
 			this.button13 = new System.Windows.Forms.Button();
 			this.button11 = new System.Windows.Forms.Button();
 			this.button10 = new System.Windows.Forms.Button();
-			this.textBox_result = new System.Windows.Forms.TextBox();
-			this.button_execute = new System.Windows.Forms.Button();
-			this.textBox_read_lines = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.textBox_read_command = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
 			this.button9 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
@@ -63,8 +67,6 @@
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.label6 = new System.Windows.Forms.Label();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -81,7 +83,7 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "TCP";
-			this.userControlHead1.Size = new System.Drawing.Size(1001, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(986, 32);
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 30;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
@@ -99,7 +101,7 @@
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Location = new System.Drawing.Point(2, 34);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 45);
+			this.panel1.Size = new System.Drawing.Size(982, 45);
 			this.panel1.TabIndex = 31;
 			// 
 			// button2
@@ -185,8 +187,120 @@
 			this.panel2.Controls.Add(this.label6);
 			this.panel2.Location = new System.Drawing.Point(2, 85);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 556);
+			this.panel2.Size = new System.Drawing.Size(982, 572);
 			this.panel2.TabIndex = 32;
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Location = new System.Drawing.Point(3, 188);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(976, 379);
+			this.tabControl1.TabIndex = 42;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.textBox_code);
+			this.tabPage1.Controls.Add(this.label_code);
+			this.tabPage1.Controls.Add(this.label3);
+			this.tabPage1.Controls.Add(this.textBox_read_command);
+			this.tabPage1.Controls.Add(this.label4);
+			this.tabPage1.Controls.Add(this.textBox_read_lines);
+			this.tabPage1.Controls.Add(this.button_execute);
+			this.tabPage1.Controls.Add(this.textBox_result);
+			this.tabPage1.Location = new System.Drawing.Point(4, 26);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(968, 349);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Command Test";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(70, 291);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(892, 49);
+			this.textBox_code.TabIndex = 31;
+			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(6, 294);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(42, 17);
+			this.label_code.TabIndex = 30;
+			this.label_code.Text = "Code:";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(6, 7);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(71, 17);
+			this.label3.TabIndex = 25;
+			this.label3.Text = "Command:";
+			// 
+			// textBox_read_command
+			// 
+			this.textBox_read_command.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_read_command.Location = new System.Drawing.Point(83, 4);
+			this.textBox_read_command.Name = "textBox_read_command";
+			this.textBox_read_command.Size = new System.Drawing.Size(621, 23);
+			this.textBox_read_command.TabIndex = 26;
+			this.textBox_read_command.Text = "@ ？WHERE";
+			// 
+			// label4
+			// 
+			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(712, 7);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(40, 17);
+			this.label4.TabIndex = 27;
+			this.label4.Text = "Lines:";
+			// 
+			// textBox_read_lines
+			// 
+			this.textBox_read_lines.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_read_lines.Location = new System.Drawing.Point(758, 4);
+			this.textBox_read_lines.Name = "textBox_read_lines";
+			this.textBox_read_lines.Size = new System.Drawing.Size(56, 23);
+			this.textBox_read_lines.TabIndex = 28;
+			this.textBox_read_lines.Text = "1";
+			// 
+			// button_execute
+			// 
+			this.button_execute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_execute.Location = new System.Drawing.Point(820, 2);
+			this.button_execute.Name = "button_execute";
+			this.button_execute.Size = new System.Drawing.Size(137, 26);
+			this.button_execute.TabIndex = 29;
+			this.button_execute.Text = "Execute Command";
+			this.button_execute.UseVisualStyleBackColor = true;
+			this.button_execute.Click += new System.EventHandler(this.button_execute_Click);
+			// 
+			// textBox_result
+			// 
+			this.textBox_result.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_result.Location = new System.Drawing.Point(7, 33);
+			this.textBox_result.Multiline = true;
+			this.textBox_result.Name = "textBox_result";
+			this.textBox_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_result.Size = new System.Drawing.Size(955, 255);
+			this.textBox_result.TabIndex = 5;
 			// 
 			// button20
 			// 
@@ -308,67 +422,6 @@
 			this.button10.UseVisualStyleBackColor = true;
 			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
-			// textBox_result
-			// 
-			this.textBox_result.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_result.Location = new System.Drawing.Point(7, 33);
-			this.textBox_result.Multiline = true;
-			this.textBox_result.Name = "textBox_result";
-			this.textBox_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_result.Size = new System.Drawing.Size(970, 294);
-			this.textBox_result.TabIndex = 5;
-			// 
-			// button_execute
-			// 
-			this.button_execute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_execute.Location = new System.Drawing.Point(835, 2);
-			this.button_execute.Name = "button_execute";
-			this.button_execute.Size = new System.Drawing.Size(137, 26);
-			this.button_execute.TabIndex = 29;
-			this.button_execute.Text = "Execute Command";
-			this.button_execute.UseVisualStyleBackColor = true;
-			this.button_execute.Click += new System.EventHandler(this.button_execute_Click);
-			// 
-			// textBox_read_lines
-			// 
-			this.textBox_read_lines.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_read_lines.Location = new System.Drawing.Point(773, 4);
-			this.textBox_read_lines.Name = "textBox_read_lines";
-			this.textBox_read_lines.Size = new System.Drawing.Size(56, 23);
-			this.textBox_read_lines.TabIndex = 28;
-			this.textBox_read_lines.Text = "1";
-			// 
-			// label4
-			// 
-			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(727, 7);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(40, 17);
-			this.label4.TabIndex = 27;
-			this.label4.Text = "Lines:";
-			// 
-			// textBox_read_command
-			// 
-			this.textBox_read_command.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_read_command.Location = new System.Drawing.Point(83, 4);
-			this.textBox_read_command.Name = "textBox_read_command";
-			this.textBox_read_command.Size = new System.Drawing.Size(636, 23);
-			this.textBox_read_command.TabIndex = 26;
-			this.textBox_read_command.Text = "@ ？WHERE";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(6, 7);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(71, 17);
-			this.label3.TabIndex = 25;
-			this.label3.Text = "Command:";
-			// 
 			// button9
 			// 
 			this.button9.Location = new System.Drawing.Point(329, 35);
@@ -448,36 +501,11 @@
 			this.label6.TabIndex = 4;
 			this.label6.Text = "Content";
 			// 
-			// tabControl1
-			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Location = new System.Drawing.Point(3, 188);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(991, 363);
-			this.tabControl1.TabIndex = 42;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.label3);
-			this.tabPage1.Controls.Add(this.textBox_read_command);
-			this.tabPage1.Controls.Add(this.label4);
-			this.tabPage1.Controls.Add(this.textBox_read_lines);
-			this.tabPage1.Controls.Add(this.button_execute);
-			this.tabPage1.Controls.Add(this.textBox_result);
-			this.tabPage1.Location = new System.Drawing.Point(4, 26);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(983, 333);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Command Test";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
 			// FormYamahaRCX
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1001, 644);
+			this.ClientSize = new System.Drawing.Size(986, 660);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.userControlHead1);
@@ -536,5 +564,7 @@
 		private System.Windows.Forms.Button button10;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label_code;
 	}
 }

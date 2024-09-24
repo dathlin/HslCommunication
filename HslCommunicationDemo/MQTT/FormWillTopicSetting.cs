@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.MQTT
 {
-	public partial class FormWillTopicSetting : Form
+	public partial class FormWillTopicSetting : System.Windows.Forms.Form
 	{
 		public FormWillTopicSetting( string topic, string message )
 		{

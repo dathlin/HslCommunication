@@ -91,6 +91,8 @@ namespace HslCommunicationDemo.Light
 			}
 
 			ShowLightData( read.Content );
+
+			textBox_code.Text = $"OperateResult<ShineInLightData> read = lightSourceController.Read( {textBox15.Text} );";
 		}
 
 		private void ShowLightData( ShineInLightData data )
@@ -173,6 +175,8 @@ namespace HslCommunicationDemo.Light
 			{
 				MessageBox.Show( "写入失败:" + write.ToMessageShowString( ) );
 			}
+
+			textBox_code2.Text = $"OperateResult write = lightSourceController.Write( \"{data.GetSourceData( ).ToHexString( )}\".ToHexBytes( ) );";
 		}
 
 

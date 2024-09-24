@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent( )
         {
+			this.components = new System.ComponentModel.Container();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.borderPanel3 = new HslCommunicationDemo.DemoControl.BorderPanel();
 			this.radioButton_ipv6 = new System.Windows.Forms.RadioButton();
 			this.radioButton_ipv4 = new System.Windows.Forms.RadioButton();
@@ -46,9 +46,12 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
+			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.radioButton_both = new System.Windows.Forms.RadioButton();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.panel1.SuspendLayout();
 			this.borderPanel3.SuspendLayout();
 			this.borderPanel2.SuspendLayout();
@@ -78,21 +81,11 @@
 			this.panel1.Size = new System.Drawing.Size(997, 68);
 			this.panel1.TabIndex = 0;
 			// 
-			// sslServerControl1
-			// 
-			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.sslServerControl1.Location = new System.Drawing.Point(4, 33);
-			this.sslServerControl1.Name = "sslServerControl1";
-			this.sslServerControl1.Size = new System.Drawing.Size(988, 30);
-			this.sslServerControl1.TabIndex = 37;
-			// 
 			// borderPanel3
 			// 
 			this.borderPanel3.Controls.Add(this.radioButton_ipv6);
 			this.borderPanel3.Controls.Add(this.radioButton_ipv4);
-			this.borderPanel3.Location = new System.Drawing.Point(380, 4);
+			this.borderPanel3.Location = new System.Drawing.Point(428, 4);
 			this.borderPanel3.Name = "borderPanel3";
 			this.borderPanel3.Size = new System.Drawing.Size(113, 28);
 			this.borderPanel3.TabIndex = 36;
@@ -123,15 +116,16 @@
 			// 
 			this.borderPanel2.Controls.Add(this.radioButton_udp);
 			this.borderPanel2.Controls.Add(this.radioButton_tcp);
+			this.borderPanel2.Controls.Add(this.radioButton_both);
 			this.borderPanel2.Location = new System.Drawing.Point(263, 4);
 			this.borderPanel2.Name = "borderPanel2";
-			this.borderPanel2.Size = new System.Drawing.Size(113, 28);
+			this.borderPanel2.Size = new System.Drawing.Size(162, 28);
 			this.borderPanel2.TabIndex = 35;
 			// 
 			// radioButton_udp
 			// 
 			this.radioButton_udp.AutoSize = true;
-			this.radioButton_udp.Location = new System.Drawing.Point(56, 3);
+			this.radioButton_udp.Location = new System.Drawing.Point(51, 3);
 			this.radioButton_udp.Name = "radioButton_udp";
 			this.radioButton_udp.Size = new System.Drawing.Size(51, 21);
 			this.radioButton_udp.TabIndex = 1;
@@ -142,7 +136,7 @@
 			// 
 			this.radioButton_tcp.AutoSize = true;
 			this.radioButton_tcp.Checked = true;
-			this.radioButton_tcp.Location = new System.Drawing.Point(5, 3);
+			this.radioButton_tcp.Location = new System.Drawing.Point(4, 3);
 			this.radioButton_tcp.Name = "radioButton_tcp";
 			this.radioButton_tcp.Size = new System.Drawing.Size(47, 21);
 			this.radioButton_tcp.TabIndex = 0;
@@ -183,9 +177,9 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(866, 3);
+			this.button5.Location = new System.Drawing.Point(904, 3);
 			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(91, 28);
+			this.button5.Size = new System.Drawing.Size(84, 28);
 			this.button5.TabIndex = 33;
 			this.button5.Text = "启动串口";
 			this.button5.UseVisualStyleBackColor = true;
@@ -193,7 +187,7 @@
 			// 
 			// textBox_serialPort
 			// 
-			this.textBox_serialPort.Location = new System.Drawing.Point(724, 6);
+			this.textBox_serialPort.Location = new System.Drawing.Point(762, 6);
 			this.textBox_serialPort.Name = "textBox_serialPort";
 			this.textBox_serialPort.Size = new System.Drawing.Size(136, 23);
 			this.textBox_serialPort.TabIndex = 32;
@@ -202,7 +196,7 @@
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(675, 9);
+			this.label14.Location = new System.Drawing.Point(717, 9);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(44, 17);
 			this.label14.TabIndex = 31;
@@ -211,7 +205,7 @@
 			// button11
 			// 
 			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(589, 3);
+			this.button11.Location = new System.Drawing.Point(630, 3);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(83, 28);
 			this.button11.TabIndex = 28;
@@ -221,7 +215,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(500, 3);
+			this.button1.Location = new System.Drawing.Point(543, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(83, 28);
 			this.button1.TabIndex = 4;
@@ -245,6 +239,16 @@
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "端口号：";
+			// 
+			// sslServerControl1
+			// 
+			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.sslServerControl1.Location = new System.Drawing.Point(4, 33);
+			this.sslServerControl1.Name = "sslServerControl1";
+			this.sslServerControl1.Size = new System.Drawing.Size(988, 30);
+			this.sslServerControl1.TabIndex = 37;
 			// 
 			// panel2
 			// 
@@ -283,6 +287,16 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// radioButton_both
+			// 
+			this.radioButton_both.AutoSize = true;
+			this.radioButton_both.Location = new System.Drawing.Point(105, 3);
+			this.radioButton_both.Name = "radioButton_both";
+			this.radioButton_both.Size = new System.Drawing.Size(53, 21);
+			this.radioButton_both.TabIndex = 2;
+			this.radioButton_both.Text = "Both";
+			this.radioButton_both.UseVisualStyleBackColor = true;
 			// 
 			// FormMcServer
 			// 
@@ -336,5 +350,7 @@
 		private System.Windows.Forms.RadioButton radioButton_ipv6;
 		private System.Windows.Forms.RadioButton radioButton_ipv4;
 		private DemoControl.SslServerControl sslServerControl1;
+		private System.Windows.Forms.RadioButton radioButton_both;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }

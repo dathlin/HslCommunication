@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.DemoControl
 {
-	public partial class FormMqttInput : Form
+	public partial class FormMqttInput : System.Windows.Forms.Form
 	{
 		public FormMqttInput( )
 		{

@@ -88,14 +88,15 @@ namespace HslCommunicationDemo
 					// MB100;MB200;MW300
 
 					// 设置子控件的读取能力
-					userControlReadWriteDevice1.SetReadWriteNet( xGBCnet, "MB100", false );
+					userControlReadWriteDevice1.SetReadWriteNet( xGBCnet, "M100", false );
 					// 设置批量读取
-					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( xGBCnet, "MB100", string.Empty );
+					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( xGBCnet, "MW100", string.Empty );
 					userControlReadWriteDevice1.BatchRead.SetReadWordRandom( xGBCnet.Read, "MB100;MB200;MW300" );
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => xGBCnet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( xGBCnet, nameof( xGBCnet.Station ) );
 				}
 				else

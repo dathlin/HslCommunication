@@ -132,6 +132,7 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensMPI.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 				// 设置代码示例
+				this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 				codeExampleControl.SetCodeText( siemensMPI, nameof( siemensMPI.Station ) );
 			}
 			catch (Exception ex)

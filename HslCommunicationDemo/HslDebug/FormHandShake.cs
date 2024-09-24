@@ -12,7 +12,7 @@ using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo.HslDebug
 {
-	public partial class FormHandShake : Form
+	public partial class FormHandShake : System.Windows.Forms.Form
 	{
 		public FormHandShake( List<byte[]> handShake )
 		{

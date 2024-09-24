@@ -105,6 +105,7 @@ namespace HslCommunicationDemo
 
 					control.SetDevice( allenBradleyNet, "A1" );
 
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( allenBradleyNet, nameof( allenBradleyNet.Slot ) );
 				}
 				else

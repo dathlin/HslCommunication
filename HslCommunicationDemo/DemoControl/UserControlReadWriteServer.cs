@@ -49,6 +49,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.deviceServer = dataServerBase;
 			userControlReadWriteOp1.SetReadWriteNet( deviceServer, address, false, strLength );
 			batchReadControl1.SetReadWriteNet( deviceServer, address, "" );
+			batchReadControl1.SetVariableName( "server" );
 			dataTableControl1.SetReadWriteNet( deviceServer );
 			dataSimulateControl1.SetReadWriteNet( deviceServer );
 

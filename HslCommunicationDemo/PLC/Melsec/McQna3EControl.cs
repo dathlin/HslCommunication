@@ -19,6 +19,7 @@ namespace HslCommunicationDemo.PLC.Melsec
 		private Button button8;
 		private Button button11;
 		private Button button10;
+		private TextBox textBox_code;
 		private GroupBox groupBox2;
 
 		public McQna3EControl( )
@@ -36,6 +37,7 @@ namespace HslCommunicationDemo.PLC.Melsec
 			this.button5 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -44,6 +46,7 @@ namespace HslCommunicationDemo.PLC.Melsec
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.textBox_code);
 			this.groupBox2.Controls.Add(this.button11);
 			this.groupBox2.Controls.Add(this.button10);
 			this.groupBox2.Controls.Add(this.button6);
@@ -61,7 +64,7 @@ namespace HslCommunicationDemo.PLC.Melsec
 			// 
 			// button11
 			// 
-			this.button11.Location = new System.Drawing.Point(200, 192);
+			this.button11.Location = new System.Drawing.Point(202, 118);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(194, 28);
 			this.button11.TabIndex = 32;
@@ -71,7 +74,7 @@ namespace HslCommunicationDemo.PLC.Melsec
 			// 
 			// button10
 			// 
-			this.button10.Location = new System.Drawing.Point(6, 192);
+			this.button10.Location = new System.Drawing.Point(6, 118);
 			this.button10.Name = "button10";
 			this.button10.Size = new System.Drawing.Size(190, 28);
 			this.button10.TabIndex = 31;
@@ -129,19 +132,32 @@ namespace HslCommunicationDemo.PLC.Melsec
 			this.button8.UseVisualStyleBackColor = true;
 			this.button8.Click += new System.EventHandler(this.button8_Click);
 			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(6, 152);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.Size = new System.Drawing.Size(713, 67);
+			this.textBox_code.TabIndex = 33;
+			// 
 			// McQna3EControl
 			// 
 			this.Controls.Add(this.groupBox2);
 			this.Name = "McQna3EControl";
 			this.Size = new System.Drawing.Size(730, 231);
 			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
 
-		public void SetDevice( IReadWriteMc mc, string address )
+		public void SetDevice( IReadWriteMc mc, string address, string deviceName )
 		{
 			this.mc = mc;
+			this.deviceName = deviceName;
 		}
 
 
@@ -157,6 +173,8 @@ namespace HslCommunicationDemo.PLC.Melsec
 			{
 				MessageBox.Show( "Failed: " + result.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult result = {this.deviceName}.RemoteReset( );    // 远程重置操作";
 		}
 
 
@@ -177,6 +195,9 @@ namespace HslCommunicationDemo.PLC.Melsec
 			{
 				MessageBox.Show( "Failed: " + result.ToMessageShowString( ) );
 			}
+
+
+			textBox_code.Text = $"OperateResult result = {this.deviceName}.ErrorStateReset( );    // 错误状态恢复";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -191,6 +212,8 @@ namespace HslCommunicationDemo.PLC.Melsec
 			{
 				MessageBox.Show( "Failed: " + runResult.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult result = {this.deviceName}.RemoteRun( );    // 远程启动操作";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -205,6 +228,8 @@ namespace HslCommunicationDemo.PLC.Melsec
 			{
 				MessageBox.Show( "Failed: " + runResult.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult result = {this.deviceName}.RemoteStop( );    // 远程停止操作";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -219,10 +244,14 @@ namespace HslCommunicationDemo.PLC.Melsec
 			{
 				MessageBox.Show( "Failed: " + readResult.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult result = {this.deviceName}.ReadPlcType( );    // 读取PLC的规格信息";
 		}
 
 		private async void button10_Click( object sender, EventArgs e )
 		{
+			textBox_code.Text = $"OperateResult<TimeSpan> wait = await {this.deviceName}.WaitAsync( \"M100\", true, 100, 30_000 );    // 等待M100为True，读取频率为间隔100ms，等待超时为30秒";
+
 			// 等待M100为True，读取频率为间隔100ms，等待超时为30秒
 			button10.Enabled = false;
 			OperateResult<TimeSpan> wait = await mc.WaitAsync( "M100", true, 100, 30_000 );
@@ -239,6 +268,8 @@ namespace HslCommunicationDemo.PLC.Melsec
 
 		private async void button11_Click( object sender, EventArgs e )
 		{
+			textBox_code.Text = $"OperateResult<TimeSpan> wait = await {this.deviceName}.WaitAsync( \"D100\", (short)123, 100, 30_000  );    // 等待D100为123，读取频率为间隔100ms，等待超时为30秒";
+
 			// 等待D100为123，读取频率为间隔100ms，等待超时为30秒
 			button11.Enabled = false;
 			OperateResult<TimeSpan> wait = await mc.WaitAsync( "D100", (short)123, 100, 30_000 );
@@ -252,5 +283,7 @@ namespace HslCommunicationDemo.PLC.Melsec
 			}
 			button11.Enabled = true;
 		}
+
+		private string deviceName = "plc";
 	}
 }

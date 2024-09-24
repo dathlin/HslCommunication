@@ -47,6 +47,8 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.label3 = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -65,7 +67,7 @@
 			this.textBox_input.Multiline = true;
 			this.textBox_input.Name = "textBox_input";
 			this.textBox_input.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_input.Size = new System.Drawing.Size(819, 142);
+			this.textBox_input.Size = new System.Drawing.Size(827, 142);
 			this.textBox_input.TabIndex = 11;
 			// 
 			// label7
@@ -92,13 +94,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_patter.Location = new System.Drawing.Point(85, 12);
 			this.textBox_patter.Name = "textBox_patter";
-			this.textBox_patter.Size = new System.Drawing.Size(514, 23);
+			this.textBox_patter.Size = new System.Drawing.Size(522, 23);
 			this.textBox_patter.TabIndex = 13;
 			// 
 			// button1
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(738, 10);
+			this.button1.Location = new System.Drawing.Point(746, 10);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(88, 27);
 			this.button1.TabIndex = 14;
@@ -126,7 +128,7 @@
 			this.textBox_result.Multiline = true;
 			this.textBox_result.Name = "textBox_result";
 			this.textBox_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_result.Size = new System.Drawing.Size(819, 237);
+			this.textBox_result.Size = new System.Drawing.Size(827, 194);
 			this.textBox_result.TabIndex = 17;
 			// 
 			// label2
@@ -153,7 +155,7 @@
 			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(611, 11);
+			this.comboBox1.Location = new System.Drawing.Point(619, 11);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(121, 25);
 			this.comboBox1.TabIndex = 19;
@@ -220,6 +222,8 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.textBox_code);
+			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.button9);
 			this.panel1.Controls.Add(this.textBox_patter);
@@ -237,7 +241,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(834, 335);
+			this.panel1.Size = new System.Drawing.Size(842, 336);
 			this.panel1.TabIndex = 26;
 			// 
 			// splitContainer1
@@ -254,7 +258,7 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.panel1);
-			this.splitContainer1.Size = new System.Drawing.Size(834, 510);
+			this.splitContainer1.Size = new System.Drawing.Size(842, 511);
 			this.splitContainer1.SplitterDistance = 171;
 			this.splitContainer1.TabIndex = 27;
 			// 
@@ -265,14 +269,35 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(834, 171);
+			this.panel2.Size = new System.Drawing.Size(842, 171);
 			this.panel2.TabIndex = 0;
+			// 
+			// label3
+			// 
+			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(5, 293);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(44, 17);
+			this.label3.TabIndex = 26;
+			this.label3.Text = "代码：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(64, 290);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(770, 43);
+			this.textBox_code.TabIndex = 27;
 			// 
 			// FormRegexTest
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(834, 510);
+			this.ClientSize = new System.Drawing.Size(842, 511);
 			this.Controls.Add(this.splitContainer1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "FormRegexTest";
@@ -311,5 +336,7 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label3;
 	}
 }

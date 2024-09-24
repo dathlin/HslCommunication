@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HslCommunicationDemo.Control
 {
-	public partial class FormInputPassword : Form
+	public partial class FormInputPassword : System.Windows.Forms.Form
 	{
 		public FormInputPassword( )
 		{

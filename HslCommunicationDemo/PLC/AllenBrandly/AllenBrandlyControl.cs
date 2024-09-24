@@ -40,6 +40,8 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			{
 				textBox_date_render.Text = read.Content.ToString( );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadDate( \"{textBox_date_address.Text}\" );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -54,6 +56,8 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			{
 				MessageBox.Show( "Write Success" );
 			}
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteDate( \"{textBox_date_address.Text}\", DateTime.Parse( \"{textBox_date_render.Text}\" ) );";
 		}
 
 		private void button10_Click( object sender, EventArgs e )
@@ -68,6 +72,8 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			{
 				MessageBox.Show( "Write Success" );
 			}
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteTimeAndDate( \"{textBox_date_address.Text}\", DateTime.Parse( \"{textBox_date_render.Text}\" ) );";
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -82,6 +88,8 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			{
 				textBox_date_render.Text = read.Content.ToString( );
 			}
+
+			textBox_code.Text = $"OperateResult<TimeSpan> read = {DemoUtils.PlcDeviceName}.ReadTime( \"{textBox_date_address.Text}\" );";
 		}
 
 		private void button9_Click( object sender, EventArgs e )
@@ -96,6 +104,8 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			{
 				MessageBox.Show( "Write Success" );
 			}
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteTime( \"{textBox_date_address.Text}\", TimeSpan.Parse( \"{textBox_date_render.Text}\" ) );";
 		}
 
 		private void button11_Click( object sender, EventArgs e )
@@ -110,6 +120,8 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			{
 				MessageBox.Show( "Write Success" );
 			}
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteTimeOfDate( \"{textBox_date_address.Text}\", TimeSpan.Parse( \"{textBox_date_render.Text}\" ) );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -122,6 +134,11 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 					textBox5.Text.ToHexBytes( ),
 					int.Parse( textBox7.Text ) );
 				DemoUtils.WriteResultRender( write, textBox3.Text );
+
+				textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteTag( \"{textBox3.Text}\"," +
+					$" 0x{Convert.ToUInt16( textBox4.Text, 16 ):X}," +
+					$" \"{textBox5.Text}\".ToHexBytes( )," +
+					$" {int.Parse( textBox7.Text )} );";
 			}
 			catch (Exception ex)
 			{
@@ -141,6 +158,8 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 				textBox4.Text = read.Content1.ToString( "X" );
 				textBox5.Text = read.Content2.ToHexString( ' ' );
 			}
+
+			textBox_code.Text = $"OperateResult<ushort, byte[]> read = {DemoUtils.PlcDeviceName}.ReadTag( \"{textBox3.Text}\", ushort.Parse( \"{textBox7.Text}\" ) );";
 		}
 
 		private void button12_Click( object sender, EventArgs e )
@@ -155,6 +174,9 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			{
 				MessageBox.Show( $"Read failed! " + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadPlcType( );";
+
 		}
 
 		private void AllenBrandlyControl_Load( object sender, EventArgs e )
@@ -172,6 +194,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 				button4.Text = "Write";
 				button5.Text = "Read";
 				button12.Text = "r-plc-type";
+				label_code.Text = "Code:";
 			}
 		}
 	}

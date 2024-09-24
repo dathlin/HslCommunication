@@ -135,6 +135,7 @@ namespace HslCommunicationDemo
 					if (!string.IsNullOrEmpty( textBox_localTSAP.Text )) parameters.Add( nameof( siemensTcpNet.LocalTSAP ) );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( siemensTcpNet, parameters.ToArray( ) );
 				}
 				else

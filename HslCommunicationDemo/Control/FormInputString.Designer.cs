@@ -35,11 +35,12 @@
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
+			this.label_tips = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(12, 1);
+			this.label1.Location = new System.Drawing.Point(12, 6);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(449, 43);
 			this.label1.TabIndex = 0;
@@ -48,14 +49,14 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(12, 47);
+			this.textBox1.Location = new System.Drawing.Point(12, 52);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(412, 23);
 			this.textBox1.TabIndex = 1;
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(176, 194);
+			this.button1.Location = new System.Drawing.Point(162, 238);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(93, 32);
 			this.button1.TabIndex = 2;
@@ -65,7 +66,7 @@
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(13, 72);
+			this.label2.Location = new System.Drawing.Point(13, 77);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(448, 38);
 			this.label2.TabIndex = 3;
@@ -74,7 +75,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(12, 113);
+			this.textBox2.Location = new System.Drawing.Point(12, 118);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.PasswordChar = '*';
 			this.textBox2.Size = new System.Drawing.Size(412, 23);
@@ -82,7 +83,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(12, 160);
+			this.textBox3.Location = new System.Drawing.Point(12, 165);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.PasswordChar = '*';
 			this.textBox3.Size = new System.Drawing.Size(412, 23);
@@ -91,17 +92,27 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(13, 140);
+			this.label3.Location = new System.Drawing.Point(13, 145);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(104, 17);
 			this.label3.TabIndex = 6;
 			this.label3.Text = "请再次输入密码：";
 			// 
+			// label_tips
+			// 
+			this.label_tips.ForeColor = System.Drawing.Color.Green;
+			this.label_tips.Location = new System.Drawing.Point(13, 191);
+			this.label_tips.Name = "label_tips";
+			this.label_tips.Size = new System.Drawing.Size(420, 40);
+			this.label_tips.TabIndex = 7;
+			this.label_tips.Text = "贴士：如果数据表有配置信息，将会一起存储";
+			// 
 			// FormInputString
 			// 
 			this.AcceptButton = this.button1;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(462, 244);
+			this.ClientSize = new System.Drawing.Size(434, 293);
+			this.Controls.Add(this.label_tips);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.textBox3);
 			this.Controls.Add(this.textBox2);
@@ -131,5 +142,6 @@
         private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label_tips;
 	}
 }

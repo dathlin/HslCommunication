@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent( )
 		{
+			this.components = new System.ComponentModel.Container();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox_online_max = new System.Windows.Forms.TextBox();
@@ -71,6 +72,11 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.addNewSecsItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.editSecsItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.deleteSecsItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.panel4 = new System.Windows.Forms.Panel();
 			this.panel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -81,6 +87,8 @@
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
+			this.contextMenuStrip1.SuspendLayout();
+			this.panel4.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// userControlHead1
@@ -94,8 +102,9 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Secs gem HSMS Server";
-			this.userControlHead1.Size = new System.Drawing.Size(1007, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(1046, 32);
 			this.userControlHead1.TabIndex = 3;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
 			// panel1
 			// 
@@ -115,7 +124,7 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1001, 41);
+			this.panel1.Size = new System.Drawing.Size(1040, 41);
 			this.panel1.TabIndex = 4;
 			// 
 			// textBox_online_max
@@ -220,16 +229,16 @@
 			this.listBox1.BackColor = System.Drawing.Color.LightGray;
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.ItemHeight = 17;
-			this.listBox1.Location = new System.Drawing.Point(714, 31);
+			this.listBox1.Location = new System.Drawing.Point(732, 25);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(269, 89);
+			this.listBox1.Size = new System.Drawing.Size(269, 174);
 			this.listBox1.TabIndex = 34;
 			// 
 			// label2
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(714, 8);
+			this.label2.Location = new System.Drawing.Point(732, 5);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(93, 17);
 			this.label2.TabIndex = 33;
@@ -239,7 +248,7 @@
 			// 
 			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(897, 8);
+			this.label4.Location = new System.Drawing.Point(931, 5);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(86, 17);
 			this.label4.TabIndex = 32;
@@ -247,7 +256,7 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(1, 62);
+			this.button4.Location = new System.Drawing.Point(2, 62);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(55, 26);
 			this.button4.TabIndex = 19;
@@ -260,17 +269,17 @@
 			this.textBox_log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_log.Location = new System.Drawing.Point(64, 9);
+			this.textBox_log.Location = new System.Drawing.Point(72, 5);
 			this.textBox_log.Multiline = true;
 			this.textBox_log.Name = "textBox_log";
 			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_log.Size = new System.Drawing.Size(644, 170);
+			this.textBox_log.Size = new System.Drawing.Size(654, 194);
 			this.textBox_log.TabIndex = 10;
 			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(5, 12);
+			this.label13.Location = new System.Drawing.Point(6, 8);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(44, 17);
 			this.label13.TabIndex = 17;
@@ -279,7 +288,7 @@
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(3, 34);
+			this.checkBox1.Location = new System.Drawing.Point(4, 34);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(58, 21);
 			this.checkBox1.TabIndex = 18;
@@ -295,7 +304,7 @@
 			this.groupBox1.Controls.Add(this.treeView1);
 			this.groupBox1.Location = new System.Drawing.Point(3, 79);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(1001, 336);
+			this.groupBox1.Size = new System.Drawing.Size(1040, 353);
 			this.groupBox1.TabIndex = 6;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "数据定义区";
@@ -315,8 +324,8 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.panel2);
-			this.splitContainer1.Size = new System.Drawing.Size(671, 312);
-			this.splitContainer1.SplitterDistance = 313;
+			this.splitContainer1.Size = new System.Drawing.Size(710, 329);
+			this.splitContainer1.SplitterDistance = 331;
 			this.splitContainer1.TabIndex = 39;
 			// 
 			// panel3
@@ -333,7 +342,7 @@
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel3.Location = new System.Drawing.Point(0, 0);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(313, 312);
+			this.panel3.Size = new System.Drawing.Size(331, 329);
 			this.panel3.TabIndex = 1;
 			// 
 			// checkBox_device_w
@@ -408,7 +417,7 @@
 			this.textBox_device_send.Multiline = true;
 			this.textBox_device_send.Name = "textBox_device_send";
 			this.textBox_device_send.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_device_send.Size = new System.Drawing.Size(303, 257);
+			this.textBox_device_send.Size = new System.Drawing.Size(321, 274);
 			this.textBox_device_send.TabIndex = 40;
 			// 
 			// label6
@@ -434,7 +443,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(354, 312);
+			this.panel2.Size = new System.Drawing.Size(375, 329);
 			this.panel2.TabIndex = 0;
 			// 
 			// textBox_data_back
@@ -446,7 +455,7 @@
 			this.textBox_data_back.Multiline = true;
 			this.textBox_data_back.Name = "textBox_data_back";
 			this.textBox_data_back.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_data_back.Size = new System.Drawing.Size(342, 257);
+			this.textBox_data_back.Size = new System.Drawing.Size(363, 274);
 			this.textBox_data_back.TabIndex = 38;
 			// 
 			// label1
@@ -519,42 +528,85 @@
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.treeView1.Location = new System.Drawing.Point(7, 19);
 			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(311, 312);
+			this.treeView1.Size = new System.Drawing.Size(311, 329);
 			this.treeView1.TabIndex = 36;
+			this.treeView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseDown);
 			// 
 			// tabControl1
 			// 
 			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Location = new System.Drawing.Point(3, 415);
+			this.tabControl1.Location = new System.Drawing.Point(3, 430);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(995, 230);
+			this.tabControl1.Size = new System.Drawing.Size(1034, 238);
 			this.tabControl1.TabIndex = 7;
 			// 
 			// tabPage1
 			// 
-			this.tabPage1.Controls.Add(this.listBox1);
-			this.tabPage1.Controls.Add(this.label13);
-			this.tabPage1.Controls.Add(this.label2);
-			this.tabPage1.Controls.Add(this.checkBox1);
-			this.tabPage1.Controls.Add(this.label4);
-			this.tabPage1.Controls.Add(this.textBox_log);
-			this.tabPage1.Controls.Add(this.button4);
+			this.tabPage1.Controls.Add(this.panel4);
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(987, 200);
+			this.tabPage1.Size = new System.Drawing.Size(1026, 208);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "日志";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addNewSecsItemToolStripMenuItem,
+            this.editSecsItemToolStripMenuItem,
+            this.deleteSecsItemToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(179, 70);
+			// 
+			// addNewSecsItemToolStripMenuItem
+			// 
+			this.addNewSecsItemToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_add_16xLG;
+			this.addNewSecsItemToolStripMenuItem.Name = "addNewSecsItemToolStripMenuItem";
+			this.addNewSecsItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.addNewSecsItemToolStripMenuItem.Text = "AddNewSecsItem";
+			this.addNewSecsItemToolStripMenuItem.Click += new System.EventHandler(this.addNewSecsItemToolStripMenuItem_Click);
+			// 
+			// editSecsItemToolStripMenuItem
+			// 
+			this.editSecsItemToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.sig;
+			this.editSecsItemToolStripMenuItem.Name = "editSecsItemToolStripMenuItem";
+			this.editSecsItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.editSecsItemToolStripMenuItem.Text = "EditSecsItem";
+			this.editSecsItemToolStripMenuItem.Click += new System.EventHandler(this.editSecsItemToolStripMenuItem_Click);
+			// 
+			// deleteSecsItemToolStripMenuItem
+			// 
+			this.deleteSecsItemToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_Cancel_16xLG;
+			this.deleteSecsItemToolStripMenuItem.Name = "deleteSecsItemToolStripMenuItem";
+			this.deleteSecsItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.deleteSecsItemToolStripMenuItem.Text = "DeleteSecsItem";
+			this.deleteSecsItemToolStripMenuItem.Click += new System.EventHandler(this.deleteSecsItemToolStripMenuItem_Click);
+			// 
+			// panel4
+			// 
+			this.panel4.Controls.Add(this.label13);
+			this.panel4.Controls.Add(this.listBox1);
+			this.panel4.Controls.Add(this.button4);
+			this.panel4.Controls.Add(this.textBox_log);
+			this.panel4.Controls.Add(this.label2);
+			this.panel4.Controls.Add(this.label4);
+			this.panel4.Controls.Add(this.checkBox1);
+			this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel4.Location = new System.Drawing.Point(3, 3);
+			this.panel4.Name = "panel4";
+			this.panel4.Size = new System.Drawing.Size(1020, 202);
+			this.panel4.TabIndex = 35;
 			// 
 			// FormSecsHsmsServer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1007, 648);
+			this.ClientSize = new System.Drawing.Size(1046, 671);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.panel1);
@@ -577,7 +629,9 @@
 			this.panel2.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
-			this.tabPage1.PerformLayout();
+			this.contextMenuStrip1.ResumeLayout(false);
+			this.panel4.ResumeLayout(false);
+			this.panel4.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -627,5 +681,10 @@
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.TextBox textBox_online_max;
 		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem addNewSecsItemToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem editSecsItemToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem deleteSecsItemToolStripMenuItem;
+		private System.Windows.Forms.Panel panel4;
 	}
 }

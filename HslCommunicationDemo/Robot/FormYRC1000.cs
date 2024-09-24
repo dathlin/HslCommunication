@@ -126,6 +126,8 @@ namespace HslCommunicationDemo
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
+
+					textBox_code.Text = $"YRC1000TcpNet YRC1000Tcp = new YRC1000TcpNet( \"{textBox1.Text}\", {port} );";
 				}
 				else
 				{
@@ -147,35 +149,30 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 		}
 
-
-
-
-
-
-
 		#endregion
 
 		#region 单数据读取测试
 		
-
 		private async void button_read_string_Click( object sender, EventArgs e )
 		{
 			// 读取字符串
 			readResultRender( await YRC1000Tcp.ReadStringAsync( textBox3.Text ), textBox3.Text, textBox4 );
-		}
 
+			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadString( \"{textBox3.Text}\" )";
+		}
 
 		#endregion
 
 		#region 单数据写入测试
 		
-
 		private async void button14_Click( object sender, EventArgs e )
 		{
 			// string写入
 			try
 			{
 				writeResultRender( await YRC1000Tcp.WriteAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
+
+				textBox_code.Text = $"OperateResult write = YRC1000Tcp.Write( \"{textBox8.Text}\", \"{textBox7.Text}\" );";
 			}
 			catch (Exception ex)
 			{
@@ -216,6 +213,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadALARM( );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -230,6 +229,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadPOSJ( );";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -244,6 +245,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<YRCRobotData> read = YRC1000Tcp.ReadPOSC( {comboBox1.SelectedIndex}, true );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -272,6 +275,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<bool[]> read = YRC1000Tcp.ReadStats( );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -286,6 +291,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadJSeq( );";
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -300,6 +307,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadByteVariable( \"{textBox5.Text}\" );";
 		}
 
 		private void button9_Click( object sender, EventArgs e )
@@ -314,6 +323,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadIntegerVariable( \"{textBox5.Text}\" );";
 		}
 
 		private void button10_Click( object sender, EventArgs e )
@@ -328,6 +339,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadDoubleIntegerVariable( \"{textBox5.Text}\" );";
 		}
 
 		private void button11_Click( object sender, EventArgs e )
@@ -342,6 +355,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadRealVariable( \"{textBox5.Text}\" );";
 		}
 
 		private void button12_Click( object sender, EventArgs e )
@@ -356,6 +371,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadStringVariable( \"{textBox5.Text}\" );";
 		}
 
 		private void button13_Click( object sender, EventArgs e )
@@ -370,6 +387,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "HOLD ON Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Hold( true );";
 		}
 
 		private void button15_Click( object sender, EventArgs e )
@@ -384,6 +403,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "HOLD OFF Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Hold( false );";
 		}
 
 		private void button16_Click( object sender, EventArgs e )
@@ -398,6 +419,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "RESET Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Reset( );";
 		}
 
 		private void button17_Click( object sender, EventArgs e )
@@ -412,6 +435,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Cancel Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Cancel( );";
 		}
 
 		private void button21_Click( object sender, EventArgs e )
@@ -426,6 +451,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "SVON ON Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Svon( true );";
 		}
 
 		private void button22_Click( object sender, EventArgs e )
@@ -440,6 +467,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "SVON OFF Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Svon( false );";
 		}
 
 		private void button18_Click( object sender, EventArgs e )
@@ -454,6 +483,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Start Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Start( \"{textBox6.Text}\" );";
 		}
 
 		private void button19_Click( object sender, EventArgs e )
@@ -468,6 +499,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Delte Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Delete( \"{textBox6.Text}\" );";
 		}
 
 		private void button20_Click( object sender, EventArgs e )
@@ -482,6 +515,9 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Set Failed: " + op.Message );
 			}
+
+
+			textBox_code.Text = $"OperateResult op = YRC1000Tcp.SetMJ( \"{textBox6.Text}\" );";
 		}
 	}
 	

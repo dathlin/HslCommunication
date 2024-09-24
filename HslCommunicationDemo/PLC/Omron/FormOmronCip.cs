@@ -102,6 +102,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( omronCipNet, "A1" );
 
 					// 设置示例代码
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( omronCipNet, nameof( omronCipNet.Slot ) );
 				}
 				else

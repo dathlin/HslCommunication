@@ -26,6 +26,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 
 
 			this.dataGridView1.SizeChanged += DataGridView1_SizeChanged;
+			this.label_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.Write( string[] address, List<byte[]> data );";
 		}
 
 		private void SiemensS7WriteControl_Load( object sender, EventArgs e )

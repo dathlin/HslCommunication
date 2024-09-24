@@ -110,6 +110,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( allenBradleyNet, "A1" );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					if (string.IsNullOrEmpty( textBox_router.Text ))
 						codeExampleControl.SetCodeText( allenBradleyNet, nameof( allenBradleyNet.Slot ) );
 					else

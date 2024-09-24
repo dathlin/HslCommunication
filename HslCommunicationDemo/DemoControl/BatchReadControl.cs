@@ -1,6 +1,7 @@
 ﻿using HslCommunication;
 using HslCommunication.BasicFramework;
 using HslCommunication.Core;
+using HslCommunication.Core.Device;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -47,6 +49,10 @@ namespace HslCommunicationDemo.DemoControl
 
 				label1.Text = "Byte Len: ";
 				label2.Text = "TimeCount: ";
+				label4.Text = get_selected( );
+
+				label_code.Text = "Code:";
+				checkBox1.Text = "RegularExp";
 			}
 
 
@@ -60,7 +66,7 @@ namespace HslCommunicationDemo.DemoControl
 
 			button_read.MouseEnter += Button_read_MouseEnter;
 			button_read.MouseLeave += Button_read_MouseLeave;
-			label_tips.Text = GetTips( );
+			label_tips.Text = GetTips( string.Empty );
 
 			button_read_random.MouseEnter += Button_read_random_MouseEnter;
 			button_read_random.MouseLeave += Button_read_MouseLeave;
@@ -72,22 +78,21 @@ namespace HslCommunicationDemo.DemoControl
 			textBox_result.MouseMove += TextBox_result_MouseMove;
 			textBox_result.MouseUp += TextBox_result_MouseUp;
 
-			radioButton_hex.CheckedChanged += RadioButton_hex_CheckedChanged;
-			radioButton_ascii.CheckedChanged += RadioButton_hex_CheckedChanged;
-			radioButton_integer.CheckedChanged += RadioButton_hex_CheckedChanged;
+			comboBox1.SelectedIndex = 0;
+			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
 		}
 
-
-		private void RadioButton_hex_CheckedChanged( object sender, EventArgs e )
+		private string get_selected( )
 		{
-			if (sender is RadioButton radio)
-			{
-				if (radio.Checked && this.buffer != null)
-				{
-					RenderReadBytes( this.buffer );
-				}
-			}
+			if (Program.Language == 2) return "Selected: ";
+			else return "已选择：";
 		}
+
+		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			RenderReadBytes( this.buffer );
+		}
+
 
 		private bool isMouseMove = false;
 
@@ -98,10 +103,12 @@ namespace HslCommunicationDemo.DemoControl
 				int searchIndex = textBox_result.SelectionStart;
 				if (textBox_result.SelectionLength > 0)
 				{
-					if (radioButton_hex.Checked)
-						label4.Text = "Select: " + (searchIndex / 3) + " Len: " + textBox_result.SelectedText.ToHexBytes( ).Length;
+					int selsectIndex = comboBox1.SelectedIndex;
+
+					if (selsectIndex == 0)
+						label4.Text = get_selected( ) + (searchIndex / 3) + " Len: " + textBox_result.SelectedText.ToHexBytes( ).Length;
 					else
-						label4.Text = "Select: " + searchIndex + " Len: " + textBox_result.SelectedText.Length;
+						label4.Text = get_selected( ) + searchIndex + " Len: " + textBox_result.SelectedText.Length;
 				}
 			}
 		}
@@ -116,26 +123,33 @@ namespace HslCommunicationDemo.DemoControl
 			isMouseMove = false;
 		}
 
-		private string GetTips( ) => Program.Language == 1 ? "提示: " : "Tips: ";
+		private string GetTips( string tips )
+		{
+			string head = Program.Language == 1 ? "提示: " : "Tips: ";
+			if (!string.IsNullOrEmpty( tips ))
+				return head + tips;
+			else
+				return head;
+		}
 
 		private void Button_read_word_MouseEnter( object sender, EventArgs e )
 		{
-			label_tips.Text = GetTips( ) + buttonTips3;
+			label_tips.Text = GetTips( buttonTips3 );
 		}
 
 		private void Button_read_random_MouseEnter( object sender, EventArgs e )
 		{
-			label_tips.Text = GetTips( ) + buttonTips2;
+			label_tips.Text = GetTips( buttonTips2 );
 		}
 
 		private void Button_read_MouseEnter( object sender, EventArgs e )
 		{
-			label_tips.Text = GetTips( ) + buttonTips1;
+			label_tips.Text = GetTips( buttonTips1 );
 		}
 
 		private void Button_read_MouseLeave( object sender, EventArgs e )
 		{
-			label_tips.Text = GetTips( );
+			label_tips.Text = GetTips( string.Empty );
 		}
 
 		private void BatchReadControl_Load( object sender, EventArgs e )
@@ -149,6 +163,9 @@ namespace HslCommunicationDemo.DemoControl
 		}
 
 		int index = 0;
+		private string lastRegexPatter = string.Empty;
+		private int lastRegexIndex = 0;
+
 		private void Button_search_Click( object sender, EventArgs e )
 		{
 			if (string.IsNullOrEmpty( textBox_search.Text ))
@@ -157,36 +174,114 @@ namespace HslCommunicationDemo.DemoControl
 				return;
 			}
 
-			// 查看读取的字符串信息
-			int searchIndex = textBox_result.Text.IndexOf( textBox_search.Text, index );
-			if (searchIndex < 0)
+			if (checkBox1.Checked)
 			{
-				index = 0;
-				MessageBox.Show( "None find" );
+				// 使用正则的表达式
+				if (textBox_search.Text != lastRegexPatter)
+				{
+					lastRegexIndex = 0;
+					lastRegexPatter = textBox_search.Text;
+				}
+
+				MatchCollection mc = Regex.Matches( textBox_result.Text, textBox_search.Text );
+				if (mc.Count == 0)
+				{
+					index = 0;
+					DemoUtils.ShowMessage( Program.Language == 2 ? "None find" : "没有查询到" );
+				}
+				else
+				{
+					if (lastRegexIndex >= mc.Count)
+					{
+						DemoUtils.ShowMessage( Program.Language == 2 ? "No more find, start search again" : "已经查询到末尾，没有发现更多的，再次点击重新查询" );
+						lastRegexIndex = 0;
+						return;
+					}
+
+					Match match = mc[lastRegexIndex];
+					index = match.Index + 1;
+					textBox_result.Select( match.Index, match.Length );
+					// 每隔3减1
+					label_index.Text = "Index:" + (match.Index - match.Index / 3);
+					textBox_result.Focus( );
+
+					lastRegexIndex++;
+				}
 			}
 			else
 			{
-				index = searchIndex + 1;
-				textBox_result.Select( searchIndex, textBox_search.Text.Length );
-				// 每隔3减1
-				label_index.Text = "Index:" + (searchIndex - searchIndex / 3);
-				textBox_result.Focus( );
+				// 查看读取的字符串信息
+				int searchIndex = textBox_result.Text.IndexOf( textBox_search.Text, index );
+				if (searchIndex < 0)
+				{
+					index = 0;
+					DemoUtils.ShowMessage( Program.Language == 2 ? "None find" : "没有查询到" );
+				}
+				else
+				{
+					index = searchIndex + 1;
+					textBox_result.Select( searchIndex, textBox_search.Text.Length );
+					// 每隔3减1
+					label_index.Text = "Index:" + (searchIndex - searchIndex / 3);
+					textBox_result.Focus( );
+				}
 			}
 		}
 
 		private void RenderReadBytes( byte[] buffer )
 		{
-			if (radioButton_hex.Checked)
+			int selectIndex = comboBox1.SelectedIndex;
+			if (selectIndex == 0)
 			{
 				textBox_result.Text = buffer.ToHexString( ' ' );
 			}
-			else if (radioButton_ascii.Checked)
+			else if (selectIndex == 1)
 			{
 				textBox_result.Text = SoftBasic.GetAsciiStringRender( buffer );
 			}
-			else
+			else if (selectIndex == 2)
 			{
 				textBox_result.Text = buffer.ToArrayString<byte>( );
+			}
+			else if (selectIndex == 3)
+			{
+				short[] value = readWriteNet.ByteTransform.TransInt16( buffer, 0, buffer.Length / 2 );
+				textBox_result.Text = value.ToArrayString( );
+			}
+			else if (selectIndex == 4)
+			{
+				ushort[] value = readWriteNet.ByteTransform.TransUInt16( buffer, 0, buffer.Length / 2 );
+				textBox_result.Text = value.ToArrayString( );
+			}
+			else if (selectIndex == 5)
+			{
+				int[] value = readWriteNet.ByteTransform.TransInt32( buffer, 0, buffer.Length / 4 );
+				textBox_result.Text = value.ToArrayString( );
+			}
+			else if (selectIndex == 6)
+			{
+				uint[] value = readWriteNet.ByteTransform.TransUInt32( buffer, 0, buffer.Length / 4 );
+				textBox_result.Text = value.ToArrayString( );
+			}
+			else if (selectIndex == 7)
+			{
+				float[] value = readWriteNet.ByteTransform.TransSingle( buffer, 0, buffer.Length / 4 );
+				textBox_result.Text = value.ToArrayString( );
+			}
+			else if (selectIndex == 8)
+			{
+				double[] value = readWriteNet.ByteTransform.TransDouble( buffer, 0, buffer.Length / 8 );
+				textBox_result.Text = value.ToArrayString( );
+			}
+			else if (selectIndex == 9)
+			{
+				long[] value = readWriteNet.ByteTransform.TransInt64( buffer, 0, buffer.Length / 8 );
+				textBox_result.Text = value.ToArrayString( );
+			}
+			else if (selectIndex == 10)
+			{
+				ulong[] value = readWriteNet.ByteTransform.TransUInt64( buffer, 0, buffer.Length / 8 );
+				textBox_result.Text = value.ToArrayString( );
 			}
 		}
 
@@ -194,7 +289,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "read failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "read failed: " + read.ToMessageShowString( ) );
 			}
 
 			string timeCount = cost.TotalMilliseconds.ToString( "F0" );
@@ -216,47 +311,87 @@ namespace HslCommunicationDemo.DemoControl
 				DateTime start = DateTime.Now;
 				OperateResult<byte[]> read = readFunc( textBox_address.Text.ToHexBytes( ) );
 				RenderReadResult( read, DateTime.Now - start );
+
+				textBox_code.Text = $"OperateResult<byte[]> read = {variableName}.ReadFromCoreServer( \"{textBox_address.Text}\".ToHexBytes( ), true, false );  // 完整的报文";
 			}
 			else
 			{
 				if (readWriteNet == null)
 				{
-					MessageBox.Show( "Current operate not success! readWriteNet is null" );
+					DemoUtils.ShowMessage( "Current operate not success! readWriteNet is null" );
 					return;
 				}
 
 				if (!ushort.TryParse( textBox_length.Text, out ushort len ))
 				{
-					MessageBox.Show( "Length input wrong! " );
+					DemoUtils.ShowMessage( "Length input wrong! " );
 					return;
 				}
 				DateTime start = DateTime.Now;
 				OperateResult<byte[]> read = readWriteNet.Read( textBox_address.Text, len );
 				RenderReadResult( read, DateTime.Now - start );
+				textBox_code.Text = $"OperateResult<byte[]> read = {variableName}.Read( \"{textBox_address.Text}\", {len} );";
 			}
-
 		}
 
 		private void Button_write_Click( object sender, EventArgs e )
 		{
 			if (readWriteNet == null)
 			{
-				MessageBox.Show( "Current operate not success! readWriteNet is null" );
+				DemoUtils.ShowMessage( "Current operate not success! readWriteNet is null" );
 				return;
 			}
 
-			byte[] buffer = null;
-			if (radioButton_hex.Checked)
+			int selectIndex = comboBox1.SelectedIndex;
+			if (selectIndex == 0)
 			{
 				buffer = textBox_result.Text.ToHexBytes( );
 			}
-			else if (radioButton_ascii.Checked)
+			else if (selectIndex == 1)
 			{
 				buffer = SoftBasic.GetFromAsciiStringRender( textBox_result.Text );
 			}
-			else
+			else if (selectIndex == 2)
 			{
 				buffer = textBox_result.Text.ToStringArray<byte>( );
+			}
+			else if (selectIndex == 3)
+			{
+				buffer = readWriteNet.ByteTransform.TransByte( textBox_result.Text.ToStringArray<short>( ) );
+			}
+			else if (selectIndex == 4)
+			{
+				buffer = readWriteNet.ByteTransform.TransByte( textBox_result.Text.ToStringArray<ushort>( ) );
+			}
+			else if (selectIndex == 5)
+			{
+				buffer = readWriteNet.ByteTransform.TransByte( textBox_result.Text.ToStringArray<int>( ) );
+			}
+			else if (selectIndex == 6)
+			{
+				buffer = readWriteNet.ByteTransform.TransByte( textBox_result.Text.ToStringArray<uint>( ) );
+			}
+			else if (selectIndex == 7)
+			{
+				buffer = readWriteNet.ByteTransform.TransByte( textBox_result.Text.ToStringArray<float>( ) );
+			}
+			else if (selectIndex == 8)
+			{
+				buffer = readWriteNet.ByteTransform.TransByte( textBox_result.Text.ToStringArray<double>( ) );
+			}
+			else if (selectIndex == 9)
+			{
+				buffer = readWriteNet.ByteTransform.TransByte( textBox_result.Text.ToStringArray<long>( ) );
+			}
+			else if (selectIndex == 10)
+			{
+				buffer = readWriteNet.ByteTransform.TransByte( textBox_result.Text.ToStringArray<ulong>( ) );
+			}
+
+			if (buffer == null)
+			{
+				DemoUtils.ShowMessage( "data is empty!" );
+				return;
 			}
 
 			DateTime start = DateTime.Now;
@@ -267,13 +402,15 @@ namespace HslCommunicationDemo.DemoControl
 
 			if (!write.IsSuccess)
 			{
-				MessageBox.Show( "write failed: " + write.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "write failed: " + write.ToMessageShowString( ) );
 			}
 			else
 			{
-
-				MessageBox.Show( "write success!" );
+				DemoUtils.ShowMessage( "write success!" );
 			}
+
+			// 显示回写的代码
+			textBox_code.Text = $"OperateResult write = {variableName}.Write( \"{textBox_address.Text}\", \"{buffer.ToHexString( ' ' )}\".ToHexBytes( ) );";
 		}
 
 		private void Button_read_random_Click( object sender, EventArgs e )
@@ -284,14 +421,24 @@ namespace HslCommunicationDemo.DemoControl
 				DateTime start = DateTime.Now;
 				OperateResult<byte[]> read = readFunc( textBox_address.Text.ToHexBytes( ) );
 				RenderReadResult( read, DateTime.Now - start );
+
+				// 读取普通报文
+				textBox_code.Text = $"OperateResult<byte[]> read = {variableName}.ReadFromCoreServer( \"{textBox_address.Text}\".ToHexBytes( ) );";
 			}
 			else if (this.readRandom != null)
 			{
+				string[] address = textBox_address.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries );
+				ushort[] length = textBox_length.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( m => ushort.Parse( m ) ).ToArray( );
+
 				DateTime start = DateTime.Now;
-				OperateResult<byte[]> read = this.readRandom(
-					textBox_address.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ),
-					textBox_length.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( m => ushort.Parse( m ) ).ToArray( ) );
+				OperateResult<byte[]> read = this.readRandom( address, length );
 				RenderReadResult( read, DateTime.Now - start );
+
+
+				// 这里还得反射一下
+				textBox_code.Text = $"OperateResult<byte[]> read = {variableName}.{this.readRandom.Method.Name}( " +
+					$"new string[] {{{address.ToArrayString( "\"{0}\"" ).Trim( new char[] { '[', ']' } )}}}, " +
+					$"new ushort[] {{{length.ToArrayString( ).Trim( new char[] { '[', ']' } )}}} );";
 			}
 		}
 
@@ -303,13 +450,19 @@ namespace HslCommunicationDemo.DemoControl
 				DateTime start = DateTime.Now;
 				OperateResult<byte[]> read = readFunc( textBox_address.Text.ToHexBytes( ) );
 				RenderReadResult( read, DateTime.Now - start );
+
+
 			}
 			else if (this.readWordRandom != null)
 			{
+				string[] address = textBox_address.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries );
 				DateTime start = DateTime.Now;
-				OperateResult<byte[]> read = this.readWordRandom(
-					textBox_address.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries ) );
+				OperateResult<byte[]> read = this.readWordRandom( address );
 				RenderReadResult( read, DateTime.Now - start );
+
+				// 这里还得反射一下
+				textBox_code.Text = $"OperateResult<byte[]> read = {variableName}.{this.readWordRandom.Method.Name}( new string[] {{{address.ToArrayString("\"{0}\"").Trim( new char[] {'[',']'} )}}} );";
+				//GetTips( string.Empty );
 			}
 		}
 
@@ -319,7 +472,7 @@ namespace HslCommunicationDemo.DemoControl
 		/// <param name="device">通信对象信息</param>
 		/// <param name="address">默认的地址信息</param>
 		/// <param name="tips">默认提示的消息内容</param>
-		public void SetReadWriteNet( IReadWriteNet device, string address, string tips )
+		public void SetReadWriteNet( DeviceCommunication device, string address, string tips )
 		{
 			this.readWriteNet = device;
 			this.textBox_address.Text = address;
@@ -382,6 +535,11 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		public void SetVariableName( string name )
+		{
+			this.variableName = name;
+		}
+
 		/// <summary>
 		/// 获取或设置当前是否报文读取的模式
 		/// </summary>
@@ -411,7 +569,7 @@ namespace HslCommunicationDemo.DemoControl
 					textBox_result.Location = new Point( 56, 54 + 40 );
 					label_result.Location = new Point( 3, 54 + 40 );
 					label_tips.Location = new Point( 53, 32 + 40 );
-					textBox_result.Size = new Size( this.Width - (845 - 683), this.Height - (318 - 238) - 40 );
+					textBox_result.Size = new Size( this.Width - (845 - 683), this.Height - (318 - 191) - 40 );
 				}
 				else
 				{
@@ -429,7 +587,7 @@ namespace HslCommunicationDemo.DemoControl
 
 					label_result.Location = new Point( 3, 54 );
 					textBox_result.Location = new Point( 56, 54 );
-					textBox_result.Size = new Size( this.Width - (845 - 683), this.Height - (318 - 238) );
+					textBox_result.Size = new Size( this.Width - (845 - 683), this.Height - (318 - 191) );
 				}
 			}
 		}
@@ -437,11 +595,13 @@ namespace HslCommunicationDemo.DemoControl
 		private bool isSourceReadMode = false;
 		private Func<string[], ushort[], OperateResult<byte[]>> readRandom;
 		private Func<string[], OperateResult<byte[]>> readWordRandom;
-		private IReadWriteNet readWriteNet;
+		private DeviceCommunication readWriteNet;
 		private byte[] buffer;
 
 		private string buttonTips1 = "";
 		private string buttonTips2 = "";
 		private string buttonTips3= "";
+
+		private string variableName = "[变量名]";
 	}
 }

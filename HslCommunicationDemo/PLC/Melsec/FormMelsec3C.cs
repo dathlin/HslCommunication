@@ -116,6 +116,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsecA3C.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					// 设置示例的代码
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( melsecA3C, nameof( melsecA3C.Station ), nameof( melsecA3C.EnableWriteBitToWordRegister ), nameof( melsecA3C.SumCheck ),
 						nameof( melsecA3C.Format ) );
 				}

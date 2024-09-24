@@ -40,17 +40,16 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox_search = new System.Windows.Forms.TextBox();
 			this.button_search = new System.Windows.Forms.Button();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.radioButton_integer = new System.Windows.Forms.RadioButton();
-			this.radioButton_ascii = new System.Windows.Forms.RadioButton();
-			this.radioButton_hex = new System.Windows.Forms.RadioButton();
 			this.button_read_random = new System.Windows.Forms.Button();
 			this.button_read_word = new System.Windows.Forms.Button();
 			this.label_index = new System.Windows.Forms.Label();
 			this.label_tips = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.button_write = new System.Windows.Forms.Button();
-			this.panel1.SuspendLayout();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label_code = new System.Windows.Forms.Label();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// textBox_result
@@ -62,7 +61,7 @@
 			this.textBox_result.Multiline = true;
 			this.textBox_result.Name = "textBox_result";
 			this.textBox_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_result.Size = new System.Drawing.Size(683, 238);
+			this.textBox_result.Size = new System.Drawing.Size(683, 191);
 			this.textBox_result.TabIndex = 33;
 			// 
 			// label_result
@@ -125,7 +124,7 @@
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(279, 298);
+			this.label1.Location = new System.Drawing.Point(170, 296);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 17);
 			this.label1.TabIndex = 34;
@@ -135,7 +134,7 @@
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(372, 298);
+			this.label2.Location = new System.Drawing.Point(267, 296);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(44, 17);
 			this.label2.TabIndex = 35;
@@ -145,7 +144,7 @@
 			// 
 			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(562, 298);
+			this.label3.Location = new System.Drawing.Point(576, 296);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(80, 17);
 			this.label3.TabIndex = 36;
@@ -154,64 +153,21 @@
 			// textBox_search
 			// 
 			this.textBox_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_search.Location = new System.Drawing.Point(648, 294);
+			this.textBox_search.Location = new System.Drawing.Point(660, 292);
 			this.textBox_search.Name = "textBox_search";
-			this.textBox_search.Size = new System.Drawing.Size(91, 23);
+			this.textBox_search.Size = new System.Drawing.Size(79, 23);
 			this.textBox_search.TabIndex = 37;
 			this.textBox_search.Text = "10";
 			// 
 			// button_search
 			// 
 			this.button_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_search.Location = new System.Drawing.Point(745, 290);
+			this.button_search.Location = new System.Drawing.Point(745, 289);
 			this.button_search.Name = "button_search";
 			this.button_search.Size = new System.Drawing.Size(97, 28);
 			this.button_search.TabIndex = 38;
 			this.button_search.Text = "查找";
 			this.button_search.UseVisualStyleBackColor = true;
-			// 
-			// panel1
-			// 
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.panel1.Controls.Add(this.radioButton_integer);
-			this.panel1.Controls.Add(this.radioButton_ascii);
-			this.panel1.Controls.Add(this.radioButton_hex);
-			this.panel1.Location = new System.Drawing.Point(56, 293);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(194, 24);
-			this.panel1.TabIndex = 39;
-			// 
-			// radioButton_integer
-			// 
-			this.radioButton_integer.AutoSize = true;
-			this.radioButton_integer.Location = new System.Drawing.Point(122, 2);
-			this.radioButton_integer.Name = "radioButton_integer";
-			this.radioButton_integer.Size = new System.Drawing.Size(68, 21);
-			this.radioButton_integer.TabIndex = 2;
-			this.radioButton_integer.Text = "Integer";
-			this.radioButton_integer.UseVisualStyleBackColor = true;
-			// 
-			// radioButton_ascii
-			// 
-			this.radioButton_ascii.AutoSize = true;
-			this.radioButton_ascii.Location = new System.Drawing.Point(59, 2);
-			this.radioButton_ascii.Name = "radioButton_ascii";
-			this.radioButton_ascii.Size = new System.Drawing.Size(57, 21);
-			this.radioButton_ascii.TabIndex = 1;
-			this.radioButton_ascii.Text = "ASCII";
-			this.radioButton_ascii.UseVisualStyleBackColor = true;
-			// 
-			// radioButton_hex
-			// 
-			this.radioButton_hex.AutoSize = true;
-			this.radioButton_hex.Checked = true;
-			this.radioButton_hex.Location = new System.Drawing.Point(3, 2);
-			this.radioButton_hex.Name = "radioButton_hex";
-			this.radioButton_hex.Size = new System.Drawing.Size(50, 21);
-			this.radioButton_hex.TabIndex = 0;
-			this.radioButton_hex.TabStop = true;
-			this.radioButton_hex.Text = "HEX";
-			this.radioButton_hex.UseVisualStyleBackColor = true;
 			// 
 			// button_read_random
 			// 
@@ -238,7 +194,7 @@
 			this.label_index.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.label_index.AutoSize = true;
 			this.label_index.ForeColor = System.Drawing.Color.Gray;
-			this.label_index.Location = new System.Drawing.Point(763, 270);
+			this.label_index.Location = new System.Drawing.Point(745, 248);
 			this.label_index.Name = "label_index";
 			this.label_index.Size = new System.Drawing.Size(59, 17);
 			this.label_index.TabIndex = 42;
@@ -250,15 +206,15 @@
 			this.label_tips.ForeColor = System.Drawing.Color.Gray;
 			this.label_tips.Location = new System.Drawing.Point(53, 32);
 			this.label_tips.Name = "label_tips";
-			this.label_tips.Size = new System.Drawing.Size(39, 17);
+			this.label_tips.Size = new System.Drawing.Size(35, 17);
 			this.label_tips.TabIndex = 43;
-			this.label_tips.Text = "Tips: ";
+			this.label_tips.Text = "Tips:";
 			// 
 			// label4
 			// 
 			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(478, 298);
+			this.label4.Location = new System.Drawing.Point(380, 296);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(45, 17);
 			this.label4.TabIndex = 44;
@@ -271,19 +227,75 @@
 			this.button_write.Name = "button_write";
 			this.button_write.Size = new System.Drawing.Size(97, 28);
 			this.button_write.TabIndex = 45;
-			this.button_write.Text = "批量写入";
+			this.button_write.Text = "批量回写";
 			this.button_write.UseVisualStyleBackColor = true;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Items.AddRange(new object[] {
+            "HEX",
+            "ASCII",
+            "byte",
+            "short",
+            "ushort",
+            "int",
+            "uint",
+            "float",
+            "double",
+            "long",
+            "ulong"});
+			this.comboBox1.Location = new System.Drawing.Point(56, 291);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(106, 25);
+			this.comboBox1.TabIndex = 46;
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(56, 248);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(683, 39);
+			this.textBox_code.TabIndex = 47;
+			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(1, 248);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 48;
+			this.label_code.Text = "代码：";
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(747, 267);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(87, 21);
+			this.checkBox1.TabIndex = 49;
+			this.checkBox1.Text = "正则表达式";
+			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
 			// BatchReadControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.checkBox1);
+			this.Controls.Add(this.label_code);
+			this.Controls.Add(this.textBox_code);
+			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.button_write);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.label_tips);
 			this.Controls.Add(this.label_index);
 			this.Controls.Add(this.button_read_word);
 			this.Controls.Add(this.button_read_random);
-			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.button_search);
 			this.Controls.Add(this.textBox_search);
 			this.Controls.Add(this.label3);
@@ -296,12 +308,11 @@
 			this.Controls.Add(this.label_length);
 			this.Controls.Add(this.textBox_address);
 			this.Controls.Add(this.label_address);
+			this.Controls.Add(this.label_tips);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "BatchReadControl";
 			this.Size = new System.Drawing.Size(845, 318);
 			this.Load += new System.EventHandler(this.BatchReadControl_Load);
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -321,15 +332,15 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TextBox textBox_search;
 		private System.Windows.Forms.Button button_search;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.RadioButton radioButton_ascii;
-		private System.Windows.Forms.RadioButton radioButton_hex;
 		private System.Windows.Forms.Button button_read_random;
 		private System.Windows.Forms.Button button_read_word;
 		private System.Windows.Forms.Label label_index;
 		private System.Windows.Forms.Label label_tips;
 		private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton radioButton_integer;
 		private System.Windows.Forms.Button button_write;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label_code;
+		private System.Windows.Forms.CheckBox checkBox1;
 	}
 }

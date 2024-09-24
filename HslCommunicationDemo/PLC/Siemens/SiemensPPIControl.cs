@@ -14,8 +14,9 @@ namespace HslCommunicationDemo.PLC.Siemens
 	{
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button4;
+		private Label label_code;
+		private TextBox textBox_code;
 		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.GroupBox groupBox2;
 
 		public SiemensPPIControl( )
 		{
@@ -24,32 +25,17 @@ namespace HslCommunicationDemo.PLC.Siemens
 
 		private void InitializeComponent( )
 		{
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.button5 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
-			this.groupBox2.SuspendLayout();
+			this.label_code = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.button5);
-			this.groupBox2.Controls.Add(this.button4);
-			this.groupBox2.Controls.Add(this.button3);
-			this.groupBox2.Location = new System.Drawing.Point(3, 3);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(749, 255);
-			this.groupBox2.TabIndex = 1;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Siemens PPI";
 			// 
 			// button5
 			// 
 			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button5.Location = new System.Drawing.Point(548, 25);
+			this.button5.Location = new System.Drawing.Point(192, 9);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(82, 28);
 			this.button5.TabIndex = 20;
@@ -59,7 +45,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(109, 25);
+			this.button4.Location = new System.Drawing.Point(91, 9);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(82, 28);
 			this.button4.TabIndex = 22;
@@ -69,7 +55,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(21, 25);
+			this.button3.Location = new System.Drawing.Point(3, 9);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(82, 28);
 			this.button3.TabIndex = 21;
@@ -77,14 +63,40 @@ namespace HslCommunicationDemo.PLC.Siemens
 			this.button3.UseVisualStyleBackColor = true;
 			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(3, 121);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 23;
+			this.label_code.Text = "代码：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(53, 118);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(699, 54);
+			this.textBox_code.TabIndex = 24;
+			// 
 			// SiemensPPIControl
 			// 
-			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.textBox_code);
+			this.Controls.Add(this.label_code);
+			this.Controls.Add(this.button5);
+			this.Controls.Add(this.button4);
+			this.Controls.Add(this.button3);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "SiemensPPIControl";
-			this.Size = new System.Drawing.Size(755, 261);
-			this.groupBox2.ResumeLayout(false);
+			this.Size = new System.Drawing.Size(755, 175);
+			this.Load += new System.EventHandler(this.SiemensPPIControl_Load);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -98,6 +110,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult start = siemensPPI.Start( );
 			if (start.IsSuccess) MessageBox.Show( "Start Success!" );
 			else MessageBox.Show( start.Message );
+
+			textBox_code.Text = $"OperateResult start = {DemoUtils.PlcDeviceName}.Start( );";
 		}
 
 		private ISiemensPPI siemensPPI;
@@ -107,6 +121,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult stop = siemensPPI.Stop( );
 			if (stop.IsSuccess) MessageBox.Show( "Stop Success!" );
 			else MessageBox.Show( stop.Message );
+
+			textBox_code.Text = $"OperateResult stop = {DemoUtils.PlcDeviceName}.Stop( );";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -119,6 +135,16 @@ namespace HslCommunicationDemo.PLC.Siemens
 			else
 			{
 				MessageBox.Show( read.Message );
+			}
+
+			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadPlcType( );";
+		}
+
+		private void SiemensPPIControl_Load( object sender, EventArgs e )
+		{
+			if (Program.Language == 2)
+			{
+				label_code.Text = "Code:";
 			}
 		}
 	}

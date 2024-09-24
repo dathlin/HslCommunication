@@ -84,6 +84,8 @@
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.label13 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -121,7 +123,7 @@
 			this.panel1.Location = new System.Drawing.Point(4, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(996, 87);
+			this.panel1.Size = new System.Drawing.Size(994, 87);
 			this.panel1.TabIndex = 7;
 			// 
 			// checkBox_SslTls
@@ -334,6 +336,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.textBox_code);
 			this.panel2.Controls.Add(this.linkLabel1);
 			this.panel2.Controls.Add(this.checkBox_publish_isHex);
 			this.panel2.Controls.Add(this.button3);
@@ -357,16 +360,17 @@
 			this.panel2.Controls.Add(this.textBox5);
 			this.panel2.Controls.Add(this.label7);
 			this.panel2.Controls.Add(this.checkBox1);
+			this.panel2.Controls.Add(this.label15);
 			this.panel2.Location = new System.Drawing.Point(196, 123);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(804, 517);
+			this.panel2.Size = new System.Drawing.Size(802, 507);
 			this.panel2.TabIndex = 13;
 			// 
 			// linkLabel1
 			// 
 			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.linkLabel1.AutoSize = true;
-			this.linkLabel1.Location = new System.Drawing.Point(626, 493);
+			this.linkLabel1.Location = new System.Drawing.Point(624, 483);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(82, 17);
 			this.linkLabel1.TabIndex = 36;
@@ -387,7 +391,7 @@
 			// button3
 			// 
 			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(622, 5);
+			this.button3.Location = new System.Drawing.Point(620, 5);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(98, 28);
 			this.button3.TabIndex = 34;
@@ -399,7 +403,7 @@
 			// 
 			this.checkBox_debug_info_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.checkBox_debug_info_show.AutoSize = true;
-			this.checkBox_debug_info_show.Location = new System.Drawing.Point(256, 492);
+			this.checkBox_debug_info_show.Location = new System.Drawing.Point(256, 482);
 			this.checkBox_debug_info_show.Name = "checkBox_debug_info_show";
 			this.checkBox_debug_info_show.Size = new System.Drawing.Size(128, 21);
 			this.checkBox_debug_info_show.TabIndex = 33;
@@ -412,7 +416,7 @@
 			this.checkBox_long_message_hide.AutoSize = true;
 			this.checkBox_long_message_hide.Checked = true;
 			this.checkBox_long_message_hide.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_long_message_hide.Location = new System.Drawing.Point(414, 492);
+			this.checkBox_long_message_hide.Location = new System.Drawing.Point(414, 482);
 			this.checkBox_long_message_hide.Name = "checkBox_long_message_hide";
 			this.checkBox_long_message_hide.Size = new System.Drawing.Size(99, 21);
 			this.checkBox_long_message_hide.TabIndex = 32;
@@ -442,7 +446,7 @@
 			// 
 			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(59, 493);
+			this.label10.Location = new System.Drawing.Point(59, 483);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(93, 17);
 			this.label10.TabIndex = 28;
@@ -451,7 +455,7 @@
 			// button9
 			// 
 			this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button9.Location = new System.Drawing.Point(726, 5);
+			this.button9.Location = new System.Drawing.Point(724, 5);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(71, 28);
 			this.button9.TabIndex = 27;
@@ -467,7 +471,7 @@
 			this.panel3.Controls.Add(this.radioButton_json);
 			this.panel3.Controls.Add(this.radioButton_text);
 			this.panel3.Controls.Add(this.radioButton_xml);
-			this.panel3.Location = new System.Drawing.Point(546, 180);
+			this.panel3.Location = new System.Drawing.Point(544, 180);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(246, 28);
 			this.panel3.TabIndex = 26;
@@ -519,7 +523,7 @@
 			this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.radioButton2.AutoSize = true;
 			this.radioButton2.Checked = true;
-			this.radioButton2.Location = new System.Drawing.Point(451, 174);
+			this.radioButton2.Location = new System.Drawing.Point(449, 174);
 			this.radioButton2.Name = "radioButton2";
 			this.radioButton2.Size = new System.Drawing.Size(74, 21);
 			this.radioButton2.TabIndex = 25;
@@ -531,7 +535,7 @@
 			// 
 			this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.radioButton1.AutoSize = true;
-			this.radioButton1.Location = new System.Drawing.Point(451, 192);
+			this.radioButton1.Location = new System.Drawing.Point(449, 192);
 			this.radioButton1.Name = "radioButton1";
 			this.radioButton1.Size = new System.Drawing.Size(74, 21);
 			this.radioButton1.TabIndex = 24;
@@ -541,7 +545,7 @@
 			// button8
 			// 
 			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button8.Location = new System.Drawing.Point(512, 5);
+			this.button8.Location = new System.Drawing.Point(510, 5);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(104, 28);
 			this.button8.TabIndex = 23;
@@ -552,7 +556,7 @@
 			// button7
 			// 
 			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button7.Location = new System.Drawing.Point(408, 5);
+			this.button7.Location = new System.Drawing.Point(406, 5);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(98, 28);
 			this.button7.TabIndex = 22;
@@ -569,7 +573,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(735, 275);
+			this.textBox8.Size = new System.Drawing.Size(733, 239);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
@@ -584,7 +588,7 @@
 			// button4
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(726, 489);
+			this.button4.Location = new System.Drawing.Point(724, 479);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(71, 25);
 			this.button4.TabIndex = 17;
@@ -599,7 +603,7 @@
 			this.textBox4.Location = new System.Drawing.Point(62, 36);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(735, 138);
+			this.textBox4.Size = new System.Drawing.Size(733, 138);
 			this.textBox4.TabIndex = 8;
 			// 
 			// label9
@@ -615,7 +619,7 @@
 			// 
 			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(345, 11);
+			this.label8.Location = new System.Drawing.Point(343, 11);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(56, 17);
 			this.label8.TabIndex = 10;
@@ -627,7 +631,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox5.Location = new System.Drawing.Point(62, 7);
 			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(276, 23);
+			this.textBox5.Size = new System.Drawing.Size(274, 23);
 			this.textBox5.TabIndex = 9;
 			this.textBox5.Text = "A";
 			// 
@@ -661,7 +665,7 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "MQTT";
-			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(1002, 32);
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
@@ -674,7 +678,7 @@
 			this.panel4.Controls.Add(this.label13);
 			this.panel4.Location = new System.Drawing.Point(4, 123);
 			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(189, 517);
+			this.panel4.Size = new System.Drawing.Size(189, 507);
 			this.panel4.TabIndex = 15;
 			// 
 			// listBox1
@@ -686,7 +690,7 @@
 			this.listBox1.ItemHeight = 17;
 			this.listBox1.Location = new System.Drawing.Point(3, 23);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(181, 480);
+			this.listBox1.Size = new System.Drawing.Size(181, 463);
 			this.listBox1.TabIndex = 9;
 			// 
 			// label13
@@ -698,12 +702,32 @@
 			this.label13.TabIndex = 8;
 			this.label13.Text = "Subscribed：(已订阅)";
 			// 
+			// label15
+			// 
+			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(2, 460);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(51, 17);
+			this.label15.TabIndex = 37;
+			this.label15.Text = "Code：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(62, 456);
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ReadOnly = true;
+			this.textBox_code.Size = new System.Drawing.Size(733, 23);
+			this.textBox_code.TabIndex = 38;
+			// 
 			// FormMqttClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.ClientSize = new System.Drawing.Size(1002, 635);
 			this.Controls.Add(this.panel4);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
@@ -783,5 +807,7 @@
 		private System.Windows.Forms.CheckBox checkBox_sslSecure;
 		private System.Windows.Forms.CheckBox checkBox_SslTls;
         private System.Windows.Forms.LinkLabel linkLabel1;
-    }
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label15;
+	}
 }

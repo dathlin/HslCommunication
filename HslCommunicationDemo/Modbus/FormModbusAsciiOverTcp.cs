@@ -139,7 +139,8 @@ namespace HslCommunicationDemo
 					control.SetDevice( busAsciiClient, "100" );
 
 					// 设置示例代码
-					codeExampleControl.SetCodeText( "modbus", busAsciiClient, nameof( busAsciiClient.AddressStartWithZero ), nameof( busAsciiClient.IsStringReverse ),
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
+					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busAsciiClient, nameof( busAsciiClient.AddressStartWithZero ), nameof( busAsciiClient.IsStringReverse ),
 						nameof( busAsciiClient.DataFormat ), nameof( busAsciiClient.Station ) );
 				}
 				else

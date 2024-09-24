@@ -40,6 +40,8 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label_code = new System.Windows.Forms.Label();
 			this.button33 = new System.Windows.Forms.Button();
 			this.button32 = new System.Windows.Forms.Button();
 			this.button29 = new System.Windows.Forms.Button();
@@ -101,6 +103,8 @@
 			this.label14 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label18 = new System.Windows.Forms.Label();
+			this.textBox_code2 = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -124,7 +128,7 @@
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 42);
+			this.panel1.Size = new System.Drawing.Size(967, 42);
 			this.panel1.TabIndex = 0;
 			// 
 			// label22
@@ -208,7 +212,7 @@
 			this.panel2.Location = new System.Drawing.Point(3, 80);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 563);
+			this.panel2.Size = new System.Drawing.Size(967, 503);
 			this.panel2.TabIndex = 1;
 			// 
 			// tabControl1
@@ -219,11 +223,13 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(995, 561);
+			this.tabControl1.Size = new System.Drawing.Size(965, 501);
 			this.tabControl1.TabIndex = 2;
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.textBox_code);
+			this.tabPage1.Controls.Add(this.label_code);
 			this.tabPage1.Controls.Add(this.button33);
 			this.tabPage1.Controls.Add(this.button32);
 			this.tabPage1.Controls.Add(this.button29);
@@ -270,10 +276,31 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(987, 531);
+			this.tabPage1.Size = new System.Drawing.Size(969, 498);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "单数据读取测试";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(73, 443);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(890, 52);
+			this.textBox_code.TabIndex = 63;
+			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(6, 447);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 62;
+			this.label_code.Text = "代码：";
 			// 
 			// button33
 			// 
@@ -382,7 +409,7 @@
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(908, 323);
+			this.textBox4.Size = new System.Drawing.Size(890, 238);
 			this.textBox4.TabIndex = 5;
 			// 
 			// button20
@@ -693,6 +720,8 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.textBox_code2);
+			this.tabPage2.Controls.Add(this.label18);
 			this.tabPage2.Controls.Add(this.radioButton2);
 			this.tabPage2.Controls.Add(this.radioButton1);
 			this.tabPage2.Controls.Add(this.textBox_command);
@@ -712,7 +741,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 26);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(987, 531);
+			this.tabPage2.Size = new System.Drawing.Size(957, 471);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "详细命令测试";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -765,7 +794,7 @@
 			this.textBox_dataPart.Multiline = true;
 			this.textBox_dataPart.Name = "textBox_dataPart";
 			this.textBox_dataPart.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_dataPart.Size = new System.Drawing.Size(883, 107);
+			this.textBox_dataPart.Size = new System.Drawing.Size(853, 108);
 			this.textBox_dataPart.TabIndex = 14;
 			// 
 			// textBox7
@@ -777,7 +806,7 @@
 			this.textBox7.Multiline = true;
 			this.textBox7.Name = "textBox7";
 			this.textBox7.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox7.Size = new System.Drawing.Size(883, 273);
+			this.textBox7.Size = new System.Drawing.Size(853, 156);
 			this.textBox7.TabIndex = 5;
 			// 
 			// label12
@@ -876,17 +905,38 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "YASKAWA - Ethernet 高速服务器功能";
-			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(974, 32);
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// label18
+			// 
+			this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(6, 420);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(44, 17);
+			this.label18.TabIndex = 18;
+			this.label18.Text = "代码：";
+			// 
+			// textBox_code2
+			// 
+			this.textBox_code2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code2.Location = new System.Drawing.Point(98, 417);
+			this.textBox_code2.Multiline = true;
+			this.textBox_code2.Name = "textBox_code2";
+			this.textBox_code2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code2.Size = new System.Drawing.Size(853, 48);
+			this.textBox_code2.TabIndex = 19;
 			// 
 			// FormYRCHighEthernet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.ClientSize = new System.Drawing.Size(974, 585);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
@@ -984,5 +1034,9 @@
 		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.Button button33;
 		private System.Windows.Forms.Button button32;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label_code;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.TextBox textBox_code2;
 	}
 }

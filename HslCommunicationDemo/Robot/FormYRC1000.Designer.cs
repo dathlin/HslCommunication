@@ -78,6 +78,8 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label_code = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -181,6 +183,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.textBox_code);
+			this.panel2.Controls.Add(this.label_code);
 			this.panel2.Controls.Add(this.groupBox2);
 			this.panel2.Controls.Add(this.groupBox1);
 			this.panel2.Location = new System.Drawing.Point(3, 80);
@@ -191,6 +195,8 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.button14);
 			this.groupBox2.Controls.Add(this.textBox7);
 			this.groupBox2.Controls.Add(this.label9);
@@ -198,7 +204,7 @@
 			this.groupBox2.Controls.Add(this.label10);
 			this.groupBox2.Location = new System.Drawing.Point(653, 2);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(339, 556);
+			this.groupBox2.Size = new System.Drawing.Size(339, 498);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "单数据写入测试";
@@ -215,13 +221,14 @@
 			// 
 			// textBox7
 			// 
-			this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+			this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox7.Location = new System.Drawing.Point(63, 56);
 			this.textBox7.Multiline = true;
 			this.textBox7.Name = "textBox7";
 			this.textBox7.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox7.Size = new System.Drawing.Size(270, 476);
+			this.textBox7.Size = new System.Drawing.Size(270, 418);
 			this.textBox7.TabIndex = 5;
 			this.textBox7.Text = "10";
 			// 
@@ -253,6 +260,9 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.button22);
 			this.groupBox1.Controls.Add(this.button21);
 			this.groupBox1.Controls.Add(this.comboBox1);
@@ -287,7 +297,7 @@
 			this.groupBox1.Controls.Add(this.label11);
 			this.groupBox1.Location = new System.Drawing.Point(4, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(643, 555);
+			this.groupBox1.Size = new System.Drawing.Size(643, 497);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "单数据读取测试";
@@ -538,7 +548,7 @@
 			// 
 			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(55, 534);
+			this.label8.Location = new System.Drawing.Point(55, 476);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(296, 17);
 			this.label8.TabIndex = 17;
@@ -556,13 +566,14 @@
 			// 
 			// textBox4
 			// 
-			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox4.Location = new System.Drawing.Point(58, 179);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(579, 352);
+			this.textBox4.Size = new System.Drawing.Size(579, 294);
 			this.textBox4.TabIndex = 5;
 			// 
 			// label7
@@ -615,6 +626,27 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(3, 508);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 24;
+			this.label_code.Text = "代码：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(62, 504);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(924, 52);
+			this.textBox_code.TabIndex = 25;
+			// 
 			// FormYRC1000
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -634,6 +666,7 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
@@ -694,5 +727,7 @@
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Button button22;
 		private System.Windows.Forms.Button button21;
+		private System.Windows.Forms.Label label_code;
+		private System.Windows.Forms.TextBox textBox_code;
 	}
 }

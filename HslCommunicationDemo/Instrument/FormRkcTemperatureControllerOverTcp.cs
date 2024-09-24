@@ -96,6 +96,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => rkc.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( "rkc" );
 					codeExampleControl.SetCodeText( "rkc", rkc, nameof( rkc.Station ) );
 				}
 				else

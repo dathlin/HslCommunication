@@ -96,6 +96,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( fatekProgram, "D100" );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( fatekProgram, nameof( fatekProgram.Station ) );
 				}
 				else

@@ -24,8 +24,9 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.TextBox textBox5;
+		private Label label_code;
+		private TextBox textBox_code;
 		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.GroupBox groupBox2;
 
 		public YokogawaLinkControl( )
 		{
@@ -34,7 +35,6 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 
 		private void InitializeComponent( )
 		{
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.button11 = new System.Windows.Forms.Button();
 			this.button10 = new System.Windows.Forms.Button();
 			this.button9 = new System.Windows.Forms.Button();
@@ -48,39 +48,15 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			this.button3 = new System.Windows.Forms.Button();
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
-			this.groupBox2.SuspendLayout();
+			this.label_code = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.button11);
-			this.groupBox2.Controls.Add(this.button10);
-			this.groupBox2.Controls.Add(this.button9);
-			this.groupBox2.Controls.Add(this.button8);
-			this.groupBox2.Controls.Add(this.button7);
-			this.groupBox2.Controls.Add(this.button6);
-			this.groupBox2.Controls.Add(this.button5);
-			this.groupBox2.Controls.Add(this.button4);
-			this.groupBox2.Controls.Add(this.textBox4);
-			this.groupBox2.Controls.Add(this.label5);
-			this.groupBox2.Controls.Add(this.button3);
-			this.groupBox2.Controls.Add(this.textBox5);
-			this.groupBox2.Controls.Add(this.label6);
-			this.groupBox2.Location = new System.Drawing.Point(3, 3);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(898, 223);
-			this.groupBox2.TabIndex = 1;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "YokogawaLink";
 			// 
 			// button11
 			// 
-			this.button11.Location = new System.Drawing.Point(539, 87);
+			this.button11.Location = new System.Drawing.Point(586, 69);
 			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(111, 28);
+			this.button11.Size = new System.Drawing.Size(158, 28);
 			this.button11.TabIndex = 40;
 			this.button11.Text = "DateTime";
 			this.button11.UseVisualStyleBackColor = true;
@@ -88,9 +64,9 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// 
 			// button10
 			// 
-			this.button10.Location = new System.Drawing.Point(422, 87);
+			this.button10.Location = new System.Drawing.Point(411, 69);
 			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(111, 28);
+			this.button10.Size = new System.Drawing.Size(169, 28);
 			this.button10.TabIndex = 39;
 			this.button10.Text = "SystemInfo";
 			this.button10.UseVisualStyleBackColor = true;
@@ -98,9 +74,9 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// 
 			// button9
 			// 
-			this.button9.Location = new System.Drawing.Point(422, 155);
+			this.button9.Location = new System.Drawing.Point(411, 137);
 			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(118, 28);
+			this.button9.Size = new System.Drawing.Size(122, 28);
 			this.button9.TabIndex = 38;
 			this.button9.Text = "ProgramStatus";
 			this.button9.UseVisualStyleBackColor = true;
@@ -108,7 +84,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(486, 121);
+			this.button8.Location = new System.Drawing.Point(475, 103);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(58, 28);
 			this.button8.TabIndex = 37;
@@ -118,7 +94,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(422, 121);
+			this.button7.Location = new System.Drawing.Point(411, 103);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(58, 28);
 			this.button7.TabIndex = 36;
@@ -128,9 +104,9 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(539, 53);
+			this.button6.Location = new System.Drawing.Point(586, 35);
 			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(111, 28);
+			this.button6.Size = new System.Drawing.Size(158, 28);
 			this.button6.TabIndex = 35;
 			this.button6.Text = "随机写入读取";
 			this.button6.UseVisualStyleBackColor = true;
@@ -138,9 +114,9 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(422, 53);
+			this.button5.Location = new System.Drawing.Point(411, 35);
 			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(111, 28);
+			this.button5.Size = new System.Drawing.Size(169, 28);
 			this.button5.TabIndex = 34;
 			this.button5.Text = "随机word读取";
 			this.button5.UseVisualStyleBackColor = true;
@@ -148,9 +124,9 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(539, 19);
+			this.button4.Location = new System.Drawing.Point(586, 1);
 			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(111, 28);
+			this.button4.Size = new System.Drawing.Size(158, 28);
 			this.button4.TabIndex = 33;
 			this.button4.Text = "随机Bool写入";
 			this.button4.UseVisualStyleBackColor = true;
@@ -160,18 +136,18 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// 
 			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-			this.textBox4.Location = new System.Drawing.Point(74, 93);
+			this.textBox4.Location = new System.Drawing.Point(63, 75);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(342, 120);
+			this.textBox4.Size = new System.Drawing.Size(342, 137);
 			this.textBox4.TabIndex = 32;
 			this.textBox4.Text = "true,true,true,true";
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(20, 96);
+			this.label5.Location = new System.Drawing.Point(9, 78);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(32, 17);
 			this.label5.TabIndex = 31;
@@ -179,9 +155,9 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(422, 19);
+			this.button3.Location = new System.Drawing.Point(411, 1);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(111, 28);
+			this.button3.Size = new System.Drawing.Size(169, 28);
 			this.button3.TabIndex = 30;
 			this.button3.Text = "随机Bool读取";
 			this.button3.UseVisualStyleBackColor = true;
@@ -189,7 +165,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// 
 			// textBox5
 			// 
-			this.textBox5.Location = new System.Drawing.Point(74, 25);
+			this.textBox5.Location = new System.Drawing.Point(63, 7);
 			this.textBox5.Multiline = true;
 			this.textBox5.Name = "textBox5";
 			this.textBox5.Size = new System.Drawing.Size(342, 62);
@@ -199,21 +175,56 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(20, 28);
+			this.label6.Location = new System.Drawing.Point(9, 10);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(44, 17);
 			this.label6.TabIndex = 28;
 			this.label6.Text = "地址：";
 			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(9, 221);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 41;
+			this.label_code.Text = "代码：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(63, 218);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(885, 58);
+			this.textBox_code.TabIndex = 42;
+			// 
 			// YokogawaLinkControl
 			// 
-			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.textBox_code);
+			this.Controls.Add(this.label_code);
+			this.Controls.Add(this.button11);
+			this.Controls.Add(this.button10);
+			this.Controls.Add(this.label6);
+			this.Controls.Add(this.button9);
+			this.Controls.Add(this.textBox5);
+			this.Controls.Add(this.button8);
+			this.Controls.Add(this.button3);
+			this.Controls.Add(this.button7);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.button6);
+			this.Controls.Add(this.textBox4);
+			this.Controls.Add(this.button5);
+			this.Controls.Add(this.button4);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "YokogawaLinkControl";
-			this.Size = new System.Drawing.Size(904, 229);
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
+			this.Size = new System.Drawing.Size(951, 279);
+			this.Load += new System.EventHandler(this.YokogawaLinkControl_Load);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -237,6 +248,8 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			{
 				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<bool[]> read = {DemoUtils.PlcDeviceName}.ReadRandomBool( \"{textBox5.Text}\".Split( new char[] {';'} ) );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -251,6 +264,8 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			{
 				MessageBox.Show( "Read Failed: " + write.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteRandomBool( \"{textBox5.Text}\".Split( new char[] {';'} ), \"{textBox4.Text}\".ToStringArray<bool>( ) );";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -265,6 +280,8 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			{
 				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<short[]> read = {DemoUtils.PlcDeviceName}.ReadRandomInt16( \"{textBox5.Text}\".Split( new char[] {';'} ) );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -279,6 +296,8 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			{
 				MessageBox.Show( "Read Failed: " + write.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteRandom( \"{textBox5.Text}\".Split( new char[] {';'} ), \"{textBox4.Text}\".ToStringArray<short>( ) );";
 		}
 
 
@@ -288,6 +307,8 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			OperateResult start = yokogawa.Start( );
 			if (start.IsSuccess) MessageBox.Show( "Started Success!" );
 			else MessageBox.Show( "Started failed: " + start.ToMessageShowString( ) );
+
+			textBox_code.Text = $"OperateResult start = {DemoUtils.PlcDeviceName}.Start( );";
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -296,6 +317,8 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			OperateResult stop = yokogawa.Stop( );
 			if (stop.IsSuccess) MessageBox.Show( "Stop Success!" );
 			else MessageBox.Show( "Stop failed: " + stop.ToMessageShowString( ) );
+
+			textBox_code.Text = $"OperateResult stop = {DemoUtils.PlcDeviceName}.Stop( );";
 		}
 
 		private void button9_Click( object sender, EventArgs e )
@@ -317,6 +340,8 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			{
 				MessageBox.Show( "Read failed: " + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<int> read  = {DemoUtils.PlcDeviceName}.ReadProgramStatus( );";
 		}
 
 		private void button10_Click( object sender, EventArgs e )
@@ -331,6 +356,8 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			{
 				MessageBox.Show( "Read failed: " + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<YokogawaSystemInfo> read  = {DemoUtils.PlcDeviceName}.ReadSystemInfo( );";
 		}
 
 		private void button11_Click( object sender, EventArgs e )
@@ -345,6 +372,25 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			{
 				MessageBox.Show( "Read failed: " + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read  = {DemoUtils.PlcDeviceName}.ReadDateTime( );";
 		}
+
+		private void YokogawaLinkControl_Load( object sender, EventArgs e )
+		{
+			if (Program.Language == 2)
+			{
+				label6.Text = "Address:";
+				label5.Text = "Value:";
+				label_code.Text = "Code:";
+
+				button3.Text = "Random-bool-read";
+				button4.Text = "Random-bool-write";
+				button5.Text = "Random-word-read";
+				button6.Text = "Random-wrod-write";
+			}
+		}
+
+
 	}
 }

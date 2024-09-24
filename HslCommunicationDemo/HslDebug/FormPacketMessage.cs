@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.HslDebug
 {
-	public partial class FormPacketMessage : Form
+	public partial class FormPacketMessage : System.Windows.Forms.Form
 	{
 		public FormPacketMessage( List<PacketMessageItem> list )
 		{

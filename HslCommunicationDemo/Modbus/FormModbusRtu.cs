@@ -138,7 +138,8 @@ namespace HslCommunicationDemo
 					control.SetDevice( busRtuClient, "100" );
 
 					// 设置示例代码
-					codeExampleControl.SetCodeText( "modbus", busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
+					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
 						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.Crc16CheckEnable ), nameof( busRtuClient.IsClearCacheBeforeRead ),
 						nameof( busRtuClient.StationCheckMacth ) );
 				}

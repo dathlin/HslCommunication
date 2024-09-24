@@ -432,18 +432,18 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					dtuServer.SetPassword( Encoding.ASCII.GetBytes( textBox_dtu_pwd.Text ) );
 				}
-				// dtuServer.OnClientConnected += DtuServer_OnClientConnected;
-				dtuServer.OnClientConnected += ( PipeDtuNet session ) =>
-				{
-					if (session.DTU == "123")
-					{
-						OperateResult connect = this.deviceTcpNet.SetDtuPipe( session );
-						if (connect.IsSuccess)
-						{
-							Console.WriteLine( "connect success" );
-						}
-					}
-				};
+				dtuServer.OnClientConnected += DtuServer_OnClientConnected;
+				//dtuServer.OnClientConnected += ( PipeDtuNet session ) =>
+				//{
+				//	if (session.DTU == "123")
+				//	{
+				//		OperateResult connect = this.deviceTcpNet.SetDtuPipe( session );
+				//		if (connect.IsSuccess)
+				//		{
+				//			Console.WriteLine( "connect success" );
+				//		}
+				//	}
+				//};
 				dtuServer.ServerStart( int.Parse( textBox_dtu_port.Text ) );
 
 

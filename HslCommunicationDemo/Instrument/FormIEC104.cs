@@ -13,6 +13,7 @@ using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -24,6 +25,7 @@ namespace HslCommunicationDemo
 		}
 
 		private IEC104 iec104 = null;
+		private CodeExampleControl codeExampleControl = null;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -31,6 +33,9 @@ namespace HslCommunicationDemo
 			comboBox_write_type.SelectedIndex = 0;
 			comboBox_write_reason.SelectedIndex = 5;
 			Language( Program.Language );
+
+			codeExampleControl = new CodeExampleControl( );
+			DemoUtils.AddSpecialFunctionTab( this.tabControl1, codeExampleControl, show: false, CodeExampleControl.GetTitle( ) );
 		}
 
 
@@ -88,6 +93,9 @@ namespace HslCommunicationDemo
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
+
+
+					codeExampleControl.SetCodeText( "iec104", iec104, nameof( iec104.Station ) );
 				}
 				else
 				{
@@ -99,6 +107,92 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( ex.Message );
 			}
+		}
+
+		public static string Example()
+		{
+			return
+@"iec104.OnIEC104MessageReceived += ( object sender, IEC104MessageEventArgs e ) =>
+{
+	if (e.TypeID == IEC104.TypeID.M_ME_TF_1 || e.TypeID == IEC104.TypeID.M_ME_NC_1)
+	{
+		// 短浮点遥测值，带不带时标都处理
+		if (e.IsAddressContinuous)
+		{
+			// 信息对象连续，解析出实际的值
+			List<IecValueObject<float>> list = IecValueObject<float>.ParseFloatValue( e );
+		}
+		else
+		{
+			// 信息对象不连续，直接显示到文本框
+			List<IecValueObject<float>> list = IecValueObject<float>.ParseFloatValue( e );
+		}
+	}
+	else if (e.TypeID == IEC104.TypeID.M_SP_NA_1 || e.TypeID == IEC104.TypeID.M_SP_TB_1)
+	{
+		// 单点遥信，带品质描述，带不带时标都处理
+		if (e.IsAddressContinuous)
+		{
+			// 信息对象连续
+			List<IecValueObject<byte>> list = IecValueObject<byte>.ParseYaoXinValue( e );
+		}
+		else
+		{
+			// 信息对象不连续
+			List<IecValueObject<byte>> list = IecValueObject<byte>.ParseYaoXinValue( e );
+		}
+	}
+	else if (e.TypeID == IEC104.TypeID.M_DP_NA_1 || e.TypeID == IEC104.TypeID.M_DP_TB_1)
+	{
+		// 双点遥信，带品质描述，带不带时标都处理
+		if (e.IsAddressContinuous)
+		{
+			// 信息对象连续
+			List<IecValueObject<byte>> list = IecValueObject<byte>.ParseYaoXinValue( e );
+		}
+		else
+		{
+			// 信息对象不连续
+			List<IecValueObject<byte>> list = IecValueObject<byte>.ParseYaoXinValue( e );
+		}
+	}
+	else if (e.TypeID == IEC104.TypeID.M_ME_ND_1)
+	{
+		// 归一化标度值
+		if (e.IsAddressContinuous)
+		{
+			// 如果当前正在查看单点遥信界面
+			List<IecValueObject<short>> list = IecValueObject<short>.ParseInt16Value( e );
+		}
+		else
+		{
+			// 信息对象不连续
+			List<IecValueObject<short>> list = IecValueObject<short>.ParseInt16Value( e );
+			return;
+		}
+	}
+	else if (e.TypeID == IEC104.TypeID.M_ME_NB_1 || e.TypeID == IEC104.TypeID.M_ME_TE_1)
+	{
+		// 标度化遥测值，不带时标
+		if (e.IsAddressContinuous)
+		{
+			// 如果当前正在查看遥信界面
+			List<IecValueObject<short>> list = IecValueObject<short>.ParseInt16Value( e );
+		}
+		else
+		{
+			// 信息对象不连续
+			List<IecValueObject<short>> list = IecValueObject<short>.ParseInt16Value( e );
+		}
+	}
+	else if (e.TypeID == IEC104.TypeID.C_IC_NA_1)
+	{
+		// 总召唤
+		AppendText( e, string.Empty, e.ASDU );
+		return;
+	}
+};";
+
 		}
 
 		private void AppendText( IEC104MessageEventArgs e, string text, byte[] asdu = null )
@@ -328,6 +422,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show("Send failed: " + send.Message);
 			}
+
+			textBox_code.Text = $"OperateResult send = iec104.SendFrameUMessage( 0x07 );";
 		}
 
 		private void button_u_stop_Click(object sender, EventArgs e)
@@ -341,6 +437,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show("Send failed: " + send.Message);
 			}
+
+			textBox_code.Text = $"OperateResult send = iec104.SendFrameUMessage( 0x13 );";
 		}
 
 		private void button_u_test_Click(object sender, EventArgs e)
@@ -354,6 +452,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show("Send failed: " + send.Message);
 			}
+
+			textBox_code.Text = $"OperateResult send = iec104.SendFrameUMessage( 0x43 );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -368,6 +468,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Send failed: " + send.Message );
 			}
+
+			textBox_code.Text = $"OperateResult send = iec104.TotalSubscriptions( );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -382,6 +484,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Send failed: " + send.Message );
 			}
+
+			textBox_code.Text = $"OperateResult send = iec104.TotalSubscriptions( 0x01 );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -396,6 +500,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Send failed: " + send.Message );
 			}
+
+			textBox_code.Text = $"OperateResult send = iec104.TotalSubscriptions( 0x03 );";
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -410,6 +516,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Send failed: " + send.Message );
 			}
+
+			textBox_code.Text = $"OperateResult send = iec104.SendFrameIMessage( new byte[] {{ 0x65, 0x01, 0x07, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01 }} );";
 		}
 
 		private void WriteIec( byte[] value )
@@ -419,6 +527,8 @@ namespace HslCommunicationDemo
 			ushort address = ushort.Parse( textBox_write_address.Text );
 
 			OperateResult send = iec104.WriteIec( type, reason, address, value );
+
+			textBox_code.Text = $"OperateResult send = iec104.WriteIec( \"{type}\", \"{reason}\", \"{address}\", \"{value.ToHexString( )}\".ToHexBytes( ) );";
 		}
 
 		private void button_write_bool_Click( object sender, EventArgs e )

@@ -54,11 +54,23 @@ namespace HslCommunicationDemo.BarCode
 				button1.Enabled = false;
 				button11.Enabled = true;
 				panel2.Enabled = true;
+
+
+				textBox_code.Text = SampleCode( );
 			}
 			catch(Exception ex)
 			{
 				MessageBox.Show( "Start Failed: " + ex.Message );
 			}
+		}
+
+		private string SampleCode()
+		{
+			return @"SickIcrTcpServer tcpServer = new SickIcrTcpServer( );
+tcpServer.ServerStart( int.Parse( textBox2.Text ), radioButton_tcp.Checked );
+tcpServer.OnReceivedBarCode += (string ipAddress, string barCode) => {
+	Console.WriteLine( DateTime.Now.ToString( ""yyyy-MM-dd HH:mm:ss  ["" ) + ipAddress + ""] BarCode["" + barCode + ""]"" );
+};";
 		}
 
 		private void LogNet_BeforeSaveToFile( object sender, HslEventArgs e )

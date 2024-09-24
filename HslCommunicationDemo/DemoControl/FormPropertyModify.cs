@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.DemoControl
 {
-	public partial class FormPropertyModify : Form
+	public partial class FormPropertyModify : System.Windows.Forms.Form
 	{
 		public FormPropertyModify( )
 		{

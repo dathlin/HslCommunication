@@ -142,7 +142,8 @@ namespace HslCommunicationDemo
 						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ) };
 					if (!string.IsNullOrEmpty( busRtuClient.SendBeforeHex )) props.Add( nameof( busRtuClient.SendBeforeHex ) );
 					// 设置示例代码
-					codeExampleControl.SetCodeText( "modbus", busRtuClient, props.ToArray( ) );
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
+					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busRtuClient, props.ToArray( ) );
 				}
 				else
 				{

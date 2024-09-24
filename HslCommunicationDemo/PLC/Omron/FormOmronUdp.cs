@@ -141,6 +141,7 @@ namespace HslCommunicationDemo
 				control.SetDevice( omronFinsUdp, "D100" );
 
 				// 设置示例代码
+				this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 				codeExampleControl.SetCodeText( omronFinsUdp, nameof( omronFinsUdp.PlcType ), nameof( omronFinsUdp.SA1 ), nameof( omronFinsUdp.GCT ), nameof( omronFinsUdp.DA1 ),
 					"ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
 			}

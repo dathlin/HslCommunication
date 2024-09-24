@@ -114,6 +114,7 @@ namespace HslCommunicationDemo
 
 
 				// 设置代码示例
+				this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 				codeExampleControl.SetCodeText( freedom, nameof( freedom.ByteTransform ) );
 			}
 			else

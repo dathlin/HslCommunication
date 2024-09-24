@@ -185,6 +185,8 @@ namespace HslCommunicationDemo
 			OperateResult send = client.SetReadStatus( );
 
 			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
+
+			textBox_code.Text = $"OperateResult send = client.SetReadStatus( );";
 		}
 
 
@@ -201,6 +203,8 @@ namespace HslCommunicationDemo
 			OperateResult send = client.SetReadActual( );
 
 			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
+
+			textBox_code.Text = $"OperateResult send = client.SetReadActual( );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -215,6 +219,8 @@ namespace HslCommunicationDemo
 				{
 					MessageBox.Show( "Success" );
 				}
+
+				textBox_code.Text = $"OperateResult send = client.SetReadStatusInterval( {seconds} );";
 			}
 		}
 	}

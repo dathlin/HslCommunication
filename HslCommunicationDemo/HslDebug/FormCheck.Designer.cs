@@ -30,6 +30,7 @@
 		{
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.textBox_crc16_ascii = new System.Windows.Forms.TextBox();
 			this.button_crc16_check = new System.Windows.Forms.Button();
 			this.button_crc16_calcu = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -44,6 +45,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.textBox_fcs_ascii = new System.Windows.Forms.TextBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.radioButton_fcs_ascii = new System.Windows.Forms.RadioButton();
 			this.radioButton_fcs_hex = new System.Windows.Forms.RadioButton();
@@ -58,6 +60,7 @@
 			this.textBox_fcs_source = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.textBox_acc_ascii = new System.Windows.Forms.TextBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.radioButton_acc_ascii = new System.Windows.Forms.RadioButton();
 			this.radioButton_acc_hex = new System.Windows.Forms.RadioButton();
@@ -72,6 +75,7 @@
 			this.textBox_acc_source = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.textBox_lrc_ascii = new System.Windows.Forms.TextBox();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.radioButton_lrc_ascii = new System.Windows.Forms.RadioButton();
 			this.radioButton_lrc_hex = new System.Windows.Forms.RadioButton();
@@ -85,10 +89,8 @@
 			this.label15 = new System.Windows.Forms.Label();
 			this.textBox_lrc_source = new System.Windows.Forms.TextBox();
 			this.label16 = new System.Windows.Forms.Label();
-			this.textBox_crc16_ascii = new System.Windows.Forms.TextBox();
-			this.textBox_fcs_ascii = new System.Windows.Forms.TextBox();
-			this.textBox_acc_ascii = new System.Windows.Forms.TextBox();
-			this.textBox_lrc_ascii = new System.Windows.Forms.TextBox();
+			this.label_code = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -135,6 +137,13 @@
 			this.groupBox1.TabIndex = 16;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "CRC16 (常用于 Modbus 协议)";
+			// 
+			// textBox_crc16_ascii
+			// 
+			this.textBox_crc16_ascii.Location = new System.Drawing.Point(209, 82);
+			this.textBox_crc16_ascii.Name = "textBox_crc16_ascii";
+			this.textBox_crc16_ascii.Size = new System.Drawing.Size(89, 23);
+			this.textBox_crc16_ascii.TabIndex = 11;
 			// 
 			// button_crc16_check
 			// 
@@ -281,6 +290,13 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "FCS,异或校验（用于 OmronHostlink） ";
 			// 
+			// textBox_fcs_ascii
+			// 
+			this.textBox_fcs_ascii.Location = new System.Drawing.Point(209, 85);
+			this.textBox_fcs_ascii.Name = "textBox_fcs_ascii";
+			this.textBox_fcs_ascii.Size = new System.Drawing.Size(89, 23);
+			this.textBox_fcs_ascii.TabIndex = 15;
+			// 
 			// panel2
 			// 
 			this.panel2.Controls.Add(this.radioButton_fcs_ascii);
@@ -425,6 +441,13 @@
 			this.groupBox3.TabIndex = 18;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "ACC,和校验（用于 MelsecFxLinks） ";
+			// 
+			// textBox_acc_ascii
+			// 
+			this.textBox_acc_ascii.Location = new System.Drawing.Point(209, 85);
+			this.textBox_acc_ascii.Name = "textBox_acc_ascii";
+			this.textBox_acc_ascii.Size = new System.Drawing.Size(89, 23);
+			this.textBox_acc_ascii.TabIndex = 16;
 			// 
 			// panel3
 			// 
@@ -571,6 +594,13 @@
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "LRC（用于 ModbusASCII） ";
 			// 
+			// textBox_lrc_ascii
+			// 
+			this.textBox_lrc_ascii.Location = new System.Drawing.Point(209, 85);
+			this.textBox_lrc_ascii.Name = "textBox_lrc_ascii";
+			this.textBox_lrc_ascii.Size = new System.Drawing.Size(89, 23);
+			this.textBox_lrc_ascii.TabIndex = 17;
+			// 
 			// panel4
 			// 
 			this.panel4.Controls.Add(this.radioButton_lrc_ascii);
@@ -693,33 +723,25 @@
 			this.label16.TabIndex = 3;
 			this.label16.Text = "原始数据：";
 			// 
-			// textBox_crc16_ascii
+			// label_code
 			// 
-			this.textBox_crc16_ascii.Location = new System.Drawing.Point(209, 82);
-			this.textBox_crc16_ascii.Name = "textBox_crc16_ascii";
-			this.textBox_crc16_ascii.Size = new System.Drawing.Size(89, 23);
-			this.textBox_crc16_ascii.TabIndex = 11;
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(10, 537);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 20;
+			this.label_code.Text = "代码：";
 			// 
-			// textBox_fcs_ascii
+			// textBox_code
 			// 
-			this.textBox_fcs_ascii.Location = new System.Drawing.Point(209, 85);
-			this.textBox_fcs_ascii.Name = "textBox_fcs_ascii";
-			this.textBox_fcs_ascii.Size = new System.Drawing.Size(89, 23);
-			this.textBox_fcs_ascii.TabIndex = 15;
-			// 
-			// textBox_acc_ascii
-			// 
-			this.textBox_acc_ascii.Location = new System.Drawing.Point(209, 85);
-			this.textBox_acc_ascii.Name = "textBox_acc_ascii";
-			this.textBox_acc_ascii.Size = new System.Drawing.Size(89, 23);
-			this.textBox_acc_ascii.TabIndex = 16;
-			// 
-			// textBox_lrc_ascii
-			// 
-			this.textBox_lrc_ascii.Location = new System.Drawing.Point(209, 85);
-			this.textBox_lrc_ascii.Name = "textBox_lrc_ascii";
-			this.textBox_lrc_ascii.Size = new System.Drawing.Size(89, 23);
-			this.textBox_lrc_ascii.TabIndex = 17;
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(60, 532);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(922, 57);
+			this.textBox_code.TabIndex = 21;
 			// 
 			// FormCheck
 			// 
@@ -727,6 +749,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(984, 598);
+			this.Controls.Add(this.textBox_code);
+			this.Controls.Add(this.label_code);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
@@ -754,6 +778,7 @@
 			this.panel4.ResumeLayout(false);
 			this.panel4.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -820,5 +845,7 @@
 		private System.Windows.Forms.TextBox textBox_fcs_ascii;
 		private System.Windows.Forms.TextBox textBox_acc_ascii;
 		private System.Windows.Forms.TextBox textBox_lrc_ascii;
+		private System.Windows.Forms.Label label_code;
+		private System.Windows.Forms.TextBox textBox_code;
 	}
 }

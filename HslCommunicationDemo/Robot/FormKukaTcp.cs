@@ -93,6 +93,7 @@ namespace HslCommunicationDemo
 
 					// 设置代码示例
 					codeExampleControl.SetCodeText( "robot", kuka );
+					textBox_code.Text = $"KukaTcpNet kuka = new KukaTcpNet( \"{textBox1.Text}\", {port} );";
 				}
 				else
 				{
@@ -114,12 +115,6 @@ namespace HslCommunicationDemo
 			panel2.Enabled = false;
 		}
 
-
-
-
-
-
-
 		#endregion
 
 		#region 单数据读取测试
@@ -129,6 +124,7 @@ namespace HslCommunicationDemo
 		{
 			// 读取字符串
 			DemoUtils.ReadResultRender( await kuka.ReadStringAsync( textBox3.Text ), textBox3.Text, textBox4 );
+			textBox_code.Text = $"OperateResult<string> read = kuka.ReadString( \"{textBox3.Text}\" )";
 		}
 
 
@@ -148,6 +144,7 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( ex.Message );
 			}
+			textBox_code.Text = $"OperateResult write = kuka.Write( \"{textBox8.Text}\", \"{textBox7.Text}\" )";
 		}
 
 		#endregion
@@ -164,6 +161,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Start Failed:" + result.Message );
 			}
+
+			textBox_code.Text = $"OperateResult result = kuka.StartProgram( \"{textBox5.Text}\" );";
 		}
 
 		private async void button4_Click( object sender, EventArgs e )
@@ -178,6 +177,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Reset Failed:" + result.Message );
 			}
+
+			textBox_code.Text = $"OperateResult result = kuka.ResetProgram( );";
 		}
 
 		private async void button5_Click( object sender, EventArgs e )
@@ -192,6 +193,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Reset Failed:" + result.Message );
 			}
+
+			textBox_code.Text = $"OperateResult result = kuka.StopProgram( );";
 		}
 
 

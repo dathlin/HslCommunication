@@ -42,6 +42,9 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label_code = new System.Windows.Forms.Label();
+			this.button42 = new System.Windows.Forms.Button();
 			this.button41 = new System.Windows.Forms.Button();
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label20 = new System.Windows.Forms.Label();
@@ -102,6 +105,8 @@
 			this.button16 = new System.Windows.Forms.Button();
 			this.button17 = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.textBox_code2 = new System.Windows.Forms.TextBox();
+			this.label_code2 = new System.Windows.Forms.Label();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.label14 = new System.Windows.Forms.Label();
 			this.button29 = new System.Windows.Forms.Button();
@@ -125,7 +130,6 @@
 			this.readNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.readNcLocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.button42 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -152,12 +156,12 @@
 			this.panel1.Location = new System.Drawing.Point(4, 36);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(996, 46);
+			this.panel1.Size = new System.Drawing.Size(992, 38);
 			this.panel1.TabIndex = 7;
 			// 
 			// textBox11
 			// 
-			this.textBox11.Location = new System.Drawing.Point(446, 8);
+			this.textBox11.Location = new System.Drawing.Point(446, 6);
 			this.textBox11.Name = "textBox11";
 			this.textBox11.Size = new System.Drawing.Size(79, 23);
 			this.textBox11.TabIndex = 15;
@@ -166,7 +170,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(380, 11);
+			this.label5.Location = new System.Drawing.Point(380, 9);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 17);
 			this.label5.TabIndex = 14;
@@ -175,7 +179,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(664, 5);
+			this.button2.Location = new System.Drawing.Point(664, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -185,7 +189,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(567, 5);
+			this.button1.Location = new System.Drawing.Point(567, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -195,7 +199,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(279, 8);
+			this.textBox2.Location = new System.Drawing.Point(279, 6);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(79, 23);
 			this.textBox2.TabIndex = 3;
@@ -204,7 +208,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(225, 11);
+			this.label3.Location = new System.Drawing.Point(225, 9);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -212,7 +216,7 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(62, 8);
+			this.textBox1.Location = new System.Drawing.Point(62, 6);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(141, 23);
 			this.textBox1.TabIndex = 1;
@@ -221,7 +225,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 11);
+			this.label1.Location = new System.Drawing.Point(8, 9);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 17);
 			this.label1.TabIndex = 0;
@@ -234,9 +238,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.tabControl1);
-			this.panel2.Location = new System.Drawing.Point(4, 87);
+			this.panel2.Location = new System.Drawing.Point(4, 79);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(996, 555);
+			this.panel2.Size = new System.Drawing.Size(992, 571);
 			this.panel2.TabIndex = 13;
 			// 
 			// tabControl1
@@ -249,11 +253,13 @@
 			this.tabControl1.Location = new System.Drawing.Point(2, 2);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(993, 552);
+			this.tabControl1.Size = new System.Drawing.Size(989, 568);
 			this.tabControl1.TabIndex = 71;
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.textBox_code);
+			this.tabPage1.Controls.Add(this.label_code);
 			this.tabPage1.Controls.Add(this.button42);
 			this.tabPage1.Controls.Add(this.button41);
 			this.tabPage1.Controls.Add(this.textBox5);
@@ -306,10 +312,41 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(985, 522);
+			this.tabPage1.Size = new System.Drawing.Size(981, 538);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "基本操作";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(64, 471);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(909, 61);
+			this.textBox_code.TabIndex = 89;
+			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(7, 476);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(51, 17);
+			this.label_code.TabIndex = 88;
+			this.label_code.Text = "Code：";
+			// 
+			// button42
+			// 
+			this.button42.Location = new System.Drawing.Point(838, 176);
+			this.button42.Name = "button42";
+			this.button42.Size = new System.Drawing.Size(96, 29);
+			this.button42.TabIndex = 87;
+			this.button42.Text = "清除刀组号";
+			this.button42.UseVisualStyleBackColor = true;
+			this.button42.Click += new System.EventHandler(this.button42_Click);
 			// 
 			// button41
 			// 
@@ -502,7 +539,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(973, 280);
+			this.textBox8.Size = new System.Drawing.Size(967, 228);
 			this.textBox8.TabIndex = 18;
 			// 
 			// button34
@@ -881,6 +918,8 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.textBox_code2);
+			this.tabPage2.Controls.Add(this.label_code2);
 			this.tabPage2.Controls.Add(this.panel4);
 			this.tabPage2.Controls.Add(this.textBox_program);
 			this.tabPage2.Controls.Add(this.label7);
@@ -895,10 +934,31 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 26);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(985, 522);
+			this.tabPage2.Size = new System.Drawing.Size(1004, 551);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "程序上传下载";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// textBox_code2
+			// 
+			this.textBox_code2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code2.Location = new System.Drawing.Point(56, 499);
+			this.textBox_code2.Multiline = true;
+			this.textBox_code2.Name = "textBox_code2";
+			this.textBox_code2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code2.Size = new System.Drawing.Size(944, 46);
+			this.textBox_code2.TabIndex = 71;
+			// 
+			// label_code2
+			// 
+			this.label_code2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code2.AutoSize = true;
+			this.label_code2.Location = new System.Drawing.Point(8, 502);
+			this.label_code2.Name = "label_code2";
+			this.label_code2.Size = new System.Drawing.Size(44, 17);
+			this.label_code2.TabIndex = 70;
+			this.label_code2.Text = "代码：";
 			// 
 			// panel4
 			// 
@@ -976,7 +1036,7 @@
 			this.textBox_program.Multiline = true;
 			this.textBox_program.Name = "textBox_program";
 			this.textBox_program.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_program.Size = new System.Drawing.Size(764, 417);
+			this.textBox_program.Size = new System.Drawing.Size(783, 397);
 			this.textBox_program.TabIndex = 68;
 			// 
 			// label7
@@ -1045,7 +1105,7 @@
 			treeNode2.Text = "CNC_MEM";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode2});
-			this.treeView1.Size = new System.Drawing.Size(204, 417);
+			this.treeView1.Size = new System.Drawing.Size(204, 397);
 			this.treeView1.TabIndex = 66;
 			// 
 			// textBox7
@@ -1076,7 +1136,7 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Fanuc Series 0iD/0iF/30i/31i/32i/35i 等新系统";
-			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(1000, 32);
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
@@ -1115,22 +1175,12 @@
 			this.readNcLocalToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
 			this.readNcLocalToolStripMenuItem.Text = "读取NC到本地";
 			// 
-			// button42
-			// 
-			this.button42.Location = new System.Drawing.Point(838, 176);
-			this.button42.Name = "button42";
-			this.button42.Size = new System.Drawing.Size(96, 29);
-			this.button42.TabIndex = 87;
-			this.button42.Text = "清除刀组号";
-			this.button42.UseVisualStyleBackColor = true;
-			this.button42.Click += new System.EventHandler(this.button42_Click);
-			// 
 			// FormCncFanuc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.ClientSize = new System.Drawing.Size(1000, 653);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
@@ -1254,5 +1304,9 @@
 		private System.Windows.Forms.TextBox textBox5;
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.Button button42;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label_code;
+		private System.Windows.Forms.TextBox textBox_code2;
+		private System.Windows.Forms.Label label_code2;
 	}
 }

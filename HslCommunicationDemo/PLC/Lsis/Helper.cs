@@ -28,7 +28,7 @@ namespace HslCommunicationDemo.PLC.Lsis
 				new DeviceAddressExample( "UB0",  "",       true, true, "示例: UX100,UB100,UW100,UD100,UL100" ),
 				new DeviceAddressExample( "ZB0",  "",       true, true, "示例: ZX100,ZB100,ZW100,ZD100,ZL100" ),
 				new DeviceAddressExample( "RB0",  "",       true, true, "示例: RX100,RB100,RW100,RD100,RL100" ),
-				new DeviceAddressExample( "M0",  "",       true, true, "以上地址如果不写类型，则默认都是 MB0" ),
+				new DeviceAddressExample( "M0",  "",       true, true, "以上地址如果不写类型，则默认都是 MW0" ),
 				new DeviceAddressExample( "s=2;M0",  "",       true, true, "地址里支持携带站号" ),
 			};
 		}

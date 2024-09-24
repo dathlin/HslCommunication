@@ -29,23 +29,39 @@
         private void InitializeComponent( )
         {
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// textBox1
 			// 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.textBox1.BackColor = System.Drawing.Color.White;
-			this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.textBox1.Location = new System.Drawing.Point(0, 0);
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ReadOnly = true;
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(792, 448);
+			this.textBox1.Size = new System.Drawing.Size(390, 448);
 			this.textBox1.TabIndex = 0;
+			// 
+			// textBox2
+			// 
+			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.textBox2.BackColor = System.Drawing.Color.White;
+			this.textBox2.Location = new System.Drawing.Point(396, 0);
+			this.textBox2.Multiline = true;
+			this.textBox2.Name = "textBox2";
+			this.textBox2.ReadOnly = true;
+			this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox2.Size = new System.Drawing.Size(394, 448);
+			this.textBox2.TabIndex = 1;
 			// 
 			// CodeExampleControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.textBox1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "CodeExampleControl";
@@ -58,5 +74,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-    }
+		private System.Windows.Forms.TextBox textBox2;
+	}
 }

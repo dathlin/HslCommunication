@@ -102,6 +102,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( melsec_net, "D100" );
 
 					// 设置示例的代码
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( melsec_net, nameof( melsec_net.IsNewVersion ), nameof( melsec_net.UseGOT ), nameof( melsec_net.SleepTime ) );
 				}
 				else

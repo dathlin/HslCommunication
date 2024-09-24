@@ -20,6 +20,10 @@ namespace HslCommunicationDemo
 
 		public static string DateTimeFormate = "yyyy-MM-dd HH:mm:ss.fff";
 
+		public static string PlcDeviceName = "plc";
+
+		public static string ModbusDeviceName = "modbus";
+
 		/// <summary>
 		/// 将 <see cref="DataGridView"/> 的行数控制在指定的行数
 		/// </summary>
@@ -73,7 +77,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Read Failed {Environment.NewLine}Reason：{result.ToMessageShowString( )}" );
+				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Read Failed {Environment.NewLine}Reason：{result.ToMessageShowString( )}" );
 			}
 		}
 		
@@ -86,11 +90,11 @@ namespace HslCommunicationDemo
 		{
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
+				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
 			}
 			else
 			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
+				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
 			}
 		}
 
@@ -103,11 +107,11 @@ namespace HslCommunicationDemo
 		{
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"Success" );
+				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"Success" );
 			}
 			else
 			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
+				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
 			}
 		}
 
@@ -123,17 +127,17 @@ namespace HslCommunicationDemo
 				OperateResult result = write( );
 				if (result.IsSuccess)
 				{
-					MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
+					DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
 				}
 				else
 				{
-					MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
+					DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
 				}
 			}
 			catch(Exception ex)
 			{
 				// 主要是为了捕获写入的值不正确的情况
-				MessageBox.Show( "Data for writting is not corrent: " + ex.Message );
+				DemoUtils.ShowMessage( "Data for writting is not corrent: " + ex.Message );
 			}
 		}
 
@@ -148,12 +152,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
+					DemoUtils.ShowMessage( "Read Failed：" + read.ToMessageShowString( ) );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Read Failed：" + ex.Message );
+				DemoUtils.ShowMessage( "Read Failed：" + ex.Message );
 			}
 		}
 
@@ -262,6 +266,12 @@ namespace HslCommunicationDemo
 			};
 		}
 
+
+		public static void ShowMessage( string message )
+		{
+			MessageBox.Show( message );
+		}
+
 		public static Encoding GetEncodingFromIndex( int index )
 		{
 			switch (index)
@@ -277,6 +287,20 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		public static string GetEncodingTextFromIndex( int index )
+		{
+			switch (index)
+			{
+				case 0: return "Encoding.ASCII";
+				case 1: return "Encoding.Unicode";
+				case 2: return "Encoding.BigEndianUnicode";
+				case 3: return "Encoding.UTF8";
+				case 4: return "Encoding.UTF32";
+				case 5: return "Encoding.Default";
+				case 6: return "Encoding.GetEncoding( \"gb2312\" )";
+				default: return "Encoding.ASCII";
+			}
+		}
 
 	}
 }

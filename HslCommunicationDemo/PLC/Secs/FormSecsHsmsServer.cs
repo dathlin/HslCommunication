@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static HslCommunicationDemo.FormSecsGem;
 using HslCommunicationDemo.DemoControl;
+using System.Xml.Linq;
+using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HslCommunicationDemo.PLC.Secs
 {
@@ -185,6 +188,12 @@ namespace HslCommunicationDemo.PLC.Secs
 				button11.Text = "Close";
 				button_device_save.Text = "Save";
 			}
+			else
+			{
+				addNewSecsItemToolStripMenuItem.Text = "新增Secs功能码";
+				editSecsItemToolStripMenuItem.Text = "编辑Secs功能码";
+				deleteSecsItemToolStripMenuItem.Text = "删除Secs功能码";
+			}
 		}
 
 		private void Timer_Tick( object sender, EventArgs e )
@@ -208,36 +217,41 @@ namespace HslCommunicationDemo.PLC.Secs
 			}
 		}
 
+		private void RenderSelectedSecs( SecsTreeItem treeItem )
+		{
+			textBox_stream.Text = treeItem.S.ToString( );
+			textBox_function.Text = (treeItem.F + 1).ToString( );
+
+			textBox_device_s.Text = treeItem.S.ToString( );
+			textBox_device_f.Text = treeItem.F.ToString( );
+
+			if (treeItem.Value != null)
+				textBox_data_back.Text = treeItem.Value.ToXElement( ).ToString( );
+			else
+				textBox_data_back.Text = string.Empty;
+
+
+			if (treeItem.ValueSingular != null)
+			{
+				textBox_device_send.Text = treeItem.ValueSingular.ToXElement( ).ToString( );
+			}
+			else
+			{
+				textBox_device_send.Text = string.Empty;
+			}
+		}
+
 		private void TreeView1_AfterSelect( object sender, TreeViewEventArgs e )
 		{
 			if (e.Node.Tag is SecsTreeItem treeItem)
 			{
-				textBox_stream.Text   = treeItem.S.ToString( );
-				textBox_function.Text = (treeItem.F + 1).ToString( );
-
-				textBox_device_s.Text = treeItem.S.ToString( );
-				textBox_device_f.Text = treeItem.F.ToString( );
-
-				if (treeItem.Value != null)
-					textBox_data_back.Text = treeItem.Value.ToXElement( ).ToString( );
-				else
-					textBox_data_back.Text = string.Empty;
-
-
-				if (treeItem.ValueSingular != null)
-				{
-					textBox_device_send.Text = treeItem.ValueSingular.ToXElement( ).ToString( );
-				}
-				else
-				{
-					textBox_device_send.Text = string.Empty;
-				}
+				RenderSelectedSecs( treeItem );
 			}
 		}
 
 		public void AddTree( TreeNode treeNode, SecsTreeItem treeItem )
 		{
-			TreeNode child = new TreeNode( $"S{treeItem.S}F{treeItem.F}{(treeItem.W ? "W" : "")} {treeItem.Description}" );
+			TreeNode child = new TreeNode( treeItem.GetTreeNodeText( ) );
 			child.Tag = treeItem;
 			treeNode.Nodes.Add( child );
 		}
@@ -331,8 +345,9 @@ namespace HslCommunicationDemo.PLC.Secs
 		private void button25_Click( object sender, EventArgs e )
 		{
 			// 发布数据出去
-			OperateResult publish = server.PublishSecsMessage( byte.Parse( textBox_stream.Text ), byte.Parse( textBox_function.Text ),
-				string.IsNullOrEmpty( textBox_data_back.Text ) ? null : new SecsValue( System.Xml.Linq.XElement.Parse( textBox_data_back.Text ) ) );
+			SecsValue secsValue = string.IsNullOrEmpty( textBox_data_back.Text ) ? null : new SecsValue( System.Xml.Linq.XElement.Parse( textBox_data_back.Text ) );
+
+			OperateResult publish = server.PublishSecsMessage( byte.Parse( textBox_stream.Text ), byte.Parse( textBox_function.Text ), secsValue );
 
 			if (publish.IsSuccess)
 			{
@@ -343,12 +358,17 @@ namespace HslCommunicationDemo.PLC.Secs
 			{
 				MessageBox.Show( "Failed: " + publish.Message );
 			}
+
+			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
+			codeExampleControl.ReaderReadCode( $"OperateResult publish = @deviceName.PublishSecsMessage( {textBox_stream.Text}, {textBox_function.Text}, {code} );" );
+
 		}
 
 		private void button_device_send_Click( object sender, EventArgs e )
 		{
-			OperateResult publish = server.PublishSecsMessage( byte.Parse( textBox_device_s.Text ), byte.Parse( textBox_device_f.Text ),
-				string.IsNullOrEmpty( textBox_device_send.Text ) ? null : new SecsValue( System.Xml.Linq.XElement.Parse( textBox_device_send.Text ) ), checkBox_device_w.Checked );
+			SecsValue secsValue = string.IsNullOrEmpty( textBox_device_send.Text ) ? null : new SecsValue( System.Xml.Linq.XElement.Parse( textBox_device_send.Text ) );
+
+			OperateResult publish = server.PublishSecsMessage( byte.Parse( textBox_device_s.Text ), byte.Parse( textBox_device_f.Text ), secsValue, checkBox_device_w.Checked );
 
 			if (publish.IsSuccess)
 			{
@@ -359,6 +379,9 @@ namespace HslCommunicationDemo.PLC.Secs
 			{
 				MessageBox.Show( "Failed: " + publish.Message );
 			}
+
+			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
+			codeExampleControl.ReaderReadCode( $"OperateResult publish = @deviceName.PublishSecsMessage( {textBox_device_s.Text}, {textBox_device_f.Text}, {code}, {checkBox_device_w.Checked.ToString( ).ToLower( )} );" );
 		}
 
 		private void button11_Click( object sender, EventArgs e )
@@ -376,5 +399,97 @@ namespace HslCommunicationDemo.PLC.Secs
 
 		private Timer timer;
 
+		private void treeView1_MouseDown( object sender, MouseEventArgs e )
+		{
+			if ( e.Button == MouseButtons.Right )
+			{
+				TreeNode node = treeView1.GetNodeAt( e.Location );
+				if (node != null)
+				{
+					treeView1.SelectedNode = node;
+
+					// 显示右键菜单
+
+					contextMenuStrip1.Show( treeView1, e.Location );
+				}
+			}
+		}
+
+		private void editSecsItemToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			SecsHelper.EditSecsItemToolStripMenuItem_Click( treeView1, RenderSelectedSecs, server: true );
+		}
+
+		private void deleteSecsItemToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			SecsHelper.DeleteSecsItemToolStripMenuItem_Click( treeView1 );
+		}
+
+		private void addNewSecsItemToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			SecsHelper.AddNewSecsItemToolStripMenuItem_Click( treeView1, RenderSelectedSecs, server: true );
+		}
+
+
+		#region Save Load
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			element.SetAttributeValue( "SessionsMax", textBox_online_max.Text );
+			element.SetAttributeValue( "DeviceId", textBox_device_id.Text );
+			element.SetAttributeValue( "Encoding", comboBox1.SelectedIndex );
+
+			element.RemoveNodes( );
+			// 保存现有的树形控件
+			for ( int i = 0; i < treeView1.Nodes.Count; i++ )
+			{
+				TreeNode root = treeView1.Nodes[i];
+				XElement ele1 = new XElement( root.Text );
+				for ( int j = 0; j < root.Nodes.Count; j++ )
+				{
+					TreeNode secsNode = root.Nodes[j];
+					if ( secsNode.Tag is SecsTreeItem item)
+					{
+						ele1.Add( item.ToXElement( ) );
+					}
+				}
+				element.Add( ele1 );
+			}
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox_online_max.Text = GetXmlValue( element, "SessionsMax", "", m => m );
+			textBox_device_id.Text = GetXmlValue( element, "DeviceId", "1", m => m );
+			comboBox1.SelectedIndex = GetXmlValue( element, "Encoding", 1, int.Parse );
+
+			IEnumerable<XElement> roots = element.Elements( );
+			if (roots.Count( ) > 0)
+			{
+				treeView1.Nodes.Clear( );
+				foreach (XElement ele1 in roots)
+				{
+					TreeNode root = new TreeNode( ele1.Name.ToString( ) );
+					foreach (XElement ele2 in ele1.Elements( ))
+					{
+						SecsTreeItem secsTreeItem = new SecsTreeItem( ele2 );
+						TreeNode node = new TreeNode( secsTreeItem.GetTreeNodeText( ) );
+						node.Tag = secsTreeItem;
+						root.Nodes.Add( node );
+					}
+					treeView1.Nodes.Add( root );
+				}
+			}
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
+
+		#endregion
 	}
 }

@@ -1091,7 +1091,7 @@
 			this.textBox_session_topics.Multiline = true;
 			this.textBox_session_topics.Name = "textBox_session_topics";
 			this.textBox_session_topics.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_session_topics.Size = new System.Drawing.Size(345, 475);
+			this.textBox_session_topics.Size = new System.Drawing.Size(345, 483);
 			this.textBox_session_topics.TabIndex = 38;
 			// 
 			// label26

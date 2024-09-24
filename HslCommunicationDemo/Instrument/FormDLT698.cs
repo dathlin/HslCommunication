@@ -108,6 +108,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( dLT698, "20-00-02-00" );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( "dlt" );
 					codeExampleControl.SetCodeText( "dlt", dLT698, nameof( dLT698.Station ), nameof( dLT698.EnableCodeFE ), nameof( dLT698.UseSecurityResquest ), nameof( dLT698.CA ) );
 				}
 				else

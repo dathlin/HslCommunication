@@ -12,7 +12,7 @@ using HslCommunication;
 
 namespace HslCommunicationDemo.Redis
 {
-    public partial class FormRedisInput : Form
+    public partial class FormRedisInput : System.Windows.Forms.Form
     {
         public FormRedisInput( RedisClient redis )
         {

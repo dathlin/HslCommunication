@@ -96,6 +96,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( melsecSerial, "D100" );
 
 					// 设置示例的代码
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( melsecSerial, nameof( melsecSerial.IsNewVersion ), nameof( melsecSerial.AutoChangeBaudRate ) );
 				}
 				else

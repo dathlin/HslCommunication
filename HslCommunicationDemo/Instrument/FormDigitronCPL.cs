@@ -97,6 +97,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => cpl.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( "cpl" );
 					codeExampleControl.SetCodeText( "cpl", cpl, nameof( cpl.Station ) );
 				}
 				else

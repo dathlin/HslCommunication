@@ -100,6 +100,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( keyence, "DM100" );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( keyence, nameof( keyence.UseStation ), nameof( keyence.Station ) );
 				}
 				else

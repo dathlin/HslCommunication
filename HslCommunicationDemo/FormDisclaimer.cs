@@ -10,7 +10,7 @@ using HslCommunication.Enthernet;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormDisclaimer : Form
+    public partial class FormDisclaimer : System.Windows.Forms.Form
     {
         public FormDisclaimer( )
         {

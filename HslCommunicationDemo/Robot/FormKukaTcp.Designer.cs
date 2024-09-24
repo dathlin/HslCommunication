@@ -36,9 +36,13 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.label4 = new System.Windows.Forms.Label();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.button5 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
@@ -56,15 +60,13 @@
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.groupBox2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.groupBox2.SuspendLayout();
+			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -81,7 +83,7 @@
 			this.panel1.Location = new System.Drawing.Point(2, 34);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 35);
+			this.panel1.Size = new System.Drawing.Size(996, 35);
 			this.panel1.TabIndex = 0;
 			// 
 			// button2
@@ -151,29 +153,53 @@
 			this.panel2.Location = new System.Drawing.Point(2, 71);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 578);
+			this.panel2.Size = new System.Drawing.Size(996, 572);
 			this.panel2.TabIndex = 1;
 			// 
-			// groupBox2
+			// tabControl1
 			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.button5);
-			this.groupBox2.Controls.Add(this.button4);
-			this.groupBox2.Controls.Add(this.button3);
-			this.groupBox2.Controls.Add(this.textBox5);
-			this.groupBox2.Controls.Add(this.label2);
-			this.groupBox2.Controls.Add(this.button14);
-			this.groupBox2.Controls.Add(this.textBox7);
-			this.groupBox2.Controls.Add(this.label9);
-			this.groupBox2.Controls.Add(this.textBox8);
-			this.groupBox2.Controls.Add(this.label10);
-			this.groupBox2.Location = new System.Drawing.Point(547, 3);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(443, 319);
-			this.groupBox2.TabIndex = 1;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "单数据写入测试";
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Location = new System.Drawing.Point(3, 318);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(985, 248);
+			this.tabControl1.TabIndex = 2;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.textBox_code);
+			this.tabPage1.Controls.Add(this.label5);
+			this.tabPage1.Controls.Add(this.pictureBox1);
+			this.tabPage1.Controls.Add(this.label4);
+			this.tabPage1.Location = new System.Drawing.Point(4, 26);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(977, 218);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Tip";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(277, 146);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.Size = new System.Drawing.Size(694, 66);
+			this.textBox_code.TabIndex = 25;
+			// 
+			// label5
+			// 
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(215, 149);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(44, 17);
+			this.label5.TabIndex = 24;
+			this.label5.Text = "代码：";
 			// 
 			// pictureBox1
 			// 
@@ -193,6 +219,27 @@
 			this.label4.Size = new System.Drawing.Size(276, 34);
 			this.label4.TabIndex = 22;
 			this.label4.Text = "本界面根据网友提供的协议开发完成\r\n如果你有什么问题，可以加下面的kuka专家咨询：";
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.button5);
+			this.groupBox2.Controls.Add(this.button4);
+			this.groupBox2.Controls.Add(this.button3);
+			this.groupBox2.Controls.Add(this.textBox5);
+			this.groupBox2.Controls.Add(this.label2);
+			this.groupBox2.Controls.Add(this.button14);
+			this.groupBox2.Controls.Add(this.textBox7);
+			this.groupBox2.Controls.Add(this.label9);
+			this.groupBox2.Controls.Add(this.textBox8);
+			this.groupBox2.Controls.Add(this.label10);
+			this.groupBox2.Location = new System.Drawing.Point(546, 3);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(443, 313);
+			this.groupBox2.TabIndex = 1;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "单数据写入测试";
 			// 
 			// button5
 			// 
@@ -298,7 +345,7 @@
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(538, 319);
+			this.groupBox1.Size = new System.Drawing.Size(537, 313);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "单数据读取测试";
@@ -322,7 +369,7 @@
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(468, 257);
+			this.textBox4.Size = new System.Drawing.Size(467, 251);
 			this.textBox4.TabIndex = 5;
 			// 
 			// label7
@@ -362,40 +409,17 @@
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "KUKA TCP";
-			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.Size = new System.Drawing.Size(1003, 32);
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// tabControl1
-			// 
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Location = new System.Drawing.Point(3, 324);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(986, 248);
-			this.tabControl1.TabIndex = 2;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.pictureBox1);
-			this.tabPage1.Controls.Add(this.label4);
-			this.tabPage1.Location = new System.Drawing.Point(4, 26);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(978, 218);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Tip";
-			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// FormKukaTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 652);
+			this.ClientSize = new System.Drawing.Size(1003, 646);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
@@ -409,14 +433,14 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -453,5 +477,7 @@
         private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label5;
 	}
 }

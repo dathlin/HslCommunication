@@ -47,6 +47,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 				textBox10.Text = json.ToString( );
 
 			}
+
+			textBox_code.Text = $"OperateResult<JToken[]> read = {DemoUtils.PlcDeviceName}.Read( \"{textBox6.Text}\".Split( new char[] {';'}, StringSplitOptions.RemoveEmptyEntries ) );";
 		}
 
 		private void button25_Click( object sender, EventArgs e )
@@ -62,6 +64,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 				{
 					MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
 				}
+
+				textBox_code.Text = $"OperateResult<byte[]> read = {DemoUtils.PlcDeviceName}.Read( \"{textBox6.Text}\", 0 );";
 			}
 			catch (Exception ex)
 			{
@@ -82,6 +86,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<double> read = {DemoUtils.PlcDeviceName}.ReadVersion( );";
 		}
 
 		private async void button5_Click( object sender, EventArgs e )
@@ -95,6 +101,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult read = {DemoUtils.PlcDeviceName}.ReadPing( );";
 		}
 
 		private async void button7_Click_1( object sender, EventArgs e )
@@ -108,6 +116,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Failed:" + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadDateTime( \"{textBox8.Text}\" );";
 		}
 
 		private async void button8_Click( object sender, EventArgs e )
@@ -117,6 +127,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 				DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
 			else
 				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.Write( \"{textBox8.Text}\", DateTime.Parse( \"{textBox7.Text}\" ) )";
 		}
 
 		private void SiemensWebApiControl_Load( object sender, EventArgs e )
@@ -137,6 +149,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 				groupBox5.Text = "Special function test";
 
 				button3.Text = "Order";
+
+				label_code.Text = "Code:";
 			}
 		}
 	}

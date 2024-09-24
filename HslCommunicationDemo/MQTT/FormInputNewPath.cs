@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.MQTT
 {
-	public partial class FormInputNewPath : Form
+	public partial class FormInputNewPath : System.Windows.Forms.Form
 	{
 		public FormInputNewPath( string oldPath, string newPath )
 		{

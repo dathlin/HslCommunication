@@ -13,7 +13,7 @@ using HslCommunicationDemo.PLC.Omron;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormLoad : Form
+    public partial class FormLoad : System.Windows.Forms.Form
     {
         public static Color ThemeColor = Color.AliceBlue;
 

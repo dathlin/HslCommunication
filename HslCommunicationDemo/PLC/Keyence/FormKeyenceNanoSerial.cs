@@ -101,6 +101,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( keyenceNanoSerial, "DM100" );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( keyenceNanoSerial, nameof( keyenceNanoSerial.UseStation ), nameof( keyenceNanoSerial.Station ) );
 				}
 				else

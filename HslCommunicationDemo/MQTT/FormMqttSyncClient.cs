@@ -123,7 +123,7 @@ namespace HslCommunicationDemo
 				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( CodeExampleControl.CreateStringBulider( mqttSyncClient ).ToString( ) );
+				codeExampleControl.SetCodeText( mqttSyncClient );
 			}
 			else
 			{

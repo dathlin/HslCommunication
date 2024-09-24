@@ -144,7 +144,8 @@ namespace HslCommunicationDemo.PLC.WeCon
 					control.SetDevice( busTcpClient, "D100" );
 
 					// 设置示例代码
-					codeExampleControl.SetCodeText( "modbus", busTcpClient, nameof( busTcpClient.Station ), nameof( busTcpClient.AddressStartWithZero ), nameof( busTcpClient.IsCheckMessageId ),
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
+					codeExampleControl.SetCodeText( busTcpClient, nameof( busTcpClient.Station ), nameof( busTcpClient.AddressStartWithZero ), nameof( busTcpClient.IsCheckMessageId ),
 						nameof( busTcpClient.IsStringReverse ), nameof( busTcpClient.DataFormat ), "HslCommunication.ModBus.ModbusMappingAddress.WeCon_Lx5v" );
 				}
 				else

@@ -101,11 +101,14 @@ namespace HslCommunicationDemo
 				button2.Enabled = true;
 				panel2.Enabled = true;
 				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+
+				textBox_code.Text = $"FanucSeries0i fanuc = new FanucSeries0i( \"{textBox1.Text}\", int.Parse( \"{textBox2.Text}\" ) );";
 			}
 			else
 			{
 				button1.Enabled = true;
-				MessageBox.Show( connect.Message );
+				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+					"Error: " + connect.ErrorCode );
 			}
 		}
 
@@ -131,6 +134,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<FanucSysInfo> read = fanuc.ReadSysInfo( );";
 		}
 
 		private void button34_Click( object sender, EventArgs e )
@@ -145,6 +150,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<FanucOperatorMessage[]> read = fanuc.ReadOperatorMessage( );";
 		}
 		private void button3_Click( object sender, EventArgs e )
 		{
@@ -157,6 +164,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<SysStatusInfo> read= fanuc.ReadSysStatusInfo( );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -170,6 +179,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<SysAlarm[]> read = fanuc.ReadSystemAlarm( );";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -183,6 +194,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<SysAllCoors> read = fanuc.ReadSysAllCoors( );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -196,6 +209,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<int[]> read = fanuc.ReadProgramList( );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -209,6 +224,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<string, int> read = fanuc.ReadSystemProgramCurrent( );";
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -222,6 +239,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<double, double> read = fanuc.ReadSpindleSpeedAndFeedRate( );";
 		}
 
 		private void button9_Click( object sender, EventArgs e )
@@ -235,6 +254,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<double[]> read = fanuc.ReadFanucAxisLoad( );";
 		}
 
 		private void button10_Click( object sender, EventArgs e )
@@ -248,6 +269,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<CutterInfo[]> read = fanuc.ReadCutterInfos( );";
 		}
 
 		private void button11_Click( object sender, EventArgs e )
@@ -261,6 +284,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = fanuc.ReadCurrentForegroundDir( );";
 		}
 
 		private void button22_Click( object sender, EventArgs e )
@@ -276,6 +301,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<ushort> read = fanuc.ReadLanguage( );";
 		}
 		private void button12_Click( object sender, EventArgs e )
 		{
@@ -288,6 +315,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<double[]> read = fanuc.ReadDeviceWorkPiecesSize( );";
 		}
 
 		private void button13_Click( object sender, EventArgs e )
@@ -301,6 +330,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadAlarmStatus( );";
 		}
 
 		private void ReadTimeData( int type )
@@ -314,6 +345,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<long> read = fanuc.ReadTimeData( {type} );";
 		}
 		private void button14_Click( object sender, EventArgs e )
 		{
@@ -351,6 +384,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = fanuc.ReadCurrentProgram( );";
 		}
 
 		private void button30_Click( object sender, EventArgs e )
@@ -365,6 +400,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadCutterNumber( );";
 		}
 
 		private async void button28_Click( object sender, EventArgs e )
@@ -383,6 +420,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "读取失败！" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code2.Text = $"OperateResult<string> read = fanuc.ReadProgram( \"{textBox9.Text}\", \"{textBox_path.Text}\" );";
 		}
 
 		private void button29_Click( object sender, EventArgs e )
@@ -400,6 +439,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "删除失败！" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code2.Text = $"OperateResult read = fanuc.DeleteFile( \"{path + textBox9.Text}\" );";
 		}
 		private void button25_Click( object sender, EventArgs e )
 		{
@@ -418,6 +459,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "设置主程序失败！" + set.ToMessageShowString( ) );
 			}
+
+			textBox_code2.Text = $"OperateResult set = fanuc.SetCurrentProgram( {programNum} );";
 		}
 
 		private async void button27_Click( object sender, EventArgs e )
@@ -439,6 +482,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "下载失败！" + write.Message );
 			}
+
+			textBox_code2.Text = $"OperateResult write = fanuc.WriteProgramFile( \"{textBox7.Text}\", 512, \"{textBox_path.Text}\" );";
 		}
 		private void button26_Click( object sender, EventArgs e )
 		{
@@ -451,6 +496,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "启动失败！"  + start.ToMessageShowString());
 			}
+
+			textBox_code.Text = $"OperateResult start = fanuc.StartProcessing( );";
 		}
 		private void button18_Click( object sender, EventArgs e )
 		{
@@ -468,6 +515,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<double> read = fanuc.ReadSystemMacroValue( {address} );";
 			//for (int i = 0; i < 10000; i++)
 			//{
 			//	OperateResult<double> read = await fanuc.ReadSystemMacroValueAsync( address + i );
@@ -509,6 +558,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Write Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult read = fanuc.WriteSystemMacroValue( {address}, new double[] {{{value}}} );";
 		}
 
 		private void button19_Click( object sender, EventArgs e )
@@ -522,6 +573,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read = fanuc.ReadCurrentDateTime( );";
 		}
 
 		private void button20_Click( object sender, EventArgs e )
@@ -536,6 +589,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadCurrentProduceCount( );";
 		}
 
 		private void button21_Click( object sender, EventArgs e )
@@ -550,6 +605,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadExpectProduceCount( );";
 		}
 
 		private void button23_Click( object sender, EventArgs e )
@@ -564,6 +621,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<byte[]> read = fanuc.ReadPMCData( \"{textBox_pmc_read.Text}\", ushort.Parse( \"{textBox_pmc_length.Text}\" ) );";
 		}
 
 		private void button31_Click( object sender, EventArgs e )
@@ -579,6 +638,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Write Failed:" + write.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult write = fanuc.WritePMCData( \"{textBox_pmc_write.Text}\", \"{textBox_pmc_Data.Text}\".ToHexBytes( ) );";
 		}
 		public override void SaveXmlParameter( XElement element )
 		{
@@ -821,6 +882,8 @@ namespace HslCommunicationDemo
 		{
 			fanuc.OperatePath = short.Parse( textBox_op_path.Text );
 			MessageBox.Show( "Success!" );
+
+			textBox_code.Text = $"fanuc.OperatePath = short.Parse( \"{textBox_op_path.Text}\" );";
 		}
 
 		private void button37_Click( object sender, EventArgs e )
@@ -835,6 +898,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<string[]> read = fanuc.ReadAxisNames( );";
 		}
 
 		private void button38_Click( object sender, EventArgs e )
@@ -849,6 +914,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<string[]> read = fanuc.ReadSpindleNames( );";
 		}
 
 		private void button39_Click( object sender, EventArgs e )
@@ -863,6 +930,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<double[]> read = fanuc.ReadDiagnoss( {textBox_read_diagnoss.Text}, {textBox_diagnoss_length.Text}, {textBox_diagnoss_axis.Text} );";
 		}
 
 		private void button40_Click( object sender, EventArgs e )
@@ -877,6 +946,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadUseToolGroupId( );";
 		}
 
 		private void button41_Click( object sender, EventArgs e )
@@ -901,6 +972,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<ToolInformation> read = fanuc.ReadToolInfoByGroup( {id} );";
 		}
 
 		private void button42_Click( object sender, EventArgs e )
@@ -926,6 +999,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Clear Failed:" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult read = fanuc.ClearToolGroup( {id}, {id} );";
 		}
 	}
 

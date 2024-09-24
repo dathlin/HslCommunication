@@ -78,6 +78,8 @@
 			this.label12 = new System.Windows.Forms.Label();
 			this.button4 = new System.Windows.Forms.Button();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label20 = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.hslPanelHead2.SuspendLayout();
@@ -181,6 +183,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.textBox_code);
+			this.panel2.Controls.Add(this.label20);
 			this.panel2.Controls.Add(this.hslPanelHead2);
 			this.panel2.Controls.Add(this.hslPanelHead1);
 			this.panel2.Controls.Add(this.button6);
@@ -543,7 +547,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(921, 321);
+			this.textBox8.Size = new System.Drawing.Size(926, 271);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
@@ -578,6 +582,27 @@
 			this.userControlHead1.ProtocolInfo = "";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
+			// 
+			// label20
+			// 
+			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(1, 516);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(51, 17);
+			this.label20.TabIndex = 55;
+			this.label20.Text = "Code：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(62, 513);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(926, 48);
+			this.textBox_code.TabIndex = 22;
 			// 
 			// FormVibrationSensorClient
 			// 
@@ -657,5 +682,7 @@
 		private System.Windows.Forms.TextBox textBox14;
 		private System.Windows.Forms.TextBox textBox13;
 		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label20;
 	}
 }

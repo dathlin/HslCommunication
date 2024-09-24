@@ -95,6 +95,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( dLT645, "B6-11" );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( "dlt" );
 					codeExampleControl.SetCodeText( "dlt", dLT645, nameof( dLT645.Station ), nameof( dLT645.EnableCodeFE ) );
 				}
 				else

@@ -14,12 +14,13 @@ namespace HslCommunicationDemo.PLC.Omron
 {
 	public class HostLinkCModeControl : UserControl
 	{
-		private System.Windows.Forms.GroupBox groupBox5;
 		private System.Windows.Forms.ComboBox comboBox4;
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.Label label_code;
+		private TextBox textBox_code;
 		private System.Windows.Forms.Label label5;
 
 		public HostLinkCModeControl( )
@@ -29,6 +30,9 @@ namespace HslCommunicationDemo.PLC.Omron
 			if (Program.Language == 2)
 			{
 				comboBox4.DataSource = new string[] { "programming", "running", "monitoring" };
+
+				label5.Text = "Result:";
+				label_code.Text = "Code:";
 			}
 			else
 			{
@@ -38,46 +42,28 @@ namespace HslCommunicationDemo.PLC.Omron
 
 		private void InitializeComponent( )
 		{
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.comboBox4 = new System.Windows.Forms.ComboBox();
 			this.button5 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.groupBox5.SuspendLayout();
+			this.label_code = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
-			// 
-			// groupBox5
-			// 
-			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox5.Controls.Add(this.comboBox4);
-			this.groupBox5.Controls.Add(this.button5);
-			this.groupBox5.Controls.Add(this.button4);
-			this.groupBox5.Controls.Add(this.button3);
-			this.groupBox5.Controls.Add(this.textBox3);
-			this.groupBox5.Controls.Add(this.label5);
-			this.groupBox5.Location = new System.Drawing.Point(3, 3);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(759, 226);
-			this.groupBox5.TabIndex = 5;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "HostLinkCMode Function";
 			// 
 			// comboBox4
 			// 
 			this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox4.FormattingEnabled = true;
-			this.comboBox4.Location = new System.Drawing.Point(117, 24);
+			this.comboBox4.Location = new System.Drawing.Point(241, 6);
 			this.comboBox4.Name = "comboBox4";
 			this.comboBox4.Size = new System.Drawing.Size(157, 25);
 			this.comboBox4.TabIndex = 15;
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(297, 22);
+			this.button5.Location = new System.Drawing.Point(404, 3);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(101, 28);
 			this.button5.TabIndex = 14;
@@ -87,7 +73,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(9, 55);
+			this.button4.Location = new System.Drawing.Point(115, 3);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(101, 28);
 			this.button4.TabIndex = 13;
@@ -97,7 +83,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(9, 22);
+			this.button3.Location = new System.Drawing.Point(3, 3);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(101, 28);
 			this.button3.TabIndex = 11;
@@ -110,31 +96,59 @@ namespace HslCommunicationDemo.PLC.Omron
 			this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox3.Location = new System.Drawing.Point(9, 117);
+			this.textBox3.Location = new System.Drawing.Point(64, 40);
 			this.textBox3.Multiline = true;
 			this.textBox3.Name = "textBox3";
 			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox3.Size = new System.Drawing.Size(744, 103);
+			this.textBox3.Size = new System.Drawing.Size(742, 108);
 			this.textBox3.TabIndex = 12;
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(15, 91);
+			this.label5.Location = new System.Drawing.Point(3, 43);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(55, 17);
+			this.label5.Size = new System.Drawing.Size(44, 17);
 			this.label5.TabIndex = 11;
-			this.label5.Text = "Result：";
+			this.label5.Text = "结果：";
+			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(0, 155);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 16;
+			this.label_code.Text = "代码：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(64, 152);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(742, 56);
+			this.textBox_code.TabIndex = 17;
 			// 
 			// HostLinkCModeControl
 			// 
-			this.Controls.Add(this.groupBox5);
+			this.Controls.Add(this.textBox_code);
+			this.Controls.Add(this.label_code);
+			this.Controls.Add(this.comboBox4);
+			this.Controls.Add(this.button5);
+			this.Controls.Add(this.button3);
+			this.Controls.Add(this.button4);
+			this.Controls.Add(this.textBox3);
+			this.Controls.Add(this.label5);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "HostLinkCModeControl";
-			this.Size = new System.Drawing.Size(765, 232);
-			this.groupBox5.ResumeLayout(false);
-			this.groupBox5.PerformLayout();
+			this.Size = new System.Drawing.Size(809, 211);
+			this.Load += new System.EventHandler(this.HostLinkCModeControl_Load);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -156,6 +170,8 @@ namespace HslCommunicationDemo.PLC.Omron
 			{
 				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadPlcType( );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -170,6 +186,8 @@ namespace HslCommunicationDemo.PLC.Omron
 			{
 				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<int> read = {DemoUtils.PlcDeviceName}.ReadPlcMode( );  // 0:编程模式(programing) 1:运行模式(run) 2:监视模式(monitor)";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -183,6 +201,13 @@ namespace HslCommunicationDemo.PLC.Omron
 			{
 				MessageBox.Show( "failed:" + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.ChangePlcMode( {(byte)comboBox4.SelectedIndex} );";
+		}
+
+		private void HostLinkCModeControl_Load( object sender, EventArgs e )
+		{
+
 		}
 	}
 }

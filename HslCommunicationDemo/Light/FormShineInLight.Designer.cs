@@ -31,6 +31,7 @@ namespace HslCommunicationDemo.Light
 		{
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.label24 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -64,6 +65,8 @@ namespace HslCommunicationDemo.Light
 			this.label22 = new System.Windows.Forms.Label();
 			this.label23 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label29 = new System.Windows.Forms.Label();
 			this.button3 = new System.Windows.Forms.Button();
@@ -88,7 +91,8 @@ namespace HslCommunicationDemo.Light
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
+			this.textBox_code2 = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -125,6 +129,21 @@ namespace HslCommunicationDemo.Light
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 66);
 			this.panel1.TabIndex = 4;
+			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(6, 5);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "57600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.Even;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.SerialPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 42;
+			this.pipeSelectControl1.TcpPortText = "6000";
+			this.pipeSelectControl1.UdpPortText = "6000";
 			// 
 			// label24
 			// 
@@ -175,7 +194,7 @@ namespace HslCommunicationDemo.Light
 			// label28
 			// 
 			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(4, 372);
+			this.label28.Location = new System.Drawing.Point(4, 391);
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(44, 17);
 			this.label28.TabIndex = 3;
@@ -185,17 +204,19 @@ namespace HslCommunicationDemo.Light
 			// 
 			this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-			this.textBox12.Location = new System.Drawing.Point(3, 392);
+			this.textBox12.Location = new System.Drawing.Point(3, 415);
 			this.textBox12.Multiline = true;
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox12.Size = new System.Drawing.Size(989, 142);
+			this.textBox12.Size = new System.Drawing.Size(989, 119);
 			this.textBox12.TabIndex = 2;
 			// 
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.textBox_code2);
+			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.button4);
 			this.groupBox2.Controls.Add(this.panel4);
 			this.groupBox2.Controls.Add(this.panel3);
@@ -213,7 +234,7 @@ namespace HslCommunicationDemo.Light
 			this.groupBox2.Controls.Add(this.label23);
 			this.groupBox2.Location = new System.Drawing.Point(3, 165);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(985, 202);
+			this.groupBox2.Size = new System.Drawing.Size(985, 223);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Write";
@@ -238,13 +259,13 @@ namespace HslCommunicationDemo.Light
 			this.panel4.Controls.Add(this.radioButton5);
 			this.panel4.Location = new System.Drawing.Point(356, 44);
 			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(120, 152);
+			this.panel4.Size = new System.Drawing.Size(120, 139);
 			this.panel4.TabIndex = 35;
 			// 
 			// radioButton10
 			// 
 			this.radioButton10.AutoSize = true;
-			this.radioButton10.Location = new System.Drawing.Point(19, 128);
+			this.radioButton10.Location = new System.Drawing.Point(19, 115);
 			this.radioButton10.Name = "radioButton10";
 			this.radioButton10.Size = new System.Drawing.Size(50, 21);
 			this.radioButton10.TabIndex = 6;
@@ -254,7 +275,7 @@ namespace HslCommunicationDemo.Light
 			// radioButton9
 			// 
 			this.radioButton9.AutoSize = true;
-			this.radioButton9.Location = new System.Drawing.Point(19, 101);
+			this.radioButton9.Location = new System.Drawing.Point(19, 93);
 			this.radioButton9.Name = "radioButton9";
 			this.radioButton9.Size = new System.Drawing.Size(74, 21);
 			this.radioButton9.TabIndex = 5;
@@ -264,7 +285,7 @@ namespace HslCommunicationDemo.Light
 			// radioButton8
 			// 
 			this.radioButton8.AutoSize = true;
-			this.radioButton8.Location = new System.Drawing.Point(18, 74);
+			this.radioButton8.Location = new System.Drawing.Point(18, 71);
 			this.radioButton8.Name = "radioButton8";
 			this.radioButton8.Size = new System.Drawing.Size(98, 21);
 			this.radioButton8.TabIndex = 4;
@@ -311,7 +332,7 @@ namespace HslCommunicationDemo.Light
 			this.panel3.Controls.Add(this.radioButton1);
 			this.panel3.Location = new System.Drawing.Point(29, 44);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(105, 152);
+			this.panel3.Size = new System.Drawing.Size(105, 139);
 			this.panel3.TabIndex = 34;
 			// 
 			// radioButton4
@@ -463,6 +484,8 @@ namespace HslCommunicationDemo.Light
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.textBox_code);
+			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.textBox15);
 			this.groupBox1.Controls.Add(this.label29);
 			this.groupBox1.Controls.Add(this.button3);
@@ -493,6 +516,25 @@ namespace HslCommunicationDemo.Light
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Read";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(342, 28);
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ReadOnly = true;
+			this.textBox_code.Size = new System.Drawing.Size(623, 23);
+			this.textBox_code.TabIndex = 25;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(296, 31);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(32, 17);
+			this.label1.TabIndex = 24;
+			this.label1.Text = "代码";
 			// 
 			// textBox15
 			// 
@@ -696,20 +738,24 @@ namespace HslCommunicationDemo.Light
 			this.label2.TabIndex = 0;
 			this.label2.Text = "颜色";
 			// 
-			// pipeSelectControl1
+			// textBox_code2
 			// 
-			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.pipeSelectControl1.Location = new System.Drawing.Point(6, 5);
-			this.pipeSelectControl1.Name = "pipeSelectControl1";
-			this.pipeSelectControl1.SerialBaudRate = "57600";
-			this.pipeSelectControl1.SerialDataBits = "8";
-			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.Even;
-			this.pipeSelectControl1.SerialStopBits = "1";
-			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.SerialPipe;
-			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
-			this.pipeSelectControl1.TabIndex = 42;
-			this.pipeSelectControl1.TcpPortText = "6000";
-			this.pipeSelectControl1.UdpPortText = "6000";
+			this.textBox_code2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code2.Location = new System.Drawing.Point(52, 191);
+			this.textBox_code2.Name = "textBox_code2";
+			this.textBox_code2.ReadOnly = true;
+			this.textBox_code2.Size = new System.Drawing.Size(927, 23);
+			this.textBox_code2.TabIndex = 38;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(6, 194);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(32, 17);
+			this.label3.TabIndex = 37;
+			this.label3.Text = "代码";
 			// 
 			// FormShineInLight
 			// 
@@ -802,5 +848,9 @@ namespace HslCommunicationDemo.Light
 		private System.Windows.Forms.TextBox textBox15;
 		private System.Windows.Forms.Label label29;
 		private DemoControl.PipeSelectControl pipeSelectControl1;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TextBox textBox_code2;
+		private System.Windows.Forms.Label label3;
 	}
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox15 = new System.Windows.Forms.TextBox();
@@ -115,7 +116,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.button3 = new System.Windows.Forms.Button();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
+			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -139,6 +140,21 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 64);
 			this.panel1.TabIndex = 0;
+			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(8, 2);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "2400";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.Even;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.SerialPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 29;
+			this.pipeSelectControl1.TcpPortText = "502";
+			this.pipeSelectControl1.UdpPortText = "502";
 			// 
 			// comboBox2
 			// 
@@ -225,7 +241,7 @@
 			this.panel2.Location = new System.Drawing.Point(5, 103);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 540);
+			this.panel2.Size = new System.Drawing.Size(997, 570);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteOp1
@@ -240,6 +256,7 @@
 			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox5.Controls.Add(this.textBox2);
 			this.groupBox5.Controls.Add(this.label53);
 			this.groupBox5.Controls.Add(this.textBox12);
 			this.groupBox5.Controls.Add(this.label54);
@@ -317,7 +334,7 @@
 			this.groupBox5.Controls.Add(this.button3);
 			this.groupBox5.Location = new System.Drawing.Point(5, 277);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(987, 256);
+			this.groupBox5.Size = new System.Drawing.Size(987, 286);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "特殊功能测试";
@@ -368,7 +385,7 @@
 			this.hslCurve1.Location = new System.Drawing.Point(594, 62);
 			this.hslCurve1.Name = "hslCurve1";
 			this.hslCurve1.ReferenceAxisLeft.Max = 250F;
-			this.hslCurve1.Size = new System.Drawing.Size(387, 153);
+			this.hslCurve1.Size = new System.Drawing.Size(387, 183);
 			this.hslCurve1.TabIndex = 82;
 			// 
 			// label51
@@ -967,27 +984,21 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// pipeSelectControl1
+			// textBox2
 			// 
-			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.pipeSelectControl1.Location = new System.Drawing.Point(8, 2);
-			this.pipeSelectControl1.Name = "pipeSelectControl1";
-			this.pipeSelectControl1.SerialBaudRate = "2400";
-			this.pipeSelectControl1.SerialDataBits = "8";
-			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.Even;
-			this.pipeSelectControl1.SerialStopBits = "1";
-			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.SerialPipe;
-			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
-			this.pipeSelectControl1.TabIndex = 29;
-			this.pipeSelectControl1.TcpPortText = "502";
-			this.pipeSelectControl1.UdpPortText = "502";
+			this.textBox2.Location = new System.Drawing.Point(6, 255);
+			this.textBox2.Name = "textBox2";
+			this.textBox2.ReadOnly = true;
+			this.textBox2.Size = new System.Drawing.Size(975, 23);
+			this.textBox2.TabIndex = 87;
+			this.textBox2.Text = "OperateResult<ElectricalParameters> read = modbus.ReadElectricalParameters( );";
 			// 
 			// FormDTSU6606
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1004, 645);
+			this.ClientSize = new System.Drawing.Size(1004, 675);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
@@ -1097,5 +1108,6 @@
 		private System.Windows.Forms.Label label54;
 		private System.Windows.Forms.Button button4;
 		private DemoControl.PipeSelectControl pipeSelectControl1;
+		private System.Windows.Forms.TextBox textBox2;
 	}
 }

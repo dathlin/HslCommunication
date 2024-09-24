@@ -20,6 +20,8 @@ namespace HslCommunicationDemo.Instrument
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.TextBox textBox12;
+		private TextBox textBox_code;
+		private Label label_code;
 		private System.Windows.Forms.GroupBox groupBox1;
 
 		public CJT188Control( )
@@ -43,6 +45,8 @@ namespace HslCommunicationDemo.Instrument
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.textBox12 = new System.Windows.Forms.TextBox();
+			this.label_code = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -51,6 +55,8 @@ namespace HslCommunicationDemo.Instrument
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.textBox_code);
+			this.groupBox1.Controls.Add(this.label_code);
 			this.groupBox1.Controls.Add(this.button7);
 			this.groupBox1.Controls.Add(this.button6);
 			this.groupBox1.Controls.Add(this.button5);
@@ -143,8 +149,28 @@ namespace HslCommunicationDemo.Instrument
 			this.textBox12.Multiline = true;
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox12.Size = new System.Drawing.Size(868, 136);
+			this.textBox12.Size = new System.Drawing.Size(868, 90);
 			this.textBox12.TabIndex = 19;
+			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(6, 182);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 27;
+			this.label_code.Text = "代码：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(56, 180);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.Size = new System.Drawing.Size(821, 40);
+			this.textBox_code.TabIndex = 28;
 			// 
 			// CJT188Control
 			// 
@@ -152,6 +178,7 @@ namespace HslCommunicationDemo.Instrument
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "CJT188Control";
 			this.Size = new System.Drawing.Size(889, 232);
+			this.Load += new System.EventHandler(this.CJT188Control_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
@@ -176,6 +203,8 @@ namespace HslCommunicationDemo.Instrument
 			{
 				MessageBox.Show( "Active Code failed:" + active.Message );
 			}
+
+			textBox_code.Text = "OperateResult active = cjt.ActiveDeveice( );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -190,6 +219,8 @@ namespace HslCommunicationDemo.Instrument
 			{
 				MessageBox.Show( "Read failed: " + read.Message );
 			}
+
+			textBox_code.Text = "OperateResult<string> read = cjt.ReadAddress( );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -209,6 +240,8 @@ namespace HslCommunicationDemo.Instrument
 			{
 				MessageBox.Show( "Read failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult write = cjt.WriteAddress( \"{textBox1.Text}\" );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -227,6 +260,17 @@ namespace HslCommunicationDemo.Instrument
 			{
 				MessageBox.Show( "Read failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string[]> read = cjt.ReadStringArray( \"{textBox1.Text}\" );";
 		}
+
+		private void CJT188Control_Load( object sender, EventArgs e )
+		{
+			if (Program.Language == 2)
+			{
+				label_code.Text = "Code:";
+			}
+		}
+
 	}
 }

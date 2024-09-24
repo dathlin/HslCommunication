@@ -98,6 +98,7 @@ namespace HslCommunicationDemo
 					//userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => delta.ReadFromCoreServer( m ), "None CRC", "example: 01 03 00 00 00 01" );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( delta, nameof( delta.Station ), nameof( delta.Series ) );
 				}
 				else

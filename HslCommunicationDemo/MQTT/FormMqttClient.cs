@@ -274,6 +274,10 @@ namespace HslCommunicationDemo
 				} );
 
 				if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
+
+				textBox_code.Text = $"OperateResult send = mqttClient.PublishMessage( new MqttApplicationMessage( ) {{ QualityOfServiceLevel = " +
+					$"QualityOfServiceLevel.{level}, Topic=\"{textBox5.Text}\", " +
+					$"Retain={checkBox1.Checked.ToString( ).ToLower( )}, Payload = {(checkBox_publish_isHex.Checked ? ("\"" + textBox4.Text + "\".ToHexBytes( )") : "Encoding.UTF8.GetBytes( \"" + textBox4.Text + "\")")} }}";
 			}
 		}
 
@@ -290,15 +294,18 @@ namespace HslCommunicationDemo
 
 			if (!send.IsSuccess) MessageBox.Show( "SubscribeMessage Failed:" + send.Message );
 			else listBox1.DataSource = mqttClient.SubcribeTopics;
+
+			textBox_code.Text = $"OperateResult send = mqttClient.SubscribeMessage( new string[] {{\"{textBox5.Text}\"}} );";
 		}
 
 		private void Button8_Click( object sender, EventArgs e )
 		{
 			OperateResult send = mqttClient.UnSubscribeMessage( textBox5.Text );
 
-
 			if (!send.IsSuccess) MessageBox.Show( "UnSubscribeMessage Failed:" + send.Message );
 			else listBox1.DataSource = mqttClient.SubcribeTopics;
+
+			textBox_code.Text = $"OperateResult send = mqttClient.UnSubscribeMessage( \"{textBox5.Text}\" );";
 		}
 
 		private void button9_Click( object sender, EventArgs e )

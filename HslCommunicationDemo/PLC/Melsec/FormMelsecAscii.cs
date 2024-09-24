@@ -104,9 +104,10 @@ namespace HslCommunicationDemo
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => melsec_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 				// 特殊读取
-				control.SetDevice( melsec_net, "D100" );
+				control.SetDevice( melsec_net, "D100", DemoUtils.PlcDeviceName );
 
 				// 设置示例的代码
+				this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 				codeExampleControl.SetCodeText( melsec_net, nameof( MelsecMcUdp.EnableWriteBitToWordRegister ), "ByteTransform.IsStringReverseByteWord" );
 			}
 			else

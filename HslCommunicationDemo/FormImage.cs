@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormImage : Form
+    public partial class FormImage : System.Windows.Forms.Form
     {
         public FormImage( Bitmap bitmap )
         {

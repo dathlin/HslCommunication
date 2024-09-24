@@ -51,6 +51,8 @@
 			this.button4 = new System.Windows.Forms.Button();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label_code = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.SuspendLayout();
@@ -71,7 +73,7 @@
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(448, 254);
+			this.groupBox1.Size = new System.Drawing.Size(448, 217);
 			this.groupBox1.TabIndex = 7;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "时间格式";
@@ -151,7 +153,7 @@
 			this.textBox_date_render.Multiline = true;
 			this.textBox_date_render.Name = "textBox_date_render";
 			this.textBox_date_render.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_date_render.Size = new System.Drawing.Size(209, 191);
+			this.textBox_date_render.Size = new System.Drawing.Size(209, 154);
 			this.textBox_date_render.TabIndex = 15;
 			// 
 			// label8
@@ -200,7 +202,7 @@
 			this.groupBox5.Controls.Add(this.label4);
 			this.groupBox5.Location = new System.Drawing.Point(457, 3);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(402, 254);
+			this.groupBox5.Size = new System.Drawing.Size(402, 217);
 			this.groupBox5.TabIndex = 8;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "类型及原始数据读写测试";
@@ -208,9 +210,9 @@
 			// button12
 			// 
 			this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button12.Location = new System.Drawing.Point(294, 221);
+			this.button12.Location = new System.Drawing.Point(294, 184);
 			this.button12.Name = "button12";
-			this.button12.Size = new System.Drawing.Size(112, 28);
+			this.button12.Size = new System.Drawing.Size(102, 28);
 			this.button12.TabIndex = 26;
 			this.button12.Text = "PLC 型号";
 			this.button12.UseVisualStyleBackColor = true;
@@ -219,7 +221,7 @@
 			// button5
 			// 
 			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button5.Location = new System.Drawing.Point(208, 221);
+			this.button5.Location = new System.Drawing.Point(208, 184);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(80, 28);
 			this.button5.TabIndex = 16;
@@ -230,7 +232,7 @@
 			// textBox7
 			// 
 			this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.textBox7.Location = new System.Drawing.Point(64, 223);
+			this.textBox7.Location = new System.Drawing.Point(64, 186);
 			this.textBox7.Name = "textBox7";
 			this.textBox7.Size = new System.Drawing.Size(64, 23);
 			this.textBox7.TabIndex = 15;
@@ -240,7 +242,7 @@
 			// 
 			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(10, 226);
+			this.label7.Location = new System.Drawing.Point(10, 189);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(44, 17);
 			this.label7.TabIndex = 14;
@@ -255,7 +257,7 @@
 			this.textBox5.Multiline = true;
 			this.textBox5.Name = "textBox5";
 			this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox5.Size = new System.Drawing.Size(328, 161);
+			this.textBox5.Size = new System.Drawing.Size(328, 124);
 			this.textBox5.TabIndex = 13;
 			this.textBox5.Text = "64 00";
 			// 
@@ -290,7 +292,7 @@
 			// button4
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button4.Location = new System.Drawing.Point(132, 221);
+			this.button4.Location = new System.Drawing.Point(132, 184);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(73, 28);
 			this.button4.TabIndex = 9;
@@ -317,9 +319,32 @@
 			this.label4.TabIndex = 6;
 			this.label4.Text = "地址：";
 			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(67, 221);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(792, 40);
+			this.textBox_code.TabIndex = 9;
+			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(3, 224);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 15;
+			this.label_code.Text = "代码：";
+			// 
 			// AllenBrandlyControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.label_code);
+			this.Controls.Add(this.textBox_code);
 			this.Controls.Add(this.groupBox5);
 			this.Controls.Add(this.groupBox1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -331,6 +356,7 @@
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox5.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -359,5 +385,7 @@
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label_code;
 	}
 }

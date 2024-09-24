@@ -111,6 +111,7 @@ namespace HslCommunicationDemo
 					control.SetDevice( omronHostLink, "D100" );
 
 					// 设置示例代码
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( omronHostLink, nameof( omronHostLink.UnitNumber ), "ByteTransform.DataFormat" );
 				}
 				else

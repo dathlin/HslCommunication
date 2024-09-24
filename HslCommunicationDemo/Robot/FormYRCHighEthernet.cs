@@ -23,7 +23,7 @@ namespace HslCommunicationDemo
 		}
 
 
-		private YRCHighEthernet YRC1000Tcp = null;
+		private YRCHighEthernet yrc = null;
 		private CodeExampleControl codeExampleControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -59,6 +59,8 @@ namespace HslCommunicationDemo
 				tabPage1.Text = "Single Data Read test";
 				tabPage2.Text = "Single Data Write test";
 				label22.Text = "Parameter name of robot";
+
+				label_code.Text = "Code:";
 			}
 		}
 
@@ -69,7 +71,6 @@ namespace HslCommunicationDemo
 		#region Connect And Close
 
 
-
 		private void button1_Click( object sender, EventArgs e )
 		{
 			if(!int.TryParse(textBox2.Text,out int port))
@@ -78,8 +79,8 @@ namespace HslCommunicationDemo
 				return;
 			}
 			
-			YRC1000Tcp = new YRCHighEthernet( textBox1.Text, port );
-			YRC1000Tcp.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
+			yrc = new YRCHighEthernet( textBox1.Text, port );
+			yrc.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 			//YRC1000Tcp.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 
 			try
@@ -90,7 +91,8 @@ namespace HslCommunicationDemo
 				panel2.Enabled = true;
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "robot", YRC1000Tcp );
+				codeExampleControl.SetCodeText( "robot", yrc );
+				textBox_code.Text = $"YRCHighEthernet yrc = new YRCHighEthernet( \"{textBox1.Text}\", {port} );";
 			}
 			catch (Exception ex)
 			{
@@ -172,7 +174,7 @@ namespace HslCommunicationDemo
 			}
 
 			byte[] dataPart = string.IsNullOrEmpty( textBox_dataPart.Text ) ? new byte[0] : textBox_dataPart.Text.ToHexBytes( );
-			OperateResult<byte[]> read = YRC1000Tcp.ReadCommand( (ushort)command.Content, (ushort)dataAddress.Content, (byte)dataAttribute.Content, (byte)handle.Content, dataPart );
+			OperateResult<byte[]> read = yrc.ReadCommand( (ushort)command.Content, (ushort)dataAddress.Content, (byte)dataAttribute.Content, (byte)handle.Content, dataPart );
 			if (!read.IsSuccess)
 			{
 				MessageBox.Show( "Read failed: " + read.Message );
@@ -187,12 +189,14 @@ namespace HslCommunicationDemo
 			{
 				textBox7.Text = HslCommunication.BasicFramework.SoftBasic.GetAsciiStringRender( read.Content );
 			}
+
+			textBox_code2.Text = $"OperateResult<byte[]> read = yrc.ReadCommand( {command.Content}, {dataAddress.Content}, {dataAttribute.Content}, {handle.Content}, \"{textBox_dataPart.Text}\".ToHexBytes( ) );";
 		}
 
 		private void button3_Click( object sender, EventArgs e )
 		{
 			// 报警信息
-			OperateResult<YRCAlarmItem[]> read = YRC1000Tcp.ReadAlarms( );
+			OperateResult<YRCAlarmItem[]> read = yrc.ReadAlarms( );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToJsonString( );
@@ -201,12 +205,14 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<YRCAlarmItem[]> read = yrc.ReadAlarms( );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
 		{
 			// 关节坐标
-			OperateResult<string[]> read = YRC1000Tcp.ReadPose( );
+			OperateResult<string[]> read = yrc.ReadPose( );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToJsonString( );
@@ -215,12 +221,14 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string[]> read = yrc.ReadPose( );";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
 		{
 			// 姿态坐标
-			OperateResult<YRCRobotData> read = YRC1000Tcp.ReadPOSC( comboBox1.SelectedIndex, true );
+			OperateResult<YRCRobotData> read = yrc.ReadPOSC( comboBox1.SelectedIndex, true );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToJsonString( );
@@ -229,12 +237,14 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<YRCRobotData> read = yrc.ReadPOSC( {comboBox1.SelectedIndex}, true );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
 		{
 			// 状态读取
-			OperateResult<bool[]> read = YRC1000Tcp.ReadStats( );
+			OperateResult<bool[]> read = yrc.ReadStats( );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine +
@@ -257,60 +267,76 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<bool[]> read = yrc.ReadStats( );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
 		{
 			// 程序名读取
-			OperateResult<string[]> read = YRC1000Tcp.ReadJSeq( );
+			OperateResult<string[]> read = yrc.ReadJSeq( );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine +
-					"程序名: " + read.Content[0] + Environment.NewLine +
-					"行编号: " + read.Content[1] + Environment.NewLine +
-					"步编号: " + read.Content[2] + Environment.NewLine +
-					"速度超出值: " + read.Content[3] + Environment.NewLine;
+					"[0]程序名: "     + read.Content[0] + Environment.NewLine +
+					"[1]行编号: "     + read.Content[1] + Environment.NewLine +
+					"[2]步编号: "     + read.Content[2] + Environment.NewLine +
+					"[3]速度超出值: " + read.Content[3] + Environment.NewLine;
 			}
 			else
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string[]> read = yrc.ReadJSeq( );"; 
 		}
 
 		private void button8_Click( object sender, EventArgs e )
 		{
 			// 字节变量读取
-			DemoUtils.ReadResultRender( YRC1000Tcp.ReadByteVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+			DemoUtils.ReadResultRender( yrc.ReadByteVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+
+			textBox_code.Text = $"OperateResult<byte> read = yrc.ReadByteVariable( ushort.Parse( \"{textBox5.Text}\" ) )";
 		}
 
 		private void button9_Click( object sender, EventArgs e )
 		{
 			// 整型读取
-			DemoUtils.ReadResultRender( YRC1000Tcp.ReadIntegerVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+			DemoUtils.ReadResultRender( yrc.ReadIntegerVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+
+			textBox_code.Text = $"OperateResult<short> read = yrc.ReadIntegerVariable( ushort.Parse( \"{textBox5.Text}\" ) )";
 		}
 
 		private void button10_Click( object sender, EventArgs e )
 		{
 			// 双整形读取
-			DemoUtils.ReadResultRender( YRC1000Tcp.ReadDoubleIntegerVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+			DemoUtils.ReadResultRender( yrc.ReadDoubleIntegerVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+
+			textBox_code.Text = $"OperateResult<int> read = yrc.ReadDoubleIntegerVariable( ushort.Parse( \"{textBox5.Text}\" ) )";
 		}
 
 		private void button11_Click( object sender, EventArgs e )
 		{
 			// 实数读取
-			DemoUtils.ReadResultRender( YRC1000Tcp.ReadRealVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+			DemoUtils.ReadResultRender( yrc.ReadRealVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+
+			textBox_code.Text = $"OperateResult<float> read = yrc.ReadRealVariable( ushort.Parse( \"{textBox5.Text}\" ) )";
 		}
 
 		private void button12_Click( object sender, EventArgs e )
 		{
 			// 字符串读取
-			DemoUtils.ReadResultRender( YRC1000Tcp.ReadStringVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+			DemoUtils.ReadResultRender( yrc.ReadStringVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+
+			textBox_code.Text = $"OperateResult<string> read = yrc.ReadStringVariable( ushort.Parse( \"{textBox5.Text}\" ) )";
 		}
 
 		private void button19_Click( object sender, EventArgs e )
 		{
 			// 字符串写入
-			DemoUtils.WriteResultRender( YRC1000Tcp.WriteStringVariable( ushort.Parse( textBox3.Text ), textBox6.Text ), textBox3.Text );
+			DemoUtils.WriteResultRender( yrc.WriteStringVariable( ushort.Parse( textBox3.Text ), textBox6.Text ), textBox3.Text );
+
+			textBox_code.Text = $"OperateResult write = yrc.WriteStringVariable( ushort.Parse( \"{textBox3.Text}\" ), \"{textBox6.Text}\" )";
 		}
 
 		private void button20_Click( object sender, EventArgs e )
@@ -318,12 +344,14 @@ namespace HslCommunicationDemo
 			// 整形写入
 			try
 			{
-				DemoUtils.WriteResultRender( YRC1000Tcp.WriteIntegerVariable( ushort.Parse( textBox3.Text ), short.Parse( textBox6.Text ) ), textBox3.Text );
+				DemoUtils.WriteResultRender( yrc.WriteIntegerVariable( ushort.Parse( textBox3.Text ), short.Parse( textBox6.Text ) ), textBox3.Text );
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show( "Write Failed: " + ex.Message );
 			}
+
+			textBox_code.Text = $"OperateResult write = yrc.WriteIntegerVariable( ushort.Parse( \"{textBox3.Text}\" ), short.Parse( \"{textBox6.Text}\" ) )";
 		}
 
 		private void button26_Click( object sender, EventArgs e )
@@ -331,12 +359,14 @@ namespace HslCommunicationDemo
 			// 双整型写入
 			try
 			{
-				DemoUtils.WriteResultRender( YRC1000Tcp.WriteDoubleIntegerVariable( ushort.Parse( textBox3.Text ), int.Parse( textBox6.Text ) ), textBox3.Text );
+				DemoUtils.WriteResultRender( yrc.WriteDoubleIntegerVariable( ushort.Parse( textBox3.Text ), int.Parse( textBox6.Text ) ), textBox3.Text );
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show( "Write Failed: " + ex.Message );
 			}
+
+			textBox_code.Text = $"OperateResult write = yrc.WriteDoubleIntegerVariable( ushort.Parse( \"{textBox3.Text}\" ), int.Parse( \"{textBox6.Text}\" ) )";
 		}
 
 		private void button27_Click( object sender, EventArgs e )
@@ -344,12 +374,14 @@ namespace HslCommunicationDemo
 			// 实数写入
 			try
 			{
-				DemoUtils.WriteResultRender( YRC1000Tcp.WriteRealVariable( ushort.Parse( textBox3.Text ), float.Parse( textBox6.Text ) ), textBox3.Text );
+				DemoUtils.WriteResultRender( yrc.WriteRealVariable( ushort.Parse( textBox3.Text ), float.Parse( textBox6.Text ) ), textBox3.Text );
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show( "Write Failed: " + ex.Message );
 			}
+
+			textBox_code.Text = $"OperateResult write = yrc.WriteRealVariable( ushort.Parse( \"{textBox3.Text}\" ), float.Parse( \"{textBox6.Text}\" ) )";
 		}
 
 		private void button28_Click( object sender, EventArgs e )
@@ -357,18 +389,20 @@ namespace HslCommunicationDemo
 			// 字节写入
 			try
 			{
-				DemoUtils.WriteResultRender( YRC1000Tcp.WriteByteVariable( ushort.Parse( textBox3.Text ), byte.Parse( textBox6.Text ) ), textBox3.Text );
+				DemoUtils.WriteResultRender( yrc.WriteByteVariable( ushort.Parse( textBox3.Text ), byte.Parse( textBox6.Text ) ), textBox3.Text );
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show( "Write Failed: " + ex.Message );
 			}
+
+			textBox_code.Text = $"OperateResult write = yrc.WriteByteVariable( ushort.Parse( \"{textBox3.Text}\" ), byte.Parse( \"{textBox6.Text}\" ) )";
 		}
 
 		private void button13_Click( object sender, EventArgs e )
 		{
 			// HOLD ON
-			OperateResult op = YRC1000Tcp.Hold( true );
+			OperateResult op = yrc.Hold( true );
 			if (op.IsSuccess)
 			{
 				MessageBox.Show( "HOLD ON Success" );
@@ -377,12 +411,14 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "HOLD ON Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = yrc.Hold( true );";
 		}
 
 		private void button15_Click( object sender, EventArgs e )
 		{
 			// HOLD OFF
-			OperateResult op = YRC1000Tcp.Hold( false );
+			OperateResult op = yrc.Hold( false );
 			if (op.IsSuccess)
 			{
 				MessageBox.Show( "HOLD OFF Success" );
@@ -391,12 +427,14 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "HOLD OFF Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = yrc.Hold( false );";
 		}
 
 		private void button16_Click( object sender, EventArgs e )
 		{
 			// RESET
-			OperateResult op = YRC1000Tcp.Reset( );
+			OperateResult op = yrc.Reset( );
 			if (op.IsSuccess)
 			{
 				MessageBox.Show( "RESET Success" );
@@ -405,12 +443,14 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "RESET Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = yrc.Reset( );";
 		}
 
 		private void button17_Click( object sender, EventArgs e )
 		{
 			// Cancel
-			OperateResult op = YRC1000Tcp.Cancel( );
+			OperateResult op = yrc.Cancel( );
 			if (op.IsSuccess)
 			{
 				MessageBox.Show( "Cancel Success" );
@@ -419,12 +459,14 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Cancel Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = yrc.Cancel( );";
 		}
 
 		private void button21_Click( object sender, EventArgs e )
 		{
 			// SVON ON
-			OperateResult op = YRC1000Tcp.Svon( true );
+			OperateResult op = yrc.Svon( true );
 			if (op.IsSuccess)
 			{
 				MessageBox.Show( "SVON ON Success" );
@@ -433,12 +475,14 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "SVON ON Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = yrc.Svon( true );";
 		}
 
 		private void button22_Click( object sender, EventArgs e )
 		{
 			// SVON OFF
-			OperateResult op = YRC1000Tcp.Svon( false );
+			OperateResult op = yrc.Svon( false );
 			if (op.IsSuccess)
 			{
 				MessageBox.Show( "SVON OFF Success" );
@@ -447,12 +491,14 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "SVON OFF Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = yrc.Svon( false );";
 		}
 
 		private void button18_Click( object sender, EventArgs e )
 		{
 			// 启动程序
-			OperateResult op = YRC1000Tcp.Start( );
+			OperateResult op = yrc.Start( );
 			if (op.IsSuccess)
 			{
 				MessageBox.Show( "Start Success" );
@@ -461,12 +507,14 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Start Failed: " + op.Message );
 			}
+
+			textBox_code.Text = $"OperateResult op = yrc.Start( );";
 		}
 
 
 		private void button23_Click( object sender, EventArgs e )
 		{
-			OperateResult<DateTime> read = YRC1000Tcp.ReadManagementTime( 1 );
+			OperateResult<DateTime> read = yrc.ReadManagementTime( 1 );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
@@ -475,11 +523,13 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read = yrc.ReadManagementTime( 1 );";
 		}
 
 		private void button24_Click( object sender, EventArgs e )
 		{
-			OperateResult<DateTime> read = YRC1000Tcp.ReadManagementTime( 10 );
+			OperateResult<DateTime> read = yrc.ReadManagementTime( 10 );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
@@ -488,11 +538,13 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read = yrc.ReadManagementTime( 10 );";
 		}
 
 		private void button25_Click( object sender, EventArgs e )
 		{
-			OperateResult<DateTime> read = YRC1000Tcp.ReadManagementTime( 210 );
+			OperateResult<DateTime> read = yrc.ReadManagementTime( 210 );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
@@ -501,11 +553,13 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read = yrc.ReadManagementTime( 210 );";
 		}
 
 		private void button32_Click( object sender, EventArgs e )
 		{
-			OperateResult<DateTime> read = YRC1000Tcp.ReadManagementTime( 110 );
+			OperateResult<DateTime> read = yrc.ReadManagementTime( 110 );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
@@ -514,10 +568,12 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read = yrc.ReadManagementTime( 110 );";
 		}
 		private void button31_Click( object sender, EventArgs e )
 		{
-			OperateResult<string> read = YRC1000Tcp.ReadManagementTimeSpan( 1 );
+			OperateResult<string> read = yrc.ReadManagementTimeSpan( 1 );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
@@ -526,11 +582,13 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = yrc.ReadManagementTimeSpan( 1 );";
 		}
 
 		private void button30_Click( object sender, EventArgs e )
 		{
-			OperateResult<string> read = YRC1000Tcp.ReadManagementTimeSpan( 10 );
+			OperateResult<string> read = yrc.ReadManagementTimeSpan( 10 );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
@@ -539,11 +597,13 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = yrc.ReadManagementTimeSpan( 10 );";
 		}
 
 		private void button29_Click( object sender, EventArgs e )
 		{
-			OperateResult<string> read = YRC1000Tcp.ReadManagementTimeSpan( 210 );
+			OperateResult<string> read = yrc.ReadManagementTimeSpan( 210 );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
@@ -552,11 +612,13 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = yrc.ReadManagementTimeSpan( 210 );";
 		}
 
 		private void button33_Click( object sender, EventArgs e )
 		{
-			OperateResult<string> read = YRC1000Tcp.ReadManagementTimeSpan( 110 );
+			OperateResult<string> read = yrc.ReadManagementTimeSpan( 110 );
 			if (read.IsSuccess)
 			{
 				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToString( );
@@ -565,6 +627,8 @@ namespace HslCommunicationDemo
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = yrc.ReadManagementTimeSpan( 110 );";
 		}
 		#endregion
 

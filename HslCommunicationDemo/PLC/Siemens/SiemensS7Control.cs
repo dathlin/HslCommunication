@@ -42,9 +42,9 @@ namespace HslCommunicationDemo.PLC.Siemens
 		private System.Windows.Forms.Button button_force_on;
 		private System.Windows.Forms.Button button_force_off;
 		private System.Windows.Forms.Label label2;
-		private ToolTip toolTip1;
+		private System.Windows.Forms.Label label_code;
+		private TextBox textBox_code;
 		private System.ComponentModel.IContainer components;
-		private System.Windows.Forms.GroupBox groupBox2;
 
 		public SiemensS7Control( )
 		{
@@ -54,7 +54,6 @@ namespace HslCommunicationDemo.PLC.Siemens
 		private void InitializeComponent( )
 		{
 			this.components = new System.ComponentModel.Container();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button_force_off = new System.Windows.Forms.Button();
 			this.button_force_clear = new System.Windows.Forms.Button();
@@ -82,54 +81,15 @@ namespace HslCommunicationDemo.PLC.Siemens
 			this.label10 = new System.Windows.Forms.Label();
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
-			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.groupBox2.SuspendLayout();
+			this.label_code = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.label2);
-			this.groupBox2.Controls.Add(this.button_force_off);
-			this.groupBox2.Controls.Add(this.button_force_clear);
-			this.groupBox2.Controls.Add(this.button_force_on);
-			this.groupBox2.Controls.Add(this.label1);
-			this.groupBox2.Controls.Add(this.textBox_force_address);
-			this.groupBox2.Controls.Add(this.button3);
-			this.groupBox2.Controls.Add(this.button_write_dtltime);
-			this.groupBox2.Controls.Add(this.button_read_dtltime);
-			this.groupBox2.Controls.Add(this.button_write_Date);
-			this.groupBox2.Controls.Add(this.button_read_date);
-			this.groupBox2.Controls.Add(this.button12);
-			this.groupBox2.Controls.Add(this.button10);
-			this.groupBox2.Controls.Add(this.button11);
-			this.groupBox2.Controls.Add(this.label5);
-			this.groupBox2.Controls.Add(this.button14);
-			this.groupBox2.Controls.Add(this.button8);
-			this.groupBox2.Controls.Add(this.button_read_string);
-			this.groupBox2.Controls.Add(this.button7);
-			this.groupBox2.Controls.Add(this.button4);
-			this.groupBox2.Controls.Add(this.label19);
-			this.groupBox2.Controls.Add(this.button6);
-			this.groupBox2.Controls.Add(this.button5);
-			this.groupBox2.Controls.Add(this.textBox7);
-			this.groupBox2.Controls.Add(this.label10);
-			this.groupBox2.Controls.Add(this.textBox8);
-			this.groupBox2.Controls.Add(this.label9);
-			this.groupBox2.Location = new System.Drawing.Point(3, 3);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(895, 226);
-			this.groupBox2.TabIndex = 1;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "S7 Functions";
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.ForeColor = System.Drawing.Color.Red;
-			this.label2.Location = new System.Drawing.Point(487, 28);
+			this.label2.Location = new System.Drawing.Point(492, 9);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(190, 17);
 			this.label2.TabIndex = 57;
@@ -137,7 +97,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button_force_off
 			// 
-			this.button_force_off.Location = new System.Drawing.Point(778, 55);
+			this.button_force_off.Location = new System.Drawing.Point(783, 34);
 			this.button_force_off.Name = "button_force_off";
 			this.button_force_off.Size = new System.Drawing.Size(91, 28);
 			this.button_force_off.TabIndex = 56;
@@ -147,7 +107,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button_force_clear
 			// 
-			this.button_force_clear.Location = new System.Drawing.Point(681, 89);
+			this.button_force_clear.Location = new System.Drawing.Point(686, 68);
 			this.button_force_clear.Name = "button_force_clear";
 			this.button_force_clear.Size = new System.Drawing.Size(188, 28);
 			this.button_force_clear.TabIndex = 55;
@@ -157,7 +117,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button_force_on
 			// 
-			this.button_force_on.Location = new System.Drawing.Point(681, 55);
+			this.button_force_on.Location = new System.Drawing.Point(686, 34);
 			this.button_force_on.Name = "button_force_on";
 			this.button_force_on.Size = new System.Drawing.Size(91, 28);
 			this.button_force_on.TabIndex = 54;
@@ -168,7 +128,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(487, 61);
+			this.label1.Location = new System.Drawing.Point(492, 40);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(44, 17);
 			this.label1.TabIndex = 52;
@@ -176,7 +136,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// textBox_force_address
 			// 
-			this.textBox_force_address.Location = new System.Drawing.Point(555, 58);
+			this.textBox_force_address.Location = new System.Drawing.Point(560, 37);
 			this.textBox_force_address.Name = "textBox_force_address";
 			this.textBox_force_address.Size = new System.Drawing.Size(120, 23);
 			this.textBox_force_address.TabIndex = 53;
@@ -184,7 +144,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(317, 17);
+			this.button3.Location = new System.Drawing.Point(267, 3);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(82, 28);
 			this.button3.TabIndex = 35;
@@ -194,7 +154,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button_write_dtltime
 			// 
-			this.button_write_dtltime.Location = new System.Drawing.Point(383, 190);
+			this.button_write_dtltime.Location = new System.Drawing.Point(388, 160);
 			this.button_write_dtltime.Name = "button_write_dtltime";
 			this.button_write_dtltime.Size = new System.Drawing.Size(89, 28);
 			this.button_write_dtltime.TabIndex = 51;
@@ -204,7 +164,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button_read_dtltime
 			// 
-			this.button_read_dtltime.Location = new System.Drawing.Point(295, 190);
+			this.button_read_dtltime.Location = new System.Drawing.Point(300, 160);
 			this.button_read_dtltime.Name = "button_read_dtltime";
 			this.button_read_dtltime.Size = new System.Drawing.Size(82, 28);
 			this.button_read_dtltime.TabIndex = 50;
@@ -214,7 +174,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button_write_Date
 			// 
-			this.button_write_Date.Location = new System.Drawing.Point(383, 156);
+			this.button_write_Date.Location = new System.Drawing.Point(388, 127);
 			this.button_write_Date.Name = "button_write_Date";
 			this.button_write_Date.Size = new System.Drawing.Size(89, 28);
 			this.button_write_Date.TabIndex = 49;
@@ -224,7 +184,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button_read_date
 			// 
-			this.button_read_date.Location = new System.Drawing.Point(295, 156);
+			this.button_read_date.Location = new System.Drawing.Point(300, 127);
 			this.button_read_date.Name = "button_read_date";
 			this.button_read_date.Size = new System.Drawing.Size(82, 28);
 			this.button_read_date.TabIndex = 48;
@@ -234,7 +194,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button12
 			// 
-			this.button12.Location = new System.Drawing.Point(13, 185);
+			this.button12.Location = new System.Drawing.Point(11, 156);
 			this.button12.Name = "button12";
 			this.button12.Size = new System.Drawing.Size(82, 28);
 			this.button12.TabIndex = 47;
@@ -244,7 +204,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button10
 			// 
-			this.button10.Location = new System.Drawing.Point(383, 121);
+			this.button10.Location = new System.Drawing.Point(388, 94);
 			this.button10.Name = "button10";
 			this.button10.Size = new System.Drawing.Size(89, 28);
 			this.button10.TabIndex = 45;
@@ -254,7 +214,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button11
 			// 
-			this.button11.Location = new System.Drawing.Point(295, 122);
+			this.button11.Location = new System.Drawing.Point(300, 95);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(82, 28);
 			this.button11.TabIndex = 46;
@@ -265,7 +225,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(116, 191);
+			this.label5.Location = new System.Drawing.Point(121, 162);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(15, 17);
 			this.label5.TabIndex = 44;
@@ -274,7 +234,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button14
 			// 
-			this.button14.Location = new System.Drawing.Point(383, 87);
+			this.button14.Location = new System.Drawing.Point(388, 63);
 			this.button14.Name = "button14";
 			this.button14.Size = new System.Drawing.Size(89, 28);
 			this.button14.TabIndex = 36;
@@ -284,7 +244,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(383, 55);
+			this.button8.Location = new System.Drawing.Point(388, 34);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(89, 28);
 			this.button8.TabIndex = 43;
@@ -294,7 +254,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button_read_string
 			// 
-			this.button_read_string.Location = new System.Drawing.Point(295, 88);
+			this.button_read_string.Location = new System.Drawing.Point(300, 64);
 			this.button_read_string.Name = "button_read_string";
 			this.button_read_string.Size = new System.Drawing.Size(82, 28);
 			this.button_read_string.TabIndex = 37;
@@ -304,7 +264,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(295, 55);
+			this.button7.Location = new System.Drawing.Point(300, 34);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(82, 28);
 			this.button7.TabIndex = 38;
@@ -314,7 +274,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(17, 17);
+			this.button4.Location = new System.Drawing.Point(3, 3);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(82, 28);
 			this.button4.TabIndex = 40;
@@ -325,7 +285,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// label19
 			// 
 			this.label19.ForeColor = System.Drawing.Color.Red;
-			this.label19.Location = new System.Drawing.Point(55, 117);
+			this.label19.Location = new System.Drawing.Point(60, 93);
 			this.label19.Name = "label19";
 			this.label19.Size = new System.Drawing.Size(147, 58);
 			this.label19.TabIndex = 39;
@@ -333,7 +293,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(219, 17);
+			this.button6.Location = new System.Drawing.Point(179, 3);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(82, 28);
 			this.button6.TabIndex = 42;
@@ -343,7 +303,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(119, 17);
+			this.button5.Location = new System.Drawing.Point(91, 3);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(82, 28);
 			this.button5.TabIndex = 41;
@@ -353,7 +313,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// textBox7
 			// 
-			this.textBox7.Location = new System.Drawing.Point(71, 91);
+			this.textBox7.Location = new System.Drawing.Point(76, 67);
 			this.textBox7.Name = "textBox7";
 			this.textBox7.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox7.Size = new System.Drawing.Size(218, 23);
@@ -362,7 +322,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(3, 61);
+			this.label10.Location = new System.Drawing.Point(8, 40);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(44, 17);
 			this.label10.TabIndex = 31;
@@ -370,7 +330,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// textBox8
 			// 
-			this.textBox8.Location = new System.Drawing.Point(71, 58);
+			this.textBox8.Location = new System.Drawing.Point(76, 37);
 			this.textBox8.Name = "textBox8";
 			this.textBox8.Size = new System.Drawing.Size(218, 23);
 			this.textBox8.TabIndex = 32;
@@ -379,22 +339,71 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(3, 93);
+			this.label9.Location = new System.Drawing.Point(8, 69);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(32, 17);
 			this.label9.TabIndex = 33;
 			this.label9.Text = "值：";
 			// 
+			// label_code
+			// 
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(8, 199);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 58;
+			this.label_code.Text = "代码：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(63, 194);
+			this.textBox_code.MinimumSize = new System.Drawing.Size(500, 40);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(911, 43);
+			this.textBox_code.TabIndex = 59;
+			// 
 			// SiemensS7Control
 			// 
-			this.Controls.Add(this.groupBox2);
+			this.AutoScroll = true;
+			this.Controls.Add(this.textBox_code);
+			this.Controls.Add(this.label_code);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.button_force_off);
+			this.Controls.Add(this.button4);
+			this.Controls.Add(this.button_force_clear);
+			this.Controls.Add(this.label9);
+			this.Controls.Add(this.button_force_on);
+			this.Controls.Add(this.textBox8);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.label10);
+			this.Controls.Add(this.textBox_force_address);
+			this.Controls.Add(this.textBox7);
+			this.Controls.Add(this.button3);
+			this.Controls.Add(this.button5);
+			this.Controls.Add(this.button_write_dtltime);
+			this.Controls.Add(this.button6);
+			this.Controls.Add(this.button_read_dtltime);
+			this.Controls.Add(this.label19);
+			this.Controls.Add(this.button_write_Date);
+			this.Controls.Add(this.button7);
+			this.Controls.Add(this.button_read_date);
+			this.Controls.Add(this.button_read_string);
+			this.Controls.Add(this.button12);
+			this.Controls.Add(this.button8);
+			this.Controls.Add(this.button10);
+			this.Controls.Add(this.button14);
+			this.Controls.Add(this.button11);
+			this.Controls.Add(this.label5);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "SiemensS7Control";
-			this.Size = new System.Drawing.Size(901, 232);
+			this.Size = new System.Drawing.Size(977, 241);
 			this.Load += new System.EventHandler(this.SiemensS7Control_Load);
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -417,6 +426,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Failed: " + result.Message );
 			}
+
+			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.HotStart( );";
 		}
 
 		private async void button5_Click( object sender, EventArgs e )
@@ -431,6 +442,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Failed: " + result.Message );
 			}
+
+			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.ColdStart( );";
 		}
 
 		private async void button6_Click( object sender, EventArgs e )
@@ -445,6 +458,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Failed: " + result.Message );
 			}
+
+			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.Stop( );";
 		}
 
 		private async void button3_Click( object sender, EventArgs e )
@@ -459,6 +474,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadOrderNumber( );";
 		}
 
 		private async void button7_Click( object sender, EventArgs e )
@@ -472,6 +489,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Failed:" + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadDateTime( \"{textBox8.Text}\" );";
 		}
 
 		private async void button8_Click( object sender, EventArgs e )
@@ -481,6 +500,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 				DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
 			else
 				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.Write( \"{textBox8.Text}\", DateTime.Parse( \"{textBox7.Text}\" ) );";
 		}
 
 		private async void button_read_string_Click( object sender, EventArgs e )
@@ -495,12 +516,16 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Failed:" + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadString( \"{textBox8.Text}\" );";
 		}
 
 		private async void button14_Click( object sender, EventArgs e )
 		{
 			// string写入
 			DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.Write( \"{textBox8.Text}\", \"{textBox7.Text}\" );";
 		}
 
 		private async void button11_Click( object sender, EventArgs e )
@@ -515,12 +540,16 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Failed:" + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadWString( \"{textBox8.Text}\" );";
 		}
 
 		private async void button10_Click( object sender, EventArgs e )
 		{
 			// WString 写入
 			DemoUtils.WriteResultRender( await siemensTcpNet.WriteWStringAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteWString( \"{textBox8.Text}\", \"{textBox7.Text}\" );";
 		}
 
 		private async void button_read_date_Click( object sender, EventArgs e )
@@ -534,6 +563,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Failed:" + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadDate( \"{textBox8.Text}\" );";
 		}
 
 		private async void button_write_Date_Click( object sender, EventArgs e )
@@ -543,6 +574,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 				DemoUtils.WriteResultRender( await siemensTcpNet.WriteDateAsync( textBox8.Text, value ), textBox8.Text );
 			else
 				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteDate( \"{textBox8.Text}\", DateTime.Parse( \"{textBox7.Text}\" ) );";
 		}
 
 		private async void button_read_dtltime_Click( object sender, EventArgs e )
@@ -556,6 +589,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Failed:" + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadDTLDataTime( \"{textBox8.Text}\" );";
 		}
 
 		private async void button_write_dtltime_Click( object sender, EventArgs e )
@@ -565,12 +600,16 @@ namespace HslCommunicationDemo.PLC.Siemens
 				DemoUtils.WriteResultRender( await siemensTcpNet.WriteDTLTimeAsync( textBox8.Text, value ), textBox8.Text );
 			else
 				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
+
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteDTLTime( \"{textBox8.Text}\", DateTime.Parse( \"{textBox7.Text}\" ) );";
+
 		}
 
 		private void label5_Click( object sender, EventArgs e )
 		{
 
 		}
+
 		private void button_force_on_Click( object sender, EventArgs e )
 		{
 			OperateResult force = siemensTcpNet.ForceBool( textBox_force_address.Text, true );
@@ -582,6 +621,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Force true failed:" + force.Message );
 			}
+
+			textBox_code.Text = $"OperateResult force = {DemoUtils.PlcDeviceName}.ForceBool( \"{textBox_force_address.Text}\", true );";
 		}
 
 		private void button_force_off_Click( object sender, EventArgs e )
@@ -595,6 +636,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Force false failed:" + force.Message );
 			}
+
+			textBox_code.Text = $"OperateResult force = {DemoUtils.PlcDeviceName}.ForceBool( \"{textBox_force_address.Text}\", false );";
 		}
 
 		private void button_force_clear_Click( object sender, EventArgs e )
@@ -608,6 +651,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				MessageBox.Show( "Force true failed:" + force.Message );
 			}
+
+			textBox_code.Text = $"OperateResult force = {DemoUtils.PlcDeviceName}.CancelAllForce( );";
 		}
 
 		private PipeTcpNet pipeSocket;
@@ -710,26 +755,27 @@ namespace HslCommunicationDemo.PLC.Siemens
 				button_force_on.Text = "Force On";
 
 				label2.Text = "The enforcement feature is currently only valid for 200smart";
+				label_code.Text = "Code:";
 			}
 
-			toolTip1.SetToolTip( button7, "plc.ReadDateTime( string address )" );
-			toolTip1.SetToolTip( button8, "plc.Write( string address, DateTime dateTime )" );
-			toolTip1.SetToolTip( button_read_string, "plc.ReadString( string address )" );
-			toolTip1.SetToolTip( button14, "plc.Write( string address, string value )" );
-			toolTip1.SetToolTip( button11, "plc.ReadWString( string address )" );
-			toolTip1.SetToolTip( button10, "plc.WriteWString( string address, string value )" );
-			toolTip1.SetToolTip( button_read_date, "plc.ReadDate( string address )" );
-			toolTip1.SetToolTip( button_write_Date, "plc.WriteDate( string address, DateTime dateTime )" );
-			toolTip1.SetToolTip( button_read_dtltime, "plc.ReadDTLDataTime( string address )" );
-			toolTip1.SetToolTip( button_write_dtltime, "plc.WriteDTLTime( string address, DateTime dateTime )" );
+			//toolTip1.SetToolTip( button7, "plc.ReadDateTime( string address )" );
+			//toolTip1.SetToolTip( button8, "plc.Write( string address, DateTime dateTime )" );
+			//toolTip1.SetToolTip( button_read_string, "plc.ReadString( string address )" );
+			//toolTip1.SetToolTip( button14, "plc.Write( string address, string value )" );
+			//toolTip1.SetToolTip( button11, "plc.ReadWString( string address )" );
+			//toolTip1.SetToolTip( button10, "plc.WriteWString( string address, string value )" );
+			//toolTip1.SetToolTip( button_read_date, "plc.ReadDate( string address )" );
+			//toolTip1.SetToolTip( button_write_Date, "plc.WriteDate( string address, DateTime dateTime )" );
+			//toolTip1.SetToolTip( button_read_dtltime, "plc.ReadDTLDataTime( string address )" );
+			//toolTip1.SetToolTip( button_write_dtltime, "plc.WriteDTLTime( string address, DateTime dateTime )" );
 
-			toolTip1.SetToolTip( button_force_on, "plc.ForceBool( string address, true )" );
-			toolTip1.SetToolTip( button_force_off, "plc.ForceBool( string address, false )" );
-			toolTip1.SetToolTip( button_force_clear, "plc.CancelAllForce( );" );
-			toolTip1.SetToolTip( button4, "plc.HotStart( )" );
-			toolTip1.SetToolTip( button5, "plc.ColdStart( )" );
-			toolTip1.SetToolTip( button6, "plc.Stop( )" );
-			toolTip1.SetToolTip( button3, "plc.ReadOrderNumber( )" );
+			//toolTip1.SetToolTip( button_force_on, "plc.ForceBool( string address, true )" );
+			//toolTip1.SetToolTip( button_force_off, "plc.ForceBool( string address, false )" );
+			//toolTip1.SetToolTip( button_force_clear, "plc.CancelAllForce( );" );
+			//toolTip1.SetToolTip( button4, "plc.HotStart( )" );
+			//toolTip1.SetToolTip( button5, "plc.ColdStart( )" );
+			//toolTip1.SetToolTip( button6, "plc.Stop( )" );
+			//toolTip1.SetToolTip( button3, "plc.ReadOrderNumber( )" );
 		}
 
 	}

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.DemoControl
 {
-	public partial class FormPipeSessionList : Form
+	public partial class FormPipeSessionList : System.Windows.Forms.Form
 	{
 		public FormPipeSessionList( )
 		{

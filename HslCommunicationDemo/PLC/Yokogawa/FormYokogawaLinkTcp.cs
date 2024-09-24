@@ -107,6 +107,7 @@ namespace HslCommunicationDemo
 				control.SetDevice( yokogawa, "D100" );
 
 				// 设置示例代码
+				this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 				codeExampleControl.SetCodeText( yokogawa, nameof( yokogawa.CpuNumber ) );
 			}
 			else

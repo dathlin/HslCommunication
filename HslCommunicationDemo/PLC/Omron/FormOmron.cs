@@ -122,6 +122,7 @@ namespace HslCommunicationDemo
 				control.SetDevice( omronFinsNet, "D100" );
 
 				// 设置示例代码
+				this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 				codeExampleControl.SetCodeText( omronFinsNet, nameof( omronFinsNet.PlcType ), nameof( omronFinsNet.DA2 ), nameof( omronFinsNet.ReceiveUntilEmpty ), 
 					"ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
 			}

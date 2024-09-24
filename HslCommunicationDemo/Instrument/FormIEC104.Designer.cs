@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.textBox_station = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
@@ -61,6 +62,8 @@
 			this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label_code = new System.Windows.Forms.Label();
 			this.button8 = new System.Windows.Forms.Button();
 			this.comboBox_write_reason = new System.Windows.Forms.ComboBox();
 			this.button_write_float = new System.Windows.Forms.Button();
@@ -82,7 +85,6 @@
 			this.button_u_stop = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -108,6 +110,21 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 68);
 			this.panel1.TabIndex = 0;
+			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(5, 3);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 8;
+			this.pipeSelectControl1.TcpPortText = "2404";
+			this.pipeSelectControl1.UdpPortText = "2404";
 			// 
 			// textBox_station
 			// 
@@ -168,10 +185,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Location = new System.Drawing.Point(4, 151);
+			this.tabControl1.Location = new System.Drawing.Point(4, 198);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(988, 379);
+			this.tabControl1.Size = new System.Drawing.Size(988, 332);
 			this.tabControl1.TabIndex = 4;
 			// 
 			// tabPage1
@@ -187,7 +204,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(980, 349);
+			this.tabPage1.Size = new System.Drawing.Size(980, 302);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "IEC Log";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -268,7 +285,7 @@
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
 			this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox10.Size = new System.Drawing.Size(910, 303);
+			this.textBox10.Size = new System.Drawing.Size(910, 256);
 			this.textBox10.TabIndex = 10;
 			// 
 			// tabPage2
@@ -278,7 +295,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 26);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(980, 363);
+			this.tabPage2.Size = new System.Drawing.Size(980, 302);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "DataTable";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -351,8 +368,8 @@
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.Azure;
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -370,7 +387,7 @@
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
 			this.dataGridView1.RowTemplate.Height = 23;
-			this.dataGridView1.Size = new System.Drawing.Size(974, 324);
+			this.dataGridView1.Size = new System.Drawing.Size(974, 308);
 			this.dataGridView1.TabIndex = 0;
 			// 
 			// Column1
@@ -430,6 +447,8 @@
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.textBox_code);
+			this.groupBox1.Controls.Add(this.label_code);
 			this.groupBox1.Controls.Add(this.button8);
 			this.groupBox1.Controls.Add(this.comboBox_write_reason);
 			this.groupBox1.Controls.Add(this.button_write_float);
@@ -452,14 +471,35 @@
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Location = new System.Drawing.Point(4, 2);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(988, 146);
+			this.groupBox1.Size = new System.Drawing.Size(988, 190);
 			this.groupBox1.TabIndex = 3;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Button Test";
 			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(68, 134);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ReadOnly = true;
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(914, 50);
+			this.textBox_code.TabIndex = 41;
+			// 
+			// label_code
+			// 
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(4, 138);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(35, 17);
+			this.label_code.TabIndex = 40;
+			this.label_code.Text = "代码:";
+			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(68, 53);
+			this.button8.Location = new System.Drawing.Point(66, 53);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(104, 28);
 			this.button8.TabIndex = 39;
@@ -483,7 +523,7 @@
             "8 (停止激活)",
             "9 (停止激活确认)",
             "10 (激活终止)"});
-			this.comboBox_write_reason.Location = new System.Drawing.Point(678, 50);
+			this.comboBox_write_reason.Location = new System.Drawing.Point(678, 47);
 			this.comboBox_write_reason.Name = "comboBox_write_reason";
 			this.comboBox_write_reason.Size = new System.Drawing.Size(197, 25);
 			this.comboBox_write_reason.TabIndex = 38;
@@ -491,7 +531,7 @@
 			// button_write_float
 			// 
 			this.button_write_float.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_write_float.Location = new System.Drawing.Point(890, 80);
+			this.button_write_float.Location = new System.Drawing.Point(890, 75);
 			this.button_write_float.Name = "button_write_float";
 			this.button_write_float.Size = new System.Drawing.Size(92, 27);
 			this.button_write_float.TabIndex = 37;
@@ -502,7 +542,7 @@
 			// button_write_short
 			// 
 			this.button_write_short.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_write_short.Location = new System.Drawing.Point(890, 50);
+			this.button_write_short.Location = new System.Drawing.Point(890, 47);
 			this.button_write_short.Name = "button_write_short";
 			this.button_write_short.Size = new System.Drawing.Size(92, 27);
 			this.button_write_short.TabIndex = 36;
@@ -513,7 +553,7 @@
 			// button_write_bool
 			// 
 			this.button_write_bool.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_write_bool.Location = new System.Drawing.Point(889, 19);
+			this.button_write_bool.Location = new System.Drawing.Point(889, 16);
 			this.button_write_bool.Name = "button_write_bool";
 			this.button_write_bool.Size = new System.Drawing.Size(92, 27);
 			this.button_write_bool.TabIndex = 35;
@@ -524,7 +564,7 @@
 			// textBox_write_value
 			// 
 			this.textBox_write_value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_write_value.Location = new System.Drawing.Point(678, 111);
+			this.textBox_write_value.Location = new System.Drawing.Point(678, 104);
 			this.textBox_write_value.Name = "textBox_write_value";
 			this.textBox_write_value.Size = new System.Drawing.Size(197, 23);
 			this.textBox_write_value.TabIndex = 34;
@@ -534,7 +574,7 @@
 			// 
 			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(622, 113);
+			this.label9.Location = new System.Drawing.Point(622, 106);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(23, 17);
 			this.label9.TabIndex = 33;
@@ -543,7 +583,7 @@
 			// textBox_write_address
 			// 
 			this.textBox_write_address.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_write_address.Location = new System.Drawing.Point(678, 82);
+			this.textBox_write_address.Location = new System.Drawing.Point(678, 77);
 			this.textBox_write_address.Name = "textBox_write_address";
 			this.textBox_write_address.Size = new System.Drawing.Size(197, 23);
 			this.textBox_write_address.TabIndex = 32;
@@ -553,7 +593,7 @@
 			// 
 			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(622, 85);
+			this.label8.Location = new System.Drawing.Point(622, 80);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(35, 17);
 			this.label8.TabIndex = 31;
@@ -563,7 +603,7 @@
 			// 
 			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(622, 55);
+			this.label7.Location = new System.Drawing.Point(622, 52);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(35, 17);
 			this.label7.TabIndex = 29;
@@ -582,7 +622,7 @@
             "49 (标度化设定值)",
             "50 (短浮点设定值)",
             "51 (32比特串)"});
-			this.comboBox_write_type.Location = new System.Drawing.Point(678, 20);
+			this.comboBox_write_type.Location = new System.Drawing.Point(678, 17);
 			this.comboBox_write_type.Name = "comboBox_write_type";
 			this.comboBox_write_type.Size = new System.Drawing.Size(197, 25);
 			this.comboBox_write_type.TabIndex = 28;
@@ -591,7 +631,7 @@
 			// 
 			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(622, 25);
+			this.label6.Location = new System.Drawing.Point(622, 22);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(35, 17);
 			this.label6.TabIndex = 27;
@@ -638,7 +678,7 @@
 			// 
 			// button_u_test
 			// 
-			this.button_u_test.Location = new System.Drawing.Point(240, 108);
+			this.button_u_test.Location = new System.Drawing.Point(240, 89);
 			this.button_u_test.Name = "button_u_test";
 			this.button_u_test.Size = new System.Drawing.Size(81, 28);
 			this.button_u_test.TabIndex = 21;
@@ -648,7 +688,7 @@
 			// 
 			// button_u_start
 			// 
-			this.button_u_start.Location = new System.Drawing.Point(66, 108);
+			this.button_u_start.Location = new System.Drawing.Point(66, 89);
 			this.button_u_start.Name = "button_u_start";
 			this.button_u_start.Size = new System.Drawing.Size(81, 28);
 			this.button_u_start.TabIndex = 19;
@@ -658,7 +698,7 @@
 			// 
 			// button_u_stop
 			// 
-			this.button_u_stop.Location = new System.Drawing.Point(153, 108);
+			this.button_u_stop.Location = new System.Drawing.Point(153, 89);
 			this.button_u_stop.Name = "button_u_stop";
 			this.button_u_stop.Size = new System.Drawing.Size(81, 28);
 			this.button_u_stop.TabIndex = 20;
@@ -669,7 +709,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(4, 114);
+			this.label4.Location = new System.Drawing.Point(4, 94);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(56, 17);
 			this.label4.TabIndex = 22;
@@ -689,21 +729,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// pipeSelectControl1
-			// 
-			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.pipeSelectControl1.Location = new System.Drawing.Point(5, 3);
-			this.pipeSelectControl1.Name = "pipeSelectControl1";
-			this.pipeSelectControl1.SerialBaudRate = "9600";
-			this.pipeSelectControl1.SerialDataBits = "8";
-			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
-			this.pipeSelectControl1.SerialStopBits = "1";
-			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
-			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
-			this.pipeSelectControl1.TabIndex = 8;
-			this.pipeSelectControl1.TcpPortText = "2404";
-			this.pipeSelectControl1.UdpPortText = "2404";
 			// 
 			// FormIEC104
 			// 
@@ -793,5 +818,7 @@
 		private System.Windows.Forms.ComboBox comboBox_write_reason;
 		private System.Windows.Forms.Button button8;
 		private DemoControl.PipeSelectControl pipeSelectControl1;
+		private System.Windows.Forms.Label label_code;
+		private System.Windows.Forms.TextBox textBox_code;
 	}
 }

@@ -43,7 +43,7 @@ namespace HslCommunicationDemo.Robot
 					panel2.Enabled = true;
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "robot", yamahaRCX );
+					codeExampleControl.SetCodeText( "yamahaRCX", yamahaRCX );
 				}
 				else
 				{
@@ -84,6 +84,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "Reset Faield:" + reset.Message );
 			}
+
+			textBox_code.Text = $"OperateResult reset = yamahaRCX.Reset( );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -97,6 +99,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "Run Faield:" + reset.Message );
 			}
+
+			textBox_code.Text = $"OperateResult run = yamahaRCX.Run( );";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -110,6 +114,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "Stop Faield:" + reset.Message );
 			}
+
+			textBox_code.Text = $"OperateResult stop = yamahaRCX.Stop( );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -126,6 +132,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "Read Faield:" + motor.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<int> motor = yamahaRCX.ReadMotorStatus( );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -139,6 +147,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "Read Faield:" + mode.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<int> mode = yamahaRCX.ReadModeStatus( );";
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -152,6 +162,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "Read Faield:" + joints.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<float[]> joints = yamahaRCX.ReadJoints( );";
 		}
 
 		private void button9_Click( object sender, EventArgs e )
@@ -167,6 +179,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "Read Faield:" + emergency.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<int> emergency = yamahaRCX.ReadEmergencyStatus( );";
 		}
 
 
@@ -205,6 +219,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "Read failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<string[]> read = yamahaRCX.ReadCommand( \"{textBox_read_command.Text}\", {lines} );";
 		}
 
 		private void RenderJogResult( OperateResult result, string jog )
@@ -222,61 +238,85 @@ namespace HslCommunicationDemo.Robot
 		private void button10_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( -1 ), "JOG 1-" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( -1 );";
 		}
 
 		private void button11_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( 1 ), "JOG 1+" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( 1 );";
 		}
 
 		private void button13_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( -2 ), "JOG 2-" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( -2 );";
 		}
 
 		private void button12_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( 2 ), "JOG 2+" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( 2 );";
 		}
 
 		private void button15_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( -3 ), "JOG 3-" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( -3 );";
 		}
 
 		private void button14_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( 3 ), "JOG 3+" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( 3 );";
 		}
 
 		private void button17_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( -4 ), "JOG 4-" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( -4 );";
 		}
 
 		private void button16_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( 4 ), "JOG 4+" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( 4 );";
 		}
 
 		private void button19_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( -5 ), "JOG 5-" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( -5 );";
 		}
 
 		private void button18_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( 5 ), "JOG 5+" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( 5 );";
 		}
 
 		private void button21_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( -6 ), "JOG 6-" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( -6 );";
 		}
 
 		private void button20_Click( object sender, EventArgs e )
 		{
 			RenderJogResult( yamahaRCX.JogXY( 6 ), "JOG 6+" );
+
+			textBox_code.Text = $"OperateResult result = yamahaRCX.JogXY( 6 );";
 		}
 	}
 }

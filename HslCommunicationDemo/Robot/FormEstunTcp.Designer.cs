@@ -30,6 +30,8 @@
 		{
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_station = new System.Windows.Forms.TextBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
@@ -37,18 +39,20 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.button10 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.button9 = new System.Windows.Forms.Button();
+			this.button4 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
+			this.label7 = new System.Windows.Forms.Label();
 			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.button6 = new System.Windows.Forms.Button();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.button5 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label45 = new System.Windows.Forms.Label();
 			this.textBox10 = new System.Windows.Forms.TextBox();
@@ -86,15 +90,13 @@
 			this.label12 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.button_read_short = new System.Windows.Forms.Button();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.textBox_station = new System.Windows.Forms.TextBox();
-			this.label9 = new System.Windows.Forms.Label();
+			this.label_code = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
+			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// userControlHead1
@@ -129,6 +131,23 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1029, 43);
 			this.panel1.TabIndex = 16;
+			// 
+			// textBox_station
+			// 
+			this.textBox_station.Location = new System.Drawing.Point(499, 9);
+			this.textBox_station.Name = "textBox_station";
+			this.textBox_station.Size = new System.Drawing.Size(76, 23);
+			this.textBox_station.TabIndex = 7;
+			this.textBox_station.Text = "1";
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(433, 12);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(44, 17);
+			this.label9.TabIndex = 6;
+			this.label9.Text = "站号：";
 			// 
 			// button2
 			// 
@@ -193,6 +212,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.textBox_code);
+			this.panel2.Controls.Add(this.label_code);
 			this.panel2.Controls.Add(this.tabControl1);
 			this.panel2.Controls.Add(this.textBox11);
 			this.panel2.Controls.Add(this.label45);
@@ -208,6 +229,41 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(1029, 495);
 			this.panel2.TabIndex = 17;
+			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Location = new System.Drawing.Point(252, 217);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(766, 220);
+			this.tabControl1.TabIndex = 39;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.button10);
+			this.tabPage1.Controls.Add(this.button3);
+			this.tabPage1.Controls.Add(this.button9);
+			this.tabPage1.Controls.Add(this.button4);
+			this.tabPage1.Controls.Add(this.button8);
+			this.tabPage1.Controls.Add(this.button5);
+			this.tabPage1.Controls.Add(this.button7);
+			this.tabPage1.Controls.Add(this.label7);
+			this.tabPage1.Controls.Add(this.textBox4);
+			this.tabPage1.Controls.Add(this.textBox3);
+			this.tabPage1.Controls.Add(this.label8);
+			this.tabPage1.Controls.Add(this.button6);
+			this.tabPage1.Location = new System.Drawing.Point(4, 26);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(758, 190);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Estun Function";
+			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// button10
 			// 
@@ -219,6 +275,16 @@
 			this.button10.UseVisualStyleBackColor = true;
 			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(9, 9);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(91, 30);
+			this.button3.TabIndex = 0;
+			this.button3.Text = "启动程序";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
 			// button9
 			// 
 			this.button9.Location = new System.Drawing.Point(458, 9);
@@ -228,6 +294,16 @@
 			this.button9.Text = "卸载工程文件";
 			this.button9.UseVisualStyleBackColor = true;
 			this.button9.Click += new System.EventHandler(this.button9_Click);
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(106, 9);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(91, 30);
+			this.button4.TabIndex = 1;
+			this.button4.Text = "停止程序";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
 			// 
 			// button8
 			// 
@@ -239,6 +315,16 @@
 			this.button8.UseVisualStyleBackColor = true;
 			this.button8.Click += new System.EventHandler(this.button8_Click);
 			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(203, 9);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(114, 30);
+			this.button5.TabIndex = 2;
+			this.button5.Text = "机器人错误复位";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
 			// button7
 			// 
 			this.button7.Location = new System.Drawing.Point(372, 77);
@@ -249,12 +335,28 @@
 			this.button7.UseVisualStyleBackColor = true;
 			this.button7.Click += new System.EventHandler(this.button7_Click);
 			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(7, 50);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(80, 17);
+			this.label7.TabIndex = 37;
+			this.label7.Text = "工程文件名：";
+			// 
 			// textBox4
 			// 
 			this.textBox4.Location = new System.Drawing.Point(93, 81);
 			this.textBox4.Name = "textBox4";
 			this.textBox4.Size = new System.Drawing.Size(263, 23);
 			this.textBox4.TabIndex = 41;
+			// 
+			// textBox3
+			// 
+			this.textBox3.Location = new System.Drawing.Point(93, 47);
+			this.textBox3.Name = "textBox3";
+			this.textBox3.Size = new System.Drawing.Size(263, 23);
+			this.textBox3.TabIndex = 38;
 			// 
 			// label8
 			// 
@@ -274,52 +376,6 @@
 			this.button6.Text = "加载工程文件";
 			this.button6.UseVisualStyleBackColor = true;
 			this.button6.Click += new System.EventHandler(this.button6_Click);
-			// 
-			// textBox3
-			// 
-			this.textBox3.Location = new System.Drawing.Point(93, 47);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(263, 23);
-			this.textBox3.TabIndex = 38;
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(7, 50);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(80, 17);
-			this.label7.TabIndex = 37;
-			this.label7.Text = "工程文件名：";
-			// 
-			// button5
-			// 
-			this.button5.Location = new System.Drawing.Point(203, 9);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(114, 30);
-			this.button5.TabIndex = 2;
-			this.button5.Text = "机器人错误复位";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.button5_Click);
-			// 
-			// button4
-			// 
-			this.button4.Location = new System.Drawing.Point(106, 9);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(91, 30);
-			this.button4.TabIndex = 1;
-			this.button4.Text = "停止程序";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click);
-			// 
-			// button3
-			// 
-			this.button3.Location = new System.Drawing.Point(9, 9);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(91, 30);
-			this.button3.TabIndex = 0;
-			this.button3.Text = "启动程序";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// textBox11
 			// 
@@ -399,6 +455,8 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Controls.Add(this.label2);
@@ -428,7 +486,7 @@
 			this.groupBox1.Controls.Add(this.label11);
 			this.groupBox1.Location = new System.Drawing.Point(3, 37);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(243, 447);
+			this.groupBox1.Size = new System.Drawing.Size(243, 400);
 			this.groupBox1.TabIndex = 22;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "状态";
@@ -699,56 +757,25 @@
 			this.button_read_short.UseVisualStyleBackColor = true;
 			this.button_read_short.Click += new System.EventHandler(this.button_read_short_Click);
 			// 
-			// tabControl1
+			// label_code
 			// 
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(3, 443);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 36;
+			this.label_code.Text = "代码：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Location = new System.Drawing.Point(252, 217);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(766, 267);
-			this.tabControl1.TabIndex = 39;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.button10);
-			this.tabPage1.Controls.Add(this.button3);
-			this.tabPage1.Controls.Add(this.button9);
-			this.tabPage1.Controls.Add(this.button4);
-			this.tabPage1.Controls.Add(this.button8);
-			this.tabPage1.Controls.Add(this.button5);
-			this.tabPage1.Controls.Add(this.button7);
-			this.tabPage1.Controls.Add(this.label7);
-			this.tabPage1.Controls.Add(this.textBox4);
-			this.tabPage1.Controls.Add(this.textBox3);
-			this.tabPage1.Controls.Add(this.label8);
-			this.tabPage1.Controls.Add(this.button6);
-			this.tabPage1.Location = new System.Drawing.Point(4, 26);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(758, 237);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Estun Function";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// textBox_station
-			// 
-			this.textBox_station.Location = new System.Drawing.Point(499, 9);
-			this.textBox_station.Name = "textBox_station";
-			this.textBox_station.Size = new System.Drawing.Size(76, 23);
-			this.textBox_station.TabIndex = 7;
-			this.textBox_station.Text = "1";
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(433, 12);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(44, 17);
-			this.label9.TabIndex = 6;
-			this.label9.Text = "站号：";
+			this.textBox_code.Location = new System.Drawing.Point(64, 441);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.Size = new System.Drawing.Size(954, 49);
+			this.textBox_code.TabIndex = 40;
 			// 
 			// FormEstunTcp
 			// 
@@ -766,11 +793,11 @@
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -839,5 +866,7 @@
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TextBox textBox_station;
 		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label_code;
 	}
 }

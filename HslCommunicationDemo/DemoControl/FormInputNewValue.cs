@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.Control
 {
-	public partial class FormInputNewValue : Form
+	public partial class FormInputNewValue : System.Windows.Forms.Form
 	{
 		public FormInputNewValue( string old )
 		{

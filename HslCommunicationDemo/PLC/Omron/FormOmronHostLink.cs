@@ -131,6 +131,7 @@ namespace HslCommunicationDemo.PLC.Omron
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => omronHostLink.ReadFromCoreServer( m ), "Fins Core", "example: 01 01 B1 00 0A 00 00 01" );
 
 					// 设置示例代码
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( omronHostLink, nameof( omronHostLink.UnitNumber ), nameof( omronHostLink.SID ), nameof( omronHostLink.DA2 ),
 						nameof( omronHostLink.SA2 ), "ByteTransform.DataFormat" );
 				}

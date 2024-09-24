@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo.Control
 {
-	public partial class FormInputString : Form
+	public partial class FormInputString : System.Windows.Forms.Form
 	{
 		public FormInputString( )
 		{
@@ -33,6 +33,7 @@ namespace HslCommunicationDemo.Control
 
 				label2.Text = "The password, if empty, means not encrypted and consists of fewer than 32 numbers or letters";
 				label3.Text = "Please enter your password again:";
+				label_tips.Text = "Tip: If the datasheet has configuration information, it will be stored together";
 			}
 
 			this.textBox1.Text = this.DeviceAlias;

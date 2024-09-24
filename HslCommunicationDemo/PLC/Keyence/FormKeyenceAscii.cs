@@ -96,9 +96,10 @@ namespace HslCommunicationDemo
 					// 设置报文读取
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => keyence_net.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 					// 特殊读取
-					control.SetDevice( keyence_net, "D100" );
+					control.SetDevice( keyence_net, "D100", DemoUtils.PlcDeviceName );
 
 					// 设置代码示例
+					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( keyence_net, nameof( keyence_net.EnableWriteBitToWordRegister ), "ByteTransform.IsStringReverseByteWord" );
 				}
 				else

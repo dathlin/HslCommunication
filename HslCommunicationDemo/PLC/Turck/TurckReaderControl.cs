@@ -128,6 +128,8 @@ namespace HslCommunicationDemo.PLC.Turck
 				label7.Text = "UID: " + reader_net.UID;
 				label6.Text = "BytesOfBlock: " + reader_net.BytesOfBlock;
 				label5.Text = "NumberOfBlock: " + reader_net.NumberOfBlock;
+
+				textBox3.Text = $"OperateResult<string> read = reader_net.ReadRFIDInfo( );";
 			}
 			else
 			{

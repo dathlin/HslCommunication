@@ -49,6 +49,8 @@ namespace HslCommunicationDemo.HslDebug
 			}
 
 			textBox_result.Text = sb.ToString( );
+
+			textBox_code.Text = $"MatchCollection matches = System.Text.RegularExpressions.Regex.Matches( \"{textBox_input.Text}\", \"{textBox_patter.Text}\", RegexOptions.{comboBox1.SelectedItem} );";
 		}
 
 		private void button2_Click( object sender, EventArgs e )

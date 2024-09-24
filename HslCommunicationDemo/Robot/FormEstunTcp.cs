@@ -32,6 +32,11 @@ namespace HslCommunicationDemo.Robot
 
 			codeExampleControl = new CodeExampleControl( );
 			DemoUtils.AddSpecialFunctionTab( this.tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			if (Program.Language == 2)
+			{
+				label_code.Text = "Code:";
+			}
 		}
 
 		private async void button1_Click( object sender, EventArgs e )
@@ -112,6 +117,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "Read Failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<EstunData> read = estun.ReadRobotData( );";
 		}
 
 		private void button3_Click( object sender, EventArgs e )
@@ -126,6 +133,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "启动失败！" + start.Message );
 			}
+
+			textBox_code.Text = $"OperateResult start = estun.RobotStartPrograme( );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -140,6 +149,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "停止失败！" + stop.Message );
 			}
+
+			textBox_code.Text = $"OperateResult stop = estun.RobotStopPrograme( );";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -154,6 +165,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "复位失败！" + reset.Message );
 			}
+
+			textBox_code.Text = $"OperateResult reset = estun.RobotResetError( );";
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -168,6 +181,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "重置失败！" + reset.Message );
 			}
+
+			textBox_code.Text = $"OperateResult reset = estun.RobotCommandStatusRestart( );";
 		}
 
 		private void button9_Click( object sender, EventArgs e )
@@ -182,6 +197,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "卸载失败！" + unload.Message );
 			}
+
+			textBox_code.Text = $"OperateResult unload = estun.RobotUnregisterProject( );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -196,6 +213,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "加载失败！" + load.Message );
 			}
+
+			textBox_code.Text = $"OperateResult load = estun.RobotLoadProject( \"{textBox3.Text}\" );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -210,6 +229,8 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "加载失败！" + set.Message );
 			}
+
+			textBox_code.Text = $"OperateResult set = estun.RobotSetGlobalSpeedValue( short.Parse( \"{textBox4.Text}\" ) );";
 		}
 
 		private void button10_Click( object sender, EventArgs e )
@@ -224,6 +245,13 @@ namespace HslCommunicationDemo.Robot
 			{
 				MessageBox.Show( "下载失败！" );
 			}
+
+			textBox_code.Text = $"OperateResult write = estun.Write( \"36\", (short)0x801 );";
+		}
+
+		private void panel2_Paint( object sender, PaintEventArgs e )
+		{
+
 		}
 	}
 }

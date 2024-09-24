@@ -10,7 +10,7 @@ using HslCommunication.ModBus;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormTrustedClient : Form
+    public partial class FormTrustedClient : System.Windows.Forms.Form
     {
         public FormTrustedClient( HslCommunication.ModBus.ModbusTcpServer modbusTcpServer )
         {

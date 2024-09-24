@@ -14,7 +14,7 @@ using System.Threading;
 
 namespace HslCommunicationDemo
 {
-	public partial class FormMain : Form
+	public partial class FormMain : System.Windows.Forms.Form
 	{
 		public static Color ThemeColor = Color.FromArgb( 64, 64, 64 );
 
@@ -272,6 +272,7 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_Help.Text = "帮助(&H)";
 				toolStripMenuItem_Doc.Text = "开发文档";
 				toolStripMenuItem_SerialPort.Text = "串口调试";
+				ecologyToolStripMenuItem.Text = "大生态(&E)";
 			}
 			else
 			{
@@ -286,6 +287,7 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_Help.Text = "Help(&H)";
 				toolStripMenuItem_Doc.Text = "Document";
 				toolStripMenuItem_SerialPort.Text = "SerialPort";
+				ecologyToolStripMenuItem.Text = "Ecology(&E)";
 			}
 		}
 
@@ -405,6 +407,11 @@ namespace HslCommunicationDemo
 		private void 免责条款ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			new FormHslMap( ).Show( dockPanel1 );
+		}
+
+		private void ecologyToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			OpenWebside( "http://www.hsltechnology.cn/Home/Ecology" );
 		}
 
 		private void toolStripMenuItem_ApiDoc_Click( object sender, EventArgs e )

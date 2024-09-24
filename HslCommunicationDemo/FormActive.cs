@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HslCommunicationDemo
 {
-	public partial class FormActive : Form
+	public partial class FormActive : System.Windows.Forms.Form
 	{
 		public FormActive( )
 		{

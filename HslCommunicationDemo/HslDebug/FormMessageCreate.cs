@@ -20,7 +20,7 @@ using HslCommunication.Robot.Hyundai;
 
 namespace HslCommunicationDemo.HslDebug
 {
-	public partial class FormMessageCreate : Form
+	public partial class FormMessageCreate : System.Windows.Forms.Form
 	{
 		public FormMessageCreate( )
 		{

@@ -29,8 +29,9 @@ namespace HslCommunicationDemo.PLC.Fatek
 		private System.Windows.Forms.Label label_bit0_true;
 		private System.Windows.Forms.Button button_read_status;
 		private System.Windows.Forms.Button button_stop;
+		private Label label_code;
+		private TextBox textBox_code;
 		private System.Windows.Forms.Button button_run;
-		private System.Windows.Forms.GroupBox groupBox1;
 
 		public FatekProgrameControl( )
 		{
@@ -39,7 +40,6 @@ namespace HslCommunicationDemo.PLC.Fatek
 
 		private void InitializeComponent( )
 		{
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label_bit6_false = new System.Windows.Forms.Label();
 			this.label_bit6_true = new System.Windows.Forms.Label();
 			this.label_bit5_false = new System.Windows.Forms.Label();
@@ -57,43 +57,15 @@ namespace HslCommunicationDemo.PLC.Fatek
 			this.button_read_status = new System.Windows.Forms.Button();
 			this.button_stop = new System.Windows.Forms.Button();
 			this.button_run = new System.Windows.Forms.Button();
-			this.groupBox1.SuspendLayout();
+			this.label_code = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox1.Controls.Add(this.label_bit6_false);
-			this.groupBox1.Controls.Add(this.label_bit6_true);
-			this.groupBox1.Controls.Add(this.label_bit5_false);
-			this.groupBox1.Controls.Add(this.label_bit5_true);
-			this.groupBox1.Controls.Add(this.label_bit4_false);
-			this.groupBox1.Controls.Add(this.label_bit4_true);
-			this.groupBox1.Controls.Add(this.label_bit3_false);
-			this.groupBox1.Controls.Add(this.label_bit3_true);
-			this.groupBox1.Controls.Add(this.label_bit2_false);
-			this.groupBox1.Controls.Add(this.label_bit2_true);
-			this.groupBox1.Controls.Add(this.label_bit1_false);
-			this.groupBox1.Controls.Add(this.label_bit1_true);
-			this.groupBox1.Controls.Add(this.label_bit0_false);
-			this.groupBox1.Controls.Add(this.label_bit0_true);
-			this.groupBox1.Controls.Add(this.button_read_status);
-			this.groupBox1.Controls.Add(this.button_stop);
-			this.groupBox1.Controls.Add(this.button_run);
-			this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.groupBox1.Location = new System.Drawing.Point(3, 3);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(795, 235);
-			this.groupBox1.TabIndex = 1;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Fatek Programe";
 			// 
 			// label_bit6_false
 			// 
 			this.label_bit6_false.BackColor = System.Drawing.Color.Silver;
-			this.label_bit6_false.Location = new System.Drawing.Point(375, 194);
+			this.label_bit6_false.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit6_false.Location = new System.Drawing.Point(709, 62);
 			this.label_bit6_false.Name = "label_bit6_false";
 			this.label_bit6_false.Size = new System.Drawing.Size(150, 20);
 			this.label_bit6_false.TabIndex = 42;
@@ -103,7 +75,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit6_true
 			// 
 			this.label_bit6_true.BackColor = System.Drawing.Color.Silver;
-			this.label_bit6_true.Location = new System.Drawing.Point(205, 194);
+			this.label_bit6_true.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit6_true.Location = new System.Drawing.Point(539, 62);
 			this.label_bit6_true.Name = "label_bit6_true";
 			this.label_bit6_true.Size = new System.Drawing.Size(150, 20);
 			this.label_bit6_true.TabIndex = 41;
@@ -113,7 +86,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit5_false
 			// 
 			this.label_bit5_false.BackColor = System.Drawing.Color.Silver;
-			this.label_bit5_false.Location = new System.Drawing.Point(375, 164);
+			this.label_bit5_false.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit5_false.Location = new System.Drawing.Point(709, 32);
 			this.label_bit5_false.Name = "label_bit5_false";
 			this.label_bit5_false.Size = new System.Drawing.Size(150, 20);
 			this.label_bit5_false.TabIndex = 40;
@@ -123,7 +97,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit5_true
 			// 
 			this.label_bit5_true.BackColor = System.Drawing.Color.Silver;
-			this.label_bit5_true.Location = new System.Drawing.Point(205, 164);
+			this.label_bit5_true.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit5_true.Location = new System.Drawing.Point(539, 32);
 			this.label_bit5_true.Name = "label_bit5_true";
 			this.label_bit5_true.Size = new System.Drawing.Size(150, 20);
 			this.label_bit5_true.TabIndex = 39;
@@ -133,7 +108,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit4_false
 			// 
 			this.label_bit4_false.BackColor = System.Drawing.Color.Silver;
-			this.label_bit4_false.Location = new System.Drawing.Point(375, 135);
+			this.label_bit4_false.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit4_false.Location = new System.Drawing.Point(709, 3);
 			this.label_bit4_false.Name = "label_bit4_false";
 			this.label_bit4_false.Size = new System.Drawing.Size(150, 20);
 			this.label_bit4_false.TabIndex = 38;
@@ -143,7 +119,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit4_true
 			// 
 			this.label_bit4_true.BackColor = System.Drawing.Color.Silver;
-			this.label_bit4_true.Location = new System.Drawing.Point(205, 135);
+			this.label_bit4_true.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit4_true.Location = new System.Drawing.Point(539, 3);
 			this.label_bit4_true.Name = "label_bit4_true";
 			this.label_bit4_true.Size = new System.Drawing.Size(150, 20);
 			this.label_bit4_true.TabIndex = 37;
@@ -153,7 +130,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit3_false
 			// 
 			this.label_bit3_false.BackColor = System.Drawing.Color.Silver;
-			this.label_bit3_false.Location = new System.Drawing.Point(375, 105);
+			this.label_bit3_false.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit3_false.Location = new System.Drawing.Point(366, 86);
 			this.label_bit3_false.Name = "label_bit3_false";
 			this.label_bit3_false.Size = new System.Drawing.Size(150, 20);
 			this.label_bit3_false.TabIndex = 36;
@@ -163,7 +141,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit3_true
 			// 
 			this.label_bit3_true.BackColor = System.Drawing.Color.Silver;
-			this.label_bit3_true.Location = new System.Drawing.Point(205, 105);
+			this.label_bit3_true.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit3_true.Location = new System.Drawing.Point(196, 86);
 			this.label_bit3_true.Name = "label_bit3_true";
 			this.label_bit3_true.Size = new System.Drawing.Size(150, 20);
 			this.label_bit3_true.TabIndex = 35;
@@ -173,7 +152,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit2_false
 			// 
 			this.label_bit2_false.BackColor = System.Drawing.Color.Silver;
-			this.label_bit2_false.Location = new System.Drawing.Point(375, 77);
+			this.label_bit2_false.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit2_false.Location = new System.Drawing.Point(366, 58);
 			this.label_bit2_false.Name = "label_bit2_false";
 			this.label_bit2_false.Size = new System.Drawing.Size(150, 20);
 			this.label_bit2_false.TabIndex = 34;
@@ -183,7 +163,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit2_true
 			// 
 			this.label_bit2_true.BackColor = System.Drawing.Color.Silver;
-			this.label_bit2_true.Location = new System.Drawing.Point(205, 77);
+			this.label_bit2_true.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit2_true.Location = new System.Drawing.Point(196, 58);
 			this.label_bit2_true.Name = "label_bit2_true";
 			this.label_bit2_true.Size = new System.Drawing.Size(150, 20);
 			this.label_bit2_true.TabIndex = 33;
@@ -193,7 +174,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit1_false
 			// 
 			this.label_bit1_false.BackColor = System.Drawing.Color.Silver;
-			this.label_bit1_false.Location = new System.Drawing.Point(375, 49);
+			this.label_bit1_false.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit1_false.Location = new System.Drawing.Point(366, 30);
 			this.label_bit1_false.Name = "label_bit1_false";
 			this.label_bit1_false.Size = new System.Drawing.Size(150, 20);
 			this.label_bit1_false.TabIndex = 32;
@@ -203,7 +185,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit1_true
 			// 
 			this.label_bit1_true.BackColor = System.Drawing.Color.Silver;
-			this.label_bit1_true.Location = new System.Drawing.Point(205, 49);
+			this.label_bit1_true.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit1_true.Location = new System.Drawing.Point(196, 30);
 			this.label_bit1_true.Name = "label_bit1_true";
 			this.label_bit1_true.Size = new System.Drawing.Size(150, 20);
 			this.label_bit1_true.TabIndex = 31;
@@ -213,7 +196,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit0_false
 			// 
 			this.label_bit0_false.BackColor = System.Drawing.Color.Silver;
-			this.label_bit0_false.Location = new System.Drawing.Point(375, 22);
+			this.label_bit0_false.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit0_false.Location = new System.Drawing.Point(366, 3);
 			this.label_bit0_false.Name = "label_bit0_false";
 			this.label_bit0_false.Size = new System.Drawing.Size(150, 20);
 			this.label_bit0_false.TabIndex = 30;
@@ -223,7 +207,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// label_bit0_true
 			// 
 			this.label_bit0_true.BackColor = System.Drawing.Color.Silver;
-			this.label_bit0_true.Location = new System.Drawing.Point(205, 22);
+			this.label_bit0_true.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label_bit0_true.Location = new System.Drawing.Point(196, 3);
 			this.label_bit0_true.Name = "label_bit0_true";
 			this.label_bit0_true.Size = new System.Drawing.Size(150, 20);
 			this.label_bit0_true.TabIndex = 29;
@@ -232,7 +217,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// 
 			// button_read_status
 			// 
-			this.button_read_status.Location = new System.Drawing.Point(15, 57);
+			this.button_read_status.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.button_read_status.Location = new System.Drawing.Point(6, 38);
 			this.button_read_status.Name = "button_read_status";
 			this.button_read_status.Size = new System.Drawing.Size(82, 28);
 			this.button_read_status.TabIndex = 28;
@@ -242,7 +228,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// 
 			// button_stop
 			// 
-			this.button_stop.Location = new System.Drawing.Point(103, 25);
+			this.button_stop.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.button_stop.Location = new System.Drawing.Point(94, 6);
 			this.button_stop.Name = "button_stop";
 			this.button_stop.Size = new System.Drawing.Size(82, 28);
 			this.button_stop.TabIndex = 27;
@@ -252,7 +239,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			// 
 			// button_run
 			// 
-			this.button_run.Location = new System.Drawing.Point(15, 25);
+			this.button_run.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.button_run.Location = new System.Drawing.Point(6, 6);
 			this.button_run.Name = "button_run";
 			this.button_run.Size = new System.Drawing.Size(82, 28);
 			this.button_run.TabIndex = 26;
@@ -260,13 +248,54 @@ namespace HslCommunicationDemo.PLC.Fatek
 			this.button_run.UseVisualStyleBackColor = true;
 			this.button_run.Click += new System.EventHandler(this.button_run_Click);
 			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(3, 155);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 43;
+			this.label_code.Text = "代码：";
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(53, 152);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(840, 62);
+			this.textBox_code.TabIndex = 44;
+			// 
 			// FatekProgrameControl
 			// 
-			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.textBox_code);
+			this.Controls.Add(this.label_code);
+			this.Controls.Add(this.label_bit6_false);
+			this.Controls.Add(this.label_bit6_true);
+			this.Controls.Add(this.button_read_status);
+			this.Controls.Add(this.label_bit5_false);
+			this.Controls.Add(this.button_run);
+			this.Controls.Add(this.label_bit5_true);
+			this.Controls.Add(this.button_stop);
+			this.Controls.Add(this.label_bit4_false);
+			this.Controls.Add(this.label_bit0_true);
+			this.Controls.Add(this.label_bit4_true);
+			this.Controls.Add(this.label_bit0_false);
+			this.Controls.Add(this.label_bit3_false);
+			this.Controls.Add(this.label_bit1_true);
+			this.Controls.Add(this.label_bit3_true);
+			this.Controls.Add(this.label_bit1_false);
+			this.Controls.Add(this.label_bit2_false);
+			this.Controls.Add(this.label_bit2_true);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "FatekProgrameControl";
-			this.Size = new System.Drawing.Size(801, 241);
-			this.groupBox1.ResumeLayout(false);
+			this.Size = new System.Drawing.Size(896, 217);
+			this.Load += new System.EventHandler(this.FatekProgrameControl_Load);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -289,6 +318,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			{
 				MessageBox.Show( "Run failed: " + run.Message );
 			}
+
+			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.Run( );";
 		}
 
 		private void button_stop_Click( object sender, EventArgs e )
@@ -302,6 +333,7 @@ namespace HslCommunicationDemo.PLC.Fatek
 			{
 				MessageBox.Show( "Stop failed: " + stop.Message );
 			}
+			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.Stop( );";
 		}
 
 		private void button_read_status_Click( object sender, EventArgs e )
@@ -321,6 +353,8 @@ namespace HslCommunicationDemo.PLC.Fatek
 			{
 				MessageBox.Show( "Read failed: " + read.Message );
 			}
+
+			textBox_code.Text = $"OperateResult<bool[]> read = {DemoUtils.PlcDeviceName}.ReadStatus( );  // 共计返回7个bool";
 		}
 		public static void SetColorFromStatus( bool status, Label labelTrue, Label labelFalse )
 		{
@@ -336,5 +370,12 @@ namespace HslCommunicationDemo.PLC.Fatek
 			}
 		}
 
+		private void FatekProgrameControl_Load( object sender, EventArgs e )
+		{
+			if (Program.Language == 2)
+			{
+				label_code.Text = "Code:";
+			}
+		}
 	}
 }

@@ -161,6 +161,8 @@ namespace HslCommunicationDemo
 		{
 			// 读取字符串
 			DemoUtils.ReadResultRender( await kuka.ReadStringAsync( textBox3.Text ), textBox3.Text, textBox4 );
+
+			textBox_code.Text = $"OperateResult<byte[]> read = kuka.Read( \"{textBox3.Text}\" )";
 		}
 
 
@@ -175,6 +177,9 @@ namespace HslCommunicationDemo
 			try
 			{
 				DemoUtils.WriteResultRender( await kuka.WriteAsync( textBox8.Text, textBox7.Text ), textBox8.Text );
+
+
+				textBox_code.Text = $"OperateResult write = kuka.Write( \"{textBox8.Text}\", \"{textBox7.Text}\" )";
 			}
 			catch (Exception ex)
 			{
