@@ -306,15 +306,15 @@ namespace HslCommunicationDemo
 				else if (message.Topic == "D")
 				{
 					// 返回一条操作失败的信息
-					mqttServer.ReportOperateResult( session, "当前的功能码不支持！" );
+					mqttServer.ReportOperateResult( session, Program.Language == 1 ? "当前的功能码不支持！" : "The current function code is not supported!" );
 				}
 				else if (message.Topic == "E")
 				{
 					// 返回一条操作结果的信息
 					if (random.Next( 100 ) < 50)
-						mqttServer.ReportOperateResult( session, new OperateResult<string>( "当前的结果为失败信息" ) );
+						mqttServer.ReportOperateResult( session, new OperateResult<string>( Program.Language == 1 ? "当前的结果为失败信息" : "The current result is a failure message" ) );
 					else
-						mqttServer.ReportOperateResult( session, OperateResult.CreateSuccessResult( "成功" ) );
+						mqttServer.ReportOperateResult( session, OperateResult.CreateSuccessResult( Program.Language == 1 ? "成功" : "Successful" ) );
 
 				}
 				else if (message.Topic == "F")
@@ -329,6 +329,9 @@ namespace HslCommunicationDemo
 
 					// 下面是示例，支持了一个CheckName的接口数据，返回类型必须是 OperateResult<string>
 					// mqttServer.ReportObjectApiMethod( session, message, this );
+
+					// 此处直接返回不存在的API接口功能
+					mqttServer.ReportOperateResult( session, Program.Language == 1 ? "不支持的注册接口信息" : "Unsupported information about the registered interface" );
 				}
 			}
 			else if (session.Protocol == "MQTT")

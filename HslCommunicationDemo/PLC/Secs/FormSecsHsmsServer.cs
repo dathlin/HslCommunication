@@ -45,8 +45,8 @@ namespace HslCommunicationDemo.PLC.Secs
 			AddTree( s1Node, new SecsTreeItem( 1, 9,  true,  new SecsValue( new object[] { new byte[] { 0x01 }, new byte[] { 0x01 } } ), "Material Transfer Status" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 11, true,  new SecsValue( new object[] { new object[] { "SVID", "SVNAME", "UNITS" } } ), "Status Variable Namelist" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 13, true,  
-				new SecsValue( new object[] { new byte[] { 0x01 }, new object[0] } ), "Establish Communications",
-				SecsValue.EmptyListValue( ) ) );
+				new SecsValue( new object[] { new byte[] { 0x01 }, new object[] { "gemsim", "1.0" } } ), "Establish Communications",
+				new SecsValue( new object[] { "gemsim", "1.0" } ) ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 15, true,  new SecsValue( new byte[] { 0x01 } ), "Request OFF-LINE" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 17, true,  new SecsValue( new byte[] { 0x01 } ), "Request ON-LINE" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 19, true,  
@@ -187,6 +187,14 @@ namespace HslCommunicationDemo.PLC.Secs
 				button1.Text = "Start";
 				button11.Text = "Close";
 				button_device_save.Text = "Save";
+				groupBox1.Text = "Function Area";
+				button_device_send.Text = "Broadcast";
+				button25.Text = "Broadcast";
+				label13.Text = "Recv:";
+				button_save_tree.Text = "Save Ack";
+				tabPage1.Text = "Log";
+				checkBox1.Text = "Stop";
+				button4.Text = "Clear";
 			}
 			else
 			{

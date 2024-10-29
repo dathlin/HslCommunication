@@ -92,11 +92,19 @@ namespace HslCommunicationDemo
 				return;
 			}
 
+			if (!byte.TryParse( textBox_sid.Text, out byte sid ))
+			{
+				MessageBox.Show( "SID Input Wrong！" );
+				return;
+			}
+
 
 			omronFinsUdp = new OmronFinsUdp( );
 			omronFinsUdp.LogNet = LogNet;
 			omronFinsUdp.SA1 = SA1;
 			omronFinsUdp.GCT = gct;
+			omronFinsUdp.SID = sid;
+
 
 
 			userControlReadWriteDevice1.SetEnable( true );
@@ -142,7 +150,7 @@ namespace HslCommunicationDemo
 
 				// 设置示例代码
 				this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
-				codeExampleControl.SetCodeText( omronFinsUdp, nameof( omronFinsUdp.PlcType ), nameof( omronFinsUdp.SA1 ), nameof( omronFinsUdp.GCT ), nameof( omronFinsUdp.DA1 ),
+				codeExampleControl.SetCodeText( omronFinsUdp, nameof( omronFinsUdp.PlcType ), nameof( omronFinsUdp.SA1 ), nameof( omronFinsUdp.GCT ), nameof( omronFinsUdp.DA1 ), nameof( omronFinsUdp.SID ),
 					"ByteTransform.DataFormat", "ByteTransform.IsStringReverseByteWord" );
 			}
 			else
@@ -173,6 +181,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox_isstringreverse.Checked );
 			element.SetAttributeValue( "OmronType", comboBox_plcType.SelectedIndex );
+			element.SetAttributeValue( "SID", textBox_sid.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -184,6 +193,7 @@ namespace HslCommunicationDemo
 			textBox_sa1.Text = element.Attribute( DemoDeviceList.XmlNetNumber ).Value;
 			textBox_da1.Text = GetXmlValue( element, "DA1", textBox_da1.Text, m => m );
 			textBox_gct.Text = GetXmlValue( element, "GCT", textBox_gct.Text, m => m );
+			textBox_sid.Text = GetXmlValue( element, "SID", textBox_sid.Text, m => m );
 			checkBox_isstringreverse.Checked = GetXmlValue( element, DemoDeviceList.XmlStringReverse, checkBox_isstringreverse.Checked, bool.Parse );
 			comboBox_plcType.SelectedIndex = GetXmlValue( element, "OmronType", comboBox_plcType.SelectedIndex, int.Parse );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );

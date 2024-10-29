@@ -147,7 +147,7 @@ namespace HslCommunicationDemo.PLC.Melsec
 		{
 			return new DeviceAddressExample[]
 			{
-				new DeviceAddressExample( "M0",  "内部继电器",       true, true, "" ),
+				new DeviceAddressExample( "M0",  "内部继电器",       true, true, "未勾选新版协议的话，地址范围 M0 ~ M1023" ),
 				new DeviceAddressExample( "X0",  "输入继电器",       true, true, "8进制地址" ),
 				new DeviceAddressExample( "Y0",  "输出继电器",       true, true, "8进制地址" ),
 				new DeviceAddressExample( "S0", "步进继电器",        true, true, "" ),

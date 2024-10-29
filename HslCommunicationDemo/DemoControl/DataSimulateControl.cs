@@ -170,10 +170,17 @@ namespace HslCommunicationDemo.DemoControl
 							return;
 						}
 
-						Invoke( new Action( ( ) =>
+						try
 						{
-							simulate.Dgvr.Cells[4].Value = value;
-						} ) );
+							Invoke( new Action( ( ) =>
+							{
+								simulate.Dgvr.Cells[4].Value = value;
+							} ) );
+						}
+						catch (System.InvalidOperationException)
+						{
+							return;
+						}
 
 						if (writeResult.IsSuccess)
 						{

@@ -283,7 +283,7 @@ namespace HslCommunicationDemo
 					if (httpMethod != HttpMethod.Get)
 					{
 						request.Content = new StringContent( body );
-						string contentType = comboBox2.SelectedItem.ToString( );
+						string contentType = comboBox2.SelectedItem == null ? comboBox2.Text : comboBox2.SelectedItem.ToString( );
 						if(contentType!="none")
 							request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue( contentType );
 					}

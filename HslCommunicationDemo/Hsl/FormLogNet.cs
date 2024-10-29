@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using HslCommunication;
 using HslCommunication.LogNet;
 
 namespace HslCommunicationDemo
@@ -35,6 +36,30 @@ namespace HslCommunicationDemo
 			logNet.FiltrateKeyword( "123" );  // 过滤关键字123的存储
 			logNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
+			if (Program.Language == 2)
+			{
+				label1.Text = "Log Degree:";
+				label6.Text = "Save Degree:";
+				label2.Text = "Time Offset:";
+				button_hour_offset.Text = "Set";
+				label3.Text = "KeyWord:";
+				checkBox1.Text = "Cancel Save?";
+				label4.Text = "Message:";
+				button3.Text = "Load File";
+				button4.Text = "Clear File";
+				button8.Text = "LogViewer";
+				label5.Text = "Content:";
+				label9.Text = "Code:";
+
+				button1.Text = "w-Message";
+				button5.Text = "w-NewLine";
+				button6.Text = "w-Description";
+				button7.Text = "w-Exception";
+				button9.Text = "Raise Exception";
+			}
+
+			textBox_code.Text = $"ILogNet logNet = new LogNetSingle( \"log.txt\" );  // 如果传入 string.Empty 则不存文件";
 		}
 
 		private void CurrentDomain_UnhandledException( object sender, UnhandledExceptionEventArgs e )
@@ -87,16 +112,22 @@ namespace HslCommunicationDemo
 			//{
 			//    logNet.WriteFatal( textBox1.Text, textBox2.Text );
 			//}
+
+			textBox_code.Text = $"logNet.RecordMessage( HslMessageDegree.{degree}, \"{textBox1.Text}\", \"{textBox2.Text}\" );";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
 		{
 			logNet.WriteNewLine( );
+
+			textBox_code.Text = "logNet.WriteNewLine( );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
 		{
-			logNet.WriteDescrition( "这是一条注释" );
+			logNet.WriteDescrition( textBox2.Text );
+
+			textBox_code.Text = $"logNet.WriteDescrition( \"{textBox2.Text}\" );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -109,6 +140,8 @@ namespace HslCommunicationDemo
 			catch(Exception ex)
 			{
 				logNet.WriteException( textBox1.Text, ex );
+
+				textBox_code.Text = $"logNet.WriteException( \"{textBox1.Text}\", ex );";
 			}
 		}
 
@@ -160,10 +193,11 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "File not exist！" );
+				MessageBox.Show( StringResources.Language.FileNotExist );
 			}
-		}
 
+			textBox_code.Text = $"string content = File.ReadAllText( \"log.txt\", Encoding.UTF8 );";
+		}
 
 
 		#endregion
@@ -172,6 +206,8 @@ namespace HslCommunicationDemo
 		{
 			// 清空文件
 			System.IO.File.WriteAllBytes( "log.txt", new byte[0] );
+
+			textBox_code.Text = "System.IO.File.WriteAllBytes( \"log.txt\", new byte[0] );";
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -191,6 +227,12 @@ namespace HslCommunicationDemo
 					form.ShowDialog( );
 				}
 			}
+
+			textBox_code.Text = @"using (FormLogNetView form = new FormLogNetView( ""log.txt"" ))
+{
+	form.OpenDialogDefaultPath = Application.StartupPath;        // 如果需要指定默认的打开文件的路径
+	form.ShowDialog( );
+}";
 		}
 
 		private void button9_Click( object sender, EventArgs e )

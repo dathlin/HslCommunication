@@ -48,6 +48,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 1)
 			{
+				checkBox_debug_info_show.Text = "调试信息显示";
 			}
 			else
 			{
@@ -73,6 +74,8 @@ namespace HslCommunicationDemo
 				radioButton2.Text      = "Append";
 				radioButton1.Text      = "Cover";
 				label5.Text            = "Timeout";
+				checkBox_long_message_hide.Text = "Long Msg Hide";
+
 			}
 		}
 
@@ -213,6 +216,13 @@ namespace HslCommunicationDemo
 						}
 					}
 
+					bool show = true;
+					if (checkBox_regex_filter.Checked)
+					{
+						show = System.Text.RegularExpressions.Regex.IsMatch( msg, textBox_regex_filter.Text );
+					}
+					if (!show) return;
+
 					if (checkBox_long_message_hide.Checked)
 					{
 						if (msg?.Length > 200)
@@ -350,6 +360,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( "sslSecure", checkBox_sslSecure.Checked );
 			element.SetAttributeValue( "rsa", checkBox_rsa.Checked );
 			element.SetAttributeValue( "SSLTLS", checkBox_SslTls.Checked );
+			element.SetAttributeValue( "LongMessageHide", checkBox_long_message_hide.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -368,6 +379,7 @@ namespace HslCommunicationDemo
 			checkBox_sslSecure.Checked = element.Attribute( "sslSecure" ) == null ? false : bool.Parse( element.Attribute( "sslSecure" ).Value );
 			checkBox_rsa.Checked = element.Attribute( "rsa" ) == null ? false : bool.Parse( element.Attribute( "rsa" ).Value );
 			checkBox_SslTls.Checked = GetXmlValue( element, "SSLTLS", false, bool.Parse );
+			checkBox_long_message_hide.Checked = GetXmlValue( element, "LongMessageHide", false, bool.Parse );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

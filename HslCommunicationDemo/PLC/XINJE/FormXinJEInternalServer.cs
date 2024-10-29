@@ -27,15 +27,14 @@ namespace HslCommunicationDemo
 			if(Program.Language == 2)
 			{
 				label1.Text = "Station:";
-				Text = "XINJE Virtual Server [data support, bool: M,SM， word:D,SD,HD]";
-				label3.Text = "port:";
+				Text = "XINJE Virtual Server";
+				label3.Text = "Port:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
-				label11.Text = "This server is not a strict XINJE protocol and only supports perfect communication with HSL components.";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
-			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.XINJE.Helper.GetXinJEInternalAddress( ) );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.XINJE.Helper.GetXinJEInternalServerAddress( ) );
 			userControlReadWriteServer1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
 			codeExampleControl = new CodeExampleControl( );

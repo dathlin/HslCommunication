@@ -54,8 +54,8 @@ namespace HslCommunicationDemo
 				label_address.Text = "station";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				textBox_password.Text = "Pwd:";
-				textBox_op_code.Text = "Op Code:";
+				label_password.Text = "Pwd:";
+				label_op_code.Text = "Op Code:";
 			}
 		}
 

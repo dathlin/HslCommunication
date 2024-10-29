@@ -13,7 +13,7 @@ namespace HslCommunicationDemo.PLC.Inovance
 		{
 			return new DeviceAddressExample[]
 			{
-				new DeviceAddressExample( "AM400-800地址", "", false, false, "", true ),
+				new DeviceAddressExample( "AM400-800/AC/AP", "", false, false, "", true ),
 				new DeviceAddressExample( "Q0.0", "输出", true, false, "	Q0.0-Q8191.7 或是 Q0-Q65535" ),
 				new DeviceAddressExample( "IX0.0", "输入", true, false, "IX0.0-IX8191.7 或是 I0-I65535" ),
 				new DeviceAddressExample( "MX0.0", "M寄存器", true, false, "MX0.0-MX1000.10" ),

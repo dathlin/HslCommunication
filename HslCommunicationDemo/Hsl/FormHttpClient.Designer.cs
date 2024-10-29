@@ -66,6 +66,7 @@
 			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.radioButton_response_hex = new System.Windows.Forms.RadioButton();
 			this.radioButton5 = new System.Windows.Forms.RadioButton();
 			this.radioButton3 = new System.Windows.Forms.RadioButton();
 			this.radioButton4 = new System.Windows.Forms.RadioButton();
@@ -78,7 +79,6 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.radioButton_response_hex = new System.Windows.Forms.RadioButton();
 			this.panel1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -397,11 +397,10 @@
 			// 
 			// comboBox2
 			// 
-			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox2.FormattingEnabled = true;
 			this.comboBox2.Location = new System.Drawing.Point(217, 271);
 			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(167, 25);
+			this.comboBox2.Size = new System.Drawing.Size(179, 25);
 			this.comboBox2.TabIndex = 46;
 			// 
 			// hslBarChart1
@@ -504,6 +503,16 @@
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(242, 28);
 			this.panel3.TabIndex = 26;
+			// 
+			// radioButton_response_hex
+			// 
+			this.radioButton_response_hex.AutoSize = true;
+			this.radioButton_response_hex.Location = new System.Drawing.Point(181, 3);
+			this.radioButton_response_hex.Name = "radioButton_response_hex";
+			this.radioButton_response_hex.Size = new System.Drawing.Size(48, 21);
+			this.radioButton_response_hex.TabIndex = 29;
+			this.radioButton_response_hex.Text = "Hex";
+			this.radioButton_response_hex.UseVisualStyleBackColor = true;
 			// 
 			// radioButton5
 			// 
@@ -625,16 +634,6 @@
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(428, 36);
 			this.label6.TabIndex = 44;
-			// 
-			// radioButton_response_hex
-			// 
-			this.radioButton_response_hex.AutoSize = true;
-			this.radioButton_response_hex.Location = new System.Drawing.Point(181, 3);
-			this.radioButton_response_hex.Name = "radioButton_response_hex";
-			this.radioButton_response_hex.Size = new System.Drawing.Size(48, 21);
-			this.radioButton_response_hex.TabIndex = 29;
-			this.radioButton_response_hex.Text = "Hex";
-			this.radioButton_response_hex.UseVisualStyleBackColor = true;
 			// 
 			// FormHttpClient
 			// 

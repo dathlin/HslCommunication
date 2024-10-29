@@ -357,9 +357,9 @@ namespace HslCommunicationDemo.DemoControl
 			treeView1.Nodes.Add( wsNode );
 
 			// HttpWeb 相关
-			TreeNode httpNode = new TreeNode( "Http", 0, 0 );
-			httpNode.Nodes.Add( GetTreeNodeByIndex( "Http Web Server", 0, typeof( FormHttpServer ) ) );
-			httpNode.Nodes.Add( GetTreeNodeByIndex( "Http Web Client", 0, typeof( FormHttpClient ) ) );
+			TreeNode httpNode = new TreeNode( "Http", 46, 46 );
+			httpNode.Nodes.Add( GetTreeNodeByIndex( "Http Web Server", 46, typeof( FormHttpServer ) ) );
+			httpNode.Nodes.Add( GetTreeNodeByIndex( "Http Web Client", 46, typeof( FormHttpClient ) ) );
 			treeView1.Nodes.Add( httpNode );
 
 			// Robot 相关

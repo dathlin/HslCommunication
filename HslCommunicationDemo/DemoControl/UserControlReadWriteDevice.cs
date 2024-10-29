@@ -36,6 +36,7 @@ namespace HslCommunicationDemo.DemoControl
 				tabPage3.Text = "Thread Test";
 				tabPage4.Text = "Data Table";
 				tabPage5.Text = "Data Export";
+				tabPage6.Text = "Simulate";
 			}
 
 			batchReadControl2.IsSourceReadMode = true;
@@ -58,6 +59,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.stressTesting1.SetReadWriteNet( readWrite, address );
 			this.dataTableControl1.SetReadWriteNet( readWrite );
 			this.dataExportControl1.SetReadWriteNet( readWrite );
+			this.dataSimulateControl1.SetReadWriteNet( readWrite );
 		}
 
 		public void SetDeviceVariableName( string name )

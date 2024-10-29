@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.button_hour_offset = new System.Windows.Forms.Button();
+			this.label2 = new System.Windows.Forms.Label();
+			this.textBox_hour_offset = new System.Windows.Forms.TextBox();
 			this.button9 = new System.Windows.Forms.Button();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -53,9 +56,8 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.label2 = new System.Windows.Forms.Label();
-			this.textBox_hour_offset = new System.Windows.Forms.TextBox();
-			this.button_hour_offset = new System.Windows.Forms.Button();
+			this.label9 = new System.Windows.Forms.Label();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -89,6 +91,33 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 206);
 			this.panel1.TabIndex = 25;
+			// 
+			// button_hour_offset
+			// 
+			this.button_hour_offset.Location = new System.Drawing.Point(608, 4);
+			this.button_hour_offset.Name = "button_hour_offset";
+			this.button_hour_offset.Size = new System.Drawing.Size(90, 28);
+			this.button_hour_offset.TabIndex = 21;
+			this.button_hour_offset.Text = "设置";
+			this.button_hour_offset.UseVisualStyleBackColor = true;
+			this.button_hour_offset.Click += new System.EventHandler(this.button_hour_offset_Click);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(452, 8);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(68, 17);
+			this.label2.TabIndex = 20;
+			this.label2.Text = "小时偏移：";
+			// 
+			// textBox_hour_offset
+			// 
+			this.textBox_hour_offset.Location = new System.Drawing.Point(532, 6);
+			this.textBox_hour_offset.Name = "textBox_hour_offset";
+			this.textBox_hour_offset.Size = new System.Drawing.Size(68, 23);
+			this.textBox_hour_offset.TabIndex = 19;
+			this.textBox_hour_offset.Text = "0";
 			// 
 			// button9
 			// 
@@ -150,9 +179,9 @@
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(372, 164);
+			this.button7.Location = new System.Drawing.Point(397, 164);
 			this.button7.Name = "button7";
-			this.button7.Size = new System.Drawing.Size(90, 28);
+			this.button7.Size = new System.Drawing.Size(107, 28);
 			this.button7.TabIndex = 12;
 			this.button7.Text = "写异常";
 			this.button7.UseVisualStyleBackColor = true;
@@ -162,7 +191,7 @@
 			// 
 			this.button6.Location = new System.Drawing.Point(276, 164);
 			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(90, 28);
+			this.button6.Size = new System.Drawing.Size(115, 28);
 			this.button6.TabIndex = 11;
 			this.button6.Text = "写注释";
 			this.button6.UseVisualStyleBackColor = true;
@@ -201,7 +230,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(3, 71);
+			this.label4.Location = new System.Drawing.Point(3, 75);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(68, 17);
 			this.label4.TabIndex = 7;
@@ -212,7 +241,7 @@
 			this.textBox2.Location = new System.Drawing.Point(84, 71);
 			this.textBox2.Multiline = true;
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(904, 87);
+			this.textBox2.Size = new System.Drawing.Size(908, 87);
 			this.textBox2.TabIndex = 6;
 			// 
 			// label3
@@ -255,6 +284,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.textBox_code);
+			this.panel2.Controls.Add(this.label9);
 			this.panel2.Controls.Add(this.button8);
 			this.panel2.Controls.Add(this.button4);
 			this.panel2.Controls.Add(this.button3);
@@ -267,9 +298,9 @@
 			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(276, 7);
+			this.button8.Location = new System.Drawing.Point(276, 3);
 			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(90, 28);
+			this.button8.Size = new System.Drawing.Size(102, 28);
 			this.button8.TabIndex = 12;
 			this.button8.Text = "日志分析器";
 			this.button8.UseVisualStyleBackColor = true;
@@ -277,7 +308,7 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(180, 7);
+			this.button4.Location = new System.Drawing.Point(180, 3);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(90, 28);
 			this.button4.TabIndex = 11;
@@ -287,7 +318,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(84, 7);
+			this.button3.Location = new System.Drawing.Point(84, 3);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(90, 28);
 			this.button3.TabIndex = 10;
@@ -298,7 +329,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(3, 47);
+			this.label5.Location = new System.Drawing.Point(3, 42);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 17);
 			this.label5.TabIndex = 9;
@@ -309,11 +340,11 @@
 			this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox3.Location = new System.Drawing.Point(84, 44);
+			this.textBox3.Location = new System.Drawing.Point(84, 37);
 			this.textBox3.Multiline = true;
 			this.textBox3.Name = "textBox3";
 			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox3.Size = new System.Drawing.Size(904, 344);
+			this.textBox3.Size = new System.Drawing.Size(908, 289);
 			this.textBox3.TabIndex = 8;
 			// 
 			// userControlHead1
@@ -330,32 +361,26 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 27;
 			// 
-			// label2
+			// label9
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(452, 8);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(68, 17);
-			this.label2.TabIndex = 20;
-			this.label2.Text = "小时偏移：";
+			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(3, 335);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(44, 17);
+			this.label9.TabIndex = 13;
+			this.label9.Text = "代码：";
 			// 
-			// textBox_hour_offset
+			// textBox_code
 			// 
-			this.textBox_hour_offset.Location = new System.Drawing.Point(525, 6);
-			this.textBox_hour_offset.Name = "textBox_hour_offset";
-			this.textBox_hour_offset.Size = new System.Drawing.Size(68, 23);
-			this.textBox_hour_offset.TabIndex = 19;
-			this.textBox_hour_offset.Text = "0";
-			// 
-			// button_hour_offset
-			// 
-			this.button_hour_offset.Location = new System.Drawing.Point(601, 4);
-			this.button_hour_offset.Name = "button_hour_offset";
-			this.button_hour_offset.Size = new System.Drawing.Size(90, 28);
-			this.button_hour_offset.TabIndex = 21;
-			this.button_hour_offset.Text = "设置";
-			this.button_hour_offset.UseVisualStyleBackColor = true;
-			this.button_hour_offset.Click += new System.EventHandler(this.button_hour_offset_Click);
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(84, 332);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(908, 61);
+			this.textBox_code.TabIndex = 14;
 			// 
 			// FormLogNet
 			// 
@@ -409,5 +434,7 @@
 		private System.Windows.Forms.Button button_hour_offset;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox textBox_hour_offset;
+		private System.Windows.Forms.TextBox textBox_code;
+		private System.Windows.Forms.Label label9;
 	}
 }

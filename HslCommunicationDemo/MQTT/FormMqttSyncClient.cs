@@ -204,7 +204,7 @@ namespace HslCommunicationDemo
 
 			textBox6.Text = read.Content1;
 			string msg = Encoding.UTF8.GetString( read.Content2 );
-			if (radioButton4.Checked)
+			if (radioButton_xml.Checked)
 			{
 				try
 				{
@@ -215,13 +215,17 @@ namespace HslCommunicationDemo
 
 				}
 			}
-			else if (radioButton5.Checked)
+			else if (radioButton_json.Checked)
 			{
 				try
 				{
 					if (msg.StartsWith( "\"{" ) && msg.EndsWith( "}\"" ))
 					{
 						msg = Newtonsoft.Json.Linq.JObject.Parse( Newtonsoft.Json.JsonConvert.DeserializeObject<string>( msg ) ).ToString( );
+					}
+					else if (msg.StartsWith( "\"[" ) && msg.EndsWith( "]\"" ))
+					{
+						msg = Newtonsoft.Json.Linq.JArray.Parse( Newtonsoft.Json.JsonConvert.DeserializeObject<string>( msg ) ).ToString( );
 					}
 					else
 					{

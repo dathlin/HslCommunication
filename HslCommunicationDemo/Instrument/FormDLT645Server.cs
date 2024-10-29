@@ -22,11 +22,37 @@ namespace HslCommunicationDemo
 		public FormDLT645Server( )
 		{
 			InitializeComponent( );
+
+			checkBox_station_match.CheckedChanged += CheckBox_station_match_CheckedChanged;
+			checkBox_enableFE.CheckedChanged += CheckBox_enableFE_CheckedChanged;
+			checkBox_string_reverse.CheckedChanged += CheckBox3_CheckedChanged;
 		}
 
+		private void CheckBox_enableFE_CheckedChanged( object sender, EventArgs e )
+		{
+			if (dLT645Server != null)
+			{
+				dLT645Server.EnableCodeFE = checkBox_enableFE.Checked;
+			}
+		}
+
+		private void CheckBox_station_match_CheckedChanged( object sender, EventArgs e )
+		{
+			if (dLT645Server != null)
+			{
+				dLT645Server.StationMatch = checkBox_station_match.Checked;
+			}
+		}
+
+		private void CheckBox3_CheckedChanged( object sender, EventArgs e )
+		{
+			if (dLT645Server != null)
+			{
+				dLT645Server.StringReverse = checkBox_string_reverse.Checked;
+			}
+		}
 		private void FormDLT645Server_Load( object sender, EventArgs e )
 		{
-			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
 
 			if (Program.Language == 2)
 			{
@@ -37,7 +63,7 @@ namespace HslCommunicationDemo
 
 				label14.Text = "Com:";
 				button5.Text = "Open Com";
-				checkBox3.Text = "str-reverse";
+				checkBox_string_reverse.Text = "str-reverse";
 			}
 			else
 			{
@@ -53,13 +79,6 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.SetEnable( false );
 		}
 
-		private void CheckBox3_CheckedChanged( object sender, EventArgs e )
-		{
-			if (dLT645Server != null)
-			{
-				//fatekServer.IsStringReverse = checkBox3.Checked;
-			}
-		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
@@ -87,7 +106,7 @@ namespace HslCommunicationDemo
 				dLT645Server.Station = textBox1.Text;
 				dLT645Server.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				dLT645Server.OnDataReceived += BusTcpServer_OnDataReceived;
-				dLT645Server.StringReverse = checkBox3.Checked;
+				dLT645Server.StringReverse = checkBox_string_reverse.Checked;
 				dLT645Server.EnableCodeFE = checkBox_enableFE.Checked;
 				dLT645Server.StationMatch = checkBox_station_match.Checked;
 				this.sslServerControl1.InitializeServer( dLT645Server );
@@ -173,7 +192,7 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
+			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox_string_reverse.Checked );
 
 
 			this.userControlReadWriteServer1.GetDataTable( element );
@@ -184,7 +203,7 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
+			checkBox_string_reverse.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
 
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}

@@ -44,9 +44,6 @@
 			this.radioButton_append_0a = new System.Windows.Forms.RadioButton();
 			this.radioButton_append_0d = new System.Windows.Forms.RadioButton();
 			this.label_append = new System.Windows.Forms.Label();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.radioButton_ascii = new System.Windows.Forms.RadioButton();
-			this.radioButton_binary = new System.Windows.Forms.RadioButton();
 			this.button5 = new System.Windows.Forms.Button();
 			this.label8 = new System.Windows.Forms.Label();
 			this.checkBox_show_send = new System.Windows.Forms.CheckBox();
@@ -68,8 +65,8 @@
 			this.radioButton_send_all = new System.Windows.Forms.RadioButton();
 			this.radioButton_send_single = new System.Windows.Forms.RadioButton();
 			this.textBox_send_info = new System.Windows.Forms.TextBox();
+			this.comboBox_encoding = new System.Windows.Forms.ComboBox();
 			this.panel4.SuspendLayout();
-			this.panel3.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel5.SuspendLayout();
@@ -249,39 +246,6 @@
 			this.label_append.Size = new System.Drawing.Size(57, 17);
 			this.label_append.TabIndex = 2;
 			this.label_append.Text = "Append:";
-			// 
-			// panel3
-			// 
-			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.panel3.BackColor = System.Drawing.SystemColors.Control;
-			this.panel3.Controls.Add(this.radioButton_ascii);
-			this.panel3.Controls.Add(this.radioButton_binary);
-			this.panel3.Location = new System.Drawing.Point(278, 415);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(141, 28);
-			this.panel3.TabIndex = 52;
-			// 
-			// radioButton_ascii
-			// 
-			this.radioButton_ascii.AutoSize = true;
-			this.radioButton_ascii.Location = new System.Drawing.Point(74, 3);
-			this.radioButton_ascii.Name = "radioButton_ascii";
-			this.radioButton_ascii.Size = new System.Drawing.Size(57, 21);
-			this.radioButton_ascii.TabIndex = 1;
-			this.radioButton_ascii.Text = "ASCII";
-			this.radioButton_ascii.UseVisualStyleBackColor = true;
-			// 
-			// radioButton_binary
-			// 
-			this.radioButton_binary.AutoSize = true;
-			this.radioButton_binary.Checked = true;
-			this.radioButton_binary.Location = new System.Drawing.Point(7, 3);
-			this.radioButton_binary.Name = "radioButton_binary";
-			this.radioButton_binary.Size = new System.Drawing.Size(62, 21);
-			this.radioButton_binary.TabIndex = 0;
-			this.radioButton_binary.TabStop = true;
-			this.radioButton_binary.Text = "Binary";
-			this.radioButton_binary.UseVisualStyleBackColor = true;
 			// 
 			// button5
 			// 
@@ -511,9 +475,24 @@
 			this.textBox_send_info.TabIndex = 70;
 			this.textBox_send_info.Text = "<sleep=100> 单独一行可以分割延时发送";
 			// 
+			// comboBox_encoding
+			// 
+			this.comboBox_encoding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox_encoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_encoding.FormattingEnabled = true;
+			this.comboBox_encoding.Items.AddRange(new object[] {
+            "Binary",
+            "ASCII",
+            "Unicode"});
+			this.comboBox_encoding.Location = new System.Drawing.Point(278, 416);
+			this.comboBox_encoding.Name = "comboBox_encoding";
+			this.comboBox_encoding.Size = new System.Drawing.Size(140, 25);
+			this.comboBox_encoding.TabIndex = 71;
+			// 
 			// DebugControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.comboBox_encoding);
 			this.Controls.Add(this.textBox_send_info);
 			this.Controls.Add(this.panel5);
 			this.Controls.Add(this.panel1);
@@ -529,7 +508,6 @@
 			this.Controls.Add(this.richTextBox_main);
 			this.Controls.Add(this.label_send_count);
 			this.Controls.Add(this.panel4);
-			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.button5);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.checkBox_show_send);
@@ -545,8 +523,6 @@
 			this.Load += new System.EventHandler(this.DebugControl_Load);
 			this.panel4.ResumeLayout(false);
 			this.panel4.PerformLayout();
-			this.panel3.ResumeLayout(false);
-			this.panel3.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
@@ -576,9 +552,6 @@
 		private System.Windows.Forms.RadioButton radioButton_append_0a;
 		private System.Windows.Forms.RadioButton radioButton_append_0d;
 		private System.Windows.Forms.Label label_append;
-		private System.Windows.Forms.Panel panel3;
-		private System.Windows.Forms.RadioButton radioButton_ascii;
-		private System.Windows.Forms.RadioButton radioButton_binary;
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.CheckBox checkBox_show_send;
@@ -600,5 +573,6 @@
 		private System.Windows.Forms.RadioButton radioButton_send_all;
 		private System.Windows.Forms.RadioButton radioButton_send_single;
 		private System.Windows.Forms.TextBox textBox_send_info;
-	}
+        private System.Windows.Forms.ComboBox comboBox_encoding;
+    }
 }

@@ -244,7 +244,8 @@ namespace HslCommunicationDemo
 						nameof( busTcpServer.StationDataIsolation ),
 						nameof( busTcpServer.UseModbusRtuOverTcp ),
 						nameof( busTcpServer.IsStringReverse ),
-						nameof( busTcpServer.DataFormat ) );
+						nameof( busTcpServer.DataFormat ),
+						nameof( busTcpServer.SerialReceiveAtleastTime ) );
 				}
 				catch(Exception ex)
 				{
@@ -270,6 +271,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( "Ipv6", checkBox_ipv6.Checked );
 			element.SetAttributeValue( "Station", textBox_station.Text );
 			element.SetAttributeValue( "MaskCode", checkBox_maskcode.Checked );
+			element.SetAttributeValue( "SerialReceiveAtleastTime", textBox_time_min.Text );
 
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
@@ -287,6 +289,7 @@ namespace HslCommunicationDemo
 			checkBox_ipv6.Checked = GetXmlValue( element, "Ipv6", false, bool.Parse );
 			textBox_station.Text = GetXmlValue( element, "Station", "1", m => m );
 			checkBox_maskcode.Checked = GetXmlValue( element, "MaskCode", true, bool.Parse );
+			textBox_time_min.Text = GetXmlValue( element, "SerialReceiveAtleastTime", textBox_time_min.Text, m => m );
 
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}

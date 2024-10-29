@@ -13,7 +13,6 @@ using HslCommunication;
 using HslCommunication.LogNet;
 using System.Text.RegularExpressions;
 using System.Security.Policy;
-using System.Reflection.Emit;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -186,6 +185,10 @@ namespace HslCommunicationDemo.DemoControl
 				label13.Text = "Encoding:";
 				checkBox_read_timer.Text = "Timer Read";
 				checkBox_write_timer.Text = "Timer Write";
+
+				label16.Text = "if write 1-100, value input {1:100}";
+				checkBox_mask_duplicates.Text = "Mask duplicates value";
+
 			}
 			else
 			{
@@ -251,6 +254,9 @@ namespace HslCommunicationDemo.DemoControl
 		private bool isAsync = false;
 		private MethodInfo readByteMethod = null;
 		private MethodInfo writeByteMethod = null;
+		private string readValueLast = string.Empty;
+		private string readTimeLast = string.Empty;
+		private long readValueRepeatTimes = 1;
 
 		private ValueLimit valueLimit = new ValueLimit( );
 
@@ -268,7 +274,65 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 			if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-			DemoUtils.ReadResultRender( read, textBox3.Text, textBox4 );
+			ReadResultRender( read, textBox3.Text, textBox4 );
+		}
+
+		private void AppendReadResult( TextBox textBox, string text )
+		{
+
+			if (!checkBox_mask_duplicates.Checked)
+				textBox.AppendText( DemoUtils.GetRenderTimeText( ) + $"{text}{Environment.NewLine}" );
+			else
+			{
+				if (readValueLast == text)
+				{
+					readValueRepeatTimes++;
+					// 重复显示的话，屏蔽读取的值操作
+					if (textBox.Lines.Length > 0)
+					{
+						string[] lines = textBox.Lines;
+						if (string.IsNullOrEmpty( lines[lines.Length - 1] ))
+						{
+							lines[lines.Length - 2] = readTimeLast + $"[{readValueRepeatTimes}] {text}";
+							textBox.Text = string.Join( Environment.NewLine, lines );
+							textBox.SelectionStart = textBox.Text.Length;
+							textBox.ScrollToCaret( );
+						}
+						else
+						{
+							lines[lines.Length - 1] = readTimeLast + $"[{readValueRepeatTimes}] {text}";
+							textBox.Text = string.Join( Environment.NewLine, lines );
+							textBox.AppendText( Environment.NewLine );
+						}
+					}
+				}
+				else
+				{
+					readValueRepeatTimes = 1; // 不一样的值
+					readTimeLast = DemoUtils.GetRenderTimeText( );
+                    textBox.AppendText( readTimeLast + $"{text}{Environment.NewLine}" );
+				}
+				readValueLast = text;
+			}
+		}
+
+		public void ReadResultRender<T>( OperateResult<T> result, string address, TextBox textBox )
+		{
+			if (result.IsSuccess)
+			{
+				if (result.Content is Array)
+				{
+					AppendReadResult( textBox, $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat( result.Content )}" );
+				}
+				else
+				{
+					AppendReadResult( textBox, $"[{address}] {result.Content}" );
+				}
+			}
+			else
+			{
+				DemoUtils.ShowMessage( DemoUtils.GetRenderTimeText( ) + $"[{address}] Read Failed {Environment.NewLine}Reason：{result.ToMessageShowString( )}" );
+			}
 		}
 
 		private async void button_read_bool_Click( object sender, EventArgs e )

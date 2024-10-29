@@ -53,6 +53,7 @@ namespace HslCommunicationDemo.DemoControl
 
 				label_code.Text = "Code:";
 				checkBox1.Text = "RegularExp";
+				checkBox_word_reverse.Text = "R-Word";
 			}
 
 
@@ -80,6 +81,12 @@ namespace HslCommunicationDemo.DemoControl
 
 			comboBox1.SelectedIndex = 0;
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
+			checkBox_word_reverse.CheckedChanged += CheckBox_word_reverse_CheckedChanged;
+		}
+
+		private void CheckBox_word_reverse_CheckedChanged( object sender, EventArgs e )
+		{
+			RenderReadBytes( this.buffer );
 		}
 
 		private string get_selected( )
@@ -230,6 +237,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void RenderReadBytes( byte[] buffer )
 		{
+			if (checkBox_word_reverse.Checked) buffer = SoftBasic.BytesReverseByWord( buffer );
 			int selectIndex = comboBox1.SelectedIndex;
 			if (selectIndex == 0)
 			{

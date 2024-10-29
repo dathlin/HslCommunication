@@ -61,6 +61,7 @@ namespace HslCommunicationDemo
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				checkBox2.Text = "IsClearCacheBeforeRead";
+				label_BroadcastStation.Text = "BroadcastStat:";
 			}
 		}
 
@@ -112,7 +113,8 @@ namespace HslCommunicationDemo
 			busRtuClient.LogNet = LogNet;
 			busRtuClient.Crc16CheckEnable = checkBox_crc16.Checked;
 			busRtuClient.StationCheckMacth = checkBox_station_check.Checked;
-
+			if (!string.IsNullOrEmpty( textBox_BroadcastStation.Text ))
+				busRtuClient.BroadcastStation = int.Parse( textBox_BroadcastStation.Text );
 
 			ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
 			busRtuClient.IsStringReverse = checkBox3.Checked;
@@ -141,7 +143,7 @@ namespace HslCommunicationDemo
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
 					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
 						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.Crc16CheckEnable ), nameof( busRtuClient.IsClearCacheBeforeRead ),
-						nameof( busRtuClient.StationCheckMacth ) );
+						nameof( busRtuClient.StationCheckMacth ), nameof( busRtuClient.BroadcastStation ) );
 				}
 				else
 				{
@@ -176,6 +178,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
 			element.SetAttributeValue( "CRC16", checkBox_crc16.Checked );
 			element.SetAttributeValue( "StationCheckMacth", checkBox_station_check.Checked );
+			element.SetAttributeValue( nameof( ModbusRtu.BroadcastStation ), textBox_BroadcastStation.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -190,6 +193,7 @@ namespace HslCommunicationDemo
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
 			checkBox_crc16.Checked = GetXmlValue( element, "CRC16", checkBox_crc16.Checked, bool.Parse );
 			checkBox_station_check.Checked = GetXmlValue( element, "StationCheckMacth", checkBox_station_check.Checked, bool.Parse );
+			textBox_BroadcastStation.Text = GetXmlValue( element, nameof( ModbusRtu.BroadcastStation ), "", m => m );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

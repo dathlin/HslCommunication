@@ -97,5 +97,22 @@ namespace HslCommunicationDemo.PLC.XINJE
 				new DeviceAddressExample( "FSD0", "特殊保密寄存器",       false, true, "一般范围: FSD0~FSD47"),
 			};
 		}
+
+		public static DeviceAddressExample[] GetXinJEInternalServerAddress( )
+		{
+			return new DeviceAddressExample[]
+			{
+				new DeviceAddressExample( "M100", "内部继电器", true, false, "客户端使用XinJE TCP[专用] 的情况" ),
+				new DeviceAddressExample( "SM100", "特殊继电器", true, false, "客户端使用XinJE TCP[专用] 的情况" ),
+
+				new DeviceAddressExample( "D100", "数据寄存器", false, true, "客户端使用XinJE TCP[专用] 的情况"),
+				new DeviceAddressExample( "SD0", "特殊寄存器",            false, true, "客户端使用XinJE TCP[专用] 的情况"),
+				new DeviceAddressExample( "HD0", "数据寄存器",            false, true, "客户端使用XinJE TCP[专用] 的情况"),
+
+				new DeviceAddressExample( "100", "modbus的03功能码",            false, true, "使用modbus地址，客户端使用XinJE TCP[Modbus] 的情况"),
+			};
+		}
+
+
 	}
 }

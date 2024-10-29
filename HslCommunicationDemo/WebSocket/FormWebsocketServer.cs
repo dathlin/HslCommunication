@@ -80,8 +80,10 @@ namespace HslCommunicationDemo
 				checkBox3.Text = "Send test message back when client connect";
 				button8.Text = "web test";
 				checkBox_willcard.Text = "Topic willcard?";
+				button6.Text = "Broadcast";
+				button7.Text = "Stop";
 
-            }
+			}
 		}
 
 		private WebSocketServer wsServer;
@@ -194,7 +196,7 @@ namespace HslCommunicationDemo
 			else
 			{
 				startThreadPublish = true;
-				button9.Text = "停止";
+				button9.Text = Program.Language == 1 ? "停止" : "Stop";
 				if (thread == null)
 				{
 					thread = new System.Threading.Thread( new System.Threading.ThreadStart( ThreadTest ) );
@@ -234,13 +236,13 @@ namespace HslCommunicationDemo
 		{
 			if (!isStop)
 			{
-				button7.Text = "继续";
+				button7.Text = Program.Language == 1 ? "继续" : "Continue";
 				isStop = true;
 			}
 			else
 			{
 				isStop = false;
-				button7.Text = "暂停";
+				button7.Text = Program.Language == 1 ? "暂停" : "Stop";
 			}
 		}
 

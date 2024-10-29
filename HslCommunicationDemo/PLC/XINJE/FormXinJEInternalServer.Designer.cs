@@ -29,9 +29,9 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.textBox_station = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.label11 = new System.Windows.Forms.Label();
 			this.button11 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox_port = new System.Windows.Forms.TextBox();
@@ -39,7 +39,6 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -52,7 +51,6 @@
 			this.panel1.Controls.Add(this.sslServerControl1);
 			this.panel1.Controls.Add(this.textBox_station);
 			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.label11);
 			this.panel1.Controls.Add(this.button11);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.textBox_port);
@@ -63,13 +61,23 @@
 			this.panel1.Size = new System.Drawing.Size(997, 65);
 			this.panel1.TabIndex = 0;
 			// 
+			// sslServerControl1
+			// 
+			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.sslServerControl1.Location = new System.Drawing.Point(5, 32);
+			this.sslServerControl1.Name = "sslServerControl1";
+			this.sslServerControl1.Size = new System.Drawing.Size(987, 30);
+			this.sslServerControl1.TabIndex = 32;
+			// 
 			// textBox_station
 			// 
 			this.textBox_station.Location = new System.Drawing.Point(188, 4);
 			this.textBox_station.Name = "textBox_station";
 			this.textBox_station.Size = new System.Drawing.Size(65, 23);
 			this.textBox_station.TabIndex = 31;
-			this.textBox_station.Text = "1";
+			this.textBox_station.Text = "0";
 			// 
 			// label1
 			// 
@@ -80,19 +88,10 @@
 			this.label1.TabIndex = 30;
 			this.label1.Text = "站号：";
 			// 
-			// label11
-			// 
-			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(480, -1);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(512, 32);
-			this.label11.TabIndex = 29;
-			this.label11.Text = "本服务器不是严格的xinje协议，仅支持和HSL组件完美通信。";
-			// 
 			// button11
 			// 
 			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(391, 3);
+			this.button11.Location = new System.Drawing.Point(391, 2);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(83, 28);
 			this.button11.TabIndex = 28;
@@ -102,7 +101,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(301, 3);
+			this.button1.Location = new System.Drawing.Point(301, 2);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(83, 28);
 			this.button1.TabIndex = 4;
@@ -165,16 +164,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// sslServerControl1
-			// 
-			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.sslServerControl1.Location = new System.Drawing.Point(5, 32);
-			this.sslServerControl1.Name = "sslServerControl1";
-			this.sslServerControl1.Size = new System.Drawing.Size(987, 30);
-			this.sslServerControl1.TabIndex = 32;
-			// 
 			// FormXinJEInternalServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -206,7 +195,6 @@
         private System.Windows.Forms.TextBox textBox_port;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Label label11;
         private DemoControl.UserControlHead userControlHead1;
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
 		private System.Windows.Forms.TextBox textBox_station;

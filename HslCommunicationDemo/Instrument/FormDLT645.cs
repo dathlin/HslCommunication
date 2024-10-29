@@ -55,6 +55,8 @@ namespace HslCommunicationDemo
 				label_op_code.Text = "Op Code";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
+				label_password.Text = "Pwd:";
+				label_op_code.Text = "Op Code:";
 			}
 		}
 

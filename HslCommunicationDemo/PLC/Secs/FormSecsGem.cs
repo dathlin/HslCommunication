@@ -94,7 +94,7 @@ namespace HslCommunicationDemo
 			AddTree( s1Node, new SecsTreeItem( 1, 5,  true,  new SecsValue( new byte[] { 0x01 } ), "Formatted Status" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 7,  false, new SecsValue( new byte[] { 0x01 } ), "Fixed Form Request" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 9,  true,  null, "Material Transfer Status" ) );
-			AddTree( s1Node, new SecsTreeItem( 1, 11, true,  new SecsValue(new object[] { (uint)1, (uint)2 } ), "Status Variable Namelist" ) );
+			AddTree( s1Node, new SecsTreeItem( 1, 11, true,  new SecsValue( new object[] { (uint)1, (uint)2 } ), "Status Variable Namelist" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 13, true,  new SecsValue( new object[] { new byte[] { 0x01 }, new object[0]  } ), "Establish Communications" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 15, true,  null, "Request OFF-LINE" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 17, true,  null, "Request ON-LINE" ) );
@@ -306,17 +306,15 @@ namespace HslCommunicationDemo
 			{
 				Text = "SECS Read Demo";
 
-				label1.Text = "Com:";
-				label3.Text = "baudRate:";
-				label21.Text = "station";
+				label1.Text = "Ip:";
+				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				button3.Text = "SendOnly";
 
-				label11.Text = "Address:";
-				label12.Text = "length:";
-				button25.Text = "Bulk Read";
+				button25.Text = "SendReply";
 				label13.Text = "Results:";
+				checkBox2.Text = "Initialization S0F0?";
 
 				tabPage_log.Text = "Log";
 			}
@@ -392,6 +390,8 @@ namespace HslCommunicationDemo
 
 			if (!checkBox1.Checked)
 				textBox_log.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " " + secsMessage.ToString( ) + Environment.NewLine );
+
+
 		}
 
 		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )

@@ -38,6 +38,8 @@
 			this.stressTesting1 = new HslCommunicationDemo.PLC.Common.StressTesting();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.dataTableControl1 = new HslCommunicationDemo.DemoControl.DataTableControl();
+			this.tabPage6 = new System.Windows.Forms.TabPage();
+			this.dataSimulateControl1 = new HslCommunicationDemo.DemoControl.DataSimulateControl();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
 			this.dataExportControl1 = new HslCommunicationDemo.DemoControl.DataExportControl();
 			this.tabControl1.SuspendLayout();
@@ -45,6 +47,7 @@
 			this.tabPage2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tabPage4.SuspendLayout();
+			this.tabPage6.SuspendLayout();
 			this.tabPage5.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -66,6 +69,7 @@
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage4);
+			this.tabControl1.Controls.Add(this.tabPage6);
 			this.tabControl1.Controls.Add(this.tabPage5);
 			this.tabControl1.Location = new System.Drawing.Point(0, 272);
 			this.tabControl1.Name = "tabControl1";
@@ -138,12 +142,12 @@
 			// tabPage4
 			// 
 			this.tabPage4.Controls.Add(this.dataTableControl1);
-			this.tabPage4.Location = new System.Drawing.Point(4, 22);
+			this.tabPage4.Location = new System.Drawing.Point(4, 26);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(192, 74);
+			this.tabPage4.Size = new System.Drawing.Size(946, 252);
 			this.tabPage4.TabIndex = 3;
-			this.tabPage4.Text = "点位表";
+			this.tabPage4.Text = "点位变量";
 			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
 			// dataTableControl1
@@ -152,8 +156,28 @@
 			this.dataTableControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.dataTableControl1.Location = new System.Drawing.Point(3, 3);
 			this.dataTableControl1.Name = "dataTableControl1";
-			this.dataTableControl1.Size = new System.Drawing.Size(186, 68);
+			this.dataTableControl1.Size = new System.Drawing.Size(940, 246);
 			this.dataTableControl1.TabIndex = 0;
+			// 
+			// tabPage6
+			// 
+			this.tabPage6.Controls.Add(this.dataSimulateControl1);
+			this.tabPage6.Location = new System.Drawing.Point(4, 22);
+			this.tabPage6.Name = "tabPage6";
+			this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage6.Size = new System.Drawing.Size(192, 74);
+			this.tabPage6.TabIndex = 4;
+			this.tabPage6.Text = "数据模拟";
+			this.tabPage6.UseVisualStyleBackColor = true;
+			// 
+			// dataSimulateControl1
+			// 
+			this.dataSimulateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataSimulateControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.dataSimulateControl1.Location = new System.Drawing.Point(3, 3);
+			this.dataSimulateControl1.Name = "dataSimulateControl1";
+			this.dataSimulateControl1.Size = new System.Drawing.Size(186, 68);
+			this.dataSimulateControl1.TabIndex = 0;
 			// 
 			// tabPage5
 			// 
@@ -162,7 +186,7 @@
 			this.tabPage5.Name = "tabPage5";
 			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage5.Size = new System.Drawing.Size(192, 74);
-			this.tabPage5.TabIndex = 4;
+			this.tabPage5.TabIndex = 5;
 			this.tabPage5.Text = "数据导出";
 			this.tabPage5.UseVisualStyleBackColor = true;
 			// 
@@ -189,6 +213,7 @@
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage4.ResumeLayout(false);
+			this.tabPage6.ResumeLayout(false);
 			this.tabPage5.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -208,5 +233,7 @@
 		private PLC.Common.StressTesting stressTesting1;
 		private System.Windows.Forms.TabPage tabPage5;
 		private DataExportControl dataExportControl1;
+		private System.Windows.Forms.TabPage tabPage6;
+		private DataSimulateControl dataSimulateControl1;
 	}
 }

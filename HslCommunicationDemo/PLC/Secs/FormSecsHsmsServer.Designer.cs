@@ -72,11 +72,11 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.panel4 = new System.Windows.Forms.Panel();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.addNewSecsItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.editSecsItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteSecsItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.panel4 = new System.Windows.Forms.Panel();
 			this.panel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -87,8 +87,8 @@
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
-			this.contextMenuStrip1.SuspendLayout();
 			this.panel4.SuspendLayout();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// userControlHead1
@@ -258,9 +258,9 @@
 			// 
 			this.button4.Location = new System.Drawing.Point(2, 62);
 			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(55, 26);
+			this.button4.Size = new System.Drawing.Size(64, 26);
 			this.button4.TabIndex = 19;
-			this.button4.Text = "clear";
+			this.button4.Text = "清空";
 			this.button4.UseVisualStyleBackColor = true;
 			this.button4.Click += new System.EventHandler(this.button4_Click);
 			// 
@@ -279,7 +279,7 @@
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(6, 8);
+			this.label13.Location = new System.Drawing.Point(4, 8);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(44, 17);
 			this.label13.TabIndex = 17;
@@ -290,9 +290,9 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Location = new System.Drawing.Point(4, 34);
 			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(58, 21);
+			this.checkBox1.Size = new System.Drawing.Size(51, 21);
 			this.checkBox1.TabIndex = 18;
-			this.checkBox1.Text = "STOP";
+			this.checkBox1.Text = "暂时";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
 			// groupBox1
@@ -307,7 +307,7 @@
 			this.groupBox1.Size = new System.Drawing.Size(1040, 353);
 			this.groupBox1.TabIndex = 6;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "数据定义区";
+			this.groupBox1.Text = "功能定义区";
 			// 
 			// splitContainer1
 			// 
@@ -375,7 +375,7 @@
 			// 
 			// button_device_save
 			// 
-			this.button_device_save.Location = new System.Drawing.Point(193, 4);
+			this.button_device_save.Location = new System.Drawing.Point(187, 4);
 			this.button_device_save.Name = "button_device_save";
 			this.button_device_save.Size = new System.Drawing.Size(49, 28);
 			this.button_device_save.TabIndex = 46;
@@ -384,9 +384,9 @@
 			// 
 			// button_device_send
 			// 
-			this.button_device_send.Location = new System.Drawing.Point(248, 4);
+			this.button_device_send.Location = new System.Drawing.Point(238, 4);
 			this.button_device_send.Name = "button_device_send";
-			this.button_device_send.Size = new System.Drawing.Size(59, 28);
+			this.button_device_send.Size = new System.Drawing.Size(91, 28);
 			this.button_device_send.TabIndex = 45;
 			this.button_device_send.Text = "广播";
 			this.button_device_send.UseVisualStyleBackColor = true;
@@ -488,7 +488,7 @@
 			// 
 			// button_save_tree
 			// 
-			this.button_save_tree.Location = new System.Drawing.Point(206, 3);
+			this.button_save_tree.Location = new System.Drawing.Point(202, 3);
 			this.button_save_tree.Name = "button_save_tree";
 			this.button_save_tree.Size = new System.Drawing.Size(73, 28);
 			this.button_save_tree.TabIndex = 35;
@@ -498,9 +498,9 @@
 			// 
 			// button25
 			// 
-			this.button25.Location = new System.Drawing.Point(284, 3);
+			this.button25.Location = new System.Drawing.Point(277, 3);
 			this.button25.Name = "button25";
-			this.button25.Size = new System.Drawing.Size(61, 28);
+			this.button25.Size = new System.Drawing.Size(94, 28);
 			this.button25.TabIndex = 31;
 			this.button25.Text = "广播";
 			this.button25.UseVisualStyleBackColor = true;
@@ -554,6 +554,21 @@
 			this.tabPage1.Text = "日志";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
+			// panel4
+			// 
+			this.panel4.Controls.Add(this.label13);
+			this.panel4.Controls.Add(this.listBox1);
+			this.panel4.Controls.Add(this.button4);
+			this.panel4.Controls.Add(this.textBox_log);
+			this.panel4.Controls.Add(this.label2);
+			this.panel4.Controls.Add(this.label4);
+			this.panel4.Controls.Add(this.checkBox1);
+			this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel4.Location = new System.Drawing.Point(3, 3);
+			this.panel4.Name = "panel4";
+			this.panel4.Size = new System.Drawing.Size(1020, 202);
+			this.panel4.TabIndex = 35;
+			// 
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -587,21 +602,6 @@
 			this.deleteSecsItemToolStripMenuItem.Text = "DeleteSecsItem";
 			this.deleteSecsItemToolStripMenuItem.Click += new System.EventHandler(this.deleteSecsItemToolStripMenuItem_Click);
 			// 
-			// panel4
-			// 
-			this.panel4.Controls.Add(this.label13);
-			this.panel4.Controls.Add(this.listBox1);
-			this.panel4.Controls.Add(this.button4);
-			this.panel4.Controls.Add(this.textBox_log);
-			this.panel4.Controls.Add(this.label2);
-			this.panel4.Controls.Add(this.label4);
-			this.panel4.Controls.Add(this.checkBox1);
-			this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel4.Location = new System.Drawing.Point(3, 3);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(1020, 202);
-			this.panel4.TabIndex = 35;
-			// 
 			// FormSecsHsmsServer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -629,9 +629,9 @@
 			this.panel2.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
-			this.contextMenuStrip1.ResumeLayout(false);
 			this.panel4.ResumeLayout(false);
 			this.panel4.PerformLayout();
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

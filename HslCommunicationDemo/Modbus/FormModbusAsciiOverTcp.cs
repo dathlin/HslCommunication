@@ -21,6 +21,8 @@ namespace HslCommunicationDemo
 		public FormModbusAsciiOverTcp( )
 		{
 			InitializeComponent( );
+
+			checkBox_station_check.CheckedChanged += CheckBox_station_check_CheckedChanged;
 		}
 
 
@@ -60,6 +62,7 @@ namespace HslCommunicationDemo
 				checkBox3.Text = "string reverse";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
+				label_BroadcastStation.Text = "BroadcastStat:";
 			}
 		}
 
@@ -85,13 +88,20 @@ namespace HslCommunicationDemo
 				busAsciiClient.IsStringReverse = checkBox3.Checked;
 			}
 		}
-		
+
+
+		private void CheckBox_station_check_CheckedChanged( object sender, EventArgs e )
+		{
+			if (busAsciiClient != null)
+			{
+				busAsciiClient.StationCheckMacth = checkBox_station_check.Checked;
+			}
+		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
 
 		}
-		
 
 		#region Connect And Close
 
@@ -116,6 +126,9 @@ namespace HslCommunicationDemo
 
 			ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
 			busAsciiClient.IsStringReverse = checkBox3.Checked;
+			busAsciiClient.StationCheckMacth = checkBox_station_check.Checked;
+			if (!string.IsNullOrEmpty(textBox_BroadcastStation.Text))
+				busAsciiClient.BroadcastStation = int.Parse( textBox_BroadcastStation.Text );
 
 			try
 			{
@@ -141,7 +154,7 @@ namespace HslCommunicationDemo
 					// 设置示例代码
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
 					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busAsciiClient, nameof( busAsciiClient.AddressStartWithZero ), nameof( busAsciiClient.IsStringReverse ),
-						nameof( busAsciiClient.DataFormat ), nameof( busAsciiClient.Station ) );
+						nameof( busAsciiClient.DataFormat ), nameof( busAsciiClient.Station ), nameof( busAsciiClient.StationCheckMacth ), nameof( busAsciiClient.BroadcastStation ) );
 				}
 				else
 				{
@@ -174,6 +187,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
+			element.SetAttributeValue( nameof( ModbusAsciiOverTcp.StationCheckMacth ), checkBox_station_check.Checked );
+			element.SetAttributeValue( nameof( ModbusAsciiOverTcp.BroadcastStation ), textBox_BroadcastStation.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -187,7 +202,8 @@ namespace HslCommunicationDemo
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-
+			checkBox_station_check.Checked = GetXmlValue( element, nameof( ModbusAsciiOverTcp.StationCheckMacth ), checkBox_station_check.Checked, bool.Parse );
+			textBox_BroadcastStation.Text = GetXmlValue( element, nameof( ModbusAsciiOverTcp.BroadcastStation ), "", m => m );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

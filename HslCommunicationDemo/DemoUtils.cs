@@ -54,6 +54,11 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		public static string GetRenderTimeText( )
+		{
+			return DateTime.Now.ToString( (FormMain.ShowMs ? "[HH:mm:ss.fff] " : "[HH:mm:ss] ") );
+		}
+
 
 		/// <summary>
 		/// 统一的读取结果的数据解析，显示
@@ -68,16 +73,16 @@ namespace HslCommunicationDemo
 			{
 				if (result.Content is Array)
 				{
-					textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat(result.Content)}{Environment.NewLine}" );
+					textBox.AppendText( GetRenderTimeText( ) + $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat(result.Content)}{Environment.NewLine}" );
 				}
 				else
 				{
-					textBox.AppendText( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] {result.Content}{Environment.NewLine}" );
+					textBox.AppendText( GetRenderTimeText( ) + $"[{address}] {result.Content}{Environment.NewLine}" );
 				}
 			}
 			else
 			{
-				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Read Failed {Environment.NewLine}Reason：{result.ToMessageShowString( )}" );
+				DemoUtils.ShowMessage( GetRenderTimeText( ) + $"[{address}] Read Failed {Environment.NewLine}Reason：{result.ToMessageShowString( )}" );
 			}
 		}
 		
@@ -90,11 +95,11 @@ namespace HslCommunicationDemo
 		{
 			if (result.IsSuccess)
 			{
-				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
+				DemoUtils.ShowMessage( GetRenderTimeText( ) + $"[{address}] Write Success" );
 			}
 			else
 			{
-				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
+				DemoUtils.ShowMessage( GetRenderTimeText( ) + $"[{address}] Write Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
 			}
 		}
 
@@ -107,11 +112,11 @@ namespace HslCommunicationDemo
 		{
 			if (result.IsSuccess)
 			{
-				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"Success" );
+				DemoUtils.ShowMessage( GetRenderTimeText( ) + $"Success" );
 			}
 			else
 			{
-				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
+				DemoUtils.ShowMessage( GetRenderTimeText( ) + $"Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
 			}
 		}
 
@@ -127,11 +132,11 @@ namespace HslCommunicationDemo
 				OperateResult result = write( );
 				if (result.IsSuccess)
 				{
-					DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
+					DemoUtils.ShowMessage( GetRenderTimeText( ) + $"[{address}] Write Success" );
 				}
 				else
 				{
-					DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
+					DemoUtils.ShowMessage( GetRenderTimeText( ) + $"[{address}] Write Failed {Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
 				}
 			}
 			catch(Exception ex)
@@ -232,7 +237,7 @@ namespace HslCommunicationDemo
 			tabPage.Size = new System.Drawing.Size( 946, 252 );
 			tabPage.TabIndex = 0;
 			if (string.IsNullOrEmpty( title ))
-				tabPage.Text = Program.Language == 1 ? "特殊功能测试" : "Special Function";
+				tabPage.Text = Program.Language == 1 ? "特殊功能" : "Special Function";
 			else
 				tabPage.Text = title;
 

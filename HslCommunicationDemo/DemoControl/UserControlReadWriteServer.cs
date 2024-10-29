@@ -238,6 +238,13 @@ namespace HslCommunicationDemo.DemoControl
 			else
 			{
 				allControls.Add( control );
+				if (control is CodeExampleControl codeExampleControl)
+				{
+					this.userControlReadWriteOp1.MethodCodeClick += ( object sender, string e ) =>
+					{
+						codeExampleControl.ReaderReadCode( e );
+					};
+				}
 			}
 		}
 

@@ -27,12 +27,9 @@ namespace HslCommunicationDemo.HslDebug
 
 			Disposed += DebugControl_Disposed;
 
-			panel3.Paint += Panel3_Paint;
 			panel4.Paint += Panel3_Paint;
 			panel5.Paint += Panel3_Paint;
 
-
-			radioButton_binary.CheckedChanged += RadioButton_binary_CheckedChanged;
 			linkLabel1.LinkClicked += linkLabel1_LinkClicked;
 			button_send.Click += button_send_Click;
 			linkLabel_build_message.Click += button_build_message_Click;
@@ -58,6 +55,13 @@ namespace HslCommunicationDemo.HslDebug
 			timer.Tick += Timer_Tick;
 			timer.Start( );
 
+			List<string> strings = new List<string>( );
+			strings.Add( "Binary" );
+			strings.AddRange( DemoUtils.GetEncodings( ) );
+
+
+			comboBox_encoding.DataSource = strings.ToArray( );
+			comboBox_encoding.SelectedIndex = 0;
 			// 中英文设置
 			if (Program.Language == 1)
 			{
@@ -143,18 +147,6 @@ namespace HslCommunicationDemo.HslDebug
 			button_send.PerformClick( );
 		}
 
-		private void RadioButton_binary_CheckedChanged( object sender, EventArgs e )
-		{
-			if (radioButton_binary.Checked)
-			{
-				isBinary = true;
-			}
-			else
-			{
-				isBinary = false;
-			}
-		}
-
 		private void Panel3_Paint( object sender, PaintEventArgs e )
 		{
 			e.Graphics.DrawRectangle( Pens.LightGray, new Rectangle( 0, 0, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1 ) );
@@ -167,7 +159,7 @@ namespace HslCommunicationDemo.HslDebug
 				string select = richTextBox_main.SelectedText;
 				if (!string.IsNullOrEmpty( select ))
 				{
-					if (isBinary)
+					if (comboBox_encoding.SelectedIndex == 0)
 					{
 						// 二进制
 						byte[] bytes = SoftBasic.HexStringToBytes( select );
@@ -200,9 +192,9 @@ namespace HslCommunicationDemo.HslDebug
 					if (form.MessageCreate != null)
 					{
 						if (form.MessageCreate.HexBinary)
-							radioButton_binary.Checked = true;
+							comboBox_encoding.SelectedIndex = 0;
 						else
-							radioButton_ascii.Checked = true;
+							comboBox_encoding.SelectedIndex = 1;
 
 						textBox5.Text = form.MessageCreate.Result;
 					}
@@ -281,7 +273,10 @@ namespace HslCommunicationDemo.HslDebug
 					Interlocked.Add( ref recvCount, data.Length );
 					label_recv_count.Text = "Recv Count: " + recvCount;
 				}
-				string content = isBinary ? SoftBasic.ByteToHexString( data, ' ' ) : SoftBasic.GetAsciiStringRender( data );
+				string content = null;
+				if (comboBox_encoding.SelectedIndex == 0) content = SoftBasic.ByteToHexString( data, ' ' );
+				else if (comboBox_encoding.SelectedIndex == 1) content = SoftBasic.GetAsciiStringRender( data );
+				else content = DemoUtils.GetEncodingFromIndex( comboBox_encoding.SelectedIndex - 1 ).GetString( data );
 				RenderMessage( code, content );
 			}
 
@@ -476,7 +471,10 @@ namespace HslCommunicationDemo.HslDebug
 		private void SendTextInfo( string text )
 		{
 			// 发送数据
-			byte[] send = isBinary ? SoftBasic.HexStringToBytes( text ) : SoftBasic.GetFromAsciiStringRender( text );
+			byte[] send = null;
+			if (comboBox_encoding.SelectedIndex == 0) send = SoftBasic.HexStringToBytes( text );
+			else if (comboBox_encoding.SelectedIndex == 1) send = SoftBasic.GetFromAsciiStringRender( text );
+			else send = DemoUtils.GetEncodingFromIndex( comboBox_encoding.SelectedIndex - 1 ).GetBytes( text );
 
 			if      (radioButton_append_0d.Checked)    send = SoftBasic.SpliceArray( send, new byte[] { AsciiControl.CR } );
 			else if (radioButton_append_0a.Checked)    send = SoftBasic.SpliceArray( send, new byte[] { AsciiControl.LF } );
@@ -594,7 +592,6 @@ namespace HslCommunicationDemo.HslDebug
 		private List<PacketMessageItem> packetMessages;
 		private System.Windows.Forms.Timer timer;
 		private System.Windows.Forms.Timer sendtimer;
-		private bool isBinary = true;
 		private long sendCount = 0;
 		private long recvCount = 0;
 

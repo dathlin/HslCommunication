@@ -26,8 +26,8 @@ namespace HslCommunicationDemo
 		{
 			if(Program.Language == 2)
 			{
-				Text = "SPH Virtual Server [data support M1.0, M3.0, M10.0, I0, Q0]";
-				label3.Text = "port:";
+				Text = "SPH Virtual Server";
+				label3.Text = "Port:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
 				label11.Text = "This server is not a strict sph protocol and only supports perfect communication with HSL components.";

@@ -813,6 +813,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap http {
+            get {
+                object obj = ResourceManager.GetObject("http", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap ics {
             get {
                 object obj = ResourceManager.GetObject("ics", resourceCulture);
@@ -1536,6 +1546,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap sql {
             get {
                 object obj = ResourceManager.GetObject("sql", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap StatusAnnotations_Complete_and_ok_16xLG_color {
+            get {
+                object obj = ResourceManager.GetObject("StatusAnnotations_Complete_and_ok_16xLG_color", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

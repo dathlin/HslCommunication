@@ -53,11 +53,11 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.checkBox_back = new System.Windows.Forms.CheckBox();
 			this.textBox_stream = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.textBox_function = new System.Windows.Forms.TextBox();
 			this.button25 = new System.Windows.Forms.Button();
 			this.label12 = new System.Windows.Forms.Label();
 			this.D = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.button_s1f17 = new System.Windows.Forms.Button();
 			this.button_s1f15 = new System.Windows.Forms.Button();
@@ -309,7 +309,7 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.textBox_receive);
-			this.splitContainer2.Size = new System.Drawing.Size(663, 273);
+			this.splitContainer2.Size = new System.Drawing.Size(663, 277);
 			this.splitContainer2.SplitterDistance = 297;
 			this.splitContainer2.TabIndex = 26;
 			// 
@@ -320,7 +320,7 @@
 			this.textBox_data.Multiline = true;
 			this.textBox_data.Name = "textBox_data";
 			this.textBox_data.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_data.Size = new System.Drawing.Size(297, 273);
+			this.textBox_data.Size = new System.Drawing.Size(297, 277);
 			this.textBox_data.TabIndex = 20;
 			// 
 			// textBox_receive
@@ -330,7 +330,7 @@
 			this.textBox_receive.Multiline = true;
 			this.textBox_receive.Name = "textBox_receive";
 			this.textBox_receive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_receive.Size = new System.Drawing.Size(362, 273);
+			this.textBox_receive.Size = new System.Drawing.Size(362, 277);
 			this.textBox_receive.TabIndex = 12;
 			// 
 			// treeView1
@@ -339,7 +339,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.treeView1.Location = new System.Drawing.Point(5, 6);
 			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(311, 318);
+			this.treeView1.Size = new System.Drawing.Size(311, 322);
 			this.treeView1.TabIndex = 24;
 			this.treeView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseDown);
 			// 
@@ -380,16 +380,6 @@
 			this.textBox_stream.TabIndex = 5;
 			this.textBox_stream.Text = "1";
 			// 
-			// label2
-			// 
-			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(941, 31);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(44, 17);
-			this.label2.TabIndex = 11;
-			this.label2.Text = "结果：";
-			// 
 			// textBox_function
 			// 
 			this.textBox_function.Location = new System.Drawing.Point(506, 7);
@@ -425,6 +415,16 @@
 			this.D.Size = new System.Drawing.Size(47, 17);
 			this.D.TabIndex = 19;
 			this.D.Text = "Data：";
+			// 
+			// label2
+			// 
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(941, 31);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(44, 17);
+			this.label2.TabIndex = 11;
+			this.label2.Text = "结果：";
 			// 
 			// tabPage2
 			// 
@@ -613,7 +613,7 @@
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(8, 8);
+			this.label13.Location = new System.Drawing.Point(4, 8);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(44, 17);
 			this.label13.TabIndex = 9;

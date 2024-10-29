@@ -34,6 +34,8 @@
 			// treeView1
 			// 
 			this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.treeView1.Indent = 19;
+			this.treeView1.ItemHeight = 19;
 			this.treeView1.Location = new System.Drawing.Point(0, 0);
 			this.treeView1.Name = "treeView1";
 			this.treeView1.Size = new System.Drawing.Size(234, 640);

@@ -53,6 +53,9 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.checkBox_regex_filter = new System.Windows.Forms.CheckBox();
+			this.textBox_regex_filter = new System.Windows.Forms.TextBox();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.checkBox_publish_isHex = new System.Windows.Forms.CheckBox();
 			this.button3 = new System.Windows.Forms.Button();
@@ -80,12 +83,11 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.label15 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.label13 = new System.Windows.Forms.Label();
-			this.label15 = new System.Windows.Forms.Label();
-			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -336,6 +338,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.checkBox_regex_filter);
+			this.panel2.Controls.Add(this.textBox_regex_filter);
 			this.panel2.Controls.Add(this.textBox_code);
 			this.panel2.Controls.Add(this.linkLabel1);
 			this.panel2.Controls.Add(this.checkBox_publish_isHex);
@@ -366,11 +370,40 @@
 			this.panel2.Size = new System.Drawing.Size(802, 507);
 			this.panel2.TabIndex = 13;
 			// 
+			// checkBox_regex_filter
+			// 
+			this.checkBox_regex_filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkBox_regex_filter.AutoSize = true;
+			this.checkBox_regex_filter.Location = new System.Drawing.Point(556, 481);
+			this.checkBox_regex_filter.Name = "checkBox_regex_filter";
+			this.checkBox_regex_filter.Size = new System.Drawing.Size(75, 21);
+			this.checkBox_regex_filter.TabIndex = 40;
+			this.checkBox_regex_filter.Text = "正则过滤";
+			this.checkBox_regex_filter.UseVisualStyleBackColor = true;
+			// 
+			// textBox_regex_filter
+			// 
+			this.textBox_regex_filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.textBox_regex_filter.Location = new System.Drawing.Point(418, 480);
+			this.textBox_regex_filter.Name = "textBox_regex_filter";
+			this.textBox_regex_filter.Size = new System.Drawing.Size(134, 23);
+			this.textBox_regex_filter.TabIndex = 39;
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(62, 456);
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ReadOnly = true;
+			this.textBox_code.Size = new System.Drawing.Size(733, 23);
+			this.textBox_code.TabIndex = 38;
+			// 
 			// linkLabel1
 			// 
 			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.linkLabel1.AutoSize = true;
-			this.linkLabel1.Location = new System.Drawing.Point(624, 483);
+			this.linkLabel1.Location = new System.Drawing.Point(639, 483);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(82, 17);
 			this.linkLabel1.TabIndex = 36;
@@ -403,7 +436,7 @@
 			// 
 			this.checkBox_debug_info_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.checkBox_debug_info_show.AutoSize = true;
-			this.checkBox_debug_info_show.Location = new System.Drawing.Point(256, 482);
+			this.checkBox_debug_info_show.Location = new System.Drawing.Point(162, 482);
 			this.checkBox_debug_info_show.Name = "checkBox_debug_info_show";
 			this.checkBox_debug_info_show.Size = new System.Drawing.Size(128, 21);
 			this.checkBox_debug_info_show.TabIndex = 33;
@@ -414,9 +447,7 @@
 			// 
 			this.checkBox_long_message_hide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.checkBox_long_message_hide.AutoSize = true;
-			this.checkBox_long_message_hide.Checked = true;
-			this.checkBox_long_message_hide.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_long_message_hide.Location = new System.Drawing.Point(414, 482);
+			this.checkBox_long_message_hide.Location = new System.Drawing.Point(297, 482);
 			this.checkBox_long_message_hide.Name = "checkBox_long_message_hide";
 			this.checkBox_long_message_hide.Size = new System.Drawing.Size(99, 21);
 			this.checkBox_long_message_hide.TabIndex = 32;
@@ -446,7 +477,7 @@
 			// 
 			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(59, 483);
+			this.label10.Location = new System.Drawing.Point(2, 483);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(93, 17);
 			this.label10.TabIndex = 28;
@@ -654,6 +685,16 @@
 			this.checkBox1.Text = "Retain?";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
+			// label15
+			// 
+			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(2, 460);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(51, 17);
+			this.label15.TabIndex = 37;
+			this.label15.Text = "Code：";
+			// 
 			// userControlHead1
 			// 
 			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -690,7 +731,7 @@
 			this.listBox1.ItemHeight = 17;
 			this.listBox1.Location = new System.Drawing.Point(3, 23);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(181, 463);
+			this.listBox1.Size = new System.Drawing.Size(181, 480);
 			this.listBox1.TabIndex = 9;
 			// 
 			// label13
@@ -701,26 +742,6 @@
 			this.label13.Size = new System.Drawing.Size(129, 17);
 			this.label13.TabIndex = 8;
 			this.label13.Text = "Subscribed：(已订阅)";
-			// 
-			// label15
-			// 
-			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(2, 460);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(51, 17);
-			this.label15.TabIndex = 37;
-			this.label15.Text = "Code：";
-			// 
-			// textBox_code
-			// 
-			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_code.Location = new System.Drawing.Point(62, 456);
-			this.textBox_code.Name = "textBox_code";
-			this.textBox_code.ReadOnly = true;
-			this.textBox_code.Size = new System.Drawing.Size(733, 23);
-			this.textBox_code.TabIndex = 38;
 			// 
 			// FormMqttClient
 			// 
@@ -809,5 +830,7 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.TextBox textBox_code;
 		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.CheckBox checkBox_regex_filter;
+		private System.Windows.Forms.TextBox textBox_regex_filter;
 	}
 }

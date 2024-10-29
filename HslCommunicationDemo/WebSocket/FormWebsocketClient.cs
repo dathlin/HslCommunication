@@ -49,6 +49,7 @@ namespace HslCommunicationDemo
 				button3.Text = "发送";
 				button4.Text = "清空";
 				label12.Text = "接收：";
+				button_ssl_file.Text = "文件";
 			}
 			else
 			{
@@ -64,6 +65,9 @@ namespace HslCommunicationDemo
 				label12.Text = "Receive:";
 				label5.Text = "Connect-T:";
 				checkBox2.Text = "GET Carray Host?";
+				radioButton2.Text = "Append";
+				radioButton1.Text = "Coverage";
+				checkBox_SSL.Text = "Cert";
 			}
 		}
 

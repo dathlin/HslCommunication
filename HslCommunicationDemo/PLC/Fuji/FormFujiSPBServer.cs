@@ -26,11 +26,13 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
+			comboBox1.SelectedIndex = 3;
+			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
 
 			if (Program.Language == 2)
 			{
-				Text = "Modbus Virtual Server[supports TCP and RTU, support coil and register reading and writing, input register read, discrete input read]";
-				label3.Text = "port:";
+				Text = "Fuji SPB Server";
+				label3.Text = "Port:";
 				button1.Text = "Start Server";
 				button11.Text = "Close Server";
 
@@ -47,6 +49,21 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+		}
+
+		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			if (sPBServer != null)
+			{
+				switch(comboBox1.SelectedIndex)
+				{
+					case 0: sPBServer.DataFormat = HslCommunication.Core.DataFormat.ABCD; break;
+					case 1: sPBServer.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
+					case 2: sPBServer.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
+					case 3: sPBServer.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
+					default: break;
+				}
+			}	
 		}
 
 		private void CheckBox3_CheckedChanged( object sender, EventArgs e )
@@ -86,6 +103,8 @@ namespace HslCommunicationDemo
 				this.sslServerControl1.InitializeServer( sPBServer );
 				sPBServer.IsStringReverse = checkBox3.Checked;
 				userControlReadWriteServer1.SetReadWriteServer( sPBServer, "D100" );
+
+				ComboBox1_SelectedIndexChanged( sender, e );            // 设置 DataFormat
 				sPBServer.ServerStart( port );
 
 				button1.Enabled = false;
@@ -94,7 +113,7 @@ namespace HslCommunicationDemo
 
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", sPBServer, nameof( sPBServer.Station ) );
+				codeExampleControl.SetCodeText( "server", "", sPBServer, nameof( sPBServer.Station ), nameof( sPBServer.DataFormat ), nameof( sPBServer.IsStringReverse ) );
 			}
 			catch (Exception ex)
 			{

@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
 		private SiemensS7Control control;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
+		private SiemensS7WriteControl randomWriteControl;
 
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -56,6 +57,9 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteDevice1.SetEnable( false );
+
+			randomWriteControl = new SiemensS7WriteControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( randomWriteControl, false, Program.Language == 1 ? "离散写入" : "Random Write" );
 		}
 
 		private void Language( int language )
@@ -106,6 +110,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => siemensTcpNet.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 
 					control.SetDevice( siemensTcpNet, "M100" );
+					randomWriteControl.SetDevice( siemensTcpNet, "M100" );
 
 
 					List<string> parameters = new List<string>( );

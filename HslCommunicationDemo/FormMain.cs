@@ -23,6 +23,22 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 			Form = this;
 			logNet = new LogNetSingle( string.Empty );
+
+			showMsToolStripMenuItem.Click += ShowMsToolStripMenuItem_Click;
+		}
+
+		public static bool ShowMs { get; set; }
+		private void ShowMsToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (FormMain.ShowMs)
+			{
+				showMsToolStripMenuItem.Image = null;
+			}
+			else
+			{
+				showMsToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			}
+			FormMain.ShowMs = !FormMain.ShowMs;
 		}
 
 		#region Form Load Close Inni
@@ -62,6 +78,8 @@ namespace HslCommunicationDemo
 
 
 			ImageList imageList = new ImageList( );
+			imageList.ColorDepth = ColorDepth.Depth32Bit;
+			imageList.ImageSize = new Size( 16, 16 );
 			imageList.Images.Add( "Method_636",       Properties.Resources.Method_636 );        // 0
 			imageList.Images.Add( "ab",               Properties.Resources.ab );                // 1
 			imageList.Images.Add( "fujifilm",         Properties.Resources.fujifilm );          // 2
@@ -108,6 +126,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "wecon",            Properties.Resources.wecon );             // 43
 			imageList.Images.Add( "megmeet",          Properties.Resources.megmeet );           // 44
 			imageList.Images.Add( "invt",             Properties.Resources.invt );              // 45
+			imageList.Images.Add( "http",             Properties.Resources.http );              // 46
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;
@@ -273,6 +292,8 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_Doc.Text = "开发文档";
 				toolStripMenuItem_SerialPort.Text = "串口调试";
 				ecologyToolStripMenuItem.Text = "大生态(&E)";
+				toolStripMenuItem_byteTransform.Text = "字节变换";
+				regexRegularToolStripMenuItem.Text = "正则表达式";
 			}
 			else
 			{
@@ -288,6 +309,10 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_Doc.Text = "Document";
 				toolStripMenuItem_SerialPort.Text = "SerialPort";
 				ecologyToolStripMenuItem.Text = "Ecology(&E)";
+				showMsToolStripMenuItem.Text = "Time Show Ms";
+				toolStripMenuItem_byteTransform.Text = "ByteTransform";
+				regexRegularToolStripMenuItem.Text = "RegexRegular";
+
 			}
 		}
 
