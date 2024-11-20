@@ -100,14 +100,14 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
-				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 
 				textBox_code.Text = $"FanucSeries0i fanuc = new FanucSeries0i( \"{textBox1.Text}\", int.Parse( \"{textBox2.Text}\" ) );";
 			}
 			else
 			{
 				button1.Enabled = true;
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 					"Error: " + connect.ErrorCode );
 			}
 		}
@@ -132,7 +132,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<FanucSysInfo> read = fanuc.ReadSysInfo( );";
@@ -148,7 +148,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<FanucOperatorMessage[]> read = fanuc.ReadOperatorMessage( );";
@@ -162,7 +162,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<SysStatusInfo> read= fanuc.ReadSysStatusInfo( );";
@@ -177,7 +177,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<SysAlarm[]> read = fanuc.ReadSystemAlarm( );";
@@ -192,7 +192,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<SysAllCoors> read = fanuc.ReadSysAllCoors( );";
@@ -207,7 +207,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<int[]> read = fanuc.ReadProgramList( );";
@@ -222,7 +222,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<string, int> read = fanuc.ReadSystemProgramCurrent( );";
@@ -237,7 +237,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<double, double> read = fanuc.ReadSpindleSpeedAndFeedRate( );";
@@ -252,7 +252,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<double[]> read = fanuc.ReadFanucAxisLoad( );";
@@ -267,7 +267,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<CutterInfo[]> read = fanuc.ReadCutterInfos( );";
@@ -282,7 +282,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = fanuc.ReadCurrentForegroundDir( );";
@@ -299,7 +299,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<ushort> read = fanuc.ReadLanguage( );";
@@ -313,7 +313,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<double[]> read = fanuc.ReadDeviceWorkPiecesSize( );";
@@ -328,7 +328,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadAlarmStatus( );";
@@ -343,7 +343,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<long> read = fanuc.ReadTimeData( {type} );";
@@ -382,7 +382,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = fanuc.ReadCurrentProgram( );";
@@ -398,7 +398,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadCutterNumber( );";
@@ -418,7 +418,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "读取失败！" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "读取失败！" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code2.Text = $"OperateResult<string> read = fanuc.ReadProgram( \"{textBox9.Text}\", \"{textBox_path.Text}\" );";
@@ -433,11 +433,11 @@ namespace HslCommunicationDemo
 			OperateResult read = fanuc.DeleteFile( path + textBox9.Text );
 			if (read.IsSuccess)
 			{
-				MessageBox.Show( Program.Language == 1 ? "删除程序成功！" : "Delete program file success! path: " + path + textBox9.Text );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "删除程序成功！" : "Delete program file success! path: " + path + textBox9.Text );
 			}
 			else
 			{
-				MessageBox.Show( "删除失败！" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "删除失败！" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code2.Text = $"OperateResult read = fanuc.DeleteFile( \"{path + textBox9.Text}\" );";
@@ -447,17 +447,17 @@ namespace HslCommunicationDemo
 			// 设置为主程序
 			if (!ushort.TryParse( textBox6.Text, out ushort programNum ))
 			{
-				MessageBox.Show( "主程序号输入错误！" );
+				DemoUtils.ShowMessage( "主程序号输入错误！" );
 				return;
 			}
 			OperateResult set = fanuc.SetCurrentProgram( programNum );
 			if (set.IsSuccess)
 			{
-				MessageBox.Show( "设置主程序成功！" );
+				DemoUtils.ShowMessage( "设置主程序成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "设置主程序失败！" + set.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "设置主程序失败！" + set.ToMessageShowString( ) );
 			}
 
 			textBox_code2.Text = $"OperateResult set = fanuc.SetCurrentProgram( {programNum} );";
@@ -467,7 +467,7 @@ namespace HslCommunicationDemo
 		{
 			if (!System.IO.File.Exists( textBox7.Text ))
 			{
-				MessageBox.Show( "文件不存在!" );
+				DemoUtils.ShowMessage( "文件不存在!" );
 				return;
 			}
 			// 下载程序
@@ -476,11 +476,11 @@ namespace HslCommunicationDemo
 			button27.Enabled = true;
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "下载成功！" );
+				DemoUtils.ShowMessage( "下载成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "下载失败！" + write.Message );
+				DemoUtils.ShowMessage( "下载失败！" + write.ToMessageShowString( ) );
 			}
 
 			textBox_code2.Text = $"OperateResult write = fanuc.WriteProgramFile( \"{textBox7.Text}\", 512, \"{textBox_path.Text}\" );";
@@ -490,11 +490,11 @@ namespace HslCommunicationDemo
 			OperateResult start = fanuc.StartProcessing( );
 			if (start.IsSuccess)
 			{
-				MessageBox.Show( "启动成功！" );
+				DemoUtils.ShowMessage( "启动成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "启动失败！"  + start.ToMessageShowString());
+				DemoUtils.ShowMessage( "启动失败！"  + start.ToMessageShowString());
 			}
 
 			textBox_code.Text = $"OperateResult start = fanuc.StartProcessing( );";
@@ -503,7 +503,7 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse( textBox3.Text, out int address ))
 			{
-				MessageBox.Show( "宏变量地址输入错误！" );
+				DemoUtils.ShowMessage( "宏变量地址输入错误！" );
 				return;
 			}
 			OperateResult<double> read = fanuc.ReadSystemMacroValue( address );
@@ -513,7 +513,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<double> read = fanuc.ReadSystemMacroValue( {address} );";
@@ -528,7 +528,7 @@ namespace HslCommunicationDemo
 			//	else
 			//	{
 			//		textBox8.AppendText( $"{DateTime.Now} [{address + i}] : failed{Environment.NewLine}" );
-			//		// MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			//		// DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			//	}
 			//}
 			//textBox8.AppendText( $"{DateTime.Now} Finish{Environment.NewLine}" );
@@ -539,24 +539,24 @@ namespace HslCommunicationDemo
 			// 写数据到宏变量
 			if (!int.TryParse( textBox3.Text, out int address ))
 			{
-				MessageBox.Show( "宏变量地址输入错误！" );
+				DemoUtils.ShowMessage( "宏变量地址输入错误！" );
 				return;
 			}
 
 			if (!double.TryParse(textBox4.Text, out double value ))
 			{
-				MessageBox.Show( "写入宏变量的值输入错误！" );
+				DemoUtils.ShowMessage( "写入宏变量的值输入错误！" );
 				return;
 			}
 
 			OperateResult read = fanuc.WriteSystemMacroValue( address, new double[] { value } );
 			if (read.IsSuccess)
 			{
-				MessageBox.Show( "Write Success!"  );
+				DemoUtils.ShowMessage( "Write Success!"  );
 			}
 			else
 			{
-				MessageBox.Show( "Write Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Write Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult read = fanuc.WriteSystemMacroValue( {address}, new double[] {{{value}}} );";
@@ -571,7 +571,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read = fanuc.ReadCurrentDateTime( );";
@@ -587,7 +587,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadCurrentProduceCount( );";
@@ -603,7 +603,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadExpectProduceCount( );";
@@ -619,7 +619,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<byte[]> read = fanuc.ReadPMCData( \"{textBox_pmc_read.Text}\", ushort.Parse( \"{textBox_pmc_length.Text}\" ) );";
@@ -632,11 +632,11 @@ namespace HslCommunicationDemo
 
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Write Success!" );
+				DemoUtils.ShowMessage( "Write Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Write Failed:" + write.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Write Failed:" + write.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult write = fanuc.WritePMCData( \"{textBox_pmc_write.Text}\", \"{textBox_pmc_Data.Text}\".ToHexBytes( ) );";
@@ -740,7 +740,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 		}
 		private void TreeView1_MouseDown( object sender, MouseEventArgs e )
@@ -764,11 +764,11 @@ namespace HslCommunicationDemo
 			OperateResult write = await fanuc.DeleteFileAsync( path );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Delete success！" );
+				DemoUtils.ShowMessage( "Delete success！" );
 			}
 			else
 			{
-				MessageBox.Show( "delete failed！" + write.Message );
+				DemoUtils.ShowMessage( "delete failed！" + write.Message );
 			}
 		}
 
@@ -792,7 +792,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( "read failed！" + read.ToMessageShowString( ) );
+					DemoUtils.ShowMessage( "read failed！" + read.ToMessageShowString( ) );
 				}
 			}
 		}
@@ -819,12 +819,12 @@ namespace HslCommunicationDemo
 					{
 						string fileName = sfd.FileName;
 						System.IO.File.WriteAllText( fileName, read.Content );
-						MessageBox.Show( "Save success!" );
+						DemoUtils.ShowMessage( "Save success!" );
 					}
 				}
 				else
 				{
-					MessageBox.Show( "read failed！" + read.ToMessageShowString( ) );
+					DemoUtils.ShowMessage( "read failed！" + read.ToMessageShowString( ) );
 				}
 			}
 		}
@@ -837,7 +837,7 @@ namespace HslCommunicationDemo
 			{
 				if (!fileDirInfo.IsDirectory)
 				{
-					MessageBox.Show( "Add nc program must select path!" );
+					DemoUtils.ShowMessage( "Add nc program must select path!" );
 					return;
 				}
 
@@ -848,11 +848,11 @@ namespace HslCommunicationDemo
 					OperateResult write = await fanuc.WriteProgramFileAsync( openFileDialog.FileName, 512, path );
 					if (write.IsSuccess)
 					{
-						MessageBox.Show( "Success！" );
+						DemoUtils.ShowMessage( "Success！" );
 					}
 					else
 					{
-						MessageBox.Show( "failed！" + write.ToMessageShowString() );
+						DemoUtils.ShowMessage( "failed！" + write.ToMessageShowString() );
 					}
 				}
 
@@ -874,14 +874,14 @@ namespace HslCommunicationDemo
 			//}
 			//else
 			//{
-			//	MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+			//	DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			//}
 		}
 
 		private void button35_Click( object sender, EventArgs e )
 		{
 			fanuc.OperatePath = short.Parse( textBox_op_path.Text );
-			MessageBox.Show( "Success!" );
+			DemoUtils.ShowMessage( "Success!" );
 
 			textBox_code.Text = $"fanuc.OperatePath = short.Parse( \"{textBox_op_path.Text}\" );";
 		}
@@ -896,7 +896,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<string[]> read = fanuc.ReadAxisNames( );";
@@ -912,7 +912,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<string[]> read = fanuc.ReadSpindleNames( );";
@@ -928,7 +928,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<double[]> read = fanuc.ReadDiagnoss( {textBox_read_diagnoss.Text}, {textBox_diagnoss_length.Text}, {textBox_diagnoss_axis.Text} );";
@@ -944,7 +944,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadUseToolGroupId( );";
@@ -960,7 +960,7 @@ namespace HslCommunicationDemo
 			}
 			catch( Exception ex )
 			{
-				MessageBox.Show( "刀组号输入不正确：" + ex.Message );
+				DemoUtils.ShowMessage( "刀组号输入不正确：" + ex.Message );
 				return;
 			}
 			OperateResult<ToolInformation> read = fanuc.ReadToolInfoByGroup( id );
@@ -970,7 +970,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<ToolInformation> read = fanuc.ReadToolInfoByGroup( {id} );";
@@ -986,18 +986,18 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "刀组号输入不正确：" + ex.Message );
+				DemoUtils.ShowMessage( "刀组号输入不正确：" + ex.Message );
 				return;
 			}
 			OperateResult read = fanuc.ClearToolGroup( id, id );
 			if (read.IsSuccess)
 			{
 				textBox8.Text = "清除成功";
-				MessageBox.Show( "清除成功" );
+				DemoUtils.ShowMessage( "清除成功" );
 			}
 			else
 			{
-				MessageBox.Show( "Clear Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Clear Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult read = fanuc.ClearToolGroup( {id}, {id} );";

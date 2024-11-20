@@ -260,7 +260,7 @@ namespace HslCommunicationDemo.HslDebug
 					}
 					else
 					{
-						MessageBox.Show( "Build failed: " + build.Message );
+						DemoUtils.ShowMessage( "Build failed: " + build.Message );
 					}
 				}
 			}
@@ -285,7 +285,7 @@ namespace HslCommunicationDemo.HslDebug
 					}
 					else
 					{
-						MessageBox.Show( "Build failed: " + build.Message );
+						DemoUtils.ShowMessage( "Build failed: " + build.Message );
 					}
 				}
 			}

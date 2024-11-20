@@ -48,7 +48,7 @@ namespace HslCommunicationDemo.HslDebug
 		{
 			byte[] source = radioButton_crc16_hex.Checked ? textBox_crc16_source.Text.ToHexBytes( ) : SoftBasic.GetFromAsciiStringRender( textBox_crc16_source.Text );
 			bool check = HslCommunication.Serial.SoftCRC16.CheckCRC16( source );
-			MessageBox.Show( check ? "Good!" : "Bad!" );
+			DemoUtils.ShowMessage( check ? "Good!" : "Bad!" );
 
 			string code = radioButton_crc16_hex.Checked ? $"\"{textBox_crc16_source.Text}\".ToHexBytes( )" : $"SoftBasic.GetFromAsciiStringRender( \"{textBox_crc16_source.Text}\" )";
 			textBox_code.Text = $"bool check = HslCommunication.Serial.SoftCRC16.CheckCRC16( {code} );";
@@ -81,7 +81,7 @@ namespace HslCommunicationDemo.HslDebug
 
 			byte[] fcs = SoftLRC.CalculateFcs( source, left, right );
 			bool check = source[source.Length - right] == fcs[0] && source[source.Length - right + 1] == fcs[1];
-			MessageBox.Show( check ? "Good!" : "Bad!" );
+			DemoUtils.ShowMessage( check ? "Good!" : "Bad!" );
 
 			string code = radioButton_fcs_hex.Checked ? $"\"{textBox_fcs_source.Text}\".ToHexBytes( )" : $"SoftBasic.GetFromAsciiStringRender( \"{textBox_fcs_source.Text}\" )";
 			textBox_code.Text = $"byte[] result = SoftLRC.CalculateFcs( {code}, {left}, {right} );";
@@ -115,7 +115,7 @@ namespace HslCommunicationDemo.HslDebug
 
 
 			bool check = SoftLRC.CalculateAccAndCheck( source, left, right );
-			MessageBox.Show( check ? "Good!" : "Bad!" );
+			DemoUtils.ShowMessage( check ? "Good!" : "Bad!" );
 
 			string code = radioButton_acc_hex.Checked ? $"\"{textBox_acc_source.Text}\".ToHexBytes( )" : $"SoftBasic.GetFromAsciiStringRender( \"{textBox_acc_source.Text}\" )";
 			textBox_code.Text = $"bool check = SoftLRC.CalculateAccAndCheck( {code}, {left}, {right} );";
@@ -149,7 +149,7 @@ namespace HslCommunicationDemo.HslDebug
 			byte[] lrc = new byte[] { SoftLRC.LRC( source, left, right ) };
 
 			bool check = source[source.Length - right] == lrc[0];
-			MessageBox.Show( check ? "Good!" : "Bad!" );
+			DemoUtils.ShowMessage( check ? "Good!" : "Bad!" );
 
 			string code = radioButton_lrc_hex.Checked ? $"\"{textBox_lrc_source.Text}\".ToHexBytes( )" : $"SoftBasic.GetFromAsciiStringRender( \"{textBox_lrc_source.Text}\" )";
 			textBox_code.Text = $"byte[] result = new byte[] {{ SoftLRC.LRC( {code}, {left}, {right} ) }};";

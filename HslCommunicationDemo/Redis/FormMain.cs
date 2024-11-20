@@ -116,7 +116,7 @@ namespace HslRedisDesktop
 
 		private void 服务器状态ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			MessageBox.Show( "暂时没有实现！" );
+			DemoUtils.ShowMessage( "暂时没有实现！" );
 		}
 
 		private void 控制台操作ToolStripMenuItem_Click( object sender, EventArgs e )
@@ -153,7 +153,7 @@ namespace HslRedisDesktop
 							settings.Redis = null;
 						}
 						SaveRedisSettings( );
-						if (MessageBox.Show( "当前的连接配置已经更新，是否重新刷新数据？", "刷新确认", MessageBoxButtons.YesNo ) == DialogResult.OK) RefreshRedisKey( select, true );
+						if (DemoUtils.ShowMessage( "当前的连接配置已经更新，是否重新刷新数据？", "刷新确认", MessageBoxButtons.YesNo ) == DialogResult.OK) RefreshRedisKey( select, true );
 					}
 				}
 			}
@@ -171,7 +171,7 @@ namespace HslRedisDesktop
 				{
 					redisSettings.Redis = redisSettings.GetClient( );
 					OperateResult connect = redisSettings.Redis.ConnectServer( );
-					if (!connect.IsSuccess) { MessageBox.Show( $"连接Redis[{redisSettings.Name}] IpAddress:{redisSettings.IpAddress} 失败！" ); return; }
+					if (!connect.IsSuccess) { DemoUtils.ShowMessage( $"连接Redis[{redisSettings.Name}] IpAddress:{redisSettings.IpAddress} 失败！" ); return; }
 				}
 
 				FormInputString form = new FormInputString( );
@@ -190,7 +190,7 @@ namespace HslRedisDesktop
 
 					if (change.IsSuccess)
 					{
-						MessageBox.Show( "修改密码成功！" );
+						DemoUtils.ShowMessage( "修改密码成功！" );
 						redisSettings.Password = form.InputValue;
 						if (redisSettings.Redis != null)
 						{
@@ -202,7 +202,7 @@ namespace HslRedisDesktop
 					}
 					else
 					{
-						MessageBox.Show( "修改密码失败！" + change.Message );
+						DemoUtils.ShowMessage( "修改密码失败！" + change.Message );
 					}
 				}
 			}
@@ -252,8 +252,8 @@ namespace HslRedisDesktop
 			if (select.ImageKey != "redis_db") return;
 
 			RedisSettings redisSettings = select.Parent.Tag as RedisSettings;
-			if (redisSettings == null) { MessageBox.Show( "获取当前的Redis配置信息失败！" ); return; }
-			if (redisSettings.Redis == null) { MessageBox.Show( "获取当前的Redis连接客户端失败！" ); return; }
+			if (redisSettings == null) { DemoUtils.ShowMessage( "获取当前的Redis配置信息失败！" ); return; }
+			if (redisSettings.Redis == null) { DemoUtils.ShowMessage( "获取当前的Redis连接客户端失败！" ); return; }
 
 			using (FormRedisInput redisInput = new FormRedisInput( redisSettings.Redis ))
 			{
@@ -299,15 +299,15 @@ namespace HslRedisDesktop
 			if (select == null) return;
 			if (select.ImageKey != "redis_db") return;
 			RedisSettings redisSettings = select.Parent.Tag as RedisSettings;
-			if (redisSettings == null) { MessageBox.Show( "获取当前的Redis配置信息失败！" ); return; }
+			if (redisSettings == null) { DemoUtils.ShowMessage( "获取当前的Redis配置信息失败！" ); return; }
 
-			if (MessageBox.Show( $"请确认是否清除当前db块[{redisSettings.DBBlock}]的所有数据，当前的操作不可逆，请谨慎操作。", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
+			if (DemoUtils.ShowMessage( $"请确认是否清除当前db块[{redisSettings.DBBlock}]的所有数据，当前的操作不可逆，请谨慎操作。", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
 			{
-				if (redisSettings.Redis == null) { MessageBox.Show( "获取当前的Redis连接客户端失败！" ); return; }
+				if (redisSettings.Redis == null) { DemoUtils.ShowMessage( "获取当前的Redis连接客户端失败！" ); return; }
 
 				OperateResult flush = redisSettings.Redis.FlushDB( );
-				if(!flush.IsSuccess) { MessageBox.Show( "获取当前的Redis清除数据失败！" ); return; }
-				MessageBox.Show( "当前的DB块" + redisSettings.DBBlock + " 清除完成，请手动刷新。" );
+				if(!flush.IsSuccess) { DemoUtils.ShowMessage( "获取当前的Redis清除数据失败！" ); return; }
+				DemoUtils.ShowMessage( "当前的DB块" + redisSettings.DBBlock + " 清除完成，请手动刷新。" );
 			}
 		}
 
@@ -378,7 +378,7 @@ namespace HslRedisDesktop
 						if (redisSettings.DBBlock != dbSettings.DBNumber)
 						{
 							OperateResult change = redisSettings.Redis.SelectDB( dbSettings.DBNumber );
-							if (!change.IsSuccess) { MessageBox.Show( $"当前{redisSettings.Redis} 切换db块{dbSettings.DBNumber} 失败！" + change.Message ); return; }
+							if (!change.IsSuccess) { DemoUtils.ShowMessage( $"当前{redisSettings.Redis} 切换db块{dbSettings.DBNumber} 失败！" + change.Message ); return; }
 							redisSettings.DBBlock = dbSettings.DBNumber;
 						}
 
@@ -424,7 +424,7 @@ namespace HslRedisDesktop
 				{
 					redisSettings.Redis = redisSettings.GetClient( );
 					OperateResult connect = redisSettings.Redis.ConnectServer( );
-					if (!connect.IsSuccess) { MessageBox.Show( $"连接Redis[{redisSettings.Name}] IpAddress:{redisSettings.IpAddress} 失败\r\n" + connect.Message ); return; }
+					if (!connect.IsSuccess) { DemoUtils.ShowMessage( $"连接Redis[{redisSettings.Name}] IpAddress:{redisSettings.IpAddress} 失败\r\n" + connect.Message ); return; }
 				}
 
 				if (select.Nodes.Count == 0 || reload)
@@ -434,7 +434,7 @@ namespace HslRedisDesktop
 						if(i == 0)
 						{
 							OperateResult selectDb = redisSettings.Redis.SelectDB( i );
-							if (!selectDb.IsSuccess) { MessageBox.Show( "Redis读取失败！" + selectDb.Message ); return; };
+							if (!selectDb.IsSuccess) { DemoUtils.ShowMessage( "Redis读取失败！" + selectDb.Message ); return; };
 						}
 						else
 						{
@@ -447,7 +447,7 @@ namespace HslRedisDesktop
 						OperateResult<long> keyCount = redisSettings.Redis.DBSize( );
 						if (!keyCount.IsSuccess)
 						{
-							MessageBox.Show( "当前加载数据块失败！原因：" + keyCount.Message );
+							DemoUtils.ShowMessage( "当前加载数据块失败！原因：" + keyCount.Message );
 							return;
 						}
 
@@ -472,8 +472,8 @@ namespace HslRedisDesktop
 				RedisSettings redisSettings = select.Parent.Tag as RedisSettings;
 				int dbBlock = dbSettings.DBNumber;
 
-				if (redisSettings == null) { MessageBox.Show( "获取当前的Redis配置信息失败！" ); return; }
-				if (redisSettings.Redis == null) { MessageBox.Show( "获取当前的Redis连接客户端失败！" ); return; }
+				if (redisSettings == null) { DemoUtils.ShowMessage( "获取当前的Redis配置信息失败！" ); return; }
+				if (redisSettings.Redis == null) { DemoUtils.ShowMessage( "获取当前的Redis连接客户端失败！" ); return; }
 
 				if (reload) select.Nodes.Clear( );
 
@@ -485,13 +485,13 @@ namespace HslRedisDesktop
 					if (redisSettings.DBBlock != dbBlock)
 					{
 						OperateResult selectDb = redisSettings.Redis.SelectDB( dbBlock );
-						if (!selectDb.IsSuccess) { MessageBox.Show( $"当前客户端[{redisSettings.Name}] 切换DB{dbBlock} 失败！" ); return; }
+						if (!selectDb.IsSuccess) { DemoUtils.ShowMessage( $"当前客户端[{redisSettings.Name}] 切换DB{dbBlock} 失败！" ); return; }
 
 						redisSettings.DBBlock = dbBlock;
 					}
 
 					OperateResult<string[]> reads = redisSettings.Redis.ReadAllKeys( dbSettings.Filter );
-					if (!reads.IsSuccess) { MessageBox.Show( "遍历所有的节点信息失败！" ); return; }
+					if (!reads.IsSuccess) { DemoUtils.ShowMessage( "遍历所有的节点信息失败！" ); return; }
 
 					// 重新更新db块的数据信息
 					if (dbSettings.Filter == "*")
@@ -509,7 +509,7 @@ namespace HslRedisDesktop
 					if(dbBlockOld != redisSettings.DBBlock)
 					{
 						OperateResult selectDb = redisSettings.Redis.SelectDB( dbBlockOld );
-						if (!selectDb.IsSuccess) { MessageBox.Show( $"当前客户端[{redisSettings.Name}] 切换回DB{dbBlockOld} 失败！" ); return; }
+						if (!selectDb.IsSuccess) { DemoUtils.ShowMessage( $"当前客户端[{redisSettings.Name}] 切换回DB{dbBlockOld} 失败！" ); return; }
 
 						redisSettings.DBBlock = dbBlockOld;
 					}
@@ -708,7 +708,7 @@ namespace HslRedisDesktop
 						}
 						else
 						{
-							MessageBox.Show( "当前输入的服务器别名已经存在，请重新输入！" );
+							DemoUtils.ShowMessage( "当前输入的服务器别名已经存在，请重新输入！" );
 						}
 					}
 					else

@@ -44,7 +44,7 @@ namespace HslCommunicationDemo.Algorithms
             }
             catch
             {
-                MessageBox.Show( "Input Wrong, please check the input value!" );
+                DemoUtils.ShowMessage( "Input Wrong, please check the input value!" );
             }
         }
 
@@ -59,7 +59,7 @@ namespace HslCommunicationDemo.Algorithms
             }
             catch
             {
-                MessageBox.Show( "Input Wrong, please check the input value!" );
+                DemoUtils.ShowMessage( "Input Wrong, please check the input value!" );
             }
         }
     }

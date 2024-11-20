@@ -88,19 +88,19 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox2.Text, out int baudRate ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "波特率输入错误！" : "Baud rate input error" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "波特率输入错误！" : "Baud rate input error" );
 				return;
 			}
 
 			if (!int.TryParse( textBox16.Text, out int dataBits ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "数据位输入错误！" : "Data bits input error" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "数据位输入错误！" : "Data bits input error" );
 				return;
 			}
 
 			if (!int.TryParse( textBox17.Text, out int stopBits ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "停止位输入错误！" : "Stop bits input error" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "停止位输入错误！" : "Stop bits input error" );
 				return;
 			}
 
@@ -139,11 +139,11 @@ namespace HslCommunicationDemo
 				button2.Enabled = true;
 				panel2.Enabled = true;
 
-				MessageBox.Show( HslCommunication.StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectServerSuccess );
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + Environment.NewLine + ex.Message );
+				DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + Environment.NewLine + ex.Message );
 			}
 		}
 
@@ -272,7 +272,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Client Send Failed! " + ex.Message );
+				DemoUtils.ShowMessage( "Client Send Failed! " + ex.Message );
 				return;
 			}
 

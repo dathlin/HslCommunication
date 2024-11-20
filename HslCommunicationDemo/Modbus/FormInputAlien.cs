@@ -23,13 +23,13 @@ namespace HslCommunicationDemo
 			UseHslDtuServer = radioButton1.Checked;
 			if (!IPAddress.TryParse( textBox_ip.Text, out IPAddress address ))
 			{
-				MessageBox.Show( "IP地址填写失败" );
+				DemoUtils.ShowMessage( "IP地址填写失败" );
 				return;
 			}
 
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
-				MessageBox.Show( "端口号填写失败！" );
+				DemoUtils.ShowMessage( "端口号填写失败！" );
 				return;
 			}
 

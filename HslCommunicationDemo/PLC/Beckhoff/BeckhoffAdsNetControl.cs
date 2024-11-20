@@ -173,7 +173,7 @@ namespace HslCommunicationDemo.PLC.Beckhoff
 			}
 			else
 			{
-				MessageBox.Show( "Read Faild:" + read.Message );
+				DemoUtils.ShowMessage( "Read Faild:" + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<AdsDeviceInfo> read = {DemoUtils.PlcDeviceName}.ReadAdsDeviceInfo( );";
@@ -188,7 +188,7 @@ namespace HslCommunicationDemo.PLC.Beckhoff
 			//}
 			//else
 			//{
-			//	MessageBox.Show( "Read Faild:" + read2.Message );
+			//	DemoUtils.ShowMessage( "Read Faild:" + read2.Message );
 			//}
 			//return;
 			OperateResult<ushort, ushort> read = await beckhoffAdsNet.ReadAdsStateAsync( );
@@ -199,7 +199,7 @@ namespace HslCommunicationDemo.PLC.Beckhoff
 			}
 			else
 			{
-				MessageBox.Show( "Read Faild:" + read.Message );
+				DemoUtils.ShowMessage( "Read Faild:" + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<ushort, ushort> read = {DemoUtils.PlcDeviceName}.ReadAdsState( );  // Content1: Ads State  Content2: Device State";
@@ -209,18 +209,18 @@ namespace HslCommunicationDemo.PLC.Beckhoff
 		{
 			if (!uint.TryParse( textBox4.Text, out uint handle ))
 			{
-				MessageBox.Show( "Handle input not corrent" );
+				DemoUtils.ShowMessage( "Handle input not corrent" );
 				return;
 			}
 
 			OperateResult release = await beckhoffAdsNet.ReleaseSystemHandleAsync( handle );
 			if (release.IsSuccess)
 			{
-				MessageBox.Show( "Release Success!" );
+				DemoUtils.ShowMessage( "Release Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Release Failed:" + release.Message );
+				DemoUtils.ShowMessage( "Release Failed:" + release.Message );
 			}
 
 			textBox_code.Text = $"OperateResult release = {DemoUtils.PlcDeviceName}.ReleaseSystemHandle( {handle} );";

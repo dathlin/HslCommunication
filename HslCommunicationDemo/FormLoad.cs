@@ -116,7 +116,7 @@ namespace HslCommunicationDemo
             }
             catch (Exception ex)
             {
-                MessageBox.Show( ex.Message );
+                DemoUtils.ShowMessage( ex.Message );
             }
         }
 
@@ -319,7 +319,7 @@ namespace HslCommunicationDemo
             HslCommunication.StringResources.SeteLanguageEnglish( );
             Program.Language = 2;
             Language( Program.Language );
-            MessageBox.Show( "Select English!" );
+            DemoUtils.ShowMessage( "Select English!" );
         }
 
         private void LinkLabel5_Click( object sender, EventArgs e )
@@ -328,7 +328,7 @@ namespace HslCommunicationDemo
             HslCommunication.StringResources.SetLanguageChinese( );
             Program.Language = 1;
             Language( Program.Language );
-            MessageBox.Show( "已选择中文" );
+            DemoUtils.ShowMessage( "已选择中文" );
         }
 
         private void 论坛toolStripMenuItem_Click(object sender, EventArgs e)
@@ -339,7 +339,7 @@ namespace HslCommunicationDemo
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                DemoUtils.ShowMessage(ex.Message);
             }
         }
 
@@ -567,7 +567,7 @@ namespace HslCommunicationDemo
             }
             catch (Exception ex)
             {
-                MessageBox.Show( ex.Message );
+                DemoUtils.ShowMessage( ex.Message );
             }
         }
 
@@ -605,7 +605,7 @@ namespace HslCommunicationDemo
             Settings1.Default.language = Program.Language;
             Settings1.Default.Save( );
             Language( Program.Language );
-            MessageBox.Show( "已选择中文" );
+            DemoUtils.ShowMessage( "已选择中文" );
         }
 
         private void englishToolStripMenuItem_Click( object sender, EventArgs e )
@@ -616,7 +616,7 @@ namespace HslCommunicationDemo
             Settings1.Default.language = Program.Language;
             Settings1.Default.Save( );
             Language( Program.Language );
-            MessageBox.Show( "Select English!" );
+            DemoUtils.ShowMessage( "Select English!" );
         }
 
         private void 日志ToolStripMenuItem_Click( object sender, EventArgs e )
@@ -677,7 +677,7 @@ namespace HslCommunicationDemo
                     // 有更新
                     Invoke( new Action( ( ) =>
                      {
-                         if (MessageBox.Show( "服务器有新版本：" + read.Content2 + Environment.NewLine + "是否启动更新？", "检测到更新", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+                         if (DemoUtils.ShowMessage( "服务器有新版本：" + read.Content2 + Environment.NewLine + "是否启动更新？", "检测到更新", MessageBoxButtons.YesNo ) == DialogResult.Yes)
                          {
                              try
                              {
@@ -687,7 +687,7 @@ namespace HslCommunicationDemo
                              }
                              catch(Exception ex)
                              {
-                                 MessageBox.Show( "更新软件丢失，无法启动更新： " + ex.Message );
+                                 DemoUtils.ShowMessage( "更新软件丢失，无法启动更新： " + ex.Message );
                              }
                          }
                      } ) );

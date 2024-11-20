@@ -85,7 +85,7 @@ namespace HslCommunicationDemo
 		{
 			if (checkBox_rsa.Checked && checkBox_SslTls.Checked)
 			{
-				MessageBox.Show( "无法同时勾选RSA加密通信及SSL加密通信！\r\nIt is not possible to check both RSA encryption and SSL encryption options." );
+				DemoUtils.ShowMessage( "无法同时勾选RSA加密通信及SSL加密通信！\r\nIt is not possible to check both RSA encryption and SSL encryption options." );
 				return;
 			}
 			// 连接
@@ -131,7 +131,7 @@ namespace HslCommunicationDemo
 				button2.Enabled = true;
 				panel2.Enabled  = true;
 				listBox1.DataSource = mqttClient.SubcribeTopics;
-				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 
 				code = CodeExampleControl.CreateStringBulider( mqttClient );
 			}
@@ -139,7 +139,7 @@ namespace HslCommunicationDemo
 			{
 				mqttClient = null;
 				button1.Enabled = true;
-				MessageBox.Show( connect.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( connect.ToMessageShowString( ) );
 			}
 
 
@@ -283,7 +283,7 @@ namespace HslCommunicationDemo
 					Retain                = checkBox1.Checked                        // 如果为TRUE，该消息在服务器上进行驻留保存，方便客户端连上立即推送
 				} );
 
-				if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
+				if (!send.IsSuccess) DemoUtils.ShowMessage( "Send Failed:" + send.Message );
 
 				textBox_code.Text = $"OperateResult send = mqttClient.PublishMessage( new MqttApplicationMessage( ) {{ QualityOfServiceLevel = " +
 					$"QualityOfServiceLevel.{level}, Topic=\"{textBox5.Text}\", " +
@@ -302,7 +302,7 @@ namespace HslCommunicationDemo
 			//OperateResult send = mqttClient.SubscribeMessage( textBox5.Text );
 			OperateResult send = mqttClient.SubscribeMessage( new string[] { textBox5.Text } );
 
-			if (!send.IsSuccess) MessageBox.Show( "SubscribeMessage Failed:" + send.Message );
+			if (!send.IsSuccess) DemoUtils.ShowMessage( "SubscribeMessage Failed:" + send.Message );
 			else listBox1.DataSource = mqttClient.SubcribeTopics;
 
 			textBox_code.Text = $"OperateResult send = mqttClient.SubscribeMessage( new string[] {{\"{textBox5.Text}\"}} );";
@@ -312,7 +312,7 @@ namespace HslCommunicationDemo
 		{
 			OperateResult send = mqttClient.UnSubscribeMessage( textBox5.Text );
 
-			if (!send.IsSuccess) MessageBox.Show( "UnSubscribeMessage Failed:" + send.Message );
+			if (!send.IsSuccess) DemoUtils.ShowMessage( "UnSubscribeMessage Failed:" + send.Message );
 			else listBox1.DataSource = mqttClient.SubcribeTopics;
 
 			textBox_code.Text = $"OperateResult send = mqttClient.UnSubscribeMessage( \"{textBox5.Text}\" );";

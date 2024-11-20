@@ -168,7 +168,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed：" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadPlcType( );";
@@ -184,7 +184,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed：" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<int> read = {DemoUtils.PlcDeviceName}.ReadPlcMode( );  // 0:编程模式(programing) 1:运行模式(run) 2:监视模式(monitor)";
@@ -195,11 +195,11 @@ namespace HslCommunicationDemo.PLC.Omron
 			OperateResult op = hostLink.ChangePlcMode( (byte)comboBox4.SelectedIndex );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "success" );
+				DemoUtils.ShowMessage( "success" );
 			}
 			else
 			{
-				MessageBox.Show( "failed:" + op.Message );
+				DemoUtils.ShowMessage( "failed:" + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.ChangePlcMode( {(byte)comboBox4.SelectedIndex} );";

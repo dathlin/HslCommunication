@@ -40,7 +40,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( "Input Data is wrong! please int again!" + Environment.NewLine + ex.Message );
+				DemoUtils.ShowMessage( "Input Data is wrong! please int again!" + Environment.NewLine + ex.Message );
 			}
 		}
 
@@ -63,7 +63,7 @@ namespace HslCommunicationDemo.Robot
 				}
 				else
 				{
-					MessageBox.Show( "Read Failed:" + read.Message );
+					DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 				}
 			}
 			else
@@ -71,11 +71,11 @@ namespace HslCommunicationDemo.Robot
 				OperateResult write = await webApiClient.WriteAsync( textBox5.Text, textBox7.Text );
 				if (write.IsSuccess)
 				{
-					MessageBox.Show( "Write Success" );
+					DemoUtils.ShowMessage( "Write Success" );
 				}
 				else
 				{
-					MessageBox.Show( "Read Failed:" + write.Message );
+					DemoUtils.ShowMessage( "Read Failed:" + write.Message );
 				}
 			}
 		}
@@ -130,7 +130,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -149,7 +149,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -167,7 +167,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -185,7 +185,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -203,7 +203,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -221,7 +221,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -239,7 +239,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -257,7 +257,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -275,7 +275,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -293,7 +293,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -311,7 +311,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -329,7 +329,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -347,7 +347,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -365,7 +365,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -383,7 +383,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -401,7 +401,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -419,7 +419,7 @@ namespace HslCommunicationDemo.Robot
 			label_time_cost.Text = DemoUtils.GetTimeCost( start );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{

@@ -88,7 +88,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = DeviceConnectPLC( cjt188 );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
@@ -109,13 +109,13 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 						"Error: " + connect.ErrorCode );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

@@ -25,7 +25,7 @@ namespace HslCommunicationDemo
 			// 连接
 			if (!int.TryParse( textBox_port.Text, out int port ))
 			{
-				MessageBox.Show( "端口输入格式不正确！" );
+				DemoUtils.ShowMessage( "端口输入格式不正确！" );
 				return;
 			}
 
@@ -37,14 +37,14 @@ namespace HslCommunicationDemo
 			try
 			{
 				server.ServerStart( port );
-				MessageBox.Show( Program.Language == 1 ? "启动成功！" : "Start success" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "启动成功！" : "Start success" );
 				button2.Enabled = true;
 				button1.Enabled = false;
 				panel2.Enabled = true;
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 
 		}
@@ -167,7 +167,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( "Read Failed:" + read.Message );
+					DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 				}
 			}
 			catch(Exception ex)

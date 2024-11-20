@@ -83,7 +83,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 				return;
 			}
 
@@ -115,7 +115,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 					"Error: " + connect.ErrorCode );
 			}
 		}

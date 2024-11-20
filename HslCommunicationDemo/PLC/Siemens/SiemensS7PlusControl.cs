@@ -81,7 +81,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult<List<S7Object>> read = this.siemensTcpNet.BrowerDB( );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 				return;
 			}
 
@@ -99,7 +99,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult<List<S7Object>> read2 = this.siemensTcpNet.BrowseTags( );
 			if (read2.IsSuccess)
 			{
-				//MessageBox.Show( "Success: " + read.Content.ToJsonString( ) );
+				//DemoUtils.ShowMessage( "Success: " + read.Content.ToJsonString( ) );
 				//Clipboard.SetText( read.Content.ToJsonString( ) );
 
 				// 清空原先的数据
@@ -109,12 +109,12 @@ namespace HslCommunicationDemo.PLC.Siemens
 				}
 
 				BrowerAllTags( read2.Content );
-				MessageBox.Show( "Finish!" );
+				DemoUtils.ShowMessage( "Finish!" );
 				treeView1.ExpandAll( );
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read2.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read2.Message );
 			}
 		}
 
@@ -212,12 +212,12 @@ namespace HslCommunicationDemo.PLC.Siemens
 				//OperateResult<byte[]> read = this.siemensTcpNet.BrowsrTags( obj );
 				//if (read.IsSuccess)
 				//{
-				//	MessageBox.Show( "Success: " + read.Content.ToHexString( ' ' ) );
+				//	DemoUtils.ShowMessage( "Success: " + read.Content.ToHexString( ' ' ) );
 				//	Clipboard.SetText( read.Content.ToHexString( ' ' ) );
 				//}
 				//else
 				//{
-				//	MessageBox.Show( "Read failed: " + read.Message );
+				//	DemoUtils.ShowMessage( "Read failed: " + read.Message );
 				//}
 			}
 		}
@@ -310,7 +310,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 		{
 			if (this.siemensTcpNet == null)
 			{
-				MessageBox.Show( "ReadWriteNet device is null, can not refresh! " );
+				DemoUtils.ShowMessage( "ReadWriteNet device is null, can not refresh! " );
 				return;
 			}
 
@@ -412,11 +412,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 					}
 					else
 						row.Cells[4].Value = read.Content.Select( m => m.Value ).ToArray( ).ToJsonString( );
-					//MessageBox.Show( "Success: " + read.Content );
+					//DemoUtils.ShowMessage( "Success: " + read.Content );
 				}
 				else
 				{
-					MessageBox.Show( "Failed: " + read.Message );
+					DemoUtils.ShowMessage( "Failed: " + read.Message );
 				}
 			}
 		}

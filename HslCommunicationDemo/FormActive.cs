@@ -32,7 +32,7 @@ namespace HslCommunicationDemo
 
 			if (active)
 			{
-				MessageBox.Show( Program.Language == 1 ? "激活成功!" : "Activation successful!" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "激活成功!" : "Activation successful!" );
 				System.IO.File.WriteAllText( activePath, string.Empty, Encoding.UTF8 );
 				System.IO.FileInfo fileInfo = new System.IO.FileInfo( activePath );
 				string key = fileInfo.CreationTime.ToString( "yyyy-MM-dd-mm-ss" );
@@ -42,7 +42,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( Program.Language == 1 ? "激活失败！" : "Activation failed!" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "激活失败！" : "Activation failed!" );
 			}
 		}
 

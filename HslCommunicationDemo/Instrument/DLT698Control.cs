@@ -176,11 +176,11 @@ namespace HslCommunicationDemo.Instrument
 			OperateResult active = dlt698.ActiveDeveice( );
 			if (active.IsSuccess)
 			{
-				MessageBox.Show( "Send Active Code Success" );
+				DemoUtils.ShowMessage( "Send Active Code Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Active Code failed:" + active.Message );
+				DemoUtils.ShowMessage( "Active Code failed:" + active.Message );
 			}
 			textBox_code.Text = $"OperateResult active = dlt.ActiveDeveice( );";
 		}
@@ -195,7 +195,7 @@ namespace HslCommunicationDemo.Instrument
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = dlt.ReadAddress( );";
@@ -212,7 +212,7 @@ namespace HslCommunicationDemo.Instrument
 			//}
 			//else
 			//{
-			//	MessageBox.Show( "Read failed: " + read.Message );
+			//	DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			//}
 		}
 
@@ -226,7 +226,7 @@ namespace HslCommunicationDemo.Instrument
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult write = dlt.WriteAddress( \"{textBox1.Text}\" );";
@@ -246,7 +246,7 @@ namespace HslCommunicationDemo.Instrument
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string[]> read = dlt.ReadStringArray( \"{textBox1.Text}\" );";

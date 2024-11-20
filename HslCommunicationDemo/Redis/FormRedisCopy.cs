@@ -35,21 +35,21 @@ namespace HslCommunicationDemo.Redis
 		{
 			if(!int.TryParse(textBox2.Text, out int port1 ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong ); return;
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong ); return;
 			}
 			if (!int.TryParse( textBox5.Text, out int port2 ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong ); return;
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong ); return;
 			}
 
 			if (!int.TryParse( textBox8.Text, out int db1 ))
 			{
-				MessageBox.Show( "DB Block input wrong" ); return;
+				DemoUtils.ShowMessage( "DB Block input wrong" ); return;
 			}
 
 			if (!int.TryParse( textBox9.Text, out int db2 ))
 			{
-				MessageBox.Show( "DB Block input wrong" ); return;
+				DemoUtils.ShowMessage( "DB Block input wrong" ); return;
 			}
 			client1?.ConnectClose( );
 			client2?.ConnectClose( );
@@ -59,19 +59,19 @@ namespace HslCommunicationDemo.Redis
 			OperateResult connect1 = client1.ConnectServer( );
 			if (!connect1.IsSuccess)
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + " " + connect1.Message ); return;
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + " " + connect1.Message ); return;
 			}
 
 			OperateResult connect2 = client2.ConnectServer( );
 			if (!connect2.IsSuccess)
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + " " + connect2.Message ); return;
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + " " + connect2.Message ); return;
 			}
 
 			OperateResult opDb1 = client1.SelectDB( db1 );
-			if (!opDb1.IsSuccess) { MessageBox.Show( "client1 DB Block select wrong" ); return; }
+			if (!opDb1.IsSuccess) { DemoUtils.ShowMessage( "client1 DB Block select wrong" ); return; }
 			OperateResult opDb2 = client2.SelectDB( db2 );
-			if (!opDb2.IsSuccess) { MessageBox.Show( "client2 DB Block select wrong" ); return; }
+			if (!opDb2.IsSuccess) { DemoUtils.ShowMessage( "client2 DB Block select wrong" ); return; }
 
 			button2.Enabled = false;
 			button3.Enabled = true;
@@ -80,7 +80,7 @@ namespace HslCommunicationDemo.Redis
 			hslPanelTextBack2.Enabled = false;
 
 			hslPanelHead1.Enabled = true;
-			MessageBox.Show( "Success" );
+			DemoUtils.ShowMessage( "Success" );
 		}
 
 		private void button3_Click( object sender, EventArgs e )
@@ -103,26 +103,26 @@ namespace HslCommunicationDemo.Redis
 		private void button6_Click( object sender, EventArgs e )
 		{
 			// 清空redis1
-			if (MessageBox.Show( "Clear sure?", "check", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
+			if (DemoUtils.ShowMessage( "Clear sure?", "check", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
 			{
 				OperateResult op = client1.FlushDB( );
 				if (op.IsSuccess)
-					MessageBox.Show( "Flush Success!" );
+					DemoUtils.ShowMessage( "Flush Success!" );
 				else
-					MessageBox.Show( "Flush Failed!" + op.Message );
+					DemoUtils.ShowMessage( "Flush Failed!" + op.Message );
 			}
 		}
 
 		private void button7_Click( object sender, EventArgs e )
 		{
 			// 清空redis2
-			if (MessageBox.Show( "Clear sure?", "check", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
+			if (DemoUtils.ShowMessage( "Clear sure?", "check", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
 			{
 				OperateResult op = client2.FlushDB( );
 				if (op.IsSuccess)
-					MessageBox.Show( "Flush Success!" );
+					DemoUtils.ShowMessage( "Flush Success!" );
 				else
-					MessageBox.Show( "Flush Failed!" + op.Message );
+					DemoUtils.ShowMessage( "Flush Failed!" + op.Message );
 			}
 		}
 

@@ -88,19 +88,19 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox_BaudRate.Text, out int baudRate ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "波特率输入错误！" : "Baud rate input error" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "波特率输入错误！" : "Baud rate input error" );
 				return;
 			}
 
 			if (!int.TryParse( textBox_DataBits.Text, out int dataBits ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "数据位输入错误！" : "Data bits input error" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "数据位输入错误！" : "Data bits input error" );
 				return;
 			}
 
 			if (!int.TryParse( textBox_StopBit.Text, out int stopBits ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "停止位输入错误！" : "Stop bits input error" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "停止位输入错误！" : "Stop bits input error" );
 				return;
 			}
 
@@ -117,7 +117,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = mqttClient.ConnectServer( );
 				if (!connect.IsSuccess)
 				{
-					MessageBox.Show( "MQTT Connected failed, not use it" );
+					DemoUtils.ShowMessage( "MQTT Connected failed, not use it" );
 					mqttClient = null;
 				}
 			}

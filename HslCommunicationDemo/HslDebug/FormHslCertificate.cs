@@ -103,7 +103,7 @@ namespace HslCommunicationDemo
 
 			string str = "创建证书完成，是否复制证书到剪切板？";
 			if (Program.Language == 2) str = "After creating the certificate, do you want to copy the certificate to the clipboard?";
-			if (MessageBox.Show( str, "Info", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			if (DemoUtils.ShowMessage( str, "Info", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
 				Clipboard.SetText( Convert.ToBase64String( certificate.GetSaveBytes( ) ) );
 			}
@@ -145,7 +145,7 @@ namespace HslCommunicationDemo
 					}
 					catch (Exception ex)
 					{
-						MessageBox.Show( "Verify failed: " + ex.Message );
+						DemoUtils.ShowMessage( "Verify failed: " + ex.Message );
 					}
 				}
 			}
@@ -166,16 +166,16 @@ namespace HslCommunicationDemo
 						byte[] data = File.ReadAllBytes( ofd.FileName );
 						if (HslCertificate.VerifyCer( pubKey, data ))
 						{
-							MessageBox.Show( "Verify success" );
+							DemoUtils.ShowMessage( "Verify success" );
 						}
 						else
 						{
-							MessageBox.Show( "Verify failed" );
+							DemoUtils.ShowMessage( "Verify failed" );
 						}
 					}
 					catch(Exception ex)
 					{
-						MessageBox.Show( "Verify failed: " + ex.Message );
+						DemoUtils.ShowMessage( "Verify failed: " + ex.Message );
 					}
 				}
 			}

@@ -111,7 +111,7 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse(textBox2.Text,out int port))
 			{
-				MessageBox.Show( "端口输入格式不正确！" );
+				DemoUtils.ShowMessage( "端口输入格式不正确！" );
 				return;
 			}
 			
@@ -124,7 +124,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = await kuka.ConnectServerAsync( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
@@ -134,12 +134,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -183,7 +183,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

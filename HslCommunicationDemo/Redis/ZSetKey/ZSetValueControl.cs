@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using HslCommunication.Enthernet.Redis;
 using HslCommunication;
 using HslCommunication.BasicFramework;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -40,14 +41,14 @@ namespace HslRedisDesktop
 
 		private void RefreshKey( bool ascend )
 		{
-			if (redisClient == null) { MessageBox.Show( "当前的连接为空，无法读取！" ); return; }
+			if (redisClient == null) { DemoUtils.ShowMessage( "当前的连接为空，无法读取！" ); return; }
             OperateResult<string[]> read;
             if (ascend) read = redisClient.Redis.ZSetRange( stringKeyName, 0, - 1, true );
 			else read = redisClient.Redis.ZSetReverseRange( stringKeyName, 0, -1, true );
 
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "读取失败：" + read.Message );
+				DemoUtils.ShowMessage( "读取失败：" + read.Message );
 			}
 			else
 			{
@@ -116,16 +117,16 @@ namespace HslRedisDesktop
 			{
 				if (dataGridView1.SelectedRows[0].Cells[1].Value != null)
 				{
-					if (MessageBox.Show( $"确认是否真的删除Key:{stringKeyName} 元素:{dataGridView1.SelectedRows[0].Cells[1].Value.ToString( )} 的数据信息？", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
+					if (DemoUtils.ShowMessage( $"确认是否真的删除Key:{stringKeyName} 元素:{dataGridView1.SelectedRows[0].Cells[1].Value.ToString( )} 的数据信息？", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
 					{
 						OperateResult delete = redisClient.Redis.ZSetRemove( stringKeyName, dataGridView1.SelectedRows[0].Cells[1].Value.ToString( ) );
 						if (delete.IsSuccess)
 						{
-							MessageBox.Show( "删除集合元素成功！" );
+							DemoUtils.ShowMessage( "删除集合元素成功！" );
 						}
 						else
 						{
-							MessageBox.Show( "删除集合元素失败！" + delete.Message );
+							DemoUtils.ShowMessage( "删除集合元素失败！" + delete.Message );
 						}
 					}
 				}
@@ -147,7 +148,7 @@ namespace HslRedisDesktop
         private void button5_Click( object sender, EventArgs e )
         {
 			// 筛选范围
-			MessageBox.Show( "当前版本暂时不支持！" );
+			DemoUtils.ShowMessage( "当前版本暂时不支持！" );
 		}
     }
 }

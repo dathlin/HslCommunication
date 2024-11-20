@@ -34,7 +34,7 @@ namespace HslCommunicationDemo
             }
             catch (Exception ex)
             {
-                MessageBox.Show( ex.Message );
+                DemoUtils.ShowMessage( ex.Message );
             }
         }
     }

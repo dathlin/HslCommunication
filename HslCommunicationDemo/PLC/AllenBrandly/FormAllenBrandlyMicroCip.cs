@@ -70,7 +70,7 @@ namespace HslCommunicationDemo
 
 			if (!byte.TryParse( textBox15.Text, out byte slot ))
 			{
-				MessageBox.Show( DemoUtils.SlotInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.SlotInputWrong );
 				return;
 			}
 
@@ -88,7 +88,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = DeviceConnectPLC( allenBradleyNet );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
@@ -110,12 +110,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

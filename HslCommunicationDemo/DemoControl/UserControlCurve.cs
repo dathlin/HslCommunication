@@ -46,7 +46,7 @@ namespace HslCommunicationDemo.DemoControl
             {
                 if (!int.TryParse( textBox14.Text, out timeSleep ))
                 {
-                    MessageBox.Show( "Time input wrong！" );
+                    DemoUtils.ShowMessage( "Time input wrong！" );
                     return;
                 }
                 button27.Text = "Stop";
@@ -82,7 +82,7 @@ namespace HslCommunicationDemo.DemoControl
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show( "Read failed：" + ex.Message );
+                        DemoUtils.ShowMessage( "Read failed：" + ex.Message );
                     }
                 }
             }

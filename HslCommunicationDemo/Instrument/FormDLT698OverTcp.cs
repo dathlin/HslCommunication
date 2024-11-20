@@ -71,7 +71,7 @@ namespace HslCommunicationDemo
 		{
 			if (!byte.TryParse( textBox_ca.Text, out byte ca ))
 			{
-				MessageBox.Show( "CA input wrong!" );
+				DemoUtils.ShowMessage( "CA input wrong!" );
 				textBox_ca.Focus( );
 				return;
 			}
@@ -89,7 +89,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = DeviceConnectPLC( dLT698 );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
@@ -109,13 +109,13 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 						"Error: " + connect.ErrorCode );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

@@ -137,11 +137,11 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
-				MessageBox.Show( "Start Success" );
+				DemoUtils.ShowMessage( "Start Success" );
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Start Failed : " + ex.Message );
+				DemoUtils.ShowMessage( "Start Failed : " + ex.Message );
 			}
 		}
 

@@ -420,11 +420,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult result = await siemensTcpNet.HotStartAsync( );
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( "Success" );
+				DemoUtils.ShowMessage( "Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + result.Message );
+				DemoUtils.ShowMessage( "Failed: " + result.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.HotStart( );";
@@ -436,11 +436,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult result = await siemensTcpNet.ColdStartAsync( );
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( "Success" );
+				DemoUtils.ShowMessage( "Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + result.Message );
+				DemoUtils.ShowMessage( "Failed: " + result.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.ColdStart( );";
@@ -452,11 +452,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult result = await siemensTcpNet.StopAsync( );
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( "Success" );
+				DemoUtils.ShowMessage( "Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + result.Message );
+				DemoUtils.ShowMessage( "Failed: " + result.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.Stop( );";
@@ -468,11 +468,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult<string> read = await siemensTcpNet.ReadOrderNumberAsync( );
 			if (read.IsSuccess)
 			{
-				MessageBox.Show( "Order Number：" + read.Content );
+				DemoUtils.ShowMessage( "Order Number：" + read.Content );
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed：" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadOrderNumber( );";
@@ -487,7 +487,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 			else
 			{
-				MessageBox.Show( "Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Failed:" + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadDateTime( \"{textBox8.Text}\" );";
@@ -499,7 +499,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			if (DateTime.TryParse( textBox7.Text, out DateTime value ))
 				DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
 			else
-				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
+				DemoUtils.ShowMessage( "DateTime Data is not corrent: " + textBox7.Text );
 
 			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.Write( \"{textBox8.Text}\", DateTime.Parse( \"{textBox7.Text}\" ) );";
 		}
@@ -514,7 +514,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 			else
 			{
-				MessageBox.Show( "Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Failed:" + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadString( \"{textBox8.Text}\" );";
@@ -538,7 +538,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 			else
 			{
-				MessageBox.Show( "Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Failed:" + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadWString( \"{textBox8.Text}\" );";
@@ -561,7 +561,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 			else
 			{
-				MessageBox.Show( "Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Failed:" + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadDate( \"{textBox8.Text}\" );";
@@ -573,7 +573,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			if (DateTime.TryParse( textBox7.Text, out DateTime value ))
 				DemoUtils.WriteResultRender( await siemensTcpNet.WriteDateAsync( textBox8.Text, value ), textBox8.Text );
 			else
-				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
+				DemoUtils.ShowMessage( "DateTime Data is not corrent: " + textBox7.Text );
 
 			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteDate( \"{textBox8.Text}\", DateTime.Parse( \"{textBox7.Text}\" ) );";
 		}
@@ -587,7 +587,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 			else
 			{
-				MessageBox.Show( "Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Failed:" + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadDTLDataTime( \"{textBox8.Text}\" );";
@@ -599,7 +599,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			if (DateTime.TryParse( textBox7.Text, out DateTime value ))
 				DemoUtils.WriteResultRender( await siemensTcpNet.WriteDTLTimeAsync( textBox8.Text, value ), textBox8.Text );
 			else
-				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
+				DemoUtils.ShowMessage( "DateTime Data is not corrent: " + textBox7.Text );
 
 			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteDTLTime( \"{textBox8.Text}\", DateTime.Parse( \"{textBox7.Text}\" ) );";
 
@@ -615,11 +615,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult force = siemensTcpNet.ForceBool( textBox_force_address.Text, true );
 			if (force.IsSuccess)
 			{
-				MessageBox.Show( "Force true success!" );
+				DemoUtils.ShowMessage( "Force true success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Force true failed:" + force.Message );
+				DemoUtils.ShowMessage( "Force true failed:" + force.Message );
 			}
 
 			textBox_code.Text = $"OperateResult force = {DemoUtils.PlcDeviceName}.ForceBool( \"{textBox_force_address.Text}\", true );";
@@ -630,11 +630,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult force = siemensTcpNet.ForceBool( textBox_force_address.Text, false );
 			if (force.IsSuccess)
 			{
-				MessageBox.Show( "Force false success!" );
+				DemoUtils.ShowMessage( "Force false success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Force false failed:" + force.Message );
+				DemoUtils.ShowMessage( "Force false failed:" + force.Message );
 			}
 
 			textBox_code.Text = $"OperateResult force = {DemoUtils.PlcDeviceName}.ForceBool( \"{textBox_force_address.Text}\", false );";
@@ -645,11 +645,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult force = siemensTcpNet.CancelAllForce( );
 			if (force.IsSuccess)
 			{
-				MessageBox.Show( "Force true success!" );
+				DemoUtils.ShowMessage( "Force true success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Force true failed:" + force.Message );
+				DemoUtils.ShowMessage( "Force true failed:" + force.Message );
 			}
 
 			textBox_code.Text = $"OperateResult force = {DemoUtils.PlcDeviceName}.CancelAllForce( );";
@@ -725,7 +725,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 					label5.Text = successCount.ToString( );
 					timer.Stop( );
 					button12.Enabled = true;
-					MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
+					DemoUtils.ShowMessage( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
 				} ) );
 			}
 		}

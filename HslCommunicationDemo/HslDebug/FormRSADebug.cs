@@ -236,11 +236,11 @@ namespace HslCommunicationDemo
 
 			if (rsa.VerifyData( jiami, GetHalg( ), textBox_jiami_result.Text.ToHexBytes( ) ))
 			{
-				MessageBox.Show( "Sign verify success!" );
+				DemoUtils.ShowMessage( "Sign verify success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Sign verify failed" );
+				DemoUtils.ShowMessage( "Sign verify failed" );
 			}
 		}
 
@@ -266,7 +266,7 @@ namespace HslCommunicationDemo
 			{
 				File.WriteAllBytes( dialog.FileName, textBox_jiami_result.Text.ToHexBytes( ) );
 
-				MessageBox.Show( "Save Success" );
+				DemoUtils.ShowMessage( "Save Success" );
 			}
 		}
 

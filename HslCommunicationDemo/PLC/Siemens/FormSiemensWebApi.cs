@@ -69,7 +69,7 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse(textBox2.Text, out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 
@@ -85,7 +85,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = siemensTcpNet.ConnectServer( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
@@ -100,12 +100,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -154,11 +154,11 @@ namespace HslCommunicationDemo
 			OperateResult<double> read = await siemensTcpNet.ReadVersionAsync( );
 			if (read.IsSuccess)
 			{
-				MessageBox.Show( read.Content.ToString( ) );
+				DemoUtils.ShowMessage( read.Content.ToString( ) );
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed: " + read.ToMessageShowString( ) );
 			}
 		}
 
@@ -167,11 +167,11 @@ namespace HslCommunicationDemo
 			OperateResult read = await siemensTcpNet.ReadPingAsync( );
 			if (read.IsSuccess)
 			{
-				MessageBox.Show( "Ping Success" );
+				DemoUtils.ShowMessage( "Ping Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed: " + read.ToMessageShowString( ) );
 			}
 		}
 	}

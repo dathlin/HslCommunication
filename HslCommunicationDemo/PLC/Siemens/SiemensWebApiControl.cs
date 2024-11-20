@@ -34,7 +34,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed：" + read.ToMessageShowString( ) );
 			}
 			else
 			{
@@ -62,14 +62,14 @@ namespace HslCommunicationDemo.PLC.Siemens
 				}
 				else
 				{
-					MessageBox.Show( "Read Failed：" + read.ToMessageShowString( ) );
+					DemoUtils.ShowMessage( "Read Failed：" + read.ToMessageShowString( ) );
 				}
 
 				textBox_code.Text = $"OperateResult<byte[]> read = {DemoUtils.PlcDeviceName}.Read( \"{textBox6.Text}\", 0 );";
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Read Failed：" + ex.Message );
+				DemoUtils.ShowMessage( "Read Failed：" + ex.Message );
 			}
 		}
 
@@ -80,11 +80,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult<double> read = await siemensTcpNet.ReadVersionAsync( );
 			if (read.IsSuccess)
 			{
-				MessageBox.Show( read.Content.ToString( ) );
+				DemoUtils.ShowMessage( read.Content.ToString( ) );
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed: " + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<double> read = {DemoUtils.PlcDeviceName}.ReadVersion( );";
@@ -95,11 +95,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult read = await siemensTcpNet.ReadPingAsync( );
 			if (read.IsSuccess)
 			{
-				MessageBox.Show( "Ping Success" );
+				DemoUtils.ShowMessage( "Ping Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed: " + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult read = {DemoUtils.PlcDeviceName}.ReadPing( );";
@@ -114,7 +114,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 			else
 			{
-				MessageBox.Show( "Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Failed:" + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadDateTime( \"{textBox8.Text}\" );";
@@ -126,7 +126,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			if (DateTime.TryParse( textBox7.Text, out DateTime value ))
 				DemoUtils.WriteResultRender( await siemensTcpNet.WriteAsync( textBox8.Text, value ), textBox8.Text );
 			else
-				MessageBox.Show( "DateTime Data is not corrent: " + textBox7.Text );
+				DemoUtils.ShowMessage( "DateTime Data is not corrent: " + textBox7.Text );
 
 			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.Write( \"{textBox8.Text}\", DateTime.Parse( \"{textBox7.Text}\" ) )";
 		}

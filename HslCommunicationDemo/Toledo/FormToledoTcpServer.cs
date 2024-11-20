@@ -58,7 +58,7 @@ namespace HslCommunicationDemo.Toledo
 		{
 			if(!int.TryParse(textBox2.Text, out int port ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "端口号输入错误！" : "Port input wrong" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "端口号输入错误！" : "Port input wrong" );
 				return;
 			}
 
@@ -132,7 +132,7 @@ namespace HslCommunicationDemo.Toledo
 			}
 			else
 			{
-				MessageBox.Show( "Input Wrong" );
+				DemoUtils.ShowMessage( "Input Wrong" );
 			}
 		}
 
@@ -161,7 +161,7 @@ namespace HslCommunicationDemo.Toledo
 			OperateResult open = toledoTcpServer.StartSerialSlave( textBox_serialPort.Text );
 			if (!open.IsSuccess)
 			{
-				MessageBox.Show( "Serial open failed: " + open.Message );
+				DemoUtils.ShowMessage( "Serial open failed: " + open.Message );
 				return;
 			}
 			panel2.Enabled = true;

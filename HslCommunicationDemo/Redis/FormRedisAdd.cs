@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using HslCommunication.Enthernet.Redis;
 using HslCommunication;
 using System.Net;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -73,7 +74,7 @@ namespace HslRedisDesktop
 			OperateResult input = CheckInput( );
 			if (!input.IsSuccess)
 			{
-				MessageBox.Show( "Input failed!" + input.Message );
+				DemoUtils.ShowMessage( "Input failed!" + input.Message );
 				return;
 			}
 
@@ -81,11 +82,11 @@ namespace HslRedisDesktop
 			OperateResult connect = redis.ConnectServer( );
 			if(connect.IsSuccess)
 			{
-				MessageBox.Show( "Connect Success!" );
+				DemoUtils.ShowMessage( "Connect Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Connect Failed: " + connect.Message );
+				DemoUtils.ShowMessage( "Connect Failed: " + connect.Message );
 			}
 			redis.ConnectClose( );
 		}
@@ -96,7 +97,7 @@ namespace HslRedisDesktop
 			OperateResult input = CheckInput( );
 			if (!input.IsSuccess)
 			{
-				MessageBox.Show( "Input failed!" + input.Message );
+				DemoUtils.ShowMessage( "Input failed!" + input.Message );
 				return;
 			}
 

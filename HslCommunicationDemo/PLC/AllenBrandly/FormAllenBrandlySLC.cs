@@ -71,7 +71,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = DeviceConnectPLC( allenBradleyNet );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
@@ -89,12 +89,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

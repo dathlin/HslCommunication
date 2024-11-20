@@ -197,11 +197,11 @@ namespace HslCommunicationDemo.Instrument
 			OperateResult active = cjt188.ActiveDeveice( );
 			if (active.IsSuccess)
 			{
-				MessageBox.Show( "Send Active Code Success" );
+				DemoUtils.ShowMessage( "Send Active Code Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Active Code failed:" + active.Message );
+				DemoUtils.ShowMessage( "Active Code failed:" + active.Message );
 			}
 
 			textBox_code.Text = "OperateResult active = cjt.ActiveDeveice( );";
@@ -217,7 +217,7 @@ namespace HslCommunicationDemo.Instrument
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = "OperateResult<string> read = cjt.ReadAddress( );";
@@ -238,7 +238,7 @@ namespace HslCommunicationDemo.Instrument
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult write = cjt.WriteAddress( \"{textBox1.Text}\" );";
@@ -258,7 +258,7 @@ namespace HslCommunicationDemo.Instrument
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string[]> read = cjt.ReadStringArray( \"{textBox1.Text}\" );";

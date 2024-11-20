@@ -25,7 +25,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			if (string.IsNullOrEmpty( this.textBox1.Text ))
 			{
-				MessageBox.Show( "Model can't be null!" );
+				DemoUtils.ShowMessage( "Model can't be null!" );
 				return;
 			}
 
@@ -41,12 +41,12 @@ namespace HslCommunicationDemo.DemoControl
 				new { token = string.Empty, unique = this.formName, model = this.textBox1.Text, qq = this.textBox2.Text, name = this.textBox3.Text } );
 			if (read.IsSuccess)
 			{
-				MessageBox.Show( "Upload data success" );
+				DemoUtils.ShowMessage( "Upload data success" );
 				System.Threading.ThreadPool.QueueUserWorkItem( new System.Threading.WaitCallback( ThreadPoolCheckVersion ), null );
 			}
 			else
 			{
-				MessageBox.Show( "Request Server failed: " + read.Message );
+				DemoUtils.ShowMessage( "Request Server failed: " + read.Message );
 			}
 
 			button1.Enabled = true;
@@ -79,7 +79,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				MessageBox.Show( "Request Server failed: " + read.Message );
+				DemoUtils.ShowMessage( "Request Server failed: " + read.Message );
 			}
 
 		}

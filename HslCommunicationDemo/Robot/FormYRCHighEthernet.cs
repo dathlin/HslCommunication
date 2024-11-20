@@ -75,7 +75,7 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse(textBox2.Text,out int port))
 			{
-				MessageBox.Show( "端口输入格式不正确！" );
+				DemoUtils.ShowMessage( "端口输入格式不正确！" );
 				return;
 			}
 			
@@ -85,7 +85,7 @@ namespace HslCommunicationDemo
 
 			try
 			{
-				MessageBox.Show( "打开UDP成功！" );
+				DemoUtils.ShowMessage( "打开UDP成功！" );
 				button2.Enabled = true;
 				button1.Enabled = false;
 				panel2.Enabled = true;
@@ -96,7 +96,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -148,28 +148,28 @@ namespace HslCommunicationDemo
 			OperateResult<int> command = DemoUtils.ParseInt( textBox_command.Text );
 			if (!command.IsSuccess)
 			{
-				MessageBox.Show( "Command input wrong: " + command.Message );
+				DemoUtils.ShowMessage( "Command input wrong: " + command.Message );
 				return;
 			}
 
 			OperateResult<int> dataAddress = DemoUtils.ParseInt( textBox_dataAddress.Text );
 			if (!dataAddress.IsSuccess)
 			{
-				MessageBox.Show( "Data Address input wrong: " + dataAddress.Message );
+				DemoUtils.ShowMessage( "Data Address input wrong: " + dataAddress.Message );
 				return;
 			}
 
 			OperateResult<int> dataAttribute = DemoUtils.ParseInt( textBox_dataAttribute.Text );
 			if (!dataAttribute.IsSuccess)
 			{
-				MessageBox.Show( "单元编号输入错误:" + dataAttribute.Message );
+				DemoUtils.ShowMessage( "单元编号输入错误:" + dataAttribute.Message );
 				return;
 			}
 
 			OperateResult<int> handle = DemoUtils.ParseInt( textBox_dataHandle.Text );
 			if (!handle.IsSuccess)
 			{
-				MessageBox.Show( "处理请求输入错误:" + dataAttribute.Message );
+				DemoUtils.ShowMessage( "处理请求输入错误:" + dataAttribute.Message );
 				return;
 			}
 
@@ -177,7 +177,7 @@ namespace HslCommunicationDemo
 			OperateResult<byte[]> read = yrc.ReadCommand( (ushort)command.Content, (ushort)dataAddress.Content, (byte)dataAttribute.Content, (byte)handle.Content, dataPart );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 				return;
 			}
 
@@ -203,7 +203,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<YRCAlarmItem[]> read = yrc.ReadAlarms( );";
@@ -219,7 +219,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string[]> read = yrc.ReadPose( );";
@@ -235,7 +235,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<YRCRobotData> read = yrc.ReadPOSC( {comboBox1.SelectedIndex}, true );";
@@ -265,7 +265,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<bool[]> read = yrc.ReadStats( );";
@@ -285,7 +285,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string[]> read = yrc.ReadJSeq( );"; 
@@ -348,7 +348,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Write Failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Write Failed: " + ex.Message );
 			}
 
 			textBox_code.Text = $"OperateResult write = yrc.WriteIntegerVariable( ushort.Parse( \"{textBox3.Text}\" ), short.Parse( \"{textBox6.Text}\" ) )";
@@ -363,7 +363,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Write Failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Write Failed: " + ex.Message );
 			}
 
 			textBox_code.Text = $"OperateResult write = yrc.WriteDoubleIntegerVariable( ushort.Parse( \"{textBox3.Text}\" ), int.Parse( \"{textBox6.Text}\" ) )";
@@ -378,7 +378,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Write Failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Write Failed: " + ex.Message );
 			}
 
 			textBox_code.Text = $"OperateResult write = yrc.WriteRealVariable( ushort.Parse( \"{textBox3.Text}\" ), float.Parse( \"{textBox6.Text}\" ) )";
@@ -393,7 +393,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Write Failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Write Failed: " + ex.Message );
 			}
 
 			textBox_code.Text = $"OperateResult write = yrc.WriteByteVariable( ushort.Parse( \"{textBox3.Text}\" ), byte.Parse( \"{textBox6.Text}\" ) )";
@@ -405,11 +405,11 @@ namespace HslCommunicationDemo
 			OperateResult op = yrc.Hold( true );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "HOLD ON Success" );
+				DemoUtils.ShowMessage( "HOLD ON Success" );
 			}
 			else
 			{
-				MessageBox.Show( "HOLD ON Failed: " + op.Message );
+				DemoUtils.ShowMessage( "HOLD ON Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = yrc.Hold( true );";
@@ -421,11 +421,11 @@ namespace HslCommunicationDemo
 			OperateResult op = yrc.Hold( false );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "HOLD OFF Success" );
+				DemoUtils.ShowMessage( "HOLD OFF Success" );
 			}
 			else
 			{
-				MessageBox.Show( "HOLD OFF Failed: " + op.Message );
+				DemoUtils.ShowMessage( "HOLD OFF Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = yrc.Hold( false );";
@@ -437,11 +437,11 @@ namespace HslCommunicationDemo
 			OperateResult op = yrc.Reset( );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "RESET Success" );
+				DemoUtils.ShowMessage( "RESET Success" );
 			}
 			else
 			{
-				MessageBox.Show( "RESET Failed: " + op.Message );
+				DemoUtils.ShowMessage( "RESET Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = yrc.Reset( );";
@@ -453,11 +453,11 @@ namespace HslCommunicationDemo
 			OperateResult op = yrc.Cancel( );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "Cancel Success" );
+				DemoUtils.ShowMessage( "Cancel Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Cancel Failed: " + op.Message );
+				DemoUtils.ShowMessage( "Cancel Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = yrc.Cancel( );";
@@ -469,11 +469,11 @@ namespace HslCommunicationDemo
 			OperateResult op = yrc.Svon( true );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "SVON ON Success" );
+				DemoUtils.ShowMessage( "SVON ON Success" );
 			}
 			else
 			{
-				MessageBox.Show( "SVON ON Failed: " + op.Message );
+				DemoUtils.ShowMessage( "SVON ON Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = yrc.Svon( true );";
@@ -485,11 +485,11 @@ namespace HslCommunicationDemo
 			OperateResult op = yrc.Svon( false );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "SVON OFF Success" );
+				DemoUtils.ShowMessage( "SVON OFF Success" );
 			}
 			else
 			{
-				MessageBox.Show( "SVON OFF Failed: " + op.Message );
+				DemoUtils.ShowMessage( "SVON OFF Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = yrc.Svon( false );";
@@ -501,11 +501,11 @@ namespace HslCommunicationDemo
 			OperateResult op = yrc.Start( );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "Start Success" );
+				DemoUtils.ShowMessage( "Start Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Start Failed: " + op.Message );
+				DemoUtils.ShowMessage( "Start Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = yrc.Start( );";
@@ -521,7 +521,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read = yrc.ReadManagementTime( 1 );";
@@ -536,7 +536,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read = yrc.ReadManagementTime( 10 );";
@@ -551,7 +551,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read = yrc.ReadManagementTime( 210 );";
@@ -566,7 +566,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read = yrc.ReadManagementTime( 110 );";
@@ -580,7 +580,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = yrc.ReadManagementTimeSpan( 1 );";
@@ -595,7 +595,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = yrc.ReadManagementTimeSpan( 10 );";
@@ -610,7 +610,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = yrc.ReadManagementTimeSpan( 210 );";
@@ -625,7 +625,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = yrc.ReadManagementTimeSpan( 110 );";

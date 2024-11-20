@@ -120,7 +120,7 @@ namespace HslCommunicationDemo
 				MqttRpcApiRefresh( treeView1.Nodes[0] );
 				TopicsRefresh( treeView1.Nodes[1] );
 				SessionsRefresh( treeView1.Nodes[2] );
-				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 
 				// 设置代码示例
 				codeExampleControl.SetCodeText( mqttSyncClient );
@@ -128,7 +128,7 @@ namespace HslCommunicationDemo
 			else
 			{
 				button1.Enabled = true;
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message );
 			}
 
 		}
@@ -189,7 +189,7 @@ namespace HslCommunicationDemo
 			button3.Enabled = true;
 
 			textBox7.Text = (int)(DateTime.Now - start).TotalMilliseconds + " ms";
-			if (!read.IsSuccess) { MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) ); return; }
+			if (!read.IsSuccess) { DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) ); return; }
 
 
 			// 此处应该修改demo里的RPC接口的默认参数功能
@@ -257,7 +257,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 		}
 
@@ -512,7 +512,7 @@ namespace HslCommunicationDemo
 				OperateResult<MqttClientApplicationMessage> message = await mqttSyncClient.ReadTopicPayloadAsync( topic, ReceiveTopicProgressReport );
 				if (!message.IsSuccess)
 				{
-					MessageBox.Show( "Failed: " + message.Message );
+					DemoUtils.ShowMessage( "Failed: " + message.Message );
 				}
 				else
 				{

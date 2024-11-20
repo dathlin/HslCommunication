@@ -72,7 +72,7 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 
@@ -98,7 +98,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -148,12 +148,12 @@ namespace HslCommunicationDemo
 				}
 				catch(Exception ex)
 				{
-					MessageBox.Show( "Start Failed：" + ex.Message );
+					DemoUtils.ShowMessage( "Start Failed：" + ex.Message );
 				}
 			}
 			else
 			{
-				MessageBox.Show( "Start tcp server first please!" );
+				DemoUtils.ShowMessage( "Start tcp server first please!" );
 			}
 		}
 

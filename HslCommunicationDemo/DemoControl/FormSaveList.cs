@@ -90,7 +90,7 @@ namespace HslCommunicationDemo.DemoControl
 				deviceList.DeleteDevice( element );
 				RefreshSaveDevices( );
 				File.WriteAllText( Path.Combine( Application.StartupPath, "devices.xml" ), deviceList.GetDevices.ToString( ) );
-				MessageBox.Show( "Delete Success!" );
+				DemoUtils.ShowMessage( "Delete Success!" );
 			}
 		}
 
@@ -156,7 +156,7 @@ namespace HslCommunicationDemo.DemoControl
 							}
 							catch( Exception ex )
 							{
-								MessageBox.Show( (Program.Language == 1 ? "解密失败，无法加载当前的配置信息" : "Decryption failed and the current configuration information could not be loaded") +
+								DemoUtils.ShowMessage( (Program.Language == 1 ? "解密失败，无法加载当前的配置信息" : "Decryption failed and the current configuration information could not be loaded") +
 									Environment.NewLine + ex.Message );
 							}
 						}

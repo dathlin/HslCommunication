@@ -223,7 +223,7 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox_buffer_length.Text, out int bufferLength ))
 			{
-				MessageBox.Show( "Buffer length input wrong!" );
+				DemoUtils.ShowMessage( "Buffer length input wrong!" );
 				return;
 			}
 			this.bufferLength = bufferLength;
@@ -254,11 +254,11 @@ namespace HslCommunicationDemo
 				panel_main.Enabled = true;
 				panel_tcp_udp.Enabled = false;
 
-				MessageBox.Show( HslCommunication.StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectServerSuccess );
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( HslCommunication.StringResources.Language.NetEngineStart + Environment.NewLine + ex.Message );
+				DemoUtils.ShowMessage( HslCommunication.StringResources.Language.NetEngineStart + Environment.NewLine + ex.Message );
 			}
 		}
 

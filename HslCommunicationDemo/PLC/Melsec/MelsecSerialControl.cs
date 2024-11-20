@@ -94,11 +94,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult active = melsec.ActivePlc( );
 			if (active.IsSuccess)
 			{
-				MessageBox.Show( "Active Successful" );
+				DemoUtils.ShowMessage( "Active Successful" );
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + active.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Failed: " + active.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.ActivePlc( );";

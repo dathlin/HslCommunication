@@ -39,13 +39,13 @@ namespace HslCommunicationDemo
 
             if (!IPAddress.TryParse( textBox1.Text, out IPAddress address ))
             {
-                MessageBox.Show( "IP地址填写不正确" );
+                DemoUtils.ShowMessage( "IP地址填写不正确" );
                 return;
             }
 
             if (!int.TryParse( textBox2.Text, out int port ))
             {
-                MessageBox.Show( "port填写不正确" );
+                DemoUtils.ShowMessage( "port填写不正确" );
                 return;
             }
 
@@ -131,7 +131,7 @@ namespace HslCommunicationDemo
 
             if (!int.TryParse( textBox6.Text, out int count ))
             {
-                MessageBox.Show( "数据发送次数输入异常" );
+                DemoUtils.ShowMessage( "数据发送次数输入异常" );
                 return;
             }
 

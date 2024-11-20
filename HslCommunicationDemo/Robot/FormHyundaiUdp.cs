@@ -47,7 +47,7 @@ namespace HslCommunicationDemo.Robot
 			// 启动服务
 			if(!int.TryParse(textBox2.Text, out int port ))
 			{
-				MessageBox.Show( "Port input wrong!" );
+				DemoUtils.ShowMessage( "Port input wrong!" );
 				return;
 			}
 
@@ -58,7 +58,7 @@ namespace HslCommunicationDemo.Robot
 				hyundai.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				hyundai.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 				hyundai.ServerStart( port, modeTcp: false );
-				MessageBox.Show( "Start Success" );
+				DemoUtils.ShowMessage( "Start Success" );
 
 				groupBox1.Enabled = true;
 				groupBox2.Enabled = true;
@@ -69,7 +69,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( "Start Failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Start Failed: " + ex.Message );
 			}
 		}
 
@@ -115,7 +115,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Close Failed:" + ex.Message );
+				DemoUtils.ShowMessage( "Close Failed:" + ex.Message );
 			}
 		}
 
@@ -127,7 +127,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( $"Op[{op}] failed : " + operate.Message );
+				DemoUtils.ShowMessage( $"Op[{op}] failed : " + operate.Message );
 			}
 		}
 

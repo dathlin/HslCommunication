@@ -293,7 +293,7 @@ namespace HslCommunicationDemo.PLC.Secs
 			}
 			catch ( Exception ex)
 			{
-				MessageBox.Show( "Start failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Start failed: " + ex.Message );
 			}
 		}
 
@@ -346,7 +346,7 @@ namespace HslCommunicationDemo.PLC.Secs
 			if (treeNode.Tag is SecsTreeItem treeItem)
 			{
 				treeItem.Value = new SecsValue( System.Xml.Linq.XElement.Parse( textBox_data_back.Text ) );
-				MessageBox.Show( "保存成功！" );
+				DemoUtils.ShowMessage( "保存成功！" );
 			}
 		}
 
@@ -364,7 +364,7 @@ namespace HslCommunicationDemo.PLC.Secs
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + publish.Message );
+				DemoUtils.ShowMessage( "Failed: " + publish.Message );
 			}
 
 			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
@@ -385,7 +385,7 @@ namespace HslCommunicationDemo.PLC.Secs
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + publish.Message );
+				DemoUtils.ShowMessage( "Failed: " + publish.Message );
 			}
 
 			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );

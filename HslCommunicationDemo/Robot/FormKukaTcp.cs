@@ -74,7 +74,7 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse(textBox2.Text,out int port))
 			{
-				MessageBox.Show( "端口输入格式不正确！" );
+				DemoUtils.ShowMessage( "端口输入格式不正确！" );
 				return;
 			}
 			
@@ -86,7 +86,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = await kuka.ConnectServerAsync( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
@@ -97,12 +97,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -142,7 +142,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 			textBox_code.Text = $"OperateResult write = kuka.Write( \"{textBox8.Text}\", \"{textBox7.Text}\" )";
 		}
@@ -155,11 +155,11 @@ namespace HslCommunicationDemo
 			OperateResult result = await kuka.StartProgramAsync( textBox5.Text );
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( "Start Success" );
+				DemoUtils.ShowMessage( "Start Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Start Failed:" + result.Message );
+				DemoUtils.ShowMessage( "Start Failed:" + result.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = kuka.StartProgram( \"{textBox5.Text}\" );";
@@ -171,11 +171,11 @@ namespace HslCommunicationDemo
 			OperateResult result = await kuka.ResetProgramAsync( );
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( "Reset Success" );
+				DemoUtils.ShowMessage( "Reset Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Reset Failed:" + result.Message );
+				DemoUtils.ShowMessage( "Reset Failed:" + result.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = kuka.ResetProgram( );";
@@ -187,11 +187,11 @@ namespace HslCommunicationDemo
 			OperateResult result = await kuka.StopProgramAsync( );
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( "Reset Success" );
+				DemoUtils.ShowMessage( "Reset Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Reset Failed:" + result.Message );
+				DemoUtils.ShowMessage( "Reset Failed:" + result.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = kuka.StopProgram( );";

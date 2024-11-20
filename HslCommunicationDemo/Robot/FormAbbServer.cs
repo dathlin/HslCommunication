@@ -69,7 +69,7 @@ namespace HslCommunicationDemo
             }
             catch(Exception ex)
             {
-                MessageBox.Show( "Started Failed:" + ex.Message );
+                DemoUtils.ShowMessage( "Started Failed:" + ex.Message );
             }
         }
 

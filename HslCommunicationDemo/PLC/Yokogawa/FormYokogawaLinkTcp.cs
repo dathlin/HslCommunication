@@ -72,7 +72,7 @@ namespace HslCommunicationDemo
 
 			if (!byte.TryParse( textBox16.Text, out byte cpu ))
 			{
-				MessageBox.Show( "Cpu Number input wrong！" );
+				DemoUtils.ShowMessage( "Cpu Number input wrong！" );
 				return;
 			}
 			
@@ -84,14 +84,14 @@ namespace HslCommunicationDemo
 			}
 			catch( Exception ex )
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 				return;
 			}
 
 			OperateResult connect = DeviceConnectPLC( yokogawa );
 			if (connect.IsSuccess)
 			{
-				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+				DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 				button2.Enabled = true;
 				button1.Enabled = false;
 				userControlReadWriteDevice1.SetEnable( true );
@@ -112,7 +112,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 					"Error: " + connect.ErrorCode );
 			}
 		}

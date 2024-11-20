@@ -78,7 +78,7 @@ namespace HslCommunicationDemo
 		{
 			if (!byte.TryParse( textBox16.Text, out byte DA2 ))
 			{
-				MessageBox.Show( "PLC DA2 input wrong！" );
+				DemoUtils.ShowMessage( "PLC DA2 input wrong！" );
 				return;
 			}
 
@@ -88,7 +88,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 				return;
 			}
 
@@ -102,7 +102,7 @@ namespace HslCommunicationDemo
 			OperateResult connect = DeviceConnectPLC( omronFinsNet );
 			if (connect.IsSuccess)
 			{
-				MessageBox.Show( StringResources.Language.ConnectedSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 				button2.Enabled = true;
 				button1.Enabled = false;
 				userControlReadWriteDevice1.SetEnable( true );
@@ -128,7 +128,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + " " + connect.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + " " + connect.ToMessageShowString( ) );
 			}
 		}
 

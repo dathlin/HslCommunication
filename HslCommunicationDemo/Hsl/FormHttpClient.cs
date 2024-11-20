@@ -42,7 +42,7 @@ namespace HslCommunicationDemo
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( "Input Data is wrong! please int again!" + Environment.NewLine + ex.Message );
+				DemoUtils.ShowMessage( "Input Data is wrong! please int again!" + Environment.NewLine + ex.Message );
 			}
 		}
 
@@ -133,7 +133,7 @@ namespace HslCommunicationDemo
 					}
 					catch (Exception ex)
 					{
-						MessageBox.Show( ex.Message + Environment.NewLine + read.Content );
+						DemoUtils.ShowMessage( ex.Message + Environment.NewLine + read.Content );
 					}
 				}
 			}
@@ -258,7 +258,7 @@ namespace HslCommunicationDemo
 				{
 					label2.Text = successCount.ToString( );
 					button7.Enabled = true;
-					MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
+					DemoUtils.ShowMessage( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Failed Count：" + failed );
 				} ) );
 			}
 		}
@@ -378,7 +378,7 @@ namespace HslCommunicationDemo
 
 			button3.Enabled = true;
 			textBox7.Text = (int)(DateTime.Now - start).TotalMilliseconds + " ms";
-			if (!read.IsSuccess) { MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) ); return; }
+			if (!read.IsSuccess) { DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) ); return; }
 
 
 			// 此处应该修改demo里的RPC接口的默认参数功能

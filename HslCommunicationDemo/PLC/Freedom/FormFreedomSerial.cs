@@ -95,19 +95,19 @@ namespace HslCommunicationDemo
 
 			if (!int.TryParse( textBox2.Text, out int baudRate ))
 			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.BaudRateInputWrong );
 				return;
 			}
 
 			if (!int.TryParse( textBox16.Text, out int dataBits ))
 			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.DataBitsInputWrong );
 				return;
 			}
 
 			if (!int.TryParse( textBox17.Text, out int stopBits ))
 			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.StopBitInputWrong );
 				return;
 			}
 
@@ -149,7 +149,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( open.Message );
+				DemoUtils.ShowMessage( open.Message );
 				button1.Enabled = true;
 			}
 		}

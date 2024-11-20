@@ -57,13 +57,13 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 
 			if (!byte.TryParse( textBox15.Text, out byte slot ))
 			{
-				MessageBox.Show( DemoUtils.SlotInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.SlotInputWrong );
 				return;
 			}
 			dictStructDefine = new Dictionary<int, AbTagItem[]>( );
@@ -82,7 +82,7 @@ namespace HslCommunicationDemo
 			OperateResult connect = allenBradleyNet.ConnectServer( );
 			if (connect.IsSuccess)
 			{
-				MessageBox.Show( StringResources.Language.ConnectedSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 				button2.Enabled = true;
 				button1.Enabled = false;
 				panel2.Enabled = true;
@@ -93,7 +93,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
 			}
 		}
 
@@ -117,7 +117,7 @@ namespace HslCommunicationDemo
 			OperateResult<AbTagItem[]> reads = allenBradleyNet.TagEnumerator( );
 			if (!reads.IsSuccess) 
 			{
-				MessageBox.Show( reads.Message );
+				DemoUtils.ShowMessage( reads.Message );
 				return;
 			};
 			rootTags = reads.Content;

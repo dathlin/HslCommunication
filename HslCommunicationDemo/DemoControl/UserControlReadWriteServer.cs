@@ -149,16 +149,16 @@ namespace HslCommunicationDemo.DemoControl
 							try
 							{
 								deviceServer.LoadDataPool( ofd.FileName );
-								MessageBox.Show( "Load data finish" );
+								DemoUtils.ShowMessage( "Load data finish" );
 							}
 							catch (Exception ex)
 							{
-								MessageBox.Show( "Load failed: " + ex.Message );
+								DemoUtils.ShowMessage( "Load failed: " + ex.Message );
 							}
 						}
 						else
 						{
-							MessageBox.Show( $"File[{ofd.FileName}] is not exist！" );
+							DemoUtils.ShowMessage( $"File[{ofd.FileName}] is not exist！" );
 						}
 					}
 				}
@@ -178,11 +178,11 @@ namespace HslCommunicationDemo.DemoControl
 						try
 						{
 							deviceServer.SaveDataPool( sfd.FileName );
-							MessageBox.Show( "Save file finish!" );
+							DemoUtils.ShowMessage( "Save file finish!" );
 						}
 						catch (Exception ex)
 						{
-							MessageBox.Show( "Save failed: " + ex.Message );
+							DemoUtils.ShowMessage( "Save failed: " + ex.Message );
 						}
 					}
 				}
@@ -205,16 +205,16 @@ namespace HslCommunicationDemo.DemoControl
 						deviceServer.GetCommunicationServer( ).ConnectRemoteServer( form.IpAddress, form.Port, form.CustomizeDTU );
 					}
 
-					MessageBox.Show( "Add Connection success" );
+					DemoUtils.ShowMessage( "Add Connection success" );
 
 					//OperateResult connect = deviceServer.GetCommunicationServer().ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU, form.Pwd );
 					//if (connect.IsSuccess)
 					//{
-					//	MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					//	DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					//}
 					//else
 					//{
-					//	MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+					//	DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 					//}
 				}
 			}
@@ -291,7 +291,7 @@ namespace HslCommunicationDemo.DemoControl
 
 						if (Encoding.ASCII.GetString( head, 0, 7 ) != "HSLDemo")
 						{
-							MessageBox.Show( "Not the hsl data file! " );
+							DemoUtils.ShowMessage( "Not the hsl data file! " );
 							fs.Dispose( );
 							return;
 						}
@@ -307,7 +307,7 @@ namespace HslCommunicationDemo.DemoControl
 					}
 					catch (Exception ex)
 					{
-						MessageBox.Show( "Data import failed: " + ex.Message );
+						DemoUtils.ShowMessage( "Data import failed: " + ex.Message );
 						return;
 					}
 

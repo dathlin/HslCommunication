@@ -32,7 +32,7 @@ namespace HslCommunicationDemo
             }
             else
             {
-                MessageBox.Show( "用户名或密码错误，请重新输入！" );
+                DemoUtils.ShowMessage( "用户名或密码错误，请重新输入！" );
             }
         }
     }

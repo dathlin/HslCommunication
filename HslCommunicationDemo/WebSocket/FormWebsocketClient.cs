@@ -93,7 +93,7 @@ namespace HslCommunicationDemo
 			wsClient.GetCarryHostAndPort = checkBox2.Checked;
 
 			if (!int.TryParse( textBox11.Text, out int connectTimeout )){
-				MessageBox.Show( "Connect time is not correct!" );
+				DemoUtils.ShowMessage( "Connect time is not correct!" );
 				return;
 			}
 			wsClient.ConnectTimeOut = connectTimeout;
@@ -113,11 +113,11 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
-				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
 			}
 		}
 
@@ -255,7 +255,7 @@ namespace HslCommunicationDemo
 		{
 			OperateResult send = wsClient.SendServer( checkBox1.Checked, textBox4.Text );
 
-			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
+			if (!send.IsSuccess) DemoUtils.ShowMessage( "Send Failed:" + send.Message );
 		}
 
 

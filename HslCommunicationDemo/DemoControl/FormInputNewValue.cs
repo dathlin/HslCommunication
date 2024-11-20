@@ -23,7 +23,7 @@ namespace HslCommunicationDemo.Control
 		{
 			//if (string.IsNullOrEmpty( textBox1.Text ))
 			//{
-			//	MessageBox.Show( Program.Language == 1 ? "当前输入的值不能为空! " : "The currently entered Value cannot be empty! " );
+			//	DemoUtils.ShowMessage( Program.Language == 1 ? "当前输入的值不能为空! " : "The currently entered Value cannot be empty! " );
 			//	return;
 			//}
 

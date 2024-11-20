@@ -115,11 +115,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult operate = melsecFxLinks.StartPLC( );
 			if (!operate.IsSuccess)
 			{
-				MessageBox.Show( "Start Failed：" + operate.Message );
+				DemoUtils.ShowMessage( "Start Failed：" + operate.Message );
 			}
 			else
 			{
-				MessageBox.Show( "Start Success" );
+				DemoUtils.ShowMessage( "Start Success" );
 			}
 
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.StartPLC( );";
@@ -130,11 +130,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult operate = melsecFxLinks.StopPLC( );
 			if (!operate.IsSuccess)
 			{
-				MessageBox.Show( "Stop Failed：" + operate.Message );
+				DemoUtils.ShowMessage( "Stop Failed：" + operate.Message );
 			}
 			else
 			{
-				MessageBox.Show( "Stop Success" );
+				DemoUtils.ShowMessage( "Stop Success" );
 			}
 
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.StopPLC( );";
@@ -145,11 +145,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult<string> read = melsecFxLinks.ReadPlcType( );
 			if (read.IsSuccess)
 			{
-				MessageBox.Show( "PLC Type:" + read.Content );
+				DemoUtils.ShowMessage( "PLC Type:" + read.Content );
 			}
 			else
 			{
-				MessageBox.Show( "Read PLC Type failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read PLC Type failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadPlcType( );";

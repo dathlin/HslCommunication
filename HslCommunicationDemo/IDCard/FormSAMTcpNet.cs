@@ -51,7 +51,7 @@ namespace HslCommunicationDemo
         {
             if (!int.TryParse( textBox2.Text, out int port ))
             {
-                MessageBox.Show( DemoUtils.PortInputWrong );
+                DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
                 return;
             }
 
@@ -62,19 +62,19 @@ namespace HslCommunicationDemo
                 OperateResult connect = sAMTcpNet.ConnectServer( );
                 if (connect.IsSuccess)
                 {
-                    MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+                    DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
                     button2.Enabled = true;
                     button1.Enabled = false;
                     panel2.Enabled = true;
                 }
                 else
                 {
-                    MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed );
+                    DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show( ex.Message );
+                DemoUtils.ShowMessage( ex.Message );
             }
         }
 
@@ -101,7 +101,7 @@ namespace HslCommunicationDemo
             OperateResult<string> read = sAMTcpNet.ReadSafeModuleNumber( );
             if (!read.IsSuccess)
             {
-                MessageBox.Show( "Read Failed:" + read.Message );
+                DemoUtils.ShowMessage( "Read Failed:" + read.Message );
             }
             else
             {
@@ -115,7 +115,7 @@ namespace HslCommunicationDemo
             OperateResult read = sAMTcpNet.CheckSafeModuleStatus( );
             if (!read.IsSuccess)
             {
-                MessageBox.Show( "Read Failed:" + read.Message );
+                DemoUtils.ShowMessage( "Read Failed:" + read.Message );
             }
             else
             {
@@ -130,7 +130,7 @@ namespace HslCommunicationDemo
             OperateResult read = sAMTcpNet.SearchCard( );
             if (!read.IsSuccess)
             {
-                MessageBox.Show( "Read Failed:" + read.Message );
+                DemoUtils.ShowMessage( "Read Failed:" + read.Message );
             }
             else
             {
@@ -144,7 +144,7 @@ namespace HslCommunicationDemo
             OperateResult read = sAMTcpNet.SelectCard( );
             if (!read.IsSuccess)
             {
-                MessageBox.Show( "Read Failed:" + read.Message );
+                DemoUtils.ShowMessage( "Read Failed:" + read.Message );
             }
             else
             {
@@ -158,7 +158,7 @@ namespace HslCommunicationDemo
             OperateResult<IdentityCard> read = sAMTcpNet.ReadCard( );
             if (!read.IsSuccess)
             {
-                MessageBox.Show( "Read Failed:" + read.Message );
+                DemoUtils.ShowMessage( "Read Failed:" + read.Message );
             }
             else
             {
@@ -182,7 +182,7 @@ namespace HslCommunicationDemo
         {
             if(!int.TryParse(textBox9.Text, out int sleep ))
             {
-                MessageBox.Show( "当前的数据错误，必须整数！" );
+                DemoUtils.ShowMessage( "当前的数据错误，必须整数！" );
                 return;
             }
 

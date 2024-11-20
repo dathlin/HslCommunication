@@ -97,7 +97,7 @@ namespace HslCommunicationDemo
 							}
 
 							FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement );
-							MessageBox.Show( "Save Success" );
+							DemoUtils.ShowMessage( "Save Success" );
 						}
 					}
 				}
@@ -116,18 +116,18 @@ namespace HslCommunicationDemo
 							SaveXmlParameter( encrypt );
 							xElement.SetAttributeValue( DemoDeviceList.XmlEncrypt, aesCryptography.Encrypt( encrypt.ToString( ) ) );
 							FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement );
-							MessageBox.Show( "Save Success" );
+							DemoUtils.ShowMessage( "Save Success" );
 						}
 						catch (Exception ex)
 						{
-							MessageBox.Show( (Program.Language == 1 ? "加密失败，无法加载当前的配置信息" : "Encryption failed and the current configuration information could not be loaded ") + ex.Message );
+							DemoUtils.ShowMessage( (Program.Language == 1 ? "加密失败，无法加载当前的配置信息" : "Encryption failed and the current configuration information could not be loaded ") + ex.Message );
 						}
 					}
 					else
 					{
 						SaveXmlParameter( xElement );
 						FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement );
-						MessageBox.Show( "Save Success" );
+						DemoUtils.ShowMessage( "Save Success" );
 					}
 				}
 			}

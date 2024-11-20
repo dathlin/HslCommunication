@@ -36,13 +36,13 @@ namespace HslCommunicationDemo
 
             if (!IPAddress.TryParse( textBox1.Text, out IPAddress address ))
             {
-                MessageBox.Show( "IP地址填写不正确" );
+                DemoUtils.ShowMessage( "IP地址填写不正确" );
                 return;
             }
 
             if (!int.TryParse( textBox2.Text, out int port ))
             {
-                MessageBox.Show( "port填写不正确" );
+                DemoUtils.ShowMessage( "port填写不正确" );
                 return;
             }
 
@@ -60,14 +60,14 @@ namespace HslCommunicationDemo
                 OperateResult connect = plainSocket.ConnectServer( );
                 if (connect.IsSuccess)
                 {
-                    MessageBox.Show( "Connect Success!" );
+                    DemoUtils.ShowMessage( "Connect Success!" );
                     button1.Enabled = false;
                     button2.Enabled = true;
                     panel2.Enabled = true;
                 }
                 else
                 {
-                    MessageBox.Show( "Connect Failed:" + connect.Message );
+                    DemoUtils.ShowMessage( "Connect Failed:" + connect.Message );
                 }
             }
             catch (Exception ex)
@@ -124,7 +124,7 @@ namespace HslCommunicationDemo
 
             if (!int.TryParse( textBox6.Text, out int count ))
             {
-                MessageBox.Show( "数据发送次数输入异常" );
+                DemoUtils.ShowMessage( "数据发送次数输入异常" );
                 return;
             }
 
@@ -136,7 +136,7 @@ namespace HslCommunicationDemo
                     failed++;
                 }
             }
-            if (failed > 0) MessageBox.Show( "Send Faield count: " + failed );
+            if (failed > 0) DemoUtils.ShowMessage( "Send Faield count: " + failed );
         }
 
     }

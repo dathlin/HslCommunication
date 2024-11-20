@@ -65,17 +65,17 @@ namespace HslCommunicationDemo
 					if (form.ShowDialog( ) != DialogResult.OK)
 					{
 						// 授权失败，退出
-						MessageBox.Show( "授权失败！" );
+						DemoUtils.ShowMessage( "授权失败！" );
 					}
 					else
 					{
-						MessageBox.Show( "授权成功！" );
+						DemoUtils.ShowMessage( "授权成功！" );
 					}
 				}
 			}
 			else
 			{
-				MessageBox.Show( "授权成功！" );
+				DemoUtils.ShowMessage( "授权成功！" );
 			}
 		}
 
@@ -97,7 +97,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				System.IO.File.Delete( Application.StartupPath + @"\Authorize.txt" );
-				MessageBox.Show( "删除成功，重新打开窗口生效。" );
+				DemoUtils.ShowMessage( "删除成功，重新打开窗口生效。" );
 			}
 			catch(Exception ex)
 			{

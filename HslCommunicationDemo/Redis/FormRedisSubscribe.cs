@@ -55,7 +55,7 @@ namespace HslCommunicationDemo
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( "输入错误：" + ex.Message );
+				DemoUtils.ShowMessage( "输入错误：" + ex.Message );
 				return;
 			}
 			OperateResult connect = redisSubscribe.ConnectServer( );
@@ -65,11 +65,11 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
-				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
 			}
 		}
 
@@ -114,11 +114,11 @@ namespace HslCommunicationDemo
 			OperateResult sub = redisSubscribe.SubscribeMessage( textBox5.Text );
 			if (sub.IsSuccess)
 			{
-				MessageBox.Show( "订阅成功" );
+				DemoUtils.ShowMessage( "订阅成功" );
 			}
 			else
 			{
-				MessageBox.Show( "订阅失败" );
+				DemoUtils.ShowMessage( "订阅失败" );
 			}
 		}
 
@@ -128,11 +128,11 @@ namespace HslCommunicationDemo
 			OperateResult sub = redisSubscribe.UnSubscribeMessage( textBox5.Text );
 			if (sub.IsSuccess)
 			{
-				MessageBox.Show( "取消订阅成功" );
+				DemoUtils.ShowMessage( "取消订阅成功" );
 			}
 			else
 			{
-				MessageBox.Show( "取消订阅失败" );
+				DemoUtils.ShowMessage( "取消订阅失败" );
 			}
 		}
 	}

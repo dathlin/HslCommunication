@@ -60,7 +60,7 @@ namespace HslCommunicationDemo.BarCode
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( "Start Failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Start Failed: " + ex.Message );
 			}
 		}
 
@@ -106,7 +106,7 @@ tcpServer.OnReceivedBarCode += (string ipAddress, string barCode) => {
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( "Data Input wrong: " + HslCommunication.BasicFramework.SoftBasic.GetExceptionMessage( ex ) );
+				DemoUtils.ShowMessage( "Data Input wrong: " + HslCommunication.BasicFramework.SoftBasic.GetExceptionMessage( ex ) );
 			}
 		}
 

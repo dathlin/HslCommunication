@@ -77,7 +77,7 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 
@@ -102,7 +102,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -141,16 +141,16 @@ namespace HslCommunicationDemo
 			if (int.TryParse( textBox_db.Text, out int db ))
 			{
 				if (s7NetServer == null)
-					MessageBox.Show( "Must start s7 server first!" );
+					DemoUtils.ShowMessage( "Must start s7 server first!" );
 				else
 				{
 					s7NetServer.AddDbBlock( db );
-					MessageBox.Show( "Add db block success" );
+					DemoUtils.ShowMessage( "Add db block success" );
 				}
 			}
 			else
 			{
-				MessageBox.Show( "Please input correct db block number!" );
+				DemoUtils.ShowMessage( "Please input correct db block number!" );
 			}
 		}
 
@@ -159,20 +159,20 @@ namespace HslCommunicationDemo
 			if (int.TryParse( textBox_db.Text, out int db ))
 			{
 				if (s7NetServer == null)
-					MessageBox.Show( "Must start s7 server first!" );
+					DemoUtils.ShowMessage( "Must start s7 server first!" );
 				else if (db == 1 || db == 2 || db == 3)
 				{
-					MessageBox.Show( "Can not remove db block 1, 2, 3" );
+					DemoUtils.ShowMessage( "Can not remove db block 1, 2, 3" );
 				}
 				else
 				{
 					s7NetServer.RemoveDbBlock( db );
-					MessageBox.Show( "Remove db block success" );
+					DemoUtils.ShowMessage( "Remove db block success" );
 				}
 			}
 			else
 			{
-				MessageBox.Show( "Please input correct db block number!" );
+				DemoUtils.ShowMessage( "Please input correct db block number!" );
 			}
 		}
 

@@ -37,7 +37,7 @@ namespace HslCommunicationDemo.Robot
 				OperateResult connect = await yamahaRCX.ConnectServerAsync( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button1.Enabled = false;
 					button2.Enabled = true;
 					panel2.Enabled = true;
@@ -48,7 +48,7 @@ namespace HslCommunicationDemo.Robot
 				else
 				{
 					button1.Enabled = true;
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)
@@ -78,11 +78,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult reset = yamahaRCX.Reset( );
 			if (reset.IsSuccess)
 			{
-				MessageBox.Show( "Reset success" );
+				DemoUtils.ShowMessage( "Reset success" );
 			}
 			else
 			{
-				MessageBox.Show( "Reset Faield:" + reset.Message );
+				DemoUtils.ShowMessage( "Reset Faield:" + reset.Message );
 			}
 
 			textBox_code.Text = $"OperateResult reset = yamahaRCX.Reset( );";
@@ -93,11 +93,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult reset = yamahaRCX.Run( );
 			if (reset.IsSuccess)
 			{
-				MessageBox.Show( "Run success" );
+				DemoUtils.ShowMessage( "Run success" );
 			}
 			else
 			{
-				MessageBox.Show( "Run Faield:" + reset.Message );
+				DemoUtils.ShowMessage( "Run Faield:" + reset.Message );
 			}
 
 			textBox_code.Text = $"OperateResult run = yamahaRCX.Run( );";
@@ -108,11 +108,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult reset = yamahaRCX.Stop( );
 			if (reset.IsSuccess)
 			{
-				MessageBox.Show( "Stop success" );
+				DemoUtils.ShowMessage( "Stop success" );
 			}
 			else
 			{
-				MessageBox.Show( "Stop Faield:" + reset.Message );
+				DemoUtils.ShowMessage( "Stop Faield:" + reset.Message );
 			}
 
 			textBox_code.Text = $"OperateResult stop = yamahaRCX.Stop( );";
@@ -130,7 +130,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Faield:" + motor.Message );
+				DemoUtils.ShowMessage( "Read Faield:" + motor.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<int> motor = yamahaRCX.ReadMotorStatus( );";
@@ -145,7 +145,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Faield:" + mode.Message );
+				DemoUtils.ShowMessage( "Read Faield:" + mode.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<int> mode = yamahaRCX.ReadModeStatus( );";
@@ -160,7 +160,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Faield:" + joints.Message );
+				DemoUtils.ShowMessage( "Read Faield:" + joints.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<float[]> joints = yamahaRCX.ReadJoints( );";
@@ -177,7 +177,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Faield:" + emergency.Message );
+				DemoUtils.ShowMessage( "Read Faield:" + emergency.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<int> emergency = yamahaRCX.ReadEmergencyStatus( );";
@@ -207,7 +207,7 @@ namespace HslCommunicationDemo.Robot
 			// 自定义的命令
 			if (!int.TryParse(textBox_read_lines.Text, out int lines ))
 			{
-				MessageBox.Show( "Lines input wrong!" );
+				DemoUtils.ShowMessage( "Lines input wrong!" );
 				return;
 			}
 			OperateResult<string[]> read = yamahaRCX.ReadCommand( textBox_read_command.Text, lines );
@@ -217,7 +217,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string[]> read = yamahaRCX.ReadCommand( \"{textBox_read_command.Text}\", {lines} );";
@@ -231,7 +231,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( jog + " failed: " + result.Message );
+				DemoUtils.ShowMessage( jog + " failed: " + result.Message );
 			}
 		}
 

@@ -108,8 +108,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 		private void button3_Click( object sender, EventArgs e )
 		{
 			OperateResult start = siemensPPI.Start( );
-			if (start.IsSuccess) MessageBox.Show( "Start Success!" );
-			else MessageBox.Show( start.Message );
+			if (start.IsSuccess) DemoUtils.ShowMessage( "Start Success!" );
+			else DemoUtils.ShowMessage( start.Message );
 
 			textBox_code.Text = $"OperateResult start = {DemoUtils.PlcDeviceName}.Start( );";
 		}
@@ -119,8 +119,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 		private void button4_Click( object sender, EventArgs e )
 		{
 			OperateResult stop = siemensPPI.Stop( );
-			if (stop.IsSuccess) MessageBox.Show( "Stop Success!" );
-			else MessageBox.Show( stop.Message );
+			if (stop.IsSuccess) DemoUtils.ShowMessage( "Stop Success!" );
+			else DemoUtils.ShowMessage( stop.Message );
 
 			textBox_code.Text = $"OperateResult stop = {DemoUtils.PlcDeviceName}.Stop( );";
 		}
@@ -130,11 +130,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			OperateResult<string> read = siemensPPI.ReadPlcType( );
 			if (read.IsSuccess)
 			{
-				MessageBox.Show("Plc type: " + read.Content);
+				DemoUtils.ShowMessage("Plc type: " + read.Content);
 			}
 			else
 			{
-				MessageBox.Show( read.Message );
+				DemoUtils.ShowMessage( read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadPlcType( );";

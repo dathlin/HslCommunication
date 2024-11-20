@@ -33,7 +33,7 @@ namespace HslCommunicationDemo
             }
             catch(Exception ex)
             {
-                MessageBox.Show( "启动失败：" + ex.Message );
+                DemoUtils.ShowMessage( "启动失败：" + ex.Message );
             }
         }
 

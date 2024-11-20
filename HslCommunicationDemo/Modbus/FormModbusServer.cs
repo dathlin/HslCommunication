@@ -127,12 +127,12 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 			if (!byte.TryParse( textBox_station.Text, out byte station ))
 			{ 
-				MessageBox.Show( "Station input wrong!" );
+				DemoUtils.ShowMessage( "Station input wrong!" );
 				return;
 			}
 
@@ -175,7 +175,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -215,7 +215,7 @@ namespace HslCommunicationDemo
 		{
 			if (busTcpServer == null)
 			{
-				MessageBox.Show( "Must Start Server！" );
+				DemoUtils.ShowMessage( "Must Start Server！" );
 				return;
 			}
 			// 信任客户端配置
@@ -249,12 +249,12 @@ namespace HslCommunicationDemo
 				}
 				catch(Exception ex)
 				{
-					MessageBox.Show( "Start Failed：" + ex.Message );
+					DemoUtils.ShowMessage( "Start Failed：" + ex.Message );
 				}
 			}
 			else
 			{
-				MessageBox.Show( "Start tcp server first please!" );
+				DemoUtils.ShowMessage( "Start tcp server first please!" );
 			}
 		}
 

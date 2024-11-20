@@ -77,19 +77,19 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox2.Text, out int baudRate ))
 			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.BaudRateInputWrong );
 				return;
 			}
 
 			if (!int.TryParse( textBox16.Text, out int dataBits ))
 			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.DataBitsInputWrong );
 				return;
 			}
 
 			if (!int.TryParse( textBox17.Text, out int stopBits ))
 			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.StopBitInputWrong );
 				return;
 			}
 
@@ -115,7 +115,7 @@ namespace HslCommunicationDemo
 					OperateResult hand = siemensMPI.Handle( );
 					if (!hand.IsSuccess)
 					{
-						MessageBox.Show( "Hand Failed:" + hand.Message );
+						DemoUtils.ShowMessage( "Hand Failed:" + hand.Message );
 						return;
 					}
 				}
@@ -137,7 +137,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

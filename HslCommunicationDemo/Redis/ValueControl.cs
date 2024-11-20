@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System.Xml;
 using System.Xml.Linq;
 using HslCommunication.BasicFramework;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -85,7 +86,7 @@ namespace HslRedisDesktop
 			// 搜索数据信息
 			if (string.IsNullOrEmpty( textBox1.Text ) || string.IsNullOrEmpty( textBox2.Text ))
 			{
-				MessageBox.Show( "输入的字符串为空，无法进行查找。" );
+				DemoUtils.ShowMessage( "输入的字符串为空，无法进行查找。" );
 				return;
 			};
 
@@ -104,7 +105,7 @@ namespace HslRedisDesktop
 			int index = textBox1.Text.IndexOf( textBox2.Text, lastSeachIndex == -1 ? 0 : lastSeachIndex );
 			if (index == -1)
 			{
-				MessageBox.Show( "没有找到相关的数据信息。" );
+				DemoUtils.ShowMessage( "没有找到相关的数据信息。" );
 				lastSeachIndex = -1;
 				return;
 			}

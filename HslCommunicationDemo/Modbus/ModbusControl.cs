@@ -221,7 +221,7 @@ namespace HslCommunicationDemo.Modbus
 		{
 			if (!ushort.TryParse(textBox_read_length.Text, out ushort length ))
 			{
-				MessageBox.Show( "Read length input wrong, need input number, example: 10" );
+				DemoUtils.ShowMessage( "Read length input wrong, need input number, example: 10" );
 				return;
 			}
 
@@ -232,7 +232,7 @@ namespace HslCommunicationDemo.Modbus
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<byte[]> read = {DemoUtils.ModbusDeviceName}." +

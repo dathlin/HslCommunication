@@ -20,6 +20,22 @@ namespace HslCommunicationDemo
 		public FormOmronServer( )
 		{
 			InitializeComponent( );
+
+			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
+			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
+			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
+
+			checkBox_isstringreverse.CheckedChanged += CheckBox_isstringreverse_CheckedChanged;
+		}
+
+		private void CheckBox_isstringreverse_CheckedChanged( object sender, EventArgs e )
+		{
+			if (omronFinsServer != null) omronFinsServer.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
+		}
+
+		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			if (omronFinsServer != null) omronFinsServer.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -54,7 +70,7 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 
@@ -64,6 +80,8 @@ namespace HslCommunicationDemo
 				omronFinsServer = new HslCommunication.Profinet.Omron.OmronFinsServer( );                       // 实例化对象
 				omronFinsServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				omronFinsServer.OnDataReceived += BusTcpServer_OnDataReceived;
+				omronFinsServer.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
+				omronFinsServer.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
 				this.sslServerControl1.InitializeServer( omronFinsServer );
 				omronFinsServer.ServerStart( port );
 
@@ -73,11 +91,11 @@ namespace HslCommunicationDemo
 				button11.Enabled = true;
 
 				// 设置示例代码
-				codeExampleControl.SetCodeText( "server", "", omronFinsServer );
+				codeExampleControl.SetCodeText( "server", "", omronFinsServer, nameof( omronFinsServer.ActiveTimeSpan ), nameof( omronFinsServer.DataFormat ), "ByteTransform.IsStringReverseByteWord" );
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

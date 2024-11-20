@@ -246,7 +246,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed: " + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<bool[]> read = {DemoUtils.PlcDeviceName}.ReadRandomBool( \"{textBox5.Text}\".Split( new char[] {';'} ) );";
@@ -258,11 +258,11 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			OperateResult write = yokogawa.WriteRandomBool( textBox5.Text.Split( new char[] { ';' } ), textBox4.Text.ToStringArray<bool>( ) );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Write Success!" );
+				DemoUtils.ShowMessage( "Write Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + write.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed: " + write.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteRandomBool( \"{textBox5.Text}\".Split( new char[] {';'} ), \"{textBox4.Text}\".ToStringArray<bool>( ) );";
@@ -278,7 +278,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed: " + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<short[]> read = {DemoUtils.PlcDeviceName}.ReadRandomInt16( \"{textBox5.Text}\".Split( new char[] {';'} ) );";
@@ -290,11 +290,11 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			OperateResult write = yokogawa.WriteRandom( textBox5.Text.Split( new char[] { ';' } ), textBox4.Text.ToStringArray<short>( ) );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Write Success!" );
+				DemoUtils.ShowMessage( "Write Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + write.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed: " + write.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteRandom( \"{textBox5.Text}\".Split( new char[] {';'} ), \"{textBox4.Text}\".ToStringArray<short>( ) );";
@@ -305,8 +305,8 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 		{
 			// start
 			OperateResult start = yokogawa.Start( );
-			if (start.IsSuccess) MessageBox.Show( "Started Success!" );
-			else MessageBox.Show( "Started failed: " + start.ToMessageShowString( ) );
+			if (start.IsSuccess) DemoUtils.ShowMessage( "Started Success!" );
+			else DemoUtils.ShowMessage( "Started failed: " + start.ToMessageShowString( ) );
 
 			textBox_code.Text = $"OperateResult start = {DemoUtils.PlcDeviceName}.Start( );";
 		}
@@ -315,8 +315,8 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 		{
 			// stop
 			OperateResult stop = yokogawa.Stop( );
-			if (stop.IsSuccess) MessageBox.Show( "Stop Success!" );
-			else MessageBox.Show( "Stop failed: " + stop.ToMessageShowString( ) );
+			if (stop.IsSuccess) DemoUtils.ShowMessage( "Stop Success!" );
+			else DemoUtils.ShowMessage( "Stop failed: " + stop.ToMessageShowString( ) );
 
 			textBox_code.Text = $"OperateResult stop = {DemoUtils.PlcDeviceName}.Stop( );";
 		}
@@ -338,7 +338,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read failed: " + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<int> read  = {DemoUtils.PlcDeviceName}.ReadProgramStatus( );";
@@ -354,7 +354,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read failed: " + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<YokogawaSystemInfo> read  = {DemoUtils.PlcDeviceName}.ReadSystemInfo( );";
@@ -370,7 +370,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read failed: " + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read  = {DemoUtils.PlcDeviceName}.ReadDateTime( );";

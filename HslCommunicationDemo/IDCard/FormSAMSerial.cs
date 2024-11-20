@@ -62,19 +62,19 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox2.Text, out int baudRate ))
 			{
-				MessageBox.Show( DemoUtils.BaudRateInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.BaudRateInputWrong );
 				return;
 			}
 
 			if (!int.TryParse( textBox16.Text, out int dataBits ))
 			{
-				MessageBox.Show( DemoUtils.DataBitsInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.DataBitsInputWrong );
 				return;
 			}
 
 			if (!int.TryParse( textBox17.Text, out int stopBits ))
 			{
-				MessageBox.Show( DemoUtils.StopBitInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.StopBitInputWrong );
 				return;
 			}
 			
@@ -101,7 +101,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -128,7 +128,7 @@ namespace HslCommunicationDemo
 			OperateResult<string> read = sAMSerial.ReadSafeModuleNumber( );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -142,7 +142,7 @@ namespace HslCommunicationDemo
 			OperateResult read = sAMSerial.CheckSafeModuleStatus( );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -157,7 +157,7 @@ namespace HslCommunicationDemo
 			OperateResult read = sAMSerial.SearchCard( );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -171,7 +171,7 @@ namespace HslCommunicationDemo
 			OperateResult read = sAMSerial.SelectCard( );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -185,7 +185,7 @@ namespace HslCommunicationDemo
 			OperateResult<IdentityCard> read = sAMSerial.ReadCard( );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed:" + read.Message );
 			}
 			else
 			{
@@ -209,7 +209,7 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse(textBox9.Text, out int sleep ))
 			{
-				MessageBox.Show( "当前的数据错误，必须整数！" );
+				DemoUtils.ShowMessage( "当前的数据错误，必须整数！" );
 				return;
 			}
 

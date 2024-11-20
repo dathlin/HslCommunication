@@ -38,13 +38,13 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse(textBox2.Text,out int port))
 			{
-				MessageBox.Show( "Port输入异常，请重新输入！" );
+				DemoUtils.ShowMessage( "Port输入异常，请重新输入！" );
 				return;
 			}
 
 			if (!int.TryParse( textBox4.Text, out int fileCache ))
 			{
-				MessageBox.Show( "FileCache输入异常，请重新输入！" );
+				DemoUtils.ShowMessage( "FileCache输入异常，请重新输入！" );
 				return;
 			}
 
@@ -108,7 +108,7 @@ namespace HslCommunicationDemo
 			{
 				if(!System.IO.File.Exists( textBox3.Text ))
 				{
-					MessageBox.Show( "选择的文件不存在，退出！" );
+					DemoUtils.ShowMessage( "选择的文件不存在，退出！" );
 					return;
 				}
 
@@ -139,18 +139,18 @@ namespace HslCommunicationDemo
 				if (result.IsSuccess)
 				{
 					// file upload success
-					MessageBox.Show( "文件上传成功！耗时：" + (DateTime.Now - uploadStartTime).TotalSeconds.ToString( "F1" ) + " 秒" );
+					DemoUtils.ShowMessage( "文件上传成功！耗时：" + (DateTime.Now - uploadStartTime).TotalSeconds.ToString( "F1" ) + " 秒" );
 				}
 				else
 				{
 					// 失败原因多半来自网络异常，还有文件不存在，分类名称填写异常
 					// mostly failed by network exception, like offline
-					MessageBox.Show( "文件上传失败：" + result.ToMessageShowString( ) );
+					DemoUtils.ShowMessage( "文件上传失败：" + result.ToMessageShowString( ) );
 				}
 			}
 			else
 			{
-				MessageBox.Show( "Please Select a File" );
+				DemoUtils.ShowMessage( "Please Select a File" );
 			}
 		}
 
@@ -180,13 +180,13 @@ namespace HslCommunicationDemo
 					if (result.IsSuccess)
 					{
 						// file upload success
-						MessageBox.Show( "文件上传成功！" );
+						DemoUtils.ShowMessage( "文件上传成功！" );
 					}
 					else
 					{
 						// 失败原因多半来自网络异常，还有文件不存在，分类名称填写异常
 						// mostly failed by network exception, like offline
-						MessageBox.Show( "文件上传失败：" + result.ToMessageShowString( ) );
+						DemoUtils.ShowMessage( "文件上传失败：" + result.ToMessageShowString( ) );
 					}
 				} ), result );
 			}
@@ -252,13 +252,13 @@ namespace HslCommunicationDemo
 			if (result.IsSuccess)
 			{
 				// message: file download success
-				MessageBox.Show( "文件下载成功！耗时：" + (DateTime.Now - downloadStartTime).TotalSeconds.ToString( "F1" ) + " 秒" );
+				DemoUtils.ShowMessage( "文件下载成功！耗时：" + (DateTime.Now - downloadStartTime).TotalSeconds.ToString( "F1" ) + " 秒" );
 			}
 			else
 			{
 				// 失败原因多半来自网络异常，还有文件不存在，分类名称填写异常
 				// mostly failed by network exception, like offline, and file not exsist,
-				MessageBox.Show( "文件下载失败：" + result.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "文件下载失败：" + result.ToMessageShowString( ) );
 			}
 		}
 
@@ -274,13 +274,13 @@ namespace HslCommunicationDemo
 			if (result.IsSuccess)
 			{
 				if (result.Content)
-					MessageBox.Show( "文件存在！" );
+					DemoUtils.ShowMessage( "文件存在！" );
 				else
-					MessageBox.Show( "文件不存在！" );
+					DemoUtils.ShowMessage( "文件不存在！" );
 			}
 			else
 			{
-				MessageBox.Show( result.Message );
+				DemoUtils.ShowMessage( result.Message );
 			}
 		}
 
@@ -304,13 +304,13 @@ namespace HslCommunicationDemo
 					if (result.IsSuccess)
 					{
 						// message: file download success
-						MessageBox.Show( "文件下载成功！" );
+						DemoUtils.ShowMessage( "文件下载成功！" );
 					}
 					else
 					{
 						// 失败原因多半来自网络异常，还有文件不存在，分类名称填写异常
 						// mostly failed by network exception, like offline, and file not exsist,
-						MessageBox.Show( "文件下载失败：" + result.ToMessageShowString( ) );
+						DemoUtils.ShowMessage( "文件下载失败：" + result.ToMessageShowString( ) );
 					}
 				} ), result );
 			}
@@ -354,13 +354,13 @@ namespace HslCommunicationDemo
 			if (result.IsSuccess)
 			{
 				// delete file success
-				MessageBox.Show( "文件删除成功！" );
+				DemoUtils.ShowMessage( "文件删除成功！" );
 			}
 			else
 			{
 				// 删除失败的原因除了一般的网络问题，还有因为服务器的文件不存在，会在Message里有显示。
 				// file not exsist or net work exception
-				MessageBox.Show( "文件删除失败，原因：" + result.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "文件删除失败，原因：" + result.ToMessageShowString( ) );
 			}
 		}
 
@@ -375,13 +375,13 @@ namespace HslCommunicationDemo
 			if (result.IsSuccess)
 			{
 				// delete file success
-				MessageBox.Show( "文件信息删除成功！" );
+				DemoUtils.ShowMessage( "文件信息删除成功！" );
 			}
 			else
 			{
 				// 删除失败的原因除了一般的网络问题，还有因为服务器的文件不存在，会在Message里有显示。
 				// file not exsist or net work exception
-				MessageBox.Show( "文件删除失败，原因：" + result.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "文件删除失败，原因：" + result.ToMessageShowString( ) );
 			}
 		}
 
@@ -395,13 +395,13 @@ namespace HslCommunicationDemo
 			if (result.IsSuccess)
 			{
 				// delete file success
-				MessageBox.Show( "空目录信息删除成功！" );
+				DemoUtils.ShowMessage( "空目录信息删除成功！" );
 			}
 			else
 			{
 				// 删除失败的原因除了一般的网络问题，还有因为服务器的文件不存在，会在Message里有显示。
 				// file not exsist or net work exception
-				MessageBox.Show( "空目录信息删除失败，原因：" + result.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "空目录信息删除失败，原因：" + result.ToMessageShowString( ) );
 			}
 		}
 
@@ -421,7 +421,7 @@ namespace HslCommunicationDemo
 			{
 				// 删除失败的原因除了一般的网络问题，还有因为服务器的文件不存在，会在Message里有显示。
 				// file not exsist or net work exception
-				MessageBox.Show( "获取文件大小失败，原因：" + result.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "获取文件大小失败，原因：" + result.ToMessageShowString( ) );
 			}
 		}
 
@@ -434,13 +434,13 @@ namespace HslCommunicationDemo
 				);
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( result.Content.ToJsonString( ) );
+				DemoUtils.ShowMessage( result.Content.ToJsonString( ) );
 			}
 			else
 			{
 				// 删除失败的原因除了一般的网络问题，还有因为服务器的文件不存在，会在Message里有显示。
 				// file not exsist or net work exception
-				MessageBox.Show( "获取文件大小失败，原因：" + result.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "获取文件大小失败，原因：" + result.ToMessageShowString( ) );
 			}
 		}
 
@@ -466,7 +466,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( read.ToMessageShowString( ) );
 			}
 		}
 
@@ -493,7 +493,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( read.ToMessageShowString( ) );
 			}
 		}
 
@@ -637,7 +637,7 @@ namespace HslCommunicationDemo
 					Invoke( new Action( ( ) =>
 					 {
 						 button7.Enabled = true;
-						 MessageBox.Show( "成功上传次数：" + upSuccess + Environment.NewLine + "成功下载次数：" + downSuccess + Environment.NewLine + "成功删除次数：" + deleteSuccess );
+						 DemoUtils.ShowMessage( "成功上传次数：" + upSuccess + Environment.NewLine + "成功下载次数：" + downSuccess + Environment.NewLine + "成功删除次数：" + deleteSuccess );
 					 } ) );
 				}
 			}
@@ -687,7 +687,7 @@ namespace HslCommunicationDemo
 					Invoke( new Action( ( ) =>
 					{
 						button8.Enabled = true;
-						MessageBox.Show( "成功上传次数：" + upSuccess + Environment.NewLine + "成功下载次数：" + downSuccess + Environment.NewLine + "成功删除次数：" + deleteSuccess );
+						DemoUtils.ShowMessage( "成功上传次数：" + upSuccess + Environment.NewLine + "成功下载次数：" + downSuccess + Environment.NewLine + "成功删除次数：" + deleteSuccess );
 					} ) );
 				}
 			}

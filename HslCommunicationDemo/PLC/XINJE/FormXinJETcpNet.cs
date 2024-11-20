@@ -105,7 +105,7 @@ namespace HslCommunicationDemo
 			
 			if(!byte.TryParse(textBox15.Text,out byte station))
 			{
-				MessageBox.Show( "Station input is wrong！" );
+				DemoUtils.ShowMessage( "Station input is wrong！" );
 				return;
 			}
 
@@ -124,7 +124,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = DeviceConnectPLC( xinJE );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
@@ -143,7 +143,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 						"Error: " + connect.ErrorCode);
 				}
 			}

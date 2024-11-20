@@ -167,11 +167,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult result = mc.RemoteReset( );
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( "RemoteReset Success" );
+				DemoUtils.ShowMessage( "RemoteReset Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + result.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Failed: " + result.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult result = {this.deviceName}.RemoteReset( );    // 远程重置操作";
@@ -189,11 +189,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult result = mc.ErrorStateReset( );
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( "ErrorStateReset Success" );
+				DemoUtils.ShowMessage( "ErrorStateReset Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + result.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Failed: " + result.ToMessageShowString( ) );
 			}
 
 
@@ -206,11 +206,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult runResult = mc.RemoteRun( );
 			if (runResult.IsSuccess)
 			{
-				MessageBox.Show( "Run Success" );
+				DemoUtils.ShowMessage( "Run Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + runResult.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Failed: " + runResult.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult result = {this.deviceName}.RemoteRun( );    // 远程启动操作";
@@ -222,11 +222,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult runResult = mc.RemoteStop( );
 			if (runResult.IsSuccess)
 			{
-				MessageBox.Show( "Stop Success" );
+				DemoUtils.ShowMessage( "Stop Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + runResult.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Failed: " + runResult.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult result = {this.deviceName}.RemoteStop( );    // 远程停止操作";
@@ -238,11 +238,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult<string> readResult = mc.ReadPlcType( );
 			if (readResult.IsSuccess)
 			{
-				MessageBox.Show( "Type:" + readResult.Content );
+				DemoUtils.ShowMessage( "Type:" + readResult.Content );
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + readResult.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Failed: " + readResult.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult result = {this.deviceName}.ReadPlcType( );    // 读取PLC的规格信息";
@@ -257,11 +257,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult<TimeSpan> wait = await mc.WaitAsync( "M100", true, 100, 30_000 );
 			if (wait.IsSuccess)
 			{
-				MessageBox.Show( "Wait Success, Takes " + wait.Content.TotalSeconds.ToString( "F1" ) + " Seconds" );
+				DemoUtils.ShowMessage( "Wait Success, Takes " + wait.Content.TotalSeconds.ToString( "F1" ) + " Seconds" );
 			}
 			else
 			{
-				MessageBox.Show( "Wait Failed:" + wait.Message );
+				DemoUtils.ShowMessage( "Wait Failed:" + wait.Message );
 			}
 			button10.Enabled = true;
 		}
@@ -275,11 +275,11 @@ namespace HslCommunicationDemo.PLC.Melsec
 			OperateResult<TimeSpan> wait = await mc.WaitAsync( "D100", (short)123, 100, 30_000 );
 			if (wait.IsSuccess)
 			{
-				MessageBox.Show( "Wait Success, Takes " + wait.Content.TotalSeconds.ToString( "F1" ) + " Seconds" );
+				DemoUtils.ShowMessage( "Wait Success, Takes " + wait.Content.TotalSeconds.ToString( "F1" ) + " Seconds" );
 			}
 			else
 			{
-				MessageBox.Show( "Wait Failed:" + wait.Message );
+				DemoUtils.ShowMessage( "Wait Failed:" + wait.Message );
 			}
 			button11.Enabled = true;
 		}

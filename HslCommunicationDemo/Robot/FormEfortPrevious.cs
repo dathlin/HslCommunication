@@ -35,7 +35,7 @@ namespace HslCommunicationDemo.Robot
 				OperateResult connect = efortRobot.ConnectServer( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 					button1.Enabled = false;
 					button2.Enabled = true;
 					panel2.Enabled = true;
@@ -45,7 +45,7 @@ namespace HslCommunicationDemo.Robot
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
 				}
 			}
 			catch (Exception ex)

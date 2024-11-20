@@ -340,7 +340,7 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse(textBox_port.Text,out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 
@@ -358,7 +358,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = secs.ConnectServer( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
@@ -369,13 +369,13 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 						"Error: " + connect.ErrorCode );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -434,7 +434,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "读取失败！" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "读取失败！" + read.ToMessageShowString( ) );
 			}
 
 			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
@@ -448,11 +448,11 @@ namespace HslCommunicationDemo
 			OperateResult send = secs.SendByCommand( byte.Parse( textBox_stream.Text ), byte.Parse( textBox_function.Text ), secsValue, checkBox_back.Checked );
 			if (send.IsSuccess)
 			{
-			   MessageBox.Show( "发送成功！" );
+			   DemoUtils.ShowMessage( "发送成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "发送失败！" + send.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "发送失败！" + send.ToMessageShowString( ) );
 			}
 
 			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
@@ -535,7 +535,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 		}
 
@@ -552,7 +552,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 		}
 
@@ -565,7 +565,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 		}
 
@@ -578,7 +578,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 		}
 
@@ -591,7 +591,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 		}
 
@@ -604,7 +604,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 		}
 

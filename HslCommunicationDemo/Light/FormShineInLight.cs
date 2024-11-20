@@ -56,13 +56,13 @@ namespace HslCommunicationDemo.Light
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
 						"Error: " + open.ErrorCode );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -79,14 +79,14 @@ namespace HslCommunicationDemo.Light
 			// 读取一次
 			if(!byte.TryParse(textBox15.Text, out byte channel ))
 			{
-				MessageBox.Show( "通道号输入错误，为十进制的整数。" );
+				DemoUtils.ShowMessage( "通道号输入错误，为十进制的整数。" );
 				return;
 			}
 
 			OperateResult<ShineInLightData> read = lightSourceController.Read( channel );
 			if(!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed: " + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed: " + read.ToMessageShowString( ) );
 				return;
 			}
 
@@ -131,13 +131,13 @@ namespace HslCommunicationDemo.Light
 
 			if (!byte.TryParse( textBox14.Text, out byte light ))
 			{
-				MessageBox.Show( "光源亮度输入失败，需要输入十进制的整数" ); return;
+				DemoUtils.ShowMessage( "光源亮度输入失败，需要输入十进制的整数" ); return;
 			}
 			data.Light = light;
 
 			if (!byte.TryParse( textBox13.Text, out byte lightDegress ))
 			{
-				MessageBox.Show( "光源亮度等级输入失败，需要输入十进制的整数" ); return;
+				DemoUtils.ShowMessage( "光源亮度等级输入失败，需要输入十进制的整数" ); return;
 			}
 			data.LightDegree = lightDegress;
 
@@ -150,30 +150,30 @@ namespace HslCommunicationDemo.Light
 
 			if (!byte.TryParse(textBox11.Text, out byte address ))
 			{
-				MessageBox.Show( "地址位输入失败，需要输入十进制的整数" ); return;
+				DemoUtils.ShowMessage( "地址位输入失败，需要输入十进制的整数" ); return;
 			}
 			data.Address = address;
 
 			if (!byte.TryParse( textBox10.Text, out byte width ))
 			{
-				MessageBox.Show( "脉冲宽度输入失败，需要输入十进制的整数" ); return;
+				DemoUtils.ShowMessage( "脉冲宽度输入失败，需要输入十进制的整数" ); return;
 			}
 			data.PulseWidth = width;
 
 			if (!byte.TryParse( textBox9.Text, out byte channel ))
 			{
-				MessageBox.Show( "通道输入失败，需要输入十进制的整数" ); return;
+				DemoUtils.ShowMessage( "通道输入失败，需要输入十进制的整数" ); return;
 			}
 			data.Channel = channel;
 
 			OperateResult write = lightSourceController.Write( data );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "写入成功" );
+				DemoUtils.ShowMessage( "写入成功" );
 			}
 			else
 			{
-				MessageBox.Show( "写入失败:" + write.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "写入失败:" + write.ToMessageShowString( ) );
 			}
 
 			textBox_code2.Text = $"OperateResult write = lightSourceController.Write( \"{data.GetSourceData( ).ToHexString( )}\".ToHexBytes( ) );";

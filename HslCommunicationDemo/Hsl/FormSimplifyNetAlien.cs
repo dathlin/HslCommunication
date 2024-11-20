@@ -58,7 +58,7 @@ namespace HslCommunicationDemo
                 }
                 else
                 {
-                    MessageBox.Show( "读取失败：" + read.ToMessageShowString( ) );
+                    DemoUtils.ShowMessage( "读取失败：" + read.ToMessageShowString( ) );
                 }
             }
 
@@ -78,7 +78,7 @@ namespace HslCommunicationDemo
 
             if (!int.TryParse( textBox2.Text, out int port ))
             {
-                MessageBox.Show( "端口输入不正确！" );
+                DemoUtils.ShowMessage( "端口输入不正确！" );
                 return;
             }
             
@@ -92,12 +92,12 @@ namespace HslCommunicationDemo
                 simplifyClient.ConnectServer( null );        // 切换为异形客户端，并等待服务器的连接。
 
 
-                MessageBox.Show( "等待服务器的连接！" );
+                DemoUtils.ShowMessage( "等待服务器的连接！" );
                 button1.Enabled = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show( ex.Message );
+                DemoUtils.ShowMessage( ex.Message );
             }
         }
 

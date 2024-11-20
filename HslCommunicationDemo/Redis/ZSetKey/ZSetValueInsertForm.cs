@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Enthernet.Redis;
 using HslCommunication;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -38,18 +39,18 @@ namespace HslRedisDesktop
         {
             if(!double.TryParse( textBox5.Text, out double sco ))
             {
-                MessageBox.Show( "得分的值不能转化为数值，请重新输入！" );
+                DemoUtils.ShowMessage( "得分的值不能转化为数值，请重新输入！" );
                 return;
             }
 
             OperateResult write = this.redisSettings.Redis.ZSetAdd( this.key, textBox3.Text, sco );
             if(write.IsSuccess)
             {
-                MessageBox.Show( "有序集合元素写入成功！" );
+                DemoUtils.ShowMessage( "有序集合元素写入成功！" );
             }
             else
             {
-                MessageBox.Show( "有序集合元素写入失败！" + write.Message );
+                DemoUtils.ShowMessage( "有序集合元素写入失败！" + write.Message );
             }
         }
 

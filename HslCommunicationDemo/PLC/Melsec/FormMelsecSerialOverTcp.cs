@@ -88,7 +88,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = DeviceConnectPLC( melsec_net );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
@@ -107,12 +107,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 
 		}
@@ -249,11 +249,11 @@ namespace HslCommunicationDemo
 			OperateResult active = melsec_net.ActivePlc( );
 			if (active.IsSuccess)
 			{
-				MessageBox.Show( "Active Successful" );
+				DemoUtils.ShowMessage( "Active Successful" );
 			}
 			else
 			{
-				MessageBox.Show( "Failed: " + active.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Failed: " + active.ToMessageShowString( ) );
 			}
 		}
 	}

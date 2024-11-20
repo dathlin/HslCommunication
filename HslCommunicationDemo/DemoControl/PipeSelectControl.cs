@@ -505,7 +505,7 @@ namespace HslCommunicationDemo.DemoControl
 					}
 					else
 					{
-						MessageBox.Show( "Connect failed: " + connect.Message );
+						DemoUtils.ShowMessage( "Connect failed: " + connect.Message );
 						linkLabel_dtu_state.Text = "Connect failed";
 						linkLabel_dtu_state.LinkColor = Color.Tomato;
 					}

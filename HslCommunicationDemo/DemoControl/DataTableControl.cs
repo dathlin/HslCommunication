@@ -476,7 +476,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			if (device == null)
 			{
-				MessageBox.Show( "ReadWriteNet device is null, can not refresh! " );
+				DemoUtils.ShowMessage( "ReadWriteNet device is null, can not refresh! " );
 				return;
 			}
 
@@ -684,7 +684,7 @@ namespace HslCommunicationDemo.DemoControl
 			XElement element = new XElement( "DataTable" );
 			GetDataTable( element );
 			Clipboard.SetText( element.ToString( ) );
-			MessageBox.Show( "Save success!" );
+			DemoUtils.ShowMessage( "Save success!" );
 		}
 
 		private void button_from_clip_Click( object sender, EventArgs e )
@@ -696,7 +696,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			catch( Exception ex )
 			{
-				MessageBox.Show( "Load failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Load failed: " + ex.Message );
 			}
 		}
 
@@ -711,7 +711,7 @@ namespace HslCommunicationDemo.DemoControl
 					GetDataTable( element );
 
 					element.Save( sfd.FileName );
-					MessageBox.Show( "Save success!" );
+					DemoUtils.ShowMessage( "Save success!" );
 				}
 			}
 		}
@@ -732,14 +732,14 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						catch (Exception ex)
 						{
-							MessageBox.Show( "Load failed: " + ex.Message );
+							DemoUtils.ShowMessage( "Load failed: " + ex.Message );
 						}
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Load failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Load failed: " + ex.Message );
 			}
 		}
 
@@ -821,22 +821,22 @@ namespace HslCommunicationDemo.DemoControl
 							}
 							else
 							{
-								MessageBox.Show( "Not supported data type: " + dataTableItem.DataTypeCode );
+								DemoUtils.ShowMessage( "Not supported data type: " + dataTableItem.DataTypeCode );
 								return;
 							}
 
 							if (write.IsSuccess)
 							{
-								MessageBox.Show( "Write Success!" );
+								DemoUtils.ShowMessage( "Write Success!" );
 							}
 							else
 							{
-								MessageBox.Show( "Write Failed: " + write.Message );
+								DemoUtils.ShowMessage( "Write Failed: " + write.Message );
 							}
 						}
 						catch( Exception ex)
 						{
-							MessageBox.Show( "trans string to type " + dataTableItem.DataTypeCode + "failed: " + ex.Message );
+							DemoUtils.ShowMessage( "trans string to type " + dataTableItem.DataTypeCode + "failed: " + ex.Message );
 						}
 
 					}

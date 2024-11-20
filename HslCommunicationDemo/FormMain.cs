@@ -375,7 +375,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -404,7 +404,7 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			panelLeft?.SetLanguage( );
 			panelSave?.SetLanguage( );
-			MessageBox.Show( "已选择中文" );
+			DemoUtils.ShowMessage( "已选择中文" );
 		}
 
 		private void englishToolStripMenuItem_Click( object sender, EventArgs e )
@@ -417,7 +417,7 @@ namespace HslCommunicationDemo
 			Language( Program.Language );
 			panelLeft?.SetLanguage( );
 			panelSave?.SetLanguage( );
-			MessageBox.Show( "Select English!" );
+			DemoUtils.ShowMessage( "Select English!" );
 		}
 
 		private void toolStripMenuItem_HomePage_Click( object sender, EventArgs e )
@@ -501,7 +501,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "更新软件丢失，无法启动更新： " + ex.Message );
+				DemoUtils.ShowMessage( "更新软件丢失，无法启动更新： " + ex.Message );
 			}
 		}
 

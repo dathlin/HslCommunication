@@ -154,7 +154,7 @@ namespace HslCommunicationDemo
 			// 连接
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
-				MessageBox.Show( "端口输入不正确！" );
+				DemoUtils.ShowMessage( "端口输入不正确！" );
 				return;
 			}
 
@@ -162,14 +162,14 @@ namespace HslCommunicationDemo
 			{
 				DtuServerStart( port );
 
-				MessageBox.Show( "等待服务器的连接！" );
+				DemoUtils.ShowMessage( "等待服务器的连接！" );
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

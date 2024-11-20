@@ -18,6 +18,13 @@ namespace HslCommunicationDemo
 		public FormLogNet()
 		{
 			InitializeComponent( );
+
+			checkBox_encoding_bom.CheckedChanged += CheckBox_encoding_bom_CheckedChanged;
+		}
+
+		private void CheckBox_encoding_bom_CheckedChanged( object sender, EventArgs e )
+		{
+			if (logNet != null) logNet.EncoderShouldEmitUTF8Identifier = checkBox_encoding_bom.Checked;
 		}
 
 		#region ILogNet
@@ -175,7 +182,7 @@ namespace HslCommunicationDemo
 			{
 				Invoke( new Action( ( ) =>
 				{
-					MessageBox.Show( "完成！耗时：" + ts.TotalMilliseconds.ToString( "F3" ) + " 毫秒" );
+					DemoUtils.ShowMessage( "完成！耗时：" + ts.TotalMilliseconds.ToString( "F3" ) + " 毫秒" );
 					button2.Enabled = true;
 				} ) );
 			}
@@ -193,7 +200,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.FileNotExist );
+				DemoUtils.ShowMessage( StringResources.Language.FileNotExist );
 			}
 
 			textBox_code.Text = $"string content = File.ReadAllText( \"log.txt\", Encoding.UTF8 );";
@@ -244,7 +251,7 @@ namespace HslCommunicationDemo
 		private void button_hour_offset_Click( object sender, EventArgs e )
 		{
 			logNet.HourDeviation = int.Parse( textBox_hour_offset.Text );
-			MessageBox.Show( "Finish" );
+			DemoUtils.ShowMessage( "Finish" );
 		}
 	}
 }

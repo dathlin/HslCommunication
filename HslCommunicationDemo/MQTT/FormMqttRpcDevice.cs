@@ -61,7 +61,7 @@ namespace HslCommunicationDemo.MQTT
 				button2.Enabled = true;
 				panel2.Enabled = true;
 				this.userControlReadWriteDevice1.SetReadWriteNet( rpc, "100", true, 10 );
-				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 
 				// 设置代码示例
 				codeExampleControl.SetCodeText( rpc, nameof( rpc.DeviceTopic ) );
@@ -69,7 +69,7 @@ namespace HslCommunicationDemo.MQTT
 			else
 			{
 				button1.Enabled = true;
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 					"Error: " + connect.ErrorCode );
 			}
 		}

@@ -35,13 +35,13 @@ namespace HslCommunicationDemo
         {
             if (!int.TryParse( textBox2.Text, out int port ))
             {
-                MessageBox.Show( "端口号输入错误" );
+                DemoUtils.ShowMessage( "端口号输入错误" );
                 return;
             }
 
             if (string.IsNullOrEmpty( textBox3.Text ))
             {
-                MessageBox.Show( "关键字不能为空" );
+                DemoUtils.ShowMessage( "关键字不能为空" );
                 return;
             }
 
@@ -52,12 +52,12 @@ namespace HslCommunicationDemo
             {
                 button1.Enabled = false;
                 button2.Enabled = true;
-                MessageBox.Show( "成功" );
+                DemoUtils.ShowMessage( "成功" );
                 panel2.Enabled = true;
             }
             else
             {
-                MessageBox.Show( "失败：" + create.Message );
+                DemoUtils.ShowMessage( "失败：" + create.Message );
             }
         }
 

@@ -85,7 +85,7 @@ namespace HslCommunicationDemo
 			// 连接服务器
 			if (!int.TryParse( textBox_buffer_length.Text, out int bufferLength ))
 			{
-				MessageBox.Show( "Buffer length input wrong!" );
+				DemoUtils.ShowMessage( "Buffer length input wrong!" );
 				return;
 			}
 
@@ -104,7 +104,7 @@ namespace HslCommunicationDemo
 						OperateResult<int> localPort = DemoUtils.ParseInt( textBox_localPort.Text );
 						if (!localPort.IsSuccess)
 						{
-							MessageBox.Show( "Local Port input failed: " + localPort.Message );
+							DemoUtils.ShowMessage( "Local Port input failed: " + localPort.Message );
 							return;
 						}
 						socketCore.Bind( new IPEndPoint( IPAddress.Any, localPort.Content ) );
@@ -149,7 +149,7 @@ namespace HslCommunicationDemo
 						OperateResult<int> localPort = DemoUtils.ParseInt( textBox_localPort.Text );
 						if (!localPort.IsSuccess)
 						{
-							MessageBox.Show( "Local Port input failed: " + localPort.Message );
+							DemoUtils.ShowMessage( "Local Port input failed: " + localPort.Message );
 							return;
 						}
 						udpSocket.Bind( new IPEndPoint( udpEndPoint.AddressFamily == AddressFamily.InterNetworkV6 ? IPAddress.IPv6Any : IPAddress.Any, localPort.Content ) );
@@ -193,11 +193,11 @@ namespace HslCommunicationDemo
 				panel_tcp_udp.Enabled = false;
 				//button_send.Enabled = true;
 
-				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + Environment.NewLine + ex.Message );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + Environment.NewLine + ex.Message );
 			}
 		}
 

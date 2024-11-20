@@ -116,7 +116,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			if(SaveConnectEvent == null)
 			{
-				MessageBox.Show( new NotImplementedException( ).Message );
+				DemoUtils.ShowMessage( new NotImplementedException( ).Message );
 				return;
 			}
 			SaveConnectEvent?.Invoke( sender, new EventArgs( ) );

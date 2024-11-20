@@ -147,7 +147,7 @@ namespace HslCommunicationDemo
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 				return;
 			}
 
@@ -303,7 +303,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 				return;
 			}
 
@@ -326,7 +326,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( $"File[{filePath}] not exist" );
+				DemoUtils.ShowMessage( $"File[{filePath}] not exist" );
 			}
 		}
 
@@ -350,7 +350,7 @@ namespace HslCommunicationDemo
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( "Open File Failed:" + ex.Message );
+				DemoUtils.ShowMessage( "Open File Failed:" + ex.Message );
 			}
 		}
 
@@ -409,7 +409,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Failed:" + ex.Message );
+				DemoUtils.ShowMessage( "Failed:" + ex.Message );
 			}
 		}
 

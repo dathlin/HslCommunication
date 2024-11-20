@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Enthernet.Redis;
 using HslCommunication;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -46,11 +47,11 @@ namespace HslRedisDesktop
             OperateResult write = this.redisSettings.Redis.WriteHashKey( this.key, textBox5.Text, textBox3.Text );
             if(write.IsSuccess)
             {
-                MessageBox.Show( "数据写入成功！" );
+                DemoUtils.ShowMessage( "数据写入成功！" );
             }
             else
             {
-                MessageBox.Show( "数据写入失败！" + write.Message );
+                DemoUtils.ShowMessage( "数据写入失败！" + write.Message );
             }
         }
 

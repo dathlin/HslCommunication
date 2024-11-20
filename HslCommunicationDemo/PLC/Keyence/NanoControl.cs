@@ -169,7 +169,7 @@ namespace HslCommunicationDemo.PLC.Keyence
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<KeyencePLCS> read = {DemoUtils.PlcDeviceName}.ReadPlcType( );";
@@ -184,7 +184,7 @@ namespace HslCommunicationDemo.PLC.Keyence
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
 			}
 			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadAddressAnnotation( \"{textBox6.Text}\" );";
 		}

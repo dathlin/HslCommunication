@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Enthernet.Redis;
 using HslCommunication;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -41,12 +42,12 @@ namespace HslRedisDesktop
 
 		private void RefreshKey( )
 		{
-			if (redisSettings == null) { MessageBox.Show( "当前的连接为空，无法读取！" ); return; }
-			if (redisSettings.Redis == null) { MessageBox.Show( "当前的连接为空，无法读取！" ); return; }
+			if (redisSettings == null) { DemoUtils.ShowMessage( "当前的连接为空，无法读取！" ); return; }
+			if (redisSettings.Redis == null) { DemoUtils.ShowMessage( "当前的连接为空，无法读取！" ); return; }
 			OperateResult<string> read = redisSettings.Redis.ReadKey( stringKeyName );
 			if(!read.IsSuccess)
 			{
-				MessageBox.Show( "读取失败：" + read.Message );
+				DemoUtils.ShowMessage( "读取失败：" + read.Message );
 			}
 			else
 			{
@@ -69,7 +70,7 @@ namespace HslRedisDesktop
         private void button5_Click( object sender, EventArgs e )
         {
 			// 定时刷新
-			MessageBox.Show( "当前版本暂时不支持！" );
+			DemoUtils.ShowMessage( "当前版本暂时不支持！" );
         }
     }
 }

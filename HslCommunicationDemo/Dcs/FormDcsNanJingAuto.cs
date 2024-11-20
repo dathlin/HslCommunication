@@ -97,21 +97,21 @@ namespace HslCommunicationDemo
 			// 连接
 			if (!System.Net.IPAddress.TryParse( textBox1.Text, out System.Net.IPAddress address ))
 			{
-				MessageBox.Show( DemoUtils.IpAddressInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.IpAddressInputWrong );
 				return;
 			}
 
 
 			if(!int.TryParse(textBox2.Text,out int port))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 
 
 			if(!byte.TryParse(textBox15.Text,out byte station))
 			{
-				MessageBox.Show( "Station input is wrong！" );
+				DemoUtils.ShowMessage( "Station input is wrong！" );
 				return;
 			}
 
@@ -126,7 +126,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = busTcpClient.ConnectServer( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
@@ -142,13 +142,13 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 						"Error: " + connect.ErrorCode);
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -165,7 +165,7 @@ namespace HslCommunicationDemo
 
 		private void button4_Click_1( object sender, EventArgs e )
 		{
-			MessageBox.Show( busTcpClient.IpAddressPing( ).ToString( ) ) ;
+			DemoUtils.ShowMessage( busTcpClient.IpAddressPing( ).ToString( ) ) ;
 		}
 
 

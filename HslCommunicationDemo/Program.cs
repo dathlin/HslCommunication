@@ -36,13 +36,13 @@ namespace HslCommunicationDemo
 			if (!HslCommunication.Authorization.SetAuthorizationCode( "Your Code" ))
 			{
 				// active failed
-				// MessageBox.Show( "授权失败！当前程序只能使用24小时！" );
+				// DemoUtils.ShowMessage( "授权失败！当前程序只能使用24小时！" );
 				// return;
 			}
 			else
 			{
 				// active success
-				// MessageBox.Show( "授权成功！" );
+				// DemoUtils.ShowMessage( "授权成功！" );
 				IsActive = true;
 			}
 
@@ -51,12 +51,12 @@ namespace HslCommunicationDemo
 			//if (active.IsSuccess)
 			//{
 			//	// active success
-			//	MessageBox.Show( "active success！" );
+			//	DemoUtils.ShowMessage( "active success！" );
 			//}
 			//else
 			//{
 			//	// active failed
-			//	MessageBox.Show( "active failed: " + active.Message );
+			//	DemoUtils.ShowMessage( "active failed: " + active.Message );
 			//}
 
 

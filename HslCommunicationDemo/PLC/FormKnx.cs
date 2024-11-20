@@ -52,7 +52,7 @@ namespace HslCommunicationDemo.PLC
             }
             catch (Exception ee)
             {
-                MessageBox.Show( ee.Message );
+                DemoUtils.ShowMessage( ee.Message );
             }
         }
 
@@ -79,7 +79,7 @@ namespace HslCommunicationDemo.PLC
             catch (Exception ee)
             {
 
-                MessageBox.Show( "链接断开。。。 " + ee.Message );
+                DemoUtils.ShowMessage( "链接断开。。。 " + ee.Message );
             }
 
         }
@@ -102,7 +102,7 @@ namespace HslCommunicationDemo.PLC
                     int L = int.Parse( x[2] );
                     if ((H > 31 || M > 7 || L > 255) || (H < 0 || M < 0 || L < 0))
                     {
-                        MessageBox.Show( "地址不合法" );
+                        DemoUtils.ShowMessage( "地址不合法" );
                     }
                     else
                     {
@@ -110,21 +110,21 @@ namespace HslCommunicationDemo.PLC
                         M = M << 8;
                         var y = H | M | L;
                         short z = (short)y;
-                        //  MessageBox.Show(y.ToString("X"));
+                        //  DemoUtils.ShowMessage(y.ToString("X"));
                         kNX_Connection.ReadKnxData( z );
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show( "地址不合法" );
+                    DemoUtils.ShowMessage( "地址不合法" );
                 }
 
             }
             catch (Exception ee)
             {
 
-                MessageBox.Show( "地址不合法  " + ee.Message );
+                DemoUtils.ShowMessage( "地址不合法  " + ee.Message );
             }
 
         }
@@ -157,7 +157,7 @@ namespace HslCommunicationDemo.PLC
                     int L = int.Parse( x[2] );
                     if ((H > 31 || M > 7 || L > 255) || (H < 0 || M < 0 || L < 0))
                     {
-                        MessageBox.Show( "地址不合法" );
+                        DemoUtils.ShowMessage( "地址不合法" );
                     }
                     else
                     {
@@ -165,21 +165,21 @@ namespace HslCommunicationDemo.PLC
                         M = M << 8;
                         var y = H | M | L;
                         short z = (short)y;
-                        //  MessageBox.Show(y.ToString("X"));
+                        //  DemoUtils.ShowMessage(y.ToString("X"));
                         out_box.Text = (z + 1).ToString( );
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show( "地址不合法" );
+                    DemoUtils.ShowMessage( "地址不合法" );
                 }
 
             }
             catch (Exception ee)
             {
 
-                MessageBox.Show( "地址不合法  " + ee.Message );
+                DemoUtils.ShowMessage( "地址不合法  " + ee.Message );
             }
         }
 

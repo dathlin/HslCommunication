@@ -41,7 +41,7 @@ namespace HslCommunicationDemo.PLC.Secs
 				{
 					message = "Confirm delete {secsTreeItem. GetTreeNodeText ()} ?";
 				}
-				if (MessageBox.Show( message, Program.Language == 2 ? "Delete Check" : "删除确认", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+				if (DemoUtils.ShowMessage( message, Program.Language == 2 ? "Delete Check" : "删除确认", MessageBoxButtons.YesNo ) == DialogResult.Yes)
 				{
 					treeNode.Remove( );
 				}
@@ -119,7 +119,7 @@ namespace HslCommunicationDemo.PLC.Secs
 				TreeNode node = FindNodeS( treeView1, form.SecsTreeItem );
 				if (node == null)
 				{
-					MessageBox.Show( "failed, node is null" );
+					DemoUtils.ShowMessage( "failed, node is null" );
 					return;
 				}
 				InsertNodeF( node, form.SecsTreeItem );

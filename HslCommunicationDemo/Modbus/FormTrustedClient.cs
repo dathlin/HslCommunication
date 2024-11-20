@@ -41,7 +41,7 @@ namespace HslCommunicationDemo
             {
                 modbusTcpServer.SetTrustedIpAddress( null );
             }
-            MessageBox.Show( "成功" );
+            DemoUtils.ShowMessage( "成功" );
             Close( );
         }
     }

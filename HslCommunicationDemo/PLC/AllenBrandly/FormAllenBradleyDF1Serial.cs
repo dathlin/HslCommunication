@@ -66,19 +66,19 @@ namespace HslCommunicationDemo
 		{
 			if (!byte.TryParse(textBox15.Text,out byte station))
 			{
-				MessageBox.Show( "Station input wrong！" );
+				DemoUtils.ShowMessage( "Station input wrong！" );
 				return;
 			}
 
 			if (!byte.TryParse( textBox1.Text, out byte dst ))
 			{
-				MessageBox.Show( "DstNode input wrong！" );
+				DemoUtils.ShowMessage( "DstNode input wrong！" );
 				return;
 			}
 
 			if (!byte.TryParse( textBox3.Text, out byte src ))
 			{
-				MessageBox.Show( "SrcNode input wrong！" );
+				DemoUtils.ShowMessage( "SrcNode input wrong！" );
 				return;
 			}
 
@@ -113,13 +113,13 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
 						"Error: " + open.ErrorCode );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

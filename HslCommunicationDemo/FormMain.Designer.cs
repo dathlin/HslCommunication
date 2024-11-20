@@ -43,6 +43,7 @@
             this.toolStripMenuItem_tcp2Tcp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_byteTransform = new System.Windows.Forms.ToolStripMenuItem();
             this.regexRegularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_HomePage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_ApiDoc = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
-            this.showMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -192,6 +192,12 @@
             this.regexRegularToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.regexRegularToolStripMenuItem.Text = "RegexRegular";
             this.regexRegularToolStripMenuItem.Click += new System.EventHandler(this.regexRegularToolStripMenuItem_Click);
+            // 
+            // showMsToolStripMenuItem
+            // 
+            this.showMsToolStripMenuItem.Name = "showMsToolStripMenuItem";
+            this.showMsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.showMsToolStripMenuItem.Text = "读写时间显示毫秒";
             // 
             // toolStripMenuItem_Help
             // 
@@ -354,12 +360,6 @@
             this.label2.Size = new System.Drawing.Size(209, 21);
             this.label2.TabIndex = 42;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // showMsToolStripMenuItem
-            // 
-            this.showMsToolStripMenuItem.Name = "showMsToolStripMenuItem";
-            this.showMsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.showMsToolStripMenuItem.Text = "读写时间显示毫秒";
             // 
             // FormMain
             // 

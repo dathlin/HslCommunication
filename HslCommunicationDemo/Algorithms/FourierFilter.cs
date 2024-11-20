@@ -67,7 +67,7 @@ namespace HslCommunicationDemo.Algorithms
             }
             catch(Exception ex)
             {
-                MessageBox.Show( "数据输入错误！" + ex.Message );
+                DemoUtils.ShowMessage( "数据输入错误！" + ex.Message );
             }
         }
 

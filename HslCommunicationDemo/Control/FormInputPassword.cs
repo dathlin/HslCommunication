@@ -23,13 +23,13 @@ namespace HslCommunicationDemo.Control
 		{
 			if (string.IsNullOrEmpty( textBox1.Text ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "当前输入的密码不能为空! " : "The currently entered password cannot be empty! " );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "当前输入的密码不能为空! " : "The currently entered password cannot be empty! " );
 				return;
 			}
 
 			if (!Regex.IsMatch( textBox1.Text, @"^[0-9A-Za-z]{4,32}$" ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "密码只能是数字字母组成，且4~32位之间!" : "The password can only be composed of numeric letters and between 4~32 digits!" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "密码只能是数字字母组成，且4~32位之间!" : "The password can only be composed of numeric letters and between 4~32 digits!" );
 				return;
 			}
 

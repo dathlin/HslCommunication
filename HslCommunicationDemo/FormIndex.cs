@@ -35,31 +35,24 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.1.2
-1. FujiSPBServer: DataFormat属性值修改为和客户端一致，DEMO界面上可以调整该值，修复英文界面下显示文本不正确的问题。
-2. XinJEServer: 支持输入 D，SD, HD 格式的地址，针对客户端使用XinJE专用协议的时候有效，如果用modbus协议的客户端，则还是输入modbus的地址
-3. SiemensS7Helper: 修复写入字符串的方法里，判断字节长度超出PLC最大设置定值时，字符串长度获取不正确的bug。
-4. MqttClient: 新增加一个属性 Tag, 可以用来携带任意的自定义对象，方便客户端做一些个性化的处理。
-5. Melsec: 三菱MC协议增加错误码17165的错误描述及解决办法，解决办法是将用户认证功能设置为禁用。
-6. LogNet: 日志类方法HslMessageFormat修改为虚方法，重写这个方法即可以实现存储时自定义的格式，DEMO界面在英文模式下显示英文，显示按钮的代码。
-7. MQTTServer: 新增方法UnRegisterMqttRpcApi用于卸载当前已经注册的指定接口，方便用于动态控制接口，此处的卸载是批量的。
-8. HttpServer: 新增方法UnRegisterHttpRpcApi用于卸载当前已经注册的某些接口，重复注册的时候将会覆盖旧的接口内容。
-9. SimpleHybirdLock: 新增进入锁的时间，当获取锁对象字符串的时候，输出当前锁的状态以及占用锁的时间。
-10. MqttServer: 修复ClientVerification事件签名里密码单词拼写不正确的bug。
-11. OmronFinsServer: 欧姆龙的FINS虚拟服务器支持了客户端使用 E9 这种地址的数据读写操作，不过所有的EM地址，E地址都使用同一个数据块。
-12. SecsServer: Secs服务器日志记录改为直接记录原始二进制的报文，修复服务器创建中文字符串格式的SecsValue时，长度显示不正确的bug。
-13. DLT645Server: 修复当StationMatch属性为true时，无论站号是否匹配都返回的bug，现在只有站号一直才支持读写数据操作。
-14. HslDeviceAddressAttribute: 新增字符串编码的属性，当类型是字符串有效，支持字符串数组，修复长度为0时应用于西门子读取字符串时读取字符串不正确的bug。
-15. Inovance: 汇川的PLC在AM系列下，读取MB1005单数地址的字符串时，也支持进行读取操作。
-16. IModbus: 所有Modbus设备新增属性BroadcastStation，设置0-255后，使用该站号时将不检测返回的报文，直接返回成功，ModbusServer适配站号0不返回数据。
-17. OmronFinsUdp: 属性SID信息不再进行自增操作，将由用户手动设置，然后demo界面支持手动设置操作。
-18. Demo: 批量读取的界面，新增是否字反转操作，方便部分的PLC可以看到一些特殊的数据情况。
-19. Demo: Secs服务器英文界面优化，西门子Smart200测试界面增加随机写入测试，并直接输出示例代码。
-20. Demo: MQTT测试界面增加正则过滤功能。设备类的测试界面添加数据模拟的功能，可以写入一些脚本实现的规律数据。
-21. Demo: HttpClient测试界面的ContentType修改为可输入。Secs界面修复英文环境下，标签名称不正确的问题
-22. Demo: 设备测试界面的读取功能，支持勾选屏蔽重复的值，只有数据变化的时候，才在读取界面里显示，重复就显示重复次数，菜单调试下新增设置显示毫秒时间的功能。
-23. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn/Doc/HslCommunication
-24. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V12.1.3
+1. NetworkWebApiBase: 修复webapi基类实例化后，仍然继续设置IpAddress属性时，实际请求地址不更新的bug。
+2. LogNet: 日志类新增属性EncoderShouldEmitUTF8Identifier可以控制UTF编码的是否包含BOM头，默认为 true，如果不需要BOM头，可以设置为false
+3. LogNetDateTime: 日期时间类型的日志新增一个实例化方法，可以同时指定文件大小，超过指定大小即自动拆分日志文件。
+4. CommunicationTcpServer: 修复tcp的服务器在.net8等环境里运行的时候，在关闭服务器的时候，弹出未捕获的异常的bug，现在可以正确的关闭。
+5. IEC104: 修复IEC104协议在接收某些特殊情况的报文数据导致解析异常，直接退出程序的bug，现在会进行日志的输出。
+6. LogNetAnalysisControl: 日志分析的控件界面新增一个\0转义的选择框，解决日志消息里带有\0的情况导致显示阶段的问题。
+7. DLT698Helper: 修复DLT698.45协议里，在某些特殊的设备上，时间数据不存在导致解析异常崩溃的bug，现在直接返回异常的时间内容。
+8. HttpServer: HttpServer及MqttServer服务器新增卸载单个API接口的方法 UnRegisterHttpRpcApiSingle( string apiTopic )
+9. BinaryCommunication: 所有设备的基类当因通信失败的时候，返回当前管道的基本信息，例如ip端口，或是串口的端口，方便查错。
+10. HslStructAttribute: 结构体偏移字节特性新增字符串解析模式属性，可以解析普通字符串，西门子等字符串，结构体解析的属性支持了自定义类，会继续解析子类操作。
+11. Demo: 显示弹窗的信息框优化，使用了自定义的窗体显示消息本文，根据文本的内容大小，来自动调整当前窗体的大小，并且父窗体居中显示。
+12. Demo: 模拟数据写入的地方，支持使用随机数，使用r表示，例如 (short)r.Next(100,200) 表示100-200的随机数，最后转short类型。
+13. LogNet: 日志部分的demo界面部分字符串再英文状态时，显示英文信息，优化相关的界面的测试功能。
+14. Demo: 欧姆龙的虚拟服务器支持配置DataFormat及是否字符串反转的功能，所有设备的数据导出功能增加随时停止的按钮。
+15. Demo: PLC测试界面读取字符串的时候，如果碰到\0 字符的时候，原先直接截断显示，对大家造成困扰，现在直接转义为 \0 显示，请注意查看
+16. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn/Doc/HslCommunication
+17. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 
@@ -74,14 +67,14 @@ static void Main( )
 	// 中文授权示例
 	if(!HslCommunication.Authorization.SetAuthorizationCode( " + "\"你的激活码\"" + @" ))
 	{
-		MessageBox.Show( " + "\"授权失败！当前程序只能使用24小时！\"" + @" );
+		DemoUtils.ShowMessage( " + "\"授权失败！当前程序只能使用24小时！\"" + @" );
 		return; // 激活失败就退出系统
 	}
 
 	// English For example
 	if(!HslCommunication.Authorization.SetAuthorizationCode( " + "\"Your Active Code\"" + @" ))
 	{
-		MessageBox.Show( " + "\"Active Failed! it can only use 24 hours\"" + @" );
+		DemoUtils.ShowMessage( " + "\"Active Failed! it can only use 24 hours\"" + @" );
 		return;  // quit if active failed
 	}
 	Application.EnableVisualStyles( );

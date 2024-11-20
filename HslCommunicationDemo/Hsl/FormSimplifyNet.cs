@@ -93,11 +93,11 @@ namespace HslCommunicationDemo
                 button2.Enabled = true;
                 panel2.Enabled = true;
                 button5.Enabled = false;
-                MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+                DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
             }
             else
             {
-                MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+                DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
             }
         }
 
@@ -164,7 +164,7 @@ namespace HslCommunicationDemo
                 }
                 else
                 {
-                    MessageBox.Show( Program.Language == 1 ? "读取失败：" : "Read Failed:" + read.ToMessageShowString( ) );
+                    DemoUtils.ShowMessage( Program.Language == 1 ? "读取失败：" : "Read Failed:" + read.ToMessageShowString( ) );
                 }
             }
 
@@ -205,7 +205,7 @@ namespace HslCommunicationDemo
                 }
                 else
                 {
-                    MessageBox.Show( Program.Language == 1 ? "读取失败：" : "Read Failed:" + read.ToMessageShowString( ) );
+                    DemoUtils.ShowMessage( Program.Language == 1 ? "读取失败：" : "Read Failed:" + read.ToMessageShowString( ) );
                 }
             }
 
@@ -251,7 +251,7 @@ namespace HslCommunicationDemo
                 Invoke( new Action( ( ) =>
                 {
                     button3.Enabled = true;
-                    MessageBox.Show( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Read Failed：" + failed );
+                    DemoUtils.ShowMessage( "Spend：" + (DateTime.Now - thread_time_start).TotalSeconds + Environment.NewLine + " Read Failed：" + failed );
                 } ) );
             }
         }

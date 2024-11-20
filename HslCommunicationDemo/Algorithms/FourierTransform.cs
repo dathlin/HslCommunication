@@ -146,7 +146,7 @@ namespace HslCommunicationDemo.Algorithms
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "数据输入错误！" + ex.Message );
+				DemoUtils.ShowMessage( "数据输入错误！" + ex.Message );
 			}
 		}
 		private void userButton5_Click( object sender, EventArgs e )
@@ -159,7 +159,7 @@ namespace HslCommunicationDemo.Algorithms
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "数据输入错误！" + ex.Message );
+				DemoUtils.ShowMessage( "数据输入错误！" + ex.Message );
 			}
 		}
 		private void userButton4_Click( object sender, EventArgs e )
@@ -172,7 +172,7 @@ namespace HslCommunicationDemo.Algorithms
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "数据输入错误！" + ex.Message );
+				DemoUtils.ShowMessage( "数据输入错误！" + ex.Message );
 			}
 		}
 

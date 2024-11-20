@@ -85,7 +85,7 @@ namespace HslCommunicationDemo
 
 			if (!int.TryParse( textBox_port.Text, out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 			freedom.LogNet = LogNet;
@@ -98,7 +98,7 @@ namespace HslCommunicationDemo
 			freedom.Port = port;
 
 			button1.Enabled = false;
-			MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+			DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 			button2.Enabled = true;
 			button1.Enabled = false;
 			userControlReadWriteDevice1.SetEnable( true );

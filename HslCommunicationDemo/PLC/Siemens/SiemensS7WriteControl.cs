@@ -114,11 +114,11 @@ hex
 			OperateResult write = this.siemens.Write( adds.ToArray( ), buffer );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Write Success" );
+				DemoUtils.ShowMessage( "Write Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Write failed: " + write.Message );
+				DemoUtils.ShowMessage( "Write failed: " + write.Message );
 			}
 		}
 	}

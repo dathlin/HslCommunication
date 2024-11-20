@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Enthernet.Redis;
 using HslCommunication;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -39,12 +40,12 @@ namespace HslRedisDesktop
 						if (int.TryParse( formInput.InputValue, out int db ))
 						{
 							OperateResult ttl = redisClient.MoveKey( keyName, db );
-							if (!ttl.IsSuccess) MessageBox.Show( "移动关键字失败！" + ttl.Message );
-							else MessageBox.Show( "移动关键字成功！" );
+							if (!ttl.IsSuccess) DemoUtils.ShowMessage( "移动关键字失败！" + ttl.Message );
+							else DemoUtils.ShowMessage( "移动关键字成功！" );
 						}
 						else
 						{
-							MessageBox.Show( "移动关键字失败，在DB块里需要输入数字！" );
+							DemoUtils.ShowMessage( "移动关键字失败，在DB块里需要输入数字！" );
 						}
 					}
 				}
@@ -55,11 +56,11 @@ namespace HslRedisDesktop
 		{
 			if (redisClient != null)
 			{
-				if(MessageBox.Show("是否真的确认删除？", "确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
+				if(DemoUtils.ShowMessage("是否真的确认删除？", "确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
                 {
 					OperateResult delete = redisClient.DeleteKey( keyName );
-					if (!delete.IsSuccess) MessageBox.Show( "删除关键字失败！" + delete.Message );
-					else MessageBox.Show( "删除关键字成功！" );
+					if (!delete.IsSuccess) DemoUtils.ShowMessage( "删除关键字失败！" + delete.Message );
+					else DemoUtils.ShowMessage( "删除关键字成功！" );
 				}
 			}
 		}
@@ -76,20 +77,20 @@ namespace HslRedisDesktop
 						if(formInput.InputValue == "-1")
                         {
 							OperateResult ttl = redisClient.PersistKey( keyName );
-							if(!ttl.IsSuccess) MessageBox.Show( "设置永久失败！" + ttl.Message );
-							else MessageBox.Show( "设置永久成功！" );
+							if(!ttl.IsSuccess) DemoUtils.ShowMessage( "设置永久失败！" + ttl.Message );
+							else DemoUtils.ShowMessage( "设置永久成功！" );
 						}
                         else
                         {
 							if(int.TryParse( formInput.InputValue, out int seconds ))
 							{
 								OperateResult ttl = redisClient.ExpireKey( keyName, seconds );
-								if (!ttl.IsSuccess) MessageBox.Show( "设置过期时间失败！" + ttl.Message );
-								else MessageBox.Show( "设置过期时间成功！" );
+								if (!ttl.IsSuccess) DemoUtils.ShowMessage( "设置过期时间失败！" + ttl.Message );
+								else DemoUtils.ShowMessage( "设置过期时间成功！" );
 							}
                             else
                             {
-								MessageBox.Show( "过期时间输入失败，需要输入数字！" );
+								DemoUtils.ShowMessage( "过期时间输入失败，需要输入数字！" );
 							}
 						}
 					}
@@ -107,8 +108,8 @@ namespace HslRedisDesktop
 					if (formInput.ShowDialog( ) == DialogResult.OK)
 					{
 						OperateResult rename = redisClient.RenameKey( keyName, formInput.InputValue );
-						if (!rename.IsSuccess) MessageBox.Show( "重命名失败！" + rename.Message );
-						else MessageBox.Show( "重命名成功" );
+						if (!rename.IsSuccess) DemoUtils.ShowMessage( "重命名失败！" + rename.Message );
+						else DemoUtils.ShowMessage( "重命名成功" );
 					}
 				}
 			}

@@ -242,11 +242,11 @@ namespace HslCommunicationDemo.Instrument
 			OperateResult active = dlt645.ActiveDeveice( );
 			if (active.IsSuccess)
 			{
-				MessageBox.Show( "Send Active Code Success" );
+				DemoUtils.ShowMessage( "Send Active Code Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Active Code failed:" + active.Message );
+				DemoUtils.ShowMessage( "Active Code failed:" + active.Message );
 			}
 
 			textBox_code.Text = $"OperateResult active = dlt.ActiveDeveice( );";
@@ -262,7 +262,7 @@ namespace HslCommunicationDemo.Instrument
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = dlt.ReadAddress( );";
@@ -278,7 +278,7 @@ namespace HslCommunicationDemo.Instrument
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = dlt.BroadcastTime( DateTime.Now );";
@@ -294,7 +294,7 @@ namespace HslCommunicationDemo.Instrument
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + write.Message );
+				DemoUtils.ShowMessage( "Read failed: " + write.Message );
 			}
 
 			textBox_code.Text = $"OperateResult write = dlt.WriteAddress( \"{textBox1.Text}\" );";
@@ -314,7 +314,7 @@ namespace HslCommunicationDemo.Instrument
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string[]> read = dlt.ReadStringArray( \"{textBox1.Text}\" );";
@@ -327,11 +327,11 @@ namespace HslCommunicationDemo.Instrument
 			OperateResult op = dlt645.Trip( dateTime );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "Trip success" );
+				DemoUtils.ShowMessage( "Trip success" );
 			}
 			else
 			{
-				MessageBox.Show( "Trip failed: " + op.Message );
+				DemoUtils.ShowMessage( "Trip failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = dlt.Trip( DateTime.Parse( \"{textBox_valid_time.Text}\" ) );";
@@ -344,11 +344,11 @@ namespace HslCommunicationDemo.Instrument
 			OperateResult op = dlt645.SwitchingOn( dateTime );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "SwitchingOn success" );
+				DemoUtils.ShowMessage( "SwitchingOn success" );
 			}
 			else
 			{
-				MessageBox.Show( "SwitchingOn failed: " + op.Message );
+				DemoUtils.ShowMessage( "SwitchingOn failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = dlt.SwitchingOn( DateTime.Parse( \"{textBox_valid_time.Text}\" ) );";

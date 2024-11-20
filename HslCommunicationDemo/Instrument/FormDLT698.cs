@@ -74,7 +74,7 @@ namespace HslCommunicationDemo
 		{
 			if (!byte.TryParse(textBox_ca.Text, out byte ca ))
 			{
-				MessageBox.Show( "CA input wrong!" );
+				DemoUtils.ShowMessage( "CA input wrong!" );
 				textBox_ca.Focus( );
 				return;
 			}
@@ -113,12 +113,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( $"Open [{dLT698.CommunicationPipe}] failed: " + open.Message );
+					DemoUtils.ShowMessage( $"Open [{dLT698.CommunicationPipe}] failed: " + open.Message );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

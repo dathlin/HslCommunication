@@ -41,7 +41,7 @@ namespace HslCommunicationDemo.DemoControl
 
 				button_start.Text = "Start";
 				button_finish.Text = "Stop";
-				label1.Text = "The x means an integer increasing from 0, example: x%2==0? 10:0 Or (short)(Math.Sin(2*Math.PI*x/100)*100)";
+				label1.Text = "The x means an integer increasing from 0, example: x%2==0? 10:0 Or (short)(Math.Sin(2*Math.PI*x/100)*100) Or (short)r.Next(100,200)";
 			}
 		}
 
@@ -82,15 +82,14 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					SimulateWrite dataTableItem = GetSimulateWrite( dgvr );
 					dataTableItem.Script = new DynamicExpresso.Interpreter( );
-
-					dataTableItem.Script.Eval( dataTableItem.Express, new Parameter( "x", 0 ) );
+					dataTableItem.Script.Eval( dataTableItem.Express, new Parameter( "x", 0 ), new Parameter( "r", HslCommunication.Core.HslHelper.HslRandom ) );
 					dataTableItem.Dgvr = dgvr;
 					dataTableItem.ExecuteTime = DateTime.Now.AddDays( -1 );
 					tmp.Add( dataTableItem );
 				}
 				catch (Exception ex)
 				{
-					MessageBox.Show( $"Row[{i}] has wrong value: " + ex.Message );
+					DemoUtils.ShowMessage( $"Row[{i}] has wrong value: " + ex.Message );
 					return;
 				}
 			}
@@ -142,6 +141,7 @@ namespace HslCommunicationDemo.DemoControl
 					{
 						List<Parameter> parameters = new List<Parameter>( );
 						parameters.Add( new Parameter( "x", simulate.X ) );
+						parameters.Add( new Parameter( "r", HslCommunication.Core.HslHelper.HslRandom ) );
 						object value = simulate.Script.Eval( simulate.Express, parameters.ToArray( ) );
 						Type type = value.GetType( );
 
@@ -165,7 +165,7 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							Invoke( new Action( ( ) =>
 							{
-								MessageBox.Show( $"Write address[{simulate.Address}] failed, type[{type.Name}] is not supported" );
+								DemoUtils.ShowMessage( $"Write address[{simulate.Address}] failed, type[{type.Name}] is not supported" );
 							} ) );
 							return;
 						}
@@ -190,7 +190,7 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							Invoke( new Action( ( ) =>
 							{
-								MessageBox.Show( $"Write address[{simulate.Address}] failed: {writeResult.Message}" );
+								DemoUtils.ShowMessage( $"Write address[{simulate.Address}] failed: {writeResult.Message}" );
 							} ) );
 							return;
 						}
@@ -285,11 +285,11 @@ namespace HslCommunicationDemo.DemoControl
 
 		public void LoadByXmlElement( XElement element )
 		{
-			this.Name = DataTableItem.GetXmlValue( element, nameof( Name ), Name, m => m );
-			this.Address = DataTableItem.GetXmlValue( element, nameof( Address ), Address, m => m );
-			this.Time = DataTableItem.GetXmlValue( element, nameof( Time ), Time, int.Parse );
-			this.Express = DataTableItem.GetXmlValue( element, nameof( Express ), Express, m => m );
-			this.Mark = DataTableItem.GetXmlValue( element, nameof( Mark ), Mark, m => m );
+			this.Name    = DataTableItem.GetXmlValue( element, nameof( Name ),    Name,     m => m );
+			this.Address = DataTableItem.GetXmlValue( element, nameof( Address ), Address,  m => m );
+			this.Time    = DataTableItem.GetXmlValue( element, nameof( Time ),    Time,     int.Parse );
+			this.Express = DataTableItem.GetXmlValue( element, nameof( Express ), Express,  m => m );
+			this.Mark    = DataTableItem.GetXmlValue( element, nameof( Mark ),    Mark, m => m );
 		}
 
 	}

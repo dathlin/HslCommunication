@@ -95,7 +95,7 @@ namespace HslCommunicationDemo.Robot
 				OperateResult connect = await fanuc.ConnectServerAsync( );
 				if(connect.IsSuccess)
 				{
-					MessageBox.Show( "连接成功" );
+					DemoUtils.ShowMessage( "连接成功" );
 					button1.Enabled = false;
 					button2.Enabled = true;
 					panel2.Enabled = true;
@@ -108,7 +108,7 @@ namespace HslCommunicationDemo.Robot
 				else
 				{
 					button1.Enabled = true;
-					MessageBox.Show( "连接失败" );
+					DemoUtils.ShowMessage( "连接失败" );
 				}
 			}
 			catch(Exception ex)
@@ -131,7 +131,7 @@ namespace HslCommunicationDemo.Robot
 			OperateResult<FanucData> read = await fanuc.ReadFanucDataAsync( );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 			else
 			{
@@ -144,7 +144,7 @@ namespace HslCommunicationDemo.Robot
 			OperateResult<FanucData> read = await fanuc.ReadFanucDataAsync( );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 			else
 			{
@@ -157,7 +157,7 @@ namespace HslCommunicationDemo.Robot
 			OperateResult<string> read = fanuc.ReadString( comboBox1.Text.ToString( ) );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 			else
 			{
@@ -180,7 +180,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -194,7 +194,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -208,7 +208,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -222,7 +222,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -236,7 +236,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -250,7 +250,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -264,7 +264,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -278,7 +278,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -292,7 +292,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -306,7 +306,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -320,7 +320,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -334,7 +334,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -348,7 +348,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -362,7 +362,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -376,7 +376,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -390,7 +390,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -404,7 +404,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
@@ -418,14 +418,14 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed！" + read.Message );
+				DemoUtils.ShowMessage( "Read Failed！" + read.Message );
 			}
 		}
 
 		private int w_sdo = 0;
 		private async void button22_Click( object sender, EventArgs e )
 		{
-			if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+			if (DemoUtils.ShowMessage( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
 
 			// SDO
 			int intStartIndex = ReferenceEquals( sender, button22 ) ? 1 : ReferenceEquals( sender, button23 ) ? 10001 : 11001;
@@ -443,18 +443,18 @@ namespace HslCommunicationDemo.Robot
 			OperateResult write = await fanuc.WriteSDOAsync( (ushort)intStartIndex, value );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Write Success！value:" + value[0] );
+				DemoUtils.ShowMessage( "Write Success！value:" + value[0] );
 			}
 			else
 			{
-				MessageBox.Show( "Write Failed！" + write.Message );
+				DemoUtils.ShowMessage( "Write Failed！" + write.Message );
 			}
 		}
 
 		private int w_sdi = 0;
 		private async void button25_Click( object sender, EventArgs e )
 		{
-			if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+			if (DemoUtils.ShowMessage( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
 
 			w_sdi++;
 
@@ -470,18 +470,18 @@ namespace HslCommunicationDemo.Robot
 			OperateResult write = await fanuc.WriteSDIAsync( 1, value );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Write Success！value:" + value[0] );
+				DemoUtils.ShowMessage( "Write Success！value:" + value[0] );
 			}
 			else
 			{
-				MessageBox.Show( "Write Failed！" + write.Message );
+				DemoUtils.ShowMessage( "Write Failed！" + write.Message );
 			}
 		}
 
 		private int w_rdo = 0;
 		private async void button26_Click( object sender, EventArgs e )
 		{
-			if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+			if (DemoUtils.ShowMessage( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
 
 			w_rdo++;
 
@@ -497,18 +497,18 @@ namespace HslCommunicationDemo.Robot
 			OperateResult write = await fanuc.WriteRDOAsync( 1, value );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Write Success！value:" + value[0] );
+				DemoUtils.ShowMessage( "Write Success！value:" + value[0] );
 			}
 			else
 			{
-				MessageBox.Show( "Write Failed！" + write.Message );
+				DemoUtils.ShowMessage( "Write Failed！" + write.Message );
 			}
 		}
 
 		private int w_rdi = 0;
 		private async void button27_Click( object sender, EventArgs e )
 		{
-			if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+			if (DemoUtils.ShowMessage( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
 
 			w_rdi++;
 
@@ -524,18 +524,18 @@ namespace HslCommunicationDemo.Robot
 			OperateResult write = await fanuc.WriteRDIAsync( 1, value );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Write Success！value:" + value[0] );
+				DemoUtils.ShowMessage( "Write Success！value:" + value[0] );
 			}
 			else
 			{
-				MessageBox.Show( "Write Failed！" + write.Message );
+				DemoUtils.ShowMessage( "Write Failed！" + write.Message );
 			}
 		}
 
 		private int w_go = 0;
 		private async void button28_Click( object sender, EventArgs e )
 		{
-			if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+			if (DemoUtils.ShowMessage( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
 
 			int intStartIndex = ReferenceEquals( sender, button28 ) ? 1 : 10001;
 			w_go++;
@@ -549,18 +549,18 @@ namespace HslCommunicationDemo.Robot
 			OperateResult write = await fanuc.WriteGOAsync( (ushort)intStartIndex, value );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Write Success！value:" + value[0] );
+				DemoUtils.ShowMessage( "Write Success！value:" + value[0] );
 			}
 			else
 			{
-				MessageBox.Show( "Write Failed！" + write.Message );
+				DemoUtils.ShowMessage( "Write Failed！" + write.Message );
 			}
 		}
 
 		private int w_gi = 0;
 		private async void button30_Click( object sender, EventArgs e )
 		{
-			if (MessageBox.Show( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
+			if (DemoUtils.ShowMessage( StringResources.Language.WriteWarning, "Write Check", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning ) == DialogResult.Cancel) return;
 
 			w_gi++;
 
@@ -573,11 +573,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult write = await fanuc.WriteGIAsync( 1, value );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "Write Success！value:" + value[0] );
+				DemoUtils.ShowMessage( "Write Success！value:" + value[0] );
 			}
 			else
 			{
-				MessageBox.Show( "Write Failed！" + write.Message );
+				DemoUtils.ShowMessage( "Write Failed！" + write.Message );
 			}
 		}
 
@@ -592,12 +592,12 @@ namespace HslCommunicationDemo.Robot
 				}
 				else
 				{
-					MessageBox.Show( "Write Failed！" + read.Message );
+					DemoUtils.ShowMessage( "Write Failed！" + read.Message );
 				}
 			}
 			catch(Exception ex)
 			{
-				MessageBox.Show( "Read Failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + ex.Message );
 			}
 		}
 

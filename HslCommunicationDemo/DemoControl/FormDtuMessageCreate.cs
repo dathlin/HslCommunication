@@ -46,19 +46,19 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			if (string.IsNullOrEmpty(textBox_id.Text))
 			{
-				MessageBox.Show( "Unique ID can't be null" );
+				DemoUtils.ShowMessage( "Unique ID can't be null" );
 				return;
 			}
 
 			if (!Regex.IsMatch( textBox_id.Text, "^[0-9]{1,11}$" ))
 			{
-				MessageBox.Show( "Unique IDs can only be between 1 and 11 characters" );
+				DemoUtils.ShowMessage( "Unique IDs can only be between 1 and 11 characters" );
 				return;
 			}
 
 			if (!Regex.IsMatch( textBox_password.Text, "^[\\S]{6}$" ))
 			{
-				MessageBox.Show( "The password needs 6 characters" );
+				DemoUtils.ShowMessage( "The password needs 6 characters" );
 				return;
 			}
 
@@ -80,7 +80,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				catch( Exception ex )
 				{
-					MessageBox.Show( "Ip Address input wrong: " + ex.Message );
+					DemoUtils.ShowMessage( "Ip Address input wrong: " + ex.Message );
 					return;
 				}
 			}
@@ -94,7 +94,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					MessageBox.Show( "Port input wrong " );
+					DemoUtils.ShowMessage( "Port input wrong " );
 					return;
 				}
 			}

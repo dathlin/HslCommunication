@@ -69,13 +69,13 @@ namespace HslCommunicationDemo
 		{
 			if (!byte.TryParse( textBox_cpu_from.Text, out byte cpuFrom ))
 			{
-				MessageBox.Show( "PLC cpuFrom input wrong！" );
+				DemoUtils.ShowMessage( "PLC cpuFrom input wrong！" );
 				return;
 			}
 
 			if (!byte.TryParse ( textBox_cpu_to.Text, out byte cpuTo ))
 			{
-				MessageBox.Show( "PLC cpuTo input wrong！" );
+				DemoUtils.ShowMessage( "PLC cpuTo input wrong！" );
 				return;
 			}
 
@@ -93,7 +93,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = DeviceConnectPLC( memobus );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 
 					button2.Enabled = true;
 					button1.Enabled = false;
@@ -113,12 +113,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

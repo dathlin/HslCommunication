@@ -73,13 +73,13 @@ namespace HslCommunicationDemo
 		{
 			if(!byte.TryParse(textBox_slot.Text, out byte slot ))
 			{
-				MessageBox.Show( DemoUtils.SlotInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.SlotInputWrong );
 				return;
 			}
 
 			if (!byte.TryParse( textBox_baseNo.Text, out byte baseNo ))
 			{
-				MessageBox.Show( "BaseNo input wrong" );
+				DemoUtils.ShowMessage( "BaseNo input wrong" );
 				return;
 			}
 
@@ -95,7 +95,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = DeviceConnectPLC( fastEnet );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
@@ -113,12 +113,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message);
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message);
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

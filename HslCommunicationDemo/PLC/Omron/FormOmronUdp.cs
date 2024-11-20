@@ -82,19 +82,19 @@ namespace HslCommunicationDemo
 		{
 			if (!byte.TryParse( textBox_sa1.Text, out byte SA1 ))
 			{
-				MessageBox.Show( "SA1 Input Wrong！" );
+				DemoUtils.ShowMessage( "SA1 Input Wrong！" );
 				return;
 			}
 
 			if (!byte.TryParse( textBox_gct.Text, out byte gct ))
 			{
-				MessageBox.Show( "GCT Input Wrong！" );
+				DemoUtils.ShowMessage( "GCT Input Wrong！" );
 				return;
 			}
 
 			if (!byte.TryParse( textBox_sid.Text, out byte sid ))
 			{
-				MessageBox.Show( "SID Input Wrong！" );
+				DemoUtils.ShowMessage( "SID Input Wrong！" );
 				return;
 			}
 
@@ -114,7 +114,7 @@ namespace HslCommunicationDemo
 			{
 				if (!byte.TryParse( textBox_da1.Text, out byte da1 ))
 				{
-					MessageBox.Show( "DA1 Input Wrong！" );
+					DemoUtils.ShowMessage( "DA1 Input Wrong！" );
 					return;
 				}
 				omronFinsUdp.DA1 = da1;
@@ -129,7 +129,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 
 			OperateResult open = DeviceConnectPLC( omronFinsUdp );
@@ -155,7 +155,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
 					"Error: " + open.ErrorCode );
 			}
 		}

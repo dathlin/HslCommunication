@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using HslCommunication.Enthernet.Redis;
 using HslCommunication;
 using HslCommunication.BasicFramework;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -41,11 +42,11 @@ namespace HslRedisDesktop
 
 		private void RefreshKey( )
 		{
-			if (redisClient == null) { MessageBox.Show( "当前的连接为空，无法读取！" ); return; }
+			if (redisClient == null) { DemoUtils.ShowMessage( "当前的连接为空，无法读取！" ); return; }
 			OperateResult<string[]> read = redisClient.Redis.ReadHashKeyAll( stringKeyName );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "读取失败：" + read.Message );
+				DemoUtils.ShowMessage( "读取失败：" + read.Message );
 			}
 			else
 			{
@@ -117,7 +118,7 @@ namespace HslRedisDesktop
 			}
 			else
 			{
-				MessageBox.Show( "请先选择对应的域数据，然后再点击编辑" );
+				DemoUtils.ShowMessage( "请先选择对应的域数据，然后再点击编辑" );
 			}
 		}
 
@@ -135,22 +136,22 @@ namespace HslRedisDesktop
 			// 删除域
 			if (dataGridView1.SelectedRows.Count > 0)
 			{
-				if(MessageBox.Show($"确认是否真的删除Key:{stringKeyName} Field:{selectField} 的数据信息？", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+				if(DemoUtils.ShowMessage($"确认是否真的删除Key:{stringKeyName} Field:{selectField} 的数据信息？", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
 				{
 					OperateResult delete = redisClient.Redis.DeleteHashKey( stringKeyName, selectField );
 					if(delete.IsSuccess)
 					{
-						MessageBox.Show( "删除 Field 成功！" );
+						DemoUtils.ShowMessage( "删除 Field 成功！" );
 					}
 					else
 					{
-						MessageBox.Show( "删除 Field 失败！" + delete.Message );
+						DemoUtils.ShowMessage( "删除 Field 失败！" + delete.Message );
 					}
 				}
 			}
 			else
 			{
-				MessageBox.Show( "请先选择对应的域数据，然后再点击编辑" );
+				DemoUtils.ShowMessage( "请先选择对应的域数据，然后再点击编辑" );
 			}
 		}
 
@@ -169,7 +170,7 @@ namespace HslRedisDesktop
 				}
 				else
 				{
-					MessageBox.Show( "数据读取失败！" + read.Message );
+					DemoUtils.ShowMessage( "数据读取失败！" + read.Message );
 				}
 			}
 		}
@@ -177,7 +178,7 @@ namespace HslRedisDesktop
 		private void button5_Click( object sender, EventArgs e )
 		{
 			// 定时刷新域
-			MessageBox.Show( "当前版本暂时不支持！" );
+			DemoUtils.ShowMessage( "当前版本暂时不支持！" );
 		}
 	}
 }

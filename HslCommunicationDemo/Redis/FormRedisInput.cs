@@ -31,18 +31,18 @@ namespace HslCommunicationDemo.Redis
         {
             if (string.IsNullOrEmpty( textBox1.Text ))
             {
-                MessageBox.Show( "Key Can not be null" );
+                DemoUtils.ShowMessage( "Key Can not be null" );
             }
             else
             {
                 OperateResult write = redis.WriteKey( textBox1.Text, textBox2.Text );
                 if (write.IsSuccess)
                 {
-                    MessageBox.Show( "Write sucess" );
+                    DemoUtils.ShowMessage( "Write sucess" );
                 }
                 else
                 {
-                    MessageBox.Show( "Failed:" + write.Message );
+                    DemoUtils.ShowMessage( "Failed:" + write.Message );
                 }
             }
         }
@@ -51,18 +51,18 @@ namespace HslCommunicationDemo.Redis
         {
             if (string.IsNullOrEmpty( textBox4.Text ) || string.IsNullOrEmpty( textBox5.Text ))
             {
-                MessageBox.Show( "Key Can not be null" );
+                DemoUtils.ShowMessage( "Key Can not be null" );
             }
             else
             {
                 OperateResult write = redis.WriteHashKey( textBox4.Text, textBox5.Text, textBox3.Text );
                 if (write.IsSuccess)
                 {
-                    MessageBox.Show( "Write sucess" );
+                    DemoUtils.ShowMessage( "Write sucess" );
                 }
                 else
                 {
-                    MessageBox.Show( "Failed:" + write.Message );
+                    DemoUtils.ShowMessage( "Failed:" + write.Message );
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace HslCommunicationDemo.Redis
         {
             if (string.IsNullOrEmpty( textBox6.Text ) || string.IsNullOrEmpty( textBox7.Text ))
             {
-                MessageBox.Show( "Key Can not be null" );
+                DemoUtils.ShowMessage( "Key Can not be null" );
             }
             else
             {
@@ -87,11 +87,11 @@ namespace HslCommunicationDemo.Redis
                 
                 if (write.IsSuccess)
                 {
-                    MessageBox.Show( "Write sucess" );
+                    DemoUtils.ShowMessage( "Write sucess" );
                 }
                 else
                 {
-                    MessageBox.Show( "Failed:" + write.Message );
+                    DemoUtils.ShowMessage( "Failed:" + write.Message );
                 }
             }
         }

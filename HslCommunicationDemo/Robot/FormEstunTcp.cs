@@ -50,7 +50,7 @@ namespace HslCommunicationDemo.Robot
 				OperateResult connect = await estun.ConnectServerAsync( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button1.Enabled = false;
 					button2.Enabled = true;
 					panel2.Enabled = true;
@@ -59,7 +59,7 @@ namespace HslCommunicationDemo.Robot
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)
@@ -115,7 +115,7 @@ namespace HslCommunicationDemo.Robot
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<EstunData> read = estun.ReadRobotData( );";
@@ -127,11 +127,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult start = estun.RobotStartPrograme( );
 			if (start.IsSuccess)
 			{
-				MessageBox.Show( "启动成功！" );
+				DemoUtils.ShowMessage( "启动成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "启动失败！" + start.Message );
+				DemoUtils.ShowMessage( "启动失败！" + start.Message );
 			}
 
 			textBox_code.Text = $"OperateResult start = estun.RobotStartPrograme( );";
@@ -143,11 +143,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult stop = estun.RobotStopPrograme( );
 			if (stop.IsSuccess)
 			{
-				MessageBox.Show( "停止成功！" );
+				DemoUtils.ShowMessage( "停止成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "停止失败！" + stop.Message );
+				DemoUtils.ShowMessage( "停止失败！" + stop.Message );
 			}
 
 			textBox_code.Text = $"OperateResult stop = estun.RobotStopPrograme( );";
@@ -159,11 +159,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult reset = estun.RobotResetError( );
 			if (reset.IsSuccess)
 			{
-				MessageBox.Show( "复位成功！" );
+				DemoUtils.ShowMessage( "复位成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "复位失败！" + reset.Message );
+				DemoUtils.ShowMessage( "复位失败！" + reset.Message );
 			}
 
 			textBox_code.Text = $"OperateResult reset = estun.RobotResetError( );";
@@ -175,11 +175,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult reset = estun.RobotCommandStatusRestart( );
 			if (reset.IsSuccess)
 			{
-				MessageBox.Show( "重置成功！" );
+				DemoUtils.ShowMessage( "重置成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "重置失败！" + reset.Message );
+				DemoUtils.ShowMessage( "重置失败！" + reset.Message );
 			}
 
 			textBox_code.Text = $"OperateResult reset = estun.RobotCommandStatusRestart( );";
@@ -191,11 +191,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult unload = estun.RobotUnregisterProject( );
 			if (unload.IsSuccess)
 			{
-				MessageBox.Show( "卸载成功！" );
+				DemoUtils.ShowMessage( "卸载成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "卸载失败！" + unload.Message );
+				DemoUtils.ShowMessage( "卸载失败！" + unload.Message );
 			}
 
 			textBox_code.Text = $"OperateResult unload = estun.RobotUnregisterProject( );";
@@ -207,11 +207,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult load = estun.RobotLoadProject( textBox3.Text );
 			if (load.IsSuccess)
 			{
-				MessageBox.Show( "加载成功！" );
+				DemoUtils.ShowMessage( "加载成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "加载失败！" + load.Message );
+				DemoUtils.ShowMessage( "加载失败！" + load.Message );
 			}
 
 			textBox_code.Text = $"OperateResult load = estun.RobotLoadProject( \"{textBox3.Text}\" );";
@@ -223,11 +223,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult set = estun.RobotSetGlobalSpeedValue( short.Parse( textBox4.Text ) );
 			if (set.IsSuccess)
 			{
-				MessageBox.Show( "加载成功！" );
+				DemoUtils.ShowMessage( "加载成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "加载失败！" + set.Message );
+				DemoUtils.ShowMessage( "加载失败！" + set.Message );
 			}
 
 			textBox_code.Text = $"OperateResult set = estun.RobotSetGlobalSpeedValue( short.Parse( \"{textBox4.Text}\" ) );";
@@ -239,11 +239,11 @@ namespace HslCommunicationDemo.Robot
 			OperateResult write = estun.Write( "36", (short)0x801 );
 			if (write.IsSuccess)
 			{
-				MessageBox.Show( "下载成功！" );
+				DemoUtils.ShowMessage( "下载成功！" );
 			}
 			else
 			{
-				MessageBox.Show( "下载失败！" );
+				DemoUtils.ShowMessage( "下载失败！" );
 			}
 
 			textBox_code.Text = $"OperateResult write = estun.Write( \"36\", (short)0x801 );";

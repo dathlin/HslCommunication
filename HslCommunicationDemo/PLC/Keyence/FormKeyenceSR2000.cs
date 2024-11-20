@@ -66,7 +66,7 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse(textBox2.Text,out int port))
 			{
-				MessageBox.Show( "端口输入格式不正确！" );
+				DemoUtils.ShowMessage( "端口输入格式不正确！" );
 				return;
 			}
 			
@@ -78,19 +78,19 @@ namespace HslCommunicationDemo
 				OperateResult connect = await keyence.ConnectServerAsync( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( "连接成功！" );
+					DemoUtils.ShowMessage( "连接成功！" );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
 				}
 				else
 				{
-					MessageBox.Show( "连接失败！" );
+					DemoUtils.ShowMessage( "连接失败！" );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

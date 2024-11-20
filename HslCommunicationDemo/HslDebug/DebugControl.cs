@@ -60,13 +60,16 @@ namespace HslCommunicationDemo.HslDebug
 			strings.AddRange( DemoUtils.GetEncodings( ) );
 
 
-			comboBox_encoding.DataSource = strings.ToArray( );
-			comboBox_encoding.SelectedIndex = 0;
+			comboBox_send_encoding.DataSource = strings.ToArray( );
+			comboBox_send_encoding.SelectedIndex = 0;
+
+			comboBox_recv_encoding.DataSource = strings.ToArray( );
+			comboBox_recv_encoding.SelectedIndex = 0;
 			// 中英文设置
 			if (Program.Language == 1)
 			{
 				label6.Text = "发送:";
-				label7.Text = "数据收发显示：";
+				label7.Text = "显示区域:";
 				checkBox_show_send.Text = "是否显示发送数据";
 				button_send.Text = "发送数据";
 				label8.Text = "已选择字节数：";
@@ -75,7 +78,7 @@ namespace HslCommunicationDemo.HslDebug
 			{
 				linkLabel_build_message.Text = "Build Msg";
 				label6.Text = "Send:";
-				label7.Text = "Data Send/Receive display:";
+				label7.Text = "Display:";
 				checkBox_show_send.Text = "Display send data";
 				button_send.Text = "Send Data";
 				label8.Text = "Bytes selected:";
@@ -111,7 +114,7 @@ namespace HslCommunicationDemo.HslDebug
 			{
 				if (!int.TryParse(textBox_send_intenal.Text, out int time ))
 				{
-					MessageBox.Show( "The interval input is abnormal and requires the input of numeric text" );
+					DemoUtils.ShowMessage( "The interval input is abnormal and requires the input of numeric text" );
 					return;
 				}
 
@@ -159,7 +162,7 @@ namespace HslCommunicationDemo.HslDebug
 				string select = richTextBox_main.SelectedText;
 				if (!string.IsNullOrEmpty( select ))
 				{
-					if (comboBox_encoding.SelectedIndex == 0)
+					if (comboBox_send_encoding.SelectedIndex == 0)
 					{
 						// 二进制
 						byte[] bytes = SoftBasic.HexStringToBytes( select );
@@ -192,9 +195,9 @@ namespace HslCommunicationDemo.HslDebug
 					if (form.MessageCreate != null)
 					{
 						if (form.MessageCreate.HexBinary)
-							comboBox_encoding.SelectedIndex = 0;
+							comboBox_send_encoding.SelectedIndex = 0;
 						else
-							comboBox_encoding.SelectedIndex = 1;
+							comboBox_send_encoding.SelectedIndex = 1;
 
 						textBox5.Text = form.MessageCreate.Result;
 					}
@@ -257,7 +260,9 @@ namespace HslCommunicationDemo.HslDebug
 
 			if (checkBox_show_header.Checked)
 			{
-				string header = GetTextHeader( session, code, data == null ? -1 : data.Length, head );
+				string header = GetTextHeader( session, code, data == null ? -1 : data.Length, head,
+					code == 0 ? comboBox_recv_encoding.SelectedItem.ToString( ) :
+					code == 1 ? comboBox_send_encoding.SelectedItem.ToString( ) : null );
 				RenderMessage( -1, header );
 			}
 
@@ -266,17 +271,26 @@ namespace HslCommunicationDemo.HslDebug
 				if (code == 1)
 				{
 					Interlocked.Add( ref sendCount, data.Length );
-					label_send_count.Text = "Send Count: " + sendCount;
+					label_send_count.Text = $"Send Count: " + sendCount;
 				}
 				else if (code == 0)
 				{
 					Interlocked.Add( ref recvCount, data.Length );
-					label_recv_count.Text = "Recv Count: " + recvCount;
+					label_recv_count.Text = $"Recv Count: " + recvCount;
 				}
 				string content = null;
-				if (comboBox_encoding.SelectedIndex == 0) content = SoftBasic.ByteToHexString( data, ' ' );
-				else if (comboBox_encoding.SelectedIndex == 1) content = SoftBasic.GetAsciiStringRender( data );
-				else content = DemoUtils.GetEncodingFromIndex( comboBox_encoding.SelectedIndex - 1 ).GetString( data );
+				if (code == 1)
+				{
+					if (comboBox_send_encoding.SelectedIndex == 0) content = SoftBasic.ByteToHexString( data, ' ' );
+					else if (comboBox_send_encoding.SelectedIndex == 1) content = SoftBasic.GetAsciiStringRender( data );
+					else content = DemoUtils.GetEncodingFromIndex( comboBox_send_encoding.SelectedIndex - 1 ).GetString( data );
+				}
+				else if (code == 0)
+				{
+					if (comboBox_recv_encoding.SelectedIndex == 0) content = SoftBasic.ByteToHexString( data, ' ' );
+					else if (comboBox_recv_encoding.SelectedIndex == 1) content = SoftBasic.GetAsciiStringRender( data );
+					else content = DemoUtils.GetEncodingFromIndex( comboBox_recv_encoding.SelectedIndex - 1 ).GetString( data );
+				}
 				RenderMessage( code, content );
 			}
 
@@ -304,8 +318,10 @@ namespace HslCommunicationDemo.HslDebug
 		/// <param name="session">目标的节点信息</param>
 		/// <param name="code">操作代码</param>
 		/// <param name="length">消息的长度信息</param>
+		/// <param name="head">会话为空的时候文本</param>
+		/// <param name="dataFormat">数据的格式信息</param>
 		/// <returns>打包后的字符串</returns>
-		private static string GetTextHeader( SocketDebugSession session, int code, int length, string head = null )
+		private static string GetTextHeader( SocketDebugSession session, int code, int length, string head = null, string dataFormat = null )
 		{
 			string op = string.Empty;
 			if (Program.Language == 1)
@@ -359,6 +375,8 @@ namespace HslCommunicationDemo.HslDebug
 					sb.Append( $"[{head}]" );
 			}
 
+			if (!string.IsNullOrEmpty( dataFormat )) sb.Append( $"  [{dataFormat}]" );
+
 			if (length >= 0) sb.Append( $"  Bytes Length: {length}" );
 			return sb.ToString( );
 		}
@@ -400,7 +418,7 @@ namespace HslCommunicationDemo.HslDebug
 			if (session == null) return;
 			if( this.sessions.RemoveAll( m => m.SessionID == session.SessionID ) == 0)
 			{
-				// MessageBox.Show( $"移除会话[{session}]失败" );
+				// DemoUtils.ShowMessage( $"移除会话[{session}]失败" );
 			}
 
 			this.comboBox_sessions.DataSource = this.sessions.ToArray( );
@@ -472,9 +490,9 @@ namespace HslCommunicationDemo.HslDebug
 		{
 			// 发送数据
 			byte[] send = null;
-			if (comboBox_encoding.SelectedIndex == 0) send = SoftBasic.HexStringToBytes( text );
-			else if (comboBox_encoding.SelectedIndex == 1) send = SoftBasic.GetFromAsciiStringRender( text );
-			else send = DemoUtils.GetEncodingFromIndex( comboBox_encoding.SelectedIndex - 1 ).GetBytes( text );
+			if (comboBox_send_encoding.SelectedIndex == 0) send = SoftBasic.HexStringToBytes( text );
+			else if (comboBox_send_encoding.SelectedIndex == 1) send = SoftBasic.GetFromAsciiStringRender( text );
+			else send = DemoUtils.GetEncodingFromIndex( comboBox_send_encoding.SelectedIndex - 1 ).GetBytes( text );
 
 			if      (radioButton_append_0d.Checked)    send = SoftBasic.SpliceArray( send, new byte[] { AsciiControl.CR } );
 			else if (radioButton_append_0a.Checked)    send = SoftBasic.SpliceArray( send, new byte[] { AsciiControl.LF } );
@@ -498,7 +516,7 @@ namespace HslCommunicationDemo.HslDebug
 				if (comboBox_sessions.SelectedItem == null)
 				{
 					if (checkBox_send_cycle.Checked) checkBox_send_cycle.Checked = false;
-					MessageBox.Show( Program.Language == 1 ? "当前没有可用的连接通道，请先连接上。" : "There are currently no connection channels available, please connect them first." );
+					DemoUtils.ShowMessage( Program.Language == 1 ? "当前没有可用的连接通道，请先连接上。" : "There are currently no connection channels available, please connect them first." );
 					return;
 				}
 				if (comboBox_sessions.SelectedItem is SocketDebugSession session)
@@ -511,7 +529,7 @@ namespace HslCommunicationDemo.HslDebug
 				if (sessions == null || sessions.Count == 0)
 				{
 					if (checkBox_send_cycle.Checked) checkBox_send_cycle.Checked = false;
-					MessageBox.Show( Program.Language == 1 ? "当前没有可用的连接通道，请先连接上。" : "There are currently no connection channels available, please connect them first." );
+					DemoUtils.ShowMessage( Program.Language == 1 ? "当前没有可用的连接通道，请先连接上。" : "There are currently no connection channels available, please connect them first." );
 					return;
 				}
 

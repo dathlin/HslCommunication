@@ -26,13 +26,13 @@ namespace HslCommunicationDemo
 			// 连接
 			if (!int.TryParse( textBox_port.Text, out int port ))
 			{
-				MessageBox.Show( "端口输入格式不正确！" );
+				DemoUtils.ShowMessage( "端口输入格式不正确！" );
 				return;
 			}
 
 			if (!int.TryParse( textBox_revison_connect.Text, out int revison ))
 			{
-				MessageBox.Show( "revison input format wrong！" );
+				DemoUtils.ShowMessage( "revison input format wrong！" );
 				return;
 			}
 
@@ -47,7 +47,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = openProtocol.ConnectServer( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
@@ -56,12 +56,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 
 		}
@@ -427,7 +427,7 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( "Read Failed :" + read.Message );
+					DemoUtils.ShowMessage( "Read Failed :" + read.Message );
 				}
 			}
 			catch(Exception ex)

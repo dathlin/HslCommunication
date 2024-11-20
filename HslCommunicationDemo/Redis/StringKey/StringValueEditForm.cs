@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Enthernet.Redis;
 using HslCommunication;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -43,11 +44,11 @@ namespace HslRedisDesktop
             OperateResult write = this.redisSettings.Redis.WriteKey( this.key, textBox3.Text );
             if(write.IsSuccess)
             {
-                MessageBox.Show( "数据写入成功！请注意，如果本来键值有TTL信息，写入之后TTL将会被清除！" );
+                DemoUtils.ShowMessage( "数据写入成功！请注意，如果本来键值有TTL信息，写入之后TTL将会被清除！" );
             }
             else
             {
-                MessageBox.Show( "数据写入失败！" + write.Message );
+                DemoUtils.ShowMessage( "数据写入失败！" + write.Message );
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using HslCommunication;
 using HslCommunication.Core;
+using HslCommunicationDemo.DemoControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -272,10 +273,22 @@ namespace HslCommunicationDemo
 		}
 
 
-		public static void ShowMessage( string message )
+		public static DialogResult ShowMessage( string message )
 		{
-			MessageBox.Show( message );
+			return FormMessageShow.ShowMessage( message );
 		}
+
+		public static DialogResult ShowMessage( string message, string title, MessageBoxButtons button )
+		{
+			return MessageBox.Show( message, title, button );
+		}
+
+		public static DialogResult ShowMessage( string message, string title, MessageBoxButtons button, MessageBoxIcon icon )
+		{
+			return MessageBox.Show( message, title, button, icon );
+		}
+
+
 
 		public static Encoding GetEncodingFromIndex( int index )
 		{
@@ -308,4 +321,5 @@ namespace HslCommunicationDemo
 		}
 
 	}
+
 }

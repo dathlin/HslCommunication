@@ -92,7 +92,7 @@ namespace HslCommunicationDemo
 			}
 			catch( Exception ex )
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 				return;
 			}
 
@@ -101,7 +101,7 @@ namespace HslCommunicationDemo
 			OperateResult connect = freedom.ConnectServer( );
 			if (connect.IsSuccess)
 			{
-				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+				DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 				button2.Enabled = true;
 				button1.Enabled = false;
 				userControlReadWriteDevice1.SetEnable( true );
@@ -119,7 +119,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( connect.Message );
+				DemoUtils.ShowMessage( connect.Message );
 				button1.Enabled = true;
 			}
 

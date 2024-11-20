@@ -70,13 +70,13 @@ namespace HslCommunicationDemo
 		{
 			if (!byte.TryParse( textBox_cpu_from.Text, out byte cpuFrom ))
 			{
-				MessageBox.Show( "PLC cpuFrom input wrong！" );
+				DemoUtils.ShowMessage( "PLC cpuFrom input wrong！" );
 				return;
 			}
 
 			if (!byte.TryParse ( textBox_cpu_to.Text, out byte cpuTo ))
 			{
-				MessageBox.Show( "PLC cpuTo input wrong！" );
+				DemoUtils.ShowMessage( "PLC cpuTo input wrong！" );
 				return;
 			}
 
@@ -108,17 +108,17 @@ namespace HslCommunicationDemo
 					// 设置代码示例
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( memobus, nameof( memobus.CpuFrom ), nameof( memobus.CpuTo ), "ByteTransform.DataFormat" );
-					MessageBox.Show( StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 						"Error: " + connect.ErrorCode );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

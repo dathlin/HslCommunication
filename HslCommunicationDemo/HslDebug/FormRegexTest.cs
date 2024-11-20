@@ -29,7 +29,7 @@ namespace HslCommunicationDemo.HslDebug
 			// 正则匹配
 			if (string.IsNullOrEmpty( textBox_input.Text ))
 			{
-				MessageBox.Show( "Please input string" );
+				DemoUtils.ShowMessage( "Please input string" );
 				return;
 			}
 

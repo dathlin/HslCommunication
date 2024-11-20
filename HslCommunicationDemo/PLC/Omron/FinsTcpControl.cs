@@ -166,9 +166,9 @@ namespace HslCommunicationDemo.PLC.Omron
 			// run
 			OperateResult run = omron.Run( );
 			if (run.IsSuccess)
-				MessageBox.Show( "Run success" );
+				DemoUtils.ShowMessage( "Run success" );
 			else
-				MessageBox.Show( "Run failed:" + run.Message );
+				DemoUtils.ShowMessage( "Run failed:" + run.Message );
 
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.Run( );";
 		}
@@ -178,9 +178,9 @@ namespace HslCommunicationDemo.PLC.Omron
 			// stop
 			OperateResult stop = omron.Stop( );
 			if (stop.IsSuccess)
-				MessageBox.Show( "Run success" );
+				DemoUtils.ShowMessage( "Run success" );
 			else
-				MessageBox.Show( "Run failed:" + stop.Message );
+				DemoUtils.ShowMessage( "Run failed:" + stop.Message );
 
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.Stop( );";
 		}
@@ -192,7 +192,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			if (read.IsSuccess)
 				textBox4.Text = read.Content.ToJsonString( );
 			else
-				MessageBox.Show( "read failed:" + read.Message );
+				DemoUtils.ShowMessage( "read failed:" + read.Message );
 
 			textBox_code.Text = $"OperateResult<OmronCpuUnitData> read = {DemoUtils.PlcDeviceName}.ReadCpuUnitData( );";
 		}
@@ -204,7 +204,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			if (read.IsSuccess)
 				textBox4.Text = read.Content.ToJsonString( );
 			else
-				MessageBox.Show( "read failed:" + read.Message );
+				DemoUtils.ShowMessage( "read failed:" + read.Message );
 
 			textBox_code.Text = $"OperateResult<OmronCpuUnitStatus> read = {DemoUtils.PlcDeviceName}.ReadCpuUnitStatus( );";
 		}
@@ -216,7 +216,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			if (read.IsSuccess)
 				textBox4.Text = read.Content.ToString( );
 			else
-				MessageBox.Show( "read failed:" + read.Message );
+				DemoUtils.ShowMessage( "read failed:" + read.Message );
 
 			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadCpuTime( );";
 		}

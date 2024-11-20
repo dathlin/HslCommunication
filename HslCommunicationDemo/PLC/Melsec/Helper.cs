@@ -27,7 +27,7 @@ namespace HslCommunicationDemo.PLC.Melsec
 				}
 				else
 				{
-					MessageBox.Show( "PLC Number input Wrong!" );
+					DemoUtils.ShowMessage( "PLC Number input Wrong!" );
 					return false;
 				}
 			}

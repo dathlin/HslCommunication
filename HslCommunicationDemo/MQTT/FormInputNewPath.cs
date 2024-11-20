@@ -33,7 +33,7 @@ namespace HslCommunicationDemo.MQTT
 		{
 			if (string.IsNullOrEmpty( textBox_path_new.Text ))
 			{
-				MessageBox.Show( "path can not be empty" );
+				DemoUtils.ShowMessage( "path can not be empty" );
 				return;
 			}
 			PathInput = textBox_path_new.Text;

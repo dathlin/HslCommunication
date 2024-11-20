@@ -21,6 +21,7 @@ namespace HslCommunicationDemo.DemoControl
 			InitializeComponent( );
 
 			dataGridView1.RowsAdded += DataGridView1_RowsAdded;
+			button_abort.Enabled = false;
 		}
 
 		private void DataGridView1_RowsAdded( object sender, DataGridViewRowsAddedEventArgs e )
@@ -43,9 +44,11 @@ namespace HslCommunicationDemo.DemoControl
 				label3.Text = "Stop Time: ";
 				label4.Text = "Save to file auto: ";
 				button_select.Text = "select";
-				button_start.Text = "Start";
+				button_export_start.Text = "Start";
 				label5.Text = "Read logs: ";
+				button_abort.Text = "Abort";
 			}
+
 		}
 
 		private void button_select_Click( object sender, EventArgs e )
@@ -55,7 +58,7 @@ namespace HslCommunicationDemo.DemoControl
 				sfd.Filter = "数据文件(*.hsldata)|*.hsldata";
 				if (sfd.ShowDialog() == DialogResult.OK)
 				{
-					textBox_path.Text = sfd.FileName;
+					textBox_export_path.Text = sfd.FileName;
 				}
 			}
 		}
@@ -72,6 +75,7 @@ namespace HslCommunicationDemo.DemoControl
 		private int threadVersion = 0;
 		private FileStream fs;
 		private int timeInterval = 1000;
+		private bool threadAbort = false;
 
 		private void AppendLog( string text )
 		{
@@ -94,9 +98,9 @@ namespace HslCommunicationDemo.DemoControl
 		private void button_start_Click( object sender, EventArgs e )
 		{
 			// 检测存储条件
-			if (string.IsNullOrEmpty( textBox_path.Text ))
+			if (string.IsNullOrEmpty( textBox_export_path.Text ))
 			{
-				MessageBox.Show( "Save path can not be null" );
+				DemoUtils.ShowMessage( "Save path can not be null" );
 				return;
 			}
 
@@ -107,7 +111,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Time Interval get failed: " + ex.Message );
+				DemoUtils.ShowMessage( "Time Interval get failed: " + ex.Message );
 				return;
 			}
 
@@ -136,7 +140,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch (Exception ex)
 				{
 					row.DefaultCellStyle.BackColor = Color.Tomato;
-					MessageBox.Show( $"Wrong in row[{i}]: " + ex.Message );
+					DemoUtils.ShowMessage( $"Wrong in row[{i}]: " + ex.Message );
 					return;
 				}
 			}
@@ -148,7 +152,7 @@ namespace HslCommunicationDemo.DemoControl
 
 			try
 			{
-				fs = new FileStream( textBox_path.Text, FileMode.Create );
+				fs = new FileStream( textBox_export_path.Text, FileMode.Create );
 				// 先写入一些文件头信息，100个字节长度
 				byte[] head = new byte[100];
 				head[8] = 0x01;                                                         // 版本1
@@ -160,16 +164,18 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			catch(Exception ex)
 			{
-				AppendLog( $"File[{textBox_path.Text}] stream create failed: " + ex.Message );
+				AppendLog( $"File[{textBox_export_path.Text}] stream create failed: " + ex.Message );
 				return;
 			}
 
 			// 开始后台读取数据信息
+			threadAbort = false;
 			thread = new Thread( ReadFromPlcAndSave );
 			thread.IsBackground = true;
 			threadVersion++;
 			thread.Start( threadVersion );
-			button_start.Enabled = false;
+			button_export_start.Enabled = false;
+			button_abort.Enabled = true;
 		}
 
 
@@ -195,8 +201,11 @@ namespace HslCommunicationDemo.DemoControl
 						lastTime = DateTime.Now;
 						break;
 					}
+
+					if (threadAbort) break;
 				}
 
+				if (threadAbort) break;
 				// 写入地址个数信息
 				fs.Write( BitConverter.GetBytes( readAddresses.Count ), 0, 4 );
 				DateTime readStart = DateTime.Now;
@@ -266,6 +275,7 @@ namespace HslCommunicationDemo.DemoControl
 					break;
 				}
 
+				if (threadAbort) break;
 			}
 			fs.Position = 18;
 			fs.Write( BitConverter.GetBytes( DateTime.Now.Ticks ), 0, 8 );
@@ -277,13 +287,21 @@ namespace HslCommunicationDemo.DemoControl
 			AppendLog( "Thread finish!" );
 			Invoke( new Action( ( ) =>
 			{
-				button_start.Enabled = true;
+				button_export_start.Enabled = true;
 			} ) );
 		}
 
 		private void DataExportControl_SizeChanged( object sender, EventArgs e )
 		{
-			button_start.Location = new Point( (this.Width - 320 - button_start.Width) / 2 + 320, button_start.Location.Y );
+			if (this.Width > 700)
+				textBox_export_path.Size = new Size( this.Width - 597, textBox_export_path.Size.Height );
+		}
+
+		private void button_abort_Click( object sender, EventArgs e )
+		{
+			threadAbort = true;
+			button_abort.Enabled = false;
+			button_export_start.Enabled = true;
 		}
 	}
 

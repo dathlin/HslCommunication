@@ -80,7 +80,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Read Failed{Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
+				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Read Failed{Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
 			}
 		}
 
@@ -93,11 +93,11 @@ namespace HslCommunicationDemo
 		{
 			if (result.IsSuccess)
 			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
+				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Success" );
 			}
 			else
 			{
-				MessageBox.Show( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Failed{Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
+				DemoUtils.ShowMessage( DateTime.Now.ToString( "[HH:mm:ss] " ) + $"[{address}] Write Failed{Environment.NewLine} Reason：{result.ToMessageShowString( )}" );
 			}
 		}
 
@@ -110,7 +110,7 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse(textBox2.Text,out int port))
 			{
-				MessageBox.Show( "端口输入格式不正确！" );
+				DemoUtils.ShowMessage( "端口输入格式不正确！" );
 				return;
 			}
 			
@@ -122,7 +122,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = await YRC1000Tcp.ConnectServerAsync( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( "连接成功！" );
+					DemoUtils.ShowMessage( "连接成功！" );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
@@ -131,12 +131,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( "连接失败！" );
+					DemoUtils.ShowMessage( "连接失败！" );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -176,7 +176,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -211,7 +211,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadALARM( );";
@@ -227,7 +227,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadPOSJ( );";
@@ -243,7 +243,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<YRCRobotData> read = YRC1000Tcp.ReadPOSC( {comboBox1.SelectedIndex}, true );";
@@ -273,7 +273,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<bool[]> read = YRC1000Tcp.ReadStats( );";
@@ -289,7 +289,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadJSeq( );";
@@ -305,7 +305,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadByteVariable( \"{textBox5.Text}\" );";
@@ -321,7 +321,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadIntegerVariable( \"{textBox5.Text}\" );";
@@ -337,7 +337,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadDoubleIntegerVariable( \"{textBox5.Text}\" );";
@@ -353,7 +353,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadRealVariable( \"{textBox5.Text}\" );";
@@ -369,7 +369,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = YRC1000Tcp.ReadStringVariable( \"{textBox5.Text}\" );";
@@ -381,11 +381,11 @@ namespace HslCommunicationDemo
 			OperateResult op = YRC1000Tcp.Hold( true );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "HOLD ON Success" );
+				DemoUtils.ShowMessage( "HOLD ON Success" );
 			}
 			else
 			{
-				MessageBox.Show( "HOLD ON Failed: " + op.Message );
+				DemoUtils.ShowMessage( "HOLD ON Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Hold( true );";
@@ -397,11 +397,11 @@ namespace HslCommunicationDemo
 			OperateResult op = YRC1000Tcp.Hold( false );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "HOLD OFF Success" );
+				DemoUtils.ShowMessage( "HOLD OFF Success" );
 			}
 			else
 			{
-				MessageBox.Show( "HOLD OFF Failed: " + op.Message );
+				DemoUtils.ShowMessage( "HOLD OFF Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Hold( false );";
@@ -413,11 +413,11 @@ namespace HslCommunicationDemo
 			OperateResult op = YRC1000Tcp.Reset( );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "RESET Success" );
+				DemoUtils.ShowMessage( "RESET Success" );
 			}
 			else
 			{
-				MessageBox.Show( "RESET Failed: " + op.Message );
+				DemoUtils.ShowMessage( "RESET Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Reset( );";
@@ -429,11 +429,11 @@ namespace HslCommunicationDemo
 			OperateResult op = YRC1000Tcp.Cancel( );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "Cancel Success" );
+				DemoUtils.ShowMessage( "Cancel Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Cancel Failed: " + op.Message );
+				DemoUtils.ShowMessage( "Cancel Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Cancel( );";
@@ -445,11 +445,11 @@ namespace HslCommunicationDemo
 			OperateResult op = YRC1000Tcp.Svon( true );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "SVON ON Success" );
+				DemoUtils.ShowMessage( "SVON ON Success" );
 			}
 			else
 			{
-				MessageBox.Show( "SVON ON Failed: " + op.Message );
+				DemoUtils.ShowMessage( "SVON ON Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Svon( true );";
@@ -461,11 +461,11 @@ namespace HslCommunicationDemo
 			OperateResult op = YRC1000Tcp.Svon( false );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "SVON OFF Success" );
+				DemoUtils.ShowMessage( "SVON OFF Success" );
 			}
 			else
 			{
-				MessageBox.Show( "SVON OFF Failed: " + op.Message );
+				DemoUtils.ShowMessage( "SVON OFF Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Svon( false );";
@@ -477,11 +477,11 @@ namespace HslCommunicationDemo
 			OperateResult op = YRC1000Tcp.Start( textBox6.Text );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "Start Success" );
+				DemoUtils.ShowMessage( "Start Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Start Failed: " + op.Message );
+				DemoUtils.ShowMessage( "Start Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Start( \"{textBox6.Text}\" );";
@@ -493,11 +493,11 @@ namespace HslCommunicationDemo
 			OperateResult op = YRC1000Tcp.Delete( textBox6.Text );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "Delte Success" );
+				DemoUtils.ShowMessage( "Delte Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Delte Failed: " + op.Message );
+				DemoUtils.ShowMessage( "Delte Failed: " + op.Message );
 			}
 
 			textBox_code.Text = $"OperateResult op = YRC1000Tcp.Delete( \"{textBox6.Text}\" );";
@@ -509,11 +509,11 @@ namespace HslCommunicationDemo
 			OperateResult op = YRC1000Tcp.SetMJ( textBox6.Text );
 			if (op.IsSuccess)
 			{
-				MessageBox.Show( "Set Success" );
+				DemoUtils.ShowMessage( "Set Success" );
 			}
 			else
 			{
-				MessageBox.Show( "Set Failed: " + op.Message );
+				DemoUtils.ShowMessage( "Set Failed: " + op.Message );
 			}
 
 

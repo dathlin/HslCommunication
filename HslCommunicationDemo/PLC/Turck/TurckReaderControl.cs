@@ -133,7 +133,7 @@ namespace HslCommunicationDemo.PLC.Turck
 			}
 			else
 			{
-				MessageBox.Show( "Read Failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
 		}
 	}

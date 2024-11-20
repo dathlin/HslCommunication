@@ -84,13 +84,13 @@ namespace HslCommunicationDemo
 				{
 					if (!int.TryParse( ports[0], out port1 ))
 					{
-						MessageBox.Show( DemoUtils.PortInputWrong );
+						DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 						return;
 					}
 
 					if (!int.TryParse( ports[1], out port2 ))
 					{
-						MessageBox.Show( DemoUtils.PortInputWrong );
+						DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 						return;
 					}
 				}
@@ -99,7 +99,7 @@ namespace HslCommunicationDemo
 			{
 				if (!int.TryParse( textBox2.Text, out port1 ))
 				{
-					MessageBox.Show( DemoUtils.PortInputWrong );
+					DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 					return;
 				}
 				port2 = port1 + 1;
@@ -141,7 +141,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message + "\r\n" + ex.StackTrace );
+				DemoUtils.ShowMessage( ex.Message + "\r\n" + ex.StackTrace );
 			}
 		}
 

@@ -90,11 +90,11 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
-				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
 			}
 		}
 
@@ -163,7 +163,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "read Failed:" + read.Message );
+				DemoUtils.ShowMessage( "read Failed:" + read.Message );
 			}
 		}
 
@@ -178,7 +178,7 @@ namespace HslCommunicationDemo
 		private void button5_Click( object sender, EventArgs e )
 		{
 			button5.Enabled = false;
-			MessageBox.Show( "暂时不支持" );
+			DemoUtils.ShowMessage( "暂时不支持" );
 			//for (int i = 0; i < testThreadCount; i++)
 			//	new Thread( new ThreadStart( ThreadPoolTest ) ) { IsBackground = true }.Start( );
 		}

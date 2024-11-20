@@ -59,12 +59,12 @@ namespace HslCommunicationDemo.DemoControl
 				// 启动写入定时器
 				if (!int.TryParse( textBox_timer_write_interval.Text, out int result ))
 				{
-					MessageBox.Show( "Read time interval input wrong!" );
+					DemoUtils.ShowMessage( "Read time interval input wrong!" );
 					return;
 				}
 				if (result <= 0)
 				{
-					MessageBox.Show( "Read time interval can not below 0!" );
+					DemoUtils.ShowMessage( "Read time interval can not below 0!" );
 					return;
 				}
 
@@ -101,12 +101,12 @@ namespace HslCommunicationDemo.DemoControl
 				// 启动定时器
 				if (!int.TryParse(textBox_read_timer_interval.Text, out int result ))
 				{
-					MessageBox.Show( "Read time interval input wrong!" );
+					DemoUtils.ShowMessage( "Read time interval input wrong!" );
 					return;
 				}
 				if (result <= 0)
 				{
-					MessageBox.Show( "Read time interval can not below 0!" );
+					DemoUtils.ShowMessage( "Read time interval can not below 0!" );
 					return;
 				}
 
@@ -310,7 +310,7 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					readValueRepeatTimes = 1; // 不一样的值
 					readTimeLast = DemoUtils.GetRenderTimeText( );
-                    textBox.AppendText( readTimeLast + $"{text}{Environment.NewLine}" );
+					textBox.AppendText( readTimeLast + $"{text}{Environment.NewLine}" );
 				}
 				readValueLast = text;
 			}
@@ -674,13 +674,19 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_string.Enabled = false;
-				RenderReadResult( DateTime.Now, await readWriteNet.ReadStringAsync( textBox3.Text, ushort.Parse( textBox1.Text ), DemoUtils.GetEncodingFromIndex( comboBox_read_encoding.SelectedIndex ) ) );
+				DateTime start = DateTime.Now;
+				OperateResult<string> read = await readWriteNet.ReadStringAsync( textBox3.Text, ushort.Parse( textBox1.Text ), DemoUtils.GetEncodingFromIndex( comboBox_read_encoding.SelectedIndex ) );
+				if (read.IsSuccess && read.Content != null && read.Content.Contains( "\0" )) read.Content = read.Content.Replace( "\0", "\\0" );
+				RenderReadResult( start, read );
 				button_read_string.Enabled = true;
 				GetReadCode( textBox3.Text, "OperateResult<string> read = @deviceName.ReadString( \"" + textBox3.Text + "\", " + textBox1.Text + ", " + DemoUtils.GetEncodingTextFromIndex( comboBox_read_encoding.SelectedIndex ) + " );", isArray: false );
 			}
 			else
 			{
-				RenderReadResult( DateTime.Now, readWriteNet.ReadString( textBox3.Text, ushort.Parse( textBox1.Text ), DemoUtils.GetEncodingFromIndex( comboBox_read_encoding.SelectedIndex ) ) );
+				DateTime start = DateTime.Now;
+				OperateResult<string> read = readWriteNet.ReadString( textBox3.Text, ushort.Parse( textBox1.Text ), DemoUtils.GetEncodingFromIndex( comboBox_read_encoding.SelectedIndex ) );
+				if (read.IsSuccess && read.Content != null && read.Content.Contains( "\0" )) read.Content = read.Content.Replace( "\0", "\\0" );
+				RenderReadResult( start, read );
 				GetReadCode( textBox3.Text, "OperateResult<string> read = @deviceName.ReadString( \"" + textBox3.Text + "\", " + textBox1.Text + ", " + DemoUtils.GetEncodingTextFromIndex( comboBox_read_encoding.SelectedIndex ) + " );", isArray: false );
 			}
 
@@ -772,7 +778,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch(Exception ex)
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "Bool Data is not corrent: " + input + Environment.NewLine + ex.Message );
+					DemoUtils.ShowMessage( "Bool Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
 			else
@@ -795,7 +801,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "Bool Data is not corrent: " + input );
+					DemoUtils.ShowMessage( "Bool Data is not corrent: " + input );
 				}
 			}
 
@@ -834,7 +840,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch (Exception ex)
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "byte Data is not corrent: " + input + Environment.NewLine + ex.Message );
+					DemoUtils.ShowMessage( "byte Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
 			else
@@ -853,7 +859,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "Byte Data is not corrent: " + input );
+					DemoUtils.ShowMessage( "Byte Data is not corrent: " + input );
 				}
 			}
 
@@ -880,7 +886,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch (Exception ex)
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "short Data is not corrent: " + input + Environment.NewLine + ex.Message );
+					DemoUtils.ShowMessage( "short Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
 			else
@@ -897,7 +903,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "short Data is not corrent: " + input );
+					DemoUtils.ShowMessage( "short Data is not corrent: " + input );
 				}
 			}
 
@@ -924,7 +930,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch (Exception ex)
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "ushort Data is not corrent: " + input + Environment.NewLine + ex.Message );
+					DemoUtils.ShowMessage( "ushort Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
 			else
@@ -941,7 +947,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "ushort Data is not corrent: " + input );
+					DemoUtils.ShowMessage( "ushort Data is not corrent: " + input );
 				}
 			}
 
@@ -968,7 +974,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch (Exception ex)
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "int Data is not corrent: " + input + Environment.NewLine + ex.Message );
+					DemoUtils.ShowMessage( "int Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
 			else
@@ -985,7 +991,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "int Data is not corrent: " + input );
+					DemoUtils.ShowMessage( "int Data is not corrent: " + input );
 				}
 			}
 
@@ -1012,7 +1018,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch (Exception ex)
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "uint Data is not corrent: " + input + Environment.NewLine + ex.Message );
+					DemoUtils.ShowMessage( "uint Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
 			else
@@ -1029,7 +1035,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "uint Data is not corrent: " + input );
+					DemoUtils.ShowMessage( "uint Data is not corrent: " + input );
 				}
 			}
 
@@ -1056,7 +1062,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch (Exception ex)
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "long Data is not corrent: " + input + Environment.NewLine + ex.Message );
+					DemoUtils.ShowMessage( "long Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
 			else
@@ -1073,7 +1079,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "long Data is not corrent: " + input );
+					DemoUtils.ShowMessage( "long Data is not corrent: " + input );
 				}
 			}
 
@@ -1100,7 +1106,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch (Exception ex)
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "ulong Data is not corrent: " + input + Environment.NewLine + ex.Message );
+					DemoUtils.ShowMessage( "ulong Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
 			else
@@ -1117,7 +1123,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "ulong Data is not corrent: " + input );
+					DemoUtils.ShowMessage( "ulong Data is not corrent: " + input );
 				}
 			}
 
@@ -1144,7 +1150,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch (Exception ex)
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "float Data is not corrent: " + input + Environment.NewLine + ex.Message );
+					DemoUtils.ShowMessage( "float Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
 			else
@@ -1161,7 +1167,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "float Data is not corrent: " + input );
+					DemoUtils.ShowMessage( "float Data is not corrent: " + input );
 				}
 			}
 
@@ -1188,7 +1194,7 @@ namespace HslCommunicationDemo.DemoControl
 				catch (Exception ex)
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "float Data is not corrent: " + input + Environment.NewLine + ex.Message );
+					DemoUtils.ShowMessage( "float Data is not corrent: " + input + Environment.NewLine + ex.Message );
 				}
 			}
 			else
@@ -1205,7 +1211,7 @@ namespace HslCommunicationDemo.DemoControl
 				else
 				{
 					if (checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
-					MessageBox.Show( "double Data is not corrent: " + input );
+					DemoUtils.ShowMessage( "double Data is not corrent: " + input );
 				}
 			}
 

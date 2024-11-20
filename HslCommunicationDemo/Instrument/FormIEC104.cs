@@ -74,7 +74,7 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox_station.Text, out int station ))
 			{
-				MessageBox.Show( "Station Input wrong!" );
+				DemoUtils.ShowMessage( "Station Input wrong!" );
 				return;
 			}
 
@@ -89,7 +89,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = DeviceConnectPLC( iec104 );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
@@ -99,13 +99,13 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message + Environment.NewLine +
 						"Error: " + connect.ErrorCode );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -382,7 +382,7 @@ namespace HslCommunicationDemo
 		{
 			OperateResult send = iec104.SendFrameIMessage( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox1.Text ) );
 			if (!send.IsSuccess)
-				MessageBox.Show( "Send Failed：" + send.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Send Failed：" + send.ToMessageShowString( ) );
 		}
 
 		#endregion
@@ -416,11 +416,11 @@ namespace HslCommunicationDemo
 			OperateResult send = iec104.SendFrameUMessage(0x07);
 			if (send.IsSuccess)
 			{
-				MessageBox.Show("Send Success!");
+				DemoUtils.ShowMessage("Send Success!");
 			}
 			else
 			{
-				MessageBox.Show("Send failed: " + send.Message);
+				DemoUtils.ShowMessage("Send failed: " + send.Message);
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.SendFrameUMessage( 0x07 );";
@@ -431,11 +431,11 @@ namespace HslCommunicationDemo
 			OperateResult send = iec104.SendFrameUMessage(0x13);
 			if (send.IsSuccess)
 			{
-				MessageBox.Show("Send Success!");
+				DemoUtils.ShowMessage("Send Success!");
 			}
 			else
 			{
-				MessageBox.Show("Send failed: " + send.Message);
+				DemoUtils.ShowMessage("Send failed: " + send.Message);
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.SendFrameUMessage( 0x13 );";
@@ -446,11 +446,11 @@ namespace HslCommunicationDemo
 			OperateResult send = iec104.SendFrameUMessage(0x43);
 			if (send.IsSuccess)
 			{
-				MessageBox.Show("Send Success!");
+				DemoUtils.ShowMessage("Send Success!");
 			}
 			else
 			{
-				MessageBox.Show("Send failed: " + send.Message);
+				DemoUtils.ShowMessage("Send failed: " + send.Message);
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.SendFrameUMessage( 0x43 );";
@@ -462,11 +462,11 @@ namespace HslCommunicationDemo
 			OperateResult send = iec104.TotalSubscriptions( );
 			if (send.IsSuccess)
 			{
-				MessageBox.Show( "Send Success!" );
+				DemoUtils.ShowMessage( "Send Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Send failed: " + send.Message );
+				DemoUtils.ShowMessage( "Send failed: " + send.Message );
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.TotalSubscriptions( );";
@@ -478,11 +478,11 @@ namespace HslCommunicationDemo
 			OperateResult send = iec104.TotalSubscriptions( 0x01 );
 			if (send.IsSuccess)
 			{
-				MessageBox.Show( "Send Success!" );
+				DemoUtils.ShowMessage( "Send Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Send failed: " + send.Message );
+				DemoUtils.ShowMessage( "Send failed: " + send.Message );
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.TotalSubscriptions( 0x01 );";
@@ -494,11 +494,11 @@ namespace HslCommunicationDemo
 			OperateResult send = iec104.TotalSubscriptions( 0x03 );
 			if (send.IsSuccess)
 			{
-				MessageBox.Show( "Send Success!" );
+				DemoUtils.ShowMessage( "Send Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Send failed: " + send.Message );
+				DemoUtils.ShowMessage( "Send failed: " + send.Message );
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.TotalSubscriptions( 0x03 );";
@@ -510,11 +510,11 @@ namespace HslCommunicationDemo
 			OperateResult send = iec104.SendFrameIMessage( new byte[] { 0x65, 0x01, 0x07, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01 } );
 			if (send.IsSuccess)
 			{
-				MessageBox.Show( "Send Success!" );
+				DemoUtils.ShowMessage( "Send Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Send failed: " + send.Message );
+				DemoUtils.ShowMessage( "Send failed: " + send.Message );
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.SendFrameIMessage( new byte[] {{ 0x65, 0x01, 0x07, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01 }} );";

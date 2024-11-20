@@ -38,7 +38,7 @@ namespace HslCommunicationDemo.MQTT
 			// 子窗体订阅操作，在子窗体订阅的情况下，一般来说每个子窗体不同的topic主题
 			OperateResult send = mqttClient.SubscribeMessage( new string[] { textBox5.Text } );
 
-			if (!send.IsSuccess) MessageBox.Show( "SubscribeMessage Failed:" + send.Message );
+			if (!send.IsSuccess) DemoUtils.ShowMessage( "SubscribeMessage Failed:" + send.Message );
 			else
 			{
 				// 获取订阅的信息，绑定本类的触发事件
@@ -128,7 +128,7 @@ namespace HslCommunicationDemo.MQTT
 				{
 					OperateResult send = mqttClient.UnSubscribeMessage( textBox5.Text );
 
-					if (!send.IsSuccess) MessageBox.Show( "UnSubscribeMessage Failed:" + send.Message );
+					if (!send.IsSuccess) DemoUtils.ShowMessage( "UnSubscribeMessage Failed:" + send.Message );
 					else
 					{
 						button7.Enabled = true;

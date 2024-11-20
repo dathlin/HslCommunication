@@ -115,7 +115,7 @@ namespace HslCommunicationDemo
 		{
 			if (!byte.TryParse(textBox_station.Text,out byte station))
 			{
-				MessageBox.Show( "站号输入不正确！" );
+				DemoUtils.ShowMessage( "站号输入不正确！" );
 				return;
 			}
 
@@ -142,13 +142,13 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + open.Message + Environment.NewLine +
 						"Error: " + open.ErrorCode );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -177,7 +177,7 @@ namespace HslCommunicationDemo
 			OperateResult<float[]> read = dAM3601.ReadAllTemperature( );
 			if(!read.IsSuccess)
 			{
-				MessageBox.Show( "读取失败！原因：" + read.Message );
+				DemoUtils.ShowMessage( "读取失败！原因：" + read.Message );
 				return;
 			}
 

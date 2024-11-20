@@ -118,7 +118,7 @@ namespace HslCommunicationDemo.PLC.Ge
 			}
 			else
 			{
-				MessageBox.Show( "Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<DateTime> read = {DemoUtils.PlcDeviceName}.ReadPLCTime( );";
@@ -134,7 +134,7 @@ namespace HslCommunicationDemo.PLC.Ge
 			}
 			else
 			{
-				MessageBox.Show( "Failed:" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Failed:" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code.Text = $"OperateResult<string> read = {DemoUtils.PlcDeviceName}.ReadProgramName( );";

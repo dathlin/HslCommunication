@@ -62,7 +62,7 @@ namespace HslCommunicationDemo
 				// 启动一个定时器
 				if (!int.TryParse(textBox1.Text, out int publishTimer ))
 				{
-					MessageBox.Show( "Timer interval input wrong!" );
+					DemoUtils.ShowMessage( "Timer interval input wrong!" );
 					return;
 				}
 				timer_publish = new Timer( );
@@ -157,11 +157,11 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
-				MessageBox.Show( "Start Success" );
+				DemoUtils.ShowMessage( "Start Success" );
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Start Failed : " + ex.Message );
+				DemoUtils.ShowMessage( "Start Failed : " + ex.Message );
 			}
 		}
 

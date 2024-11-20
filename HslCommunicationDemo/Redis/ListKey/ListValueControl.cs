@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using HslCommunication.Enthernet.Redis;
 using HslCommunication;
 using HslCommunication.BasicFramework;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -41,11 +42,11 @@ namespace HslRedisDesktop
 
 		private void RefreshKey( )
 		{
-			if (redisClient == null) { MessageBox.Show( "当前的连接为空，无法读取！" ); return; }
+			if (redisClient == null) { DemoUtils.ShowMessage( "当前的连接为空，无法读取！" ); return; }
 			OperateResult<string[]> read = redisClient.Redis.ListRange( stringKeyName, 0, -1 );
 			if (!read.IsSuccess)
 			{
-				MessageBox.Show( "读取失败：" + read.Message );
+				DemoUtils.ShowMessage( "读取失败：" + read.Message );
 			}
 			else
 			{
@@ -124,24 +125,24 @@ namespace HslRedisDesktop
 			if (this.selectRow != null)
 			{
 				int selectIndex = int.Parse( selectRow.Cells[0].Value.ToString( ) );
-				if (MessageBox.Show( $"确认是否真的删除Key:{stringKeyName} Index:{selectIndex} 的数据信息？", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
+				if (DemoUtils.ShowMessage( $"确认是否真的删除Key:{stringKeyName} Index:{selectIndex} 的数据信息？", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes)
 				{
 					string randomValue = "Remove:" + SoftBasic.GetUniqueStringByGuidAndRandom( );
 					OperateResult reset = redisClient.Redis.ListSet( stringKeyName, selectIndex, randomValue );
 					if (!reset.IsSuccess)
 					{
-						MessageBox.Show( $"删除 Index:{selectIndex} 数据失败！" + reset.Message );
+						DemoUtils.ShowMessage( $"删除 Index:{selectIndex} 数据失败！" + reset.Message );
 						return;
 					}
 
 					OperateResult delete = redisClient.Redis.ListRemoveElementMatch( stringKeyName, 1, randomValue );
 					if (delete.IsSuccess)
 					{
-						MessageBox.Show( $"删除 Index:{selectIndex} 数据成功！" );
+						DemoUtils.ShowMessage( $"删除 Index:{selectIndex} 数据成功！" );
 					}
 					else
 					{
-						MessageBox.Show( $"删除 Index:{selectIndex} 数据失败！" + delete.Message );
+						DemoUtils.ShowMessage( $"删除 Index:{selectIndex} 数据失败！" + delete.Message );
 					}
 				}
 			}
@@ -170,7 +171,7 @@ namespace HslRedisDesktop
 				}
 				else
 				{
-					MessageBox.Show( "数据读取失败！" + read.Message );
+					DemoUtils.ShowMessage( "数据读取失败！" + read.Message );
 				}
 			}
 		}
@@ -178,7 +179,7 @@ namespace HslRedisDesktop
 		private void button5_Click( object sender, EventArgs e )
 		{
 			// 定时刷新数据信息
-			MessageBox.Show( "当前版本暂时不支持！" );
+			DemoUtils.ShowMessage( "当前版本暂时不支持！" );
 		}
 	}
 }

@@ -51,13 +51,13 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 
 			if(!ushort.TryParse(textBox5.Text, out ushort station ))
 			{
-				MessageBox.Show( "Address input wrong!" );
+				DemoUtils.ShowMessage( "Address input wrong!" );
 				return;
 			}
 
@@ -75,11 +75,11 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
-				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
 			}
 		}
 
@@ -184,7 +184,7 @@ namespace HslCommunicationDemo
 		{
 			OperateResult send = client.SetReadStatus( );
 
-			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
+			if (!send.IsSuccess) DemoUtils.ShowMessage( "Send Failed:" + send.Message );
 
 			textBox_code.Text = $"OperateResult send = client.SetReadStatus( );";
 		}
@@ -202,7 +202,7 @@ namespace HslCommunicationDemo
 			// 切换读取实时的数据信息
 			OperateResult send = client.SetReadActual( );
 
-			if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
+			if (!send.IsSuccess) DemoUtils.ShowMessage( "Send Failed:" + send.Message );
 
 			textBox_code.Text = $"OperateResult send = client.SetReadActual( );";
 		}
@@ -214,10 +214,10 @@ namespace HslCommunicationDemo
 			{
 				OperateResult send = client.SetReadStatusInterval( seconds );
 
-				if (!send.IsSuccess) MessageBox.Show( "Send Failed:" + send.Message );
+				if (!send.IsSuccess) DemoUtils.ShowMessage( "Send Failed:" + send.Message );
 				else
 				{
-					MessageBox.Show( "Success" );
+					DemoUtils.ShowMessage( "Success" );
 				}
 
 				textBox_code.Text = $"OperateResult send = client.SetReadStatusInterval( {seconds} );";

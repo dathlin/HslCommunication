@@ -114,12 +114,12 @@ namespace HslCommunicationDemo.PLC.Common
 		{
 			if (!int.TryParse( textBox_thread_count.Text, out thread_status ))
 			{
-				MessageBox.Show( "thread_count input wrong!" );
+				DemoUtils.ShowMessage( "thread_count input wrong!" );
 				return;
 			}
 			if (!int.TryParse( textBox_repreat_times.Text, out repeatTimes ))
 			{
-				MessageBox.Show( "repreat_times input wrong!" );
+				DemoUtils.ShowMessage( "repreat_times input wrong!" );
 				return;
 			}
 			addresses = textBox_test_address.Text.Split( new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries );

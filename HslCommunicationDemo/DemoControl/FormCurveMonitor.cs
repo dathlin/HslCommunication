@@ -98,7 +98,7 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						else
 						{
-							MessageBox.Show( "Read Failed" );
+							DemoUtils.ShowMessage( "Read Failed" );
 							return;
 						}
 					}
@@ -117,7 +117,7 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						else
 						{
-							MessageBox.Show( "Read Failed" );
+							DemoUtils.ShowMessage( "Read Failed" );
 							return;
 						}
 					}
@@ -136,7 +136,7 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						else
 						{
-							MessageBox.Show( "Read Failed" );
+							DemoUtils.ShowMessage( "Read Failed" );
 							return;
 						}
 					}
@@ -155,7 +155,7 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						else
 						{
-							MessageBox.Show( "Read Failed" );
+							DemoUtils.ShowMessage( "Read Failed" );
 							return;
 						}
 					}
@@ -174,7 +174,7 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						else
 						{
-							MessageBox.Show( "Read Failed" );
+							DemoUtils.ShowMessage( "Read Failed" );
 							return;
 						}
 					}
@@ -193,7 +193,7 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						else
 						{
-							MessageBox.Show( "Read Failed" );
+							DemoUtils.ShowMessage( "Read Failed" );
 							return;
 						}
 					}
@@ -212,7 +212,7 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						else
 						{
-							MessageBox.Show( "Read Failed" );
+							DemoUtils.ShowMessage( "Read Failed" );
 							return;
 						}
 					}
@@ -231,7 +231,7 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						else
 						{
-							MessageBox.Show( "Read Failed" );
+							DemoUtils.ShowMessage( "Read Failed" );
 							return;
 						}
 					}
@@ -250,7 +250,7 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						else
 						{
-							MessageBox.Show( "Read Failed" );
+							DemoUtils.ShowMessage( "Read Failed" );
 							return;
 						}
 					}

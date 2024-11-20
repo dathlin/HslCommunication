@@ -50,7 +50,7 @@ namespace HslCommunicationDemo.Control
 		{
 			if (string.IsNullOrEmpty( textBox1.Text ))
 			{
-				MessageBox.Show( "Value can not be null" );
+				DemoUtils.ShowMessage( "Value can not be null" );
 				return;
 			}
 
@@ -58,20 +58,20 @@ namespace HslCommunicationDemo.Control
 			{
 				if (!Regex.IsMatch( textBox2.Text, @"^[0-9A-Za-z]{4,32}$" ))
 				{
-					MessageBox.Show( Program.Language == 1 ? "密码只能是数字字母组成，且4~32位之间!" : "The password can only be composed of numeric letters and between 4~32 digits!" );
+					DemoUtils.ShowMessage( Program.Language == 1 ? "密码只能是数字字母组成，且4~32位之间!" : "The password can only be composed of numeric letters and between 4~32 digits!" );
 					return;
 				}
 
 				if (textBox2.Text != textBox3.Text)
 				{
-					MessageBox.Show( Program.Language == 1 ? "两次密码输入不一致，请重新输入" : "The password is entered inconsistently twice, please re-enter it" );
+					DemoUtils.ShowMessage( Program.Language == 1 ? "两次密码输入不一致，请重新输入" : "The password is entered inconsistently twice, please re-enter it" );
 					return;
 				}
 				Password = textBox2.Text;
 			}
 			else if (!string.IsNullOrEmpty( textBox3.Text ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "两次密码输入不一致，请重新输入" : "The password is entered inconsistently twice, please re-enter it" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "两次密码输入不一致，请重新输入" : "The password is entered inconsistently twice, please re-enter it" );
 				return;
 			}
 

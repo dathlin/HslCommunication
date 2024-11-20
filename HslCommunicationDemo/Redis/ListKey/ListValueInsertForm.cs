@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HslCommunication.Enthernet.Redis;
 using HslCommunication;
+using HslCommunicationDemo;
 
 namespace HslRedisDesktop
 {
@@ -42,11 +43,11 @@ namespace HslRedisDesktop
                 OperateResult write = this.redisSettings.Redis.ListLeftPush( this.key, textBox3.Text );
                 if (write.IsSuccess)
                 {
-                    MessageBox.Show( "列表数据从左侧插入成功！" );
+                    DemoUtils.ShowMessage( "列表数据从左侧插入成功！" );
                 }
                 else
                 {
-                    MessageBox.Show( "列表数据从左侧插入失败！" + write.Message );
+                    DemoUtils.ShowMessage( "列表数据从左侧插入失败！" + write.Message );
                 }
             }
             else
@@ -54,11 +55,11 @@ namespace HslRedisDesktop
                 OperateResult write = this.redisSettings.Redis.ListRightPush( this.key, textBox3.Text );
                 if (write.IsSuccess)
                 {
-                    MessageBox.Show( "列表数据从右侧插入成功！" );
+                    DemoUtils.ShowMessage( "列表数据从右侧插入成功！" );
                 }
                 else
                 {
-                    MessageBox.Show( "列表数据从右侧插入失败！" + write.Message );
+                    DemoUtils.ShowMessage( "列表数据从右侧插入失败！" + write.Message );
                 }
             }
         }

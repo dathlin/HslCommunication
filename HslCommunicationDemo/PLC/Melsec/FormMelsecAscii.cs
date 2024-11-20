@@ -83,14 +83,14 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 				return;
 			}
 
 			OperateResult connect = DeviceConnectPLC( melsec_net );
 			if (connect.IsSuccess)
 			{
-				MessageBox.Show( HslCommunication.StringResources.Language.ConnectedSuccess );
+				DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 				button2.Enabled = true;
 				button1.Enabled = false;
 				userControlReadWriteDevice1.SetEnable( true );
@@ -112,7 +112,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + connect.Message );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message );
 			}
 		}
 

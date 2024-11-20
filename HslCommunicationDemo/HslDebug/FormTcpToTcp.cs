@@ -93,12 +93,12 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox_cache_size.Text, out int cacheSize ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "缓存大小输入错误！" : "Cache size input error" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "缓存大小输入错误！" : "Cache size input error" );
 				return;
 			}
 			if (!int.TryParse( textBox2.Text, out int remotePort ))
 			{
-				MessageBox.Show( Program.Language == 1 ? "端口号输入错误！" : "IpAddress port input error" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "端口号输入错误！" : "IpAddress port input error" );
 				return;
 			}
 			// 连接服务器
@@ -114,11 +114,11 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				button2.Enabled = true;
 
-				MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( StringResources.Language.ConnectedFailed + Environment.NewLine + ex.Message );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + Environment.NewLine + ex.Message );
 			}
 		}
 

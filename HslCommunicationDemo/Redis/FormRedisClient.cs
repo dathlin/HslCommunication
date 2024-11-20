@@ -86,11 +86,11 @@ namespace HslCommunicationDemo
                 button2.Enabled = true;
                 panel2.Enabled = true;
                 button5.Enabled = false;
-                MessageBox.Show( StringResources.Language.ConnectServerSuccess );
+                DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
             }
             else
             {
-                MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+                DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
             }
         }
 
@@ -140,12 +140,12 @@ namespace HslCommunicationDemo
                 if (write.IsSuccess)
                 {
                     textBox7.Text = (DateTime.Now - start).TotalMilliseconds.ToString( "F2" );
-                    MessageBox.Show( "success" );
+                    DemoUtils.ShowMessage( "success" );
                 }
                 else
                 {
                     textBox7.Text = (DateTime.Now - start).TotalMilliseconds.ToString( "F2" );
-                    MessageBox.Show( Program.Language == 1 ? "写入失败：" : "Write Failed:" + write.ToMessageShowString( ) );
+                    DemoUtils.ShowMessage( Program.Language == 1 ? "写入失败：" : "Write Failed:" + write.ToMessageShowString( ) );
                 }
 
             }
@@ -206,11 +206,11 @@ namespace HslCommunicationDemo
             OperateResult result = redisClient.ListLeftPush( "B", random.Next( 1000 ).ToString( ));
             if (result.IsSuccess)
             {
-                MessageBox.Show( "成功" );
+                DemoUtils.ShowMessage( "成功" );
             }
             else
             {
-                MessageBox.Show( result.Message );
+                DemoUtils.ShowMessage( result.Message );
             }
         }
 
@@ -219,11 +219,11 @@ namespace HslCommunicationDemo
             OperateResult result = redisClient.ListTrim( "B", 0, 2 );
             if (result.IsSuccess)
             {
-                MessageBox.Show( "成功" );
+                DemoUtils.ShowMessage( "成功" );
             }
             else
             {
-                MessageBox.Show( result.Message );
+                DemoUtils.ShowMessage( result.Message );
             }
         }
 
@@ -232,11 +232,11 @@ namespace HslCommunicationDemo
             OperateResult<int> result = redisClient.GetListLength( "B" );
             if (result.IsSuccess)
             {
-                MessageBox.Show( "成功：" + result.Content );
+                DemoUtils.ShowMessage( "成功：" + result.Content );
             }
             else
             {
-                MessageBox.Show( result.Message );
+                DemoUtils.ShowMessage( result.Message );
             }
         }
 
@@ -245,11 +245,11 @@ namespace HslCommunicationDemo
             OperateResult write = redisClient.Publish( textBox_write_key.Text, textBox4.Text );
             if (write.IsSuccess)
             {
-                MessageBox.Show( "success" );
+                DemoUtils.ShowMessage( "success" );
             }
             else
             {
-                MessageBox.Show( Program.Language == 1 ? "写入失败：" : "Write Failed:" + write.ToMessageShowString( ) );
+                DemoUtils.ShowMessage( Program.Language == 1 ? "写入失败：" : "Write Failed:" + write.ToMessageShowString( ) );
             }
         }
 
@@ -258,11 +258,11 @@ namespace HslCommunicationDemo
             OperateResult<int> exist = redisClient.ExistsKey( textBox_write_key.Text );
             if (exist.IsSuccess)
             {
-                MessageBox.Show( exist.Content == 1 ? "Exists!" : "None" );
+                DemoUtils.ShowMessage( exist.Content == 1 ? "Exists!" : "None" );
             }
             else
             {
-                MessageBox.Show( "request failed: " + exist.Message );
+                DemoUtils.ShowMessage( "request failed: " + exist.Message );
             }
         }
 
@@ -271,11 +271,11 @@ namespace HslCommunicationDemo
             OperateResult<int> persist = redisClient.PersistKey( textBox_write_key.Text );
             if (persist.IsSuccess)
             {
-                MessageBox.Show( persist.Content == 1 ? "Persist success!" : "Persist failed" );
+                DemoUtils.ShowMessage( persist.Content == 1 ? "Persist success!" : "Persist failed" );
             }
             else
             {
-                MessageBox.Show( "request failed: " + persist.Message );
+                DemoUtils.ShowMessage( "request failed: " + persist.Message );
             }
         }
 
@@ -288,7 +288,7 @@ namespace HslCommunicationDemo
             }
             else
             {
-                MessageBox.Show( "request failed: " + incr.Message );
+                DemoUtils.ShowMessage( "request failed: " + incr.Message );
             }
         }
 
@@ -301,7 +301,7 @@ namespace HslCommunicationDemo
             }
             else
             {
-                MessageBox.Show( "request failed: " + decr.Message );
+                DemoUtils.ShowMessage( "request failed: " + decr.Message );
             }
         }
 
@@ -314,7 +314,7 @@ namespace HslCommunicationDemo
             }
             else
             {
-                MessageBox.Show( "request failed: " + strLen.Message );
+                DemoUtils.ShowMessage( "request failed: " + strLen.Message );
             }
         }
     }

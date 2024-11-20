@@ -69,7 +69,7 @@ namespace HslCommunicationDemo
 		{
 			if (!byte.TryParse( textBox3.Text, out byte station ))
 			{
-				MessageBox.Show( "Station int wrong, it needs 0 - 255" );
+				DemoUtils.ShowMessage( "Station int wrong, it needs 0 - 255" );
 				return;
 			}
 
@@ -85,7 +85,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = DeviceConnectPLC( keyence );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
@@ -105,13 +105,13 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( HslCommunication.StringResources.Language.ConnectedFailed + Environment.NewLine + "Reason: " + connect.Message );
+					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + Environment.NewLine + "Reason: " + connect.Message );
 				}
 
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

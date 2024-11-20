@@ -20,9 +20,17 @@ namespace HslCommunicationDemo
 		public FormCipServer( )
 		{
 			InitializeComponent( );
+
+			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
 		}
 
-
+		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
+		{
+			if (cipServer != null)
+			{
+				cipServer.CreateTagWithWrite = checkBox1.Checked;
+			}
+		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -61,7 +69,7 @@ namespace HslCommunicationDemo
 		{
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 
@@ -110,7 +118,7 @@ namespace HslCommunicationDemo
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 

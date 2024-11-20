@@ -312,11 +312,11 @@ namespace HslCommunicationDemo.PLC.Fatek
 			OperateResult run = fatekProgram.Run( );
 			if (run.IsSuccess)
 			{
-				MessageBox.Show( "Run Success!" );
+				DemoUtils.ShowMessage( "Run Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Run failed: " + run.Message );
+				DemoUtils.ShowMessage( "Run failed: " + run.Message );
 			}
 
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.Run( );";
@@ -327,11 +327,11 @@ namespace HslCommunicationDemo.PLC.Fatek
 			OperateResult stop = fatekProgram.Stop( );
 			if (stop.IsSuccess)
 			{
-				MessageBox.Show( "Stop Success!" );
+				DemoUtils.ShowMessage( "Stop Success!" );
 			}
 			else
 			{
-				MessageBox.Show( "Stop failed: " + stop.Message );
+				DemoUtils.ShowMessage( "Stop failed: " + stop.Message );
 			}
 			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.Stop( );";
 		}
@@ -351,7 +351,7 @@ namespace HslCommunicationDemo.PLC.Fatek
 			}
 			else
 			{
-				MessageBox.Show( "Read failed: " + read.Message );
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
 			textBox_code.Text = $"OperateResult<bool[]> read = {DemoUtils.PlcDeviceName}.ReadStatus( );  // 共计返回7个bool";

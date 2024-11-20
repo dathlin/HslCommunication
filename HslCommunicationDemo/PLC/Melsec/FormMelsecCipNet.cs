@@ -76,13 +76,13 @@ namespace HslCommunicationDemo
 			// 连接
 			if (!int.TryParse( textBox2.Text, out int port ))
 			{
-				MessageBox.Show( DemoUtils.PortInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
 				return;
 			}
 
 			if (!byte.TryParse( textBox15.Text, out byte slot ))
 			{
-				MessageBox.Show( DemoUtils.SlotInputWrong );
+				DemoUtils.ShowMessage( DemoUtils.SlotInputWrong );
 				return;
 			}
 
@@ -96,7 +96,7 @@ namespace HslCommunicationDemo
 				OperateResult connect = cip.ConnectServer( );
 				if (connect.IsSuccess)
 				{
-					MessageBox.Show( StringResources.Language.ConnectedSuccess );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
 					panel2.Enabled = true;
@@ -105,12 +105,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.ToMessageShowString( ) );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( ex.Message );
+				DemoUtils.ShowMessage( ex.Message );
 			}
 		}
 
@@ -138,12 +138,12 @@ namespace HslCommunicationDemo
 				OperateResult<byte[]> read = null;
 				if (!textBox6.Text.Contains( ";" ))
 				{
-					// MessageBox.Show( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( new string[] { textBox6.Text }, new int[] { int.Parse(textBox9.Text) } ).Content , ' ') );
+					// DemoUtils.ShowMessage( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( new string[] { textBox6.Text }, new int[] { int.Parse(textBox9.Text) } ).Content , ' ') );
 					read = cip.ReadSegment( textBox6.Text, ushort.Parse( textBox12.Text ), ushort.Parse( textBox9.Text ) );
 				}
 				else
 				{
-					//MessageBox.Show( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( textBox6.Text.Split( ';' ) ).Content, ' ' ) );
+					//DemoUtils.ShowMessage( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( textBox6.Text.Split( ';' ) ).Content, ' ' ) );
 					read = cip.Read( textBox6.Text.Split( ';' ) );
 				}
 
@@ -153,12 +153,12 @@ namespace HslCommunicationDemo
 				}
 				else
 				{
-					MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
+					DemoUtils.ShowMessage( "Read failed：" + read.ToMessageShowString( ) );
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Read failed：" + ex.Message );
+				DemoUtils.ShowMessage( "Read failed：" + ex.Message );
 			}
 		}
 
@@ -176,7 +176,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read failed：" + read.ToMessageShowString( ) );
 			}
 		}
 
@@ -189,7 +189,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read failed：" + read.ToMessageShowString( ) );
 			}
 		}
 
@@ -203,14 +203,14 @@ namespace HslCommunicationDemo
 
 				// OperateResult<short[]> readResult = allenBradleyNet.ReadInt16( "Array", 300 );
 
-				//MessageBox.Show( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( new string[] { textBox6.Text }, new int[] { int.Parse(textBox9.Text) } ).Content , ' ') );
+				//DemoUtils.ShowMessage( HslCommunication.BasicFramework.SoftBasic.ByteToHexString( allenBradleyNet.BuildReadCommand( new string[] { textBox6.Text }, new int[] { int.Parse(textBox9.Text) } ).Content , ' ') );
 				byte[] read = AllenBradleyHelper.PackRequestReadSegment( textBox6.Text, ushort.Parse( textBox12.Text ), ushort.Parse( textBox9.Text ) );
 
 				textBox10.Text = "Result：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read, ' ' );
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show( "Build failed：" + ex.Message );
+				DemoUtils.ShowMessage( "Build failed：" + ex.Message );
 			}
 		}
 
@@ -223,7 +223,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				MessageBox.Show( "Read failed：" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "Read failed：" + read.ToMessageShowString( ) );
 			}
 		}
 
