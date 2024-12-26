@@ -30,9 +30,9 @@ namespace HslCommunicationDemo.HslDebug
 		private void button_ok_Click( object sender, EventArgs e )
 		{
 			List<byte[]> handShake = new List<byte[]>( );
-			if (!string.IsNullOrEmpty( textBox1.Text )) handShake.Add( radioButton_binary.Checked ? textBox1.Text.ToHexBytes( ) : Encoding.ASCII.GetBytes( textBox1.Text ) );
-			if (!string.IsNullOrEmpty( textBox2.Text )) handShake.Add( radioButton_binary.Checked ? textBox2.Text.ToHexBytes( ) : Encoding.ASCII.GetBytes( textBox2.Text ) );
-			if (!string.IsNullOrEmpty( textBox3.Text )) handShake.Add( radioButton_binary.Checked ? textBox3.Text.ToHexBytes( ) : Encoding.ASCII.GetBytes( textBox3.Text ) );
+			if (!string.IsNullOrEmpty( textBox1.Text )) handShake.Add( radioButton_binary.Checked ? textBox1.Text.ToHexBytes( ) : SoftBasic.GetFromAsciiStringRender( textBox1.Text ) );
+			if (!string.IsNullOrEmpty( textBox2.Text )) handShake.Add( radioButton_binary.Checked ? textBox2.Text.ToHexBytes( ) : SoftBasic.GetFromAsciiStringRender( textBox2.Text ) );
+			if (!string.IsNullOrEmpty( textBox3.Text )) handShake.Add( radioButton_binary.Checked ? textBox3.Text.ToHexBytes( ) : SoftBasic.GetFromAsciiStringRender( textBox3.Text ) );
 
 			this.handShake = handShake;
 			DialogResult = DialogResult.OK;

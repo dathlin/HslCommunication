@@ -100,8 +100,8 @@ namespace HslCommunicationDemo
 				userControlReadWriteDevice1.SetReadWriteNet( toyota, "D100", true );
 				// 设置批量读取
 				userControlReadWriteDevice1.BatchRead.SetReadWriteNet( toyota, "D100", string.Empty );
-				//userControlReadWriteDevice1.BatchRead.SetReadRandom( melsec_net.ReadRandom, "D100;W100;D500" );
-				//userControlReadWriteDevice1.BatchRead.SetReadWordRandom( melsec_net.ReadRandom, "D100;W100;D500" );
+				userControlReadWriteDevice1.BatchRead.SetReadWordRandom( toyota.ReadRandom, "D100;D500;D1000" );
+				// userControlReadWriteDevice1.BatchRead.SetReadRandom( melsec_net.ReadRandom, "D100;W100;D500" );
 				// 设置报文读取
 				userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => toyota.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
 

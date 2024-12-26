@@ -51,6 +51,7 @@
             this.label_code = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox_word_reverse = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox_result
@@ -58,6 +59,7 @@
             this.textBox_result.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_result.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_result.Location = new System.Drawing.Point(56, 54);
             this.textBox_result.Multiline = true;
             this.textBox_result.Name = "textBox_result";
@@ -68,7 +70,7 @@
             // label_result
             // 
             this.label_result.AutoSize = true;
-            this.label_result.Location = new System.Drawing.Point(3, 54);
+            this.label_result.Location = new System.Drawing.Point(3, 57);
             this.label_result.Name = "label_result";
             this.label_result.Size = new System.Drawing.Size(44, 17);
             this.label_result.TabIndex = 32;
@@ -125,7 +127,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(240, 295);
+            this.label1.Location = new System.Drawing.Point(243, 295);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 34;
@@ -135,7 +137,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(344, 295);
+            this.label2.Location = new System.Drawing.Point(339, 295);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 17);
             this.label2.TabIndex = 35;
@@ -215,7 +217,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(455, 295);
+            this.label4.Location = new System.Drawing.Point(440, 295);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
             this.label4.TabIndex = 44;
@@ -247,10 +249,11 @@
             "float",
             "double",
             "long",
-            "ulong"});
+            "ulong",
+            "boolArray"});
             this.comboBox1.Location = new System.Drawing.Point(56, 291);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(106, 25);
+            this.comboBox1.Size = new System.Drawing.Size(96, 25);
             this.comboBox1.TabIndex = 46;
             // 
             // textBox_code
@@ -278,7 +281,7 @@
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(747, 267);
+            this.checkBox1.Location = new System.Drawing.Point(747, 268);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(87, 21);
             this.checkBox1.TabIndex = 49;
@@ -290,16 +293,30 @@
             this.checkBox_word_reverse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox_word_reverse.AutoSize = true;
             this.checkBox_word_reverse.ForeColor = System.Drawing.Color.DarkRed;
-            this.checkBox_word_reverse.Location = new System.Drawing.Point(168, 294);
+            this.checkBox_word_reverse.Location = new System.Drawing.Point(157, 294);
             this.checkBox_word_reverse.Name = "checkBox_word_reverse";
             this.checkBox_word_reverse.Size = new System.Drawing.Size(63, 21);
             this.checkBox_word_reverse.TabIndex = 50;
             this.checkBox_word_reverse.Text = "字反转";
             this.checkBox_word_reverse.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label5.ForeColor = System.Drawing.Color.Gray;
+            this.label5.Location = new System.Drawing.Point(745, 222);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(97, 23);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "每行默认数量";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
             // BatchReadControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label_code);
             this.Controls.Add(this.textBox_code);
@@ -357,5 +374,6 @@
 		private System.Windows.Forms.Label label_code;
 		private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox_word_reverse;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -37,12 +37,15 @@ namespace HslCommunicationDemo.PLC.Secs
 			if (Program.Language == 2)
 			{
 				button_ok.Text = "OK";
+				label6.Text = "Data(for active sending):";
+				label_100.Text = "Data(for passive response):";
+
 			}
 
-			if (!this.server)
-			{
-				textBox_data_back.ReadOnly = true;
-			}
+			//if (!this.server)
+			//{
+			//	textBox_data_back.ReadOnly = true;
+			//}
 		}
 
 

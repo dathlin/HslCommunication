@@ -100,6 +100,7 @@ namespace HslCommunicationDemo.HslDebug
 			richTextBox_main.ScrollToCaret( );
 		}
 
+
 		private void ListBox1_MouseDoubleClick( object sender, MouseEventArgs e )
 		{
 			if (listBox1.SelectedItem is PacketMessageItem messageItem)

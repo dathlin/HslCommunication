@@ -187,8 +187,9 @@ namespace HslCommunicationDemo.DemoControl
 				checkBox_write_timer.Text = "Timer Write";
 
 				label16.Text = "if write 1-100, value input {1:100}";
-				checkBox_mask_duplicates.Text = "Mask duplicates value";
-
+				checkBox_mask_duplicates.Text = "Mask duplicates?";
+				textBox_read_search.Text = "Search";
+				button_find_string.Text = "find";
 			}
 			else
 			{
@@ -755,6 +756,16 @@ namespace HslCommunicationDemo.DemoControl
 			WriteResultRender( write, textBox_write_address.Text, input );
 		}
 
+		private bool TransBoolValue( string value )
+		{
+			value = value.Trim( );
+			if (value == "1") return true;
+			if (value == "0") return false;
+			if (value.Equals( "On", StringComparison.OrdinalIgnoreCase )) return true;
+			if (value.Equals( "Off", StringComparison.OrdinalIgnoreCase )) return false;
+			return bool.Parse( value );
+		}
+
 		private async void button_write_bool_Click( object sender, EventArgs e )
 		{
 			string input = GetWriteValueText( );
@@ -763,7 +774,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				try
 				{
-					bool[] value = input.ToStringArray<bool>( );
+					bool[] value = input.ToStringArray<bool>( TransBoolValue );
 					if (isAsync)
 					{
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_bool, input );
@@ -1322,9 +1333,9 @@ namespace HslCommunicationDemo.DemoControl
 			sb.Append( Environment.NewLine );
 			sb.Append( "    Console.WriteLine( \"Read [" + address + "] Success, Value: \" + read.Content" );
 			if (isArray)
-				sb.Append( ".ToArrayString( ) " );
+				sb.Append( ".ToArrayString( ) );" );
 			else
-				sb.Append( ";" );
+				sb.Append( " );" );
 			sb.Append( Environment.NewLine );
 			sb.Append( "}" );
 			sb.Append( Environment.NewLine );
@@ -1383,5 +1394,68 @@ namespace HslCommunicationDemo.DemoControl
 			MethodCodeClick?.Invoke( readWriteNet, sb.ToString( ) );
 		}
 
+		private bool read_search_entered = false;
+		private int find_index = -1;
+		private string find_string = string.Empty;
+
+
+		private void textBox_read_search_MouseClick( object sender, MouseEventArgs e )
+		{
+			if (read_search_entered == false)
+			{
+				read_search_entered = true;
+
+				textBox_read_search.Text = string.Empty;
+				textBox_read_search.ForeColor = Color.Black;
+			}
+		}
+
+		private void textBox_read_search_TextChanged( object sender, EventArgs e )
+		{
+
+		}
+
+		private void textBox_read_search_Leave( object sender, EventArgs e )
+		{
+			if (read_search_entered && textBox_read_search.Text == string.Empty)
+			{
+				textBox_read_search.Text = Program.Language == 1 ? "搜索内容" : "Search";
+				textBox_read_search.ForeColor = Color.Silver;
+				read_search_entered = false;
+			}
+		}
+
+		private void button_find_string_Click( object sender, EventArgs e )
+		{
+			if (string.IsNullOrEmpty( textBox_read_search.Text ))
+			{
+				// 复原信息
+				find_index = -1;
+				find_string = string.Empty;
+			}
+			else
+			{
+				if (find_string != textBox_read_search.Text)
+				{
+					find_index = -1;
+					find_string = textBox_read_search.Text;
+				}
+
+				int index = textBox4.Text.IndexOf( find_string, find_index < 0 ? 0 : find_index );
+				if (index < 0)
+				{
+					find_index = -1;
+					DemoUtils.ShowMessage( Program.Language == 1 ? "全部查找完毕，再次Enter键重新查找" : "All search is complete, Enter again to find again" );
+				}
+				else
+				{
+					int length = find_string.Length;
+					textBox4.Select( index, length );
+					textBox4.Focus( );
+					textBox4.ScrollToCaret( );
+					find_index = index + length;
+				}
+			}
+		}
 	}
 }

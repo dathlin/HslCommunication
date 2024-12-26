@@ -14,6 +14,7 @@ using HslCommunication;
 using HslCommunication.Core.Device;
 using HslCommunication.Core.Pipe;
 using HslCommunication.Serial;
+using HslCommunication.Core.Net;
 
 namespace HslCommunicationDemo
 {
@@ -183,6 +184,16 @@ namespace HslCommunicationDemo
 
 
 		protected OperateResult DeviceConnectPLC( DeviceTcpNet device )
+		{
+			if (device.CommunicationPipe.GetType( ) == typeof( PipeDtuNet ))
+			{
+				return OperateResult.CreateSuccessResult( );
+			}
+			else
+				return device.ConnectServer( );
+		}
+
+		protected OperateResult DeviceConnectPLC( TcpNetCommunication device )
 		{
 			if (device.CommunicationPipe.GetType( ) == typeof( PipeDtuNet ))
 			{

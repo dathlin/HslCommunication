@@ -34,6 +34,9 @@ namespace HslCommunicationDemo.DemoControl
 			this.MouseMove += DataTableControl_MouseMove;
 			this.MouseDown += DataTableControl_MouseDown;
 			this.MouseUp += DataTableControl_MouseUp;
+
+			this.Column_type.DataSource = this.data_types.ToArray( );
+			this.Column_encoding.DataSource = this.data_encodings.ToArray( );
 		}
 
 		private void HslCurveHistory1_MouseMove( object sender, MouseEventArgs e )
@@ -365,6 +368,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_out_file.Text = "ToFile";
 				label1.Text = "Interval";
 				label2.Text = "Double click to write";
+				button_clear_all.Text = "EmptyAll";
 			}
 
 		}
@@ -390,6 +394,9 @@ namespace HslCommunicationDemo.DemoControl
 
 			dataGridView1.Columns[8].Width = dataGridView1.Width - width - 20 - 40;                                   // 注释
 		}
+
+		private List<string> data_types = new List<string>( ) { "bool", "byte", "short", "ushort", "int", "uint", "long", "ulong", "float", "double", "string" };
+		private List<string> data_encodings = new List<string>( ) { "ASCII", "UFT16", "UTF8", "GB2312" };
 
 		private DataTableItem GetDataTableItem( DataGridViewRow dgvr )
 		{
@@ -447,7 +454,12 @@ namespace HslCommunicationDemo.DemoControl
 				dgvr.Cells[1].Value = dataTableItem.Address;
 				if (!string.IsNullOrEmpty( dataTableItem.DataTypeCode ))
 				{
-					dgvr.Cells[2].Value = dataTableItem.DataTypeCode;
+					if (data_types.Contains( dataTableItem.DataTypeCode ))
+						dgvr.Cells[2].Value = dataTableItem.DataTypeCode;
+					else
+					{
+						DemoUtils.ShowMessage( $"Row[{rowIndex}] Name[{dataTableItem.Name}] Address[{dataTableItem.Address}] type: {dataTableItem.DataTypeCode} is not supported" );
+					}
 					if (dataTableItem.DataTypeCode == "string")
 					{
 						dgvr.Cells[3].Value = dataTableItem.StringEncoding.ToString( );
@@ -841,6 +853,15 @@ namespace HslCommunicationDemo.DemoControl
 
 					}
 				}
+			}
+		}
+
+		private void button_clear_all_Click( object sender, EventArgs e )
+		{
+			string message = Program.Language == 1 ? "请确认是否删除全部行数据？" : "Are you sure delete all rows ?";
+			if (MessageBox.Show( message, "Delete Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+			{
+				dataGridView1.Rows.Clear( );
 			}
 		}
 	}

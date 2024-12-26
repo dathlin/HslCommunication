@@ -2,6 +2,7 @@
 using HslCommunication.BasicFramework;
 using HslCommunication.Core;
 using HslCommunication.Core.Device;
+using HslCommunicationDemo.Control;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -235,13 +236,37 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		private void RenderList<T>( T[] data, string format = "{0}" )
+		{
+			StringBuilder stringBuilder = new StringBuilder( );
+			if (data != null)
+			{
+				for (int i = 0; i < data.Length; i++)
+				{
+					if (i != 0)
+					{
+						stringBuilder.Append( "," );
+					}
+					if (this.lineRenderCount > 0 && i != 0 && i % this.lineRenderCount == 0)
+					{
+						stringBuilder.Append( Environment.NewLine );
+					}
+
+					stringBuilder.Append( string.Format( format, data[i] ) );
+				}
+			}
+			textBox_result.Text = stringBuilder.ToString( );
+
+		}
+
 		private void RenderReadBytes( byte[] buffer )
 		{
+			if (buffer == null) return;
 			if (checkBox_word_reverse.Checked) buffer = SoftBasic.BytesReverseByWord( buffer );
 			int selectIndex = comboBox1.SelectedIndex;
 			if (selectIndex == 0)
 			{
-				textBox_result.Text = buffer.ToHexString( ' ' );
+				textBox_result.Text = buffer.ToHexString( ' ', this.lineRenderCount );
 			}
 			else if (selectIndex == 1)
 			{
@@ -249,47 +274,72 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else if (selectIndex == 2)
 			{
-				textBox_result.Text = buffer.ToArrayString<byte>( );
+				RenderList( buffer, "{0,3}" );
 			}
 			else if (selectIndex == 3)
 			{
 				short[] value = readWriteNet.ByteTransform.TransInt16( buffer, 0, buffer.Length / 2 );
-				textBox_result.Text = value.ToArrayString( );
+				RenderList( value, "{0,8}" );
 			}
 			else if (selectIndex == 4)
 			{
 				ushort[] value = readWriteNet.ByteTransform.TransUInt16( buffer, 0, buffer.Length / 2 );
-				textBox_result.Text = value.ToArrayString( );
+				RenderList( value, "{0,8}" );
 			}
 			else if (selectIndex == 5)
 			{
 				int[] value = readWriteNet.ByteTransform.TransInt32( buffer, 0, buffer.Length / 4 );
-				textBox_result.Text = value.ToArrayString( );
+				RenderList( value, "{0,14}" );
 			}
 			else if (selectIndex == 6)
 			{
 				uint[] value = readWriteNet.ByteTransform.TransUInt32( buffer, 0, buffer.Length / 4 );
-				textBox_result.Text = value.ToArrayString( );
+				RenderList( value, "{0,14}" );
 			}
 			else if (selectIndex == 7)
 			{
 				float[] value = readWriteNet.ByteTransform.TransSingle( buffer, 0, buffer.Length / 4 );
-				textBox_result.Text = value.ToArrayString( );
+				RenderList( value, "{0,14}" );
 			}
 			else if (selectIndex == 8)
 			{
 				double[] value = readWriteNet.ByteTransform.TransDouble( buffer, 0, buffer.Length / 8 );
-				textBox_result.Text = value.ToArrayString( );
+				RenderList( value, "{0,22}" );
 			}
 			else if (selectIndex == 9)
 			{
 				long[] value = readWriteNet.ByteTransform.TransInt64( buffer, 0, buffer.Length / 8 );
 				textBox_result.Text = value.ToArrayString( );
+				RenderList( value, "{0,22}" );
 			}
 			else if (selectIndex == 10)
 			{
 				ulong[] value = readWriteNet.ByteTransform.TransUInt64( buffer, 0, buffer.Length / 8 );
-				textBox_result.Text = value.ToArrayString( );
+				RenderList( value, "{0,22}" );
+			}
+			else if (selectIndex == 11)
+			{
+				// bool数组显示的方式
+				int lineCount = this.lineRenderCount <= 0 ? 8 : this.lineRenderCount;
+				StringBuilder stringBuilder = new StringBuilder( );
+				for (int i = 0; i < buffer.Length; i++)
+				{
+					if (i != 0 && i % lineCount == 0)
+					{
+						stringBuilder.Append( Environment.NewLine );
+					}
+					else if (i != 0)
+					{
+						stringBuilder.Append( "   " );
+					}
+
+					byte b = buffer[i];
+					for (int j = 0; j < 8; j++)
+					{
+						stringBuilder.Append( b.GetBoolByIndex( j ) ? "1" : "0" );
+					}
+				}
+				textBox_result.Text = stringBuilder.ToString( );
 			}
 		}
 
@@ -394,6 +444,11 @@ namespace HslCommunicationDemo.DemoControl
 			else if (selectIndex == 10)
 			{
 				buffer = readWriteNet.ByteTransform.TransByte( textBox_result.Text.ToStringArray<ulong>( ) );
+			}
+			else if (selectIndex == 11)
+			{
+				DemoUtils.ShowMessage( Program.Language == 1 ? "bool数组显示的时候，暂时不支持反写操作" : "bool array not supported write back!" );
+				return;
 			}
 
 			if (buffer == null)
@@ -605,11 +660,37 @@ namespace HslCommunicationDemo.DemoControl
 		private Func<string[], OperateResult<byte[]>> readWordRandom;
 		private DeviceCommunication readWriteNet;
 		private byte[] buffer;
+		private int lineRenderCount = -1;
 
 		private string buttonTips1 = "";
 		private string buttonTips2 = "";
 		private string buttonTips3= "";
 
 		private string variableName = "[变量名]";
+
+		private void label5_Click( object sender, EventArgs e )
+		{
+			// 点击修改每行数量
+			using(FormInputPassword form = new FormInputPassword())
+			{
+				form.StringMode = 1;
+				if (form.ShowDialog() == DialogResult.OK)
+				{
+					if (string.IsNullOrEmpty(form.Password))
+					{
+						this.lineRenderCount = -1;
+						label5.Text = (Program.Language == 1 ? "每行默认" : "Line: Auto");
+
+					}
+					else
+					{
+						this.lineRenderCount = Convert.ToInt32(form.Password);
+						label5.Text = (Program.Language == 1 ? "每行: " : "Line: ") + this.lineRenderCount;
+					}
+
+					RenderReadBytes( this.buffer );
+				}
+			}
+		}
 	}
 }

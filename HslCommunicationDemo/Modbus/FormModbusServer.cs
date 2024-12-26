@@ -154,7 +154,7 @@ namespace HslCommunicationDemo
 				ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
 				busTcpServer.IsStringReverse = checkBox3.Checked;
 
-				userControlReadWriteServer1.SetReadWriteServer( busTcpServer, "100" );
+				userControlReadWriteServer1.SetReadWriteServer( busTcpServer, "100", deviceName: "modbusServer" );
 				busTcpServer.ServerStart( port, radioButton_tcp.Checked );
 
 				button1.Enabled = false;

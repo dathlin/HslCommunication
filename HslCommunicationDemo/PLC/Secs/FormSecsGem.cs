@@ -14,10 +14,10 @@ using System.Threading;
 using System.IO.Ports;
 using System.Xml.Linq;
 using HslCommunication.Secs.Helper;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using HslCommunication.BasicFramework;
 using HslCommunicationDemo.DemoControl;
 using HslCommunicationDemo.PLC.Secs;
+using System.IO;
 
 namespace HslCommunicationDemo
 {
@@ -59,6 +59,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			comboBox_log_style.SelectedIndex = 0;
 			panel2.Enabled = false;
 			comboBox1.SelectedIndex = 1;
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
@@ -209,9 +210,22 @@ namespace HslCommunicationDemo
 			checkBox_back.Checked = treeItem.W;
 
 			if (treeItem.Value != null)
-				textBox_data.Text = treeItem.Value.ToXElement( ).ToString( );
+				textBox_data.Text = checkBox_code_style.Checked ? treeItem.Value.ToSourceCode( true ) : treeItem.Value.ToXElement( ).ToString( );
 			else
 				textBox_data.Text = string.Empty;
+
+			
+			if (treeItem.ValueSingular != null)
+			{
+				textBox_receive.Text = checkBox_code_style.Checked ? treeItem.ValueSingular.ToSourceCode( true ) : treeItem.ValueSingular.ToString( );
+			}
+			else
+			{
+				textBox_receive.Text = string.Empty;
+			}
+
+			renderSecsValueLeft = treeItem.Value;
+			renderSecsValueRight = treeItem.ValueSingular;
 		}
 
 		private void TreeView1_AfterSelect( object sender, TreeViewEventArgs e )
@@ -310,19 +324,18 @@ namespace HslCommunicationDemo
 				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				button3.Text = "SendOnly";
-
-				button25.Text = "SendReply";
-				label13.Text = "Results:";
 				checkBox2.Text = "Initialization S0F0?";
-
-				tabPage_log.Text = "Log";
+				checkBox_code_style.Text = "Show Code Info";
+				tabPage_log.Text = "Value";
 			}
 			else
 			{
 				addNewSecsItemToolStripMenuItem.Text = "新增Secs功能码";
 				editSecsItemToolStripMenuItem.Text = "编辑Secs功能码";
 				deleteSecsItemToolStripMenuItem.Text = "删除Secs功能码";
+				checkBox_show_send_message.Text = "显示发送消息";
+				label13.Text = "SECS 日志区域";
+				checkBox1.Text = "暂停输出";
 			}
 		}
 
@@ -389,21 +402,36 @@ namespace HslCommunicationDemo
 			}
 
 			if (!checkBox1.Checked)
-				textBox_log.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " " + secsMessage.ToString( ) + Environment.NewLine );
-
-
-		}
-
-		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
-		{
-			if (InvokeRequired)
 			{
-				Invoke( new Action( ( ) => LogNet_BeforeSaveToFile( sender, e ) ) );
-				return;
+				AppendHeadText( -1, $"RECV: S{secsMessage.StreamNo}F{secsMessage.FunctionNo}{(secsMessage.W ? "W" : string.Empty)} SystemBytes=" + secsMessage.MessageID );
+				AppendHeadText( 0, secsMessage.GetItemValues( ) );
+				richTextBox_main.ScrollToCaret( );
 			}
 
-			if (checkBox1.Checked)
-				textBox_log.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+			// 判断要不要返回，当且 F 为单数，且树形控件的返回数据不为空时，进行返回数据操作
+			if (secsMessage.FunctionNo != 0 && secsMessage.FunctionNo % 2 == 1)
+			{
+				for ( int i = 0; i < treeView1.Nodes.Count; i++)
+				{
+					if (("S" + secsMessage.StreamNo) != treeView1.Nodes[i].Text) continue;
+
+					TreeNode treeNode = treeView1.Nodes[i];
+					for ( int j = 0; j < treeNode.Nodes.Count; j ++)
+					{
+						if (treeNode.Nodes[j].Tag is SecsTreeItem secsTreeItem)
+						{
+							if (secsTreeItem.F != secsMessage.FunctionNo) continue;
+
+							if (secsTreeItem.ValueSingular == null) break;
+
+							// 自动返回这个数据信息
+							SendSecsValue( secsTreeItem.S, (byte)(secsTreeItem.F + 1), secsTreeItem.W, secsTreeItem.ValueSingular );
+						}
+					}
+
+					break;
+				}
+			}
 		}
 
 
@@ -610,7 +638,102 @@ namespace HslCommunicationDemo
 
 		private void button4_Click_1( object sender, EventArgs e )
 		{
-			textBox_log.Clear( );
+			richTextBox_main.Clear( );
+		}
+
+		private void RenderMessage( int code, string msg )
+		{
+			if (!string.IsNullOrEmpty( msg ))
+			{
+				int index = richTextBox_main.Text.Length;
+				richTextBox_main.AppendText( msg );
+				richTextBox_main.Select( index, msg.Length );
+				if (code < 0)
+					richTextBox_main.SelectionColor = Color.Gray;
+				else if (code == 0)
+					richTextBox_main.SelectionColor = Color.Green;
+				else if (code == 1)
+					richTextBox_main.SelectionColor = Color.Blue;
+				else if (code == 4)
+					richTextBox_main.SelectionColor = Color.Purple;
+				else
+					richTextBox_main.SelectionColor = Color.Red;
+				richTextBox_main.AppendText( Environment.NewLine );
+			}
+		}
+
+		private void AppendHeadText( int code, string text )
+		{
+			string msg = DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + "  " + text;
+			RenderMessage( code, msg );
+		}
+
+		private void AppendHeadText( int code, SecsValue secsValue )
+		{
+			RenderMessage( code, 
+				comboBox_log_style.SelectedIndex == 0 ? secsValue.ToString( ) :
+				comboBox_log_style.SelectedIndex == 1 ? secsValue.ToSourceCode( format: true ) : secsValue.ToSourceCode( ) );
+		}
+
+
+		private void SendSecsValue( byte s, byte f, bool w, SecsValue secsValue )
+		{
+			OperateResult send = secs.SendByCommand( byte.Parse( textBox_stream.Text ), byte.Parse( textBox_function.Text ), secsValue, w );
+			if (send.IsSuccess)
+			{
+				//DemoUtils.ShowMessage( "发送成功！" );
+			}
+			else
+			{
+				AppendHeadText( 5, $"SEND:  S{s}F{f}{(w ? "W" : string.Empty)}" + " faild: " + send.Message );
+				richTextBox_main.ScrollToCaret( );
+				return;
+			}
+
+			if (checkBox_show_send_message.Checked)
+			{
+				AppendHeadText( -1, $"SEND:  S{s}F{f}{(w ? "W" : string.Empty)}" );
+				AppendHeadText( 1, secsValue );
+				richTextBox_main.ScrollToCaret( );
+			}
+		}
+
+		private void sendMessageToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			TreeNode treeNode = treeView1.SelectedNode;
+			if (treeNode != null)
+			{
+				if (treeNode.Tag is SecsTreeItem item)
+				{
+					if (item.Value == null) item.Value = SecsValue.EmptySecsValue( );
+					SecsValue secsValue = item.Value;
+					//if (item.W)
+					//{
+					//                   OperateResult<SecsMessage> read = secs.ReadSecsMessage( item.S, item.F, secsValue, item.W );
+					//                   if (read.IsSuccess)
+					//                   {
+					//                       // 修改左边树形菜单的默认值
+					//                       textBox_receive.Text = DateTime.Now.ToString( "HH:mm:ss" ) + ": " + Environment.NewLine + read.Content.GetItemValues( )?.ToString( );
+					//                   }
+					//                   else
+					//                   {
+					//                       DemoUtils.ShowMessage( "读取失败！" + read.ToMessageShowString( ) );
+					//                   }
+
+					//                   string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
+					//                   codeExampleControl.ReaderReadCode( $"OperateResult<SecsMessage> read = @deviceName.ReadSecsMessage( {textBox_stream.Text}, {textBox_function.Text}, {code}, {checkBox_back.Checked.ToString( ).ToLower( )} );" );
+					//               }
+					//else
+					//{
+					SendSecsValue( item.S, item.F, item.W, secsValue );
+
+					string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
+					codeExampleControl.ReaderReadCode( $"OperateResult send = @deviceName.SendByCommand( {textBox_stream.Text}, {textBox_function.Text}, {code}, {checkBox_back.Checked.ToString( ).ToLower( )} ); // 仅发送消息" + Environment.NewLine + Environment.NewLine +
+						 $"OperateResult<SecsMessage> read = @deviceName.ReadSecsMessage( {textBox_stream.Text}, {textBox_function.Text}, {code}, {checkBox_back.Checked.ToString( ).ToLower( )} );   // 应答方式" );
+
+					//}
+				}
+			}
 		}
 
 		private void addNewSecsItemToolStripMenuItem_Click( object sender, EventArgs e )
@@ -642,6 +765,17 @@ namespace HslCommunicationDemo
 					contextMenuStrip1.Show( treeView1, e.Location );
 				}
 			}
+		}
+
+		private SecsValue renderSecsValueLeft = SecsValue.EmptySecsValue( );
+		private SecsValue renderSecsValueRight = SecsValue.EmptySecsValue( );
+
+		private void checkBox_code_style_CheckedChanged( object sender, EventArgs e )
+		{
+			if (renderSecsValueLeft != null)
+				textBox_data.Text = checkBox_code_style.Checked ? renderSecsValueLeft.ToSourceCode( true ) : renderSecsValueLeft.ToXElement( ).ToString( );
+			if (renderSecsValueRight != null)
+				textBox_receive.Text = checkBox_code_style.Checked ? renderSecsValueRight.ToSourceCode( true ) : renderSecsValueRight.ToString( );
 		}
 	}
 }

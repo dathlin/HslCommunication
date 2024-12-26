@@ -19,12 +19,14 @@ namespace HslCommunicationDemo.PLC.Keyence
 		private System.Windows.Forms.TextBox textBox6;
 		private Label label_code;
 		private TextBox textBox_code;
+		private Button button_clear_error;
+		private Button button_plc_mode;
 		private Label label1;
 
 		public NanoControl( )
 		{
 			InitializeComponent( );
-			if(Program.Language == 2)
+			if (Program.Language == 2)
 			{
 				label1.Text = "Address:";
 				label13.Text = "Result:";
@@ -43,12 +45,12 @@ namespace HslCommunicationDemo.PLC.Keyence
 			this.button3 = new System.Windows.Forms.Button();
 			this.label_code = new System.Windows.Forms.Label();
 			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.button_clear_error = new System.Windows.Forms.Button();
+			this.button_plc_mode = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// textBox6
 			// 
-			this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox6.Location = new System.Drawing.Point(57, 5);
 			this.textBox6.Name = "textBox6";
 			this.textBox6.Size = new System.Drawing.Size(217, 23);
@@ -67,8 +69,8 @@ namespace HslCommunicationDemo.PLC.Keyence
 			// textBox10
 			// 
 			this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox10.Location = new System.Drawing.Point(57, 35);
 			this.textBox10.Multiline = true;
 			this.textBox10.Name = "textBox10";
@@ -87,7 +89,6 @@ namespace HslCommunicationDemo.PLC.Keyence
 			// 
 			// button4
 			// 
-			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button4.Location = new System.Drawing.Point(280, 2);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(72, 28);
@@ -98,7 +99,6 @@ namespace HslCommunicationDemo.PLC.Keyence
 			// 
 			// button3
 			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button3.Location = new System.Drawing.Point(358, 2);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(72, 28);
@@ -120,15 +120,37 @@ namespace HslCommunicationDemo.PLC.Keyence
 			// textBox_code
 			// 
 			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_code.Location = new System.Drawing.Point(57, 166);
 			this.textBox_code.Multiline = true;
 			this.textBox_code.Name = "textBox_code";
 			this.textBox_code.Size = new System.Drawing.Size(722, 63);
 			this.textBox_code.TabIndex = 20;
 			// 
+			// button_clear_error
+			// 
+			this.button_clear_error.Location = new System.Drawing.Point(436, 2);
+			this.button_clear_error.Name = "button_clear_error";
+			this.button_clear_error.Size = new System.Drawing.Size(82, 28);
+			this.button_clear_error.TabIndex = 21;
+			this.button_clear_error.Text = "错误清除";
+			this.button_clear_error.UseVisualStyleBackColor = true;
+			this.button_clear_error.Click += new System.EventHandler(this.button_clear_error_Click);
+			// 
+			// button_plc_mode
+			// 
+			this.button_plc_mode.Location = new System.Drawing.Point(524, 2);
+			this.button_plc_mode.Name = "button_plc_mode";
+			this.button_plc_mode.Size = new System.Drawing.Size(76, 28);
+			this.button_plc_mode.TabIndex = 22;
+			this.button_plc_mode.Text = "plc-mode";
+			this.button_plc_mode.UseVisualStyleBackColor = true;
+			this.button_plc_mode.Click += new System.EventHandler(this.button_plc_mode_Click);
+			// 
 			// NanoControl
 			// 
+			this.Controls.Add(this.button_plc_mode);
+			this.Controls.Add(this.button_clear_error);
 			this.Controls.Add(this.textBox_code);
 			this.Controls.Add(this.label_code);
 			this.Controls.Add(this.label1);
@@ -192,6 +214,34 @@ namespace HslCommunicationDemo.PLC.Keyence
 		private void NanoControl_Load( object sender, EventArgs e )
 		{
 
+		}
+
+		private void button_clear_error_Click( object sender, EventArgs e )
+		{
+			OperateResult result = keyence != null ? keyence.ClearError( ) : keyence1.ClearError( );
+			if (result.IsSuccess)
+			{
+				DemoUtils.ShowMessage( "ClearError success" );
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "ClearError failed: " + result.ToMessageShowString( ) );
+			}
+			textBox_code.Text = $"OperateResult result = {DemoUtils.PlcDeviceName}.ClearError( );";
+		}
+
+		private void button_plc_mode_Click( object sender, EventArgs e )
+		{
+			OperateResult<int> read = keyence != null ? keyence.ReadPlcMode( ) : keyence1.ReadPlcMode( );
+			if (read.IsSuccess)
+			{
+				textBox10.Text = "Mode: " + read.Content + "   // 如果是0，代表 PROG模式或者梯形图未登录，如果为1，代表RUN模式";
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+			textBox_code.Text = $"OperateResult<int> read = {DemoUtils.PlcDeviceName}.ReadPlcMode( );";
 		}
 	}
 }

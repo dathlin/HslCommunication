@@ -10,6 +10,7 @@ using HslCommunication.CNC.Fanuc;
 using HslCommunication;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
@@ -226,6 +227,21 @@ namespace HslCommunicationDemo
 			}
 
 			textBox_code.Text = $"OperateResult<string, int> read = fanuc.ReadSystemProgramCurrent( );";
+		}
+
+		private void button44_Click( object sender, EventArgs e )
+		{
+			OperateResult<int> read = fanuc.ReadProgramNumber( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "程序号：" + read.Content;
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+
+			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadProgramNumber( );";
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -918,6 +934,22 @@ namespace HslCommunicationDemo
 			textBox_code.Text = $"OperateResult<string[]> read = fanuc.ReadSpindleNames( );";
 		}
 
+		private void button43_Click( object sender, EventArgs e )
+		{
+			// 主轴负载
+			OperateResult<double> read = fanuc.ReadSpindleLoad( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "主轴负载：" + Environment.NewLine + read.Content.ToJsonString( );
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+
+			textBox_code.Text = $"OperateResult<double> read = fanuc.ReadSpindleLoad( );";
+		}
+
 		private void button39_Click( object sender, EventArgs e )
 		{
 			// 读诊断
@@ -1002,6 +1034,7 @@ namespace HslCommunicationDemo
 
 			textBox_code.Text = $"OperateResult read = fanuc.ClearToolGroup( {id}, {id} );";
 		}
+
 	}
 
 

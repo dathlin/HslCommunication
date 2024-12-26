@@ -14,6 +14,7 @@ using System.IO;
 using System.Threading;
 using HslCommunicationDemo.PLC.Common;
 using HslCommunication.Core.Device;
+using System.Text.RegularExpressions;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -31,7 +32,8 @@ namespace HslCommunicationDemo.DemoControl
 
 		private System.Windows.Forms.Timer timerSecond;
 		private List<UserControl> allControls = new List<UserControl>( );
-
+		private string regexFilter = string.Empty;
+		private string deviceName = "server";
 
 		public void SetReadWriteServerLog( DeviceServer dataServerBase )
 		{
@@ -39,7 +41,7 @@ namespace HslCommunicationDemo.DemoControl
 			dataServerBase.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 		}
 
-		public void SetReadWriteServer( DeviceServer dataServerBase, string address, int strLength = 10 )
+		public void SetReadWriteServer( DeviceServer dataServerBase, string address, int strLength = 10, string deviceName = "server" )
 		{
 			if (dataServerBase.LogNet == null)
 			{
@@ -47,9 +49,10 @@ namespace HslCommunicationDemo.DemoControl
 			}
 
 			this.deviceServer = dataServerBase;
+			this.deviceName = deviceName;
 			userControlReadWriteOp1.SetReadWriteNet( deviceServer, address, false, strLength );
 			batchReadControl1.SetReadWriteNet( deviceServer, address, "" );
-			batchReadControl1.SetVariableName( "server" );
+			batchReadControl1.SetVariableName( deviceName );
 			dataTableControl1.SetReadWriteNet( deviceServer );
 			dataSimulateControl1.SetReadWriteNet( deviceServer );
 
@@ -64,6 +67,11 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			if (deviceServer != null)
 				label15.Text = deviceServer.OnlineCount.ToString( );
+
+			if (this.remoteConnectInfos?.Count > 0)
+			{
+				RenderConnectInfos( );
+			}
 		}
 
 		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
@@ -78,13 +86,29 @@ namespace HslCommunicationDemo.DemoControl
 					return;
 				}
 
-				if (textBox1.TextLength > 1000_000) textBox1.Clear( );
-				textBox1.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+				if (textBox1.TextLength > 2000_000) textBox1.Clear( );
+				if (string.IsNullOrEmpty( this.regexFilter ))
+				{
+					textBox1.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+				}
+				else
+				{
+					string msg = e.HslMessage.ToString( ) + Environment.NewLine;
+					if (Regex.IsMatch(msg, this.regexFilter ))
+					{
+						textBox1.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+					}
+				}
 			}
 			catch
 			{
 				return;
 			}
+		}
+
+		private void button_log_filter_Click( object sender, EventArgs e )
+		{
+			regexFilter = textBox_log_filter.Text;
 		}
 
 		public void SetEnable( bool enbale )
@@ -102,6 +126,9 @@ namespace HslCommunicationDemo.DemoControl
 			button8.Enabled = enbale;
 			button9.Enabled = enbale;
 			textBox1.Enabled = enbale;
+			textBox_log_filter.Enabled = enbale;
+			button_log_filter.Enabled = enbale;
+			textBox_others_code.Enabled = enbale;
 		}
 
 		public void Close( )
@@ -123,6 +150,8 @@ namespace HslCommunicationDemo.DemoControl
 				checkBox1.Text = "Display log data?";
 				label16.Text = "Client-Online:";
 				button1.Text = "Connecting Alien client";
+				label1.Text = "Regex:";
+				button_log_filter.Text = "regex filter";
 
 				checkBox_cycle.Text = "Cycle?";
 				button_data_import.Text = "DataImport";
@@ -132,6 +161,12 @@ namespace HslCommunicationDemo.DemoControl
 				tabPage2.Text = "Batch Read";
 				tabPage3.Text = "Data Table";
 				tabPage4.Text = "Simulate";
+				tabPage5.Text = "Others";
+
+				label2.Text = "Sessions:";
+				button1.Text = "Connect Dtu Server";
+				button9.Text = "Save Data to file";
+				button8.Text = "Load Data from file";
 			}
 		}
 
@@ -150,6 +185,8 @@ namespace HslCommunicationDemo.DemoControl
 							{
 								deviceServer.LoadDataPool( ofd.FileName );
 								DemoUtils.ShowMessage( "Load data finish" );
+
+								textBox_others_code.Text = $"server.LoadDataPool( \"{ofd.FileName}\" );";
 							}
 							catch (Exception ex)
 							{
@@ -179,12 +216,47 @@ namespace HslCommunicationDemo.DemoControl
 						{
 							deviceServer.SaveDataPool( sfd.FileName );
 							DemoUtils.ShowMessage( "Save file finish!" );
+
+							textBox_others_code.Text = $"server.SaveDataPool( \"{sfd.FileName}\" );";
 						}
 						catch (Exception ex)
 						{
 							DemoUtils.ShowMessage( "Save failed: " + ex.Message );
 						}
 					}
+				}
+			}
+		}
+
+		private List<RemoteConnectInfo> remoteConnectInfos = new List<RemoteConnectInfo>( );
+		private void RenderConnectInfos( )
+		{
+			DemoUtils.DataGridSpecifyRowCount( dataGridView_dtu_sessions, remoteConnectInfos.Count );
+			for (int i = 0; i < remoteConnectInfos.Count; i++)
+			{
+				DataGridViewRow row = dataGridView_dtu_sessions.Rows[i];
+				RemoteConnectInfo connectInfo = remoteConnectInfos[i];
+
+				row.Cells[0].Value = (i + 1);
+				row.Cells[1].Value = connectInfo.EndPoint.ToString( );
+				row.Cells[2].Value = connectInfo.Status.ToString( );
+				row.Cells[3].Value = connectInfo.DtuId;
+				row.Cells[4].Value = connectInfo.Session?.OnlineTime.ToString( );
+				row.Cells[5].Value = "Close";
+				row.Tag = connectInfo;
+			}
+		}
+
+		private void dataGridView_dtu_sessions_CellContentClick( object sender, DataGridViewCellEventArgs e )
+		{
+			if (e.RowIndex < dataGridView_dtu_sessions.RowCount)
+			{
+				DataGridViewRow row = dataGridView_dtu_sessions.Rows[e.RowIndex];
+				if (row.Tag is RemoteConnectInfo connectInfo)
+				{
+					connectInfo.Close( );
+					remoteConnectInfos.Remove( connectInfo );
+					RenderConnectInfos( );
 				}
 			}
 		}
@@ -196,26 +268,26 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (form.ShowDialog( ) == DialogResult.OK)
 				{
+					RemoteConnectInfo remoteConnectInfo = null;
 					if (form.UseHslDtuServer)
 					{
-						deviceServer.GetCommunicationServer( ).ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU, form.Pwd, form.NeedAckDtuResult );
+						remoteConnectInfo = deviceServer.GetCommunicationServer( ).ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU, form.Pwd, form.NeedAckDtuResult );
+						textBox_others_code.Text = $"RemoteConnectInfo remoteConnectInfo = {this.deviceName}.GetCommunicationServer( ).ConnectHslAlientClient( \"{form.IpAddress}\", {form.Port}, \"{form.DTU}\", \"{form.Pwd}\", {form.NeedAckDtuResult} );" +
+							$"\r\n// 关闭连接的话 remoteConnectInfo.Close( );";
 					}
 					else
 					{
-						deviceServer.GetCommunicationServer( ).ConnectRemoteServer( form.IpAddress, form.Port, form.CustomizeDTU );
+						remoteConnectInfo = deviceServer.GetCommunicationServer( ).ConnectRemoteServer( form.IpAddress, form.Port, form.CustomizeDTU );
+						textBox_others_code.Text = $"RemoteConnectInfo remoteConnectInfo = {this.deviceName}.GetCommunicationServer( ).ConnectRemoteServer( \"{form.IpAddress}\", form.Port, \"{form.CustomizeDTU.ToHexString()}\".ToHexBytes( ) );" +
+							$"\r\n// 关闭连接的话 remoteConnectInfo.Close( );";
+
 					}
-
-					DemoUtils.ShowMessage( "Add Connection success" );
-
-					//OperateResult connect = deviceServer.GetCommunicationServer().ConnectHslAlientClient( form.IpAddress, form.Port, form.DTU, form.Pwd );
-					//if (connect.IsSuccess)
-					//{
-					//	DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
-					//}
-					//else
-					//{
-					//	DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedFailed + connect.Message );
-					//}
+					if (remoteConnectInfo != null)
+					{
+						remoteConnectInfos.Add( remoteConnectInfo );
+						RenderConnectInfos( );
+					}
+					DemoUtils.ShowMessage( Program.Language == 1 ? "增加一个新的DTU连接成功" : "Add Connection success" );
 				}
 			}
 		}
@@ -437,5 +509,6 @@ namespace HslCommunicationDemo.DemoControl
 				form.ShowDialog( );
 			}
 		}
+
 	}
 }

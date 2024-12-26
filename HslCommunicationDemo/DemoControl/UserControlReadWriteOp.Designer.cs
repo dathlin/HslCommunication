@@ -65,6 +65,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_find_string = new System.Windows.Forms.Button();
+            this.textBox_read_search = new System.Windows.Forms.TextBox();
             this.checkBox_mask_duplicates = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -195,7 +197,7 @@
             // 
             this.groupBox4.Location = new System.Drawing.Point(6, 237);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(407, 2);
+            this.groupBox4.Size = new System.Drawing.Size(425, 2);
             this.groupBox4.TabIndex = 31;
             this.groupBox4.TabStop = false;
             // 
@@ -506,6 +508,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.button_find_string);
+            this.groupBox1.Controls.Add(this.textBox_read_search);
             this.groupBox1.Controls.Add(this.checkBox_mask_duplicates);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.groupBox3);
@@ -541,11 +545,35 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单数据读取测试";
             // 
+            // button_find_string
+            // 
+            this.button_find_string.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_find_string.Location = new System.Drawing.Point(456, 241);
+            this.button_find_string.Name = "button_find_string";
+            this.button_find_string.Size = new System.Drawing.Size(50, 25);
+            this.button_find_string.TabIndex = 29;
+            this.button_find_string.Text = "搜索";
+            this.button_find_string.UseVisualStyleBackColor = true;
+            this.button_find_string.Click += new System.EventHandler(this.button_find_string_Click);
+            // 
+            // textBox_read_search
+            // 
+            this.textBox_read_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_read_search.ForeColor = System.Drawing.Color.Silver;
+            this.textBox_read_search.Location = new System.Drawing.Point(369, 242);
+            this.textBox_read_search.Name = "textBox_read_search";
+            this.textBox_read_search.Size = new System.Drawing.Size(85, 23);
+            this.textBox_read_search.TabIndex = 28;
+            this.textBox_read_search.Text = "搜索内容";
+            this.textBox_read_search.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_read_search_MouseClick);
+            this.textBox_read_search.TextChanged += new System.EventHandler(this.textBox_read_search_TextChanged);
+            this.textBox_read_search.Leave += new System.EventHandler(this.textBox_read_search_Leave);
+            // 
             // checkBox_mask_duplicates
             // 
             this.checkBox_mask_duplicates.AutoSize = true;
             this.checkBox_mask_duplicates.ForeColor = System.Drawing.Color.Gray;
-            this.checkBox_mask_duplicates.Location = new System.Drawing.Point(350, 244);
+            this.checkBox_mask_duplicates.Location = new System.Drawing.Point(268, 244);
             this.checkBox_mask_duplicates.Name = "checkBox_mask_duplicates";
             this.checkBox_mask_duplicates.Size = new System.Drawing.Size(99, 21);
             this.checkBox_mask_duplicates.TabIndex = 27;
@@ -555,8 +583,8 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.Color.Gray;
-            this.label17.Location = new System.Drawing.Point(247, 246);
+            this.label17.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label17.Location = new System.Drawing.Point(168, 246);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(46, 17);
             this.label17.TabIndex = 26;
@@ -566,9 +594,9 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Location = new System.Drawing.Point(65, 237);
+            this.groupBox3.Location = new System.Drawing.Point(4, 237);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(440, 2);
+            this.groupBox3.Size = new System.Drawing.Size(502, 2);
             this.groupBox3.TabIndex = 25;
             this.groupBox3.TabStop = false;
             // 
@@ -576,7 +604,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.Gray;
-            this.label14.Location = new System.Drawing.Point(217, 247);
+            this.label14.Location = new System.Drawing.Point(143, 246);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(25, 17);
             this.label14.TabIndex = 5;
@@ -584,9 +612,9 @@
             // 
             // textBox_read_timer_interval
             // 
-            this.textBox_read_timer_interval.Location = new System.Drawing.Point(152, 243);
+            this.textBox_read_timer_interval.Location = new System.Drawing.Point(91, 243);
             this.textBox_read_timer_interval.Name = "textBox_read_timer_interval";
-            this.textBox_read_timer_interval.Size = new System.Drawing.Size(62, 23);
+            this.textBox_read_timer_interval.Size = new System.Drawing.Size(49, 23);
             this.textBox_read_timer_interval.TabIndex = 24;
             this.textBox_read_timer_interval.Text = "1000";
             // 
@@ -594,7 +622,7 @@
             // 
             this.checkBox_read_timer.AutoSize = true;
             this.checkBox_read_timer.ForeColor = System.Drawing.Color.Gray;
-            this.checkBox_read_timer.Location = new System.Drawing.Point(60, 244);
+            this.checkBox_read_timer.Location = new System.Drawing.Point(4, 244);
             this.checkBox_read_timer.Name = "checkBox_read_timer";
             this.checkBox_read_timer.Size = new System.Drawing.Size(75, 21);
             this.checkBox_read_timer.TabIndex = 23;
@@ -889,5 +917,7 @@
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.Label label22;
         private System.Windows.Forms.CheckBox checkBox_mask_duplicates;
+        private System.Windows.Forms.TextBox textBox_read_search;
+        private System.Windows.Forms.Button button_find_string;
     }
 }

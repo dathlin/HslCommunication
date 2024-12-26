@@ -35,24 +35,29 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.1.3
-1. NetworkWebApiBase: 修复webapi基类实例化后，仍然继续设置IpAddress属性时，实际请求地址不更新的bug。
-2. LogNet: 日志类新增属性EncoderShouldEmitUTF8Identifier可以控制UTF编码的是否包含BOM头，默认为 true，如果不需要BOM头，可以设置为false
-3. LogNetDateTime: 日期时间类型的日志新增一个实例化方法，可以同时指定文件大小，超过指定大小即自动拆分日志文件。
-4. CommunicationTcpServer: 修复tcp的服务器在.net8等环境里运行的时候，在关闭服务器的时候，弹出未捕获的异常的bug，现在可以正确的关闭。
-5. IEC104: 修复IEC104协议在接收某些特殊情况的报文数据导致解析异常，直接退出程序的bug，现在会进行日志的输出。
-6. LogNetAnalysisControl: 日志分析的控件界面新增一个\0转义的选择框，解决日志消息里带有\0的情况导致显示阶段的问题。
-7. DLT698Helper: 修复DLT698.45协议里，在某些特殊的设备上，时间数据不存在导致解析异常崩溃的bug，现在直接返回异常的时间内容。
-8. HttpServer: HttpServer及MqttServer服务器新增卸载单个API接口的方法 UnRegisterHttpRpcApiSingle( string apiTopic )
-9. BinaryCommunication: 所有设备的基类当因通信失败的时候，返回当前管道的基本信息，例如ip端口，或是串口的端口，方便查错。
-10. HslStructAttribute: 结构体偏移字节特性新增字符串解析模式属性，可以解析普通字符串，西门子等字符串，结构体解析的属性支持了自定义类，会继续解析子类操作。
-11. Demo: 显示弹窗的信息框优化，使用了自定义的窗体显示消息本文，根据文本的内容大小，来自动调整当前窗体的大小，并且父窗体居中显示。
-12. Demo: 模拟数据写入的地方，支持使用随机数，使用r表示，例如 (short)r.Next(100,200) 表示100-200的随机数，最后转short类型。
-13. LogNet: 日志部分的demo界面部分字符串再英文状态时，显示英文信息，优化相关的界面的测试功能。
-14. Demo: 欧姆龙的虚拟服务器支持配置DataFormat及是否字符串反转的功能，所有设备的数据导出功能增加随时停止的按钮。
-15. Demo: PLC测试界面读取字符串的时候，如果碰到\0 字符的时候，原先直接截断显示，对大家造成困扰，现在直接转义为 \0 显示，请注意查看
-16. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn/Doc/HslCommunication
-17. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V12.2.0
+1. MelsecMcServer: 对客户端的功能码支持了读取型号，远程run，远程stop，远程reset，错误状态恢复，方便客户端进行测试
+2. FanucSeries0i: 修复ReadFanucAxisLoad在某些型号读取异常的bug，修复读取系统状态在某些型号读取异常bug，新增读取主轴负载及程序号的方法。
+3. RemoteConnectInfo: 优化了DTU连接类，虚拟服务器可以直接连接远程DTU服务器，然后返回连接对象，支持进一步控制操作，例如断开，DEMO相关界面优化。
+4. MelsecFxSerial: 三菱的编程口协议支持写入bool数组到指定地址里去，不过前提条件是bool数组长度是16的倍数，且位起始地址也需要为16的倍数。
+5. SiemensS7Server: 修复S7虚拟服务器读写bool数组失败，提示不支持的bug，现在可以正确的读取和写入bool数组操作了。
+6. Keyence: 基恩士上位链路协议客户端支持直接字单位读写位线圈的地址，虚拟服务器同步支持这些命令操作，Demo界面优化。
+7. ModbusInfo： modbusASCII协议提取真实数据的时候，遇到中间有0d0a结束字符的时候，自动截断操作。
+8. ToyoPuc: 丰田工机协议写入位数据到字地址的时候，直接提示写入失败，防止错误写入的情况，因为没有这样的功能码操作。
+9. ToyoPuc: 丰田工机协议新增随机字读取的方法ReadRandom(string[])，虚拟服务器ToyoPucServer也支持了该功能码。
+10. SecsValue: 格式化输出代码样式的时候，支持format属性，设置true后自动换行，更加符合阅读，DEMO测试界面的客户端优化，支持设置自动回发数据，支持可选显示XML和代码样式等。
+11. OpenProtocolNet: 新增属性KeepAliveMessageEnable控制是否启用心跳，修复设置管道的方式下导致订阅数据接收不到的bug，DEMO界面优化增加MID0106和MID0107的数据解析。
+12. BeckhoffAdsNet: 修复再直接设置管道的情况下，可能忘记设置管道的UseServerActivePush属性导致数据在某些特殊情况下不正确的bug，现在都自动设置。
+13. Demo: 测试工具中批量读取原始字节数据的时候，展示的类型新增boolarray类型选择，自动转为bool数组，表示为0,1 方便大家查看。
+14. Demo: Demo界面的原始字节读取结果数据框使用等宽字体，然后支持手动设置每行显示的数据个数，不同类型的数据做了自动对齐操作。
+15. Demo: 程序界面显示报文交互日志窗体时，该窗体新增过滤功能，支持日志等级，正则表达式过滤，支持输出到本地的txt文件。
+16. Demo: 界面优化，点击写入bool数组的功能按钮时，输入bool数组支持0,1表示，简化输入，例如 [1,0,1,0]
+17. Demo: FormKeyenceSR2000: 界面优化，点击按钮自动显示调用的代码，连接失败提示更加详细的内容。
+18. Demo: 各种类型读写控件UserControlReadWriteOp基本数据的读写界面新增加搜索文本的功能，方便快速定位数据。
+19. Demo: 点位变量表控件DataTableControl中，在导入数据的时候，如果碰到不支持的数据类型，错误提示进行了优化，更方便的查找问题。
+20. Demo: 网口、串口的调试界面收发的数据的显示格式，从只能一样的设置，修改为支持设置不一样的格式，例如发送是ASCII，接收是二进制。
+21. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn/Doc/HslCommunication
+22. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

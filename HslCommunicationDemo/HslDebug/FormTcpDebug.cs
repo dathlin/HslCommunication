@@ -34,7 +34,6 @@ namespace HslCommunicationDemo
 
 		private void FormTcpDebug_Load( object sender, EventArgs e )
 		{
-			panel_main.Enabled = false;
 			Language( Program.Language );
 		}
 
