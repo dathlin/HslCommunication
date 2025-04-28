@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -248,9 +249,127 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			return count;
 		}
-	}
 
-	public class SimulateWrite
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "CSV文件 (*.csv)|*.csv|所有文件 (*.*)|*.*";
+                openFileDialog.Title = "选择CSV文件";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string filePath = openFileDialog.FileName;
+                        ImportFromCsv(filePath);
+                        MessageBox.Show("数据导入成功！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"导入失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "CSV文件 (*.csv)|*.csv|所有文件 (*.*)|*.*";
+                saveFileDialog.Title = "保存CSV文件";
+                saveFileDialog.FileName = "data_export.csv";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string filePath = saveFileDialog.FileName;
+                        ExportToCsv(filePath);
+                        MessageBox.Show("数据导出成功！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"导出失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void ImportFromCsv(string filePath)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                // 读取标题行
+                string headerLine = reader.ReadLine();
+                if (string.IsNullOrEmpty(headerLine))
+                    return;
+
+                string[] headers = headerLine.Split('\t');
+                foreach (string header in headers)
+                {
+                    dataTable.Columns.Add(header.Trim());
+                }
+
+                // 读取数据行
+                while (!reader.EndOfStream)
+                {
+                    string dataLine = reader.ReadLine();
+                    if (string.IsNullOrEmpty(dataLine))
+                        continue;
+
+                    string[] values = dataLine.Split('\t');
+
+                    // 添加新行
+                    int rowIndex = dataGridView1.Rows.Add();
+
+                    // 填充数据
+                    for (int i = 0; i < Math.Min(values.Length, dataGridView1.Columns.Count); i++)
+                    {
+                        dataGridView1.Rows[rowIndex].Cells[i].Value = values[i].Trim();
+                    }
+                }
+            }
+        }
+
+        private void ExportToCsv(string filePath)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath, false, System.Text.Encoding.UTF8))
+            {
+                // 写入标题行
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    writer.Write(dataGridView1.Columns[i].HeaderText);
+                    if (i < dataGridView1.Columns.Count - 1)
+                        writer.Write("\t");
+                }
+                writer.WriteLine();
+
+                // 写入数据行
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                    {
+                        if (!dataGridView1.Rows[i].IsNewRow)
+                        {
+                            string value = dataGridView1.Rows[i].Cells[j].Value?.ToString() ?? "";
+
+                            writer.Write(value);
+                            if (j < dataGridView1.Columns.Count - 1)
+                                writer.Write("\t");
+                        }
+                    }
+                    if (!dataGridView1.Rows[i].IsNewRow)
+                        writer.WriteLine();
+                }
+            }
+        }
+    }
+
+    public class SimulateWrite
 	{
 		public string Name { get; set; }
 
