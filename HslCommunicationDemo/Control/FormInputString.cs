@@ -23,6 +23,16 @@ namespace HslCommunicationDemo.Control
 			this.DeviceAlias = alias;
 		}
 
+		public FormInputString( string alias, string password)
+		{
+			InitializeComponent( );
+			this.DeviceAlias = alias;
+			textBox1.Text = alias;
+			textBox2.Text = password;
+			textBox3.Text = password;
+		}
+
+
 		private void FormInputString_Load( object sender, EventArgs e )
 		{
 			if(Program.Language == 2)

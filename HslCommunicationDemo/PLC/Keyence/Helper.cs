@@ -67,5 +67,25 @@ namespace HslCommunicationDemo.PLC.Keyence
 				new DeviceAddressExample( "unit=1;100",     "扩展存储器模块",       false, true, "[商业授权] 读取扩展模块单元号1，地址100的数据" ),
 			};
 		}
+
+		public static DeviceAddressExample[] GetKeyenceKvOld( )
+		{
+			return new DeviceAddressExample[]
+			{
+				new DeviceAddressExample( "T0",    "定时器线圈",            true, false, "读bool，触点，范围: T000 ~ T999" ),
+				new DeviceAddressExample( "C0",    "计数器线圈",            true, false, "读bool，触点，范围: C000 ~ C999" ),
+				new DeviceAddressExample( "CTC0",  "高速计数器线圈",        true, false, "读bool，触点，范围: CTC0 ~ CTC1" ),
+				new DeviceAddressExample( "CTH0",  "高速计数器",            true, false, "读bool，触点，范围: CTH0 ~ CTH1" ),
+				new DeviceAddressExample( "R0",    "继电器",                true, false, "读bool，触点，范围: R00000~R99915，也可以写成 R100.0" ),
+
+				new DeviceAddressExample( "DM0",            "数据寄存器",           false, true, "范围: DM000~DM999" ),
+				new DeviceAddressExample( "TM0",            "临时数据寄存器",       false, true, "范围: TM00~TM99" ),
+				new DeviceAddressExample( "TC0",            "定时器当前值",         false, true, "范围: TC000~TC999" ),
+				new DeviceAddressExample( "TS0",            "定时器设定值",         false, true, "范围: TS000~TS999" ),
+				new DeviceAddressExample( "CC0",            "计数器当前值",         false, true, "范围: CC000~CC999" ),
+				new DeviceAddressExample( "CS0",            "计数器设定值",         false, true, "范围: CS000~CS999" ),
+				new DeviceAddressExample( "CTH0",           "高速计数器当前值",     false, true, "范围: CTH0~CTH1" ),
+			};
+		}
 	}
 }

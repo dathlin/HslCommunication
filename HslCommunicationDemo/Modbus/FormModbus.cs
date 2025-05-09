@@ -23,6 +23,16 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 
+
+			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
+		}
+
+		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
+		{
+			if (busTcpClient != null)
+			{
+				busTcpClient.AddressStartWithZero = checkBox1.Checked;
+			}
 		}
 
 		private ModbusTcpNet busTcpClient = null;
@@ -67,7 +77,7 @@ namespace HslCommunicationDemo
 
 				checkBox2.Text = "Check Message ID";
 				label_BroadcastStation.Text = "BroadcastStat:";
-
+				label_batch_length.Text = "BatchLen:";
 			}
 		}
 
@@ -122,6 +132,8 @@ namespace HslCommunicationDemo
 			busTcpClient.LogNet = LogNet;
 			if (!string.IsNullOrEmpty( textBox_BroadcastStation.Text ))
 				busTcpClient.BroadcastStation = int.Parse( textBox_BroadcastStation.Text );
+			if (!string.IsNullOrEmpty( textBox_batch_length.Text ))
+				busTcpClient.WordReadBatchLength = int.Parse( textBox_batch_length.Text );
 
 			ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
 			busTcpClient.IsStringReverse = checkBox3.Checked;
@@ -148,8 +160,16 @@ namespace HslCommunicationDemo
 
 					// 设置示例代码
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
-					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busTcpClient, nameof( busTcpClient.Station ), nameof( busTcpClient.AddressStartWithZero ), nameof( busTcpClient.IsCheckMessageId ),
-						nameof( busTcpClient.IsStringReverse ), nameof( busTcpClient.DataFormat ), nameof( busTcpClient.BroadcastStation ) );
+					List<string> paras = new List<string>( );
+					paras.Add( nameof( busTcpClient.Station ) );
+					paras.Add( nameof( busTcpClient.IsStringReverse ) );
+					paras.Add( nameof( busTcpClient.DataFormat ) );
+					if (busTcpClient.BroadcastStation != -1) paras.Add( nameof( busTcpClient.BroadcastStation ) );
+					if (busTcpClient.IsCheckMessageId == false) paras.Add( nameof( busTcpClient.IsCheckMessageId ) );
+					if (busTcpClient.AddressStartWithZero == false) paras.Add( nameof( busTcpClient.AddressStartWithZero ) );
+					if (busTcpClient.WordReadBatchLength != 120) paras.Add( nameof( busTcpClient.WordReadBatchLength ) );
+
+					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busTcpClient, paras.ToArray( ) );
 				}
 				else
 				{

@@ -44,6 +44,7 @@
             this.toolStripMenuItem_byteTransform = new System.Windows.Forms.ToolStripMenuItem();
             this.regexRegularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formTopMostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_HomePage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_ApiDoc = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,6 +66,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
+            this.label_account = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -126,7 +128,8 @@
             this.toolStripMenuItem_tcp2Tcp,
             this.toolStripMenuItem_byteTransform,
             this.regexRegularToolStripMenuItem,
-            this.showMsToolStripMenuItem});
+            this.showMsToolStripMenuItem,
+            this.formTopMostToolStripMenuItem});
             this.toolStripMenuItem_Debug.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.toolStripMenuItem_Debug.Name = "toolStripMenuItem_Debug";
             this.toolStripMenuItem_Debug.Size = new System.Drawing.Size(76, 21);
@@ -198,6 +201,13 @@
             this.showMsToolStripMenuItem.Name = "showMsToolStripMenuItem";
             this.showMsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.showMsToolStripMenuItem.Text = "读写时间显示毫秒";
+            // 
+            // formTopMostToolStripMenuItem
+            // 
+            this.formTopMostToolStripMenuItem.Name = "formTopMostToolStripMenuItem";
+            this.formTopMostToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.formTopMostToolStripMenuItem.Text = "窗体置顶";
+            this.formTopMostToolStripMenuItem.Click += new System.EventHandler(this.formTopMostToolStripMenuItem_Click);
             // 
             // toolStripMenuItem_Help
             // 
@@ -329,9 +339,9 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.label1.Location = new System.Drawing.Point(926, 3);
+            this.label1.Location = new System.Drawing.Point(894, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(314, 21);
+            this.label1.Size = new System.Drawing.Size(230, 21);
             this.label1.TabIndex = 39;
             this.label1.Text = "Thread:0  Lock:0";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -355,11 +365,23 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.label2.Location = new System.Drawing.Point(745, 3);
+            this.label2.Location = new System.Drawing.Point(720, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(209, 21);
+            this.label2.Size = new System.Drawing.Size(148, 21);
             this.label2.TabIndex = 42;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label_account
+            // 
+            this.label_account.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
+            this.label_account.ForeColor = System.Drawing.Color.Cyan;
+            this.label_account.Location = new System.Drawing.Point(1146, 5);
+            this.label_account.Name = "label_account";
+            this.label_account.Size = new System.Drawing.Size(94, 17);
+            this.label_account.TabIndex = 45;
+            this.label_account.Text = "登录";
+            this.label_account.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label_account.Click += new System.EventHandler(this.label_account_Click);
             // 
             // FormMain
             // 
@@ -367,6 +389,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(1240, 716);
+            this.Controls.Add(this.label_account);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dockPanel1);
@@ -426,6 +449,8 @@
 		private System.Windows.Forms.ToolStripMenuItem regexRegularToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem ecologyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showMsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem formTopMostToolStripMenuItem;
+        private System.Windows.Forms.Label label_account;
     }
 }
 

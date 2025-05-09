@@ -41,10 +41,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button_delete = new System.Windows.Forms.Button();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.button2 = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.checkBox_show_header = new System.Windows.Forms.CheckBox();
+            this.checkBox_show_body = new System.Windows.Forms.CheckBox();
+            this.button_clear = new System.Windows.Forms.Button();
+            this.button_stop = new System.Windows.Forms.Button();
+            this.textBox_log = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button_delete = new System.Windows.Forms.Button();
             this.button_post = new System.Windows.Forms.Button();
             this.button_get = new System.Windows.Forms.Button();
             this.textBox_body = new System.Windows.Forms.TextBox();
@@ -52,13 +63,16 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox_api = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,6 +139,8 @@
             // checkBox_IsCrossDomain
             // 
             this.checkBox_IsCrossDomain.AutoSize = true;
+            this.checkBox_IsCrossDomain.Checked = true;
+            this.checkBox_IsCrossDomain.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_IsCrossDomain.Location = new System.Drawing.Point(150, 7);
             this.checkBox_IsCrossDomain.Name = "checkBox_IsCrossDomain";
             this.checkBox_IsCrossDomain.Size = new System.Drawing.Size(123, 21);
@@ -193,12 +209,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.tabControl1);
             this.panel2.Controls.Add(this.button_delete);
-            this.panel2.Controls.Add(this.webBrowser1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.comboBox1);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.button_post);
             this.panel2.Controls.Add(this.button_get);
             this.panel2.Controls.Add(this.textBox_body);
@@ -206,11 +220,166 @@
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.textBox_api);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label12);
             this.panel2.Location = new System.Drawing.Point(188, 99);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(813, 522);
             this.panel2.TabIndex = 13;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(4, 208);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(808, 309);
+            this.tabControl1.TabIndex = 25;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.webBrowser1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(800, 279);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "网页浏览";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 17);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Url:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(42, 6);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(654, 23);
+            this.textBox1.TabIndex = 21;
+            this.textBox1.Text = "http://127.0.0.1:12345/GetA";
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(703, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(91, 28);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "请求";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser1.Location = new System.Drawing.Point(6, 35);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(788, 238);
+            this.webBrowser1.TabIndex = 23;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.panel4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(800, 279);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "调用日志";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.checkBox_show_header);
+            this.panel4.Controls.Add(this.checkBox_show_body);
+            this.panel4.Controls.Add(this.button_clear);
+            this.panel4.Controls.Add(this.button_stop);
+            this.panel4.Controls.Add(this.textBox_log);
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(794, 273);
+            this.panel4.TabIndex = 0;
+            // 
+            // checkBox_show_header
+            // 
+            this.checkBox_show_header.AutoSize = true;
+            this.checkBox_show_header.Location = new System.Drawing.Point(83, 8);
+            this.checkBox_show_header.Name = "checkBox_show_header";
+            this.checkBox_show_header.Size = new System.Drawing.Size(124, 21);
+            this.checkBox_show_header.TabIndex = 26;
+            this.checkBox_show_header.Text = "显示Header内容?";
+            this.checkBox_show_header.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_show_body
+            // 
+            this.checkBox_show_body.AutoSize = true;
+            this.checkBox_show_body.Location = new System.Drawing.Point(266, 8);
+            this.checkBox_show_body.Name = "checkBox_show_body";
+            this.checkBox_show_body.Size = new System.Drawing.Size(111, 21);
+            this.checkBox_show_body.TabIndex = 25;
+            this.checkBox_show_body.Text = "显示Bdoy内容?";
+            this.checkBox_show_body.UseVisualStyleBackColor = true;
+            // 
+            // button_clear
+            // 
+            this.button_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_clear.Location = new System.Drawing.Point(708, 4);
+            this.button_clear.Name = "button_clear";
+            this.button_clear.Size = new System.Drawing.Size(83, 28);
+            this.button_clear.TabIndex = 14;
+            this.button_clear.Text = "清空";
+            this.button_clear.UseVisualStyleBackColor = true;
+            this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
+            // 
+            // button_stop
+            // 
+            this.button_stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_stop.Location = new System.Drawing.Point(619, 4);
+            this.button_stop.Name = "button_stop";
+            this.button_stop.Size = new System.Drawing.Size(83, 28);
+            this.button_stop.TabIndex = 13;
+            this.button_stop.Text = "暂停";
+            this.button_stop.UseVisualStyleBackColor = true;
+            this.button_stop.Click += new System.EventHandler(this.button_stop_Click);
+            // 
+            // textBox_log
+            // 
+            this.textBox_log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_log.Location = new System.Drawing.Point(3, 35);
+            this.textBox_log.Multiline = true;
+            this.textBox_log.Name = "textBox_log";
+            this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_log.Size = new System.Drawing.Size(788, 238);
+            this.textBox_log.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(5, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(33, 17);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Log:";
             // 
             // button_delete
             // 
@@ -221,38 +390,6 @@
             this.button_delete.Text = "Delete Api";
             this.button_delete.UseVisualStyleBackColor = true;
             this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(62, 243);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(742, 271);
-            this.webBrowser1.TabIndex = 23;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(713, 211);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 28);
-            this.button2.TabIndex = 22;
-            this.button2.Text = "请求";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(62, 214);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(645, 23);
-            this.textBox1.TabIndex = 21;
-            this.textBox1.Text = "http://127.0.0.1:12345/GetA";
             // 
             // button_post
             // 
@@ -281,6 +418,7 @@
             this.textBox_body.Location = new System.Drawing.Point(62, 36);
             this.textBox_body.Multiline = true;
             this.textBox_body.Name = "textBox_body";
+            this.textBox_body.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_body.Size = new System.Drawing.Size(742, 138);
             this.textBox_body.TabIndex = 8;
             this.textBox_body.Text = "<html><head><title>HslWebServer</title></head><body><p style=\"color:red\">这是一个测试的消" +
@@ -320,15 +458,6 @@
             this.label7.Size = new System.Drawing.Size(32, 17);
             this.label7.TabIndex = 7;
             this.label7.Text = "网址";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(5, 217);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(56, 17);
-            this.label12.TabIndex = 19;
-            this.label12.Text = "网页浏览";
             // 
             // userControlHead1
             // 
@@ -398,6 +527,12 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -410,7 +545,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button_get;
         private System.Windows.Forms.TextBox textBox_body;
         private System.Windows.Forms.Label label9;
@@ -434,5 +568,16 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.CheckBox checkBox_https;
 		private System.Windows.Forms.LinkLabel linkLabel1;
-	}
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TextBox textBox_log;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button_clear;
+        private System.Windows.Forms.Button button_stop;
+        private System.Windows.Forms.CheckBox checkBox_show_body;
+        private System.Windows.Forms.CheckBox checkBox_show_header;
+    }
 }

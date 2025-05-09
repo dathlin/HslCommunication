@@ -71,11 +71,11 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicExpresso.Core, Version=2.17.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicExpresso.Core.2.17.2\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
+    <Reference Include="DynamicExpresso.Core, Version=2.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicExpresso.Core.2.19.0\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.2.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.2.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.3.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.3.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
@@ -196,6 +196,12 @@
       <DependentUpon>DataTableControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\DataTableItem.cs" />
+    <Compile Include="DemoControl\DebugRemoteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\DebugRemoteControl.Designer.cs">
+      <DependentUpon>DebugRemoteControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\DeviceAddressExample.cs" />
     <Compile Include="DemoControl\FormCurveMonitor.cs">
       <SubType>Form</SubType>
@@ -483,6 +489,18 @@
     <Compile Include="Instrument\FormCJT188.Designer.cs">
       <DependentUpon>FormCJT188.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instrument\FormDLT698Server.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormDLT698Server.Designer.cs">
+      <DependentUpon>FormDLT698Server.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormIEC104Server.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormIEC104Server.Designer.cs">
+      <DependentUpon>FormIEC104Server.cs</DependentUpon>
+    </Compile>
     <Compile Include="Instrument\FormRkcTemperatureControllerServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -667,6 +685,19 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PLC\Beckhoff\Helper.cs" />
+    <Compile Include="PLC\Cimon\FormCimonHmiProtocol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Cimon\FormCimonHmiProtocol.Designer.cs">
+      <DependentUpon>FormCimonHmiProtocol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Cimon\FormCimonServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Cimon\FormCimonServer.Designer.cs">
+      <DependentUpon>FormCimonServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Cimon\Helper.cs" />
     <Compile Include="PLC\Common\ConnectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -715,6 +746,12 @@
       <DependentUpon>FormInvtModbusRtu.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Invt\Helper.cs" />
+    <Compile Include="PLC\Keyence\FormKeyenceKvOld.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Keyence\FormKeyenceKvOld.Designer.cs">
+      <DependentUpon>FormKeyenceKvOld.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Keyence\Helper.cs" />
     <Compile Include="PLC\Keyence\NanoControl.cs">
       <SubType>UserControl</SubType>
@@ -727,6 +764,12 @@
     </Compile>
     <Compile Include="PLC\Lsis\Helper.cs" />
     <Compile Include="PLC\MegMeet\Helper.cs" />
+    <Compile Include="PLC\Melsec\FormFxSerialServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Melsec\FormFxSerialServer.Designer.cs">
+      <DependentUpon>FormFxSerialServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Melsec\FormMcA1EServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1888,6 +1931,7 @@
     <Compile Include="Sensor\FormVibrationSensorClient.Designer.cs">
       <DependentUpon>FormVibrationSensorClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings1.cs" />
     <Compile Include="Settings1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -1973,6 +2017,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\DataTableControl.resx">
       <DependentUpon>DataTableControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\DebugRemoteControl.resx">
+      <DependentUpon>DebugRemoteControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormCurveMonitor.resx">
       <DependentUpon>FormCurveMonitor.cs</DependentUpon>
@@ -2121,6 +2168,12 @@
     <EmbeddedResource Include="Instrument\FormCJT188.resx">
       <DependentUpon>FormCJT188.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormDLT698Server.resx">
+      <DependentUpon>FormDLT698Server.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormIEC104Server.resx">
+      <DependentUpon>FormIEC104Server.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormRkcTemperatureControllerServer.resx">
       <DependentUpon>FormRkcTemperatureControllerServer.cs</DependentUpon>
     </EmbeddedResource>
@@ -2214,6 +2267,12 @@
     <EmbeddedResource Include="PLC\Beckhoff\BeckhoffAdsNetControl.resx">
       <DependentUpon>BeckhoffAdsNetControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Cimon\FormCimonHmiProtocol.resx">
+      <DependentUpon>FormCimonHmiProtocol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Cimon\FormCimonServer.resx">
+      <DependentUpon>FormCimonServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Common\ConnectControl.resx">
       <DependentUpon>ConnectControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -2238,11 +2297,17 @@
     <EmbeddedResource Include="PLC\Invt\FormInvtModbusRtu.resx">
       <DependentUpon>FormInvtModbusRtu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Keyence\FormKeyenceKvOld.resx">
+      <DependentUpon>FormKeyenceKvOld.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Keyence\NanoControl.resx">
       <DependentUpon>NanoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Lsis\FormLsisCpu.resx">
       <DependentUpon>FormLsisCpu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Melsec\FormFxSerialServer.resx">
+      <DependentUpon>FormFxSerialServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Omron\FinsTcpControl.resx">
       <DependentUpon>FinsTcpControl.cs</DependentUpon>
@@ -2899,6 +2964,8 @@
     <None Include="img\invt.png" />
     <None Include="img\http.png" />
     <None Include="img\StatusAnnotations_Complete_and_ok_16xLG_color.png" />
+    <None Include="img\cimon.png" />
+    <None Include="img\yamaha.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

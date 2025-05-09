@@ -31,7 +31,11 @@ namespace HslCommunicationDemo
 		public FormHttpServer( )
 		{
 			InitializeComponent( );
+
+			checkBox_show_body.CheckedChanged += CheckBox_show_body_CheckedChanged;
+			checkBox_show_header.CheckedChanged += CheckBox_show_header_CheckedChanged; ;
 		}
+
 
 		private void FormClient_Load( object sender, EventArgs e )
 		{
@@ -48,6 +52,7 @@ namespace HslCommunicationDemo
 
 			Language( Program.Language );
 			listBox1.SelectedValueChanged += ListBox1_SelectedValueChanged;
+			tabControl1.SelectTab( 1 );
 		}
 
 		private void ListBox1_SelectedValueChanged( object sender, EventArgs e )
@@ -59,6 +64,21 @@ namespace HslCommunicationDemo
 				comboBox1.SelectedItem = apis.ContentType;
 			}
 		}
+		private void CheckBox_show_body_CheckedChanged( object sender, EventArgs e )
+		{
+			if (this.httpServer != null)
+			{
+				this.httpServer.LogHttpBody = checkBox_show_body.Checked;
+			}
+		}
+
+		private void CheckBox_show_header_CheckedChanged( object sender, EventArgs e )
+		{
+			if (this.httpServer != null)
+			{
+				this.httpServer.LogHttpHeader = checkBox_show_header.Checked;
+			}
+		}
 
 		private void Language( int language )
 		{
@@ -67,6 +87,10 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
+				button_clear.Text = "Clear";
+				button_stop.Text = "Stop";
+				checkBox_show_body.Text = "Show Body Content?";
+				checkBox_show_header.Text = "Show Header Content?";
 			}
 		}
 
@@ -77,36 +101,57 @@ namespace HslCommunicationDemo
 		private void button1_Click( object sender, EventArgs e )
 		{
 			// 启动服务
-			//try
-			//{
-			// 注册两个PLC为服务接口的示例
-			siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
-			pcccNet = new AllenBradleyPcccNet( "127.0.0.1" );
-
-			httpServer = new HttpServer( );
-			if (checkBox_https.Checked)
+			try
 			{
-				httpServer.UseHttps( );
-			}
-			httpServer.Start( int.Parse( textBox2.Text ) );
-			httpServer.HandleRequestFunc = HandleRequest;
-			httpServer.HandleFileUpload = HandleFileUpload;
-			httpServer.IsCrossDomain = checkBox_IsCrossDomain.Checked;               // 是否跨域的设置
-			httpServer.RegisterHttpRpcApi( "", this );                               // 注册当前窗体的接口到服务器的接口上去
-			httpServer.RegisterHttpRpcApi( "Siemens", siemens );                     // 注册一个西门子PLC的服务接口的示例
-			httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );        // 注册的类的静态方法和静态属性
-			httpServer.RegisterHttpRpcApi( "PCCC", pcccNet );
-			httpServer.DealWithHttpListenerRequest = DealWithHttpListenerRequest;    // 自定义处理请求的接口，比如增加认证信息
-			if (checkBox2.Checked) httpServer.SetLoginAccessControl( new HslCommunication.MQTT.MqttCredential[] {
+				// 注册两个PLC为服务接口的示例
+				siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
+				pcccNet = new AllenBradleyPcccNet( "127.0.0.1" );
+
+				httpServer = new HttpServer( );
+				if (checkBox_https.Checked)
+				{
+					httpServer.UseHttps( );
+				}
+				httpServer.Start( int.Parse( textBox2.Text ) );
+				httpServer.HandleRequestFunc = HandleRequest;
+				httpServer.HandleFileUpload = HandleFileUpload;
+				httpServer.IsCrossDomain = checkBox_IsCrossDomain.Checked;               // 是否跨域的设置
+				httpServer.RegisterHttpRpcApi( "", this );                               // 注册当前窗体的接口到服务器的接口上去
+				httpServer.RegisterHttpRpcApi( "Siemens", siemens );                     // 注册一个西门子PLC的服务接口的示例
+				httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );        // 注册的类的静态方法和静态属性
+				httpServer.RegisterHttpRpcApi( "PCCC", pcccNet );
+				httpServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
+				httpServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+
+				httpServer.DealWithHttpListenerRequest = DealWithHttpListenerRequest;    // 自定义处理请求的接口，比如增加认证信息
+				if (checkBox2.Checked) httpServer.SetLoginAccessControl( new HslCommunication.MQTT.MqttCredential[] {
 				new HslCommunication.MQTT.MqttCredential("admin", "123456")} );
 
-			panel2.Enabled = true;
-			button1.Enabled = false;
-			//}
-			//catch(Exception ex)
-			//{
-			//	DemoUtils.ShowMessage( "Started Failed:" + ex.Message );
-			//}
+				panel2.Enabled = true;
+				button1.Enabled = false;
+			}
+			catch (Exception ex)
+			{
+				DemoUtils.ShowMessage( "Started Failed:" + ex.Message );
+			}
+		}
+
+		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
+		{
+			try
+			{
+				if (this.isStop == false)
+				{
+					Invoke( new Action( ( ) =>
+					{
+						textBox_log.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+					} ) );
+				}
+			}
+			catch
+			{
+
+			}
 		}
 
 		private void DealWithHttpListenerRequest( HttpListenerRequest request, ISessionContext session )
@@ -374,6 +419,27 @@ namespace HslCommunicationDemo
 			catch (Exception ex)
 			{
 				DemoUtils.ShowMessage( ex.Message );
+			}
+		}
+
+		private void button_clear_Click( object sender, EventArgs e )
+		{
+			textBox_log.Clear( );
+		}
+
+		private bool isStop = false;
+
+		private void button_stop_Click( object sender, EventArgs e )
+		{
+			if (isStop)
+			{
+				button_stop.Text = Program.Language == 1 ? "暂停" : "Stop";
+				isStop = false;
+			}
+			else
+			{
+				button_stop.Text = Program.Language == 1 ? "继续" : "Start";
+				isStop = true;
 			}
 		}
 	}

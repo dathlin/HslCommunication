@@ -34,6 +34,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox_code = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label_subscribe_tick = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.checkBox_sub_format = new System.Windows.Forms.CheckBox();
@@ -63,6 +65,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox_sub_mid = new System.Windows.Forms.TextBox();
+            this.label_sub_mid = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -141,6 +145,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.textBox_code);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label_subscribe_tick);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.checkBox_sub_format);
@@ -175,12 +181,31 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Single Read";
             // 
+            // textBox_code
+            // 
+            this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_code.Location = new System.Drawing.Point(94, 479);
+            this.textBox_code.Name = "textBox_code";
+            this.textBox_code.Size = new System.Drawing.Size(564, 23);
+            this.textBox_code.TabIndex = 42;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 482);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 17);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "Code：";
+            // 
             // label_subscribe_tick
             // 
             this.label_subscribe_tick.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_subscribe_tick.AutoSize = true;
             this.label_subscribe_tick.ForeColor = System.Drawing.Color.Gray;
-            this.label_subscribe_tick.Location = new System.Drawing.Point(42, 484);
+            this.label_subscribe_tick.Location = new System.Drawing.Point(42, 458);
             this.label_subscribe_tick.Name = "label_subscribe_tick";
             this.label_subscribe_tick.Size = new System.Drawing.Size(13, 17);
             this.label_subscribe_tick.TabIndex = 40;
@@ -191,7 +216,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.Color.Gray;
-            this.label15.Location = new System.Drawing.Point(6, 484);
+            this.label15.Location = new System.Drawing.Point(6, 458);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(43, 17);
             this.label15.TabIndex = 39;
@@ -223,11 +248,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_log.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox_log.Location = new System.Drawing.Point(94, 377);
+            this.textBox_log.Location = new System.Drawing.Point(94, 375);
             this.textBox_log.Multiline = true;
             this.textBox_log.Name = "textBox_log";
             this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_log.Size = new System.Drawing.Size(564, 124);
+            this.textBox_log.Size = new System.Drawing.Size(564, 98);
             this.textBox_log.TabIndex = 36;
             // 
             // label11
@@ -454,6 +479,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.textBox_sub_mid);
+            this.panel1.Controls.Add(this.label_sub_mid);
             this.panel1.Controls.Add(this.checkBox2);
             this.panel1.Controls.Add(this.pipeSelectControl1);
             this.panel1.Controls.Add(this.checkBox1);
@@ -467,12 +494,32 @@
             this.panel1.Size = new System.Drawing.Size(1001, 61);
             this.panel1.TabIndex = 4;
             // 
+            // textBox_sub_mid
+            // 
+            this.textBox_sub_mid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_sub_mid.Location = new System.Drawing.Point(670, 33);
+            this.textBox_sub_mid.MinimumSize = new System.Drawing.Size(100, 23);
+            this.textBox_sub_mid.Name = "textBox_sub_mid";
+            this.textBox_sub_mid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_sub_mid.Size = new System.Drawing.Size(319, 23);
+            this.textBox_sub_mid.TabIndex = 37;
+            // 
+            // label_sub_mid
+            // 
+            this.label_sub_mid.AutoSize = true;
+            this.label_sub_mid.Location = new System.Drawing.Point(601, 36);
+            this.label_sub_mid.Name = "label_sub_mid";
+            this.label_sub_mid.Size = new System.Drawing.Size(63, 17);
+            this.label_sub_mid.TabIndex = 36;
+            this.label_sub_mid.Text = "Sub-MID:";
+            // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(419, 35);
+            this.checkBox2.Location = new System.Drawing.Point(401, 35);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(184, 21);
             this.checkBox2.TabIndex = 35;
@@ -497,7 +544,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(201, 35);
+            this.checkBox1.Location = new System.Drawing.Point(199, 35);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(192, 21);
             this.checkBox1.TabIndex = 8;
@@ -613,5 +660,9 @@
 		private System.Windows.Forms.CheckBox checkBox1;
         private DemoControl.PipeSelectControl pipeSelectControl1;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.TextBox textBox_sub_mid;
+        private System.Windows.Forms.Label label_sub_mid;
+        private System.Windows.Forms.TextBox textBox_code;
+        private System.Windows.Forms.Label label1;
     }
 }

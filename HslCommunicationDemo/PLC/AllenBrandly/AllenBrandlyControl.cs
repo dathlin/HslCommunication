@@ -157,6 +157,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			{
 				textBox4.Text = read.Content1.ToString( "X" );
 				textBox5.Text = read.Content2.ToHexString( ' ' );
+				label_read_length.Text = "Bytes: " + read.Content2.Length.ToString( );
 			}
 
 			textBox_code.Text = $"OperateResult<ushort, byte[]> read = {DemoUtils.PlcDeviceName}.ReadTag( \"{textBox3.Text}\", ushort.Parse( \"{textBox7.Text}\" ) );";

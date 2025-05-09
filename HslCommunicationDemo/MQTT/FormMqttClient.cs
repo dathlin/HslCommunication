@@ -22,7 +22,15 @@ namespace HslCommunicationDemo
 		public FormMqttClient( )
 		{
 			InitializeComponent( );
+
+
+			timer1s = new Timer( );
+			timer1s.Interval = 1000;
+			timer1s.Tick += Timer1s_Tick; ;
+			timer1s.Start( );
 		}
+
+		private Timer timer1s;
 
 		private void FormClient_Load( object sender, EventArgs e )
 		{
@@ -91,15 +99,15 @@ namespace HslCommunicationDemo
 			// 连接
 			MqttConnectionOptions options = new MqttConnectionOptions( )
 			{
-				IpAddress       = textBox_ip.Text,
-				Port            = int.Parse( textBox2.Text ),
-				ClientId        = textBox3.Text,
-				KeepAlivePeriod = TimeSpan.FromSeconds(int.Parse(textBox6.Text)),
-				UseRSAProvider  = checkBox_rsa.Checked,
-				CleanSession    = true,
-				UseSSL          = checkBox_SslTls.Checked,
+				IpAddress = textBox_ip.Text,
+				Port = int.Parse( textBox2.Text ),
+				ClientId = textBox3.Text,
+				KeepAlivePeriod = TimeSpan.FromSeconds( int.Parse( textBox6.Text ) ),
+				UseRSAProvider = checkBox_rsa.Checked,
+				CleanSession = true,
+				UseSSL = checkBox_SslTls.Checked,
 			};
-			if(!string.IsNullOrEmpty(textBox9.Text) || !string.IsNullOrEmpty( textBox10.Text ))
+			if (!string.IsNullOrEmpty( textBox9.Text ) || !string.IsNullOrEmpty( textBox10.Text ))
 			{
 				options.Credentials = new MqttCredential( textBox9.Text, textBox10.Text );
 			}
@@ -107,12 +115,15 @@ namespace HslCommunicationDemo
 			{
 				options.WillMessage = new MqttApplicationMessage( )
 				{
-					Topic   = this.mqtt_will_topic,
+					Topic = this.mqtt_will_topic,
 					Payload = Encoding.UTF8.GetBytes( this.mqtt_will_message )
 				};
 			}
-			options.CertificateFile = textBox_certificate.Text;
-			options.SSLSecure = checkBox_sslSecure.Checked;
+			if (checkBox_SslTls.Checked)
+			{
+				options.CertificateFile = textBox_certificate.Text;
+				options.SSLSecure = checkBox_sslSecure.Checked;
+			}
 
 			button1.Enabled = false;
 			mqttClient?.ConnectClose( );
@@ -174,16 +185,70 @@ namespace HslCommunicationDemo
 		}
 
 		private long receiveCount = 0;
+		private Lazy<int[]> receiveTest = new Lazy<int[]>( ( ) => new int[10000] );
+		private bool receiveTestMode = false;
+
+		private void Timer1s_Tick( object sender, EventArgs e )
+		{
+			label10.Text = "Receive Count: " + receiveCount;
+		}
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+			if (receiveTestMode)
+			{
+				int[] datas = receiveTest.Value;
+				StringBuilder sb = new StringBuilder( );
+				sb.AppendLine( "Test time: " + DateTime.Now.ToString( ) );
+				sb.AppendLine( "Data Count: " + datas.Sum( ) );
+				int wrongCount = 0;
+				for (int i = 0; i < datas.Length; i++)
+				{
+					if (datas[i] != 1)
+					{
+						sb.AppendLine( $"Data[{i}] = {datas[i]};" );
+						wrongCount++;
+					}
+					datas[i] = 0;
+				}
+
+				sb.AppendLine( "Wrong Count: " + wrongCount );
+				textBox8.Text = sb.ToString( );
+			}
+		}
+		private void button6_Click( object sender, EventArgs e )
+		{
+			// 高频发布测试代码
+			for (int i = 0; i < 10000; i++)
+			{
+				this.mqttClient.PublishMessage(
+					new MqttApplicationMessage( )
+					{
+						Topic = "HSL:MQTT:TEST:10000",
+						Payload = BitConverter.GetBytes( i ),
+						Retain = true
+					} );
+			}
+			MessageBox.Show( "Publish finish" );
+		}
+
 		private void MqttClient_OnMqttMessageReceived( MqttClient client, MqttApplicationMessage message )
 		{
 			string topic = message.Topic;
 			byte[] payload = message.Payload;
 			try
 			{
+				System.Threading.Interlocked.Increment( ref receiveCount );
+				if (topic == "HSL:MQTT:TEST:10000")
+				{
+					receiveTestMode = true;
+					// 一种高频测试的情况
+					int tick = BitConverter.ToInt32( payload, 0 );
+					receiveTest.Value[tick]++;
+					return;
+				}
 				Invoke( new Action( ( ) =>
 				{
-					receiveCount++;
-					label10.Text = "Receive Count: " + receiveCount;
 					string msg = string.Empty;
 					if (radioButton_binary.Checked)
 					{
@@ -424,6 +489,7 @@ namespace HslCommunicationDemo
 		{
 			textBox8.Text = code.ToString( ); 
 		}
+
 	}
 
 

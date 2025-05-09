@@ -32,7 +32,7 @@ namespace HslCommunicationDemo
 
 			if (active)
 			{
-				DemoUtils.ShowMessage( Program.Language == 1 ? "激活成功!" : "Activation successful!" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "HslCommunication激活成功!" : "HslCommunication Activation successful!" );
 				System.IO.File.WriteAllText( activePath, string.Empty, Encoding.UTF8 );
 				System.IO.FileInfo fileInfo = new System.IO.FileInfo( activePath );
 				string key = fileInfo.CreationTime.ToString( "yyyy-MM-dd-mm-ss" );
@@ -42,8 +42,28 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				DemoUtils.ShowMessage( Program.Language == 1 ? "激活失败！" : "Activation failed!" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "HslCommunication激活失败！" : "HslCommunication Activation failed!" );
 			}
+
+			if (!string.IsNullOrEmpty( textBox2.Text ))
+			{
+				if (HslControls.Authorization.SetAuthorizationCode( textBox2.Text ))
+				{
+					string hslcontrolspath = System.IO.Path.Combine( Application.StartupPath, "controls_active.txt" );
+					DemoUtils.ShowMessage( Program.Language == 1 ? "HslControls激活成功!" : "HslControls Activation successful!" );
+					System.IO.File.WriteAllText( hslcontrolspath, string.Empty, Encoding.UTF8 );
+					System.IO.FileInfo fileInfo = new System.IO.FileInfo( hslcontrolspath );
+					string key = fileInfo.CreationTime.ToString( "yyyy-MM-dd-mm-ss" );
+					HslCommunication.Core.Security.AesCryptography aesCryptography = new HslCommunication.Core.Security.AesCryptography( key + key );
+					System.IO.File.WriteAllBytes( hslcontrolspath, aesCryptography.Encrypt( Encoding.UTF8.GetBytes( textBox2.Text ) ) );
+					DialogResult = DialogResult.OK;
+				}
+				else
+				{
+					DemoUtils.ShowMessage( Program.Language == 1 ? "HslControls激活失败！" : "HslControls Activation failed!" );
+				}
+			}
+
 		}
 
 		private void FormActive_Load( object sender, EventArgs e )

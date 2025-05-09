@@ -15,12 +15,18 @@ namespace HslCommunicationDemo.Instrument
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Button button6;
 		private System.Windows.Forms.Button button5;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox textBox_address;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button3;
 		private Label label_code;
 		private TextBox textBox_code;
+		private Button button1;
+		private Label label1;
+		private TextBox textBox_write_value;
+		private TextBox textBox_station;
+		private Label label3;
+		private Button button_write_datetime;
 		private System.Windows.Forms.TextBox textBox12;
 
 		public DLT698Control( )
@@ -33,18 +39,24 @@ namespace HslCommunicationDemo.Instrument
 			this.button7 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_address = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.textBox12 = new System.Windows.Forms.TextBox();
 			this.label_code = new System.Windows.Forms.Label();
 			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.button1 = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
+			this.textBox_write_value = new System.Windows.Forms.TextBox();
+			this.textBox_station = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.button_write_datetime = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(254, 38);
+			this.button7.Location = new System.Drawing.Point(413, 36);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(151, 28);
 			this.button7.TabIndex = 26;
@@ -65,7 +77,7 @@ namespace HslCommunicationDemo.Instrument
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(361, 6);
+			this.button5.Location = new System.Drawing.Point(639, 6);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(106, 28);
 			this.button5.TabIndex = 24;
@@ -73,13 +85,13 @@ namespace HslCommunicationDemo.Instrument
 			this.button5.UseVisualStyleBackColor = true;
 			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
-			// textBox1
+			// textBox_address
 			// 
-			this.textBox1.Location = new System.Drawing.Point(60, 40);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(188, 23);
-			this.textBox1.TabIndex = 23;
-			this.textBox1.Text = "02-01-01-00";
+			this.textBox_address.Location = new System.Drawing.Point(60, 40);
+			this.textBox_address.Name = "textBox_address";
+			this.textBox_address.Size = new System.Drawing.Size(347, 23);
+			this.textBox_address.TabIndex = 23;
+			this.textBox_address.Text = "20-00-02-00";
 			// 
 			// label2
 			// 
@@ -113,13 +125,13 @@ namespace HslCommunicationDemo.Instrument
 			// textBox12
 			// 
 			this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox12.Location = new System.Drawing.Point(6, 71);
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox12.Location = new System.Drawing.Point(6, 99);
 			this.textBox12.Multiline = true;
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox12.Size = new System.Drawing.Size(768, 126);
+			this.textBox12.Size = new System.Drawing.Size(768, 99);
 			this.textBox12.TabIndex = 19;
 			// 
 			// label_code
@@ -135,7 +147,7 @@ namespace HslCommunicationDemo.Instrument
 			// textBox_code
 			// 
 			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_code.Location = new System.Drawing.Point(56, 203);
 			this.textBox_code.Multiline = true;
 			this.textBox_code.Name = "textBox_code";
@@ -143,13 +155,72 @@ namespace HslCommunicationDemo.Instrument
 			this.textBox_code.Size = new System.Drawing.Size(718, 40);
 			this.textBox_code.TabIndex = 28;
 			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(570, 35);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(151, 28);
+			this.button1.TabIndex = 29;
+			this.button1.Text = "读取多个地址(;隔开)";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(6, 71);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(32, 17);
+			this.label1.TabIndex = 30;
+			this.label1.Text = "值：";
+			// 
+			// textBox_write_value
+			// 
+			this.textBox_write_value.Location = new System.Drawing.Point(60, 68);
+			this.textBox_write_value.Name = "textBox_write_value";
+			this.textBox_write_value.Size = new System.Drawing.Size(347, 23);
+			this.textBox_write_value.TabIndex = 31;
+			// 
+			// textBox_station
+			// 
+			this.textBox_station.Location = new System.Drawing.Point(425, 8);
+			this.textBox_station.Name = "textBox_station";
+			this.textBox_station.Size = new System.Drawing.Size(208, 23);
+			this.textBox_station.TabIndex = 33;
+			this.textBox_station.Text = "000000000002";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(359, 11);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(68, 17);
+			this.label3.TabIndex = 32;
+			this.label3.Text = "通信地址：";
+			// 
+			// button_write_datetime
+			// 
+			this.button_write_datetime.Location = new System.Drawing.Point(413, 65);
+			this.button_write_datetime.Name = "button_write_datetime";
+			this.button_write_datetime.Size = new System.Drawing.Size(106, 28);
+			this.button_write_datetime.TabIndex = 34;
+			this.button_write_datetime.Text = "写入日期时间";
+			this.button_write_datetime.UseVisualStyleBackColor = true;
+			this.button_write_datetime.Click += new System.EventHandler(this.button_write_datetime_Click);
+			// 
 			// DLT698Control
 			// 
+			this.Controls.Add(this.button_write_datetime);
+			this.Controls.Add(this.textBox_station);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.textBox_write_value);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.textBox_code);
 			this.Controls.Add(this.label_code);
 			this.Controls.Add(this.button7);
 			this.Controls.Add(this.button6);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.textBox_address);
 			this.Controls.Add(this.button5);
 			this.Controls.Add(this.textBox12);
 			this.Controls.Add(this.button3);
@@ -219,7 +290,7 @@ namespace HslCommunicationDemo.Instrument
 		private void button5_Click( object sender, EventArgs e )
 		{
 			// 写通信地址
-			OperateResult read = dlt698.WriteAddress( textBox1.Text );
+			OperateResult read = dlt698.WriteAddress( textBox_address.Text );
 			if (read.IsSuccess)
 			{
 				textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Write Success";
@@ -229,12 +300,12 @@ namespace HslCommunicationDemo.Instrument
 				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
-			textBox_code.Text = $"OperateResult write = dlt.WriteAddress( \"{textBox1.Text}\" );";
+			textBox_code.Text = $"OperateResult write = dlt.WriteAddress( \"{textBox_address.Text}\" );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
 		{
-			OperateResult<string[]> read = dlt698.ReadStringArray( textBox1.Text );
+			OperateResult<string[]> read = dlt698.ReadStringArray( textBox_address.Text );
 			if (read.IsSuccess)
 			{
 				textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Read Result: {Environment.NewLine}";
@@ -249,7 +320,34 @@ namespace HslCommunicationDemo.Instrument
 				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
-			textBox_code.Text = $"OperateResult<string[]> read = dlt.ReadStringArray( \"{textBox1.Text}\" );";
+			textBox_code.Text = $"OperateResult<string[]> read = dlt.ReadStringArray( \"{textBox_address.Text}\" );";
+		}
+
+		private void button1_Click( object sender, EventArgs e )
+		{
+			OperateResult<string[]> read = dlt698.ReadStringArray( textBox_address.Text.Split( new char[] { ';' } ) );
+			if (read.IsSuccess)
+			{
+				textBox12.Text = $"[{DateTime.Now:HH:mm:ss}] Read Result: {Environment.NewLine}";
+				foreach (string item in read.Content)
+				{
+					textBox12.AppendText( item );
+					textBox12.AppendText( Environment.NewLine );
+				}
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "Read failed: " + read.Message );
+			}
+
+			textBox_code.Text = $"OperateResult<string[]> read = dlt.ReadStringArray( \"{textBox_address.Text}\" );";
+		}
+
+		private void button_write_datetime_Click( object sender, EventArgs e )
+		{
+			OperateResult write = dlt698.WriteDateTime( textBox_address.Text, DateTime.Parse( textBox_write_value.Text ) );
+			DemoUtils.WriteResultRender( write, textBox_address.Text );
+			textBox_code.Text = $"OperateResult write = dlt.WriteDateTime( \"{textBox_address.Text}\", DateTime.Parse( \"{textBox_write_value.Text}\" ) );";
 		}
 
 		private void DLT698Control_Load( object sender, EventArgs e )
@@ -263,8 +361,11 @@ namespace HslCommunicationDemo.Instrument
 				button6.Text = "broadcasting time";
 				button5.Text = "Write Station";
 				button7.Text = "Read raw string";
-
+				label3.Text  = "Station:";
+				button_write_datetime.Text = "Write DateTime";
+				label1.Text  = "Value:";
 			}
 		}
+
 	}
 }

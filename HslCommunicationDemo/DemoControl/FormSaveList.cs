@@ -25,16 +25,17 @@ namespace HslCommunicationDemo.DemoControl
 			this.logNet = logNet;
 			this.imageList = imageList;
 			this.formIconImageIndex = iconImageIndex;
+
+			treeView2.ImageList = imageList;
+			treeView2.MouseClick += TreeView2_MouseClick;
+			treeView2.MouseDoubleClick += TreeView2_MouseDoubleClick;
+			deleteDeviceToolStripMenuItem.Click += DeleteDeviceToolStripMenuItem_Click;
+			renameDeviceToolStripMenuItem.Click += RenameDeviceToolStripMenuItem_Click;
 		}
 
 		private void FormSaveList_Load( object sender, EventArgs e )
 		{
 			CloseButtonVisible = false;
-			treeView2.ImageList = imageList;
-			treeView2.MouseClick += TreeView2_MouseClick;
-			treeView2.MouseDoubleClick += TreeView2_MouseDoubleClick;
-			deleteDeviceToolStripMenuItem.Click += DeleteDeviceToolStripMenuItem_Click;
-
 			SetLanguage( );
 		}
 
@@ -43,10 +44,14 @@ namespace HslCommunicationDemo.DemoControl
 			if (Program.Language == 1)
 			{
 				this.Text = "保存列表";
+				this.deleteDeviceToolStripMenuItem.Text = "删除设备";
+				this.renameDeviceToolStripMenuItem.Text = "重命名";
 			}
 			else
 			{
 				this.Text = "Save List";
+				this.deleteDeviceToolStripMenuItem.Text = "Delete";
+				this.renameDeviceToolStripMenuItem.Text = "Rename";
 			}
 		}
 
@@ -75,22 +80,83 @@ namespace HslCommunicationDemo.DemoControl
 			treeView2.Nodes.Clear( );
 			foreach (var item in deviceList.GetDevices.Elements( ))
 			{
-				string name = item.Attribute( "Name" ).Value;
+				string name = item.Attribute( DemoDeviceList.XmlName ).Value;
 				AddTreeNode( treeView2, null, item, name );
 			}
 			treeView2.ExpandAll( );
 		}
 
+		private void RenameDeviceToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			// 重命名当前的设备名称
+			TreeNode treeNode = treeView2.SelectedNode;
+			if (treeNode == null) return;
+			if (treeNode.Tag == null) return;
+			if (treeNode.Tag is XElement element)
+			{
+				string name = element.Attribute( DemoDeviceList.XmlName )?.Value;
+				using (FormInputNewValue form = new FormInputNewValue( name ))
+				{
+					if (form.ShowDialog( ) == DialogResult.OK)
+					{
+						if (!string.IsNullOrEmpty( form.InputValue ))
+						{
+							deviceList.RenameDevice( element, form.InputValue );
+							if (name.Contains( ":" ) || form.InputValue.Contains( ":" ))
+							{
+								RefreshSaveDevices( );
+							}
+							else
+							{
+								treeNode.Text = form.InputValue;
+							}
+							File.WriteAllText( Path.Combine( Application.StartupPath, "devices.xml" ), deviceList.GetDevices.ToString( ) );
+						}
+					}
+				}
+			}
+		}
+
+		private string GetPath( TreeNode node )
+		{
+			if (node == null) return string.Empty;
+			if (node.Parent == null)
+				return node.Text;
+			else
+				return GetPath( node.Parent ) + ":" + node.Text;
+        }
+
 		private void DeleteDeviceToolStripMenuItem_Click( object sender, EventArgs e )
 		{
+			// 删除当前选中的节点信息
 			if (treeView2.SelectedNode == null) return;
-			if (treeView2.SelectedNode.Tag == null) return;
+			if (treeView2.SelectedNode.Tag == null)
+			{
+				// 删除了分类
+				if (treeView2.SelectedNode.ImageKey == "Class_489")
+				{
+					string path = GetPath( treeView2.SelectedNode ) + ":";
+					string info = Program.Language == 1 ? $"确认删除[{path}]下所有设备?" : $"Delete all device under path [{path}]?";
+					if (MessageBox.Show( info, "Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+					{
+						deviceList.DeleteDevice( path );
+						treeView2.SelectedNode.Remove( );
+						File.WriteAllText( Path.Combine( Application.StartupPath, "devices.xml" ), deviceList.GetDevices.ToString( ) );
+						DemoUtils.ShowMessage( "Delete Success!" );
+					}
+				}
+				return;
+			}
 			if (treeView2.SelectedNode.Tag is XElement element)
 			{
-				deviceList.DeleteDevice( element );
-				RefreshSaveDevices( );
-				File.WriteAllText( Path.Combine( Application.StartupPath, "devices.xml" ), deviceList.GetDevices.ToString( ) );
-				DemoUtils.ShowMessage( "Delete Success!" );
+				string info = Program.Language == 1 ? "删除确认" : "Delete Check";
+				if (MessageBox.Show( info, "Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+				{
+					deviceList.DeleteDevice( element );
+					RefreshSaveDevices( );
+					File.WriteAllText( Path.Combine( Application.StartupPath, "devices.xml" ), deviceList.GetDevices.ToString( ) );
+					DemoUtils.ShowMessage( "Delete Success!" );
+				}
 			}
 		}
 

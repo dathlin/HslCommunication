@@ -36,5 +36,13 @@ namespace HslCommunicationDemo.DemoControl
 				server.UseSSL( textBox_cert.Text, textBox_cert_password.Text );
 			}
 		}
+
+		public void InitializeServer( HslCommunication.Core.Net.CommunicationTcpServer server )
+		{
+			if (checkBox_ssl.Checked)
+			{
+				server.UseSSL( textBox_cert.Text, textBox_cert_password.Text );
+			}
+		}
 	}
 }

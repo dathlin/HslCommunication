@@ -1,8 +1,10 @@
 ﻿using HslCommunication.LogNet;
 using HslCommunicationDemo.Control;
 using HslCommunicationDemo.HslDebug;
+using HslCommunicationDemo.Instrument;
 using HslCommunicationDemo.MQTT;
 using HslCommunicationDemo.PLC;
+using HslCommunicationDemo.PLC.Cimon;
 using HslCommunicationDemo.PLC.Invt;
 using HslCommunicationDemo.PLC.Omron;
 using HslCommunicationDemo.PLC.WeCon;
@@ -114,9 +116,10 @@ namespace HslCommunicationDemo.DemoControl
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "MC-R (Binary)", 8, typeof( FormMelsecRBinary ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Serial【编程口】", 8, typeof( FormMelsecSerial ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Serial OverTcp", 8, typeof( FormMelsecSerialOverTcp ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Serial Server", 8, typeof( FormFxSerialServer ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Links【485】", 8, typeof( FormMelsecLinks ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Links OverTcp", 8, typeof( FormMelsecLinksOverTcp ) ) );
-			melsecNode.Nodes.Add( GetTreeNodeByIndex( "FxLinks Server", 8, typeof( FormFxLinksServer ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Fx Links Server", 8, typeof( FormFxLinksServer ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C (串口)", 8, typeof( FormMelsec3C ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C OverTcp", 8, typeof( FormMelsec3COverTcp ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C Server", 8, typeof( FormMcA3CServer ) ) );
@@ -181,10 +184,15 @@ namespace HslCommunicationDemo.DemoControl
 			TreeNode lsisNode = new TreeNode( "LSis Plc", 7, 7 );
 			lsisNode.Nodes.Add( GetTreeNodeByIndex( "LSis Fast Enet", 7, typeof( FormLsisFEnet ) ) );
 			lsisNode.Nodes.Add( GetTreeNodeByIndex("LSis Cnet", 7, typeof( FormLsisCnet ) ) );
-            lsisNode.Nodes.Add(GetTreeNodeByIndex("LSis Cpu", 7, typeof(FormLsisCpu)));
-            lsisNode.Nodes.Add( GetTreeNodeByIndex("LSis Cnet OverTcp", 7, typeof( FormLsisCnetOverTcp ) ) );
+			lsisNode.Nodes.Add(GetTreeNodeByIndex("LSis Cpu", 7, typeof(FormLsisCpu)));
+			lsisNode.Nodes.Add( GetTreeNodeByIndex("LSis Cnet OverTcp", 7, typeof( FormLsisCnetOverTcp ) ) );
 			lsisNode.Nodes.Add( GetTreeNodeByIndex( "LSis Virtual Server", 7, typeof( FormLSisServer ) ) );
 			treeView1.Nodes.Add( lsisNode );
+
+			TreeNode simon = new TreeNode( "Cimon[西蒙]", 47, 47 );
+			simon.Nodes.Add( GetTreeNodeByIndex( "HmiProtocol", 47, typeof( FormCimonHmiProtocol ) ) );
+			simon.Nodes.Add( GetTreeNodeByIndex( "CimonServer", 47, typeof( FormCimonServer ) ) );
+			treeView1.Nodes.Add( simon );
 
 			// Keyence PLC
 			TreeNode keyencePlc = new TreeNode( "Keyence Plc[基恩士]", 6, 6 );
@@ -195,6 +203,7 @@ namespace HslCommunicationDemo.DemoControl
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Nano Server", 6, typeof( FormKeyenceNanoServer ) ) );
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "SR2000 [读码]", 6, typeof( FormKeyenceSR2000 ) ) );
 			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "DL-EN1 [传感器]", 6, typeof( FormKeyenceDLEN1 ) ) );
+			keyencePlc.Nodes.Add( GetTreeNodeByIndex( "Kv300/Older", 6, typeof( FormKeyenceKvOld ) ) );
 			treeView1.Nodes.Add( keyencePlc );
 
 			// Panasonic PLC
@@ -376,7 +385,7 @@ namespace HslCommunicationDemo.DemoControl
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "Fanuc Server [发那科服务器]", 25, typeof( FormFanucRobotServer ) ) );
 			robotNode.Nodes.Add( GetTreeNodeByIndex( "Estun [埃斯顿]", 19, typeof( Robot.FormEstunTcp ) ) );
 			robotNode.Nodes.Add( new TreeNode( "Hyundai [现代]" ) { Tag = typeof( Robot.FormHyundaiUdp ) } );
-			robotNode.Nodes.Add( new TreeNode( "YamahaRCX [雅马哈]" ) { Tag = typeof( Robot.FormYamahaRCX ) } );
+			robotNode.Nodes.Add( GetTreeNodeByIndex( "YamahaRCX [雅马哈]", 48, typeof( Robot.FormYamahaRCX ) ) );
 			treeView1.Nodes.Add( robotNode );
 
 			TreeNode cncNode = new TreeNode( "CNC[数控机床]" );
@@ -446,10 +455,12 @@ namespace HslCommunicationDemo.DemoControl
 			instrumentNode.Nodes.Add( new TreeNode( "DLT698 [电力规约]" ) { Tag = typeof( FormDLT698 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT698 OverTcp" ) { Tag = typeof( FormDLT698OverTcp ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT698 TcpNet" ) { Tag = typeof( FormDLT698TcpNet ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DLT698 Server" ) { Tag = typeof( FormDLT698Server ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "光源控制器" ) { Tag = typeof( Light.FormShineInLight ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DTSU6606 [德力西电表]" ) { Tag = typeof( FormDTSU6606 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "IEC104 [电力规约]", 37, 37 ) { Tag = typeof( FormIEC104 ) } );
-			instrumentNode.Nodes.Add( new TreeNode( "CJT188 [水表，燃气]" ) { Tag = typeof( FormCJT188 ) } );
+            instrumentNode.Nodes.Add( new TreeNode( "IEC104 Server", 37, 37 ) { Tag = typeof( FormIEC104Server ) } );
+            instrumentNode.Nodes.Add( new TreeNode( "CJT188 [水表，燃气]" ) { Tag = typeof( FormCJT188 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "CJT188 OverTcp" ) { Tag = typeof( FormCJT188OverTcp ) } );
 			treeView1.Nodes.Add( instrumentNode );
 

@@ -1,4 +1,5 @@
 ﻿using HslCommunication.Core;
+using HslCommunication.Core.Net;
 using HslCommunicationDemo.PLC.Common;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace HslCommunicationDemo.DemoControl
 			allControls.Add( batchReadControl2 );
 			allControls.Add( stressTesting1 );
 			allControls.Add( dataExportControl1 );
+			allControls.Add( debugRemoteControl1 );
 		}
 
 		private void UserControlReadWriteDevice_Load( object sender, EventArgs e )
@@ -37,6 +39,7 @@ namespace HslCommunicationDemo.DemoControl
 				tabPage4.Text = "Data Table";
 				tabPage5.Text = "Data Export";
 				tabPage6.Text = "Simulate";
+				tabPage7.Text = "Debug Remote";
 			}
 
 			batchReadControl2.IsSourceReadMode = true;
@@ -51,6 +54,13 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				allControls[i].Enabled = enbale;
 			}
+
+			if (enbale == false)
+			{
+				this.dataSimulateControl1.Close( );
+				this.debugRemoteControl1.Close( );
+				this.dataTableControl1.Close( );
+			}
 		}
 
 		public void SetReadWriteNet( IReadWriteNet readWrite, string address, bool isAsync = false, int strLength = 10 )
@@ -60,6 +70,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.dataTableControl1.SetReadWriteNet( readWrite );
 			this.dataExportControl1.SetReadWriteNet( readWrite );
 			this.dataSimulateControl1.SetReadWriteNet( readWrite );
+			this.debugRemoteControl1.SetCommunication( readWrite as BinaryCommunication );
 		}
 
 		public void SetDeviceVariableName( string name )
@@ -125,11 +136,14 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			element.RemoveNodes( );
 			this.dataTableControl1.GetDataTable( element );
+			this.dataSimulateControl1.GetSimulateTable( element );
 		}
 
 		public int LoadDataTable( XElement element )
 		{
-			return this.dataTableControl1.LoadDataTable( element );
+			int count = this.dataTableControl1.LoadDataTable( element );
+			this.dataSimulateControl1.LoadSimulateTable( element );
+			return count;
 		}
 
 		public void SelectTabDataTable( )

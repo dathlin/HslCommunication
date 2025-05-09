@@ -11,6 +11,7 @@ using HslCommunication.LogNet;
 using HslCommunicationDemo.DemoControl;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Threading;
+using HslCommunication.MQTT;
 
 namespace HslCommunicationDemo
 {
@@ -41,11 +42,28 @@ namespace HslCommunicationDemo
 			FormMain.ShowMs = !FormMain.ShowMs;
 		}
 
+		private bool topMost = false;
+		private void formTopMostToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (topMost)
+			{
+				formTopMostToolStripMenuItem.Image = null;
+			}
+			else
+			{
+				formTopMostToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			}
+			topMost = !topMost;
+			this.TopMost = topMost;
+		}
+
 		#region Form Load Close Inni
 
 		private void FormLoad_Load( object sender, EventArgs e )
 		{
 			LoadActive( );                                                                  // 加载激活状态
+			LoadControlsActive( );                                                          // 加载控件库激活状态
+
 			dockPanel1.Theme = vS2015BlueTheme1;
 			logRender = new DemoControl.FormLogRender( logNet );                            // 显示日志的窗体
 
@@ -127,6 +145,8 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "megmeet",          Properties.Resources.megmeet );           // 44
 			imageList.Images.Add( "invt",             Properties.Resources.invt );              // 45
 			imageList.Images.Add( "http",             Properties.Resources.http );              // 46
+			imageList.Images.Add( "cimon",            Properties.Resources.cimon );             // 47
+			imageList.Images.Add( "yamaha",           Properties.Resources.yamaha );            // 48
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;
@@ -269,9 +289,40 @@ namespace HslCommunicationDemo
 					}
 				}
 			}
-			catch( Exception ex )
+			catch (Exception ex)
 			{
-				HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+				Console.WriteLine( HslCommunication.BasicFramework.SoftBasic.GetExceptionMessage( ex ) );
+			}
+		}
+		private void LoadControlsActive( )
+		{
+			try
+			{
+				string activePath = System.IO.Path.Combine( Application.StartupPath, "controls_active.txt" );
+				if (File.Exists( activePath ))
+				{
+					System.IO.FileInfo fileInfo = new System.IO.FileInfo( activePath );
+					string key = fileInfo.CreationTime.ToString( "yyyy-MM-dd-mm-ss" );
+					HslCommunication.Core.Security.AesCryptography aesCryptography = new HslCommunication.Core.Security.AesCryptography( key + key );
+
+					byte[] bytes = File.ReadAllBytes( activePath );
+					if (bytes == null || bytes.Length < 1) return;
+
+					string hsl = Encoding.UTF8.GetString( aesCryptography.Decrypt( bytes ) );
+					bool active = HslControls.Authorization.SetAuthorizationCode( hsl );
+					if (active)
+					{
+					}
+					else
+					{
+						MessageBox.Show( "HslControls active failed" );
+						System.IO.File.Delete( activePath );
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine( HslCommunication.BasicFramework.SoftBasic.GetExceptionMessage( ex ) );
 			}
 		}
 
@@ -294,6 +345,7 @@ namespace HslCommunicationDemo
 				ecologyToolStripMenuItem.Text = "大生态(&E)";
 				toolStripMenuItem_byteTransform.Text = "字节变换";
 				regexRegularToolStripMenuItem.Text = "正则表达式";
+				formTopMostToolStripMenuItem.Text = "窗体置顶";
 			}
 			else
 			{
@@ -312,7 +364,7 @@ namespace HslCommunicationDemo
 				showMsToolStripMenuItem.Text = "Time Show Ms";
 				toolStripMenuItem_byteTransform.Text = "ByteTransform";
 				regexRegularToolStripMenuItem.Text = "RegexRegular";
-
+				formTopMostToolStripMenuItem.Text = "TopMost";
 			}
 		}
 
@@ -326,6 +378,7 @@ namespace HslCommunicationDemo
 			{
 				form.ShowDialog( );
 				LoadActive( );
+				LoadControlsActive( );
 			}
 		}
 
@@ -367,7 +420,7 @@ namespace HslCommunicationDemo
 				this.logRender.Show( dockPanel1, DockState.DockBottom );
 		}
 
-		private void OpenWebside( string url )
+		public static  void OpenWebside( string url )
 		{
 			try
 			{
@@ -535,11 +588,22 @@ namespace HslCommunicationDemo
 		public static Type[] formTypes = Assembly.GetExecutingAssembly( ).GetTypes( );
 		private ILogNet logNet;
 		private DemoControl.FormLogRender logRender;
-
+		private MqttSyncClient mqttSyncClient;
 
 
 		#endregion
 
+		private void label_account_Click( object sender, EventArgs e )
+		{
+			using (FormLogin form = new FormLogin( ))
+			{
+				if ( form.ShowDialog( ) == DialogResult.OK)
+				{
+					this.mqttSyncClient = form.GetMqttSyncClient( );
+					label_account.Text = "已登录";
+				}
+			}
+		}
 	}
 
 	public class FormSiemensS1200 : FormSiemens

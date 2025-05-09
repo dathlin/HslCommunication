@@ -42,6 +42,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button46 = new System.Windows.Forms.Button();
+            this.button45 = new System.Windows.Forms.Button();
+            this.button44 = new System.Windows.Forms.Button();
             this.button43 = new System.Windows.Forms.Button();
             this.textBox_code = new System.Windows.Forms.TextBox();
             this.label_code = new System.Windows.Forms.Label();
@@ -131,7 +134,6 @@
             this.readNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readNcLocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button44 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -260,6 +262,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button46);
+            this.tabPage1.Controls.Add(this.button45);
             this.tabPage1.Controls.Add(this.button44);
             this.tabPage1.Controls.Add(this.button43);
             this.tabPage1.Controls.Add(this.textBox_code);
@@ -320,6 +324,36 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "基本操作";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button46
+            // 
+            this.button46.Location = new System.Drawing.Point(304, 108);
+            this.button46.Name = "button46";
+            this.button46.Size = new System.Drawing.Size(96, 29);
+            this.button46.TabIndex = 93;
+            this.button46.Text = "主轴倍率";
+            this.button46.UseVisualStyleBackColor = true;
+            this.button46.Click += new System.EventHandler(this.button46_Click);
+            // 
+            // button45
+            // 
+            this.button45.Location = new System.Drawing.Point(204, 108);
+            this.button45.Name = "button45";
+            this.button45.Size = new System.Drawing.Size(96, 29);
+            this.button45.TabIndex = 92;
+            this.button45.Text = "进给倍率";
+            this.button45.UseVisualStyleBackColor = true;
+            this.button45.Click += new System.EventHandler(this.button45_Click);
+            // 
+            // button44
+            // 
+            this.button44.Location = new System.Drawing.Point(104, 108);
+            this.button44.Name = "button44";
+            this.button44.Size = new System.Drawing.Size(96, 29);
+            this.button44.TabIndex = 91;
+            this.button44.Text = "程序号";
+            this.button44.UseVisualStyleBackColor = true;
+            this.button44.Click += new System.EventHandler(this.button44_Click);
             // 
             // button43
             // 
@@ -957,18 +991,18 @@
             // 
             this.textBox_code2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_code2.Location = new System.Drawing.Point(56, 499);
+            this.textBox_code2.Location = new System.Drawing.Point(56, 484);
             this.textBox_code2.Multiline = true;
             this.textBox_code2.Name = "textBox_code2";
             this.textBox_code2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_code2.Size = new System.Drawing.Size(944, 46);
+            this.textBox_code2.Size = new System.Drawing.Size(921, 51);
             this.textBox_code2.TabIndex = 71;
             // 
             // label_code2
             // 
             this.label_code2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_code2.AutoSize = true;
-            this.label_code2.Location = new System.Drawing.Point(8, 502);
+            this.label_code2.Location = new System.Drawing.Point(8, 488);
             this.label_code2.Name = "label_code2";
             this.label_code2.Size = new System.Drawing.Size(44, 17);
             this.label_code2.TabIndex = 70;
@@ -1050,7 +1084,7 @@
             this.textBox_program.Multiline = true;
             this.textBox_program.Name = "textBox_program";
             this.textBox_program.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_program.Size = new System.Drawing.Size(783, 397);
+            this.textBox_program.Size = new System.Drawing.Size(762, 379);
             this.textBox_program.TabIndex = 68;
             // 
             // label7
@@ -1119,7 +1153,7 @@
             treeNode1.Text = "CNC_MEM";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
-            this.treeView1.Size = new System.Drawing.Size(204, 397);
+            this.treeView1.Size = new System.Drawing.Size(204, 379);
             this.treeView1.TabIndex = 66;
             // 
             // textBox7
@@ -1188,16 +1222,6 @@
             this.readNcLocalToolStripMenuItem.Name = "readNcLocalToolStripMenuItem";
             this.readNcLocalToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.readNcLocalToolStripMenuItem.Text = "读取NC到本地";
-            // 
-            // button44
-            // 
-            this.button44.Location = new System.Drawing.Point(104, 108);
-            this.button44.Name = "button44";
-            this.button44.Size = new System.Drawing.Size(96, 29);
-            this.button44.TabIndex = 91;
-            this.button44.Text = "程序号";
-            this.button44.UseVisualStyleBackColor = true;
-            this.button44.Click += new System.EventHandler(this.button44_Click);
             // 
             // FormCncFanuc
             // 
@@ -1334,5 +1358,7 @@
 		private System.Windows.Forms.Label label_code2;
         private System.Windows.Forms.Button button43;
         private System.Windows.Forms.Button button44;
+        private System.Windows.Forms.Button button45;
+        private System.Windows.Forms.Button button46;
     }
 }

@@ -62,6 +62,7 @@ namespace HslCommunicationDemo
 				button2.Text = "Disconnect";
 				checkBox2.Text = "IsClearCacheBeforeRead";
 				label_BroadcastStation.Text = "BroadcastStat:";
+				label_batch_length.Text = "BatchLen:";
 			}
 		}
 
@@ -115,6 +116,8 @@ namespace HslCommunicationDemo
 			busRtuClient.StationCheckMacth = checkBox_station_check.Checked;
 			if (!string.IsNullOrEmpty( textBox_BroadcastStation.Text ))
 				busRtuClient.BroadcastStation = int.Parse( textBox_BroadcastStation.Text );
+			if (!string.IsNullOrEmpty( textBox_batch_length.Text ))
+				busRtuClient.WordReadBatchLength = int.Parse( textBox_batch_length.Text );
 
 			ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
 			busRtuClient.IsStringReverse = checkBox3.Checked;
@@ -141,9 +144,18 @@ namespace HslCommunicationDemo
 
 					// 设置示例代码
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
-					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
-						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.Crc16CheckEnable ), nameof( busRtuClient.IsClearCacheBeforeRead ),
-						nameof( busRtuClient.StationCheckMacth ), nameof( busRtuClient.BroadcastStation ) );
+					List<string> paras = new List<string>( );
+					paras.Add( nameof( busRtuClient.Station ) );
+					paras.Add( nameof( busRtuClient.IsStringReverse ) );
+					paras.Add( nameof( busRtuClient.DataFormat ) );
+					paras.Add( nameof( busRtuClient.IsClearCacheBeforeRead ) );
+					if (busRtuClient.Crc16CheckEnable == false) paras.Add( nameof( busRtuClient.Crc16CheckEnable ) );
+					if (busRtuClient.StationCheckMacth == false) paras.Add( nameof( busRtuClient.StationCheckMacth ) );
+					if (busRtuClient.BroadcastStation != -1) paras.Add( nameof( busRtuClient.BroadcastStation ) );
+					if (busRtuClient.AddressStartWithZero == false) paras.Add( nameof( busRtuClient.AddressStartWithZero ) );
+					if (busRtuClient.WordReadBatchLength != 120) paras.Add( nameof( busRtuClient.WordReadBatchLength ) );
+
+					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busRtuClient, paras.ToArray( ) );
 				}
 				else
 				{

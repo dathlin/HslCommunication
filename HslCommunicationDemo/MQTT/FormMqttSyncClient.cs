@@ -11,6 +11,8 @@ using HslCommunication;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using HslCommunicationDemo.DemoControl;
+using System.Runtime.Remoting.Contexts;
+using HslCommunication.Core.Pipe;
 
 namespace HslCommunicationDemo
 {
@@ -29,7 +31,6 @@ namespace HslCommunicationDemo
 
 		private void FormClient_Load( object sender, EventArgs e )
 		{
-			DemoUtils.SetDeviveIp( textBox_ip );
 			panel2.Enabled = false;
 			panel4.Enabled = false;
 			button2.Enabled = false;
@@ -66,8 +67,6 @@ namespace HslCommunicationDemo
 			else
 			{
 				Text = "Mqtt Sync Client [RPC remote call client]";
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
 				label7.Text = "Topic:";
@@ -94,43 +93,50 @@ namespace HslCommunicationDemo
 		private async void button1_Click( object sender, EventArgs e )
 		{
 			// 连接
-			MqttConnectionOptions options = new MqttConnectionOptions( )
+			try
 			{
-				IpAddress = textBox_ip.Text,
-				Port = int.Parse( textBox2.Text ),
-				ClientId = textBox3.Text,
-				UseRSAProvider = checkBox_rsa.Checked,
-			};
-			if(!string.IsNullOrEmpty(textBox9.Text) || !string.IsNullOrEmpty( textBox10.Text ))
-			{
-				options.Credentials = new MqttCredential( textBox9.Text, textBox10.Text );
-			}
+				MqttConnectionOptions options = new MqttConnectionOptions( )
+				{
+					IpAddress = this.pipeSelectControl1.GetTcpIpAddress( ),
+					Port = int.Parse( this.pipeSelectControl1.GetTcpPort( ) ),
+					ClientId = textBox3.Text,
+					UseRSAProvider = checkBox_rsa.Checked,
+				};
+				if (!string.IsNullOrEmpty( textBox9.Text ) || !string.IsNullOrEmpty( textBox10.Text ))
+				{
+					options.Credentials = new MqttCredential( textBox9.Text, textBox10.Text );
+				}
 
-			button1.Enabled = false;
-			mqttSyncClient = new MqttSyncClient( options );
-			OperateResult connect = await mqttSyncClient.ConnectServerAsync( );
-
-			if(connect.IsSuccess)
-			{
-				panel2.Enabled = true;
 				button1.Enabled = false;
-				button2.Enabled = true;
-				panel4.Enabled = true;
-				panel2.Enabled = true;
-				MqttRpcApiRefresh( treeView1.Nodes[0] );
-				TopicsRefresh( treeView1.Nodes[1] );
-				SessionsRefresh( treeView1.Nodes[2] );
-				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
+				mqttSyncClient = new MqttSyncClient( options );
+				this.pipeSelectControl1.IniPipe( mqttSyncClient );
+				OperateResult connect = await mqttSyncClient.ConnectServerAsync( );
 
-				// 设置代码示例
-				codeExampleControl.SetCodeText( mqttSyncClient );
+				if (connect.IsSuccess)
+				{
+					panel2.Enabled = true;
+					button1.Enabled = false;
+					button2.Enabled = true;
+					panel4.Enabled = true;
+					panel2.Enabled = true;
+					MqttRpcApiRefresh( treeView1.Nodes[0] );
+					TopicsRefresh( treeView1.Nodes[1] );
+					SessionsRefresh( treeView1.Nodes[2] );
+					DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
+
+					// 设置代码示例
+					codeExampleControl.SetCodeText( mqttSyncClient );
+				}
+				else
+				{
+					button1.Enabled = true;
+					DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message );
+				}
 			}
-			else
+			catch ( Exception ex )
 			{
-				button1.Enabled = true;
-				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + connect.Message );
+				DemoUtils.ShowMessage( StringResources.Language.ConnectedFailed + ex.Message );
 			}
-
 		}
 
 		private void button2_Click( object sender, EventArgs e )
@@ -574,8 +580,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlCompanyID, textBox3.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox9.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox10.Text );
@@ -584,8 +589,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox3.Text = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;
 			textBox9.Text = element.Attribute( DemoDeviceList.XmlUserName ).Value;
 			textBox10.Text = element.Attribute( DemoDeviceList.XmlPassword ).Value;

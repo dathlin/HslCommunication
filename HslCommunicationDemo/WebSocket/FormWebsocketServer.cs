@@ -26,6 +26,7 @@ namespace HslCommunicationDemo
 		{
 			panel2.Enabled = false;
 			button2.Enabled = false;
+			comboBox1.SelectedIndex = 0;
 
 			Language( Program.Language );
 
@@ -41,6 +42,11 @@ namespace HslCommunicationDemo
 			{
 				label2.Text = "Online Count:" + wsServer.OnlineCount;
 				listBox1.DataSource = wsServer.OnlineSessions;
+
+				if (Program.Language == 1)
+					label_tick.Text = "接收次数: " + this.count;
+				else
+					label_tick.Text = "Recv Tick: " + this.count;
 			}
 		}
 
@@ -110,6 +116,17 @@ namespace HslCommunicationDemo
 				button2.Enabled = true;
 				panel2.Enabled = true;
 				DemoUtils.ShowMessage( "Start Success" );
+
+				StringBuilder stringBuilder = new StringBuilder( );
+				stringBuilder.AppendLine( "WebSocketServer wsServer = new WebSocketServer( );" );
+				stringBuilder.AppendLine( $"wsServer.IsTopicRetain = {checkBox2.Checked};" );
+				if (checkBox_ssl.Checked)
+				{
+					stringBuilder.AppendLine( $"wsServer.UseSSL( \"{textBox_certFile.Text}\", \"{textBox_ssl_password.Text}\" );" );
+				}
+				stringBuilder.Append( $"wsServer.ServerStart( {int.Parse( textBox2.Text )} );" );
+				textBox_code.Text = stringBuilder.ToString( ); 
+				count = 0;   // 重置接收数据的次数
 			}
 			catch (Exception ex)
 			{
@@ -128,8 +145,11 @@ namespace HslCommunicationDemo
 		}
 
 		Random random = new Random( );
+		private long count = 0; // 统计接收的次数
+
 		private void WebSocket_OnClientApplicationMessageReceive( WebSocketSession session, WebSocketMessage message )
 		{
+			this.count++;
 			// 应答客户端连接的情况下是需要进行返回数据的，此处演示返回的是原始的数据，追加一个随机数，你可以自己根据业务来决定返回什么数据
 			if (session.IsQASession)
 			{
@@ -137,8 +157,17 @@ namespace HslCommunicationDemo
 			}
 			Invoke( new Action( ( ) =>
 			{
-				if(!isStop)
-					textBox8.AppendText( $"OpCode:[{message.OpCode}] Mask:[{message.HasMask}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
+				if (!isStop)
+				{
+					if (message.OpCode == 1)
+					{
+						textBox8.AppendText( $"OpCode:[{message.OpCode}] Mask:[{message.HasMask}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
+					}
+					else
+					{
+						textBox8.AppendText( $"OpCode:[{message.OpCode}] Mask:[{message.HasMask}] Payload:[{message.Payload.ToHexString( ' ' )}]" + Environment.NewLine );
+					}
+				}
 			} ) );
 			// wsServer.AddSessionTopic( session, Encoding.UTF8.GetString( message.Payload ) );
 		}
@@ -164,7 +193,16 @@ namespace HslCommunicationDemo
 
 		private void button3_Click( object sender, EventArgs e )
 		{
-			wsServer.PublishAllClientPayload( textBox4.Text );
+			if (comboBox1.SelectedIndex == 0)
+			{
+				wsServer.PublishAllClientPayload( textBox4.Text );
+				textBox_code.Text = $"wsServer.PublishAllClientPayload( \"{textBox4.Text}\" );  // opCode = 1";
+			}
+			else
+			{
+				wsServer.PublishAllClientPayload( textBox4.Text.ToHexBytes( ) );
+				textBox_code.Text = $"wsServer.PublishAllClientPayload( \"{textBox4.Text}\".ToHexBytes( ) ); // opCode = 2";
+			}
 		}
 
 		private void button4_Click( object sender, EventArgs e )

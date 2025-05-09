@@ -53,6 +53,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button5 = new System.Windows.Forms.Button();
 			this.checkBox_regex_filter = new System.Windows.Forms.CheckBox();
 			this.textBox_regex_filter = new System.Windows.Forms.TextBox();
 			this.textBox_code = new System.Windows.Forms.TextBox();
@@ -88,6 +89,7 @@
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.label13 = new System.Windows.Forms.Label();
+			this.button6 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -338,6 +340,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button6);
+			this.panel2.Controls.Add(this.button5);
 			this.panel2.Controls.Add(this.checkBox_regex_filter);
 			this.panel2.Controls.Add(this.textBox_regex_filter);
 			this.panel2.Controls.Add(this.textBox_code);
@@ -369,6 +373,18 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(802, 507);
 			this.panel2.TabIndex = 13;
+			// 
+			// button5
+			// 
+			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button5.ForeColor = System.Drawing.Color.DarkGray;
+			this.button5.Location = new System.Drawing.Point(2, 426);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(56, 28);
+			this.button5.TabIndex = 41;
+			this.button5.Text = "Test-R";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
 			// checkBox_regex_filter
 			// 
@@ -743,6 +759,18 @@
 			this.label13.TabIndex = 8;
 			this.label13.Text = "Subscribed：(已订阅)";
 			// 
+			// button6
+			// 
+			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button6.ForeColor = System.Drawing.Color.DarkGray;
+			this.button6.Location = new System.Drawing.Point(3, 397);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(56, 28);
+			this.button6.TabIndex = 42;
+			this.button6.Text = "Test-P";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
 			// FormMqttClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -832,5 +860,7 @@
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.CheckBox checkBox_regex_filter;
 		private System.Windows.Forms.TextBox textBox_regex_filter;
+		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button button6;
 	}
 }

@@ -46,6 +46,11 @@ namespace HslCommunicationDemo.PLC.Omron
 				new DeviceAddressExample( "E0.0 / EM0.0", "EM Area",           false, true, "只能读写字，范围 EM0.0 ~ EMF.9999" ),
 				new DeviceAddressExample( "TIM0",   "Timer Area",              false, true, "读字就是当前值，范围 TIM0 ~ TIM2047" ),
 				new DeviceAddressExample( "CNT0",   "Counter Area",            false, true, "读字就是当前值，范围 CNT0 ~ CNT2047" ),
+
+
+				new DeviceAddressExample( "D100.2",    "DM Area",            true, false, "实际使用读字、修改位、写字间接实现，存在风险，谨慎调用" ),
+				new DeviceAddressExample( "H5.2",    "Holding Area",         true, false, "实际使用读字、修改位、写字间接实现，存在风险，谨慎调用" ),
+				new DeviceAddressExample( "E0.100.2", "EM Area",             true, false, "实际使用读字、修改位、写字间接实现，存在风险，谨慎调用" ),
 			};
 		}
 	}

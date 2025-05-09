@@ -6,10 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using HslCommunication;
+using HslCommunication.Core.Device;
 using HslCommunication.LogNet;
 using HslCommunication.Profinet.OpenProtocol;
 using HslCommunicationDemo.DemoControl;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HslCommunicationDemo
 {
@@ -47,6 +50,20 @@ namespace HslCommunicationDemo
 				DemoUtils.ShowMessage( ex.Message );
 			}
 
+		}
+
+		private void button2_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				server.ServerClose( );
+				button2.Enabled = false;
+				button1.Enabled = true;
+			}
+			catch (Exception ex)
+			{
+				DemoUtils.ShowMessage( ex.Message );
+			}
 		}
 
 		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
@@ -158,22 +175,36 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				OperateResult<string> read = openProtocol.ReadCustomer( int.Parse( textBox_mid.Text ),
+				this.server.Publish( int.Parse( textBox_mid.Text ),
 					int.Parse( textBox_revision.Text ), int.Parse( textBox_stationID.Text ), int.Parse( textBox_spindleID.Text ), new List<string>( textBox_dataField.Lines ) );
 
-				if (read.IsSuccess)
-				{
-					textBox_result.AppendText( DateTime.Now.ToString( ) + " : " + read.Content + Environment.NewLine );
-				}
-				else
-				{
-					DemoUtils.ShowMessage( "Read Failed:" + read.Message );
-				}
+				textBox_result.AppendText( DateTime.Now.ToString( ) + " : Publish success" + Environment.NewLine );
 			}
 			catch(Exception ex)
 			{
 				HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
 			}
 		}
+
+		#region Save Load
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( nameof( DeviceServer.Port ), textBox_port.Text );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+			textBox_port.Text = GetXmlValue( element, nameof( DeviceServer.Port ), textBox_port.Text, m => m );
+		}
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
+		}
+
+		#endregion
+
 	}
 }

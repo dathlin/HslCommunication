@@ -1,4 +1,5 @@
 ﻿using HslCommunication;
+using HslCommunication.Secs.Types;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -58,11 +59,8 @@ namespace HslCommunicationDemo
 			//	// active failed
 			//	DemoUtils.ShowMessage( "active failed: " + active.Message );
 			//}
-
-
 			Application.EnableVisualStyles( );
 			Application.SetCompatibleTextRenderingDefault( false );
-
 
 			System.Threading.ThreadPool.SetMaxThreads( 2000, 800 );
 			Application.Run( new FormMain( ) ); // FormSelect

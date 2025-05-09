@@ -37,6 +37,11 @@ namespace HslCommunicationDemo.DemoControl
 
 			this.Column_type.DataSource = this.data_types.ToArray( );
 			this.Column_encoding.DataSource = this.data_encodings.ToArray( );
+
+			this.toClipToolStripMenuItem.Click += button_out_clip_Click;
+			this.fromClipToolStripMenuItem.Click += button_from_clip_Click;
+			this.toFileToolStripMenuItem.Click += button_out_file_Click;
+			this.fromFileToolStripMenuItem.Click += button_from_file_Click;
 		}
 
 		private void HslCurveHistory1_MouseMove( object sender, MouseEventArgs e )
@@ -362,12 +367,13 @@ namespace HslCommunicationDemo.DemoControl
 				Column_expression.HeaderText = "Express";
 				Column_curve.HeaderText = "Curv";
 
-				button_from_clip.Text = "FromClip";
-				button_from_file.Text = "FromFile";
-				button_out_clip.Text = "ToClip";
-				button_out_file.Text = "ToFile";
-				label1.Text = "Interval";
+				toClipToolStripMenuItem.Text = "ToClip";
+				fromClipToolStripMenuItem.Text = "FromClip";
+				toFileToolStripMenuItem.Text = "ToFile";
+				fromFileToolStripMenuItem.Text = "FromFile";
+				label1.Text = "Cycle Interval:";
 				label2.Text = "Double click to write";
+				label3.Text = "EverySleep:";
 				button_clear_all.Text = "EmptyAll";
 			}
 
@@ -422,6 +428,8 @@ namespace HslCommunicationDemo.DemoControl
 		public void GetDataTable( XElement element )
 		{
 			element.SetAttributeValue( "Interval", textBox_time.Text );
+			if (!string.IsNullOrWhiteSpace( textBox_sleep_time.Text ))
+				element.SetAttributeValue( "SleepTime", textBox_sleep_time.Text );
 			for (int i = 0; i < dataGridView1.Rows.Count; i++)
 			{
 				DataGridViewRow dgvr = dataGridView1.Rows[i];
@@ -440,6 +448,11 @@ namespace HslCommunicationDemo.DemoControl
 			if (attribute != null)
 			{
 				textBox_time.Text = attribute.Value;
+			}
+			XAttribute attribute_sleep = element.Attribute( "SleepTime" );
+			if (attribute_sleep != null)
+			{
+				textBox_sleep_time.Text = attribute_sleep.Value;
 			}
 			int count = 0;
 			foreach (var item in element.Elements( nameof( DataTableItem ) ))
@@ -481,6 +494,7 @@ namespace HslCommunicationDemo.DemoControl
 		private Thread threadRead;
 		private bool threadEnable = false;
 		private int timeSleep = 1000;
+		private int readSleep = 0;
 		private DynamicExpresso.Interpreter interpreter = new DynamicExpresso.Interpreter( );
 		private DateTime mouseMoveTime { get; set; } = DateTime.Now.AddMinutes( -1 );
 
@@ -499,6 +513,15 @@ namespace HslCommunicationDemo.DemoControl
 				button1.Text = Program.Language == 1 ? "停止刷新" : "Stop";
 				button1.BackColor = Color.LimeGreen;
 				timeSleep = Convert.ToInt32( textBox_time.Text );
+
+				if (!string.IsNullOrWhiteSpace( textBox_sleep_time.Text ))
+				{
+					readSleep = Convert.ToInt32( textBox_sleep_time.Text );
+				}
+				else
+				{
+					readSleep = 0;
+				}
 				threadRead = new Thread( new ThreadStart( ThreadBack ) );
 				threadRead.IsBackground = true;
 				threadRead.Start( );
@@ -675,6 +698,8 @@ namespace HslCommunicationDemo.DemoControl
 							} ) );
 						}
 					}
+
+					if (this.readSleep > 0) HslCommunication.Core.HslHelper.ThreadSleep( this.readSleep );
 				}
 				Invoke( new Action( ( ) =>
 				{

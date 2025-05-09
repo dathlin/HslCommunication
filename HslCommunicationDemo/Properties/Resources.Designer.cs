@@ -323,6 +323,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap cimon {
+            get {
+                object obj = ResourceManager.GetObject("cimon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Class_489 {
             get {
                 object obj = ResourceManager.GetObject("Class_489", resourceCulture);
@@ -1946,6 +1956,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap xvid {
             get {
                 object obj = ResourceManager.GetObject("xvid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap yamaha {
+            get {
+                object obj = ResourceManager.GetObject("yamaha", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

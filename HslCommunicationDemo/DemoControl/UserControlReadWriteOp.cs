@@ -23,6 +23,16 @@ namespace HslCommunicationDemo.DemoControl
 			InitializeComponent( );
 
 			Disposed += UserControlReadWriteOp_Disposed;
+			radioButton_async.CheckedChanged += RadioButton_async_CheckedChanged;
+			radioButton_sync.CheckedChanged += RadioButton_async_CheckedChanged;
+		}
+
+		private void RadioButton_async_CheckedChanged( object sender, EventArgs e )
+		{
+			if (radioButton_sync.Checked)
+				this.isAsync = false;
+			else
+				this.isAsync = true;
 		}
 
 		private void UserControlReadWriteOp_Disposed( object sender, EventArgs e )
@@ -162,7 +172,7 @@ namespace HslCommunicationDemo.DemoControl
 
 				label10.Text = "Address:";
 				label9.Text = "Value:";
-				label19.Text = "Note:The string can convert value\r\nif bool: true,false,0,1\r\nif array：[1,2,3]";
+				label19.Text = "Note:The string can convert value\r\nif bool: true,false,0,1\r\nif array：[1,2,3], [1:100]";
 				button_write_bool.Text = "Write Bit";
 				button_write_short.Text = "w-short";
 				button_write_ushort.Text = "w-ushort";
@@ -190,6 +200,9 @@ namespace HslCommunicationDemo.DemoControl
 				checkBox_mask_duplicates.Text = "Mask duplicates?";
 				textBox_read_search.Text = "Search";
 				button_find_string.Text = "find";
+
+				radioButton_sync.Text = "Sync";
+				radioButton_async.Text = "Async";
 			}
 			else
 			{
@@ -226,6 +239,9 @@ namespace HslCommunicationDemo.DemoControl
 		public void SetReadWriteNet( IReadWriteNet readWrite, string address, bool isAsync = false, int strLength = 10 )
 		{
 			this.isAsync = isAsync;
+			if (isAsync) radioButton_async.Checked = true;
+			else radioButton_sync.Checked = true;
+
 			this.address = address;
 			if(string.IsNullOrEmpty( textBox3.Text ))
 				textBox3.Text = address;
@@ -342,7 +358,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_bool.Enabled = false;
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ) )
 				{
 					RenderReadResult( DateTime.Now, await readWriteNet.ReadBoolAsync( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<bool> read = @deviceName.ReadBool( \"" + textBox3.Text + "\" );", isArray: false );
@@ -356,7 +372,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, readWriteNet.ReadBool( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<bool> read = @deviceName.ReadBool( \"" + textBox3.Text + "\" );", isArray: false );
@@ -374,7 +390,7 @@ namespace HslCommunicationDemo.DemoControl
 		private void button_read_byte_Click( object sender, EventArgs e )
 		{
 			// byte，此处演示了基于反射的读取操作
-			if (textBox5.Text == "1")
+			if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 			{
 				RenderReadResult( DateTime.Now, (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } ) );
 				GetReadCode( textBox3.Text, "OperateResult<byte> read = @deviceName.ReadByte( \"" + textBox3.Text + "\" );", isArray: false );
@@ -394,7 +410,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_short.Enabled = false;
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt16Async( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<short> read = @deviceName.ReadInt16( \"" + textBox3.Text + "\" );", isArray: false );
@@ -408,7 +424,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, readWriteNet.ReadInt16( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<short> read = @deviceName.ReadInt16( \"" + textBox3.Text + "\" );", isArray: false );
@@ -429,7 +445,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_ushort.Enabled = false;
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt16Async( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<ushort> read = @deviceName.ReadUInt16( \"" + textBox3.Text + "\" );", isArray: false );
@@ -443,8 +459,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt16( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<ushort> read = @deviceName.ReadUInt16( \"" + textBox3.Text + "\" );", isArray: false );
@@ -465,7 +480,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_int.Enabled = false;
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt32Async( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<int> read = @deviceName.ReadInt32( \"" + textBox3.Text + "\" );", isArray: false );
@@ -479,7 +494,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, readWriteNet.ReadInt32( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<int> read = @deviceName.ReadInt32( \"" + textBox3.Text + "\" );", isArray: false );
@@ -500,7 +515,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_uint.Enabled = false;
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt32Async( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<uint> read = @deviceName.ReadUInt32( \"" + textBox3.Text + "\" );", isArray: false );
@@ -514,7 +529,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt32( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<uint> read = @deviceName.ReadUInt32( \"" + textBox3.Text + "\" );", isArray: false );
@@ -535,7 +550,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_long.Enabled = false;
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt64Async( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<long> read = @deviceName.ReadInt64( \"" + textBox3.Text + "\" );", isArray: false );
@@ -549,7 +564,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, readWriteNet.ReadInt64( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<long> read = @deviceName.ReadInt64( \"" + textBox3.Text + "\" );", isArray: false );
@@ -570,7 +585,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_ulong.Enabled = false;
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt64Async( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<ulong> read = @deviceName.ReadUInt64( \"" + textBox3.Text + "\" );", isArray: false );
@@ -584,7 +599,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt64( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<ulong> read = @deviceName.ReadUInt64( \"" + textBox3.Text + "\" );", isArray: false );
@@ -605,7 +620,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_float.Enabled = false;
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, await readWriteNet.ReadFloatAsync( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<float> read = @deviceName.ReadFloat( \"" + textBox3.Text + "\" );", isArray: false );
@@ -619,7 +634,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, readWriteNet.ReadFloat( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<float> read = @deviceName.ReadFloat( \"" + textBox3.Text + "\" );", isArray: false );
@@ -640,7 +655,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (isAsync)
 			{
 				button_read_double.Enabled = false;
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, await readWriteNet.ReadDoubleAsync( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<double> read = @deviceName.ReadDouble( \"" + textBox3.Text + "\" );", isArray: false );
@@ -654,7 +669,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (textBox5.Text == "1")
+				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
 					RenderReadResult( DateTime.Now, readWriteNet.ReadDouble( textBox3.Text ) );
 					GetReadCode( textBox3.Text, "OperateResult<double> read = @deviceName.ReadDouble( \"" + textBox3.Text + "\" );", isArray: false );
@@ -801,12 +816,12 @@ namespace HslCommunicationDemo.DemoControl
 					if (isAsync)
 					{
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_bool, input );
-						GetWriteCode( textBox_write_address.Text, "OperateResult write = @deviceName.Write( \"" + textBox_write_address.Text + "\", " + input + " );" );
+						GetWriteCode( textBox_write_address.Text, "OperateResult write = @deviceName.Write( \"" + textBox_write_address.Text + "\", " + input.ToLower( ) + " );" );
 					}
 					else
 					{
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_bool, input );
-						GetWriteCode( textBox_write_address.Text, "OperateResult write = @deviceName.Write( \"" + textBox_write_address.Text + "\", " + input + " );" );
+						GetWriteCode( textBox_write_address.Text, "OperateResult write = @deviceName.Write( \"" + textBox_write_address.Text + "\", " + input.ToLower( ) + " );" );
 					}
 				}
 				else
@@ -877,6 +892,29 @@ namespace HslCommunicationDemo.DemoControl
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
 		}
 
+		private T[] GetArrayFromString<T>( string value, Func<long, int, T> funcAdd )
+		{
+			if (Regex.IsMatch( value, @"\[[-]?[0-9]+:[-]?[0-9]+\]" ))
+			{
+				MatchCollection mc = Regex.Matches( value, "[-]?[0-9]+" );
+				long start = long.Parse( mc[0].Value );
+				long end = long.Parse( mc[1].Value );
+
+				T[] buffer = new T[Math.Abs(end - start) + 1];
+				bool plus = start < end;
+				for (int i = 0; i < buffer.Length; i++)
+				{
+					if (plus)
+						buffer[i] = funcAdd( start, i );
+					else
+						buffer[i] = funcAdd( start, -i );
+				}
+				return buffer;
+			}
+			else
+				return value.ToStringArray<T>( );
+		}
+
 		private async void button_write_short_Click( object sender, EventArgs e )
 		{
 			string input = GetWriteValueText( );
@@ -885,8 +923,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				try
 				{
-					short[] value = input.ToStringArray<short>( );
-
+					short[] value = GetArrayFromString( input, ( m, n ) => (short)(m + n) );
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_short, input );
 					else
@@ -929,8 +966,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				try
 				{
-					ushort[] value = input.ToStringArray<ushort>( );
-
+					ushort[] value = GetArrayFromString( input, ( m, n ) => (ushort)(m + n) ); ;
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_ushort, input );
 					else
@@ -973,7 +1009,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				try
 				{
-					int[] value = input.ToStringArray<int>( );
+					int[] value = GetArrayFromString( input, ( m, n ) => (int)(m + n) );
 
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_int, input );
@@ -1017,7 +1053,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				try
 				{
-					uint[] value = input.ToStringArray<uint>( );
+					uint[] value = GetArrayFromString( input, ( m, n ) => (uint)(m + n) );
 
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_uint, input );
@@ -1061,7 +1097,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				try
 				{
-					long[] value = input.ToStringArray<long>( );
+					long[] value = GetArrayFromString( input, ( m, n ) => (long)(m + n) );
 
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_long, input );
@@ -1105,7 +1141,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				try
 				{
-					ulong[] value = input.ToStringArray<ulong>( );
+					ulong[] value = GetArrayFromString( input, ( m, n ) => (ulong)(m + n) );
 
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_ulong, input );
@@ -1149,7 +1185,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				try
 				{
-					float[] value = input.ToStringArray<float>( );
+					float[] value = GetArrayFromString( input, ( m, n ) => (float)(m + n) );
 
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_float, input );
@@ -1193,7 +1229,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				try
 				{
-					double[] value = input.ToStringArray<double>( );
+					double[] value = GetArrayFromString( input, ( m, n ) => (double)(m + n) );
 
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_double, input );

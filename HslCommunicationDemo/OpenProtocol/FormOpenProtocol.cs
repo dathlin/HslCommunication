@@ -20,6 +20,11 @@ namespace HslCommunicationDemo
 		public FormOpenProtocol( )
 		{
 			InitializeComponent( );
+
+			this.toolTip = new ToolTip( );
+			string tip = "额外的mid数组，如果你得用于订阅返回的mid大于421，则需要在数组里额外指定，例如 1000,1010";
+			if (Program.Language == 2) tip = "Additional mid array, if you need to subscribe to the returned mid greater than 421, you need to specify it additionally in the array, such as 1000,1010";
+			this.toolTip.SetToolTip( label_sub_mid, tip );
 		}
 
 		private void Button1_Click( object sender, EventArgs e )
@@ -40,6 +45,7 @@ namespace HslCommunicationDemo
 			openProtocol.OnReceivedOpenMessage += OpenProtocol_ReceivedMessage;
 			try
 			{
+				if (!string.IsNullOrEmpty( textBox_sub_mid.Text )) openProtocol.ExtraSubscribeMID = textBox_sub_mid.Text.ToStringArray<int>( );
 				this.pipeSelectControl1.IniPipe( openProtocol );
 				OperateResult connect = DeviceConnectPLC( openProtocol );
 				if (connect.IsSuccess)
@@ -49,7 +55,14 @@ namespace HslCommunicationDemo
 					button1.Enabled = false;
 					panel2.Enabled = true;
 
-					codeExampleControl.SetCodeText( "openProtocol", openProtocol, nameof( openProtocol.RevisonOnConnected ), nameof( openProtocol.AutoAckControllerMessage ) );
+
+					List<string> paras = new List<string>( );
+					paras.Add( nameof( openProtocol.RevisonOnConnected ) );
+					paras.Add( nameof( openProtocol.AutoAckControllerMessage ) );
+					paras.Add( nameof( openProtocol.KeepAliveMessageEnable ) );
+					if (!string.IsNullOrEmpty( textBox_sub_mid.Text )) paras.Add( nameof( openProtocol.ExtraSubscribeMID ) );
+
+					codeExampleControl.SetCodeText( "openProtocol", openProtocol, paras.ToArray( ) );
 				}
 				else
 				{
@@ -102,12 +115,18 @@ namespace HslCommunicationDemo
 		private long read_tick = 0;
 		private OpenProtocolNet openProtocol = null;
 		private CodeExampleControl codeExampleControl;
+		private ToolTip toolTip;
 
 		private void FormOpenProtocol_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
 
 			// 添加 Open protocol 消息
+			TreeNode node0 = new TreeNode( " Communication messages" );
+			node0.Nodes.Add( new TreeNode( "MID 0008 Data message subscription" ) { Tag = new OpenMessage( mid: 8, revision: 1, stationID: -1, spindleID: -1, dataField: new List<string>( ) { "0900" } ) } );
+			node0.Nodes.Add( new TreeNode( "MID 0009 Data message unsubscribe" ) { Tag = new OpenMessage( mid: 9, revision: 1, stationID: -1, spindleID: -1, dataField: new List<string>( ) { "0900" } ) } );
+			treeView1.Nodes.Add( node0 );
+
 			TreeNode node1 = new TreeNode( "Parameter set messages" );
 			node1.Nodes.Add( new TreeNode( "MID 0010 Parameter set ID upload" )               { Tag = new OpenMessage( mid: 10, revision: 1, stationID: -1, spindleID: -1, dataField: null ) } );
 			node1.Nodes.Add( new TreeNode( "MID 0012 Parameter set data upload" )             { Tag = new OpenMessage( mid: 12, revision: 1, stationID: -1, spindleID: -1, dataField: new List<string>( ) { "000" } ) } );
@@ -406,7 +425,19 @@ namespace HslCommunicationDemo
 			return sb.ToString( );
 		}
 
-
+		private string getArrayString( string[] values )
+		{
+			if (values == null || values.Length <= 0) return string.Empty;
+			var sb = new StringBuilder( );
+			for (int i = 0; i < values.Length; i++)
+			{
+				sb.Append( "\"" );
+				sb.Append( values[i] );
+				sb.Append( "\"" );
+				if (i < values.Length - 1) sb.Append( "," );
+			}
+			return sb.ToString( );
+		}
 
 		private void Button_read_string_Click( object sender, EventArgs e )
 		{
@@ -436,8 +467,11 @@ namespace HslCommunicationDemo
 				{
 					DemoUtils.ShowMessage( "Read Failed :" + read.Message );
 				}
+				textBox_code.Text = $"OperateResult<string> read = openProtocol.ReadCustomer( {int.Parse( textBox_mid.Text )}," +
+					$"{int.Parse( textBox_revision.Text )}, {int.Parse( textBox_stationID.Text )}, {int.Parse( textBox_spindleID.Text )}, " +
+					$"new List<string>() {{{getArrayString( textBox_dataField.Lines )}}} );";
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
 			}
@@ -452,7 +486,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( "RevisonConnect", textBox_revison_connect.Text );
 			element.SetAttributeValue( "AutoAckControllerMessage", checkBox1.Checked );
 			element.SetAttributeValue( "MID9999", checkBox2.Checked );
-
+			element.SetAttributeValue( "SubMID", textBox_sub_mid.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -462,6 +496,7 @@ namespace HslCommunicationDemo
 			textBox_revison_connect.Text = GetXmlValue( element, "RevisonConnect", "1", m => m );
 			checkBox1.Checked = GetXmlValue( element, "AutoAckControllerMessage", checkBox1.Checked, bool.Parse );
 			checkBox2.Checked = GetXmlValue( element, "MID9999", true, bool.Parse );
+			textBox_sub_mid.Text = GetXmlValue( element, "SubMID", string.Empty, m => m );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

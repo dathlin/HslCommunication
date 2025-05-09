@@ -41,7 +41,8 @@ namespace HslCommunicationDemo.DemoControl
 
 				button_start.Text = "Start";
 				button_finish.Text = "Stop";
-				label1.Text = "The x means an integer increasing from 0, example: x%2==0? 10:0 Or (short)(Math.Sin(2*Math.PI*x/100)*100) Or (short)r.Next(100,200)";
+				button_onece.Text = "Once";
+				label1.Text = "The x means an integer increasing from 0,expree example: x%2==0? 10:0 Or (short)(Math.Sin(2*Math.PI*x/100)*100) Or (short)r.Next(100,200)";
 			}
 		}
 
@@ -126,6 +127,11 @@ namespace HslCommunicationDemo.DemoControl
 			if (threadWrite != null && threadEnable == false && threadWrite.ThreadState == ThreadState.Running) threadWrite?.Abort( );
 		}
 
+		private void RunOnce()
+		{
+
+		}
+
 		private void ThreadWriteMethod()
 		{
 			while(threadEnable)
@@ -143,6 +149,7 @@ namespace HslCommunicationDemo.DemoControl
 						parameters.Add( new Parameter( "x", simulate.X ) );
 						parameters.Add( new Parameter( "r", HslCommunication.Core.HslHelper.HslRandom ) );
 						object value = simulate.Script.Eval( simulate.Express, parameters.ToArray( ) );
+						if (value == null) continue;
 						Type type = value.GetType( );
 
 						OperateResult writeResult = null;
@@ -191,6 +198,7 @@ namespace HslCommunicationDemo.DemoControl
 							Invoke( new Action( ( ) =>
 							{
 								DemoUtils.ShowMessage( $"Write address[{simulate.Address}] failed: {writeResult.Message}" );
+								simulate.Dgvr.Cells[1].Selected = true;
 							} ) );
 							return;
 						}
@@ -200,6 +208,95 @@ namespace HslCommunicationDemo.DemoControl
 					}
 				}
 			}
+		}
+
+		private void button_onece_Click( object sender, EventArgs e )
+		{
+			if (readWrite == null) return;
+
+			List<SimulateWrite> tmp = new List<SimulateWrite>( );
+			for (int i = 0; i < dataGridView1.Rows.Count; i++)
+			{
+				DataGridViewRow dgvr = dataGridView1.Rows[i];
+
+				if (dgvr.Cells[1].Value == null) continue;
+				if (dgvr.IsNewRow) continue;
+
+				try
+				{
+					SimulateWrite dataTableItem = GetSimulateWrite( dgvr );
+					dataTableItem.Script = new DynamicExpresso.Interpreter( );
+					dataTableItem.Script.Eval( dataTableItem.Express, new Parameter( "x", 0 ), new Parameter( "r", HslCommunication.Core.HslHelper.HslRandom ) );
+					dataTableItem.Dgvr = dgvr;
+					dataTableItem.ExecuteTime = DateTime.Now.AddDays( -1 );
+					tmp.Add( dataTableItem );
+				}
+				catch (Exception ex)
+				{
+					DemoUtils.ShowMessage( $"Row[{i}] has wrong value: " + ex.Message );
+					return;
+				}
+			}
+
+			DateTime dateTime = DateTime.Now;
+			for (int i = 0; i < tmp.Count; i++)
+			{
+				SimulateWrite simulate = tmp[i];
+				if ((DateTime.Now - simulate.ExecuteTime).TotalMilliseconds > simulate.Time)
+				{
+					List<Parameter> parameters = new List<Parameter>( );
+					parameters.Add( new Parameter( "x", simulate.X ) );
+					parameters.Add( new Parameter( "r", HslCommunication.Core.HslHelper.HslRandom ) );
+					object value = simulate.Script.Eval( simulate.Express, parameters.ToArray( ) );
+					if (value == null) continue;
+					Type type = value.GetType( );
+
+					OperateResult writeResult = null;
+					if (type == typeof( bool )) writeResult = readWrite.Write( simulate.Address, (bool)value );
+					else if (type == typeof( bool[] )) writeResult = readWrite.Write( simulate.Address, (bool[])value );
+					else if (type == typeof( short )) writeResult = readWrite.Write( simulate.Address, (short)value );
+					else if (type == typeof( short[] )) writeResult = readWrite.Write( simulate.Address, (short[])value );
+					else if (type == typeof( byte )) writeResult = readWrite.Write( simulate.Address, new byte[] { (byte)value } );
+					else if (type == typeof( byte[] )) writeResult = readWrite.Write( simulate.Address, (byte[])value );
+					else if (type == typeof( int )) writeResult = readWrite.Write( simulate.Address, (int)value );
+					else if (type == typeof( int[] )) writeResult = readWrite.Write( simulate.Address, (int[])value );
+					else if (type == typeof( long )) writeResult = readWrite.Write( simulate.Address, (long)value );
+					else if (type == typeof( long[] )) writeResult = readWrite.Write( simulate.Address, (long[])value );
+					else if (type == typeof( float )) writeResult = readWrite.Write( simulate.Address, (float)value );
+					else if (type == typeof( float[] )) writeResult = readWrite.Write( simulate.Address, (float[])value );
+					else if (type == typeof( double )) writeResult = readWrite.Write( simulate.Address, (double)value );
+					else if (type == typeof( double[] )) writeResult = readWrite.Write( simulate.Address, (double[])value );
+					else if (type == typeof( string )) writeResult = readWrite.Write( simulate.Address, (string)value );
+					else
+					{
+						DemoUtils.ShowMessage( $"Write address[{simulate.Address}] failed, type[{type.Name}] is not supported" );
+						return;
+					}
+
+					try
+					{
+						simulate.Dgvr.Cells[4].Value = value;
+					}
+					catch (System.InvalidOperationException)
+					{
+						return;
+					}
+
+					if (writeResult.IsSuccess)
+					{
+						simulate.ExecuteTime = DateTime.Now;
+						simulate.X++;
+					}
+					else
+					{
+						DemoUtils.ShowMessage( $"Write address[{simulate.Address}] failed: {writeResult.Message}" );
+						simulate.Dgvr.Cells[1].Selected = true;
+						return;
+					}
+				}
+			}
+
+			DemoUtils.ShowMessage( "Write all address success! timecost : " + (DateTime.Now - dateTime).TotalMilliseconds.ToString( "F0" ) + " ms" );
 		}
 
 		public SimulateWrite GetSimulateWrite( DataGridViewRow dgvr )
@@ -248,6 +345,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			return count;
 		}
+
 	}
 
 	public class SimulateWrite

@@ -11,6 +11,7 @@ using HslCommunication;
 using System.Threading;
 using System.Xml.Linq;
 using System.Runtime.Remoting.Contexts;
+using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
@@ -33,6 +34,12 @@ namespace HslCommunicationDemo
 			comboBox1.DataSource = DemoUtils.GetEncodings( );
 			comboBox1.SelectedIndex = 3;
 			Language( Program.Language );
+
+
+			timer1s = new System.Windows.Forms.Timer( );
+			timer1s.Interval = 1000;
+			timer1s.Tick += Timer1s_Tick;
+			timer1s.Start( );
 		}
 
 		private void Language( int language )
@@ -72,6 +79,7 @@ namespace HslCommunicationDemo
 		}
 
 		private WebSocketClient wsClient;
+		private System.Windows.Forms.Timer timer1s;
 
 		private void button1_Click( object sender, EventArgs e )
 		{
@@ -113,6 +121,7 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
+				receive_times = 0;       // 重置接收次数
 				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 			}
 			else
@@ -174,10 +183,25 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private long receive_times = 0;
+		private long receive_bytes = 0;
+
+		private void Timer1s_Tick( object sender, EventArgs e )
+		{
+			if (wsClient != null)
+			{
+				label4.Text = receive_times.ToString( );
+				label13.Text = SoftBasic.GetSizeDescription( receive_bytes );
+			}
+		}
+
 		private void WebSocket_OnWebSocketMessageReceived( WebSocketMessage message )
 		{
 			try
 			{
+				receive_times++;
+				if (message.Payload != null)
+					receive_bytes += message.Payload.Length;
 				if (checkBox_logHex.Checked) wsClient.LogNet?.WriteDebug( wsClient.ToString( ), $"OpCode[{message.OpCode}] HasMask[{message.HasMask}] Payload: {message.Payload.ToHexString( ' ' )}" );
 				Invoke( new Action( ( ) =>
 				{

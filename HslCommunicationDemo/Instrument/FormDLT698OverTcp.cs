@@ -61,7 +61,7 @@ namespace HslCommunicationDemo
 		{
 
 		}
-		
+
 
 		#region Connect And Close
 
@@ -77,11 +77,13 @@ namespace HslCommunicationDemo
 			}
 
 			dLT698?.ConnectClose( );
-			dLT698 = new DLT698OverTcp( textBox_station.Text);
+			dLT698 = new DLT698OverTcp( textBox_station.Text );
 			dLT698.LogNet = LogNet;
 			dLT698.EnableCodeFE = checkBox_enable_Fe.Checked;
 			dLT698.UseSecurityResquest = checkBox_useSecurityResquest.Checked;
 			dLT698.CA = ca;
+			dLT698.IsServerActivePush = checkBox_IsServerActivePush.Checked;
+
 
 			try
 			{
@@ -105,7 +107,13 @@ namespace HslCommunicationDemo
 
 					// 设置代码示例
 					this.userControlReadWriteDevice1.SetDeviceVariableName( "dlt" );
-					codeExampleControl.SetCodeText( "dlt", dLT698, nameof( dLT698.Station ), nameof( dLT698.EnableCodeFE ), nameof( dLT698.UseSecurityResquest ), nameof( dLT698.CA ) );
+					List<string> names = new List<string>( );
+					names.Add( nameof( dLT698.Station ) );
+					if (checkBox_enable_Fe.Checked) names.Add( nameof( dLT698.EnableCodeFE ) );
+					names.Add( nameof( dLT698.UseSecurityResquest ) );
+					names.Add( nameof( dLT698.CA ) );
+					if (checkBox_IsServerActivePush.Checked) names.Add( nameof( dLT698.IsServerActivePush ) );
+					codeExampleControl.SetCodeText( "dlt", dLT698, names.ToArray( ) );
 				}
 				else
 				{
@@ -137,6 +145,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			element.SetAttributeValue( "UseSecurityResquest", checkBox_useSecurityResquest.Checked );
 			element.SetAttributeValue( "CA", textBox_ca.Text );
+			if ( checkBox_enable_Fe.Checked ) element.SetAttributeValue( "EnableCodeFE", checkBox_enable_Fe.Checked );
+			if (checkBox_IsServerActivePush.Checked) element.SetAttributeValue( "IsServerActivePush", checkBox_IsServerActivePush.Checked );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -148,7 +158,8 @@ namespace HslCommunicationDemo
 			textBox_station.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
 			checkBox_useSecurityResquest.Checked = GetXmlValue( element, "UseSecurityResquest", checkBox_useSecurityResquest.Checked, bool.Parse );
 			textBox_ca.Text = GetXmlValue( element, "CA", textBox_ca.Text, m => m );
-
+			checkBox_enable_Fe.Checked = GetXmlValue( element, "EnableCodeFE", checkBox_enable_Fe.Checked, bool.Parse );
+			checkBox_IsServerActivePush.Checked = GetXmlValue( element, "IsServerActivePush", checkBox_IsServerActivePush.Checked, bool.Parse );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

@@ -93,8 +93,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.radioButton_sync = new System.Windows.Forms.RadioButton();
+            this.radioButton_async = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -244,7 +248,7 @@
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(252, 209);
+            this.label13.Location = new System.Drawing.Point(257, 209);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(44, 17);
             this.label13.TabIndex = 26;
@@ -492,7 +496,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(227, 53);
             this.label19.TabIndex = 17;
-            this.label19.Text = "注意：字符串需要能转化成对应的数据\r\n如果是Bool使用 True, False, 0, 1\r\n如果是数组：[1,2,3]";
+            this.label19.Text = "注意：字符串需要能转化成对应的数据\r\n如果是Bool使用 True, False, 0, 1\r\n如果是数组：[1,2,3], 连续数组 [1:100]";
             // 
             // button1
             // 
@@ -508,6 +512,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.button_find_string);
             this.groupBox1.Controls.Add(this.textBox_read_search);
             this.groupBox1.Controls.Add(this.checkBox_mask_duplicates);
@@ -836,6 +841,43 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "地址：";
             // 
+            // radioButton_sync
+            // 
+            this.radioButton_sync.AutoSize = true;
+            this.radioButton_sync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButton_sync.ForeColor = System.Drawing.Color.Gray;
+            this.radioButton_sync.Location = new System.Drawing.Point(4, 3);
+            this.radioButton_sync.Name = "radioButton_sync";
+            this.radioButton_sync.Size = new System.Drawing.Size(49, 21);
+            this.radioButton_sync.TabIndex = 0;
+            this.radioButton_sync.Text = "同步";
+            this.radioButton_sync.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_async
+            // 
+            this.radioButton_async.AutoSize = true;
+            this.radioButton_async.Checked = true;
+            this.radioButton_async.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.radioButton_async.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.radioButton_async.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButton_async.ForeColor = System.Drawing.Color.Gray;
+            this.radioButton_async.Location = new System.Drawing.Point(4, 24);
+            this.radioButton_async.Name = "radioButton_async";
+            this.radioButton_async.Size = new System.Drawing.Size(49, 21);
+            this.radioButton_async.TabIndex = 1;
+            this.radioButton_async.TabStop = true;
+            this.radioButton_async.Text = "异步";
+            this.radioButton_async.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButton_sync);
+            this.panel1.Controls.Add(this.radioButton_async);
+            this.panel1.Location = new System.Drawing.Point(2, 157);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(58, 48);
+            this.panel1.TabIndex = 39;
+            // 
             // UserControlReadWriteOp
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -848,6 +890,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -919,5 +963,8 @@
         private System.Windows.Forms.CheckBox checkBox_mask_duplicates;
         private System.Windows.Forms.TextBox textBox_read_search;
         private System.Windows.Forms.Button button_find_string;
+        private System.Windows.Forms.RadioButton radioButton_sync;
+        private System.Windows.Forms.RadioButton radioButton_async;
+        private System.Windows.Forms.Panel panel1;
     }
 }

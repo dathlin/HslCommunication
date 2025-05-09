@@ -15,6 +15,7 @@ using HslCommunicationDemo.DemoControl;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using HslCommunication.Core.Net;
 
 namespace HslCommunicationDemo.PLC.Secs
 {
@@ -23,6 +24,8 @@ namespace HslCommunicationDemo.PLC.Secs
 		public FormSecsHsmsServer( )
 		{
 			InitializeComponent( );
+
+			comboBox_log_style.SelectedIndex = 0;
 		}
 
 		private void FormSecsHsmsServer_Load( object sender, EventArgs e )
@@ -190,16 +193,13 @@ namespace HslCommunicationDemo.PLC.Secs
 				groupBox1.Text = "Function Area";
 				button_device_send.Text = "Broadcast";
 				button25.Text = "Broadcast";
-				label13.Text = "Recv:";
 				button_save_tree.Text = "Save Ack";
 				tabPage1.Text = "Log";
-				checkBox1.Text = "Stop";
-				button4.Text = "Clear";
 			}
 			else
 			{
 				addNewSecsItemToolStripMenuItem.Text = "新增Secs功能码";
-				editSecsItemToolStripMenuItem.Text = "编辑Secs功能码";
+				editSecsItemToolStripMenuItem.Text   = "编辑Secs功能码";
 				deleteSecsItemToolStripMenuItem.Text = "删除Secs功能码";
 			}
 		}
@@ -297,9 +297,38 @@ namespace HslCommunicationDemo.PLC.Secs
 			}
 		}
 
+		private string getBlockText( int block )
+		{
+			if (block == 1) return "select.req";
+			if (block == 2) return "select.rsp";
+			if (block == 5) return "linktest.req";
+			if (block == 6) return "linktest.rsp";
+			if (block == 9) return "separate.req";
+			return $"Block={block}";
+		}
 
 		private void Server_OnSecsMessageReceived( object sender, HslCommunication.Core.Net.PipeSession session, SecsMessage message )
 		{
+			// 收到客户端发来的数据的时候触发的事件
+			if (!checkBox_stop.Checked && message != null)
+			{
+				Invoke( new Action( ( ) =>
+				{
+					if (message.StreamNo == 0 && message.FunctionNo == 0)
+					{
+						AppendHeadText( -1, $"{session} RECV: S{message.StreamNo}F{message.FunctionNo}{(message.W ? "W" : string.Empty)} {getBlockText( message.BlockNo )} SystemBytes=" + message.MessageID );
+						SecsValue secsValue = message.GetItemValues( );
+						if (secsValue != null && secsValue.ItemType != SecsItemType.None) AppendHeadText( 0, message.GetItemValues( ) );
+					}
+					else
+					{
+						AppendHeadText( -1, $"{session} RECV: S{message.StreamNo}F{message.FunctionNo}{(message.W ? "W" : string.Empty)} SystemBytes=" + message.MessageID );
+						AppendHeadText( 0, message.GetItemValues( ) );
+					}
+					richTextBox_main.ScrollToCaret( );
+				} ) );
+			}
+
 			SecsMessage secsMessage = null;
 			foreach (TreeNode treeNode in treeView1.Nodes)
 			{
@@ -322,21 +351,58 @@ namespace HslCommunicationDemo.PLC.Secs
 					}
 				}
 			}
-
-			// 收到客户端发来的数据的时候触发的事件
-			if (!checkBox1.Checked)
+			if (!checkBox_stop.Checked && secsMessage != null)
 			{
 				Invoke( new Action( ( ) =>
 				{
-					textBox_log.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " Receive Data：" + message.ToString( ) + Environment.NewLine );
-					if (secsMessage != null)
-					{
-						textBox_log.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " Send Back Data：" + secsMessage.ToString( ) + Environment.NewLine );
-					}
+						AppendHeadText( -1, $"{session} SEND:  S{secsMessage.StreamNo}F{secsMessage.FunctionNo}{(secsMessage.W ? "W" : string.Empty)}" );
+						AppendHeadText( 1, secsMessage.GetItemValues( ) );
+						richTextBox_main.ScrollToCaret( );
 				} ) );
 			}
 
 		}
+
+		private void RenderMessage( int code, string msg )
+		{
+			if (!string.IsNullOrEmpty( msg ))
+			{
+				int index = richTextBox_main.Text.Length;
+				richTextBox_main.AppendText( msg );
+				richTextBox_main.Select( index, msg.Length );
+				if (code < 0)
+					richTextBox_main.SelectionColor = Color.Gray;
+				else if (code == 0)
+					richTextBox_main.SelectionColor = Color.Green;
+				else if (code == 1)
+					richTextBox_main.SelectionColor = Color.Blue;
+				else if (code == 4)
+					richTextBox_main.SelectionColor = Color.Purple;
+				else
+					richTextBox_main.SelectionColor = Color.Red;
+				richTextBox_main.AppendText( Environment.NewLine );
+			}
+		}
+
+		private void AppendHeadText( int code, string text )
+		{
+			string msg = DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + "  " + text;
+			RenderMessage( code, msg );
+		}
+
+		private string GetSecsValue( SecsValue secsValue )
+		{
+			if (secsValue == null) secsValue = SecsValue.EmptySecsValue( );
+			return comboBox_log_style.SelectedIndex == 0 ? secsValue.ToString( ) :
+				comboBox_log_style.SelectedIndex == 1 ? secsValue.ToSourceCode( format: true ) :
+				comboBox_log_style.SelectedIndex == 2 ? secsValue.ToSourceCode( ) : secsValue.ToSMLString( );
+		}
+
+		private void AppendHeadText( int code, SecsValue secsValue )
+		{
+			RenderMessage( code, GetSecsValue( secsValue ) );
+		}
+
 
 		private void button_save_tree_Click( object sender, EventArgs e )
 		{
@@ -359,8 +425,9 @@ namespace HslCommunicationDemo.PLC.Secs
 
 			if (publish.IsSuccess)
 			{
-				textBox_log.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " Send Data：" +
-					$"S{textBox_stream.Text}F{textBox_function.Text}" + Environment.NewLine + textBox_data_back.Text + Environment.NewLine );
+				AppendHeadText( -1, $"SEND:  S{textBox_stream.Text}F{textBox_function.Text}{(checkBox_device_w.Checked ? "W" : string.Empty)}" );
+				AppendHeadText( 1, secsValue );
+				richTextBox_main.ScrollToCaret( );
 			}
 			else
 			{
@@ -380,8 +447,9 @@ namespace HslCommunicationDemo.PLC.Secs
 
 			if (publish.IsSuccess)
 			{
-				textBox_log.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " Send Data：" +
-					$"S{textBox_device_s.Text}F{textBox_device_f.Text}" + Environment.NewLine + textBox_device_send.Text + Environment.NewLine );
+				AppendHeadText( -1, $"SEND:  S{textBox_device_s.Text}F{textBox_device_f.Text}" );
+				AppendHeadText( 1, secsValue );
+				richTextBox_main.ScrollToCaret( );
 			}
 			else
 			{
@@ -392,6 +460,31 @@ namespace HslCommunicationDemo.PLC.Secs
 			codeExampleControl.ReaderReadCode( $"OperateResult publish = @deviceName.PublishSecsMessage( {textBox_device_s.Text}, {textBox_device_f.Text}, {code}, {checkBox_device_w.Checked.ToString( ).ToLower( )} );" );
 		}
 
+		private void button_device_read_Click( object sender, EventArgs e )
+		{
+			SecsValue secsValue = string.IsNullOrEmpty( textBox_device_send.Text ) ? null : new SecsValue( System.Xml.Linq.XElement.Parse( textBox_device_send.Text ) );
+
+			PipeSession[] sessions = server.GetPipeSessions( );
+			if (sessions == null || sessions.Length == 0)
+			{
+				DemoUtils.ShowMessage( "没有连接的客户端！" );
+				return;
+			}
+
+			AppendHeadText( -1, $"SEND:  S{textBox_device_s.Text}F{textBox_device_f.Text}" );
+			AppendHeadText( 1, secsValue );
+
+			OperateResult<SecsMessage> read = server.ReadSecsMessage( sessions[0], byte.Parse( textBox_device_s.Text ), byte.Parse( textBox_device_f.Text ), secsValue, checkBox_device_w.Checked );
+			if (read.IsSuccess)
+			{
+				DemoUtils.ShowMessage( "Read Result: " + GetSecsValue( read.Content.GetItemValues( ) ) );
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
+			}
+		}
+
 		private void button11_Click( object sender, EventArgs e )
 		{
 			// 关闭服务
@@ -400,10 +493,6 @@ namespace HslCommunicationDemo.PLC.Secs
 			button11.Enabled = false;
 		}
 
-		private void button4_Click( object sender, EventArgs e )
-		{
-			textBox_log.Clear();
-		}
 
 		private Timer timer;
 
@@ -499,5 +588,6 @@ namespace HslCommunicationDemo.PLC.Secs
 		}
 
 		#endregion
+
 	}
 }

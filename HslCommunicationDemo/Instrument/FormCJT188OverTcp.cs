@@ -105,7 +105,7 @@ namespace HslCommunicationDemo
 
 					// 设置代码示例
 					this.userControlReadWriteDevice1.SetDeviceVariableName( "cjt" );
-					codeExampleControl.SetCodeText( "cjt", cjt188, nameof( cjt188.Station ), nameof( cjt188.InstrumentType ), nameof( cjt188.EnableCodeFE ) );
+					codeExampleControl.SetCodeText( "cjt", cjt188, nameof( cjt188.InstrumentType ), nameof( cjt188.EnableCodeFE ) );
 				}
 				else
 				{

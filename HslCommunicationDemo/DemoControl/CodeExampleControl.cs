@@ -3,6 +3,7 @@ using HslCommunication.Core;
 using HslCommunication.Core.Device;
 using HslCommunication.Core.Net;
 using HslCommunication.Core.Pipe;
+using HslCommunication.Instrument.CJT;
 using HslCommunication.Instrument.IEC;
 using HslCommunication.MQTT;
 using HslCommunication.Profinet.Siemens;
@@ -187,6 +188,10 @@ namespace HslCommunicationDemo.DemoControl
 							else
 								stringBuilder.Append( "\"" + buffer.ToHexString( ) + $"\".ToHexBytes( )" );
 						}
+						else if (propertyInfo.PropertyType == typeof( int[] )) stringBuilder.Append( ConvertArrayToString( propertyInfo.GetValue( propertyObj ) as int[] ) );
+						else if (propertyInfo.PropertyType == typeof( short[] )) stringBuilder.Append( ConvertArrayToString( propertyInfo.GetValue( propertyObj ) as short[] ) );
+						else if (propertyInfo.PropertyType == typeof( ushort[] )) stringBuilder.Append( ConvertArrayToString( propertyInfo.GetValue( propertyObj ) as ushort[] ) );
+						else if (propertyInfo.PropertyType == typeof( uint[] )) stringBuilder.Append( ConvertArrayToString( propertyInfo.GetValue( propertyObj ) as uint[] ) );
 						else
 						{
 							stringBuilder.Append( propertyInfo.GetValue( propertyObj ).ToString( ) );
@@ -215,6 +220,21 @@ namespace HslCommunicationDemo.DemoControl
 					}
 				}
 			}
+		}
+
+		private static string ConvertArrayToString<T>( T[] values )
+		{
+			if (values == null) return "null";
+			StringBuilder stringBuilder = new StringBuilder( );
+			stringBuilder.Append( "new " + typeof( T ).FullName + "[] { " );
+			for (int i = 0; i < values.Length; i++)
+			{
+				stringBuilder.Append( values[i].ToString( ) );
+				if (i < values.Length - 1)
+					stringBuilder.Append( ", " );
+			}
+			stringBuilder.Append( " }" );
+			return stringBuilder.ToString( );
 		}
 
 		public void SetCodeText( NetworkDoubleBase network, params string[] props )
@@ -434,6 +454,16 @@ namespace HslCommunicationDemo.DemoControl
 				SiemensPLCS siemensPLCS = (SiemensPLCS)obj.GetType( ).GetField( "CurrentPlc", BindingFlags.Instance | BindingFlags.NonPublic ).GetValue( obj );
 				sb.Append( $"( HslCommunication.Profinet.Siemens.SiemensPLCS.{siemensPLCS} );" );
 			}
+			else if (obj.GetType( ) == typeof( CJT188 ))
+			{
+				CJT188 cJT188 = (CJT188)obj;
+				sb.Append( $"( \"{cJT188.Station}\" );" );
+			}
+			else if (obj.GetType( ) == typeof( CJT188OverTcp ))
+			{
+				CJT188OverTcp cJT188 = (CJT188OverTcp)obj;
+				sb.Append( $"( \"{cJT188.Station}\" );" );
+			}
 			else
 			{
 				sb.Append( "( );" );
@@ -475,9 +505,10 @@ namespace HslCommunicationDemo.DemoControl
 
 		private static void CreateCommunicationPipe( StringBuilder sb, CommunicationPipe pipe, string deviceName )
 		{
-			if (pipe.GetType( ) == typeof( PipeTcpNet ) || pipe.GetType( ) == typeof( PipeSslNet ) || pipe.GetType( ) == typeof( PipeUdpNet ))
+			if (pipe.GetType( ) == typeof( PipeTcpNet ) || pipe.GetType( ) == typeof( PipeSslNet ) || pipe.GetType( ) == typeof( PipeUdpNet ) || pipe.GetType( ) == typeof( PipeDebugRemote ))
 			{
 				PipeTcpNet pipeTcpNet = pipe as PipeTcpNet;
+				PipeTcpNet pipeDefault = new PipeTcpNet( );
 
 				sb.Append( deviceName + $".CommunicationPipe = new {pipeTcpNet.GetType( ).FullName}(\"{pipeTcpNet.Host}\", {pipeTcpNet.Port})" );
 				sb.AppendLine( );
@@ -490,16 +521,39 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				sb.Append( $"    ReceiveTimeOut = {pipeTcpNet.ReceiveTimeOut},    // 接收设备数据反馈的超时时间" );
 				sb.AppendLine( );
-				sb.Append( $"    SleepTime = {pipeTcpNet.SleepTime}," );
-				sb.AppendLine( );
-				sb.Append( $"    SocketKeepAliveTime = {pipeTcpNet.SocketKeepAliveTime}," );
-				sb.AppendLine( );
-				sb.Append( $"    IsPersistentConnection = {pipeTcpNet.IsPersistentConnection.ToString( ).ToLower( )}," );
-				sb.AppendLine( );
+				if (pipeTcpNet.SleepTime != pipeDefault.SleepTime)
+				{
+					sb.Append( $"    SleepTime = {pipeTcpNet.SleepTime}," );
+					sb.AppendLine( );
+				}
+				if (pipeTcpNet.CloseOnRecvTimeOutTick != pipeDefault.CloseOnRecvTimeOutTick)
+				{
+					sb.Append( $"    CloseOnRecvTimeOutTick = {pipeTcpNet.CloseOnRecvTimeOutTick}," );
+					sb.AppendLine( );
+				}
+				if (pipeTcpNet.SocketKeepAliveTime != pipeDefault.SocketKeepAliveTime)
+				{
+					sb.Append( $"    SocketKeepAliveTime = {pipeTcpNet.SocketKeepAliveTime}," );
+					sb.AppendLine( );
+				}
+				if (pipeTcpNet.IsPersistentConnection != pipeDefault.IsPersistentConnection)
+				{
+					sb.Append( $"    IsPersistentConnection = {pipeTcpNet.IsPersistentConnection.ToString( ).ToLower( )}," );
+					sb.AppendLine( );
+				}
 				if (pipeTcpNet.UseServerActivePush)
 				{
 					sb.Append( $"    UseServerActivePush = {pipeTcpNet.UseServerActivePush.ToString( ).ToLower( )}," );
 					sb.AppendLine( );
+				}
+				if (pipe.GetType( ) == typeof( PipeDebugRemote ))
+				{
+					PipeDebugRemote pipeDebugRemote = pipe as PipeDebugRemote;
+					if (pipeDebugRemote.ClientKey > 0)
+					{
+						sb.Append( $"    ClientKey = {pipeDebugRemote.ClientKey}," );
+						sb.AppendLine( );
+					}
 				}
 				if (pipeTcpNet.LocalBinding != null)
 				{
@@ -522,6 +576,8 @@ namespace HslCommunicationDemo.DemoControl
 				sb.Append( $"pipe.DtrEnable = {pipeSerialPort.DtrEnable.ToString( ).ToLower( )};" );
 				sb.AppendLine( );
 				sb.Append( $"pipe.SleepTime = {pipeSerialPort.SleepTime};" );
+				sb.AppendLine( );
+				sb.Append( $"pipe.ReceiveTimeOut = {pipeSerialPort.ReceiveTimeOut};" );
 				sb.AppendLine( );
 				sb.Append( deviceName + $".CommunicationPipe = pipe;" );
 				sb.AppendLine( );
@@ -578,6 +634,11 @@ namespace HslCommunicationDemo.DemoControl
 				sb.AppendLine( );
 				sb.Append( $"dtuServer.IsResponseAck = {pipeDtu.DtuServer.IsResponseAck.ToString( ).ToLower( )};" );
 				sb.AppendLine( );
+				if (pipeDtu.DtuServer.UseRegistrationPackage == false)
+				{
+					sb.Append( $"dtuServer.UseRegistrationPackage = {pipeDtu.DtuServer.UseRegistrationPackage.ToString( ).ToLower( )};" );
+					sb.AppendLine( );
+				}
 				if (!string.IsNullOrEmpty(pipeDtu.Pwd))
 				{
 					sb.Append( $"dtuServer.SetPassword( Encoding.ASCII.GetBytes( \"{pipeDtu.Pwd}\" ) );" );
@@ -585,20 +646,20 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				sb.Append( @"dtuServer.OnClientConnected += ( PipeDtuNet session ) =>
 {
-    if (session.DTU == """ + pipeDtu.DTU + @""")
-    {
-        OperateResult connect = " + deviceName + @".SetDtuPipe( session );
-        if (connect.IsSuccess)
-        {
-            Console.WriteLine( ""connect success"" );
-        }
-    }
+	if (session.DTU == """ + pipeDtu.DTU + @""")
+	{
+		OperateResult connect = " + deviceName + @".SetDtuPipe( session );
+		if (connect.IsSuccess)
+		{
+			Console.WriteLine( ""connect success"" );
+		}
+	}
 };" );
 				sb.AppendLine( );
 				sb.Append( $"dtuServer.ServerStart( {pipeDtu.DtuServer.Port} );" );
 				sb.AppendLine( );
-                sb.AppendLine( );
-                sb.Append( deviceName + $".SetDtuPipe( new PipeDtuNet( ) );   // 在连接上来之前，先给一个默认的空的DTU会话" );
+				sb.AppendLine( );
+				sb.Append( deviceName + $".SetDtuPipe( new PipeDtuNet( ) );   // 在连接上来之前，先给一个默认的空的DTU会话" );
 				sb.AppendLine( );
 			}
 		}

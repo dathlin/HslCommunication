@@ -28,48 +28,57 @@
 		/// </summary>
 		private void InitializeComponent( )
 		{
-			this.components = new System.ComponentModel.Container();
-			this.treeView2 = new System.Windows.Forms.TreeView();
-			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.contextMenuStrip1.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// treeView2
-			// 
-			this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.treeView2.Location = new System.Drawing.Point(0, 0);
-			this.treeView2.Name = "treeView2";
-			this.treeView2.Size = new System.Drawing.Size(221, 561);
-			this.treeView2.TabIndex = 1;
-			// 
-			// contextMenuStrip1
-			// 
-			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteDeviceToolStripMenuItem});
-			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(152, 26);
-			// 
-			// deleteDeviceToolStripMenuItem
-			// 
-			this.deleteDeviceToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_Cancel_16xLG;
-			this.deleteDeviceToolStripMenuItem.Name = "deleteDeviceToolStripMenuItem";
-			this.deleteDeviceToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-			this.deleteDeviceToolStripMenuItem.Text = "DeleteDevice";
-			// 
-			// FormSaveList
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(221, 561);
-			this.Controls.Add(this.treeView2);
-			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
-			this.Name = "FormSaveList";
-			this.Text = "Save List";
-			this.Load += new System.EventHandler(this.FormSaveList_Load);
-			this.contextMenuStrip1.ResumeLayout(false);
-			this.ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            this.treeView2 = new System.Windows.Forms.TreeView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // treeView2
+            // 
+            this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView2.Location = new System.Drawing.Point(0, 0);
+            this.treeView2.Name = "treeView2";
+            this.treeView2.Size = new System.Drawing.Size(221, 561);
+            this.treeView2.TabIndex = 1;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteDeviceToolStripMenuItem,
+            this.renameDeviceToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            // 
+            // deleteDeviceToolStripMenuItem
+            // 
+            this.deleteDeviceToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_Cancel_16xLG;
+            this.deleteDeviceToolStripMenuItem.Name = "deleteDeviceToolStripMenuItem";
+            this.deleteDeviceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteDeviceToolStripMenuItem.Text = "DeleteDevice";
+            // 
+            // renameDeviceToolStripMenuItem
+            // 
+            this.renameDeviceToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.settings;
+            this.renameDeviceToolStripMenuItem.Name = "renameDeviceToolStripMenuItem";
+            this.renameDeviceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renameDeviceToolStripMenuItem.Text = "RenameDevice";
+            // 
+            // FormSaveList
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(221, 561);
+            this.Controls.Add(this.treeView2);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FormSaveList";
+            this.Text = "Save List";
+            this.Load += new System.EventHandler(this.FormSaveList_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.ResumeLayout(false);
 
 		}
 
@@ -78,5 +87,6 @@
 		private System.Windows.Forms.TreeView treeView2;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem deleteDeviceToolStripMenuItem;
-	}
+        private System.Windows.Forms.ToolStripMenuItem renameDeviceToolStripMenuItem;
+    }
 }

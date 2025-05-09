@@ -10,7 +10,6 @@ using HslCommunication.CNC.Fanuc;
 using HslCommunication;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using HslCommunication.BasicFramework;
 
 namespace HslCommunicationDemo
 {
@@ -45,6 +44,8 @@ namespace HslCommunicationDemo
 			deleteToolStripMenuItem.Click += DeleteToolStripMenuItem_Click;
 			readNcLocalToolStripMenuItem.Click += ReadNcLocalToolStripMenuItem_Click;
 			Language( Program.Language );
+
+			textBox_program.Text = "手动模式下发失败可以参考：https://b23.tv/RFnVeTH?share_source=weixin&share_medium=iphone&bbid=49200ac931ebb516323b903bf8e91208&ts=1744709158";
 
 			panel4.Paint += Panel4_Paint;
 		}
@@ -980,6 +981,38 @@ namespace HslCommunicationDemo
 			}
 
 			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadUseToolGroupId( );";
+		}
+
+		private void button45_Click( object sender, EventArgs e )
+		{
+			// 读进给倍率
+			OperateResult<int> read = fanuc.ReadFeedRate( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "进给倍率：" + read.Content;
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+
+			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadFeedRate( );";
+		}
+
+		private void button46_Click( object sender, EventArgs e )
+		{
+			// 读主轴倍率
+			OperateResult<int> read = fanuc.ReadSpindleRate( );
+			if (read.IsSuccess)
+			{
+				textBox8.Text = "主轴倍率：" + read.Content;
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "Read Failed:" + read.ToMessageShowString( ) );
+			}
+
+			textBox_code.Text = $"OperateResult<int> read = fanuc.ReadSpindleRate( );";
 		}
 
 		private void button41_Click( object sender, EventArgs e )

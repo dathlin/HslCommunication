@@ -17,6 +17,9 @@ using HslCommunication.Core;
 using System.Security.Cryptography;
 using HslControls;
 using HslCommunicationDemo.DemoControl;
+using HslCommunication.BasicFramework;
+using HslCommunication.LogNet;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace HslCommunicationDemo
 {
@@ -30,6 +33,28 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 
 			comboBox_session_select.SelectedIndexChanged += ComboBox_session_select_SelectedIndexChanged;
+
+			radioButton_every_seconds.CheckedChanged += RadioButton_every_seconds_CheckedChanged;
+			radioButton_every_minute.CheckedChanged += RadioButton_every_seconds_CheckedChanged;
+			radioButton_every_hour.CheckedChanged += RadioButton_every_seconds_CheckedChanged;
+			radioButton_every_day.CheckedChanged += RadioButton_every_seconds_CheckedChanged;
+		}
+
+		private void RadioButton_every_seconds_CheckedChanged( object sender, EventArgs e )
+		{
+			if (sender is RadioButton radioButton)
+			{
+				if (radioButton.Checked)
+				{
+					// 切换了显示逻辑
+					datas = new int[dataCount];
+					texts = new string[dataCount];
+					lastMinute = -1;
+					lastHour = -1;
+					lastDay = -1;
+					hslBarChart1.SetDataSource( datas, texts );
+				}
+			}
 		}
 
 		private void FormClient_Load( object sender, EventArgs e )
@@ -43,8 +68,6 @@ namespace HslCommunicationDemo
 			timer1s.Interval = 1000;
 			timer1s.Tick += Timer1s_Tick;
 			timer1s.Start( );
-
-
 		}
 
 		private Button button_publish = null;
@@ -82,14 +105,85 @@ namespace HslCommunicationDemo
 				button_publish.PerformClick( );
 			}
 		}
+		private int[] datas = new int[30];
+		private string[] texts = new string[30];
+		private int dataCount = 30;
+		private int lastMinute = -1;
+		private int lastHour = -1;
+		private int lastDay = -1;
 
 		private void Timer1s_Tick( object sender, EventArgs e )
 		{
 			if (mqttServer != null)
 			{
+				long receiveCountNow = receiveCount;
+
 				label2.Text = "Online Count:" + mqttServer.OnlineCount;
-				label4.Text = "Receive Count:" + receiveCount;
+				label_receive_count.Text = "Receive Count: " + receiveCountNow;
+				label_receive_size.Text = "Size: " + SoftBasic.GetSizeDescription( receiveSize );
 				listBox1.DataSource = mqttServer.OnlineSessions;
+
+
+
+				int current = (int)(receiveCountNow - lastReceiveCount);
+				lastReceiveCount = receiveCountNow;
+
+				DateTime time = DateTime.Now;
+				if (radioButton_every_seconds.Checked)
+				{
+					if (checkBox_skip_zero.Checked && current == 0)
+					{
+
+					}
+					else
+					{
+						HslCommunication.BasicFramework.SoftBasic.AddArrayData( ref datas, new int[] { current }, dataCount );
+						HslCommunication.BasicFramework.SoftBasic.AddArrayData( ref texts, new string[] { DateTime.Now.Second.ToString( ) }, dataCount );
+					}
+					hslBarChart1.SetDataSource( datas, texts );
+				}
+				else if (radioButton_every_minute.Checked)
+				{
+					if (time.Minute != lastMinute)
+					{
+						lastMinute = time.Minute;
+						HslCommunication.BasicFramework.SoftBasic.AddArrayData( ref datas, new int[] { current }, dataCount );
+						HslCommunication.BasicFramework.SoftBasic.AddArrayData( ref texts, new string[] { lastMinute + "M" }, dataCount );
+					}
+					else
+					{
+						datas[datas.Length - 1] += current;
+					}
+					hslBarChart1.SetDataSource( datas, texts );
+				}
+				else if (radioButton_every_hour.Checked)
+				{
+					if (time.Hour != lastHour)
+					{
+						lastHour = time.Hour;
+						HslCommunication.BasicFramework.SoftBasic.AddArrayData( ref datas, new int[] { current }, dataCount );
+						HslCommunication.BasicFramework.SoftBasic.AddArrayData( ref texts, new string[] { lastHour + "M" }, dataCount );
+					}
+					else
+					{
+						datas[datas.Length - 1] += current;
+					}
+					hslBarChart1.SetDataSource( datas, texts );
+				}
+				else if ( radioButton_every_day.Checked )
+				{
+					if (time.Day != lastDay)
+					{
+						lastDay = time.Day;
+						HslCommunication.BasicFramework.SoftBasic.AddArrayData( ref datas, new int[] { current }, dataCount );
+						HslCommunication.BasicFramework.SoftBasic.AddArrayData( ref texts, new string[] { lastDay + "D" }, dataCount );
+					}
+					else
+					{
+						datas[datas.Length - 1] += current;
+					}
+					hslBarChart1.SetDataSource( datas, texts );
+				}
 			}
 		}
 
@@ -123,6 +217,12 @@ namespace HslCommunicationDemo
 				checkBox1.Text = "Enable the username and password below:";
 				label_login_name.Text = "Name:";
 				label_login_password.Text = "Password:";
+
+				radioButton_every_seconds.Text = "Seconds";
+				radioButton_every_minute.Text = "Minute";
+				radioButton_every_hour.Text = "Hour";
+				radioButton_every_day.Text = "Day";
+				checkBox_skip_zero.Text = "Skip times 0?";
 			}
 		}
 
@@ -150,6 +250,9 @@ namespace HslCommunicationDemo
 				mqttServer.RegisterMqttRpcApi( "TimeOut", typeof(HslTimeOut) );    // 注册的类的静态方法和静态属性
 				mqttServer.RegisterMqttRpcApi( "Fanuc",   new HslCommunication.CNC.Fanuc.FanucSeries0i( "127.0.0.1" ) );
 				mqttServer.RegisterMqttRpcApi( "PCCC", new HslCommunication.Profinet.AllenBradley.AllenBradleyPcccNet( "127.0.0.1" ) );
+
+
+				this.sslServerControl1.InitializeServer( mqttServer );
 				mqttServer.ServerStart( int.Parse( textBox2.Text ) );
 				mqttServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				mqttServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
@@ -235,6 +338,8 @@ namespace HslCommunicationDemo
 		}
 
 		private long receiveCount = 0;
+		private long lastReceiveCount = 0;
+		private long receiveSize = 0;
 
 		private TopicSaveItem GetSavedTopicItem( MqttSession session, MqttClientApplicationMessage message )
 		{
@@ -370,9 +475,11 @@ namespace HslCommunicationDemo
 
 			Invoke( new Action( ( ) =>
 			{
+				receiveCount++;
+				receiveSize += message.Payload.LongLength;
+
 				if (!isStop)
 				{
-					receiveCount++;
 					textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) +
 						$" Cliend Id[{message.ClientId}] Topic:[{message.Topic}] Payload{(message.Retain ? "-Retain" : "")}:[{GetStringFromPayload( message.Payload )}]" + Environment.NewLine );
 				}
@@ -651,6 +758,22 @@ namespace HslCommunicationDemo
 			{
 				mqttServer.RemoveAndCloseSession( session, "" );
 			}
+		}
+
+		private void button_statistics_start_Click( object sender, EventArgs e )
+		{
+
+		}
+
+		private void button_publish_test_Click( object sender, EventArgs e )
+		{
+			// 高频发布测试代码
+			textBox5.Text = "HSL:MQTT:TEST:10000";
+			for (int i = 0; i < 10000; i++)
+			{
+				this.mqttServer.PublishTopicPayload( "HSL:MQTT:TEST:10000", BitConverter.GetBytes( i ) );
+			}
+			MessageBox.Show( "Publish finish" );
 		}
 	}
 

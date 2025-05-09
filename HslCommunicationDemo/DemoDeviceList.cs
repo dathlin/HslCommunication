@@ -30,7 +30,10 @@ namespace HslCommunicationDemo
 			XElement element = null;
 			foreach (var item in xElement.Elements( ))
 			{
-				if(item.Attribute( XmlGuid ) == device.Attribute( XmlGuid ))
+				string guid1 = item.Attribute( XmlGuid )?.Value;
+				string guid2 = device.Attribute( XmlGuid )?.Value;
+
+				if (guid1 == guid2)
 				{
 					element = item;
 					break;
@@ -40,9 +43,14 @@ namespace HslCommunicationDemo
 			if(element != null)
 			{
 				// 更新原来的element
+				element.RemoveAll( );
 				foreach (var item in device.Attributes())
 				{
 					element.SetAttributeValue( item.Name, item.Value );
+				}
+				foreach (var item in device.Elements( ))
+				{
+					element.Add( item );
 				}
 			}
 			else
@@ -70,6 +78,43 @@ namespace HslCommunicationDemo
 			if (element != null) element.Remove( );
 		}
 
+		/// <summary>
+		/// 删除多个设备信息
+		/// </summary>
+		/// <param name="device"></param>
+		public void DeleteDevice( string device )
+		{
+			foreach (var item in xElement.Elements( ))
+			{
+				string name = item.Attribute( "Name" )?.Value;
+				if (name != null)
+				{
+					if (name.StartsWith( device ))
+					{
+						item.Remove( );
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 重命名当前设备的名称
+		/// </summary>
+		/// <param name="device">设备信息</param>
+		/// <param name="name">新的设备名称</param>
+		public void RenameDevice( XElement device, string name )
+		{
+			if (device == null) return;
+			foreach (var item in xElement.Elements( ))
+			{
+				if (item.Attribute( XmlGuid ) == device.Attribute( XmlGuid ))
+				{
+					item.SetAttributeValue( "Name", name );
+					break;
+				}
+			}
+		}
+
 		public void SetDevices(XElement element )
 		{
 			xElement = element;
@@ -85,7 +130,7 @@ namespace HslCommunicationDemo
 		public static readonly string XmlName = "Name";
 		public static readonly string XmlGuid = "Guid";
 		public static readonly string XmlType = "Type";
-        public static readonly string XmlEncrypt = "EncryptXml";
+		public static readonly string XmlEncrypt = "EncryptXml";
 		public static readonly string XmlEncrypt2 = "EncryptKeyXml";
 		public static readonly string XmlIpAddress = "IP";
 		public static readonly string XmlPort = "Port";

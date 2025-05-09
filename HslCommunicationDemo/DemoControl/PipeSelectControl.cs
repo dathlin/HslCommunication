@@ -34,7 +34,8 @@ namespace HslCommunicationDemo.DemoControl
 				"Mqtt",
 				"SSL/TLS",
 				"DTU",
-				"MoxaCom"
+				"MoxaCom",
+				"Debug",
 			};
 
 			string[] ports = SerialPort.GetPortNames( );
@@ -61,8 +62,9 @@ namespace HslCommunicationDemo.DemoControl
 				comboBox_com_parity.DataSource = new string[] { "None", "Odd", "Even" };
 			}
 			comboBox_com_parity.SelectedIndex = 0;
-		}
 
+			checkBox_dtu_back.CheckedChanged += CheckBox_dtu_back_CheckedChanged;
+		}
 		private void ComboBox_pipe_select_SelectedIndexChanged( object sender, EventArgs e )
 		{
 			switch(comboBox_pipe_select.SelectedIndex)
@@ -74,6 +76,7 @@ namespace HslCommunicationDemo.DemoControl
 				case 4: SetVisible( SettingPipe.SslPipe ); break;
 				case 5: SetVisible( SettingPipe.DTU ); break;
 				case 6: SetVisible( SettingPipe.MoxaCom ); break;
+				case 7: SetVisible( SettingPipe.Debug ); break;
 			}
 		}
 
@@ -123,7 +126,25 @@ namespace HslCommunicationDemo.DemoControl
 					element.SetAttributeValue( "IsPersistentConnection", settingTcpIP.IsPersistentConnection );
 					element.SetAttributeValue( "LocalIpAddress", settingTcpIP.LocalIpAddress );
 					element.SetAttributeValue( "LocalPort", settingTcpIP.LocalPort );
+					element.SetAttributeValue( "CloseOnRecvTimeOutTick", settingTcpIP.CloseOnRecvTimeOutTick );
 					if (!string.IsNullOrEmpty( settingTcpIP.SendBeforeHex )) element.SetAttributeValue( "SendBeforeHex", settingTcpIP.SendBeforeHex );
+				}
+			}
+			else if (settingPipe == SettingPipe.Debug)
+			{
+				element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_tcp_ip.Text );
+				element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_tcp_port.Text );
+				element.SetAttributeValue( DemoDeviceList.XmlConnectTimeOut, textBox_tcp_connectTimeout.Text );
+				element.SetAttributeValue( DemoDeviceList.XmlReceiveTimeOut, textBox_tcp_receive.Text );
+				if (settingTcpDebug != null)
+				{
+					element.SetAttributeValue( "PipeSleepTime", settingTcpDebug.SleepTime );
+					element.SetAttributeValue( "SocketKeepAliveTime", settingTcpDebug.SocketKeepAliveTime );
+					element.SetAttributeValue( "IsPersistentConnection", settingTcpDebug.IsPersistentConnection );
+					element.SetAttributeValue( "LocalIpAddress", settingTcpDebug.LocalIpAddress );
+					element.SetAttributeValue( "LocalPort", settingTcpDebug.LocalPort );
+					element.SetAttributeValue( "ClientKey", settingTcpDebug.ClientKey );
+					if (!string.IsNullOrEmpty( settingTcpDebug.SendBeforeHex )) element.SetAttributeValue( "SendBeforeHex", settingTcpDebug.SendBeforeHex );
 				}
 			}
 			else if(settingPipe == SettingPipe.UdpPipe)
@@ -154,6 +175,7 @@ namespace HslCommunicationDemo.DemoControl
 					element.SetAttributeValue( "PipeSleepTime", settingSerial.SleepTime );
 					element.SetAttributeValue( "RtsEnable", settingSerial.RtsEnable );
 					element.SetAttributeValue( "DtrEnable", settingSerial.DtrEnable );
+					element.SetAttributeValue( "ReceiveTimeOut", settingSerial.ReceiveTimeOut );
 					if (!string.IsNullOrEmpty( settingSerial.SendBeforeHex )) element.SetAttributeValue( "SendBeforeHex", settingSerial.SendBeforeHex );
 				}
 			}
@@ -174,6 +196,7 @@ namespace HslCommunicationDemo.DemoControl
 				element.SetAttributeValue( "DTUBack",              checkBox_dtu_back.Checked );
 				element.SetAttributeValue( "DTUId",                textBox_dtu_id.Text );
 				element.SetAttributeValue( "DTUPwd",               textBox_dtu_pwd.Text );
+				element.SetAttributeValue( "DTUUseRegister",       checkBox_useRegister.Checked );
 			}
 		}
 
@@ -193,9 +216,28 @@ namespace HslCommunicationDemo.DemoControl
 					this.settingTcpIP.SleepTime = HslFormContent.GetXmlValue( element, "PipeSleepTime", this.settingTcpIP.SleepTime, int.Parse );
 					this.settingTcpIP.LocalIpAddress = HslFormContent.GetXmlValue( element, "LocalIpAddress", this.settingTcpIP.LocalIpAddress, m => m );
 					this.settingTcpIP.LocalPort = HslFormContent.GetXmlValue( element, "LocalPort", this.settingTcpIP.LocalPort, int.Parse );
+					this.settingTcpIP.CloseOnRecvTimeOutTick = HslFormContent.GetXmlValue( element, "CloseOnRecvTimeOutTick", this.settingTcpIP.CloseOnRecvTimeOutTick, int.Parse );
 					this.settingTcpIP.SocketKeepAliveTime = HslFormContent.GetXmlValue( element, "SocketKeepAliveTime", this.settingTcpIP.SocketKeepAliveTime, int.Parse );
 					this.settingTcpIP.IsPersistentConnection = HslFormContent.GetXmlValue( element, "IsPersistentConnection", this.settingTcpIP.IsPersistentConnection, bool.Parse );
 					this.settingTcpIP.SendBeforeHex = HslFormContent.GetXmlValue( element, "SendBeforeHex", this.settingTcpIP.SendBeforeHex, m => m );
+				}
+			}
+			else if (setting == SettingPipe.Debug)
+			{
+				textBox_tcp_ip.Text = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlIpAddress, textBox_tcp_ip.Text, m => m );
+				textBox_tcp_port.Text = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlPort, textBox_tcp_port.Text, m => m );
+				textBox_tcp_connectTimeout.Text = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlConnectTimeOut, textBox_tcp_connectTimeout.Text, m => m );
+				textBox_tcp_receive.Text = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlReceiveTimeOut, textBox_tcp_receive.Text, m => m );
+				if (element.Attribute( "PipeSleepTime" ) != null)
+				{
+					this.settingTcpDebug = new SettingTcpDebug( );
+					this.settingTcpDebug.SleepTime = HslFormContent.GetXmlValue( element, "PipeSleepTime", this.settingTcpDebug.SleepTime, int.Parse );
+					this.settingTcpDebug.LocalIpAddress = HslFormContent.GetXmlValue( element, "LocalIpAddress", this.settingTcpDebug.LocalIpAddress, m => m );
+					this.settingTcpDebug.LocalPort = HslFormContent.GetXmlValue( element, "LocalPort", this.settingTcpDebug.LocalPort, int.Parse );
+					this.settingTcpDebug.SocketKeepAliveTime = HslFormContent.GetXmlValue( element, "SocketKeepAliveTime", this.settingTcpDebug.SocketKeepAliveTime, int.Parse );
+					this.settingTcpDebug.IsPersistentConnection = HslFormContent.GetXmlValue( element, "IsPersistentConnection", this.settingTcpDebug.IsPersistentConnection, bool.Parse );
+					this.settingTcpDebug.SendBeforeHex = HslFormContent.GetXmlValue( element, "SendBeforeHex", this.settingTcpDebug.SendBeforeHex, m => m );
+					this.settingTcpDebug.ClientKey = HslFormContent.GetXmlValue( element, "ClientKey", this.settingTcpDebug.ClientKey, ushort.Parse );
 				}
 			}
 			else if (setting == SettingPipe.UdpPipe)
@@ -228,6 +270,7 @@ namespace HslCommunicationDemo.DemoControl
 					this.settingSerial.RtsEnable = HslFormContent.GetXmlValue( element, "RtsEnable", this.settingSerial.RtsEnable, bool.Parse );
 					this.settingSerial.DtrEnable = HslFormContent.GetXmlValue( element, "DtrEnable", this.settingSerial.DtrEnable, bool.Parse );
 					this.settingSerial.SendBeforeHex = HslFormContent.GetXmlValue( element, "SendBeforeHex", this.settingSerial.SendBeforeHex, m => m );
+					this.settingSerial.ReceiveTimeOut = HslFormContent.GetXmlValue( element, "ReceiveTimeOut", this.settingSerial.ReceiveTimeOut, int.Parse );
 				}
 			}
 			else if (setting == SettingPipe.MqttPipe)
@@ -243,10 +286,11 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else if (setting == SettingPipe.DTU)
 			{
-				textBox_dtu_port.Text     = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlPort, textBox_dtu_port.Text, m => m );
+				textBox_dtu_port.Text = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlPort, textBox_dtu_port.Text, m => m );
 				checkBox_dtu_back.Checked = HslFormContent.GetXmlValue( element, "DTUBack", checkBox_dtu_back.Checked, bool.Parse );
-				textBox_dtu_id.Text       = HslFormContent.GetXmlValue( element, "DTUId", textBox_dtu_id.Text, m => m );
-				textBox_dtu_pwd.Text      = HslFormContent.GetXmlValue( element, "DTUPwd", textBox_dtu_pwd.Text, m => m );
+				textBox_dtu_id.Text = HslFormContent.GetXmlValue( element, "DTUId", textBox_dtu_id.Text, m => m );
+				textBox_dtu_pwd.Text = HslFormContent.GetXmlValue( element, "DTUPwd", textBox_dtu_pwd.Text, m => m );
+				checkBox_useRegister.Checked = HslFormContent.GetXmlValue( element, "DTUUseRegister", checkBox_useRegister.Checked, bool.Parse );
 			}
 		}
 
@@ -326,11 +370,12 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					case SettingPipe.TcpPipe: comboBox_pipe_select.SelectedIndex = 0; break;
 					case SettingPipe.UdpPipe: comboBox_pipe_select.SelectedIndex = 1; break;
-					case SettingPipe.MoxaCom:
 					case SettingPipe.SerialPipe: comboBox_pipe_select.SelectedIndex = 2; break;
 					case SettingPipe.MqttPipe: comboBox_pipe_select.SelectedIndex = 3; break;
 					case SettingPipe.SslPipe: comboBox_pipe_select.SelectedIndex = 4; break;
 					case SettingPipe.DTU: comboBox_pipe_select.SelectedIndex = 5; break;
+					case SettingPipe.MoxaCom: comboBox_pipe_select.SelectedIndex = 6; break;
+					case SettingPipe.Debug: comboBox_pipe_select.SelectedIndex = 7; break;
 					default: SetVisible( value ); break;
 				}
 				SetVisible( value );
@@ -339,7 +384,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		public void SetVisible( SettingPipe settingPipe )
 		{
-			if (settingPipe == SettingPipe.TcpPipe )
+			if (settingPipe == SettingPipe.TcpPipe || settingPipe == SettingPipe.Debug)
 			{
 				this.panel_tcp.Visible = true;
 				this.panel_udp.Visible = false;
@@ -398,6 +443,10 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				device.CommunicationPipe = CreatePipeTcpNet( device );
 			}
+			else if (this.settingPipe == SettingPipe.Debug)
+			{
+				device.CommunicationPipe = CreatePipeDebugNet( device );
+			}
 			else if (this.settingPipe == SettingPipe.UdpPipe)
 			{
 				device.CommunicationPipe = CreatePipeUdpNet( device );
@@ -426,9 +475,10 @@ namespace HslCommunicationDemo.DemoControl
 				if (dtuServer != null) dtuServer.ServerClose( );
 				dtuServer = new NetworkAlienClient( );
 				dtuServer.LogNet = this.deviceTcpNet.LogNet;
+				dtuServer.UseRegistrationPackage = this.checkBox_useRegister.Checked;
 				dtuServer.IsResponseAck = checkBox_dtu_back.Checked;                         // 是否返回注册包
 
-				if (!string.IsNullOrEmpty(textBox_dtu_pwd.Text))
+				if (!string.IsNullOrEmpty( textBox_dtu_pwd.Text ))
 				{
 					dtuServer.SetPassword( Encoding.ASCII.GetBytes( textBox_dtu_pwd.Text ) );
 				}
@@ -453,6 +503,25 @@ namespace HslCommunicationDemo.DemoControl
 				this.deviceTcpNet.SetDtuPipe( new PipeDtuNet( ) { DtuServer = dtuServer, DTU = textBox_dtu_id.Text, Pwd = textBox_dtu_pwd.Text } );
 			}
 		}
+
+		public string GetTcpIpAddress( )
+		{
+			return this.textBox_tcp_ip.Text;
+		}
+
+		public string GetTcpPort( )
+		{
+			return this.textBox_tcp_port.Text;
+		}
+
+		private void CheckBox_dtu_back_CheckedChanged( object sender, EventArgs e )
+		{
+			if (this.dtuServer != null)
+			{
+				this.dtuServer.IsResponseAck = checkBox_dtu_back.Checked;
+			}
+		}
+
 
 		public void ExtraCloseAction( BinaryCommunication device )
 		{
@@ -484,12 +553,54 @@ namespace HslCommunicationDemo.DemoControl
 		private int dtu_connected = 0;
 		private void DtuServer_OnClientConnected( PipeDtuNet session )
 		{
-			if (session.DTU == textBox_dtu_id.Text)
+			if (this.dtuServer.UseRegistrationPackage)
+			{
+				if (session.DTU == textBox_dtu_id.Text)
+				{
+					if (this.deviceTcpNet.CommunicationPipe != null && !this.deviceTcpNet.CommunicationPipe.IsConnectError( ))
+					{
+						// 当前已经在线，提示重复登录消息
+						dtuServer.LogNet?.WriteDebug( dtuServer.ToString( ), $"DTU:{session.DTU} Login Repeat" );
+						session?.CloseCommunication( );  // 关闭连接
+						return;
+					}
+					OperateResult connect = this.deviceTcpNet.SetDtuPipe( session );
+					dtu_connected++;
+					Invoke( new Action( ( ) =>
+					{
+						if (connect.IsSuccess)
+						{
+							linkLabel_dtu_state.Text = $"Connected[{dtu_connected}]";
+							linkLabel_dtu_state.LinkColor = Color.Green;
+							linkLabel_dtu_state.BackColor = Color.Cyan;
+						}
+						else
+						{
+							DemoUtils.ShowMessage( "Connect failed: " + connect.Message );
+							linkLabel_dtu_state.Text = "Connect failed";
+							linkLabel_dtu_state.LinkColor = Color.Tomato;
+						}
+					} ) );
+					HslCommunication.Core.HslHelper.ThreadSleep( 2000 );
+					if (connect.IsSuccess) linkLabel_dtu_state.BackColor = System.Windows.Forms.Control.DefaultBackColor;
+				}
+				else
+				{
+					dtuServer.LogNet?.WriteDebug( dtuServer.ToString( ), $"DTU:{session.DTU} Login Forbidden" );
+					session?.CloseCommunication( );  // 关闭连接
+					Invoke( new Action( ( ) =>
+					{
+						linkLabel_dtu_state.Text = "ID not same";
+						linkLabel_dtu_state.LinkColor = Color.Tomato;
+					} ) );
+				}
+			}
+			else
 			{
 				if (this.deviceTcpNet.CommunicationPipe != null && !this.deviceTcpNet.CommunicationPipe.IsConnectError( ))
 				{
 					// 当前已经在线，提示重复登录消息
-					dtuServer.LogNet?.WriteDebug( dtuServer.ToString( ), $"DTU:{session.DTU} Login Repeat" );
+					dtuServer.LogNet?.WriteDebug( dtuServer.ToString( ), $"Ip:{session} Login Repeat" );
 					session?.CloseCommunication( );  // 关闭连接
 					return;
 				}
@@ -513,16 +624,25 @@ namespace HslCommunicationDemo.DemoControl
 				HslCommunication.Core.HslHelper.ThreadSleep( 2000 );
 				if (connect.IsSuccess) linkLabel_dtu_state.BackColor = System.Windows.Forms.Control.DefaultBackColor;
 			}
-			else
+		}
+
+		private void SetPipeTcpSetting( BinaryCommunication binaryCommunication, PipeTcpNet pipe, SettingTcpIP setting )
+		{
+			if (setting == null) return;
+			pipe.SleepTime = setting.SleepTime;
+			pipe.SocketKeepAliveTime = setting.SocketKeepAliveTime;
+			pipe.IsPersistentConnection = setting.IsPersistentConnection;
+			if (!string.IsNullOrEmpty( setting.LocalIpAddress ) || setting.LocalPort > 0)
 			{
-				dtuServer.LogNet?.WriteDebug( dtuServer.ToString( ), $"DTU:{session.DTU} Login Forbidden" );
-				session?.CloseCommunication( );  // 关闭连接
-				Invoke( new Action( ( ) =>
-				{
-					linkLabel_dtu_state.Text = "ID not same";
-					linkLabel_dtu_state.LinkColor = Color.Tomato;
-				} ) );
+				pipe.LocalBinding = new System.Net.IPEndPoint( string.IsNullOrEmpty( setting.LocalIpAddress ) ? System.Net.IPAddress.Any : System.Net.IPAddress.Parse( setting.LocalIpAddress ),
+				setting.LocalPort < 0 ? 0 : setting.LocalPort );
 			}
+			if (setting.CloseOnRecvTimeOutTick != 1)
+			{
+				pipe.CloseOnRecvTimeOutTick = setting.CloseOnRecvTimeOutTick;
+			}
+			if (!string.IsNullOrEmpty( setting.SendBeforeHex ) && binaryCommunication != null)
+				binaryCommunication.SendBeforeHex = setting.SendBeforeHex;
 		}
 
 		public PipeTcpNet CreatePipeTcpNet( BinaryCommunication binaryCommunication )
@@ -530,20 +650,17 @@ namespace HslCommunicationDemo.DemoControl
 			PipeTcpNet pipe = new PipeTcpNet( textBox_tcp_ip.Text, int.Parse( textBox_tcp_port.Text ) );
 			pipe.ConnectTimeOut = int.Parse( textBox_tcp_connectTimeout.Text );
 			pipe.ReceiveTimeOut = int.Parse( textBox_tcp_receive.Text );
+			SetPipeTcpSetting( binaryCommunication, pipe, settingTcpIP );
+			return pipe;
+		}
 
-			if (settingTcpIP != null)
-			{
-				pipe.SleepTime = settingTcpIP.SleepTime;
-				pipe.SocketKeepAliveTime = settingTcpIP.SocketKeepAliveTime;
-				pipe.IsPersistentConnection = settingTcpIP.IsPersistentConnection;
-				if (!string.IsNullOrEmpty( settingTcpIP.LocalIpAddress ) || settingTcpIP.LocalPort > 0)
-				{
-					pipe.LocalBinding = new System.Net.IPEndPoint( string.IsNullOrEmpty( settingTcpIP.LocalIpAddress ) ? System.Net.IPAddress.Any : System.Net.IPAddress.Parse( settingTcpIP.LocalIpAddress ),
-					settingTcpIP.LocalPort < 0 ? 0 : settingTcpIP.LocalPort );
-				}
-				if (!string.IsNullOrEmpty( settingTcpIP.SendBeforeHex ))
-					binaryCommunication.SendBeforeHex = settingTcpIP.SendBeforeHex;
-			}
+		public PipeDebugRemote CreatePipeDebugNet( BinaryCommunication binaryCommunication )
+		{
+			PipeDebugRemote pipe = new PipeDebugRemote( textBox_tcp_ip.Text, int.Parse( textBox_tcp_port.Text ) );
+			pipe.ConnectTimeOut = int.Parse( textBox_tcp_connectTimeout.Text );
+			pipe.ReceiveTimeOut = int.Parse( textBox_tcp_receive.Text );
+			SetPipeTcpSetting( binaryCommunication, pipe, settingTcpDebug );
+			if (settingTcpDebug != null) pipe.ClientKey = settingTcpDebug.ClientKey;
 			return pipe;
 		}
 
@@ -552,21 +669,7 @@ namespace HslCommunicationDemo.DemoControl
 			PipeSslNet pipe = new PipeSslNet( textBox_tcp_ip.Text, int.Parse( textBox_tcp_port.Text ), serverMode: false );
 			pipe.ConnectTimeOut = int.Parse( textBox_tcp_connectTimeout.Text );
 			pipe.ReceiveTimeOut = int.Parse( textBox_tcp_receive.Text );
-
-			if (settingTcpIP != null)
-			{
-				pipe.SleepTime = settingTcpIP.SleepTime;
-				pipe.SocketKeepAliveTime = settingTcpIP.SocketKeepAliveTime;
-				pipe.IsPersistentConnection = settingTcpIP.IsPersistentConnection;
-				if (!string.IsNullOrEmpty( settingTcpIP.LocalIpAddress ) || settingTcpIP.LocalPort > 0)
-				{
-					pipe.LocalBinding = new System.Net.IPEndPoint( string.IsNullOrEmpty( settingTcpIP.LocalIpAddress ) ? System.Net.IPAddress.Any : System.Net.IPAddress.Parse( settingTcpIP.LocalIpAddress ),
-					settingTcpIP.LocalPort < 0 ? 0 : settingTcpIP.LocalPort );
-				}
-				if (!string.IsNullOrEmpty( settingTcpIP.SendBeforeHex ))
-					binaryCommunication.SendBeforeHex = settingTcpIP.SendBeforeHex;
-			}
-
+			SetPipeTcpSetting( binaryCommunication, pipe, settingTcpIP );
 			return pipe;
 		}
 
@@ -574,20 +677,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			PipeUdpNet pipeUdpNet = new PipeUdpNet( textBox_udp_ip.Text, int.Parse( textBox_udp_port.Text ) );
 			pipeUdpNet.ReceiveTimeOut = int.Parse( textBox_udp_receiveTimeout.Text );
-
-			if (this.settingUdpIP != null)
-			{
-				pipeUdpNet.SleepTime = settingUdpIP.SleepTime;
-				pipeUdpNet.SocketKeepAliveTime = settingUdpIP.SocketKeepAliveTime;
-				pipeUdpNet.IsPersistentConnection = settingUdpIP.IsPersistentConnection;
-				if (!string.IsNullOrEmpty( settingUdpIP.LocalIpAddress ) || settingUdpIP.LocalPort > 0)
-				{
-					pipeUdpNet.LocalBinding = new System.Net.IPEndPoint( string.IsNullOrEmpty( settingUdpIP.LocalIpAddress ) ? System.Net.IPAddress.Any : System.Net.IPAddress.Parse( settingUdpIP.LocalIpAddress ),
-					settingUdpIP.LocalPort < 0 ? 0 : settingUdpIP.LocalPort );
-				}
-				if (!string.IsNullOrEmpty( settingUdpIP.SendBeforeHex ))
-					binaryCommunication.SendBeforeHex = settingUdpIP.SendBeforeHex;
-			}
+			SetPipeTcpSetting( binaryCommunication, pipeUdpNet, settingUdpIP );
 			return pipeUdpNet;
 		}
 
@@ -622,6 +712,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (this.settingSerial != null)
 			{
 				pipeSerialPort.SleepTime = this.settingSerial.SleepTime;
+				pipeSerialPort.ReceiveTimeOut = this.settingSerial.ReceiveTimeOut;
 				if (!string.IsNullOrEmpty( settingSerial.SendBeforeHex ))
 					binaryCommunication.SendBeforeHex = settingSerial.SendBeforeHex;
 			}
@@ -669,6 +760,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		private SettingPipe settingPipe = SettingPipe.TcpPipe;
 		private SettingTcpIP settingTcpIP = null;
+		private SettingTcpDebug settingTcpDebug = null;
 		private SettingTcpIP settingUdpIP = null;
 		private SettingMqtt settingMqtt = new SettingMqtt( );
 		private SettingSerial settingSerial = null;
@@ -679,11 +771,23 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			using (FormPropertyModify form = new FormPropertyModify( ))
 			{
-				SettingTcpIP newSettings = new SettingTcpIP( this.settingTcpIP ?? new SettingTcpIP( ) );
-				form.SetObject( newSettings );
-				if (form.ShowDialog( ) == DialogResult.OK)
+				if (this.SettingPipe == SettingPipe.Debug)
 				{
-					this.settingTcpIP = newSettings;
+					SettingTcpDebug newSettings = new SettingTcpDebug( this.settingTcpDebug ?? new SettingTcpDebug( ) );
+					form.SetObject( newSettings );
+					if (form.ShowDialog( ) == DialogResult.OK)
+					{
+						this.settingTcpDebug = newSettings;
+					}
+				}
+				else
+				{
+					SettingTcpIP newSettings = new SettingTcpIP( this.settingTcpIP ?? new SettingTcpIP( ) );
+					form.SetObject( newSettings );
+					if (form.ShowDialog( ) == DialogResult.OK)
+					{
+						this.settingTcpIP = newSettings;
+					}
 				}
 			}
 		}
@@ -749,6 +853,7 @@ namespace HslCommunicationDemo.DemoControl
 		MqttPipe,
 		DTU,
 		MoxaCom,
+		Debug
 	}
 
 	public class SettingTcpIP
@@ -766,6 +871,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.LocalIpAddress = other.LocalIpAddress;
 			this.LocalPort = other.LocalPort;
 			this.SendBeforeHex = other.SendBeforeHex;
+			this.CloseOnRecvTimeOutTick = other.CloseOnRecvTimeOutTick;
 		}
 
 		public SettingTcpIP( PipeTcpNet pipeTcpNet )
@@ -773,6 +879,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.SleepTime = pipeTcpNet.SleepTime;
 			this.SocketKeepAliveTime = pipeTcpNet.SocketKeepAliveTime;
 			this.IsPersistentConnection = pipeTcpNet.IsPersistentConnection;
+			this.CloseOnRecvTimeOutTick = pipeTcpNet.CloseOnRecvTimeOutTick;
 			if (pipeTcpNet.LocalBinding != null)
 			{
 				this.LocalIpAddress = pipeTcpNet.LocalBinding.Address.ToString( );
@@ -800,12 +907,34 @@ namespace HslCommunicationDemo.DemoControl
 		[DefaultValue( -1 )]
 		public int LocalPort { get; set; } = -1;
 
+		[Description( "当因为接收超时而关闭连接的时候，获取或设置超过指定次数的时候，是否需要重新连接，仅在同步访问下有效\r\nWhen the connection is closed due to a reception timeout, and when the number of retrieves or Settings exceeds the specified limit, is it necessary to reconnect" )]
+		[DefaultValue( 1 )]
+		public int CloseOnRecvTimeOutTick { get; set; } = 1;
+
 		[Description( "在每条报文发送前，额外发送的数据内容，常用于lora，会追加四个字节的站号\r\nBefore each message is sent, the additional data content sent, often used in lora, is appended with a four-byte station" )]
 		[DefaultValue( "" )]
 		public string SendBeforeHex { get; set; } = "";
 
 		public override string ToString( ) => $"Tcp/Udp Seting [网络管道额外参数配置]";
 	}
+
+	public class SettingTcpDebug : SettingTcpIP
+	{
+		public SettingTcpDebug()
+		{
+
+		}
+
+		public SettingTcpDebug( SettingTcpDebug other ) : base( other )
+		{
+			this.ClientKey = other.ClientKey;
+		}
+
+		[Description( "获取或设置客户端的key信息，用于调试服务器区分不同的客户端，这样就支持多个客户端连接到同一个服务器，默认是0\r\nGet or set the client's key information, used to distinguish different clients in the debug server, so that multiple clients can connect to the same server, the default is 0" )]
+		[DefaultValue( 0 )]
+		public ushort ClientKey { get; set; } = 0;
+	}
+
 
 	public class SettingSerial
 	{
@@ -817,6 +946,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.DtrEnable = other.DtrEnable;
 			this.SleepTime = other.SleepTime;
 			this.SendBeforeHex = other.SendBeforeHex;
+			this.ReceiveTimeOut = other.ReceiveTimeOut;
 		}
 
 		[Description( "获取或设置在串行通信中是否启用请求发送信号\r\nGets or sets whether to enable request signaling in serial communication" )]
@@ -830,6 +960,10 @@ namespace HslCommunicationDemo.DemoControl
 		[Description( "获取或设置当前的发送数据后到接收数据前的等待时间，默认20毫秒\r\nThe default waiting time between the time the data is sent and the time between receiving the data is 20 milliseconds" )]
 		[DefaultValue( 20 )]
 		public int SleepTime { get; set; } = 20;
+
+		[Description( "获取或设置当前的发送数据后接收数据的超时时间，默认5000毫秒\r\nGet or set the timeout for receiving data after the current sent data. The default is 5000 milliseconds" )]
+		[DefaultValue( 5000 )]
+		public int ReceiveTimeOut { get; set; } = 5000;
 
 		[Description( "在每条报文发送前，额外发送的数据内容，常用于lora，会追加四个字节的站号\r\nBefore each message is sent, the additional data content sent, often used in lora, is appended with a four-byte station" )]
 		[DefaultValue( "" )]
