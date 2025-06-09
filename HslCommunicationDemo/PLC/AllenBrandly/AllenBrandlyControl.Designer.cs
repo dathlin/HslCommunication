@@ -40,6 +40,7 @@
             this.textBox_date_address = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label_read_length = new System.Windows.Forms.Label();
             this.button12 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -53,7 +54,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox_code = new System.Windows.Forms.TextBox();
             this.label_code = new System.Windows.Forms.Label();
-            this.label_read_length = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
@@ -209,6 +209,16 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "类型及原始数据读写测试";
             // 
+            // label_read_length
+            // 
+            this.label_read_length.AutoSize = true;
+            this.label_read_length.ForeColor = System.Drawing.Color.Gray;
+            this.label_read_length.Location = new System.Drawing.Point(402, 189);
+            this.label_read_length.Name = "label_read_length";
+            this.label_read_length.Size = new System.Drawing.Size(46, 17);
+            this.label_read_length.TabIndex = 27;
+            this.label_read_length.Text = "Bytes: ";
+            // 
             // button12
             // 
             this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -275,9 +285,9 @@
             // textBox4
             // 
             this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(385, 27);
+            this.textBox4.Location = new System.Drawing.Point(357, 27);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(79, 23);
+            this.textBox4.Size = new System.Drawing.Size(107, 23);
             this.textBox4.TabIndex = 11;
             this.textBox4.Text = "C1";
             // 
@@ -285,7 +295,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(331, 30);
+            this.label5.Location = new System.Drawing.Point(309, 30);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 17);
             this.label5.TabIndex = 10;
@@ -308,7 +318,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.Location = new System.Drawing.Point(64, 27);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(261, 23);
+            this.textBox3.Size = new System.Drawing.Size(245, 23);
             this.textBox3.TabIndex = 7;
             this.textBox3.Text = "A1";
             // 
@@ -341,16 +351,6 @@
             this.label_code.Size = new System.Drawing.Size(44, 17);
             this.label_code.TabIndex = 15;
             this.label_code.Text = "代码：";
-            // 
-            // label_read_length
-            // 
-            this.label_read_length.AutoSize = true;
-            this.label_read_length.ForeColor = System.Drawing.Color.Gray;
-            this.label_read_length.Location = new System.Drawing.Point(402, 189);
-            this.label_read_length.Name = "label_read_length";
-            this.label_read_length.Size = new System.Drawing.Size(46, 17);
-            this.label_read_length.TabIndex = 27;
-            this.label_read_length.Text = "Bytes: ";
             // 
             // AllenBrandlyControl
             // 

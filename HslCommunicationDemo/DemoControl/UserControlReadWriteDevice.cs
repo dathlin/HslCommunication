@@ -50,6 +50,7 @@ namespace HslCommunicationDemo.DemoControl
 		public void SetEnable( bool enbale )
 		{
 			userControlReadWriteOp1.Enabled = enbale;
+			pictureBox1.Enabled = enbale;
 			for (int i = 0; i < allControls.Count; i++)
 			{
 				allControls[i].Enabled = enbale;
@@ -149,6 +150,28 @@ namespace HslCommunicationDemo.DemoControl
 		public void SelectTabDataTable( )
 		{
 			this.tabControl1.SelectTab( tabPage4 );
+		}
+
+		private bool showReadWrite = true;
+		private void pictureBox1_Click( object sender, EventArgs e )
+		{
+			// 点击调整界面
+			if (showReadWrite)
+			{
+				showReadWrite = false;
+				pictureBox1.Image = Properties.Resources.view_16xLG;
+				this.userControlReadWriteOp1.Visible = false;
+				this.tabControl1.Location = new Point( 0, 0 );
+				this.tabControl1.Size = new Size( this.Width, this.Height );
+			}
+			else
+			{
+				showReadWrite = true;
+				pictureBox1.Image = Properties.Resources.shortcut_16xLG;
+				this.userControlReadWriteOp1.Visible = true;
+				this.tabControl1.Location = new Point( 0, 272);
+				this.tabControl1.Size = new Size( this.Width, this.Height - 272 );
+			}
 		}
 	}
 }

@@ -33,7 +33,7 @@ namespace HslCommunicationDemo
 		private void FormLogNet_Load( object sender, EventArgs e )
 		{
 			logNet = new LogNetSingle( "log.txt" ); 
-			// logNet = new LogNetDateTime( Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "Logs" ), GenerateMode.ByEveryDay, 10 );
+			//logNet = new LogNetDateTime( Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "Logs" ), GenerateMode.ByEveryMinute, 10 );
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslMessageDegree>( );
 			comboBox1.SelectedItem = HslMessageDegree.DEBUG;
 			comboBox2.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslMessageDegree>( );

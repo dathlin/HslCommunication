@@ -146,6 +146,31 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			}
 		}
 
+		private string getTypeDescription( ushort typeCode )
+		{
+			switch (typeCode)
+			{
+				case 0xC1: return "(bool)";
+				case 0xC2: return "(byte)";
+				case 0xC3: return "(short)";
+				case 0xC4: return "(int)";
+				case 0xC5: return "(long)";
+				case 0xC6: return "[USINT]";
+				case 0xC7: return "(ushort)";
+				case 0xC8: return "(uint)";
+				case 0xC9: return "(ulong)";
+				case 0xCA: return "(float)";
+				case 0xCB: return "(double)";
+				case 0xCC: return "[Struct]";
+				case 0xD0: return "[String]";
+				case 0xD1: return "[Str-8]";
+				case 0xD2: return "[Str-16]";
+				case 0xD3: return "[Str-32]";
+				case 0xD4: return "[Str-64]";
+				default: return "";
+			}
+		}
+
 		private void button5_Click( object sender, EventArgs e )
 		{
 			OperateResult<ushort, byte[]> read = cipNet.ReadTag( textBox3.Text, ushort.Parse( textBox7.Text ) );
@@ -155,7 +180,7 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			}
 			else
 			{
-				textBox4.Text = read.Content1.ToString( "X" );
+				textBox4.Text = read.Content1.ToString( "X" ) + " " + getTypeDescription( read.Content1 );
 				textBox5.Text = read.Content2.ToHexString( ' ' );
 				label_read_length.Text = "Bytes: " + read.Content2.Length.ToString( );
 			}

@@ -373,6 +373,7 @@
             // 
             // label_account
             // 
+            this.label_account.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_account.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
             this.label_account.ForeColor = System.Drawing.Color.Cyan;
             this.label_account.Location = new System.Drawing.Point(1146, 5);

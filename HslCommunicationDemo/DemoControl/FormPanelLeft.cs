@@ -459,8 +459,8 @@ namespace HslCommunicationDemo.DemoControl
 			instrumentNode.Nodes.Add( new TreeNode( "光源控制器" ) { Tag = typeof( Light.FormShineInLight ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DTSU6606 [德力西电表]" ) { Tag = typeof( FormDTSU6606 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "IEC104 [电力规约]", 37, 37 ) { Tag = typeof( FormIEC104 ) } );
-            instrumentNode.Nodes.Add( new TreeNode( "IEC104 Server", 37, 37 ) { Tag = typeof( FormIEC104Server ) } );
-            instrumentNode.Nodes.Add( new TreeNode( "CJT188 [水表，燃气]" ) { Tag = typeof( FormCJT188 ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "IEC104 Server", 37, 37 ) { Tag = typeof( FormIEC104Server ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "CJT188 [水表，燃气]" ) { Tag = typeof( FormCJT188 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "CJT188 OverTcp" ) { Tag = typeof( FormCJT188OverTcp ) } );
 			treeView1.Nodes.Add( instrumentNode );
 
@@ -484,6 +484,7 @@ namespace HslCommunicationDemo.DemoControl
 			othersNode.Nodes.Add( new TreeNode( "Open ProtocolServer" ) { Tag = typeof( FormOpenProtocolServer ) } );
 			othersNode.Nodes.Add( new TreeNode( "南京自动化 DCS" ) { Tag = typeof( FormDcsNanJingAuto ) } );
 			othersNode.Nodes.Add( new TreeNode( "Knx" ) { Tag = typeof( PLC.FormKnx ) } );
+			othersNode.Nodes.Add( new TreeNode( "FFU用EC风机" ) { Tag = typeof( FormEcFanMachine ) } );
 			treeView1.Nodes.Add( othersNode );
 
 			// treeView1.ExpandAll( );

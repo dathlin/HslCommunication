@@ -109,9 +109,17 @@ namespace HslCommunicationDemo.DemoControl
 					PropertyInfo propertyInfo = propertyObj.GetType( ).GetProperty( propertyName );
 					if (propertyInfo.PropertyType == typeof( string ))
 					{
-						stringBuilder.Append( "\"" );
-						stringBuilder.Append( propertyInfo.GetValue( propertyObj ).ToString( ) );
-						stringBuilder.Append( "\"" );
+						object obj_child_property = propertyInfo.GetValue( propertyObj );
+						if (obj_child_property == null)
+						{
+							stringBuilder.Append( "null" );
+						}
+						else
+						{
+							stringBuilder.Append( "\"" );
+							stringBuilder.Append( obj_child_property.ToString( ) );
+							stringBuilder.Append( "\"" );
+						}
 					}
 					else if (propertyInfo.PropertyType.IsSubclassOf( typeof( Enum ) ))
 					{

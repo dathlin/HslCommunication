@@ -13,6 +13,7 @@ using HslCommunication;
 using HslCommunication.LogNet;
 using System.Text.RegularExpressions;
 using System.Security.Policy;
+using System.Globalization;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -172,7 +173,7 @@ namespace HslCommunicationDemo.DemoControl
 
 				label10.Text = "Address:";
 				label9.Text = "Value:";
-				label19.Text = "Note:The string can convert value\r\nif bool: true,false,0,1\r\nif array：[1,2,3], [1:100]";
+				label19.Text = "Note:The string can convert value\r\nif bool: true,false,0,1\r\nif array:[1,2,3], [1:100], [1*100]";
 				button_write_bool.Text = "Write Bit";
 				button_write_short.Text = "w-short";
 				button_write_ushort.Text = "w-ushort";
@@ -287,11 +288,11 @@ namespace HslCommunicationDemo.DemoControl
 			label21.Text = $"{valueLimit.Count}";
 		}
 
-		private void RenderReadResult<T>( DateTime start, OperateResult<T> read )
+		private void RenderReadResult<T>( DateTime start, OperateResult<T> read, bool isHexResult = false )
 		{
 			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 			if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-			ReadResultRender( read, textBox3.Text, textBox4 );
+			ReadResultRender( read, textBox3.Text, textBox4, isHexResult );
 		}
 
 		private void AppendReadResult( TextBox textBox, string text )
@@ -333,7 +334,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		public void ReadResultRender<T>( OperateResult<T> result, string address, TextBox textBox )
+		public void ReadResultRender<T>( OperateResult<T> result, string address, TextBox textBox, bool isHexResult )
 		{
 			if (result.IsSuccess)
 			{
@@ -343,7 +344,10 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					AppendReadResult( textBox, $"[{address}] {result.Content}" );
+					if (isHexResult)
+						AppendReadResult( textBox, $"[{address}] 0x{result.Content:X}" );
+					else
+						AppendReadResult( textBox, $"[{address}] {result.Content}" );
 				}
 			}
 			else
@@ -392,7 +396,7 @@ namespace HslCommunicationDemo.DemoControl
 			// byte，此处演示了基于反射的读取操作
 			if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 			{
-				RenderReadResult( DateTime.Now, (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } ) );
+				RenderReadResult( DateTime.Now, (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } ), isHexResult: radioButton_read_hex.Checked );
 				GetReadCode( textBox3.Text, "OperateResult<byte> read = @deviceName.ReadByte( \"" + textBox3.Text + "\" );", isArray: false );
 			}
 			else
@@ -412,7 +416,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_short.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt16Async( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt16Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<short> read = @deviceName.ReadInt16( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -426,7 +430,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadInt16( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt16( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<short> read = @deviceName.ReadInt16( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -447,7 +451,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_ushort.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt16Async( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt16Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<ushort> read = @deviceName.ReadUInt16( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -461,7 +465,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt16( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt16( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<ushort> read = @deviceName.ReadUInt16( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -482,7 +486,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_int.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt32Async( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt32Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<int> read = @deviceName.ReadInt32( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -496,7 +500,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadInt32( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt32( textBox3.Text ) , isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<int> read = @deviceName.ReadInt32( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -517,7 +521,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_uint.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt32Async( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt32Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<uint> read = @deviceName.ReadUInt32( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -531,7 +535,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt32( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt32( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<uint> read = @deviceName.ReadUInt32( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -552,7 +556,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_long.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt64Async( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt64Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<long> read = @deviceName.ReadInt64( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -566,7 +570,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadInt64( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt64( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<long> read = @deviceName.ReadInt64( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -587,7 +591,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_ulong.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt64Async( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt64Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<ulong> read = @deviceName.ReadUInt64( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -601,7 +605,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt64( textBox3.Text ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt64( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
 					GetReadCode( textBox3.Text, "OperateResult<ulong> read = @deviceName.ReadUInt64( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -834,6 +838,26 @@ namespace HslCommunicationDemo.DemoControl
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
 		}
 
+		private bool TryGetByteValue( string input, out byte value )
+		{
+			if (input.StartsWith( "0x", StringComparison.OrdinalIgnoreCase ))
+			{
+				if (byte.TryParse( input.Substring( 2 ), NumberStyles.HexNumber, null, out value )) return true;
+			}
+			else if (input.StartsWith( "-" ))
+			{
+				if (sbyte.TryParse( input, out sbyte result ))
+				{
+					value = (byte)result;
+					return true;
+				}
+			}
+			else if (byte.TryParse( input, out value )) return true;
+
+			value = 0;
+			return false;
+		}
+
 		private async void button_write_byte_Click( object sender, EventArgs e )
 		{
 			string input = GetWriteValueText( );
@@ -872,7 +896,7 @@ namespace HslCommunicationDemo.DemoControl
 			else
 			{
 				// byte，此处演示了基于反射的写入操作
-				if (byte.TryParse( input, out byte value ))
+				if (TryGetByteValue( input, out byte value ))
 				{
 					DateTime start = DateTime.Now;
 					OperateResult write = (OperateResult)writeByteMethod.Invoke( readWriteNet, new object[] { textBox_write_address.Text, value } );
@@ -911,8 +935,32 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				return buffer;
 			}
+			else if (Regex.IsMatch( value, @"\[[-]?[0-9]+\*[0-9]+\]" ))
+			{
+				MatchCollection mc = Regex.Matches( value, "[-]?[0-9]+" );
+				long number = long.Parse( mc[0].Value );
+				long repeat = long.Parse( mc[1].Value );
+
+				T[] buffer = new T[repeat];
+				for (int i = 0; i < buffer.Length; i++)
+				{
+					buffer[i] = funcAdd( number, 0 );
+				}
+				return buffer;
+			}
 			else
 				return value.ToStringArray<T>( );
+		}
+
+		private bool try_get_short_value( string input, out short value )
+		{
+			if (input.StartsWith( "0x", StringComparison.OrdinalIgnoreCase ))
+			{
+				if (short.TryParse( input.Substring( 2 ), NumberStyles.HexNumber, null, out value )) return true;
+			}
+			else if (short.TryParse( input, out value )) return true;
+			value = 0;
+			return false;
 		}
 
 		private async void button_write_short_Click( object sender, EventArgs e )
@@ -939,7 +987,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (short.TryParse( input, out short value ))
+				if (try_get_short_value( input, out short value ))
 				{
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_short, input );
@@ -956,6 +1004,17 @@ namespace HslCommunicationDemo.DemoControl
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
+		}
+
+		private bool try_get_ushort_value( string input, out ushort value )
+		{
+			if (input.StartsWith( "0x", StringComparison.OrdinalIgnoreCase ))
+			{
+				if (ushort.TryParse( input.Substring( 2 ), NumberStyles.HexNumber, null, out value )) return true;
+			}
+			else if (ushort.TryParse( input, out value )) return true;
+			value = 0;
+			return false;
 		}
 
 		private async void button_write_ushort_Click( object sender, EventArgs e )
@@ -982,7 +1041,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (ushort.TryParse( input, out ushort value ))
+				if (try_get_ushort_value( input, out ushort value ))
 				{
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_ushort, input );
@@ -999,6 +1058,17 @@ namespace HslCommunicationDemo.DemoControl
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
+		}
+
+		private bool try_get_int_value( string input, out int value )
+		{
+			if (input.StartsWith( "0x", StringComparison.OrdinalIgnoreCase ))
+			{
+				if (int.TryParse( input.Substring( 2 ), NumberStyles.HexNumber, null, out value )) return true;
+			}
+			else if (int.TryParse( input, out value )) return true;
+			value = 0;
+			return false;
 		}
 
 		private async void button_write_int_Click( object sender, EventArgs e )
@@ -1026,7 +1096,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (int.TryParse( input, out int value ))
+				if (try_get_int_value( input, out int value ))
 				{
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_int, input );
@@ -1043,6 +1113,17 @@ namespace HslCommunicationDemo.DemoControl
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
+		}
+		
+		private bool try_get_uint_value( string input, out uint value )
+		{
+			if (input.StartsWith( "0x", StringComparison.OrdinalIgnoreCase ))
+			{
+				if (uint.TryParse( input.Substring( 2 ), NumberStyles.HexNumber, null, out value )) return true;
+			}
+			else if (uint.TryParse( input, out value )) return true;
+			value = 0;
+			return false;
 		}
 
 		private async void button_write_uint_Click( object sender, EventArgs e )
@@ -1070,7 +1151,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (uint.TryParse( input, out uint value ))
+				if (try_get_uint_value( input, out uint value ))
 				{
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_uint, input );
@@ -1087,6 +1168,17 @@ namespace HslCommunicationDemo.DemoControl
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
+		}
+
+		private bool try_get_long_value( string input, out long value )
+		{
+			if (input.StartsWith( "0x", StringComparison.OrdinalIgnoreCase ))
+			{
+				if (long.TryParse( input.Substring( 2 ), NumberStyles.HexNumber, null, out value )) return true;
+			}
+			else if (long.TryParse( input, out value )) return true;
+			value = 0;
+			return false;
 		}
 
 		private async void button_write_long_Click( object sender, EventArgs e )
@@ -1114,7 +1206,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (long.TryParse( input, out long value ))
+				if (try_get_long_value( input, out long value ))
 				{
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_long, input );
@@ -1131,6 +1223,17 @@ namespace HslCommunicationDemo.DemoControl
 			}
 
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
+		}
+
+		private bool try_get_ulong_value( string input, out ulong value )
+		{
+			if (input.StartsWith( "0x", StringComparison.OrdinalIgnoreCase ))
+			{
+				if (ulong.TryParse( input.Substring( 2 ), NumberStyles.HexNumber, null, out value )) return true;
+			}
+			else if (ulong.TryParse( input, out value )) return true;
+			value = 0;
+			return false;
 		}
 
 		private async void button_write_ulong_Click( object sender, EventArgs e )
@@ -1158,7 +1261,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				if (ulong.TryParse( input, out ulong value ))
+				if (try_get_ulong_value( input, out ulong value ))
 				{
 					if (isAsync)
 						await RenderWriteResult( ( ) => readWriteNet.WriteAsync( textBox_write_address.Text, value ), button_write_ulong, input );
@@ -1391,7 +1494,12 @@ namespace HslCommunicationDemo.DemoControl
 			if (isArray)
 				GetWriteCode( address, "OperateResult write = @deviceName.Write( \"" + address + "\", \"" + input + "\".ToStringArray<" + type + ">( ) );" );
 			else
-				GetWriteCode( address, "OperateResult write = @deviceName.Write( \"" + address + "\", " + type + ".Parse( \"" + input + "\" ) );" );
+			{
+				if (input.StartsWith( "0x", StringComparison.OrdinalIgnoreCase ))
+					GetWriteCode( address, "OperateResult write = @deviceName.Write( \"" + address + "\", " + type + ".Parse( \"" + input.Substring( 2 ) + "\", NumberStyles.HexNumber ) );" );
+				else
+					GetWriteCode( address, "OperateResult write = @deviceName.Write( \"" + address + "\", " + type + ".Parse( \"" + input + "\" ) );" );
+			}
 		}
 
 		private void GetWriteCode( string address, string method )

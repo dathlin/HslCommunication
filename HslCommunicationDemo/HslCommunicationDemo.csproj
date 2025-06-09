@@ -71,11 +71,11 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicExpresso.Core, Version=2.19.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicExpresso.Core.2.19.0\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
+    <Reference Include="DynamicExpresso.Core, Version=2.19.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicExpresso.Core.2.19.2\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.3.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.3.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.3.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.3.2\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
@@ -494,6 +494,12 @@
     </Compile>
     <Compile Include="Instrument\FormDLT698Server.Designer.cs">
       <DependentUpon>FormDLT698Server.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormEcFanMachine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormEcFanMachine.Designer.cs">
+      <DependentUpon>FormEcFanMachine.cs</DependentUpon>
     </Compile>
     <Compile Include="Instrument\FormIEC104Server.cs">
       <SubType>Form</SubType>
@@ -2171,6 +2177,9 @@
     <EmbeddedResource Include="Instrument\FormDLT698Server.resx">
       <DependentUpon>FormDLT698Server.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormEcFanMachine.resx">
+      <DependentUpon>FormEcFanMachine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormIEC104Server.resx">
       <DependentUpon>FormIEC104Server.cs</DependentUpon>
     </EmbeddedResource>
@@ -2966,6 +2975,8 @@
     <None Include="img\StatusAnnotations_Complete_and_ok_16xLG_color.png" />
     <None Include="img\cimon.png" />
     <None Include="img\yamaha.png" />
+    <None Include="img\shortcut_16xLG.png" />
+    <None Include="img\view_16xLG.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

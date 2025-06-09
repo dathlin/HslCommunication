@@ -1533,6 +1533,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap shortcut_16xLG {
+            get {
+                object obj = ResourceManager.GetObject("shortcut_16xLG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap siemens {
             get {
                 object obj = ResourceManager.GetObject("siemens", resourceCulture);
@@ -1816,6 +1826,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap video {
             get {
                 object obj = ResourceManager.GetObject("video", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap view_16xLG {
+            get {
+                object obj = ResourceManager.GetObject("view_16xLG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

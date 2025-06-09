@@ -371,6 +371,17 @@ namespace HslCommunicationDemo
 			return currentItem;
 		}
 
+		private void DeleteTopicItem( TopicSaveItem item )
+		{
+			lock (all_dicts)
+			{
+				if (all_dicts.ContainsKey( item.Topic ))
+				{
+					all_dicts.Remove( item.Topic );
+				}
+			}
+		}
+
 		private void MqttServer_OnClientApplicationMessageReceive( MqttSession session, MqttClientApplicationMessage message )
 		{
 			if (message.Topic == "ndiwh是本地AIHDniwd")   // 用户客户端的压力测试
@@ -491,13 +502,41 @@ namespace HslCommunicationDemo
 
 		private void RenderTopicSaveItem( TopicSaveItem item )
 		{
-			textBox_topic_retain.Text = item.Message.Retain.ToString( );
-			textBox_topic_publishTime.Text = item.ReceiveDateTime.ToString( HslCommunicationDemo.DemoUtils.DateTimeFormate );
-			if (item.Session != null)
-				textBox_topic_publishSession.Text = item.Session.ToString( );
+			if (item != null)
+			{
+				textBox_topic_topic.Text = item.Topic;
+				checkBox_topic_retain.Checked = item.Message.Retain;
+				textBox_topic_publishTime.Text = item.ReceiveDateTime.ToString( HslCommunicationDemo.DemoUtils.DateTimeFormate );
+				if (item.Session != null)
+					textBox_topic_publishSession.Text = item.Session.ToString( );
+				else
+					textBox_topic_publishSession.Text = string.Empty;
+
+				string tmp = GetStringFromPayload( item.Message.Payload );
+				if (radioButton_topic_render_json.Checked)
+				{
+					try
+					{
+						tmp = JObject.Parse( tmp ).ToString( );
+					}
+					catch
+					{
+					}
+				}
+				textBox_topic_payload.Text = tmp;
+
+				if (item.Message.Payload!=null) label_topic_size.Text = SoftBasic.GetSizeDescription( item.Message.Payload.LongLength );
+				else label_topic_size.Text = "0";
+			}
 			else
+			{
+				textBox_topic_topic.Text = string.Empty;
+				checkBox_topic_retain.Checked = false;
+				textBox_topic_publishTime.Text = string.Empty;
 				textBox_topic_publishSession.Text = string.Empty;
-			textBox_topic_payload.Text = GetStringFromPayload( item.Message.Payload );
+				textBox_topic_payload.Text = string.Empty;
+				label_topic_size.Text = "0";
+			}
 		}
 
 		private void dataGridView1_CellMouseDoubleClick( object sender, DataGridViewCellMouseEventArgs e )
@@ -524,7 +563,20 @@ namespace HslCommunicationDemo
 			else if (radioButton_recv_gb2312.Checked) tmp = Encoding.GetEncoding( "gb2312" ).GetString( payload );
 
 			if (tmp?.Length > 100 && checkBox_long_message_hide.Checked) tmp = tmp.Substring( 0, 100 ) + "...";
+
 			return tmp;
+		}
+
+		private void button7_Click_1( object sender, EventArgs e )
+		{
+			// 删除当前选中的主题信息
+			if (selectedItem == null) return;
+			if (string.IsNullOrEmpty( textBox_topic_topic.Text )) return;
+
+			dataGridView1.Rows.Remove( selectedItem.ViewRow );
+			DeleteTopicItem( selectedItem );
+			selectedItem = null;
+			RenderTopicSaveItem( null );
 		}
 
 		[HslMqttApi("检查账户的信息")]
@@ -775,6 +827,7 @@ namespace HslCommunicationDemo
 			}
 			MessageBox.Show( "Publish finish" );
 		}
+
 	}
 
 	public class TopicSaveItem

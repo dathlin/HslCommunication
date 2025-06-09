@@ -35,35 +35,22 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.3.1
-1. SecsHsmsServer: 新增方法PublishSecsMessage( byte stream, byte function, SecsValue data, uint messageId, bool wBit )，可以发布的时候手动控制系统数据。
-2. HslExtension: 优化地址判断方法StartsWithAndNumber，支持了对负数的地址判断，因为台达等PLC存在负数地址的情况，例如 D-3530
-3. CommunicationTcpServer: 修复TCP服务器在linux系统运行时，某些特殊情况调用 ServerClose 后会异常奔溃的bug。
-4. WebSocketServer: 服务器端新增方法 public void PublishAllClientPayload( byte[] payload ) 使用opcode = 2来发送二进制的数据消息，DEMO界面优化显示。
-5. PipeSslNet: 新增属性 SslProtocols 可以自定义控制SSL协议的版本，CommunicationTcpServer新增方法 SetSslPipeAction 可用于设置SSL的自定义属性。
-6. PipeTcpNet: 新增属性 CloseOnRecvTimeOutTick，当使用同步方法读写PLC数据时，想要实现超时几次内不关闭当前的连接对象，就设置该属性，注意，只对同步方法有效。
-7. TcpForward: TCP转发类接收到双方数据后，顺序调整为先转发再重新接收数据，修复在某些连续发送的场景下导致数据接收顺序错乱的bug。
-8. AllenBradleyNet: 当使用了i=的地址格式写入单个的bool的值的时候，修复地址为单个dint类型时，提示数据不存在的bug。
-9. MelsecFxSerial: 优化三菱编程口协议对报文完整性的判断，就算读取的报文前面出现 3F 3F 3F字节，也可以正确的识别和解析数据。
-10. HttpServer: 内部日志记录针对所有的请求操作及url信息，耗时进行记录操作，新增属性 LogHttpBody 默认false，设置true可以记录body数据，跨域属性默认为 true。
-11. HttpServer: 新增属性LogHttpHeader，用于表示日志是否记录请求头的信息，DEMO界面优化，支持日志设置请求头或是Body数据。
-12. ModbusRtu: 修复当收到CRC16不正确的报文时，却表现为接收超时的bug，现在会直接返回并提示CRC不正确，当站号不一致时，还是会持续接收直到有指定站号数据或是引发超时。
-13. Modbus: IModbus接口新增属性WordReadBatchLength，表示批量读取时自动切割的长度信息，默认根据120长度分批读取，现在开放修改。
-14. MqttServer: 修改继承体系，从V12版本的CommunicationTcpServer继承实现，支持了SSL/TLS加密通信功能，优化了Demo界面的部分显示信息，测试了连续几万次的发布接收功能。
-15. MelsecMcRNet: 修复三菱R系列的协议情况下，命令码中部分内容不正确的bug，此前一直读写不了R系列的PLC，需要使用普通MC协议。
-16. OmronCipNet: 修复欧姆CIP协议写入单个bool数据到PLC失败的bug，修复bool数组读取解析异常，支持从数组中间位置开始读取。
-17. SecsHsms: 方法SendByCommand返回携带消息ID信息，方便二次处理，修复SecsValue在某些值信息为空的情况下转成SML字符串时异常的bug。
-18. SecsHsmsServer: 服务器侧新增一个同步方法ReadSecsMessage读取客户端的返回数据信息，该方法内部有锁，线程安全的。
-19. OmronCMode: 欧姆龙的HostLinkCMode支持了读写位的操作，实际是通过读写字间接实现的，修复了HostLinkCModeServer当客户端读取EM地址失败的bug。
-20. Demo: demo界面的模拟数据写入测试界面新增单次测试，如果碰到地址异常，自动选中该单元格，修复设备保存时模拟数据界面不保存的bug。
-21. Demo: DEMO界面上选择串口管道的时候，额外属性里新增ReceiveTimeOut属性，可以设置超时时间了，参数支持保存加载，支持示例代码生成。
-22. Demo: 修复CJT188及串口透传类，在DEMO中生成示例代码的时候，实际复制到项目出错的bug，现在可以正确的生成代码。
-23. Demo: 修复DEMO界面的点位变量表，请求间歇没设置直接启动报错的bug，该信息也存储到XML里，当设备关闭时，点位变量表也根据停止读取刷新。
-24. Demo: fanuc机床的程序测试界面增加特殊情况下载失败的信息提示，openprotocol界面增加实际代码显示，方便复制。
-25. Demo: 修复demo碰到激活码不正确的情况下，启动弹窗的bug，现在不再弹窗操作。http服务器和websocket服务器的界面控件支持滚动条。
-26. Demo: 测试工具界面的写入地址的数据，支持输入连续数组，例如数组1,2,3,...,100，直接输入 [1:100] 即可，然后点击写入的类型。
-27. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn/Doc/HslCommunication
-28. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V12.3.2
+1. LogNetBase: 优化了日志组件在设置属性ConsoleOutput输出到控制台时的性能，减少颜色重复设置，连续日志批量输出，输出性能增加5倍以上。
+2. EcFanMachine: 新增一个特殊的协议EcFanMachine: FFU 用EC 风机风机通信协议，支持风机的转速控制，风机的地址设置，风机的状态读取等功能
+3. EmergencyState: 风机对象优化，读取数据时支持返回应急状态，然后DEMO优化，MQTT服务器界面主题优化，AB-CIP读取显示类型备注。
+4. ILogNet: 日志接口接口ILogNet新增属性ConsoleColorEnable，默认为true，表示控制台输出时不同等级日志颜色不一样，设置false关闭颜色。
+5. LogNetManagment: 日志按照时间及大小存储时的文件名的开头字符串信息可以修改，设置属性 LogFileHeadString 即可。
+6. MelsecFxSerialServer: 新增对05报文的的回复，新增对客户端修改波特率的命令的支持，根据客户端的命令来自动设置波特率。
+7. InovanceSeries: 汇川的系列新增子系列 Easy，但是实际的modbus地址映射和H5U是一致的，DEMO界面可以选择新添加的系列内容。
+8. LogNetBase: 日志基础类，修复在存储日志信息到文件的时候，如果文件的目录被删除导致日志存储不会恢复的bug，现在会自动重新创建文件夹。
+9. InovanceHelper: 汇川AM系列支持bool读取MD地址，例如 MD100.0  等同于 MW200.0 地址
+10. S7Message: 西门子S7协议在接收PLC返回的报文的时候，新增对报文的消息id检查操作，检查和发送是否一致，虚拟服务器配套修改。
+11. DEMO: demo上写入数据的测试方法支持了地址重复的情况，例如想写100个short全部都是0的数组，地址里输入 [0*100] 即可。
+12. DEMO: demo读写byte,short,ushort,int,uint,long,ulong类型时，支持使用16进制的数据格式读写，使用16进制时，暂时只支持正整数。
+13. Demo: Demo界面上设备的读写测试界面新增一个小框框，点击可以隐藏读写按钮测试界面，让特殊功能测试界面最大化。
+14. 新官网：http://www.hsltechnology.cn/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn/Doc/HslCommunication
+15. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 
