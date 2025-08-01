@@ -50,10 +50,10 @@ namespace HslCommunicationDemo.PLC.Keyence
 				new DeviceAddressExample( "VB0",   "字线圈",                true, true, "16进制，范围: VB0000 ~ VB3FFF" ),
 
 				new DeviceAddressExample( "CM0",            "控制寄存器",           false, true, "范围: CM0000~CM5999" ),
-				new DeviceAddressExample( "DM0",            "数据寄存器",           false, true, "范围: DM00000~DM65534" ),
-				new DeviceAddressExample( "EM0",            "扩展数据寄存器",       false, true, "范围: EM00000~EM65534" ),
-				new DeviceAddressExample( "FM0",            "文件寄存器",           false, true, "FM00000~FM32767" ),
-				new DeviceAddressExample( "ZF0",            "文件寄存器",           false, true, "ZF000000~ZF131071" ),
+				new DeviceAddressExample( "DM0",            "数据寄存器",           false, true, "范围: DM00000~DM65534, 位读写使用 DM100.0" ),
+				new DeviceAddressExample( "EM0",            "扩展数据寄存器",       false, true, "范围: EM00000~EM65534, 位读写使用 EM100.0" ),
+				new DeviceAddressExample( "FM0",            "文件寄存器",           false, true, "FM00000~FM32767, 位读写使用 FM100.0" ),
+				new DeviceAddressExample( "ZF0",            "文件寄存器",           false, true, "ZF000000~ZF131071, 位读写使用 ZF100.0" ),
 				new DeviceAddressExample( "W0",             "链路寄存器",           false, true, "16进制地址，范围: W0000~W3FFF" ),
 				new DeviceAddressExample( "TM0",            "临时数据寄存器",       false, true, "范围: TM000~TM511" ),
 				new DeviceAddressExample( "Z0",             "变址寄存器",           false, true, "范围: Z1~Z12" ),
@@ -63,7 +63,7 @@ namespace HslCommunicationDemo.PLC.Keyence
 				new DeviceAddressExample( "CS0",            "计数器设定值",         false, true, "范围: CS0000~CS3999" ),
 				new DeviceAddressExample( "CTC0",           "高速计数器设定值",     false, true, "范围: CTC0~CTC3" ),
 				new DeviceAddressExample( "T0",             "数字微调器",           false, true, "范围: AT0~AT7" ),
-				new DeviceAddressExample( "VM",             "字存储器",             false, true, "范围: VM0~VM59999" ),
+				new DeviceAddressExample( "VM",             "字存储器",             false, true, "范围: VM0~VM59999, 位读写使用 VM100.0" ),
 				new DeviceAddressExample( "unit=1;100",     "扩展存储器模块",       false, true, "[商业授权] 读取扩展模块单元号1，地址100的数据" ),
 			};
 		}
@@ -78,8 +78,8 @@ namespace HslCommunicationDemo.PLC.Keyence
 				new DeviceAddressExample( "CTH0",  "高速计数器",            true, false, "读bool，触点，范围: CTH0 ~ CTH1" ),
 				new DeviceAddressExample( "R0",    "继电器",                true, false, "读bool，触点，范围: R00000~R99915，也可以写成 R100.0" ),
 
-				new DeviceAddressExample( "DM0",            "数据寄存器",           false, true, "范围: DM000~DM999" ),
-				new DeviceAddressExample( "TM0",            "临时数据寄存器",       false, true, "范围: TM00~TM99" ),
+				new DeviceAddressExample( "DM0",            "数据寄存器",           false, true, "范围: DM000~DM999, 位读写使用 DM100.0" ),
+				new DeviceAddressExample( "TM0",            "临时数据寄存器",       false, true, "范围: TM00~TM99, 位读写使用 TM100.0" ),
 				new DeviceAddressExample( "TC0",            "定时器当前值",         false, true, "范围: TC000~TC999" ),
 				new DeviceAddressExample( "TS0",            "定时器设定值",         false, true, "范围: TS000~TS999" ),
 				new DeviceAddressExample( "CC0",            "计数器当前值",         false, true, "范围: CC000~CC999" ),

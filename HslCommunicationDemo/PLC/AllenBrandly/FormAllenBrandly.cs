@@ -22,6 +22,7 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			allenBradleyNet = new AllenBradleyNet( "192.168.0.110" );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 
@@ -53,12 +54,13 @@ namespace HslCommunicationDemo
 				Text = "AllenBrandly Read PLC Demo";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
+				checkBox1.Text = "Context Match";
 			}
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 
 		#region Connect And Close
@@ -73,6 +75,8 @@ namespace HslCommunicationDemo
 			}
 
 			allenBradleyNet.Slot = slot;
+			allenBradleyNet.ContextCheck = checkBox1.Checked;
+			allenBradleyNet.ReadArrayUseSegment = checkBox2.Checked;
 			allenBradleyNet.LogNet = LogNet;
 
 			if (!string.IsNullOrEmpty( textBox_router.Text ))
@@ -111,10 +115,18 @@ namespace HslCommunicationDemo
 
 					// 设置代码示例
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
-					if (string.IsNullOrEmpty( textBox_router.Text ))
-						codeExampleControl.SetCodeText( allenBradleyNet, nameof( allenBradleyNet.Slot ) );
-					else
-						codeExampleControl.SetCodeText( allenBradleyNet, nameof( allenBradleyNet.Slot ), nameof( allenBradleyNet.MessageRouter ) );
+					List<string> strings = new List<string>( );
+					strings.Add( nameof( allenBradleyNet.Slot ) );
+					if (allenBradleyNet.ContextCheck)
+						strings.Add( nameof( allenBradleyNet.ContextCheck ) );
+					if (allenBradleyNet.ReadArrayUseSegment == false)
+						strings.Add( nameof( allenBradleyNet.ReadArrayUseSegment ) );
+					if (!string.IsNullOrEmpty( textBox_router.Text ))
+					{
+						strings.Add( nameof( allenBradleyNet.MessageRouter ) );
+					}
+
+					codeExampleControl.SetCodeText( allenBradleyNet, strings.ToArray( ) );
 				}
 				else
 				{
@@ -130,11 +142,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			allenBradleyNet.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( allenBradleyNet );
+			allenBradleyNet?.ConnectClose( );
 		}
 
 
@@ -146,6 +158,7 @@ namespace HslCommunicationDemo
 			this.pipeSelectControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox15.Text );
 			element.SetAttributeValue( "Router", textBox_router.Text );
+			element.SetAttributeValue( "Context", checkBox1.Checked.ToString( ) );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -156,6 +169,7 @@ namespace HslCommunicationDemo
 			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
 			textBox15.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
 			textBox_router.Text = GetXmlValue( element, "Router", textBox_router.Text, m => m );
+			checkBox1.Checked = GetXmlValue( element, "Context", false, m => bool.Parse( m ) );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

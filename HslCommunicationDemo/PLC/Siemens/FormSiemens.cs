@@ -38,6 +38,7 @@ namespace HslCommunicationDemo
 
 			randomWriteControl = new SiemensS7WriteControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( randomWriteControl, false, Program.Language == 1 ? "离散写入" : "Random Write" );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 
@@ -85,12 +86,12 @@ namespace HslCommunicationDemo
 
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label_info.Text = "If it is not clear, do not set it";
+				label_info.Text = "not set if not clear, change slot if always failed";
 			}
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 		
 		#region Connect And Close
@@ -152,11 +153,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			siemensTcpNet.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( siemensTcpNet );
+			siemensTcpNet.ConnectClose( );
 		}
 		
 		#endregion

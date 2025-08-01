@@ -19,6 +19,7 @@ namespace HslCommunicationDemo
 		public FormAllenBrandlyBrowser( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private void RedisBrowser_Load( object sender, EventArgs e )
@@ -265,7 +266,7 @@ namespace HslCommunicationDemo
 			button1.Enabled = true;
 			button2.Enabled = false;
 
-			allenBradleyNet.ConnectClose( );
+			allenBradleyNet?.ConnectClose( );
 		}
 
 		private void ShowDataRoots( )
@@ -567,5 +568,9 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
+		private void FormAllenBrandlyBrowser_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
 	}
 }

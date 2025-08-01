@@ -306,6 +306,7 @@
 			this.Name = "FormSerialToTcp";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "串口转TCP调试工具";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSerialToTcp_FormClosing);
 			this.Load += new System.EventHandler(this.FormSerialDebug_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

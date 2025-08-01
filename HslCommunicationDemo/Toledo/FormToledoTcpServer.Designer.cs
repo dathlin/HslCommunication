@@ -30,6 +30,10 @@
         {
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.textBox_time = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.textBox_pipe = new System.Windows.Forms.TextBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.button3 = new System.Windows.Forms.Button();
 			this.textBox4 = new System.Windows.Forms.TextBox();
@@ -57,10 +61,6 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.textBox_pipe = new System.Windows.Forms.TextBox();
-			this.textBox_time = new System.Windows.Forms.TextBox();
-			this.label10 = new System.Windows.Forms.Label();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.borderPanel2.SuspendLayout();
@@ -109,6 +109,40 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(997, 566);
 			this.panel2.TabIndex = 19;
+			// 
+			// textBox_time
+			// 
+			this.textBox_time.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_time.Location = new System.Drawing.Point(406, 39);
+			this.textBox_time.Name = "textBox_time";
+			this.textBox_time.Size = new System.Drawing.Size(354, 23);
+			this.textBox_time.TabIndex = 52;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(352, 42);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(39, 17);
+			this.label10.TabIndex = 51;
+			this.label10.Text = "Time:";
+			// 
+			// textBox_pipe
+			// 
+			this.textBox_pipe.Location = new System.Drawing.Point(62, 39);
+			this.textBox_pipe.Name = "textBox_pipe";
+			this.textBox_pipe.Size = new System.Drawing.Size(269, 23);
+			this.textBox_pipe.TabIndex = 50;
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(8, 42);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(36, 17);
+			this.label9.TabIndex = 49;
+			this.label9.Text = "Pipe:";
 			// 
 			// label8
 			// 
@@ -381,40 +415,6 @@
 			this.label3.TabIndex = 2;
 			this.label3.Text = "端口：";
 			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(8, 42);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(36, 17);
-			this.label9.TabIndex = 49;
-			this.label9.Text = "Pipe:";
-			// 
-			// textBox_pipe
-			// 
-			this.textBox_pipe.Location = new System.Drawing.Point(62, 39);
-			this.textBox_pipe.Name = "textBox_pipe";
-			this.textBox_pipe.Size = new System.Drawing.Size(269, 23);
-			this.textBox_pipe.TabIndex = 50;
-			// 
-			// textBox_time
-			// 
-			this.textBox_time.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_time.Location = new System.Drawing.Point(406, 39);
-			this.textBox_time.Name = "textBox_time";
-			this.textBox_time.Size = new System.Drawing.Size(354, 23);
-			this.textBox_time.TabIndex = 52;
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(352, 42);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(39, 17);
-			this.label10.TabIndex = 51;
-			this.label10.Text = "Time:";
-			// 
 			// FormToledoTcpServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -428,6 +428,7 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormToledoTcpServer";
 			this.Text = "托利多网口调试工具";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormToledoTcpServer_FormClosing);
 			this.Load += new System.EventHandler(this.FormToledoTcpServer_Load);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();

@@ -30,6 +30,7 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 
 			connectHandShake = new List<byte[]>( );
+			this.asyncCallback_ReceiveCallBack = new AsyncCallback( ReceiveCallBack );
 		}
 
 		private void FormTcpDebug_Load( object sender, EventArgs e )
@@ -79,6 +80,11 @@ namespace HslCommunicationDemo
 
 		#region Start Close
 
+		private void FormTcpDebug_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
+
 		private void button1_Click( object sender, EventArgs e )
 		{
 			// 连接服务器
@@ -109,7 +115,7 @@ namespace HslCommunicationDemo
 						socketCore.Bind( new IPEndPoint( IPAddress.Any, localPort.Content ) );
 					}
 					connectSuccess = false;
-					// 以下代码是5秒的超时
+					// 以下代码是5秒的超时一个简单判断
 					new Thread( ( ) =>
 					{
 						Thread.Sleep( 5000 );
@@ -134,7 +140,7 @@ namespace HslCommunicationDemo
 						}
 					}
 
-					socketDebugSession.WorkSocket.BeginReceive( buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), socketCore );
+					socketDebugSession.WorkSocket.BeginReceive( buffer, 0, buffer.Length, SocketFlags.None, this.asyncCallback_ReceiveCallBack, socketCore );
 				}
 				else
 				{
@@ -265,7 +271,7 @@ namespace HslCommunicationDemo
 				byte[] data = new byte[length];
 				if (length > 0) Array.Copy( buffer, 0, data, 0, length );
 
-				socketDebugSession.WorkSocket.BeginReceive( buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback( ReceiveCallBack ), socketDebugSession.WorkSocket );
+				socketDebugSession.WorkSocket.BeginReceive( buffer, 0, buffer.Length, SocketFlags.None, this.asyncCallback_ReceiveCallBack, socketDebugSession.WorkSocket );
 
 				if (length == 0)
 				{
@@ -627,6 +633,7 @@ namespace HslCommunicationDemo
 		private System.Threading.Thread threadReceive;
 		private bool IsStarted = false;
 		private bool isBinary = true;
+		private AsyncCallback asyncCallback_ReceiveCallBack = null;
 
 		#endregion
 

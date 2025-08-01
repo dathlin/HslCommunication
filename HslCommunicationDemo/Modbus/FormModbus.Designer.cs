@@ -29,6 +29,9 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_station_check = new System.Windows.Forms.CheckBox();
+			this.textBox_batch_length = new System.Windows.Forms.TextBox();
+			this.label_batch_length = new System.Windows.Forms.Label();
 			this.textBox_BroadcastStation = new System.Windows.Forms.TextBox();
 			this.label_BroadcastStation = new System.Windows.Forms.Label();
 			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
@@ -43,8 +46,6 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.textBox_batch_length = new System.Windows.Forms.TextBox();
-			this.label_batch_length = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -54,6 +55,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_station_check);
 			this.panel1.Controls.Add(this.textBox_batch_length);
 			this.panel1.Controls.Add(this.label_batch_length);
 			this.panel1.Controls.Add(this.textBox_BroadcastStation);
@@ -73,9 +75,37 @@
 			this.panel1.Size = new System.Drawing.Size(990, 62);
 			this.panel1.TabIndex = 0;
 			// 
+			// checkBox_station_check
+			// 
+			this.checkBox_station_check.AutoSize = true;
+			this.checkBox_station_check.Checked = true;
+			this.checkBox_station_check.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_station_check.Location = new System.Drawing.Point(752, 36);
+			this.checkBox_station_check.Name = "checkBox_station_check";
+			this.checkBox_station_check.Size = new System.Drawing.Size(106, 21);
+			this.checkBox_station_check.TabIndex = 38;
+			this.checkBox_station_check.Text = "Station Check";
+			this.checkBox_station_check.UseVisualStyleBackColor = true;
+			// 
+			// textBox_batch_length
+			// 
+			this.textBox_batch_length.Location = new System.Drawing.Point(944, 34);
+			this.textBox_batch_length.Name = "textBox_batch_length";
+			this.textBox_batch_length.Size = new System.Drawing.Size(37, 23);
+			this.textBox_batch_length.TabIndex = 37;
+			// 
+			// label_batch_length
+			// 
+			this.label_batch_length.AutoSize = true;
+			this.label_batch_length.Location = new System.Drawing.Point(865, 37);
+			this.label_batch_length.Name = "label_batch_length";
+			this.label_batch_length.Size = new System.Drawing.Size(71, 17);
+			this.label_batch_length.TabIndex = 36;
+			this.label_batch_length.Text = "字分批长度:";
+			// 
 			// textBox_BroadcastStation
 			// 
-			this.textBox_BroadcastStation.Location = new System.Drawing.Point(768, 34);
+			this.textBox_BroadcastStation.Location = new System.Drawing.Point(703, 34);
 			this.textBox_BroadcastStation.Name = "textBox_BroadcastStation";
 			this.textBox_BroadcastStation.Size = new System.Drawing.Size(39, 23);
 			this.textBox_BroadcastStation.TabIndex = 35;
@@ -83,7 +113,7 @@
 			// label_BroadcastStation
 			// 
 			this.label_BroadcastStation.AutoSize = true;
-			this.label_BroadcastStation.Location = new System.Drawing.Point(691, 37);
+			this.label_BroadcastStation.Location = new System.Drawing.Point(626, 37);
 			this.label_BroadcastStation.Name = "label_BroadcastStation";
 			this.label_BroadcastStation.Size = new System.Drawing.Size(59, 17);
 			this.label_BroadcastStation.TabIndex = 34;
@@ -135,9 +165,9 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox1.Location = new System.Drawing.Point(561, 32);
+			this.comboBox1.Location = new System.Drawing.Point(520, 32);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(111, 25);
+			this.comboBox1.Size = new System.Drawing.Size(93, 25);
 			this.comboBox1.TabIndex = 26;
 			// 
 			// checkBox1
@@ -145,7 +175,7 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(312, 36);
+			this.checkBox1.Location = new System.Drawing.Point(283, 36);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(106, 21);
 			this.checkBox1.TabIndex = 9;
@@ -154,7 +184,7 @@
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(509, 33);
+			this.textBox15.Location = new System.Drawing.Point(468, 33);
 			this.textBox15.Name = "textBox15";
 			this.textBox15.Size = new System.Drawing.Size(39, 23);
 			this.textBox15.TabIndex = 7;
@@ -163,7 +193,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(455, 36);
+			this.label21.Location = new System.Drawing.Point(414, 36);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(44, 17);
 			this.label21.TabIndex = 6;
@@ -183,7 +213,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(166, 36);
+			this.checkBox3.Location = new System.Drawing.Point(152, 36);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 25;
@@ -228,22 +258,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// textBox_batch_length
-			// 
-			this.textBox_batch_length.Location = new System.Drawing.Point(901, 34);
-			this.textBox_batch_length.Name = "textBox_batch_length";
-			this.textBox_batch_length.Size = new System.Drawing.Size(37, 23);
-			this.textBox_batch_length.TabIndex = 37;
-			// 
-			// label_batch_length
-			// 
-			this.label_batch_length.AutoSize = true;
-			this.label_batch_length.Location = new System.Drawing.Point(820, 37);
-			this.label_batch_length.Name = "label_batch_length";
-			this.label_batch_length.Size = new System.Drawing.Size(71, 17);
-			this.label_batch_length.TabIndex = 36;
-			this.label_batch_length.Text = "字分批长度:";
-			// 
 			// FormModbus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -286,5 +300,6 @@
         private System.Windows.Forms.Label label_BroadcastStation;
 		private System.Windows.Forms.TextBox textBox_batch_length;
 		private System.Windows.Forms.Label label_batch_length;
+		private System.Windows.Forms.CheckBox checkBox_station_check;
 	}
 }

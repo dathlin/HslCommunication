@@ -283,7 +283,7 @@
 			this.Name = "FormModbusRtu";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Modbus Rtu访问Demo";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormModbusRtu_FormClosing);
 			this.Load += new System.EventHandler(this.FormSiemens_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

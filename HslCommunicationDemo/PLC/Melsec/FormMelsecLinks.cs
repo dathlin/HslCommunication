@@ -23,6 +23,7 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			melsecSerial = new MelsecFxLinks( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private MelsecFxLinks melsecSerial = null;
@@ -71,7 +72,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 		
 
@@ -127,11 +128,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			melsecSerial.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( melsecSerial );
+			melsecSerial?.Close( );
 		}
 
 		#endregion

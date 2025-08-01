@@ -18,6 +18,7 @@ namespace HslCommunicationDemo
 		public FormKeyenceDLEN1( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 
@@ -55,7 +56,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 
 		#region Connect And Close
@@ -94,10 +95,10 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private async void button2_Click( object sender, EventArgs e )
+		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			await keyence.ConnectCloseAsync( );
+			keyence?.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;

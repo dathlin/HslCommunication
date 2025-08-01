@@ -28,13 +28,17 @@ namespace HslCommunicationDemo.Light
 
 		private ShineInLightSourceController lightSourceController;
 
+		private void FormShineInLight_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
 		private void button2_Click( object sender, EventArgs e )
 		{
+			this.pipeSelectControl1.ExtraCloseAction( lightSourceController );
 			lightSourceController?.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
-			this.pipeSelectControl1.ExtraCloseAction( lightSourceController );
 		}
 
 		private void button1_Click( object sender, EventArgs e )
@@ -194,5 +198,6 @@ namespace HslCommunicationDemo.Light
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

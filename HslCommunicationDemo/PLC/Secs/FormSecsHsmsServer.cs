@@ -269,6 +269,10 @@ namespace HslCommunicationDemo.PLC.Secs
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
 
+		private void FormSecsHsmsServer_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+		}
 		private void button1_Click( object sender, EventArgs e )
 		{
 			try

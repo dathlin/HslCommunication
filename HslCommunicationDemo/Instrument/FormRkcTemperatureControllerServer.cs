@@ -22,6 +22,7 @@ namespace HslCommunicationDemo
 		public FormRkcTemperatureControllerServer( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private void FormDLT645Server_Load( object sender, EventArgs e )
@@ -48,7 +49,7 @@ namespace HslCommunicationDemo
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			rkcServer?.ServerClose( );
+			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start

@@ -496,7 +496,6 @@ namespace HslCommunicationDemo.DemoControl
 				//};
 				dtuServer.ServerStart( int.Parse( textBox_dtu_port.Text ) );
 
-
 				linkLabel_dtu_state.Text = "Wait Connect...";
 				linkLabel_dtu_state.LinkColor = Color.DodgerBlue;
 

@@ -24,12 +24,14 @@ namespace HslCommunicationDemo
 		public FormModbusRtu( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private ModbusRtu busRtuClient = null;
 		private ModbusControl control;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
+		private StationSearchControl stationSearchControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -44,9 +46,14 @@ namespace HslCommunicationDemo
 			addressExampleControl.SetAddressExample( Helper.GetModbusAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
+			stationSearchControl = new StationSearchControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( stationSearchControl, false, StationSearchControl.GetTitle( ) );
+
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteDevice1.SetEnable( false );
+
+
 		}
 
 
@@ -90,9 +97,9 @@ namespace HslCommunicationDemo
 		}
 
 
-		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
+		private void FormModbusRtu_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 		
 
@@ -141,6 +148,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busRtuClient.ReadFromCoreServer( SoftCRC16.CRC16( m ), true, false ), "No CRC", "with no crc16, example: 01 03 00 00 00 01" );
 
 					control.SetDevice( busRtuClient, "100" );
+					stationSearchControl.SetModbus( busRtuClient );
 
 					// 设置示例代码
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
@@ -172,11 +180,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			busRtuClient.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( busRtuClient );
+			busRtuClient.Close( );
 		}
 		
 		#endregion

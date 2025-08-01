@@ -25,6 +25,7 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 
 			checkBox_station_check.CheckedChanged += CheckBox_station_check_CheckedChanged;
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 
@@ -32,6 +33,7 @@ namespace HslCommunicationDemo
 		private ModbusControl control;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
+		private StationSearchControl stationSearchControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -47,6 +49,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetModbusAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			stationSearchControl = new StationSearchControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( stationSearchControl, false, StationSearchControl.GetTitle( ) );
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
@@ -64,8 +69,8 @@ namespace HslCommunicationDemo
 				checkBox3.Text = "string reverse";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-                label_BroadcastStation.Text = "BroadcastStat:";
-            }
+				label_BroadcastStation.Text = "BroadcastStat:";
+			}
 		}
 
 		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
@@ -102,7 +107,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( button2, EventArgs.Empty );
 		}
 		
 
@@ -150,6 +155,7 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busRtuClient.ReadFromCoreServer( SoftCRC16.CRC16( m ), true, false ), "No CRC", "with no crc16, example: 01 03 00 00 00 01" );
 
 					control.SetDevice( busRtuClient, "100" );
+					stationSearchControl.SetModbus( busRtuClient );
 
 					List<string> props = new List<string>( ) { nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
 						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.StationCheckMacth ), nameof( busRtuClient.BroadcastStation ) };
@@ -172,11 +178,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			busRtuClient.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( busRtuClient );
+			busRtuClient?.ConnectClose( );
 		}
 		
 		#endregion

@@ -31,12 +31,12 @@ namespace HslCommunicationDemo
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -54,6 +54,21 @@ namespace HslCommunicationDemo
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 39);
 			this.panel1.TabIndex = 0;
+			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(7, 2);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 6;
+			this.pipeSelectControl1.TcpPortText = "6000";
+			this.pipeSelectControl1.UdpPortText = "6000";
 			// 
 			// button2
 			// 
@@ -113,21 +128,6 @@ namespace HslCommunicationDemo
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// pipeSelectControl1
-			// 
-			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.pipeSelectControl1.Location = new System.Drawing.Point(7, 2);
-			this.pipeSelectControl1.Name = "pipeSelectControl1";
-			this.pipeSelectControl1.SerialBaudRate = "9600";
-			this.pipeSelectControl1.SerialDataBits = "8";
-			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
-			this.pipeSelectControl1.SerialStopBits = "1";
-			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
-			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
-			this.pipeSelectControl1.TabIndex = 6;
-			this.pipeSelectControl1.TcpPortText = "6000";
-			this.pipeSelectControl1.UdpPortText = "6000";
 			// 
 			// FormToyoPuc
 			// 

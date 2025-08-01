@@ -3,6 +3,9 @@ using HslCommunication.Core;
 using HslCommunicationDemo.DemoControl;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -320,6 +323,58 @@ namespace HslCommunicationDemo
 			}
 		}
 
+
+		/// <summary>
+		/// 转换Image为Icon，当image为null时是否返回null。
+		/// </summary>
+		/// <param name="image">要转换为图标的Image对象</param>
+		/// <exception cref="ArgumentNullException" />
+		public static Icon ConvertToIcon( Image image )
+		{
+			if (image == null) return null;
+			using (MemoryStream msImg = new MemoryStream( ), msIco = new MemoryStream( ))
+			{
+				image.Save( msImg, ImageFormat.Png );
+
+				using (var bin = new BinaryWriter( msIco ))
+				{
+					//写图标头部
+					bin.Write( (short)0 );           //0-1保留
+					bin.Write( (short)1 );           //2-3文件类型。1=图标, 2=光标
+					bin.Write( (short)1 );           //4-5图像数量（图标可以包含多个图像）
+
+					bin.Write( (byte)image.Width );  //6图标宽度
+					bin.Write( (byte)image.Height ); //7图标高度
+					bin.Write( (byte)0 );            //8颜色数（若像素位深>=8，填0。这是显然的，达到8bpp的颜色数最少是256，byte不够表示）
+					bin.Write( (byte)0 );            //9保留。必须为0
+					bin.Write( (short)0 );           //10-11调色板
+					bin.Write( (short)32 );          //12-13位深
+					bin.Write( (int)msImg.Length );  //14-17位图数据大小
+					bin.Write( 22 );                 //18-21位图数据起始字节
+
+					//写图像数据
+					bin.Write( msImg.ToArray( ) );
+
+					bin.Flush( );
+					bin.Seek( 0, SeekOrigin.Begin );
+					return new Icon( msIco );
+				}
+			}
+		}
+
+		public static bool PenelSizeFixed = false;
+
+		public static void SetPanelAnchor( Panel head, Panel content )
+		{
+			//head.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+			//content.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+
+			if (PenelSizeFixed)
+			{
+				head.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+				content.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+			}
+		}
 	}
 
 }

@@ -136,6 +136,18 @@ namespace HslCommunicationDemo.DemoControl
 			this.userControlReadWriteOp1.Close( );
 			this.dataTableControl1.Close( );
 			this.dataSimulateControl1.Close( );
+			if (timerSecond != null && timerSecond.Enabled)
+			{
+				timerSecond.Stop( );
+				timerSecond.Dispose( );
+				timerSecond = null;
+			}
+			if (timer_save_file != null && timer_save_file.Enabled)
+			{
+				timer_save_file.Stop( );
+				timer_save_file.Dispose( );
+				timer_save_file = null;
+			}
 		}
 
 		DeviceServer deviceServer;
@@ -167,6 +179,9 @@ namespace HslCommunicationDemo.DemoControl
 				button1.Text = "Connect Dtu Server";
 				button9.Text = "Save Data to file";
 				button8.Text = "Load Data from file";
+
+				label4.Text = "Interval(sec):";
+				checkBox2.Text = "Save Cycle?";
 			}
 		}
 
@@ -186,7 +201,7 @@ namespace HslCommunicationDemo.DemoControl
 								deviceServer.LoadDataPool( ofd.FileName );
 								DemoUtils.ShowMessage( "Load data finish" );
 
-								textBox_others_code.Text = $"server.LoadDataPool( \"{ofd.FileName}\" );";
+								textBox_others_code.Text = $"server.LoadDataPool( @\"{ofd.FileName}\" );";
 							}
 							catch (Exception ex)
 							{
@@ -217,13 +232,72 @@ namespace HslCommunicationDemo.DemoControl
 							deviceServer.SaveDataPool( sfd.FileName );
 							DemoUtils.ShowMessage( "Save file finish!" );
 
-							textBox_others_code.Text = $"server.SaveDataPool( \"{sfd.FileName}\" );";
+							textBox_others_code.Text = $"server.SaveDataPool( @\"{sfd.FileName}\" );";
 						}
 						catch (Exception ex)
 						{
 							DemoUtils.ShowMessage( "Save failed: " + ex.Message );
 						}
 					}
+				}
+			}
+		}
+
+		private System.Windows.Forms.Timer timer_save_file;
+		private string timer_save_file_path = string.Empty;
+
+		private void checkBox2_CheckedChanged( object sender, EventArgs e )
+		{
+			if (checkBox2.Checked)
+			{
+				int timeInterval = Convert.ToInt32( textBox2.Text );
+				using (SaveFileDialog sfd = new SaveFileDialog( ))
+				{
+					sfd.FileName = "123.txt";
+					if (sfd.ShowDialog( ) == DialogResult.OK)
+					{
+						timer_save_file_path = sfd.FileName;
+						if (timer_save_file != null)
+						{
+							timer_save_file.Stop( );
+						}
+						timer_save_file = new System.Windows.Forms.Timer( );
+						timer_save_file.Interval = timeInterval * 1000;
+						timer_save_file.Tick +=Timer_save_file_Tick;
+						timer_save_file.Start( );
+						Timer_save_file_Tick( timer_save_file, e );
+					}
+					else
+					{
+						checkBox2.Checked = false;
+					}
+				}
+			}
+			else
+			{
+				if (timer_save_file != null)
+				{
+					timer_save_file.Stop( );
+					timer_save_file.Dispose( );
+					timer_save_file = null;
+				}
+				timer_save_file_path = string.Empty;
+			}
+		}
+
+		private void Timer_save_file_Tick( object sender, EventArgs e )
+		{
+			if (!string.IsNullOrEmpty( timer_save_file_path ))
+			{
+				try
+				{
+					deviceServer.SaveDataPool( timer_save_file_path );
+					textBox_others_code.Text = DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " Save file: " + timer_save_file_path + "  Success!";
+				}
+				catch (Exception ex)
+				{
+					checkBox2.Checked = false;
+					DemoUtils.ShowMessage( "Save failed: " + ex.Message );
 				}
 			}
 		}
@@ -278,7 +352,7 @@ namespace HslCommunicationDemo.DemoControl
 					else
 					{
 						remoteConnectInfo = deviceServer.GetCommunicationServer( ).ConnectRemoteServer( form.IpAddress, form.Port, form.CustomizeDTU );
-						textBox_others_code.Text = $"RemoteConnectInfo remoteConnectInfo = {this.deviceName}.GetCommunicationServer( ).ConnectRemoteServer( \"{form.IpAddress}\", form.Port, \"{form.CustomizeDTU.ToHexString()}\".ToHexBytes( ) );" +
+						textBox_others_code.Text = $"RemoteConnectInfo remoteConnectInfo = {this.deviceName}.GetCommunicationServer( ).ConnectRemoteServer( \"{form.IpAddress}\", {form.Port}, \"{form.CustomizeDTU.ToHexString()}\".ToHexBytes( ) );" +
 							$"\r\n// 关闭连接的话 remoteConnectInfo.Close( );";
 
 					}

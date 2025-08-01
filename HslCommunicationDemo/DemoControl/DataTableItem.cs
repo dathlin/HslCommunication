@@ -1,6 +1,8 @@
 ﻿using HslCommunication.BasicFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +10,8 @@ using System.Xml.Linq;
 
 namespace HslCommunicationDemo.DemoControl
 {
-	internal class DataTableItem
+	[TypeConverter( typeof( ExpandableObjectConverter ) )]
+	public class DataTableItem
 	{
 		public string Name { get; set; }
 
@@ -110,6 +113,57 @@ namespace HslCommunicationDemo.DemoControl
 				return defaultValue;
 			}
 		}
+
+		/// <inheritdoc/>
+		public override string ToString( )
+		{
+			string name = string.IsNullOrEmpty( Name ) ? Address : Name;
+			return $"CurveLine[{name}]";
+		}
+	}
+
+	public class DataTableItemArray
+	{
+		[TypeConverter( typeof( ArrayConverter ) )]
+		public List<DataTableItem> Items { get; set; }
+	}
+
+	[TypeConverter( typeof( ExpandableObjectConverter ) )]
+	public class CurveLineStyle
+	{
+		[ReadOnly( true )]
+		[Description( "曲线的关键字" )]
+		public string Key { get; set; } = string.Empty;
+
+		[Browsable(true)]
+		[Description("线条的宽度，默认1.0f")]
+		[DefaultValue( 1.0f )]
+		public float Width { get; set; } = 1.0f;
+
+
+		[Browsable( true )]
+		[Description( "曲线的颜色" )]
+		public Color Color { get; set; } = Color.Red;
+
+		[Browsable( true )]
+		[Description( "曲线的样式" )]
+		public HslControls.CurveStyle Style { get; set; } = HslControls.CurveStyle.Section;
+
+		[Browsable( true )]
+		[Description( "曲线显示数据格式化的字符串信息，例如摄氏度，{0} ℃" )]
+		[DefaultValue( "{0}" )]
+		public string Format { get; set; }
+
+		public override string ToString( )
+		{
+			return $"LineStyle[{Key}]";
+		}
+	}
+
+	public class CurveLineStyleArray
+	{
+		[TypeConverter( typeof( ArrayConverter ) )]
+		public List<CurveLineStyle> Items { get; set; } = new List<CurveLineStyle>( );
 	}
 
 	public enum StringEncoding

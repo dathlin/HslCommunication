@@ -29,6 +29,10 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.label4 = new System.Windows.Forms.Label();
+			this.checkBox3 = new System.Windows.Forms.CheckBox();
+			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -39,13 +43,9 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.label4 = new System.Windows.Forms.Label();
-			this.checkBox3 = new System.Windows.Forms.CheckBox();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.panel1.SuspendLayout();
-			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
+			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -67,10 +67,53 @@
 			this.panel1.Size = new System.Drawing.Size(997, 86);
 			this.panel1.TabIndex = 0;
 			// 
+			// panel3
+			// 
+			this.panel3.Controls.Add(this.label4);
+			this.panel3.Controls.Add(this.checkBox3);
+			this.panel3.Controls.Add(this.comboBox2);
+			this.panel3.Location = new System.Drawing.Point(253, -1);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(163, 86);
+			this.panel3.TabIndex = 33;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(3, 9);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(137, 17);
+			this.label4.TabIndex = 31;
+			this.label4.Text = "ByteTransform Setting";
+			// 
+			// checkBox3
+			// 
+			this.checkBox3.AutoSize = true;
+			this.checkBox3.Location = new System.Drawing.Point(3, 61);
+			this.checkBox3.Name = "checkBox3";
+			this.checkBox3.Size = new System.Drawing.Size(87, 21);
+			this.checkBox3.TabIndex = 29;
+			this.checkBox3.Text = "字符串颠倒";
+			this.checkBox3.UseVisualStyleBackColor = true;
+			// 
+			// comboBox2
+			// 
+			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox2.FormattingEnabled = true;
+			this.comboBox2.Items.AddRange(new object[] {
+            "ABCD",
+            "BADC",
+            "CDAB",
+            "DCBA"});
+			this.comboBox2.Location = new System.Drawing.Point(3, 32);
+			this.comboBox2.Name = "comboBox2";
+			this.comboBox2.Size = new System.Drawing.Size(128, 25);
+			this.comboBox2.TabIndex = 30;
+			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(442, 43);
+			this.label2.Location = new System.Drawing.Point(433, 43);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(368, 34);
 			this.label2.TabIndex = 32;
@@ -79,7 +122,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(590, 5);
+			this.button2.Location = new System.Drawing.Point(533, 5);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -89,7 +132,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(493, 5);
+			this.button1.Location = new System.Drawing.Point(436, 5);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -168,49 +211,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// panel3
-			// 
-			this.panel3.Controls.Add(this.label4);
-			this.panel3.Controls.Add(this.checkBox3);
-			this.panel3.Controls.Add(this.comboBox2);
-			this.panel3.Location = new System.Drawing.Point(253, -1);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(163, 86);
-			this.panel3.TabIndex = 33;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(3, 9);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(137, 17);
-			this.label4.TabIndex = 31;
-			this.label4.Text = "ByteTransform Setting";
-			// 
-			// checkBox3
-			// 
-			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(3, 61);
-			this.checkBox3.Name = "checkBox3";
-			this.checkBox3.Size = new System.Drawing.Size(87, 21);
-			this.checkBox3.TabIndex = 29;
-			this.checkBox3.Text = "字符串颠倒";
-			this.checkBox3.UseVisualStyleBackColor = true;
-			// 
-			// comboBox2
-			// 
-			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Items.AddRange(new object[] {
-            "ABCD",
-            "BADC",
-            "CDAB",
-            "DCBA"});
-			this.comboBox2.Location = new System.Drawing.Point(3, 32);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(128, 25);
-			this.comboBox2.TabIndex = 30;
-			// 
 			// FormFreedomUdpNet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -229,9 +229,9 @@
 			this.Load += new System.EventHandler(this.FormSiemens_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.panel2.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
+			this.panel2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }

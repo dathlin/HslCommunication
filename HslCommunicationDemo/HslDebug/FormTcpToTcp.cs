@@ -148,6 +148,10 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void FormTcpToTcp_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
 
 		public override void SaveXmlParameter( XElement element )
 		{

@@ -247,6 +247,7 @@
 			this.Name = "FormEfort";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "埃夫特机器人(新版，报文对齐)";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEfort_FormClosing);
 			this.Load += new System.EventHandler(this.FormEfort_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

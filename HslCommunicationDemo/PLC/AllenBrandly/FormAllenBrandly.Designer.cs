@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.textBox_router = new System.Windows.Forms.TextBox();
@@ -39,7 +41,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -49,6 +51,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox2);
+			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.textBox15);
 			this.panel1.Controls.Add(this.label8);
@@ -62,6 +66,31 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(993, 65);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(590, 38);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(123, 21);
+			this.checkBox1.TabIndex = 16;
+			this.checkBox1.Text = "Context 信息匹配";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(4, 4);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 15;
+			this.pipeSelectControl1.TcpPortText = "44818";
+			this.pipeSelectControl1.UdpPortText = "44818";
 			// 
 			// textBox15
 			// 
@@ -165,20 +194,17 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// pipeSelectControl1
+			// checkBox2
 			// 
-			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.pipeSelectControl1.Location = new System.Drawing.Point(4, 4);
-			this.pipeSelectControl1.Name = "pipeSelectControl1";
-			this.pipeSelectControl1.SerialBaudRate = "9600";
-			this.pipeSelectControl1.SerialDataBits = "8";
-			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
-			this.pipeSelectControl1.SerialStopBits = "1";
-			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
-			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
-			this.pipeSelectControl1.TabIndex = 15;
-			this.pipeSelectControl1.TcpPortText = "44818";
-			this.pipeSelectControl1.UdpPortText = "44818";
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Checked = true;
+			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox2.Location = new System.Drawing.Point(740, 38);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(150, 21);
+			this.checkBox2.TabIndex = 17;
+			this.checkBox2.Text = "数组使用0x52片段读取";
+			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// FormAllenBrandly
 			// 
@@ -217,5 +243,7 @@
 		private System.Windows.Forms.Label label9;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private DemoControl.PipeSelectControl pipeSelectControl1;
+		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.CheckBox checkBox2;
 	}
 }

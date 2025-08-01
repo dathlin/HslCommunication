@@ -45,8 +45,12 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.checkBox_ack_result = new System.Windows.Forms.CheckBox();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.radioButton_input_hex = new System.Windows.Forms.RadioButton();
+			this.radioButton_input_ascii = new System.Windows.Forms.RadioButton();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -90,7 +94,7 @@
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(72, 23);
 			this.textBox2.TabIndex = 4;
-			this.textBox2.Text = "10000";
+			this.textBox2.Text = "10010";
 			// 
 			// textBox3
 			// 
@@ -162,6 +166,7 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.panel3);
 			this.panel2.Controls.Add(this.textBox1);
 			this.panel2.Controls.Add(this.label5);
 			this.panel2.Location = new System.Drawing.Point(7, 75);
@@ -197,6 +202,36 @@
 			this.checkBox_ack_result.Text = "要求返回结果";
 			this.checkBox_ack_result.UseVisualStyleBackColor = true;
 			// 
+			// panel3
+			// 
+			this.panel3.Controls.Add(this.radioButton_input_ascii);
+			this.panel3.Controls.Add(this.radioButton_input_hex);
+			this.panel3.Location = new System.Drawing.Point(3, 31);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(74, 68);
+			this.panel3.TabIndex = 6;
+			// 
+			// radioButton_input_hex
+			// 
+			this.radioButton_input_hex.AutoSize = true;
+			this.radioButton_input_hex.Checked = true;
+			this.radioButton_input_hex.Location = new System.Drawing.Point(9, 21);
+			this.radioButton_input_hex.Name = "radioButton_input_hex";
+			this.radioButton_input_hex.Size = new System.Drawing.Size(50, 21);
+			this.radioButton_input_hex.TabIndex = 0;
+			this.radioButton_input_hex.Text = "HEX";
+			this.radioButton_input_hex.UseVisualStyleBackColor = true;
+			// 
+			// radioButton_input_ascii
+			// 
+			this.radioButton_input_ascii.AutoSize = true;
+			this.radioButton_input_ascii.Location = new System.Drawing.Point(9, 44);
+			this.radioButton_input_ascii.Name = "radioButton_input_ascii";
+			this.radioButton_input_ascii.Size = new System.Drawing.Size(57, 21);
+			this.radioButton_input_ascii.TabIndex = 1;
+			this.radioButton_input_ascii.Text = "ASCII";
+			this.radioButton_input_ascii.UseVisualStyleBackColor = true;
+			// 
 			// FormInputAlien
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -228,6 +263,8 @@
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -251,5 +288,8 @@
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.CheckBox checkBox_ack_result;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.RadioButton radioButton_input_ascii;
+		private System.Windows.Forms.RadioButton radioButton_input_hex;
 	}
 }

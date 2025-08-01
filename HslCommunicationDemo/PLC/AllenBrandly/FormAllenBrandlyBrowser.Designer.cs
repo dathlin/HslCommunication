@@ -406,6 +406,7 @@
 			this.Name = "FormAllenBrandlyBrowser";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Allen Brandly Browser";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAllenBrandlyBrowser_FormClosing);
 			this.Load += new System.EventHandler(this.RedisBrowser_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

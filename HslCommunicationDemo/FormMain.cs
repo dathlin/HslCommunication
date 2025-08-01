@@ -57,6 +57,19 @@ namespace HslCommunicationDemo
 			this.TopMost = topMost;
 		}
 
+		private void testPanelSizeFixedToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (DemoUtils.PenelSizeFixed)
+			{
+				testPanelSizeFixedToolStripMenuItem.Image = null;
+			}
+			else
+			{
+				testPanelSizeFixedToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			}
+			DemoUtils.PenelSizeFixed = !DemoUtils.PenelSizeFixed;
+		}
+
 		#region Form Load Close Inni
 
 		private void FormLoad_Load( object sender, EventArgs e )
@@ -512,6 +525,11 @@ namespace HslCommunicationDemo
 			panelLeft?.RenderTCPDebug( );
 		}
 
+		private void pingTestToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			panelLeft?.RenderPingTestDebug( );
+		}
+
 		private void toolStripMenuItem_tcpUdpServer_Click( object sender, EventArgs e )
 		{
 			panelLeft?.RenderTCPServerDebug( );
@@ -604,6 +622,7 @@ namespace HslCommunicationDemo
 				}
 			}
 		}
+
 	}
 
 	public class FormSiemensS1200 : FormSiemens

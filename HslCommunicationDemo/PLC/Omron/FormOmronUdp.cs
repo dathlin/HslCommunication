@@ -22,6 +22,7 @@ namespace HslCommunicationDemo
 		public FormOmronUdp( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 
@@ -71,7 +72,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 
 		#region Connect And Close
@@ -165,8 +166,8 @@ namespace HslCommunicationDemo
 			userControlReadWriteDevice1.SetEnable( false );
 			button1.Enabled = true;
 			button2.Enabled = false;
-			omronFinsUdp.CommunicationPipe?.CloseCommunication( );
 			this.pipeSelectControl1.ExtraCloseAction( omronFinsUdp );
+			omronFinsUdp?.CommunicationPipe?.CloseCommunication( );
 		}
 
 		#endregion

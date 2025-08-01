@@ -39,6 +39,10 @@ namespace HslCommunicationDemo.Robot
 			}
 		}
 
+		private void FormEstunTcp_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
 		private async void button1_Click( object sender, EventArgs e )
 		{
 			try
@@ -253,5 +257,6 @@ namespace HslCommunicationDemo.Robot
 		{
 
 		}
+
 	}
 }

@@ -39,6 +39,9 @@ namespace HslCommunicationDemo.DemoControl
 				label4.Text = "(6 chars)";
 				button1.Text = "Calculate DTU package";
 				checkBox1.Text = "Return the DTU result";
+
+				checkBox2.Text = "Length use ASCII";
+				label7.Text = "Format:";
 			}
 		}
 
@@ -67,7 +70,15 @@ namespace HslCommunicationDemo.DemoControl
 			buffer[0] = (byte)'H';
 			buffer[1] = (byte)'S';
 			buffer[2] = (byte)'L';
-			buffer[4] = 0x19;
+			if (checkBox2.Checked)
+			{
+				buffer[3] = 0x31;
+				buffer[4] = 0x39;
+			}
+			else
+			{
+				buffer[4] = 0x19;
+			}
 			Encoding.ASCII.GetBytes( textBox_id.Text ).CopyTo( buffer, 5 );
 			Encoding.ASCII.GetBytes( textBox_password.Text ).CopyTo( buffer, 16 );
 
@@ -104,7 +115,24 @@ namespace HslCommunicationDemo.DemoControl
 				buffer[28] = 0x01;
 			}
 
-			textBox5.Text = buffer.ToHexString( );
+			if (radioButton1.Checked)
+				textBox5.Text = buffer.ToHexString( );
+			else
+			{
+				buffer[3] = 0x31;
+				buffer[4] = 0x39;
+
+				for (int i = 22; i < 28; i++)
+				{
+					buffer[i] = 0x30;
+				}
+
+				if (buffer[28] == 0x00) buffer[28] = 0x30;
+				else buffer[28] = 0x31;
+
+				buffer[29] = 0x30;
+				textBox5.Text = Encoding.ASCII.GetString( buffer );
+			}
 		}
 	}
 }

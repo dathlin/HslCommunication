@@ -23,6 +23,7 @@ namespace HslCommunicationDemo
 		public FormIEC104( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 
 			radioButton1.CheckedChanged += RadioButton1_CheckedChanged;
 			radioButton2.CheckedChanged += RadioButton1_CheckedChanged;
@@ -96,7 +97,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 		
 
@@ -395,12 +396,12 @@ namespace HslCommunicationDemo
 
 		private void button2_Click( object sender, EventArgs e )
 		{
-			// 断开连接
-			iec104.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
+			// 断开连接
 			this.pipeSelectControl1.ExtraCloseAction( iec104 );
+			iec104.ConnectClose( );
 		}
 		
 		#endregion

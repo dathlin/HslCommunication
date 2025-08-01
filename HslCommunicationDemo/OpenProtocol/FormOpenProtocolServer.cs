@@ -56,7 +56,7 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				server.ServerClose( );
+				server?.ServerClose( );
 				button2.Enabled = false;
 				button1.Enabled = true;
 			}
@@ -83,7 +83,6 @@ namespace HslCommunicationDemo
 			} ) );
 		}
 
-		private OpenProtocolNet openProtocol = null;
 		private OpenProtocolServer server = null;
 		private CodeExampleControl codeExampleControl;
 
@@ -206,5 +205,9 @@ namespace HslCommunicationDemo
 
 		#endregion
 
+		private void FormOpenProtocolServer_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 如果没有关闭，则进行关闭操作
+		}
 	}
 }

@@ -25,6 +25,7 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 
 			panel_tcp_udp.Paint += Panel3_Paint;
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )

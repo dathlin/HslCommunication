@@ -80,7 +80,7 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				openProtocol.ConnectClose( );
+				openProtocol?.ConnectClose( );
 				button2.Enabled = false;
 				button1.Enabled = true;
 			}
@@ -505,6 +505,11 @@ namespace HslCommunicationDemo
 		}
 
 		#endregion
+
+		private void FormOpenProtocol_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
 	}
 
 	public class OpenMessage

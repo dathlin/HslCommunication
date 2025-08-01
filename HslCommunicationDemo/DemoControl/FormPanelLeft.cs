@@ -416,6 +416,7 @@ namespace HslCommunicationDemo.DemoControl
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]", 41, typeof( FormTcpServer ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial2Tcp [串口转网口]", 40, typeof( FormSerialToTcp ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp2Tcp [网口转网口]", 41, typeof( FormTcpToTcp ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "PingTest [网络测试]", 41, typeof( FormPingIpAddress ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Bytes Data [数据调试]", 42, typeof( FormByteTransfer ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Mail [邮件调试]", 15, typeof( FormMail ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Order Number [订单号调试]", 15, typeof( FormSeqCreate ) ) );
@@ -452,6 +453,7 @@ namespace HslCommunicationDemo.DemoControl
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645 Server" ) { Tag = typeof( FormDLT645Server ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645-1997" ) { Tag = typeof( FormDLT645With1997 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT645-1997 OverTcp" ) { Tag = typeof( FormDLT645With1997OverTcp ) } );
+			instrumentNode.Nodes.Add( new TreeNode( "DLT645-1997 Server" ) { Tag = typeof( FormDLT645With1997Server ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT698 [电力规约]" ) { Tag = typeof( FormDLT698 ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT698 OverTcp" ) { Tag = typeof( FormDLT698OverTcp ) } );
 			instrumentNode.Nodes.Add( new TreeNode( "DLT698 TcpNet" ) { Tag = typeof( FormDLT698TcpNet ) } );
@@ -616,9 +618,14 @@ namespace HslCommunicationDemo.DemoControl
 			RenderTreeNode( treeNodeDebug.Nodes[6] );
 		}
 
-		public void RenderByteTransformDebug( )
+		public void RenderPingTestDebug( )
 		{
 			RenderTreeNode( treeNodeDebug.Nodes[7] );
+		}
+
+		public void RenderByteTransformDebug( )
+		{
+			RenderTreeNode( treeNodeDebug.Nodes[8] );
 		}
 
 		public void RenderRegexDebug( )

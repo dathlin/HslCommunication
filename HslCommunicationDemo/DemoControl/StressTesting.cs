@@ -210,7 +210,20 @@ namespace HslCommunicationDemo.PLC.Common
 				label6.Text = "读写校验错误:";
 				button_test_start.Text = "开始";
 			}
+			else
+			{
+				label8.Text = "Warning: test when it is confirmed to be safe!!";
+			}
 			label_info.Visible = false;
+		}
+
+		private void StressTesting_Resize( object sender, EventArgs e )
+		{
+			if (this.Width > 100)
+			{
+				groupBox1.Size = new Size( this.Width - 413, groupBox_press.Size.Height );
+				hslProgressBar1.Width = groupBox1.Width - 110;
+			}
 		}
 	}
 }

@@ -25,6 +25,11 @@ namespace HslCommunicationDemo.Robot
 		private CodeExampleControl codeExampleControl;
 
 
+		private void FormABBWebApi_FormClosing( object sender, FormClosingEventArgs e )
+		{
+
+		}
+
 		private void Button1_Click( object sender, EventArgs e )
 		{
 			try

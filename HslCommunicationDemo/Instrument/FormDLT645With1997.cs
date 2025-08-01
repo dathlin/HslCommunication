@@ -22,6 +22,7 @@ namespace HslCommunicationDemo
 		public FormDLT645With1997( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private DLT645With1997 dLT645 = null;
@@ -55,12 +56,13 @@ namespace HslCommunicationDemo
 				label_op_code.Text = "Op Code";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
+				checkBox_dataId.Text = "Check DataId";
 			}
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 		
 
@@ -74,6 +76,7 @@ namespace HslCommunicationDemo
 			dLT645 = new DLT645With1997( textBox_station.Text );
 			dLT645.LogNet = LogNet;
 			dLT645.EnableCodeFE = checkBox_enable_Fe.Checked;
+			dLT645.CheckDataId = checkBox_dataId.Checked;
 
 			try
 			{
@@ -96,7 +99,7 @@ namespace HslCommunicationDemo
 
 					// 设置代码示例
 					this.userControlReadWriteDevice1.SetDeviceVariableName( "dlt" );
-					codeExampleControl.SetCodeText( "dlt", dLT645, nameof( dLT645.Station ), nameof( dLT645.EnableCodeFE ) );
+					codeExampleControl.SetCodeText( "dlt", dLT645, nameof( dLT645.Station ), nameof( dLT645.EnableCodeFE ), nameof(dLT645.CheckDataId ) );
 				}
 				else
 				{
@@ -113,11 +116,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			dLT645.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( dLT645 );
+			dLT645.Close( );
 		}
 		
 		#endregion

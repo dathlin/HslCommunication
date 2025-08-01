@@ -70,6 +70,10 @@ namespace HslCommunicationDemo.Robot
 
 		private ER7BC10 efortRobot;
 
+		private void FormEfort_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
 		protected virtual async void button1_Click( object sender, EventArgs e )
 		{
 			try
@@ -190,5 +194,6 @@ namespace HslCommunicationDemo.Robot
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

@@ -31,6 +31,7 @@
 			this.panel_main = new System.Windows.Forms.Panel();
 			this.debugControl1 = new HslCommunicationDemo.HslDebug.DebugControl();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox_buffer_length = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@
 			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.panel_main.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel_tcp_udp.SuspendLayout();
@@ -100,6 +100,17 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(998, 60);
 			this.panel1.TabIndex = 14;
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(740, 35);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(94, 21);
+			this.checkBox1.TabIndex = 25;
+			this.checkBox1.Text = "转远程DTU?";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
 			// 
 			// textBox_buffer_length
 			// 
@@ -263,17 +274,6 @@
 			this.userControlHead1.TabIndex = 21;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// checkBox1
-			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(740, 35);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(94, 21);
-			this.checkBox1.TabIndex = 25;
-			this.checkBox1.Text = "转远程DTU?";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-			// 
 			// FormTcpDebug
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -288,6 +288,7 @@
 			this.Name = "FormTcpDebug";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "TCP/IP调试助手";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTcpDebug_FormClosing);
 			this.Load += new System.EventHandler(this.FormTcpDebug_Load);
 			this.panel_main.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);

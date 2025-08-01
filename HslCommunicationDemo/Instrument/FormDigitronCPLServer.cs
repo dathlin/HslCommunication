@@ -23,6 +23,7 @@ namespace HslCommunicationDemo
 			digitronServer = new HslCommunication.Profinet.Yamatake.DigitronCPLServer( );                       // 实例化对象
 			digitronServer.OnDataReceived += BusTcpServer_OnDataReceived;
 			digitronServer.Station = 1;
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -38,7 +39,7 @@ namespace HslCommunicationDemo
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			digitronServer?.ServerClose( );
+			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		private HslCommunication.Profinet.Yamatake.DigitronCPLServer digitronServer;

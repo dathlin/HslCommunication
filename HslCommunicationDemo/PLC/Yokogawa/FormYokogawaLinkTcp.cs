@@ -22,6 +22,7 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			yokogawa = new YokogawaLinkTcp( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 			yokogawa.ConnectTimeOut = 2000;
 		}
 
@@ -60,7 +61,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 
 		#region Connect And Close
@@ -120,11 +121,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			yokogawa.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( yokogawa );
+			yokogawa?.ConnectClose( );
 		}
 		
 

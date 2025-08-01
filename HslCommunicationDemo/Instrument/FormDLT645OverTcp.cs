@@ -22,6 +22,7 @@ namespace HslCommunicationDemo
 		public FormDLT645OverTcp( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private DLT645OverTcp dLT645 = null;
@@ -56,12 +57,13 @@ namespace HslCommunicationDemo
 				button2.Text = "Disconnect";
 				label_password.Text = "Pwd:";
 				label_op_code.Text = "Op Code:";
+				checkBox_dataId.Text = "Check DataId";
 			}
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 		
 
@@ -75,6 +77,7 @@ namespace HslCommunicationDemo
 			dLT645 = new DLT645OverTcp( "127.0.0.1", 502,  textBox_station.Text, textBox_password.Text, textBox_op_code.Text );
 			dLT645.LogNet = LogNet;
 			dLT645.EnableCodeFE = checkBox_enable_Fe.Checked;
+			dLT645.CheckDataId = checkBox_dataId.Checked; // 检查数据标识位
 
 			try
 			{
@@ -98,8 +101,14 @@ namespace HslCommunicationDemo
 					control.SetDevice( dLT645, "00-00-00-00" );
 
 					// 设置代码示例
+					List<string> paras = new List<string>( );
+					paras.Add( nameof( dLT645.Station ) );
+					paras.Add( nameof( dLT645.EnableCodeFE ) );
+					paras.Add( nameof( dLT645.Password ) );
+					paras.Add( nameof( dLT645.OpCode ) );
+					if (!dLT645.CheckDataId) paras.Add( nameof( dLT645.CheckDataId ) );
 					this.userControlReadWriteDevice1.SetDeviceVariableName( "dlt" );
-					codeExampleControl.SetCodeText( "dlt", dLT645, nameof( dLT645.Station ), nameof( dLT645.EnableCodeFE ), nameof( dLT645.Password ), nameof( dLT645.OpCode ) );
+					codeExampleControl.SetCodeText( "dlt", dLT645, paras.ToArray( ) );
 				}
 				else
 				{
@@ -116,11 +125,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			dLT645.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( dLT645 );
+			dLT645.ConnectClose( );
 		}
 		
 		#endregion

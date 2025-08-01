@@ -21,6 +21,7 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			freedom = new FreedomUdpNet( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 
@@ -72,7 +73,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if ( button1.Enabled == false ) button2_Click( null, EventArgs.Empty );
 		}
 
 		#region Connect And Close
@@ -120,6 +121,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
+			freedom?.ConnectClose( );
 		}
 
 		#endregion

@@ -54,6 +54,12 @@ namespace HslCommunicationDemo.Toledo
 
 		private ToledoTcpServer toledoTcpServer;
 
+		private void FormToledoTcpServer_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+			if (button5.Enabled == false) button4_Click( null, EventArgs.Empty );
+		}
+
 		private void button1_Click( object sender, EventArgs e )
 		{
 			if(!int.TryParse(textBox2.Text, out int port ))
@@ -177,5 +183,6 @@ namespace HslCommunicationDemo.Toledo
 			button4.Enabled = false;
 			button5.Enabled = true;
 		}
+
 	}
 }

@@ -39,6 +39,8 @@ namespace HslCommunicationDemo.Light
 			this.label28 = new System.Windows.Forms.Label();
 			this.textBox12 = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.textBox_code2 = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.button4 = new System.Windows.Forms.Button();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.radioButton10 = new System.Windows.Forms.RadioButton();
@@ -91,8 +93,6 @@ namespace HslCommunicationDemo.Light
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox_code2 = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -238,6 +238,25 @@ namespace HslCommunicationDemo.Light
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Write";
+			// 
+			// textBox_code2
+			// 
+			this.textBox_code2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code2.Location = new System.Drawing.Point(52, 191);
+			this.textBox_code2.Name = "textBox_code2";
+			this.textBox_code2.ReadOnly = true;
+			this.textBox_code2.Size = new System.Drawing.Size(927, 23);
+			this.textBox_code2.TabIndex = 38;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(6, 194);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(32, 17);
+			this.label3.TabIndex = 37;
+			this.label3.Text = "代码";
 			// 
 			// button4
 			// 
@@ -738,25 +757,6 @@ namespace HslCommunicationDemo.Light
 			this.label2.TabIndex = 0;
 			this.label2.Text = "颜色";
 			// 
-			// textBox_code2
-			// 
-			this.textBox_code2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_code2.Location = new System.Drawing.Point(52, 191);
-			this.textBox_code2.Name = "textBox_code2";
-			this.textBox_code2.ReadOnly = true;
-			this.textBox_code2.Size = new System.Drawing.Size(927, 23);
-			this.textBox_code2.TabIndex = 38;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(6, 194);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(32, 17);
-			this.label3.TabIndex = 37;
-			this.label3.Text = "代码";
-			// 
 			// FormShineInLight
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -769,6 +769,7 @@ namespace HslCommunicationDemo.Light
 			this.Name = "FormShineInLight";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "FormShineInLight";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormShineInLight_FormClosing);
 			this.Load += new System.EventHandler(this.FormShineInLight_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

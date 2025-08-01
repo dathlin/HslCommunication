@@ -176,7 +176,7 @@ namespace HslCommunicationDemo.DemoControl
 							} ) );
 							return;
 						}
-
+						if (threadEnable == false) return;
 						try
 						{
 							Invoke( new Action( ( ) =>
@@ -346,6 +346,24 @@ namespace HslCommunicationDemo.DemoControl
 			return count;
 		}
 
+		private void label1_MouseDoubleClick( object sender, MouseEventArgs e )
+		{
+			if (e.X >= 200 && e.X <= 300)
+			{
+				Clipboard.SetText( "x%2==0? 10:0" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "表达式已复制到剪切板！" : "The expression has been copied to the clipboard" );
+			}
+			else if (e.X >= 370 && e.X <= 600)
+			{
+				Clipboard.SetText( "(short)(Math.Sin(2*Math.PI*x/100)*100 + 50)" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "表达式已复制到剪切板！" : "The expression has been copied to the clipboard" );
+			}
+			else if (e.X >= 647 && e.X <= 800)
+			{
+				Clipboard.SetText( "(short)r.Next(100,200)" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "表达式已复制到剪切板！" : "The expression has been copied to the clipboard" );
+			}
+		}
 	}
 
 	public class SimulateWrite

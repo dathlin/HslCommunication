@@ -331,7 +331,6 @@ namespace HslCommunicationDemo
 			button1.Enabled = true;
 			button2.Enabled = false;
 			panel2.Enabled  = false;
-
 			mqttClient.ConnectClose( );
 		}
 
@@ -409,38 +408,37 @@ namespace HslCommunicationDemo
 		}
 
 
-
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox_ip.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlTimeout, textBox11.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlKeepLive, textBox6.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCompanyID, textBox3.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlUserName, textBox9.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlPassword, textBox10.Text );
-			element.SetAttributeValue( "WillTopic", mqtt_will_topic );
-			element.SetAttributeValue( "WillMessage", mqtt_will_message );
-			element.SetAttributeValue( "certificate", textBox_certificate.Text );
-			element.SetAttributeValue( "sslSecure", checkBox_sslSecure.Checked );
-			element.SetAttributeValue( "rsa", checkBox_rsa.Checked );
-			element.SetAttributeValue( "SSLTLS", checkBox_SslTls.Checked );
+			element.SetAttributeValue( DemoDeviceList.    XmlIpAddress, textBox_ip.Text );
+			element.SetAttributeValue( DemoDeviceList.    XmlPort, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.    XmlTimeout, textBox11.Text );
+			element.SetAttributeValue( DemoDeviceList.    XmlKeepLive, textBox6.Text );
+			element.SetAttributeValue( DemoDeviceList.    XmlCompanyID, textBox3.Text );
+			element.SetAttributeValue( DemoDeviceList.    XmlUserName, textBox9.Text );
+			element.SetAttributeValue( DemoDeviceList.    XmlPassword, textBox10.Text );
+			element.SetAttributeValue( "WillTopic",       mqtt_will_topic );
+			element.SetAttributeValue( "WillMessage",     mqtt_will_message );
+			element.SetAttributeValue( "certificate",     textBox_certificate.Text );
+			element.SetAttributeValue( "sslSecure",       checkBox_sslSecure.Checked );
+			element.SetAttributeValue( "rsa",             checkBox_rsa.Checked );
+			element.SetAttributeValue( "SSLTLS",          checkBox_SslTls.Checked );
 			element.SetAttributeValue( "LongMessageHide", checkBox_long_message_hide.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_ip.Text   = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
-			textBox2.Text   = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox11.Text  = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
-			textBox6.Text   = element.Attribute( DemoDeviceList.XmlKeepLive ).Value;
-			textBox3.Text   = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;
-			textBox9.Text   = element.Attribute( DemoDeviceList.XmlUserName ).Value;
-			textBox10.Text  = element.Attribute( DemoDeviceList.XmlPassword ).Value;
-			mqtt_will_topic = element.Attribute( "WillTopic" ) == null ? string.Empty : element.Attribute( "WillTopic" ).Value;
-			mqtt_will_message = element.Attribute( "WillMessage" ) == null ? string.Empty : element.Attribute( "WillMessage" ).Value;
-			textBox_certificate.Text = element.Attribute( "certificate" ) == null ? string.Empty : element.Attribute( "certificate" ).Value;
+			textBox_ip.Text            = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
+			textBox2.Text              = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox11.Text             = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
+			textBox6.Text              = element.Attribute( DemoDeviceList.XmlKeepLive ).Value;
+			textBox3.Text              = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;
+			textBox9.Text              = element.Attribute( DemoDeviceList.XmlUserName ).Value;
+			textBox10.Text             = element.Attribute( DemoDeviceList.XmlPassword ).Value;
+			mqtt_will_topic            = element.Attribute( "WillTopic" ) == null ? string.Empty : element.Attribute( "WillTopic" ).Value;
+			mqtt_will_message          = element.Attribute( "WillMessage" ) == null ? string.Empty : element.Attribute( "WillMessage" ).Value;
+			textBox_certificate.Text   = element.Attribute( "certificate" ) == null ? string.Empty : element.Attribute( "certificate" ).Value;
 			checkBox_sslSecure.Checked = element.Attribute( "sslSecure" ) == null ? false : bool.Parse( element.Attribute( "sslSecure" ).Value );
 			checkBox_rsa.Checked = element.Attribute( "rsa" ) == null ? false : bool.Parse( element.Attribute( "rsa" ).Value );
 			checkBox_SslTls.Checked = GetXmlValue( element, "SSLTLS", false, bool.Parse );
@@ -490,6 +488,10 @@ namespace HslCommunicationDemo
 			textBox8.Text = code.ToString( ); 
 		}
 
+		private void FormMqttClient_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 断开连接
+		}
 	}
 
 

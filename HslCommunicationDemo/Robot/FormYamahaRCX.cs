@@ -27,6 +27,11 @@ namespace HslCommunicationDemo.Robot
 		private YamahaRCX yamahaRCX;
 		private CodeExampleControl codeExampleControl;
 
+		private void FormYamahaRCX_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
+
 		private async void Button1_Click( object sender, EventArgs e )
 		{
 			try

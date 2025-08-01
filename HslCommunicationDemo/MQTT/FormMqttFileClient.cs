@@ -799,7 +799,7 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			mqttSyncClient.ConnectClose( );
+			mqttSyncClient?.ConnectClose( );
 			button7.Enabled = true;
 			button1.Enabled = false;
 		}
@@ -828,5 +828,9 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private void FormMqttFileClient_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button7.Enabled == false) button1_Click( null, EventArgs.Empty );
+		}
 	}
 }

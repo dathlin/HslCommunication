@@ -9,8 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 
 namespace HslCommunicationDemo.PLC.Cimon
@@ -20,6 +18,7 @@ namespace HslCommunicationDemo.PLC.Cimon
 		public FormCimonHmiProtocol()
 		{
 			InitializeComponent();
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 
@@ -104,11 +103,11 @@ namespace HslCommunicationDemo.PLC.Cimon
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			cimon.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( cimon );
+			cimon?.ConnectClose( );
 		}
 
 		public override void SaveXmlParameter( XElement element )
@@ -132,6 +131,11 @@ namespace HslCommunicationDemo.PLC.Cimon
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
+		}
+
+		private void FormCimonHmiProtocol_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 	}
 }

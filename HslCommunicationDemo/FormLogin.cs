@@ -1,4 +1,6 @@
 ﻿using HslCommunication.MQTT;
+using HslCommunicationDemo.Properties;
+using HslRedisDesktop;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +18,8 @@ namespace HslCommunicationDemo
         public FormLogin( )
         {
             InitializeComponent( );
-        }
+            this.Icon = DemoUtils.ConvertToIcon( Resources.HslCommunication );
+		}
 
         private void FormLogin_Load( object sender, EventArgs e )
         {
@@ -39,15 +42,17 @@ namespace HslCommunicationDemo
                 button1.Text = "Login";
             }
 
+
         }
 
         private void button1_Click( object sender, EventArgs e )
         {
-            //mqttSyncClient = new MqttSyncClient( new MqttConnectionOptions( )
-            //{
-            //    IpAddress = "xxx.xxx.xxx.xxx",
-            //    Port = 1883,
-            //} );
+            mqttSyncClient = new MqttSyncClient( new MqttConnectionOptions( )
+            {
+                IpAddress = "xxx.xxx.xxx.xxx",
+                Port = 1883,
+                UseRSAProvider = true,
+			} );
 
 
 

@@ -61,6 +61,12 @@ namespace HslCommunicationDemo.DemoControl
 
 			checkBox_read_timer.CheckedChanged += CheckBox_read_timer_CheckedChanged;
 			checkBox_write_timer.CheckedChanged += CheckBox_write_timer_CheckedChanged;
+
+
+			if (this.ParentForm is HslFormContent formContent)
+			{
+				deviceImage = formContent.DeviceImage;
+			}
 		}
 
 		private void CheckBox_write_timer_CheckedChanged( object sender, EventArgs e )
@@ -93,6 +99,9 @@ namespace HslCommunicationDemo.DemoControl
 				this.button_write_timer = null;
 			}
 		}
+
+		private Image deviceImage = null;
+
 
 		public void Close( )
 		{
@@ -1443,6 +1452,8 @@ namespace HslCommunicationDemo.DemoControl
 		private void button1_Click( object sender, EventArgs e )
 		{
 			FormCurveMonitor monitor = new FormCurveMonitor( );
+			if (deviceImage != null)
+				monitor.SetProtocolImage( this.deviceImage );
 			monitor.SetReadWrite( readWriteNet, address );
 			FormMain.Form.ShowDockForm( monitor );
 		}

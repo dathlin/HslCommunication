@@ -58,6 +58,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBox_total_count = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
 			this.groupBox_press.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -91,7 +92,7 @@
 			this.checkBox_continue_when_error.AutoSize = true;
 			this.checkBox_continue_when_error.Checked = true;
 			this.checkBox_continue_when_error.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_continue_when_error.Location = new System.Drawing.Point(9, 160);
+			this.checkBox_continue_when_error.Location = new System.Drawing.Point(9, 179);
 			this.checkBox_continue_when_error.Name = "checkBox_continue_when_error";
 			this.checkBox_continue_when_error.Size = new System.Drawing.Size(199, 21);
 			this.checkBox_continue_when_error.TabIndex = 14;
@@ -103,7 +104,7 @@
 			this.checkBox_check_same.AutoSize = true;
 			this.checkBox_check_same.Checked = true;
 			this.checkBox_check_same.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_check_same.Location = new System.Drawing.Point(109, 135);
+			this.checkBox_check_same.Location = new System.Drawing.Point(109, 157);
 			this.checkBox_check_same.Name = "checkBox_check_same";
 			this.checkBox_check_same.Size = new System.Drawing.Size(218, 21);
 			this.checkBox_check_same.TabIndex = 13;
@@ -114,7 +115,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.ForeColor = System.Drawing.Color.Gray;
-			this.label3.Location = new System.Drawing.Point(108, 76);
+			this.label3.Location = new System.Drawing.Point(108, 106);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(282, 17);
 			this.label3.TabIndex = 12;
@@ -122,7 +123,7 @@
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(109, 102);
+			this.textBox3.Location = new System.Drawing.Point(109, 128);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.ReadOnly = true;
 			this.textBox3.Size = new System.Drawing.Size(286, 23);
@@ -134,7 +135,7 @@
 			this.checkBox_write.AutoSize = true;
 			this.checkBox_write.Checked = true;
 			this.checkBox_write.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_write.Location = new System.Drawing.Point(9, 104);
+			this.checkBox_write.Location = new System.Drawing.Point(9, 130);
 			this.checkBox_write.Name = "checkBox_write";
 			this.checkBox_write.Size = new System.Drawing.Size(92, 21);
 			this.checkBox_write.TabIndex = 10;
@@ -146,7 +147,7 @@
 			this.checkBox_read.AutoSize = true;
 			this.checkBox_read.Checked = true;
 			this.checkBox_read.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_read.Location = new System.Drawing.Point(9, 133);
+			this.checkBox_read.Location = new System.Drawing.Point(9, 155);
 			this.checkBox_read.Name = "checkBox_read";
 			this.checkBox_read.Size = new System.Drawing.Size(91, 21);
 			this.checkBox_read.TabIndex = 9;
@@ -156,7 +157,7 @@
 			// button_test_start
 			// 
 			this.button_test_start.Enabled = false;
-			this.button_test_start.Location = new System.Drawing.Point(121, 184);
+			this.button_test_start.Location = new System.Drawing.Point(121, 203);
 			this.button_test_start.Name = "button_test_start";
 			this.button_test_start.Size = new System.Drawing.Size(147, 34);
 			this.button_test_start.TabIndex = 8;
@@ -167,8 +168,10 @@
 			// textBox_test_address
 			// 
 			this.textBox_test_address.Location = new System.Drawing.Point(105, 50);
+			this.textBox_test_address.Multiline = true;
 			this.textBox_test_address.Name = "textBox_test_address";
-			this.textBox_test_address.Size = new System.Drawing.Size(290, 23);
+			this.textBox_test_address.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_test_address.Size = new System.Drawing.Size(290, 56);
 			this.textBox_test_address.TabIndex = 5;
 			this.textBox_test_address.Text = "D100";
 			// 
@@ -233,7 +236,7 @@
 			this.hslProgressBar1.Location = new System.Drawing.Point(105, 19);
 			this.hslProgressBar1.Name = "hslProgressBar1";
 			this.hslProgressBar1.ProgressStyle = HslControls.ProgressStyle.Percent;
-			this.hslProgressBar1.Size = new System.Drawing.Size(422, 23);
+			this.hslProgressBar1.Size = new System.Drawing.Size(419, 23);
 			this.hslProgressBar1.TabIndex = 11;
 			// 
 			// groupBox1
@@ -241,6 +244,7 @@
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.label8);
 			this.groupBox1.Controls.Add(this.label_info);
 			this.groupBox1.Controls.Add(this.textBox_check_wrong);
 			this.groupBox1.Controls.Add(this.label6);
@@ -258,7 +262,7 @@
 			this.groupBox1.Controls.Add(this.label_pressure_progress);
 			this.groupBox1.Location = new System.Drawing.Point(410, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(533, 280);
+			this.groupBox1.Size = new System.Drawing.Size(530, 280);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Test Result";
@@ -268,7 +272,7 @@
 			this.label_info.AutoSize = true;
 			this.label_info.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.label_info.ForeColor = System.Drawing.Color.Teal;
-			this.label_info.Location = new System.Drawing.Point(6, 164);
+			this.label_info.Location = new System.Drawing.Point(6, 174);
 			this.label_info.Name = "label_info";
 			this.label_info.Size = new System.Drawing.Size(107, 27);
 			this.label_info.TabIndex = 24;
@@ -382,6 +386,16 @@
 			this.label1.TabIndex = 12;
 			this.label1.Text = "R/W Count:";
 			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.ForeColor = System.Drawing.Color.Red;
+			this.label8.Location = new System.Drawing.Point(9, 152);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(260, 17);
+			this.label8.TabIndex = 25;
+			this.label8.Text = "警告：请在确认安全的情况下发起测试！！！！";
+			// 
 			// StressTesting
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -391,6 +405,7 @@
 			this.Name = "StressTesting";
 			this.Size = new System.Drawing.Size(946, 286);
 			this.Load += new System.EventHandler(this.StressTesting_Load);
+			this.Resize += new System.EventHandler(this.StressTesting_Resize);
 			this.groupBox_press.ResumeLayout(false);
 			this.groupBox_press.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
@@ -431,5 +446,6 @@
 		private System.Windows.Forms.TextBox textBox_failed_count;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label_info;
+		private System.Windows.Forms.Label label8;
 	}
 }

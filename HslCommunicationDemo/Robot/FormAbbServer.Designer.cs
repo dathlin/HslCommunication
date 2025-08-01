@@ -275,6 +275,7 @@
 			this.Name = "FormAbbServer";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "ABB机器人的虚拟服务器";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAbbServer_FormClosing);
 			this.Load += new System.EventHandler(this.FormClient_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

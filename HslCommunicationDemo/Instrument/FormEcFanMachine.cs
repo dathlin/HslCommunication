@@ -102,6 +102,10 @@ namespace HslCommunicationDemo.Instrument
 			}
 		}
 
+		private void FormEcFanMachine_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
 		private void button1_Click( object sender, EventArgs e )
 		{
 			// 打开串口
@@ -140,11 +144,11 @@ namespace HslCommunicationDemo.Instrument
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 关闭串口
-			EcFanMachine.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;
 			this.pipeSelectControl1.ExtraCloseAction( EcFanMachine );
+			EcFanMachine.Close( );
 		}
 
 		private EcFanMachine EcFanMachine = null;
@@ -174,5 +178,6 @@ namespace HslCommunicationDemo.Instrument
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

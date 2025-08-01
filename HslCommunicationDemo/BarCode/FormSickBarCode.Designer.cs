@@ -40,6 +40,11 @@
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.button2 = new System.Windows.Forms.Button();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -47,12 +52,7 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.borderPanel2.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -204,6 +204,61 @@
 			this.panel2.Size = new System.Drawing.Size(1052, 478);
 			this.panel2.TabIndex = 5;
 			// 
+			// tabControl1
+			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Location = new System.Drawing.Point(3, 39);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(1044, 430);
+			this.tabControl1.TabIndex = 23;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.textBox1);
+			this.tabPage1.Location = new System.Drawing.Point(4, 26);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(1036, 400);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "运行日志";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// textBox1
+			// 
+			this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.textBox1.Location = new System.Drawing.Point(3, 3);
+			this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox1.Size = new System.Drawing.Size(1030, 394);
+			this.textBox1.TabIndex = 6;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.textBox_code);
+			this.tabPage2.Location = new System.Drawing.Point(4, 26);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(1036, 400);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "示例代码";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.textBox_code.Location = new System.Drawing.Point(3, 3);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.Size = new System.Drawing.Size(1030, 394);
+			this.textBox_code.TabIndex = 0;
+			// 
 			// button2
 			// 
 			this.button2.Location = new System.Drawing.Point(879, 4);
@@ -275,17 +330,6 @@
 			this.label16.Text = "在线客户端：";
 			this.label16.Click += new System.EventHandler(this.label16_Click);
 			// 
-			// textBox1
-			// 
-			this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox1.Location = new System.Drawing.Point(3, 3);
-			this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.textBox1.Multiline = true;
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(1030, 394);
-			this.textBox1.TabIndex = 6;
-			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
@@ -294,50 +338,6 @@
 			this.label1.Size = new System.Drawing.Size(68, 17);
 			this.label1.TabIndex = 4;
 			this.label1.Text = "运行日志：";
-			// 
-			// tabControl1
-			// 
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Location = new System.Drawing.Point(3, 39);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(1044, 430);
-			this.tabControl1.TabIndex = 23;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.textBox1);
-			this.tabPage1.Location = new System.Drawing.Point(4, 26);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(1036, 400);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "运行日志";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// tabPage2
-			// 
-			this.tabPage2.Controls.Add(this.textBox_code);
-			this.tabPage2.Location = new System.Drawing.Point(4, 26);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(1036, 400);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "示例代码";
-			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// textBox_code
-			// 
-			this.textBox_code.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox_code.Location = new System.Drawing.Point(3, 3);
-			this.textBox_code.Multiline = true;
-			this.textBox_code.Name = "textBox_code";
-			this.textBox_code.Size = new System.Drawing.Size(1030, 394);
-			this.textBox_code.TabIndex = 0;
 			// 
 			// FormSickBarCode
 			// 
@@ -353,6 +353,7 @@
 			this.Name = "FormSickBarCode";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Sick Server";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSickBarCode_FormClosing);
 			this.Load += new System.EventHandler(this.FormSickBarCode_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

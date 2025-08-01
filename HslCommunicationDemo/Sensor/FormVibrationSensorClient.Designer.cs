@@ -38,6 +38,8 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label20 = new System.Windows.Forms.Label();
 			this.hslPanelHead2 = new HslControls.HslPanelHead();
 			this.button5 = new System.Windows.Forms.Button();
 			this.label18 = new System.Windows.Forms.Label();
@@ -78,8 +80,6 @@
 			this.label12 = new System.Windows.Forms.Label();
 			this.button4 = new System.Windows.Forms.Button();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.label20 = new System.Windows.Forms.Label();
-			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.hslPanelHead2.SuspendLayout();
@@ -196,6 +196,27 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(997, 566);
 			this.panel2.TabIndex = 13;
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(62, 513);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(926, 48);
+			this.textBox_code.TabIndex = 22;
+			// 
+			// label20
+			// 
+			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(1, 516);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(51, 17);
+			this.label20.TabIndex = 55;
+			this.label20.Text = "Code：";
 			// 
 			// hslPanelHead2
 			// 
@@ -583,27 +604,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 14;
 			// 
-			// label20
-			// 
-			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(1, 516);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(51, 17);
-			this.label20.TabIndex = 55;
-			this.label20.Text = "Code：";
-			// 
-			// textBox_code
-			// 
-			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_code.Location = new System.Drawing.Point(62, 513);
-			this.textBox_code.Multiline = true;
-			this.textBox_code.Name = "textBox_code";
-			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_code.Size = new System.Drawing.Size(926, 48);
-			this.textBox_code.TabIndex = 22;
-			// 
 			// FormVibrationSensorClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -618,6 +618,7 @@
 			this.Name = "FormVibrationSensorClient";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "震动传感器客户端";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormVibrationSensorClient_FormClosing);
 			this.Load += new System.EventHandler(this.FormClient_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

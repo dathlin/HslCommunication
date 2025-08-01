@@ -47,6 +47,10 @@ namespace HslCommunicationDemo
 
 		private VibrationSensorClient client;
 
+		private void FormVibrationSensorClient_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
 		private void button1_Click( object sender, EventArgs e )
 		{
 			if (!int.TryParse( textBox2.Text, out int port ))
@@ -223,6 +227,7 @@ namespace HslCommunicationDemo
 				textBox_code.Text = $"OperateResult send = client.SetReadStatusInterval( {seconds} );";
 			}
 		}
+
 	}
 
 	#endregion

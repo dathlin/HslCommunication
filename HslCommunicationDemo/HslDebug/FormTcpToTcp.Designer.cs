@@ -248,6 +248,7 @@
 			this.Name = "FormTcpToTcp";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Tcp2TCP";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTcpToTcp_FormClosing);
 			this.Load += new System.EventHandler(this.FormSerialDebug_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

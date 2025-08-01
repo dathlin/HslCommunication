@@ -63,6 +63,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 
 		/// <summary>
@@ -116,6 +117,7 @@ namespace HslCommunicationDemo
 			
 			YRC1000Tcp?.ConnectClose( );
 			YRC1000Tcp = new YRC1000TcpNet( textBox1.Text, port );
+			YRC1000Tcp.LogNet = this.LogNet; // 设置日志记录器
 
 			try
 			{

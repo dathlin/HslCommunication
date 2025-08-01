@@ -23,7 +23,7 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 
-
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
 		}
 
@@ -39,6 +39,7 @@ namespace HslCommunicationDemo
 		private ModbusControl control;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
+		private StationSearchControl stationSearchControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
@@ -56,6 +57,9 @@ namespace HslCommunicationDemo
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetModbusAddressExamples( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
+
+			stationSearchControl = new StationSearchControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( stationSearchControl, false, StationSearchControl.GetTitle( ) );
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
@@ -107,7 +111,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( sender: null, EventArgs.Empty );
 		}
 		
 
@@ -129,6 +133,7 @@ namespace HslCommunicationDemo
 			busTcpClient.Station = station;
 			busTcpClient.AddressStartWithZero = checkBox1.Checked;
 			busTcpClient.IsCheckMessageId = checkBox2.Checked;
+			busTcpClient.StationCheckMacth = checkBox_station_check.Checked;
 			busTcpClient.LogNet = LogNet;
 			if (!string.IsNullOrEmpty( textBox_BroadcastStation.Text ))
 				busTcpClient.BroadcastStation = int.Parse( textBox_BroadcastStation.Text );
@@ -158,6 +163,8 @@ namespace HslCommunicationDemo
 					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => busTcpClient.ReadFromCoreServer( m ), "Modbus Core", "Example: 01 03 00 00 00 02" );
 					control.SetDevice( busTcpClient, "100" );
 
+					stationSearchControl.SetModbus( busTcpClient );
+
 					// 设置示例代码
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
 					List<string> paras = new List<string>( );
@@ -168,6 +175,7 @@ namespace HslCommunicationDemo
 					if (busTcpClient.IsCheckMessageId == false) paras.Add( nameof( busTcpClient.IsCheckMessageId ) );
 					if (busTcpClient.AddressStartWithZero == false) paras.Add( nameof( busTcpClient.AddressStartWithZero ) );
 					if (busTcpClient.WordReadBatchLength != 120) paras.Add( nameof( busTcpClient.WordReadBatchLength ) );
+					if (busTcpClient.StationCheckMacth == false) paras.Add( nameof( busTcpClient.StationCheckMacth ) );
 
 					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busTcpClient, paras.ToArray( ) );
 				}
@@ -186,11 +194,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			busTcpClient.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( busTcpClient );
+			busTcpClient?.ConnectClose( );
 		}
 		
 		#endregion
@@ -198,12 +206,13 @@ namespace HslCommunicationDemo
 		public override void SaveXmlParameter( XElement element )
 		{
 			this.pipeSelectControl1.SaveXmlParameter( element );
-			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox15.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
-			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
-			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
-			element.SetAttributeValue( nameof( ModbusTcpNet.BroadcastStation ), textBox_BroadcastStation.Text );
-
+			element.SetAttributeValue( DemoDeviceList.XmlStation,                     textBox15.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero,        checkBox1.Checked );
+			element.SetAttributeValue( DemoDeviceList.XmlDataFormat,                  comboBox1.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlStringReverse,               checkBox3.Checked );
+			element.SetAttributeValue( nameof( ModbusTcpNet.BroadcastStation ),       textBox_BroadcastStation.Text );
+			element.SetAttributeValue( nameof( ModbusTcpNet.StationCheckMacth ),      checkBox_station_check.Checked );
+			element.SetAttributeValue( nameof( ModbusTcpNet.WordReadBatchLength ),    textBox_batch_length.Text );
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
@@ -211,13 +220,15 @@ namespace HslCommunicationDemo
 		{
 			base.LoadXmlParameter( element );
 			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
-			textBox15.Text = element.Attribute( DemoDeviceList.XmlStation ).Value;
-			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
-			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
-			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-			textBox_BroadcastStation.Text = GetXmlValue( element, nameof( ModbusTcpNet.BroadcastStation ), "", m => m );
+			textBox15.Text                 = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			checkBox1.Checked              = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
+			comboBox1.SelectedIndex        = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+			checkBox3.Checked              = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
+			textBox_BroadcastStation.Text  = GetXmlValue( element, nameof( ModbusTcpNet.BroadcastStation ), "", m => m );
+			checkBox_station_check.Checked = GetXmlValue( element, nameof( ModbusTcpNet.StationCheckMacth ), true, bool.Parse );
+			textBox_batch_length.Text      = GetXmlValue( element, nameof( ModbusTcpNet.WordReadBatchLength ), "", m => m );
 
-			if( this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
+			if ( this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );
 		}
 

@@ -96,9 +96,9 @@
 			this.label_info.ForeColor = System.Drawing.Color.Gray;
 			this.label_info.Location = new System.Drawing.Point(605, 37);
 			this.label_info.Name = "label_info";
-			this.label_info.Size = new System.Drawing.Size(140, 17);
+			this.label_info.Size = new System.Drawing.Size(341, 17);
 			this.label_info.TabIndex = 18;
-			this.label_info.Text = "如果不清楚，不设置即可";
+			this.label_info.Text = "如果不清楚，不设置即可，如果一直连接不成功，改下slot看看";
 			// 
 			// textBox_pdu
 			// 

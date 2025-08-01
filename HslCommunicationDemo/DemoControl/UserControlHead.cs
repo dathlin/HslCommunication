@@ -107,6 +107,11 @@ namespace HslCommunicationDemo.DemoControl
 			set => linkLabel2.Visible = value;
 		}
 
+		public void SetText1( string text )
+		{
+			label2.Text = text;
+		}
+
 		public void SetProtocolImage( System.Drawing.Image image )
 		{
 			this.pictureBox1.Image = image;

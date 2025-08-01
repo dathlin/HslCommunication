@@ -398,6 +398,7 @@
 			this.Name = "FormMqttFileServer";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "MQTT 文件服务器";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMqttFileServer_FormClosing);
 			this.Load += new System.EventHandler(this.FormClient_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

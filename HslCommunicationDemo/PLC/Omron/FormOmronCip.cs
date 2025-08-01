@@ -23,6 +23,7 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			omronCipNet = new OmronCipNet( "192.168.0.110" );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 
@@ -60,7 +61,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 
 		#region Connect And Close
@@ -119,11 +120,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			omronCipNet.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( omronCipNet );
+			omronCipNet?.ConnectClose( );
 		}
 
 

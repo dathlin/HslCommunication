@@ -53,6 +53,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button6 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
 			this.checkBox_regex_filter = new System.Windows.Forms.CheckBox();
 			this.textBox_regex_filter = new System.Windows.Forms.TextBox();
@@ -89,7 +90,6 @@
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.label13 = new System.Windows.Forms.Label();
-			this.button6 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -373,6 +373,18 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(802, 507);
 			this.panel2.TabIndex = 13;
+			// 
+			// button6
+			// 
+			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button6.ForeColor = System.Drawing.Color.DarkGray;
+			this.button6.Location = new System.Drawing.Point(3, 397);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(56, 28);
+			this.button6.TabIndex = 42;
+			this.button6.Text = "Test-P";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
 			// 
 			// button5
 			// 
@@ -759,18 +771,6 @@
 			this.label13.TabIndex = 8;
 			this.label13.Text = "Subscribed：(已订阅)";
 			// 
-			// button6
-			// 
-			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button6.ForeColor = System.Drawing.Color.DarkGray;
-			this.button6.Location = new System.Drawing.Point(3, 397);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(56, 28);
-			this.button6.TabIndex = 42;
-			this.button6.Text = "Test-P";
-			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.button6_Click);
-			// 
 			// FormMqttClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -786,6 +786,7 @@
 			this.Name = "FormMqttClient";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "MQTT客户端";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMqttClient_FormClosing);
 			this.Load += new System.EventHandler(this.FormClient_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

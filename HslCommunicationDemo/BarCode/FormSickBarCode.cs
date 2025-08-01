@@ -42,6 +42,10 @@ namespace HslCommunicationDemo.BarCode
 		private SickIcrTcpServer tcpServer;
 		private Timer timer;
 
+		private void FormSickBarCode_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) Button11_Click( null, EventArgs.Empty );
+		}
 		private void Button1_Click( object sender, EventArgs e )
 		{
 			try
@@ -123,5 +127,6 @@ tcpServer.OnReceivedBarCode += (string ipAddress, string barCode) => {
 				form.ShowDialog( );
 			}
 		}
+
 	}
 }

@@ -185,6 +185,10 @@ namespace HslCommunicationDemo.HslDebug
 			Interlocked.Exchange( ref recvCount, 0 );
 			label_send_count.Text = "Send Count: " + sendCount;
 			label_recv_count.Text = "Recv Count: " + recvCount;
+			Interlocked.Exchange( ref sendTick, 0 );
+			Interlocked.Exchange( ref recvTick, 0 );
+			label_send_tick.Text = "S-Tick: " + sendTick;
+			label_recv_tick.Text = "R-Tick: " + recvTick;
 		}
 
 		private void button_build_message_Click( object sender, EventArgs e )
@@ -272,12 +276,14 @@ namespace HslCommunicationDemo.HslDebug
 				if (code == 1)
 				{
 					Interlocked.Add( ref sendCount, data.Length );
-					label_send_count.Text = $"Send Count: " + sendCount;
+					label_send_count.Text = $"S-byts:" + sendCount;
 				}
 				else if (code == 0)
 				{
 					Interlocked.Add( ref recvCount, data.Length );
-					label_recv_count.Text = $"Recv Count: " + recvCount;
+					Interlocked.Increment( ref recvTick );
+					label_recv_count.Text = $"R-byts:" + recvCount;
+					label_recv_tick.Text = $"R-Tick:" + recvTick;
 				}
 				string content = null;
 				if (code == 1)
@@ -291,6 +297,13 @@ namespace HslCommunicationDemo.HslDebug
 					if (comboBox_recv_encoding.SelectedIndex == 0) content = SoftBasic.ByteToHexString( data, ' ' );
 					else if (comboBox_recv_encoding.SelectedIndex == 1) content = SoftBasic.GetAsciiStringRender( data );
 					else content = DemoUtils.GetEncodingFromIndex( comboBox_recv_encoding.SelectedIndex - 1 ).GetString( data );
+				}
+				else if (code == 4)
+				{
+					// DTU相关的内容
+					if (comboBox_send_encoding.SelectedIndex == 0) content = SoftBasic.ByteToHexString( data, ' ' );
+					else if (comboBox_send_encoding.SelectedIndex == 1) content = SoftBasic.GetAsciiStringRender( data );
+					else content = DemoUtils.GetEncodingFromIndex( comboBox_send_encoding.SelectedIndex - 1 ).GetString( data );
 				}
 				RenderMessage( code, content );
 			}
@@ -460,6 +473,7 @@ namespace HslCommunicationDemo.HslDebug
 		private async void button_send_Click( object sender, EventArgs e )
 		{
 			// 分析是否分多次发送，中间可以使用特殊标记分割
+			if (string.IsNullOrEmpty( textBox5.Text )) return;
 			if (System.Text.RegularExpressions.Regex.IsMatch( textBox5.Text, @"<sleep=[0-9]+>" ))
 			{
 				string[] lines = textBox5.Lines;
@@ -485,6 +499,8 @@ namespace HslCommunicationDemo.HslDebug
 			{
 				SendTextInfo( textBox5.Text );
 			}
+			Interlocked.Increment( ref this.sendTick );
+			label_send_tick.Text = "S-Tick:" + this.sendTick.ToString( );
 		}
 
 		private void SendTextInfo( string text )
@@ -613,6 +629,8 @@ namespace HslCommunicationDemo.HslDebug
 		private System.Windows.Forms.Timer sendtimer;
 		private long sendCount = 0;
 		private long recvCount = 0;
+		private long sendTick = 0;
+		private long recvTick = 0;
 
 		#endregion
 

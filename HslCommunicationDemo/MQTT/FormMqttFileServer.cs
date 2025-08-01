@@ -199,7 +199,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			panel2.Enabled = false;
 
-			mqttServer.ServerClose( );
+			mqttServer?.ServerClose( );
 		}
 
 
@@ -241,6 +241,11 @@ namespace HslCommunicationDemo
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
+		}
+
+		private void FormMqttFileServer_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 如果没有关闭，则进行关闭操作
 		}
 	}
 

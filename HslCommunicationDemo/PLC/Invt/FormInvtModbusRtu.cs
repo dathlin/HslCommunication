@@ -23,6 +23,7 @@ namespace HslCommunicationDemo.PLC.Invt
 		public FormInvtModbusRtu( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private ModbusRtu busRtuClient = null;
@@ -91,7 +92,7 @@ namespace HslCommunicationDemo.PLC.Invt
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 如果连接了，就断开连接
 		}
 		
 
@@ -162,11 +163,11 @@ namespace HslCommunicationDemo.PLC.Invt
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			busRtuClient.Close( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( busRtuClient );
+			busRtuClient?.Close( );
 		}
 		
 		#endregion

@@ -42,6 +42,7 @@
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
+			this.checkBox_dataId = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -51,6 +52,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_dataId);
 			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.checkBox_enable_Fe);
 			this.panel1.Controls.Add(this.textBox_op_code);
@@ -85,7 +87,7 @@
 			// checkBox_enable_Fe
 			// 
 			this.checkBox_enable_Fe.AutoSize = true;
-			this.checkBox_enable_Fe.Location = new System.Drawing.Point(764, 34);
+			this.checkBox_enable_Fe.Location = new System.Drawing.Point(731, 34);
 			this.checkBox_enable_Fe.Name = "checkBox_enable_Fe";
 			this.checkBox_enable_Fe.Size = new System.Drawing.Size(130, 21);
 			this.checkBox_enable_Fe.TabIndex = 39;
@@ -128,7 +130,7 @@
 			// 
 			this.textBox_station.Location = new System.Drawing.Point(554, 32);
 			this.textBox_station.Name = "textBox_station";
-			this.textBox_station.Size = new System.Drawing.Size(190, 23);
+			this.textBox_station.Size = new System.Drawing.Size(167, 23);
 			this.textBox_station.TabIndex = 7;
 			this.textBox_station.Text = "1";
 			// 
@@ -199,6 +201,18 @@
 			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 540);
 			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
+			// checkBox_dataId
+			// 
+			this.checkBox_dataId.AutoSize = true;
+			this.checkBox_dataId.Checked = true;
+			this.checkBox_dataId.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_dataId.Location = new System.Drawing.Point(872, 34);
+			this.checkBox_dataId.Name = "checkBox_dataId";
+			this.checkBox_dataId.Size = new System.Drawing.Size(97, 21);
+			this.checkBox_dataId.TabIndex = 41;
+			this.checkBox_dataId.Text = "检查DataID?";
+			this.checkBox_dataId.UseVisualStyleBackColor = true;
+			// 
 			// FormDLT645OverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -238,5 +252,6 @@
 		private System.Windows.Forms.Panel panel2;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private DemoControl.PipeSelectControl pipeSelectControl1;
+		private System.Windows.Forms.CheckBox checkBox_dataId;
 	}
 }

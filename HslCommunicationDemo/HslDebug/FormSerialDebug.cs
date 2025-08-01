@@ -84,6 +84,11 @@ namespace HslCommunicationDemo
 
 		// 01 10 00 64 00 10 20 00 00 00 01 00 02 00 03 00 04 00 05 00 06 00 07 00 08 00 09 00 0A 00 0B 00 0C 00 0D 00 0E 00 0F
 
+		private void FormSerialDebug_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
+
 		private void button1_Click( object sender, EventArgs e )
 		{
 			if (!int.TryParse( textBox_BaudRate.Text, out int baudRate ))
@@ -482,5 +487,6 @@ namespace HslCommunicationDemo
 		private MqttClient mqttClient;
 
 		#endregion
+
 	}
 }

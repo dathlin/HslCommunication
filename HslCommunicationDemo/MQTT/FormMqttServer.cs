@@ -738,7 +738,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 			panel2.Enabled = false;
 
-			mqttServer.ServerClose( );
+			mqttServer?.ServerClose( );
 		}
 
 		private void button3_Click( object sender, EventArgs e )
@@ -828,6 +828,10 @@ namespace HslCommunicationDemo
 			MessageBox.Show( "Publish finish" );
 		}
 
+		private void FormMqttServer_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 如果是开启状态，则关闭服务器
+		}
 	}
 
 	public class TopicSaveItem

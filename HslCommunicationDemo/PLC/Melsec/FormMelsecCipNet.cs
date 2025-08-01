@@ -22,6 +22,7 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			cip = new MelsecCipNet( "192.168.0.110" );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 
@@ -66,7 +67,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 
 		#region Connect And Close

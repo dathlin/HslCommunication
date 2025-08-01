@@ -39,6 +39,8 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label_code = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.button10 = new System.Windows.Forms.Button();
@@ -90,8 +92,6 @@
 			this.label12 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.button_read_short = new System.Windows.Forms.Button();
-			this.label_code = new System.Windows.Forms.Label();
-			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -230,6 +230,26 @@
 			this.panel2.Size = new System.Drawing.Size(1029, 495);
 			this.panel2.TabIndex = 17;
 			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(64, 441);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.Size = new System.Drawing.Size(954, 49);
+			this.textBox_code.TabIndex = 40;
+			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(3, 443);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 36;
+			this.label_code.Text = "代码：";
 			// 
 			// tabControl1
 			// 
@@ -757,26 +777,6 @@
 			this.button_read_short.UseVisualStyleBackColor = true;
 			this.button_read_short.Click += new System.EventHandler(this.button_read_short_Click);
 			// 
-			// label_code
-			// 
-			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label_code.AutoSize = true;
-			this.label_code.Location = new System.Drawing.Point(3, 443);
-			this.label_code.Name = "label_code";
-			this.label_code.Size = new System.Drawing.Size(44, 17);
-			this.label_code.TabIndex = 36;
-			this.label_code.Text = "代码：";
-			// 
-			// textBox_code
-			// 
-			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_code.Location = new System.Drawing.Point(64, 441);
-			this.textBox_code.Multiline = true;
-			this.textBox_code.Name = "textBox_code";
-			this.textBox_code.Size = new System.Drawing.Size(954, 49);
-			this.textBox_code.TabIndex = 40;
-			// 
 			// FormEstunTcp
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -788,6 +788,7 @@
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "FormEstunTcp";
 			this.Text = "FormEstunTcp";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEstunTcp_FormClosing);
 			this.Load += new System.EventHandler(this.FormEstunTcp_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

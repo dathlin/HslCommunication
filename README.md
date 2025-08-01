@@ -58,7 +58,7 @@
    4. 企业专业培训额外付费，1000元人民币1小时，培训控件使用，控件开发。
 
 ## Official Website
-Webside: [http://www.hslcommunication.cn/](http://www.hslcommunication.cn/)
+Webside: [http://www.hsltechnology.cn/](http://www.hsltechnology.cn/)
 
 API: [http://api.hslcommunication.cn/](http://api.hslcommunication.cn/)
 

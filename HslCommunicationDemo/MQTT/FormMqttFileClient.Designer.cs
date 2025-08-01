@@ -943,6 +943,7 @@
 			this.Name = "FormMqttFileClient";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "文件客户端窗口";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMqttFileClient_FormClosing);
 			this.Load += new System.EventHandler(this.FormFileClient_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

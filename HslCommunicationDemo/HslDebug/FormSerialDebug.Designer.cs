@@ -31,6 +31,7 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.checkBox_until_empty = new System.Windows.Forms.CheckBox();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox_mqtt_password = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.textBox_mqtt_name = new System.Windows.Forms.TextBox();
@@ -58,7 +59,6 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.debugControl1 = new HslCommunicationDemo.HslDebug.DebugControl();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -123,6 +123,17 @@
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(985, 32);
 			this.panel3.TabIndex = 18;
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(852, 5);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(76, 21);
+			this.checkBox1.TabIndex = 24;
+			this.checkBox1.Text = "转发DTU";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
 			// 
 			// textBox_mqtt_password
 			// 
@@ -376,17 +387,6 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// checkBox1
-			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(852, 5);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(76, 21);
-			this.checkBox1.TabIndex = 24;
-			this.checkBox1.Text = "转发DTU";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-			// 
 			// FormSerialDebug
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -401,6 +401,7 @@
 			this.Name = "FormSerialDebug";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "串口调试工具";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSerialDebug_FormClosing);
 			this.Load += new System.EventHandler(this.FormSerialDebug_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

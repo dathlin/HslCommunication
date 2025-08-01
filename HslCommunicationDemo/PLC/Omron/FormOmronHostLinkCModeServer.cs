@@ -23,6 +23,7 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 			omronFinsServer = new HslCommunication.Profinet.Omron.OmronHostLinkCModeServer( );                       // 实例化对象
 			omronFinsServer.OnDataReceived += BusTcpServer_OnDataReceived;
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -46,7 +47,7 @@ namespace HslCommunicationDemo
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			omronFinsServer?.ServerClose( );
+			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		private HslCommunication.Profinet.Omron.OmronHostLinkCModeServer omronFinsServer;

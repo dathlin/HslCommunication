@@ -219,6 +219,11 @@ namespace HslCommunicationDemo
 
 		#region Start Close
 
+		private void FormTcpServer_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button_start.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
+
 		private void button1_Click( object sender, EventArgs e )
 		{
 			if (!int.TryParse( textBox_buffer_length.Text, out int bufferLength ))
@@ -321,6 +326,7 @@ namespace HslCommunicationDemo
 		private int bufferLength = 2048;
 
 		#endregion
+
 	}
 
 }

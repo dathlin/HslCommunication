@@ -24,7 +24,7 @@ namespace HslCommunicationDemo
 
 		public static DateTime StartTime = DateTime.Now;
 
-		public static string SystemName = "工业设备联网调试系统";
+		public static string SystemName = "欢迎登录HSL调试平台"; // "工业设备联网调试系统";
 
 		/// <summary>
 		/// 应用程序的主入口点。

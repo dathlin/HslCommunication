@@ -22,6 +22,7 @@ namespace HslCommunicationDemo
 		public FormDLT645Server( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 
 			checkBox_station_match.CheckedChanged += CheckBox_station_match_CheckedChanged;
 			checkBox_enableFE.CheckedChanged += CheckBox_enableFE_CheckedChanged;
@@ -82,7 +83,7 @@ namespace HslCommunicationDemo
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			dLT645Server?.ServerClose( );
+			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -131,8 +132,8 @@ namespace HslCommunicationDemo
 		private void button11_Click( object sender, EventArgs e )
 		{
 			// 停止服务
-			dLT645Server?.ServerClose( );
 			dLT645Server?.CloseSerialSlave( );
+			dLT645Server?.ServerClose( );
 			button1.Enabled = true;
 			button5.Enabled = true;
 			button11.Enabled = false;

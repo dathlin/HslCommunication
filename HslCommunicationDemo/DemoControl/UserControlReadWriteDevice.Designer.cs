@@ -28,235 +28,235 @@
 		/// </summary>
 		private void InitializeComponent( )
 		{
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.batchReadControl1 = new HslCommunicationDemo.DemoControl.BatchReadControl();
-            this.batchReadControl2 = new HslCommunicationDemo.DemoControl.BatchReadControl();
-            this.debugRemoteControl1 = new HslCommunicationDemo.DemoControl.DebugRemoteControl();
-            this.stressTesting1 = new HslCommunicationDemo.PLC.Common.StressTesting();
-            this.dataTableControl1 = new HslCommunicationDemo.DemoControl.DataTableControl();
-            this.dataSimulateControl1 = new HslCommunicationDemo.DemoControl.DataSimulateControl();
-            this.dataExportControl1 = new HslCommunicationDemo.DemoControl.DataExportControl();
-            this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.batchReadControl1 = new HslCommunicationDemo.DemoControl.BatchReadControl();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.batchReadControl2 = new HslCommunicationDemo.DemoControl.BatchReadControl();
+			this.tabPage7 = new System.Windows.Forms.TabPage();
+			this.debugRemoteControl1 = new HslCommunicationDemo.DemoControl.DebugRemoteControl();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.stressTesting1 = new HslCommunicationDemo.PLC.Common.StressTesting();
+			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.dataTableControl1 = new HslCommunicationDemo.DemoControl.DataTableControl();
+			this.tabPage6 = new System.Windows.Forms.TabPage();
+			this.dataSimulateControl1 = new HslCommunicationDemo.DemoControl.DataSimulateControl();
+			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.dataExportControl1 = new HslCommunicationDemo.DemoControl.DataExportControl();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			this.tabPage7.SuspendLayout();
+			this.tabPage3.SuspendLayout();
+			this.tabPage4.SuspendLayout();
+			this.tabPage6.SuspendLayout();
+			this.tabPage5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Location = new System.Drawing.Point(0, 272);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(954, 282);
-            this.tabControl1.TabIndex = 1;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.batchReadControl1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 26);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(946, 252);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "批量读取";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage2.Controls.Add(this.batchReadControl2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(946, 256);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "报文读取";
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.debugRemoteControl1);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(946, 256);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "远程调试";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.stressTesting1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(946, 256);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "线程测试";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.dataTableControl1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(946, 256);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "点位变量";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.dataSimulateControl1);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(946, 256);
-            this.tabPage6.TabIndex = 4;
-            this.tabPage6.Text = "数据模拟";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.dataExportControl1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(946, 256);
-            this.tabPage5.TabIndex = 5;
-            this.tabPage5.Text = "数据导出";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::HslCommunicationDemo.Properties.Resources.shortcut_16xLG;
-            this.pictureBox1.Location = new System.Drawing.Point(938, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // batchReadControl1
-            // 
-            this.batchReadControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.batchReadControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.batchReadControl1.IsSourceReadMode = false;
-            this.batchReadControl1.Location = new System.Drawing.Point(3, 3);
-            this.batchReadControl1.Name = "batchReadControl1";
-            this.batchReadControl1.Size = new System.Drawing.Size(940, 246);
-            this.batchReadControl1.TabIndex = 0;
-            // 
-            // batchReadControl2
-            // 
-            this.batchReadControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.batchReadControl2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.batchReadControl2.IsSourceReadMode = false;
-            this.batchReadControl2.Location = new System.Drawing.Point(3, 3);
-            this.batchReadControl2.Name = "batchReadControl2";
-            this.batchReadControl2.Size = new System.Drawing.Size(940, 250);
-            this.batchReadControl2.TabIndex = 1;
-            // 
-            // debugRemoteControl1
-            // 
-            this.debugRemoteControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.debugRemoteControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.debugRemoteControl1.Location = new System.Drawing.Point(3, 3);
-            this.debugRemoteControl1.Name = "debugRemoteControl1";
-            this.debugRemoteControl1.Size = new System.Drawing.Size(940, 250);
-            this.debugRemoteControl1.TabIndex = 0;
-            // 
-            // stressTesting1
-            // 
-            this.stressTesting1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stressTesting1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.stressTesting1.Location = new System.Drawing.Point(3, 3);
-            this.stressTesting1.Name = "stressTesting1";
-            this.stressTesting1.Size = new System.Drawing.Size(940, 250);
-            this.stressTesting1.TabIndex = 0;
-            // 
-            // dataTableControl1
-            // 
-            this.dataTableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataTableControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dataTableControl1.Location = new System.Drawing.Point(3, 3);
-            this.dataTableControl1.Name = "dataTableControl1";
-            this.dataTableControl1.Size = new System.Drawing.Size(940, 250);
-            this.dataTableControl1.TabIndex = 0;
-            // 
-            // dataSimulateControl1
-            // 
-            this.dataSimulateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataSimulateControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dataSimulateControl1.Location = new System.Drawing.Point(3, 3);
-            this.dataSimulateControl1.Name = "dataSimulateControl1";
-            this.dataSimulateControl1.Size = new System.Drawing.Size(940, 250);
-            this.dataSimulateControl1.TabIndex = 0;
-            // 
-            // dataExportControl1
-            // 
-            this.dataExportControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataExportControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dataExportControl1.Location = new System.Drawing.Point(3, 3);
-            this.dataExportControl1.Name = "dataExportControl1";
-            this.dataExportControl1.Size = new System.Drawing.Size(940, 250);
-            this.dataExportControl1.TabIndex = 0;
-            // 
-            // userControlReadWriteOp1
-            // 
-            this.userControlReadWriteOp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPage7);
+			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Controls.Add(this.tabPage4);
+			this.tabControl1.Controls.Add(this.tabPage6);
+			this.tabControl1.Controls.Add(this.tabPage5);
+			this.tabControl1.Location = new System.Drawing.Point(0, 272);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(954, 282);
+			this.tabControl1.TabIndex = 1;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+			this.tabPage1.Controls.Add(this.batchReadControl1);
+			this.tabPage1.Location = new System.Drawing.Point(4, 26);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(946, 252);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "批量读取";
+			// 
+			// batchReadControl1
+			// 
+			this.batchReadControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.batchReadControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.batchReadControl1.IsSourceReadMode = false;
+			this.batchReadControl1.Location = new System.Drawing.Point(3, 3);
+			this.batchReadControl1.Name = "batchReadControl1";
+			this.batchReadControl1.Size = new System.Drawing.Size(940, 246);
+			this.batchReadControl1.TabIndex = 0;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+			this.tabPage2.Controls.Add(this.batchReadControl2);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(192, 74);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "报文读取";
+			// 
+			// batchReadControl2
+			// 
+			this.batchReadControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.batchReadControl2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.batchReadControl2.IsSourceReadMode = false;
+			this.batchReadControl2.Location = new System.Drawing.Point(3, 3);
+			this.batchReadControl2.Name = "batchReadControl2";
+			this.batchReadControl2.Size = new System.Drawing.Size(186, 68);
+			this.batchReadControl2.TabIndex = 1;
+			// 
+			// tabPage7
+			// 
+			this.tabPage7.Controls.Add(this.debugRemoteControl1);
+			this.tabPage7.Location = new System.Drawing.Point(4, 26);
+			this.tabPage7.Name = "tabPage7";
+			this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage7.Size = new System.Drawing.Size(946, 252);
+			this.tabPage7.TabIndex = 6;
+			this.tabPage7.Text = "远程调试";
+			this.tabPage7.UseVisualStyleBackColor = true;
+			// 
+			// debugRemoteControl1
+			// 
+			this.debugRemoteControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.debugRemoteControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.debugRemoteControl1.Location = new System.Drawing.Point(3, 3);
+			this.debugRemoteControl1.Name = "debugRemoteControl1";
+			this.debugRemoteControl1.Size = new System.Drawing.Size(940, 246);
+			this.debugRemoteControl1.TabIndex = 0;
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.stressTesting1);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(192, 74);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "线程测试";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// stressTesting1
+			// 
+			this.stressTesting1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.stressTesting1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.stressTesting1.Location = new System.Drawing.Point(3, 3);
+			this.stressTesting1.Name = "stressTesting1";
+			this.stressTesting1.Size = new System.Drawing.Size(186, 68);
+			this.stressTesting1.TabIndex = 0;
+			// 
+			// tabPage4
+			// 
+			this.tabPage4.Controls.Add(this.dataTableControl1);
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
+			this.tabPage4.Name = "tabPage4";
+			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage4.Size = new System.Drawing.Size(192, 74);
+			this.tabPage4.TabIndex = 3;
+			this.tabPage4.Text = "点位变量";
+			this.tabPage4.UseVisualStyleBackColor = true;
+			// 
+			// dataTableControl1
+			// 
+			this.dataTableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataTableControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.dataTableControl1.Location = new System.Drawing.Point(3, 3);
+			this.dataTableControl1.Name = "dataTableControl1";
+			this.dataTableControl1.Size = new System.Drawing.Size(186, 68);
+			this.dataTableControl1.TabIndex = 0;
+			// 
+			// tabPage6
+			// 
+			this.tabPage6.Controls.Add(this.dataSimulateControl1);
+			this.tabPage6.Location = new System.Drawing.Point(4, 22);
+			this.tabPage6.Name = "tabPage6";
+			this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage6.Size = new System.Drawing.Size(192, 74);
+			this.tabPage6.TabIndex = 4;
+			this.tabPage6.Text = "数据模拟";
+			this.tabPage6.UseVisualStyleBackColor = true;
+			// 
+			// dataSimulateControl1
+			// 
+			this.dataSimulateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataSimulateControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.dataSimulateControl1.Location = new System.Drawing.Point(3, 3);
+			this.dataSimulateControl1.Name = "dataSimulateControl1";
+			this.dataSimulateControl1.Size = new System.Drawing.Size(186, 68);
+			this.dataSimulateControl1.TabIndex = 0;
+			// 
+			// tabPage5
+			// 
+			this.tabPage5.Controls.Add(this.dataExportControl1);
+			this.tabPage5.Location = new System.Drawing.Point(4, 22);
+			this.tabPage5.Name = "tabPage5";
+			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage5.Size = new System.Drawing.Size(192, 74);
+			this.tabPage5.TabIndex = 5;
+			this.tabPage5.Text = "数据导出";
+			this.tabPage5.UseVisualStyleBackColor = true;
+			// 
+			// dataExportControl1
+			// 
+			this.dataExportControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataExportControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.dataExportControl1.Location = new System.Drawing.Point(3, 3);
+			this.dataExportControl1.Name = "dataExportControl1";
+			this.dataExportControl1.Size = new System.Drawing.Size(186, 68);
+			this.dataExportControl1.TabIndex = 0;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pictureBox1.Image = global::HslCommunicationDemo.Properties.Resources.shortcut_16xLG;
+			this.pictureBox1.Location = new System.Drawing.Point(938, 0);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+			this.pictureBox1.TabIndex = 2;
+			this.pictureBox1.TabStop = false;
+			this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+			// 
+			// userControlReadWriteOp1
+			// 
+			this.userControlReadWriteOp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.userControlReadWriteOp1.Location = new System.Drawing.Point(0, 0);
-            this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
-            this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 273);
-            this.userControlReadWriteOp1.TabIndex = 0;
-            // 
-            // UserControlReadWriteDevice
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.userControlReadWriteOp1);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Name = "UserControlReadWriteDevice";
-            this.Size = new System.Drawing.Size(954, 554);
-            this.Load += new System.EventHandler(this.UserControlReadWriteDevice_Load);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
+			this.userControlReadWriteOp1.Location = new System.Drawing.Point(0, 0);
+			this.userControlReadWriteOp1.Name = "userControlReadWriteOp1";
+			this.userControlReadWriteOp1.Size = new System.Drawing.Size(954, 273);
+			this.userControlReadWriteOp1.TabIndex = 0;
+			// 
+			// UserControlReadWriteDevice
+			// 
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.pictureBox1);
+			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.userControlReadWriteOp1);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.Name = "UserControlReadWriteDevice";
+			this.Size = new System.Drawing.Size(954, 554);
+			this.Load += new System.EventHandler(this.UserControlReadWriteDevice_Load);
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage2.ResumeLayout(false);
+			this.tabPage7.ResumeLayout(false);
+			this.tabPage3.ResumeLayout(false);
+			this.tabPage4.ResumeLayout(false);
+			this.tabPage6.ResumeLayout(false);
+			this.tabPage5.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.ResumeLayout(false);
 
 		}
 

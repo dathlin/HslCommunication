@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_dataId = new System.Windows.Forms.CheckBox();
+			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.checkBox_enable_Fe = new System.Windows.Forms.CheckBox();
 			this.textBox_op_code = new System.Windows.Forms.TextBox();
 			this.label_op_code = new System.Windows.Forms.Label();
@@ -41,7 +43,6 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -51,6 +52,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_dataId);
 			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.checkBox_enable_Fe);
 			this.panel1.Controls.Add(this.textBox_op_code);
@@ -67,10 +69,37 @@
 			this.panel1.Size = new System.Drawing.Size(997, 59);
 			this.panel1.TabIndex = 0;
 			// 
+			// checkBox_dataId
+			// 
+			this.checkBox_dataId.AutoSize = true;
+			this.checkBox_dataId.Checked = true;
+			this.checkBox_dataId.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_dataId.Location = new System.Drawing.Point(873, 32);
+			this.checkBox_dataId.Name = "checkBox_dataId";
+			this.checkBox_dataId.Size = new System.Drawing.Size(97, 21);
+			this.checkBox_dataId.TabIndex = 42;
+			this.checkBox_dataId.Text = "检查DataID?";
+			this.checkBox_dataId.UseVisualStyleBackColor = true;
+			// 
+			// pipeSelectControl1
+			// 
+			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.pipeSelectControl1.Location = new System.Drawing.Point(3, 2);
+			this.pipeSelectControl1.Name = "pipeSelectControl1";
+			this.pipeSelectControl1.SerialBaudRate = "9600";
+			this.pipeSelectControl1.SerialDataBits = "8";
+			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.Even;
+			this.pipeSelectControl1.SerialStopBits = "1";
+			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.SerialPipe;
+			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
+			this.pipeSelectControl1.TabIndex = 36;
+			this.pipeSelectControl1.TcpPortText = "2000";
+			this.pipeSelectControl1.UdpPortText = "2000";
+			// 
 			// checkBox_enable_Fe
 			// 
 			this.checkBox_enable_Fe.AutoSize = true;
-			this.checkBox_enable_Fe.Location = new System.Drawing.Point(736, 32);
+			this.checkBox_enable_Fe.Location = new System.Drawing.Point(728, 32);
 			this.checkBox_enable_Fe.Name = "checkBox_enable_Fe";
 			this.checkBox_enable_Fe.Size = new System.Drawing.Size(130, 21);
 			this.checkBox_enable_Fe.TabIndex = 35;
@@ -113,7 +142,7 @@
 			// 
 			this.textBox_station.Location = new System.Drawing.Point(550, 30);
 			this.textBox_station.Name = "textBox_station";
-			this.textBox_station.Size = new System.Drawing.Size(180, 23);
+			this.textBox_station.Size = new System.Drawing.Size(168, 23);
 			this.textBox_station.TabIndex = 7;
 			this.textBox_station.Text = "1";
 			// 
@@ -185,21 +214,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// pipeSelectControl1
-			// 
-			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.pipeSelectControl1.Location = new System.Drawing.Point(6, 2);
-			this.pipeSelectControl1.Name = "pipeSelectControl1";
-			this.pipeSelectControl1.SerialBaudRate = "9600";
-			this.pipeSelectControl1.SerialDataBits = "8";
-			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.Even;
-			this.pipeSelectControl1.SerialStopBits = "1";
-			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.SerialPipe;
-			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
-			this.pipeSelectControl1.TabIndex = 36;
-			this.pipeSelectControl1.TcpPortText = "2000";
-			this.pipeSelectControl1.UdpPortText = "2000";
-			// 
 			// FormDLT645
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -239,5 +253,6 @@
 		private System.Windows.Forms.CheckBox checkBox_enable_Fe;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private DemoControl.PipeSelectControl pipeSelectControl1;
+		private System.Windows.Forms.CheckBox checkBox_dataId;
 	}
 }

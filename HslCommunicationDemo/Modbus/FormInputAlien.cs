@@ -46,7 +46,10 @@ namespace HslCommunicationDemo
 			{
 				if (!string.IsNullOrEmpty(textBox1.Text))
 				{
-					CustomizeDTU = textBox1.Text.ToHexBytes( );
+					if (radioButton_input_hex.Checked)
+						CustomizeDTU = textBox1.Text.ToHexBytes( );
+					else if (radioButton_input_ascii.Checked)
+						CustomizeDTU = Encoding.ASCII.GetBytes( textBox1.Text );
 				}
 			}
 

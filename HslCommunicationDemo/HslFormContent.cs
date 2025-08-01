@@ -51,8 +51,11 @@ namespace HslCommunicationDemo
 			throw new NotImplementedException( "SaveXmlParameter Not Implemented" );
 		}
 
+		public System.Drawing.Image DeviceImage { get; set; }
+
 		public void SetProtocolImage( System.Drawing.Image image )
 		{
+			this.DeviceImage = image;
 			foreach (System.Windows.Forms.Control control in this.Controls)
 			{
 				if (control is UserControlHead userControlHead)
@@ -96,7 +99,7 @@ namespace HslCommunicationDemo
 
 		private static RSACryptoServiceProvider rsa = RSAHelper.CreateRsaProviderFromPublicKey( "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqzFn3dRlmxu3qk+aCddTdIUFYhc6rxUpERe8XG+Vf8DQ70JnfWVcTmlCxpdIu6R0VWzk03o6F20rai0ZnBI1SkxRta34wm1mPDzEFs/vdY7FBFy153c7S3dwM5t9leSBSVRrV1SVWjlphwnGZ+FwMtGXlZ7W+kI5IY1ONhIRXwQIDAQAB" );
 
-        public void userControlHead1_SaveConnectEvent( object sender, EventArgs e )
+		public void userControlHead1_SaveConnectEvent( object sender, EventArgs e )
 		{
 			try
 			{

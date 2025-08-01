@@ -412,6 +412,7 @@
 			this.Name = "FormWebsocketQANet";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Websocket同步访问客户端";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormWebsocketQANet_FormClosing);
 			this.Load += new System.EventHandler(this.FormClient_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

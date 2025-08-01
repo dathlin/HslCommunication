@@ -60,6 +60,7 @@
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.textBox19 = new System.Windows.Forms.TextBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.label29 = new System.Windows.Forms.Label();
 			this.button13 = new System.Windows.Forms.Button();
 			this.button14 = new System.Windows.Forms.Button();
 			this.textBox12 = new System.Windows.Forms.TextBox();
@@ -102,7 +103,6 @@
 			this.label23 = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
 			this.textBox18 = new System.Windows.Forms.TextBox();
-			this.label29 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -453,6 +453,15 @@
 			this.groupBox3.TabIndex = 7;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "增量数据写入";
+			// 
+			// label29
+			// 
+			this.label29.AutoSize = true;
+			this.label29.Location = new System.Drawing.Point(6, 203);
+			this.label29.Name = "label29";
+			this.label29.Size = new System.Drawing.Size(72, 17);
+			this.label29.TabIndex = 70;
+			this.label29.Text = "Op Result: ";
 			// 
 			// button13
 			// 
@@ -852,15 +861,6 @@
 			this.textBox18.TabIndex = 46;
 			this.textBox18.Text = "0";
 			// 
-			// label29
-			// 
-			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(6, 203);
-			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(72, 17);
-			this.label29.TabIndex = 70;
-			this.label29.Text = "Op Result: ";
-			// 
 			// FormHyundaiUdp
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -876,6 +876,7 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormHyundaiUdp";
 			this.Text = "FormHyundaiUdp";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHyundaiUdp_FormClosing);
 			this.Load += new System.EventHandler(this.FormHyundaiUdp_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

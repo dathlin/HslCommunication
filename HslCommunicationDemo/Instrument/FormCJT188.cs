@@ -24,6 +24,7 @@ namespace HslCommunicationDemo
 		public FormCJT188( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private CJT188 cjt188 = null;
@@ -65,7 +66,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 		
 
@@ -121,11 +122,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			cjt188.Close( ); 
 			userControlReadWriteDevice1.SetEnable( false );
 			button1.Enabled = true;
 			panel2.Enabled = false;
 			this.pipeSelectControl1.ExtraCloseAction( cjt188 );
+			cjt188.Close( );
 		}
 		
 		#endregion

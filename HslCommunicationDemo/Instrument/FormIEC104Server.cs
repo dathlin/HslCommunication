@@ -17,6 +17,7 @@ namespace HslCommunicationDemo.Instrument
 		public FormIEC104Server()
 		{
 			InitializeComponent();
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 
 			panel2.Enabled = false;
 
@@ -105,6 +106,10 @@ namespace HslCommunicationDemo.Instrument
 
 		private IEC104Server server;
 
+		private void FormIEC104Server_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+		}
 		private void button1_Click( object sender, EventArgs e )
 		{
 			if (!int.TryParse(textBox3.Text, out int port))
@@ -154,5 +159,6 @@ namespace HslCommunicationDemo.Instrument
 			// 左右布局
 			this.splitContainer1.Orientation = Orientation.Vertical;
 		}
+
 	}
 }

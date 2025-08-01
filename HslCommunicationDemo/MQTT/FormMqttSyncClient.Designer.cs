@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent( )
         {
-			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Rpc Apis");
-			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Topics");
-			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Sessions");
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Rpc Apis");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Topics");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.checkBox_rsa = new System.Windows.Forms.CheckBox();
@@ -631,16 +631,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.Location = new System.Drawing.Point(3, 27);
 			this.treeView1.Name = "treeView1";
-			treeNode4.Name = "节点0";
-			treeNode4.Text = "Rpc Apis";
-			treeNode5.Name = "节点0";
-			treeNode5.Text = "Topics";
-			treeNode6.Name = "节点1";
-			treeNode6.Text = "Sessions";
+			treeNode1.Name = "节点0";
+			treeNode1.Text = "Rpc Apis";
+			treeNode2.Name = "节点0";
+			treeNode2.Text = "Topics";
+			treeNode3.Name = "节点1";
+			treeNode3.Text = "Sessions";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5,
-            treeNode6});
+            treeNode1,
+            treeNode2,
+            treeNode3});
 			this.treeView1.Size = new System.Drawing.Size(251, 486);
 			this.treeView1.TabIndex = 1;
 			// 
@@ -1157,6 +1157,7 @@
 			this.Name = "FormMqttSyncClient";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "MQTT 同步客户端 (RPC远程调用客户端)";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMqttSyncClient_FormClosing);
 			this.Load += new System.EventHandler(this.FormClient_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

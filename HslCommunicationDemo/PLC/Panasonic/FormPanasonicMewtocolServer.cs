@@ -19,6 +19,7 @@ namespace HslCommunicationDemo
 		public FormPanasonicMewtocolServer( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -63,7 +64,7 @@ namespace HslCommunicationDemo
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			mewtocolServer?.ServerClose( );
+			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -109,9 +110,9 @@ namespace HslCommunicationDemo
 		private void button11_Click( object sender, EventArgs e )
 		{
 			// 停止服务
+			userControlReadWriteServer1.Close( );
 			mewtocolServer?.CloseSerialSlave( );
 			mewtocolServer?.ServerClose( );
-			userControlReadWriteServer1.Close( );
 			button1.Enabled = true;
 			button2.Enabled = true;
 			button11.Enabled = false;

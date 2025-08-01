@@ -101,6 +101,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 
 
@@ -143,10 +144,10 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private async void button2_Click( object sender, EventArgs e )
+		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
-			await kuka.ConnectCloseAsync( );
+			kuka.ConnectClose( );
 			button2.Enabled = false;
 			button1.Enabled = true;
 			panel2.Enabled = false;

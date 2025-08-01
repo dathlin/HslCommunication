@@ -21,6 +21,7 @@ namespace HslCommunicationDemo
 		public FormLSisServer( )
 		{
 			InitializeComponent( );
+			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -49,7 +50,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			lSisServer?.ServerClose( );
+			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start

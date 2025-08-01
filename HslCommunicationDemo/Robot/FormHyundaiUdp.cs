@@ -42,6 +42,10 @@ namespace HslCommunicationDemo.Robot
 
 		private HyundaiUdpNet hyundai;
 
+		private void FormHyundaiUdp_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
 		private void button1_Click( object sender, EventArgs e )
 		{
 			// 启动服务
@@ -165,5 +169,6 @@ namespace HslCommunicationDemo.Robot
 				 double.Parse( textBox14.Text ),
 				 double.Parse( textBox13.Text ) ), "X,Y,Z,Rx,Ry,Rz" );
 		}
+
 	}
 }

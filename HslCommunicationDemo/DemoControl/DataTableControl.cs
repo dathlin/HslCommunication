@@ -59,7 +59,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void DataGridView1_MouseDown( object sender, MouseEventArgs e )
 		{
-			Rectangle rect = new Rectangle( hslCurveHistory1.Width - 100, hslCurveHistory1.Height - 30, 98, 28 );
+			Rectangle rect = new Rectangle( hslCurveHistory1.Width - 52, hslCurveHistory1.Height - 23, 50, 20 );
 			if (rect.Contains( e.Location ))
 			{
 				using(FormPropertyModify form = new FormPropertyModify())
@@ -67,14 +67,57 @@ namespace HslCommunicationDemo.DemoControl
 					form.SetObject( hslCurveHistory1 );
 					form.ShowDialog( );
 				}
+				return;
+			}
+
+			Rectangle rect2 = new Rectangle( 1, hslCurveHistory1.Height - 23, 48, 20 );
+			if (rect2.Contains( e.Location ))
+			{
+				List<CurveLineStyle> lineStyles = new List<CurveLineStyle>( );
+				
+				foreach (var item in hslCurveHistory1.GetAllCurve( ))
+				{
+					CurveLineStyle curveLineStyle = new CurveLineStyle( );
+					curveLineStyle.Key = item.Key;
+					curveLineStyle.Color = item.Value.LineColor;
+					curveLineStyle.Width = item.Value.LineThickness;
+					curveLineStyle.Style = item.Value.Style;
+					curveLineStyle.Format = item.Value.RenderFormat;
+					lineStyles.Add( curveLineStyle );
+				}
+
+
+				using (FormPropertyModify form = new FormPropertyModify( ))
+				{
+					form.SetObject( new CurveLineStyleArray( ) { Items = lineStyles } );
+					if( form.ShowDialog( ) == DialogResult.OK)
+					{
+						int index = 0;
+						foreach (var item in hslCurveHistory1.GetAllCurve( ))
+						{
+							if (index >= lineStyles.Count) break;
+							item.Value.LineColor = lineStyles[index].Color;
+							item.Value.LineThickness = lineStyles[index].Width;
+							item.Value.Style = lineStyles[index].Style;
+							item.Value.RenderFormat = lineStyles[index].Format;
+							index++;
+						}
+						hslCurveHistory1.RenderCurveUI( ); // 重新渲染曲线
+					}
+				}
+				return;
 			}
 		}
 
 		private void DataGridView1_Paint( object sender, PaintEventArgs e )
 		{
-			Rectangle rect = new Rectangle( hslCurveHistory1.Width - 100, hslCurveHistory1.Height - 30, 98, 28 );
+			Rectangle rect = new Rectangle( hslCurveHistory1.Width - 50, hslCurveHistory1.Height - 23, 48, 20 );
 			e.Graphics.DrawRectangle( Pens.Gray, rect );
-			e.Graphics.DrawString( Program.Language == 1 ? "曲线属性" : "Setting", this.Font, Brushes.Gray, rect, HslControls.HslHelper.StringFormatCenter );
+			e.Graphics.DrawString( Program.Language == 1 ? "属性" : "Setting", this.Font, Brushes.Gray, rect, HslControls.HslHelper.StringFormatCenter );
+
+			Rectangle rect2 = new Rectangle( 1, hslCurveHistory1.Height - 23, 45, 20 );
+			e.Graphics.DrawRectangle( Pens.Gray, rect2 );
+			e.Graphics.DrawString( Program.Language == 1 ? "样式" : "Style", this.Font, Brushes.Gray, rect2, HslControls.HslHelper.StringFormatCenter );
 		}
 
 		class CurveData
@@ -287,10 +330,12 @@ namespace HslCommunicationDemo.DemoControl
 						}
 						if (record == false)
 						{
+							// 清除所有的曲线信息
 							recordData = false;
 							this.dataGridView1.Width = this.Width - 1;
 							this.dataGridView1.Height = this.Height - 33;
 							this.hslCurveHistory1.Visible = false;
+							this.hslCurveHistory1.RemoveAllCurve( );
 						}
 					}
 				}
