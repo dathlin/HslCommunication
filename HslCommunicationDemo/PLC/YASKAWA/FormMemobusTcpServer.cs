@@ -28,10 +28,6 @@ namespace HslCommunicationDemo
 			if(Program.Language == 2)
 			{
 				Text = "MemobusTcp Virtual Server[data support function: 01,02,03,04,05,06,08,09,0a,0b,0d,0e,0f,10]";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-				label11.Text = "This server is not a strict MemobusTcp protocol and only supports perfect communication with HSL components.";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -41,11 +37,15 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -57,26 +57,17 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox_port.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				tcpServer = new HslCommunication.Profinet.YASKAWA.MemobusTcpServer( );                       // 实例化对象
 				tcpServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				tcpServer.OnDataReceived += BusTcpServer_OnDataReceived;
 				userControlReadWriteServer1.SetReadWriteServer( tcpServer, "100" );
+
 				this.sslServerControl1.InitializeServer( tcpServer );
-				tcpServer.ServerStart( port, radioButton_tcp.Checked );
+				if (this.serverSettingControl1.ServerStart( tcpServer ) == false) return;
 
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
-
-
 				// 设置代码示例
 				codeExampleControl.SetCodeText( "server", "", tcpServer );
 			}
@@ -92,8 +83,17 @@ namespace HslCommunicationDemo
 			// 停止服务
 			userControlReadWriteServer1.Close( );
 			tcpServer?.ServerClose( );
-			button1.Enabled = true;
-			button11.Enabled = false;
+		}
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+			// 启动串口
+			tcpServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+			this.serverSettingControl1.ButtonSerial.Enabled = false;
+
+			// 设置示例代码
+			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, tcpServer, this.sslServerControl1 );
+
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] receive )
@@ -119,15 +119,16 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-
+			this.serverSettingControl1.LoadXmlParameter( element );
+			this.sslServerControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

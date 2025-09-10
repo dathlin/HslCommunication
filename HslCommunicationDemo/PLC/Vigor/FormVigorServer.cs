@@ -28,12 +28,6 @@ namespace HslCommunicationDemo
 			if (Program.Language == 2)
 			{
 				Text = "Vigor Virtual Server";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-
-				label14.Text = "Com:";
-				button5.Text = "Open Com";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -43,12 +37,16 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -60,33 +58,22 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox_port.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				vigorServer = new VigorServer( );                       // 实例化对象
 				vigorServer.Station = int.Parse( textBox_station.Text );
 				vigorServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				vigorServer.OnDataReceived += BusTcpServer_OnDataReceived;
+
 				this.sslServerControl1.InitializeServer( vigorServer );
-				// add some accounts
-				// vigorServer.AddAccount( "admin", "123456" );
-				// vigorServer.AddAccount( "hsl", "test" );
+				if (this.serverSettingControl1.ServerStart( vigorServer ) == false) return;
 
 				userControlReadWriteServer1.SetReadWriteServer( vigorServer, "D100" );
-				vigorServer.ServerStart( port );
-
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", vigorServer, nameof( vigorServer.Station ) );
+				codeExampleControl.SetCodeText( "server", "", vigorServer, this.sslServerControl1, nameof( vigorServer.Station ) );
 			}
 			catch (Exception ex)
 			{
@@ -101,9 +88,6 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.Close( );
 			vigorServer?.CloseSerialSlave( );
 			vigorServer?.ServerClose( );
-			button1.Enabled = true;
-			button5.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] modbus )
@@ -133,11 +117,11 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					vigorServer.StartSerialSlave( textBox_serial.Text );
-					button5.Enabled = false;
+					vigorServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+					this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "server", textBox_serial.Text, vigorServer, nameof( vigorServer.Station ) );
+					codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, vigorServer, this.sslServerControl1, nameof( vigorServer.Station ) );
 				}
 				catch(Exception ex)
 				{
@@ -153,20 +137,18 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox_serial.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
-
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox_serial.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
 			textBox_station.Text = GetXmlValue( element, DemoDeviceList.XmlStation, "0", m => m );
-
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

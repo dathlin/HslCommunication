@@ -31,17 +31,10 @@ namespace HslCommunicationDemo
 			if(Program.Language == 2)
 			{
 				Text = "MC Virtual Server [data support, bool: x,y,m   word: x,y,m,d,w]";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-				label14.Text = "Serial:";
-				button5.Text = "Start";
-				toolTip1.SetToolTip( radioButton_both, "The port number of the UDP defaults to the tcp port number +1" );
 			}
 			else
 			{
 
-				toolTip1.SetToolTip( radioButton_both, "Udp的端口号默认为 Tcp 的端口号 +1" );
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -53,15 +46,16 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.SetEnable( false );
 
 
-			button5.Enabled = false;
 			if (ServerMode == 1) this.userControlHead1.ProtocolInfo = "Mc Qna3E Udp Server";
 			if (ServerMode == 2) this.userControlHead1.ProtocolInfo = "Mc A1E Tcp Server";
-
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -76,69 +70,22 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			int port1 = 0;
-			int port2 = 0;
-			if (textBox2.Text.Contains( ";" ) || textBox2.Text.Contains( ":" ) || textBox2.Text.Contains( "-" ))
-			{
-				string[] ports = textBox2.Text.Split( new char[] { ';', ':', '-' }, StringSplitOptions.RemoveEmptyEntries );
-				if (ports.Length >= 1)
-				{
-					if (!int.TryParse( ports[0], out port1 ))
-					{
-						DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-						return;
-					}
-
-					if (!int.TryParse( ports[1], out port2 ))
-					{
-						DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-						return;
-					}
-				}
-			}
-			else
-			{
-				if (!int.TryParse( textBox2.Text, out port1 ))
-				{
-					DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-					return;
-				}
-				port2 = port1 + 1;
-			}
-
 			try
 			{
 				if (ServerMode == 0) mcNetServer = new HslCommunication.Profinet.Melsec.MelsecMcServer( radioButton_binary.Checked );                       // 实例化对象
 				else if (ServerMode == 2) mcNetServer = new HslCommunication.Profinet.Melsec.MelsecA1EServer( radioButton_binary.Checked );
 
-				mcNetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );                            // 1小时不通信就断开
-				mcNetServer.EnableIPv6 = radioButton_ipv6.Checked;                               // 是否开启IPv6
 				mcNetServer.OnDataReceived += MelsecMcServer_OnDataReceived;                     // 接收到数据触发
 				userControlReadWriteServer1.SetReadWriteServerLog( mcNetServer );                // 设置日志
 
 				this.sslServerControl1.InitializeServer( mcNetServer );  // 如果配置SSL，则初始化SSL
+				if (!this.serverSettingControl1.ServerStart( mcNetServer )) return;   // 启动服务器
 
-				if (radioButton_tcp.Checked)
-				{
-					mcNetServer.ServerStart( port1, modeTcp: true );
-				}
-				else if (radioButton_udp.Checked)
-				{
-					mcNetServer.ServerStart( port1, modeTcp: false );
-				}
-				else
-				{
-					mcNetServer.ServerStart( port1,  port2 );
-				}
 				userControlReadWriteServer1.SetReadWriteServer( mcNetServer, "D100" );
-
-				button1.Enabled = false;
-				button5.Enabled = true;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", mcNetServer, nameof( mcNetServer.IsBinary ) );
+				codeExampleControl.SetCodeText( "server", "", mcNetServer, this.sslServerControl1, nameof( mcNetServer.IsBinary ) );
 			}
 			catch (Exception ex)
 			{
@@ -152,8 +99,6 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.Close( );
 			mcNetServer?.CloseSerialSlave( );
 			mcNetServer?.ServerClose( );
-			button1.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void MelsecMcServer_OnDataReceived( object sender, PipeSession session, byte[] receive )
@@ -177,11 +122,11 @@ namespace HslCommunicationDemo
 		private void button5_Click( object sender, EventArgs e )
 		{
 			// 启动串口
-			mcNetServer.StartSerialSlave( textBox_serialPort.Text );
-			button5.Enabled = false;
+			mcNetServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+			this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 			// 设置示例代码
-			codeExampleControl.SetCodeText( "server", textBox_serialPort.Text, mcNetServer, nameof( mcNetServer.IsBinary ) );
+			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, mcNetServer, nameof( mcNetServer.IsBinary ) );
 
 		}
 
@@ -190,22 +135,22 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.serverSettingControl1.SaveXmlParameter( element );
+			this.sslServerControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlBinary, radioButton_binary.Checked );
-			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox_serialPort.Text );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.serverSettingControl1.LoadXmlParameter( element );
+			this.sslServerControl1.LoadXmlParameter( element );
 			bool check = bool.Parse( element.Attribute( DemoDeviceList.XmlBinary ).Value );
 			if (check)
 				radioButton_binary.Checked = true;
 			else
 				radioButton_ascii.Checked = true;
-			textBox_serialPort.Text = GetXmlValue( element, DemoDeviceList.XmlCom, textBox_serialPort.Text, m => m );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

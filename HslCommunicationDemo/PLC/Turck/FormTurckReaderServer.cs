@@ -29,9 +29,6 @@ namespace HslCommunicationDemo
 			if(Program.Language == 2)
 			{
 				Text = "Turck Reader protocol";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -46,12 +43,16 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -62,27 +63,20 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				readerServer.BytesOfBlock   = int.Parse( textBox1.Text );
 				readerServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
-				this.sslServerControl1.InitializeServer( readerServer );
-				readerServer.ServerStart( port );
-				userControlReadWriteServer1.SetReadWriteServer( readerServer, "100" );
 
-				button1.Enabled = false;
+				this.sslServerControl1.InitializeServer( readerServer );
+				if (this.serverSettingControl1.ServerStart( readerServer ) == false) return;
+
+				userControlReadWriteServer1.SetReadWriteServer( readerServer, "100" );
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", readerServer, nameof( readerServer.BytesOfBlock ) );
+				codeExampleControl.SetCodeText( "server", "", readerServer, this.sslServerControl1, nameof( readerServer.BytesOfBlock ) );
 			}
 			catch (Exception ex)
 			{
@@ -94,11 +88,11 @@ namespace HslCommunicationDemo
 		{
 			if (readerServer != null)
 			{
-				readerServer.StartSerialSlave( textBox_serial.Text );
-				button5.Enabled = false;
+				readerServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+				this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", textBox_serial.Text, readerServer, nameof( readerServer.BytesOfBlock ) );
+				codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, readerServer, this.sslServerControl1, nameof( readerServer.BytesOfBlock ) );
 			}
 		}
 
@@ -108,9 +102,6 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.Close( );
 			readerServer?.CloseSerialSlave( );
 			readerServer?.ServerClose( );
-			button1.Enabled = true;
-			button5.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void MelsecMcServer_OnDataReceived( object sender,  object source, byte[] receive )
@@ -136,18 +127,18 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( "BytesOfBlock", textBox1.Text );
-			element.SetAttributeValue( "Serial", textBox_serial.Text );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox1.Text = element.Attribute( "BytesOfBlock" ).Value;
-			textBox_serial.Text = GetXmlValue( element, "Serial", textBox_serial.Text, m => m );
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
+			textBox1.Text = GetXmlValue( element, "BytesOfBlock", "8", m => m );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

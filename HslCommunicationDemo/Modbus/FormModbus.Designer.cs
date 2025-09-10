@@ -29,6 +29,9 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_DisableFunctionCode06 = new System.Windows.Forms.CheckBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.checkBox_station_check = new System.Windows.Forms.CheckBox();
 			this.textBox_batch_length = new System.Windows.Forms.TextBox();
 			this.label_batch_length = new System.Windows.Forms.Label();
@@ -55,6 +58,9 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_DisableFunctionCode06);
+			this.panel1.Controls.Add(this.label2);
+			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.checkBox_station_check);
 			this.panel1.Controls.Add(this.textBox_batch_length);
 			this.panel1.Controls.Add(this.label_batch_length);
@@ -72,15 +78,44 @@
 			this.panel1.Location = new System.Drawing.Point(3, 34);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(990, 62);
+			this.panel1.Size = new System.Drawing.Size(990, 83);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_DisableFunctionCode06
+			// 
+			this.checkBox_DisableFunctionCode06.AutoSize = true;
+			this.checkBox_DisableFunctionCode06.Location = new System.Drawing.Point(575, 59);
+			this.checkBox_DisableFunctionCode06.Name = "checkBox_DisableFunctionCode06";
+			this.checkBox_DisableFunctionCode06.Size = new System.Drawing.Size(163, 21);
+			this.checkBox_DisableFunctionCode06.TabIndex = 41;
+			this.checkBox_DisableFunctionCode06.Text = "DisableFunctionCode06";
+			this.checkBox_DisableFunctionCode06.UseVisualStyleBackColor = true;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Gray;
+			this.label2.Location = new System.Drawing.Point(596, 36);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(184, 17);
+			this.label2.TabIndex = 40;
+			this.label2.Text = "(如果不清楚，不用管，空着就行)";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(121, 36);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(88, 17);
+			this.label1.TabIndex = 39;
+			this.label1.Text = "DataFormat：";
 			// 
 			// checkBox_station_check
 			// 
 			this.checkBox_station_check.AutoSize = true;
 			this.checkBox_station_check.Checked = true;
 			this.checkBox_station_check.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_station_check.Location = new System.Drawing.Point(752, 36);
+			this.checkBox_station_check.Location = new System.Drawing.Point(445, 59);
 			this.checkBox_station_check.Name = "checkBox_station_check";
 			this.checkBox_station_check.Size = new System.Drawing.Size(106, 21);
 			this.checkBox_station_check.TabIndex = 38;
@@ -89,7 +124,7 @@
 			// 
 			// textBox_batch_length
 			// 
-			this.textBox_batch_length.Location = new System.Drawing.Point(944, 34);
+			this.textBox_batch_length.Location = new System.Drawing.Point(544, 33);
 			this.textBox_batch_length.Name = "textBox_batch_length";
 			this.textBox_batch_length.Size = new System.Drawing.Size(37, 23);
 			this.textBox_batch_length.TabIndex = 37;
@@ -97,7 +132,7 @@
 			// label_batch_length
 			// 
 			this.label_batch_length.AutoSize = true;
-			this.label_batch_length.Location = new System.Drawing.Point(865, 37);
+			this.label_batch_length.Location = new System.Drawing.Point(465, 36);
 			this.label_batch_length.Name = "label_batch_length";
 			this.label_batch_length.Size = new System.Drawing.Size(71, 17);
 			this.label_batch_length.TabIndex = 36;
@@ -105,7 +140,7 @@
 			// 
 			// textBox_BroadcastStation
 			// 
-			this.textBox_BroadcastStation.Location = new System.Drawing.Point(703, 34);
+			this.textBox_BroadcastStation.Location = new System.Drawing.Point(396, 33);
 			this.textBox_BroadcastStation.Name = "textBox_BroadcastStation";
 			this.textBox_BroadcastStation.Size = new System.Drawing.Size(39, 23);
 			this.textBox_BroadcastStation.TabIndex = 35;
@@ -113,7 +148,7 @@
 			// label_BroadcastStation
 			// 
 			this.label_BroadcastStation.AutoSize = true;
-			this.label_BroadcastStation.Location = new System.Drawing.Point(626, 37);
+			this.label_BroadcastStation.Location = new System.Drawing.Point(320, 36);
 			this.label_BroadcastStation.Name = "label_BroadcastStation";
 			this.label_BroadcastStation.Size = new System.Drawing.Size(59, 17);
 			this.label_BroadcastStation.TabIndex = 34;
@@ -139,7 +174,7 @@
 			this.checkBox2.AutoSize = true;
 			this.checkBox2.Checked = true;
 			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox2.Location = new System.Drawing.Point(11, 36);
+			this.checkBox2.Location = new System.Drawing.Point(8, 59);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(111, 21);
 			this.checkBox2.TabIndex = 32;
@@ -165,9 +200,9 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox1.Location = new System.Drawing.Point(520, 32);
+			this.comboBox1.Location = new System.Drawing.Point(217, 32);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(93, 25);
+			this.comboBox1.Size = new System.Drawing.Size(85, 25);
 			this.comboBox1.TabIndex = 26;
 			// 
 			// checkBox1
@@ -175,7 +210,7 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(283, 36);
+			this.checkBox1.Location = new System.Drawing.Point(295, 59);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(106, 21);
 			this.checkBox1.TabIndex = 9;
@@ -184,16 +219,16 @@
 			// 
 			// textBox15
 			// 
-			this.textBox15.Location = new System.Drawing.Point(468, 33);
+			this.textBox15.Location = new System.Drawing.Point(61, 33);
 			this.textBox15.Name = "textBox15";
-			this.textBox15.Size = new System.Drawing.Size(39, 23);
+			this.textBox15.Size = new System.Drawing.Size(43, 23);
 			this.textBox15.TabIndex = 7;
 			this.textBox15.Text = "1";
 			// 
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(414, 36);
+			this.label21.Location = new System.Drawing.Point(8, 36);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(44, 17);
 			this.label21.TabIndex = 6;
@@ -213,7 +248,7 @@
 			// checkBox3
 			// 
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(152, 36);
+			this.checkBox3.Location = new System.Drawing.Point(156, 59);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(87, 21);
 			this.checkBox3.TabIndex = 25;
@@ -228,10 +263,10 @@
 			this.panel2.AutoScroll = true;
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteDevice1);
-			this.panel2.Location = new System.Drawing.Point(3, 99);
+			this.panel2.Location = new System.Drawing.Point(3, 120);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(990, 560);
+			this.panel2.Size = new System.Drawing.Size(990, 539);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteDevice1
@@ -240,7 +275,7 @@
 			this.userControlReadWriteDevice1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.userControlReadWriteDevice1.Location = new System.Drawing.Point(0, 0);
 			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
-			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(988, 558);
+			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(988, 537);
 			this.userControlReadWriteDevice1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -301,5 +336,8 @@
 		private System.Windows.Forms.TextBox textBox_batch_length;
 		private System.Windows.Forms.Label label_batch_length;
 		private System.Windows.Forms.CheckBox checkBox_station_check;
+		private System.Windows.Forms.CheckBox checkBox_DisableFunctionCode06;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label1;
 	}
 }

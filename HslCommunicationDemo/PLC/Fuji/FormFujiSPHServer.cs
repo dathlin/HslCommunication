@@ -28,10 +28,6 @@ namespace HslCommunicationDemo
 			if(Program.Language == 2)
 			{
 				Text = "SPH Virtual Server";
-				label3.Text = "Port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-				label11.Text = "This server is not a strict sph protocol and only supports perfect communication with HSL components.";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -41,11 +37,15 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -56,27 +56,18 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				fujiSPHServer = new FujiSPHServer( );                       // 实例化对象
-				fujiSPHServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );     // 如果客户端1个小时不通信，就关闭连接
 				fujiSPHServer.OnDataReceived += MelsecMcServer_OnDataReceived;
 				this.sslServerControl1.InitializeServer( fujiSPHServer );
-				fujiSPHServer.ServerStart( port );
-				userControlReadWriteServer1.SetReadWriteServer( fujiSPHServer, "M1.100" );
+				if (this.serverSettingControl1.ServerStart( fujiSPHServer ) == false) return;
 
-				button1.Enabled = false;
+				userControlReadWriteServer1.SetReadWriteServer( fujiSPHServer, "M1.100" );
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", fujiSPHServer, "ByteTransform.DataFormat" );
+				codeExampleControl.SetCodeText( "server", "", fujiSPHServer, this.sslServerControl1, "ByteTransform.DataFormat" );
 			}
 			catch (Exception ex)
 			{
@@ -88,11 +79,19 @@ namespace HslCommunicationDemo
 		{
 			// 停止服务
 			userControlReadWriteServer1.Close( );
-			button1.Enabled = true;
-			button11.Enabled = false;
 			fujiSPHServer?.ServerClose( );
 		}
 
+		private void button5_Click( object sender, EventArgs e )
+		{
+			// 启动串口
+			fujiSPHServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+			this.serverSettingControl1.ButtonSerial.Enabled = false;
+
+			// 设置示例代码
+			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, fujiSPHServer, this.sslServerControl1 );
+
+		}
 		private void MelsecMcServer_OnDataReceived( object sender,  object source, byte[] receive )
 		{
 			// 我们可以捕获到接收到的客户端的modbus报文
@@ -116,15 +115,16 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

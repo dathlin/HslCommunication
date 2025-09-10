@@ -30,13 +30,7 @@ namespace HslCommunicationDemo
 
 			if (Program.Language == 2)
 			{
-				Text = "Fatek Virtual Server[supports TCP and Serial";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-
-				label14.Text = "Com:";
-				button5.Text = "Open Com";
+				Text = "Fatek Virtual Server";
 				checkBox3.Text = "str-reverse";
 			}
 
@@ -47,19 +41,23 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 
 		private void CheckBox3_CheckedChanged( object sender, EventArgs e )
 		{
 			if (fatekServer != null)
 			{
-				//fatekServer.IsStringReverse = checkBox3.Checked;
+				fatekServer.ByteTransform.IsStringReverseByteWord = checkBox3.Checked;
 			}
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -71,31 +69,22 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				fatekServer = new FatekProgramServer( );                       // 实例化对象
 				fatekServer.Station = byte.Parse( textBox1.Text );
 				fatekServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				fatekServer.OnDataReceived += BusTcpServer_OnDataReceived;
+				fatekServer.ByteTransform.IsStringReverseByteWord = checkBox3.Checked;
 
 				//sPBServer.IsStringReverse = checkBox3.Checked;
 				this.sslServerControl1.InitializeServer( fatekServer );
 				userControlReadWriteServer1.SetReadWriteServer( fatekServer, "D100" );
-				fatekServer.ServerStart( port );
+				if (this.serverSettingControl1.ServerStart( fatekServer ) == false) return;
 
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
-
-
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", fatekServer, nameof( fatekServer.Station ) );
+				codeExampleControl.SetCodeText( "server", "", fatekServer, this.sslServerControl1, nameof( fatekServer.Station ) );
 			}
 			catch (Exception ex)
 			{
@@ -108,9 +97,6 @@ namespace HslCommunicationDemo
 		{
 			// 停止服务
 			userControlReadWriteServer1.Close( );
-			button1.Enabled = true;
-			button5.Enabled = true;
-			button11.Enabled = false;
 			fatekServer?.ServerClose( );
 		}
 
@@ -141,11 +127,11 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					fatekServer.StartSerialSlave( textBox10.Text );
-					button5.Enabled = false;
+					fatekServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+					this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "server", textBox10.Text, fatekServer, nameof( fatekServer.Station ) );
+					codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, fatekServer, nameof( fatekServer.Station ) );
 				}
 				catch(Exception ex)
 				{
@@ -161,21 +147,20 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
+			this.serverSettingControl1.SaveXmlParameter( element );
+			this.sslServerControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
-
-
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-
+			textBox1.Text = GetXmlValue( element, DemoDeviceList.XmlStation, "1", m => m );
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

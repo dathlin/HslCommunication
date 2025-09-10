@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_dataId = new System.Windows.Forms.CheckBox();
 			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.checkBox_enable_Fe = new System.Windows.Forms.CheckBox();
 			this.textBox_op_code = new System.Windows.Forms.TextBox();
@@ -42,7 +43,6 @@
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
-			this.checkBox_dataId = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -69,6 +69,18 @@
 			this.panel1.Size = new System.Drawing.Size(997, 62);
 			this.panel1.TabIndex = 0;
 			// 
+			// checkBox_dataId
+			// 
+			this.checkBox_dataId.AutoSize = true;
+			this.checkBox_dataId.Checked = true;
+			this.checkBox_dataId.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_dataId.Location = new System.Drawing.Point(872, 34);
+			this.checkBox_dataId.Name = "checkBox_dataId";
+			this.checkBox_dataId.Size = new System.Drawing.Size(97, 21);
+			this.checkBox_dataId.TabIndex = 41;
+			this.checkBox_dataId.Text = "检查DataID?";
+			this.checkBox_dataId.UseVisualStyleBackColor = true;
+			// 
 			// pipeSelectControl1
 			// 
 			this.pipeSelectControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -81,8 +93,8 @@
 			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
 			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
 			this.pipeSelectControl1.TabIndex = 40;
-			this.pipeSelectControl1.TcpPortText = "502";
-			this.pipeSelectControl1.UdpPortText = "502";
+			this.pipeSelectControl1.TcpPortText = "2000";
+			this.pipeSelectControl1.UdpPortText = "2000";
 			// 
 			// checkBox_enable_Fe
 			// 
@@ -200,18 +212,6 @@
 			this.userControlReadWriteDevice1.Name = "userControlReadWriteDevice1";
 			this.userControlReadWriteDevice1.Size = new System.Drawing.Size(995, 540);
 			this.userControlReadWriteDevice1.TabIndex = 0;
-			// 
-			// checkBox_dataId
-			// 
-			this.checkBox_dataId.AutoSize = true;
-			this.checkBox_dataId.Checked = true;
-			this.checkBox_dataId.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_dataId.Location = new System.Drawing.Point(872, 34);
-			this.checkBox_dataId.Name = "checkBox_dataId";
-			this.checkBox_dataId.Size = new System.Drawing.Size(97, 21);
-			this.checkBox_dataId.TabIndex = 41;
-			this.checkBox_dataId.Text = "检查DataID?";
-			this.checkBox_dataId.UseVisualStyleBackColor = true;
 			// 
 			// FormDLT645OverTcp
 			// 

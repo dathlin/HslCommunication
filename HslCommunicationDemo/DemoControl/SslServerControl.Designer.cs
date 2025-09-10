@@ -40,17 +40,17 @@
 			// textBox_cert_password
 			// 
 			this.textBox_cert_password.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_cert_password.Location = new System.Drawing.Point(914, 3);
+			this.textBox_cert_password.Location = new System.Drawing.Point(736, 3);
 			this.textBox_cert_password.Name = "textBox_cert_password";
 			this.textBox_cert_password.PasswordChar = '*';
-			this.textBox_cert_password.Size = new System.Drawing.Size(234, 23);
+			this.textBox_cert_password.Size = new System.Drawing.Size(197, 23);
 			this.textBox_cert_password.TabIndex = 46;
 			// 
 			// label1
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(832, 6);
+			this.label1.Location = new System.Drawing.Point(654, 6);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(76, 17);
 			this.label1.TabIndex = 45;
@@ -59,7 +59,7 @@
 			// button_cert
 			// 
 			this.button_cert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_cert.Location = new System.Drawing.Point(742, 1);
+			this.button_cert.Location = new System.Drawing.Point(564, 1);
 			this.button_cert.Name = "button_cert";
 			this.button_cert.Size = new System.Drawing.Size(84, 27);
 			this.button_cert.TabIndex = 44;
@@ -73,7 +73,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_cert.Location = new System.Drawing.Point(82, 3);
 			this.textBox_cert.Name = "textBox_cert";
-			this.textBox_cert.Size = new System.Drawing.Size(651, 23);
+			this.textBox_cert.Size = new System.Drawing.Size(476, 23);
 			this.textBox_cert.TabIndex = 43;
 			// 
 			// checkBox_ssl
@@ -96,7 +96,7 @@
 			this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.borderPanel1.Location = new System.Drawing.Point(0, 0);
 			this.borderPanel1.Name = "borderPanel1";
-			this.borderPanel1.Size = new System.Drawing.Size(1151, 30);
+			this.borderPanel1.Size = new System.Drawing.Size(938, 30);
 			this.borderPanel1.TabIndex = 47;
 			// 
 			// SslServerControl
@@ -105,7 +105,7 @@
 			this.Controls.Add(this.borderPanel1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "SslServerControl";
-			this.Size = new System.Drawing.Size(1151, 30);
+			this.Size = new System.Drawing.Size(938, 30);
 			this.borderPanel1.ResumeLayout(false);
 			this.borderPanel1.PerformLayout();
 			this.ResumeLayout(false);

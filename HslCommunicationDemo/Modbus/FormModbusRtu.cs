@@ -25,6 +25,16 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
+
+			checkBox_DisableFunctionCode06.CheckedChanged +=CheckBox_DisableFunctionCode06_CheckedChanged;
+		}
+
+		private void CheckBox_DisableFunctionCode06_CheckedChanged( object sender, EventArgs e )
+		{
+			if (busRtuClient != null)
+			{
+				busRtuClient.DisableFunctionCode06 = checkBox_DisableFunctionCode06.Checked;
+			}
 		}
 
 		private ModbusRtu busRtuClient = null;
@@ -70,6 +80,10 @@ namespace HslCommunicationDemo
 				checkBox2.Text = "IsClearCacheBeforeRead";
 				label_BroadcastStation.Text = "BroadcastStat:";
 				label_batch_length.Text = "BatchLen:";
+			}
+			else
+			{
+				checkBox_DisableFunctionCode06.Text = "禁用功能码06";
 			}
 		}
 
@@ -120,7 +134,8 @@ namespace HslCommunicationDemo
 			busRtuClient.IsClearCacheBeforeRead = checkBox2.Checked;
 			busRtuClient.LogNet = LogNet;
 			busRtuClient.Crc16CheckEnable = checkBox_crc16.Checked;
-			busRtuClient.StationCheckMacth = checkBox_station_check.Checked;
+			busRtuClient.StationCheckMatch = checkBox_station_check.Checked;
+			busRtuClient.DisableFunctionCode06 = checkBox_DisableFunctionCode06.Checked;
 			if (!string.IsNullOrEmpty( textBox_BroadcastStation.Text ))
 				busRtuClient.BroadcastStation = int.Parse( textBox_BroadcastStation.Text );
 			if (!string.IsNullOrEmpty( textBox_batch_length.Text ))
@@ -158,10 +173,11 @@ namespace HslCommunicationDemo
 					paras.Add( nameof( busRtuClient.DataFormat ) );
 					paras.Add( nameof( busRtuClient.IsClearCacheBeforeRead ) );
 					if (busRtuClient.Crc16CheckEnable == false) paras.Add( nameof( busRtuClient.Crc16CheckEnable ) );
-					if (busRtuClient.StationCheckMacth == false) paras.Add( nameof( busRtuClient.StationCheckMacth ) );
+					if (busRtuClient.StationCheckMatch == false) paras.Add( nameof( busRtuClient.StationCheckMatch ) );
 					if (busRtuClient.BroadcastStation != -1) paras.Add( nameof( busRtuClient.BroadcastStation ) );
 					if (busRtuClient.AddressStartWithZero == false) paras.Add( nameof( busRtuClient.AddressStartWithZero ) );
 					if (busRtuClient.WordReadBatchLength != 120) paras.Add( nameof( busRtuClient.WordReadBatchLength ) );
+					if (busRtuClient.DisableFunctionCode06) paras.Add( nameof( busRtuClient.DisableFunctionCode06 ) );
 
 					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busRtuClient, paras.ToArray( ) );
 				}
@@ -199,6 +215,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( "CRC16", checkBox_crc16.Checked );
 			element.SetAttributeValue( "StationCheckMacth", checkBox_station_check.Checked );
 			element.SetAttributeValue( nameof( ModbusRtu.BroadcastStation ), textBox_BroadcastStation.Text );
+			element.SetAttributeValue( nameof( ModbusRtu.DisableFunctionCode06 ), checkBox_DisableFunctionCode06.Checked );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -213,6 +230,7 @@ namespace HslCommunicationDemo
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
 			checkBox_crc16.Checked = GetXmlValue( element, "CRC16", checkBox_crc16.Checked, bool.Parse );
 			checkBox_station_check.Checked = GetXmlValue( element, "StationCheckMacth", checkBox_station_check.Checked, bool.Parse );
+			checkBox_DisableFunctionCode06.Checked = GetXmlValue( element, nameof( ModbusRtu.DisableFunctionCode06 ), false, bool.Parse );
 			textBox_BroadcastStation.Text = GetXmlValue( element, nameof( ModbusRtu.BroadcastStation ), "", m => m );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

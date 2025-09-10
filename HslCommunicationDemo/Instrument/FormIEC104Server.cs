@@ -102,6 +102,19 @@ namespace HslCommunicationDemo.Instrument
 		private void FormIEC104Server_Load( object sender, EventArgs e )
 		{
 			dataGridView1.RowHeadersWidth = 70;
+
+			if (Program.Language == 2)
+			{
+				checkBox1.Text = "Displays communication packets";
+				Text = "IEC104 Virtual Server";
+				label3.Text = "Port:";
+				label4.Text = "Max-Address:";
+				button1.Text = "Start";
+				button11.Text = "Close";
+				button2.Text = "Horizontal";
+				button3.Text = "Vertical";
+				label1.Text = "Log:";
+			}
 		}
 
 		private IEC104Server server;
@@ -121,8 +134,28 @@ namespace HslCommunicationDemo.Instrument
 			{
 				server = new IEC104Server( ); 
 				this.sslServerControl1.InitializeServer( server );
+
+				if (!short.TryParse( textBox_max_address.Text, out short maxAddress ))
+				{
+					DemoUtils.ShowMessage( Program.Language == 1 ? "最大地址输入错误，需要输入整数" : "Max-Address input wrong！" );
+					return;
+				}
+				if (maxAddress != 100 && maxAddress > 0)
+				{
+					server.SingleYaoXin.SetValues( 0, maxAddress );
+					server.DoubleYaoXin.SetValues( 0, maxAddress );
+					server.YaoCeA.SetValues( 0, maxAddress );
+					server.YaoCeB.SetValues( 0, maxAddress );
+					server.YaoCeC.SetValues( 0, maxAddress );
+					server.BitArray.SetValues( 0, maxAddress );
+				}
+
+
 				server.ServerStart( port );
-				server.LogNet = this.LogNet;
+				server.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
+				server.LogNet.BeforeSaveToFile +=LogNet_BeforeSaveToFile;
+
+
 
 				panel2.Enabled = true;
 				button1.Enabled = false;
@@ -136,6 +169,14 @@ namespace HslCommunicationDemo.Instrument
 			catch( Exception ex )
 			{
 				DemoUtils.ShowMessage( ex.Message );
+			}
+		}
+
+		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
+		{
+			if ( e.HslMessage.Degree != HslCommunication.LogNet.HslMessageDegree.DEBUG || (e.HslMessage.Degree == HslCommunication.LogNet.HslMessageDegree.DEBUG && checkBox1.Checked) )
+			{
+				textBox1.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
 			}
 		}
 

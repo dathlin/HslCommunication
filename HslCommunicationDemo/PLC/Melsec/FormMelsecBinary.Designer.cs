@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.textBox_target_io_number = new System.Windows.Forms.TextBox();
 			this.label_target_io_number = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@ namespace HslCommunicationDemo
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -72,6 +72,16 @@ namespace HslCommunicationDemo
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 59);
 			this.panel1.TabIndex = 0;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.DimGray;
+			this.label1.Location = new System.Drawing.Point(807, 35);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(154, 17);
+			this.label1.TabIndex = 35;
+			this.label1.Text = "逻辑 0x03E0  运动 0x03E1";
 			// 
 			// pipeSelectControl1
 			// 
@@ -152,6 +162,8 @@ namespace HslCommunicationDemo
 			// checkBox_EnableWriteBitToWordRegister
 			// 
 			this.checkBox_EnableWriteBitToWordRegister.AutoSize = true;
+			this.checkBox_EnableWriteBitToWordRegister.Checked = true;
+			this.checkBox_EnableWriteBitToWordRegister.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox_EnableWriteBitToWordRegister.Location = new System.Drawing.Point(6, 34);
 			this.checkBox_EnableWriteBitToWordRegister.Name = "checkBox_EnableWriteBitToWordRegister";
 			this.checkBox_EnableWriteBitToWordRegister.Size = new System.Drawing.Size(228, 21);
@@ -217,16 +229,6 @@ namespace HslCommunicationDemo
 			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.Color.DimGray;
-			this.label1.Location = new System.Drawing.Point(807, 35);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(154, 17);
-			this.label1.TabIndex = 35;
-			this.label1.Text = "逻辑 0x03E0  运动 0x03E1";
 			// 
 			// FormMelsecBinary
 			// 

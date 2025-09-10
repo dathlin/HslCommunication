@@ -183,6 +183,8 @@ namespace HslCommunicationDemo.DemoControl
 				label4.Text = "Interval(sec):";
 				checkBox2.Text = "Save Cycle?";
 			}
+
+			textBox1.Height = tabPage1.Height - 36;
 		}
 
 		private void button8_Click( object sender, EventArgs e )

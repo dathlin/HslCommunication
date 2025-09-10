@@ -28,13 +28,7 @@ namespace HslCommunicationDemo
 		{
 			if (Program.Language == 2)
 			{
-				Text = "Siemens PPI Server[supports serial and tcp]";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-
-				label14.Text = "Com:";
-				button5.Text = "Open Com";
+				Text = "Siemens PPI Server";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -45,12 +39,15 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 
 			userControlReadWriteServer1.SetEnable( false );
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -62,30 +59,21 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				ppiServer                = new SiemensPPIServer( );                       // 实例化对象
 				ppiServer.Station        = byte.Parse( textBox1.Text );
 				ppiServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				ppiServer.OnDataReceived += BusTcpServer_OnDataReceived;
+
 				this.sslServerControl1.InitializeServer( ppiServer );
+				if (this.serverSettingControl1.ServerStart( ppiServer ) == false) return;
 
 				userControlReadWriteServer1.SetReadWriteServer( ppiServer, "M100" );
-				ppiServer.ServerStart( port );
-
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
-
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", ppiServer, nameof( ppiServer.Station ) );
+				codeExampleControl.SetCodeText( "server", "", ppiServer, this.sslServerControl1, nameof( ppiServer.Station ) );
 			}
 			catch (Exception ex)
 			{
@@ -99,9 +87,6 @@ namespace HslCommunicationDemo
 			// 停止服务
 			userControlReadWriteServer1.Close( );
 			ppiServer?.ServerClose( );
-			button1.Enabled = true;
-			button5.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] modbus )
@@ -131,11 +116,11 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					ppiServer.StartSerialSlave( textBox10.Text );
-					button5.Enabled = false;
+					ppiServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+					this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "server", textBox10.Text, ppiServer, nameof( ppiServer.Station ) );
+					codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, ppiServer, this.sslServerControl1, nameof( ppiServer.Station ) );
 				}
 				catch(Exception ex)
 				{
@@ -151,17 +136,19 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
+			this.serverSettingControl1.SaveXmlParameter( element );
+			this.sslServerControl1.SaveXmlParameter( element );
 			this.userControlReadWriteServer1.GetDataTable( element );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );
+			textBox1.Text = GetXmlValue( element, DemoDeviceList.XmlStation, "2", m => m );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

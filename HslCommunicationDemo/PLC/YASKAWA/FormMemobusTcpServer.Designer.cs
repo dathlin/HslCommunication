@@ -29,20 +29,12 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.borderPanel2 = new HslCommunicationDemo.DemoControl.BorderPanel();
-			this.radioButton_udp = new System.Windows.Forms.RadioButton();
-			this.radioButton_tcp = new System.Windows.Forms.RadioButton();
-			this.label11 = new System.Windows.Forms.Label();
-			this.button11 = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
-			this.textBox_port = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
+			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
+			this.serverSettingControl1 = new HslCommunicationDemo.DemoControl.ServerSettingControl();
 			this.panel1.SuspendLayout();
-			this.borderPanel2.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -51,96 +43,23 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.serverSettingControl1);
 			this.panel1.Controls.Add(this.sslServerControl1);
-			this.panel1.Controls.Add(this.borderPanel2);
-			this.panel1.Controls.Add(this.label11);
-			this.panel1.Controls.Add(this.button11);
-			this.panel1.Controls.Add(this.button1);
-			this.panel1.Controls.Add(this.textBox_port);
-			this.panel1.Controls.Add(this.label3);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 65);
 			this.panel1.TabIndex = 0;
 			// 
-			// borderPanel2
+			// sslServerControl1
 			// 
-			this.borderPanel2.Controls.Add(this.radioButton_udp);
-			this.borderPanel2.Controls.Add(this.radioButton_tcp);
-			this.borderPanel2.Location = new System.Drawing.Point(147, 2);
-			this.borderPanel2.Name = "borderPanel2";
-			this.borderPanel2.Size = new System.Drawing.Size(131, 28);
-			this.borderPanel2.TabIndex = 36;
-			// 
-			// radioButton_udp
-			// 
-			this.radioButton_udp.AutoSize = true;
-			this.radioButton_udp.Location = new System.Drawing.Point(70, 3);
-			this.radioButton_udp.Name = "radioButton_udp";
-			this.radioButton_udp.Size = new System.Drawing.Size(51, 21);
-			this.radioButton_udp.TabIndex = 1;
-			this.radioButton_udp.Text = "Udp";
-			this.radioButton_udp.UseVisualStyleBackColor = true;
-			// 
-			// radioButton_tcp
-			// 
-			this.radioButton_tcp.AutoSize = true;
-			this.radioButton_tcp.Checked = true;
-			this.radioButton_tcp.Location = new System.Drawing.Point(6, 3);
-			this.radioButton_tcp.Name = "radioButton_tcp";
-			this.radioButton_tcp.Size = new System.Drawing.Size(47, 21);
-			this.radioButton_tcp.TabIndex = 0;
-			this.radioButton_tcp.TabStop = true;
-			this.radioButton_tcp.Text = "Tcp";
-			this.radioButton_tcp.UseVisualStyleBackColor = true;
-			// 
-			// label11
-			// 
-			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.label11.Location = new System.Drawing.Point(490, 4);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(506, 32);
-			this.label11.TabIndex = 29;
-			this.label11.Text = "本服务器不是严格的Memobus协议，仅支持和HSL组件完美通信。";
-			// 
-			// button11
-			// 
-			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(382, 2);
-			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(83, 28);
-			this.button11.TabIndex = 28;
-			this.button11.Text = "关闭服务";
-			this.button11.UseVisualStyleBackColor = true;
-			this.button11.Click += new System.EventHandler(this.button11_Click);
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(292, 2);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(83, 28);
-			this.button1.TabIndex = 4;
-			this.button1.Text = "启动服务";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// textBox_port
-			// 
-			this.textBox_port.Location = new System.Drawing.Point(71, 5);
-			this.textBox_port.Name = "textBox_port";
-			this.textBox_port.Size = new System.Drawing.Size(65, 23);
-			this.textBox_port.TabIndex = 3;
-			this.textBox_port.Text = "9999";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(9, 8);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(56, 17);
-			this.label3.TabIndex = 2;
-			this.label3.Text = "端口号：";
+			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.sslServerControl1.Location = new System.Drawing.Point(3, 33);
+			this.sslServerControl1.Name = "sslServerControl1";
+			this.sslServerControl1.Size = new System.Drawing.Size(985, 30);
+			this.sslServerControl1.TabIndex = 37;
 			// 
 			// panel2
 			// 
@@ -181,15 +100,18 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// sslServerControl1
+			// serverSettingControl1
 			// 
-			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.sslServerControl1.Location = new System.Drawing.Point(3, 30);
-			this.sslServerControl1.Name = "sslServerControl1";
-			this.sslServerControl1.Size = new System.Drawing.Size(985, 30);
-			this.sslServerControl1.TabIndex = 37;
+			this.serverSettingControl1.buttonCloseAction = null;
+			this.serverSettingControl1.buttonSerialAction = null;
+			this.serverSettingControl1.buttonStartAction = null;
+			this.serverSettingControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.serverSettingControl1.Location = new System.Drawing.Point(3, 2);
+			this.serverSettingControl1.Name = "serverSettingControl1";
+			this.serverSettingControl1.Size = new System.Drawing.Size(985, 30);
+			this.serverSettingControl1.TabIndex = 38;
+			this.serverSettingControl1.TextPort = "9999";
+			this.serverSettingControl1.TextSerialInfo = "COM4-9600-8-N-1";
 			// 
 			// FormMemobusTcpServer
 			// 
@@ -208,9 +130,6 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
 			this.Load += new System.EventHandler(this.FormSiemens_Load);
 			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
-			this.borderPanel2.ResumeLayout(false);
-			this.borderPanel2.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -220,16 +139,9 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox_port;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Label label11;
         private DemoControl.UserControlHead userControlHead1;
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
-		private DemoControl.BorderPanel borderPanel2;
-		private System.Windows.Forms.RadioButton radioButton_udp;
-		private System.Windows.Forms.RadioButton radioButton_tcp;
 		private DemoControl.SslServerControl sslServerControl1;
+		private DemoControl.ServerSettingControl serverSettingControl1;
 	}
 }

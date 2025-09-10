@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using HslCommunication.BasicFramework;
+using DynamicExpresso;
 
 namespace HslCommunicationDemo.HslDebug
 {
@@ -92,5 +93,23 @@ namespace HslCommunicationDemo.HslDebug
 		{
 			textBox_patter.Text = @"^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]{4,40}$";
 		}
+
+		Interpreter interpreter = new Interpreter( );
+		private string DateMatchEvaluator( Match match )
+		{
+			List<Parameter> parameters = new List<Parameter>( );
+			parameters.Add( new Parameter( "x", match.Value ) );
+			return interpreter.Eval( textBox_matchEvaluator.Text, parameters.ToArray( ) ).ToString( );
+		}
+
+		private void button_replace_Click( object sender, EventArgs e )
+		{
+			// 替换字符串操作
+			textBox_result.Text = DateTime.Now.ToString( ) +  Environment.NewLine + Regex.Replace( textBox_input.Text, textBox_patter.Text, new MatchEvaluator( DateMatchEvaluator ) );
+
+			textBox_code.Text = "Regex.Replace( \"" + textBox_input.Text + "\", \"" + textBox_patter.Text + "\", new MatchEvaluator( DateMatchEvaluator ) );";
+		}
+
+
 	}
 }

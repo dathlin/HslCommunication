@@ -45,10 +45,13 @@
 			this.button8 = new System.Windows.Forms.Button();
 			this.button9 = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.label3 = new System.Windows.Forms.Label();
-			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.textBox_matchEvaluator = new System.Windows.Forms.TextBox();
+			this.button_replace = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -92,9 +95,9 @@
 			// 
 			this.textBox_patter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_patter.Location = new System.Drawing.Point(85, 12);
+			this.textBox_patter.Location = new System.Drawing.Point(110, 12);
 			this.textBox_patter.Name = "textBox_patter";
-			this.textBox_patter.Size = new System.Drawing.Size(522, 23);
+			this.textBox_patter.Size = new System.Drawing.Size(497, 23);
 			this.textBox_patter.TabIndex = 13;
 			// 
 			// button1
@@ -124,17 +127,17 @@
 			this.textBox_result.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_result.Location = new System.Drawing.Point(7, 93);
+			this.textBox_result.Location = new System.Drawing.Point(7, 118);
 			this.textBox_result.Multiline = true;
 			this.textBox_result.Name = "textBox_result";
 			this.textBox_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_result.Size = new System.Drawing.Size(827, 194);
+			this.textBox_result.Size = new System.Drawing.Size(827, 169);
 			this.textBox_result.TabIndex = 17;
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(5, 73);
+			this.label2.Location = new System.Drawing.Point(5, 98);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(68, 17);
 			this.label2.TabIndex = 16;
@@ -222,6 +225,9 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.button_replace);
+			this.panel1.Controls.Add(this.textBox_matchEvaluator);
+			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.textBox_code);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.label1);
@@ -243,6 +249,27 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(842, 336);
 			this.panel1.TabIndex = 26;
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(64, 290);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_code.Size = new System.Drawing.Size(770, 43);
+			this.textBox_code.TabIndex = 27;
+			// 
+			// label3
+			// 
+			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(5, 293);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(44, 17);
+			this.label3.TabIndex = 26;
+			this.label3.Text = "代码：";
 			// 
 			// splitContainer1
 			// 
@@ -272,26 +299,35 @@
 			this.panel2.Size = new System.Drawing.Size(842, 171);
 			this.panel2.TabIndex = 0;
 			// 
-			// label3
+			// label4
 			// 
-			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(5, 293);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(44, 17);
-			this.label3.TabIndex = 26;
-			this.label3.Text = "代码：";
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(5, 74);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(101, 17);
+			this.label4.TabIndex = 28;
+			this.label4.Text = "MatchEvaluator:";
 			// 
-			// textBox_code
+			// textBox_matchEvaluator
 			// 
-			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.textBox_matchEvaluator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_code.Location = new System.Drawing.Point(64, 290);
-			this.textBox_code.Multiline = true;
-			this.textBox_code.Name = "textBox_code";
-			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_code.Size = new System.Drawing.Size(770, 43);
-			this.textBox_code.TabIndex = 27;
+			this.textBox_matchEvaluator.Location = new System.Drawing.Point(110, 71);
+			this.textBox_matchEvaluator.Name = "textBox_matchEvaluator";
+			this.textBox_matchEvaluator.Size = new System.Drawing.Size(630, 23);
+			this.textBox_matchEvaluator.TabIndex = 29;
+			this.textBox_matchEvaluator.Text = "x";
+			// 
+			// button_replace
+			// 
+			this.button_replace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_replace.Location = new System.Drawing.Point(746, 69);
+			this.button_replace.Name = "button_replace";
+			this.button_replace.Size = new System.Drawing.Size(88, 27);
+			this.button_replace.TabIndex = 30;
+			this.button_replace.Text = "替换";
+			this.button_replace.UseVisualStyleBackColor = true;
+			this.button_replace.Click += new System.EventHandler(this.button_replace_Click);
 			// 
 			// FormRegexTest
 			// 
@@ -338,5 +374,8 @@
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.TextBox textBox_code;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox textBox_matchEvaluator;
+		private System.Windows.Forms.Button button_replace;
 	}
 }

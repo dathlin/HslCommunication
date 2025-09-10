@@ -15,6 +15,7 @@ using HslCommunication.BasicFramework;
 using HslCommunicationDemo.PLC.Common;
 using HslCommunicationDemo.DemoControl;
 using HslCommunicationDemo.PLC.XINJE;
+using HslCommunication.ModBus;
 
 namespace HslCommunicationDemo
 {
@@ -63,6 +64,10 @@ namespace HslCommunicationDemo
 
 				label2.Text = "Series:";
 
+			}
+			else
+			{
+				checkBox_DisableFunctionCode06.Text = "禁用功能码06";
 			}
 		}
 
@@ -118,6 +123,7 @@ namespace HslCommunicationDemo
 			xinJE.LogNet = LogNet;
 			ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
 			xinJE.IsStringReverse = checkBox3.Checked;
+			xinJE.DisableFunctionCode06 = checkBox_DisableFunctionCode06.Checked;
 
 			try
 			{
@@ -140,7 +146,7 @@ namespace HslCommunicationDemo
 					// 设置示例代码
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( xinJE, nameof( xinJE.AddressStartWithZero ),  nameof( xinJE.IsStringReverse ), nameof( xinJE.DataFormat ),
-						nameof( xinJE.Station), nameof( xinJE.Series ) );
+						nameof( xinJE.Station), nameof( xinJE.Series ), nameof( xinJE.DisableFunctionCode06 ) );
 				}
 				else
 				{
@@ -174,6 +180,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
 			element.SetAttributeValue( nameof(XinJESeries), comboBox4.SelectedItem);
+			element.SetAttributeValue( nameof( IModbus.DisableFunctionCode06 ), checkBox_DisableFunctionCode06.Checked );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -187,6 +194,7 @@ namespace HslCommunicationDemo
 			comboBox1.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
 			comboBox4.SelectedItem = SoftBasic.GetEnumFromString<XinJESeries>( element.Attribute( nameof( XinJESeries ) ).Value );
+			checkBox_DisableFunctionCode06.Checked = GetXmlValue( element, nameof( IModbus.DisableFunctionCode06 ), false, bool.Parse );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

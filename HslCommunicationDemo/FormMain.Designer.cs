@@ -41,6 +41,7 @@
 			this.toolStripMenuItem_tcpUdpServer = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_serial2Tcp = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_tcp2Tcp = new System.Windows.Forms.ToolStripMenuItem();
+			this.pingTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_byteTransform = new System.Windows.Forms.ToolStripMenuItem();
 			this.regexRegularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.showMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,6 +60,7 @@
 			this.activeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ecologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.免责条款ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.lockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.vS2015BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme();
@@ -68,7 +70,6 @@
 			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label_account = new System.Windows.Forms.Label();
-			this.pingTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -84,6 +85,7 @@
             this.activeToolStripMenuItem,
             this.ecologyToolStripMenuItem,
             this.免责条款ToolStripMenuItem,
+            this.lockToolStripMenuItem,
             this.授权ToolStripMenuItem,
             this.newVersionToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -184,6 +186,13 @@
 			this.toolStripMenuItem_tcp2Tcp.Size = new System.Drawing.Size(188, 22);
 			this.toolStripMenuItem_tcp2Tcp.Text = "Tcp2Tcp";
 			this.toolStripMenuItem_tcp2Tcp.Click += new System.EventHandler(this.toolStripMenuItem_tcp2Tcp_Click);
+			// 
+			// pingTestToolStripMenuItem
+			// 
+			this.pingTestToolStripMenuItem.Name = "pingTestToolStripMenuItem";
+			this.pingTestToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.pingTestToolStripMenuItem.Text = "Ping Test";
+			this.pingTestToolStripMenuItem.Click += new System.EventHandler(this.pingTestToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem_byteTransform
 			// 
@@ -324,6 +333,15 @@
 			this.免责条款ToolStripMenuItem.Text = "全国使用情况";
 			this.免责条款ToolStripMenuItem.Click += new System.EventHandler(this.免责条款ToolStripMenuItem_Click);
 			// 
+			// lockToolStripMenuItem
+			// 
+			this.lockToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.lockToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.Lock_white;
+			this.lockToolStripMenuItem.Name = "lockToolStripMenuItem";
+			this.lockToolStripMenuItem.Size = new System.Drawing.Size(28, 21);
+			this.lockToolStripMenuItem.ToolTipText = "点击锁定本DEMO程序，直到输入正确的密码为止";
+			this.lockToolStripMenuItem.Click += new System.EventHandler(this.lockToolStripMenuItem_Click);
+			// 
 			// 授权ToolStripMenuItem
 			// 
 			this.授权ToolStripMenuItem.Name = "授权ToolStripMenuItem";
@@ -395,13 +413,6 @@
 			this.label_account.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			this.label_account.Click += new System.EventHandler(this.label_account_Click);
 			// 
-			// pingTestToolStripMenuItem
-			// 
-			this.pingTestToolStripMenuItem.Name = "pingTestToolStripMenuItem";
-			this.pingTestToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-			this.pingTestToolStripMenuItem.Text = "Ping Test";
-			this.pingTestToolStripMenuItem.Click += new System.EventHandler(this.pingTestToolStripMenuItem_Click);
-			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -472,6 +483,7 @@
         private System.Windows.Forms.Label label_account;
 		private System.Windows.Forms.ToolStripMenuItem testPanelSizeFixedToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem pingTestToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem lockToolStripMenuItem;
 	}
 }
 

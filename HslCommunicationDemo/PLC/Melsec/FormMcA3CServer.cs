@@ -32,10 +32,8 @@ namespace HslCommunicationDemo
 
 			if(Program.Language == 2)
 			{
-				Text = "MC Virtual Server [data support, bool: x,y,m   word: x,y,m,d,w]";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
+				Text = "MC Virtual Server";
+				label4.Text = "Station:";
 			}
 
 			checkBox_sumcheck.CheckedChanged += CheckBox2_CheckedChanged;
@@ -47,6 +45,10 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 
 		private void ComboBox2_SelectedIndexChanged( object sender, EventArgs e )
@@ -67,7 +69,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -78,29 +80,19 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox_port.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				mcNetServer.SumCheck = checkBox_sumcheck.Checked;
 				mcNetServer.Format = int.Parse( comboBox_format.SelectedItem.ToString( ) );
-				mcNetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
+				mcNetServer.Station = byte.Parse( textBox_station.Text );
 				//mcNetServer.OnDataReceived += MelsecMcServer_OnDataReceived;
 				this.sslServerControl1.InitializeServer( mcNetServer );
-				mcNetServer.ServerStart( port );
+				if (this.serverSettingControl1.ServerStart( mcNetServer ) == false) return;
+
 				userControlReadWriteServer1.SetReadWriteServer( mcNetServer, "D100" );
-
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
-
-
 				// 设置示例的代码
-				codeExampleControl.SetCodeText( "server", "", mcNetServer, nameof( mcNetServer.Station ), nameof( mcNetServer.SumCheck ), nameof( mcNetServer.Format ) );
+				codeExampleControl.SetCodeText( "server", "", mcNetServer, this.sslServerControl1, nameof( mcNetServer.Station ), nameof( mcNetServer.SumCheck ), nameof( mcNetServer.Format ) );
 			}
 			catch (Exception ex)
 			{
@@ -112,11 +104,11 @@ namespace HslCommunicationDemo
 		{
 			if (mcNetServer != null)
 			{
-				mcNetServer.StartSerialSlave( textBox_serial.Text );
-				button5.Enabled = false;
+				mcNetServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+				this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 				// 设置示例的代码
-				codeExampleControl.SetCodeText( "server", textBox_serial.Text, mcNetServer, nameof( mcNetServer.Station ), nameof( mcNetServer.SumCheck ), nameof( mcNetServer.Format ) );
+				codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, mcNetServer, nameof( mcNetServer.Station ), nameof( mcNetServer.SumCheck ), nameof( mcNetServer.Format ) );
 			}
 		}
 		private void button11_Click( object sender, EventArgs e )
@@ -125,9 +117,6 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.Close( );
 			mcNetServer?.CloseSerialSlave( );
 			mcNetServer?.ServerClose( );
-			button1.Enabled = true;
-			button5.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void MelsecMcServer_OnDataReceived( object sender,  object source, byte[] receive )
@@ -153,22 +142,22 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( "SumCheck", checkBox_sumcheck.Checked );
 			element.SetAttributeValue( "Format", comboBox_format.SelectedIndex );
-			element.SetAttributeValue( "Serial", textBox_serial.Text );
-
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			checkBox_sumcheck.Checked = GetXmlValue( element, "SumCheck", true, bool.Parse );
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
+			checkBox_sumcheck.Checked     = GetXmlValue( element, "SumCheck", true, bool.Parse );
 			comboBox_format.SelectedIndex = GetXmlValue( element, "Format", 0, int.Parse );
-			textBox_serial.Text = GetXmlValue( element, "Serial", textBox_serial.Text, m => m );
-
+			textBox_station.Text          = GetXmlValue( element, DemoDeviceList.XmlStation, "0", m => m );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

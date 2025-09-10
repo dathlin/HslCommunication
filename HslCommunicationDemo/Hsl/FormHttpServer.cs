@@ -112,7 +112,11 @@ namespace HslCommunicationDemo
 				{
 					httpServer.UseHttps( );
 				}
-				httpServer.Start( int.Parse( textBox2.Text ) );
+
+				if (textBox2.Text.StartsWith( "http", StringComparison.OrdinalIgnoreCase ) )
+					httpServer.Start( textBox2.Text );
+				else
+					httpServer.Start( int.Parse( textBox2.Text ) );
 				httpServer.HandleRequestFunc = HandleRequest;
 				httpServer.HandleFileUpload = HandleFileUpload;
 				httpServer.IsCrossDomain = checkBox_IsCrossDomain.Checked;               // 是否跨域的设置

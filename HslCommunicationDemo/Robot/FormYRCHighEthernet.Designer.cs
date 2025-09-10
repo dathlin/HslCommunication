@@ -40,6 +40,8 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.button35 = new System.Windows.Forms.Button();
+			this.button34 = new System.Windows.Forms.Button();
 			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.label_code = new System.Windows.Forms.Label();
 			this.button33 = new System.Windows.Forms.Button();
@@ -105,11 +107,16 @@
 			this.label14 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.radioButton3 = new System.Windows.Forms.RadioButton();
+			this.radioButton4 = new System.Windows.Forms.RadioButton();
+			this.radioButton5 = new System.Windows.Forms.RadioButton();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
+			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -228,6 +235,8 @@
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.button35);
+			this.tabPage1.Controls.Add(this.button34);
 			this.tabPage1.Controls.Add(this.textBox_code);
 			this.tabPage1.Controls.Add(this.label_code);
 			this.tabPage1.Controls.Add(this.button33);
@@ -280,6 +289,26 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "单数据读取测试";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// button35
+			// 
+			this.button35.Location = new System.Drawing.Point(742, 38);
+			this.button35.Name = "button35";
+			this.button35.Size = new System.Drawing.Size(95, 28);
+			this.button35.TabIndex = 65;
+			this.button35.Text = "基座位置型";
+			this.button35.UseVisualStyleBackColor = true;
+			this.button35.Click += new System.EventHandler(this.button35_Click);
+			// 
+			// button34
+			// 
+			this.button34.Location = new System.Drawing.Point(641, 38);
+			this.button34.Name = "button34";
+			this.button34.Size = new System.Drawing.Size(95, 28);
+			this.button34.TabIndex = 64;
+			this.button34.Text = "位置型变量";
+			this.button34.UseVisualStyleBackColor = true;
+			this.button34.Click += new System.EventHandler(this.button34_Click);
 			// 
 			// textBox_code
 			// 
@@ -363,7 +392,7 @@
 			// 
 			// button28
 			// 
-			this.button28.Location = new System.Drawing.Point(647, 167);
+			this.button28.Location = new System.Drawing.Point(682, 167);
 			this.button28.Name = "button28";
 			this.button28.Size = new System.Drawing.Size(82, 28);
 			this.button28.TabIndex = 55;
@@ -373,7 +402,7 @@
 			// 
 			// button27
 			// 
-			this.button27.Location = new System.Drawing.Point(572, 167);
+			this.button27.Location = new System.Drawing.Point(607, 167);
 			this.button27.Name = "button27";
 			this.button27.Size = new System.Drawing.Size(69, 28);
 			this.button27.TabIndex = 54;
@@ -392,7 +421,7 @@
 			// 
 			// button26
 			// 
-			this.button26.Location = new System.Drawing.Point(492, 167);
+			this.button26.Location = new System.Drawing.Point(527, 167);
 			this.button26.Name = "button26";
 			this.button26.Size = new System.Drawing.Size(76, 28);
 			this.button26.TabIndex = 53;
@@ -414,7 +443,7 @@
 			// 
 			// button20
 			// 
-			this.button20.Location = new System.Drawing.Point(416, 167);
+			this.button20.Location = new System.Drawing.Point(451, 167);
 			this.button20.Name = "button20";
 			this.button20.Size = new System.Drawing.Size(73, 28);
 			this.button20.TabIndex = 52;
@@ -434,7 +463,7 @@
 			// 
 			// button19
 			// 
-			this.button19.Location = new System.Drawing.Point(327, 167);
+			this.button19.Location = new System.Drawing.Point(362, 167);
 			this.button19.Name = "button19";
 			this.button19.Size = new System.Drawing.Size(86, 28);
 			this.button19.TabIndex = 51;
@@ -456,7 +485,7 @@
 			// 
 			this.textBox6.Location = new System.Drawing.Point(200, 170);
 			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(121, 23);
+			this.textBox6.Size = new System.Drawing.Size(156, 23);
 			this.textBox6.TabIndex = 50;
 			// 
 			// button5
@@ -720,10 +749,9 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.panel3);
 			this.tabPage2.Controls.Add(this.textBox_code2);
 			this.tabPage2.Controls.Add(this.label18);
-			this.tabPage2.Controls.Add(this.radioButton2);
-			this.tabPage2.Controls.Add(this.radioButton1);
 			this.tabPage2.Controls.Add(this.textBox_command);
 			this.tabPage2.Controls.Add(this.button14);
 			this.tabPage2.Controls.Add(this.textBox_dataPart);
@@ -770,7 +798,7 @@
 			// radioButton2
 			// 
 			this.radioButton2.AutoSize = true;
-			this.radioButton2.Location = new System.Drawing.Point(155, 228);
+			this.radioButton2.Location = new System.Drawing.Point(57, 5);
 			this.radioButton2.Name = "radioButton2";
 			this.radioButton2.Size = new System.Drawing.Size(57, 21);
 			this.radioButton2.TabIndex = 17;
@@ -781,7 +809,7 @@
 			// 
 			this.radioButton1.AutoSize = true;
 			this.radioButton1.Checked = true;
-			this.radioButton1.Location = new System.Drawing.Point(101, 228);
+			this.radioButton1.Location = new System.Drawing.Point(3, 5);
 			this.radioButton1.Name = "radioButton1";
 			this.radioButton1.Size = new System.Drawing.Size(48, 21);
 			this.radioButton1.TabIndex = 16;
@@ -931,6 +959,48 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// panel3
+			// 
+			this.panel3.Controls.Add(this.radioButton5);
+			this.panel3.Controls.Add(this.radioButton4);
+			this.panel3.Controls.Add(this.radioButton3);
+			this.panel3.Controls.Add(this.radioButton1);
+			this.panel3.Controls.Add(this.radioButton2);
+			this.panel3.Location = new System.Drawing.Point(96, 223);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(367, 29);
+			this.panel3.TabIndex = 20;
+			// 
+			// radioButton3
+			// 
+			this.radioButton3.AutoSize = true;
+			this.radioButton3.Location = new System.Drawing.Point(121, 5);
+			this.radioButton3.Name = "radioButton3";
+			this.radioButton3.Size = new System.Drawing.Size(55, 21);
+			this.radioButton3.TabIndex = 18;
+			this.radioButton3.Text = "Int16";
+			this.radioButton3.UseVisualStyleBackColor = true;
+			// 
+			// radioButton4
+			// 
+			this.radioButton4.AutoSize = true;
+			this.radioButton4.Location = new System.Drawing.Point(191, 5);
+			this.radioButton4.Name = "radioButton4";
+			this.radioButton4.Size = new System.Drawing.Size(55, 21);
+			this.radioButton4.TabIndex = 19;
+			this.radioButton4.Text = "Int32";
+			this.radioButton4.UseVisualStyleBackColor = true;
+			// 
+			// radioButton5
+			// 
+			this.radioButton5.AutoSize = true;
+			this.radioButton5.Location = new System.Drawing.Point(257, 5);
+			this.radioButton5.Name = "radioButton5";
+			this.radioButton5.Size = new System.Drawing.Size(54, 21);
+			this.radioButton5.TabIndex = 20;
+			this.radioButton5.Text = "Float";
+			this.radioButton5.UseVisualStyleBackColor = true;
+			// 
 			// FormYRCHighEthernet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -955,6 +1025,8 @@
 			this.tabPage1.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage2.PerformLayout();
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -1038,5 +1110,11 @@
 		private System.Windows.Forms.Label label_code;
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.TextBox textBox_code2;
+		private System.Windows.Forms.Button button34;
+		private System.Windows.Forms.Button button35;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.RadioButton radioButton5;
+		private System.Windows.Forms.RadioButton radioButton4;
+		private System.Windows.Forms.RadioButton radioButton3;
 	}
 }

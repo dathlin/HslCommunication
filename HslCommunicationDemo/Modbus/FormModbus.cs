@@ -25,6 +25,15 @@ namespace HslCommunicationDemo
 
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
 			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
+			checkBox_DisableFunctionCode06.CheckedChanged +=CheckBox_DisableFunctionCode06_CheckedChanged;
+		}
+
+		private void CheckBox_DisableFunctionCode06_CheckedChanged( object sender, EventArgs e )
+		{
+			if (busTcpClient != null)
+			{
+				busTcpClient.DisableFunctionCode06 = checkBox_DisableFunctionCode06.Checked;
+			}
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -83,6 +92,10 @@ namespace HslCommunicationDemo
 				label_BroadcastStation.Text = "BroadcastStat:";
 				label_batch_length.Text = "BatchLen:";
 			}
+			else if (language == 1)
+			{
+				checkBox_DisableFunctionCode06.Text = "禁用功能码06";
+			}
 		}
 
 		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
@@ -133,7 +146,7 @@ namespace HslCommunicationDemo
 			busTcpClient.Station = station;
 			busTcpClient.AddressStartWithZero = checkBox1.Checked;
 			busTcpClient.IsCheckMessageId = checkBox2.Checked;
-			busTcpClient.StationCheckMacth = checkBox_station_check.Checked;
+			busTcpClient.StationCheckMatch = checkBox_station_check.Checked;
 			busTcpClient.LogNet = LogNet;
 			if (!string.IsNullOrEmpty( textBox_BroadcastStation.Text ))
 				busTcpClient.BroadcastStation = int.Parse( textBox_BroadcastStation.Text );
@@ -175,7 +188,8 @@ namespace HslCommunicationDemo
 					if (busTcpClient.IsCheckMessageId == false) paras.Add( nameof( busTcpClient.IsCheckMessageId ) );
 					if (busTcpClient.AddressStartWithZero == false) paras.Add( nameof( busTcpClient.AddressStartWithZero ) );
 					if (busTcpClient.WordReadBatchLength != 120) paras.Add( nameof( busTcpClient.WordReadBatchLength ) );
-					if (busTcpClient.StationCheckMacth == false) paras.Add( nameof( busTcpClient.StationCheckMacth ) );
+					if (busTcpClient.StationCheckMatch == false) paras.Add( nameof( busTcpClient.StationCheckMatch ) );
+					if (busTcpClient.DisableFunctionCode06) paras.Add( nameof( busTcpClient.DisableFunctionCode06 ) );
 
 					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busTcpClient, paras.ToArray( ) );
 				}
@@ -211,8 +225,9 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat,                  comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse,               checkBox3.Checked );
 			element.SetAttributeValue( nameof( ModbusTcpNet.BroadcastStation ),       textBox_BroadcastStation.Text );
-			element.SetAttributeValue( nameof( ModbusTcpNet.StationCheckMacth ),      checkBox_station_check.Checked );
+			element.SetAttributeValue( nameof( ModbusTcpNet.StationCheckMatch ),      checkBox_station_check.Checked );
 			element.SetAttributeValue( nameof( ModbusTcpNet.WordReadBatchLength ),    textBox_batch_length.Text );
+			element.SetAttributeValue( nameof( ModbusTcpNet.DisableFunctionCode06 ),  checkBox_DisableFunctionCode06.Checked );
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
 
@@ -220,13 +235,14 @@ namespace HslCommunicationDemo
 		{
 			base.LoadXmlParameter( element );
 			this.pipeSelectControl1.LoadXmlParameter( element, SettingPipe.TcpPipe );
-			textBox15.Text                 = element.Attribute( DemoDeviceList.XmlStation ).Value;
-			checkBox1.Checked              = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
-			comboBox1.SelectedIndex        = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
-			checkBox3.Checked              = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-			textBox_BroadcastStation.Text  = GetXmlValue( element, nameof( ModbusTcpNet.BroadcastStation ), "", m => m );
-			checkBox_station_check.Checked = GetXmlValue( element, nameof( ModbusTcpNet.StationCheckMacth ), true, bool.Parse );
-			textBox_batch_length.Text      = GetXmlValue( element, nameof( ModbusTcpNet.WordReadBatchLength ), "", m => m );
+			textBox15.Text                         = element.Attribute( DemoDeviceList.XmlStation ).Value;
+			checkBox1.Checked                      = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
+			comboBox1.SelectedIndex                = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
+			checkBox3.Checked                      = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
+			textBox_BroadcastStation.Text          = GetXmlValue( element, nameof( ModbusTcpNet.BroadcastStation ), "", m => m );
+			checkBox_station_check.Checked         = GetXmlValue( element, nameof( ModbusTcpNet.StationCheckMatch ), true, bool.Parse );
+			textBox_batch_length.Text              = GetXmlValue( element, nameof( ModbusTcpNet.WordReadBatchLength ), "", m => m );
+			checkBox_DisableFunctionCode06.Checked = GetXmlValue( element, nameof( ModbusTcpNet.DisableFunctionCode06 ), false, bool.Parse );
 
 			if ( this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

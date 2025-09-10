@@ -42,6 +42,50 @@ namespace HslCommunicationDemo.DemoControl
 			this.fromClipToolStripMenuItem.Click += button_from_clip_Click;
 			this.toFileToolStripMenuItem.Click += button_out_file_Click;
 			this.fromFileToolStripMenuItem.Click += button_from_file_Click;
+			this.rowDeleteToolStripMenuItem.Click +=RowDeleteToolStripMenuItem_Click;
+		}
+
+		private void RowDeleteToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (this.dataGridView1.SelectedRows.Count > 0)
+			{
+				StringBuilder deleteRows = new StringBuilder( );
+				List<DataGridViewRow> rows = new List<DataGridViewRow>( );
+				for ( int i = 0; i < this.dataGridView1.SelectedRows.Count; i ++)
+				{
+					deleteRows.Append( $"\"{this.dataGridView1.SelectedRows[i].Cells[1].Value}\"" );
+					deleteRows.Append( "," );
+					rows.Add( this.dataGridView1.SelectedRows[i] );
+				}
+
+				string msg = "是否删除设备地址为: " + deleteRows.ToString( ) + " 所有的行，共计 " + rows.Count + " 行";
+				if (Program.Language == 2) msg = "Delete Address: " + deleteRows.ToString( ) + " all lines，total: " + rows.Count + " line";
+				if ( MessageBox.Show( msg, "Delete Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+				{
+					// 确认删除这些行
+					for (int i = 0; i < rows.Count; i++)
+					{
+						if (rows[i].IsNewRow == false) dataGridView1.Rows.Remove( rows[i] );
+					}
+				}
+			}
+			else
+			{
+				// 就删除某一行
+				if (dataGridView1.SelectedCells.Count > 0)
+				{
+					DataGridViewCell cell = dataGridView1.SelectedCells[0];
+					if (dataGridView1.Rows[cell.RowIndex].IsNewRow == false) return;
+
+					string msg = $"是否删除设备地址为: {dataGridView1.Rows[cell.RowIndex].Cells[1].Value} 的行";
+					if (Program.Language == 2) msg = $"Delete Address: {dataGridView1.Rows[cell.RowIndex].Cells[1].Value} line?";
+					if (MessageBox.Show( msg, "Delete Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+					{
+						// 确认删除这些行
+						dataGridView1.Rows.Remove( dataGridView1.Rows[cell.RowIndex] );
+					}
+				}
+			}
 		}
 
 		private void HslCurveHistory1_MouseMove( object sender, MouseEventArgs e )

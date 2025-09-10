@@ -180,12 +180,13 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 			}
 			else
 			{
-				textBox4.Text = read.Content1.ToString( "X" ) + " " + getTypeDescription( read.Content1 );
+				textBox4.Text = read.Content1.ToString( "X" );
 				textBox5.Text = read.Content2.ToHexString( ' ' );
+				label_type_info.Text = getTypeDescription( read.Content1 );
 				label_read_length.Text = "Bytes: " + read.Content2.Length.ToString( );
 			}
 
-			textBox_code.Text = $"OperateResult<ushort, byte[]> read = {DemoUtils.PlcDeviceName}.ReadTag( \"{textBox3.Text}\", ushort.Parse( \"{textBox7.Text}\" ) );";
+			textBox_code.Text = $"OperateResult<ushort, byte[]> read = {DemoUtils.PlcDeviceName}.ReadTag( \"{textBox3.Text}\", {textBox7.Text} ) );";
 		}
 
 		private void button12_Click( object sender, EventArgs e )
@@ -222,6 +223,11 @@ namespace HslCommunicationDemo.PLC.AllenBrandly
 				button12.Text = "r-plc-type";
 				label_code.Text = "Code:";
 			}
+		}
+
+		private void groupBox5_Enter( object sender, EventArgs e )
+		{
+
 		}
 	}
 }

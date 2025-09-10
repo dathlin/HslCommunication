@@ -184,11 +184,42 @@ namespace HslCommunicationDemo
 
 			if (radioButton1.Checked)
 			{
-				textBox7.Text = read.Content.ToHexString( );
+				textBox7.Text = read.Content.ToHexString( ' ' );
+			}
+			else if (radioButton2.Checked)
+			{
+				textBox7.Text = HslCommunication.BasicFramework.SoftBasic.GetAsciiStringRender( read.Content );
+			}
+			else if (radioButton3.Checked)
+			{
+				short[] values = new short[read.Content.Length / 2];
+				for (int i = 0; i < values.Length; i++)
+				{
+					values[i] = BitConverter.ToInt16( read.Content, i * 2 );
+				}
+				textBox7.Text = values.ToArrayString( );
+			}
+			else if (radioButton4.Checked)
+			{
+				int[] values = new int[read.Content.Length / 4];
+				for (int i = 0; i < values.Length; i++)
+				{
+					values[i] = BitConverter.ToInt32( read.Content, i * 4 );
+				}
+				textBox7.Text = values.ToArrayString( );
+			}
+			else if (radioButton5.Checked)
+			{
+				float[] values = new float[read.Content.Length / 4];
+				for (int i = 0; i < values.Length; i++)
+				{
+					values[i] = BitConverter.ToSingle( read.Content, i * 4 );
+				}
+				textBox7.Text = values.ToArrayString( );
 			}
 			else
 			{
-				textBox7.Text = HslCommunication.BasicFramework.SoftBasic.GetAsciiStringRender( read.Content );
+				textBox7.Text = "Unknown data type!";
 			}
 
 			textBox_code2.Text = $"OperateResult<byte[]> read = yrc.ReadCommand( {command.Content}, {dataAddress.Content}, {dataAttribute.Content}, {handle.Content}, \"{textBox_dataPart.Text}\".ToHexBytes( ) );";
@@ -330,6 +361,43 @@ namespace HslCommunicationDemo
 			DemoUtils.ReadResultRender( yrc.ReadStringVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
 
 			textBox_code.Text = $"OperateResult<string> read = yrc.ReadStringVariable( ushort.Parse( \"{textBox5.Text}\" ) )";
+		}
+
+		private void button34_Click( object sender, EventArgs e )
+		{
+			// 位置型变量读取 
+			OperateResult<float[]> read = yrc.ReadPositionVariable( ushort.Parse( textBox5.Text ) );
+			if (read.IsSuccess)
+			{
+				try
+				{
+					StringBuilder stringBuilder = new StringBuilder( );
+					stringBuilder.AppendLine( "数据类型: " +  read.Content[0] + "   0:脉冲型  16:基座坐标值  17:机器人坐标值  18: 用户坐标值  19: 工具坐标值" );
+					stringBuilder.AppendLine( "形式: " +  read.Content[1] );
+					stringBuilder.AppendLine( "工具编号" + read.Content[2] );
+					stringBuilder.AppendLine( "用户坐标编号:" + read.Content[3] );
+					stringBuilder.AppendLine( "扩张形态:" + read.Content[4] );
+					stringBuilder.Append( "坐标数据:" + read.Content.RemoveBegin( 5 ).ToArrayString( ) );
+
+					DemoUtils.ReadResultRender( OperateResult.CreateSuccessResult( stringBuilder.ToString( ) ), textBox5.Text, textBox4 );
+				}
+				catch
+				{
+					DemoUtils.ReadResultRender( read, textBox5.Text, textBox4 );
+				}
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
+			}
+			textBox_code.Text = $"OperateResult<float[]> read = yrc.ReadPositionVariable( ushort.Parse( \"{textBox5.Text}\" ) )";
+		}
+
+		private void button35_Click( object sender, EventArgs e )
+		{
+			// 基座位置型变量读取
+			DemoUtils.ReadResultRender( yrc.ReadBasePositionVariable( ushort.Parse( textBox5.Text ) ), textBox5.Text, textBox4 );
+			textBox_code.Text = $"OperateResult<float[]> read = yrc.ReadBasePositionVariable( ushort.Parse( \"{textBox5.Text}\" ) )";
 		}
 
 		private void button19_Click( object sender, EventArgs e )
@@ -631,9 +699,8 @@ namespace HslCommunicationDemo
 
 			textBox_code.Text = $"OperateResult<string> read = yrc.ReadManagementTimeSpan( 110 );";
 		}
+
 		#endregion
-
-
 
 	}
 

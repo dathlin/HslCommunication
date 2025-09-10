@@ -80,7 +80,7 @@
 			// 
 			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(59, 496);
+			this.label11.Location = new System.Drawing.Point(59, 504);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(32, 17);
 			this.label11.TabIndex = 20;
@@ -96,13 +96,13 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(926, 275);
+			this.textBox8.Size = new System.Drawing.Size(926, 286);
 			this.textBox8.TabIndex = 18;
 			// 
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(8, 217);
+			this.label12.Location = new System.Drawing.Point(8, 216);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(44, 17);
 			this.label12.TabIndex = 19;
@@ -149,16 +149,16 @@
 			// 
 			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox4.Location = new System.Drawing.Point(62, 13);
+			this.textBox4.Location = new System.Drawing.Point(62, 3);
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(926, 161);
+			this.textBox4.Size = new System.Drawing.Size(926, 171);
 			this.textBox4.TabIndex = 8;
 			// 
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(8, 13);
+			this.label9.Location = new System.Drawing.Point(8, 8);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(44, 17);
 			this.label9.TabIndex = 11;

@@ -28,10 +28,6 @@ namespace HslCommunicationDemo
 			if(Program.Language == 2)
 			{
 				Text = "Siemens FetchWrite virtual server [data support I, Q, M, T, C, DB1, DB2, DB3 block read and write, other DB blocks share a data area]";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-				label11.Text = "This server is not a strict fetch/write protocol and only supports perfect communication with HSL components.";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -41,11 +37,15 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -57,30 +57,21 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 
 				s7NetServer = new HslCommunication.Profinet.Siemens.SiemensFetchWriteServer( );                       // 实例化对象
 				s7NetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				s7NetServer.OnDataReceived += BusTcpServer_OnDataReceived;
+
 				this.sslServerControl1.InitializeServer( this.s7NetServer );
+				if (this.serverSettingControl1.ServerStart( s7NetServer ) == false) return;
 
 				userControlReadWriteServer1.SetReadWriteServer( s7NetServer, "M100" );
-				s7NetServer.ServerStart( port );
-
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
-
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", s7NetServer );
+				codeExampleControl.SetCodeText( "server", "", s7NetServer, this.sslServerControl1 );
 			}
 			catch (Exception ex)
 			{
@@ -94,8 +85,16 @@ namespace HslCommunicationDemo
 			// 停止服务
 			userControlReadWriteServer1.Close( );
 			s7NetServer?.ServerClose( );
-			button1.Enabled = true;
-			button11.Enabled = false;
+		}
+		private void button5_Click( object sender, EventArgs e )
+		{
+			// 启动串口
+			s7NetServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+			this.serverSettingControl1.ButtonSerial.Enabled = false;
+
+			// 设置示例代码
+			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, s7NetServer, this.sslServerControl1 );
+
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] receive )
@@ -121,15 +120,16 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

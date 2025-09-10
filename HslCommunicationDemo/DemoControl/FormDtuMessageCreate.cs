@@ -122,6 +122,11 @@ namespace HslCommunicationDemo.DemoControl
 				buffer[3] = 0x31;
 				buffer[4] = 0x39;
 
+				for (int i = 0; i < 11; i++)
+				{
+					if (buffer[i + 5] == 0x00)
+						buffer[i + 5] = 0x20;
+				}
 				for (int i = 22; i < 28; i++)
 				{
 					buffer[i] = 0x30;

@@ -113,7 +113,7 @@ namespace HslCommunicationDemo.PLC.Invt
 			busRtuClient.IsClearCacheBeforeRead = checkBox2.Checked;
 			busRtuClient.LogNet = LogNet;
 			busRtuClient.Crc16CheckEnable = checkBox_crc16.Checked;
-			busRtuClient.StationCheckMacth = checkBox_station_check.Checked;
+			busRtuClient.StationCheckMatch = checkBox_station_check.Checked;
 
 			if (comboBox_series.SelectedIndex == 0)
 				busRtuClient.RegisteredAddressMapping( ModbusMappingAddress.Invt_Ts );  // 注册维控的Modbus地址
@@ -146,7 +146,7 @@ namespace HslCommunicationDemo.PLC.Invt
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( busRtuClient, nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
 						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.Crc16CheckEnable ), nameof( busRtuClient.IsClearCacheBeforeRead ),
-						nameof( busRtuClient.StationCheckMacth ), "HslCommunication.ModBus.ModbusMappingAddress.Invt_Ts" );
+						nameof( busRtuClient.StationCheckMatch ), "HslCommunication.ModBus.ModbusMappingAddress.Invt_Ts" );
 				}
 				else
 				{

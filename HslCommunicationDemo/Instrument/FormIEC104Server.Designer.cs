@@ -60,8 +60,11 @@
 			this.radioButton2 = new System.Windows.Forms.RadioButton();
 			this.radioButton1 = new System.Windows.Forms.RadioButton();
 			this.panel4 = new System.Windows.Forms.Panel();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBox_max_address = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -93,6 +96,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.textBox_max_address);
+			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.sslServerControl1);
 			this.panel1.Controls.Add(this.button3);
 			this.panel1.Controls.Add(this.button2);
@@ -159,7 +164,7 @@
 			// button11
 			// 
 			this.button11.Enabled = false;
-			this.button11.Location = new System.Drawing.Point(482, 2);
+			this.button11.Location = new System.Drawing.Point(635, 2);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(83, 28);
 			this.button11.TabIndex = 36;
@@ -169,7 +174,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(392, 2);
+			this.button1.Location = new System.Drawing.Point(546, 2);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(83, 28);
 			this.button1.TabIndex = 34;
@@ -321,7 +326,7 @@
 			this.panel5.Controls.Add(this.radioButton3);
 			this.panel5.Controls.Add(this.radioButton2);
 			this.panel5.Controls.Add(this.radioButton1);
-			this.panel5.Location = new System.Drawing.Point(3, 304);
+			this.panel5.Location = new System.Drawing.Point(3, 303);
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(587, 30);
 			this.panel5.TabIndex = 2;
@@ -390,6 +395,7 @@
 			// 
 			// panel4
 			// 
+			this.panel4.Controls.Add(this.checkBox1);
 			this.panel4.Controls.Add(this.label1);
 			this.panel4.Controls.Add(this.textBox1);
 			this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -398,10 +404,20 @@
 			this.panel4.Size = new System.Drawing.Size(995, 192);
 			this.panel4.TabIndex = 0;
 			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(95, 4);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(99, 21);
+			this.checkBox1.TabIndex = 2;
+			this.checkBox1.Text = "显示通信报文";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(4, 6);
+			this.label1.Location = new System.Drawing.Point(4, 4);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 17);
 			this.label1.TabIndex = 1;
@@ -418,6 +434,23 @@
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox1.Size = new System.Drawing.Size(989, 161);
 			this.textBox1.TabIndex = 0;
+			// 
+			// textBox_max_address
+			// 
+			this.textBox_max_address.Location = new System.Drawing.Point(473, 5);
+			this.textBox_max_address.Name = "textBox_max_address";
+			this.textBox_max_address.Size = new System.Drawing.Size(65, 23);
+			this.textBox_max_address.TabIndex = 43;
+			this.textBox_max_address.Text = "100";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(380, 8);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(71, 17);
+			this.label4.TabIndex = 42;
+			this.label4.Text = "最 大 地 址:";
 			// 
 			// FormIEC104Server
 			// 
@@ -484,5 +517,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-    }
+		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.TextBox textBox_max_address;
+		private System.Windows.Forms.Label label4;
+	}
 }

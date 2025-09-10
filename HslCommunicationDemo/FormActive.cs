@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -69,6 +70,34 @@ namespace HslCommunicationDemo
 		private void FormActive_Load( object sender, EventArgs e )
 		{
 
+		}
+
+		private void FormActive_Shown( object sender, EventArgs e )
+		{
+			ThreadPool.QueueUserWorkItem( new WaitCallback( ( m ) =>
+			{
+				string code = string.Empty;
+				try
+				{
+					code = HslCommunication.BasicFramework.SoftAuthorize.GetInfo( false );
+				}
+				catch(Exception ex)
+				{
+					DemoUtils.ShowMessage( "Get Code Failed: " + ex.Message );
+					return;
+				}
+				try
+				{
+					Invoke( new Action( ( ) =>
+					{
+						textBox3.Text = code;
+					} ) );
+				}
+				catch
+				{
+
+				}
+			} ), null );
 		}
 	}
 }

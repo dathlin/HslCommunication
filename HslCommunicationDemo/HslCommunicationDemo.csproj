@@ -74,8 +74,8 @@
     <Reference Include="DynamicExpresso.Core, Version=2.19.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicExpresso.Core.2.19.2\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.3.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.3.3\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.5.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.5.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
@@ -292,6 +292,12 @@
     </Compile>
     <Compile Include="DemoControl\PipeSessionListControl.Designer.cs">
       <DependentUpon>PipeSessionListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\ServerSettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\ServerSettingControl.Designer.cs">
+      <DependentUpon>ServerSettingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\SslServerControl.cs">
       <SubType>UserControl</SubType>
@@ -1979,6 +1985,30 @@
     <Compile Include="Toledo\ToledoDataControl.Designer.cs">
       <DependentUpon>ToledoDataControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vip\CertificateListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vip\CertificateListControl.Designer.cs">
+      <DependentUpon>CertificateListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vip\FormCreateCertificate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vip\FormCreateCertificate.Designer.cs">
+      <DependentUpon>FormCreateCertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vip\FormHslCertificate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vip\FormHslCertificate.Designer.cs">
+      <DependentUpon>FormHslCertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vip\HslCertificateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vip\HslCertificateControl.Designer.cs">
+      <DependentUpon>HslCertificateControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="WebSocket\FormWebsocketQANet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2089,6 +2119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\PipeSessionListControl.resx">
       <DependentUpon>PipeSessionListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\ServerSettingControl.resx">
+      <DependentUpon>ServerSettingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\SslServerControl.resx">
       <DependentUpon>SslServerControl.cs</DependentUpon>
@@ -2950,6 +2983,18 @@
     <EmbeddedResource Include="Toledo\ToledoDataControl.resx">
       <DependentUpon>ToledoDataControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vip\CertificateListControl.resx">
+      <DependentUpon>CertificateListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vip\FormCreateCertificate.resx">
+      <DependentUpon>FormCreateCertificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vip\FormHslCertificate.resx">
+      <DependentUpon>FormHslCertificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vip\HslCertificateControl.resx">
+      <DependentUpon>HslCertificateControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WebSocket\FormWebsocketQANet.resx">
       <DependentUpon>FormWebsocketQANet.cs</DependentUpon>
     </EmbeddedResource>
@@ -3007,6 +3052,12 @@
     <None Include="img\yamaha.png" />
     <None Include="img\shortcut_16xLG.png" />
     <None Include="img\view_16xLG.png" />
+    <None Include="img\Certificate.png" />
+    <None Include="img\Lock.png" />
+    <None Include="img\lock_16xLG.png" />
+    <None Include="img\Lock_white.png" />
+    <None Include="img\CSharpFile_SolutionExplorerNode.png" />
+    <None Include="img\java.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />
@@ -3185,5 +3236,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

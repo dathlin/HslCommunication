@@ -24,7 +24,6 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 
-			panel_tcp_udp.Paint += Panel3_Paint;
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
 		}
 
@@ -38,16 +37,10 @@ namespace HslCommunicationDemo
 
 			if (Program.Language == 2)
 			{
-				Text = "Modbus Virtual Server[supports TCP and RTU, support coil and register reading and writing, input register read, discrete input read]";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-
-				label14.Text = "Com:";
-				button5.Text = "Open Com";
+				Text = "Modbus Virtual Server";
 				checkBox3.Text = "str-reverse";
-				checkBox_remote_write.Text = "Allow remote write";
-				checkBox_RtuOverTcp.Text = "Rtu over tcp";
+				checkBox_remote_write.Text = "Remote write";
+				checkBox_RtuOverTcp.Text = "Rtu Msg";
 				label2.Text = "Least Time:";
 			}
 			else
@@ -65,6 +58,10 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 
 		private void CheckBox_maskcode_CheckedChanged( object sender, EventArgs e )
@@ -73,11 +70,6 @@ namespace HslCommunicationDemo
 			{
 				busTcpServer.EnableWriteMaskCode = checkBox_maskcode.Checked;
 			}
-		}
-
-		private void Panel3_Paint( object sender, PaintEventArgs e )
-		{
-			e.Graphics.DrawRectangle( Pens.LightGray, new Rectangle( 0, 0, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1 ) );
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -126,11 +118,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
 			if (!byte.TryParse( textBox_station.Text, out byte station ))
 			{ 
 				DemoUtils.ShowMessage( "Station input wrong!" );
@@ -143,28 +130,24 @@ namespace HslCommunicationDemo
 				busTcpServer.ActiveTimeSpan           = TimeSpan.FromHours( 1 );
 				busTcpServer.OnDataReceived           += BusTcpServer_OnDataReceived;
 				busTcpServer.EnableWrite              = checkBox_remote_write.Checked;
-				busTcpServer.EnableIPv6               = checkBox_ipv6.Checked;
 				busTcpServer.Station                  = station;
 				busTcpServer.StationDataIsolation     = checkBox_station_isolation.Checked;
 				busTcpServer.UseModbusRtuOverTcp      = checkBox_RtuOverTcp.Checked;
 				busTcpServer.EnableWriteMaskCode      = checkBox_maskcode.Checked;
 				busTcpServer.ForceSerialReceiveOnce   = checkBox_forceReceiveOnce.Checked;
 
-				this.sslServerControl1.InitializeServer( busTcpServer );
-
 				ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
 				busTcpServer.IsStringReverse = checkBox3.Checked;
 
-				userControlReadWriteServer1.SetReadWriteServer( busTcpServer, "100", deviceName: "modbusServer" );
-				busTcpServer.ServerStart( port, radioButton_tcp.Checked );
+				this.sslServerControl1.InitializeServer( busTcpServer );
+				if (this.serverSettingControl1.ServerStart( busTcpServer ) == false) return;
 
-				button1.Enabled = false;
+				userControlReadWriteServer1.SetReadWriteServer( busTcpServer, "100", deviceName: "modbusServer" );
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 
 				// 设置示例代码
-				codeExampleControl.SetCodeText( "modbusServer", string.Empty, busTcpServer,
+				codeExampleControl.SetCodeText( "modbusServer", string.Empty, busTcpServer, this.sslServerControl1,
 					nameof( busTcpServer.EnableWrite ), 
 					nameof( busTcpServer.EnableIPv6 ),
 					nameof( busTcpServer.Station ),
@@ -187,9 +170,6 @@ namespace HslCommunicationDemo
 			busTcpServer?.CloseSerialSlave( );
 			busTcpServer?.ServerClose( );
 			this.userControlReadWriteServer1.Close( );
-			button1.Enabled = true;
-			button5.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, PipeSession source, byte[] modbus )
@@ -212,20 +192,6 @@ namespace HslCommunicationDemo
 
 		#endregion
 
-		private void button3_Click( object sender, EventArgs e )
-		{
-			if (busTcpServer == null)
-			{
-				DemoUtils.ShowMessage( "Must Start Server！" );
-				return;
-			}
-			// 信任客户端配置
-			using (FormTrustedClient form = new FormTrustedClient( busTcpServer ))
-			{
-				form.ShowDialog( );
-			}
-		}
-
 		private void button5_Click( object sender, EventArgs e )
 		{
 			// 启动串口
@@ -234,11 +200,11 @@ namespace HslCommunicationDemo
 				try
 				{
 					busTcpServer.SerialReceiveAtleastTime = Convert.ToInt32( textBox_time_min.Text );
-					busTcpServer.StartSerialSlave( textBox10.Text );
-					button5.Enabled = false;
+					busTcpServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+					this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 					// 设置示例代码
-					codeExampleControl.SetCodeText( "modbusServer", textBox10.Text, busTcpServer,
+					codeExampleControl.SetCodeText( "modbusServer", this.serverSettingControl1.TextBox_Serial.Text, busTcpServer, this.sslServerControl1,
 						nameof( busTcpServer.EnableWrite ),
 						nameof( busTcpServer.EnableIPv6 ),
 						nameof( busTcpServer.Station ),
@@ -262,14 +228,13 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
 			element.SetAttributeValue( "RtuOverTcp", checkBox_RtuOverTcp.Checked );
 			element.SetAttributeValue( "RemoteWrite", checkBox_remote_write.Checked );
 			element.SetAttributeValue( "StationIsolation", checkBox_station_isolation.Checked );
-			element.SetAttributeValue( "Ipv6", checkBox_ipv6.Checked );
 			element.SetAttributeValue( "Station", textBox_station.Text );
 			element.SetAttributeValue( "MaskCode", checkBox_maskcode.Checked );
 			element.SetAttributeValue( "SerialReceiveAtleastTime", textBox_time_min.Text );
@@ -280,14 +245,13 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
 			comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
 			checkBox_RtuOverTcp.Checked = GetXmlValue( element, "RtuOverTcp", false, bool.Parse );
 			checkBox_remote_write.Checked = GetXmlValue( element, "RemoteWrite", true, bool.Parse );
 			checkBox_station_isolation.Checked = GetXmlValue( element, "StationIsolation", false, bool.Parse );
-			checkBox_ipv6.Checked = GetXmlValue( element, "Ipv6", false, bool.Parse );
 			textBox_station.Text = GetXmlValue( element, "Station", "1", m => m );
 			checkBox_maskcode.Checked = GetXmlValue( element, "MaskCode", true, bool.Parse );
 			textBox_time_min.Text = GetXmlValue( element, "SerialReceiveAtleastTime", textBox_time_min.Text, m => m );

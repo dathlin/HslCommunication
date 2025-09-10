@@ -43,10 +43,7 @@ namespace HslCommunicationDemo
 		{
 			if(Program.Language == 2)
 			{
-				Text = "Omron Virtual Server [data support, d, a, h, c, w]";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
+				Text = "Omron Virtual Server";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -56,11 +53,15 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		private HslCommunication.Profinet.Omron.OmronFinsServer omronFinsServer;
@@ -69,13 +70,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
-
 			try
 			{
 				omronFinsServer = new HslCommunication.Profinet.Omron.OmronFinsServer( );                       // 实例化对象
@@ -84,15 +78,13 @@ namespace HslCommunicationDemo
 				omronFinsServer.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 				omronFinsServer.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
 				this.sslServerControl1.InitializeServer( omronFinsServer );
-				omronFinsServer.ServerStart( port );
+				if (this.serverSettingControl1.ServerStart( omronFinsServer ) == false) return;
 
 				userControlReadWriteServer1.SetReadWriteServer( omronFinsServer, "D100" );
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 				// 设置示例代码
-				codeExampleControl.SetCodeText( "server", "", omronFinsServer, nameof( omronFinsServer.ActiveTimeSpan ), nameof( omronFinsServer.DataFormat ), "ByteTransform.IsStringReverseByteWord" );
+				codeExampleControl.SetCodeText( "server", "", omronFinsServer, this.sslServerControl1, nameof( omronFinsServer.ActiveTimeSpan ), nameof( omronFinsServer.DataFormat ), "ByteTransform.IsStringReverseByteWord" );
 			}
 			catch (Exception ex)
 			{
@@ -106,8 +98,17 @@ namespace HslCommunicationDemo
 			// 停止服务
 			userControlReadWriteServer1.Close( );
 			omronFinsServer?.ServerClose( );
-			button1.Enabled = true;
-			button11.Enabled = false;
+		}
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+			// 启动串口
+			omronFinsServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+			this.serverSettingControl1.ButtonSerial.Enabled = false;
+
+			// 设置示例代码
+			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, omronFinsServer, this.sslServerControl1, nameof( omronFinsServer.DataFormat ), "ByteTransform.IsStringReverseByteWord" );
+
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] receive )
@@ -130,16 +131,19 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			this.userControlReadWriteServer1.GetDataTable( element );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
+			this.userControlReadWriteServer1.LoadDataTable( element );
+			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedItem.ToString( ) );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-
-			this.userControlReadWriteServer1.LoadDataTable( element );
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
+			this.userControlReadWriteServer1.GetDataTable( element );
+			this.comboBox1.SelectedItem = GetXmlEnum( element, DemoDeviceList.XmlDataFormat, HslCommunication.Core.DataFormat.CDAB );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

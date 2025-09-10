@@ -124,7 +124,7 @@
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(936, 156);
+			this.textBox1.Size = new System.Drawing.Size(936, 164);
 			this.textBox1.TabIndex = 23;
 			// 
 			// tabControl1
@@ -296,10 +296,10 @@
 			// tabPage5
 			// 
 			this.tabPage5.Controls.Add(this.panel2);
-			this.tabPage5.Location = new System.Drawing.Point(4, 26);
+			this.tabPage5.Location = new System.Drawing.Point(4, 22);
 			this.tabPage5.Name = "tabPage5";
 			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage5.Size = new System.Drawing.Size(948, 203);
+			this.tabPage5.Size = new System.Drawing.Size(948, 207);
 			this.tabPage5.TabIndex = 5;
 			this.tabPage5.Text = "其他功能";
 			this.tabPage5.UseVisualStyleBackColor = true;
@@ -319,7 +319,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(3, 3);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(942, 197);
+			this.panel2.Size = new System.Drawing.Size(942, 201);
 			this.panel2.TabIndex = 41;
 			// 
 			// checkBox2
@@ -354,7 +354,7 @@
 			// 
 			this.textBox_others_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_others_code.Location = new System.Drawing.Point(60, 128);
+			this.textBox_others_code.Location = new System.Drawing.Point(60, 132);
 			this.textBox_others_code.Multiline = true;
 			this.textBox_others_code.Name = "textBox_others_code";
 			this.textBox_others_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -375,7 +375,7 @@
 			// 
 			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(3, 130);
+			this.label3.Location = new System.Drawing.Point(3, 134);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(51, 17);
 			this.label3.TabIndex = 39;
@@ -411,7 +411,7 @@
 			this.dataGridView_dtu_sessions.Name = "dataGridView_dtu_sessions";
 			this.dataGridView_dtu_sessions.ReadOnly = true;
 			this.dataGridView_dtu_sessions.RowTemplate.Height = 23;
-			this.dataGridView_dtu_sessions.Size = new System.Drawing.Size(936, 86);
+			this.dataGridView_dtu_sessions.Size = new System.Drawing.Size(936, 90);
 			this.dataGridView_dtu_sessions.TabIndex = 38;
 			this.dataGridView_dtu_sessions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_dtu_sessions_CellContentClick);
 			// 

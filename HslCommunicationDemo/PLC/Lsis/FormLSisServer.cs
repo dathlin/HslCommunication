@@ -31,12 +31,6 @@ namespace HslCommunicationDemo
 			if (Program.Language == 2)
 			{
 				Text = "LSis Virtual Server" ;
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-				label14.Text = "Com:";
-
-				button5.Text = "start com";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -46,11 +40,15 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = Button5_Click;
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -62,26 +60,19 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
-				lSisServer = new HslCommunication.Profinet.LSIS.LSisServer(cboxModel.Text);                       // 实例化对象
+				lSisServer = new HslCommunication.Profinet.LSIS.LSisServer();                       // 实例化对象
+				lSisServer.SetCpuType = cboxModel.Text;
 				lSisServer.OnDataReceived += BusTcpServer_OnDataReceived;
 				this.sslServerControl1.InitializeServer( lSisServer );
-				lSisServer.ServerStart( port );
+				if (this.serverSettingControl1.ServerStart( lSisServer ) == false) return;
 
 				userControlReadWriteServer1.SetReadWriteServer( lSisServer, "MB100" );
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", lSisServer );
+				codeExampleControl.SetCodeText( "server", "", lSisServer, this.sslServerControl1, nameof( lSisServer.SetCpuType ) );
 			}
 			catch (Exception ex)
 			{
@@ -94,8 +85,6 @@ namespace HslCommunicationDemo
 			// 停止服务
 			lSisServer?.ServerClose( );
 			userControlReadWriteServer1.Close( );
-			button1.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] receive )
@@ -125,12 +114,11 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					lSisServer.StartSerialSlave(textBox10.Text);
-					button5.Enabled = false;
-					button2.Enabled = true;
+					lSisServer.StartSerialSlave(this.serverSettingControl1.TextBox_Serial.Text);
+					this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "server", textBox10.Text, lSisServer );
+					codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, lSisServer, this.sslServerControl1, nameof( lSisServer.SetCpuType ) );
 				}
 				catch (Exception ex)
 				{
@@ -146,8 +134,8 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlCpuType, cboxModel.Text );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
@@ -155,8 +143,8 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
 			cboxModel.Text = element.Attribute( DemoDeviceList.XmlCpuType ).Value;
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
@@ -166,26 +154,5 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-			// 关闭串口
-			if (lSisServer != null)
-			{
-				try
-				{
-					lSisServer.CloseSerialSlave();
-					button2.Enabled = false;
-					button5.Enabled = true;
-				}
-				catch (Exception ex)
-				{
-					DemoUtils.ShowMessage("Start Failed：" + ex.Message);
-				}
-			}
-			else
-			{
-				DemoUtils.ShowMessage("Start tcp server first please!");
-			}
-		}
 	}
 }

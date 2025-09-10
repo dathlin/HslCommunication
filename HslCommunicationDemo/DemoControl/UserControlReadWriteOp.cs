@@ -894,7 +894,7 @@ namespace HslCommunicationDemo.DemoControl
 						WriteResultRender( write, textBox_write_address.Text, string.Empty );
 					}
 
-					GetWriteCode( textBox_write_address.Text, input, "byte", isArray: true );
+					GetWriteArrayCode( textBox_write_address.Text, value, "byte" );
 				}
 				catch (Exception ex)
 				{
@@ -986,7 +986,7 @@ namespace HslCommunicationDemo.DemoControl
 					else
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_short, input );
 
-					GetWriteCode( textBox_write_address.Text, input, "short", isArray: true );
+					GetWriteArrayCode( textBox_write_address.Text, value, "short" );
 				}
 				catch (Exception ex)
 				{
@@ -1040,7 +1040,7 @@ namespace HslCommunicationDemo.DemoControl
 					else
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_ushort, input );
 
-					GetWriteCode( textBox_write_address.Text, input, "ushort", isArray: true );
+					GetWriteArrayCode( textBox_write_address.Text, value, "ushort" );
 				}
 				catch (Exception ex)
 				{
@@ -1095,7 +1095,7 @@ namespace HslCommunicationDemo.DemoControl
 					else
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_int, input );
 
-					GetWriteCode( textBox_write_address.Text, input, "int", isArray: true );
+					GetWriteArrayCode( textBox_write_address.Text, value, "int" );
 				}
 				catch (Exception ex)
 				{
@@ -1150,7 +1150,7 @@ namespace HslCommunicationDemo.DemoControl
 					else
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_uint, input );
 
-					GetWriteCode( textBox_write_address.Text, input, "uint", isArray: true );
+					GetWriteArrayCode( textBox_write_address.Text, value, "uint" );
 				}
 				catch (Exception ex)
 				{
@@ -1205,7 +1205,7 @@ namespace HslCommunicationDemo.DemoControl
 					else
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_long, input );
 
-					GetWriteCode( textBox_write_address.Text, input, "long", isArray: true );
+					GetWriteArrayCode( textBox_write_address.Text, value, "long" );
 				}
 				catch (Exception ex)
 				{
@@ -1260,7 +1260,7 @@ namespace HslCommunicationDemo.DemoControl
 					else
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_ulong, input );
 
-					GetWriteCode( textBox_write_address.Text, input, "ulong", isArray: true );
+					GetWriteArrayCode( textBox_write_address.Text, value, "ulong" );
 				}
 				catch (Exception ex)
 				{
@@ -1304,7 +1304,7 @@ namespace HslCommunicationDemo.DemoControl
 					else
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_float, input );
 
-					GetWriteCode( textBox_write_address.Text, input, "float", isArray: true );
+					GetWriteArrayCode( textBox_write_address.Text, value, "float" );
 				}
 				catch (Exception ex)
 				{
@@ -1348,7 +1348,7 @@ namespace HslCommunicationDemo.DemoControl
 					else
 						RenderWriteResult( ( ) => readWriteNet.Write( textBox_write_address.Text, value ), button_write_double, input );
 
-					GetWriteCode( textBox_write_address.Text, input, "double", isArray: true );
+					GetWriteArrayCode( textBox_write_address.Text, value, "double" );
 				}
 				catch (Exception ex)
 				{
@@ -1513,6 +1513,24 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		private void GetWriteArrayCode<T>( string address, T[] values, string type )
+		{
+			StringBuilder stringBuilder = new StringBuilder( );
+			stringBuilder.Append( "new " );
+			stringBuilder.Append( type );
+			stringBuilder.Append( "[] { " );
+			if (values != null && values.Length > 0)
+			{
+				for (int i = 0; i < values.Length; i++)
+				{
+					if (i > 0) stringBuilder.Append( "," );
+					stringBuilder.Append( values[i].ToString( ) );
+				}
+			}
+			stringBuilder.Append( " }" );
+			GetWriteCode( address, "OperateResult write = @deviceName.Write( \"" + address + "\", " + stringBuilder.ToString( ) + ");" );
+		}
+
 		private void GetWriteCode( string address, string method )
 		{
 			//OperateResult write = readWriteNet.Write( address, "value" );
@@ -1542,6 +1560,7 @@ namespace HslCommunicationDemo.DemoControl
 			sb.Append( "else" );
 			sb.Append( Environment.NewLine );
 			sb.Append( "{" );
+			sb.Append( Environment.NewLine );
 			sb.Append( "    Console.WriteLine( \"Write [" + address + "] failed: \" + write.Message );" );
 			sb.Append( Environment.NewLine );
 			sb.Append( "}" );

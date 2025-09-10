@@ -27,8 +27,17 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 			melsec_net = new MelsecMcNet( );
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
+
+			checkBox_EnableWriteBitToWordRegister.CheckedChanged +=CheckBox_EnableWriteBitToWordRegister_CheckedChanged;
 		}
 
+		private void CheckBox_EnableWriteBitToWordRegister_CheckedChanged( object sender, EventArgs e )
+		{
+			if (melsec_net != null)
+			{
+				melsec_net.EnableWriteBitToWordRegister = checkBox_EnableWriteBitToWordRegister.Checked;
+			}
+		}
 
 		private MelsecMcNet melsec_net = null;
 		private AddressExampleControl addressExampleControl;

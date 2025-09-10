@@ -57,13 +57,7 @@ namespace HslCommunicationDemo
 
 			if (Program.Language == 2)
 			{
-				Text = "DLT698 Virtual Server[supports TCP and Serial";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-
-				label14.Text = "Com:";
-				button5.Text = "Open Com";
+				Text = "DLT698 Virtual Server";
 				checkBox_string_reverse.Text = "str-reverse";
 			}
 			else
@@ -78,12 +72,16 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -95,12 +93,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				dLT698Server = new DLT698Server( );                       // 实例化对象
@@ -110,17 +102,16 @@ namespace HslCommunicationDemo
 				dLT698Server.StringReverse = checkBox_string_reverse.Checked;
 				dLT698Server.EnableCodeFE = checkBox_enableFE.Checked;
 				dLT698Server.StationMatch = checkBox_station_match.Checked;
-				this.sslServerControl1.InitializeServer( dLT698Server );
-				userControlReadWriteServer1.SetReadWriteServer( dLT698Server, "20-00-02-00" );
-				dLT698Server.ServerStart( port );
 
-				button1.Enabled = false;
+				this.sslServerControl1.InitializeServer( dLT698Server );
+				if (this.serverSettingControl1.ServerStart( dLT698Server ) == false) return;
+
+				userControlReadWriteServer1.SetReadWriteServer( dLT698Server, "20-00-02-00" );
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", dLT698Server, nameof( dLT698Server.Station ), nameof( dLT698Server.StringReverse ), nameof( dLT698Server.EnableCodeFE ), nameof( dLT698Server.StationMatch ) );
+				codeExampleControl.SetCodeText( "server", "", dLT698Server, this.sslServerControl1, nameof( dLT698Server.Station ), nameof( dLT698Server.StringReverse ), nameof( dLT698Server.EnableCodeFE ), nameof( dLT698Server.StationMatch ) );
 			}
 			catch (Exception ex)
 			{
@@ -134,9 +125,6 @@ namespace HslCommunicationDemo
 			// 停止服务
 			dLT698Server?.CloseSerialSlave( );
 			dLT698Server?.ServerClose( );
-			button1.Enabled = true;
-			button5.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] modbus )
@@ -166,16 +154,16 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					OperateResult open = dLT698Server.StartSerialSlave( textBox10.Text );
+					OperateResult open = dLT698Server.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
 					if (!open.IsSuccess)
 					{
 						DemoUtils.ShowMessage( "Start Failed：" + open.Message );
 						return;
 					}
-					button5.Enabled = false;
+					this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "server", textBox10.Text, dLT698Server, nameof( dLT698Server.Station ), nameof( dLT698Server.StringReverse ), nameof( dLT698Server.EnableCodeFE ), nameof( dLT698Server.StationMatch ) );
+					codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, dLT698Server, this.sslServerControl1, nameof( dLT698Server.Station ), nameof( dLT698Server.StringReverse ), nameof( dLT698Server.EnableCodeFE ), nameof( dLT698Server.StationMatch ) );
 				}
 				catch(Exception ex)
 				{
@@ -191,21 +179,24 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox_string_reverse.Checked );
-
-
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
+			element.SetAttributeValue( "EnableFE", checkBox_enableFE.Checked );
+			element.SetAttributeValue( "StationMatch", checkBox_station_match.Checked );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
 			checkBox_string_reverse.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-
+			textBox1.Text = GetXmlValue( element, DemoDeviceList.XmlStation, "1", m => m );
+			checkBox_enableFE.Checked = GetXmlValue( element, "EnableFE", false, bool.Parse );
+			checkBox_station_match.Checked = GetXmlValue( element, "StationMatch", false, bool.Parse );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

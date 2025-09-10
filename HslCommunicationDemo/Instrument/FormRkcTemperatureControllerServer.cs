@@ -29,13 +29,7 @@ namespace HslCommunicationDemo
 		{
 			if (Program.Language == 2)
 			{
-				Text = "RkcTemperature Server[supports TCP and Serial]";
-				label3.Text = "Port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-
-				label14.Text = "Com:";
-				button5.Text = "Open Com";
+				Text = "RkcTemperature Server";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -45,11 +39,15 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -61,12 +59,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				rkcServer = new HslCommunication.Instrument.RKC.TemperatureControllerServer( );                       // 实例化对象
@@ -75,14 +67,11 @@ namespace HslCommunicationDemo
 				rkcServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
 				this.sslServerControl1.InitializeServer( rkcServer );
+				if (this.serverSettingControl1.ServerStart( rkcServer ) == false) return;
+
 				userControlReadWriteServer1.SetReadWriteServer( rkcServer, "M1" );
 				userControlReadWriteServer1.ReadWriteOpControl.EnableRKC( );
-				rkcServer.ServerStart( port );
-
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
-
 
 				// 设置代码示例
 				codeExampleControl.SetCodeText( "server", "", rkcServer, nameof( rkcServer.Station ) );
@@ -97,10 +86,8 @@ namespace HslCommunicationDemo
 		private void button11_Click( object sender, EventArgs e )
 		{
 			// 停止服务
+			rkcServer?.CloseSerialSlave( );
 			rkcServer?.ServerClose( );
-			button1.Enabled = true;
-			button5.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] modbus )
@@ -130,11 +117,11 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					rkcServer.StartSerialSlave( textBox10.Text );
-					button5.Enabled = false;
+					rkcServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+					this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "server", textBox10.Text, rkcServer, nameof( rkcServer.Station ) );
+					codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, rkcServer, nameof( rkcServer.Station ) );
 				}
 				catch(Exception ex)
 				{
@@ -150,20 +137,19 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
-
-
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );
+			this.textBox1.Text = GetXmlValue( element, DemoDeviceList.XmlStation, "1", m => m );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

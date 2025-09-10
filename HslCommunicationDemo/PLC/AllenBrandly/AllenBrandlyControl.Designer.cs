@@ -54,6 +54,7 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.label_code = new System.Windows.Forms.Label();
+			this.label_type_info = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.SuspendLayout();
@@ -190,6 +191,7 @@
 			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox5.Controls.Add(this.label_type_info);
 			this.groupBox5.Controls.Add(this.label_read_length);
 			this.groupBox5.Controls.Add(this.button12);
 			this.groupBox5.Controls.Add(this.button5);
@@ -208,6 +210,7 @@
 			this.groupBox5.TabIndex = 8;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "类型及原始数据读写测试";
+			this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
 			// 
 			// label_read_length
 			// 
@@ -286,9 +289,9 @@
 			// textBox4
 			// 
 			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox4.Location = new System.Drawing.Point(357, 27);
+			this.textBox4.Location = new System.Drawing.Point(349, 27);
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(107, 23);
+			this.textBox4.Size = new System.Drawing.Size(57, 23);
 			this.textBox4.TabIndex = 11;
 			this.textBox4.Text = "C1";
 			// 
@@ -296,7 +299,7 @@
 			// 
 			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(309, 30);
+			this.label5.Location = new System.Drawing.Point(295, 30);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(44, 17);
 			this.label5.TabIndex = 10;
@@ -319,7 +322,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox3.Location = new System.Drawing.Point(64, 27);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(245, 23);
+			this.textBox3.Size = new System.Drawing.Size(224, 23);
 			this.textBox3.TabIndex = 7;
 			this.textBox3.Text = "A1";
 			// 
@@ -352,6 +355,15 @@
 			this.label_code.Size = new System.Drawing.Size(44, 17);
 			this.label_code.TabIndex = 15;
 			this.label_code.Text = "代码：";
+			// 
+			// label_type_info
+			// 
+			this.label_type_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label_type_info.AutoSize = true;
+			this.label_type_info.Location = new System.Drawing.Point(412, 31);
+			this.label_type_info.Name = "label_type_info";
+			this.label_type_info.Size = new System.Drawing.Size(0, 17);
+			this.label_type_info.TabIndex = 28;
 			// 
 			// AllenBrandlyControl
 			// 
@@ -401,5 +413,6 @@
 		private System.Windows.Forms.TextBox textBox_code;
 		private System.Windows.Forms.Label label_code;
         private System.Windows.Forms.Label label_read_length;
-    }
+		private System.Windows.Forms.Label label_type_info;
+	}
 }

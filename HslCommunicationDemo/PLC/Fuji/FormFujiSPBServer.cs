@@ -33,12 +33,6 @@ namespace HslCommunicationDemo
 			if (Program.Language == 2)
 			{
 				Text = "Fuji SPB Server";
-				label3.Text = "Port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-
-				label14.Text = "Com:";
-				button5.Text = "Open Com";
 				checkBox3.Text = "str-reverse";
 			}
 
@@ -50,6 +44,10 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 
 		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
@@ -77,7 +75,7 @@ namespace HslCommunicationDemo
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -89,12 +87,6 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				sPBServer = new FujiSPBServer( );                       // 实例化对象
@@ -106,15 +98,12 @@ namespace HslCommunicationDemo
 				userControlReadWriteServer1.SetReadWriteServer( sPBServer, "D100" );
 
 				ComboBox1_SelectedIndexChanged( sender, e );            // 设置 DataFormat
-				sPBServer.ServerStart( port );
 
-				button1.Enabled = false;
+				if (this.serverSettingControl1.ServerStart( sPBServer ) == false) return;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
-
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", sPBServer, nameof( sPBServer.Station ), nameof( sPBServer.DataFormat ), nameof( sPBServer.IsStringReverse ) );
+				codeExampleControl.SetCodeText( "server", "", sPBServer, this.sslServerControl1, nameof( sPBServer.Station ), nameof( sPBServer.DataFormat ), nameof( sPBServer.IsStringReverse ) );
 			}
 			catch (Exception ex)
 			{
@@ -127,9 +116,6 @@ namespace HslCommunicationDemo
 		{
 			// 停止服务
 			userControlReadWriteServer1.Close( );
-			button1.Enabled = true;
-			button5.Enabled = true;
-			button11.Enabled = false;
 			sPBServer?.ServerClose( );
 		}
 
@@ -160,10 +146,10 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					sPBServer.StartSerialSlave( textBox10.Text );
-					button5.Enabled = false;
+					sPBServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+					this.serverSettingControl1.ButtonSerial.Enabled = false;
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "server", textBox10.Text, sPBServer, nameof( sPBServer.Station ) );
+					codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, sPBServer, nameof( sPBServer.Station ) );
 				}
 				catch(Exception ex)
 				{
@@ -179,21 +165,22 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
-
-
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			this.userControlReadWriteServer1.GetDataTable( element );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox1.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
+			textBox1.Text = GetXmlValue( element, DemoDeviceList.XmlStation, "1", m => m );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-
+			comboBox1.SelectedIndex = GetXmlValue( element, DemoDeviceList.XmlDataFormat, 3, int.Parse );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

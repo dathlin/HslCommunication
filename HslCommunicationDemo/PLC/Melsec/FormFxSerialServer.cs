@@ -29,10 +29,7 @@ namespace HslCommunicationDemo
 		{
 			if(Program.Language == 2)
 			{
-				Text = "FxSerial Virtual Server [data support, bool: x,y,m   word: x,y,m,d]";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
+				Text = "FxSerial Virtual Server";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -42,11 +39,15 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -57,27 +58,20 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox_port.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				fxSerialServer.IsNewVersion = checkBox_newVersion.Checked;
 				fxSerialServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				//mcNetServer.OnDataReceived += MelsecMcServer_OnDataReceived;
-				fxSerialServer.ServerStart( port );
-				userControlReadWriteServer1.SetReadWriteServer( fxSerialServer, "D100" );
+				this.sslServerControl1.InitializeServer( fxSerialServer );
+				if (this.serverSettingControl1.ServerStart( fxSerialServer ) == false) return;
 
-				button1.Enabled = false;
+				userControlReadWriteServer1.SetReadWriteServer( fxSerialServer, "D100" );
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 
 				// 设置示例的代码
-				codeExampleControl.SetCodeText( "server", "", fxSerialServer, nameof( fxSerialServer.IsNewVersion ) );
+				codeExampleControl.SetCodeText( "server", "", fxSerialServer, this.sslServerControl1, nameof( fxSerialServer.IsNewVersion ) );
 			}
 			catch (Exception ex)
 			{
@@ -89,11 +83,11 @@ namespace HslCommunicationDemo
 		{
 			if (fxSerialServer != null)
 			{
-				fxSerialServer.StartSerialSlave( textBox_serial.Text );
-				button5.Enabled = false;
+				fxSerialServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+				this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 				// 设置示例的代码
-				codeExampleControl.SetCodeText( "server", textBox_serial.Text, fxSerialServer, nameof( fxSerialServer.IsNewVersion ) );
+				codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, fxSerialServer, nameof( fxSerialServer.IsNewVersion ) );
 			}
 		}
 		private void button11_Click( object sender, EventArgs e )
@@ -102,9 +96,6 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.Close( );
 			fxSerialServer?.CloseSerialSlave( );
 			fxSerialServer?.ServerClose( );
-			button5.Enabled = true;
-			button1.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void MelsecMcServer_OnDataReceived( object sender,  object source, byte[] receive )
@@ -130,8 +121,8 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort,       textBox_port.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCom,        textBox_serial.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( "IsNewVersion", checkBox_newVersion.Checked );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
@@ -139,9 +130,9 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_port.Text             = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
 			checkBox_newVersion.Checked = GetXmlValue( element, "IsNewVersion", false, bool.Parse );
-			textBox_serial.Text = GetXmlValue( element, DemoDeviceList.XmlCom, textBox_serial.Text, m => m );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

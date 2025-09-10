@@ -29,9 +29,6 @@ namespace HslCommunicationDemo
 			{
 				label1.Text = "Station:";
 				Text = "XINJE Virtual Server";
-				label3.Text = "Port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -41,11 +38,15 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -56,29 +57,22 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox_port.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				xinjeServer = new HslCommunication.Profinet.XINJE.XinJEServer(  );                       // 实例化对象
 				xinjeServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				xinjeServer.OnDataReceived += MelsecMcServer_OnDataReceived;
-				this.sslServerControl1.InitializeServer( xinjeServer );
 				xinjeServer.Station = byte.Parse( textBox_station.Text );
-				xinjeServer.ServerStart( port );
-				userControlReadWriteServer1.SetReadWriteServer( xinjeServer, "D100" );
 
-				button1.Enabled = false;
+				this.sslServerControl1.InitializeServer( xinjeServer );
+				if (this.serverSettingControl1.ServerStart( xinjeServer ) == false) return;
+
+				userControlReadWriteServer1.SetReadWriteServer( xinjeServer, "D100" );
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", xinjeServer, nameof( xinjeServer.Station ) );
+				codeExampleControl.SetCodeText( "server", "", xinjeServer, this.sslServerControl1, nameof( xinjeServer.Station ) );
 			}
 			catch (Exception ex)
 			{
@@ -91,9 +85,20 @@ namespace HslCommunicationDemo
 			// 停止服务
 			userControlReadWriteServer1.Close( );
 			xinjeServer?.ServerClose( );
-			button1.Enabled = true;
-			button11.Enabled = false;
 		}
+
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+			// 启动串口
+			xinjeServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+			this.serverSettingControl1.ButtonSerial.Enabled = false;
+
+			// 设置示例代码
+			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, xinjeServer, this.sslServerControl1, nameof( xinjeServer.Station ) );
+
+		}
+
 
 		private void MelsecMcServer_OnDataReceived( object sender,  object source, byte[] receive )
 		{
@@ -118,7 +123,8 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox_port.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
@@ -126,8 +132,9 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox_port.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox_station.Text = GetXmlValue( element, DemoDeviceList.XmlStation, "1", m => m );
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
+			textBox_station.Text = GetXmlValue( element, DemoDeviceList.XmlStation, "0", m => m );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

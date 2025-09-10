@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -43,6 +44,29 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				server.UseSSL( textBox_cert.Text, textBox_cert_password.Text );
 			}
+		}
+
+		public bool IsUseSSL( ) => checkBox_ssl.Checked;
+
+		public void AddServerCode( StringBuilder sb, string name = "server" )
+		{
+			if (IsUseSSL( ))
+				sb.AppendLine( $"{name}.UseSSL( \"" + textBox_cert.Text + "\", \"" + textBox_cert_password.Text + "\" );" );
+		}
+
+		public void SaveXmlParameter( XElement element )
+		{
+			if (checkBox_ssl.Checked) element.SetAttributeValue( "UseSsl", checkBox_ssl.Checked );
+			if (!string.IsNullOrEmpty( textBox_cert.Text )) element.SetAttributeValue( "SslCertFile", textBox_cert.Text );
+			if (!string.IsNullOrEmpty( textBox_cert_password.Text )) element.SetAttributeValue( "SslCertPwd", textBox_cert_password.Text );
+
+		}
+
+		public void LoadXmlParameter( XElement element )
+		{
+			checkBox_ssl.Checked = HslFormContent.GetXmlValue( element, "UseSsl", false, bool.Parse );
+			textBox_cert.Text = HslFormContent.GetXmlValue( element, "SslCertFile", "", m => m );
+			textBox_cert_password.Text = HslFormContent.GetXmlValue( element, "SslCertPwd", "", m => m );
 		}
 	}
 }

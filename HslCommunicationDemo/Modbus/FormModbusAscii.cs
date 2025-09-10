@@ -85,7 +85,7 @@ namespace HslCommunicationDemo
 		{
 			if (busAsciiClient != null)
 			{
-				busAsciiClient.StationCheckMacth = checkBox_station_check.Checked;
+				busAsciiClient.StationCheckMatch = checkBox_station_check.Checked;
 			}
 		}
 
@@ -126,7 +126,7 @@ namespace HslCommunicationDemo
 			busAsciiClient = new ModbusAscii( station );
 			busAsciiClient.AddressStartWithZero = checkBox1.Checked;
 			busAsciiClient.LogNet = LogNet;
-			busAsciiClient.StationCheckMacth = checkBox_station_check.Checked;
+			busAsciiClient.StationCheckMatch = checkBox_station_check.Checked;
 			if (!string.IsNullOrEmpty( textBox_BroadcastStation.Text ))
 				busAsciiClient.BroadcastStation = int.Parse( textBox_BroadcastStation.Text );
 
@@ -158,7 +158,7 @@ namespace HslCommunicationDemo
 					// 设置示例代码
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
 					codeExampleControl.SetCodeText( DemoUtils.ModbusDeviceName, busAsciiClient, nameof( busAsciiClient.AddressStartWithZero ), nameof( busAsciiClient.IsStringReverse ),
-						nameof( busAsciiClient.DataFormat ), nameof( busAsciiClient.Station ), nameof( busAsciiClient.StationCheckMacth ), nameof( busAsciiClient.BroadcastStation ) );
+						nameof( busAsciiClient.DataFormat ), nameof( busAsciiClient.Station ), nameof( busAsciiClient.StationCheckMatch ), nameof( busAsciiClient.BroadcastStation ) );
 				}
 				else
 				{
@@ -193,7 +193,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox2.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
-			element.SetAttributeValue( nameof( ModbusAscii.StationCheckMacth ), checkBox_station_check.Checked );
+			element.SetAttributeValue( nameof( ModbusAscii.StationCheckMatch ), checkBox_station_check.Checked );
 			element.SetAttributeValue( nameof( ModbusAscii.BroadcastStation ), textBox_BroadcastStation.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -207,7 +207,7 @@ namespace HslCommunicationDemo
 			checkBox1.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
 			comboBox2.SelectedIndex = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-			checkBox_station_check.Checked = GetXmlValue( element, nameof( ModbusAscii.StationCheckMacth ), checkBox_station_check.Checked, bool.Parse );
+			checkBox_station_check.Checked = GetXmlValue( element, nameof( ModbusAscii.StationCheckMatch ), checkBox_station_check.Checked, bool.Parse );
 			textBox_BroadcastStation.Text = GetXmlValue( element, nameof( ModbusAscii.BroadcastStation ), "", m => m );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

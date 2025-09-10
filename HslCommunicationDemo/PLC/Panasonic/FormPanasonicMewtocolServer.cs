@@ -26,12 +26,7 @@ namespace HslCommunicationDemo
 		{
 			if(Program.Language == 2)
 			{
-				Text = "Mewtocol Server [data support]";
-				label3.Text = "port:";
-				button1.Text = "Start Server";
-				button2.Text = "Start Serial";
-				button11.Text = "Close Server";
-				label11.Text = "This server is not a strict Mewtocol protocol and only supports perfect communication with HSL components.";
+				Text = "Mewtocol Server";
 			}
 
 
@@ -42,19 +37,24 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
+
 		}
 
-		private void button2_Click( object sender, EventArgs e )
+		private void button5_Click( object sender, EventArgs e )
 		{
 			if (mewtocolServer != null)
 			{
 				try
 				{
-					mewtocolServer.StartSerialSlave( textBox_serial.Text );
-					button2.Enabled = false;
+					mewtocolServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+					this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "server", textBox_serial.Text, mewtocolServer, nameof( mewtocolServer.Station ) );
+					codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, mewtocolServer,this.sslServerControl1, nameof( mewtocolServer.Station ) );
 				}
 				catch (Exception ex)
 				{
@@ -64,7 +64,7 @@ namespace HslCommunicationDemo
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -77,28 +77,21 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
-
 				mewtocolServer = new HslCommunication.Profinet.Panasonic.PanasonicMewtocolServer( );                       // 实例化对象
 				mewtocolServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				mewtocolServer.OnDataReceived += BusTcpServer_OnDataReceived;
-				mewtocolServer.Station        = 238;
+				mewtocolServer.Station        = byte.Parse( textBox_station.Text );
+
 				sslServerControl1.InitializeServer( mewtocolServer );
+				if (this.serverSettingControl1.ServerStart( mewtocolServer ) == false) return;
+
 				userControlReadWriteServer1.SetReadWriteServer( mewtocolServer, "D100" );
-				mewtocolServer.ServerStart( port );
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", mewtocolServer, nameof( mewtocolServer.Station ) );
+				codeExampleControl.SetCodeText( "server", "", mewtocolServer, this.sslServerControl1, nameof( mewtocolServer.Station ) );
 			}
 			catch (Exception ex)
 			{
@@ -113,9 +106,6 @@ namespace HslCommunicationDemo
 			userControlReadWriteServer1.Close( );
 			mewtocolServer?.CloseSerialSlave( );
 			mewtocolServer?.ServerClose( );
-			button1.Enabled = true;
-			button2.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] receive )
@@ -141,15 +131,19 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( "Serial", textBox_serial.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
+			this.userControlReadWriteServer1.GetDataTable( element );
+			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox_serial.Text = GetXmlValue( element, "Serial", textBox_serial.Text, m => m );
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
+			this.userControlReadWriteServer1.LoadDataTable( element );
+			this.textBox_station.Text = GetXmlValue( element, DemoDeviceList.XmlStation, "238", m => m );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

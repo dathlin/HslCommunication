@@ -300,14 +300,24 @@ namespace HslCommunicationDemo.DemoControl
 
 		public void SetCodeText( string deviceName, string com, DeviceServer serverBase, params string[] props )
 		{
+			SetCodeText( deviceName, com, serverBase, null, props );
+		}
+		public void SetCodeText( string deviceName, string com, DeviceServer serverBase, SslServerControl sslServerControl, params string[] props )
+		{
 			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateFromObject( serverBase, deviceName );
 			SetPropties( deviceName, stringBuilder, serverBase, props );
 
 			stringBuilder.Append( deviceName + ".ActiveTimeSpan = TimeSpan.Parse( \"" + serverBase.ActiveTimeSpan.ToString( ) + "\" );" );
 			stringBuilder.AppendLine( );
+			if (serverBase.LocalAddress != null) stringBuilder.Append( deviceName + ".System.Net.IPAddress.Parse( \"" + serverBase.LocalAddress.ToString( ) + "\" );" );
+			stringBuilder.AppendLine( );
 			stringBuilder.Append( deviceName + ".EnableIPv6 = " + serverBase.EnableIPv6.ToString( ).ToLower( ) + ";" );
 			stringBuilder.AppendLine( );
+			if (sslServerControl !=null)
+			{
+				sslServerControl.AddServerCode( stringBuilder );
+			}
 			if (serverBase.ServerMode == 0)
 				stringBuilder.Append( deviceName + ".ServerStart( " + serverBase.Port + " );" );
 			else if (serverBase.ServerMode == 1)

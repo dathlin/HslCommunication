@@ -28,13 +28,7 @@ namespace HslCommunicationDemo
 		{
 			if (Program.Language == 2)
 			{
-				Text = "Cimon Virtual Server" ;
-				label3.Text = "Port:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-				label14.Text = "Com:";
-
-				button5.Text = "start com";
+				Text = "Cimon Virtual Server";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -44,11 +38,15 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = Button5_Click;
 		}
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		#region Server Start
@@ -60,26 +58,19 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 			try
 			{
 				cimonServer = new HslCommunication.Profinet.Cimon.CimonServer();                       // 实例化对象
+				cimonServer.FrameNo = byte.Parse( textBox_frameNo.Text );
 				cimonServer.OnDataReceived += BusTcpServer_OnDataReceived;
 				this.sslServerControl1.InitializeServer( cimonServer );
-				cimonServer.ServerStart( port );
+				if (this.serverSettingControl1.ServerStart( cimonServer ) == false) return;
 
 				userControlReadWriteServer1.SetReadWriteServer( cimonServer, "D100" );
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", cimonServer );
+				codeExampleControl.SetCodeText( "server", "", cimonServer, this.sslServerControl1, nameof( cimonServer.FrameNo ) );
 			}
 			catch (Exception ex)
 			{
@@ -91,8 +82,6 @@ namespace HslCommunicationDemo
 		{
 			// 停止服务
 			userControlReadWriteServer1.Close( );
-			button1.Enabled = true;
-			button11.Enabled = false;
 			cimonServer?.ServerClose( );
 		}
 
@@ -123,12 +112,11 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					cimonServer.StartSerialSlave(textBox10.Text);
-					button5.Enabled = false;
-					button2.Enabled = true;
+					cimonServer.StartSerialSlave(this.serverSettingControl1.TextBox_Serial.Text);
+					this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 					// 设置代码示例
-					codeExampleControl.SetCodeText( "server", textBox10.Text, cimonServer );
+					codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, cimonServer, this.sslServerControl1, nameof( cimonServer.FrameNo ) );
 				}
 				catch (Exception ex)
 				{
@@ -144,8 +132,8 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlCom, textBox10.Text );
+			this.serverSettingControl1.SaveXmlParameter( element );
+			this.sslServerControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( "FrameNo", textBox_frameNo.Text );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
@@ -153,9 +141,9 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox10.Text = element.Attribute( DemoDeviceList.XmlCom ).Value;
-			textBox_frameNo.Text = element.Attribute( "FrameNo" ).Value;
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
+			textBox_frameNo.Text = GetXmlValue( element, "FrameNo", "1", m => m );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 
@@ -164,26 +152,5 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-			// 关闭串口
-			if (cimonServer != null)
-			{
-				try
-				{
-					cimonServer.CloseSerialSlave();
-					button2.Enabled = false;
-					button5.Enabled = true;
-				}
-				catch (Exception ex)
-				{
-					DemoUtils.ShowMessage("Start Failed：" + ex.Message);
-				}
-			}
-			else
-			{
-				DemoUtils.ShowMessage("Start tcp server first please!");
-			}
-		}
 	}
 }

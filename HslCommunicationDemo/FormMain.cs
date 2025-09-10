@@ -12,6 +12,8 @@ using HslCommunicationDemo.DemoControl;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Threading;
 using HslCommunication.MQTT;
+using HslCommunication;
+using HslCommunicationDemo.Vip;
 
 namespace HslCommunicationDemo
 {
@@ -108,7 +110,7 @@ namespace HslCommunicationDemo
 
 
 
-			ImageList imageList = new ImageList( );
+			imageList = new ImageList( );
 			imageList.ColorDepth = ColorDepth.Depth32Bit;
 			imageList.ImageSize = new Size( 16, 16 );
 			imageList.Images.Add( "Method_636",       Properties.Resources.Method_636 );        // 0
@@ -160,6 +162,10 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "http",             Properties.Resources.http );              // 46
 			imageList.Images.Add( "cimon",            Properties.Resources.cimon );             // 47
 			imageList.Images.Add( "yamaha",           Properties.Resources.yamaha );            // 48
+			imageList.Images.Add( "Certificate",      Properties.Resources.Certificate );       // 49
+			imageList.Images.Add( "Lock_white",       Properties.Resources.Lock_white );        // 50
+			imageList.Images.Add( "CSharpFile_SolutionExplorerNode", Properties.Resources.CSharpFile_SolutionExplorerNode );        // 51
+			imageList.Images.Add( "java", Properties.Resources.java1 );        // 52
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;
@@ -600,6 +606,7 @@ namespace HslCommunicationDemo
 		private const int MB_DIV = 1024 * 1024;
 		private FormPanelLeft panelLeft;
 		private FormSaveList panelSave;
+		private ImageList imageList;
 
 
 		public static FormMain Form { get; set; }
@@ -613,16 +620,47 @@ namespace HslCommunicationDemo
 
 		private void label_account_Click( object sender, EventArgs e )
 		{
+			if (mqttSyncClient != null)
+			{
+				if (DemoUtils.ShowMessage( "是否注销当前用户？", "注销确认", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+				{
+					mqttSyncClient.ConnectClose( );
+					mqttSyncClient = null;
+					label_account.Text = "未登录";
+					return;
+				}
+				else
+				{
+					return;
+				}
+			}
 			using (FormLogin form = new FormLogin( ))
 			{
 				if ( form.ShowDialog( ) == DialogResult.OK)
 				{
 					this.mqttSyncClient = form.GetMqttSyncClient( );
 					label_account.Text = "已登录";
+
+					// 登录成功，获取用户信息
+					OperateResult<string> readCompany = mqttSyncClient.ReadRpc<string>( "GetCompany", "" );
+					if (readCompany.IsSuccess == false)
+					{
+						DemoUtils.ShowMessage( "获取公司信息失败: " + readCompany.Message );
+						return;
+					}
+
+					// 显示证书信息
+					FormCreateCertificate vipForm = new FormCreateCertificate( imageList, mqttSyncClient, readCompany.Content );
+					vipForm.Show( dockPanel1 );
 				}
 			}
 		}
 
+		private void lockToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			// 锁住当前的软件操作，并需要输入密码才能继续操作
+
+		}
 	}
 
 	public class FormSiemensS1200 : FormSiemens

@@ -30,13 +30,7 @@ namespace HslCommunicationDemo
 		{
 			if(Program.Language == 2)
 			{
-				Text = "Omron Virtual Server [data support, d, a, h, c, w]";
-				label3.Text = "Port:";
-				label14.Text = "Serial:";
-				button1.Text = "Start Server";
-				button11.Text = "Close Server";
-				button5.Text = "Start Serial";
-				label11.Text = "This server is not a strict fins protocol and only supports perfect communication with HSL components.";
+				Text = "Omron Virtual Server";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -46,10 +40,14 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
+			this.serverSettingControl1.buttonStartAction = button1_Click;
+			this.serverSettingControl1.buttonCloseAction = button11_Click;
+			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (button1.Enabled == false) button11_Click( null, EventArgs.Empty );
+			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
 		private HslCommunication.Profinet.Omron.OmronHostLinkServer omronFinsServer;
@@ -58,26 +56,17 @@ namespace HslCommunicationDemo
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int port ))
-			{
-				DemoUtils.ShowMessage( DemoUtils.PortInputWrong );
-				return;
-			}
-
 
 			try
 			{
 				this.sslServerControl1.InitializeServer( omronFinsServer );
-				omronFinsServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
-				omronFinsServer.ServerStart( port );
+				if (this.serverSettingControl1.ServerStart( omronFinsServer ) == false) return;
 
 				userControlReadWriteServer1.SetReadWriteServer( omronFinsServer, "D100" );
-				button1.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
-				button11.Enabled = true;
 
 				// 设置示例代码
-				codeExampleControl.SetCodeText( "server", "", omronFinsServer, nameof( omronFinsServer.UnitNumber ) );
+				codeExampleControl.SetCodeText( "server", "", omronFinsServer, this.sslServerControl1, nameof( omronFinsServer.UnitNumber ) );
 			}
 			catch (Exception ex)
 			{
@@ -90,14 +79,14 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				omronFinsServer.StartSerialSlave( textBox_serial.Text );
+				omronFinsServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
 
 				userControlReadWriteServer1.SetReadWriteServer( omronFinsServer, "D100" );
-				button5.Enabled = false;
+				this.serverSettingControl1.ButtonSerial.Enabled = false;
 				userControlReadWriteServer1.SetEnable( true );
 
 				// 设置示例代码
-				codeExampleControl.SetCodeText( "server", textBox_serial.Text, omronFinsServer, nameof( omronFinsServer.UnitNumber ) );
+				codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, omronFinsServer, this.sslServerControl1, nameof( omronFinsServer.UnitNumber ) );
 			}
 			catch (Exception ex)
 			{
@@ -109,9 +98,6 @@ namespace HslCommunicationDemo
 			// 停止服务
 			omronFinsServer?.CloseSerialSlave( );
 			omronFinsServer?.ServerClose( );
-			button1.Enabled = true;
-			button5.Enabled = true;
-			button11.Enabled = false;
 		}
 
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] receive )
@@ -134,15 +120,17 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
-			element.SetAttributeValue( "Serial", textBox_serial.Text );
+			this.sslServerControl1.SaveXmlParameter( element );
+			this.serverSettingControl1.SaveXmlParameter( element );
+			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
-			textBox_serial.Text = GetXmlValue( element, "Serial", textBox_serial.Text, m => m );
+			this.sslServerControl1.LoadXmlParameter( element );
+			this.serverSettingControl1.LoadXmlParameter( element );
+			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
