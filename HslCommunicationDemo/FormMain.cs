@@ -365,6 +365,7 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_byteTransform.Text = "字节变换";
 				regexRegularToolStripMenuItem.Text = "正则表达式";
 				formTopMostToolStripMenuItem.Text = "窗体置顶";
+				label_account.Text = "登录";
 			}
 			else
 			{
@@ -384,6 +385,7 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_byteTransform.Text = "ByteTransform";
 				regexRegularToolStripMenuItem.Text = "RegexRegular";
 				formTopMostToolStripMenuItem.Text = "TopMost";
+				label_account.Text = "Login";
 			}
 		}
 

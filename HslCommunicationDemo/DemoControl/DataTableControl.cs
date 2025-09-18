@@ -75,7 +75,7 @@ namespace HslCommunicationDemo.DemoControl
 				if (dataGridView1.SelectedCells.Count > 0)
 				{
 					DataGridViewCell cell = dataGridView1.SelectedCells[0];
-					if (dataGridView1.Rows[cell.RowIndex].IsNewRow == false) return;
+					if (dataGridView1.Rows[cell.RowIndex].IsNewRow == true) return;
 
 					string msg = $"是否删除设备地址为: {dataGridView1.Rows[cell.RowIndex].Cells[1].Value} 的行";
 					if (Program.Language == 2) msg = $"Delete Address: {dataGridView1.Rows[cell.RowIndex].Cells[1].Value} line?";

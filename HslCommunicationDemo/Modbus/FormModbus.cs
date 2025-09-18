@@ -147,6 +147,7 @@ namespace HslCommunicationDemo
 			busTcpClient.AddressStartWithZero = checkBox1.Checked;
 			busTcpClient.IsCheckMessageId = checkBox2.Checked;
 			busTcpClient.StationCheckMatch = checkBox_station_check.Checked;
+			busTcpClient.DisableFunctionCode06 = checkBox_DisableFunctionCode06.Checked;
 			busTcpClient.LogNet = LogNet;
 			if (!string.IsNullOrEmpty( textBox_BroadcastStation.Text ))
 				busTcpClient.BroadcastStation = int.Parse( textBox_BroadcastStation.Text );

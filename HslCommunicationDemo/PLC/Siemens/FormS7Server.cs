@@ -11,6 +11,7 @@ using HslCommunication;
 using HslCommunication.ModBus;
 using HslCommunicationDemo.DemoControl;
 using System.Xml.Linq;
+using HslCommunicationDemo.PLC.Siemens;
 
 namespace HslCommunicationDemo
 {
@@ -33,9 +34,14 @@ namespace HslCommunicationDemo
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Siemens.Helper.GetSiemensS7Address( ) );
 			userControlReadWriteServer1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
+			dbControl = new S7ServerDbControl( );
+			userControlReadWriteServer1.AddSpecialFunctionTab( dbControl, false, "Db Blocks" );
+			dbControl.Enabled = false;
+
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteServer1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteServer1.SetEnable( false );
+
 			//timer = new Timer( );
 			//timer.Interval = 1000;
 			//timer.Tick += Timer_Tick;
@@ -74,6 +80,7 @@ namespace HslCommunicationDemo
 		private HslCommunication.Profinet.Siemens.SiemensS7Server s7NetServer;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
+		private S7ServerDbControl dbControl;
 
 		private void button1_Click( object sender, EventArgs e )
 		{
@@ -90,6 +97,8 @@ namespace HslCommunicationDemo
 				userControlReadWriteServer1.SetReadWriteServer( s7NetServer, "M100" );
 				userControlReadWriteServer1.SetEnable( true );
 
+				dbControl.SetServer( s7NetServer );
+				dbControl.Enabled = true;
 				// 设置代码示例
 				codeExampleControl.SetCodeText( "server", "", s7NetServer, this.sslServerControl1 );
 			}
@@ -105,6 +114,7 @@ namespace HslCommunicationDemo
 			// 停止服务
 			userControlReadWriteServer1.Close( );
 			s7NetServer?.ServerClose( );
+			dbControl.Enabled = false;
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -139,51 +149,12 @@ namespace HslCommunicationDemo
 
 		#endregion
 
-		private void button_db_add_Click( object sender, EventArgs e )
-		{
-			if (int.TryParse( textBox_db.Text, out int db ))
-			{
-				if (s7NetServer == null)
-					DemoUtils.ShowMessage( "Must start s7 server first!" );
-				else
-				{
-					s7NetServer.AddDbBlock( db );
-					DemoUtils.ShowMessage( "Add db block success" );
-				}
-			}
-			else
-			{
-				DemoUtils.ShowMessage( "Please input correct db block number!" );
-			}
-		}
-
-		private void button_db_remove_Click( object sender, EventArgs e )
-		{
-			if (int.TryParse( textBox_db.Text, out int db ))
-			{
-				if (s7NetServer == null)
-					DemoUtils.ShowMessage( "Must start s7 server first!" );
-				else if (db == 1 || db == 2 || db == 3)
-				{
-					DemoUtils.ShowMessage( "Can not remove db block 1, 2, 3" );
-				}
-				else
-				{
-					s7NetServer.RemoveDbBlock( db );
-					DemoUtils.ShowMessage( "Remove db block success" );
-				}
-			}
-			else
-			{
-				DemoUtils.ShowMessage( "Please input correct db block number!" );
-			}
-		}
-
 		public override void SaveXmlParameter( XElement element )
 		{
 			this.sslServerControl1.SaveXmlParameter( element );
 			this.serverSettingControl1.SaveXmlParameter( element );
 			this.userControlReadWriteServer1.GetDataTable( element );
+			this.dbControl.SaveToXElement( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -192,6 +163,7 @@ namespace HslCommunicationDemo
 			this.sslServerControl1.LoadXmlParameter( element );
 			this.serverSettingControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );
+			this.dbControl.LoadFromXElement( element );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

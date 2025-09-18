@@ -51,10 +51,6 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			userControlReadWriteOp1.Enabled = enbale;
 			pictureBox1.Enabled = enbale;
-			for (int i = 0; i < allControls.Count; i++)
-			{
-				allControls[i].Enabled = enbale;
-			}
 
 			if (enbale == false)
 			{
@@ -62,6 +58,12 @@ namespace HslCommunicationDemo.DemoControl
 				this.debugRemoteControl1.Close( );
 				this.dataTableControl1.Close( );
 			}
+
+			for (int i = 0; i < allControls.Count; i++)
+			{
+				allControls[i].Enabled = enbale;
+			}
+
 		}
 
 		public void SetReadWriteNet( IReadWriteNet readWrite, string address, bool isAsync = false, int strLength = 10 )

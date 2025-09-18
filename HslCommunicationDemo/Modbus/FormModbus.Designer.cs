@@ -140,7 +140,7 @@
 			// 
 			// textBox_BroadcastStation
 			// 
-			this.textBox_BroadcastStation.Location = new System.Drawing.Point(396, 33);
+			this.textBox_BroadcastStation.Location = new System.Drawing.Point(404, 33);
 			this.textBox_BroadcastStation.Name = "textBox_BroadcastStation";
 			this.textBox_BroadcastStation.Size = new System.Drawing.Size(39, 23);
 			this.textBox_BroadcastStation.TabIndex = 35;
@@ -148,7 +148,7 @@
 			// label_BroadcastStation
 			// 
 			this.label_BroadcastStation.AutoSize = true;
-			this.label_BroadcastStation.Location = new System.Drawing.Point(320, 36);
+			this.label_BroadcastStation.Location = new System.Drawing.Point(310, 36);
 			this.label_BroadcastStation.Name = "label_BroadcastStation";
 			this.label_BroadcastStation.Size = new System.Drawing.Size(59, 17);
 			this.label_BroadcastStation.TabIndex = 34;

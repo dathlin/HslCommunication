@@ -30,6 +30,7 @@ namespace HslCommunicationDemo.DemoControl
 				button1.Text = "Start";
 				button2.Text = "Close";
 				label2.Text = "Onlines:";
+				label4.Text = "(The client uses the Debug pipe to connect to this port)";
 			}
 		}
 
@@ -80,18 +81,33 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void DebugRemoteControl_OnClientOnline( object server, PipeSession session )
 		{
-			Invoke( new Action( ( ) =>
+			try
 			{
-				listBox1.DataSource = this.server.GetCommunicationServer( ).GetPipeSessions( );
-			} ) );
+				if (this.IsDisposed == false) Invoke( new Action( ( ) =>
+				{
+					listBox1.DataSource = this.server.GetCommunicationServer( ).GetPipeSessions( );
+				} ) );
+			}
+			catch
+			{
+
+			}
 		}
+		
 
 		private void LogNet_BeforeSaveToFile( object sender, HslEventArgs e )
 		{
-			Invoke( new Action( ( ) =>
+			try
 			{
-				textBox2.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
-			} ) );
+				if (this.IsDisposed == false) Invoke( new Action( ( ) =>
+				{
+					textBox2.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+				} ) );
+			}
+			catch
+			{
+
+			}
 		}
 
 		private void button2_Click( object sender, EventArgs e )

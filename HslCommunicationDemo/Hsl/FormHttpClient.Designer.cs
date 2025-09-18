@@ -49,7 +49,7 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.label10 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.label_url = new System.Windows.Forms.Label();
+			this.textBox_url_example = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.textBox_api_sign = new System.Windows.Forms.TextBox();
 			this.label24 = new System.Windows.Forms.Label();
@@ -291,7 +291,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel2.Controls.Add(this.label_url);
+			this.panel2.Controls.Add(this.textBox_url_example);
 			this.panel2.Controls.Add(this.label12);
 			this.panel2.Controls.Add(this.textBox_api_sign);
 			this.panel2.Controls.Add(this.label24);
@@ -322,22 +322,22 @@
 			this.panel2.Size = new System.Drawing.Size(753, 534);
 			this.panel2.TabIndex = 34;
 			// 
-			// label_url
+			// textBox_url_example
 			// 
-			this.label_url.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label_url.AutoSize = true;
-			this.label_url.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.label_url.Location = new System.Drawing.Point(60, 513);
-			this.label_url.Name = "label_url";
-			this.label_url.Size = new System.Drawing.Size(0, 17);
-			this.label_url.TabIndex = 58;
+			this.textBox_url_example.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_url_example.Location = new System.Drawing.Point(63, 507);
+			this.textBox_url_example.Name = "textBox_url_example";
+			this.textBox_url_example.ReadOnly = true;
+			this.textBox_url_example.Size = new System.Drawing.Size(685, 23);
+			this.textBox_url_example.TabIndex = 59;
 			// 
 			// label12
 			// 
 			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label12.AutoSize = true;
 			this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.label12.Location = new System.Drawing.Point(4, 513);
+			this.label12.Location = new System.Drawing.Point(4, 511);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(37, 17);
 			this.label12.TabIndex = 57;
@@ -555,7 +555,7 @@
 			this.textBox8.Multiline = true;
 			this.textBox8.Name = "textBox8";
 			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(686, 167);
+			this.textBox8.Size = new System.Drawing.Size(686, 163);
 			this.textBox8.TabIndex = 18;
 			// 
 			// button4
@@ -632,7 +632,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label6.Location = new System.Drawing.Point(60, 300);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(428, 36);
+			this.label6.Size = new System.Drawing.Size(365, 36);
 			this.label6.TabIndex = 44;
 			// 
 			// FormHttpClient
@@ -710,8 +710,8 @@
 		private System.Windows.Forms.Label label24;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.TextBox textBox_api_description;
-		private System.Windows.Forms.Label label_url;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.RadioButton radioButton_response_hex;
+		private System.Windows.Forms.TextBox textBox_url_example;
 	}
 }

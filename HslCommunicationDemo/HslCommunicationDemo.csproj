@@ -74,8 +74,8 @@
     <Reference Include="DynamicExpresso.Core, Version=2.19.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicExpresso.Core.2.19.2\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.5.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.5.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.5.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.5.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
@@ -214,6 +214,12 @@
     </Compile>
     <Compile Include="DemoControl\FormDeviceSupport.Designer.cs">
       <DependentUpon>FormDeviceSupport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\FormExpressionExample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormExpressionExample.Designer.cs">
+      <DependentUpon>FormExpressionExample.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\FormInputNewValue.cs">
       <SubType>Form</SubType>
@@ -835,6 +841,12 @@
       <DependentUpon>FormSiemensS7Plus.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Siemens\Helper.cs" />
+    <Compile Include="PLC\Siemens\S7ServerDbControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\Siemens\S7ServerDbControl.Designer.cs">
+      <DependentUpon>S7ServerDbControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Siemens\SiemensS7PlusControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2081,6 +2093,9 @@
     <EmbeddedResource Include="DemoControl\FormDeviceSupport.resx">
       <DependentUpon>FormDeviceSupport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormExpressionExample.resx">
+      <DependentUpon>FormExpressionExample.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormInputNewValue.resx">
       <DependentUpon>FormInputNewValue.cs</DependentUpon>
     </EmbeddedResource>
@@ -2398,6 +2413,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Siemens\FormSiemensS7Plus.resx">
       <DependentUpon>FormSiemensS7Plus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Siemens\S7ServerDbControl.resx">
+      <DependentUpon>S7ServerDbControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Siemens\SiemensS7PlusControl.resx">
       <DependentUpon>SiemensS7PlusControl.cs</DependentUpon>

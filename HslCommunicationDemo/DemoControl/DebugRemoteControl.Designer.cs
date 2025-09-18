@@ -50,17 +50,17 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(72, 7);
+			this.textBox1.Location = new System.Drawing.Point(58, 7);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(82, 23);
+			this.textBox1.Size = new System.Drawing.Size(66, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "8000";
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(160, 3);
+			this.button1.Location = new System.Drawing.Point(129, 3);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(97, 31);
+			this.button1.Size = new System.Drawing.Size(82, 31);
 			this.button1.TabIndex = 2;
 			this.button1.Text = "启动服务";
 			this.button1.UseVisualStyleBackColor = true;
@@ -101,9 +101,9 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(265, 3);
+			this.button2.Location = new System.Drawing.Point(213, 3);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(97, 31);
+			this.button2.Size = new System.Drawing.Size(78, 31);
 			this.button2.TabIndex = 6;
 			this.button2.Text = "关闭服务";
 			this.button2.UseVisualStyleBackColor = true;
@@ -128,10 +128,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label4.AutoEllipsis = true;
 			this.label4.ForeColor = System.Drawing.Color.Gray;
-			this.label4.Location = new System.Drawing.Point(368, 10);
+			this.label4.Location = new System.Drawing.Point(300, 10);
 			this.label4.MinimumSize = new System.Drawing.Size(129, 17);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(129, 17);
+			this.label4.Size = new System.Drawing.Size(194, 17);
 			this.label4.TabIndex = 8;
 			this.label4.Text = "(客户端使用Debug管道来连接此端口)";
 			// 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -26,7 +27,123 @@ namespace HslCommunicationDemo.DemoControl
 
 			dataGridView1.SizeChanged += DataGridView1_SizeChanged;
 			button_finish.Enabled = false;
+
+			toClipToolStripMenuItem.Click += ToClipToolStripMenuItem_Click;
+			fromClipToolStripMenuItem.Click += FromClipToolStripMenuItem_Click;
+			toFileToolStripMenuItem.Click +=ToFileToolStripMenuItem_Click;
+			fromFileToolStripMenuItem.Click += FromFileToolStripMenuItem_Click;
+			rowDeleteToolStripMenuItem.Click += RowDeleteToolStripMenuItem_Click;
 		}
+
+		private void RowDeleteToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (this.dataGridView1.SelectedRows.Count > 0)
+			{
+				StringBuilder deleteRows = new StringBuilder( );
+				List<DataGridViewRow> rows = new List<DataGridViewRow>( );
+				for (int i = 0; i < this.dataGridView1.SelectedRows.Count; i++)
+				{
+					deleteRows.Append( $"\"{this.dataGridView1.SelectedRows[i].Cells[1].Value}\"" );
+					deleteRows.Append( "," );
+					rows.Add( this.dataGridView1.SelectedRows[i] );
+				}
+
+				string msg = "是否删除设备地址为: " + deleteRows.ToString( ) + " 所有的行，共计 " + rows.Count + " 行";
+				if (Program.Language == 2) msg = "Delete Address: " + deleteRows.ToString( ) + " all lines，total: " + rows.Count + " line";
+				if (MessageBox.Show( msg, "Delete Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+				{
+					// 确认删除这些行
+					for (int i = 0; i < rows.Count; i++)
+					{
+						if (rows[i].IsNewRow == false) dataGridView1.Rows.Remove( rows[i] );
+					}
+				}
+			}
+			else
+			{
+				// 就删除某一行
+				if (dataGridView1.SelectedCells.Count > 0)
+				{
+					DataGridViewCell cell = dataGridView1.SelectedCells[0];
+					if (dataGridView1.Rows[cell.RowIndex].IsNewRow == true) return;
+
+					string msg = $"是否删除设备地址为: {dataGridView1.Rows[cell.RowIndex].Cells[1].Value} 的行";
+					if (Program.Language == 2) msg = $"Delete Address: {dataGridView1.Rows[cell.RowIndex].Cells[1].Value} line?";
+					if (MessageBox.Show( msg, "Delete Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+					{
+						// 确认删除这些行
+						dataGridView1.Rows.Remove( dataGridView1.Rows[cell.RowIndex] );
+					}
+				}
+			}
+		}
+
+		private void FromFileToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				using (OpenFileDialog ofd = new OpenFileDialog( ))
+				{
+					ofd.Filter = "*XML|*.xml";
+					if (ofd.ShowDialog( ) == DialogResult.OK)
+					{
+						try
+						{
+							XElement element = XElement.Parse( File.ReadAllText( ofd.FileName, Encoding.UTF8 ) );
+							LoadSimulateTable( element );
+						}
+						catch (Exception ex)
+						{
+							DemoUtils.ShowMessage( "Load failed: " + ex.Message );
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				DemoUtils.ShowMessage( "Load failed: " + ex.Message );
+			}
+		}
+
+		private void ToFileToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			using (SaveFileDialog sfd = new SaveFileDialog( ))
+			{
+				sfd.Filter = "*XML|*.xml";
+				if (sfd.ShowDialog( ) == DialogResult.OK)
+				{
+					XElement element = new XElement( "SimulateTable" );
+					GetSimulateTable( element );
+
+					element.Save( sfd.FileName );
+					DemoUtils.ShowMessage( "Save success!" );
+				}
+			}
+		}
+
+
+
+		private void FromClipToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				XElement element = XElement.Parse( Clipboard.GetText( ) );
+				LoadSimulateTable( element );
+			}
+			catch (Exception ex)
+			{
+				DemoUtils.ShowMessage( "Load failed: " + ex.Message );
+			}
+		}
+
+		private void ToClipToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			XElement element = new XElement( "SimulateTable" );
+			GetSimulateTable( element );
+			Clipboard.SetText( element.ToString( ) );
+			DemoUtils.ShowMessage( "Save success!" );
+		}
+
 
 		private void DataSimulateControl_Load( object sender, EventArgs e )
 		{
@@ -42,7 +159,8 @@ namespace HslCommunicationDemo.DemoControl
 				button_start.Text = "Start";
 				button_finish.Text = "Stop";
 				button_onece.Text = "Once";
-				label1.Text = "The x means an integer increasing from 0,expree example: x%2==0? 10:0 Or (short)(Math.Sin(2*Math.PI*x/100)*100) Or (short)r.Next(100,200)";
+				label1.Text = "Right-click the to delete, import, export";
+				linkLabel1.Text = "Expression Example";
 			}
 		}
 
@@ -346,23 +464,16 @@ namespace HslCommunicationDemo.DemoControl
 			return count;
 		}
 
-		private void label1_MouseDoubleClick( object sender, MouseEventArgs e )
+		private void linkLabel1_Click( object sender, EventArgs e )
 		{
-			if (e.X >= 200 && e.X <= 300)
-			{
-				Clipboard.SetText( "x%2==0? 10:0" );
-				DemoUtils.ShowMessage( Program.Language == 1 ? "表达式已复制到剪切板！" : "The expression has been copied to the clipboard" );
-			}
-			else if (e.X >= 370 && e.X <= 600)
-			{
-				Clipboard.SetText( "(short)(Math.Sin(2*Math.PI*x/100)*100 + 50)" );
-				DemoUtils.ShowMessage( Program.Language == 1 ? "表达式已复制到剪切板！" : "The expression has been copied to the clipboard" );
-			}
-			else if (e.X >= 647 && e.X <= 800)
-			{
-				Clipboard.SetText( "(short)r.Next(100,200)" );
-				DemoUtils.ShowMessage( Program.Language == 1 ? "表达式已复制到剪切板！" : "The expression has been copied to the clipboard" );
-			}
+			FormExpressionExample form = new FormExpressionExample( );
+			form.StartPosition = FormStartPosition.CenterParent;
+			form.ShowDialog( this );
+			form.Dispose( );
+		}
+
+		private void dataGridView1_CellMouseClick( object sender, DataGridViewCellMouseEventArgs e )
+		{
 		}
 	}
 

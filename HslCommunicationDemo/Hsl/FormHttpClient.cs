@@ -274,7 +274,7 @@ namespace HslCommunicationDemo
 				url = $"{(checkBox1.Checked ? "https" : "http")}://{webApiBase.Host}:{webApiBase.Port}/{(url.StartsWith( "/" ) ? url.Substring( 1 ) : url)}";
 			}
 
-			label_url.Text = url;
+			textBox_url_example.Text = url;
 			//textBox8.Text = url;
 			try
 			{
@@ -373,7 +373,23 @@ namespace HslCommunicationDemo
 		{
 			DateTime start = DateTime.Now;
 			button3.Enabled = false;
-			OperateResult<string> read = await ReadFromServer( webApiClient, (HttpMethod)comboBox1.SelectedItem, textBox9.Text, textBox5.Text );
+
+			HttpMethod httpMethod = (HttpMethod)comboBox1.SelectedItem;
+			string url = textBox9.Text;
+			if (httpMethod == HttpMethod.Get && !url.Contains( "?" ) && !string.IsNullOrEmpty( textBox5.Text))
+			{
+				try
+				{
+					JObject json = JObject.Parse( textBox5.Text );
+					url += "?" + string.Join( "&", json.Properties( ).Select( m => $"{m.Name}={m.Value}" ) );
+				}
+				catch
+				{
+
+				}
+			}
+
+			OperateResult<string> read = await ReadFromServer( webApiClient, httpMethod, url, textBox5.Text );
 
 
 			button3.Enabled = true;
