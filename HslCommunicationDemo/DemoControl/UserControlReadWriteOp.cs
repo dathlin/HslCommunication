@@ -297,11 +297,11 @@ namespace HslCommunicationDemo.DemoControl
 			label21.Text = $"{valueLimit.Count}";
 		}
 
-		private void RenderReadResult<T>( DateTime start, OperateResult<T> read, bool isHexResult = false )
+		private void RenderReadResult<T>( DateTime start, OperateResult<T> read, int renderResult = -1 )
 		{
 			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 			if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
-			ReadResultRender( read, textBox3.Text, textBox4, isHexResult );
+			ReadResultRender( read, textBox3.Text, textBox4, renderResult );
 		}
 
 		private void AppendReadResult( TextBox textBox, string text )
@@ -343,7 +343,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		public void ReadResultRender<T>( OperateResult<T> result, string address, TextBox textBox, bool isHexResult )
+		public void ReadResultRender<T>( OperateResult<T> result, string address, TextBox textBox, int renderResult )
 		{
 			if (result.IsSuccess)
 			{
@@ -353,8 +353,36 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					if (isHexResult)
+					if (renderResult == 1)
 						AppendReadResult( textBox, $"[{address}] 0x{result.Content:X}" );
+					else if (renderResult == 2)
+					{
+						Type type = result.Content.GetType( );
+						byte[] buffer = null;
+						if (type == typeof( byte ))      buffer = new byte[] { (byte)(object)result.Content };
+						else if (type == typeof(short))  buffer = BitConverter.GetBytes( (short)(object)result.Content );
+						else if (type == typeof(ushort)) buffer = BitConverter.GetBytes( (ushort)(object)result.Content );
+						else if (type == typeof(int))    buffer = BitConverter.GetBytes( (int)(object)result.Content );
+						else if (type == typeof(uint))   buffer = BitConverter.GetBytes( (uint)(object)result.Content );
+						else if (type == typeof(long))   buffer = BitConverter.GetBytes( (long)(object)result.Content );
+						else if (type == typeof(ulong))  buffer = BitConverter.GetBytes( (ulong)(object)result.Content );
+						else if (type == typeof(float))  buffer = BitConverter.GetBytes( (float)(object)result.Content );
+						else if (type == typeof(double)) buffer = BitConverter.GetBytes( (double)(object)result.Content );
+
+						if (buffer == null)
+							AppendReadResult( textBox, $"[{address}] {result.Content}" );
+						else
+						{
+							StringBuilder stringBuilder = new StringBuilder( );
+							bool[] bools = HslCommunication.BasicFramework.SoftBasic.ByteToBoolArray( buffer );
+							for (int i = 0; i < bools.Length; i++)
+							{
+								if (i != 0 && i % 8 == 0) stringBuilder.Append( " " );
+								stringBuilder.Append( bools[i] ? '1' : '0' );
+							}
+							AppendReadResult( textBox, $"[{address}] {stringBuilder}" );
+						}
+					}
 					else
 						AppendReadResult( textBox, $"[{address}] {result.Content}" );
 				}
@@ -363,6 +391,13 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				DemoUtils.ShowMessage( DemoUtils.GetRenderTimeText( ) + $"[{address}] Read Failed {Environment.NewLine}Reason：{result.ToMessageShowString( )}" );
 			}
+		}
+
+		private int getRenderResult( )
+		{
+			if (radioButton_read_hex.Checked) return 1;
+			else if (radioButton_read_bit.Checked) return 2;
+			else return -1;
 		}
 
 		private async void button_read_bool_Click( object sender, EventArgs e )
@@ -405,7 +440,7 @@ namespace HslCommunicationDemo.DemoControl
 			// byte，此处演示了基于反射的读取操作
 			if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 			{
-				RenderReadResult( DateTime.Now, (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } ), isHexResult: radioButton_read_hex.Checked );
+				RenderReadResult( DateTime.Now, (OperateResult<byte>)readByteMethod.Invoke( readWriteNet, new object[] { textBox3.Text } ), renderResult: getRenderResult( ) );
 				GetReadCode( textBox3.Text, "OperateResult<byte> read = @deviceName.ReadByte( \"" + textBox3.Text + "\" );", isArray: false );
 			}
 			else
@@ -425,7 +460,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_short.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt16Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt16Async( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<short> read = @deviceName.ReadInt16( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -439,7 +474,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadInt16( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt16( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<short> read = @deviceName.ReadInt16( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -460,7 +495,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_ushort.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt16Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt16Async( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<ushort> read = @deviceName.ReadUInt16( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -474,7 +509,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt16( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt16( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<ushort> read = @deviceName.ReadUInt16( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -495,7 +530,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_int.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt32Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt32Async( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<int> read = @deviceName.ReadInt32( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -509,7 +544,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadInt32( textBox3.Text ) , isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt32( textBox3.Text ) , renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<int> read = @deviceName.ReadInt32( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -530,7 +565,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_uint.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt32Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt32Async( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<uint> read = @deviceName.ReadUInt32( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -544,7 +579,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt32( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt32( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<uint> read = @deviceName.ReadUInt32( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -565,7 +600,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_long.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt64Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt64Async( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<long> read = @deviceName.ReadInt64( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -579,7 +614,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadInt64( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt64( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<long> read = @deviceName.ReadInt64( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -600,7 +635,7 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_ulong.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt64Async( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt64Async( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<ulong> read = @deviceName.ReadUInt64( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else
@@ -614,7 +649,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt64( textBox3.Text ), isHexResult: radioButton_read_hex.Checked );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt64( textBox3.Text ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<ulong> read = @deviceName.ReadUInt64( \"" + textBox3.Text + "\" );", isArray: false );
 				}
 				else

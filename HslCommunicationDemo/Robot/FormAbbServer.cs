@@ -38,6 +38,7 @@ namespace HslCommunicationDemo
 			};
 
 			Language( Program.Language );
+			button4.Enabled = false;
 
 		}
 
@@ -71,6 +72,7 @@ namespace HslCommunicationDemo
 
 				panel2.Enabled = true;
 				button1.Enabled = false;
+				button4.Enabled = true;
 			}
 			catch(Exception ex)
 			{
@@ -91,6 +93,7 @@ namespace HslCommunicationDemo
 			httpServer?.Close( );
 			panel2.Enabled = false;
 			button1.Enabled = true;
+			button4.Enabled = false;
 		}
 
 		private void textBox4_TextChanged( object sender, EventArgs e )

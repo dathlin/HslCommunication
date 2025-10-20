@@ -30,12 +30,16 @@ namespace HslCommunicationDemo
 		private AllenBrandlyControl control;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
+		private AllenBrandlyTagTypeCacheControl AllenBrandlyTagTypeCacheControl;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
 			control = new AllenBrandlyControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
+			AllenBrandlyTagTypeCacheControl = new AllenBrandlyTagTypeCacheControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( AllenBrandlyTagTypeCacheControl, false, Program.Language == 1 ? "变量缓存" : "Tag Cache" );
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.AllenBrandly.Helper.GetCIPAddressExamples( ) );
@@ -112,6 +116,7 @@ namespace HslCommunicationDemo
 
 					// TODO EIP及CIP的例子填充
 					control.SetDevice( allenBradleyNet, "A1" );
+					AllenBrandlyTagTypeCacheControl.SetDevice( allenBradleyNet );
 
 					// 设置代码示例
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );

@@ -43,7 +43,10 @@ namespace HslCommunicationDemo.DemoControl
 			this.toFileToolStripMenuItem.Click += button_out_file_Click;
 			this.fromFileToolStripMenuItem.Click += button_from_file_Click;
 			this.rowDeleteToolStripMenuItem.Click +=RowDeleteToolStripMenuItem_Click;
+			this.toCsvClipToolStripMenuItem.Click +=ToCsvClipToolStripMenuItem_Click;
+			this.fromClipCsvToolStripMenuItem.Click += FromClipCsvToolStripMenuItem_Click;
 		}
+
 
 		private void RowDeleteToolStripMenuItem_Click( object sender, EventArgs e )
 		{
@@ -456,10 +459,13 @@ namespace HslCommunicationDemo.DemoControl
 				Column_expression.HeaderText = "Express";
 				Column_curve.HeaderText = "Curv";
 
-				toClipToolStripMenuItem.Text = "ToClip";
-				fromClipToolStripMenuItem.Text = "FromClip";
-				toFileToolStripMenuItem.Text = "ToFile";
-				fromFileToolStripMenuItem.Text = "FromFile";
+				toClipToolStripMenuItem.Text = "ToXmlClip";
+				fromClipToolStripMenuItem.Text = "FromXmlClip";
+				toFileToolStripMenuItem.Text = "ToXmlFile";
+				fromFileToolStripMenuItem.Text = "FromXmlFile";
+
+				toCsvClipToolStripMenuItem.Text = "ToCsvClip";
+				fromClipCsvToolStripMenuItem.Text = "FromCsvClip";
 				label1.Text = "Cycle Interval:";
 				label2.Text = "Double click to write";
 				label3.Text = "EverySleep:";
@@ -531,6 +537,36 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		private void AddRow( DataTableItem dataTableItem )
+		{
+			int rowIndex = dataGridView1.Rows.Add( );
+			DataGridViewRow dgvr = dataGridView1.Rows[rowIndex];
+
+			dgvr.Cells[0].Value = dataTableItem.Name;
+			dgvr.Cells[1].Value = dataTableItem.Address;
+			if (!string.IsNullOrEmpty( dataTableItem.DataTypeCode ))
+			{
+				if (data_types.Contains( dataTableItem.DataTypeCode ))
+					dgvr.Cells[2].Value = dataTableItem.DataTypeCode;
+				else
+				{
+					DemoUtils.ShowMessage( $"Row[{rowIndex}] Name[{dataTableItem.Name}] Address[{dataTableItem.Address}] type: {dataTableItem.DataTypeCode} is not supported" );
+				}
+				if (dataTableItem.DataTypeCode == "string")
+				{
+					dgvr.Cells[3].Value = dataTableItem.StringEncoding.ToString( );
+				}
+			}
+			if (dataTableItem.Length >= 0)
+			{
+				dgvr.Cells[4].Value = dataTableItem.Length.ToString( );
+			}
+			dgvr.Cells[6].Value = dataTableItem.Unit;
+			dgvr.Cells[7].Value = dataTableItem.Expression;
+			dgvr.Cells[8].Value = dataTableItem.Description;
+			dgvr.Tag = dataTableItem;
+		}
+
 		public int LoadDataTable( XElement element )
 		{
 			XAttribute attribute = element.Attribute( "Interval" );
@@ -548,33 +584,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				DataTableItem dataTableItem = new DataTableItem( );
 				dataTableItem.LoadByXmlElement( item );
-
-				int rowIndex = dataGridView1.Rows.Add( );
-				DataGridViewRow dgvr = dataGridView1.Rows[rowIndex];
-
-				dgvr.Cells[0].Value = dataTableItem.Name;
-				dgvr.Cells[1].Value = dataTableItem.Address;
-				if (!string.IsNullOrEmpty( dataTableItem.DataTypeCode ))
-				{
-					if (data_types.Contains( dataTableItem.DataTypeCode ))
-						dgvr.Cells[2].Value = dataTableItem.DataTypeCode;
-					else
-					{
-						DemoUtils.ShowMessage( $"Row[{rowIndex}] Name[{dataTableItem.Name}] Address[{dataTableItem.Address}] type: {dataTableItem.DataTypeCode} is not supported" );
-					}
-					if (dataTableItem.DataTypeCode == "string")
-					{
-						dgvr.Cells[3].Value = dataTableItem.StringEncoding.ToString( );
-					}
-				}
-				if (dataTableItem.Length >= 0)
-				{
-					dgvr.Cells[4].Value = dataTableItem.Length.ToString( );
-				}
-				dgvr.Cells[6].Value = dataTableItem.Unit;
-				dgvr.Cells[7].Value = dataTableItem.Expression;
-				dgvr.Cells[8].Value = dataTableItem.Description;
-				dgvr.Tag = dataTableItem;
+				AddRow( dataTableItem );
 				count++;
 			}
 			return count;
@@ -841,6 +851,58 @@ namespace HslCommunicationDemo.DemoControl
 				}
 			}
 		}
+		private void ToCsvClipToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			StringBuilder sb = new StringBuilder( $"{Column_name.HeaderText}\t{Column_address.HeaderText}\t{Column_type.HeaderText}\t" +
+				$"{Column_encoding.HeaderText}\t{Column_length.HeaderText}\t{Column_unit.HeaderText}\t{Column_expression.HeaderText}\t{Column_decs.HeaderText}\r\n" );
+			for (int i = 0; i < dataGridView1.Rows.Count; i++)
+			{
+				DataGridViewRow dgvr = dataGridView1.Rows[i];
+				if (dgvr.Cells[2].Value == null) continue;
+				if (dgvr.IsNewRow) continue;
+
+				DataTableItem dataTableItem = GetDataTableItem( dgvr );
+				sb.Append( $"{dataTableItem.Name}\t{dataTableItem.Address}\t{dataTableItem.DataTypeCode}\t{dataTableItem.StringEncoding}\t" +
+					$"{dataTableItem.Length}\t{dataTableItem.Unit}\t{dataTableItem.Expression}\t{dataTableItem.Description}\r\n" );
+			}
+			Clipboard.SetText( sb.ToString( ) );
+			DemoUtils.ShowMessage( "Save success!" );
+		}
+
+		private void FromClipCsvToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				string text = Clipboard.GetText( );
+				string[] lines = text.Split( new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries );
+				if (lines.Length < 2) return;
+				int count = 0;
+				for (int i = 1; i < lines.Length; i++)
+				{
+					string line = lines[i];
+					string[] data = line.Split( new char[] { '\t' }, StringSplitOptions.None );
+					if (data.Length < 4) continue;
+
+					DataTableItem dataTableItem = new DataTableItem( );
+					dataTableItem.Name = data[0];
+					dataTableItem.Address = data[1];
+					dataTableItem.DataTypeCode = data[2];
+					dataTableItem.StringEncoding = string.IsNullOrEmpty( data[3] ) ? StringEncoding.ASCII : SoftBasic.GetEnumFromString<StringEncoding>( data[3] );
+					if (data.Length > 4) dataTableItem.Length = string.IsNullOrEmpty( data[4] ) ? -1 : Convert.ToInt32( data[4] );
+					if (data.Length > 5) dataTableItem.Unit = data[5];
+					if (data.Length > 6) dataTableItem.Expression = data[6];
+					if (data.Length > 7) dataTableItem.Description = data[7];
+
+					AddRow( dataTableItem );
+					count++;
+				}
+				DemoUtils.ShowMessage( $"Import {count} rows success!" );
+			}
+			catch (Exception ex)
+			{
+				DemoUtils.ShowMessage( "Load failed: " + ex.Message );
+			}
+		}
 
 		private void button_from_file_Click( object sender, EventArgs e )
 		{
@@ -972,11 +1034,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void button_clear_all_Click( object sender, EventArgs e )
 		{
-			string message = Program.Language == 1 ? "请确认是否删除全部行数据？" : "Are you sure delete all rows ?";
-			if (MessageBox.Show( message, "Delete Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
-			{
-				dataGridView1.Rows.Clear( );
-			}
+			DemoUtils.ClearDataGridView( dataGridView1 );
 		}
 	}
 }

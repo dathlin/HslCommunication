@@ -91,6 +91,7 @@ namespace HslCommunicationDemo
 				button_stop.Text = "Stop";
 				checkBox_show_body.Text = "Show Body Content?";
 				checkBox_show_header.Text = "Show Header Content?";
+				label8.Text = "Get the info below when requesting";
 			}
 		}
 
@@ -150,6 +151,7 @@ namespace HslCommunicationDemo
 					{
 						textBox_log.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
 					} ) );
+					return;
 				}
 			}
 			catch
@@ -239,6 +241,12 @@ namespace HslCommunicationDemo
 			return id + 1;
 		}
 
+		[HslMqttApi( HttpMethod = "PUT" )]
+		public int PutTest( int id )
+		{
+			return HslHelper.HslRandom.Next( 1000 );
+		}
+
 		[HslMqttApi( HttpMethod = "POST" )]
 		public string GetJObjectTest( JObject json )
 		{
@@ -258,6 +266,12 @@ namespace HslCommunicationDemo
 			// 这里举例，只控制账户hsl才能有效
 			if (context?.UserName != "hsl") return -100;
 			return (short)HslHelper.HslRandom.Next( 10000 );
+		}
+
+		[HslMqttApi( "读取设备的Int32信息，address: 设备的地址 length: 读取的数据长度" )]
+		public string ReadInt32( ISessionContext context, string address )
+		{
+			return address + ":" + HslHelper.HslRandom.Next( 10000 );
 		}
 
 		[HslMqttApi( "读取设备的信息，address: 设备的地址 length: 读取的数据长度" )]

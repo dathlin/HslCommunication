@@ -375,6 +375,15 @@ namespace HslCommunicationDemo
 				content.Anchor = AnchorStyles.Left | AnchorStyles.Top;
 			}
 		}
+
+		public static void ClearDataGridView( DataGridView dataGridView )
+		{
+			string message = Program.Language == 1 ? "请确认是否删除全部行数据？" : "Are you sure delete all rows ?";
+			if (MessageBox.Show( message, "Delete Check", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+			{
+				dataGridView.Rows.Clear( );
+			}
+		}
 	}
 
 }

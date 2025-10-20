@@ -41,15 +41,18 @@
 			this.Column_mark = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.rowDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toClipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toXmlClipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.fromClipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toCsvClipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.fromCsvClipCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.button_start = new System.Windows.Forms.Button();
 			this.button_finish = new System.Windows.Forms.Button();
 			this.button_onece = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+			this.button_clear_all = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -135,42 +138,57 @@
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rowDeleteToolStripMenuItem,
-            this.toClipToolStripMenuItem,
+            this.toXmlClipToolStripMenuItem,
             this.fromClipToolStripMenuItem,
             this.toFileToolStripMenuItem,
-            this.fromFileToolStripMenuItem});
+            this.fromFileToolStripMenuItem,
+            this.toCsvClipToolStripMenuItem,
+            this.fromCsvClipCsvToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(149, 114);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(181, 180);
 			// 
 			// rowDeleteToolStripMenuItem
 			// 
+			this.rowDeleteToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_Cancel_16xLG;
 			this.rowDeleteToolStripMenuItem.Name = "rowDeleteToolStripMenuItem";
-			this.rowDeleteToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+			this.rowDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.rowDeleteToolStripMenuItem.Text = "RowDelete";
 			// 
-			// toClipToolStripMenuItem
+			// toXmlClipToolStripMenuItem
 			// 
-			this.toClipToolStripMenuItem.Name = "toClipToolStripMenuItem";
-			this.toClipToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-			this.toClipToolStripMenuItem.Text = "导出到剪切板";
+			this.toXmlClipToolStripMenuItem.Name = "toXmlClipToolStripMenuItem";
+			this.toXmlClipToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.toXmlClipToolStripMenuItem.Text = "导出到剪切板";
 			// 
 			// fromClipToolStripMenuItem
 			// 
 			this.fromClipToolStripMenuItem.Name = "fromClipToolStripMenuItem";
-			this.fromClipToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+			this.fromClipToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.fromClipToolStripMenuItem.Text = "从剪切板导入";
 			// 
 			// toFileToolStripMenuItem
 			// 
 			this.toFileToolStripMenuItem.Name = "toFileToolStripMenuItem";
-			this.toFileToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+			this.toFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.toFileToolStripMenuItem.Text = "导出到文件";
 			// 
 			// fromFileToolStripMenuItem
 			// 
 			this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
-			this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+			this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.fromFileToolStripMenuItem.Text = "从文件导入";
+			// 
+			// toCsvClipToolStripMenuItem
+			// 
+			this.toCsvClipToolStripMenuItem.Name = "toCsvClipToolStripMenuItem";
+			this.toCsvClipToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.toCsvClipToolStripMenuItem.Text = "导出Csv到剪切板";
+			// 
+			// fromCsvClipCsvToolStripMenuItem
+			// 
+			this.fromCsvClipCsvToolStripMenuItem.Name = "fromCsvClipCsvToolStripMenuItem";
+			this.fromCsvClipCsvToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.fromCsvClipCsvToolStripMenuItem.Text = "从剪切板导入Csv";
 			// 
 			// button_start
 			// 
@@ -224,9 +242,20 @@
 			this.linkLabel1.Text = "表达式参考例子";
 			this.linkLabel1.Click += new System.EventHandler(this.linkLabel1_Click);
 			// 
+			// button_clear_all
+			// 
+			this.button_clear_all.Location = new System.Drawing.Point(442, 2);
+			this.button_clear_all.Name = "button_clear_all";
+			this.button_clear_all.Size = new System.Drawing.Size(83, 27);
+			this.button_clear_all.TabIndex = 13;
+			this.button_clear_all.Text = "删除全部";
+			this.button_clear_all.UseVisualStyleBackColor = true;
+			this.button_clear_all.Click += new System.EventHandler(this.button_clear_all_Click);
+			// 
 			// DataSimulateControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.button_clear_all);
 			this.Controls.Add(this.linkLabel1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.button_onece);
@@ -258,11 +287,14 @@
         private System.Windows.Forms.Button button_onece;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem rowDeleteToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem toClipToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem toXmlClipToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem fromClipToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem toFileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem fromFileToolStripMenuItem;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.LinkLabel linkLabel1;
+		private System.Windows.Forms.ToolStripMenuItem toCsvClipToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem fromCsvClipCsvToolStripMenuItem;
+		private System.Windows.Forms.Button button_clear_all;
 	}
 }

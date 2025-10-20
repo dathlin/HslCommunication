@@ -28,11 +28,13 @@ namespace HslCommunicationDemo.DemoControl
 			dataGridView1.SizeChanged += DataGridView1_SizeChanged;
 			button_finish.Enabled = false;
 
-			toClipToolStripMenuItem.Click += ToClipToolStripMenuItem_Click;
+			toXmlClipToolStripMenuItem.Click += ToClipToolStripMenuItem_Click;
 			fromClipToolStripMenuItem.Click += FromClipToolStripMenuItem_Click;
 			toFileToolStripMenuItem.Click +=ToFileToolStripMenuItem_Click;
 			fromFileToolStripMenuItem.Click += FromFileToolStripMenuItem_Click;
 			rowDeleteToolStripMenuItem.Click += RowDeleteToolStripMenuItem_Click;
+			toCsvClipToolStripMenuItem.Click +=ToCsvClipToolStripMenuItem_Click;
+			fromCsvClipCsvToolStripMenuItem.Click +=FromCsvClipCsvToolStripMenuItem_Click;
 		}
 
 		private void RowDeleteToolStripMenuItem_Click( object sender, EventArgs e )
@@ -145,6 +147,53 @@ namespace HslCommunicationDemo.DemoControl
 		}
 
 
+		private void ToCsvClipToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			StringBuilder sb = new StringBuilder( $"{Column_name.HeaderText}\t{Column_address.HeaderText}\t{Column_time.HeaderText}\t{Column_express.HeaderText}\t{Column_mark.HeaderText}\r\n" );
+			for (int i = 0; i < dataGridView1.Rows.Count; i++)
+			{
+				DataGridViewRow dgvr = dataGridView1.Rows[i];
+				if (dgvr.Cells[1].Value == null) continue;
+				if (dgvr.IsNewRow) continue;
+				SimulateWrite dataTableItem = GetSimulateWrite( dgvr );
+				sb.Append( $"{dataTableItem.Name}\t{dataTableItem.Address}\t{dataTableItem.Time}\t{dataTableItem.Express}\t{dataTableItem.Mark}\r\n" );
+			}
+			Clipboard.SetText( sb.ToString( ) );
+			DemoUtils.ShowMessage( "Save success!" );
+		}
+
+		private void FromCsvClipCsvToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				string text = Clipboard.GetText( );
+				string[] lines = text.Split( new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries );
+				if (lines.Length < 2) return;
+				int count = 0;
+				for (int i = 1; i < lines.Length; i++)
+				{
+					string line = lines[i];
+					string[] data = line.Split( new char[] { '\t' }, StringSplitOptions.None );
+					if (data.Length < 4) continue;
+
+					SimulateWrite dataTableItem = new SimulateWrite( );
+					dataTableItem.Name = data[0];
+					dataTableItem.Address = data[1];
+					dataTableItem.Time = int.Parse( data[2] );
+					dataTableItem.Express = data[3];
+					if (data.Length > 4) dataTableItem.Mark = data[4];
+
+					AddRow( dataTableItem );
+					count++;
+				}
+				DemoUtils.ShowMessage( $"Import {count} rows success!" );
+			}
+			catch (Exception ex)
+			{
+				DemoUtils.ShowMessage( "Load failed: " + ex.Message );
+			}
+		}
+
 		private void DataSimulateControl_Load( object sender, EventArgs e )
 		{
 			if (Program.Language == 2)
@@ -161,6 +210,14 @@ namespace HslCommunicationDemo.DemoControl
 				button_onece.Text = "Once";
 				label1.Text = "Right-click the to delete, import, export";
 				linkLabel1.Text = "Expression Example";
+				button_clear_all.Text = "Clear All";
+
+				toXmlClipToolStripMenuItem.Text = "ToXmlClip";
+				fromClipToolStripMenuItem.Text = "FromXmlClip";
+				toFileToolStripMenuItem.Text = "ToXmlFile";
+				fromFileToolStripMenuItem.Text = "FromXmlFile";
+				toCsvClipToolStripMenuItem.Text = "ToCsvClip";
+				fromCsvClipCsvToolStripMenuItem.Text = "FromCsvClip";
 			}
 		}
 
@@ -442,6 +499,18 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		private void AddRow( SimulateWrite item )
+		{
+			int rowIndex = dataGridView1.Rows.Add( );
+			DataGridViewRow dgvr = dataGridView1.Rows[rowIndex];
+			dgvr.Cells[0].Value = item.Name;
+			dgvr.Cells[1].Value = item.Address;
+			dgvr.Cells[2].Value = item.Time.ToString( );
+			dgvr.Cells[3].Value = item.Express;
+			dgvr.Cells[5].Value = item.Mark;
+			dgvr.Tag = item;
+		}
+
 		public int LoadSimulateTable( XElement element )
 		{
 			int count = 0;
@@ -450,15 +519,7 @@ namespace HslCommunicationDemo.DemoControl
 				SimulateWrite dataTableItem = new SimulateWrite( );
 				dataTableItem.LoadByXmlElement( item );
 
-				int rowIndex = dataGridView1.Rows.Add( );
-				DataGridViewRow dgvr = dataGridView1.Rows[rowIndex];
-
-				dgvr.Cells[0].Value = dataTableItem.Name;
-				dgvr.Cells[1].Value = dataTableItem.Address;
-				dgvr.Cells[2].Value = dataTableItem.Time.ToString( );
-				dgvr.Cells[3].Value = dataTableItem.Express;
-				dgvr.Cells[5].Value = dataTableItem.Mark;
-				dgvr.Tag = dataTableItem;
+				AddRow( dataTableItem );
 				count++;
 			}
 			return count;
@@ -474,6 +535,11 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void dataGridView1_CellMouseClick( object sender, DataGridViewCellMouseEventArgs e )
 		{
+		}
+
+		private void button_clear_all_Click( object sender, EventArgs e )
+		{
+			DemoUtils.ClearDataGridView( dataGridView1 );
 		}
 	}
 

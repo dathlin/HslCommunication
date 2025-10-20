@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label10 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.checkBox_https = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
@@ -67,7 +68,6 @@
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.listBox1 = new System.Windows.Forms.ListBox();
-			this.label10 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -97,6 +97,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(998, 60);
 			this.panel1.TabIndex = 7;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.ForeColor = System.Drawing.Color.Gray;
+			this.label10.Location = new System.Drawing.Point(101, 34);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(171, 17);
+			this.label10.TabIndex = 26;
+			this.label10.Text = "也支持 http://127.0.0.1:8000/";
 			// 
 			// linkLabel1
 			// 
@@ -438,7 +448,8 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(249, 11);
+			this.label8.ForeColor = System.Drawing.Color.Gray;
+			this.label8.Location = new System.Drawing.Point(501, 11);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(188, 17);
 			this.label8.TabIndex = 10;
@@ -448,7 +459,7 @@
 			// 
 			this.textBox_api.Location = new System.Drawing.Point(62, 7);
 			this.textBox_api.Name = "textBox_api";
-			this.textBox_api.Size = new System.Drawing.Size(181, 23);
+			this.textBox_api.Size = new System.Drawing.Size(434, 23);
 			this.textBox_api.TabIndex = 9;
 			this.textBox_api.Text = "/GetA";
 			// 
@@ -508,16 +519,6 @@
 			this.listBox1.Name = "listBox1";
 			this.listBox1.Size = new System.Drawing.Size(171, 497);
 			this.listBox1.TabIndex = 0;
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.ForeColor = System.Drawing.Color.Gray;
-			this.label10.Location = new System.Drawing.Point(101, 34);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(171, 17);
-			this.label10.TabIndex = 26;
-			this.label10.Text = "也支持 http://127.0.0.1:8000/";
 			// 
 			// FormHttpServer
 			// 

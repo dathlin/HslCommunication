@@ -31,6 +31,20 @@ namespace HslCommunicationDemo.DemoControl
 			treeView2.MouseDoubleClick += TreeView2_MouseDoubleClick;
 			deleteDeviceToolStripMenuItem.Click += DeleteDeviceToolStripMenuItem_Click;
 			renameDeviceToolStripMenuItem.Click += RenameDeviceToolStripMenuItem_Click;
+			newWindowsToolStripMenuItem.Click += NewWindowsToolStripMenuItem_Click;
+		}
+
+		private void NewWindowsToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			// 新建一个窗口
+			TreeNode treeNode = treeView2.SelectedNode;
+			if (treeNode == null) return;
+			if (treeNode.Tag == null) return;
+			if (treeNode.Tag is XElement element)
+			{
+				// 判断当前的窗口是否已经打开
+				CreateNewWindows( treeNode, element );
+			}
 		}
 
 		private void FormSaveList_Load( object sender, EventArgs e )
@@ -46,12 +60,14 @@ namespace HslCommunicationDemo.DemoControl
 				this.Text = "保存列表";
 				this.deleteDeviceToolStripMenuItem.Text = "删除设备";
 				this.renameDeviceToolStripMenuItem.Text = "重命名";
+				this.newWindowsToolStripMenuItem.Text = "新窗口";
 			}
 			else
 			{
 				this.Text = "Save List";
 				this.deleteDeviceToolStripMenuItem.Text = "Delete";
 				this.renameDeviceToolStripMenuItem.Text = "Rename";
+				this.newWindowsToolStripMenuItem.Text = "NewWindow";
 			}
 		}
 
@@ -68,11 +84,26 @@ namespace HslCommunicationDemo.DemoControl
 			return false;
 		}
 
-		public void AddDeviceList( XElement element )
+		public void AddDeviceList( XElement element, HslFormContent hslForm )
 		{
 			deviceList.AddDevice( element );
 			RefreshSaveDevices( );
+			string guid = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlGuid, string.Empty, m => m );
+			if (!string.IsNullOrEmpty(guid) && hslForm != null)
+			{
+				if (this.formInstances.ContainsKey( guid ))
+					this.formInstances[guid] = hslForm;
+				else
+					this.formInstances.Add(guid, hslForm);
+			}
+
 			File.WriteAllText( Path.Combine( Application.StartupPath, "devices.xml" ), deviceList.GetDevices.ToString( ) );
+		}
+
+		public void RemoveDeviceForm( string guid )
+		{
+			if (this.formInstances.ContainsKey( guid ))
+				this.formInstances.Remove( guid );
 		}
 
 		public void RefreshSaveDevices( )
@@ -124,7 +155,7 @@ namespace HslCommunicationDemo.DemoControl
 				return node.Text;
 			else
 				return GetPath( node.Parent ) + ":" + node.Text;
-        }
+		}
 
 		private void DeleteDeviceToolStripMenuItem_Click( object sender, EventArgs e )
 		{
@@ -179,59 +210,98 @@ namespace HslCommunicationDemo.DemoControl
 
 			if (treeNode.Tag is XElement element)
 			{
-				string type = element.Attribute( DemoDeviceList.XmlType ).Value;
-				HslFormContent hslForm = null;
-				// 读取类型
-				foreach (var item in formTypes)
+				// 判断当前的窗口是否已经打开，根据GUID来判断是否关联的窗体
+				string guid = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlGuid, string.Empty, m => m );
+				if (!string.IsNullOrEmpty( guid ))
 				{
-					if (item.Name == type)
+					try
 					{
-						hslForm = (HslFormContent)item.GetConstructors( )[0].Invoke( null );
-						hslForm.LogNet = this.logNet;
-						break;
-					}
-				}
-
-				if (hslForm != null)
-				{
-					if (treeNode.ImageIndex >= 0)
-					{
-						hslForm.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[treeNode.ImageIndex]).GetHicon( ) );
-						hslForm.SetProtocolImage( (Bitmap)imageList.Images[treeNode.ImageIndex] );
-					}
-					else
-					{
-						hslForm.Icon = Icon.FromHandle( Properties.Resources.Method_636.GetHicon( ) );
-						hslForm.SetProtocolImage( Properties.Resources.Method_636 );
-					}
-
-					// 判断是否加密了，如果是加密的话，需要先进行解密的操作
-					if (element.Attribute( DemoDeviceList.XmlEncrypt) != null)
-					{
-						FormInputPassword inputPassword = new FormInputPassword( );
-						if (inputPassword.ShowDialog() == DialogResult.OK)
+						if (this.formInstances.ContainsKey( guid ))
 						{
-							AesCryptography aesCryptography = new AesCryptography( inputPassword.Password.PadRight( 32, '0' ) );
-							try
+							HslFormContent formContent = this.formInstances[guid];
+							if (formContent != null && formContent.IsDisposed == false)
 							{
-								string encrypt = aesCryptography.Decrypt( element.Attribute( DemoDeviceList.XmlEncrypt ).Value );
-								hslForm.Show( dockPanel1 );
-								hslForm.LoadXmlParameter( XElement.Parse( encrypt ) ); ;
-								hslForm.SetXml( element );
-								hslForm.Password = inputPassword.Password;
-							}
-							catch( Exception ex )
-							{
-								DemoUtils.ShowMessage( (Program.Language == 1 ? "解密失败，无法加载当前的配置信息" : "Decryption failed and the current configuration information could not be loaded") +
-									Environment.NewLine + ex.Message );
+								formContent.Show( dockPanel1 );
+								formContent.Activate( );
+								return;
 							}
 						}
 					}
+					catch
+					{
+
+					}
+				}
+				CreateNewWindows( treeNode, element );
+			}
+		}
+
+		private void CreateNewWindows( TreeNode treeNode, XElement element )
+		{
+			string type = element.Attribute( DemoDeviceList.XmlType ).Value;
+			HslFormContent hslForm = null;
+			// 读取类型
+			foreach (var item in formTypes)
+			{
+				if (item.Name == type)
+				{
+					hslForm = (HslFormContent)item.GetConstructors( )[0].Invoke( null );
+					hslForm.LogNet = this.logNet;
+					break;
+				}
+			}
+
+			if (hslForm != null)
+			{
+				string guid = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlGuid, string.Empty, m => m );
+				if (!string.IsNullOrEmpty( guid ))
+				{
+					if (formInstances.ContainsKey( guid ))
+					{
+						formInstances[guid] = hslForm;
+					}
 					else
 					{
-						hslForm.Show( dockPanel1 );
-						hslForm.LoadXmlParameter( element );
+						formInstances.Add( guid, hslForm );
 					}
+				}
+				if (treeNode.ImageIndex >= 0)
+				{
+					hslForm.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[treeNode.ImageIndex]).GetHicon( ) );
+					hslForm.SetProtocolImage( (Bitmap)imageList.Images[treeNode.ImageIndex] );
+				}
+				else
+				{
+					hslForm.Icon = Icon.FromHandle( Properties.Resources.Method_636.GetHicon( ) );
+					hslForm.SetProtocolImage( Properties.Resources.Method_636 );
+				}
+
+				// 判断是否加密了，如果是加密的话，需要先进行解密的操作
+				if (element.Attribute( DemoDeviceList.XmlEncrypt ) != null)
+				{
+					FormInputPassword inputPassword = new FormInputPassword( );
+					if (inputPassword.ShowDialog( ) == DialogResult.OK)
+					{
+						AesCryptography aesCryptography = new AesCryptography( inputPassword.Password.PadRight( 32, '0' ) );
+						try
+						{
+							string encrypt = aesCryptography.Decrypt( element.Attribute( DemoDeviceList.XmlEncrypt ).Value );
+							hslForm.Show( dockPanel1 );
+							hslForm.LoadXmlParameter( XElement.Parse( encrypt ) ); ;
+							hslForm.SetXml( element );
+							hslForm.Password = inputPassword.Password;
+						}
+						catch (Exception ex)
+						{
+							DemoUtils.ShowMessage( (Program.Language == 1 ? "解密失败，无法加载当前的配置信息" : "Decryption failed and the current configuration information could not be loaded") +
+								Environment.NewLine + ex.Message );
+						}
+					}
+				}
+				else
+				{
+					hslForm.Show( dockPanel1 );
+					hslForm.LoadXmlParameter( element );
 				}
 			}
 		}
@@ -322,5 +392,7 @@ namespace HslCommunicationDemo.DemoControl
 		private Dictionary<string, int> formIconImageIndex = new Dictionary<string, int>( );
 		private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
 		public static Type[] formTypes = Assembly.GetExecutingAssembly( ).GetTypes( );
+		private Dictionary<string, HslFormContent> formInstances = new Dictionary<string, HslFormContent>( );
 	}
+
 }

@@ -21,6 +21,10 @@ namespace HslCommunicationDemo
 {
 	public class HslFormContent : WeifenLuo.WinFormsUI.Docking.DockContent
 	{
+		public HslFormContent( )
+		{
+		}
+
 		protected override void OnLoad( EventArgs e )
 		{
 			base.OnLoad( e );
@@ -45,6 +49,11 @@ namespace HslCommunicationDemo
 		/// 当前的密码信息
 		/// </summary>
 		public string Password { get; set; }
+
+		/// <summary>
+		/// 当前窗体的唯一标识符
+		/// </summary>
+		public string FormGuid { get; set; }
 
 		public virtual void SaveXmlParameter(XElement element )
 		{
@@ -92,7 +101,7 @@ namespace HslCommunicationDemo
 					SaveXmlParameter( element );
 				}
 
-				FormMain.Form?.GetPanelLeft( )?.AddDeviceList( element );
+				FormMain.Form?.GetPanelLeft( )?.AddDeviceList( element, this );
 				DemoUtils.ShowMessage( "Save Success" );
 			}
 		}
@@ -109,6 +118,7 @@ namespace HslCommunicationDemo
 					using (FormInputString form = new FormInputString( ))
 					{
 						SaveDeviceXml( form, xElement );
+						this.Text = form.DeviceAlias;
 					}
 				}
 				else
@@ -120,12 +130,17 @@ namespace HslCommunicationDemo
 						{
 							if (name != form.DeviceAlias)
 							{
-								// 需要创建新的配置界面了
+								// 需要创建新的配置界面了，删除就的GUID绑定
+								string guid = GetXmlValue(xElement, DemoDeviceList.XmlGuid, "", m => m );
+								if (!string.IsNullOrEmpty( guid )) FormMain.Form?.GetPanelLeft( )?.RemoveDeviceForm( guid );
+
 								xElement = new XElement( "Device" );
 								SaveDeviceXml( form, xElement, showDialog: false );
+								this.Text = form.DeviceAlias;
 							}
 							else
 							{
+								// 这里是覆盖保存
 								// 判断是否加密了，如果是加密的话，需要先进行解密的操作
 								this.Password = form.Password;
 								string guid = xElement.Attribute( DemoDeviceList.XmlGuid )?.Value;
@@ -147,7 +162,7 @@ namespace HslCommunicationDemo
 
 										SaveXmlParameter( encrypt );
 										xElement.SetAttributeValue( DemoDeviceList.XmlEncrypt, aesCryptography.Encrypt( encrypt.ToString( ) ) );
-										FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement );
+										FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement, this );
 										DemoUtils.ShowMessage( "Save Success" );
 									}
 									catch (Exception ex)
@@ -158,7 +173,7 @@ namespace HslCommunicationDemo
 								else
 								{
 									SaveXmlParameter( xElement );
-									FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement );
+									FormMain.Form?.GetPanelLeft( )?.AddDeviceList( xElement, this );
 									DemoUtils.ShowMessage( "Save Success" );
 								}
 							}

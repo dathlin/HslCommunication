@@ -66,6 +66,7 @@
 			this.button8 = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.userControlReadWriteOp1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteOp();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -75,6 +76,7 @@
 			this.tabPage5.SuspendLayout();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_dtu_sessions)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label15
@@ -124,7 +126,7 @@
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(936, 164);
+			this.textBox1.Size = new System.Drawing.Size(936, 160);
 			this.textBox1.TabIndex = 23;
 			// 
 			// tabControl1
@@ -483,9 +485,22 @@
 			this.userControlReadWriteOp1.Size = new System.Drawing.Size(956, 270);
 			this.userControlReadWriteOp1.TabIndex = 0;
 			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pictureBox1.Image = global::HslCommunicationDemo.Properties.Resources.shortcut_16xLG;
+			this.pictureBox1.Location = new System.Drawing.Point(945, -1);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+			this.pictureBox1.TabIndex = 32;
+			this.pictureBox1.TabStop = false;
+			this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+			// 
 			// UserControlReadWriteServer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.userControlReadWriteOp1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -504,6 +519,7 @@
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_dtu_sessions)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -548,5 +564,6 @@
 		private System.Windows.Forms.CheckBox checkBox2;
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.PictureBox pictureBox1;
 	}
 }

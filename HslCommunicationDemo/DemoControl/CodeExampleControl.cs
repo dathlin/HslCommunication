@@ -310,7 +310,7 @@ namespace HslCommunicationDemo.DemoControl
 
 			stringBuilder.Append( deviceName + ".ActiveTimeSpan = TimeSpan.Parse( \"" + serverBase.ActiveTimeSpan.ToString( ) + "\" );" );
 			stringBuilder.AppendLine( );
-			if (serverBase.LocalAddress != null) stringBuilder.Append( deviceName + ".System.Net.IPAddress.Parse( \"" + serverBase.LocalAddress.ToString( ) + "\" );" );
+			if (serverBase.LocalAddress != null) stringBuilder.Append( deviceName + ".LocalAddress = System.Net.IPAddress.Parse( \"" + serverBase.LocalAddress.ToString( ) + "\" );" );
 			stringBuilder.AppendLine( );
 			stringBuilder.Append( deviceName + ".EnableIPv6 = " + serverBase.EnableIPv6.ToString( ).ToLower( ) + ";" );
 			stringBuilder.AppendLine( );

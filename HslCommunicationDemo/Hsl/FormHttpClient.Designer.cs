@@ -49,6 +49,7 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.label10 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button5 = new System.Windows.Forms.Button();
 			this.textBox_url_example = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.textBox_api_sign = new System.Windows.Forms.TextBox();
@@ -291,6 +292,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button5);
 			this.panel2.Controls.Add(this.textBox_url_example);
 			this.panel2.Controls.Add(this.label12);
 			this.panel2.Controls.Add(this.textBox_api_sign);
@@ -321,6 +323,16 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(753, 534);
 			this.panel2.TabIndex = 34;
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(2, 220);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(54, 47);
+			this.button5.TabIndex = 60;
+			this.button5.Text = "Json\r\nString";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
 			// textBox_url_example
 			// 
@@ -713,5 +725,6 @@
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.RadioButton radioButton_response_hex;
 		private System.Windows.Forms.TextBox textBox_url_example;
+		private System.Windows.Forms.Button button5;
 	}
 }

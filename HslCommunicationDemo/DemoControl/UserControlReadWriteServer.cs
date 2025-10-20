@@ -586,5 +586,26 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		private bool showReadWrite = true;
+		private void pictureBox1_Click( object sender, EventArgs e )
+		{
+			// 点击调整界面
+			if (showReadWrite)
+			{
+				showReadWrite = false;
+				pictureBox1.Image = Properties.Resources.view_16xLG;
+				this.userControlReadWriteOp1.Visible = false;
+				this.tabControl1.Location = new Point( 0, 0 );
+				this.tabControl1.Size = new Size( this.Width, this.Height );
+			}
+			else
+			{
+				showReadWrite = true;
+				pictureBox1.Image = Properties.Resources.shortcut_16xLG;
+				this.userControlReadWriteOp1.Visible = true;
+				this.tabControl1.Location = new Point( 0, 272 );
+				this.tabControl1.Size = new Size( this.Width, this.Height - 272 );
+			}
+		}
 	}
 }

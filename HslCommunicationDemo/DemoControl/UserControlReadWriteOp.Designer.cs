@@ -99,6 +99,7 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
+			this.radioButton_read_bit = new System.Windows.Forms.RadioButton();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -557,11 +558,12 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.radioButton_read_bit);
 			this.panel2.Controls.Add(this.radioButton_read_int);
 			this.panel2.Controls.Add(this.radioButton_read_hex);
 			this.panel2.Location = new System.Drawing.Point(2, 72);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(58, 48);
+			this.panel2.Size = new System.Drawing.Size(58, 67);
 			this.panel2.TabIndex = 40;
 			// 
 			// radioButton_read_int
@@ -920,6 +922,20 @@
 			this.label6.TabIndex = 2;
 			this.label6.Text = "地址：";
 			// 
+			// radioButton_read_bit
+			// 
+			this.radioButton_read_bit.AutoSize = true;
+			this.radioButton_read_bit.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+			this.radioButton_read_bit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+			this.radioButton_read_bit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.radioButton_read_bit.ForeColor = System.Drawing.Color.Gray;
+			this.radioButton_read_bit.Location = new System.Drawing.Point(4, 45);
+			this.radioButton_read_bit.Name = "radioButton_read_bit";
+			this.radioButton_read_bit.Size = new System.Drawing.Size(40, 21);
+			this.radioButton_read_bit.TabIndex = 2;
+			this.radioButton_read_bit.Text = "Bit";
+			this.radioButton_read_bit.UseVisualStyleBackColor = true;
+			// 
 			// UserControlReadWriteOp
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1013,5 +1029,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton radioButton_read_int;
         private System.Windows.Forms.RadioButton radioButton_read_hex;
-    }
+		private System.Windows.Forms.RadioButton radioButton_read_bit;
+	}
 }

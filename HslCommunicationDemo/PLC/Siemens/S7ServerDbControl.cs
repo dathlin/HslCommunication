@@ -122,6 +122,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			DataGridViewRow dgvr = dataGridView1.Rows[rowIndex];
 			SetDgvr( dgvr, rowIndex, item );
 			s7Server.AddDbBlock( item.DbNumber, item.Size );
+			textBox_code.Text = $"server.AddDbBlock( {item.DbNumber}, {item.Size} );";
 		}
 
 		private void SetDgvr( DataGridViewRow dgvr, int rowIndex, DbItem dbItem )
@@ -148,6 +149,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 							s7Server.RemoveDbBlock( dbNumber );
 							DemoUtils.ShowMessage( $"Remove DB{dbNumber} Success" );
 							label_row_count.Text = "Rows: " + dataGridView1.RowCount.ToString( );
+							textBox_code.Text = $"server.RemoveDbBlock( {dbNumber} );";
 							return;
 						}
 					}

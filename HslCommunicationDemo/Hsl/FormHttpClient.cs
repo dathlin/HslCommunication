@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using System.Net;
 using System.IO;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace HslCommunicationDemo
 {
@@ -265,48 +266,50 @@ namespace HslCommunicationDemo
 
 		private async Task<OperateResult<string>> ReadFromServer( NetworkWebApiBase webApiBase, HttpMethod httpMethod, string url, string body )
 		{
-			if (url.StartsWith( "http://", StringComparison.OrdinalIgnoreCase ) || url.StartsWith( "https://", StringComparison.OrdinalIgnoreCase ))
-			{
+			textBox_url_example.Text = webApiBase.GetEntireUrl( url );
+			return await webApiBase.RequestAsync( httpMethod, url, body, comboBox2.SelectedItem == null ? comboBox2.Text : comboBox2.SelectedItem.ToString( ) );
+			//if (url.StartsWith( "http://", StringComparison.OrdinalIgnoreCase ) || url.StartsWith( "https://", StringComparison.OrdinalIgnoreCase ))
+			//{
 
-			}
-			else
-			{
-				url = $"{(checkBox1.Checked ? "https" : "http")}://{webApiBase.Host}:{webApiBase.Port}/{(url.StartsWith( "/" ) ? url.Substring( 1 ) : url)}";
-			}
+			//}
+			//else
+			//{
+			//	url = $"{(checkBox1.Checked ? "https" : "http")}://{webApiBase.Host}:{webApiBase.Port}/{(url.StartsWith( "/" ) ? url.Substring( 1 ) : url)}";
+			//}
 
-			textBox_url_example.Text = url;
-			//textBox8.Text = url;
-			try
-			{
-				using (HttpRequestMessage request = new HttpRequestMessage( httpMethod, url ))
-				{
-					if (httpMethod != HttpMethod.Get)
-					{
-						request.Content = new StringContent( body );
-						string contentType = comboBox2.SelectedItem == null ? comboBox2.Text : comboBox2.SelectedItem.ToString( );
-						if(contentType!="none")
-							request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue( contentType );
-					}
-					if (!string.IsNullOrEmpty( textBox3.Text ))
-					{
-						request.Headers.Add( "Authorization", "Basic " + Convert.ToBase64String( Encoding.UTF8.GetBytes( textBox3.Text + ":" + textBox4.Text ) ) );
-					}
+			//textBox_url_example.Text = url;
+			////textBox8.Text = url;
+			//try
+			//{
+			//	using (HttpRequestMessage request = new HttpRequestMessage( httpMethod, url ))
+			//	{
+			//		if (httpMethod != HttpMethod.Get)
+			//		{
+			//			request.Content = new StringContent( body );
+			//			string contentType = comboBox2.SelectedItem == null ? comboBox2.Text : comboBox2.SelectedItem.ToString( );
+			//			if(contentType!="none")
+			//				request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue( contentType );
+			//		}
+			//		if (!string.IsNullOrEmpty( textBox3.Text ))
+			//		{
+			//			request.Headers.Add( "Authorization", "Basic " + Convert.ToBase64String( Encoding.UTF8.GetBytes( textBox3.Text + ":" + textBox4.Text ) ) );
+			//		}
 
-					using (HttpResponseMessage response = await webApiBase.Client.SendAsync( request ))
-					{
-						using (HttpContent content = response.Content)
-						{
-							response.EnsureSuccessStatusCode( );
-							return OperateResult.CreateSuccessResult( await content.ReadAsStringAsync( ) );
-						}
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				//HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
-				return new OperateResult<string>( ex.Message + Environment.NewLine + "Url: " + url );
-			}
+			//		using (HttpResponseMessage response = await webApiBase.Client.SendAsync( request ))
+			//		{
+			//			using (HttpContent content = response.Content)
+			//			{
+			//				response.EnsureSuccessStatusCode( );
+			//				return OperateResult.CreateSuccessResult( await content.ReadAsStringAsync( ) );
+			//			}
+			//		}
+			//	}
+			//}
+			//catch (Exception ex)
+			//{
+			//	//HslCommunication.BasicFramework.SoftBasic.ShowExceptionMessage( ex );
+			//	return new OperateResult<string>( ex.Message + Environment.NewLine + "Url: " + url );
+			//}
 		}
 
 		private async Task MqttRpcApiRefresh( TreeNode rootNode )
@@ -369,6 +372,26 @@ namespace HslCommunicationDemo
 			}
 		}
 
+
+		private string getJPropertValue( JProperty jProperty )
+		{
+			if (jProperty.Value.Type == JTokenType.Array)
+			{
+				JArray jArray = (JArray)jProperty.Value;
+				StringBuilder sb = new StringBuilder( $"{jProperty.Name}=" );
+				for (int i = 0; i < jArray.Count; i++)
+				{
+					sb.Append( jArray[i] );
+					if (i < jArray.Count - 1) sb.Append( ";" );
+				}
+				return sb.ToString( );
+			}
+			else
+			{
+				return $"{jProperty.Name}={jProperty.Value}";
+			}	
+		}
+
 		private async void button3_Click( object sender, EventArgs e )
 		{
 			DateTime start = DateTime.Now;
@@ -381,7 +404,7 @@ namespace HslCommunicationDemo
 				try
 				{
 					JObject json = JObject.Parse( textBox5.Text );
-					url += "?" + string.Join( "&", json.Properties( ).Select( m => $"{m.Name}={m.Value}" ) );
+					url += "?" + string.Join( "&", json.Properties( ).Select( m => getJPropertValue( m ) ) );
 				}
 				catch
 				{
@@ -460,5 +483,17 @@ namespace HslCommunicationDemo
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
+		private void button5_Click( object sender, EventArgs e )
+		{
+			try
+			{
+				JObject json = JObject.Parse( textBox5.Text );
+				Clipboard.SetText( JsonConvert.SerializeObject( json.ToString( Newtonsoft.Json.Formatting.None ) ) );
+			}
+			catch(Exception ex)
+			{
+				DemoUtils.ShowMessage( "JObject.Parse failed: " + ex.Message );
+			}
+		}
 	}
 }

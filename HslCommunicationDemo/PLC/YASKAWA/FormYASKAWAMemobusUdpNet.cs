@@ -56,6 +56,7 @@ namespace HslCommunicationDemo
 				label1.Text = "Station:";
 				button1.Text = "Open";
 				button2.Text = "Close";
+				label3.Text = "If connection fails, check if the PLC requires a specific client port. Click \"More\" to set it.";
 			}
 		}
 
