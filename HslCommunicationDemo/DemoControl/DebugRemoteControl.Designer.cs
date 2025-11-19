@@ -75,7 +75,7 @@
 			this.textBox2.Multiline = true;
 			this.textBox2.Name = "textBox2";
 			this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox2.Size = new System.Drawing.Size(494, 344);
+			this.textBox2.Size = new System.Drawing.Size(494, 345);
 			this.textBox2.TabIndex = 3;
 			// 
 			// label2
@@ -149,7 +149,7 @@
 			this.Controls.Add(this.label4);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "DebugRemoteControl";
-			this.Size = new System.Drawing.Size(793, 386);
+			this.Size = new System.Drawing.Size(793, 387);
 			this.Load += new System.EventHandler(this.DebugRemoteControl_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();

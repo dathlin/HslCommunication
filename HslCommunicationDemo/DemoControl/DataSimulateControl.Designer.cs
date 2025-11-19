@@ -33,12 +33,6 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.Column_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column_address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column_express = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column_current = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column_mark = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.rowDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toXmlClipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +47,13 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.button_clear_all = new System.Windows.Forms.Button();
+			this.Column_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_express = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_current = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_encoding = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.Column_mark = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -81,6 +82,7 @@
             this.Column_time,
             this.Column_express,
             this.Column_current,
+            this.Column_encoding,
             this.Column_mark});
 			this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
 			this.dataGridView1.Location = new System.Drawing.Point(0, 30);
@@ -98,42 +100,6 @@
 			this.dataGridView1.TabIndex = 1;
 			this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
 			// 
-			// Column_name
-			// 
-			this.Column_name.HeaderText = "名称";
-			this.Column_name.Name = "Column_name";
-			this.Column_name.Width = 140;
-			// 
-			// Column_address
-			// 
-			this.Column_address.HeaderText = "设备地址";
-			this.Column_address.Name = "Column_address";
-			this.Column_address.Width = 120;
-			// 
-			// Column_time
-			// 
-			this.Column_time.HeaderText = "间隔时间(ms)";
-			this.Column_time.Name = "Column_time";
-			// 
-			// Column_express
-			// 
-			this.Column_express.HeaderText = "表达式";
-			this.Column_express.Name = "Column_express";
-			this.Column_express.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.Column_express.Width = 200;
-			// 
-			// Column_current
-			// 
-			this.Column_current.HeaderText = "当前值";
-			this.Column_current.Name = "Column_current";
-			this.Column_current.Width = 150;
-			// 
-			// Column_mark
-			// 
-			this.Column_mark.HeaderText = "备注";
-			this.Column_mark.Name = "Column_mark";
-			this.Column_mark.Width = 150;
-			// 
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -145,49 +111,49 @@
             this.toCsvClipToolStripMenuItem,
             this.fromCsvClipCsvToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(181, 180);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(169, 158);
 			// 
 			// rowDeleteToolStripMenuItem
 			// 
 			this.rowDeleteToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_Cancel_16xLG;
 			this.rowDeleteToolStripMenuItem.Name = "rowDeleteToolStripMenuItem";
-			this.rowDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.rowDeleteToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.rowDeleteToolStripMenuItem.Text = "RowDelete";
 			// 
 			// toXmlClipToolStripMenuItem
 			// 
 			this.toXmlClipToolStripMenuItem.Name = "toXmlClipToolStripMenuItem";
-			this.toXmlClipToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.toXmlClipToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.toXmlClipToolStripMenuItem.Text = "导出到剪切板";
 			// 
 			// fromClipToolStripMenuItem
 			// 
 			this.fromClipToolStripMenuItem.Name = "fromClipToolStripMenuItem";
-			this.fromClipToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.fromClipToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.fromClipToolStripMenuItem.Text = "从剪切板导入";
 			// 
 			// toFileToolStripMenuItem
 			// 
 			this.toFileToolStripMenuItem.Name = "toFileToolStripMenuItem";
-			this.toFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.toFileToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.toFileToolStripMenuItem.Text = "导出到文件";
 			// 
 			// fromFileToolStripMenuItem
 			// 
 			this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
-			this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.fromFileToolStripMenuItem.Text = "从文件导入";
 			// 
 			// toCsvClipToolStripMenuItem
 			// 
 			this.toCsvClipToolStripMenuItem.Name = "toCsvClipToolStripMenuItem";
-			this.toCsvClipToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.toCsvClipToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.toCsvClipToolStripMenuItem.Text = "导出Csv到剪切板";
 			// 
 			// fromCsvClipCsvToolStripMenuItem
 			// 
 			this.fromCsvClipCsvToolStripMenuItem.Name = "fromCsvClipCsvToolStripMenuItem";
-			this.fromCsvClipCsvToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.fromCsvClipCsvToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.fromCsvClipCsvToolStripMenuItem.Text = "从剪切板导入Csv";
 			// 
 			// button_start
@@ -252,6 +218,52 @@
 			this.button_clear_all.UseVisualStyleBackColor = true;
 			this.button_clear_all.Click += new System.EventHandler(this.button_clear_all_Click);
 			// 
+			// Column_name
+			// 
+			this.Column_name.HeaderText = "名称";
+			this.Column_name.Name = "Column_name";
+			this.Column_name.Width = 140;
+			// 
+			// Column_address
+			// 
+			this.Column_address.HeaderText = "设备地址";
+			this.Column_address.Name = "Column_address";
+			this.Column_address.Width = 120;
+			// 
+			// Column_time
+			// 
+			this.Column_time.HeaderText = "间隔时间(ms)";
+			this.Column_time.Name = "Column_time";
+			// 
+			// Column_express
+			// 
+			this.Column_express.HeaderText = "表达式";
+			this.Column_express.Name = "Column_express";
+			this.Column_express.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.Column_express.Width = 200;
+			// 
+			// Column_current
+			// 
+			this.Column_current.HeaderText = "当前值";
+			this.Column_current.Name = "Column_current";
+			this.Column_current.Width = 130;
+			// 
+			// Column_encoding
+			// 
+			this.Column_encoding.HeaderText = "编码";
+			this.Column_encoding.Items.AddRange(new object[] {
+            "ASCII",
+            "UTF16",
+            "UTF8",
+            "GB2312"});
+			this.Column_encoding.Name = "Column_encoding";
+			this.Column_encoding.Width = 70;
+			// 
+			// Column_mark
+			// 
+			this.Column_mark.HeaderText = "备注";
+			this.Column_mark.Name = "Column_mark";
+			// 
 			// DataSimulateControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -278,12 +290,6 @@
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.Button button_start;
 		private System.Windows.Forms.Button button_finish;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column_name;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column_address;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column_time;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column_express;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column_current;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column_mark;
         private System.Windows.Forms.Button button_onece;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem rowDeleteToolStripMenuItem;
@@ -296,5 +302,12 @@
 		private System.Windows.Forms.ToolStripMenuItem toCsvClipToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem fromCsvClipCsvToolStripMenuItem;
 		private System.Windows.Forms.Button button_clear_all;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_name;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_address;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_time;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_express;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_current;
+		private System.Windows.Forms.DataGridViewComboBoxColumn Column_encoding;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_mark;
 	}
 }

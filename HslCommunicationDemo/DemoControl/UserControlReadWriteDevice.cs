@@ -175,5 +175,14 @@ namespace HslCommunicationDemo.DemoControl
 				this.tabControl1.Size = new Size( this.Width, this.Height - 272 );
 			}
 		}
+
+		#region 数据模拟和点位信息变更检测
+
+		public bool HasTableChanged()
+		{
+			return this.dataTableControl1.HasTableChanged( ) || this.dataSimulateControl1.HasTableChanged( );
+		}
+
+		#endregion
 	}
 }

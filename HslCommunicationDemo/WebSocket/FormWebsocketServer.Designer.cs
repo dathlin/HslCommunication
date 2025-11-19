@@ -67,6 +67,7 @@
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.checkBox4 = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -77,6 +78,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox4);
 			this.panel1.Controls.Add(this.textBox_ssl_password);
 			this.panel1.Controls.Add(this.panel3);
 			this.panel1.Controls.Add(this.checkBox_willcard);
@@ -110,15 +112,15 @@
 			this.panel3.Controls.Add(this.button10);
 			this.panel3.Controls.Add(this.textBox_certFile);
 			this.panel3.Controls.Add(this.checkBox_ssl);
-			this.panel3.Location = new System.Drawing.Point(442, 35);
+			this.panel3.Location = new System.Drawing.Point(531, 35);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(546, 31);
+			this.panel3.Size = new System.Drawing.Size(457, 31);
 			this.panel3.TabIndex = 10;
 			// 
 			// button10
 			// 
 			this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button10.Location = new System.Drawing.Point(502, 1);
+			this.button10.Location = new System.Drawing.Point(413, 1);
 			this.button10.Name = "button10";
 			this.button10.Size = new System.Drawing.Size(44, 28);
 			this.button10.TabIndex = 29;
@@ -132,7 +134,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_certFile.Location = new System.Drawing.Point(83, 4);
 			this.textBox_certFile.Name = "textBox_certFile";
-			this.textBox_certFile.Size = new System.Drawing.Size(413, 23);
+			this.textBox_certFile.Size = new System.Drawing.Size(324, 23);
 			this.textBox_certFile.TabIndex = 11;
 			// 
 			// checkBox_ssl
@@ -148,7 +150,7 @@
 			// checkBox_willcard
 			// 
 			this.checkBox_willcard.AutoSize = true;
-			this.checkBox_willcard.Location = new System.Drawing.Point(149, 41);
+			this.checkBox_willcard.Location = new System.Drawing.Point(142, 41);
 			this.checkBox_willcard.Name = "checkBox_willcard";
 			this.checkBox_willcard.Size = new System.Drawing.Size(99, 21);
 			this.checkBox_willcard.TabIndex = 9;
@@ -160,7 +162,7 @@
 			this.checkBox3.AutoSize = true;
 			this.checkBox3.Checked = true;
 			this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox3.Location = new System.Drawing.Point(278, 41);
+			this.checkBox3.Location = new System.Drawing.Point(259, 41);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(147, 21);
 			this.checkBox3.TabIndex = 8;
@@ -172,7 +174,7 @@
 			this.checkBox2.AutoSize = true;
 			this.checkBox2.Checked = true;
 			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox2.Location = new System.Drawing.Point(11, 40);
+			this.checkBox2.Location = new System.Drawing.Point(4, 40);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(123, 21);
 			this.checkBox2.TabIndex = 7;
@@ -221,7 +223,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(8, 10);
+			this.label3.Location = new System.Drawing.Point(4, 10);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -507,6 +509,16 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// checkBox4
+			// 
+			this.checkBox4.AutoSize = true;
+			this.checkBox4.Location = new System.Drawing.Point(440, 41);
+			this.checkBox4.Name = "checkBox4";
+			this.checkBox4.Size = new System.Drawing.Size(75, 21);
+			this.checkBox4.TabIndex = 15;
+			this.checkBox4.Text = "数据压缩";
+			this.checkBox4.UseVisualStyleBackColor = true;
+			// 
 			// FormWebsocketServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -573,5 +585,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label_tick;
-    }
+		private System.Windows.Forms.CheckBox checkBox4;
+	}
 }

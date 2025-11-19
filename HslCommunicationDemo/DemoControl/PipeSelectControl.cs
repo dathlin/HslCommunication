@@ -176,6 +176,7 @@ namespace HslCommunicationDemo.DemoControl
 					element.SetAttributeValue( "RtsEnable", settingSerial.RtsEnable );
 					element.SetAttributeValue( "DtrEnable", settingSerial.DtrEnable );
 					element.SetAttributeValue( "ReceiveTimeOut", settingSerial.ReceiveTimeOut );
+					element.SetAttributeValue( "IsClearCacheBeforeRead", settingSerial.IsClearCacheBeforeRead );
 					if (!string.IsNullOrEmpty( settingSerial.SendBeforeHex )) element.SetAttributeValue( "SendBeforeHex", settingSerial.SendBeforeHex );
 				}
 			}
@@ -271,6 +272,7 @@ namespace HslCommunicationDemo.DemoControl
 					this.settingSerial.DtrEnable = HslFormContent.GetXmlValue( element, "DtrEnable", this.settingSerial.DtrEnable, bool.Parse );
 					this.settingSerial.SendBeforeHex = HslFormContent.GetXmlValue( element, "SendBeforeHex", this.settingSerial.SendBeforeHex, m => m );
 					this.settingSerial.ReceiveTimeOut = HslFormContent.GetXmlValue( element, "ReceiveTimeOut", this.settingSerial.ReceiveTimeOut, int.Parse );
+					this.settingSerial.IsClearCacheBeforeRead = HslFormContent.GetXmlValue( element, "IsClearCacheBeforeRead", this.settingSerial.IsClearCacheBeforeRead, bool.Parse );
 				}
 			}
 			else if (setting == SettingPipe.MqttPipe)
@@ -533,6 +535,12 @@ namespace HslCommunicationDemo.DemoControl
 				dtuServer.ServerClose( );
 				dtuServer = null;
 			}
+
+			// 如果是MQTT的管道的话，需要先关闭之前的连接
+			if (device.CommunicationPipe is PipeMqttClient pipeMqttClient)
+			{
+				pipeMqttClient.MqttClient?.ConnectClose( );
+			}
 		}
 
 		private void DeviceTcpNet_OnConnectClose( object sender, EventArgs e )
@@ -712,6 +720,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				pipeSerialPort.SleepTime = this.settingSerial.SleepTime;
 				pipeSerialPort.ReceiveTimeOut = this.settingSerial.ReceiveTimeOut;
+				pipeSerialPort.IsClearCacheBeforeRead = this.settingSerial.IsClearCacheBeforeRead;
 				if (!string.IsNullOrEmpty( settingSerial.SendBeforeHex ))
 					binaryCommunication.SendBeforeHex = settingSerial.SendBeforeHex;
 			}
@@ -946,6 +955,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.SleepTime = other.SleepTime;
 			this.SendBeforeHex = other.SendBeforeHex;
 			this.ReceiveTimeOut = other.ReceiveTimeOut;
+			this.IsClearCacheBeforeRead = other.IsClearCacheBeforeRead;
 		}
 
 		[Description( "获取或设置在串行通信中是否启用请求发送信号\r\nGets or sets whether to enable request signaling in serial communication" )]
@@ -967,6 +977,10 @@ namespace HslCommunicationDemo.DemoControl
 		[Description( "在每条报文发送前，额外发送的数据内容，常用于lora，会追加四个字节的站号\r\nBefore each message is sent, the additional data content sent, often used in lora, is appended with a four-byte station" )]
 		[DefaultValue( "" )]
 		public string SendBeforeHex { get; set; } = "";
+
+		[Description( "在每次读取数据之前，清空串口缓存的数据，防止脏数据的影响\r\nBefore each data read, clear the data in the serial port cache to prevent the impact of dirty data" )]
+		[DefaultValue( false )]
+		public bool IsClearCacheBeforeRead { get; set; } = false;
 
 		public override string ToString( ) => $"Serial Setting [串口额外参数配置]";
 	}

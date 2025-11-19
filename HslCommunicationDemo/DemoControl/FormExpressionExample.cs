@@ -27,7 +27,14 @@ namespace HslCommunicationDemo.DemoControl
 			pictureBox7.Click += PictureBox7_Click;
 			pictureBox8.Click += PictureBox8_Click;
 			pictureBox9.Click += PictureBox9_Click;
+			pictureBox10.Click += PictureBox10_Click;
 		}
+
+		private void PictureBox10_Click( object sender, EventArgs e )
+		{
+			SetClipText( textBox6 );
+		}
+
 		private void PictureBox9_Click( object sender, EventArgs e )
 		{
 			SetClipText( textBox_example4 );

@@ -71,12 +71,6 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicExpresso.Core, Version=2.19.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicExpresso.Core.2.19.2\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="HslCommunication, Version=12.5.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.5.2\lib\net451\HslCommunication.dll</HintPath>
-    </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
     </Reference>
@@ -342,6 +336,7 @@
       <DependentUpon>UserControlReadWriteServer.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoDeviceList.cs" />
+    <Compile Include="DemoSettings.cs" />
     <Compile Include="DemoUtils.cs" />
     <Compile Include="FormActive.cs">
       <SubType>Form</SubType>
@@ -482,6 +477,12 @@
     </Compile>
     <Compile Include="Hsl\FormDtuServer.Designer.cs">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hsl\FormFtpClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormFtpClient.Designer.cs">
+      <DependentUpon>FormFtpClient.cs</DependentUpon>
     </Compile>
     <Compile Include="Instrument\CJT188Control.cs">
       <SubType>UserControl</SubType>
@@ -697,6 +698,12 @@
     </Compile>
     <Compile Include="PLC\AllenBrandly\AllenBrandlyTagTypeCacheControl.Designer.cs">
       <DependentUpon>AllenBrandlyTagTypeCacheControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\AllenBrandly\CipTagsListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\AllenBrandly\CipTagsListControl.Designer.cs">
+      <DependentUpon>CipTagsListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\AllenBrandly\FormAllenBradleyDF1Serial.cs">
       <SubType>Form</SubType>
@@ -2234,6 +2241,9 @@
     <EmbeddedResource Include="Hsl\FormDtuServer.resx">
       <DependentUpon>FormDtuServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormFtpClient.resx">
+      <DependentUpon>FormFtpClient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Instrument\CJT188Control.resx">
       <DependentUpon>CJT188Control.cs</DependentUpon>
     </EmbeddedResource>
@@ -2344,6 +2354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\AllenBrandly\AllenBrandlyTagTypeCacheControl.resx">
       <DependentUpon>AllenBrandlyTagTypeCacheControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\AllenBrandly\CipTagsListControl.resx">
+      <DependentUpon>CipTagsListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\AllenBrandly\FormAllenBradleyDF1Serial.resx">
       <DependentUpon>FormAllenBradleyDF1Serial.cs</DependentUpon>
@@ -3085,6 +3098,13 @@
     <None Include="img\Lock_white.png" />
     <None Include="img\CSharpFile_SolutionExplorerNode.png" />
     <None Include="img\java.png" />
+    <None Include="img\ftp.png" />
+    <None Include="img\dlt.png" />
+    <None Include="img\open.png" />
+    <None Include="img\delixi.png" />
+    <None Include="img\cjt.png" />
+    <None Include="img\secs.png" />
+    <None Include="img\hyundai.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />
@@ -3262,6 +3282,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\HslCommunication_Net45\HslCommunication_Net45.csproj">
+      <Project>{7f8029da-1b94-4b1d-b91f-5b21dbf2f3a2}</Project>
+      <Name>HslCommunication_Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DynamicExpresso.Core\DynamicExpresso.Core.csproj">
+      <Project>{f29a8f5e-02ea-4d2d-a2dc-bea595e50db9}</Project>
+      <Name>DynamicExpresso.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -29,6 +29,9 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label2 = new System.Windows.Forms.Label();
+			this.checkBox_DisableFunctionCode06 = new System.Windows.Forms.CheckBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.textBox_batch_length = new System.Windows.Forms.TextBox();
 			this.label_batch_length = new System.Windows.Forms.Label();
 			this.textBox_BroadcastStation = new System.Windows.Forms.TextBox();
@@ -36,7 +39,6 @@
 			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.checkBox_station_check = new System.Windows.Forms.CheckBox();
 			this.checkBox_crc16 = new System.Windows.Forms.CheckBox();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox15 = new System.Windows.Forms.TextBox();
@@ -47,9 +49,6 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.label1 = new System.Windows.Forms.Label();
-			this.checkBox_DisableFunctionCode06 = new System.Windows.Forms.CheckBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -69,7 +68,6 @@
 			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.checkBox_station_check);
 			this.panel1.Controls.Add(this.checkBox_crc16);
-			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.comboBox2);
 			this.panel1.Controls.Add(this.checkBox1);
 			this.panel1.Controls.Add(this.textBox15);
@@ -82,6 +80,35 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 82);
 			this.panel1.TabIndex = 0;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Gray;
+			this.label2.Location = new System.Drawing.Point(571, 36);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(184, 17);
+			this.label2.TabIndex = 43;
+			this.label2.Text = "(如果不清楚，不用管，空着就行)";
+			// 
+			// checkBox_DisableFunctionCode06
+			// 
+			this.checkBox_DisableFunctionCode06.AutoSize = true;
+			this.checkBox_DisableFunctionCode06.Location = new System.Drawing.Point(639, 58);
+			this.checkBox_DisableFunctionCode06.Name = "checkBox_DisableFunctionCode06";
+			this.checkBox_DisableFunctionCode06.Size = new System.Drawing.Size(163, 21);
+			this.checkBox_DisableFunctionCode06.TabIndex = 42;
+			this.checkBox_DisableFunctionCode06.Text = "DisableFunctionCode06";
+			this.checkBox_DisableFunctionCode06.UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(113, 36);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(88, 17);
+			this.label1.TabIndex = 40;
+			this.label1.Text = "DataFormat：";
 			// 
 			// textBox_batch_length
 			// 
@@ -135,7 +162,7 @@
 			this.checkBox_station_check.AutoSize = true;
 			this.checkBox_station_check.Checked = true;
 			this.checkBox_station_check.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_station_check.Location = new System.Drawing.Point(589, 58);
+			this.checkBox_station_check.Location = new System.Drawing.Point(475, 58);
 			this.checkBox_station_check.Name = "checkBox_station_check";
 			this.checkBox_station_check.Size = new System.Drawing.Size(106, 21);
 			this.checkBox_station_check.TabIndex = 33;
@@ -153,16 +180,6 @@
 			this.checkBox_crc16.TabIndex = 32;
 			this.checkBox_crc16.Text = "Crc16 Check";
 			this.checkBox_crc16.UseVisualStyleBackColor = true;
-			// 
-			// checkBox2
-			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(427, 58);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(135, 21);
-			this.checkBox2.TabIndex = 31;
-			this.checkBox2.Text = "读取前是否清空缓存";
-			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// comboBox2
 			// 
@@ -275,35 +292,6 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(113, 36);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(88, 17);
-			this.label1.TabIndex = 40;
-			this.label1.Text = "DataFormat：";
-			// 
-			// checkBox_DisableFunctionCode06
-			// 
-			this.checkBox_DisableFunctionCode06.AutoSize = true;
-			this.checkBox_DisableFunctionCode06.Location = new System.Drawing.Point(733, 58);
-			this.checkBox_DisableFunctionCode06.Name = "checkBox_DisableFunctionCode06";
-			this.checkBox_DisableFunctionCode06.Size = new System.Drawing.Size(163, 21);
-			this.checkBox_DisableFunctionCode06.TabIndex = 42;
-			this.checkBox_DisableFunctionCode06.Text = "DisableFunctionCode06";
-			this.checkBox_DisableFunctionCode06.UseVisualStyleBackColor = true;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.ForeColor = System.Drawing.Color.Gray;
-			this.label2.Location = new System.Drawing.Point(571, 36);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(184, 17);
-			this.label2.TabIndex = 43;
-			this.label2.Text = "(如果不清楚，不用管，空着就行)";
-			// 
 			// FormModbusRtu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -339,7 +327,6 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.ComboBox comboBox2;
         private DemoControl.UserControlHead userControlHead1;
-		private System.Windows.Forms.CheckBox checkBox2;
 		private System.Windows.Forms.CheckBox checkBox_crc16;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private System.Windows.Forms.CheckBox checkBox_station_check;

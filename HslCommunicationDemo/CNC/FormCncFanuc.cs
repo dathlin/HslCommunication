@@ -224,7 +224,7 @@ namespace HslCommunicationDemo
 			OperateResult<string, int> read = fanuc.ReadSystemProgramCurrent( );
 			if (read.IsSuccess)
 			{
-				textBox8.Text = "程序名：" + read.Content1 + Environment.NewLine + "程序号：" + read.Content2;
+				textBox8.Text = "程序名(Program name)：" + read.Content1 + Environment.NewLine + "程序号(Program Number)：" + read.Content2;
 			}
 			else
 			{
@@ -239,7 +239,7 @@ namespace HslCommunicationDemo
 			OperateResult<int> read = fanuc.ReadProgramNumber( );
 			if (read.IsSuccess)
 			{
-				textBox8.Text = "程序号：" + read.Content;
+				textBox8.Text = "程序号(Program Number)：" + read.Content;
 			}
 			else
 			{
@@ -399,7 +399,7 @@ namespace HslCommunicationDemo
 			OperateResult<string> read = fanuc.ReadCurrentProgram( );
 			if (read.IsSuccess)
 			{
-				textBox8.Text = "程序内容：" + Environment.NewLine + read.Content;
+				textBox8.Text = "程序内容：(Program content)" + Environment.NewLine + read.Content;
 			}
 			else
 			{
@@ -415,7 +415,7 @@ namespace HslCommunicationDemo
 			OperateResult<int> read = fanuc.ReadCutterNumber( );
 			if (read.IsSuccess)
 			{
-				textBox8.Text = "刀号：" + Environment.NewLine + read.Content;
+				textBox8.Text = "刀号：(Knife number)" + Environment.NewLine + read.Content;
 			}
 			else
 			{
@@ -435,11 +435,11 @@ namespace HslCommunicationDemo
 			button28.Enabled = true;
 			if (read.IsSuccess)
 			{
-				textBox_program.Text = "程序内容：" + Environment.NewLine + read.Content;
+				textBox_program.Text = "程序内容：(Program content)" + Environment.NewLine + read.Content;
 			}
 			else
 			{
-				DemoUtils.ShowMessage( "读取失败！" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "读取失败！(Read failed)" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code2.Text = $"OperateResult<string> read = fanuc.ReadProgram( \"{textBox9.Text}\", \"{textBox_path.Text}\" );";
@@ -458,7 +458,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				DemoUtils.ShowMessage( "删除失败！" + read.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "删除失败！(Deletion failed)" + read.ToMessageShowString( ) );
 			}
 
 			textBox_code2.Text = $"OperateResult read = fanuc.DeleteFile( \"{path + textBox9.Text}\" );";
@@ -468,17 +468,17 @@ namespace HslCommunicationDemo
 			// 设置为主程序
 			if (!ushort.TryParse( textBox6.Text, out ushort programNum ))
 			{
-				DemoUtils.ShowMessage( "主程序号输入错误！" );
+				DemoUtils.ShowMessage( "主程序号输入错误！\r\nThe main program number was entered incorrectly!" );
 				return;
 			}
 			OperateResult set = fanuc.SetCurrentProgram( programNum );
 			if (set.IsSuccess)
 			{
-				DemoUtils.ShowMessage( "设置主程序成功！" );
+				DemoUtils.ShowMessage( "设置主程序成功！\r\nThe main program has been set up successfully!" );
 			}
 			else
 			{
-				DemoUtils.ShowMessage( "设置主程序失败！" + set.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "设置主程序失败！(Failed to set up the main program)" + set.ToMessageShowString( ) );
 			}
 
 			textBox_code2.Text = $"OperateResult set = fanuc.SetCurrentProgram( {programNum} );";
@@ -488,7 +488,7 @@ namespace HslCommunicationDemo
 		{
 			if (!System.IO.File.Exists( textBox7.Text ))
 			{
-				DemoUtils.ShowMessage( "文件不存在!" );
+				DemoUtils.ShowMessage( "文件不存在!\r\nThe file does not exist!" );
 				return;
 			}
 			// 下载程序
@@ -497,25 +497,26 @@ namespace HslCommunicationDemo
 			button27.Enabled = true;
 			if (write.IsSuccess)
 			{
-				DemoUtils.ShowMessage( "下载成功！" );
+				DemoUtils.ShowMessage( "下载成功！\r\nDownload successful!" );
 			}
 			else
 			{
-				DemoUtils.ShowMessage( "下载失败！" + write.ToMessageShowString( ) );
+				DemoUtils.ShowMessage( "下载失败！(Download failed)" + write.ToMessageShowString( ) );
 			}
 
 			textBox_code2.Text = $"OperateResult write = fanuc.WriteProgramFile( \"{textBox7.Text}\", 512, \"{textBox_path.Text}\" );";
 		}
 		private void button26_Click( object sender, EventArgs e )
 		{
+			if (MessageBox.Show( "是否确定启动机床执行加工程序?", "确认", MessageBoxButtons.YesNo ) == DialogResult.No) return;
 			OperateResult start = fanuc.StartProcessing( );
 			if (start.IsSuccess)
 			{
-				DemoUtils.ShowMessage( "启动成功！" );
+				DemoUtils.ShowMessage( "启动成功！\r\nStart Success!" );
 			}
 			else
 			{
-				DemoUtils.ShowMessage( "启动失败！"  + start.ToMessageShowString());
+				DemoUtils.ShowMessage( "启动失败(Start failed):"  + start.ToMessageShowString());
 			}
 
 			textBox_code.Text = $"OperateResult start = fanuc.StartProcessing( );";
@@ -524,7 +525,7 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse( textBox3.Text, out int address ))
 			{
-				DemoUtils.ShowMessage( "宏变量地址输入错误！" );
+				DemoUtils.ShowMessage( "宏变量地址输入错误！\r\nThe address of the macro variable was entered incorrectly!" );
 				return;
 			}
 			OperateResult<double> read = fanuc.ReadSystemMacroValue( address );
@@ -560,13 +561,13 @@ namespace HslCommunicationDemo
 			// 写数据到宏变量
 			if (!int.TryParse( textBox3.Text, out int address ))
 			{
-				DemoUtils.ShowMessage( "宏变量地址输入错误！" );
+				DemoUtils.ShowMessage( "宏变量地址输入错误！\r\nThe address of the macro variable was entered incorrectly!" );
 				return;
 			}
 
 			if (!double.TryParse(textBox4.Text, out double value ))
 			{
-				DemoUtils.ShowMessage( "写入宏变量的值输入错误！" );
+				DemoUtils.ShowMessage( "写入宏变量的值输入错误！\r\nThe value input for the macro variable is incorrect!" );
 				return;
 			}
 

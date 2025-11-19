@@ -1,10 +1,11 @@
-﻿using HslCommunication;
-using HslCommunication.Secs.Types;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HslCommunication;
+using HslCommunication.Secs.Types;
+using HslCommunicationDemo.Properties;
 
 namespace HslCommunicationDemo
 {
@@ -26,12 +27,16 @@ namespace HslCommunicationDemo
 
 		public static string SystemName = "欢迎登录HSL调试平台"; // "工业设备联网调试系统";
 
+		public static DemoSettings Settings { get; private set; }
+
 		/// <summary>
 		/// 应用程序的主入口点。
 		/// </summary>
 		[STAThread]
 		static void Main( )
 		{
+			Settings = new DemoSettings( );
+			Settings.LoadFiles( );
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			// 授权示例   Authorization Example
 			if (!HslCommunication.Authorization.SetAuthorizationCode( "Your Code" ))

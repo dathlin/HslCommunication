@@ -29,13 +29,13 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.serverSettingControl1 = new HslCommunicationDemo.DemoControl.ServerSettingControl();
 			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.label2 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.serverSettingControl1 = new HslCommunicationDemo.DemoControl.ServerSettingControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -53,6 +53,19 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 65);
 			this.panel1.TabIndex = 0;
+			// 
+			// serverSettingControl1
+			// 
+			this.serverSettingControl1.buttonCloseAction = null;
+			this.serverSettingControl1.buttonSerialAction = null;
+			this.serverSettingControl1.buttonStartAction = null;
+			this.serverSettingControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.serverSettingControl1.Location = new System.Drawing.Point(2, 1);
+			this.serverSettingControl1.Name = "serverSettingControl1";
+			this.serverSettingControl1.Size = new System.Drawing.Size(958, 30);
+			this.serverSettingControl1.TabIndex = 32;
+			this.serverSettingControl1.TextPort = "44818";
+			this.serverSettingControl1.TextSerialInfo = "COM4-9600-8-N-1";
 			// 
 			// sslServerControl1
 			// 
@@ -103,13 +116,14 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Green;
 			this.label2.Location = new System.Drawing.Point(8, 5);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(893, 17);
+			this.label2.Size = new System.Drawing.Size(865, 17);
 			this.label2.TabIndex = 18;
-			this.label2.Text = "服务器值列表：   A short ; A1  float[2000]  ;  B int ;  C   float ;     D  short[2000]; " +
-    "    E  bool;     F  string ;  G  sting[5];   AB.C  short[5];   M  uint[4];  N   " +
-    "long";
+			this.label2.Text = "服务器值列表：   A short ; A1  float[20]  ;  B int ;  C   float ;     D  short[20];     " +
+    "E  bool;     F  string ;  G  sting[5];   AB.C  short[5];   M  uint[4];  N   long" +
+    "";
 			// 
 			// userControlHead1
 			// 
@@ -124,19 +138,6 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// serverSettingControl1
-			// 
-			this.serverSettingControl1.buttonCloseAction = null;
-			this.serverSettingControl1.buttonSerialAction = null;
-			this.serverSettingControl1.buttonStartAction = null;
-			this.serverSettingControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.serverSettingControl1.Location = new System.Drawing.Point(2, 1);
-			this.serverSettingControl1.Name = "serverSettingControl1";
-			this.serverSettingControl1.Size = new System.Drawing.Size(958, 30);
-			this.serverSettingControl1.TabIndex = 32;
-			this.serverSettingControl1.TextPort = "44818";
-			this.serverSettingControl1.TextSerialInfo = "COM4-9600-8-N-1";
 			// 
 			// FormOmronCipServer
 			// 

@@ -47,6 +47,9 @@ namespace HslCommunicationDemo
 		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			CheckTableDataChanged( this.userControlReadWriteServer1, e );
+			if (e.Cancel) return;
+
 			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 

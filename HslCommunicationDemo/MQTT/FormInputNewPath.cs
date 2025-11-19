@@ -27,6 +27,11 @@ namespace HslCommunicationDemo.MQTT
 
 		}
 
+		protected override void OnShown( EventArgs e )
+		{
+			base.OnShown( e );
+		}
+
 		public string PathInput { get; set; }
 
 		private void button1_Click( object sender, EventArgs e )

@@ -79,7 +79,11 @@ namespace HslCommunicationDemo.DemoControl
 				RefreshSaveDevices( );
 				//tabControl1.SelectedTab = tabPage2;
 
-				return true;
+				if (Program.Settings.ShowDeviceList == false)
+				{
+					if (this.treeView2.Nodes.Count > 0) return true;
+				}
+				return false;
 			}
 			return false;
 		}

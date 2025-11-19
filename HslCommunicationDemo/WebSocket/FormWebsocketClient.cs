@@ -1,17 +1,19 @@
-﻿using System;
+﻿using HslCommunication;
+using HslCommunication.BasicFramework;
+using HslCommunication.WebSocket;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HslCommunication.WebSocket;
-using HslCommunication;
-using System.Threading;
-using System.Xml.Linq;
 using System.Runtime.Remoting.Contexts;
-using HslCommunication.BasicFramework;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -75,6 +77,8 @@ namespace HslCommunicationDemo
 				radioButton2.Text = "Append";
 				radioButton1.Text = "Coverage";
 				checkBox_SSL.Text = "Cert";
+				checkBox3.Text = "Support Deflate";
+				checkBox4.Text = "AutoDecompress";
 			}
 		}
 
@@ -104,6 +108,8 @@ namespace HslCommunicationDemo
 			wsClient.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 			wsClient.OnClientApplicationMessageReceive += WebSocket_OnWebSocketMessageReceived;
 			wsClient.GetCarryHostAndPort = checkBox2.Checked;
+			wsClient.SupportDeflate = checkBox3.Checked;
+			wsClient.AutoDecompress = checkBox4.Checked;
 
 			if (!int.TryParse( textBox11.Text, out int connectTimeout )){
 				DemoUtils.ShowMessage( "Connect time is not correct!" );
@@ -148,6 +154,8 @@ namespace HslCommunicationDemo
 				sb.AppendLine( $"WebSocketClient wsClient = new WebSocketClient( \"{textBox1.Text}\", {int.Parse( textBox2.Text )}, \"{textBox5.Text}\" );" );//( textBox1.Text, int.Parse(textBox2.Text), textBox5.Text );
 			}
 			sb.AppendLine( $"wsClient.GetCarryHostAndPort = {checkBox2.Checked.ToString( ).ToLower( )};" );
+			if (checkBox3.Checked == false) sb.AppendLine( $"wsClient.SupportDeflate = false;" );
+			if (checkBox4.Checked == false) sb.AppendLine( $"wsClient.AutoDecompress = false;" );
 			if (checkBox_SSL.Checked)
 			{
 				sb.AppendLine( $"wsClient.UseSSL( \"{textBox_ssl_ca.Text}\" );");
@@ -303,6 +311,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlTimeout, textBox11.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTopic, textBox3.Text );
 			element.SetAttributeValue( nameof( WebSocketClient.GetCarryHostAndPort ), checkBox2.Checked );
+			element.SetAttributeValue( nameof( WebSocketClient.SupportDeflate ), checkBox3.Checked );
+			element.SetAttributeValue( nameof( WebSocketClient.AutoDecompress ), checkBox4.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -314,6 +324,8 @@ namespace HslCommunicationDemo
 			textBox11.Text = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
 			textBox3.Text = element.Attribute( DemoDeviceList.XmlTopic ).Value;
 			checkBox2.Checked = GetXmlValue( element, nameof( WebSocketClient.GetCarryHostAndPort ), false, bool.Parse );
+			checkBox3.Checked = GetXmlValue( element, nameof( WebSocketClient.SupportDeflate ), true, bool.Parse );
+			checkBox4.Checked = GetXmlValue( element, nameof( WebSocketClient.AutoDecompress ), true, bool.Parse );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
@@ -333,7 +345,6 @@ namespace HslCommunicationDemo
 		}
 
 	}
-
 
 	#endregion
 }

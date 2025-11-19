@@ -74,7 +74,7 @@ namespace HslCommunicationDemo
 			}
 			else
 			{
-				checkBox_EnableWriteBitToWordRegister.Text = "支持使用位写入字寄存器(实际读字，修改位，写字)";
+				checkBox_EnableWriteBitToWordRegister.Text = "支持位写入字寄存器(读字，修改位，写字)";
 				label_target_io_number.Text = "目标IO编号:";
 				label_network_number.Text = "网络号:";
 				label_network_station_number.Text = "网络站号:";
@@ -83,6 +83,9 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			CheckTableDataChanged( this.userControlReadWriteDevice1, e );
+			if (e.Cancel) return;
+
 			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 
@@ -169,6 +172,13 @@ namespace HslCommunicationDemo
 
 				// 设置代码示例
 				this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
+				List<string> parameters = new List<string>( );
+				parameters.Add( "ByteTransform.IsStringReverseByteWord" );
+				if (melsec_net.NetworkNumber != 0) parameters.Add( nameof( melsec_net.NetworkNumber ) );
+				if (melsec_net.NetworkStationNumber != 0) parameters.Add( nameof( melsec_net.NetworkStationNumber ) );
+				if (melsec_net.TargetIOStation != 0x03FF) parameters.Add( nameof( melsec_net.TargetIOStation ) );
+				
+				parameters.Add( nameof( melsec_net.EnableWriteBitToWordRegister ) );
 				codeExampleControl.SetCodeText( melsec_net, nameof( melsec_net.NetworkNumber ), nameof( melsec_net.NetworkStationNumber ),
 					nameof( melsec_net.TargetIOStation ),
 					nameof( melsec_net.EnableWriteBitToWordRegister ), "ByteTransform.IsStringReverseByteWord" );

@@ -118,7 +118,8 @@ namespace HslCommunicationDemo
 					using (FormInputString form = new FormInputString( ))
 					{
 						SaveDeviceXml( form, xElement );
-						this.Text = form.DeviceAlias;
+						if (!string.IsNullOrEmpty( form.DeviceAlias ))
+							this.Text = form.DeviceAlias;
 					}
 				}
 				else
@@ -274,6 +275,51 @@ namespace HslCommunicationDemo
 		protected OperateResult DeviceConnectPLC( DeviceUdpNet device )
 		{
 			return OperateResult.CreateSuccessResult( );
+		}
+
+
+		public void CheckTableDataChanged( UserControlReadWriteDevice userControlReadWriteDevice, FormClosingEventArgs e )
+		{
+			if (userControlReadWriteDevice.HasTableChanged( ))
+			{
+				if (Program.Language == 1)
+				{
+					if (MessageBox.Show( "当前窗口界面的点位表或模拟数据表有未保存的数据，请确认是否退出？", "关闭确认", MessageBoxButtons.YesNo ) == DialogResult.No)
+					{
+						e.Cancel = true;
+					}
+				}
+				else
+				{
+					// 英文
+					if (MessageBox.Show( "Unsaved data in the point table or simulation data table of the current window. Confirm exit?", "Exit Check", MessageBoxButtons.YesNo ) == DialogResult.No)
+					{
+						e.Cancel = true;
+					}
+				}
+			}
+		}
+
+		public void CheckTableDataChanged( UserControlReadWriteServer userControlReadWriteServer, FormClosingEventArgs e )
+		{
+			if (userControlReadWriteServer.HasTableChanged( ))
+			{
+				if (Program.Language == 1)
+				{
+					if (MessageBox.Show( "当前窗口界面的点位表或模拟数据表有未保存的数据，请确认是否退出？", "关闭确认", MessageBoxButtons.YesNo ) == DialogResult.No)
+					{
+						e.Cancel = true;
+					}
+				}
+				else
+				{
+					// 英文
+					if (MessageBox.Show( "Unsaved data in the point table or simulation data table of the current window. Confirm exit?", "Exit Check", MessageBoxButtons.YesNo ) == DialogResult.No)
+					{
+						e.Cancel = true;
+					}
+				}
+			}
 		}
 	}
 }

@@ -92,6 +92,9 @@ namespace HslCommunicationDemo.PLC.Invt
 
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			CheckTableDataChanged( this.userControlReadWriteDevice1, e );
+			if (e.Cancel) return;
+
 			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 如果连接了，就断开连接
 		}
 		

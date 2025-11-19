@@ -384,6 +384,19 @@ namespace HslCommunicationDemo
 				dataGridView.Rows.Clear( );
 			}
 		}
+
+		public static string GetWriteExampleCode( string name, string oprate )
+		{
+return "if (" + name + @".IsSuccess)
+{
+	Console.WriteLine( """ + oprate + @"成功"" );
+}
+else
+{
+	Console.WriteLine( """ + oprate + @"失败: """ + name + @".Message );
+}
+";
+		}
 	}
 
 }

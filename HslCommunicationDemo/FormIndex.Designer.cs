@@ -37,6 +37,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -163,12 +164,25 @@
 			this.pictureBox2.TabIndex = 1;
 			this.pictureBox2.TabStop = false;
 			// 
+			// linkLabel2
+			// 
+			this.linkLabel2.AutoSize = true;
+			this.linkLabel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.linkLabel2.Location = new System.Drawing.Point(261, 367);
+			this.linkLabel2.Name = "linkLabel2";
+			this.linkLabel2.Size = new System.Drawing.Size(206, 17);
+			this.linkLabel2.TabIndex = 9;
+			this.linkLabel2.TabStop = true;
+			this.linkLabel2.Text = "http://www.hsltechnology.cn:7900/";
+			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+			// 
 			// FormIndex
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.AliceBlue;
 			this.ClientSize = new System.Drawing.Size(700, 491);
+			this.Controls.Add(this.linkLabel2);
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.label15);
 			this.Controls.Add(this.label14);
@@ -201,5 +215,6 @@
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.PictureBox pictureBox2;
-    }
+		private System.Windows.Forms.LinkLabel linkLabel2;
+	}
 }

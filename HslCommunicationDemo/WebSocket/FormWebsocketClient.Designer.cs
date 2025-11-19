@@ -29,6 +29,8 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox4 = new System.Windows.Forms.CheckBox();
+			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.button_ssl_file = new System.Windows.Forms.Button();
@@ -84,6 +86,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox4);
+			this.panel1.Controls.Add(this.checkBox3);
 			this.panel1.Controls.Add(this.linkLabel1);
 			this.panel1.Controls.Add(this.checkBox2);
 			this.panel1.Controls.Add(this.button_ssl_file);
@@ -109,11 +113,35 @@
 			this.panel1.Size = new System.Drawing.Size(997, 97);
 			this.panel1.TabIndex = 7;
 			// 
+			// checkBox4
+			// 
+			this.checkBox4.AutoSize = true;
+			this.checkBox4.Checked = true;
+			this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox4.Location = new System.Drawing.Point(790, 67);
+			this.checkBox4.Name = "checkBox4";
+			this.checkBox4.Size = new System.Drawing.Size(111, 21);
+			this.checkBox4.TabIndex = 29;
+			this.checkBox4.Text = "自动解压缩数据";
+			this.checkBox4.UseVisualStyleBackColor = true;
+			// 
+			// checkBox3
+			// 
+			this.checkBox3.AutoSize = true;
+			this.checkBox3.Checked = true;
+			this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox3.Location = new System.Drawing.Point(656, 67);
+			this.checkBox3.Name = "checkBox3";
+			this.checkBox3.Size = new System.Drawing.Size(99, 21);
+			this.checkBox3.TabIndex = 28;
+			this.checkBox3.Text = "支持数据压缩";
+			this.checkBox3.UseVisualStyleBackColor = true;
+			// 
 			// linkLabel1
 			// 
 			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.linkLabel1.AutoSize = true;
-			this.linkLabel1.Location = new System.Drawing.Point(897, 72);
+			this.linkLabel1.Location = new System.Drawing.Point(926, 68);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(57, 17);
 			this.linkLabel1.TabIndex = 27;
@@ -124,7 +152,7 @@
 			// checkBox2
 			// 
 			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(669, 38);
+			this.checkBox2.Location = new System.Drawing.Point(671, 36);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(143, 21);
 			this.checkBox2.TabIndex = 26;
@@ -134,7 +162,7 @@
 			// button_ssl_file
 			// 
 			this.button_ssl_file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_ssl_file.Location = new System.Drawing.Point(779, 66);
+			this.button_ssl_file.Location = new System.Drawing.Point(557, 62);
 			this.button_ssl_file.Name = "button_ssl_file";
 			this.button_ssl_file.Size = new System.Drawing.Size(91, 28);
 			this.button_ssl_file.TabIndex = 25;
@@ -146,15 +174,15 @@
 			// 
 			this.textBox_ssl_ca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_ssl_ca.Location = new System.Drawing.Point(62, 69);
+			this.textBox_ssl_ca.Location = new System.Drawing.Point(61, 65);
 			this.textBox_ssl_ca.Name = "textBox_ssl_ca";
-			this.textBox_ssl_ca.Size = new System.Drawing.Size(711, 23);
+			this.textBox_ssl_ca.Size = new System.Drawing.Size(492, 23);
 			this.textBox_ssl_ca.TabIndex = 24;
 			// 
 			// checkBox_SSL
 			// 
 			this.checkBox_SSL.AutoSize = true;
-			this.checkBox_SSL.Location = new System.Drawing.Point(8, 71);
+			this.checkBox_SSL.Location = new System.Drawing.Point(7, 67);
 			this.checkBox_SSL.Name = "checkBox_SSL";
 			this.checkBox_SSL.Size = new System.Drawing.Size(51, 21);
 			this.checkBox_SSL.TabIndex = 23;
@@ -163,9 +191,9 @@
 			// 
 			// textBox5
 			// 
-			this.textBox5.Location = new System.Drawing.Point(498, 6);
+			this.textBox5.Location = new System.Drawing.Point(416, 6);
 			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(291, 23);
+			this.textBox5.Size = new System.Drawing.Size(373, 23);
 			this.textBox5.TabIndex = 21;
 			// 
 			// label7
@@ -196,7 +224,7 @@
 			// 
 			// textBox11
 			// 
-			this.textBox11.Location = new System.Drawing.Point(929, 36);
+			this.textBox11.Location = new System.Drawing.Point(929, 34);
 			this.textBox11.Name = "textBox11";
 			this.textBox11.Size = new System.Drawing.Size(51, 23);
 			this.textBox11.TabIndex = 15;
@@ -205,7 +233,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(845, 39);
+			this.label5.Location = new System.Drawing.Point(845, 37);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 17);
 			this.label5.TabIndex = 14;
@@ -234,7 +262,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(392, 7);
+			this.textBox2.Location = new System.Drawing.Point(303, 7);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(65, 23);
 			this.textBox2.TabIndex = 3;
@@ -243,7 +271,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(337, 10);
+			this.label3.Location = new System.Drawing.Point(248, 10);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 17);
 			this.label3.TabIndex = 2;
@@ -253,7 +281,7 @@
 			// 
 			this.textBox1.Location = new System.Drawing.Point(59, 7);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(274, 23);
+			this.textBox1.Size = new System.Drawing.Size(184, 23);
 			this.textBox1.TabIndex = 1;
 			this.textBox1.Text = "127.0.0.1";
 			// 
@@ -269,7 +297,7 @@
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(460, 9);
+			this.label10.Location = new System.Drawing.Point(375, 9);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(35, 17);
 			this.label10.TabIndex = 22;
@@ -655,5 +683,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-    }
+		private System.Windows.Forms.CheckBox checkBox3;
+		private System.Windows.Forms.CheckBox checkBox4;
+	}
 }

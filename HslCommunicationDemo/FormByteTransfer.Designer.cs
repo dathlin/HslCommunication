@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button3 = new System.Windows.Forms.Button();
 			this.checkBox_isStringReverseByWord = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.label10 = new System.Windows.Forms.Label();
@@ -73,6 +74,7 @@
 			this.textBox_input = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.button6 = new System.Windows.Forms.Button();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -82,6 +84,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button6);
+			this.panel2.Controls.Add(this.button3);
 			this.panel2.Controls.Add(this.checkBox_isStringReverseByWord);
 			this.panel2.Controls.Add(this.comboBox1);
 			this.panel2.Controls.Add(this.label10);
@@ -129,6 +133,16 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(997, 606);
 			this.panel2.TabIndex = 33;
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(791, 188);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(96, 26);
+			this.button3.TabIndex = 55;
+			this.button3.Text = "解压缩";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click_1);
 			// 
 			// checkBox_isStringReverseByWord
 			// 
@@ -581,6 +595,16 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 34;
 			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(893, 188);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(96, 26);
+			this.button6.TabIndex = 56;
+			this.button6.Text = "压缩数据";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
 			// FormByteTransfer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -649,5 +673,7 @@
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.CheckBox checkBox_isStringReverseByWord;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button button6;
 	}
 }

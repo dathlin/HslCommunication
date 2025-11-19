@@ -77,7 +77,6 @@ namespace HslCommunicationDemo
 				checkBox3.Text = "string reverse";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				checkBox2.Text = "IsClearCacheBeforeRead";
 				label_BroadcastStation.Text = "BroadcastStat:";
 				label_batch_length.Text = "BatchLen:";
 			}
@@ -113,6 +112,9 @@ namespace HslCommunicationDemo
 
 		private void FormModbusRtu_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			CheckTableDataChanged( this.userControlReadWriteDevice1, e );
+			if (e.Cancel) return;
+
 			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
 		}
 		
@@ -131,7 +133,6 @@ namespace HslCommunicationDemo
 			busRtuClient?.Close( );
 			busRtuClient = new ModbusRtu( station );
 			busRtuClient.AddressStartWithZero = checkBox1.Checked;
-			busRtuClient.IsClearCacheBeforeRead = checkBox2.Checked;
 			busRtuClient.LogNet = LogNet;
 			busRtuClient.Crc16CheckEnable = checkBox_crc16.Checked;
 			busRtuClient.StationCheckMatch = checkBox_station_check.Checked;

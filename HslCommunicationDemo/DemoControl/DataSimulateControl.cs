@@ -35,7 +35,28 @@ namespace HslCommunicationDemo.DemoControl
 			rowDeleteToolStripMenuItem.Click += RowDeleteToolStripMenuItem_Click;
 			toCsvClipToolStripMenuItem.Click +=ToCsvClipToolStripMenuItem_Click;
 			fromCsvClipCsvToolStripMenuItem.Click +=FromCsvClipCsvToolStripMenuItem_Click;
+
+			this.dataGridView1.CellEndEdit += DataGridView1_CellEndEdit;
 		}
+
+		private void DataGridView1_CellEndEdit( object sender, DataGridViewCellEventArgs e )
+		{
+			this.hasTableChanged = true;
+		}
+
+		public bool HasTableChanged( )
+		{
+			// 如果一开始空的，后面又清空了，则不进行提示
+			if (this.rowCountStart == 0)
+			{
+				if (this.dataGridView1.Rows.Count == 0) return false;
+				if (this.dataGridView1.Rows.Count == 1 && this.dataGridView1.Rows[0].IsNewRow) return false;
+			}
+			return hasTableChanged;
+		}
+
+		private bool hasTableChanged = false;
+		private int rowCountStart = 0;
 
 		private void RowDeleteToolStripMenuItem_Click( object sender, EventArgs e )
 		{
@@ -60,6 +81,8 @@ namespace HslCommunicationDemo.DemoControl
 						if (rows[i].IsNewRow == false) dataGridView1.Rows.Remove( rows[i] );
 					}
 				}
+				// 标记为更改
+				this.hasTableChanged = true;
 			}
 			else
 			{
@@ -76,8 +99,13 @@ namespace HslCommunicationDemo.DemoControl
 						// 确认删除这些行
 						dataGridView1.Rows.Remove( dataGridView1.Rows[cell.RowIndex] );
 					}
+					// 标记为更改
+					this.hasTableChanged = true;
 				}
 			}
+
+			// 标记为更改
+			this.hasTableChanged = true;
 		}
 
 		private void FromFileToolStripMenuItem_Click( object sender, EventArgs e )
@@ -92,7 +120,10 @@ namespace HslCommunicationDemo.DemoControl
 						try
 						{
 							XElement element = XElement.Parse( File.ReadAllText( ofd.FileName, Encoding.UTF8 ) );
-							LoadSimulateTable( element );
+							LoadSimulateTable( element, loadSave: false );
+
+							// 标记为更改
+							this.hasTableChanged = true;
 						}
 						catch (Exception ex)
 						{
@@ -115,7 +146,7 @@ namespace HslCommunicationDemo.DemoControl
 				if (sfd.ShowDialog( ) == DialogResult.OK)
 				{
 					XElement element = new XElement( "SimulateTable" );
-					GetSimulateTable( element );
+					GetSimulateTable( element, clearEdit: false );
 
 					element.Save( sfd.FileName );
 					DemoUtils.ShowMessage( "Save success!" );
@@ -130,7 +161,10 @@ namespace HslCommunicationDemo.DemoControl
 			try
 			{
 				XElement element = XElement.Parse( Clipboard.GetText( ) );
-				LoadSimulateTable( element );
+				LoadSimulateTable( element, loadSave: false );
+
+				// 标记为更改
+				this.hasTableChanged = true;
 			}
 			catch (Exception ex)
 			{
@@ -141,7 +175,7 @@ namespace HslCommunicationDemo.DemoControl
 		private void ToClipToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			XElement element = new XElement( "SimulateTable" );
-			GetSimulateTable( element );
+			GetSimulateTable( element, clearEdit: false );
 			Clipboard.SetText( element.ToString( ) );
 			DemoUtils.ShowMessage( "Save success!" );
 		}
@@ -187,6 +221,9 @@ namespace HslCommunicationDemo.DemoControl
 					count++;
 				}
 				DemoUtils.ShowMessage( $"Import {count} rows success!" );
+
+				// 标记为更改
+				this.hasTableChanged = true;
 			}
 			catch (Exception ex)
 			{
@@ -203,7 +240,8 @@ namespace HslCommunicationDemo.DemoControl
 				dataGridView1.Columns[2].HeaderText = "Time(ms)";
 				dataGridView1.Columns[3].HeaderText = "Expression";
 				dataGridView1.Columns[4].HeaderText = "CurrentValue";
-				dataGridView1.Columns[5].HeaderText = "Mark";
+				dataGridView1.Columns[5].HeaderText = "Encode";
+				dataGridView1.Columns[6].HeaderText = "Mark";
 
 				button_start.Text = "Start";
 				button_finish.Text = "Stop";
@@ -227,8 +265,9 @@ namespace HslCommunicationDemo.DemoControl
 			dataGridView1.Columns[1].Width = 120;
 			dataGridView1.Columns[2].Width = 100;
 			dataGridView1.Columns[3].Width = 280;
-			dataGridView1.Columns[4].Width = (dataGridView1.Width - 620 - 62) / 2;
-			dataGridView1.Columns[5].Width = (dataGridView1.Width - 620 - 62) / 2;
+			dataGridView1.Columns[4].Width = (dataGridView1.Width - 620 - 62 - 70) / 2; // 当前值
+			dataGridView1.Columns[5].Width = 70;
+			dataGridView1.Columns[6].Width = (dataGridView1.Width - 620 - 62 - 70) / 2; // 备注
 		}
 
 		public void SetReadWriteNet( IReadWriteNet readwtite ){
@@ -328,21 +367,29 @@ namespace HslCommunicationDemo.DemoControl
 						Type type = value.GetType( );
 
 						OperateResult writeResult = null;
-						if (type == typeof( bool )) writeResult = readWrite.Write( simulate.Address, (bool)value );
-						else if (type == typeof( bool[] )) writeResult = readWrite.Write( simulate.Address, (bool[])value );
-						else if (type == typeof( short )) writeResult = readWrite.Write( simulate.Address, (short)value );
-						else if (type == typeof( short[] )) writeResult = readWrite.Write( simulate.Address, (short[])value );
-						else if (type == typeof( byte )) writeResult = readWrite.Write( simulate.Address, new byte[] { (byte)value } );
-						else if (type == typeof( byte[] )) writeResult = readWrite.Write( simulate.Address, (byte[])value );
-						else if (type == typeof( int )) writeResult = readWrite.Write( simulate.Address, (int)value );
-						else if (type == typeof( int[] )) writeResult = readWrite.Write( simulate.Address, (int[])value );
-						else if (type == typeof( long )) writeResult = readWrite.Write( simulate.Address, (long)value );
-						else if (type == typeof( long[] )) writeResult = readWrite.Write( simulate.Address, (long[])value );
-						else if (type == typeof( float )) writeResult = readWrite.Write( simulate.Address, (float)value );
-						else if (type == typeof( float[] )) writeResult = readWrite.Write( simulate.Address, (float[])value );
-						else if (type == typeof( double )) writeResult = readWrite.Write( simulate.Address, (double)value );
+						if (type == typeof( bool ))          writeResult = readWrite.Write( simulate.Address, (bool)value );
+						else if (type == typeof( bool[] ))   writeResult = readWrite.Write( simulate.Address, (bool[])value );
+						else if (type == typeof( short ))    writeResult = readWrite.Write( simulate.Address, (short)value );
+						else if (type == typeof( short[] ))  writeResult = readWrite.Write( simulate.Address, (short[])value );
+						else if (type == typeof( byte ))     writeResult = readWrite.Write( simulate.Address, new byte[] { (byte)value } );
+						else if (type == typeof( byte[] ))   writeResult = readWrite.Write( simulate.Address, (byte[])value );
+						else if (type == typeof( int ))      writeResult = readWrite.Write( simulate.Address, (int)value );
+						else if (type == typeof( int[] ))    writeResult = readWrite.Write( simulate.Address, (int[])value );
+						else if (type == typeof( long ))     writeResult = readWrite.Write( simulate.Address, (long)value );
+						else if (type == typeof( long[] ))   writeResult = readWrite.Write( simulate.Address, (long[])value );
+						else if (type == typeof( float ))    writeResult = readWrite.Write( simulate.Address, (float)value );
+						else if (type == typeof( float[] ))  writeResult = readWrite.Write( simulate.Address, (float[])value );
+						else if (type == typeof( double ))   writeResult = readWrite.Write( simulate.Address, (double)value );
 						else if (type == typeof( double[] )) writeResult = readWrite.Write( simulate.Address, (double[])value );
-						else if (type == typeof( string )) writeResult = readWrite.Write( simulate.Address, (string)value );
+						else if (type == typeof( string ))
+						{
+							if (string.IsNullOrEmpty( simulate.Encoding )) writeResult = readWrite.Write( simulate.Address, (string)value );
+							else if (simulate.Encoding.Equals( "ASCII", StringComparison.OrdinalIgnoreCase )) writeResult = readWrite.Write( simulate.Address, (string)value, Encoding.ASCII );
+							else if (simulate.Encoding.Equals( "UTF16", StringComparison.OrdinalIgnoreCase )) writeResult = readWrite.Write( simulate.Address, (string)value, Encoding.Unicode );
+							else if (simulate.Encoding.Equals( "UTF8", StringComparison.OrdinalIgnoreCase )) writeResult = readWrite.Write( simulate.Address, (string)value, Encoding.UTF8 );
+							else if (simulate.Encoding.Equals( "GB2312", StringComparison.OrdinalIgnoreCase )) writeResult = readWrite.Write( simulate.Address, (string)value, Encoding.GetEncoding( "gb2312" ) );
+							else writeResult = readWrite.Write( simulate.Address, (string)value, Encoding.GetEncoding( simulate.Encoding ) );
+						}
 						else
 						{
 							Invoke( new Action( ( ) =>
@@ -441,7 +488,15 @@ namespace HslCommunicationDemo.DemoControl
 					else if (type == typeof( float[] )) writeResult = readWrite.Write( simulate.Address, (float[])value );
 					else if (type == typeof( double )) writeResult = readWrite.Write( simulate.Address, (double)value );
 					else if (type == typeof( double[] )) writeResult = readWrite.Write( simulate.Address, (double[])value );
-					else if (type == typeof( string )) writeResult = readWrite.Write( simulate.Address, (string)value );
+					else if (type == typeof( string ))
+					{
+						if (string.IsNullOrEmpty( simulate.Encoding )) writeResult = readWrite.Write( simulate.Address, (string)value );
+						else if (simulate.Encoding.Equals( "ASCII", StringComparison.OrdinalIgnoreCase )) writeResult = readWrite.Write( simulate.Address, (string)value, Encoding.ASCII );
+						else if (simulate.Encoding.Equals( "UTF16", StringComparison.OrdinalIgnoreCase )) writeResult = readWrite.Write( simulate.Address, (string)value, Encoding.Unicode );
+						else if (simulate.Encoding.Equals( "UTF8", StringComparison.OrdinalIgnoreCase )) writeResult = readWrite.Write( simulate.Address, (string)value, Encoding.UTF8 );
+						else if (simulate.Encoding.Equals( "GB2312", StringComparison.OrdinalIgnoreCase )) writeResult = readWrite.Write( simulate.Address, (string)value, Encoding.GetEncoding( "gb2312" ) );
+						else writeResult = readWrite.Write( simulate.Address, (string)value, Encoding.GetEncoding( simulate.Encoding ) );
+					}
 					else
 					{
 						DemoUtils.ShowMessage( $"Write address[{simulate.Address}] failed, type[{type.Name}] is not supported" );
@@ -481,11 +536,15 @@ namespace HslCommunicationDemo.DemoControl
 			simulateWrite.Address = dgvr.Cells[1].Value?.ToString( );
 			simulateWrite.Time = int.Parse( dgvr.Cells[2].Value?.ToString( ) );
 			simulateWrite.Express = dgvr.Cells[3].Value?.ToString( );
-			simulateWrite.Mark = dgvr.Cells[5].Value?.ToString( );
+			if (dgvr.Cells[5].Value != null)
+			{
+				simulateWrite.Encoding = dgvr.Cells[5].Value.ToString( );
+			}
+			simulateWrite.Mark = dgvr.Cells[6].Value?.ToString( );
 			return simulateWrite;
 		}
 
-		public void GetSimulateTable( XElement element )
+		public void GetSimulateTable( XElement element, bool clearEdit = true )
 		{
 			for (int i = 0; i < dataGridView1.Rows.Count; i++)
 			{
@@ -497,6 +556,8 @@ namespace HslCommunicationDemo.DemoControl
 				SimulateWrite dataTableItem = GetSimulateWrite( dgvr );
 				element.Add( dataTableItem.ToXmlElement( ) );
 			}
+
+			if (clearEdit) this.hasTableChanged = false;
 		}
 
 		private void AddRow( SimulateWrite item )
@@ -507,11 +568,13 @@ namespace HslCommunicationDemo.DemoControl
 			dgvr.Cells[1].Value = item.Address;
 			dgvr.Cells[2].Value = item.Time.ToString( );
 			dgvr.Cells[3].Value = item.Express;
-			dgvr.Cells[5].Value = item.Mark;
+			if (!string.IsNullOrEmpty( item.Encoding ))
+				dgvr.Cells[5].Value = item.Encoding;
+			dgvr.Cells[6].Value = item.Mark;
 			dgvr.Tag = item;
 		}
 
-		public int LoadSimulateTable( XElement element )
+		public int LoadSimulateTable( XElement element, bool loadSave = true )
 		{
 			int count = 0;
 			foreach (var item in element.Elements( nameof( SimulateWrite ) ))
@@ -522,6 +585,9 @@ namespace HslCommunicationDemo.DemoControl
 				AddRow( dataTableItem );
 				count++;
 			}
+
+			this.hasTableChanged = false;
+			if (loadSave) this.rowCountStart = count;
 			return count;
 		}
 
@@ -539,7 +605,12 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void button_clear_all_Click( object sender, EventArgs e )
 		{
+			int row = dataGridView1.Rows.Count;
 			DemoUtils.ClearDataGridView( dataGridView1 );
+
+			// 标记数据变更
+			if (dataGridView1.Rows.Count != row)
+				this.hasTableChanged = true;
 		}
 	}
 
@@ -563,6 +634,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		public DataGridViewRow Dgvr{ get; set; }
 
+		public string Encoding { get; set; }
 
 
 		public XElement ToXmlElement( )
@@ -573,16 +645,18 @@ namespace HslCommunicationDemo.DemoControl
 			element.SetAttributeValue( nameof( Time ), Time );
 			element.SetAttributeValue( nameof( Express ), Express );
 			element.SetAttributeValue( nameof( Mark ), Mark );
+			element.SetAttributeValue( nameof( Encoding ), Encoding );
 			return element;
 		}
 
 		public void LoadByXmlElement( XElement element )
 		{
-			this.Name    = DataTableItem.GetXmlValue( element, nameof( Name ),    Name,     m => m );
-			this.Address = DataTableItem.GetXmlValue( element, nameof( Address ), Address,  m => m );
-			this.Time    = DataTableItem.GetXmlValue( element, nameof( Time ),    Time,     int.Parse );
-			this.Express = DataTableItem.GetXmlValue( element, nameof( Express ), Express,  m => m );
-			this.Mark    = DataTableItem.GetXmlValue( element, nameof( Mark ),    Mark, m => m );
+			this.Name     = DataTableItem.GetXmlValue( element, nameof( Name ),     Name,     m => m );
+			this.Address  = DataTableItem.GetXmlValue( element, nameof( Address ),  Address,  m => m );
+			this.Time     = DataTableItem.GetXmlValue( element, nameof( Time ),     Time,     int.Parse );
+			this.Express  = DataTableItem.GetXmlValue( element, nameof( Express ),  Express,  m => m );
+			this.Mark     = DataTableItem.GetXmlValue( element, nameof( Mark ),     Mark,     m => m );
+			this.Encoding = DataTableItem.GetXmlValue( element, nameof( Encoding ), Encoding, m => m );
 		}
 
 	}

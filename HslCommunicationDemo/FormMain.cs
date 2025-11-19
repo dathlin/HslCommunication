@@ -165,7 +165,14 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "Certificate",      Properties.Resources.Certificate );       // 49
 			imageList.Images.Add( "Lock_white",       Properties.Resources.Lock_white );        // 50
 			imageList.Images.Add( "CSharpFile_SolutionExplorerNode", Properties.Resources.CSharpFile_SolutionExplorerNode );        // 51
-			imageList.Images.Add( "java", Properties.Resources.java1 );        // 52
+			imageList.Images.Add( "java",             Properties.Resources.java1 );             // 52
+			imageList.Images.Add( "ftp",              Properties.Resources.ftp );               // 53
+			imageList.Images.Add( "dlt",              Properties.Resources.dlt );               // 54
+			imageList.Images.Add( "open",             Properties.Resources.open );              // 55
+			imageList.Images.Add( "delixi",           Properties.Resources.delixi );            // 56
+			imageList.Images.Add( "cjt",              Properties.Resources.cjt );               // 57
+			imageList.Images.Add( "secs",             Properties.Resources.secs );              // 58
+			imageList.Images.Add( "hyundai",          Properties.Resources.hyundai );           // 59
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;
@@ -211,6 +218,8 @@ namespace HslCommunicationDemo
 
 		private void FormSelect_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			Program.Settings.ShowDeviceList = panelLeft.IsActivated;
+			Program.Settings.SaveFiles( );
 			mqttClient?.ConnectClose( );
 		}
 
@@ -239,7 +248,7 @@ namespace HslCommunicationDemo
 					// 有更新
 					Invoke( new Action( ( ) =>
 					{
-						bool tip = File.Exists( Path.Combine( Application.StartupPath, "newVersionIngored.txt" ) );
+						bool tip = Program.Settings.NewVersionIngored;
 						if (!tip)
 						{
 							using (FormNewVerison form = new FormNewVerison( ))
@@ -248,14 +257,8 @@ namespace HslCommunicationDemo
 								{
 									NewVersionToolStripMenuItem_Click( null, new EventArgs( ) );
 								}
-								if (form.NewVersionIngored)
-								{
-									File.WriteAllText( Path.Combine( Application.StartupPath, "newVersionIngored.txt" ), string.Empty, Encoding.UTF8 );
-								}
-								else
-								{
-									File.Delete( Path.Combine( Application.StartupPath, "newVersionIngored.txt" ) );
-								}
+								Program.Settings.NewVersionIngored = form.NewVersionIngored;
+								Program.Settings.SaveFiles( );
 							}
 						}
 						else
@@ -465,7 +468,7 @@ namespace HslCommunicationDemo
 
 		private void toolStripMenuItem_Doc_Click_1( object sender, EventArgs e )
 		{
-			OpenWebside( "http://www.hsltechnology.cn/Doc/HslCommunication" );
+			OpenWebside( "http://www.hsltechnology.cn:7900/Doc/HslCommunication" );
 		}
 
 		private void 简体中文ToolStripMenuItem_Click( object sender, EventArgs e )
@@ -510,7 +513,7 @@ namespace HslCommunicationDemo
 
 		private void ecologyToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			OpenWebside( "http://www.hsltechnology.cn/Home/Ecology" );
+			OpenWebside( "http://www.hsltechnology.cn:7900/Home/Ecology" );
 		}
 
 		private void toolStripMenuItem_ApiDoc_Click( object sender, EventArgs e )

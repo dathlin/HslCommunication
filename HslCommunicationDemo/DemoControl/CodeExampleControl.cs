@@ -82,7 +82,7 @@ namespace HslCommunicationDemo.DemoControl
 			return name.Substring( name.LastIndexOf( '.' ) + 1 );
 		}
 
-		private static void SetPropties( string iniName, StringBuilder stringBuilder, object obj, params string[] props )
+		internal static void SetPropties( string iniName, StringBuilder stringBuilder, object obj, params string[] props )
 		{
 			if (props != null && props.Length > 0)
 			{
@@ -460,7 +460,7 @@ namespace HslCommunicationDemo.DemoControl
 			return sb;
 		}
 
-		private static StringBuilder CreateFromObject( object obj, string deviceName )
+		internal static StringBuilder CreateFromObject( object obj, string deviceName )
 		{
 			string name = obj.GetType( ).FullName;
 			StringBuilder sb = new StringBuilder( );

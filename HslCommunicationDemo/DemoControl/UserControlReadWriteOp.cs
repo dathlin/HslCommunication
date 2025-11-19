@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
+using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HslCommunication.Core;
-using System.Reflection;
 using HslCommunication;
-using HslCommunication.LogNet;
-using System.Text.RegularExpressions;
-using System.Security.Policy;
-using System.Globalization;
+using HslCommunication.Core;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -347,9 +346,36 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			if (result.IsSuccess)
 			{
-				if (result.Content is Array)
+				if (result.Content is Array array)
 				{
-					AppendReadResult( textBox, $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat( result.Content )}" );
+					if (renderResult == 1)
+					{
+						StringBuilder stringBuilder = new StringBuilder( );
+						stringBuilder.Append( $"[{address}] [" );
+						for(int i = 0; i < array.Length; i++)
+						{
+							stringBuilder.Append( $"0x{array.GetValue( i ):X}" );
+							if (i < array.Length - 1) stringBuilder.Append( "," );
+						}
+						stringBuilder.Append( "]" );
+						AppendReadResult( textBox, stringBuilder.ToString( ) );
+					}
+					else if (renderResult == 2)
+					{
+						StringBuilder stringBuilder = new StringBuilder( );
+						stringBuilder.Append( $"[{address}] [" );
+						for (int i = 0; i < array.Length; i++)
+						{
+							stringBuilder.Append( GetBoolArrayRenderString( array.GetValue( i ) ) );
+							if (i < array.Length - 1) stringBuilder.Append( "," );
+						}
+						stringBuilder.Append( "]" );
+						AppendReadResult( textBox, stringBuilder.ToString( ) );
+					}
+					else
+					{
+						AppendReadResult( textBox, $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat( result.Content )}" );
+					}
 				}
 				else
 				{
@@ -357,31 +383,7 @@ namespace HslCommunicationDemo.DemoControl
 						AppendReadResult( textBox, $"[{address}] 0x{result.Content:X}" );
 					else if (renderResult == 2)
 					{
-						Type type = result.Content.GetType( );
-						byte[] buffer = null;
-						if (type == typeof( byte ))      buffer = new byte[] { (byte)(object)result.Content };
-						else if (type == typeof(short))  buffer = BitConverter.GetBytes( (short)(object)result.Content );
-						else if (type == typeof(ushort)) buffer = BitConverter.GetBytes( (ushort)(object)result.Content );
-						else if (type == typeof(int))    buffer = BitConverter.GetBytes( (int)(object)result.Content );
-						else if (type == typeof(uint))   buffer = BitConverter.GetBytes( (uint)(object)result.Content );
-						else if (type == typeof(long))   buffer = BitConverter.GetBytes( (long)(object)result.Content );
-						else if (type == typeof(ulong))  buffer = BitConverter.GetBytes( (ulong)(object)result.Content );
-						else if (type == typeof(float))  buffer = BitConverter.GetBytes( (float)(object)result.Content );
-						else if (type == typeof(double)) buffer = BitConverter.GetBytes( (double)(object)result.Content );
-
-						if (buffer == null)
-							AppendReadResult( textBox, $"[{address}] {result.Content}" );
-						else
-						{
-							StringBuilder stringBuilder = new StringBuilder( );
-							bool[] bools = HslCommunication.BasicFramework.SoftBasic.ByteToBoolArray( buffer );
-							for (int i = 0; i < bools.Length; i++)
-							{
-								if (i != 0 && i % 8 == 0) stringBuilder.Append( " " );
-								stringBuilder.Append( bools[i] ? '1' : '0' );
-							}
-							AppendReadResult( textBox, $"[{address}] {stringBuilder}" );
-						}
+						AppendReadResult( textBox, $"[{address}] {GetBoolArrayRenderString(result.Content)}" );
 					}
 					else
 						AppendReadResult( textBox, $"[{address}] {result.Content}" );
@@ -390,6 +392,35 @@ namespace HslCommunicationDemo.DemoControl
 			else
 			{
 				DemoUtils.ShowMessage( DemoUtils.GetRenderTimeText( ) + $"[{address}] Read Failed {Environment.NewLine}Reason：{result.ToMessageShowString( )}" );
+			}
+		}
+
+		private string GetBoolArrayRenderString<T>( T value )
+		{
+			Type type = value.GetType( );
+			byte[] buffer = null;
+			if (type == typeof( byte ))          buffer = new byte[] { (byte)(object)value };
+			else if (type == typeof( short ))    buffer = BitConverter.GetBytes( (short)(object)value );
+			else if (type == typeof( ushort ))   buffer = BitConverter.GetBytes( (ushort)(object)value );
+			else if (type == typeof( int ))      buffer = BitConverter.GetBytes( (int)(object)value );
+			else if (type == typeof( uint ))     buffer = BitConverter.GetBytes( (uint)(object)value );
+			else if (type == typeof( long ))     buffer = BitConverter.GetBytes( (long)(object)value );
+			else if (type == typeof( ulong ))    buffer = BitConverter.GetBytes( (ulong)(object)value );
+			else if (type == typeof( float ))    buffer = BitConverter.GetBytes( (float)(object)value );
+			else if (type == typeof( double ))   buffer = BitConverter.GetBytes( (double)(object)value );
+
+			if (buffer == null)
+				return $"{value}";
+			else
+			{
+				StringBuilder stringBuilder = new StringBuilder( );
+				bool[] bools = HslCommunication.BasicFramework.SoftBasic.ByteToBoolArray( buffer );
+				for (int i = 0; i < bools.Length; i++)
+				{
+					if (i != 0 && i % 8 == 0) stringBuilder.Append( " " );
+					stringBuilder.Append( bools[i] ? '1' : '0' );
+				}
+				return stringBuilder.ToString( );
 			}
 		}
 
@@ -445,7 +476,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				RenderReadResult( DateTime.Now, readWriteNet.Read( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+				RenderReadResult( DateTime.Now, readWriteNet.Read( textBox3.Text, ushort.Parse( textBox5.Text ) ), renderResult: getRenderResult( ) );
 				GetReadCode( textBox3.Text, "OperateResult<byte[]> read = @deviceName.Read( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 			}
 
@@ -465,7 +496,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<short[]> read = @deviceName.ReadInt16( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 				button_read_short.Enabled = true;
@@ -479,7 +510,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadInt16( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt16( textBox3.Text, ushort.Parse( textBox5.Text ) ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<short[]> read = @deviceName.ReadInt16( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 			}
@@ -500,7 +531,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt16Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<ushort[]> read = @deviceName.ReadUInt16( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 				button_read_ushort.Enabled = true;
@@ -514,7 +545,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt16( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt16( textBox3.Text, ushort.Parse( textBox5.Text ) ) , renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<ushort[]> read = @deviceName.ReadUInt16( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 			}
@@ -535,7 +566,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) , renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<int[]> read = @deviceName.ReadInt32( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 				button_read_int.Enabled = true;
@@ -549,7 +580,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadInt32( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt32( textBox3.Text, ushort.Parse( textBox5.Text ) ) , renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<int[]> read = @deviceName.ReadInt32( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 			}
@@ -570,7 +601,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt32Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<uint[]> read = @deviceName.ReadUInt32( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 				button_read_uint.Enabled = true;
@@ -584,7 +615,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt32( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt32( textBox3.Text, ushort.Parse( textBox5.Text ) ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<uint[]> read = @deviceName.ReadUInt32( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 			}
@@ -605,7 +636,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<long[]> read = @deviceName.ReadInt64( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 				button_read_long.Enabled = true;
@@ -619,7 +650,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadInt64( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadInt64( textBox3.Text, ushort.Parse( textBox5.Text ) ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<long[]> read = @deviceName.ReadInt64( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 			}
@@ -640,7 +671,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadUInt64Async( textBox3.Text, ushort.Parse( textBox5.Text ) ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<ulong[]> read = @deviceName.ReadUInt64( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 				button_read_ulong.Enabled = true;
@@ -654,7 +685,7 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt64( textBox3.Text, ushort.Parse( textBox5.Text ) ) );
+					RenderReadResult( DateTime.Now, readWriteNet.ReadUInt64( textBox3.Text, ushort.Parse( textBox5.Text ) ), renderResult: getRenderResult( ) );
 					GetReadCode( textBox3.Text, "OperateResult<ulong[]> read = @deviceName.ReadUInt64( \"" + textBox3.Text + "\", " + textBox5.Text + " );", isArray: true );
 				}
 			}

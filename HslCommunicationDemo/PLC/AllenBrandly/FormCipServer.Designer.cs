@@ -66,6 +66,7 @@
 			this.serverSettingControl1.TabIndex = 32;
 			this.serverSettingControl1.TextPort = "44818";
 			this.serverSettingControl1.TextSerialInfo = "COM4-9600-8-N-1";
+			this.serverSettingControl1.Load += new System.EventHandler(this.serverSettingControl1_Load);
 			// 
 			// sslServerControl1
 			// 
@@ -119,11 +120,10 @@
 			this.label2.ForeColor = System.Drawing.Color.Green;
 			this.label2.Location = new System.Drawing.Point(5, 5);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(869, 17);
+			this.label2.Size = new System.Drawing.Size(841, 17);
 			this.label2.TabIndex = 18;
-			this.label2.Text = "预设地址：   A short ; A1  float[2000]  ;  B int ;  C   float ;     D  short[2000];   " +
-    "  E  bool;     F  string ;  G  sting[5];   AB.C  short[5];   M  uint[4];  N   lo" +
-    "ng";
+			this.label2.Text = "预设地址：   A short ; A1  float[30]  ;  B int ;  C   float ;     D  short[20];     E " +
+    " bool;     F  string ;  G  sting[5];   AB.C  short[5];   M  uint[4];  N   long";
 			// 
 			// userControlHead1
 			// 

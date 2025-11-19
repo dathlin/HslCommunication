@@ -343,6 +343,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap cjt {
+            get {
+                object obj = ResourceManager.GetObject("cjt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Class_489 {
             get {
                 object obj = ResourceManager.GetObject("Class_489", resourceCulture);
@@ -493,6 +503,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap delixi {
+            get {
+                object obj = ResourceManager.GetObject("delixi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap delta {
             get {
                 object obj = ResourceManager.GetObject("delta", resourceCulture);
@@ -526,6 +546,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap dll {
             get {
                 object obj = ResourceManager.GetObject("dll", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap dlt {
+            get {
+                object obj = ResourceManager.GetObject("dlt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -723,6 +753,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap ftp {
+            get {
+                object obj = ResourceManager.GetObject("ftp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap fujifilm {
             get {
                 object obj = ResourceManager.GetObject("fujifilm", resourceCulture);
@@ -846,6 +886,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap http {
             get {
                 object obj = ResourceManager.GetObject("http", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap hyundai {
+            get {
+                object obj = ResourceManager.GetObject("hyundai", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1323,6 +1373,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap open {
+            get {
+                object obj = ResourceManager.GetObject("open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap panasonic {
             get {
                 object obj = ResourceManager.GetObject("panasonic", resourceCulture);
@@ -1556,6 +1616,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap schneider {
             get {
                 object obj = ResourceManager.GetObject("schneider", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap secs {
+            get {
+                object obj = ResourceManager.GetObject("secs", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

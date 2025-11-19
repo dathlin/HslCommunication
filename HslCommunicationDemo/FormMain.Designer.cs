@@ -357,7 +357,7 @@
 			// dockPanel1
 			// 
 			this.dockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dockPanel1.DockLeftPortion = 225D;
+			this.dockPanel1.DockLeftPortion = 235D;
 			this.dockPanel1.Location = new System.Drawing.Point(0, 25);
 			this.dockPanel1.Name = "dockPanel1";
 			this.dockPanel1.Size = new System.Drawing.Size(1240, 691);

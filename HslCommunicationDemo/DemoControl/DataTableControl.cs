@@ -45,7 +45,30 @@ namespace HslCommunicationDemo.DemoControl
 			this.rowDeleteToolStripMenuItem.Click +=RowDeleteToolStripMenuItem_Click;
 			this.toCsvClipToolStripMenuItem.Click +=ToCsvClipToolStripMenuItem_Click;
 			this.fromClipCsvToolStripMenuItem.Click += FromClipCsvToolStripMenuItem_Click;
+
+			this.dataGridView1.CellEndEdit += DataGridView1_CellEndEdit;
 		}
+
+		private void DataGridView1_CellEndEdit( object sender, DataGridViewCellEventArgs e )
+		{
+			// 当编辑了cell之后，就触发这个变更，直到点击保存为止
+			this.hasTableChanged = true;
+		}
+
+		private bool hasTableChanged = false;
+		private int rowCountStart = 0;
+
+		public bool HasTableChanged( )
+		{
+			// 如果一开始空的，后面又清空了，则不进行提示
+			if (this.rowCountStart == 0) 
+			{
+				if(this.dataGridView1.Rows.Count == 0) return false;
+				if (this.dataGridView1.Rows.Count == 1 && this.dataGridView1.Rows[0].IsNewRow) return false;
+			}
+			return hasTableChanged;
+		}
+
 
 
 		private void RowDeleteToolStripMenuItem_Click( object sender, EventArgs e )
@@ -71,6 +94,9 @@ namespace HslCommunicationDemo.DemoControl
 						if (rows[i].IsNewRow == false) dataGridView1.Rows.Remove( rows[i] );
 					}
 				}
+
+				// 标记数据变更
+				this.hasTableChanged = true;
 			}
 			else
 			{
@@ -87,6 +113,9 @@ namespace HslCommunicationDemo.DemoControl
 						// 确认删除这些行
 						dataGridView1.Rows.Remove( dataGridView1.Rows[cell.RowIndex] );
 					}
+
+					// 标记数据变更
+					this.hasTableChanged = true;
 				}
 			}
 		}
@@ -520,7 +549,7 @@ namespace HslCommunicationDemo.DemoControl
 			return dataTableItem;
 		}
 
-		public void GetDataTable( XElement element )
+		public void GetDataTable( XElement element, bool clearEdit = true )
 		{
 			element.SetAttributeValue( "Interval", textBox_time.Text );
 			if (!string.IsNullOrWhiteSpace( textBox_sleep_time.Text ))
@@ -535,6 +564,8 @@ namespace HslCommunicationDemo.DemoControl
 				DataTableItem dataTableItem = GetDataTableItem( dgvr );
 				element.Add( dataTableItem.ToXmlElement( ) );
 			}
+
+			if (clearEdit) this.hasTableChanged = false;
 		}
 
 		private void AddRow( DataTableItem dataTableItem )
@@ -567,7 +598,7 @@ namespace HslCommunicationDemo.DemoControl
 			dgvr.Tag = dataTableItem;
 		}
 
-		public int LoadDataTable( XElement element )
+		public int LoadDataTable( XElement element, bool loadSave = true )
 		{
 			XAttribute attribute = element.Attribute( "Interval" );
 			if (attribute != null)
@@ -587,6 +618,7 @@ namespace HslCommunicationDemo.DemoControl
 				AddRow( dataTableItem );
 				count++;
 			}
+			if (loadSave) this.rowCountStart = count;
 			return count;
 		}
 
@@ -818,7 +850,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			// 导出到clip
 			XElement element = new XElement( "DataTable" );
-			GetDataTable( element );
+			GetDataTable( element, clearEdit: false );
 			Clipboard.SetText( element.ToString( ) );
 			DemoUtils.ShowMessage( "Save success!" );
 		}
@@ -828,7 +860,10 @@ namespace HslCommunicationDemo.DemoControl
 			try
 			{
 				XElement element = XElement.Parse( Clipboard.GetText( ) );
-				LoadDataTable( element );
+				LoadDataTable( element, loadSave: false );
+
+				// 标记数据变更
+				this.hasTableChanged = true;
 			}
 			catch( Exception ex )
 			{
@@ -844,7 +879,7 @@ namespace HslCommunicationDemo.DemoControl
 				if (sfd.ShowDialog( ) == DialogResult.OK)
 				{
 					XElement element = new XElement( "DataTable" );
-					GetDataTable( element );
+					GetDataTable( element, clearEdit: false );
 
 					element.Save( sfd.FileName );
 					DemoUtils.ShowMessage( "Save success!" );
@@ -896,6 +931,9 @@ namespace HslCommunicationDemo.DemoControl
 					AddRow( dataTableItem );
 					count++;
 				}
+
+				// 标记数据变更
+				this.hasTableChanged = true;
 				DemoUtils.ShowMessage( $"Import {count} rows success!" );
 			}
 			catch (Exception ex)
@@ -916,7 +954,10 @@ namespace HslCommunicationDemo.DemoControl
 						try
 						{
 							XElement element = XElement.Parse( File.ReadAllText( ofd.FileName, Encoding.UTF8 ) ) ;
-							LoadDataTable( element );
+							LoadDataTable( element, loadSave: false );
+
+							// 标记数据变更
+							this.hasTableChanged = true;
 						}
 						catch (Exception ex)
 						{
@@ -1034,7 +1075,12 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void button_clear_all_Click( object sender, EventArgs e )
 		{
+			int row = dataGridView1.Rows.Count;
 			DemoUtils.ClearDataGridView( dataGridView1 );
+
+			// 标记数据变更
+			if (dataGridView1.Rows.Count != row)
+				this.hasTableChanged = true;
 		}
 	}
 }

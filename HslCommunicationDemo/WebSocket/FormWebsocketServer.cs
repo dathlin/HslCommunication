@@ -20,6 +20,16 @@ namespace HslCommunicationDemo
 		public FormWebsocketServer( )
 		{
 			InitializeComponent( );
+
+			checkBox4.CheckedChanged +=CheckBox4_CheckedChanged;
+		}
+
+		private void CheckBox4_CheckedChanged( object sender, EventArgs e )
+		{
+			if (wsServer != null)
+			{
+				wsServer.DataCompress = checkBox4.Checked;
+			}
 		}
 
 		private void FormClient_Load( object sender, EventArgs e )
@@ -88,7 +98,7 @@ namespace HslCommunicationDemo
 				checkBox_willcard.Text = "Topic willcard?";
 				button6.Text = "Broadcast";
 				button7.Text = "Stop";
-
+				checkBox4.Text = "DataCompress";
 			}
 		}
 
@@ -108,6 +118,7 @@ namespace HslCommunicationDemo
 				wsServer.OnClientConnected += WsServer_OnClientConnected;
 
 				wsServer.IsTopicRetain = checkBox2.Checked;
+				wsServer.DataCompress = checkBox4.Checked;
 
 				if (checkBox_ssl.Checked)
 				{
@@ -125,6 +136,7 @@ namespace HslCommunicationDemo
 				StringBuilder stringBuilder = new StringBuilder( );
 				stringBuilder.AppendLine( "WebSocketServer wsServer = new WebSocketServer( );" );
 				stringBuilder.AppendLine( $"wsServer.IsTopicRetain = {checkBox2.Checked};" );
+				if (wsServer.DataCompress) stringBuilder.AppendLine( $"wsServer.DataCompress = true;" );
 				if (checkBox_ssl.Checked)
 				{
 					stringBuilder.AppendLine( $"wsServer.UseSSL( \"{textBox_certFile.Text}\", \"{textBox_ssl_password.Text}\" );" );
@@ -347,6 +359,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlTagCache, checkBox2.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlRetureMessage, checkBox3.Checked );
+			element.SetAttributeValue( nameof( WebSocketServer.DataCompress ), checkBox4.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -355,6 +368,7 @@ namespace HslCommunicationDemo
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			checkBox2.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlTagCache ).Value );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRetureMessage ).Value );
+			checkBox4.Checked = GetXmlValue( element, nameof( WebSocketServer.DataCompress ), false, bool.Parse );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
