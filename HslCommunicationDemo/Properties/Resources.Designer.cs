@@ -173,6 +173,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap art {
+            get {
+                object obj = ResourceManager.GetObject("art", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap asc {
             get {
                 object obj = ResourceManager.GetObject("asc", resourceCulture);
@@ -2146,6 +2156,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap yokogawa {
             get {
                 object obj = ResourceManager.GetObject("yokogawa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap yudian {
+            get {
+                object obj = ResourceManager.GetObject("yudian", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

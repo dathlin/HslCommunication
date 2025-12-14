@@ -305,9 +305,9 @@
 			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.label5.ForeColor = System.Drawing.Color.Gray;
-			this.label5.Location = new System.Drawing.Point(745, 230);
+			this.label5.Location = new System.Drawing.Point(737, 230);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(97, 17);
+			this.label5.Size = new System.Drawing.Size(105, 17);
 			this.label5.TabIndex = 51;
 			this.label5.Text = "每行默认数量";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -316,7 +316,6 @@
 			// BatchReadControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.Controls.Add(this.label5);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.label_code);
 			this.Controls.Add(this.textBox_code);
@@ -340,6 +339,7 @@
 			this.Controls.Add(this.label_address);
 			this.Controls.Add(this.label_tips);
 			this.Controls.Add(this.checkBox_word_reverse);
+			this.Controls.Add(this.label5);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "BatchReadControl";
 			this.Size = new System.Drawing.Size(845, 318);

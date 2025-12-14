@@ -39,6 +39,7 @@ namespace HslCommunicationDemo
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
 
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			control = new HostLinkCModeControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -60,8 +61,6 @@ namespace HslCommunicationDemo
 				Text = "Omron Read PLC Demo";
 
 				label1.Text = "Station:";
-				button1.Text = "Open";
-				button2.Text = "Close";
 			}
 		}
 

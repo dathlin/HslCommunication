@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using HslCommunicationDemo.Control;
-using HslCommunication.LogNet;
-using HslCommunication.BasicFramework;
-using HslCommunication.Core.Security;
-using System.Security.Cryptography;
-using HslCommunicationDemo.DemoControl;
-using HslCommunication;
-using HslCommunication.Core.Device;
-using HslCommunication.Core.Pipe;
-using HslCommunication.Serial;
-using HslCommunication.Core.Net;
 using System.Xml;
+using System.Xml.Linq;
+using HslCommunication;
+using HslCommunication.BasicFramework;
+using HslCommunication.Core.Device;
+using HslCommunication.Core.Net;
+using HslCommunication.Core.Pipe;
+using HslCommunication.Core.Security;
+using HslCommunication.LogNet;
+using HslCommunication.Serial;
+using HslCommunicationDemo.Control;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -23,6 +24,7 @@ namespace HslCommunicationDemo
 	{
 		public HslFormContent( )
 		{
+			FormGuid = Guid.NewGuid( ).ToString( "N" );
 		}
 
 		protected override void OnLoad( EventArgs e )
@@ -53,7 +55,7 @@ namespace HslCommunicationDemo
 		/// <summary>
 		/// 当前窗体的唯一标识符
 		/// </summary>
-		public string FormGuid { get; set; }
+		public string FormGuid { get; private set; }
 
 		public virtual void SaveXmlParameter(XElement element )
 		{
@@ -232,35 +234,80 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		private string GetString( )
+		{
+			if (this.xElement == null) return string.Empty;
+			return this.Text;
+		}
 
 		protected OperateResult DeviceConnectPLC( DeviceTcpNet device )
 		{
+			OperateResult connect = null;
 			if (device.CommunicationPipe.GetType( ) == typeof( PipeDtuNet ))
 			{
-				return OperateResult.CreateSuccessResult( );
+				connect = OperateResult.CreateSuccessResult( );
 			}
 			else
-				return device.ConnectServer( );
+			{
+				connect = device.ConnectServer( );
+			}
+
+			if (connect.IsSuccess)
+			{
+				// 添加到全局的通信数组中去，方便使用
+				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device );
+			}
+			return connect;
+		}
+
+		protected override void OnClosed( EventArgs e )
+		{
+			// 移除全局的设备信息
+			DemoDevice.RemoveDevice( this.FormGuid );
+
+			base.OnClosed( e );
 		}
 
 		protected OperateResult DeviceConnectPLC( TcpNetCommunication device )
 		{
+			OperateResult connect = null;
 			if (device.CommunicationPipe.GetType( ) == typeof( PipeDtuNet ))
 			{
-				return OperateResult.CreateSuccessResult( );
+				connect = OperateResult.CreateSuccessResult( );
 			}
 			else
-				return device.ConnectServer( );
+			{
+				connect = device.ConnectServer( );
+			}
+
+			if (connect.IsSuccess)
+			{
+				// 添加到全局的通信数组中去，方便使用
+				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device );
+			}
+			return connect;
 		}
 
 		protected OperateResult DeviceConnectPLC( DeviceSerialPort device )
 		{
+			OperateResult connect = null;
 			if (device.CommunicationPipe.GetType( ) == typeof( PipeDtuNet ))
 			{
-				return OperateResult.CreateSuccessResult( );
+				connect = OperateResult.CreateSuccessResult( );
 			}
 			else
-				return device.Open( );
+			{
+				connect = device.Open( );
+			}
+
+
+			if (connect.IsSuccess)
+			{
+				// 添加到全局的通信数组中去，方便使用
+				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device );
+			}
+
+			return connect;
 		}
 		protected OperateResult DeviceConnectPLC( SerialBase device )
 		{
@@ -274,6 +321,8 @@ namespace HslCommunicationDemo
 
 		protected OperateResult DeviceConnectPLC( DeviceUdpNet device )
 		{
+			// 添加到全局的通信数组中去，方便使用
+			DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device );
 			return OperateResult.CreateSuccessResult( );
 		}
 

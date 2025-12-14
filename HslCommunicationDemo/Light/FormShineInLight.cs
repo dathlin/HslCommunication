@@ -24,6 +24,7 @@ namespace HslCommunicationDemo.Light
 		private void FormShineInLight_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 		}
 
 		private ShineInLightSourceController lightSourceController;

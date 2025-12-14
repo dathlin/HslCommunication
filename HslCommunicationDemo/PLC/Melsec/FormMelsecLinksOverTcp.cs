@@ -34,6 +34,7 @@ namespace HslCommunicationDemo
 		{
 			comboBox_format.SelectedIndex = 0;
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			control = new FxLinksControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -53,9 +54,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Melsec Read PLC Demo";
-
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				label21.Text = "Station:";
 				label22.Text = "TimeOut:";
 				checkBox1.Text = "SumCheck?";

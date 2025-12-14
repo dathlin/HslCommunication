@@ -33,6 +33,8 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
+
 			control = new DLT645Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 
@@ -52,8 +54,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "DLT645/1997 Read Demo";
 				label_address.Text = "station";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				textBox_password.Text = "Pwd:";
 				textBox_op_code.Text = "Op Code:";
 				checkBox_dataId.Text = "Check DataId";
@@ -76,7 +76,8 @@ namespace HslCommunicationDemo
 		private void button1_Click( object sender, EventArgs e )
 		{
 			dLT645?.ConnectClose( );
-			dLT645 = new DLT645With1997OverTcp( textBox_station.Text );
+			dLT645 = new DLT645With1997OverTcp( );
+			dLT645.Station = textBox_station.Text;
 			dLT645.LogNet = LogNet;
 			dLT645.EnableCodeFE = checkBox_enable_Fe.Checked;
 			dLT645.CheckDataId = checkBox_dataId.Checked;

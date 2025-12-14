@@ -28,8 +28,8 @@ namespace HslCommunicationDemo.PLC.Cimon
 
 		private void FormCimonHmiProtocol_Load( object sender, EventArgs e )
 		{
-
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Cimon.Helper.GetCimonAddress( ) );
@@ -46,9 +46,6 @@ namespace HslCommunicationDemo.PLC.Cimon
 			if (language == 2)
 			{
 				Text = "CimonHmiProtocol Read Demo";
-
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 		}
 

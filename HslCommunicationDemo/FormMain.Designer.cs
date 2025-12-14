@@ -44,9 +44,12 @@
 			this.pingTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_byteTransform = new System.Windows.Forms.ToolStripMenuItem();
 			this.regexRegularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.showMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.demoSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.formTopMostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.记住窗体位置及大小ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.testPanelSizeFixedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.退出软件显示确认ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.showMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_Help = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_HomePage = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_ApiDoc = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +83,7 @@
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_language,
             this.toolStripMenuItem_Debug,
+            this.demoSettingToolStripMenuItem,
             this.toolStripMenuItem_Help,
             this.verisonToolStripMenuItem,
             this.activeToolStripMenuItem,
@@ -132,10 +136,7 @@
             this.toolStripMenuItem_tcp2Tcp,
             this.pingTestToolStripMenuItem,
             this.toolStripMenuItem_byteTransform,
-            this.regexRegularToolStripMenuItem,
-            this.showMsToolStripMenuItem,
-            this.formTopMostToolStripMenuItem,
-            this.testPanelSizeFixedToolStripMenuItem});
+            this.regexRegularToolStripMenuItem});
 			this.toolStripMenuItem_Debug.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.toolStripMenuItem_Debug.Name = "toolStripMenuItem_Debug";
 			this.toolStripMenuItem_Debug.Size = new System.Drawing.Size(76, 21);
@@ -209,25 +210,53 @@
 			this.regexRegularToolStripMenuItem.Text = "RegexRegular";
 			this.regexRegularToolStripMenuItem.Click += new System.EventHandler(this.regexRegularToolStripMenuItem_Click);
 			// 
-			// showMsToolStripMenuItem
+			// demoSettingToolStripMenuItem
 			// 
-			this.showMsToolStripMenuItem.Name = "showMsToolStripMenuItem";
-			this.showMsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-			this.showMsToolStripMenuItem.Text = "读写时间显示毫秒";
+			this.demoSettingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.formTopMostToolStripMenuItem,
+            this.记住窗体位置及大小ToolStripMenuItem,
+            this.testPanelSizeFixedToolStripMenuItem,
+            this.退出软件显示确认ToolStripMenuItem,
+            this.showMsToolStripMenuItem});
+			this.demoSettingToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.demoSettingToolStripMenuItem.Name = "demoSettingToolStripMenuItem";
+			this.demoSettingToolStripMenuItem.Size = new System.Drawing.Size(75, 21);
+			this.demoSettingToolStripMenuItem.Text = "Setting(&S)";
 			// 
 			// formTopMostToolStripMenuItem
 			// 
 			this.formTopMostToolStripMenuItem.Name = "formTopMostToolStripMenuItem";
-			this.formTopMostToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.formTopMostToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
 			this.formTopMostToolStripMenuItem.Text = "窗体置顶";
 			this.formTopMostToolStripMenuItem.Click += new System.EventHandler(this.formTopMostToolStripMenuItem_Click);
+			// 
+			// 记住窗体位置及大小ToolStripMenuItem
+			// 
+			this.记住窗体位置及大小ToolStripMenuItem.Name = "记住窗体位置及大小ToolStripMenuItem";
+			this.记住窗体位置及大小ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+			this.记住窗体位置及大小ToolStripMenuItem.Text = "记住窗体位置及大小";
+			this.记住窗体位置及大小ToolStripMenuItem.Click += new System.EventHandler(this.记住窗体位置及大小ToolStripMenuItem_Click);
 			// 
 			// testPanelSizeFixedToolStripMenuItem
 			// 
 			this.testPanelSizeFixedToolStripMenuItem.Name = "testPanelSizeFixedToolStripMenuItem";
-			this.testPanelSizeFixedToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.testPanelSizeFixedToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
 			this.testPanelSizeFixedToolStripMenuItem.Text = "测试界面大小固定";
 			this.testPanelSizeFixedToolStripMenuItem.Click += new System.EventHandler(this.testPanelSizeFixedToolStripMenuItem_Click);
+			// 
+			// 退出软件显示确认ToolStripMenuItem
+			// 
+			this.退出软件显示确认ToolStripMenuItem.Name = "退出软件显示确认ToolStripMenuItem";
+			this.退出软件显示确认ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+			this.退出软件显示确认ToolStripMenuItem.Text = "退出软件显示确认";
+			this.退出软件显示确认ToolStripMenuItem.Click += new System.EventHandler(this.退出软件显示确认ToolStripMenuItem_Click);
+			// 
+			// showMsToolStripMenuItem
+			// 
+			this.showMsToolStripMenuItem.Name = "showMsToolStripMenuItem";
+			this.showMsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+			this.showMsToolStripMenuItem.Text = "读写时间显示毫秒";
+			this.showMsToolStripMenuItem.Click += new System.EventHandler(this.ShowMsToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem_Help
 			// 
@@ -478,12 +507,15 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_byteTransform;
 		private System.Windows.Forms.ToolStripMenuItem regexRegularToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem ecologyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem showMsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem formTopMostToolStripMenuItem;
         private System.Windows.Forms.Label label_account;
-		private System.Windows.Forms.ToolStripMenuItem testPanelSizeFixedToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem pingTestToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem lockToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem demoSettingToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem formTopMostToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 记住窗体位置及大小ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem testPanelSizeFixedToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 退出软件显示确认ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem showMsToolStripMenuItem;
 	}
 }
 

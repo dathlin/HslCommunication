@@ -34,6 +34,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetMCAddressExamples( ) );
@@ -49,8 +50,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Panasonic Read PLC Demo";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 		}
 

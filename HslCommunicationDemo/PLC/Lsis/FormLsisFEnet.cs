@@ -34,6 +34,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			cboxModel.DataSource = Enum.GetNames( typeof( LSCpuInfo ) );
 			cboxCompanyID.SelectedIndex = 0;
@@ -53,10 +54,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Lsis Read PLC Demo";
-			   
-
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 
 			}
 		}

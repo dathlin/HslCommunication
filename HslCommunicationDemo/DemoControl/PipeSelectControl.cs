@@ -65,11 +65,12 @@ namespace HslCommunicationDemo.DemoControl
 
 			checkBox_dtu_back.CheckedChanged += CheckBox_dtu_back_CheckedChanged;
 		}
+
 		private void ComboBox_pipe_select_SelectedIndexChanged( object sender, EventArgs e )
 		{
-			switch(comboBox_pipe_select.SelectedIndex)
+			switch (comboBox_pipe_select.SelectedIndex)
 			{
-				case 0: SetVisible( SettingPipe.TcpPipe );break;
+				case 0: SetVisible( SettingPipe.TcpPipe ); break;
 				case 1: SetVisible( SettingPipe.UdpPipe ); break;
 				case 2: SetVisible( SettingPipe.SerialPipe ); break;
 				case 3: SetVisible( SettingPipe.MqttPipe ); break;
@@ -77,6 +78,47 @@ namespace HslCommunicationDemo.DemoControl
 				case 5: SetVisible( SettingPipe.DTU ); break;
 				case 6: SetVisible( SettingPipe.MoxaCom ); break;
 				case 7: SetVisible( SettingPipe.Debug ); break;
+			}
+
+			UpdateButtonText( );
+
+		}
+
+		private void UpdateButtonText( )
+		{
+			if (button_connect != null && button_close != null)
+			{
+				switch (comboBox_pipe_select.SelectedIndex)
+				{
+					case 0:
+					case 3:
+					case 4:
+					case 7:
+						{
+							button_connect.Text = Program.Language == 1 ? "连接" : "Connect";
+							button_close.Text = Program.Language == 1 ? "断开连接" : "Disconnect";
+							break;
+						}
+					case 1:
+						{
+							button_connect.Text = Program.Language == 1 ? "创建Udp" : "CreateUdp";
+							button_close.Text = Program.Language == 1 ? "关闭" : "Close";
+							break;
+						}
+					case 2:
+					case 6:
+						{
+							button_connect.Text = Program.Language == 1 ? "打开串口" : "Open Com";
+							button_close.Text = Program.Language == 1 ? "关闭串口" : "Close Com";
+							break;
+						}
+					case 5:
+						{
+							button_connect.Text = Program.Language == 1 ? "启动DTU" : "Start DTU";
+							button_close.Text = Program.Language == 1 ? "关闭DTU" : "Close DTU";
+							break;
+						}
+				}
 			}
 		}
 
@@ -106,6 +148,27 @@ namespace HslCommunicationDemo.DemoControl
 				checkBox_dtu_back.Text = "Back MSG?";
 			}
 		}
+
+
+		#region Button Set
+
+		/// <summary>
+		/// 设置连接按钮和关闭按钮的引用信息
+		/// </summary>
+		/// <param name="button_connect"></param>
+		/// <param name="button_close"></param>
+		public void SetButtonReference( Button button_connect, Button button_close )
+		{
+			this.button_connect = button_connect;
+			this.button_close = button_close;
+
+			UpdateButtonText( );
+		}
+
+		private Button button_connect;
+		private Button button_close;
+
+		#endregion
 
 
 		#region XML Save

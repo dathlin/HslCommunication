@@ -74,8 +74,8 @@
     <Reference Include="DynamicExpresso.Core, Version=2.19.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicExpresso.Core.2.19.3\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.5.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.5.3\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.6.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.6.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
@@ -269,6 +269,12 @@
     <Compile Include="DemoControl\FormPropertyModify.Designer.cs">
       <DependentUpon>FormPropertyModify.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoControl\FormRunDeviceSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormRunDeviceSelect.Designer.cs">
+      <DependentUpon>FormRunDeviceSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\FormSaveList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -341,6 +347,7 @@
     <Compile Include="DemoControl\UserControlReadWriteServer.Designer.cs">
       <DependentUpon>UserControlReadWriteServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoDevice.cs" />
     <Compile Include="DemoDeviceList.cs" />
     <Compile Include="DemoSettings.cs" />
     <Compile Include="DemoUtils.cs" />
@@ -361,6 +368,12 @@
     </Compile>
     <Compile Include="FormByteTransfer.Designer.cs">
       <DependentUpon>FormByteTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDemoSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDemoSetting.Designer.cs">
+      <DependentUpon>FormDemoSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="FormIndex.cs">
       <SubType>Form</SubType>
@@ -513,6 +526,12 @@
     </Compile>
     <Compile Include="Instrument\FormCJT188.Designer.cs">
       <DependentUpon>FormCJT188.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instrument\FormYuDianAIBus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrument\FormYuDianAIBus.Designer.cs">
+      <DependentUpon>FormYuDianAIBus.cs</DependentUpon>
     </Compile>
     <Compile Include="Instrument\FormDLT645With1997Server.cs">
       <SubType>Form</SubType>
@@ -831,6 +850,12 @@
     <Compile Include="PLC\Melsec\Helper.cs" />
     <Compile Include="PLC\Omron\FinsTcpControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\Inovance\FormInovanceLinks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Inovance\FormInovanceLinks.Designer.cs">
+      <DependentUpon>FormInovanceLinks.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Omron\FormOmronCipServer.cs">
       <SubType>Form</SubType>
@@ -2139,6 +2164,9 @@
     <EmbeddedResource Include="DemoControl\FormPropertyModify.resx">
       <DependentUpon>FormPropertyModify.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormRunDeviceSelect.resx">
+      <DependentUpon>FormRunDeviceSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormSaveList.resx">
       <DependentUpon>FormSaveList.cs</DependentUpon>
     </EmbeddedResource>
@@ -2186,6 +2214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormByteTransfer.resx">
       <DependentUpon>FormByteTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDemoSetting.resx">
+      <DependentUpon>FormDemoSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormIndex.resx">
       <DependentUpon>FormIndex.cs</DependentUpon>
@@ -2264,6 +2295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormCJT188.resx">
       <DependentUpon>FormCJT188.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrument\FormYuDianAIBus.resx">
+      <DependentUpon>FormYuDianAIBus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Instrument\FormDLT645With1997Server.resx">
       <DependentUpon>FormDLT645With1997Server.cs</DependentUpon>
@@ -2426,6 +2460,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Omron\FinsTcpControl.resx">
       <DependentUpon>FinsTcpControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Inovance\FormInovanceLinks.resx">
+      <DependentUpon>FormInovanceLinks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Omron\FormOmronCipServer.resx">
       <DependentUpon>FormOmronCipServer.cs</DependentUpon>
@@ -3069,6 +3106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
+    <None Include="img\yudian.png" />
     <None Include="img\zset.png" />
     <None Include="img\rkc.png" />
     <None Include="img\vigor.png" />
@@ -3111,6 +3149,7 @@
     <None Include="img\cjt.png" />
     <None Include="img\secs.png" />
     <None Include="img\hyundai.png" />
+    <None Include="img\art.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

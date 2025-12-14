@@ -53,14 +53,21 @@
 			this.textBox_ip_start = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel_main = new System.Windows.Forms.Panel();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.panel3 = new System.Windows.Forms.Panel();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel_main.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// userControlHead1
@@ -312,25 +319,42 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel_main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel_main.Controls.Add(this.panel2);
-			this.panel_main.Controls.Add(this.textBox2);
+			this.panel_main.Controls.Add(this.splitContainer1);
 			this.panel_main.Controls.Add(this.label3);
 			this.panel_main.Location = new System.Drawing.Point(3, 98);
 			this.panel_main.Name = "panel_main";
 			this.panel_main.Size = new System.Drawing.Size(998, 536);
 			this.panel_main.TabIndex = 24;
 			// 
-			// panel2
+			// splitContainer1
 			// 
-			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.splitContainer1.Location = new System.Drawing.Point(2, 22);
+			this.splitContainer1.Name = "splitContainer1";
+			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.panel2);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.panel3);
+			this.splitContainer1.Size = new System.Drawing.Size(995, 509);
+			this.splitContainer1.SplitterDistance = 351;
+			this.splitContainer1.TabIndex = 4;
+			// 
+			// panel2
+			// 
 			this.panel2.AutoScroll = true;
 			this.panel2.BackColor = System.Drawing.Color.White;
 			this.panel2.Controls.Add(this.pictureBox1);
-			this.panel2.Location = new System.Drawing.Point(0, 22);
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(996, 294);
+			this.panel2.Size = new System.Drawing.Size(995, 351);
 			this.panel2.TabIndex = 3;
 			this.panel2.Resize += new System.EventHandler(this.panel2_Resize);
 			// 
@@ -341,20 +365,28 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox1.Location = new System.Drawing.Point(0, 0);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(995, 291);
+			this.pictureBox1.Size = new System.Drawing.Size(994, 348);
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
 			// 
+			// panel3
+			// 
+			this.panel3.Controls.Add(this.textBox2);
+			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel3.Location = new System.Drawing.Point(0, 0);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(995, 154);
+			this.panel3.TabIndex = 0;
+			// 
 			// textBox2
 			// 
-			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox2.Location = new System.Drawing.Point(3, 322);
+			this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.textBox2.Location = new System.Drawing.Point(0, 0);
 			this.textBox2.Multiline = true;
 			this.textBox2.Name = "textBox2";
 			this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox2.Size = new System.Drawing.Size(986, 209);
+			this.textBox2.Size = new System.Drawing.Size(995, 154);
 			this.textBox2.TabIndex = 2;
 			// 
 			// label3
@@ -382,8 +414,14 @@
 			this.panel1.PerformLayout();
 			this.panel_main.ResumeLayout(false);
 			this.panel_main.PerformLayout();
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -419,5 +457,7 @@
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.Panel panel3;
 	}
 }

@@ -35,7 +35,9 @@ namespace HslCommunicationDemo
 		{
 			control = new DLT698Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
+
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 
 			addressExampleControl = new AddressExampleControl( );
@@ -56,8 +58,6 @@ namespace HslCommunicationDemo
 
 				label_ca.Text = "        CA:";
 				label_address.Text = "station";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 		}
 

@@ -37,6 +37,7 @@ namespace HslCommunicationDemo.PLC.Omron
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
 
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( Helper.GetOmronAddressExamples( ) );
@@ -58,8 +59,6 @@ namespace HslCommunicationDemo.PLC.Omron
 				label23.Text = "PC Net Num";
 
 				label1.Text = "Station:";
-				button1.Text = "Open";
-				button2.Text = "Close";
 			}
 		}
 

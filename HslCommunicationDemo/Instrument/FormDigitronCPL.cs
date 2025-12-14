@@ -35,6 +35,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.Instrument.CPLHelper.GetCPLAddress( ) );
@@ -53,8 +54,6 @@ namespace HslCommunicationDemo
 				Text = "Yamatake CPL DigitronIK Read Demo";
 
 				label1.Text = "Station:";
-				button1.Text = "Open";
-				button2.Text = "Close";
 			}
 		}
 

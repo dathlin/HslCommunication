@@ -26,8 +26,6 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 			Form = this;
 			logNet = new LogNetSingle( string.Empty );
-
-			showMsToolStripMenuItem.Click += ShowMsToolStripMenuItem_Click;
 		}
 
 		public static bool ShowMs { get; set; }
@@ -59,6 +57,20 @@ namespace HslCommunicationDemo
 			this.TopMost = topMost;
 		}
 
+		private bool saveFormPosition = false;
+		private void 记住窗体位置及大小ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (saveFormPosition)
+			{
+				记住窗体位置及大小ToolStripMenuItem.Image = null;
+			}
+			else
+			{
+				记住窗体位置及大小ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			}
+			saveFormPosition = !saveFormPosition;
+		}
+
 		private void testPanelSizeFixedToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			if (DemoUtils.PenelSizeFixed)
@@ -70,6 +82,20 @@ namespace HslCommunicationDemo
 				testPanelSizeFixedToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
 			}
 			DemoUtils.PenelSizeFixed = !DemoUtils.PenelSizeFixed;
+		}
+
+		private bool existConfirm = false;
+		private void 退出软件显示确认ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (this.existConfirm)
+			{
+				退出软件显示确认ToolStripMenuItem.Image = null;
+			}
+			else
+			{
+				退出软件显示确认ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			}
+			this.existConfirm = !this.existConfirm;
 		}
 
 		#region Form Load Close Inni
@@ -173,6 +199,8 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "cjt",              Properties.Resources.cjt );               // 57
 			imageList.Images.Add( "secs",             Properties.Resources.secs );              // 58
 			imageList.Images.Add( "hyundai",          Properties.Resources.hyundai );           // 59
+			imageList.Images.Add( "yudian",           Properties.Resources.yudian );            // 60
+			imageList.Images.Add( "art",              Properties.Resources.art );               // 61
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;
@@ -218,7 +246,32 @@ namespace HslCommunicationDemo
 
 		private void FormSelect_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			if (this.existConfirm)
+			{
+				string message = Program.Language == 1 ? "是否确认退出软件？" : "Confirm to exit the software?";
+				string title = Program.Language == 1 ? "退出确认" : "Exit Confirmation";
+				if (DemoUtils.ShowMessage( message, title, MessageBoxButtons.YesNo ) == DialogResult.No)
+				{
+					e.Cancel = true;
+					return;
+				}
+			}
+
+
+			if (this.saveFormPosition)
+			{
+				Program.Settings.Location = this.Location;
+				Program.Settings.Size = this.Size;
+			}
+			else
+			{
+				Program.Settings.Location = new Point( -1, -1 );
+			}
 			Program.Settings.ShowDeviceList = panelLeft.IsActivated;
+			Program.Settings.ConfirmCloseWindow = this.existConfirm;
+			Program.Settings.PenelSizeFixed = DemoUtils.PenelSizeFixed;
+			Program.Settings.TopMost = this.topMost;
+			Program.Settings.ShowTimeOfMilliseconds = ShowMs;
 			Program.Settings.SaveFiles( );
 			mqttClient?.ConnectClose( );
 		}
@@ -226,6 +279,39 @@ namespace HslCommunicationDemo
 		private void FormLoad_Shown( object sender, EventArgs e )
 		{
 			System.Threading.ThreadPool.QueueUserWorkItem( new System.Threading.WaitCallback( ThreadPoolCheckVersion ), null );
+
+			if (Program.Settings.Location.X != -1 && Program.Settings.Location.Y != -1)
+			{
+				this.StartPosition = FormStartPosition.Manual;
+				if (Program.Settings.Location.X < 0 || Program.Settings.Location.Y < 0 ||
+					Program.Settings.Location.X > Screen.PrimaryScreen.WorkingArea.Width - 100 ||
+					Program.Settings.Location.Y > Screen.PrimaryScreen.WorkingArea.Height - 100)
+				{
+					// 超出屏幕范围不设置
+				}
+				else
+				{
+					this.Location = Program.Settings.Location;
+				}
+				//this.Location = Program.Settings.Location;
+				if (Program.Settings.Size.Width > 200 && Program.Settings.Size.Height > 100)
+					this.Size = Program.Settings.Size;
+				this.记住窗体位置及大小ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+				this.saveFormPosition = true;
+			}
+
+			this.existConfirm = Program.Settings.ConfirmCloseWindow;
+			if (this.existConfirm) 退出软件显示确认ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+
+			DemoUtils.PenelSizeFixed = Program.Settings.PenelSizeFixed;
+			if (DemoUtils.PenelSizeFixed) testPanelSizeFixedToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+
+			this.topMost = Program.Settings.TopMost;
+			if (this.topMost) formTopMostToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			if (this.topMost) this.TopMost = topMost;
+
+			ShowMs = Program.Settings.ShowTimeOfMilliseconds;
+			if (ShowMs) showMsToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
 		}
 
 		private void ThreadPoolCheckVersion( object obj )
@@ -363,12 +449,14 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_Debug.Text = "调试(&D)";
 				toolStripMenuItem_Help.Text = "帮助(&H)";
 				toolStripMenuItem_Doc.Text = "开发文档";
+				demoSettingToolStripMenuItem.Text = "设置(&S)";
 				toolStripMenuItem_SerialPort.Text = "串口调试";
 				ecologyToolStripMenuItem.Text = "大生态(&E)";
 				toolStripMenuItem_byteTransform.Text = "字节变换";
 				regexRegularToolStripMenuItem.Text = "正则表达式";
 				formTopMostToolStripMenuItem.Text = "窗体置顶";
 				label_account.Text = "登录";
+				退出软件显示确认ToolStripMenuItem.Text = "退出软件时显示确认";
 			}
 			else
 			{
@@ -381,6 +469,7 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_HomePage.Text = "HomePage";
 				toolStripMenuItem_Debug.Text = "Debug(&D)";
 				toolStripMenuItem_Help.Text = "Help(&H)";
+				demoSettingToolStripMenuItem.Text = "Setting(&S)";
 				toolStripMenuItem_Doc.Text = "Document";
 				toolStripMenuItem_SerialPort.Text = "SerialPort";
 				ecologyToolStripMenuItem.Text = "Ecology(&E)";
@@ -389,6 +478,7 @@ namespace HslCommunicationDemo
 				regexRegularToolStripMenuItem.Text = "RegexRegular";
 				formTopMostToolStripMenuItem.Text = "TopMost";
 				label_account.Text = "Login";
+				退出软件显示确认ToolStripMenuItem.Text = "Confirm when exit";
 			}
 		}
 
@@ -666,6 +756,7 @@ namespace HslCommunicationDemo
 			// 锁住当前的软件操作，并需要输入密码才能继续操作
 
 		}
+
 	}
 
 	public class FormSiemensS1200 : FormSiemens

@@ -35,6 +35,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			control = new McQna3EControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -53,9 +54,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Melsec R serial Read PLC Demo";
-
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 			else
 			{

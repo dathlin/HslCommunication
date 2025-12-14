@@ -208,7 +208,7 @@
 			this.label4.Size = new System.Drawing.Size(262, 172);
 			this.label4.TabIndex = 2;
 			this.label4.Text = "QQ群信息\r\n群1: 592132877\r\n群2: 948305931\r\n群3: 767856490\r\n群4: 818409889\r\n群5: 474160094\r" +
-    "\n普通vip群: 838185568 (赞助240元)";
+    "\n普通vip群: 838185568 (满)\r\n普通vip群: 1003024462 (赞助240元)";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// panel1

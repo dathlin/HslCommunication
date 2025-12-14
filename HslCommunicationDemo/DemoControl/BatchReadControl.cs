@@ -55,6 +55,7 @@ namespace HslCommunicationDemo.DemoControl
 				label_code.Text = "Code:";
 				checkBox1.Text = "RegularExp";
 				checkBox_word_reverse.Text = "R-Word";
+				label5.Text = "Line quantity:";
 			}
 
 

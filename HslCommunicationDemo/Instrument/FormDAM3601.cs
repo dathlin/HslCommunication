@@ -37,7 +37,8 @@ namespace HslCommunicationDemo
 			checkBox_stringreverse.CheckedChanged += CheckBox3_CheckedChanged;
 
 			Language( Program.Language );
-			
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
+
 			// 动态生成128个 label和128个textbox
 			int index = 1;
 			for (int i = 0; i < 16; i++)
@@ -71,8 +72,6 @@ namespace HslCommunicationDemo
 				label21.Text = "station";
 				checkBox_startwith0.Text = "address from 0";
 				checkBox_stringreverse.Text = "string reverse";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				button_read_bool.Text = "r-coil";
 				groupBox1.Text = "read test";
 			}

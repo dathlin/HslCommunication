@@ -33,6 +33,8 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
+
 			control = new DLT698Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 
@@ -52,8 +54,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "DLT698-TCP Read Demo";
 				label_address.Text = "station";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				label_password.Text = "Pwd:";
 				label_op_code.Text = "Op Code:";
 			}

@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button6 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.checkBox_isStringReverseByWord = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -74,7 +75,9 @@
 			this.textBox_input = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.button6 = new System.Windows.Forms.Button();
+			this.label11 = new System.Windows.Forms.Label();
+			this.radioButton_json = new System.Windows.Forms.RadioButton();
+			this.radioButton_xml = new System.Windows.Forms.RadioButton();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -84,6 +87,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.label11);
+			this.panel2.Controls.Add(this.radioButton_json);
+			this.panel2.Controls.Add(this.radioButton_xml);
 			this.panel2.Controls.Add(this.button6);
 			this.panel2.Controls.Add(this.button3);
 			this.panel2.Controls.Add(this.checkBox_isStringReverseByWord);
@@ -134,6 +140,16 @@
 			this.panel2.Size = new System.Drawing.Size(997, 606);
 			this.panel2.TabIndex = 33;
 			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(893, 188);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(96, 26);
+			this.button6.TabIndex = 56;
+			this.button6.Text = "压缩数据";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
 			// button3
 			// 
 			this.button3.Location = new System.Drawing.Point(791, 188);
@@ -148,7 +164,7 @@
 			// 
 			this.checkBox_isStringReverseByWord.AutoSize = true;
 			this.checkBox_isStringReverseByWord.ForeColor = System.Drawing.Color.Green;
-			this.checkBox_isStringReverseByWord.Location = new System.Drawing.Point(720, 162);
+			this.checkBox_isStringReverseByWord.Location = new System.Drawing.Point(720, 145);
 			this.checkBox_isStringReverseByWord.Name = "checkBox_isStringReverseByWord";
 			this.checkBox_isStringReverseByWord.Size = new System.Drawing.Size(181, 21);
 			this.checkBox_isStringReverseByWord.TabIndex = 54;
@@ -165,7 +181,7 @@
             "BADC",
             "CDAB",
             "DCBA"});
-			this.comboBox1.Location = new System.Drawing.Point(907, 106);
+			this.comboBox1.Location = new System.Drawing.Point(907, 102);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(85, 25);
 			this.comboBox1.TabIndex = 53;
@@ -175,7 +191,7 @@
 			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label10.AutoSize = true;
 			this.label10.ForeColor = System.Drawing.Color.Green;
-			this.label10.Location = new System.Drawing.Point(805, 109);
+			this.label10.Location = new System.Drawing.Point(805, 105);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(96, 17);
 			this.label10.TabIndex = 52;
@@ -185,7 +201,7 @@
 			// 
 			this.label9.AutoSize = true;
 			this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.label9.Location = new System.Drawing.Point(595, 109);
+			this.label9.Location = new System.Drawing.Point(595, 105);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(145, 17);
 			this.label9.TabIndex = 51;
@@ -214,7 +230,7 @@
 			// radioButton_dateTime_ms
 			// 
 			this.radioButton_dateTime_ms.AutoSize = true;
-			this.radioButton_dateTime_ms.Location = new System.Drawing.Point(218, 189);
+			this.radioButton_dateTime_ms.Location = new System.Drawing.Point(218, 167);
 			this.radioButton_dateTime_ms.Name = "radioButton_dateTime_ms";
 			this.radioButton_dateTime_ms.Size = new System.Drawing.Size(99, 21);
 			this.radioButton_dateTime_ms.TabIndex = 48;
@@ -223,7 +239,7 @@
 			// 
 			// textBox_datetime
 			// 
-			this.textBox_datetime.Location = new System.Drawing.Point(450, 188);
+			this.textBox_datetime.Location = new System.Drawing.Point(450, 166);
 			this.textBox_datetime.Name = "textBox_datetime";
 			this.textBox_datetime.Size = new System.Drawing.Size(144, 23);
 			this.textBox_datetime.TabIndex = 47;
@@ -232,7 +248,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(372, 191);
+			this.label2.Location = new System.Drawing.Point(372, 169);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(68, 17);
 			this.label2.TabIndex = 46;
@@ -271,7 +287,7 @@
 			// radioButton_base64
 			// 
 			this.radioButton_base64.AutoSize = true;
-			this.radioButton_base64.Location = new System.Drawing.Point(613, 161);
+			this.radioButton_base64.Location = new System.Drawing.Point(613, 144);
 			this.radioButton_base64.Name = "radioButton_base64";
 			this.radioButton_base64.Size = new System.Drawing.Size(68, 21);
 			this.radioButton_base64.TabIndex = 42;
@@ -281,7 +297,7 @@
 			// radioButton_unicode_big
 			// 
 			this.radioButton_unicode_big.AutoSize = true;
-			this.radioButton_unicode_big.Location = new System.Drawing.Point(311, 161);
+			this.radioButton_unicode_big.Location = new System.Drawing.Point(311, 144);
 			this.radioButton_unicode_big.Name = "radioButton_unicode_big";
 			this.radioButton_unicode_big.Size = new System.Drawing.Size(96, 21);
 			this.radioButton_unicode_big.TabIndex = 41;
@@ -291,7 +307,7 @@
 			// radioButton_gb2312
 			// 
 			this.radioButton_gb2312.AutoSize = true;
-			this.radioButton_gb2312.Location = new System.Drawing.Point(536, 161);
+			this.radioButton_gb2312.Location = new System.Drawing.Point(536, 144);
 			this.radioButton_gb2312.Name = "radioButton_gb2312";
 			this.radioButton_gb2312.Size = new System.Drawing.Size(71, 21);
 			this.radioButton_gb2312.TabIndex = 40;
@@ -331,7 +347,7 @@
 			// radioButton_dateTime_s
 			// 
 			this.radioButton_dateTime_s.AutoSize = true;
-			this.radioButton_dateTime_s.Location = new System.Drawing.Point(102, 189);
+			this.radioButton_dateTime_s.Location = new System.Drawing.Point(102, 167);
 			this.radioButton_dateTime_s.Name = "radioButton_dateTime_s";
 			this.radioButton_dateTime_s.Size = new System.Drawing.Size(88, 21);
 			this.radioButton_dateTime_s.TabIndex = 36;
@@ -341,7 +357,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(8, 191);
+			this.label5.Location = new System.Drawing.Point(8, 169);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 17);
 			this.label5.TabIndex = 35;
@@ -350,7 +366,7 @@
 			// radioButton_ansi
 			// 
 			this.radioButton_ansi.AutoSize = true;
-			this.radioButton_ansi.Location = new System.Drawing.Point(166, 161);
+			this.radioButton_ansi.Location = new System.Drawing.Point(166, 144);
 			this.radioButton_ansi.Name = "radioButton_ansi";
 			this.radioButton_ansi.Size = new System.Drawing.Size(49, 21);
 			this.radioButton_ansi.TabIndex = 33;
@@ -380,7 +396,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(8, 163);
+			this.label8.Location = new System.Drawing.Point(8, 146);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(68, 17);
 			this.label8.TabIndex = 30;
@@ -389,7 +405,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(8, 136);
+			this.label6.Location = new System.Drawing.Point(8, 126);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(68, 17);
 			this.label6.TabIndex = 29;
@@ -398,7 +414,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(8, 109);
+			this.label3.Location = new System.Drawing.Point(8, 105);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(68, 17);
 			this.label3.TabIndex = 28;
@@ -407,7 +423,7 @@
 			// radioButton_utf32
 			// 
 			this.radioButton_utf32.AutoSize = true;
-			this.radioButton_utf32.Location = new System.Drawing.Point(470, 161);
+			this.radioButton_utf32.Location = new System.Drawing.Point(470, 144);
 			this.radioButton_utf32.Name = "radioButton_utf32";
 			this.radioButton_utf32.Size = new System.Drawing.Size(60, 21);
 			this.radioButton_utf32.TabIndex = 27;
@@ -417,7 +433,7 @@
 			// radioButton_utf8
 			// 
 			this.radioButton_utf8.AutoSize = true;
-			this.radioButton_utf8.Location = new System.Drawing.Point(411, 161);
+			this.radioButton_utf8.Location = new System.Drawing.Point(411, 144);
 			this.radioButton_utf8.Name = "radioButton_utf8";
 			this.radioButton_utf8.Size = new System.Drawing.Size(53, 21);
 			this.radioButton_utf8.TabIndex = 26;
@@ -427,7 +443,7 @@
 			// radioButton_unicode
 			// 
 			this.radioButton_unicode.AutoSize = true;
-			this.radioButton_unicode.Location = new System.Drawing.Point(233, 161);
+			this.radioButton_unicode.Location = new System.Drawing.Point(233, 144);
 			this.radioButton_unicode.Name = "radioButton_unicode";
 			this.radioButton_unicode.Size = new System.Drawing.Size(72, 21);
 			this.radioButton_unicode.TabIndex = 25;
@@ -437,7 +453,7 @@
 			// radioButton_ascii
 			// 
 			this.radioButton_ascii.AutoSize = true;
-			this.radioButton_ascii.Location = new System.Drawing.Point(102, 161);
+			this.radioButton_ascii.Location = new System.Drawing.Point(102, 144);
 			this.radioButton_ascii.Name = "radioButton_ascii";
 			this.radioButton_ascii.Size = new System.Drawing.Size(51, 21);
 			this.radioButton_ascii.TabIndex = 24;
@@ -447,7 +463,7 @@
 			// radioButton9
 			// 
 			this.radioButton9.AutoSize = true;
-			this.radioButton9.Location = new System.Drawing.Point(166, 134);
+			this.radioButton9.Location = new System.Drawing.Point(166, 124);
 			this.radioButton9.Name = "radioButton9";
 			this.radioButton9.Size = new System.Drawing.Size(67, 21);
 			this.radioButton9.TabIndex = 23;
@@ -457,7 +473,7 @@
 			// radioButton8
 			// 
 			this.radioButton8.AutoSize = true;
-			this.radioButton8.Location = new System.Drawing.Point(102, 134);
+			this.radioButton8.Location = new System.Drawing.Point(102, 124);
 			this.radioButton8.Name = "radioButton8";
 			this.radioButton8.Size = new System.Drawing.Size(52, 21);
 			this.radioButton8.TabIndex = 22;
@@ -467,7 +483,7 @@
 			// radioButton7
 			// 
 			this.radioButton7.AutoSize = true;
-			this.radioButton7.Location = new System.Drawing.Point(502, 107);
+			this.radioButton7.Location = new System.Drawing.Point(502, 103);
 			this.radioButton7.Name = "radioButton7";
 			this.radioButton7.Size = new System.Drawing.Size(59, 21);
 			this.radioButton7.TabIndex = 21;
@@ -477,7 +493,7 @@
 			// radioButton6
 			// 
 			this.radioButton6.AutoSize = true;
-			this.radioButton6.Location = new System.Drawing.Point(434, 107);
+			this.radioButton6.Location = new System.Drawing.Point(434, 103);
 			this.radioButton6.Name = "radioButton6";
 			this.radioButton6.Size = new System.Drawing.Size(52, 21);
 			this.radioButton6.TabIndex = 20;
@@ -487,7 +503,7 @@
 			// radioButton5
 			// 
 			this.radioButton5.AutoSize = true;
-			this.radioButton5.Location = new System.Drawing.Point(363, 107);
+			this.radioButton5.Location = new System.Drawing.Point(363, 103);
 			this.radioButton5.Name = "radioButton5";
 			this.radioButton5.Size = new System.Drawing.Size(61, 21);
 			this.radioButton5.TabIndex = 19;
@@ -498,7 +514,7 @@
 			// 
 			this.radioButton4.AutoSize = true;
 			this.radioButton4.Checked = true;
-			this.radioButton4.Location = new System.Drawing.Point(306, 107);
+			this.radioButton4.Location = new System.Drawing.Point(306, 103);
 			this.radioButton4.Name = "radioButton4";
 			this.radioButton4.Size = new System.Drawing.Size(54, 21);
 			this.radioButton4.TabIndex = 18;
@@ -509,7 +525,7 @@
 			// radioButton3
 			// 
 			this.radioButton3.AutoSize = true;
-			this.radioButton3.Location = new System.Drawing.Point(233, 107);
+			this.radioButton3.Location = new System.Drawing.Point(233, 103);
 			this.radioButton3.Name = "radioButton3";
 			this.radioButton3.Size = new System.Drawing.Size(63, 21);
 			this.radioButton3.TabIndex = 17;
@@ -519,7 +535,7 @@
 			// radioButton2
 			// 
 			this.radioButton2.AutoSize = true;
-			this.radioButton2.Location = new System.Drawing.Point(166, 107);
+			this.radioButton2.Location = new System.Drawing.Point(166, 103);
 			this.radioButton2.Name = "radioButton2";
 			this.radioButton2.Size = new System.Drawing.Size(56, 21);
 			this.radioButton2.TabIndex = 16;
@@ -529,7 +545,7 @@
 			// radioButton1
 			// 
 			this.radioButton1.AutoSize = true;
-			this.radioButton1.Location = new System.Drawing.Point(102, 107);
+			this.radioButton1.Location = new System.Drawing.Point(102, 103);
 			this.radioButton1.Name = "radioButton1";
 			this.radioButton1.Size = new System.Drawing.Size(51, 21);
 			this.radioButton1.TabIndex = 15;
@@ -595,15 +611,34 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 34;
 			// 
-			// button6
+			// label11
 			// 
-			this.button6.Location = new System.Drawing.Point(893, 188);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(96, 26);
-			this.button6.TabIndex = 56;
-			this.button6.Text = "压缩数据";
-			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.button6_Click);
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(8, 192);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(68, 17);
+			this.label11.TabIndex = 59;
+			this.label11.Text = "特殊数据：";
+			// 
+			// radioButton_json
+			// 
+			this.radioButton_json.AutoSize = true;
+			this.radioButton_json.Location = new System.Drawing.Point(166, 190);
+			this.radioButton_json.Name = "radioButton_json";
+			this.radioButton_json.Size = new System.Drawing.Size(50, 21);
+			this.radioButton_json.TabIndex = 58;
+			this.radioButton_json.Text = "json";
+			this.radioButton_json.UseVisualStyleBackColor = true;
+			// 
+			// radioButton_xml
+			// 
+			this.radioButton_xml.AutoSize = true;
+			this.radioButton_xml.Location = new System.Drawing.Point(102, 190);
+			this.radioButton_xml.Name = "radioButton_xml";
+			this.radioButton_xml.Size = new System.Drawing.Size(46, 21);
+			this.radioButton_xml.TabIndex = 57;
+			this.radioButton_xml.Text = "xml";
+			this.radioButton_xml.UseVisualStyleBackColor = true;
 			// 
 			// FormByteTransfer
 			// 
@@ -675,5 +710,8 @@
 		private System.Windows.Forms.CheckBox checkBox_isStringReverseByWord;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.RadioButton radioButton_json;
+		private System.Windows.Forms.RadioButton radioButton_xml;
 	}
 }

@@ -39,6 +39,8 @@ namespace HslCommunicationDemo.PLC.WeCon
 			comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
+
 			control = new ModbusControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 
@@ -59,8 +61,6 @@ namespace HslCommunicationDemo.PLC.WeCon
 				label21.Text = "station";
 				checkBox1.Text = "address from 0";
 				checkBox3.Text = "string reverse";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				checkBox2.Text = "IsClearCacheBeforeRead";
 				label_series.Text = "Series:";
 			}

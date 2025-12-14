@@ -120,6 +120,7 @@ namespace HslCommunicationDemo
 		private void FormOpenProtocol_Load( object sender, EventArgs e )
 		{
 			panel2.Enabled = false;
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			// 添加 Open protocol 消息
 			TreeNode node0 = new TreeNode( " Communication messages" );

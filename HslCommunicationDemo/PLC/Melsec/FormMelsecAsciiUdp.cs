@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 			Language( Program.Language );
 
 			control = new McQna3EControl( );
@@ -51,9 +52,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Melsec Read PLC Demo";
-
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				checkBox_string_reverse.Text = "string reverse by word";
 			}
 			else

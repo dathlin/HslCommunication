@@ -102,6 +102,7 @@
 			this.刷新目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.重命名目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.创建目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -129,6 +130,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.textBox10);
@@ -863,6 +865,16 @@
 			this.创建目录ToolStripMenuItem.Text = "创建目录";
 			this.创建目录ToolStripMenuItem.Click += new System.EventHandler(this.创建目录ToolStripMenuItem_Click);
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Gray;
+			this.label2.Location = new System.Drawing.Point(318, 35);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(419, 17);
+			this.label2.TabIndex = 30;
+			this.label2.Text = "(支持windows的iis, 各种机床的servU, FileZilla Server, 全部需要设置不加密)";
+			// 
 			// FormFtpClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -984,5 +996,6 @@
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.Panel panel5;
 		private System.Windows.Forms.Panel panel6;
+		private System.Windows.Forms.Label label2;
 	}
 }

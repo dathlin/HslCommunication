@@ -21,6 +21,7 @@ using HslCommunication.BasicFramework;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Security.Policy;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -34,6 +35,10 @@ namespace HslCommunicationDemo
 
 			checkBox_show_body.CheckedChanged += CheckBox_show_body_CheckedChanged;
 			checkBox_show_header.CheckedChanged += CheckBox_show_header_CheckedChanged; ;
+
+			codeExampleControl = new CodeExampleControl( );
+			DemoUtils.AddSpecialFunctionTab( tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+			codeExampleControl.ShowTextBox( true );
 		}
 
 
@@ -92,22 +97,21 @@ namespace HslCommunicationDemo
 				checkBox_show_body.Text = "Show Body Content?";
 				checkBox_show_header.Text = "Show Header Content?";
 				label8.Text = "Get the info below when requesting";
+				tabPage3.Text = "Registered";
+				label11.Text = "List of registered devices:";
+				button_device_add.Text = "Add Device";
+				button_device_remove.Text = "Remove";
 			}
 		}
 
-		private AllenBradleyPcccNet pcccNet;
-		private SiemensS7Net siemens;
 		private HttpServer httpServer;
+		private CodeExampleControl codeExampleControl;
 
 		private void button1_Click( object sender, EventArgs e )
 		{
 			// 启动服务
 			try
 			{
-				// 注册两个PLC为服务接口的示例
-				siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
-				pcccNet = new AllenBradleyPcccNet( "127.0.0.1" );
-
 				httpServer = new HttpServer( );
 				if (checkBox_https.Checked)
 				{
@@ -122,9 +126,7 @@ namespace HslCommunicationDemo
 				httpServer.HandleFileUpload = HandleFileUpload;
 				httpServer.IsCrossDomain = checkBox_IsCrossDomain.Checked;               // 是否跨域的设置
 				httpServer.RegisterHttpRpcApi( "", this );                               // 注册当前窗体的接口到服务器的接口上去
-				httpServer.RegisterHttpRpcApi( "Siemens", siemens );                     // 注册一个西门子PLC的服务接口的示例
 				httpServer.RegisterHttpRpcApi( "TimeOut", typeof( HslTimeOut ) );        // 注册的类的静态方法和静态属性
-				httpServer.RegisterHttpRpcApi( "PCCC", pcccNet );
 				httpServer.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				httpServer.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 
@@ -134,6 +136,22 @@ namespace HslCommunicationDemo
 
 				panel2.Enabled = true;
 				button1.Enabled = false;
+
+				StringBuilder code = new StringBuilder( );
+				code.AppendLine( "HttpServer httpServer = new HttpServer( );" );
+				if (checkBox_https.Checked) code.AppendLine( "httpServer.UseHttps( );" );
+				if (textBox2.Text.StartsWith( "http", StringComparison.OrdinalIgnoreCase ))
+					code.AppendLine( $"httpServer.Start( \"{textBox2.Text}\" );" );
+				else
+					code.AppendLine( $"httpServer.Start( int.Parse( \"{textBox2.Text}\" ) );" );
+				code.AppendLine( $"httpServer.IsCrossDomain = {checkBox_IsCrossDomain.Checked.ToString( ).ToLower( )};" );
+				if (checkBox2.Checked)
+					code.AppendLine( $"httpServer.SetLoginAccessControl( new HslCommunication.MQTT.MqttCredential[] {{ new HslCommunication.MQTT.MqttCredential(\"admin\", \"123456\")}} );" );
+				code.AppendLine( $"// httpServer.RegisterHttpRpcApi( \"TimeOut\", typeof( HslTimeOut ) );        // 注册的类的静态方法和静态属性" );
+				code.AppendLine( $"// httpServer.RegisterHttpRpcApi( \"Modbus\", modbus );                               // 注册Modbus对象到RPC接口" );
+				code.AppendLine( $"// httpServer.HandleRequestFunc = HandleRequest;  // HandleRequest为方法 private object HandleRequest( HttpListenerRequest request, HttpListenerResponse response, string data )" );
+
+				codeExampleControl.RenderExampleCode( code );
 			}
 			catch (Exception ex)
 			{
@@ -458,6 +476,41 @@ namespace HslCommunicationDemo
 			{
 				button_stop.Text = Program.Language == 1 ? "继续" : "Start";
 				isStop = true;
+			}
+		}
+		private void button_device_add_Click( object sender, EventArgs e )
+		{
+			// 新增注册设备
+			using (FormRunDeviceSelect form = new FormRunDeviceSelect( ))
+			{
+				if (form.ShowDialog( ) == DialogResult.OK)
+				{
+					httpServer?.RegisterHttpRpcApi( form.SelectedDevice.ApiName, form.SelectedDevice.Device );
+					int index = dataGridView1.Rows.Add( );
+					dataGridView1.Rows[index].Cells[0].Value = form.SelectedDevice.Guid;
+
+					if (!string.IsNullOrEmpty( form.SelectedDevice.ApiName ))
+						dataGridView1.Rows[index].Cells[1].Value = form.SelectedDevice.ApiName;
+					else
+						dataGridView1.Rows[index].Cells[1].Value = $"[{form.SelectedDevice.Name}]";
+
+					dataGridView1.Rows[index].Cells[2].Value = form.SelectedDevice.Device.ToString( );
+					dataGridView1.Rows[index].Tag = form.SelectedDevice;
+				}
+			}
+		}
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+			// 删除注册设备
+			if (dataGridView1.SelectedRows.Count > 0)
+			{
+				var device = dataGridView1.SelectedRows[0].Tag as DemoDeviceItem;
+				if (device != null)
+				{
+					httpServer?.UnRegisterHttpRpcApi( device.ApiName, device.Device );
+					dataGridView1.Rows.RemoveAt( dataGridView1.SelectedRows[0].Index );
+				}
 			}
 		}
 	}

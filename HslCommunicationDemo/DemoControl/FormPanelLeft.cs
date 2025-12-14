@@ -164,6 +164,7 @@ namespace HslCommunicationDemo.DemoControl
 			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceSerial", 5, typeof( FormInovanceSerial ) ) );
 			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceSerialOverTcp", 5, typeof( FormInovanceSerialOverTcp ) ) );
 			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceTcpNet", 5, typeof( FormInovanceTcpNet ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceComputerLink", 5, typeof( FormInovanceLinks ) ) );
 			treeView1.Nodes.Add( inovanceNode );
 
 			// 欧姆龙PLC相关
@@ -455,7 +456,7 @@ namespace HslCommunicationDemo.DemoControl
 
 			// Instrument 仪器仪表
 			TreeNode instrumentNode = new TreeNode( "Instrument [仪器仪表]" );
-			instrumentNode.Nodes.Add( new TreeNode( "DAM3601 [阿尔泰科技]" ) { Tag = typeof( FormDAM3601 ) } );
+			instrumentNode.Nodes.Add( GetTreeNodeByIndex( "DAM3601 [阿尔泰科技]", 61, typeof( FormDAM3601 ) ) );
 			instrumentNode.Nodes.Add( GetTreeNodeByIndex( "DLT645 [电力规约]", 54, typeof( FormDLT645 ) ) );
 			instrumentNode.Nodes.Add( GetTreeNodeByIndex( "DLT645 OverTcp", 54, typeof( FormDLT645OverTcp ) ) );
 			instrumentNode.Nodes.Add( GetTreeNodeByIndex( "DLT645 Server", 54, typeof( FormDLT645Server ) ) );
@@ -472,6 +473,7 @@ namespace HslCommunicationDemo.DemoControl
 			instrumentNode.Nodes.Add( GetTreeNodeByIndex( "IEC104 Server", 37, typeof( FormIEC104Server ) ) );
 			instrumentNode.Nodes.Add( GetTreeNodeByIndex( "CJT188 [水表，燃气]", 57, typeof( FormCJT188 ) ) );
 			instrumentNode.Nodes.Add( GetTreeNodeByIndex( "CJT188 OverTcp", 57, typeof( FormCJT188OverTcp ) ) );
+			instrumentNode.Nodes.Add( GetTreeNodeByIndex( "YuDianAIBus", 60, typeof( FormYuDianAIBus ) ) );
 			treeView1.Nodes.Add( instrumentNode );
 
 			// 托利多电子秤Toledo

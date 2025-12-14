@@ -36,6 +36,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 			comboBox1.DataSource = HslCommunication.BasicFramework.SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
 
@@ -62,9 +63,6 @@ namespace HslCommunicationDemo
 				Text = "Omron Read PLC Demo";
 				label24.Text = "Unit Num";
 				label23.Text = "PC Net Num";
-
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 		}
 

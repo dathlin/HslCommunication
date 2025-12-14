@@ -34,6 +34,8 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
+
 			checkBox_auto.CheckedChanged += CheckBox_auto_CheckedChanged;
 			CheckBox_auto_CheckedChanged( checkBox_auto, e );
 
@@ -70,8 +72,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Beckhoff AdsNet Read PLC Demo";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				label8.Text = "case: 192.168.1.100.1.1:801 or 192.168.1.100.1.1";
 				checkBox_tag.Text = "Tag Cache";
 				label17.Text = "TwinCAT2, port number 801; TwinCAT3, port number 851";

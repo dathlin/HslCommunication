@@ -38,6 +38,7 @@ namespace HslCommunicationDemo
 			checkBox3.CheckedChanged += CheckBox3_CheckedChanged;
 
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) );
@@ -57,8 +58,6 @@ namespace HslCommunicationDemo
 				label21.Text = "station";
 				checkBox1.Text = "address from 0";
 				checkBox3.Text = "string reverse";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 		}
 

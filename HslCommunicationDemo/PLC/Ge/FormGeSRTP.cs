@@ -34,6 +34,8 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
+
 			control = new GeControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 			//textBox13.Text = "02 00 5f 06 00 00 00 00 00 01 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 06 c0 00 00 00 00 10 0e 00 00 01 01 04 08 00 00 01 00 00 00 00 00 00 00 00 00";
@@ -54,8 +56,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "GE Read PLC Demo";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 		}
 

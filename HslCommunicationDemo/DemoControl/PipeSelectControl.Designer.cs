@@ -565,8 +565,7 @@
 			// 
 			// textBox_dtu_pwd
 			// 
-			this.textBox_dtu_pwd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_dtu_pwd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_dtu_pwd.Location = new System.Drawing.Point(462, 3);
 			this.textBox_dtu_pwd.Name = "textBox_dtu_pwd";
 			this.textBox_dtu_pwd.Size = new System.Drawing.Size(58, 23);
@@ -575,6 +574,7 @@
 			// 
 			// label13
 			// 
+			this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label13.AutoSize = true;
 			this.label13.Location = new System.Drawing.Point(416, 6);
 			this.label13.Name = "label13";

@@ -34,6 +34,8 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
+
 			comboBox1.DataSource = SoftBasic.GetEnumValues<HslCommunication.Core.DataFormat>( );
 			comboBox1.SelectedItem = fujiSPB.ByteTransform.DataFormat;
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
@@ -65,8 +67,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Fuji Read PLC Demo";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 		}
 

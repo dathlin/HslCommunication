@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 			comboBox_format.SelectedIndex = 0;
 			comboBox_format.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
 			checkBox_sumcheck.CheckedChanged += CheckBox1_CheckedChanged;
@@ -70,11 +71,7 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Melsec Read PLC Demo";
-
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				label21.Text = "Address:";
-
 			}
 			else
 			{

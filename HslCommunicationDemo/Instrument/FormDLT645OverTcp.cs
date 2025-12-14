@@ -33,6 +33,8 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
+
 			control = new DLT645Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 
@@ -51,10 +53,7 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "DLT645 Read Demo";
-
 				label_address.Text = "station";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				label_password.Text = "Pwd:";
 				label_op_code.Text = "Op Code:";
 				checkBox_dataId.Text = "Check DataId";

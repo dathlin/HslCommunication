@@ -34,6 +34,7 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.batchReadControl2 = new HslCommunicationDemo.DemoControl.BatchReadControl();
 			this.tabPage7 = new System.Windows.Forms.TabPage();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.debugRemoteControl1 = new HslCommunicationDemo.DemoControl.DebugRemoteControl();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.stressTesting1 = new HslCommunicationDemo.PLC.Common.StressTesting();
@@ -49,6 +50,7 @@
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage7.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			this.tabPage6.SuspendLayout();
@@ -118,22 +120,31 @@
 			// 
 			// tabPage7
 			// 
-			this.tabPage7.Controls.Add(this.debugRemoteControl1);
-			this.tabPage7.Location = new System.Drawing.Point(4, 22);
+			this.tabPage7.Controls.Add(this.panel1);
+			this.tabPage7.Location = new System.Drawing.Point(4, 26);
 			this.tabPage7.Name = "tabPage7";
 			this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage7.Size = new System.Drawing.Size(192, 74);
+			this.tabPage7.Size = new System.Drawing.Size(946, 252);
 			this.tabPage7.TabIndex = 6;
 			this.tabPage7.Text = "远程调试";
 			this.tabPage7.UseVisualStyleBackColor = true;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.debugRemoteControl1);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel1.Location = new System.Drawing.Point(3, 3);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(940, 246);
+			this.panel1.TabIndex = 1;
 			// 
 			// debugRemoteControl1
 			// 
 			this.debugRemoteControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.debugRemoteControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.debugRemoteControl1.Location = new System.Drawing.Point(3, 3);
+			this.debugRemoteControl1.Location = new System.Drawing.Point(0, 0);
 			this.debugRemoteControl1.Name = "debugRemoteControl1";
-			this.debugRemoteControl1.Size = new System.Drawing.Size(186, 68);
+			this.debugRemoteControl1.Size = new System.Drawing.Size(940, 246);
 			this.debugRemoteControl1.TabIndex = 0;
 			// 
 			// tabPage3
@@ -159,10 +170,10 @@
 			// tabPage4
 			// 
 			this.tabPage4.Controls.Add(this.dataTableControl1);
-			this.tabPage4.Location = new System.Drawing.Point(4, 26);
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(946, 252);
+			this.tabPage4.Size = new System.Drawing.Size(192, 74);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "点位变量";
 			this.tabPage4.UseVisualStyleBackColor = true;
@@ -173,16 +184,16 @@
 			this.dataTableControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.dataTableControl1.Location = new System.Drawing.Point(3, 3);
 			this.dataTableControl1.Name = "dataTableControl1";
-			this.dataTableControl1.Size = new System.Drawing.Size(940, 246);
+			this.dataTableControl1.Size = new System.Drawing.Size(186, 68);
 			this.dataTableControl1.TabIndex = 0;
 			// 
 			// tabPage6
 			// 
 			this.tabPage6.Controls.Add(this.dataSimulateControl1);
-			this.tabPage6.Location = new System.Drawing.Point(4, 26);
+			this.tabPage6.Location = new System.Drawing.Point(4, 22);
 			this.tabPage6.Name = "tabPage6";
 			this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage6.Size = new System.Drawing.Size(946, 252);
+			this.tabPage6.Size = new System.Drawing.Size(192, 74);
 			this.tabPage6.TabIndex = 4;
 			this.tabPage6.Text = "数据模拟";
 			this.tabPage6.UseVisualStyleBackColor = true;
@@ -193,7 +204,7 @@
 			this.dataSimulateControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.dataSimulateControl1.Location = new System.Drawing.Point(3, 3);
 			this.dataSimulateControl1.Name = "dataSimulateControl1";
-			this.dataSimulateControl1.Size = new System.Drawing.Size(940, 246);
+			this.dataSimulateControl1.Size = new System.Drawing.Size(186, 68);
 			this.dataSimulateControl1.TabIndex = 0;
 			// 
 			// tabPage5
@@ -251,6 +262,7 @@
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage7.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage4.ResumeLayout(false);
 			this.tabPage6.ResumeLayout(false);
@@ -279,5 +291,6 @@
         private System.Windows.Forms.TabPage tabPage7;
         private DebugRemoteControl debugRemoteControl1;
         private System.Windows.Forms.PictureBox pictureBox1;
-    }
+		private System.Windows.Forms.Panel panel1;
+	}
 }

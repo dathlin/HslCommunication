@@ -38,7 +38,8 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
-			if(siemensPLCSelected == SiemensPLCS.S200Smart)
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
+			if (siemensPLCSelected == SiemensPLCS.S200Smart)
 			{
 				label4.Visible = false;
 				label5.Visible = false;
@@ -68,9 +69,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Siemens Read PLC Demo";
-
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				label6.Text = "Hexadecimal!!!";
 			}
 		}

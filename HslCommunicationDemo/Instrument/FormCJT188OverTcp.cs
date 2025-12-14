@@ -34,6 +34,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			control = new CJT188Control( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -55,8 +56,6 @@ namespace HslCommunicationDemo
 				Text = "CJT188 Read Demo";
 
 				label_address.Text = "station";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				textBox_password.Text = "Pwd:";
 				textBox_op_code.Text = "Op Code:";
 			}

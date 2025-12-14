@@ -38,6 +38,7 @@ namespace HslCommunicationDemo
 			checkBox3.CheckedChanged       += CheckBox3_CheckedChanged;
 
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			control = new ModbusControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -63,8 +64,6 @@ namespace HslCommunicationDemo
 				label21.Text = "station";
 				checkBox1.Text = "address from 0";
 				checkBox3.Text = "string reverse";
-				button1.Text = "Open";
-				button2.Text = "Close";
 				label_BroadcastStation.Text = "BroadcastStat:";
 			}
 		}

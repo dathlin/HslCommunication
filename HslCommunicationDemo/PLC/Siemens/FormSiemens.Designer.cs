@@ -104,7 +104,6 @@
 			// 
 			this.textBox_pdu.Location = new System.Drawing.Point(558, 34);
 			this.textBox_pdu.Name = "textBox_pdu";
-			this.textBox_pdu.ReadOnly = true;
 			this.textBox_pdu.Size = new System.Drawing.Size(40, 23);
 			this.textBox_pdu.TabIndex = 17;
 			// 

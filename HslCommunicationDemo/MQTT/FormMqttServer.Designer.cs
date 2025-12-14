@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.textBox_login_password = new System.Windows.Forms.TextBox();
@@ -105,6 +106,12 @@
 			this.radioButton_every_hour = new System.Windows.Forms.RadioButton();
 			this.radioButton_every_minute = new System.Windows.Forms.RadioButton();
 			this.radioButton_every_seconds = new System.Windows.Forms.RadioButton();
+			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.panel7 = new System.Windows.Forms.Panel();
+			this.button_device_remove = new System.Windows.Forms.Button();
+			this.dataGridView2 = new System.Windows.Forms.DataGridView();
+			this.label25 = new System.Windows.Forms.Label();
+			this.button_device_add = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.radioButton_recv_gb2312 = new System.Windows.Forms.RadioButton();
 			this.radioButton_recv_Unicode = new System.Windows.Forms.RadioButton();
@@ -129,6 +136,9 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.checkBox_retain = new System.Windows.Forms.CheckBox();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.Column_guid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_form = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_device = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -140,6 +150,9 @@
 			this.tabPage4.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel5.SuspendLayout();
+			this.tabPage5.SuspendLayout();
+			this.panel7.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
 			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -360,6 +373,7 @@
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage4);
+			this.tabControl1.Controls.Add(this.tabPage5);
 			this.tabControl1.Location = new System.Drawing.Point(2, 211);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
@@ -967,6 +981,85 @@
 			this.radioButton_every_seconds.Text = "每秒";
 			this.radioButton_every_seconds.UseVisualStyleBackColor = true;
 			// 
+			// tabPage5
+			// 
+			this.tabPage5.Controls.Add(this.panel7);
+			this.tabPage5.Location = new System.Drawing.Point(4, 26);
+			this.tabPage5.Name = "tabPage5";
+			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage5.Size = new System.Drawing.Size(988, 272);
+			this.tabPage5.TabIndex = 4;
+			this.tabPage5.Text = "注册设备";
+			this.tabPage5.UseVisualStyleBackColor = true;
+			// 
+			// panel7
+			// 
+			this.panel7.Controls.Add(this.button_device_remove);
+			this.panel7.Controls.Add(this.dataGridView2);
+			this.panel7.Controls.Add(this.label25);
+			this.panel7.Controls.Add(this.button_device_add);
+			this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel7.Location = new System.Drawing.Point(3, 3);
+			this.panel7.Name = "panel7";
+			this.panel7.Size = new System.Drawing.Size(982, 266);
+			this.panel7.TabIndex = 1;
+			// 
+			// button_device_remove
+			// 
+			this.button_device_remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_device_remove.Location = new System.Drawing.Point(372, 230);
+			this.button_device_remove.Name = "button_device_remove";
+			this.button_device_remove.Size = new System.Drawing.Size(112, 31);
+			this.button_device_remove.TabIndex = 3;
+			this.button_device_remove.Text = "移除选中设备";
+			this.button_device_remove.UseVisualStyleBackColor = true;
+			this.button_device_remove.Click += new System.EventHandler(this.button_device_remove_Click);
+			// 
+			// dataGridView2
+			// 
+			this.dataGridView2.AllowUserToAddRows = false;
+			this.dataGridView2.AllowUserToDeleteRows = false;
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
+			this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+			this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
+			this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column_guid,
+            this.Column_form,
+            this.Column_device});
+			this.dataGridView2.Location = new System.Drawing.Point(3, 24);
+			this.dataGridView2.MultiSelect = false;
+			this.dataGridView2.Name = "dataGridView2";
+			this.dataGridView2.ReadOnly = true;
+			this.dataGridView2.RowHeadersVisible = false;
+			this.dataGridView2.RowTemplate.Height = 23;
+			this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dataGridView2.Size = new System.Drawing.Size(976, 202);
+			this.dataGridView2.TabIndex = 2;
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.Location = new System.Drawing.Point(6, 4);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(119, 17);
+			this.label25.TabIndex = 1;
+			this.label25.Text = "已经注册的设备列表:";
+			// 
+			// button_device_add
+			// 
+			this.button_device_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_device_add.Location = new System.Drawing.Point(250, 230);
+			this.button_device_add.Name = "button_device_add";
+			this.button_device_add.Size = new System.Drawing.Size(112, 31);
+			this.button_device_add.TabIndex = 0;
+			this.button_device_add.Text = "新增设备";
+			this.button_device_add.UseVisualStyleBackColor = true;
+			this.button_device_add.Click += new System.EventHandler(this.button_device_add_Click);
+			// 
 			// panel3
 			// 
 			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1223,6 +1316,27 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// Column_guid
+			// 
+			this.Column_guid.HeaderText = "Guid";
+			this.Column_guid.Name = "Column_guid";
+			this.Column_guid.ReadOnly = true;
+			this.Column_guid.Width = 240;
+			// 
+			// Column_form
+			// 
+			this.Column_form.HeaderText = "Form";
+			this.Column_form.Name = "Column_form";
+			this.Column_form.ReadOnly = true;
+			this.Column_form.Width = 270;
+			// 
+			// Column_device
+			// 
+			this.Column_device.HeaderText = "Device";
+			this.Column_device.Name = "Column_device";
+			this.Column_device.ReadOnly = true;
+			this.Column_device.Width = 360;
+			// 
 			// FormMqttServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1257,6 +1371,10 @@
 			this.panel4.ResumeLayout(false);
 			this.panel5.ResumeLayout(false);
 			this.panel5.PerformLayout();
+			this.tabPage5.ResumeLayout(false);
+			this.panel7.ResumeLayout(false);
+			this.panel7.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
@@ -1364,5 +1482,14 @@
         private System.Windows.Forms.Label label_topic_size;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.CheckBox checkBox_topic_retain;
-    }
+		private System.Windows.Forms.TabPage tabPage5;
+		private System.Windows.Forms.Panel panel7;
+		private System.Windows.Forms.Button button_device_remove;
+		private System.Windows.Forms.DataGridView dataGridView2;
+		private System.Windows.Forms.Label label25;
+		private System.Windows.Forms.Button button_device_add;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_guid;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_form;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_device;
+	}
 }

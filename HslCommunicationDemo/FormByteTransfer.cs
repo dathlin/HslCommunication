@@ -1,6 +1,7 @@
 ﻿using HslCommunication;
 using HslCommunication.BasicFramework;
 using HslCommunication.Core;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -146,6 +148,14 @@ namespace HslCommunicationDemo
 				{
 					buffer = Convert.FromBase64String( textBox_input.Text );
 					radioButton = radioButton_base64;
+				}
+				else if (radioButton_xml.Checked)
+				{
+					return;
+				}
+				else if (radioButton_json.Checked)
+				{
+					return;
 				}
 			}
 			catch(Exception ex)
@@ -303,6 +313,20 @@ namespace HslCommunicationDemo
 					value = Convert.ToBase64String( SoftBasic.HexStringToBytes( textBox_input.Text ) );
 					radioButton = radioButton_base64;
 				}
+				else if (radioButton_xml.Checked)
+				{
+					XElement xml = new XElement( "A" );
+					xml.SetAttributeValue( "B", textBox_input.Text );
+					string xmlString = xml.ToString( );
+
+					value = xmlString.Substring( 6, xmlString.Length - 10 );
+					radioButton = radioButton_xml;
+				}
+				else if (radioButton_json.Checked)
+				{
+					value = JsonConvert.SerializeObject( textBox_input.Text );
+					radioButton = radioButton_json;
+				}
 			}
 			catch (Exception ex)
 			{
@@ -310,9 +334,16 @@ namespace HslCommunicationDemo
 				return;
 			}
 
-
-			textBox2.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + textBox_input.Text + "] [" + radioButton.Text.PadRight( 7, ' ' ) + "]  " +
-				value + Environment.NewLine );
+			if (radioButton_xml.Checked || radioButton_json.Checked)
+			{
+				textBox2.Text = DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + radioButton.Text.PadRight( 7, ' ' ) + "]  " + Environment.NewLine +
+					value + Environment.NewLine;
+			}
+			else
+			{
+				textBox2.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + " [" + textBox_input.Text + "] [" + radioButton.Text.PadRight( 7, ' ' ) + "]  " +
+					value + Environment.NewLine );
+			}
 		}
 
 		private void OpenFile( string filePath )

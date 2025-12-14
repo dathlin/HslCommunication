@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent( )
         {
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label10 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -42,6 +43,17 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.label7 = new System.Windows.Forms.Label();
+			this.textBox_api = new System.Windows.Forms.TextBox();
+			this.button_delete = new System.Windows.Forms.Button();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.button_post = new System.Windows.Forms.Button();
+			this.textBox_body = new System.Windows.Forms.TextBox();
+			this.button_get = new System.Windows.Forms.Button();
+			this.panel7 = new System.Windows.Forms.Panel();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.label5 = new System.Windows.Forms.Label();
@@ -56,24 +68,34 @@
 			this.button_stop = new System.Windows.Forms.Button();
 			this.textBox_log = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
-			this.button_delete = new System.Windows.Forms.Button();
-			this.button_post = new System.Windows.Forms.Button();
-			this.button_get = new System.Windows.Forms.Button();
-			this.textBox_body = new System.Windows.Forms.TextBox();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.textBox_api = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.panel5 = new System.Windows.Forms.Panel();
+			this.button_device_remove = new System.Windows.Forms.Button();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.Column_guid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_form = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_device = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.label11 = new System.Windows.Forms.Label();
+			this.button_device_add = new System.Windows.Forms.Button();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
+			this.panel6.SuspendLayout();
+			this.panel7.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.panel4.SuspendLayout();
+			this.tabPage3.SuspendLayout();
+			this.panel5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -199,8 +221,9 @@
 			// 
 			// label1
 			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(5, 184);
+			this.label1.Location = new System.Drawing.Point(3, 179);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(84, 17);
 			this.label1.TabIndex = 19;
@@ -208,9 +231,10 @@
 			// 
 			// comboBox1
 			// 
+			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(94, 181);
+			this.comboBox1.Location = new System.Drawing.Point(92, 176);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(134, 25);
 			this.comboBox1.TabIndex = 18;
@@ -221,33 +245,150 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel2.Controls.Add(this.tabControl1);
-			this.panel2.Controls.Add(this.button_delete);
-			this.panel2.Controls.Add(this.label1);
-			this.panel2.Controls.Add(this.comboBox1);
-			this.panel2.Controls.Add(this.button_post);
-			this.panel2.Controls.Add(this.button_get);
-			this.panel2.Controls.Add(this.textBox_body);
-			this.panel2.Controls.Add(this.label9);
-			this.panel2.Controls.Add(this.label8);
-			this.panel2.Controls.Add(this.textBox_api);
-			this.panel2.Controls.Add(this.label7);
-			this.panel2.Location = new System.Drawing.Point(188, 99);
+			this.panel2.Controls.Add(this.splitContainer1);
+			this.panel2.Location = new System.Drawing.Point(215, 99);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(813, 522);
+			this.panel2.Size = new System.Drawing.Size(786, 522);
 			this.panel2.TabIndex = 13;
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+			this.splitContainer1.Name = "splitContainer1";
+			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.panel6);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.panel7);
+			this.splitContainer1.Size = new System.Drawing.Size(784, 520);
+			this.splitContainer1.SplitterDistance = 204;
+			this.splitContainer1.TabIndex = 26;
+			// 
+			// panel6
+			// 
+			this.panel6.Controls.Add(this.label7);
+			this.panel6.Controls.Add(this.textBox_api);
+			this.panel6.Controls.Add(this.button_delete);
+			this.panel6.Controls.Add(this.label8);
+			this.panel6.Controls.Add(this.label1);
+			this.panel6.Controls.Add(this.comboBox1);
+			this.panel6.Controls.Add(this.label9);
+			this.panel6.Controls.Add(this.button_post);
+			this.panel6.Controls.Add(this.textBox_body);
+			this.panel6.Controls.Add(this.button_get);
+			this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel6.Location = new System.Drawing.Point(0, 0);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(784, 204);
+			this.panel6.TabIndex = 0;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(3, 6);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(32, 17);
+			this.label7.TabIndex = 7;
+			this.label7.Text = "网址";
+			// 
+			// textBox_api
+			// 
+			this.textBox_api.Location = new System.Drawing.Point(57, 2);
+			this.textBox_api.Name = "textBox_api";
+			this.textBox_api.Size = new System.Drawing.Size(434, 23);
+			this.textBox_api.TabIndex = 9;
+			this.textBox_api.Text = "/GetA";
+			// 
+			// button_delete
+			// 
+			this.button_delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_delete.Location = new System.Drawing.Point(531, 175);
+			this.button_delete.Name = "button_delete";
+			this.button_delete.Size = new System.Drawing.Size(148, 28);
+			this.button_delete.TabIndex = 24;
+			this.button_delete.Text = "Delete Api";
+			this.button_delete.UseVisualStyleBackColor = true;
+			this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.ForeColor = System.Drawing.Color.Gray;
+			this.label8.Location = new System.Drawing.Point(496, 6);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(188, 17);
+			this.label8.TabIndex = 10;
+			this.label8.Text = "在请求的时候就会得到下面的信息";
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(3, 34);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(44, 17);
+			this.label9.TabIndex = 11;
+			this.label9.Text = "数据：";
+			// 
+			// button_post
+			// 
+			this.button_post.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_post.Location = new System.Drawing.Point(377, 175);
+			this.button_post.Name = "button_post";
+			this.button_post.Size = new System.Drawing.Size(148, 28);
+			this.button_post.TabIndex = 20;
+			this.button_post.Text = "设置Post";
+			this.button_post.UseVisualStyleBackColor = true;
+			this.button_post.Click += new System.EventHandler(this.Button7_Click);
+			// 
+			// textBox_body
+			// 
+			this.textBox_body.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_body.Location = new System.Drawing.Point(57, 31);
+			this.textBox_body.Multiline = true;
+			this.textBox_body.Name = "textBox_body";
+			this.textBox_body.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_body.Size = new System.Drawing.Size(723, 141);
+			this.textBox_body.TabIndex = 8;
+			this.textBox_body.Text = "<html><head><title>HslWebServer</title></head><body><p style=\"color:red\">这是一个测试的消" +
+    "息内容</p></body></html>";
+			// 
+			// button_get
+			// 
+			this.button_get.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_get.Location = new System.Drawing.Point(232, 175);
+			this.button_get.Name = "button_get";
+			this.button_get.Size = new System.Drawing.Size(139, 28);
+			this.button_get.TabIndex = 12;
+			this.button_get.Text = "设置Get";
+			this.button_get.UseVisualStyleBackColor = true;
+			this.button_get.Click += new System.EventHandler(this.button3_Click);
+			// 
+			// panel7
+			// 
+			this.panel7.Controls.Add(this.tabControl1);
+			this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel7.Location = new System.Drawing.Point(0, 0);
+			this.panel7.Name = "panel7";
+			this.panel7.Size = new System.Drawing.Size(784, 312);
+			this.panel7.TabIndex = 0;
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Location = new System.Drawing.Point(4, 208);
+			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(808, 309);
+			this.tabControl1.Size = new System.Drawing.Size(784, 312);
 			this.tabControl1.TabIndex = 25;
 			// 
 			// tabPage1
@@ -259,7 +400,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(800, 279);
+			this.tabPage1.Size = new System.Drawing.Size(776, 282);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "网页浏览";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -279,14 +420,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox1.Location = new System.Drawing.Point(42, 6);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(654, 23);
+			this.textBox1.Size = new System.Drawing.Size(638, 23);
 			this.textBox1.TabIndex = 21;
 			this.textBox1.Text = "http://127.0.0.1:12345/GetA";
 			// 
 			// button2
 			// 
 			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(703, 3);
+			this.button2.Location = new System.Drawing.Point(682, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 22;
@@ -302,16 +443,16 @@
 			this.webBrowser1.Location = new System.Drawing.Point(6, 35);
 			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(788, 238);
+			this.webBrowser1.Size = new System.Drawing.Size(767, 238);
 			this.webBrowser1.TabIndex = 23;
 			// 
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.panel4);
-			this.tabPage2.Location = new System.Drawing.Point(4, 26);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(800, 279);
+			this.tabPage2.Size = new System.Drawing.Size(776, 286);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "调用日志";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -327,7 +468,7 @@
 			this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel4.Location = new System.Drawing.Point(3, 3);
 			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(794, 273);
+			this.panel4.Size = new System.Drawing.Size(770, 280);
 			this.panel4.TabIndex = 0;
 			// 
 			// checkBox_show_header
@@ -353,7 +494,7 @@
 			// button_clear
 			// 
 			this.button_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_clear.Location = new System.Drawing.Point(708, 4);
+			this.button_clear.Location = new System.Drawing.Point(684, 4);
 			this.button_clear.Name = "button_clear";
 			this.button_clear.Size = new System.Drawing.Size(83, 28);
 			this.button_clear.TabIndex = 14;
@@ -364,7 +505,7 @@
 			// button_stop
 			// 
 			this.button_stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_stop.Location = new System.Drawing.Point(619, 4);
+			this.button_stop.Location = new System.Drawing.Point(595, 4);
 			this.button_stop.Name = "button_stop";
 			this.button_stop.Size = new System.Drawing.Size(83, 28);
 			this.button_stop.TabIndex = 13;
@@ -381,7 +522,7 @@
 			this.textBox_log.Multiline = true;
 			this.textBox_log.Name = "textBox_log";
 			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_log.Size = new System.Drawing.Size(788, 238);
+			this.textBox_log.Size = new System.Drawing.Size(764, 245);
 			this.textBox_log.TabIndex = 9;
 			// 
 			// label6
@@ -393,84 +534,105 @@
 			this.label6.TabIndex = 8;
 			this.label6.Text = "Log:";
 			// 
-			// button_delete
+			// tabPage3
 			// 
-			this.button_delete.Location = new System.Drawing.Point(533, 180);
-			this.button_delete.Name = "button_delete";
-			this.button_delete.Size = new System.Drawing.Size(148, 28);
-			this.button_delete.TabIndex = 24;
-			this.button_delete.Text = "Delete Api";
-			this.button_delete.UseVisualStyleBackColor = true;
-			this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
+			this.tabPage3.Controls.Add(this.panel5);
+			this.tabPage3.Location = new System.Drawing.Point(4, 26);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(776, 282);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "注册设备";
+			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
-			// button_post
+			// panel5
 			// 
-			this.button_post.Location = new System.Drawing.Point(379, 180);
-			this.button_post.Name = "button_post";
-			this.button_post.Size = new System.Drawing.Size(148, 28);
-			this.button_post.TabIndex = 20;
-			this.button_post.Text = "设置Post";
-			this.button_post.UseVisualStyleBackColor = true;
-			this.button_post.Click += new System.EventHandler(this.Button7_Click);
+			this.panel5.Controls.Add(this.button_device_remove);
+			this.panel5.Controls.Add(this.dataGridView1);
+			this.panel5.Controls.Add(this.label11);
+			this.panel5.Controls.Add(this.button_device_add);
+			this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel5.Location = new System.Drawing.Point(3, 3);
+			this.panel5.Name = "panel5";
+			this.panel5.Size = new System.Drawing.Size(770, 276);
+			this.panel5.TabIndex = 0;
 			// 
-			// button_get
+			// button_device_remove
 			// 
-			this.button_get.Location = new System.Drawing.Point(234, 180);
-			this.button_get.Name = "button_get";
-			this.button_get.Size = new System.Drawing.Size(139, 28);
-			this.button_get.TabIndex = 12;
-			this.button_get.Text = "设置Get";
-			this.button_get.UseVisualStyleBackColor = true;
-			this.button_get.Click += new System.EventHandler(this.button3_Click);
+			this.button_device_remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_device_remove.Location = new System.Drawing.Point(372, 240);
+			this.button_device_remove.Name = "button_device_remove";
+			this.button_device_remove.Size = new System.Drawing.Size(112, 31);
+			this.button_device_remove.TabIndex = 3;
+			this.button_device_remove.Text = "移除选中设备";
+			this.button_device_remove.UseVisualStyleBackColor = true;
+			this.button_device_remove.Click += new System.EventHandler(this.button5_Click);
 			// 
-			// textBox_body
+			// dataGridView1
 			// 
-			this.textBox_body.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.dataGridView1.AllowUserToAddRows = false;
+			this.dataGridView1.AllowUserToDeleteRows = false;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_body.Location = new System.Drawing.Point(62, 36);
-			this.textBox_body.Multiline = true;
-			this.textBox_body.Name = "textBox_body";
-			this.textBox_body.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_body.Size = new System.Drawing.Size(742, 138);
-			this.textBox_body.TabIndex = 8;
-			this.textBox_body.Text = "<html><head><title>HslWebServer</title></head><body><p style=\"color:red\">这是一个测试的消" +
-    "息内容</p></body></html>";
+			this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column_guid,
+            this.Column_form,
+            this.Column_device});
+			this.dataGridView1.Location = new System.Drawing.Point(3, 24);
+			this.dataGridView1.MultiSelect = false;
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.ReadOnly = true;
+			this.dataGridView1.RowHeadersVisible = false;
+			this.dataGridView1.RowTemplate.Height = 23;
+			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dataGridView1.Size = new System.Drawing.Size(764, 212);
+			this.dataGridView1.TabIndex = 2;
 			// 
-			// label9
+			// Column_guid
 			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(8, 39);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(44, 17);
-			this.label9.TabIndex = 11;
-			this.label9.Text = "数据：";
+			this.Column_guid.HeaderText = "Guid";
+			this.Column_guid.Name = "Column_guid";
+			this.Column_guid.ReadOnly = true;
+			this.Column_guid.Width = 240;
 			// 
-			// label8
+			// Column_form
 			// 
-			this.label8.AutoSize = true;
-			this.label8.ForeColor = System.Drawing.Color.Gray;
-			this.label8.Location = new System.Drawing.Point(501, 11);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(188, 17);
-			this.label8.TabIndex = 10;
-			this.label8.Text = "在请求的时候就会得到下面的信息";
+			this.Column_form.HeaderText = "Form";
+			this.Column_form.Name = "Column_form";
+			this.Column_form.ReadOnly = true;
+			this.Column_form.Width = 200;
 			// 
-			// textBox_api
+			// Column_device
 			// 
-			this.textBox_api.Location = new System.Drawing.Point(62, 7);
-			this.textBox_api.Name = "textBox_api";
-			this.textBox_api.Size = new System.Drawing.Size(434, 23);
-			this.textBox_api.TabIndex = 9;
-			this.textBox_api.Text = "/GetA";
+			this.Column_device.HeaderText = "Device";
+			this.Column_device.Name = "Column_device";
+			this.Column_device.ReadOnly = true;
+			this.Column_device.Width = 290;
 			// 
-			// label7
+			// label11
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(8, 11);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(32, 17);
-			this.label7.TabIndex = 7;
-			this.label7.Text = "网址";
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(6, 4);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(119, 17);
+			this.label11.TabIndex = 1;
+			this.label11.Text = "已经注册的设备列表:";
+			// 
+			// button_device_add
+			// 
+			this.button_device_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_device_add.Location = new System.Drawing.Point(250, 240);
+			this.button_device_add.Name = "button_device_add";
+			this.button_device_add.Size = new System.Drawing.Size(112, 31);
+			this.button_device_add.TabIndex = 0;
+			this.button_device_add.Text = "新增设备";
+			this.button_device_add.UseVisualStyleBackColor = true;
+			this.button_device_add.Click += new System.EventHandler(this.button_device_add_Click);
 			// 
 			// userControlHead1
 			// 
@@ -497,7 +659,7 @@
 			this.panel3.Controls.Add(this.listBox1);
 			this.panel3.Location = new System.Drawing.Point(3, 99);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(179, 522);
+			this.panel3.Size = new System.Drawing.Size(208, 522);
 			this.panel3.TabIndex = 15;
 			// 
 			// label2
@@ -511,13 +673,14 @@
 			// 
 			// listBox1
 			// 
-			this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+			this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.ItemHeight = 17;
 			this.listBox1.Location = new System.Drawing.Point(3, 20);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(171, 497);
+			this.listBox1.Size = new System.Drawing.Size(200, 497);
 			this.listBox1.TabIndex = 0;
 			// 
 			// FormHttpServer
@@ -539,13 +702,23 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
+			this.panel6.ResumeLayout(false);
+			this.panel6.PerformLayout();
+			this.panel7.ResumeLayout(false);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
 			this.panel4.ResumeLayout(false);
 			this.panel4.PerformLayout();
+			this.tabPage3.ResumeLayout(false);
+			this.panel5.ResumeLayout(false);
+			this.panel5.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
@@ -593,5 +766,17 @@
         private System.Windows.Forms.CheckBox checkBox_show_body;
         private System.Windows.Forms.CheckBox checkBox_show_header;
 		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.TabPage tabPage3;
+		private System.Windows.Forms.Panel panel5;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.Panel panel6;
+		private System.Windows.Forms.Panel panel7;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.Button button_device_add;
+		private System.Windows.Forms.Button button_device_remove;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_guid;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_form;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_device;
 	}
 }

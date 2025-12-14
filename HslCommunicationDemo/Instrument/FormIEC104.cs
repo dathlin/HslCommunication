@@ -67,6 +67,7 @@ namespace HslCommunicationDemo
 			comboBox_write_type.SelectedIndex = 0;
 			comboBox_write_reason.SelectedIndex = 5;
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			dataGridView1.RowHeadersWidth = 70;
 			codeExampleControl = new CodeExampleControl( );
@@ -80,8 +81,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "IEC104 Read Demo";
 				label21.Text = "Station";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				button5.Text = "Time";
 				label13.Text = "Results:";
 				label6.Text = "Type:";

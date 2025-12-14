@@ -32,6 +32,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 
 			comboBox2.SelectedIndex = 3;
@@ -63,8 +64,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Free protocol access based on Tcp ip";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 		}
 

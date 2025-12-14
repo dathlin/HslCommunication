@@ -81,14 +81,14 @@ namespace HslCommunicationDemo.HslDebug
 				( address, length ) => MelsecA1EAsciiNet.BuildReadCommand( address, length, false, 0xFF ).Then( m => OperateResult.CreateSuccessResult( m[0] ) ), false );
 			AddTreeChild( melsec, "FxLinks", ( address, length ) =>
 			{
-				OperateResult<List<byte[]>> command = MelsecFxLinksHelper.BuildReadCommand( melsec2.Station, address, length, true, melsec2.WaittingTime );
+				OperateResult<List<byte[]>> command = MelsecFxLinksHelper.BuildReadCommand( melsec2, melsec2.Station, address, length, true );
 				if (!command.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( command );
 
 				return OperateResult.CreateSuccessResult( melsec2.PackCommandWithHeader( command.Content[0] ) );
 			},
 			( address, length ) =>
 			{
-				OperateResult<List<byte[]>> command = MelsecFxLinksHelper.BuildReadCommand( melsec2.Station, address, length, false, melsec2.WaittingTime );
+				OperateResult<List<byte[]>> command = MelsecFxLinksHelper.BuildReadCommand( melsec2, melsec2.Station, address, length, false );
 				if (!command.IsSuccess) return OperateResult.CreateFailedResult<byte[]>( command );
 
 				return OperateResult.CreateSuccessResult( melsec2.PackCommandWithHeader( command.Content[0] ) );

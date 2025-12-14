@@ -325,7 +325,7 @@
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(745, 164);
+			this.textBox4.Size = new System.Drawing.Size(712, 164);
 			this.textBox4.TabIndex = 5;
 			// 
 			// label7

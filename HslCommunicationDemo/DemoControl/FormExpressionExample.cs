@@ -94,6 +94,7 @@ namespace HslCommunicationDemo.DemoControl
 				label4.Text = "Trigo func:";
 				label5.Text = "Random func:";
 				label6.Text = "Trigo jitter:";
+				label7.Text = "Barcode func:";
 
 				button1.Text = "Save";
 			}

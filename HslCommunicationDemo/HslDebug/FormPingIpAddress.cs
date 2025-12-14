@@ -20,11 +20,13 @@ namespace HslCommunicationDemo.HslDebug
 		public FormPingIpAddress( )
 		{
 			InitializeComponent( );
+			this.paintFoint = this.Font;
 		}
 
 		private void FormPingIpAddress_Load( object sender, EventArgs e )
 		{
-			if (Program.Language == 1)
+			this.paintFoint = new Font( this.Font.FontFamily, 9f );
+			if (Program.Language == 2)
 			{
 				this.Text = "Ping IP Test Tool";
 				label1.Text = "Start IP:";
@@ -263,6 +265,7 @@ namespace HslCommunicationDemo.HslDebug
 		private int latencyGood = 50;
 		private int latencyNormal = 150;
 		private bool threadRunning = false; // 是否正在运行线程
+		private Font paintFoint = null;
 
 		private void pictureBox1_Paint( object sender, PaintEventArgs e )
 		{
@@ -306,8 +309,8 @@ namespace HslCommunicationDemo.HslDebug
 				else
 					e.Graphics.DrawRectangle( Pens.Gray, x, y, item_width - 1, item_height - 1 );
 
-				e.Graphics.DrawString( Regex.Match( pingResult.IpAddress, @"[0-9]+\.[0-9]+$" ).Value, this.Font, Brushes.Black, 
-					new RectangleF( x, y, item_width, item_height ), HslControls.HslHelper.StringFormatCenter );
+				e.Graphics.DrawString( Regex.Match( pingResult.IpAddress, @"[0-9]+\.[0-9]+$" ).Value, this.paintFoint, Brushes.Black, 
+					new RectangleF( x - 5, y, item_width + 10, item_height ), HslControls.HslHelper.StringFormatCenter );
 
 				x += item_width + 2; // +2是为了留出一点间距
 				if (x >= (pictureBox1.Width - item_width - 2))

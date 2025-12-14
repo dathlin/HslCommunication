@@ -34,6 +34,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 			control = new MelsecSerialControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 
@@ -52,9 +53,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Melsec Read PLC Demo";
-
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				checkBox_newVersion.Text = "New Version Message?";
 				checkBox_changeAuto.Text = "Change PLC BaudRate?";
 				userControlHead1.ProtocolInfo = "fx serial protocol";

@@ -35,17 +35,42 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void CodeExampleControl_SizeChanged( object sender, EventArgs e )
 		{
-			int width = this.Width;
-			if (width > 50)
+			if (showSingleTextBox)
 			{
-				int width1 = width * 3 / 5;
-				if (width1 > 200) width1 = width1 - 43;
-				int width2 = width - width1;
-
-				textBox1.Width = width1 - 1;
-				textBox2.Location = new Point( width1 + 1, 0 );
-				textBox2.Width = width2 - 1;
+				int width1 = this.Width - 3;
+				if (width1 < 100) width1 = 100;
+				textBox1.Width = width1;
 			}
+			else
+			{
+				int width = this.Width;
+				if (width > 50)
+				{
+					int width1 = width * 3 / 5;
+					if (width1 > 200) width1 = width1 - 43;
+					int width2 = width - width1;
+
+					textBox1.Width = width1 - 1;
+					textBox2.Location = new Point( width1 + 1, 0 );
+					textBox2.Width = width2 - 1;
+				}
+			}
+		}
+		private bool showSingleTextBox = false;
+
+		public void ShowTextBox( bool showSingleTextBox )
+		{
+			this.showSingleTextBox = showSingleTextBox;
+			if (showSingleTextBox )
+			{
+				textBox2.Visible = false;
+			}
+			else
+			{
+				textBox2.Visible = true;
+			}
+
+			CodeExampleControl_SizeChanged( this, EventArgs.Empty );
 		}
 
 		public static string GetTitle( ) => Program.Language == 1 ? "代码示例" : "Code Example";
@@ -750,7 +775,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		#region Private Member
 
-		private void RenderExampleCode( StringBuilder sb )
+		public void RenderExampleCode( StringBuilder sb )
 		{
 			deviceCreateCode = sb.ToString( );
 			this.textBox1.Text = deviceCreateCode;

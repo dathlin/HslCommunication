@@ -48,11 +48,12 @@ namespace HslCommunicationDemo
 		private SiemensS7WriteControl randomWriteControl;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
-
+		private bool savePduLength = false;
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			if (siemensPLCSelected == SiemensPLCS.S400)
 			{
@@ -83,9 +84,6 @@ namespace HslCommunicationDemo
 			if (language == 2)
 			{
 				Text = "Siemens Read PLC Demo";
-
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				label_info.Text = "not set if not clear, change slot if always failed";
 			}
 		}
@@ -111,11 +109,22 @@ namespace HslCommunicationDemo
 				if (!string.IsNullOrEmpty( textBox_localTSAP.Text )) siemensTcpNet.LocalTSAP = int.Parse( textBox_localTSAP.Text );
 				siemensTcpNet.LogNet = LogNet;
 
+				if (string.IsNullOrEmpty( textBox_pdu.Text ))
+				{
+					savePduLength = false;
+					siemensTcpNet.PDULength = -1; // 恢复默认值
+				}
+				else
+				{
+					savePduLength = true;
+					siemensTcpNet.PDULength = int.Parse( textBox_pdu.Text.Trim( ) ); // 设置新的PDU值
+				}
 
 				OperateResult connect = DeviceConnectPLC( siemensTcpNet );
 				if (connect.IsSuccess)
 				{
 					textBox_pdu.Text = siemensTcpNet.PDULength.ToString( );
+
 					DemoUtils.ShowMessage( StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
@@ -137,10 +146,13 @@ namespace HslCommunicationDemo
 					parameters.Add( nameof( siemensTcpNet.Slot ) );
 					if (!string.IsNullOrEmpty( textBox_connectType.Text )) parameters.Add( nameof( siemensTcpNet.ConnectionType ) );
 					if (!string.IsNullOrEmpty( textBox_localTSAP.Text )) parameters.Add( nameof( siemensTcpNet.LocalTSAP ) );
+					if (savePduLength) parameters.Add( nameof( siemensTcpNet.PDULength ) );
 
 					// 设置代码示例
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
 					codeExampleControl.SetCodeText( siemensTcpNet, parameters.ToArray( ) );
+
+					textBox_pdu.ReadOnly = true;
 				}
 				else
 				{
@@ -156,6 +168,11 @@ namespace HslCommunicationDemo
 		private void button2_Click( object sender, EventArgs e )
 		{
 			// 断开连接
+			if (this.savePduLength == false)
+			{
+				textBox_pdu.Text = string.Empty;
+			}
+			textBox_pdu.ReadOnly = false;
 			button2.Enabled = false;
 			button1.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
@@ -264,10 +281,11 @@ namespace HslCommunicationDemo
 		public override void SaveXmlParameter( XElement element )
 		{
 			this.pipeSelectControl1.SaveXmlParameter( element );
-			element.SetAttributeValue( DemoDeviceList.XmlRack, textBox_rack.Text );
-			element.SetAttributeValue( DemoDeviceList.XmlSlot, textBox_slot.Text );
-			element.SetAttributeValue( "ConnectType", textBox_connectType.Text );
-			element.SetAttributeValue( "LocalTSAP",   textBox_localTSAP.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlRack,        textBox_rack.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlSlot,        textBox_slot.Text );
+			element.SetAttributeValue( "ConnectType",                 textBox_connectType.Text );
+			element.SetAttributeValue( "LocalTSAP",                   textBox_localTSAP.Text );
+			if (this.savePduLength) element.SetAttributeValue( "Pdu", textBox_pdu.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
 		}
@@ -280,6 +298,7 @@ namespace HslCommunicationDemo
 			textBox_slot.Text = element.Attribute( DemoDeviceList.XmlSlot ).Value;
 			textBox_connectType.Text = GetXmlValue( element, "ConnectType", string.Empty, m => m );
 			textBox_localTSAP.Text   = GetXmlValue( element, "LocalTSAP",   string.Empty, m => m );
+			textBox_pdu.Text         = GetXmlValue( element, "Pdu",         string.Empty, m => m );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)
 				this.userControlReadWriteDevice1.SelectTabDataTable( );

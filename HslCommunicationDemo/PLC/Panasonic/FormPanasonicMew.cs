@@ -34,6 +34,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 			control = new MewtocolControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
 
@@ -53,8 +54,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "Panasonic Read PLC Demo";
 				label21.Text = "station";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 		}
 

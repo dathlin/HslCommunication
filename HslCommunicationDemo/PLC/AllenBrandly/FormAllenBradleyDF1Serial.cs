@@ -31,6 +31,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.AllenBrandly.Helper.GetDF1AddressExamples( ) );
@@ -48,8 +49,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "AB-DF1 Read Demo";
 				label21.Text = "station";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 				label2.Text = "Target:";
 				label4.Text = "Sender:";
 			}

@@ -33,6 +33,7 @@ namespace HslCommunicationDemo
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Lsis.Helper.GetLsisCnetAddress( ) );
@@ -50,8 +51,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "Lsis Cnet Read Demo";
 				label21.Text = "station";
-				button1.Text = "Connect";
-				button2.Text = "Disconnect";
 			}
 		}
 

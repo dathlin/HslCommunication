@@ -43,6 +43,7 @@ namespace HslCommunicationDemo
 			button2.Enabled = false;
 
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			control = new FinsTcpControl( );
 			this.userControlReadWriteDevice1.AddSpecialFunctionTab( control );
@@ -65,8 +66,6 @@ namespace HslCommunicationDemo
 			{
 				Text = "Omron Read PLC Demo";
 				label23.Text = "PC Net Num";
-				button1.Text = "Create";
-				button2.Text = "Close";
 			}
 		}
 

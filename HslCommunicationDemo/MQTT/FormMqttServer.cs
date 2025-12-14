@@ -223,18 +223,21 @@ namespace HslCommunicationDemo
 				radioButton_every_hour.Text = "Hour";
 				radioButton_every_day.Text = "Day";
 				checkBox_skip_zero.Text = "Skip times 0?";
+
+
+				tabPage5.Text = "Registered";
+				label25.Text = "List of registered devices:";
+				button_device_add.Text = "Add Device";
+				button_device_remove.Text = "Remove";
 			}
 		}
 
 		private MqttServer mqttServer;
-		private SiemensS7Net siemens;
 
 		private void button1_Click( object sender, EventArgs e )
 		{
 			try
 			{
-				siemens = new SiemensS7Net( SiemensPLCS.S1200, "127.0.0.1" );
-
 				mqttServer = new MqttServer( );
 				mqttServer.OnClientApplicationMessageReceive += MqttServer_OnClientApplicationMessageReceive;
 				mqttServer.OnClientConnected                 += MqttServer_OnClientConnected;
@@ -246,11 +249,7 @@ namespace HslCommunicationDemo
 				}
 
 				mqttServer.RegisterMqttRpcApi( "Account", this );
-				mqttServer.RegisterMqttRpcApi( "Siemens", siemens );               // 注册一个西门子PLC的服务接口的示例
 				mqttServer.RegisterMqttRpcApi( "TimeOut", typeof(HslTimeOut) );    // 注册的类的静态方法和静态属性
-				mqttServer.RegisterMqttRpcApi( "Fanuc",   new HslCommunication.CNC.Fanuc.FanucSeries0i( "127.0.0.1" ) );
-				mqttServer.RegisterMqttRpcApi( "PCCC", new HslCommunication.Profinet.AllenBradley.AllenBradleyPcccNet( "127.0.0.1" ) );
-
 
 				this.sslServerControl1.InitializeServer( mqttServer );
 				mqttServer.ServerStart( int.Parse( textBox2.Text ) );
@@ -831,6 +830,42 @@ namespace HslCommunicationDemo
 		private void FormMqttServer_FormClosing( object sender, FormClosingEventArgs e )
 		{
 			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 如果是开启状态，则关闭服务器
+		}
+
+		private void button_device_add_Click( object sender, EventArgs e )
+		{
+			// 新增注册设备
+			using (FormRunDeviceSelect form = new FormRunDeviceSelect( ))
+			{
+				if (form.ShowDialog( ) == DialogResult.OK)
+				{
+					mqttServer?.RegisterMqttRpcApi( form.SelectedDevice.ApiName, form.SelectedDevice.Device );
+					int index = dataGridView2.Rows.Add( );
+					dataGridView2.Rows[index].Cells[0].Value = form.SelectedDevice.Guid;
+
+					if (!string.IsNullOrEmpty( form.SelectedDevice.ApiName ))
+						dataGridView2.Rows[index].Cells[1].Value = form.SelectedDevice.ApiName;
+					else
+						dataGridView2.Rows[index].Cells[1].Value = $"[{form.SelectedDevice.Name}]";
+
+					dataGridView2.Rows[index].Cells[2].Value = form.SelectedDevice.Device.ToString( );
+					dataGridView2.Rows[index].Tag = form.SelectedDevice;
+				}
+			}
+		}
+
+		private void button_device_remove_Click( object sender, EventArgs e )
+		{
+			// 删除注册设备
+			if (dataGridView2.SelectedRows.Count > 0)
+			{
+				var device = dataGridView1.SelectedRows[0].Tag as DemoDeviceItem;
+				if (device != null)
+				{
+					mqttServer?.UnRegisterMqttRpcApi( device.ApiName, device.Device );
+					dataGridView2.Rows.RemoveAt( dataGridView1.SelectedRows[0].Index );
+				}
+			}
 		}
 	}
 

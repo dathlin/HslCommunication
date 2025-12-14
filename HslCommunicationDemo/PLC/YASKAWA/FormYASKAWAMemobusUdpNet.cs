@@ -36,6 +36,7 @@ namespace HslCommunicationDemo
 			comboBox1.SelectedItem = HslCommunication.Core.DataFormat.CDAB;
 
 			Language( Program.Language );
+			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			addressExampleControl = new AddressExampleControl( );
 			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.YASKAWA.Helper.GetMemobusAddress( ) );
@@ -54,8 +55,6 @@ namespace HslCommunicationDemo
 				Text = "YASKAWA Read PLC Demo";
 
 				label1.Text = "Station:";
-				button1.Text = "Open";
-				button2.Text = "Close";
 				label3.Text = "If connection fails, check if the PLC requires a specific client port. Click \"More\" to set it.";
 			}
 		}

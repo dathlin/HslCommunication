@@ -89,7 +89,7 @@
 			this.comboBox_format.Items.AddRange(new object[] {
             "1",
             "4"});
-			this.comboBox_format.Location = new System.Drawing.Point(355, 35);
+			this.comboBox_format.Location = new System.Drawing.Point(375, 35);
 			this.comboBox_format.Name = "comboBox_format";
 			this.comboBox_format.Size = new System.Drawing.Size(68, 25);
 			this.comboBox_format.TabIndex = 40;
@@ -97,7 +97,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(299, 39);
+			this.label2.Location = new System.Drawing.Point(319, 39);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(44, 17);
 			this.label2.TabIndex = 39;
@@ -105,7 +105,7 @@
 			// 
 			// textBox18
 			// 
-			this.textBox18.Location = new System.Drawing.Point(156, 36);
+			this.textBox18.Location = new System.Drawing.Point(176, 36);
 			this.textBox18.Name = "textBox18";
 			this.textBox18.Size = new System.Drawing.Size(31, 23);
 			this.textBox18.TabIndex = 30;
@@ -142,7 +142,7 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(201, 38);
+			this.checkBox1.Location = new System.Drawing.Point(221, 38);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(63, 21);
 			this.checkBox1.TabIndex = 26;
@@ -152,7 +152,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(899, 2);
+			this.button2.Location = new System.Drawing.Point(893, 2);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -162,7 +162,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(802, 2);
+			this.button1.Location = new System.Drawing.Point(798, 2);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
