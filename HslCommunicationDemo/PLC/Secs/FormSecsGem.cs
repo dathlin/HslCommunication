@@ -26,11 +26,16 @@ namespace HslCommunicationDemo
 		public FormSecsGem( )
 		{
 			InitializeComponent( );
+
+			imageList = new ImageList( );
+			imageList.Images.Add( "s", Properties.Resources.secs_s );
+			imageList.Images.Add( "f", Properties.Resources.secs_f );
 		}
 
 		private SecsHsms secs = null;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
+		private ImageList imageList;
 
 		/// <summary>
 		/// 获取MC协议的地址示例
@@ -59,6 +64,8 @@ namespace HslCommunicationDemo
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
+			treeView1.ImageList = this.imageList;
+
 			comboBox_log_style.SelectedIndex = 0;
 			panel2.Enabled = false;
 			comboBox1.SelectedIndex = 1;
@@ -89,7 +96,7 @@ namespace HslCommunicationDemo
 			////stringBuilder.Append( new SecsValue( new object[] { (short)3, "ABC" } ) );
 			//textBox_example.Text = stringBuilder.ToString();
 
-			TreeNode s1Node = new TreeNode( "S1" );
+			TreeNode s1Node = new TreeNode( "S1" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s1Node, new SecsTreeItem( 1, 1, true, null, "Are You Online" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 3, true, new SecsValue( new object[] { (uint)1, (uint)2 } ), "Selected Equipment Status" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 5, true, new SecsValue( new byte[] { 0x01 } ), "Formatted Status" ) );
@@ -104,7 +111,7 @@ namespace HslCommunicationDemo
 			AddTree( s1Node, new SecsTreeItem( 1, 23, true, new SecsValue( new object[] { (uint)1, (uint)2 } ), "Collection Event Namelist" ) );
 			treeView1.Nodes.Add( s1Node );
 
-			TreeNode s2Node = new TreeNode( "S2" );
+			TreeNode s2Node = new TreeNode( "S2" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s2Node, new SecsTreeItem( 2, 1, false, new SecsValue( new byte[] { 0x01, 0x02, 0x03 } ), "Service Program Load Grant" ) );
 			AddTree( s2Node, new SecsTreeItem( 2, 3, false, new SecsValue( new byte[] { 0x01, 0x02, 0x03 } ), "Service Program Send" ) );
 			AddTree( s2Node, new SecsTreeItem( 2, 5, false, new SecsValue( "bin00" ), "Service Program Load" ) );
@@ -129,7 +136,7 @@ namespace HslCommunicationDemo
 			treeView1.Nodes.Add( s2Node );
 
 
-			TreeNode s3Node = new TreeNode( "S3" );
+			TreeNode s3Node = new TreeNode( "S3" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s3Node, new SecsTreeItem( 3, 1, true, null, "Material Status" ) );
 			AddTree( s3Node, new SecsTreeItem( 3, 3, true, null, "Time to Completion Data" ) );
 			AddTree( s3Node, new SecsTreeItem( 3, 5, true, new SecsValue( new object[] { new byte[] { 0x01 }, new byte[] { 0x18 } } ), "Material Found Send" ) );
@@ -149,7 +156,7 @@ namespace HslCommunicationDemo
 			treeView1.Nodes.Add( s3Node );
 
 
-			TreeNode s4Node = new TreeNode( "S4" );
+			TreeNode s4Node = new TreeNode( "S4" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s4Node, new SecsTreeItem( 4, 1, true, new SecsValue( new object[] { (byte)1, "ee052793.1" } ), "Ready to Send Materials" ) );
 			AddTree( s4Node, new SecsTreeItem( 4, 3, false, new SecsValue( new object[] { (byte)1, "ee052793.1" } ), "Send Material" ) );
 			AddTree( s4Node, new SecsTreeItem( 4, 5, false, new SecsValue( new object[] { (byte)1, "ee052793.1" } ), "Handshake Complete" ) );
@@ -163,7 +170,7 @@ namespace HslCommunicationDemo
 			AddTree( s4Node, new SecsTreeItem( 4, 21, true, new SecsValue( new object[] { new byte[] { 0x60 }, "PAUSE", new object[] { new object[] { "ppexecname", "cmos168-zl0EC3" } } } ), "Transfer Job Command" ) );
 			treeView1.Nodes.Add( s4Node );
 
-			TreeNode s5Node = new TreeNode( "S5" ); ;
+			TreeNode s5Node = new TreeNode( "S5" ) { ImageKey = "s", SelectedImageKey = "s" }; ;
 			AddTree( s5Node, new SecsTreeItem( 5, 3, true, new SecsValue( new object[] { new byte[] { 0x00 }, (uint)1000 } ), "Enable/Disable Alarm Send" ) );
 			AddTree( s5Node, new SecsTreeItem( 5, 5, true, new SecsValue( (uint)0 ), "List Alarms Request" ) );
 			AddTree( s5Node, new SecsTreeItem( 5, 7, true, null, "List Enabled Alarm Request" ) );
@@ -173,7 +180,7 @@ namespace HslCommunicationDemo
 			AddTree( s5Node, new SecsTreeItem( 5, 17, true, new SecsValue( "out of ink" ), "Exception Recovery Abort Request" ) );
 			treeView1.Nodes.Add( s5Node );
 
-			TreeNode s6Node = new TreeNode( "S6" );
+			TreeNode s6Node = new TreeNode( "S6" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s6Node, new SecsTreeItem( 6, 1, true, new SecsValue( new object[] { "1", (uint)10, "YYMMDDHHMMSS", new object[] { (byte)65 } } ), "Trace Data Send" ) );
 			AddTree( s6Node, new SecsTreeItem( 6, 3, true, new SecsValue( new object[] { (uint)1, (uint)4050, new object[] { new object[] { "12", new object[] { new object[] { (uint)10, "54" } } } } } ), "Discrete Variable Data Send" ) );
 			AddTree( s6Node, new SecsTreeItem( 6, 5, true, new SecsValue( new object[] { (uint)1, (uint)649 } ), "Multi-block Data Send Inquire" ) );
@@ -181,7 +188,7 @@ namespace HslCommunicationDemo
 			AddTree( s6Node, new SecsTreeItem( 6, 9, true, new SecsValue( new object[] { new byte[] { 0x02 }, (uint)1, (uint)4050, new object[] { new object[] { "12", new object[] { "54" } } } } ), "Formatted Variable Send" ) );
 			treeView1.Nodes.Add( s6Node );
 
-			TreeNode s7Node = new TreeNode( "S7" );
+			TreeNode s7Node = new TreeNode( "S7" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s7Node, new SecsTreeItem( 7, 1, true, new SecsValue( new object[] { "banana", (uint)322 } ), "Process Program Load Inquire" ) );
 			AddTree( s7Node, new SecsTreeItem( 7, 3, true, new SecsValue( new object[] { "banana", new byte[] { 0x00 } } ), "Process Program Send\t" ) );
 
@@ -239,6 +246,8 @@ namespace HslCommunicationDemo
 		public void AddTree( TreeNode treeNode, SecsTreeItem treeItem )
 		{
 			TreeNode child = new TreeNode( $"S{treeItem.S}F{treeItem.F}{(treeItem.W ? "W" : "")} {treeItem.Description}" );
+			child.ImageKey = "f";
+			child.SelectedImageKey = "f";
 			child.Tag = treeItem;
 			treeNode.Nodes.Add( child );
 		}

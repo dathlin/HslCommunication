@@ -59,6 +59,8 @@ namespace HslCommunicationDemo.PLC.Secs
 				if (s > secsTreeItem.S)
 				{
 					TreeNode node2 = new TreeNode( "S" + secsTreeItem.S );
+					node2.SelectedImageKey = "s";
+					node2.ImageKey = "s";
 					treeView1.Nodes.Insert( i, node2 );
 					return node2;
 				}
@@ -66,6 +68,8 @@ namespace HslCommunicationDemo.PLC.Secs
 
 			// 都没有，就在最后面插入节点信息
 			TreeNode node3 = new TreeNode( "S" + secsTreeItem.S );
+			node3.SelectedImageKey = "s";
+			node3.ImageKey = "s";
 			treeView1.Nodes.Add( node3 );
 			return node3;
 		}
@@ -89,6 +93,8 @@ namespace HslCommunicationDemo.PLC.Secs
 				{
 					// 要插入一个节点
 					TreeNode node2 = new TreeNode( secsTreeItem.GetTreeNodeText( ) );
+					node2.SelectedImageKey = "f";
+					node2.ImageKey = "f";
 					node2.Tag = secsTreeItem;
 					parent.Nodes.Insert( i, node2 );
 					return;
@@ -96,6 +102,8 @@ namespace HslCommunicationDemo.PLC.Secs
 			}
 
 			TreeNode node3 = new TreeNode( secsTreeItem.GetTreeNodeText( ) );
+			node3.SelectedImageKey = "f";
+			node3.ImageKey = "f";
 			node3.Tag = secsTreeItem;
 			parent.Nodes.Add( node3 );
 		}

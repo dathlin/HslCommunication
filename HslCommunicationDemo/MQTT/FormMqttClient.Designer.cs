@@ -28,6 +28,62 @@
         /// </summary>
         private void InitializeComponent( )
         {
+			this.panel4 = new System.Windows.Forms.Panel();
+			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.panel5 = new System.Windows.Forms.Panel();
+			this.label7 = new System.Windows.Forms.Label();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.button7 = new System.Windows.Forms.Button();
+			this.checkBox_publish_isHex = new System.Windows.Forms.CheckBox();
+			this.button8 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
+			this.radioButton1 = new System.Windows.Forms.RadioButton();
+			this.radioButton2 = new System.Windows.Forms.RadioButton();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.radioButton_binary = new System.Windows.Forms.RadioButton();
+			this.radioButton_json = new System.Windows.Forms.RadioButton();
+			this.radioButton_text = new System.Windows.Forms.RadioButton();
+			this.radioButton_xml = new System.Windows.Forms.RadioButton();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.button9 = new System.Windows.Forms.Button();
+			this.button_publish = new System.Windows.Forms.Button();
+			this.label9 = new System.Windows.Forms.Label();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.panel7 = new System.Windows.Forms.Panel();
+			this.checkBox_stop = new System.Windows.Forms.CheckBox();
+			this.textBox8 = new System.Windows.Forms.TextBox();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.panel8 = new System.Windows.Forms.Panel();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.textBox_test_recv = new System.Windows.Forms.TextBox();
+			this.button5 = new System.Windows.Forms.Button();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.textBox_test_pub_topic = new System.Windows.Forms.TextBox();
+			this.label_test_pub_topic = new System.Windows.Forms.Label();
+			this.textBox_test_pub_count = new System.Windows.Forms.TextBox();
+			this.label_test_pub_count = new System.Windows.Forms.Label();
+			this.button6 = new System.Windows.Forms.Button();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.panel9 = new System.Windows.Forms.Panel();
+			this.mqttTopicControl1 = new HslCommunicationDemo.MQTT.MqttTopicControl();
+			this.checkBox_regex_filter = new System.Windows.Forms.CheckBox();
+			this.textBox_regex_filter = new System.Windows.Forms.TextBox();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.checkBox_debug_info_show = new System.Windows.Forms.CheckBox();
+			this.checkBox_long_message_hide = new System.Windows.Forms.CheckBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.button4 = new System.Windows.Forms.Button();
+			this.label15 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.checkBox_SslTls = new System.Windows.Forms.CheckBox();
 			this.checkBox_sslSecure = new System.Windows.Forms.CheckBox();
@@ -52,49 +108,660 @@
 			this.textBox_ip = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.button6 = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
-			this.checkBox_regex_filter = new System.Windows.Forms.CheckBox();
-			this.textBox_regex_filter = new System.Windows.Forms.TextBox();
-			this.textBox_code = new System.Windows.Forms.TextBox();
-			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-			this.checkBox_publish_isHex = new System.Windows.Forms.CheckBox();
-			this.button3 = new System.Windows.Forms.Button();
-			this.checkBox_debug_info_show = new System.Windows.Forms.CheckBox();
-			this.checkBox_long_message_hide = new System.Windows.Forms.CheckBox();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.button_publish = new System.Windows.Forms.Button();
-			this.label10 = new System.Windows.Forms.Label();
-			this.button9 = new System.Windows.Forms.Button();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.radioButton_binary = new System.Windows.Forms.RadioButton();
-			this.radioButton_json = new System.Windows.Forms.RadioButton();
-			this.radioButton_text = new System.Windows.Forms.RadioButton();
-			this.radioButton_xml = new System.Windows.Forms.RadioButton();
-			this.radioButton2 = new System.Windows.Forms.RadioButton();
-			this.radioButton1 = new System.Windows.Forms.RadioButton();
-			this.button8 = new System.Windows.Forms.Button();
-			this.button7 = new System.Windows.Forms.Button();
-			this.textBox8 = new System.Windows.Forms.TextBox();
-			this.label12 = new System.Windows.Forms.Label();
-			this.button4 = new System.Windows.Forms.Button();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.label15 = new System.Windows.Forms.Label();
-			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.panel4 = new System.Windows.Forms.Panel();
-			this.listBox1 = new System.Windows.Forms.ListBox();
-			this.label13 = new System.Windows.Forms.Label();
-			this.panel1.SuspendLayout();
-			this.panel2.SuspendLayout();
-			this.panel3.SuspendLayout();
 			this.panel4.SuspendLayout();
+			this.panel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
+			this.panel5.SuspendLayout();
+			this.panel3.SuspendLayout();
+			this.panel6.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			this.panel7.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			this.panel8.SuspendLayout();
+			this.groupBox2.SuspendLayout();
+			this.groupBox1.SuspendLayout();
+			this.tabPage3.SuspendLayout();
+			this.panel9.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// panel4
+			// 
+			this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel4.Controls.Add(this.listBox1);
+			this.panel4.Controls.Add(this.label13);
+			this.panel4.Location = new System.Drawing.Point(4, 123);
+			this.panel4.Name = "panel4";
+			this.panel4.Size = new System.Drawing.Size(189, 563);
+			this.panel4.TabIndex = 15;
+			// 
+			// listBox1
+			// 
+			this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.listBox1.FormattingEnabled = true;
+			this.listBox1.ItemHeight = 17;
+			this.listBox1.Location = new System.Drawing.Point(3, 23);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.Size = new System.Drawing.Size(181, 531);
+			this.listBox1.TabIndex = 9;
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(3, 3);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(129, 17);
+			this.label13.TabIndex = 8;
+			this.label13.Text = "Subscribed：(已订阅)";
+			// 
+			// userControlHead1
+			// 
+			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.userControlHead1.HelpLink = "https://www.cnblogs.com/dathlin/p/11631894.html";
+			this.userControlHead1.Location = new System.Drawing.Point(0, 0);
+			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
+			this.userControlHead1.Name = "userControlHead1";
+			this.userControlHead1.ProtocolInfo = "MQTT";
+			this.userControlHead1.Size = new System.Drawing.Size(1095, 32);
+			this.userControlHead1.TabIndex = 14;
+			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
+			// 
+			// panel2
+			// 
+			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.splitContainer1);
+			this.panel2.Controls.Add(this.checkBox_regex_filter);
+			this.panel2.Controls.Add(this.textBox_regex_filter);
+			this.panel2.Controls.Add(this.textBox_code);
+			this.panel2.Controls.Add(this.checkBox_debug_info_show);
+			this.panel2.Controls.Add(this.checkBox_long_message_hide);
+			this.panel2.Controls.Add(this.label10);
+			this.panel2.Controls.Add(this.button4);
+			this.panel2.Controls.Add(this.label15);
+			this.panel2.Location = new System.Drawing.Point(196, 123);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(895, 563);
+			this.panel2.TabIndex = 13;
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+			this.splitContainer1.Name = "splitContainer1";
+			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.panel5);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.panel6);
+			this.splitContainer1.Size = new System.Drawing.Size(893, 509);
+			this.splitContainer1.SplitterDistance = 211;
+			this.splitContainer1.TabIndex = 43;
+			// 
+			// panel5
+			// 
+			this.panel5.Controls.Add(this.label7);
+			this.panel5.Controls.Add(this.checkBox1);
+			this.panel5.Controls.Add(this.textBox5);
+			this.panel5.Controls.Add(this.label8);
+			this.panel5.Controls.Add(this.textBox4);
+			this.panel5.Controls.Add(this.button7);
+			this.panel5.Controls.Add(this.checkBox_publish_isHex);
+			this.panel5.Controls.Add(this.button8);
+			this.panel5.Controls.Add(this.button3);
+			this.panel5.Controls.Add(this.radioButton1);
+			this.panel5.Controls.Add(this.radioButton2);
+			this.panel5.Controls.Add(this.panel3);
+			this.panel5.Controls.Add(this.comboBox1);
+			this.panel5.Controls.Add(this.button9);
+			this.panel5.Controls.Add(this.button_publish);
+			this.panel5.Controls.Add(this.label9);
+			this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel5.Location = new System.Drawing.Point(0, 0);
+			this.panel5.Name = "panel5";
+			this.panel5.Size = new System.Drawing.Size(893, 211);
+			this.panel5.TabIndex = 0;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(2, 9);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(52, 17);
+			this.label7.TabIndex = 7;
+			this.label7.Text = "Topic：";
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(60, 185);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(69, 21);
+			this.checkBox1.TabIndex = 30;
+			this.checkBox1.Text = "Retain?";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
+			// textBox5
+			// 
+			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox5.Location = new System.Drawing.Point(60, 5);
+			this.textBox5.Name = "textBox5";
+			this.textBox5.Size = new System.Drawing.Size(372, 23);
+			this.textBox5.TabIndex = 9;
+			this.textBox5.Text = "A";
+			// 
+			// label8
+			// 
+			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(439, 9);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(56, 17);
+			this.label8.TabIndex = 10;
+			this.label8.Text = "主题信息";
+			// 
+			// textBox4
+			// 
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox4.Location = new System.Drawing.Point(60, 34);
+			this.textBox4.Multiline = true;
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(831, 142);
+			this.textBox4.TabIndex = 8;
+			// 
+			// button7
+			// 
+			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button7.Location = new System.Drawing.Point(502, 3);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(98, 28);
+			this.button7.TabIndex = 22;
+			this.button7.Text = "订阅";
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.Button7_Click);
+			// 
+			// checkBox_publish_isHex
+			// 
+			this.checkBox_publish_isHex.AutoSize = true;
+			this.checkBox_publish_isHex.Location = new System.Drawing.Point(5, 66);
+			this.checkBox_publish_isHex.Name = "checkBox_publish_isHex";
+			this.checkBox_publish_isHex.Size = new System.Drawing.Size(55, 21);
+			this.checkBox_publish_isHex.TabIndex = 35;
+			this.checkBox_publish_isHex.Text = "Hex?";
+			this.checkBox_publish_isHex.UseVisualStyleBackColor = true;
+			// 
+			// button8
+			// 
+			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button8.Location = new System.Drawing.Point(606, 3);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(104, 28);
+			this.button8.TabIndex = 23;
+			this.button8.Text = "取消订阅";
+			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.Button8_Click);
+			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.Location = new System.Drawing.Point(716, 3);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(98, 28);
+			this.button3.TabIndex = 34;
+			this.button3.Text = "子窗体订阅";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
+			// radioButton1
+			// 
+			this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.radioButton1.AutoSize = true;
+			this.radioButton1.Location = new System.Drawing.Point(545, 193);
+			this.radioButton1.Name = "radioButton1";
+			this.radioButton1.Size = new System.Drawing.Size(74, 21);
+			this.radioButton1.TabIndex = 24;
+			this.radioButton1.Text = "覆盖显示";
+			this.radioButton1.UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.radioButton2.AutoSize = true;
+			this.radioButton2.Checked = true;
+			this.radioButton2.Location = new System.Drawing.Point(545, 175);
+			this.radioButton2.Name = "radioButton2";
+			this.radioButton2.Size = new System.Drawing.Size(74, 21);
+			this.radioButton2.TabIndex = 25;
+			this.radioButton2.TabStop = true;
+			this.radioButton2.Text = "追加显示";
+			this.radioButton2.UseVisualStyleBackColor = true;
+			// 
+			// panel3
+			// 
+			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel3.Controls.Add(this.radioButton_binary);
+			this.panel3.Controls.Add(this.radioButton_json);
+			this.panel3.Controls.Add(this.radioButton_text);
+			this.panel3.Controls.Add(this.radioButton_xml);
+			this.panel3.Location = new System.Drawing.Point(640, 179);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(246, 28);
+			this.panel3.TabIndex = 26;
+			// 
+			// radioButton_binary
+			// 
+			this.radioButton_binary.AutoSize = true;
+			this.radioButton_binary.Location = new System.Drawing.Point(3, 3);
+			this.radioButton_binary.Name = "radioButton_binary";
+			this.radioButton_binary.Size = new System.Drawing.Size(62, 21);
+			this.radioButton_binary.TabIndex = 29;
+			this.radioButton_binary.Text = "Binary";
+			this.radioButton_binary.UseVisualStyleBackColor = true;
+			// 
+			// radioButton_json
+			// 
+			this.radioButton_json.AutoSize = true;
+			this.radioButton_json.Location = new System.Drawing.Point(175, 3);
+			this.radioButton_json.Name = "radioButton_json";
+			this.radioButton_json.Size = new System.Drawing.Size(52, 21);
+			this.radioButton_json.TabIndex = 28;
+			this.radioButton_json.Text = "Json";
+			this.radioButton_json.UseVisualStyleBackColor = true;
+			// 
+			// radioButton_text
+			// 
+			this.radioButton_text.AutoSize = true;
+			this.radioButton_text.Checked = true;
+			this.radioButton_text.Location = new System.Drawing.Point(65, 3);
+			this.radioButton_text.Name = "radioButton_text";
+			this.radioButton_text.Size = new System.Drawing.Size(50, 21);
+			this.radioButton_text.TabIndex = 26;
+			this.radioButton_text.TabStop = true;
+			this.radioButton_text.Text = "Text";
+			this.radioButton_text.UseVisualStyleBackColor = true;
+			// 
+			// radioButton_xml
+			// 
+			this.radioButton_xml.AutoSize = true;
+			this.radioButton_xml.Location = new System.Drawing.Point(121, 3);
+			this.radioButton_xml.Name = "radioButton_xml";
+			this.radioButton_xml.Size = new System.Drawing.Size(48, 21);
+			this.radioButton_xml.TabIndex = 27;
+			this.radioButton_xml.Text = "Xml";
+			this.radioButton_xml.UseVisualStyleBackColor = true;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(146, 181);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(161, 25);
+			this.comboBox1.TabIndex = 31;
+			// 
+			// button9
+			// 
+			this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button9.Location = new System.Drawing.Point(820, 3);
+			this.button9.Name = "button9";
+			this.button9.Size = new System.Drawing.Size(71, 28);
+			this.button9.TabIndex = 27;
+			this.button9.Text = "压力测试";
+			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Visible = false;
+			this.button9.Click += new System.EventHandler(this.button9_Click);
+			// 
+			// button_publish
+			// 
+			this.button_publish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_publish.Location = new System.Drawing.Point(313, 180);
+			this.button_publish.Name = "button_publish";
+			this.button_publish.Size = new System.Drawing.Size(112, 28);
+			this.button_publish.TabIndex = 29;
+			this.button_publish.Text = "发布";
+			this.button_publish.UseVisualStyleBackColor = true;
+			this.button_publish.Click += new System.EventHandler(this.button10_Click);
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(2, 37);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(66, 17);
+			this.label9.TabIndex = 11;
+			this.label9.Text = "Payload：";
+			// 
+			// panel6
+			// 
+			this.panel6.Controls.Add(this.tabControl1);
+			this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel6.Location = new System.Drawing.Point(0, 0);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(893, 294);
+			this.panel6.TabIndex = 0;
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(0, 0);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(893, 294);
+			this.tabControl1.TabIndex = 0;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.panel7);
+			this.tabPage1.Location = new System.Drawing.Point(4, 26);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(885, 264);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Receive";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// panel7
+			// 
+			this.panel7.Controls.Add(this.checkBox_stop);
+			this.panel7.Controls.Add(this.textBox8);
+			this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel7.Location = new System.Drawing.Point(3, 3);
+			this.panel7.Name = "panel7";
+			this.panel7.Size = new System.Drawing.Size(879, 258);
+			this.panel7.TabIndex = 0;
+			// 
+			// checkBox_stop
+			// 
+			this.checkBox_stop.AutoSize = true;
+			this.checkBox_stop.ForeColor = System.Drawing.Color.Gray;
+			this.checkBox_stop.Location = new System.Drawing.Point(819, 6);
+			this.checkBox_stop.Name = "checkBox_stop";
+			this.checkBox_stop.Size = new System.Drawing.Size(54, 21);
+			this.checkBox_stop.TabIndex = 19;
+			this.checkBox_stop.Text = "Stop";
+			this.checkBox_stop.UseVisualStyleBackColor = true;
+			// 
+			// textBox8
+			// 
+			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox8.Location = new System.Drawing.Point(0, 0);
+			this.textBox8.Multiline = true;
+			this.textBox8.Name = "textBox8";
+			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox8.Size = new System.Drawing.Size(813, 258);
+			this.textBox8.TabIndex = 18;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.panel8);
+			this.tabPage2.Location = new System.Drawing.Point(4, 26);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(885, 264);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "Test";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// panel8
+			// 
+			this.panel8.Controls.Add(this.groupBox2);
+			this.panel8.Controls.Add(this.groupBox1);
+			this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel8.Location = new System.Drawing.Point(3, 3);
+			this.panel8.Name = "panel8";
+			this.panel8.Size = new System.Drawing.Size(879, 258);
+			this.panel8.TabIndex = 0;
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.label12);
+			this.groupBox2.Controls.Add(this.textBox_test_recv);
+			this.groupBox2.Controls.Add(this.button5);
+			this.groupBox2.Location = new System.Drawing.Point(290, 3);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(586, 252);
+			this.groupBox2.TabIndex = 46;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "高频接收测试";
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(10, 31);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(476, 17);
+			this.label12.TabIndex = 48;
+			this.label12.Text = "由Server端发布主题 HSL:MQTT:TEST:10000 次数达10000次，内容从1自增到10000：";
+			// 
+			// textBox_test_recv
+			// 
+			this.textBox_test_recv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_test_recv.Location = new System.Drawing.Point(6, 57);
+			this.textBox_test_recv.Multiline = true;
+			this.textBox_test_recv.Name = "textBox_test_recv";
+			this.textBox_test_recv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_test_recv.Size = new System.Drawing.Size(574, 155);
+			this.textBox_test_recv.TabIndex = 47;
+			// 
+			// button5
+			// 
+			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button5.ForeColor = System.Drawing.Color.DarkGray;
+			this.button5.Location = new System.Drawing.Point(5, 218);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(153, 28);
+			this.button5.TabIndex = 43;
+			this.button5.Text = "Test-Receive";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
+			// groupBox1
+			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.groupBox1.Controls.Add(this.textBox_test_pub_topic);
+			this.groupBox1.Controls.Add(this.label_test_pub_topic);
+			this.groupBox1.Controls.Add(this.textBox_test_pub_count);
+			this.groupBox1.Controls.Add(this.label_test_pub_count);
+			this.groupBox1.Controls.Add(this.button6);
+			this.groupBox1.Location = new System.Drawing.Point(3, 3);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(280, 252);
+			this.groupBox1.TabIndex = 45;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "高频发布测试";
+			// 
+			// textBox_test_pub_topic
+			// 
+			this.textBox_test_pub_topic.Location = new System.Drawing.Point(97, 57);
+			this.textBox_test_pub_topic.Name = "textBox_test_pub_topic";
+			this.textBox_test_pub_topic.Size = new System.Drawing.Size(174, 23);
+			this.textBox_test_pub_topic.TabIndex = 48;
+			this.textBox_test_pub_topic.Text = "HSL:MQTT:TEST:10000";
+			// 
+			// label_test_pub_topic
+			// 
+			this.label_test_pub_topic.AutoSize = true;
+			this.label_test_pub_topic.Location = new System.Drawing.Point(6, 60);
+			this.label_test_pub_topic.Name = "label_test_pub_topic";
+			this.label_test_pub_topic.Size = new System.Drawing.Size(59, 17);
+			this.label_test_pub_topic.TabIndex = 47;
+			this.label_test_pub_topic.Text = "发布主题:";
+			// 
+			// textBox_test_pub_count
+			// 
+			this.textBox_test_pub_count.Location = new System.Drawing.Point(97, 28);
+			this.textBox_test_pub_count.Name = "textBox_test_pub_count";
+			this.textBox_test_pub_count.Size = new System.Drawing.Size(174, 23);
+			this.textBox_test_pub_count.TabIndex = 46;
+			this.textBox_test_pub_count.Text = "10000";
+			// 
+			// label_test_pub_count
+			// 
+			this.label_test_pub_count.AutoSize = true;
+			this.label_test_pub_count.Location = new System.Drawing.Point(6, 31);
+			this.label_test_pub_count.Name = "label_test_pub_count";
+			this.label_test_pub_count.Size = new System.Drawing.Size(68, 17);
+			this.label_test_pub_count.TabIndex = 45;
+			this.label_test_pub_count.Text = "发布次数：";
+			// 
+			// button6
+			// 
+			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button6.ForeColor = System.Drawing.Color.DarkGray;
+			this.button6.Location = new System.Drawing.Point(67, 218);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(146, 28);
+			this.button6.TabIndex = 44;
+			this.button6.Text = "Test-Publish";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.panel9);
+			this.tabPage3.Location = new System.Drawing.Point(4, 26);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(885, 264);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "Topics";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// panel9
+			// 
+			this.panel9.Controls.Add(this.mqttTopicControl1);
+			this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel9.Location = new System.Drawing.Point(3, 3);
+			this.panel9.Name = "panel9";
+			this.panel9.Size = new System.Drawing.Size(879, 258);
+			this.panel9.TabIndex = 0;
+			// 
+			// mqttTopicControl1
+			// 
+			this.mqttTopicControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.mqttTopicControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.mqttTopicControl1.GetStringFromPayload = null;
+			this.mqttTopicControl1.Location = new System.Drawing.Point(0, 0);
+			this.mqttTopicControl1.Name = "mqttTopicControl1";
+			this.mqttTopicControl1.Size = new System.Drawing.Size(879, 258);
+			this.mqttTopicControl1.TabIndex = 0;
+			// 
+			// checkBox_regex_filter
+			// 
+			this.checkBox_regex_filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox_regex_filter.AutoSize = true;
+			this.checkBox_regex_filter.Location = new System.Drawing.Point(727, 537);
+			this.checkBox_regex_filter.Name = "checkBox_regex_filter";
+			this.checkBox_regex_filter.Size = new System.Drawing.Size(75, 21);
+			this.checkBox_regex_filter.TabIndex = 40;
+			this.checkBox_regex_filter.Text = "正则过滤";
+			this.checkBox_regex_filter.UseVisualStyleBackColor = true;
+			// 
+			// textBox_regex_filter
+			// 
+			this.textBox_regex_filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_regex_filter.Location = new System.Drawing.Point(589, 536);
+			this.textBox_regex_filter.Name = "textBox_regex_filter";
+			this.textBox_regex_filter.Size = new System.Drawing.Size(134, 23);
+			this.textBox_regex_filter.TabIndex = 39;
+			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(62, 511);
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.ReadOnly = true;
+			this.textBox_code.Size = new System.Drawing.Size(826, 23);
+			this.textBox_code.TabIndex = 38;
+			// 
+			// checkBox_debug_info_show
+			// 
+			this.checkBox_debug_info_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkBox_debug_info_show.AutoSize = true;
+			this.checkBox_debug_info_show.Location = new System.Drawing.Point(181, 538);
+			this.checkBox_debug_info_show.Name = "checkBox_debug_info_show";
+			this.checkBox_debug_info_show.Size = new System.Drawing.Size(128, 21);
+			this.checkBox_debug_info_show.TabIndex = 33;
+			this.checkBox_debug_info_show.Text = "Debug Info Show";
+			this.checkBox_debug_info_show.UseVisualStyleBackColor = true;
+			// 
+			// checkBox_long_message_hide
+			// 
+			this.checkBox_long_message_hide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkBox_long_message_hide.AutoSize = true;
+			this.checkBox_long_message_hide.Location = new System.Drawing.Point(335, 538);
+			this.checkBox_long_message_hide.Name = "checkBox_long_message_hide";
+			this.checkBox_long_message_hide.Size = new System.Drawing.Size(99, 21);
+			this.checkBox_long_message_hide.TabIndex = 32;
+			this.checkBox_long_message_hide.Text = "超长消息简略";
+			this.checkBox_long_message_hide.UseVisualStyleBackColor = true;
+			// 
+			// label10
+			// 
+			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(2, 539);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(93, 17);
+			this.label10.TabIndex = 28;
+			this.label10.Text = "Receive Count:";
+			// 
+			// button4
+			// 
+			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button4.Location = new System.Drawing.Point(817, 535);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(71, 25);
+			this.button4.TabIndex = 17;
+			this.button4.Text = "清空";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
+			// 
+			// label15
+			// 
+			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(2, 515);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(51, 17);
+			this.label15.TabIndex = 37;
+			this.label15.Text = "Code：";
 			// 
 			// panel1
 			// 
@@ -127,7 +794,7 @@
 			this.panel1.Location = new System.Drawing.Point(4, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(994, 87);
+			this.panel1.Size = new System.Drawing.Size(1087, 87);
 			this.panel1.TabIndex = 7;
 			// 
 			// checkBox_SslTls
@@ -334,449 +1001,12 @@
 			this.label14.TabIndex = 33;
 			this.label14.Text = "CA File:";
 			// 
-			// panel2
-			// 
-			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel2.Controls.Add(this.button6);
-			this.panel2.Controls.Add(this.button5);
-			this.panel2.Controls.Add(this.checkBox_regex_filter);
-			this.panel2.Controls.Add(this.textBox_regex_filter);
-			this.panel2.Controls.Add(this.textBox_code);
-			this.panel2.Controls.Add(this.linkLabel1);
-			this.panel2.Controls.Add(this.checkBox_publish_isHex);
-			this.panel2.Controls.Add(this.button3);
-			this.panel2.Controls.Add(this.checkBox_debug_info_show);
-			this.panel2.Controls.Add(this.checkBox_long_message_hide);
-			this.panel2.Controls.Add(this.comboBox1);
-			this.panel2.Controls.Add(this.button_publish);
-			this.panel2.Controls.Add(this.label10);
-			this.panel2.Controls.Add(this.button9);
-			this.panel2.Controls.Add(this.panel3);
-			this.panel2.Controls.Add(this.radioButton2);
-			this.panel2.Controls.Add(this.radioButton1);
-			this.panel2.Controls.Add(this.button8);
-			this.panel2.Controls.Add(this.button7);
-			this.panel2.Controls.Add(this.textBox8);
-			this.panel2.Controls.Add(this.label12);
-			this.panel2.Controls.Add(this.button4);
-			this.panel2.Controls.Add(this.textBox4);
-			this.panel2.Controls.Add(this.label9);
-			this.panel2.Controls.Add(this.label8);
-			this.panel2.Controls.Add(this.textBox5);
-			this.panel2.Controls.Add(this.label7);
-			this.panel2.Controls.Add(this.checkBox1);
-			this.panel2.Controls.Add(this.label15);
-			this.panel2.Location = new System.Drawing.Point(196, 123);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(802, 507);
-			this.panel2.TabIndex = 13;
-			// 
-			// button6
-			// 
-			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button6.ForeColor = System.Drawing.Color.DarkGray;
-			this.button6.Location = new System.Drawing.Point(3, 397);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(56, 28);
-			this.button6.TabIndex = 42;
-			this.button6.Text = "Test-P";
-			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.button6_Click);
-			// 
-			// button5
-			// 
-			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button5.ForeColor = System.Drawing.Color.DarkGray;
-			this.button5.Location = new System.Drawing.Point(2, 426);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(56, 28);
-			this.button5.TabIndex = 41;
-			this.button5.Text = "Test-R";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.button5_Click);
-			// 
-			// checkBox_regex_filter
-			// 
-			this.checkBox_regex_filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkBox_regex_filter.AutoSize = true;
-			this.checkBox_regex_filter.Location = new System.Drawing.Point(556, 481);
-			this.checkBox_regex_filter.Name = "checkBox_regex_filter";
-			this.checkBox_regex_filter.Size = new System.Drawing.Size(75, 21);
-			this.checkBox_regex_filter.TabIndex = 40;
-			this.checkBox_regex_filter.Text = "正则过滤";
-			this.checkBox_regex_filter.UseVisualStyleBackColor = true;
-			// 
-			// textBox_regex_filter
-			// 
-			this.textBox_regex_filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.textBox_regex_filter.Location = new System.Drawing.Point(418, 480);
-			this.textBox_regex_filter.Name = "textBox_regex_filter";
-			this.textBox_regex_filter.Size = new System.Drawing.Size(134, 23);
-			this.textBox_regex_filter.TabIndex = 39;
-			// 
-			// textBox_code
-			// 
-			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_code.Location = new System.Drawing.Point(62, 456);
-			this.textBox_code.Name = "textBox_code";
-			this.textBox_code.ReadOnly = true;
-			this.textBox_code.Size = new System.Drawing.Size(733, 23);
-			this.textBox_code.TabIndex = 38;
-			// 
-			// linkLabel1
-			// 
-			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.linkLabel1.AutoSize = true;
-			this.linkLabel1.Location = new System.Drawing.Point(639, 483);
-			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.Size = new System.Drawing.Size(82, 17);
-			this.linkLabel1.TabIndex = 36;
-			this.linkLabel1.TabStop = true;
-			this.linkLabel1.Text = "CodeSample";
-			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-			// 
-			// checkBox_publish_isHex
-			// 
-			this.checkBox_publish_isHex.AutoSize = true;
-			this.checkBox_publish_isHex.Location = new System.Drawing.Point(7, 68);
-			this.checkBox_publish_isHex.Name = "checkBox_publish_isHex";
-			this.checkBox_publish_isHex.Size = new System.Drawing.Size(55, 21);
-			this.checkBox_publish_isHex.TabIndex = 35;
-			this.checkBox_publish_isHex.Text = "Hex?";
-			this.checkBox_publish_isHex.UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(620, 5);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(98, 28);
-			this.button3.TabIndex = 34;
-			this.button3.Text = "子窗体订阅";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
-			// 
-			// checkBox_debug_info_show
-			// 
-			this.checkBox_debug_info_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkBox_debug_info_show.AutoSize = true;
-			this.checkBox_debug_info_show.Location = new System.Drawing.Point(162, 482);
-			this.checkBox_debug_info_show.Name = "checkBox_debug_info_show";
-			this.checkBox_debug_info_show.Size = new System.Drawing.Size(128, 21);
-			this.checkBox_debug_info_show.TabIndex = 33;
-			this.checkBox_debug_info_show.Text = "Debug Info Show";
-			this.checkBox_debug_info_show.UseVisualStyleBackColor = true;
-			// 
-			// checkBox_long_message_hide
-			// 
-			this.checkBox_long_message_hide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkBox_long_message_hide.AutoSize = true;
-			this.checkBox_long_message_hide.Location = new System.Drawing.Point(297, 482);
-			this.checkBox_long_message_hide.Name = "checkBox_long_message_hide";
-			this.checkBox_long_message_hide.Size = new System.Drawing.Size(99, 21);
-			this.checkBox_long_message_hide.TabIndex = 32;
-			this.checkBox_long_message_hide.Text = "超长消息简略";
-			this.checkBox_long_message_hide.UseVisualStyleBackColor = true;
-			// 
-			// comboBox1
-			// 
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(148, 180);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(161, 25);
-			this.comboBox1.TabIndex = 31;
-			// 
-			// button_publish
-			// 
-			this.button_publish.Location = new System.Drawing.Point(315, 179);
-			this.button_publish.Name = "button_publish";
-			this.button_publish.Size = new System.Drawing.Size(112, 28);
-			this.button_publish.TabIndex = 29;
-			this.button_publish.Text = "发布";
-			this.button_publish.UseVisualStyleBackColor = true;
-			this.button_publish.Click += new System.EventHandler(this.button10_Click);
-			// 
-			// label10
-			// 
-			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(2, 483);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(93, 17);
-			this.label10.TabIndex = 28;
-			this.label10.Text = "Receive Count:";
-			// 
-			// button9
-			// 
-			this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button9.Location = new System.Drawing.Point(724, 5);
-			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(71, 28);
-			this.button9.TabIndex = 27;
-			this.button9.Text = "压力测试";
-			this.button9.UseVisualStyleBackColor = true;
-			this.button9.Visible = false;
-			this.button9.Click += new System.EventHandler(this.button9_Click);
-			// 
-			// panel3
-			// 
-			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.panel3.Controls.Add(this.radioButton_binary);
-			this.panel3.Controls.Add(this.radioButton_json);
-			this.panel3.Controls.Add(this.radioButton_text);
-			this.panel3.Controls.Add(this.radioButton_xml);
-			this.panel3.Location = new System.Drawing.Point(544, 180);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(246, 28);
-			this.panel3.TabIndex = 26;
-			// 
-			// radioButton_binary
-			// 
-			this.radioButton_binary.AutoSize = true;
-			this.radioButton_binary.Location = new System.Drawing.Point(3, 3);
-			this.radioButton_binary.Name = "radioButton_binary";
-			this.radioButton_binary.Size = new System.Drawing.Size(62, 21);
-			this.radioButton_binary.TabIndex = 29;
-			this.radioButton_binary.Text = "Binary";
-			this.radioButton_binary.UseVisualStyleBackColor = true;
-			// 
-			// radioButton_json
-			// 
-			this.radioButton_json.AutoSize = true;
-			this.radioButton_json.Location = new System.Drawing.Point(175, 3);
-			this.radioButton_json.Name = "radioButton_json";
-			this.radioButton_json.Size = new System.Drawing.Size(52, 21);
-			this.radioButton_json.TabIndex = 28;
-			this.radioButton_json.Text = "Json";
-			this.radioButton_json.UseVisualStyleBackColor = true;
-			// 
-			// radioButton_text
-			// 
-			this.radioButton_text.AutoSize = true;
-			this.radioButton_text.Checked = true;
-			this.radioButton_text.Location = new System.Drawing.Point(65, 3);
-			this.radioButton_text.Name = "radioButton_text";
-			this.radioButton_text.Size = new System.Drawing.Size(50, 21);
-			this.radioButton_text.TabIndex = 26;
-			this.radioButton_text.TabStop = true;
-			this.radioButton_text.Text = "Text";
-			this.radioButton_text.UseVisualStyleBackColor = true;
-			// 
-			// radioButton_xml
-			// 
-			this.radioButton_xml.AutoSize = true;
-			this.radioButton_xml.Location = new System.Drawing.Point(121, 3);
-			this.radioButton_xml.Name = "radioButton_xml";
-			this.radioButton_xml.Size = new System.Drawing.Size(48, 21);
-			this.radioButton_xml.TabIndex = 27;
-			this.radioButton_xml.Text = "Xml";
-			this.radioButton_xml.UseVisualStyleBackColor = true;
-			// 
-			// radioButton2
-			// 
-			this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.radioButton2.AutoSize = true;
-			this.radioButton2.Checked = true;
-			this.radioButton2.Location = new System.Drawing.Point(449, 174);
-			this.radioButton2.Name = "radioButton2";
-			this.radioButton2.Size = new System.Drawing.Size(74, 21);
-			this.radioButton2.TabIndex = 25;
-			this.radioButton2.TabStop = true;
-			this.radioButton2.Text = "追加显示";
-			this.radioButton2.UseVisualStyleBackColor = true;
-			// 
-			// radioButton1
-			// 
-			this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.radioButton1.AutoSize = true;
-			this.radioButton1.Location = new System.Drawing.Point(449, 192);
-			this.radioButton1.Name = "radioButton1";
-			this.radioButton1.Size = new System.Drawing.Size(74, 21);
-			this.radioButton1.TabIndex = 24;
-			this.radioButton1.Text = "覆盖显示";
-			this.radioButton1.UseVisualStyleBackColor = true;
-			// 
-			// button8
-			// 
-			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button8.Location = new System.Drawing.Point(510, 5);
-			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(104, 28);
-			this.button8.TabIndex = 23;
-			this.button8.Text = "取消订阅";
-			this.button8.UseVisualStyleBackColor = true;
-			this.button8.Click += new System.EventHandler(this.Button8_Click);
-			// 
-			// button7
-			// 
-			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button7.Location = new System.Drawing.Point(406, 5);
-			this.button7.Name = "button7";
-			this.button7.Size = new System.Drawing.Size(98, 28);
-			this.button7.TabIndex = 22;
-			this.button7.Text = "订阅";
-			this.button7.UseVisualStyleBackColor = true;
-			this.button7.Click += new System.EventHandler(this.Button7_Click);
-			// 
-			// textBox8
-			// 
-			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox8.Location = new System.Drawing.Point(62, 214);
-			this.textBox8.Multiline = true;
-			this.textBox8.Name = "textBox8";
-			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(733, 239);
-			this.textBox8.TabIndex = 18;
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(2, 216);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(64, 17);
-			this.label12.TabIndex = 19;
-			this.label12.Text = "Receive：";
-			// 
-			// button4
-			// 
-			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(724, 479);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(71, 25);
-			this.button4.TabIndex = 17;
-			this.button4.Text = "清空";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click);
-			// 
-			// textBox4
-			// 
-			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox4.Location = new System.Drawing.Point(62, 36);
-			this.textBox4.Multiline = true;
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(733, 138);
-			this.textBox4.TabIndex = 8;
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(4, 39);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(66, 17);
-			this.label9.TabIndex = 11;
-			this.label9.Text = "Payload：";
-			// 
-			// label8
-			// 
-			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(343, 11);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(56, 17);
-			this.label8.TabIndex = 10;
-			this.label8.Text = "主题信息";
-			// 
-			// textBox5
-			// 
-			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox5.Location = new System.Drawing.Point(62, 7);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(274, 23);
-			this.textBox5.TabIndex = 9;
-			this.textBox5.Text = "A";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(4, 11);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(52, 17);
-			this.label7.TabIndex = 7;
-			this.label7.Text = "Topic：";
-			// 
-			// checkBox1
-			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(62, 184);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(69, 21);
-			this.checkBox1.TabIndex = 30;
-			this.checkBox1.Text = "Retain?";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			// 
-			// label15
-			// 
-			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(2, 460);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(51, 17);
-			this.label15.TabIndex = 37;
-			this.label15.Text = "Code：";
-			// 
-			// userControlHead1
-			// 
-			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlHead1.HelpLink = "https://www.cnblogs.com/dathlin/p/11631894.html";
-			this.userControlHead1.Location = new System.Drawing.Point(0, 0);
-			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
-			this.userControlHead1.Name = "userControlHead1";
-			this.userControlHead1.ProtocolInfo = "MQTT";
-			this.userControlHead1.Size = new System.Drawing.Size(1002, 32);
-			this.userControlHead1.TabIndex = 14;
-			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// panel4
-			// 
-			this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-			this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel4.Controls.Add(this.listBox1);
-			this.panel4.Controls.Add(this.label13);
-			this.panel4.Location = new System.Drawing.Point(4, 123);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(189, 507);
-			this.panel4.TabIndex = 15;
-			// 
-			// listBox1
-			// 
-			this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.ItemHeight = 17;
-			this.listBox1.Location = new System.Drawing.Point(3, 23);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(181, 480);
-			this.listBox1.TabIndex = 9;
-			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(3, 3);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(129, 17);
-			this.label13.TabIndex = 8;
-			this.label13.Text = "Subscribed：(已订阅)";
-			// 
 			// FormMqttClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(1002, 635);
+			this.ClientSize = new System.Drawing.Size(1095, 691);
 			this.Controls.Add(this.panel4);
 			this.Controls.Add(this.userControlHead1);
 			this.Controls.Add(this.panel2);
@@ -788,14 +1018,33 @@
 			this.Text = "MQTT客户端";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMqttClient_FormClosing);
 			this.Load += new System.EventHandler(this.FormClient_Load);
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
-			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
-			this.panel3.ResumeLayout(false);
-			this.panel3.PerformLayout();
 			this.panel4.ResumeLayout(false);
 			this.panel4.PerformLayout();
+			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
+			this.panel5.ResumeLayout(false);
+			this.panel5.PerformLayout();
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
+			this.panel6.ResumeLayout(false);
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.panel7.ResumeLayout(false);
+			this.panel7.PerformLayout();
+			this.tabPage2.ResumeLayout(false);
+			this.panel8.ResumeLayout(false);
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
+			this.tabPage3.ResumeLayout(false);
+			this.panel9.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -810,7 +1059,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label9;
@@ -856,12 +1104,31 @@
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.CheckBox checkBox_sslSecure;
 		private System.Windows.Forms.CheckBox checkBox_SslTls;
-        private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.TextBox textBox_code;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.CheckBox checkBox_regex_filter;
 		private System.Windows.Forms.TextBox textBox_regex_filter;
-		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.Panel panel5;
+		private System.Windows.Forms.Panel panel6;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.Panel panel7;
+		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.Panel panel8;
 		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.TextBox textBox_test_pub_count;
+		private System.Windows.Forms.Label label_test_pub_count;
+		private System.Windows.Forms.TextBox textBox_test_pub_topic;
+		private System.Windows.Forms.Label label_test_pub_topic;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.TextBox textBox_test_recv;
+		private System.Windows.Forms.TabPage tabPage3;
+		private System.Windows.Forms.Panel panel9;
+		private MQTT.MqttTopicControl mqttTopicControl1;
+		private System.Windows.Forms.CheckBox checkBox_stop;
 	}
 }

@@ -24,7 +24,7 @@ namespace HslCommunicationDemo.PLC.Inovance
 				new DeviceAddressExample( "SD0", "", false, true, "AM600系列还支持 SDW0-SDW65535" ),
 				new DeviceAddressExample( "s=2;SD0", "", false, true, "以上所有地址支持额外指定站号" ),
 
-				new DeviceAddressExample( "H3U及H5U", "", false, false, "", true ),
+				new DeviceAddressExample( "H3U/H5U/Easy", "", false, false, "", true ),
 				new DeviceAddressExample( "M0",  "中间继电器", true, false, "M0-M7679，M8000-M8511" ),
 				new DeviceAddressExample( "SM0", "中间继电器", true, false, "SM0-SM1023" ),
 				new DeviceAddressExample( "S0",  "中间继电器", true, false, "S0-S4095" ),

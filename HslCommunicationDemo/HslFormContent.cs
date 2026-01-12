@@ -255,7 +255,7 @@ namespace HslCommunicationDemo
 			if (connect.IsSuccess)
 			{
 				// 添加到全局的通信数组中去，方便使用
-				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device );
+				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device, this.DeviceImage );
 			}
 			return connect;
 		}
@@ -283,7 +283,7 @@ namespace HslCommunicationDemo
 			if (connect.IsSuccess)
 			{
 				// 添加到全局的通信数组中去，方便使用
-				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device );
+				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device, this.DeviceImage );
 			}
 			return connect;
 		}
@@ -304,7 +304,7 @@ namespace HslCommunicationDemo
 			if (connect.IsSuccess)
 			{
 				// 添加到全局的通信数组中去，方便使用
-				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device );
+				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device, this.DeviceImage );
 			}
 
 			return connect;
@@ -322,7 +322,7 @@ namespace HslCommunicationDemo
 		protected OperateResult DeviceConnectPLC( DeviceUdpNet device )
 		{
 			// 添加到全局的通信数组中去，方便使用
-			DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device );
+			DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device, this.DeviceImage );
 			return OperateResult.CreateSuccessResult( );
 		}
 

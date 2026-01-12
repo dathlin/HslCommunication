@@ -58,9 +58,17 @@ namespace HslCommunicationDemo.DemoControl
 
 		public static DialogResult ShowMessage( string message )
 		{
-			using(FormMessageShow form = new FormMessageShow( message ) )
+			try
 			{
-				return form.ShowDialog( );
+				using (FormMessageShow form = new FormMessageShow( message ))
+				{
+					return form.ShowDialog( );
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show( message );
+				return DialogResult.OK;
 			}
 		}
 

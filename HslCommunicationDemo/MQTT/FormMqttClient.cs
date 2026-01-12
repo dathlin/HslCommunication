@@ -28,12 +28,23 @@ namespace HslCommunicationDemo
 			timer1s.Interval = 1000;
 			timer1s.Tick += Timer1s_Tick; ;
 			timer1s.Start( );
+
+			codeExampleControl = new CodeExampleControl( );
+			DemoUtils.AddSpecialFunctionTab( this.tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			dataForwardControl = new DataForwardControl( );
+			DemoUtils.AddSpecialFunctionTab( this.tabControl1, dataForwardControl, false, DataForwardControl.GetTitle( ) );
+
+			this.mqttTopicControl1.GetStringFromPayload = this.GetStringFromPayload;
 		}
 
+		private DataForwardControl dataForwardControl;
+		private CodeExampleControl codeExampleControl;
 		private Timer timer1s;
 
 		private void FormClient_Load( object sender, EventArgs e )
 		{
+			codeExampleControl.ShowTextBox( true );
 			DemoUtils.SetDeviveIp( textBox_ip );
 			panel2.Enabled = false;
 			button2.Enabled = false;
@@ -69,7 +80,6 @@ namespace HslCommunicationDemo
 				label8.Text            = "";
 				label9.Text            = "Payload:";
 				button4.Text           = "Clear";
-				label12.Text           = "Receive:";
 				button9.Text           = "Press Test";
 				button7.Text           = "subscribe";
 				button8.Text           = "unsubscribe";
@@ -145,6 +155,8 @@ namespace HslCommunicationDemo
 				DemoUtils.ShowMessage( StringResources.Language.ConnectServerSuccess );
 
 				code = CodeExampleControl.CreateStringBulider( mqttClient );
+				codeExampleControl.RenderExampleCode( code );
+				dataForwardControl.SetMqttClient( mqttClient );
 			}
 			else
 			{
@@ -213,23 +225,72 @@ namespace HslCommunicationDemo
 				}
 
 				sb.AppendLine( "Wrong Count: " + wrongCount );
-				textBox8.Text = sb.ToString( );
+				textBox_test_recv.Text = sb.ToString( );
 			}
 		}
 		private void button6_Click( object sender, EventArgs e )
 		{
 			// 高频发布测试代码
-			for (int i = 0; i < 10000; i++)
+			if (!int.TryParse(textBox_test_pub_count.Text, out int count) )
+			{
+				MessageBox.Show( Program.Language == 1 ? "发布数量输入错误！" : "Publish count input wrong!" );
+				return;
+			}
+
+			if (string.IsNullOrEmpty( textBox_test_pub_topic.Text ))
+			{
+				MessageBox.Show( Program.Language == 1 ? "发布主题不能为空！" : "Publish topic can not be null!" );
+				return;
+			}
+
+			string topic = textBox_test_pub_topic.Text;
+			for (int i = 0; i < count; i++)
 			{
 				this.mqttClient.PublishMessage(
 					new MqttApplicationMessage( )
 					{
-						Topic = "HSL:MQTT:TEST:10000",
+						Topic = topic,
 						Payload = BitConverter.GetBytes( i ),
 						Retain = true
 					} );
 			}
 			MessageBox.Show( "Publish finish" );
+		}
+
+		private string GetStringFromPayload( byte[] payload )
+		{
+			string msg = string.Empty;
+			if (radioButton_binary.Checked)
+			{
+				msg = payload.ToHexString( ' ' );
+			}
+			else if (radioButton_text.Checked)
+			{
+				msg = Encoding.UTF8.GetString( payload );
+			}
+			else if (radioButton_xml.Checked)
+			{
+				try
+				{
+					msg = XElement.Parse( Encoding.UTF8.GetString( payload ) ).ToString( );
+				}
+				catch
+				{
+					msg = Encoding.UTF8.GetString( payload );
+				}
+			}
+			else if (radioButton_json.Checked)
+			{
+				try
+				{
+					msg = Newtonsoft.Json.Linq.JObject.Parse( Encoding.UTF8.GetString( payload ) ).ToString( );
+				}
+				catch
+				{
+					msg = Encoding.UTF8.GetString( payload );
+				}
+			}
+			return msg;
 		}
 
 		private void MqttClient_OnMqttMessageReceived( MqttClient client, MqttApplicationMessage message )
@@ -249,37 +310,8 @@ namespace HslCommunicationDemo
 				}
 				Invoke( new Action( ( ) =>
 				{
-					string msg = string.Empty;
-					if (radioButton_binary.Checked)
-					{
-						msg = payload.ToHexString( ' ' );
-					}
-					else if (radioButton_text.Checked)
-					{
-						msg = Encoding.UTF8.GetString( payload );
-					}
-					else if (radioButton_xml.Checked)
-					{
-						try
-						{
-							msg = XElement.Parse( Encoding.UTF8.GetString( payload ) ).ToString( );
-						}
-						catch
-						{
-							msg = Encoding.UTF8.GetString( payload );
-						}
-					}
-					else if (radioButton_json.Checked)
-					{
-						try
-						{
-							msg = Newtonsoft.Json.Linq.JObject.Parse( Encoding.UTF8.GetString( payload ) ).ToString( );
-						}
-						catch
-						{
-							msg = Encoding.UTF8.GetString( payload );
-						}
-					}
+					string msg = GetStringFromPayload( payload );
+					this.mqttTopicControl1.RenderTopic( null, message );
 
 					bool show = true;
 					if (checkBox_regex_filter.Checked)
@@ -288,17 +320,20 @@ namespace HslCommunicationDemo
 					}
 					if (!show) return;
 
-					if (checkBox_long_message_hide.Checked)
+					if (checkBox_stop.Checked == false)
 					{
-						if (msg?.Length > 200)
+						if (checkBox_long_message_hide.Checked)
 						{
-							msg = msg.Substring( 200 );
+							if (msg?.Length > 200)
+							{
+								msg = msg.Substring( 200 );
+							}
 						}
+						if (radioButton2.Checked)
+							textBox8.AppendText( DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Topic[{topic}] Retain[{message.Retain}]: " + Environment.NewLine + msg + Environment.NewLine );
+						else if (radioButton1.Checked)
+							textBox8.Text = DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Topic[{topic}] Retain[{message.Retain}]: " + Environment.NewLine + msg;
 					}
-					if (radioButton2.Checked)
-						textBox8.AppendText( DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + $" Topic[{topic}] Retain[{message.Retain}]: " + Environment.NewLine + msg + Environment.NewLine );
-					else if (radioButton1.Checked)
-						textBox8.Text = DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss.fff" ) + $" Topic[{topic}] Retain[{message.Retain}]: " + Environment.NewLine + msg;
 				} ) );
 			}
 			catch
@@ -483,15 +518,11 @@ namespace HslCommunicationDemo
 			}
 		}
 
-		private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
-		{
-			textBox8.Text = code.ToString( ); 
-		}
-
 		private void FormMqttClient_FormClosing( object sender, FormClosingEventArgs e )
 		{
 			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 断开连接
 		}
+
 	}
 
 

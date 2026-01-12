@@ -36,18 +36,9 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void LoadDevice( )
 		{
-			List<DemoDeviceItem> devices = DemoDevice.Devices.Values.ToList( );
-			DemoUtils.DataGridSpecifyRowCount( dataGridView1, devices.Count );
-			for (int i = 0; i < devices.Count; i++)
-			{
-				DataGridViewRow row = dataGridView1.Rows[i];
-				row.Cells[0].Value = (i + 1).ToString( );
-				row.Cells[1].Value = devices[i].Guid;
-				row.Cells[2].Value = devices[i].Name;
-				row.Cells[3].Value = devices[i].Device.ToString( );
-				row.Tag = devices[i];
-			}
+			DemoDevice.LoadDevice( dataGridView1 );
 		}
+
 
 		private void button1_Click( object sender, EventArgs e )
 		{

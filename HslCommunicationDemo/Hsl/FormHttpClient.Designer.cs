@@ -29,9 +29,9 @@
 		private void InitializeComponent( )
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Rpc Apis");
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("User Apis");
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Rpc Apis");
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("User Apis");
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.textBox_timeout = new System.Windows.Forms.TextBox();
@@ -94,7 +94,7 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.panel5 = new System.Windows.Forms.Panel();
-			this.textBox8 = new System.Windows.Forms.TextBox();
+			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.radioButton_response_hex = new System.Windows.Forms.RadioButton();
 			this.radioButton5 = new System.Windows.Forms.RadioButton();
@@ -107,6 +107,7 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.label_content_length = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -334,13 +335,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.Location = new System.Drawing.Point(3, 28);
 			this.treeView1.Name = "treeView1";
-			treeNode1.Name = "节点0";
-			treeNode1.Text = "Rpc Apis";
-			treeNode2.Name = "节点0";
-			treeNode2.Text = "User Apis";
+			treeNode3.Name = "节点0";
+			treeNode3.Text = "Rpc Apis";
+			treeNode4.Name = "节点0";
+			treeNode4.Text = "User Apis";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode3,
+            treeNode4});
 			this.treeView1.Size = new System.Drawing.Size(251, 499);
 			this.treeView1.TabIndex = 1;
 			// 
@@ -469,8 +470,6 @@
 			// 
 			// label24
 			// 
-			this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.label24.AutoSize = true;
 			this.label24.ForeColor = System.Drawing.Color.DimGray;
 			this.label24.Location = new System.Drawing.Point(5, 8);
@@ -495,8 +494,6 @@
 			// 
 			// label15
 			// 
-			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.label15.AutoSize = true;
 			this.label15.ForeColor = System.Drawing.Color.DimGray;
 			this.label15.Location = new System.Drawing.Point(5, 35);
@@ -573,10 +570,10 @@
 			// tabPage4
 			// 
 			this.tabPage4.Controls.Add(this.panel8);
-			this.tabPage4.Location = new System.Drawing.Point(4, 22);
+			this.tabPage4.Location = new System.Drawing.Point(4, 26);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(739, 169);
+			this.tabPage4.Size = new System.Drawing.Size(739, 165);
 			this.tabPage4.TabIndex = 1;
 			this.tabPage4.Text = "Body";
 			this.tabPage4.UseVisualStyleBackColor = true;
@@ -590,13 +587,13 @@
 			this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel8.Location = new System.Drawing.Point(3, 3);
 			this.panel8.Name = "panel8";
-			this.panel8.Size = new System.Drawing.Size(733, 163);
+			this.panel8.Size = new System.Drawing.Size(733, 159);
 			this.panel8.TabIndex = 0;
 			// 
 			// dataGridView1
 			// 
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -692,16 +689,16 @@
 			this.textBox_body.Multiline = true;
 			this.textBox_body.Name = "textBox_body";
 			this.textBox_body.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_body.Size = new System.Drawing.Size(727, 132);
+			this.textBox_body.Size = new System.Drawing.Size(727, 128);
 			this.textBox_body.TabIndex = 8;
 			// 
 			// tabPage6
 			// 
 			this.tabPage6.Controls.Add(this.panel9);
-			this.tabPage6.Location = new System.Drawing.Point(4, 22);
+			this.tabPage6.Location = new System.Drawing.Point(4, 26);
 			this.tabPage6.Name = "tabPage6";
 			this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage6.Size = new System.Drawing.Size(739, 169);
+			this.tabPage6.Size = new System.Drawing.Size(739, 165);
 			this.tabPage6.TabIndex = 2;
 			this.tabPage6.Text = "Special function";
 			this.tabPage6.UseVisualStyleBackColor = true;
@@ -712,7 +709,7 @@
 			this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel9.Location = new System.Drawing.Point(3, 3);
 			this.panel9.Name = "panel9";
-			this.panel9.Size = new System.Drawing.Size(733, 163);
+			this.panel9.Size = new System.Drawing.Size(733, 159);
 			this.panel9.TabIndex = 0;
 			// 
 			// button7
@@ -803,7 +800,8 @@
 			// 
 			// panel5
 			// 
-			this.panel5.Controls.Add(this.textBox8);
+			this.panel5.Controls.Add(this.label_content_length);
+			this.panel5.Controls.Add(this.richTextBox1);
 			this.panel5.Controls.Add(this.panel3);
 			this.panel5.Controls.Add(this.button4);
 			this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -812,17 +810,17 @@
 			this.panel5.Size = new System.Drawing.Size(731, 213);
 			this.panel5.TabIndex = 0;
 			// 
-			// textBox8
+			// richTextBox1
 			// 
-			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox8.Location = new System.Drawing.Point(0, 33);
-			this.textBox8.Multiline = true;
-			this.textBox8.Name = "textBox8";
-			this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox8.Size = new System.Drawing.Size(731, 179);
-			this.textBox8.TabIndex = 18;
+			this.richTextBox1.Location = new System.Drawing.Point(2, 32);
+			this.richTextBox1.Name = "richTextBox1";
+			this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+			this.richTextBox1.Size = new System.Drawing.Size(728, 179);
+			this.richTextBox1.TabIndex = 27;
+			this.richTextBox1.Text = "";
 			// 
 			// panel3
 			// 
@@ -942,6 +940,16 @@
 			this.deleteToolStripMenuItem.Text = "Delete";
 			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
 			// 
+			// label_content_length
+			// 
+			this.label_content_length.AutoSize = true;
+			this.label_content_length.ForeColor = System.Drawing.Color.DimGray;
+			this.label_content_length.Location = new System.Drawing.Point(250, 8);
+			this.label_content_length.Name = "label_content_length";
+			this.label_content_length.Size = new System.Drawing.Size(71, 17);
+			this.label_content_length.TabIndex = 55;
+			this.label_content_length.Text = "字符串长度:";
+			// 
 			// FormHttpClient
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1023,7 +1031,6 @@
 		private System.Windows.Forms.RadioButton radioButton5;
 		private System.Windows.Forms.RadioButton radioButton3;
 		private System.Windows.Forms.RadioButton radioButton4;
-		private System.Windows.Forms.TextBox textBox8;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button_request;
 		private System.Windows.Forms.TextBox textBox_body;
@@ -1071,5 +1078,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column_key;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column_value;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column_desc;
+		private System.Windows.Forms.RichTextBox richTextBox1;
+		private System.Windows.Forms.Label label_content_length;
 	}
 }

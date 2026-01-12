@@ -98,6 +98,20 @@ namespace HslCommunicationDemo
 			this.existConfirm = !this.existConfirm;
 		}
 
+		public static bool WriteSuccessNotShowWindow = false;
+		private void 写入成功不弹窗ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (WriteSuccessNotShowWindow)
+			{
+				写入成功不弹窗ToolStripMenuItem.Image = null;
+			}
+			else
+			{
+				写入成功不弹窗ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			}
+			WriteSuccessNotShowWindow = !WriteSuccessNotShowWindow;
+		}
+
 		#region Form Load Close Inni
 
 		private void FormLoad_Load( object sender, EventArgs e )
@@ -272,6 +286,7 @@ namespace HslCommunicationDemo
 			Program.Settings.PenelSizeFixed = DemoUtils.PenelSizeFixed;
 			Program.Settings.TopMost = this.topMost;
 			Program.Settings.ShowTimeOfMilliseconds = ShowMs;
+			Program.Settings.WriteSuccessNotShowWindow = WriteSuccessNotShowWindow;
 			Program.Settings.SaveFiles( );
 			mqttClient?.ConnectClose( );
 		}
@@ -312,6 +327,9 @@ namespace HslCommunicationDemo
 
 			ShowMs = Program.Settings.ShowTimeOfMilliseconds;
 			if (ShowMs) showMsToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+
+			WriteSuccessNotShowWindow = Program.Settings.WriteSuccessNotShowWindow;
+			if (WriteSuccessNotShowWindow) 写入成功不弹窗ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
 		}
 
 		private void ThreadPoolCheckVersion( object obj )
@@ -363,8 +381,8 @@ namespace HslCommunicationDemo
 			}
 			catch
 			{
-
 			}
+
 		}
 
 		private void LoadActive( )
@@ -510,7 +528,13 @@ namespace HslCommunicationDemo
 				string RamInfo = (curpcp.NextValue( ) / MB_DIV).ToString( "F1" ) + "MB";
 				label2.Text = "Ram: " + RamInfo;
 			}
-			long current = Interlocked.Exchange( ref HslCommunication.HslTimeOut.TimeoutDealCount, 0 );
+			else if(cur != null)
+			{
+				// 不准
+				//string RamInfo = $"{cur.WorkingSet64 / 1024.0 / 1024.0:0.00} MB";
+				//label2.Text = "Ram: " + RamInfo;
+			}
+			long current = Interlocked.Exchange( ref HslCommunication.HslTimeOut.TimeoutDealCount, 0 ); // 已处理
 			label1.Text = $"Timeout:{HslCommunication.HslTimeOut.TimeOutCheckCount}/{current}  Lock:{SimpleHybirdLock.SimpleHybirdLockCount}  Wait:{SimpleHybirdLock.SimpleHybirdLockWaitCount}";
 		}
 

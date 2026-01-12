@@ -202,7 +202,8 @@ namespace HslCommunicationDemo
 			{
 				try
 				{
-					busTcpServer.SerialReceiveAtleastTime = Convert.ToInt32( textBox_time_min.Text );
+					if (!string.IsNullOrEmpty( textBox_time_min.Text ))
+						busTcpServer.SerialReceiveAtleastTime = Convert.ToInt32( textBox_time_min.Text );
 					busTcpServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
 					this.serverSettingControl1.ButtonSerial.Enabled = false;
 

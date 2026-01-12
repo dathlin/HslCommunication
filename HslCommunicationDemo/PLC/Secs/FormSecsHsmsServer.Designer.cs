@@ -80,6 +80,7 @@
 			this.addNewSecsItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.editSecsItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteSecsItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.sendMessageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -369,7 +370,7 @@
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.panel2);
 			this.splitContainer1.Size = new System.Drawing.Size(745, 220);
-			this.splitContainer1.SplitterDistance = 346;
+			this.splitContainer1.SplitterDistance = 357;
 			this.splitContainer1.TabIndex = 39;
 			// 
 			// panel3
@@ -387,7 +388,7 @@
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel3.Location = new System.Drawing.Point(0, 0);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(346, 220);
+			this.panel3.Size = new System.Drawing.Size(357, 220);
 			this.panel3.TabIndex = 1;
 			// 
 			// button_device_read
@@ -472,7 +473,7 @@
 			this.textBox_device_send.Multiline = true;
 			this.textBox_device_send.Name = "textBox_device_send";
 			this.textBox_device_send.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_device_send.Size = new System.Drawing.Size(340, 166);
+			this.textBox_device_send.Size = new System.Drawing.Size(351, 166);
 			this.textBox_device_send.TabIndex = 40;
 			// 
 			// label6
@@ -498,7 +499,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(395, 220);
+			this.panel2.Size = new System.Drawing.Size(384, 220);
 			this.panel2.TabIndex = 0;
 			// 
 			// textBox_data_back
@@ -510,7 +511,7 @@
 			this.textBox_data_back.Multiline = true;
 			this.textBox_data_back.Name = "textBox_data_back";
 			this.textBox_data_back.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_data_back.Size = new System.Drawing.Size(383, 166);
+			this.textBox_data_back.Size = new System.Drawing.Size(372, 166);
 			this.textBox_data_back.TabIndex = 38;
 			// 
 			// label1
@@ -614,17 +615,18 @@
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendMessageToolStripMenuItem,
             this.addNewSecsItemToolStripMenuItem,
             this.editSecsItemToolStripMenuItem,
             this.deleteSecsItemToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(179, 70);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
 			// 
 			// addNewSecsItemToolStripMenuItem
 			// 
 			this.addNewSecsItemToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_add_16xLG;
 			this.addNewSecsItemToolStripMenuItem.Name = "addNewSecsItemToolStripMenuItem";
-			this.addNewSecsItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.addNewSecsItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.addNewSecsItemToolStripMenuItem.Text = "AddNewSecsItem";
 			this.addNewSecsItemToolStripMenuItem.Click += new System.EventHandler(this.addNewSecsItemToolStripMenuItem_Click);
 			// 
@@ -632,7 +634,7 @@
 			// 
 			this.editSecsItemToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.sig;
 			this.editSecsItemToolStripMenuItem.Name = "editSecsItemToolStripMenuItem";
-			this.editSecsItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.editSecsItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.editSecsItemToolStripMenuItem.Text = "EditSecsItem";
 			this.editSecsItemToolStripMenuItem.Click += new System.EventHandler(this.editSecsItemToolStripMenuItem_Click);
 			// 
@@ -640,9 +642,17 @@
 			// 
 			this.deleteSecsItemToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_Cancel_16xLG;
 			this.deleteSecsItemToolStripMenuItem.Name = "deleteSecsItemToolStripMenuItem";
-			this.deleteSecsItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.deleteSecsItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.deleteSecsItemToolStripMenuItem.Text = "DeleteSecsItem";
 			this.deleteSecsItemToolStripMenuItem.Click += new System.EventHandler(this.deleteSecsItemToolStripMenuItem_Click);
+			// 
+			// sendMessageToolStripMenuItem
+			// 
+			this.sendMessageToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.Cloud_16xLG;
+			this.sendMessageToolStripMenuItem.Name = "sendMessageToolStripMenuItem";
+			this.sendMessageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.sendMessageToolStripMenuItem.Text = "Send Message";
+			this.sendMessageToolStripMenuItem.Click += new System.EventHandler(this.sendMessageToolStripMenuItem_Click);
 			// 
 			// FormSecsHsmsServer
 			// 
@@ -733,5 +743,6 @@
         private System.Windows.Forms.CheckBox checkBox_show_send_message;
         private System.Windows.Forms.RichTextBox richTextBox_main;
         private System.Windows.Forms.Button button_device_read;
-    }
+		private System.Windows.Forms.ToolStripMenuItem sendMessageToolStripMenuItem;
+	}
 }

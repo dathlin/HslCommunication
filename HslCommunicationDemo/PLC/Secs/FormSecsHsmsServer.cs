@@ -26,10 +26,16 @@ namespace HslCommunicationDemo.PLC.Secs
 			InitializeComponent( );
 
 			comboBox_log_style.SelectedIndex = 0;
+
+			imageList = new ImageList( );
+			imageList.Images.Add( "s", Properties.Resources.secs_s );
+			imageList.Images.Add( "f", Properties.Resources.secs_f );
 		}
 
 		private void FormSecsHsmsServer_Load( object sender, EventArgs e )
 		{
+			treeView1.ImageList = this.imageList;
+
 			comboBox1.SelectedIndex = 1;
 			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
 
@@ -40,7 +46,7 @@ namespace HslCommunicationDemo.PLC.Secs
 			codeExampleControl = new CodeExampleControl( );
 			DemoUtils.AddSpecialFunctionTab( tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 
-			TreeNode s1Node = new TreeNode( "S1" );
+			TreeNode s1Node = new TreeNode( "S1" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s1Node, new SecsTreeItem( 1, 1,  true,  new SecsValue( new object[] { "MDLN", "SOFTRev" } ), "Are You Online" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 3,  true,  new SecsValue( new object[] { (uint)1, (uint)2 } ), "Selected Equipment Status" ) );
 			AddTree( s1Node, new SecsTreeItem( 1, 5,  true,  new SecsValue( new object[] { (uint)1, (uint)2 } ), "Formatted Status" ) );
@@ -59,7 +65,7 @@ namespace HslCommunicationDemo.PLC.Secs
 			AddTree( s1Node, new SecsTreeItem( 1, 23, true,  new SecsValue( new object[] { new object[] { (uint)123, "ProcessStateUpdate", new object[] { "810" } } } ), "Collection Event Namelist Request" ) );
 			treeView1.Nodes.Add( s1Node );
 
-			TreeNode s2Node = new TreeNode( "S2" );
+			TreeNode s2Node = new TreeNode( "S2" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s2Node, new SecsTreeItem( 2, 1,  false, 
 				new SecsValue( new byte[] { 0x01, 0x02 } ), "Service Program Load Inquire",
 				new SecsValue( new object[] { "bin007", (uint)322 } ) ) );
@@ -88,7 +94,7 @@ namespace HslCommunicationDemo.PLC.Secs
 			AddTree( s2Node, new SecsTreeItem( 2, 27, true, new SecsValue( new byte[] { 0x00 } ), "Initiate Processing Request" ) );
 			treeView1.Nodes.Add( s2Node );
 
-			TreeNode s3Node = new TreeNode( "S3" );
+			TreeNode s3Node = new TreeNode( "S3" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s3Node, new SecsTreeItem( 3, 1, true, new SecsValue( new object[] { new byte[] { 0x00 }, new object[] { new object[] { new byte[] { 0x00 }, new byte[] { 0x18 }, "ee052793.1" } } } ), "Material Status Request" ) );
 			AddTree( s3Node, new SecsTreeItem( 3, 3, true, new SecsValue( new object[] { new byte[] { 0x00 }, new object[] { new object[] { (uint)286, new byte[] { 0x18 }, "ee052793.1" } } } ), "Time to Completion Data" ) );
 			AddTree( s3Node, new SecsTreeItem( 3, 5, true, 
@@ -107,7 +113,7 @@ namespace HslCommunicationDemo.PLC.Secs
 			treeView1.Nodes.Add( s3Node );
 
 
-			TreeNode s4Node = new TreeNode( "S4" );
+			TreeNode s4Node = new TreeNode( "S4" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s4Node, new SecsTreeItem( 4, 1, true, 
 				new SecsValue( new byte[] { 0x00 } ), "Ready to Send Materials",
 				new SecsValue( new object[] { (byte)1, "ee052793.1" } ) ) );
@@ -137,7 +143,7 @@ namespace HslCommunicationDemo.PLC.Secs
 				new SecsValue( new object[] { (byte)1, "ee052793.1" } ) ) );
 			treeView1.Nodes.Add( s4Node );
 
-			TreeNode s5Node = new TreeNode( "S5" );
+			TreeNode s5Node = new TreeNode( "S5" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s5Node, new SecsTreeItem( 5, 1, true,
 				SecsValue.EmptySecsValue( ), "Alarm Report Send",
 				new SecsValue( new object[] { new byte[] { 0x00 }, (uint)1000, "sensor timeout at load elevator" } ) ) );
@@ -154,7 +160,7 @@ namespace HslCommunicationDemo.PLC.Secs
 				) );
 			treeView1.Nodes.Add( s5Node );
 
-			TreeNode s6Node = new TreeNode( "S6" );
+			TreeNode s6Node = new TreeNode( "S6" ) { ImageKey = "s", SelectedImageKey = "s" };
 			AddTree( s6Node, new SecsTreeItem( 6, 1, true,
 				SecsValue.EmptySecsValue( ), "Trace Data Send",
 				new SecsValue( new object[] { "1", (uint)10, DateTime.Now.ToString( "yyyy-MM-dd-HH-mm-ss" ).Replace( "-", "" ), new object[] { (byte)65 } } ) ) );
@@ -260,6 +266,8 @@ namespace HslCommunicationDemo.PLC.Secs
 		public void AddTree( TreeNode treeNode, SecsTreeItem treeItem )
 		{
 			TreeNode child = new TreeNode( treeItem.GetTreeNodeText( ) );
+			child.ImageKey = "f";
+			child.SelectedImageKey = "f";
 			child.Tag = treeItem;
 			treeNode.Nodes.Add( child );
 		}
@@ -268,6 +276,7 @@ namespace HslCommunicationDemo.PLC.Secs
 		private SecsHsmsServer server;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
+		private ImageList imageList;
 
 		private void FormSecsHsmsServer_FormClosing( object sender, FormClosingEventArgs e )
 		{
@@ -429,7 +438,7 @@ namespace HslCommunicationDemo.PLC.Secs
 
 			if (publish.IsSuccess)
 			{
-				AppendHeadText( -1, $"SEND:  S{textBox_stream.Text}F{textBox_function.Text}{(checkBox_device_w.Checked ? "W" : string.Empty)}" );
+				AppendHeadText( -1, $"SEND All:  S{textBox_stream.Text}F{textBox_function.Text}{(checkBox_device_w.Checked ? "W" : string.Empty)}" );
 				AppendHeadText( 1, secsValue );
 				richTextBox_main.ScrollToCaret( );
 			}
@@ -443,15 +452,12 @@ namespace HslCommunicationDemo.PLC.Secs
 
 		}
 
-		private void button_device_send_Click( object sender, EventArgs e )
+		private void SendSecsValue( byte s, byte f, bool w, SecsValue secsValue )
 		{
-			SecsValue secsValue = string.IsNullOrEmpty( textBox_device_send.Text ) ? null : new SecsValue( System.Xml.Linq.XElement.Parse( textBox_device_send.Text ) );
-
-			OperateResult publish = server.PublishSecsMessage( byte.Parse( textBox_device_s.Text ), byte.Parse( textBox_device_f.Text ), secsValue, checkBox_device_w.Checked );
-
+			OperateResult<uint> publish = server.PublishSecsMessage( s, f, secsValue, w );
 			if (publish.IsSuccess)
 			{
-				AppendHeadText( -1, $"SEND:  S{textBox_device_s.Text}F{textBox_device_f.Text}" );
+				AppendHeadText( -1, $"SEND All:  S{s}F{f}{(w ? "W" : string.Empty)} SystemBytes={publish.Content}" );
 				AppendHeadText( 1, secsValue );
 				richTextBox_main.ScrollToCaret( );
 			}
@@ -460,8 +466,15 @@ namespace HslCommunicationDemo.PLC.Secs
 				DemoUtils.ShowMessage( "Failed: " + publish.Message );
 			}
 
+
 			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
-			codeExampleControl.ReaderReadCode( $"OperateResult publish = @deviceName.PublishSecsMessage( {textBox_device_s.Text}, {textBox_device_f.Text}, {code}, {checkBox_device_w.Checked.ToString( ).ToLower( )} );" );
+			codeExampleControl.ReaderReadCode( $"OperateResult publish = @deviceName.PublishSecsMessage( {s}, {f}, {code}, {w.ToString( ).ToLower( )} );" );
+		}
+
+		private void button_device_send_Click( object sender, EventArgs e )
+		{
+			SecsValue secsValue = string.IsNullOrEmpty( textBox_device_send.Text ) ? null : new SecsValue( System.Xml.Linq.XElement.Parse( textBox_device_send.Text ) );
+			SendSecsValue( byte.Parse( textBox_device_s.Text ), byte.Parse( textBox_device_f.Text ), checkBox_device_w.Checked, secsValue );
 		}
 
 		private void button_device_read_Click( object sender, EventArgs e )
@@ -475,7 +488,7 @@ namespace HslCommunicationDemo.PLC.Secs
 				return;
 			}
 
-			AppendHeadText( -1, $"SEND:  S{textBox_device_s.Text}F{textBox_device_f.Text}" );
+			AppendHeadText( -1, $"SEND {sessions[0]}:  S{textBox_device_s.Text}F{textBox_device_f.Text}" );
 			AppendHeadText( 1, secsValue );
 
 			OperateResult<SecsMessage> read = server.ReadSecsMessage( sessions[0], byte.Parse( textBox_device_s.Text ), byte.Parse( textBox_device_f.Text ), secsValue, checkBox_device_w.Checked );
@@ -531,6 +544,19 @@ namespace HslCommunicationDemo.PLC.Secs
 			SecsHelper.AddNewSecsItemToolStripMenuItem_Click( treeView1, RenderSelectedSecs, server: true );
 		}
 
+		private void sendMessageToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			TreeNode treeNode = treeView1.SelectedNode;
+			if (treeNode != null)
+			{
+				if (treeNode.Tag is SecsTreeItem item)
+				{
+					if (item.ValueSingular == null) item.ValueSingular = SecsValue.EmptySecsValue( );
+					SecsValue secsValue = item.ValueSingular;
+					SendSecsValue( item.S, item.F, item.W, secsValue );
+				}
+			}
+		}
 
 		#region Save Load
 

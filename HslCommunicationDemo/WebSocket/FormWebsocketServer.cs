@@ -6,9 +6,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using HslCommunication.WebSocket;
-using HslCommunication;
 using System.Xml.Linq;
+using HslCommunication;
+using HslCommunication.WebSocket;
+using HslCommunicationDemo.DemoControl;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace HslCommunicationDemo
 {
@@ -22,6 +25,11 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 
 			checkBox4.CheckedChanged +=CheckBox4_CheckedChanged;
+			codeExampleControl = new CodeExampleControl( );
+			DemoUtils.AddSpecialFunctionTab( tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			dataForwardControl = new DataForwardControl( );
+			DemoUtils.AddSpecialFunctionTab( tabControl1, dataForwardControl, false, DataForwardControl.GetTitle( ) );
 		}
 
 		private void CheckBox4_CheckedChanged( object sender, EventArgs e )
@@ -40,6 +48,53 @@ namespace HslCommunicationDemo
 
 			Language( Program.Language );
 
+			if (Program.Language == 1)
+			{
+				textBox_client_subscribe.Text = @"HslCommunication's WebSocketServer 内置的订阅功能
+
+方式一：
+连接的Http的Header里新增一行  HslSubscribes:A,B
+
+方式二：
+客户端连接的Url里使用信息  ws://127.0.0.1:1883/HslSubscribes=A,B
+";
+				textBox_client_subscribe2.Text = @"本Dmeo界面支持的方式三：
+直接发送一个文本消息，内容为一个 Json 格式的数据，示例：
+{
+    ""Command"": ""Subscribe"",
+    ""Topic"": ""A""
+}
+
+取消订阅的消息格式为：
+{
+    ""Command"": ""UnSubscribe"",
+    ""Topic"": ""A""
+}";
+			}
+			else
+			{
+				textBox_client_subscribe.Text = @"Built-in Subscription Function of HslCommunication's WebSocketServer
+
+Method 1:
+Add a new line to the connected HTTP header: HslSubscribes:A,B
+
+Method 2:
+Include the parameter in the client connection URL: ws://127.0.0.1:1883/HslSubscribes=A,B
+";
+				textBox_client_subscribe2.Text = @"Method 3 supported by this Demo interface:：
+Send a text message directly with the content in JSON format. Example:
+{
+    ""Command"": ""Subscribe"",
+    ""Topic"": ""A""
+}
+
+The message format for unsubscription is as follows:
+{
+    ""Command"": ""UnSubscribe"",
+    ""Topic"": ""A""
+}";
+			}
+
 			timer1s = new Timer( );
 			timer1s.Interval = 1000;
 			timer1s.Tick += Timer1s_Tick;
@@ -57,10 +112,17 @@ namespace HslCommunicationDemo
 					label_tick.Text = "接收次数: " + this.count;
 				else
 					label_tick.Text = "Recv Tick: " + this.count;
+
+				if (Program.Language == 1)
+					label_bytes_length.Text = "接收字节: " + this.bytes_length;
+				else
+					label_bytes_length.Text = "Recv Bytes: " + this.bytes_length;
 			}
 		}
 
 		private Timer timer1s;
+		private CodeExampleControl codeExampleControl;
+		private DataForwardControl dataForwardControl;
 
 		private void Language( int language )
 		{
@@ -76,8 +138,9 @@ namespace HslCommunicationDemo
 				label9.Text = "Payload：";
 				button3.Text = "广播内容";
 				button4.Text = "清空";
-				label12.Text = "接收：";
+				tabPage1.Text = "数据接收";
 				checkBox2.Text = "是否开启订阅缓存";
+				tabPage3.Text = "主题列表";
 			}
 			else
 			{
@@ -91,7 +154,7 @@ namespace HslCommunicationDemo
 				label9.Text = "Payload:";
 				button3.Text = "Publish Payload";
 				button4.Text = "Clear";
-				label12.Text = "Receive:";
+				tabPage1.Text = "Data Receive";
 				checkBox2.Text = "Start Topic Cache";
 				checkBox3.Text = "Send test message back when client connect";
 				button8.Text = "web test";
@@ -99,6 +162,8 @@ namespace HslCommunicationDemo
 				button6.Text = "Broadcast";
 				button7.Text = "Stop";
 				checkBox4.Text = "DataCompress";
+				tabPage2.Text = "Client Subscribe";
+				checkBox_debug.Text = "Show Heartbeat Log";
 			}
 		}
 
@@ -142,7 +207,9 @@ namespace HslCommunicationDemo
 					stringBuilder.AppendLine( $"wsServer.UseSSL( \"{textBox_certFile.Text}\", \"{textBox_ssl_password.Text}\" );" );
 				}
 				stringBuilder.Append( $"wsServer.ServerStart( {int.Parse( textBox2.Text )} );" );
-				textBox_code.Text = stringBuilder.ToString( ); 
+				codeExampleControl.RenderExampleCode( stringBuilder );
+
+				this.dataForwardControl.SetWebSocketServer( wsServer, this.AddTopic );
 				count = 0;   // 重置接收数据的次数
 			}
 			catch (Exception ex)
@@ -163,38 +230,76 @@ namespace HslCommunicationDemo
 
 		Random random = new Random( );
 		private long count = 0; // 统计接收的次数
+		private long bytes_length = 0; // 统计接收的字节数
 
 		private void WebSocket_OnClientApplicationMessageReceive( WebSocketSession session, WebSocketMessage message )
 		{
 			this.count++;
+			if (message.Payload != null) this.bytes_length += message.Payload.Length;
+
 			// 应答客户端连接的情况下是需要进行返回数据的，此处演示返回的是原始的数据，追加一个随机数，你可以自己根据业务来决定返回什么数据
 			if (session.IsQASession)
 			{
 				wsServer.SendClientPayload( session, Encoding.UTF8.GetString( message.Payload ) + " " + random.Next( 1000, 10000 ) );
 			}
-			Invoke( new Action( ( ) =>
+			string content = string.Empty;
+			if (message.OpCode == 1)
 			{
-				if (!isStop)
+				content = Encoding.UTF8.GetString( message.Payload );
+			}
+			else
+			{
+				content = message.Payload.ToHexString( ' ' );
+			}
+			wsServer.LogNet?.WriteInfo( wsServer.ToString( ), $"From {session.Communication} : OpCode[{message.OpCode}] Mask[{message.HasMask}] Payload: {content}" );
+
+
+			if (message.Payload?.Length > 20)
+			{
+				try
 				{
-					if (message.OpCode == 1)
+					content = content.Trim( ' ', '\r', '\n' );
+					if (!content.StartsWith( "{" ) || !content.EndsWith( "}" )) return;
+					JObject para = JObject.Parse( content );
+
+					string command = para["Command"].Value<string>( );
+					string topic = para["Topic"].Value<string>( );
+
+					if (command == "Subscribe")
 					{
-						textBox8.AppendText( $"OpCode:[{message.OpCode}] Mask:[{message.HasMask}] Payload:[{Encoding.UTF8.GetString( message.Payload )}]" + Environment.NewLine );
+						wsServer.AddSessionTopic( session, topic );
+						wsServer.LogNet?.WriteInfo( wsServer.ToString( ), $"{session.Communication} Subscribe {topic} Success!" );
 					}
-					else
+					else if (command == "UnSubscribe")
 					{
-						textBox8.AppendText( $"OpCode:[{message.OpCode}] Mask:[{message.HasMask}] Payload:[{message.Payload.ToHexString( ' ' )}]" + Environment.NewLine );
+						if (wsServer.RemoveSessionTopic( session, topic ))
+							wsServer.LogNet?.WriteInfo( wsServer.ToString( ), $"{session.Communication} UnSubscribe {topic} Success!" );
+						else
+							wsServer.LogNet?.WriteInfo( wsServer.ToString( ), $"{session.Communication} UnSubscribe {topic} Failed!" );
 					}
 				}
-			} ) );
+				catch
+				{
+
+				}
+			}
 			// wsServer.AddSessionTopic( session, Encoding.UTF8.GetString( message.Payload ) );
 		}
 
 		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
 		{
-			Invoke( new Action( ( ) =>
-			 {
-				 textBox8.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
-			 } ) );
+			if (!isStop)
+			{
+				if (e.HslMessage.Degree == HslCommunication.LogNet.HslMessageDegree.DEBUG && !checkBox_debug.Checked)
+				{
+					if (e.HslMessage.Text.Contains( "PING" ) || e.HslMessage.Text.Contains( "PONG" ))
+						return;
+				}
+				Invoke( new Action( ( ) =>
+				 {
+					 textBox8.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+				 } ) );
+			}
 		}
 
 		private void button2_Click( object sender, EventArgs e )
@@ -213,12 +318,13 @@ namespace HslCommunicationDemo
 			if (comboBox1.SelectedIndex == 0)
 			{
 				wsServer.PublishAllClientPayload( textBox4.Text );
-				textBox_code.Text = $"wsServer.PublishAllClientPayload( \"{textBox4.Text}\" );  // opCode = 1";
+				string content = JsonConvert.SerializeObject( textBox4.Text );
+				codeExampleControl.RenderRightExampleCode( $"wsServer.PublishAllClientPayload( {content} );  // opCode = 1" );
 			}
 			else
 			{
 				wsServer.PublishAllClientPayload( textBox4.Text.ToHexBytes( ) );
-				textBox_code.Text = $"wsServer.PublishAllClientPayload( \"{textBox4.Text}\".ToHexBytes( ) ); // opCode = 2";
+				codeExampleControl.RenderRightExampleCode( $"wsServer.PublishAllClientPayload( \"{textBox4.Text}\".ToHexBytes( ) ); // opCode = 2" );
 			}
 		}
 
@@ -284,6 +390,10 @@ namespace HslCommunicationDemo
 		{
 			// 发布指定的主题
 			wsServer.PublishClientPayload( textBox5.Text, textBox4.Text );
+			string content = JsonConvert.SerializeObject( textBox4.Text );
+			codeExampleControl.RenderRightExampleCode( $"wsServer.PublishClientPayload( \"{textBox5.Text}\", \"{content}\" );  // opCode = 1" );
+
+			AddTopic( textBox5.Text, textBox4.Text, null );
 		}
 
 		bool isStop = false;
@@ -360,6 +470,8 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlTagCache, checkBox2.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlRetureMessage, checkBox3.Checked );
 			element.SetAttributeValue( nameof( WebSocketServer.DataCompress ), checkBox4.Checked );
+
+			this.dataForwardControl.SaveToXml( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -369,6 +481,8 @@ namespace HslCommunicationDemo
 			checkBox2.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlTagCache ).Value );
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRetureMessage ).Value );
 			checkBox4.Checked = GetXmlValue( element, nameof( WebSocketServer.DataCompress ), false, bool.Parse );
+
+			this.dataForwardControl.LoadFromXml( element );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
@@ -387,6 +501,110 @@ namespace HslCommunicationDemo
 			}
 		}
 
+
+
+		#region Topics Mangment
+
+		private Dictionary<string, WebSocketTopic> topics = new Dictionary<string, WebSocketTopic>( );
+		private WebSocketTopic selectedTopic = null;
+
+		private void AddTopic( string topic, string payload, WebSocketSession session )
+		{
+			if (topics.ContainsKey( topic ))
+			{
+				topics[topic].Payload = payload;
+				topics[topic].Time = DateTime.Now;
+				topics[topic].PublishCount++;
+				topics[topic].session = session;
+			}
+			else
+			{
+				topics.Add( topic, new WebSocketTopic( )
+				{
+					Topic = topic,
+					Payload = payload,
+					Time = DateTime.Now,
+					PublishCount = 1,
+					session = session
+				} );
+			}
+			RefreshTopicList( );
+		}
+
+		private void RefreshTopicList( )
+		{
+			if (InvokeRequired)
+			{
+				Invoke( new Action( RefreshTopicList ) );
+				return;
+			}
+
+
+			DemoUtils.DataGridSpecifyRowCount( dataGridView1, topics.Count );
+			int index = 0;
+			foreach (var item in topics.Values)
+			{
+				dataGridView1.Rows[index].Cells[0].Value = (index + 1);
+				dataGridView1.Rows[index].Cells[1].Value = item.Topic;
+				dataGridView1.Rows[index].Cells[2].Value = item.PublishCount;
+				dataGridView1.Rows[index].Tag = item;
+
+				if (object.ReferenceEquals( selectedTopic, item ))
+				{
+					RenderSelectedTopic( );
+				}
+				index++;
+			}
+
+		}
+
+		private void RenderSelectedTopic( )
+		{
+			if (selectedTopic != null)
+			{
+				textBox_topic_publishSession.Text = selectedTopic.session == null ? "" : selectedTopic.session.Communication.ToString( );
+				textBox_topic_topic.Text = selectedTopic.Topic;
+				if (selectedTopic.Payload != null)
+					textBox_topic_payload.Text = selectedTopic.Payload;
+				else
+					textBox_topic_payload.Text = string.Empty;
+				textBox_topic_publishTime.Text = selectedTopic.Time.ToString( DemoUtils.DateTimeFormate );
+				label_topic_size.Text = (selectedTopic.Payload?.Length ?? 0).ToString( );
+			}
+		}
+
+		private void dataGridView1_CellClick( object sender, DataGridViewCellEventArgs e )
+		{
+			if (dataGridView1.SelectedRows.Count > 0)
+			{
+				if (dataGridView1.SelectedRows[0].Tag is WebSocketTopic topic)
+				{
+					selectedTopic = topic;
+					RenderSelectedTopic( );
+				}
+			}
+		}
+
+		#endregion
+
+	}
+
+	public class WebSocketTopic
+	{
+		public string Topic { get; set; }
+
+		public string Payload { get; set; }
+
+		public DateTime Time { get; set; }
+
+		public int PublishCount { get; set; }
+
+		public WebSocketSession session { get; set; }
+
+		public override string ToString( )
+		{
+			return $"Topic:{Topic}, Payload Length:{Payload?.Length}, Time:{Time}, PublishCount:{PublishCount}";
+		}
 	}
 
 

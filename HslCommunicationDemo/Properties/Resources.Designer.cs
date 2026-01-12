@@ -1643,6 +1643,26 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap secs_f {
+            get {
+                object obj = ResourceManager.GetObject("secs_f", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap secs_s {
+            get {
+                object obj = ResourceManager.GetObject("secs_s", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap SerialPort {
             get {
                 object obj = ResourceManager.GetObject("SerialPort", resourceCulture);

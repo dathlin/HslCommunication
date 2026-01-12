@@ -780,6 +780,11 @@ namespace HslCommunicationDemo.DemoControl
 			deviceCreateCode = sb.ToString( );
 			this.textBox1.Text = deviceCreateCode;
 		}
+		public void RenderRightExampleCode( string code )
+		{
+			this.textBox2.Text = code;
+		}
+
 
 		public void ReaderReadCode( string methodCode )
 		{

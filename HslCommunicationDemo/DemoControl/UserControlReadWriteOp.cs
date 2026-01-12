@@ -1510,7 +1510,16 @@ namespace HslCommunicationDemo.DemoControl
 			if (checkBox_write_timer.Checked && result.IsSuccess)
 				label16.Text = DateTime.Now.ToString( "HH:mm:ss" ) + " Write Success: " + input;
 			else
-				DemoUtils.WriteResultRender( result, address );
+			{
+				if (result.IsSuccess == true && FormMain.WriteSuccessNotShowWindow)
+				{
+					// 显示成功且配置不让显示的话，就先不提醒
+				}
+				else
+				{
+					DemoUtils.WriteResultRender( result, address );
+				}
+			}
 
 			if (!result.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 		}

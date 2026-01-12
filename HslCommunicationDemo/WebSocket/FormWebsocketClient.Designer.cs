@@ -115,6 +115,7 @@
 			// 
 			// checkBox4
 			// 
+			this.checkBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox4.AutoSize = true;
 			this.checkBox4.Checked = true;
 			this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -127,6 +128,7 @@
 			// 
 			// checkBox3
 			// 
+			this.checkBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox3.AutoSize = true;
 			this.checkBox3.Checked = true;
 			this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;

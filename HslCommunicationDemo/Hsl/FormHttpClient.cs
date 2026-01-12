@@ -124,6 +124,7 @@ namespace HslCommunicationDemo
 				label6.Text = "Body传入参数，如果是GET模式的话，参数需要通过地址传送，例如 GetA?id=5&&name=job";
 				tabPage1.Text = "请求结果";
 				tabPage6.Text = "特殊功能";
+				label_content_length.Text = "字符串长度:";
 			}
 			else
 			{
@@ -134,6 +135,7 @@ namespace HslCommunicationDemo
 				button8.Text = "Refresh";
 				label24.Text = "[Sign]";
 				label15.Text = "[Decs]";
+				label_content_length.Text = "string-length:";
 			}
 
 			comboBox2.DataSource = new string[]
@@ -327,7 +329,7 @@ namespace HslCommunicationDemo
 				MqttRpcApiInfo[] apis = await ReadMqttRpcApiInfo( webApiClient );
 				if (apis != null)
 				{
-					textBox8.Text = JArray.FromObject( apis ).ToString( );
+					richTextBox1.Text = JArray.FromObject( apis ).ToString( );
 				}
 			}
 		}
@@ -563,6 +565,8 @@ namespace HslCommunicationDemo
 			}
 
 			string msg = read.Content;
+			label_content_length.Text = Program.Language == 1 ? "字符串长度: " + msg.Length : "string-length: " + msg.Length;
+
 			if (radioButton4.Checked)
 			{
 				try
@@ -590,7 +594,7 @@ namespace HslCommunicationDemo
 				msg = Encoding.UTF8.GetBytes( msg ).ToHexString( ' ' );
 			}
 
-			textBox8.Text = msg;
+			richTextBox1.Text = msg;
 		}
 
 		public override void SaveXmlParameter( XElement element )

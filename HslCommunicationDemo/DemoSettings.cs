@@ -43,6 +43,11 @@ namespace HslCommunicationDemo
 		/// </summary>
 		public bool PenelSizeFixed { get; set; } = false;
 
+		/// <summary>
+		/// 界面写入成功后不弹窗显示结果
+		/// </summary>
+		public bool WriteSuccessNotShowWindow { get; set; } = false;
+
 		public void LoadFiles( )
 		{
 			lock(lock_settings)
@@ -69,10 +74,11 @@ namespace HslCommunicationDemo
 							Size = new Size( int.Parse( sizes[0] ), int.Parse( sizes[1] ) );
 						}
 
-						ConfirmCloseWindow = GetValue( json, nameof( ConfirmCloseWindow ), false );
-						PenelSizeFixed = GetValue( json, nameof( PenelSizeFixed ), false );
-						TopMost = GetValue( json, nameof( TopMost ), false );
-						ShowTimeOfMilliseconds = GetValue( json, nameof( ShowTimeOfMilliseconds ), false );
+						ConfirmCloseWindow           = GetValue( json, nameof( ConfirmCloseWindow ),        false );
+						PenelSizeFixed               = GetValue( json, nameof( PenelSizeFixed ),            false );
+						TopMost                      = GetValue( json, nameof( TopMost ),                   false );
+						ShowTimeOfMilliseconds       = GetValue( json, nameof( ShowTimeOfMilliseconds ),    false );
+						WriteSuccessNotShowWindow    = GetValue( json, nameof( WriteSuccessNotShowWindow ), false );
 					}
 				}
 				catch
@@ -95,6 +101,7 @@ namespace HslCommunicationDemo
 				json.Add( nameof( PenelSizeFixed ), PenelSizeFixed );
 				json.Add( nameof( TopMost ), TopMost );
 				json.Add( nameof( ShowTimeOfMilliseconds ), ShowTimeOfMilliseconds );
+				json.Add( nameof( WriteSuccessNotShowWindow ), WriteSuccessNotShowWindow );
 				File.WriteAllText( path, json.ToString( ), Encoding.UTF8 );
 			}
 		}

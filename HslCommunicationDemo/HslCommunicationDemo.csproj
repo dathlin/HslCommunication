@@ -74,8 +74,8 @@
     <Reference Include="DynamicExpresso.Core, Version=2.19.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicExpresso.Core.2.19.3\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.6.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.6.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.6.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.6.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
@@ -183,6 +183,12 @@
     <Compile Include="DemoControl\DataExportControl.Designer.cs">
       <DependentUpon>DataExportControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoControl\DataForwardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\DataForwardControl.Designer.cs">
+      <DependentUpon>DataForwardControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\DataSimulateControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -269,6 +275,12 @@
     <Compile Include="DemoControl\FormPropertyModify.Designer.cs">
       <DependentUpon>FormPropertyModify.cs</DependentUpon>
     </Compile>
+    <Compile Include="DemoControl\FormRunDeviceAndDataSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormRunDeviceAndDataSelect.Designer.cs">
+      <DependentUpon>FormRunDeviceAndDataSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\FormRunDeviceSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -322,6 +334,12 @@
     </Compile>
     <Compile Include="DemoControl\StressTesting.Designer.cs">
       <DependentUpon>StressTesting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\TopicListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoControl\TopicListControl.Designer.cs">
+      <DependentUpon>TopicListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\UserControlHead.cs">
       <SubType>UserControl</SubType>
@@ -705,6 +723,12 @@
     </Compile>
     <Compile Include="MQTT\FormWillTopicSetting.Designer.cs">
       <DependentUpon>FormWillTopicSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MQTT\MqttTopicControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MQTT\MqttTopicControl.Designer.cs">
+      <DependentUpon>MqttTopicControl.cs</DependentUpon>
     </Compile>
     <Compile Include="OpenProtocol\FormOpenProtocolServer.cs">
       <SubType>Form</SubType>
@@ -2122,6 +2146,9 @@
     <EmbeddedResource Include="DemoControl\DataExportControl.resx">
       <DependentUpon>DataExportControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\DataForwardControl.resx">
+      <DependentUpon>DataForwardControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\DataSimulateControl.resx">
       <DependentUpon>DataSimulateControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -2164,6 +2191,9 @@
     <EmbeddedResource Include="DemoControl\FormPropertyModify.resx">
       <DependentUpon>FormPropertyModify.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormRunDeviceAndDataSelect.resx">
+      <DependentUpon>FormRunDeviceAndDataSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormRunDeviceSelect.resx">
       <DependentUpon>FormRunDeviceSelect.cs</DependentUpon>
     </EmbeddedResource>
@@ -2190,6 +2220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\StressTesting.resx">
       <DependentUpon>StressTesting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\TopicListControl.resx">
+      <DependentUpon>TopicListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\UserControlCurve.resx">
       <DependentUpon>UserControlCurve.cs</DependentUpon>
@@ -2385,6 +2418,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MQTT\FormWillTopicSetting.resx">
       <DependentUpon>FormWillTopicSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MQTT\MqttTopicControl.resx">
+      <DependentUpon>MqttTopicControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OpenProtocol\FormOpenProtocolServer.resx">
       <DependentUpon>FormOpenProtocolServer.cs</DependentUpon>
@@ -3150,6 +3186,8 @@
     <None Include="img\secs.png" />
     <None Include="img\hyundai.png" />
     <None Include="img\art.png" />
+    <None Include="img\secs_s.png" />
+    <None Include="img\secs_f.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

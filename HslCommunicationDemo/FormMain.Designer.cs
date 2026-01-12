@@ -50,6 +50,7 @@
 			this.testPanelSizeFixedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.退出软件显示确认ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.showMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.写入成功不弹窗ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_Help = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_HomePage = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_ApiDoc = new System.Windows.Forms.ToolStripMenuItem();
@@ -217,7 +218,8 @@
             this.记住窗体位置及大小ToolStripMenuItem,
             this.testPanelSizeFixedToolStripMenuItem,
             this.退出软件显示确认ToolStripMenuItem,
-            this.showMsToolStripMenuItem});
+            this.showMsToolStripMenuItem,
+            this.写入成功不弹窗ToolStripMenuItem});
 			this.demoSettingToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.demoSettingToolStripMenuItem.Name = "demoSettingToolStripMenuItem";
 			this.demoSettingToolStripMenuItem.Size = new System.Drawing.Size(75, 21);
@@ -257,6 +259,13 @@
 			this.showMsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
 			this.showMsToolStripMenuItem.Text = "读写时间显示毫秒";
 			this.showMsToolStripMenuItem.Click += new System.EventHandler(this.ShowMsToolStripMenuItem_Click);
+			// 
+			// 写入成功不弹窗ToolStripMenuItem
+			// 
+			this.写入成功不弹窗ToolStripMenuItem.Name = "写入成功不弹窗ToolStripMenuItem";
+			this.写入成功不弹窗ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+			this.写入成功不弹窗ToolStripMenuItem.Text = "写入成功不弹窗";
+			this.写入成功不弹窗ToolStripMenuItem.Click += new System.EventHandler(this.写入成功不弹窗ToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem_Help
 			// 
@@ -423,7 +432,7 @@
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
 			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-			this.label2.Location = new System.Drawing.Point(720, 3);
+			this.label2.Location = new System.Drawing.Point(752, 3);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(148, 21);
 			this.label2.TabIndex = 42;
@@ -448,8 +457,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.AliceBlue;
 			this.ClientSize = new System.Drawing.Size(1240, 716);
-			this.Controls.Add(this.label_account);
 			this.Controls.Add(this.label2);
+			this.Controls.Add(this.label_account);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.dockPanel1);
 			this.Controls.Add(this.menuStrip1);
@@ -516,6 +525,7 @@
 		private System.Windows.Forms.ToolStripMenuItem testPanelSizeFixedToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 退出软件显示确认ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem showMsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 写入成功不弹窗ToolStripMenuItem;
 	}
 }
 

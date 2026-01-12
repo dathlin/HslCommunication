@@ -19,7 +19,7 @@ using HslControls;
 using HslCommunicationDemo.DemoControl;
 using HslCommunication.BasicFramework;
 using HslCommunication.LogNet;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.IO;
 
 namespace HslCommunicationDemo
 {
@@ -38,6 +38,10 @@ namespace HslCommunicationDemo
 			radioButton_every_minute.CheckedChanged += RadioButton_every_seconds_CheckedChanged;
 			radioButton_every_hour.CheckedChanged += RadioButton_every_seconds_CheckedChanged;
 			radioButton_every_day.CheckedChanged += RadioButton_every_seconds_CheckedChanged;
+
+			dataForwardControl = new DataForwardControl( );
+			DemoUtils.AddSpecialFunctionTab( this.tabControl1, dataForwardControl, false, DataForwardControl.GetTitle( ) );
+			mqttTopicControl1.GetStringFromPayload = this.GetStringFromPayload;
 		}
 
 		private void RadioButton_every_seconds_CheckedChanged( object sender, EventArgs e )
@@ -111,6 +115,7 @@ namespace HslCommunicationDemo
 		private int lastMinute = -1;
 		private int lastHour = -1;
 		private int lastDay = -1;
+		private DataForwardControl dataForwardControl;
 
 		private void Timer1s_Tick( object sender, EventArgs e )
 		{
@@ -259,6 +264,8 @@ namespace HslCommunicationDemo
 				button1.Enabled = false;
 				button2.Enabled = true;
 				panel2.Enabled = true;
+
+				dataForwardControl.SetMqttServer( mqttServer );
 				DemoUtils.ShowMessage( "Start Success" );
 			}
 			catch (Exception ex)
@@ -437,6 +444,13 @@ namespace HslCommunicationDemo
 					// 返回当前对象支持的API信息
 					mqttServer.PublishTopicPayload( session, "list", Encoding.UTF8.GetBytes( JArray.FromObject( MqttHelper.GetSyncServicesApiInformationFromObject( this ) ).ToString( ) ) );
 				}
+				else if (message.Topic == "G")
+				{
+					string path = @"E:\Software\GifCam.exe";
+					FileStream fileStream = new FileStream( path, FileMode.Open, FileAccess.Read );
+					mqttServer.PublishTopicPayload( session, "file", fileStream );  // 以流的形式返回，不支持客户端加密
+					fileStream.Dispose( );
+				}
 				else
 				{
 					// 如果不回传数据，客户端就会引发超时，关闭连接
@@ -451,35 +465,12 @@ namespace HslCommunicationDemo
 			}
 			else if (session.Protocol == "MQTT")
 			{
-				TopicSaveItem currentItem = GetSavedTopicItem( session, message );
+				//TopicSaveItem currentItem = GetSavedTopicItem( session, message );
 
 				Invoke( new Action( ( ) =>
 				{
-					if (currentItem != null)
-					{
-						if (currentItem.ViewRow != null)
-						{
-							currentItem.RenderRow( );
-						}
-						else
-						{
-							int index = dataGridView1.Rows.Add( );
-							currentItem.RenderRow( dataGridView1.Rows[index] );
-						}
-
-						if (object.ReferenceEquals( currentItem, selectedItem ))
-						{
-							RenderTopicSaveItem( currentItem );
-						}
-					}
-						//AddressExampleControl.DataGridSpecifyRowCount( dataGridView1, saveItems.Length );
-						//for (int i = 0; i < saveItems.Length; i++)
-						//{
-						//	dataGridView1.Rows[i].Cells[0].Value = (i + 1).ToString( );
-						//	dataGridView1.Rows[i].Cells[1].Value = saveItems[i].Topic;
-						//	dataGridView1.Rows[i].Cells[2].Value = saveItems[i].Count.ToString( );
-						//	dataGridView1.Rows[i].Tag = saveItems[i];
-						//}
+					// 更新
+					this.mqttTopicControl1.RenderTopic( session, message );
 				} ) );
 			}
 
@@ -499,56 +490,6 @@ namespace HslCommunicationDemo
 		private Dictionary<string, TopicSaveItem> all_dicts = new Dictionary<string, TopicSaveItem>( );
 		private TopicSaveItem selectedItem = null;
 
-		private void RenderTopicSaveItem( TopicSaveItem item )
-		{
-			if (item != null)
-			{
-				textBox_topic_topic.Text = item.Topic;
-				checkBox_topic_retain.Checked = item.Message.Retain;
-				textBox_topic_publishTime.Text = item.ReceiveDateTime.ToString( HslCommunicationDemo.DemoUtils.DateTimeFormate );
-				if (item.Session != null)
-					textBox_topic_publishSession.Text = item.Session.ToString( );
-				else
-					textBox_topic_publishSession.Text = string.Empty;
-
-				string tmp = GetStringFromPayload( item.Message.Payload );
-				if (radioButton_topic_render_json.Checked)
-				{
-					try
-					{
-						tmp = JObject.Parse( tmp ).ToString( );
-					}
-					catch
-					{
-					}
-				}
-				textBox_topic_payload.Text = tmp;
-
-				if (item.Message.Payload!=null) label_topic_size.Text = SoftBasic.GetSizeDescription( item.Message.Payload.LongLength );
-				else label_topic_size.Text = "0";
-			}
-			else
-			{
-				textBox_topic_topic.Text = string.Empty;
-				checkBox_topic_retain.Checked = false;
-				textBox_topic_publishTime.Text = string.Empty;
-				textBox_topic_publishSession.Text = string.Empty;
-				textBox_topic_payload.Text = string.Empty;
-				label_topic_size.Text = "0";
-			}
-		}
-
-		private void dataGridView1_CellMouseDoubleClick( object sender, DataGridViewCellMouseEventArgs e )
-		{
-			if (dataGridView1.SelectedRows.Count > 0)
-			{
-				if (dataGridView1.SelectedRows[0].Tag is TopicSaveItem item)
-				{
-					RenderTopicSaveItem( item );
-					selectedItem = item;
-				}
-			}
-		}
 
 		private string GetStringFromPayload( byte[] payload )
 		{
@@ -566,17 +507,6 @@ namespace HslCommunicationDemo
 			return tmp;
 		}
 
-		private void button7_Click_1( object sender, EventArgs e )
-		{
-			// 删除当前选中的主题信息
-			if (selectedItem == null) return;
-			if (string.IsNullOrEmpty( textBox_topic_topic.Text )) return;
-
-			dataGridView1.Rows.Remove( selectedItem.ViewRow );
-			DeleteTopicItem( selectedItem );
-			selectedItem = null;
-			RenderTopicSaveItem( null );
-		}
 
 		[HslMqttApi("检查账户的信息")]
 		[HslMqttPermission(ClientID ="AAA")]
@@ -789,6 +719,8 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlRetureMessage, checkBox3.Checked );
+
+			this.dataForwardControl.SaveToXml( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -796,6 +728,8 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			checkBox3.Checked = bool.Parse( element.Attribute( DemoDeviceList.XmlRetureMessage ).Value );
+
+			this.dataForwardControl.LoadFromXml( element );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
@@ -859,12 +793,21 @@ namespace HslCommunicationDemo
 			// 删除注册设备
 			if (dataGridView2.SelectedRows.Count > 0)
 			{
-				var device = dataGridView1.SelectedRows[0].Tag as DemoDeviceItem;
+				var device = dataGridView2.SelectedRows[0].Tag as DemoDeviceItem ;
 				if (device != null)
 				{
 					mqttServer?.UnRegisterMqttRpcApi( device.ApiName, device.Device );
-					dataGridView2.Rows.RemoveAt( dataGridView1.SelectedRows[0].Index );
+					dataGridView2.Rows.RemoveAt( dataGridView2.SelectedRows[0].Index );
 				}
+			}
+		}
+
+		private void panel7_SizeChanged( object sender, EventArgs e )
+		{
+			if (this.panel7.Width > 800)
+			{
+				button_device_add.Location = new Point( this.panel7.Width / 2 - 115, button_device_add.Location.Y );
+				button_device_remove.Location = new Point( this.panel7.Width / 2 + 5, button_device_remove.Location.Y );
 			}
 		}
 	}
@@ -900,7 +843,7 @@ namespace HslCommunicationDemo
 		/// <summary>
 		/// 消息信息
 		/// </summary>
-		public MqttClientApplicationMessage Message { get; set; }
+		public MqttApplicationMessage Message { get; set; }
 
 		/// <summary>
 		/// 收到的次数

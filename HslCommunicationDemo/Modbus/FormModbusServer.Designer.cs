@@ -164,7 +164,7 @@
 			this.textBox_time_min.Name = "textBox_time_min";
 			this.textBox_time_min.Size = new System.Drawing.Size(39, 23);
 			this.textBox_time_min.TabIndex = 37;
-			this.textBox_time_min.Text = "20";
+			this.textBox_time_min.Text = "2000";
 			// 
 			// label2
 			// 

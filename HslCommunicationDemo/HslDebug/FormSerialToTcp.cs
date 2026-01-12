@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using HslCommunication;
 
 namespace HslCommunicationDemo
@@ -26,14 +27,14 @@ namespace HslCommunicationDemo
 
 			comboBox1.SelectedIndex = 0;
 
-			comboBox2.DataSource = SerialPort.GetPortNames( );
+			comboBox_com.DataSource = SerialPort.GetPortNames( );
 			try
 			{
-				comboBox2.SelectedIndex = 0;
+				comboBox_com.SelectedIndex = 0;
 			}
 			catch
 			{
-				comboBox2.Text = "COM3";
+				comboBox_com.Text = "COM3";
 			}
 
 			Language( Program.Language );
@@ -43,7 +44,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 1)
 			{
-				Text = "串口调试助手";
+				Text = "串口转网口";
 				label1.Text = "Com口：";
 				label3.Text = "波特率:";
 				label22.Text = "数据位:";
@@ -52,12 +53,13 @@ namespace HslCommunicationDemo
 				button1.Text = "打开串口";
 				button2.Text = "关闭串口";
 				label7.Text = "数据接收区：";
-				checkBox3.Text = "是否显示发送数据";
+				checkBox_show_send.Text = "是否显示发送数据";
 				comboBox1.DataSource = new string[] { "无", "奇", "偶" };
+				button_clear.Text = "清空";
 			}
 			else
 			{
-				Text = "Serial Debug Tools";
+				Text = "Serial To Tcp";
 				label1.Text = "Com:";
 				label3.Text = "Baud rate:";
 				label22.Text = "Data bits:";
@@ -66,9 +68,47 @@ namespace HslCommunicationDemo
 				button1.Text = "Open";
 				button2.Text = "Close";
 				label7.Text = "Data receiving Area:";
-				checkBox3.Text = "Whether to display send data";
+				checkBox_show_send.Text = "Whether to display send data";
+				checkBox_show_hex.Text = "Display Hex";
 				comboBox1.DataSource = new string[] { "None", "Odd", "Even" };
+				button_clear.Text = "Clear";
 			}
+		}
+
+		public override void SaveXmlParameter( XElement element )
+		{
+			element.SetAttributeValue( DemoDeviceList.XmlCom, comboBox_com.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlBaudRate, textBox_baut.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlDataBits, textBox_data_bits.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlStopBit, textBox_stop.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlParity, comboBox1.SelectedIndex );
+			element.SetAttributeValue( DemoDeviceList.XmlRtsEnable, checkBox_rts.Checked );
+			element.SetAttributeValue( "Port", textBox_port.Text );
+			element.SetAttributeValue( "ShowSend", checkBox_show_send.Checked );
+			element.SetAttributeValue( "ShowHex", checkBox_show_hex.Checked );
+		}
+
+		public override void LoadXmlParameter( XElement element )
+		{
+			base.LoadXmlParameter( element );
+
+			comboBox_com.Text          = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlCom,      "COM3", m => m );
+			textBox_baut.Text          = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlBaudRate, "9600", m => m );
+			textBox_data_bits.Text     = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlDataBits, "8", m => m );
+			textBox_stop.Text          = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlStopBit,  "1", m => m );
+			comboBox1.SelectedIndex    = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlParity, 0, m => int.Parse( m ) );
+
+			checkBox_rts.Checked       = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlRtsEnable, false, m => bool.Parse( m ) );
+			textBox_port.Text          = HslFormContent.GetXmlValue( element, "Port", "502", m => m );
+			checkBox_show_send.Checked = HslFormContent.GetXmlValue( element, "ShowSend", true, m => bool.Parse( m ) );
+			checkBox_show_hex.Checked  = HslFormContent.GetXmlValue( element, "ShowHex",  true, m => bool.Parse( m ) );
+
+		}
+
+
+		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
+		{
+			userControlHead1_SaveConnectEvent( sender, e );
 		}
 
 		// 01 10 00 64 00 10 20 00 00 00 01 00 02 00 03 00 04 00 05 00 06 00 07 00 08 00 09 00 0A 00 0B 00 0C 00 0D 00 0E 00 0F
@@ -81,24 +121,26 @@ namespace HslCommunicationDemo
 		private Socket socketCore = null;
 		private Socket client = null;
 		private byte[] buffer = new byte[2048];
+		private long serialCounter = 0;
+		private long tcpCounter = 0;
 
 		#endregion
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			if (!int.TryParse( textBox2.Text, out int baudRate ))
+			if (!int.TryParse( textBox_baut.Text, out int baudRate ))
 			{
 				DemoUtils.ShowMessage( Program.Language == 1 ? "波特率输入错误！" : "Baud rate input error" );
 				return;
 			}
 
-			if (!int.TryParse( textBox16.Text, out int dataBits ))
+			if (!int.TryParse( textBox_data_bits.Text, out int dataBits ))
 			{
 				DemoUtils.ShowMessage( Program.Language == 1 ? "数据位输入错误！" : "Data bits input error" );
 				return;
 			}
 
-			if (!int.TryParse( textBox17.Text, out int stopBits ))
+			if (!int.TryParse( textBox_stop.Text, out int stopBits ))
 			{
 				DemoUtils.ShowMessage( Program.Language == 1 ? "停止位输入错误！" : "Stop bits input error" );
 				return;
@@ -106,12 +148,12 @@ namespace HslCommunicationDemo
 
 
 			SP_ReadData = new SerialPort( );
-			SP_ReadData.PortName = comboBox2.Text;
+			SP_ReadData.PortName = comboBox_com.Text;
 			SP_ReadData.BaudRate = baudRate;
 			SP_ReadData.DataBits = dataBits;
 			SP_ReadData.StopBits = stopBits == 0 ? StopBits.None : (stopBits == 1 ? StopBits.One : StopBits.Two);
 			SP_ReadData.Parity = comboBox1.SelectedIndex == 0 ? Parity.None : (comboBox1.SelectedIndex == 1 ? Parity.Odd : Parity.Even);
-			SP_ReadData.RtsEnable = checkBox5.Checked;
+			SP_ReadData.RtsEnable = checkBox_rts.Checked;
 
 			try
 			{
@@ -131,7 +173,7 @@ namespace HslCommunicationDemo
 			try
 			{
 				socketCore = new Socket( AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp );
-				socketCore.Bind( new IPEndPoint( 0, int.Parse( textBox1.Text ) ) );
+				socketCore.Bind( new IPEndPoint( 0, int.Parse( textBox_port.Text ) ) );
 				socketCore.Listen( 500 );//单次允许最后请求500个，足够小型系统应用了
 				socketCore.BeginAccept( new AsyncCallback( AsyncAcceptCallback ), socketCore );
 
@@ -218,8 +260,9 @@ namespace HslCommunicationDemo
 					SP_ReadData.Write( data, 0, data.Length );
 					Invoke( new Action( ( ) =>
 					{
+						System.Threading.Interlocked.Add( ref tcpCounter, data.Length );
 						string msg = string.Empty;
-						if (checkBox1.Checked)
+						if (checkBox_show_hex.Checked)
 						{
 							msg = HslCommunication.BasicFramework.SoftBasic.ByteToHexString( data, ' ' );
 						}
@@ -229,6 +272,7 @@ namespace HslCommunicationDemo
 						}
 
 						DemoUtils.AppendTextBox( textBox6, "Tcp-Serial", msg );
+						label_tcp_serial_length.Text = tcpCounter.ToString( );
 					} ) );
 				}
 				catch
@@ -278,8 +322,9 @@ namespace HslCommunicationDemo
 
 			Invoke( new Action( ( ) =>
 			 {
+				 System.Threading.Interlocked.Add( ref serialCounter, buffer.Count );
 				 string msg = string.Empty;
-				 if (checkBox1.Checked)
+				 if (checkBox_show_hex.Checked)
 				 {
 					 msg = HslCommunication.BasicFramework.SoftBasic.ByteToHexString( buffer.ToArray( ), ' ' );
 				 }
@@ -289,6 +334,7 @@ namespace HslCommunicationDemo
 				 }
 
 				 DemoUtils.AppendTextBox( textBox6, "Serial-Tcp", msg );
+				 label_serial_tcp_length.Text = serialCounter.ToString( );
 			 } ) );
 		}
 
@@ -299,6 +345,8 @@ namespace HslCommunicationDemo
 			try
 			{
 				SP_ReadData.Close( );
+				client?.Close( );
+				socketCore?.Dispose( );
 				button2.Enabled = false;
 				button1.Enabled = true;
 
@@ -313,6 +361,15 @@ namespace HslCommunicationDemo
 		private void FormSerialToTcp_FormClosing( object sender, FormClosingEventArgs e )
 		{
 			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty );
+		}
+
+		private void button3_Click( object sender, EventArgs e )
+		{
+			textBox6.Clear( );
+			System.Threading.Interlocked.Exchange( ref serialCounter, 0 );
+			System.Threading.Interlocked.Exchange( ref tcpCounter, 0 );
+			label_serial_tcp_length.Text = "0";
+			label_tcp_serial_length.Text = "0";
 		}
 	}
 	class ClientSession
