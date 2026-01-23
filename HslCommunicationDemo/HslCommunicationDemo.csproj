@@ -74,8 +74,8 @@
     <Reference Include="DynamicExpresso.Core, Version=2.19.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicExpresso.Core.2.19.3\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.6.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.6.1\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.6.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.6.2\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
@@ -149,6 +149,25 @@
     </Compile>
     <Compile Include="Control\FormInputString.Designer.cs">
       <DependentUpon>FormInputString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DataBaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Database\DataBaseControl.Designer.cs">
+      <DependentUpon>DataBaseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DatabaseHelper.cs" />
+    <Compile Include="Database\FormLocalFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Database\FormLocalFile.Designer.cs">
+      <DependentUpon>FormLocalFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\FormSqlServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Database\FormSqlServer.Designer.cs">
+      <DependentUpon>FormSqlServer.cs</DependentUpon>
     </Compile>
     <Compile Include="Dcs\FormDcsNanJingAuto.cs">
       <SubType>Form</SubType>
@@ -503,6 +522,12 @@
     </Compile>
     <Compile Include="HslDebug\PacketMessageItem.cs" />
     <Compile Include="HslDebug\SocketDebugSession.cs" />
+    <Compile Include="Hsl\FormFtpServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hsl\FormFtpServer.Designer.cs">
+      <DependentUpon>FormFtpServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hsl\FormHttpClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2131,6 +2156,15 @@
     <EmbeddedResource Include="Control\FormInputString.resx">
       <DependentUpon>FormInputString.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Database\DataBaseControl.resx">
+      <DependentUpon>DataBaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Database\FormLocalFile.resx">
+      <DependentUpon>FormLocalFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Database\FormSqlServer.resx">
+      <DependentUpon>FormSqlServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dcs\FormDcsNanJingAuto.resx">
       <DependentUpon>FormDcsNanJingAuto.cs</DependentUpon>
     </EmbeddedResource>
@@ -2304,6 +2338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HslDebug\FormSerialToTcp.resx">
       <DependentUpon>FormSerialToTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hsl\FormFtpServer.resx">
+      <DependentUpon>FormFtpServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hsl\FormHttpClient.resx">
       <DependentUpon>FormHttpClient.cs</DependentUpon>

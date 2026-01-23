@@ -165,7 +165,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(163, 8);
+			this.label1.Location = new System.Drawing.Point(144, 8);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(35, 17);
 			this.label1.TabIndex = 6;
@@ -173,7 +173,7 @@
 			// 
 			// textBox_interval
 			// 
-			this.textBox_interval.Location = new System.Drawing.Point(216, 5);
+			this.textBox_interval.Location = new System.Drawing.Point(197, 5);
 			this.textBox_interval.Name = "textBox_interval";
 			this.textBox_interval.Size = new System.Drawing.Size(55, 23);
 			this.textBox_interval.TabIndex = 7;
@@ -182,7 +182,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(275, 8);
+			this.label2.Location = new System.Drawing.Point(256, 8);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(25, 17);
 			this.label2.TabIndex = 8;
@@ -190,7 +190,7 @@
 			// 
 			// textBox_topic
 			// 
-			this.textBox_topic.Location = new System.Drawing.Point(383, 5);
+			this.textBox_topic.Location = new System.Drawing.Point(350, 5);
 			this.textBox_topic.Name = "textBox_topic";
 			this.textBox_topic.Size = new System.Drawing.Size(117, 23);
 			this.textBox_topic.TabIndex = 10;
@@ -199,7 +199,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(326, 8);
+			this.label3.Location = new System.Drawing.Point(293, 8);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(43, 17);
 			this.label3.TabIndex = 9;
@@ -210,11 +210,11 @@
 			this.checkBox_use_one_topic.AutoSize = true;
 			this.checkBox_use_one_topic.Checked = true;
 			this.checkBox_use_one_topic.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_use_one_topic.Location = new System.Drawing.Point(509, 7);
+			this.checkBox_use_one_topic.Location = new System.Drawing.Point(476, 7);
 			this.checkBox_use_one_topic.Name = "checkBox_use_one_topic";
-			this.checkBox_use_one_topic.Size = new System.Drawing.Size(143, 21);
+			this.checkBox_use_one_topic.Size = new System.Drawing.Size(107, 21);
 			this.checkBox_use_one_topic.TabIndex = 11;
-			this.checkBox_use_one_topic.Text = "是否使用一整个Topic";
+			this.checkBox_use_one_topic.Text = "打包一个Topic";
 			this.checkBox_use_one_topic.UseVisualStyleBackColor = true;
 			// 
 			// button_start

@@ -215,6 +215,8 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "hyundai",          Properties.Resources.hyundai );           // 59
 			imageList.Images.Add( "yudian",           Properties.Resources.yudian );            // 60
 			imageList.Images.Add( "art",              Properties.Resources.art );               // 61
+			imageList.Images.Add( "database",         Properties.Resources.DatabaseProject_7342_16x );  // 62
+			imageList.Images.Add( "txt",              Properties.Resources.txt );               // 63
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;

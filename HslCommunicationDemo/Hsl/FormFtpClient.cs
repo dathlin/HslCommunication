@@ -37,6 +37,9 @@ namespace HslCommunicationDemo
 		{
 			DemoUtils.SetDeviveIp( textBox_ip );
 			ImageList imageList = new ImageList( );
+			imageList.ColorDepth = ColorDepth.Depth32Bit;
+			imageList.ImageSize = new Size( 16, 16 );
+
 			imageList.Images.Add( "VirtualMachine", Properties.Resources.VirtualMachine );
 			imageList.Images.Add( "Class_489", Properties.Resources.Class_489 );
 			imageList.Images.Add( "Enum_582", Properties.Resources.Enum_582 );
@@ -69,6 +72,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "css", Properties.Resources.css );
 			imageList.Images.Add( "vdo", Properties.Resources.vdo );
 			imageList.Images.Add( "wav", Properties.Resources.wav );
+			imageList.Images.Add( "folder_Closed_16xLG", Properties.Resources.folder_Closed_16xLG );
 
 			treeView1.ImageList = imageList;
 			treeView1.Nodes[0].ImageKey = "VirtualMachine";
@@ -630,6 +634,7 @@ namespace HslCommunicationDemo
 							DemoUtils.ShowMessage( "File deleted successfully!" );
 						else
 							DemoUtils.ShowMessage( "文件删除成功！" );
+						node.Remove( ); // 删除成功的话，移除这个文件内容
 					}
 					else
 					{
@@ -814,7 +819,8 @@ namespace HslCommunicationDemo
 					if (result.IsSuccess)
 					{
 						// rename file success
-						DemoUtils.ShowMessage( "文件重命名成功！" );
+						string info = Program.Language == 1 ? "文件重命名成功！" : "file rename success!";
+						DemoUtils.ShowMessage( info );
 					}
 					else
 					{
@@ -842,8 +848,8 @@ namespace HslCommunicationDemo
 						node.Tag = item;
 						node.Nodes.Add( new TreeNode( "loading..." ) { ImageKey = "loading", SelectedImageKey = "loading" } );
 						root.Nodes.Add( node );
-						node.ImageKey = "Class_489";
-						node.SelectedImageKey = "Class_489";
+						node.ImageKey = "folder_Closed_16xLG";
+						node.SelectedImageKey = "folder_Closed_16xLG";
 					}
 					else
 					{

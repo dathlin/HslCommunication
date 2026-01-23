@@ -24,6 +24,21 @@ namespace HslCommunicationDemo.DemoControl
 			InitializeComponent( );
 		}
 
+		public void ActionWhenClosing( )
+		{
+			if (this.button_start.Enabled == false )
+			{
+				button_stop_Click( button_stop, EventArgs.Empty );
+			}
+		}
+
+		public void SetSqlMode(  )
+		{
+			label3.Visible = false;
+			textBox_topic.Visible = false;
+			checkBox_use_one_topic.Visible = false;
+		}
+
 		private void button_device_add_Click( object sender, EventArgs e )
 		{
 			// 新增注册设备
@@ -111,6 +126,22 @@ namespace HslCommunicationDemo.DemoControl
 		private bool thread_running = false;
 		private long run_count = 0;
 
+		public EventHandler<Dictionary<string, object>> onDataPublished;
+
+		private void AddDictionaryHelper( Dictionary<string, object> dict, string key, object value )
+		{
+			if (dict == null) return;
+
+			if (dict.ContainsKey( key ))
+			{
+				dict[key] = value;
+			}
+			else
+			{
+				dict.Add( key, value );
+			}
+		}
+
 		private void button_start_Click( object sender, EventArgs e )
 		{
 			// 开始
@@ -141,7 +172,13 @@ namespace HslCommunicationDemo.DemoControl
 
 			button_start.Enabled = false;
 			button_stop.Enabled = true;
+
+			OnStart?.Invoke( );
 		}
+
+		public Action OnStart { get; set; }
+
+		public Action OnStop { get; set; }
 
 		private void button_stop_Click( object sender, EventArgs e )
 		{
@@ -150,6 +187,7 @@ namespace HslCommunicationDemo.DemoControl
 			thread?.Abort( );
 			button_start.Enabled = true;
 			button_stop.Enabled = false;
+			OnStop?.Invoke( );
 		}
 
 		public void PublishMessageHelper(string topic, string content)
@@ -177,7 +215,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private void ReadDataHelpler<T>( DeviceCommunication deviceCommunication, DataGridViewRow row, DataForwardItem item, Func<string, OperateResult<T>> read1, Func<string, ushort, OperateResult<T[]>> read2, JObject json )
+		private void ReadDataHelpler<T>( DeviceCommunication deviceCommunication, DataGridViewRow row, DataForwardItem item, Func<string, OperateResult<T>> read1, Func<string, ushort, OperateResult<T[]>> read2, JObject json, Dictionary<string, object> dict )
 		{
 			DemoDeviceAddressItem addressItem = item.AddressItem;
 
@@ -189,6 +227,7 @@ namespace HslCommunicationDemo.DemoControl
 					if (read.IsSuccess && read.Content.Length > 0)
 					{
 						row.Cells[6].Value = read.Content[0];
+						AddDictionaryHelper( dict, addressItem.GetTopic( ), read.Content[0] );
 						if (useOneTopic)
 						{
 							if (json != null)
@@ -212,6 +251,8 @@ namespace HslCommunicationDemo.DemoControl
 					if (read.IsSuccess)
 					{
 						row.Cells[6].Value = read.Content;
+						AddDictionaryHelper( dict, addressItem.GetTopic( ), read.Content );
+
 						if (useOneTopic)
 						{
 							if (json != null)
@@ -236,6 +277,7 @@ namespace HslCommunicationDemo.DemoControl
 				if (read.IsSuccess)
 				{
 					row.Cells[6].Value = "[" + string.Join( ", ", read.Content ) + "]";
+					AddDictionaryHelper( dict, addressItem.GetTopic( ), read.Content );
 					if (useOneTopic)
 					{
 						if (json != null)
@@ -255,7 +297,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		private void ReadStringHelper( DeviceCommunication deviceCommunication, DataGridViewRow row, DataForwardItem item, JObject json )
+		private void ReadStringHelper( DeviceCommunication deviceCommunication, DataGridViewRow row, DataForwardItem item, JObject json, Dictionary<string, object> dict )
 		{
 			DemoDeviceAddressItem addressItem = item.AddressItem;
 			Encoding encoding = Encoding.ASCII;
@@ -270,6 +312,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (read.IsSuccess)
 			{
 				row.Cells[6].Value = read.Content;
+				AddDictionaryHelper( dict, addressItem.GetTopic( ), read.Content );
 				if (useOneTopic)
 				{
 					if (json != null)
@@ -297,6 +340,7 @@ namespace HslCommunicationDemo.DemoControl
 				try
 				{
 					JObject json = new JObject( );
+					Dictionary<string, object> dict = new Dictionary<string, object>( );
 					DateTime start = DateTime.Now;
 					for (int i = 0; i < dataGridView1.Rows.Count; i++)
 					{
@@ -308,59 +352,59 @@ namespace HslCommunicationDemo.DemoControl
 								DemoDeviceAddressItem addressItem = item.AddressItem;
 								if (addressItem.DataType.Equals( "short", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadInt16, deviceCommunication.ReadInt16, json );
+									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadInt16, deviceCommunication.ReadInt16, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "ushort", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadUInt16, deviceCommunication.ReadUInt16, json );
+									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadUInt16, deviceCommunication.ReadUInt16, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "int", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadInt32, deviceCommunication.ReadInt32, json );
+									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadInt32, deviceCommunication.ReadInt32, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "uint", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadUInt32, deviceCommunication.ReadUInt32, json );
+									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadUInt32, deviceCommunication.ReadUInt32, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "long", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadInt64, deviceCommunication.ReadInt64, json );
+									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadInt64, deviceCommunication.ReadInt64, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "ulong", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadUInt64, deviceCommunication.ReadUInt64, json );
+									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadUInt64, deviceCommunication.ReadUInt64, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "float", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadFloat, deviceCommunication.ReadFloat, json );
+									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadFloat, deviceCommunication.ReadFloat, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "double", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadDouble, deviceCommunication.ReadDouble, json );
+									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadDouble, deviceCommunication.ReadDouble, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "bool", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadBool, deviceCommunication.ReadBool, json );
+									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, deviceCommunication.ReadBool, deviceCommunication.ReadBool, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "byte", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, null, deviceCommunication.Read, json );
+									ReadDataHelpler( deviceCommunication, dataGridView1.Rows[i], item, null, deviceCommunication.Read, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "string_ascii", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadStringHelper( deviceCommunication, dataGridView1.Rows[i], item, json );
+									ReadStringHelper( deviceCommunication, dataGridView1.Rows[i], item, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "string_unicode", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadStringHelper( deviceCommunication, dataGridView1.Rows[i], item, json );
+									ReadStringHelper( deviceCommunication, dataGridView1.Rows[i], item, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "string_gb2312", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadStringHelper( deviceCommunication, dataGridView1.Rows[i], item, json );
+									ReadStringHelper( deviceCommunication, dataGridView1.Rows[i], item, json, dict );
 								}
 								else if (addressItem.DataType.Equals( "string_utf8", StringComparison.OrdinalIgnoreCase ))
 								{
-									ReadStringHelper( deviceCommunication, dataGridView1.Rows[i], item, json );
+									ReadStringHelper( deviceCommunication, dataGridView1.Rows[i], item, json, dict );
 								}
 								else
 								{
@@ -374,6 +418,8 @@ namespace HslCommunicationDemo.DemoControl
 					{
 						PublishMessageHelper( mqttTopic, json.ToString( ) );
 					}
+
+					onDataPublished?.Invoke( this, dict );
 
 					System.Threading.Interlocked.Increment( ref run_count );
 
@@ -400,8 +446,8 @@ namespace HslCommunicationDemo.DemoControl
 
 			if (this.Width > 800)
 			{
-				button_device_add.Location = new Point( this.Width / 2 - 115, button_device_add.Location.Y );
-				button_device_remove.Location = new Point( this.Width / 2 + 5, button_device_remove.Location.Y );
+				button_device_add.Location = new Point( this.Width / 2 - 115, this.Height - 34 );
+				button_device_remove.Location = new Point( this.Width / 2 + 5, this.Height - 34 );
 			}
 		}
 
@@ -502,7 +548,7 @@ namespace HslCommunicationDemo.DemoControl
 			if (Program.Language == 2)
 			{
 				label1.Text = "Interval:";
-				checkBox_use_one_topic.Text = "Use One Topic";
+				checkBox_use_one_topic.Text = "Pack One Topic";
 				button_device_add.Text = "Add Data";
 				button_device_remove.Text = "Remove";
 				button_device_set.Text = "Set Device";

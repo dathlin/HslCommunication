@@ -35,23 +35,19 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.6.1
-1. NetworkAlienClient: DTU服务器类新增支持了16字节的注册包数据，可以仅包含ID信息，密码视为传入000000，然后进行校验。
-2. Secs: SecsHsms修复自动回复几个消息的时候，systembytes不复制一样的bug，secshsmsserver的方法PublishSecsMessage发送数据之后，返回结果携带本次发送的 systembytes 信息，方便自定义处理。
-3. OpenProtocolServer: 新增MID0061订阅数据的revision2版本的的订阅，方便客户端测试，客户端DEMO新增手动配置某个MID数据解析的功能，并支持保存加载。
-4. Server: 优化所有串口类协议的虚拟设备接收报文的代码，支持客户端发送时分段发送，修复DLT698串口类协议的报文完整性判断。
-5. MqttServer: 新增重载方法PublishTopicPayload，payload可以指定流数据，分段加载返回，用于同步返回文件。
-6. OpenEventArgs: OpenProtocol协议触发订阅事件的消息类新增属性RawData，用来表示接收到的原始字节数据，方便特殊需求的自定义解析。
-7. HslTimeOut: 优化异步读写超时信号判断的线程，Thread.Sleep修改为更加稳定的同步超时信号，并增加兜底方案，因为Sleep极低概率会发生异常。
-8. WebSocketServer: 新增移除指定会话的订阅信息的方法RemoveSessionTopic，相关的测试界面优化，支持查看更多的信息，支持数据转发。
-9. Demo: 修复OpenProtocol的测试界面上，如果收到全空格的revision信息时，直接崩溃的bug。
-10. Demo: HttpClient的测试界面，显示结果的textbox控件替换为richTextBox控件，因为前者在字符串非常大的时候，将会卡死无响应，新的控件则不会。
-11. Demo: MqttServer界面及MqttClient界面支持数据转发，将设备的数据，进行发布订阅出去，以JSON数据的格式发送。
-12. Demo: 优化secs得服务器客户端，增加图标信息，服务器功能码右键，新增发送SECS消息的功能。
-13. Demo: 串口转网口的测试界面，修复关闭时网络资源不关闭的bug，修复点击保存连接时提示该功能没有实现的bug，新增清空及字节统计功能。
-14. Demo: 新增加一个配置选择，写入成功后可以不进行弹窗操作，有需要的朋友可以在菜单的配置里查看，然后打勾操作。
-15. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
-16. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V12.6.2
+1. FanucSeries0i: ReadFeedRate读取进给倍率的方法，修复在某些型号下读取值异常的bug，现在兼容性更好。
+2. FanucSeries0i: 数据类FanucSysInfo, FanucOperatorMessage, ToolInformation, SysAlarm, SysAllCoors重写了tostring方法，可以直接转字符串显示数据。
+3. FanucSeries0i: 修复宏变量读写时候，对数据解析和生成的时候，当遇到超大数据解析异常，反写数据异常的bug。
+4. CommunicationTcpServer: 优化接收数据的代码，防止在一些及其特殊的情况下发生崩溃的bug。
+5. FtpClient: 修复创建文件夹的时候，在指定多级目录的情况下，创建失败的bug，优化Demo界面的图标信息。
+6. FtpServer: 新增加一个FtpServer类，在Demo上可以一键启动一个服务器，快速验证及收发文件，和Hsl得FtpClient测试通过。
+7. OmronCipServer: 修复欧姆龙的虚拟CIP服务器，创建了bool[]数组变量后，从客户端读写bool值不正确的bug。
+8. YRCHighEthernet: 安川机器人的高速以太网协议优化，字符串数据自动移除空字符，支持读取机器人的脉冲坐标，增加读取轴名称，Demo界面优化。
+9. Demo: 新增sqlserver的数据存储功能，新增本地文件的数据存储功能，Demo可以直接将PLC数据存入数据库或是本地文件里。
+10. Demo: 原始字节批量读取的控件支持了手动解析数据功能，并且读取时直接解析值显示，然后显示具体的解析的代码。
+11. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
+12. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

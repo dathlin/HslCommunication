@@ -119,11 +119,11 @@
 			this.label2.ForeColor = System.Drawing.Color.Green;
 			this.label2.Location = new System.Drawing.Point(8, 5);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(865, 17);
+			this.label2.Size = new System.Drawing.Size(941, 17);
 			this.label2.TabIndex = 18;
 			this.label2.Text = "服务器值列表：   A short ; A1  float[20]  ;  B int ;  C   float ;     D  short[20];     " +
     "E  bool;     F  string ;  G  sting[5];   AB.C  short[5];   M  uint[4];  N   long" +
-    "";
+    ";  X  bool[10]";
 			// 
 			// userControlHead1
 			// 

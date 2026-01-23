@@ -35,7 +35,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.MouseDown += DataTableControl_MouseDown;
 			this.MouseUp += DataTableControl_MouseUp;
 
-			this.Column_type.DataSource = this.data_types.ToArray( );
+			this.Column_type.DataSource = data_types.ToArray( );
 			this.Column_encoding.DataSource = this.data_encodings.ToArray( );
 
 			this.toClipToolStripMenuItem.Click += button_out_clip_Click;
@@ -525,7 +525,7 @@ namespace HslCommunicationDemo.DemoControl
 			dataGridView1.Columns[8].Width = dataGridView1.Width - width - 20 - 40;                                   // 注释
 		}
 
-		private List<string> data_types = new List<string>( ) { "bool", "byte", "short", "ushort", "int", "uint", "long", "ulong", "float", "double", "string" };
+		public static List<string> data_types = new List<string>( ) { "bool", "byte", "short", "ushort", "int", "uint", "long", "ulong", "float", "double", "string" };
 		private List<string> data_encodings = new List<string>( ) { "ASCII", "UFT16", "UTF8", "GB2312" };
 
 		private DataTableItem GetDataTableItem( DataGridViewRow dgvr )

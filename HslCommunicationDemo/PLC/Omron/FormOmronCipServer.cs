@@ -99,6 +99,7 @@ namespace HslCommunicationDemo
 				cipServer.AddTagValue( "M", new uint[] { 1, 2, 3, 4 } );
 				cipServer.AddTagValue( "REAL500", new float[50] );
 				cipServer.AddTagValue( "N", 100L );
+				cipServer.AddTagValue( "X", new bool[] { true, false, false, false, true, true, false, true, true, true } );
 
 				if (this.saveTags.Count > 0)
 				{

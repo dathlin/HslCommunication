@@ -393,6 +393,16 @@ namespace HslCommunicationDemo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap column_16xLG {
+            get {
+                object obj = ResourceManager.GetObject("column_16xLG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap conf {
             get {
                 object obj = ResourceManager.GetObject("conf", resourceCulture);
@@ -476,6 +486,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap csv {
             get {
                 object obj = ResourceManager.GetObject("csv", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap DatabaseProject_7342_16x {
+            get {
+                object obj = ResourceManager.GetObject("DatabaseProject_7342_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -756,6 +776,16 @@ namespace HslCommunicationDemo.Properties {
         internal static System.Drawing.Bitmap flv {
             get {
                 object obj = ResourceManager.GetObject("flv", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap folder_Closed_16xLG {
+            get {
+                object obj = ResourceManager.GetObject("folder_Closed_16xLG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

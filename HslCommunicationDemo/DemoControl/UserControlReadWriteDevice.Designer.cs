@@ -101,10 +101,10 @@
 			// 
 			this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
 			this.tabPage2.Controls.Add(this.batchReadControl2);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Location = new System.Drawing.Point(4, 26);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(192, 74);
+			this.tabPage2.Size = new System.Drawing.Size(946, 252);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "报文读取";
 			// 
@@ -112,19 +112,19 @@
 			// 
 			this.batchReadControl2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.batchReadControl2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.batchReadControl2.IsSourceReadMode = false;
+			this.batchReadControl2.IsSourceReadMode = true;
 			this.batchReadControl2.Location = new System.Drawing.Point(3, 3);
 			this.batchReadControl2.Name = "batchReadControl2";
-			this.batchReadControl2.Size = new System.Drawing.Size(186, 68);
+			this.batchReadControl2.Size = new System.Drawing.Size(940, 246);
 			this.batchReadControl2.TabIndex = 1;
 			// 
 			// tabPage7
 			// 
 			this.tabPage7.Controls.Add(this.panel1);
-			this.tabPage7.Location = new System.Drawing.Point(4, 26);
+			this.tabPage7.Location = new System.Drawing.Point(4, 22);
 			this.tabPage7.Name = "tabPage7";
 			this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage7.Size = new System.Drawing.Size(946, 252);
+			this.tabPage7.Size = new System.Drawing.Size(192, 74);
 			this.tabPage7.TabIndex = 6;
 			this.tabPage7.Text = "远程调试";
 			this.tabPage7.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(3, 3);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(940, 246);
+			this.panel1.Size = new System.Drawing.Size(186, 68);
 			this.panel1.TabIndex = 1;
 			// 
 			// debugRemoteControl1
@@ -144,7 +144,7 @@
 			this.debugRemoteControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.debugRemoteControl1.Location = new System.Drawing.Point(0, 0);
 			this.debugRemoteControl1.Name = "debugRemoteControl1";
-			this.debugRemoteControl1.Size = new System.Drawing.Size(940, 246);
+			this.debugRemoteControl1.Size = new System.Drawing.Size(186, 68);
 			this.debugRemoteControl1.TabIndex = 0;
 			// 
 			// tabPage3

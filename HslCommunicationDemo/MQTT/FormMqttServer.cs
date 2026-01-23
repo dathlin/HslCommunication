@@ -763,6 +763,7 @@ namespace HslCommunicationDemo
 
 		private void FormMqttServer_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			this.dataForwardControl.ActionWhenClosing( );
 			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 如果是开启状态，则关闭服务器
 		}
 

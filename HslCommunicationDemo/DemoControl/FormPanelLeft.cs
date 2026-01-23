@@ -1,5 +1,6 @@
 ﻿using HslCommunication.LogNet;
 using HslCommunicationDemo.Control;
+using HslCommunicationDemo.Database;
 using HslCommunicationDemo.HslDebug;
 using HslCommunicationDemo.Instrument;
 using HslCommunicationDemo.MQTT;
@@ -362,9 +363,15 @@ namespace HslCommunicationDemo.DemoControl
 			mqttNode.Nodes.Add( GetTreeNodeByIndex( "Mqtt Rpc Device", 17, typeof( FormMqttRpcDevice ) ) );
 			treeView1.Nodes.Add( mqttNode );
 
+			TreeNode databaseNode = new TreeNode( "Database", 62, 62 );
+			databaseNode.Nodes.Add( GetTreeNodeByIndex( "SqlServer", 62, typeof( FormSqlServer ) ) );
+			databaseNode.Nodes.Add( GetTreeNodeByIndex( "Txt File", 63, typeof( FormLocalFile ) ) );
+			treeView1.Nodes.Add( databaseNode );
+
 			// FTP 相关
 			TreeNode ftpNode = new TreeNode( "FTP", 53, 53 );
 			ftpNode.Nodes.Add( GetTreeNodeByIndex( "FtpClient", 53, typeof( FormFtpClient ) ) );
+			ftpNode.Nodes.Add( GetTreeNodeByIndex( "FtpServer", 53, typeof( FormFtpServer ) ) );
 			treeView1.Nodes.Add( ftpNode );
 
 			// WebSocket 相关

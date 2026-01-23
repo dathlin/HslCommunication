@@ -520,6 +520,7 @@ namespace HslCommunicationDemo
 
 		private void FormMqttClient_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			this.dataForwardControl.ActionWhenClosing( );
 			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 断开连接
 		}
 

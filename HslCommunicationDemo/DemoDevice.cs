@@ -46,6 +46,11 @@ namespace HslCommunicationDemo
 				row.Cells[4].Value = devices[i].Device.ToString( );
 				row.Tag = devices[i];
 			}
+
+			if (devices.Count > 0)
+			{
+				dataGridView.Rows[0].Selected = true;
+			}
 		}
 	}
 

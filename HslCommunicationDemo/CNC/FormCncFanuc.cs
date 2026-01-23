@@ -531,7 +531,7 @@ namespace HslCommunicationDemo
 			OperateResult<double> read = fanuc.ReadSystemMacroValue( address );
 			if (read.IsSuccess)
 			{
-				textBox8.Text = read.Content.ToString( );
+				textBox8.Text = $"Read macro variable[{address}]\r\nValue: " + read.Content.ToString( );
 			}
 			else
 			{

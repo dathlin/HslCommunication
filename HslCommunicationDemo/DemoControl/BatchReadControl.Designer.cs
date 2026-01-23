@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent( )
 		{
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.textBox_result = new System.Windows.Forms.TextBox();
 			this.label_result = new System.Windows.Forms.Label();
 			this.button_read = new System.Windows.Forms.Button();
@@ -52,6 +53,17 @@
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.checkBox_word_reverse = new System.Windows.Forms.CheckBox();
 			this.label5 = new System.Windows.Forms.Label();
+			this.checkBox_parse = new System.Windows.Forms.CheckBox();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.Column_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_type = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.Column_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column_value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.panel_data_parse = new System.Windows.Forms.Panel();
+			this.label6 = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			this.panel_data_parse.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// textBox_result
@@ -64,7 +76,7 @@
 			this.textBox_result.Multiline = true;
 			this.textBox_result.Name = "textBox_result";
 			this.textBox_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_result.Size = new System.Drawing.Size(683, 191);
+			this.textBox_result.Size = new System.Drawing.Size(683, 193);
 			this.textBox_result.TabIndex = 33;
 			// 
 			// label_result
@@ -260,18 +272,18 @@
 			// 
 			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_code.Location = new System.Drawing.Point(56, 248);
+			this.textBox_code.Location = new System.Drawing.Point(56, 250);
 			this.textBox_code.Multiline = true;
 			this.textBox_code.Name = "textBox_code";
 			this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_code.Size = new System.Drawing.Size(683, 39);
+			this.textBox_code.Size = new System.Drawing.Size(683, 37);
 			this.textBox_code.TabIndex = 47;
 			// 
 			// label_code
 			// 
 			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label_code.AutoSize = true;
-			this.label_code.Location = new System.Drawing.Point(1, 248);
+			this.label_code.Location = new System.Drawing.Point(1, 253);
 			this.label_code.Name = "label_code";
 			this.label_code.Size = new System.Drawing.Size(44, 17);
 			this.label_code.TabIndex = 48;
@@ -313,9 +325,97 @@
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.label5.Click += new System.EventHandler(this.label5_Click);
 			// 
+			// checkBox_parse
+			// 
+			this.checkBox_parse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkBox_parse.AutoSize = true;
+			this.checkBox_parse.Location = new System.Drawing.Point(2, 294);
+			this.checkBox_parse.Name = "checkBox_parse";
+			this.checkBox_parse.Size = new System.Drawing.Size(51, 21);
+			this.checkBox_parse.TabIndex = 52;
+			this.checkBox_parse.Text = "解析";
+			this.checkBox_parse.UseVisualStyleBackColor = true;
+			// 
+			// dataGridView1
+			// 
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column_name,
+            this.Column_type,
+            this.Column_length,
+            this.Column_index,
+            this.Column_value});
+			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.RowTemplate.Height = 23;
+			this.dataGridView1.Size = new System.Drawing.Size(521, 195);
+			this.dataGridView1.TabIndex = 53;
+			// 
+			// Column_name
+			// 
+			this.Column_name.HeaderText = "Name";
+			this.Column_name.Name = "Column_name";
+			// 
+			// Column_type
+			// 
+			this.Column_type.HeaderText = "DataType";
+			this.Column_type.Name = "Column_type";
+			this.Column_type.Width = 80;
+			// 
+			// Column_length
+			// 
+			this.Column_length.HeaderText = "Length";
+			this.Column_length.Name = "Column_length";
+			this.Column_length.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.Column_length.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Column_length.Width = 80;
+			// 
+			// Column_index
+			// 
+			this.Column_index.HeaderText = "ByteIndex";
+			this.Column_index.Name = "Column_index";
+			this.Column_index.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.Column_index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Column_index.Width = 80;
+			// 
+			// Column_value
+			// 
+			this.Column_value.HeaderText = "Value";
+			this.Column_value.Name = "Column_value";
+			this.Column_value.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.Column_value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Column_value.Width = 120;
+			// 
+			// panel_data_parse
+			// 
+			this.panel_data_parse.Controls.Add(this.label6);
+			this.panel_data_parse.Controls.Add(this.dataGridView1);
+			this.panel_data_parse.Location = new System.Drawing.Point(170, 43);
+			this.panel_data_parse.Name = "panel_data_parse";
+			this.panel_data_parse.Size = new System.Drawing.Size(521, 220);
+			this.panel_data_parse.TabIndex = 54;
+			// 
+			// label6
+			// 
+			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label6.AutoSize = true;
+			this.label6.ForeColor = System.Drawing.Color.Gray;
+			this.label6.Location = new System.Drawing.Point(1, 198);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(520, 17);
+			this.label6.TabIndex = 54;
+			this.label6.Text = "bool类型时Index为位单位，Length动态: [1] 表示由read.Content[1]指定，带编码例子: 10;utf8";
+			// 
 			// BatchReadControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.panel_data_parse);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.label_code);
 			this.Controls.Add(this.textBox_code);
@@ -340,10 +440,14 @@
 			this.Controls.Add(this.label_tips);
 			this.Controls.Add(this.checkBox_word_reverse);
 			this.Controls.Add(this.label5);
+			this.Controls.Add(this.checkBox_parse);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "BatchReadControl";
 			this.Size = new System.Drawing.Size(845, 318);
 			this.Load += new System.EventHandler(this.BatchReadControl_Load);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			this.panel_data_parse.ResumeLayout(false);
+			this.panel_data_parse.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -375,5 +479,14 @@
 		private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox_word_reverse;
         private System.Windows.Forms.Label label5;
-    }
+		private System.Windows.Forms.CheckBox checkBox_parse;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_name;
+		private System.Windows.Forms.DataGridViewComboBoxColumn Column_type;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_length;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_index;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column_value;
+		private System.Windows.Forms.Panel panel_data_parse;
+		private System.Windows.Forms.Label label6;
+	}
 }

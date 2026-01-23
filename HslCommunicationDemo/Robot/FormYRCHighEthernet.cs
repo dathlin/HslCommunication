@@ -30,8 +30,6 @@ namespace HslCommunicationDemo
 		{
 			panel2.Enabled = false;
 
-			comboBox1.DataSource = new string[] { "基坐标", "机器坐标", "用户1", "用户2", "用户3", "用户4", "用户5", "用户6", "用户7", "用户8", "用户9", "用户10" };
-			comboBox1.SelectedIndex = 0;
 			Language( Program.Language );
 
 
@@ -45,11 +43,8 @@ namespace HslCommunicationDemo
 			{
 				Text = "YASKAWA Robot Demo";
 
-				label1.Text = "Ip:";
-				label3.Text = "Port:";
 				button1.Text = "Connect";
 				button2.Text = "Disconnect";
-				label21.Text = "Address:";
 				label7.Text = "result:";
 
 
@@ -58,7 +53,6 @@ namespace HslCommunicationDemo
 
 				tabPage1.Text = "Single Data Read test";
 				tabPage2.Text = "Single Data Write test";
-				label22.Text = "Parameter name of robot";
 
 				label_code.Text = "Code:";
 			}
@@ -76,13 +70,19 @@ namespace HslCommunicationDemo
 		{
 			if(!int.TryParse(textBox2.Text,out int port))
 			{
-				DemoUtils.ShowMessage( "端口输入格式不正确！" );
+				DemoUtils.ShowMessage( Program.Language == 1 ? "端口输入格式不正确！" : "Port input wrong, please intput interge!" );
 				return;
 			}
-			
+
+			if (!int.TryParse( textBox9.Text, out int timeout ))
+			{
+				DemoUtils.ShowMessage( Program.Language == 1 ? "超时输入格式不正确！" : "Timeout input wrong, please intput interge!" );
+				return;
+			}
+
 			yrc = new YRCHighEthernet( textBox1.Text, port );
-			yrc.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
-			//YRC1000Tcp.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+			yrc.ReceiveTimeout = timeout;
+			yrc.LogNet = LogNet;
 
 			try
 			{
@@ -93,20 +93,12 @@ namespace HslCommunicationDemo
 
 				// 设置代码示例
 				codeExampleControl.SetCodeText( "robot", yrc );
-				textBox_code.Text = $"YRCHighEthernet yrc = new YRCHighEthernet( \"{textBox1.Text}\", {port} );";
+				textBox_code.Text = $"YRCHighEthernet yrc = new YRCHighEthernet( \"{textBox1.Text}\", {port} );\r\nyrc.ReceiveTimeout = {timeout};";
 			}
 			catch (Exception ex)
 			{
 				DemoUtils.ShowMessage( ex.Message );
 			}
-		}
-
-		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
-		{
-			Invoke( new Action( ( ) =>
-			 {
-				 textBox4.AppendText( e.HslMessage.ToString( ) );
-			 } ) );
 		}
 
 		private void button2_Click( object sender, EventArgs e )
@@ -126,6 +118,7 @@ namespace HslCommunicationDemo
 		{
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox1.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
+			element.SetAttributeValue( DemoDeviceList.XmlReceiveTimeOut, textBox9.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -133,6 +126,7 @@ namespace HslCommunicationDemo
 			base.LoadXmlParameter( element );
 			textBox1.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
+			textBox9.Text = GetXmlValue( element, DemoDeviceList.XmlReceiveTimeOut, "10000", m => m );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
@@ -257,21 +251,88 @@ namespace HslCommunicationDemo
 			textBox_code.Text = $"OperateResult<string[]> read = yrc.ReadPose( );";
 		}
 
-		private void button5_Click( object sender, EventArgs e )
+		private void SetReadResult( OperateResult<string[]> read, string[] paraNames, string title = null )
 		{
-			// 姿态坐标
-			OperateResult<YRCRobotData> read = yrc.ReadPOSC( comboBox1.SelectedIndex, true );
 			if (read.IsSuccess)
 			{
-				textBox4.Text = DateTime.Now.ToString( ) + Environment.NewLine + read.Content.ToJsonString( );
+				StringBuilder sb = new StringBuilder();
+				sb.AppendLine( DateTime.Now.ToString( DemoUtils.DateTimeFormate ) + $" Read {title}" );
+				for ( int i = 0; i < paraNames.Length; i++ )
+				{
+					sb.Append( paraNames[i] );
+					sb.Append( " : " );
+					if (i < read.Content.Length)
+					{
+						sb.Append( read.Content[i] );
+					}
+					sb.Append( Environment.NewLine );
+				}
+				textBox4.Text = sb.ToString( );
 			}
 			else
 			{
 				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
 			}
-
-			textBox_code.Text = $"OperateResult<YRCRobotData> read = yrc.ReadPOSC( {comboBox1.SelectedIndex}, true );";
 		}
+
+		private string[] axis = new string[] { "第1轴数据", "第2轴数据", "第3轴数据", "第4轴数据", "第5轴数据", "第6轴数据", "第7轴数据", "第8轴数据" };
+
+		private void button5_Click( object sender, EventArgs e )
+		{
+			// 姿态坐标
+			if (!ushort.TryParse(textBox8.Text, out var value))
+			{
+				DemoUtils.ShowMessage( "Input wrong, must input 0 ~ 1000" );
+				return;
+			}
+			OperateResult<string[]> read = yrc.ReadPositionData( value );
+			SetReadResult( read, axis, "轴位置数据" );
+
+			textBox_code.Text = $"OperateResult<string[]> read = yrc.ReadPositionData( {value} );";
+		}
+
+		private void button36_Click( object sender, EventArgs e )
+		{
+			// 读取名称
+			if (!ushort.TryParse( textBox8.Text, out var value ))
+			{
+				DemoUtils.ShowMessage( "Input wrong, must input 0 ~ 1000" );
+				return;
+			}
+			OperateResult<string[]> read = yrc.ReadPositionName( value );
+			SetReadResult( read, axis, "轴名称" );
+
+			textBox_code.Text = $"OperateResult<string[]> read = yrc.ReadPositionName( {value} );";
+		}
+
+		private void button37_Click( object sender, EventArgs e )
+		{
+			// 位置偏差
+			if (!ushort.TryParse( textBox8.Text, out var value ))
+			{
+				DemoUtils.ShowMessage( "Input wrong, must input 0 ~ 1000" );
+				return;
+			}
+			OperateResult<string[]> read = yrc.ReadPositionOffset( value );
+			SetReadResult( read, axis, "轴偏差" );
+
+			textBox_code.Text = $"OperateResult<string[]> read = yrc.ReadPositionOffset( {value} );";
+		}
+
+		private void button38_Click( object sender, EventArgs e )
+		{
+			// 力矩数据
+			if (!ushort.TryParse( textBox8.Text, out var value ))
+			{
+				DemoUtils.ShowMessage( "Input wrong, must input 0 ~ 1000" );
+				return;
+			}
+			OperateResult<string[]> read = yrc.ReadTorqueData( value );
+			SetReadResult( read, axis, "力矩数据" );
+
+			textBox_code.Text = $"OperateResult<string[]> read = yrc.ReadTorqueData( {value} );";
+		}
+
 
 		private void button6_Click( object sender, EventArgs e )
 		{
@@ -301,6 +362,15 @@ namespace HslCommunicationDemo
 			}
 
 			textBox_code.Text = $"OperateResult<bool[]> read = yrc.ReadStats( );";
+		}
+
+		private void button39_Click( object sender, EventArgs e )
+		{
+			OperateResult<string[]> read = yrc.ReadSystemInfo( 11 );
+
+			SetReadResult( read, new string[] { "系统软件版本", "机种名称", "参数版本" }, "系统信息" );
+
+			textBox_code.Text = $"OperateResult<string[]> read = yrc.ReadSystemInfo( 11 );";
 		}
 
 		private void button7_Click( object sender, EventArgs e )
