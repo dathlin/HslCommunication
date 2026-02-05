@@ -499,6 +499,7 @@
 			// 
 			// checkBox_stop
 			// 
+			this.checkBox_stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox_stop.AutoSize = true;
 			this.checkBox_stop.ForeColor = System.Drawing.Color.Gray;
 			this.checkBox_stop.Location = new System.Drawing.Point(819, 6);
@@ -523,10 +524,10 @@
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.panel8);
-			this.tabPage2.Location = new System.Drawing.Point(4, 26);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(885, 264);
+			this.tabPage2.Size = new System.Drawing.Size(885, 268);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Test";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -538,7 +539,7 @@
 			this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel8.Location = new System.Drawing.Point(3, 3);
 			this.panel8.Name = "panel8";
-			this.panel8.Size = new System.Drawing.Size(879, 258);
+			this.panel8.Size = new System.Drawing.Size(879, 262);
 			this.panel8.TabIndex = 0;
 			// 
 			// groupBox2
@@ -551,7 +552,7 @@
 			this.groupBox2.Controls.Add(this.button5);
 			this.groupBox2.Location = new System.Drawing.Point(290, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(586, 252);
+			this.groupBox2.Size = new System.Drawing.Size(586, 256);
 			this.groupBox2.TabIndex = 46;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "高频接收测试";
@@ -574,14 +575,14 @@
 			this.textBox_test_recv.Multiline = true;
 			this.textBox_test_recv.Name = "textBox_test_recv";
 			this.textBox_test_recv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_test_recv.Size = new System.Drawing.Size(574, 155);
+			this.textBox_test_recv.Size = new System.Drawing.Size(574, 159);
 			this.textBox_test_recv.TabIndex = 47;
 			// 
 			// button5
 			// 
 			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button5.ForeColor = System.Drawing.Color.DarkGray;
-			this.button5.Location = new System.Drawing.Point(5, 218);
+			this.button5.Location = new System.Drawing.Point(5, 222);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(153, 28);
 			this.button5.TabIndex = 43;
@@ -600,7 +601,7 @@
 			this.groupBox1.Controls.Add(this.button6);
 			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(280, 252);
+			this.groupBox1.Size = new System.Drawing.Size(280, 256);
 			this.groupBox1.TabIndex = 45;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "高频发布测试";
@@ -643,7 +644,7 @@
 			// 
 			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button6.ForeColor = System.Drawing.Color.DarkGray;
-			this.button6.Location = new System.Drawing.Point(67, 218);
+			this.button6.Location = new System.Drawing.Point(67, 222);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(146, 28);
 			this.button6.TabIndex = 44;
@@ -654,10 +655,10 @@
 			// tabPage3
 			// 
 			this.tabPage3.Controls.Add(this.panel9);
-			this.tabPage3.Location = new System.Drawing.Point(4, 26);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(885, 264);
+			this.tabPage3.Size = new System.Drawing.Size(885, 268);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Topics";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -668,7 +669,7 @@
 			this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel9.Location = new System.Drawing.Point(3, 3);
 			this.panel9.Name = "panel9";
-			this.panel9.Size = new System.Drawing.Size(879, 258);
+			this.panel9.Size = new System.Drawing.Size(879, 262);
 			this.panel9.TabIndex = 0;
 			// 
 			// mqttTopicControl1
@@ -678,7 +679,7 @@
 			this.mqttTopicControl1.GetStringFromPayload = null;
 			this.mqttTopicControl1.Location = new System.Drawing.Point(0, 0);
 			this.mqttTopicControl1.Name = "mqttTopicControl1";
-			this.mqttTopicControl1.Size = new System.Drawing.Size(879, 258);
+			this.mqttTopicControl1.Size = new System.Drawing.Size(879, 262);
 			this.mqttTopicControl1.TabIndex = 0;
 			// 
 			// checkBox_regex_filter

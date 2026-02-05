@@ -25,6 +25,16 @@ namespace HslCommunicationDemo
 
 			checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
+
+			checkBox_log_analysis.CheckedChanged += CheckBox_log_analysis_CheckedChanged;
+		}
+
+		private void CheckBox_log_analysis_CheckedChanged( object sender, EventArgs e )
+		{
+			if (cipServer != null)
+			{
+				cipServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
+			}
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -41,6 +51,7 @@ namespace HslCommunicationDemo
 			{
 				Text = "Cip Virtual Server [support single value]";
 				checkBox1.Text = "Create Tag when write";
+				checkBox_log_analysis.Text = "Log Analysis";
 			}
 
 
@@ -86,6 +97,7 @@ namespace HslCommunicationDemo
 				cipServer = new HslCommunication.Profinet.AllenBradley.AllenBradleyServer( );                       // 实例化对象
 				cipServer.OnDataReceived += BusTcpServer_OnDataReceived;
 				cipServer.CreateTagWithWrite = checkBox1.Checked;
+				cipServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
 				this.sslServerControl1.InitializeServer( cipServer );
 				short[] d = new short[20];
 				float[] a1 = new float[30];
@@ -125,7 +137,7 @@ namespace HslCommunicationDemo
 				tagsListControl.SetDevice( cipServer );
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", cipServer, this.sslServerControl1, nameof( cipServer.CreateTagWithWrite ) );
+				codeExampleControl.SetCodeText( "server", "", cipServer, this.sslServerControl1, nameof( cipServer.CreateTagWithWrite ), nameof( cipServer.AnalysisLogMessage ) );
 			}
 			catch (Exception ex)
 			{
@@ -148,7 +160,7 @@ namespace HslCommunicationDemo
 				this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 				// 设置示例的代码
-				codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, cipServer, nameof( cipServer.CreateTagWithWrite ) );
+				codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, cipServer, nameof( cipServer.CreateTagWithWrite ), nameof( cipServer.AnalysisLogMessage ) );
 			}
 		}
 		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] receive )
@@ -181,6 +193,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
+			element.SetAttributeValue( "AnalysisLogMessage", checkBox_log_analysis.Checked );
 			this.sslServerControl1.SaveXmlParameter( element );
 			this.serverSettingControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( nameof( HslCommunication.Profinet.AllenBradley.AllenBradleyServer.CreateTagWithWrite ), checkBox1.Checked );
@@ -197,6 +210,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
+			this.checkBox_log_analysis.Checked = GetXmlValue( element, "AnalysisLogMessage", false, bool.Parse );
 			this.sslServerControl1.LoadXmlParameter( element );
 			this.serverSettingControl1.LoadXmlParameter( element );
 			checkBox1.Checked = GetXmlValue( element, nameof( HslCommunication.Profinet.AllenBradley.AllenBradleyServer.CreateTagWithWrite ), false, bool.Parse );

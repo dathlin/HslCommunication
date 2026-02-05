@@ -27,6 +27,15 @@ namespace HslCommunicationDemo
 
 			checkBox_isstringreverse.CheckedChanged += CheckBox_isstringreverse_CheckedChanged;
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
+			checkBox_log_analysis.CheckedChanged += CheckBox_log_analysis_CheckedChanged;
+		}
+
+		private void CheckBox_log_analysis_CheckedChanged( object sender, EventArgs e )
+		{
+			if (omronFinsServer!=null)
+			{
+				omronFinsServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
+			}
 		}
 
 		private void CheckBox_isstringreverse_CheckedChanged( object sender, EventArgs e )
@@ -44,6 +53,7 @@ namespace HslCommunicationDemo
 			if(Program.Language == 2)
 			{
 				Text = "Omron Virtual Server";
+				checkBox_log_analysis.Text = "Log Analysis";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -80,6 +90,7 @@ namespace HslCommunicationDemo
 				omronFinsServer.OnDataReceived += BusTcpServer_OnDataReceived;
 				omronFinsServer.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 				omronFinsServer.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
+				omronFinsServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
 				this.sslServerControl1.InitializeServer( omronFinsServer );
 				if (this.serverSettingControl1.ServerStart( omronFinsServer ) == false) return;
 
@@ -87,7 +98,9 @@ namespace HslCommunicationDemo
 				userControlReadWriteServer1.SetEnable( true );
 
 				// 设置示例代码
-				codeExampleControl.SetCodeText( "server", "", omronFinsServer, this.sslServerControl1, nameof( omronFinsServer.ActiveTimeSpan ), nameof( omronFinsServer.DataFormat ), "ByteTransform.IsStringReverseByteWord" );
+				codeExampleControl.SetCodeText( "server", "", omronFinsServer, this.sslServerControl1, 
+					nameof( omronFinsServer.ActiveTimeSpan ), nameof( omronFinsServer.DataFormat ), 
+					"ByteTransform.IsStringReverseByteWord", nameof( omronFinsServer.AnalysisLogMessage ) );
 			}
 			catch (Exception ex)
 			{
@@ -110,7 +123,8 @@ namespace HslCommunicationDemo
 			this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 			// 设置示例代码
-			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, omronFinsServer, this.sslServerControl1, nameof( omronFinsServer.DataFormat ), "ByteTransform.IsStringReverseByteWord" );
+			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, omronFinsServer, this.sslServerControl1, 
+				nameof( omronFinsServer.DataFormat ), "ByteTransform.IsStringReverseByteWord", nameof( omronFinsServer.AnalysisLogMessage ) );
 
 		}
 
@@ -134,6 +148,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
+			element.SetAttributeValue( "AnalysisLogMessage", checkBox_log_analysis.Checked );
 			this.sslServerControl1.SaveXmlParameter( element );
 			this.serverSettingControl1.SaveXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );
@@ -143,6 +158,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
+			this.checkBox_log_analysis.Checked = GetXmlValue( element, "AnalysisLogMessage", true, bool.Parse );
 			this.sslServerControl1.LoadXmlParameter( element );
 			this.serverSettingControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.GetDataTable( element );

@@ -1156,7 +1156,7 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormMqttSyncClient";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "MQTT 同步客户端 (RPC远程调用客户端)";
+			this.Text = "MQTTRpc客户端";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMqttSyncClient_FormClosing);
 			this.Load += new System.EventHandler(this.FormClient_Load);
 			this.panel1.ResumeLayout(false);

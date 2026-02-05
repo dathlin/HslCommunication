@@ -20,6 +20,7 @@ using HslCommunicationDemo.DemoControl;
 using HslCommunication.BasicFramework;
 using HslCommunication.LogNet;
 using System.IO;
+using System.Net;
 
 namespace HslCommunicationDemo
 {
@@ -234,6 +235,16 @@ namespace HslCommunicationDemo
 				label25.Text = "List of registered devices:";
 				button_device_add.Text = "Add Device";
 				button_device_remove.Text = "Remove";
+
+				tabPage6.Text = "ServiceRedirection";
+				button7.Text = "Start";
+				button8.Text = "Close";
+
+				label4.Text = "Ip:";
+				label19.Text = "Port:";
+				radioButton1.Text = "All";
+				radioButton2.Text = "Filter-ClientId";
+				radioButton3.Text = "Filter-UserName";
 			}
 		}
 
@@ -247,6 +258,7 @@ namespace HslCommunicationDemo
 				mqttServer.OnClientApplicationMessageReceive += MqttServer_OnClientApplicationMessageReceive;
 				mqttServer.OnClientConnected                 += MqttServer_OnClientConnected;
 				mqttServer.OnClientDisConnected              += MqttServer_OnClientDisConnected;
+				mqttServer.ServiceRedirection                += MqttServer_ServiceRedirection;
 				mqttServer.TopicWildcard = checkBox2.Checked;
 				if (checkBox1.Checked)
 				{
@@ -273,7 +285,6 @@ namespace HslCommunicationDemo
 				DemoUtils.ShowMessage( "Start Failed : " + ex.Message );
 			}
 		}
-
 
 		private void button8_Click( object sender, EventArgs e )
 		{
@@ -811,6 +822,72 @@ namespace HslCommunicationDemo
 				button_device_remove.Location = new Point( this.panel7.Width / 2 + 5, button_device_remove.Location.Y );
 			}
 		}
+
+		private bool useServiceRedirection = false;
+		private string serviceRedirection_ip = string.Empty;
+		private int serviceRedirection_port = 1883;
+		private List<string> serviceRedirection_filter_id = new List<string>( );
+		private List<string> serviceRedirection_filter_name = new List<string>( );
+		private int serviceRedirection_filter = 0;
+
+		private void button7_Click_1( object sender, EventArgs e )
+		{
+			// 启动重定向服务
+			serviceRedirection_ip = IPAddress.Parse( textBox3.Text ).ToString( );
+			serviceRedirection_port = int.Parse( textBox6.Text );
+
+			serviceRedirection_filter = radioButton1.Checked ? 0 : radioButton2.Checked ? 1 : 2;
+			serviceRedirection_filter_id.Clear();
+			serviceRedirection_filter_name.Clear();
+
+			if (serviceRedirection_filter == 1)
+			{
+				if (!string.IsNullOrEmpty( textBox_redir_id1.Text )) serviceRedirection_filter_id.Add( textBox_redir_id1.Text );
+				if (!string.IsNullOrEmpty( textBox_redir_id2.Text )) serviceRedirection_filter_id.Add( textBox_redir_id2.Text );
+				if (!string.IsNullOrEmpty( textBox_redir_id3.Text )) serviceRedirection_filter_id.Add( textBox_redir_id3.Text );
+				if (!string.IsNullOrEmpty( textBox_redir_id4.Text )) serviceRedirection_filter_id.Add( textBox_redir_id4.Text );
+				if (!string.IsNullOrEmpty( textBox_redir_id5.Text )) serviceRedirection_filter_id.Add( textBox_redir_id5.Text );
+			}
+			if (serviceRedirection_filter == 2)
+			{
+				if (!string.IsNullOrEmpty( textBox_redir_name1.Text )) serviceRedirection_filter_name.Add( textBox_redir_name1.Text );
+				if (!string.IsNullOrEmpty( textBox_redir_name2.Text )) serviceRedirection_filter_name.Add( textBox_redir_name2.Text );
+				if (!string.IsNullOrEmpty( textBox_redir_name3.Text )) serviceRedirection_filter_name.Add( textBox_redir_name3.Text );
+				if (!string.IsNullOrEmpty( textBox_redir_name4.Text )) serviceRedirection_filter_name.Add( textBox_redir_name4.Text );
+				if (!string.IsNullOrEmpty( textBox_redir_name5.Text )) serviceRedirection_filter_name.Add( textBox_redir_name5.Text );
+			}
+
+
+			useServiceRedirection = true;
+			button8.Enabled = true;
+			button7.Enabled = false;
+		}
+
+		private void button8_Click_1( object sender, EventArgs e )
+		{
+			// 关闭重定向服务
+			useServiceRedirection = false;
+			button7.Enabled = true;
+			button8.Enabled = false;
+		}
+		private System.Net.IPEndPoint MqttServer_ServiceRedirection( MqttSession mqttSession, string clientId, string userName, string password )
+		{
+			if (useServiceRedirection == false) return null;
+			IPEndPoint iPEndPoint = new System.Net.IPEndPoint( IPAddress.Parse( serviceRedirection_ip ), serviceRedirection_port );
+			if (serviceRedirection_filter == 0) return iPEndPoint;
+
+			if (serviceRedirection_filter == 1)
+			{
+				if (serviceRedirection_filter_id.Contains(clientId)) return iPEndPoint;
+				return null;
+			}
+			else
+			{
+				if (serviceRedirection_filter_name.Contains( userName )) return iPEndPoint;
+				return null;
+			}
+		}
+
 	}
 
 	public class TopicSaveItem

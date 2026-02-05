@@ -262,7 +262,7 @@ namespace HslCommunicationDemo
 
 		private void FormSelect_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			if (this.existConfirm)
+			if (this.existConfirm && upgradeClose == false)
 			{
 				string message = Program.Language == 1 ? "是否确认退出软件？" : "Confirm to exit the software?";
 				string title = Program.Language == 1 ? "退出确认" : "Exit Confirmation";
@@ -678,6 +678,8 @@ namespace HslCommunicationDemo
 			panelLeft?.RenderByteTransformDebug( );
 		}
 
+		private bool upgradeClose = false;
+
 		private void NewVersionToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			try
@@ -694,6 +696,7 @@ namespace HslCommunicationDemo
 				{
 					Process.Start( Path.Combine( Application.StartupPath, "软件自动更新.exe" ) );
 				}
+				upgradeClose = true;
 				System.Threading.Thread.Sleep( 50 );
 				Close( );
 			}

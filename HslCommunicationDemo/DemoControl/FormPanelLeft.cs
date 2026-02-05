@@ -160,12 +160,13 @@ namespace HslCommunicationDemo.DemoControl
 			modbusNode.Nodes.Add( GetTreeNodeByIndex( "Modbus Server", 9, typeof( FormModbusServer ) ) );
 			treeView1.Nodes.Add( modbusNode );
 
-			// Modbus协议
+			// Inovance协议
 			TreeNode inovanceNode = new TreeNode( "Inovance Plc[汇川]", 5, 5 );
 			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceSerial", 5, typeof( FormInovanceSerial ) ) );
 			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceSerialOverTcp", 5, typeof( FormInovanceSerialOverTcp ) ) );
 			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceTcpNet", 5, typeof( FormInovanceTcpNet ) ) );
 			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceComputerLink", 5, typeof( FormInovanceLinks ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "ConnectedCip", 5, typeof( FormInovanceConnectedCip ) ) );
 			treeView1.Nodes.Add( inovanceNode );
 
 			// 欧姆龙PLC相关

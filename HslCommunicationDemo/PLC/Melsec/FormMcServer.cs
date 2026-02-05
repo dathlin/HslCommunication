@@ -24,6 +24,16 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
+
+			checkBox_log_analysis.CheckedChanged += CheckBox_log_analysis_CheckedChanged;
+		}
+
+		private void CheckBox_log_analysis_CheckedChanged( object sender, EventArgs e )
+		{
+			if (this.mcNetServer != null)
+			{
+				this.mcNetServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
+			}
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -31,6 +41,7 @@ namespace HslCommunicationDemo
 			if(Program.Language == 2)
 			{
 				Text = "MC Virtual Server [data support, bool: x,y,m   word: x,y,m,d,w]";
+				checkBox_log_analysis.Text = "Log Analysis";
 			}
 			else
 			{
@@ -78,6 +89,7 @@ namespace HslCommunicationDemo
 				if (ServerMode == 0) mcNetServer = new HslCommunication.Profinet.Melsec.MelsecMcServer( radioButton_binary.Checked );                       // 实例化对象
 				else if (ServerMode == 2) mcNetServer = new HslCommunication.Profinet.Melsec.MelsecA1EServer( radioButton_binary.Checked );
 
+				mcNetServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
 				mcNetServer.OnDataReceived += MelsecMcServer_OnDataReceived;                     // 接收到数据触发
 				userControlReadWriteServer1.SetReadWriteServerLog( mcNetServer );                // 设置日志
 
@@ -88,7 +100,7 @@ namespace HslCommunicationDemo
 				userControlReadWriteServer1.SetEnable( true );
 
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", mcNetServer, this.sslServerControl1, nameof( mcNetServer.IsBinary ) );
+				codeExampleControl.SetCodeText( "server", "", mcNetServer, this.sslServerControl1, nameof( mcNetServer.IsBinary ), nameof( mcNetServer.AnalysisLogMessage ) );
 			}
 			catch (Exception ex)
 			{
@@ -129,7 +141,7 @@ namespace HslCommunicationDemo
 			this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 			// 设置示例代码
-			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, mcNetServer, nameof( mcNetServer.IsBinary ) );
+			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, mcNetServer, nameof( mcNetServer.IsBinary ), nameof( mcNetServer.AnalysisLogMessage ) );
 
 		}
 
@@ -141,12 +153,14 @@ namespace HslCommunicationDemo
 			this.serverSettingControl1.SaveXmlParameter( element );
 			this.sslServerControl1.SaveXmlParameter( element );
 			element.SetAttributeValue( DemoDeviceList.XmlBinary, radioButton_binary.Checked );
+			element.SetAttributeValue( "AnalysisLogMessage", checkBox_log_analysis.Checked );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
+			checkBox_log_analysis.Checked = GetXmlValue( element, "AnalysisLogMessage", false, bool.Parse );
 			this.serverSettingControl1.LoadXmlParameter( element );
 			this.sslServerControl1.LoadXmlParameter( element );
 			bool check = bool.Parse( element.Attribute( DemoDeviceList.XmlBinary ).Value );

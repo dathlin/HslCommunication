@@ -74,8 +74,8 @@
     <Reference Include="DynamicExpresso.Core, Version=2.19.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicExpresso.Core.2.19.3\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.6.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.6.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.6.3.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.6.3\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
@@ -855,6 +855,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PLC\Ge\Helper.cs" />
+    <Compile Include="PLC\Inovance\FormInovanceConnectedCip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Inovance\FormInovanceConnectedCip.Designer.cs">
+      <DependentUpon>FormInovanceConnectedCip.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Inovance\Helper.cs" />
     <Compile Include="PLC\Invt\FormInvtModbus.cs">
       <SubType>Form</SubType>
@@ -2509,6 +2515,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Ge\GeControl.resx">
       <DependentUpon>GeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Inovance\FormInovanceConnectedCip.resx">
+      <DependentUpon>FormInovanceConnectedCip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Invt\FormInvtModbus.resx">
       <DependentUpon>FormInvtModbus.cs</DependentUpon>

@@ -35,6 +35,7 @@
 			this.radioButton_binary = new System.Windows.Forms.RadioButton();
 			this.radioButton_ascii = new System.Windows.Forms.RadioButton();
 			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
+			this.checkBox_log_analysis = new System.Windows.Forms.CheckBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
@@ -52,6 +53,7 @@
 			this.panel1.Controls.Add(this.serverSettingControl1);
 			this.panel1.Controls.Add(this.borderPanel1);
 			this.panel1.Controls.Add(this.sslServerControl1);
+			this.panel1.Controls.Add(this.checkBox_log_analysis);
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
@@ -107,10 +109,22 @@
 			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.sslServerControl1.Location = new System.Drawing.Point(143, 33);
+			this.sslServerControl1.Location = new System.Drawing.Point(243, 33);
 			this.sslServerControl1.Name = "sslServerControl1";
-			this.sslServerControl1.Size = new System.Drawing.Size(849, 30);
+			this.sslServerControl1.Size = new System.Drawing.Size(749, 30);
 			this.sslServerControl1.TabIndex = 37;
+			// 
+			// checkBox_log_analysis
+			// 
+			this.checkBox_log_analysis.AutoSize = true;
+			this.checkBox_log_analysis.Checked = true;
+			this.checkBox_log_analysis.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_log_analysis.Location = new System.Drawing.Point(140, 38);
+			this.checkBox_log_analysis.Name = "checkBox_log_analysis";
+			this.checkBox_log_analysis.Size = new System.Drawing.Size(99, 21);
+			this.checkBox_log_analysis.TabIndex = 39;
+			this.checkBox_log_analysis.Text = "日志报文分析";
+			this.checkBox_log_analysis.UseVisualStyleBackColor = true;
 			// 
 			// panel2
 			// 
@@ -167,6 +181,7 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
 			this.Load += new System.EventHandler(this.FormSiemens_Load);
 			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.borderPanel1.ResumeLayout(false);
 			this.borderPanel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
@@ -186,5 +201,6 @@
 		private DemoControl.SslServerControl sslServerControl1;
 		private System.Windows.Forms.ToolTip toolTip1;
 		private DemoControl.ServerSettingControl serverSettingControl1;
+		private System.Windows.Forms.CheckBox checkBox_log_analysis;
 	}
 }

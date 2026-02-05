@@ -77,6 +77,7 @@
 			this.comboBox_session_select = new System.Windows.Forms.ComboBox();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.panel8 = new System.Windows.Forms.Panel();
+			this.mqttTopicControl1 = new HslCommunicationDemo.MQTT.MqttTopicControl();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.hslBarChart1 = new HslControls.HslBarChart();
@@ -95,6 +96,39 @@
 			this.Column_device = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.label25 = new System.Windows.Forms.Label();
 			this.button_device_add = new System.Windows.Forms.Button();
+			this.tabPage6 = new System.Windows.Forms.TabPage();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.label32 = new System.Windows.Forms.Label();
+			this.button8 = new System.Windows.Forms.Button();
+			this.button7 = new System.Windows.Forms.Button();
+			this.textBox_redir_name5 = new System.Windows.Forms.TextBox();
+			this.label31 = new System.Windows.Forms.Label();
+			this.textBox_redir_name4 = new System.Windows.Forms.TextBox();
+			this.label30 = new System.Windows.Forms.Label();
+			this.textBox_redir_name3 = new System.Windows.Forms.TextBox();
+			this.label29 = new System.Windows.Forms.Label();
+			this.textBox_redir_name2 = new System.Windows.Forms.TextBox();
+			this.label28 = new System.Windows.Forms.Label();
+			this.textBox_redir_name1 = new System.Windows.Forms.TextBox();
+			this.label27 = new System.Windows.Forms.Label();
+			this.textBox_redir_id5 = new System.Windows.Forms.TextBox();
+			this.label26 = new System.Windows.Forms.Label();
+			this.textBox_redir_id4 = new System.Windows.Forms.TextBox();
+			this.label24 = new System.Windows.Forms.Label();
+			this.textBox_redir_id3 = new System.Windows.Forms.TextBox();
+			this.label22 = new System.Windows.Forms.Label();
+			this.textBox_redir_id2 = new System.Windows.Forms.TextBox();
+			this.label21 = new System.Windows.Forms.Label();
+			this.textBox_redir_id1 = new System.Windows.Forms.TextBox();
+			this.label20 = new System.Windows.Forms.Label();
+			this.panel9 = new System.Windows.Forms.Panel();
+			this.radioButton3 = new System.Windows.Forms.RadioButton();
+			this.radioButton2 = new System.Windows.Forms.RadioButton();
+			this.radioButton1 = new System.Windows.Forms.RadioButton();
+			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.label19 = new System.Windows.Forms.Label();
+			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.radioButton_recv_gb2312 = new System.Windows.Forms.RadioButton();
 			this.radioButton_recv_Unicode = new System.Windows.Forms.RadioButton();
@@ -119,7 +153,6 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.checkBox_retain = new System.Windows.Forms.CheckBox();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.mqttTopicControl1 = new HslCommunicationDemo.MQTT.MqttTopicControl();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -133,6 +166,9 @@
 			this.tabPage5.SuspendLayout();
 			this.panel7.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+			this.tabPage6.SuspendLayout();
+			this.panel6.SuspendLayout();
+			this.panel9.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -354,6 +390,7 @@
 			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage4);
 			this.tabControl1.Controls.Add(this.tabPage5);
+			this.tabControl1.Controls.Add(this.tabPage6);
 			this.tabControl1.Location = new System.Drawing.Point(2, 211);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
@@ -651,6 +688,16 @@
 			this.panel8.Size = new System.Drawing.Size(982, 266);
 			this.panel8.TabIndex = 27;
 			// 
+			// mqttTopicControl1
+			// 
+			this.mqttTopicControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.mqttTopicControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.mqttTopicControl1.GetStringFromPayload = null;
+			this.mqttTopicControl1.Location = new System.Drawing.Point(0, 0);
+			this.mqttTopicControl1.Name = "mqttTopicControl1";
+			this.mqttTopicControl1.Size = new System.Drawing.Size(982, 266);
+			this.mqttTopicControl1.TabIndex = 0;
+			// 
 			// tabPage4
 			// 
 			this.tabPage4.Controls.Add(this.panel4);
@@ -852,6 +899,323 @@
 			this.button_device_add.Text = "新增设备";
 			this.button_device_add.UseVisualStyleBackColor = true;
 			this.button_device_add.Click += new System.EventHandler(this.button_device_add_Click);
+			// 
+			// tabPage6
+			// 
+			this.tabPage6.Controls.Add(this.panel6);
+			this.tabPage6.Location = new System.Drawing.Point(4, 26);
+			this.tabPage6.Name = "tabPage6";
+			this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage6.Size = new System.Drawing.Size(988, 272);
+			this.tabPage6.TabIndex = 5;
+			this.tabPage6.Text = "重定向服务";
+			this.tabPage6.UseVisualStyleBackColor = true;
+			// 
+			// panel6
+			// 
+			this.panel6.AutoScroll = true;
+			this.panel6.Controls.Add(this.label32);
+			this.panel6.Controls.Add(this.button8);
+			this.panel6.Controls.Add(this.button7);
+			this.panel6.Controls.Add(this.textBox_redir_name5);
+			this.panel6.Controls.Add(this.label31);
+			this.panel6.Controls.Add(this.textBox_redir_name4);
+			this.panel6.Controls.Add(this.label30);
+			this.panel6.Controls.Add(this.textBox_redir_name3);
+			this.panel6.Controls.Add(this.label29);
+			this.panel6.Controls.Add(this.textBox_redir_name2);
+			this.panel6.Controls.Add(this.label28);
+			this.panel6.Controls.Add(this.textBox_redir_name1);
+			this.panel6.Controls.Add(this.label27);
+			this.panel6.Controls.Add(this.textBox_redir_id5);
+			this.panel6.Controls.Add(this.label26);
+			this.panel6.Controls.Add(this.textBox_redir_id4);
+			this.panel6.Controls.Add(this.label24);
+			this.panel6.Controls.Add(this.textBox_redir_id3);
+			this.panel6.Controls.Add(this.label22);
+			this.panel6.Controls.Add(this.textBox_redir_id2);
+			this.panel6.Controls.Add(this.label21);
+			this.panel6.Controls.Add(this.textBox_redir_id1);
+			this.panel6.Controls.Add(this.label20);
+			this.panel6.Controls.Add(this.panel9);
+			this.panel6.Controls.Add(this.textBox6);
+			this.panel6.Controls.Add(this.label19);
+			this.panel6.Controls.Add(this.textBox3);
+			this.panel6.Controls.Add(this.label4);
+			this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel6.Location = new System.Drawing.Point(3, 3);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(982, 266);
+			this.panel6.TabIndex = 0;
+			// 
+			// label32
+			// 
+			this.label32.AutoSize = true;
+			this.label32.ForeColor = System.Drawing.Color.DimGray;
+			this.label32.Location = new System.Drawing.Point(464, 15);
+			this.label32.Name = "label32";
+			this.label32.Size = new System.Drawing.Size(339, 17);
+			this.label32.TabIndex = 31;
+			this.label32.Text = "(符合条件的客户端连接上来后，会自动重定向连接的IP和端口)";
+			// 
+			// button8
+			// 
+			this.button8.Enabled = false;
+			this.button8.Location = new System.Drawing.Point(345, 218);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(163, 36);
+			this.button8.TabIndex = 30;
+			this.button8.Text = "关闭";
+			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.button8_Click_1);
+			// 
+			// button7
+			// 
+			this.button7.Location = new System.Drawing.Point(156, 218);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(163, 36);
+			this.button7.TabIndex = 29;
+			this.button7.Text = "启动重定向服务";
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.button7_Click_1);
+			// 
+			// textBox_redir_name5
+			// 
+			this.textBox_redir_name5.Location = new System.Drawing.Point(457, 187);
+			this.textBox_redir_name5.Name = "textBox_redir_name5";
+			this.textBox_redir_name5.Size = new System.Drawing.Size(182, 23);
+			this.textBox_redir_name5.TabIndex = 28;
+			// 
+			// label31
+			// 
+			this.label31.AutoSize = true;
+			this.label31.Location = new System.Drawing.Point(382, 190);
+			this.label31.Name = "label31";
+			this.label31.Size = new System.Drawing.Size(74, 17);
+			this.label31.TabIndex = 27;
+			this.label31.Text = "Name 5#：";
+			// 
+			// textBox_redir_name4
+			// 
+			this.textBox_redir_name4.Location = new System.Drawing.Point(457, 159);
+			this.textBox_redir_name4.Name = "textBox_redir_name4";
+			this.textBox_redir_name4.Size = new System.Drawing.Size(182, 23);
+			this.textBox_redir_name4.TabIndex = 26;
+			// 
+			// label30
+			// 
+			this.label30.AutoSize = true;
+			this.label30.Location = new System.Drawing.Point(382, 162);
+			this.label30.Name = "label30";
+			this.label30.Size = new System.Drawing.Size(74, 17);
+			this.label30.TabIndex = 25;
+			this.label30.Text = "Name 4#：";
+			// 
+			// textBox_redir_name3
+			// 
+			this.textBox_redir_name3.Location = new System.Drawing.Point(457, 132);
+			this.textBox_redir_name3.Name = "textBox_redir_name3";
+			this.textBox_redir_name3.Size = new System.Drawing.Size(182, 23);
+			this.textBox_redir_name3.TabIndex = 24;
+			// 
+			// label29
+			// 
+			this.label29.AutoSize = true;
+			this.label29.Location = new System.Drawing.Point(382, 135);
+			this.label29.Name = "label29";
+			this.label29.Size = new System.Drawing.Size(74, 17);
+			this.label29.TabIndex = 23;
+			this.label29.Text = "Name 3#：";
+			// 
+			// textBox_redir_name2
+			// 
+			this.textBox_redir_name2.Location = new System.Drawing.Point(457, 104);
+			this.textBox_redir_name2.Name = "textBox_redir_name2";
+			this.textBox_redir_name2.Size = new System.Drawing.Size(182, 23);
+			this.textBox_redir_name2.TabIndex = 22;
+			// 
+			// label28
+			// 
+			this.label28.AutoSize = true;
+			this.label28.Location = new System.Drawing.Point(382, 107);
+			this.label28.Name = "label28";
+			this.label28.Size = new System.Drawing.Size(74, 17);
+			this.label28.TabIndex = 21;
+			this.label28.Text = "Name 2#：";
+			// 
+			// textBox_redir_name1
+			// 
+			this.textBox_redir_name1.Location = new System.Drawing.Point(457, 76);
+			this.textBox_redir_name1.Name = "textBox_redir_name1";
+			this.textBox_redir_name1.Size = new System.Drawing.Size(182, 23);
+			this.textBox_redir_name1.TabIndex = 20;
+			// 
+			// label27
+			// 
+			this.label27.AutoSize = true;
+			this.label27.Location = new System.Drawing.Point(382, 79);
+			this.label27.Name = "label27";
+			this.label27.Size = new System.Drawing.Size(74, 17);
+			this.label27.TabIndex = 19;
+			this.label27.Text = "Name 1#：";
+			// 
+			// textBox_redir_id5
+			// 
+			this.textBox_redir_id5.Location = new System.Drawing.Point(190, 187);
+			this.textBox_redir_id5.Name = "textBox_redir_id5";
+			this.textBox_redir_id5.Size = new System.Drawing.Size(182, 23);
+			this.textBox_redir_id5.TabIndex = 18;
+			// 
+			// label26
+			// 
+			this.label26.AutoSize = true;
+			this.label26.Location = new System.Drawing.Point(135, 190);
+			this.label26.Name = "label26";
+			this.label26.Size = new System.Drawing.Size(52, 17);
+			this.label26.TabIndex = 17;
+			this.label26.Text = "ID 5#：";
+			// 
+			// textBox_redir_id4
+			// 
+			this.textBox_redir_id4.Location = new System.Drawing.Point(190, 159);
+			this.textBox_redir_id4.Name = "textBox_redir_id4";
+			this.textBox_redir_id4.Size = new System.Drawing.Size(182, 23);
+			this.textBox_redir_id4.TabIndex = 16;
+			// 
+			// label24
+			// 
+			this.label24.AutoSize = true;
+			this.label24.Location = new System.Drawing.Point(135, 162);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(52, 17);
+			this.label24.TabIndex = 15;
+			this.label24.Text = "ID 4#：";
+			// 
+			// textBox_redir_id3
+			// 
+			this.textBox_redir_id3.Location = new System.Drawing.Point(190, 132);
+			this.textBox_redir_id3.Name = "textBox_redir_id3";
+			this.textBox_redir_id3.Size = new System.Drawing.Size(182, 23);
+			this.textBox_redir_id3.TabIndex = 14;
+			// 
+			// label22
+			// 
+			this.label22.AutoSize = true;
+			this.label22.Location = new System.Drawing.Point(135, 135);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(52, 17);
+			this.label22.TabIndex = 13;
+			this.label22.Text = "ID 3#：";
+			// 
+			// textBox_redir_id2
+			// 
+			this.textBox_redir_id2.Location = new System.Drawing.Point(190, 104);
+			this.textBox_redir_id2.Name = "textBox_redir_id2";
+			this.textBox_redir_id2.Size = new System.Drawing.Size(182, 23);
+			this.textBox_redir_id2.TabIndex = 12;
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Location = new System.Drawing.Point(135, 107);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(52, 17);
+			this.label21.TabIndex = 11;
+			this.label21.Text = "ID 2#：";
+			// 
+			// textBox_redir_id1
+			// 
+			this.textBox_redir_id1.Location = new System.Drawing.Point(190, 76);
+			this.textBox_redir_id1.Name = "textBox_redir_id1";
+			this.textBox_redir_id1.Size = new System.Drawing.Size(182, 23);
+			this.textBox_redir_id1.TabIndex = 10;
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(135, 79);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(52, 17);
+			this.label20.TabIndex = 9;
+			this.label20.Text = "ID 1#：";
+			// 
+			// panel9
+			// 
+			this.panel9.Controls.Add(this.radioButton3);
+			this.panel9.Controls.Add(this.radioButton2);
+			this.panel9.Controls.Add(this.radioButton1);
+			this.panel9.Location = new System.Drawing.Point(3, 41);
+			this.panel9.Name = "panel9";
+			this.panel9.Size = new System.Drawing.Size(976, 29);
+			this.panel9.TabIndex = 8;
+			// 
+			// radioButton3
+			// 
+			this.radioButton3.AutoSize = true;
+			this.radioButton3.Location = new System.Drawing.Point(457, 4);
+			this.radioButton3.Name = "radioButton3";
+			this.radioButton3.Size = new System.Drawing.Size(86, 21);
+			this.radioButton3.TabIndex = 2;
+			this.radioButton3.TabStop = true;
+			this.radioButton3.Text = "指定用户名";
+			this.radioButton3.UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this.radioButton2.AutoSize = true;
+			this.radioButton2.Location = new System.Drawing.Point(190, 4);
+			this.radioButton2.Name = "radioButton2";
+			this.radioButton2.Size = new System.Drawing.Size(94, 21);
+			this.radioButton2.TabIndex = 1;
+			this.radioButton2.TabStop = true;
+			this.radioButton2.Text = "指定ClientId";
+			this.radioButton2.UseVisualStyleBackColor = true;
+			// 
+			// radioButton1
+			// 
+			this.radioButton1.AutoSize = true;
+			this.radioButton1.Checked = true;
+			this.radioButton1.Location = new System.Drawing.Point(4, 4);
+			this.radioButton1.Name = "radioButton1";
+			this.radioButton1.Size = new System.Drawing.Size(86, 21);
+			this.radioButton1.TabIndex = 0;
+			this.radioButton1.TabStop = true;
+			this.radioButton1.Text = "全部重定向";
+			this.radioButton1.UseVisualStyleBackColor = true;
+			// 
+			// textBox6
+			// 
+			this.textBox6.Location = new System.Drawing.Point(330, 12);
+			this.textBox6.Name = "textBox6";
+			this.textBox6.Size = new System.Drawing.Size(115, 23);
+			this.textBox6.TabIndex = 7;
+			this.textBox6.Text = "1883";
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Location = new System.Drawing.Point(275, 15);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(44, 17);
+			this.label19.TabIndex = 6;
+			this.label19.Text = "端口：";
+			// 
+			// textBox3
+			// 
+			this.textBox3.Location = new System.Drawing.Point(61, 12);
+			this.textBox3.Name = "textBox3";
+			this.textBox3.Size = new System.Drawing.Size(193, 23);
+			this.textBox3.TabIndex = 5;
+			this.textBox3.Text = "127.0.0.1";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(6, 15);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(56, 17);
+			this.label4.TabIndex = 4;
+			this.label4.Text = "Ip地址：";
 			// 
 			// panel3
 			// 
@@ -1067,6 +1431,8 @@
 			// 
 			// textBox5
 			// 
+			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox5.Location = new System.Drawing.Point(62, 7);
 			this.textBox5.Name = "textBox5";
 			this.textBox5.Size = new System.Drawing.Size(455, 23);
@@ -1109,16 +1475,6 @@
 			this.userControlHead1.TabIndex = 14;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// mqttTopicControl1
-			// 
-			this.mqttTopicControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.mqttTopicControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.mqttTopicControl1.GetStringFromPayload = null;
-			this.mqttTopicControl1.Location = new System.Drawing.Point(0, 0);
-			this.mqttTopicControl1.Name = "mqttTopicControl1";
-			this.mqttTopicControl1.Size = new System.Drawing.Size(982, 266);
-			this.mqttTopicControl1.TabIndex = 0;
-			// 
 			// FormMqttServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1154,6 +1510,11 @@
 			this.panel7.ResumeLayout(false);
 			this.panel7.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+			this.tabPage6.ResumeLayout(false);
+			this.panel6.ResumeLayout(false);
+			this.panel6.PerformLayout();
+			this.panel9.ResumeLayout(false);
+			this.panel9.PerformLayout();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
@@ -1252,5 +1613,38 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column_device;
 		private System.Windows.Forms.Panel panel8;
 		private MQTT.MqttTopicControl mqttTopicControl1;
+		private System.Windows.Forms.TabPage tabPage6;
+		private System.Windows.Forms.Panel panel6;
+		private System.Windows.Forms.TextBox textBox6;
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Panel panel9;
+		private System.Windows.Forms.RadioButton radioButton3;
+		private System.Windows.Forms.RadioButton radioButton2;
+		private System.Windows.Forms.RadioButton radioButton1;
+		private System.Windows.Forms.Button button7;
+		private System.Windows.Forms.TextBox textBox_redir_name5;
+		private System.Windows.Forms.Label label31;
+		private System.Windows.Forms.TextBox textBox_redir_name4;
+		private System.Windows.Forms.Label label30;
+		private System.Windows.Forms.TextBox textBox_redir_name3;
+		private System.Windows.Forms.Label label29;
+		private System.Windows.Forms.TextBox textBox_redir_name2;
+		private System.Windows.Forms.Label label28;
+		private System.Windows.Forms.TextBox textBox_redir_name1;
+		private System.Windows.Forms.Label label27;
+		private System.Windows.Forms.TextBox textBox_redir_id5;
+		private System.Windows.Forms.Label label26;
+		private System.Windows.Forms.TextBox textBox_redir_id4;
+		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.TextBox textBox_redir_id3;
+		private System.Windows.Forms.Label label22;
+		private System.Windows.Forms.TextBox textBox_redir_id2;
+		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.TextBox textBox_redir_id1;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.Button button8;
+		private System.Windows.Forms.Label label32;
 	}
 }

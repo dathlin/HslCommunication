@@ -21,6 +21,16 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
+
+			checkBox_log_analysis.CheckedChanged += CheckBox_log_analysis_CheckedChanged;
+		}
+
+		private void CheckBox_log_analysis_CheckedChanged( object sender, EventArgs e )
+		{
+			if (s7NetServer != null)
+			{
+				s7NetServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
+			}
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -28,6 +38,7 @@ namespace HslCommunicationDemo
 			if (Program.Language == 2)
 			{
 				Text = "S7 Virtual Server [data support i,q,m,db block read and write, DB1, DB2, DB3, others need add]";
+				checkBox_log_analysis.Text = "Log Analysis";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
@@ -56,19 +67,6 @@ namespace HslCommunicationDemo
 		private bool m62 = false;
 		private float m64 = 1.1f;
 
-
-		private void Timer_Tick( object sender, EventArgs e )
-		{
-			m60++;
-			s7NetServer.Write( "M60", m60 );
-			s7NetServer.Write( "M62", !m62 );
-			m62 = !m62;
-			m64 += 1f;
-			if (m64 > 2000) m64 = 1.1f;
-			s7NetServer.Write( "M64", m64 );
-			s7NetServer.Write( "M70", "A" + DateTime.Now.Minute.ToString( ) + DateTime.Now.Second.ToString( ) );
-		}
-
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
 			CheckTableDataChanged( this.userControlReadWriteServer1, e );
@@ -92,6 +90,7 @@ namespace HslCommunicationDemo
 
 				s7NetServer = new HslCommunication.Profinet.Siemens.SiemensS7Server( );                       // 实例化对象
 				s7NetServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
+				s7NetServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
 				s7NetServer.OnDataReceived += BusTcpServer_OnDataReceived;
 
 				this.sslServerControl1.InitializeServer( s7NetServer );
@@ -103,7 +102,7 @@ namespace HslCommunicationDemo
 				dbControl.SetServer( s7NetServer );
 				dbControl.Enabled = true;
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", s7NetServer, this.sslServerControl1 );
+				codeExampleControl.SetCodeText( "server", "", s7NetServer, this.sslServerControl1, nameof( s7NetServer.AnalysisLogMessage ) );
 			}
 			catch (Exception ex)
 			{
@@ -127,7 +126,7 @@ namespace HslCommunicationDemo
 			this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 			// 设置示例代码
-			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, s7NetServer, this.sslServerControl1 );
+			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, s7NetServer, this.sslServerControl1, nameof( s7NetServer.AnalysisLogMessage ) );
 
 		}
 
@@ -154,6 +153,7 @@ namespace HslCommunicationDemo
 
 		public override void SaveXmlParameter( XElement element )
 		{
+			element.SetAttributeValue( "AnalysisLogMessage", checkBox_log_analysis.Checked );
 			this.sslServerControl1.SaveXmlParameter( element );
 			this.serverSettingControl1.SaveXmlParameter( element );
 			this.userControlReadWriteServer1.GetDataTable( element );
@@ -163,6 +163,7 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
+			checkBox_log_analysis.Checked = GetXmlValue( element, "AnalysisLogMessage", false, bool.Parse );
 			this.sslServerControl1.LoadXmlParameter( element );
 			this.serverSettingControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );

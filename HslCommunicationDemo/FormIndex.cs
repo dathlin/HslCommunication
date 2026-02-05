@@ -35,19 +35,15 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.6.2
-1. FanucSeries0i: ReadFeedRate读取进给倍率的方法，修复在某些型号下读取值异常的bug，现在兼容性更好。
-2. FanucSeries0i: 数据类FanucSysInfo, FanucOperatorMessage, ToolInformation, SysAlarm, SysAllCoors重写了tostring方法，可以直接转字符串显示数据。
-3. FanucSeries0i: 修复宏变量读写时候，对数据解析和生成的时候，当遇到超大数据解析异常，反写数据异常的bug。
-4. CommunicationTcpServer: 优化接收数据的代码，防止在一些及其特殊的情况下发生崩溃的bug。
-5. FtpClient: 修复创建文件夹的时候，在指定多级目录的情况下，创建失败的bug，优化Demo界面的图标信息。
-6. FtpServer: 新增加一个FtpServer类，在Demo上可以一键启动一个服务器，快速验证及收发文件，和Hsl得FtpClient测试通过。
-7. OmronCipServer: 修复欧姆龙的虚拟CIP服务器，创建了bool[]数组变量后，从客户端读写bool值不正确的bug。
-8. YRCHighEthernet: 安川机器人的高速以太网协议优化，字符串数据自动移除空字符，支持读取机器人的脉冲坐标，增加读取轴名称，Demo界面优化。
-9. Demo: 新增sqlserver的数据存储功能，新增本地文件的数据存储功能，Demo可以直接将PLC数据存入数据库或是本地文件里。
-10. Demo: 原始字节批量读取的控件支持了手动解析数据功能，并且读取时直接解析值显示，然后显示具体的解析的代码。
-11. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
-12. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V12.6.3
+1. OmronCipServer: 修复客户端写入UTF8编码的中文字符串的时候，服务器解析后写入内存乱码的bug，来源于服务器的代码问题。
+2. InovanceConnectedCipNet: 新增汇川的基于连接的CIP协议，从欧姆龙CIP继承而来，优化了OT,TO连接id设置，优化写入单个bool数据的写入。
+3. Server: 三菱MC协议，S7, FinsTcp，AB得CIP虚拟服务器新增属性AnalysisLogMessage, 设置为true开启报文分析，分析结果插入日志里。
+4. MqttServer: MQTT服务器新增服务重定向功能，可以让MqttClient, MqttSyncClient自动连接到其他服务器请求，方便系统迁移，服务负载均衡。
+5. MqttServer: 新增属性SyncClientActiveTime，表示同步客户端连接时持续多久不通信断开连接，默认为24小时，防止特殊情况连接一直存在。
+6. Demo: 修复Demo程序勾选退出确认时，因为更新Demo程序时，仍然提供关闭导致更新Demo失败的bug。
+7. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
+8. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 
