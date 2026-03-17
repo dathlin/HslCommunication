@@ -393,7 +393,7 @@ return "if (" + name + @".IsSuccess)
 }
 else
 {
-	Console.WriteLine( """ + oprate + @"失败: """ + name + @".Message );
+	Console.WriteLine( """ + oprate + @"失败: "" + " + name + @".Message );
 }
 ";
 		}

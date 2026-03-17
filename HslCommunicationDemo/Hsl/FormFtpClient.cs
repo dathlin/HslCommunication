@@ -313,7 +313,7 @@ namespace HslCommunicationDemo
 					// 显示示例代码
 					Invoke( new Action( ( ) =>
 					{
-						textBox_code_example.Text = $"OperateResult result = ftpClient.UploadFile( \"{fileName}\", \"{remoteFileName}\" );\r\n" + DemoUtils.GetWriteExampleCode( "result", "文件上传" );
+						textBox_code_example.Text = $"OperateResult result = ftpClient.UploadFile( @\"{fileName}\", \"{remoteFileName}\" );\r\n" + DemoUtils.GetWriteExampleCode( "result", "文件上传" );
 					} ) );
 
 					// start to upload file to server , u shold specify the catgray about the file
@@ -534,7 +534,7 @@ namespace HslCommunicationDemo
 			// 显示示例代码
 			Invoke( new Action( ( ) =>
 			{
-				textBox_code_example.Text = $"OperateResult result = ftpClient.DownloadFile( \"{fileName}\", \"{saveNmae}\" );\r\n" + DemoUtils.GetWriteExampleCode( "result", "文件下载" );
+				textBox_code_example.Text = $"OperateResult result = ftpClient.DownloadFile( \"{fileName}\", @\"{saveNmae}\" );\r\n" + DemoUtils.GetWriteExampleCode( "result", "文件下载" );
 			} ) );
 
 			DateTime downloadStartTime = DateTime.Now;

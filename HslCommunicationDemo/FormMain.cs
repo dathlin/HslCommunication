@@ -475,6 +475,7 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_byteTransform.Text = "字节变换";
 				regexRegularToolStripMenuItem.Text = "正则表达式";
 				formTopMostToolStripMenuItem.Text = "窗体置顶";
+				portMappingToolStripMenuItem.Text = "端口映射";
 				label_account.Text = "登录";
 				退出软件显示确认ToolStripMenuItem.Text = "退出软件时显示确认";
 			}
@@ -499,6 +500,7 @@ namespace HslCommunicationDemo
 				formTopMostToolStripMenuItem.Text = "TopMost";
 				label_account.Text = "Login";
 				退出软件显示确认ToolStripMenuItem.Text = "Confirm when exit";
+				portMappingToolStripMenuItem.Text = "PortMapping";
 			}
 		}
 
@@ -676,6 +678,12 @@ namespace HslCommunicationDemo
 		private void toolStripMenuItem_byteTransform_Click( object sender, EventArgs e )
 		{
 			panelLeft?.RenderByteTransformDebug( );
+		}
+
+
+		private void portMappingToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			panelLeft?.RenderPortMapping( );
 		}
 
 		private bool upgradeClose = false;

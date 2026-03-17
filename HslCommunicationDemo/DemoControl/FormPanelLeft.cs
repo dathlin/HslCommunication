@@ -10,6 +10,7 @@ using HslCommunicationDemo.PLC.Invt;
 using HslCommunicationDemo.PLC.Omron;
 using HslCommunicationDemo.PLC.WeCon;
 using HslCommunicationDemo.Redis;
+using HslCommunicationDemo.Vip;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -426,18 +427,19 @@ namespace HslCommunicationDemo.DemoControl
 
 			// Debug 相关
 			TreeNode debugNode = new TreeNode( "Debug About[调试技术]", 15, 15 );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regex [正则表达式]", 15, typeof( FormRegexTest ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Check [校验码调试]", 15, typeof( FormCheck ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口调试]", 40, typeof( FormSerialDebug ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Client [网口调试]", 41, typeof( FormTcpDebug ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]", 41, typeof( FormTcpServer ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial2Tcp [串口转网口]", 40, typeof( FormSerialToTcp ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp2Tcp [网口转网口]", 41, typeof( FormTcpToTcp ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "PingTest [网络测试]", 41, typeof( FormPingIpAddress ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Bytes Data [数据调试]", 42, typeof( FormByteTransfer ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Mail [邮件调试]", 15, typeof( FormMail ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regex [正则表达式]",        15, typeof( FormRegexTest ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Check [校验码调试]",        15, typeof( FormCheck ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial [串口调试]",         40, typeof( FormSerialDebug ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Client [网口调试]",  41, typeof( FormTcpDebug ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp/Ip Server [网口调试]",  41, typeof( FormTcpServer ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Serial2Tcp [串口转网口]",   40, typeof( FormSerialToTcp ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Tcp2Tcp [网口转网口]",      41, typeof( FormTcpToTcp ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "PingTest [网络测试]",       41, typeof( FormPingIpAddress ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Bytes Data [数据调试]",     42, typeof( FormByteTransfer ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Mail [邮件调试]",           15, typeof( FormMail ) ) );
 			debugNode.Nodes.Add( GetTreeNodeByIndex( "Order Number [订单号调试]", 15, typeof( FormSeqCreate ) ) );
-			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regist [注册码调试]", 15, typeof( FormRegister ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "Regist [注册码调试]",       15, typeof( FormRegister ) ) );
+			debugNode.Nodes.Add( GetTreeNodeByIndex( "PortMapping [端口映射]", 3, typeof( FormHslVpn ) ) );
 			treeView1.Nodes.Add( debugNode );
 			treeNodeDebug = debugNode;
 
@@ -651,6 +653,10 @@ namespace HslCommunicationDemo.DemoControl
 			RenderTreeNode( treeNodeDebug.Nodes[0] );
 		}
 
+		public void RenderPortMapping( )
+		{
+			RenderTreeNode( treeNodeDebug.Nodes[12] );
+		}
 
 		private List<TreeNode> nodeCollection = null;
 		private void textBox1_TextChanged( object sender, EventArgs e )

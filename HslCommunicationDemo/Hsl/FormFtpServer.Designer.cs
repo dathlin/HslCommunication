@@ -422,7 +422,7 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormFtpServer";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "文件客户端窗口";
+			this.Text = "FTP文件服务器";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMqttFileClient_FormClosing);
 			this.Load += new System.EventHandler(this.FormFileClient_Load);
 			this.panel1.ResumeLayout(false);

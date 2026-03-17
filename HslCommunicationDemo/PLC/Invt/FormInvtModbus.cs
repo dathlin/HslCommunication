@@ -46,7 +46,7 @@ namespace HslCommunicationDemo.PLC.Invt
 
 
 			addressExampleControl = new AddressExampleControl( );
-			addressExampleControl.SetAddressExample( Helper.GetInvtAddress( ) );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Invt.Helper.GetInvtAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
 			codeExampleControl = new CodeExampleControl( );

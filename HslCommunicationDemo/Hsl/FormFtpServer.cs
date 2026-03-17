@@ -126,7 +126,7 @@ namespace HslCommunicationDemo
 
 			StringBuilder sb = new StringBuilder( );
 			sb.AppendLine( "HslCommunication.Enthernet.Ftp.FtpServer ftpServer = new HslCommunication.Enthernet.Ftp.FtpServer( );" );
-			sb.AppendLine( $"ftpServer.CurrentDirectory = \"{textBox_path.Text}\";" );
+			sb.AppendLine( $"ftpServer.CurrentDirectory = @\"{textBox_path.Text}\";" );
 			sb.AppendLine( $"ftpServer.AllowAnonymous = {checkBox_allow.Checked.ToString( ).ToLower( )};" );
 			sb.AppendLine( $"ftpServer.DownloadOnly = {checkBox_downloadOnly.Checked.ToString( ).ToLower( )};" );
 			if (!string.IsNullOrEmpty( textBox_pasvPortRange.Text ))
@@ -134,7 +134,7 @@ namespace HslCommunicationDemo
 				sb.AppendLine( $"ftpServer.SetPasvPortRange( \"{textBox_pasvPortRange.Text}\" );" );
 			}
 			sb.AppendLine( $"// 自定义的账户检查" );
-			sb.AppendLine( @"ftpServer.CheckAccountFunction = new Func<string, string, FtpSession, OperateResult>( ( name, pwd, session ) =>
+			sb.AppendLine( @"ftpServer.CheckAccountFunction = new Func<string, string, HslCommunication.Enthernet.Ftp.FtpSession, OperateResult>( ( name, pwd, session ) =>
 {
     if (name == ""admin"" && pwd == ""123456"") return OperateResult.CreateSuccessResult( );
     return new OperateResult( 500, ""user account or password wrong"" );

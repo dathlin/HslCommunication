@@ -45,6 +45,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.comboBox_address_mapping = new System.Windows.Forms.ComboBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -54,6 +55,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.comboBox_address_mapping);
 			this.panel1.Controls.Add(this.comboBox2);
 			this.panel1.Controls.Add(this.serverSettingControl1);
 			this.panel1.Controls.Add(this.sslServerControl1);
@@ -104,9 +106,9 @@
 			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.sslServerControl1.Location = new System.Drawing.Point(93, 57);
+			this.sslServerControl1.Location = new System.Drawing.Point(262, 57);
 			this.sslServerControl1.Name = "sslServerControl1";
-			this.sslServerControl1.Size = new System.Drawing.Size(899, 30);
+			this.sslServerControl1.Size = new System.Drawing.Size(730, 30);
 			this.sslServerControl1.TabIndex = 44;
 			// 
 			// checkBox_maskcode
@@ -246,6 +248,20 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// comboBox_address_mapping
+			// 
+			this.comboBox_address_mapping.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox_address_mapping.FormattingEnabled = true;
+			this.comboBox_address_mapping.Items.AddRange(new object[] {
+            "ABCD",
+            "BADC",
+            "CDAB",
+            "DCBA"});
+			this.comboBox_address_mapping.Location = new System.Drawing.Point(93, 58);
+			this.comboBox_address_mapping.Name = "comboBox_address_mapping";
+			this.comboBox_address_mapping.Size = new System.Drawing.Size(163, 25);
+			this.comboBox_address_mapping.TabIndex = 46;
+			// 
 			// FormModbusServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -288,5 +304,6 @@
 		private System.Windows.Forms.CheckBox checkBox_maskcode;
 		private DemoControl.SslServerControl sslServerControl1;
 		private DemoControl.ServerSettingControl serverSettingControl1;
+		private System.Windows.Forms.ComboBox comboBox_address_mapping;
 	}
 }

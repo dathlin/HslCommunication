@@ -158,7 +158,7 @@ namespace HslCommunicationDemo.Robot
 				DemoUtils.ShowMessage( "Reset Faield:" + reset.Message );
 			}
 
-			this.codeExampleControl.ReaderReadCode( $"OperateResult reset = yamahaRCX.Reset( );" );
+			this.codeExampleControl.RenderReadCode( $"OperateResult reset = yamahaRCX.Reset( );" );
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -173,7 +173,7 @@ namespace HslCommunicationDemo.Robot
 				DemoUtils.ShowMessage( "Run Faield:" + reset.Message );
 			}
 
-			this.codeExampleControl.ReaderReadCode( $"OperateResult run = yamahaRCX.Run( );" );
+			this.codeExampleControl.RenderReadCode( $"OperateResult run = yamahaRCX.Run( );" );
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -188,7 +188,7 @@ namespace HslCommunicationDemo.Robot
 				DemoUtils.ShowMessage( "Stop Faield:" + reset.Message );
 			}
 
-			this.codeExampleControl.ReaderReadCode( $"OperateResult stop = yamahaRCX.Stop( );" );
+			this.codeExampleControl.RenderReadCode( $"OperateResult stop = yamahaRCX.Stop( );" );
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -206,7 +206,7 @@ namespace HslCommunicationDemo.Robot
 				DemoUtils.ShowMessage( "Read Faield:" + motor.Message );
 			}
 
-			this.codeExampleControl.ReaderReadCode( $"OperateResult<int> motor = yamahaRCX.ReadMotorStatus( );" );
+			this.codeExampleControl.RenderReadCode( $"OperateResult<int> motor = yamahaRCX.ReadMotorStatus( );" );
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -221,7 +221,7 @@ namespace HslCommunicationDemo.Robot
 				DemoUtils.ShowMessage( "Read Faield:" + mode.Message );
 			}
 
-			this.codeExampleControl.ReaderReadCode( $"OperateResult<int> mode = yamahaRCX.ReadModeStatus( );" );
+			this.codeExampleControl.RenderReadCode( $"OperateResult<int> mode = yamahaRCX.ReadModeStatus( );" );
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -236,7 +236,7 @@ namespace HslCommunicationDemo.Robot
 				DemoUtils.ShowMessage( "Read Faield:" + joints.Message );
 			}
 
-			this.codeExampleControl.ReaderReadCode( $"OperateResult<float[]> joints = yamahaRCX.ReadJoints( );" );
+			this.codeExampleControl.RenderReadCode( $"OperateResult<float[]> joints = yamahaRCX.ReadJoints( );" );
 		}
 
 		private void button9_Click( object sender, EventArgs e )
@@ -253,7 +253,7 @@ namespace HslCommunicationDemo.Robot
 				DemoUtils.ShowMessage( "Read Faield:" + emergency.Message );
 			}
 
-			this.codeExampleControl.ReaderReadCode( $"OperateResult<int> emergency = yamahaRCX.ReadEmergencyStatus( );" );
+			this.codeExampleControl.RenderReadCode( $"OperateResult<int> emergency = yamahaRCX.ReadEmergencyStatus( );" );
 		}
 
 
@@ -286,7 +286,7 @@ namespace HslCommunicationDemo.Robot
 				DemoUtils.ShowMessage( "Read failed: " + read.Message );
 			}
 
-			this.codeExampleControl.ReaderReadCode( $"OperateResult<string[]> read = yamahaRCX.ReadCommand( \"{textBox_read_command.Text}\" );" );
+			this.codeExampleControl.RenderReadCode( $"OperateResult<string[]> read = yamahaRCX.ReadCommand( \"{textBox_read_command.Text}\" );" );
 		}
 
 		private void RenderJogResult( OperateResult result, string jog )
@@ -322,7 +322,7 @@ namespace HslCommunicationDemo.Robot
 						DemoUtils.ShowMessage( "Operate failed: " + finish.Message );
 				} ) );
 			} ) ), cmd );
-			this.codeExampleControl.ReaderReadCode( $@"
+			this.codeExampleControl.RenderReadCode( $@"
 yamahaRCX.SendJogXY( {cmd.JogIndex} );
 while ([MoveEnable])
 {{
@@ -339,7 +339,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( -1 ), "JOG 1-" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( -1 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( -1 );" );
 			}
 		}
 
@@ -366,7 +366,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( 1 ), "JOG 1+" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( 1 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( 1 );" );
 			}
 		}
 
@@ -386,7 +386,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( -2 ), "JOG 2-" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( -2 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( -2 );" );
 			}
 		}
 
@@ -406,7 +406,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( 2 ), "JOG 2+" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( 2 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( 2 );" );
 			}
 		}
 
@@ -425,7 +425,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( -3 ), "JOG 3-" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( -3 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( -3 );" );
 			}
 		}
 
@@ -444,7 +444,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( 3 ), "JOG 3+" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( 3 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( 3 );" );
 			}
 		}
 
@@ -463,7 +463,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( -4 ), "JOG 4-" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( -4 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( -4 );" );
 			}
 		}
 
@@ -482,7 +482,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( 4 ), "JOG 4+" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( 4 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( 4 );" );
 			}
 		}
 
@@ -500,7 +500,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( -5 ), "JOG 5-" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( -5 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( -5 );" );
 			}
 		}
 
@@ -518,7 +518,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( 5 ), "JOG 5+" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( 5 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( 5 );" );
 			}
 		}
 
@@ -536,7 +536,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( -6 ), "JOG 6-" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( -6 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( -6 );" );
 			}
 		}
 
@@ -554,7 +554,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 			if (!checkBox_keepmove.Checked)
 			{
 				RenderJogResult( yamahaRCX.JogXY( 6 ), "JOG 6+" );
-				this.codeExampleControl.ReaderReadCode( $"OperateResult result = yamahaRCX.JogXY( 6 );" );
+				this.codeExampleControl.RenderReadCode( $"OperateResult result = yamahaRCX.JogXY( 6 );" );
 			}
 		}
 
@@ -580,7 +580,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 				DemoUtils.ShowMessage( "Read Faield:" + read.Message );
 			}
 
-			this.codeExampleControl.ReaderReadCode( $"OperateResult<bool[]> read = yamahaRCX.ReadDI( {index} )" );
+			this.codeExampleControl.RenderReadCode( $"OperateResult<bool[]> read = yamahaRCX.ReadDI( {index} )" );
 		}
 
 		private void button22_Click( object sender, EventArgs e )
@@ -613,7 +613,7 @@ OperateResult<byte[]> finish = yamahaRCX.ReadFromCoreServer( new byte[0], hasRes
 				DemoUtils.ShowMessage( "Read Faield:" + read.Message );
 			}
 
-			this.codeExampleControl.ReaderReadCode( $"OperateResult<bool[]> read = yamahaRCX.ReadDO( {index} )" );
+			this.codeExampleControl.RenderReadCode( $"OperateResult<bool[]> read = yamahaRCX.ReadDO( {index} )" );
 		}
 
 		private void button27_Click( object sender, EventArgs e )

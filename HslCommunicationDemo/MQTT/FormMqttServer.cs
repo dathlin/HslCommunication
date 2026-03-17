@@ -259,6 +259,7 @@ namespace HslCommunicationDemo
 				mqttServer.OnClientConnected                 += MqttServer_OnClientConnected;
 				mqttServer.OnClientDisConnected              += MqttServer_OnClientDisConnected;
 				mqttServer.ServiceRedirection                += MqttServer_ServiceRedirection;
+				mqttServer.OnClientSubscribe                 += MqttServer_OnClientSubscribe;
 				mqttServer.TopicWildcard = checkBox2.Checked;
 				if (checkBox1.Checked)
 				{
@@ -284,6 +285,15 @@ namespace HslCommunicationDemo
 			{
 				DemoUtils.ShowMessage( "Start Failed : " + ex.Message );
 			}
+		}
+
+		private int MqttServer_OnClientSubscribe( MqttSession session, List<string> topics )
+		{
+			//if (topics.Contains( "B" )) return 1;  // 不允许订阅
+			//if (session.UserName == "hsl" && topics.Contains( "C" )) return 1;  // 不允许用户hsl订阅主题C
+
+			// 如果允许订阅，可以在这里对订阅的主题进行过滤，返回非0的值则表示不允许订阅
+			return 0;
 		}
 
 		private void button8_Click( object sender, EventArgs e )

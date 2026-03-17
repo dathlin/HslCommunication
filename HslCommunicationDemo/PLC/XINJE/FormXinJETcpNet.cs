@@ -43,7 +43,7 @@ namespace HslCommunicationDemo
 			this.pipeSelectControl1.SetButtonReference( button1, button2 );
 
 			addressExampleControl = new AddressExampleControl( );
-			addressExampleControl.SetAddressExample( Helper.GetXinJEAddress( ) );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.XINJE.Helper.GetXinJEAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
 			codeExampleControl = new CodeExampleControl( );

@@ -481,7 +481,7 @@ namespace HslCommunicationDemo
 			}
 
 			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
-			codeExampleControl.ReaderReadCode( $"OperateResult<SecsMessage> read = @deviceName.ReadSecsMessage( {textBox_stream.Text}, {textBox_function.Text}, {code}, {checkBox_back.Checked.ToString( ).ToLower( )} );" );
+			codeExampleControl.RenderReadCode( $"OperateResult<SecsMessage> read = @deviceName.ReadSecsMessage( {textBox_stream.Text}, {textBox_function.Text}, {code}, {checkBox_back.Checked.ToString( ).ToLower( )} );" );
 		}
 
 		private void button3_Click( object sender, EventArgs e )
@@ -499,7 +499,7 @@ namespace HslCommunicationDemo
 			}
 
 			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
-			codeExampleControl.ReaderReadCode( $"OperateResult send = @deviceName.SendByCommand( {textBox_stream.Text}, {textBox_function.Text}, {code}, {checkBox_back.Checked.ToString( ).ToLower( )} );" );
+			codeExampleControl.RenderReadCode( $"OperateResult send = @deviceName.SendByCommand( {textBox_stream.Text}, {textBox_function.Text}, {code}, {checkBox_back.Checked.ToString( ).ToLower( )} );" );
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -732,7 +732,7 @@ namespace HslCommunicationDemo
 					SendSecsValue( null, item.S, item.F, item.W, secsValue );
 
 					string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
-					codeExampleControl.ReaderReadCode( $"OperateResult send = @deviceName.SendByCommand( {textBox_stream.Text}, {textBox_function.Text}, {code}, {checkBox_back.Checked.ToString( ).ToLower( )} ); // 仅发送消息" + Environment.NewLine + Environment.NewLine +
+					codeExampleControl.RenderReadCode( $"OperateResult send = @deviceName.SendByCommand( {textBox_stream.Text}, {textBox_function.Text}, {code}, {checkBox_back.Checked.ToString( ).ToLower( )} ); // 仅发送消息" + Environment.NewLine + Environment.NewLine +
 						 $"OperateResult<SecsMessage> read = @deviceName.ReadSecsMessage( {textBox_stream.Text}, {textBox_function.Text}, {code}, {checkBox_back.Checked.ToString( ).ToLower( )} );   // 应答方式" );
 				}
 			}

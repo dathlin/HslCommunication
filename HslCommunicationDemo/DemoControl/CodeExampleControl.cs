@@ -775,6 +775,12 @@ namespace HslCommunicationDemo.DemoControl
 
 		#region Private Member
 
+		public void AppendTextBox1( string text )
+		{
+			if (text == null) return;
+			textBox1.AppendText( text + Environment.NewLine);
+		}
+
 		public void RenderExampleCode( StringBuilder sb )
 		{
 			deviceCreateCode = sb.ToString( );
@@ -786,12 +792,36 @@ namespace HslCommunicationDemo.DemoControl
 		}
 
 
-		public void ReaderReadCode( string methodCode )
+		public void RenderReadCode( string methodCode )
 		{
 			if (string.IsNullOrEmpty( deviceName )) return;
 			try
 			{
 				this.textBox2.Text = Regex.Replace( methodCode, "@deviceName", this.deviceName );
+			}
+			catch
+			{
+
+			}
+		}
+
+		public void RenderReadResultCode( string methodCode )
+		{
+			if (string.IsNullOrEmpty( deviceName )) return;
+			try
+			{
+				string code = Regex.Replace( methodCode, "@deviceName", this.deviceName );
+				StringBuilder stringBuilder = new StringBuilder( code );
+				stringBuilder.AppendLine( );
+				stringBuilder.AppendLine( "if (read.IsSuccess)" );
+				stringBuilder.AppendLine( "{" );
+				stringBuilder.AppendLine( "    Console.WriteLine( \"Read Result: \" + read.Content );" );
+				stringBuilder.AppendLine( "}" );
+				stringBuilder.AppendLine( "else" );
+				stringBuilder.AppendLine( "{" );
+				stringBuilder.AppendLine( "    Console.WriteLine( \"Read Failed: \" + read.Message );" );
+				stringBuilder.AppendLine( "}" );
+				this.textBox2.Text = stringBuilder.ToString( );
 			}
 			catch
 			{

@@ -448,7 +448,7 @@ namespace HslCommunicationDemo.PLC.Secs
 			}
 
 			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
-			codeExampleControl.ReaderReadCode( $"OperateResult publish = @deviceName.PublishSecsMessage( {textBox_stream.Text}, {textBox_function.Text}, {code} );" );
+			codeExampleControl.RenderReadCode( $"OperateResult publish = @deviceName.PublishSecsMessage( {textBox_stream.Text}, {textBox_function.Text}, {code} );" );
 
 		}
 
@@ -468,7 +468,7 @@ namespace HslCommunicationDemo.PLC.Secs
 
 
 			string code = secsValue == null ? "null" : secsValue.ToSourceCode( );
-			codeExampleControl.ReaderReadCode( $"OperateResult publish = @deviceName.PublishSecsMessage( {s}, {f}, {code}, {w.ToString( ).ToLower( )} );" );
+			codeExampleControl.RenderReadCode( $"OperateResult publish = @deviceName.PublishSecsMessage( {s}, {f}, {code}, {w.ToString( ).ToLower( )} );" );
 		}
 
 		private void button_device_send_Click( object sender, EventArgs e )

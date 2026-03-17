@@ -46,7 +46,7 @@ namespace HslCommunicationDemo.PLC.WeCon
 
 
 			addressExampleControl = new AddressExampleControl( );
-			addressExampleControl.SetAddressExample( Helper.GetWeConLx5vAddress( ) );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.WeCon.Helper.GetWeConLx5vAddress( ) );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
 			codeExampleControl = new CodeExampleControl( );

@@ -29,7 +29,7 @@ namespace HslCommunicationDemo.Instrument
 			OperateResult<int> read = EcFanMachine.ReadSpeedEmergency( );
 			label_time.Text = (DateTime.Now - start).TotalMilliseconds.ToString( "F0" ) + " ms";
 			DemoUtils.ReadResultRender( read, "应急模式速度", textBox_result );
-			codeExampleControl1.ReaderReadCode( "OperateResult<int> read = EcFanMachine.ReadSpeedEmergency( );" );
+			codeExampleControl1.RenderReadCode( "OperateResult<int> read = EcFanMachine.ReadSpeedEmergency( );" );
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -39,7 +39,7 @@ namespace HslCommunicationDemo.Instrument
 			OperateResult<int> read = EcFanMachine.ReadSpeedMin( );
 			label_time.Text = (DateTime.Now - start).TotalMilliseconds.ToString( "F0" ) + " ms";
 			DemoUtils.ReadResultRender( read, "最低转速", textBox_result );
-			codeExampleControl1.ReaderReadCode( "OperateResult<int> read = EcFanMachine.ReadSpeedMin( );" );
+			codeExampleControl1.RenderReadCode( "OperateResult<int> read = EcFanMachine.ReadSpeedMin( );" );
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -49,7 +49,7 @@ namespace HslCommunicationDemo.Instrument
 			OperateResult<int> read = EcFanMachine.ReadSpeedMax( );
 			label_time.Text = (DateTime.Now - start).TotalMilliseconds.ToString( "F0" ) + " ms";
 			DemoUtils.ReadResultRender( read, "最高转速", textBox_result );
-			codeExampleControl1.ReaderReadCode( "OperateResult<int> read = EcFanMachine.ReadSpeedMax( );" );
+			codeExampleControl1.RenderReadCode( "OperateResult<int> read = EcFanMachine.ReadSpeedMax( );" );
 		}
 
 		private void button3_Click( object sender, EventArgs e )
@@ -70,7 +70,7 @@ namespace HslCommunicationDemo.Instrument
 				{
 					DemoUtils.ShowMessage( "Write failed: " + write.Message );
 				}
-				codeExampleControl1.ReaderReadCode( $"OperateResult<EcFanData> write = EcFanMachine.ControlSpeed( {radioButton_run_true.Checked.ToString().ToLower()}, {radioButton4.Checked.ToString().ToLower()}, {int.Parse( textBox1.Text )} );" );
+				codeExampleControl1.RenderReadCode( $"OperateResult<EcFanData> write = EcFanMachine.ControlSpeed( {radioButton_run_true.Checked.ToString().ToLower()}, {radioButton4.Checked.ToString().ToLower()}, {int.Parse( textBox1.Text )} );" );
 			}
 			catch( Exception ex )
 			{
@@ -94,7 +94,7 @@ namespace HslCommunicationDemo.Instrument
 				{
 					DemoUtils.ShowMessage( "Write failed: " + write.Message );
 				}
-				codeExampleControl1.ReaderReadCode( $"OperateResult<EcFanData> write = EcFanMachine.ControlSpeed( {radioButton_run_true.Checked.ToString( ).ToLower( )}, {radioButton4.Checked.ToString( ).ToLower( )}, {int.Parse( textBox1.Text )} );" );
+				codeExampleControl1.RenderReadCode( $"OperateResult<EcFanData> write = EcFanMachine.ControlSpeed( {radioButton_run_true.Checked.ToString( ).ToLower( )}, {radioButton4.Checked.ToString( ).ToLower( )}, {int.Parse( textBox1.Text )} );" );
 			}
 			catch (Exception ex)
 			{

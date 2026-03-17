@@ -35,15 +35,22 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.6.3
-1. OmronCipServer: 修复客户端写入UTF8编码的中文字符串的时候，服务器解析后写入内存乱码的bug，来源于服务器的代码问题。
-2. InovanceConnectedCipNet: 新增汇川的基于连接的CIP协议，从欧姆龙CIP继承而来，优化了OT,TO连接id设置，优化写入单个bool数据的写入。
-3. Server: 三菱MC协议，S7, FinsTcp，AB得CIP虚拟服务器新增属性AnalysisLogMessage, 设置为true开启报文分析，分析结果插入日志里。
-4. MqttServer: MQTT服务器新增服务重定向功能，可以让MqttClient, MqttSyncClient自动连接到其他服务器请求，方便系统迁移，服务负载均衡。
-5. MqttServer: 新增属性SyncClientActiveTime，表示同步客户端连接时持续多久不通信断开连接，默认为24小时，防止特殊情况连接一直存在。
-6. Demo: 修复Demo程序勾选退出确认时，因为更新Demo程序时，仍然提供关闭导致更新Demo失败的bug。
-7. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
-8. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V12.6.4
+1. FtpServer: 修复FTP服务器收到CMD命令时，当没有空格时引发异常的bug，修复Demo里FTP代码生成的一点小问题。
+2. Cip: AB得CIP协议，地址格式支持了实例特性的地址，格式为 class=1;attr=3;2  标识类id为1，实例为2，特性为 3 的地址，可以进行读写操作。
+3. ABBRobot: 移除abb机器人的server，放到demo里测试，Demo客户端支持浏览API接口列表，abb机器人类优化代码，部分接口支持传入参数对象。
+4. ByteTransformHelper: 优化代码，使用Then链式编程来处理多个参数的方法，修复GetResultFromOther十个泛型参数方法的判断异常。
+5. ModbusTcpServer: Modbus服务器新增地址映射功能，可以自由注入地址映射关系，Demo界面上增加库里其它Modbus设备相关的地址映射选择。
+6. Socket: 修复通信库创建Socket的时候，在某些特殊的运行环境下(有网友反馈ARM32下的.net8，也不是绝对的)可能导致异常的bug。
+7. MqttServer: 新增OnClientSubscribe事件，当客户端订阅主题的时候触发，通过返回值可以控制客户端是否可以订阅这些主题内容。
+8. FanucSeries0i: 修复fanuc机床读取进给倍率，在某些特殊的型号上读取值不正确的bug。
+9. FtpServer: FTP服务器支持了CWD ..及CDUP命令，默认编码修改为GB2312,通过OPTS切换UTF8编码，支持了FileZilla客户端连接下载。
+10. ToyoPucServer: 丰田工机的虚拟PLC得地址支持了位得格式，例如 D100.0   D100.10  然后使用bool读写操作，和客户端保持一致。
+11. Doc: fanuc机床类增加一个说明，在跨平台框架下，需要安装codepage组件，并且注册编码，然后设置 gb2312 编码，才能正确解析字符串不乱码。
+12. Demo: Demo界面新增加一个端口映射的功能测试，可以将本地的设备ip及端口，映射到服务器的端口上，HSL提供免费30分钟连续映射测试。
+13. Demo: Demo界面上的读取，写入地址数据的功能里，针对地址进行了记忆操作，自动记忆12个地址，方便快速切换，支持保存。
+14. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
+15. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

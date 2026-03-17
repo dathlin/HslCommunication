@@ -31,6 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("文件列表");
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label2 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBox10 = new System.Windows.Forms.TextBox();
@@ -102,7 +103,6 @@
 			this.刷新目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.重命名目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.创建目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -148,6 +148,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(993, 60);
 			this.panel1.TabIndex = 7;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Gray;
+			this.label2.Location = new System.Drawing.Point(318, 35);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(419, 17);
+			this.label2.TabIndex = 30;
+			this.label2.Text = "(支持windows的iis, 各种机床的servU, FileZilla Server, 全部需要设置不加密)";
 			// 
 			// textBox1
 			// 
@@ -865,16 +875,6 @@
 			this.创建目录ToolStripMenuItem.Text = "创建目录";
 			this.创建目录ToolStripMenuItem.Click += new System.EventHandler(this.创建目录ToolStripMenuItem_Click);
 			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.ForeColor = System.Drawing.Color.Gray;
-			this.label2.Location = new System.Drawing.Point(318, 35);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(419, 17);
-			this.label2.TabIndex = 30;
-			this.label2.Text = "(支持windows的iis, 各种机床的servU, FileZilla Server, 全部需要设置不加密)";
-			// 
 			// FormFtpClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -888,7 +888,7 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormFtpClient";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "文件客户端窗口";
+			this.Text = "FTP文件客户端";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMqttFileClient_FormClosing);
 			this.Load += new System.EventHandler(this.FormFileClient_Load);
 			this.panel1.ResumeLayout(false);

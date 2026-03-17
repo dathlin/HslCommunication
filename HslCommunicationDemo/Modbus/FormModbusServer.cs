@@ -15,6 +15,10 @@ using System.Xml.Linq;
 using HslCommunicationDemo.DemoControl;
 using HslCommunication.Core.Net;
 using HslCommunication.Core.Pipe;
+using HslCommunication.Profinet.Inovance;
+using HslCommunication.Profinet.Delta.Helper;
+using HslCommunication.Profinet.MegMeet;
+using HslCommunication.Profinet.XINJE;
 
 namespace HslCommunicationDemo
 {
@@ -25,6 +29,84 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
+
+			comboBox_address_mapping.DataSource = new string[]
+			{
+				"No Address Mapping",   // 0
+				"InovanceAM",           // 1
+				"InovanceH3U",          // 2
+				"InovanceH5U",          // 3
+				"InovanceEasy",         // 4
+				"DeltaAS[台达]",         // 5
+				"DeltaDvp[台达]",       // 6
+				"MegMeet[麦格米特]",    // 7
+				"XinJE_XC",             // 8
+				"XinJE_XD_XL",          // 9
+				"WeCon[维控]",          // 10
+				"Invt_Ts[英威腾]",              
+			};
+			comboBox_address_mapping.SelectedIndex = 0;
+			comboBox_address_mapping.SelectedIndexChanged += ComboBox_address_mapping_SelectedIndexChanged;
+		}
+
+		private void ComboBox_address_mapping_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			if (busTcpServer != null)
+			{
+				switch (comboBox_address_mapping.SelectedIndex)
+				{
+					case 0:  busTcpServer.RegisteredAddressMapping( null ); break;
+					case 1:  busTcpServer.RegisteredAddressMapping( InovanceHelper.PraseInovanceAMAddress ); break;
+					case 2:  busTcpServer.RegisteredAddressMapping( InovanceHelper.PraseInovanceH3UAddress ); break;
+					case 3:  busTcpServer.RegisteredAddressMapping( InovanceHelper.PraseInovanceH5UAddress ); break;
+					case 4:  busTcpServer.RegisteredAddressMapping( InovanceHelper.PraseInovanceH5UAddress ); break;
+					case 5:  busTcpServer.RegisteredAddressMapping( ModbusMappingAddress.Delta_AS ); break;
+					case 6:  busTcpServer.RegisteredAddressMapping( DeltaDvpHelper.ParseDeltaDvpAddress ); break;
+					case 7:  busTcpServer.RegisteredAddressMapping( MegMeetHelper.PraseMegMeetAddress ); break;
+					case 8:  busTcpServer.RegisteredAddressMapping( ( m, n ) => XinJEHelper.PraseXinJEAddress( XinJESeries.XC, m, n ) ); break;
+					case 9:  busTcpServer.RegisteredAddressMapping( ( m, n ) => XinJEHelper.PraseXinJEAddress( XinJESeries.XD, m, n ) ); break;
+					case 10: busTcpServer.RegisteredAddressMapping( ModbusMappingAddress.WeCon_Lx5v ); break;
+					case 11: busTcpServer.RegisteredAddressMapping( ModbusMappingAddress.Invt_Ts ); break;
+					default: break;
+				}
+			}
+
+			switch (comboBox_address_mapping.SelectedIndex)
+			{
+				case 0:  addressExampleControl.SetAddressExample( HslCommunicationDemo.Modbus.Helper.GetModbusAddressExamples( ).RemoveLast( 4 ) ); break;
+				case 1:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) ); break;
+				case 2:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) ); break;
+				case 3:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) ); break;
+				case 4:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) ); break;
+				case 5:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Delta.Helper.GetDeviceAddressExamples( ) ); break;
+				case 6:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Delta.Helper.GetDeviceAddressExamples( ) ); break;
+				case 7:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.MegMeet.Helper.GetMegMeetAddress( ) ); break;
+				case 8:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.XINJE.Helper.GetXinJEAddress( ) ); break;
+				case 9:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.XINJE.Helper.GetXinJEAddress( ) ); break;
+				case 10: addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.WeCon.Helper.GetWeConLx5vAddress( ) ); break;
+				case 11: addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Invt.Helper.GetInvtAddress( ) ); break;
+				default: break;
+			}
+		}
+
+		private string GetMappingString()
+		{
+			switch (comboBox_address_mapping.SelectedIndex)
+			{
+				case 0:  return ".RegisteredAddressMapping( null );";
+				case 1:  return ".RegisteredAddressMapping( HslCommunication.Profinet.Inovance.InovanceHelper.PraseInovanceAMAddress );";
+				case 2:  return ".RegisteredAddressMapping( HslCommunication.Profinet.Inovance.InovanceHelper.PraseInovanceH3UAddress );";
+				case 3:  return ".RegisteredAddressMapping( HslCommunication.Profinet.Inovance.InovanceHelper.PraseInovanceH5UAddress );";
+				case 4:  return ".RegisteredAddressMapping( HslCommunication.Profinet.Inovance.InovanceHelper.PraseInovanceH5UAddress );";
+				case 5:  return ".RegisteredAddressMapping( HslCommunication.ModBus.ModbusMappingAddress.Delta_AS );";
+				case 6:  return ".RegisteredAddressMapping( HslCommunication.Profinet.Delta.Helper.DeltaDvpHelper.ParseDeltaDvpAddress );";
+				case 7:  return ".RegisteredAddressMapping( HslCommunication.Profinet.MegMeet.MegMeetHelper.PraseMegMeetAddress );";
+				case 8:  return ".RegisteredAddressMapping( ( m, n ) => HslCommunication.Profinet.XINJE.XinJEHelper.PraseXinJEAddress( XinJESeries.XC, m, n ) );";
+				case 9:  return ".RegisteredAddressMapping( ( m, n ) => HslCommunication.Profinet.XINJE.XinJEHelper.PraseXinJEAddress( XinJESeries.XD, m, n ) );";
+				case 10: return ".RegisteredAddressMapping( HslCommunication.ModBusModbusMappingAddress.WeCon_Lx5v );";
+				case 11: return ".RegisteredAddressMapping( HslCommunication.ModBusModbusMappingAddress.Invt_Ts );";
+				default: return ".RegisteredAddressMapping( null );";
+			}
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -140,6 +222,7 @@ namespace HslCommunicationDemo
 				busTcpServer.ForceSerialReceiveOnce   = checkBox_forceReceiveOnce.Checked;
 
 				ComboBox2_SelectedIndexChanged( null, new EventArgs( ) );
+				ComboBox_address_mapping_SelectedIndexChanged( comboBox_address_mapping, new EventArgs( ) );
 				busTcpServer.IsStringReverse = checkBox3.Checked;
 
 				this.sslServerControl1.InitializeServer( busTcpServer );
@@ -159,6 +242,7 @@ namespace HslCommunicationDemo
 					nameof( busTcpServer.IsStringReverse ),
 					nameof( busTcpServer.EnableWriteMaskCode ),
 					nameof( busTcpServer.DataFormat ) );
+				codeExampleControl.AppendTextBox1( "modbusServer." + GetMappingString( ) );
 			}
 			catch (Exception ex)
 			{
@@ -242,7 +326,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( "Station", textBox_station.Text );
 			element.SetAttributeValue( "MaskCode", checkBox_maskcode.Checked );
 			element.SetAttributeValue( "SerialReceiveAtleastTime", textBox_time_min.Text );
-
+			element.SetAttributeValue( "AddressMapping", comboBox_address_mapping.SelectedIndex );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
 
@@ -259,6 +343,7 @@ namespace HslCommunicationDemo
 			textBox_station.Text = GetXmlValue( element, "Station", "1", m => m );
 			checkBox_maskcode.Checked = GetXmlValue( element, "MaskCode", true, bool.Parse );
 			textBox_time_min.Text = GetXmlValue( element, "SerialReceiveAtleastTime", textBox_time_min.Text, m => m );
+			comboBox_address_mapping.SelectedIndex = GetXmlValue( element, "AddressMapping", 0, int.Parse );
 
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}

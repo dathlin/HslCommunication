@@ -60,12 +60,13 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBox_write_text = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
-			this.textBox_write_address = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label19 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.comboBox_read_address = new System.Windows.Forms.ComboBox();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.radioButton_read_bit = new System.Windows.Forms.RadioButton();
 			this.radioButton_read_int = new System.Windows.Forms.RadioButton();
 			this.radioButton_read_hex = new System.Windows.Forms.RadioButton();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -97,9 +98,8 @@
 			this.button_read_bool = new System.Windows.Forms.Button();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
-			this.radioButton_read_bit = new System.Windows.Forms.RadioButton();
+			this.comboBox_write_address = new System.Windows.Forms.ComboBox();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -109,6 +109,7 @@
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.comboBox_write_address);
 			this.groupBox2.Controls.Add(this.label21);
 			this.groupBox2.Controls.Add(this.label22);
 			this.groupBox2.Controls.Add(this.label18);
@@ -140,7 +141,6 @@
 			this.groupBox2.Controls.Add(this.label1);
 			this.groupBox2.Controls.Add(this.textBox_write_text);
 			this.groupBox2.Controls.Add(this.label9);
-			this.groupBox2.Controls.Add(this.textBox_write_address);
 			this.groupBox2.Controls.Add(this.label10);
 			this.groupBox2.Controls.Add(this.label19);
 			this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -476,15 +476,6 @@
 			this.label9.TabIndex = 4;
 			this.label9.Text = "值：";
 			// 
-			// textBox_write_address
-			// 
-			this.textBox_write_address.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_write_address.Location = new System.Drawing.Point(63, 21);
-			this.textBox_write_address.Name = "textBox_write_address";
-			this.textBox_write_address.Size = new System.Drawing.Size(188, 23);
-			this.textBox_write_address.TabIndex = 3;
-			// 
 			// label10
 			// 
 			this.label10.AutoSize = true;
@@ -517,6 +508,7 @@
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.comboBox_read_address);
 			this.groupBox1.Controls.Add(this.panel2);
 			this.groupBox1.Controls.Add(this.panel1);
 			this.groupBox1.Controls.Add(this.button_find_string);
@@ -546,7 +538,6 @@
 			this.groupBox1.Controls.Add(this.button_read_bool);
 			this.groupBox1.Controls.Add(this.textBox4);
 			this.groupBox1.Controls.Add(this.label7);
-			this.groupBox1.Controls.Add(this.textBox3);
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -555,6 +546,16 @@
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "单数据读取测试";
+			// 
+			// comboBox_read_address
+			// 
+			this.comboBox_read_address.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox_read_address.FormattingEnabled = true;
+			this.comboBox_read_address.Location = new System.Drawing.Point(63, 22);
+			this.comboBox_read_address.Name = "comboBox_read_address";
+			this.comboBox_read_address.Size = new System.Drawing.Size(189, 25);
+			this.comboBox_read_address.TabIndex = 41;
 			// 
 			// panel2
 			// 
@@ -565,6 +566,20 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(58, 67);
 			this.panel2.TabIndex = 40;
+			// 
+			// radioButton_read_bit
+			// 
+			this.radioButton_read_bit.AutoSize = true;
+			this.radioButton_read_bit.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+			this.radioButton_read_bit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+			this.radioButton_read_bit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.radioButton_read_bit.ForeColor = System.Drawing.Color.Gray;
+			this.radioButton_read_bit.Location = new System.Drawing.Point(4, 45);
+			this.radioButton_read_bit.Name = "radioButton_read_bit";
+			this.radioButton_read_bit.Size = new System.Drawing.Size(40, 21);
+			this.radioButton_read_bit.TabIndex = 2;
+			this.radioButton_read_bit.Text = "Bit";
+			this.radioButton_read_bit.UseVisualStyleBackColor = true;
 			// 
 			// radioButton_read_int
 			// 
@@ -904,15 +919,6 @@
 			this.label7.TabIndex = 4;
 			this.label7.Text = "结果：";
 			// 
-			// textBox3
-			// 
-			this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox3.Location = new System.Drawing.Point(63, 23);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(189, 23);
-			this.textBox3.TabIndex = 3;
-			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
@@ -922,19 +928,15 @@
 			this.label6.TabIndex = 2;
 			this.label6.Text = "地址：";
 			// 
-			// radioButton_read_bit
+			// comboBox_write_address
 			// 
-			this.radioButton_read_bit.AutoSize = true;
-			this.radioButton_read_bit.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-			this.radioButton_read_bit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-			this.radioButton_read_bit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.radioButton_read_bit.ForeColor = System.Drawing.Color.Gray;
-			this.radioButton_read_bit.Location = new System.Drawing.Point(4, 45);
-			this.radioButton_read_bit.Name = "radioButton_read_bit";
-			this.radioButton_read_bit.Size = new System.Drawing.Size(40, 21);
-			this.radioButton_read_bit.TabIndex = 2;
-			this.radioButton_read_bit.Text = "Bit";
-			this.radioButton_read_bit.UseVisualStyleBackColor = true;
+			this.comboBox_write_address.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox_write_address.FormattingEnabled = true;
+			this.comboBox_write_address.Location = new System.Drawing.Point(63, 20);
+			this.comboBox_write_address.Name = "comboBox_write_address";
+			this.comboBox_write_address.Size = new System.Drawing.Size(189, 25);
+			this.comboBox_write_address.TabIndex = 42;
 			// 
 			// UserControlReadWriteOp
 			// 
@@ -973,7 +975,6 @@
 		private System.Windows.Forms.Button button_write_bool;
 		private System.Windows.Forms.TextBox textBox_write_text;
 		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.TextBox textBox_write_address;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.TextBox textBox5;
@@ -990,7 +991,6 @@
 		private System.Windows.Forms.Button button_read_bool;
 		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label8;
@@ -1030,5 +1030,7 @@
         private System.Windows.Forms.RadioButton radioButton_read_int;
         private System.Windows.Forms.RadioButton radioButton_read_hex;
 		private System.Windows.Forms.RadioButton radioButton_read_bit;
+		private System.Windows.Forms.ComboBox comboBox_read_address;
+		private System.Windows.Forms.ComboBox comboBox_write_address;
 	}
 }

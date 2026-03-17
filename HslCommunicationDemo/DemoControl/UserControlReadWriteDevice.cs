@@ -110,7 +110,7 @@ namespace HslCommunicationDemo.DemoControl
 					{
 						this.userControlReadWriteOp1.MethodCodeClick += ( object sender, string e ) =>
 						{
-							codeExampleControl.ReaderReadCode( e );
+							codeExampleControl.RenderReadCode( e );
 						};
 					}
 				}
@@ -140,12 +140,14 @@ namespace HslCommunicationDemo.DemoControl
 			element.RemoveNodes( );
 			this.dataTableControl1.GetDataTable( element );
 			this.dataSimulateControl1.GetSimulateTable( element );
+			this.userControlReadWriteOp1.SaveXmlAddressList( element );
 		}
 
 		public int LoadDataTable( XElement element )
 		{
 			int count = this.dataTableControl1.LoadDataTable( element );
 			this.dataSimulateControl1.LoadSimulateTable( element );
+			this.userControlReadWriteOp1.LoadXmlAddressList( element );
 			return count;
 		}
 

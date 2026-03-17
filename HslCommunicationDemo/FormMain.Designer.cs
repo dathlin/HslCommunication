@@ -74,6 +74,7 @@
 			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label_account = new System.Windows.Forms.Label();
+			this.portMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -137,7 +138,8 @@
             this.toolStripMenuItem_tcp2Tcp,
             this.pingTestToolStripMenuItem,
             this.toolStripMenuItem_byteTransform,
-            this.regexRegularToolStripMenuItem});
+            this.regexRegularToolStripMenuItem,
+            this.portMappingToolStripMenuItem});
 			this.toolStripMenuItem_Debug.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.toolStripMenuItem_Debug.Name = "toolStripMenuItem_Debug";
 			this.toolStripMenuItem_Debug.Size = new System.Drawing.Size(76, 21);
@@ -451,6 +453,14 @@
 			this.label_account.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			this.label_account.Click += new System.EventHandler(this.label_account_Click);
 			// 
+			// portMappingToolStripMenuItem
+			// 
+			this.portMappingToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.HslCommunication;
+			this.portMappingToolStripMenuItem.Name = "portMappingToolStripMenuItem";
+			this.portMappingToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.portMappingToolStripMenuItem.Text = "PortMapping";
+			this.portMappingToolStripMenuItem.Click += new System.EventHandler(this.portMappingToolStripMenuItem_Click);
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -526,6 +536,7 @@
 		private System.Windows.Forms.ToolStripMenuItem 退出软件显示确认ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem showMsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 写入成功不弹窗ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem portMappingToolStripMenuItem;
 	}
 }
 

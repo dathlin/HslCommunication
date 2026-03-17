@@ -483,7 +483,7 @@ namespace HslCommunicationDemo
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.SendFrameUMessage( 0x43 );";
-			codeExampleControl.ReaderReadCode( textBox_code.Text );
+			codeExampleControl.RenderReadCode( textBox_code.Text );
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -500,7 +500,7 @@ namespace HslCommunicationDemo
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.TotalSubscriptions( );";
-			codeExampleControl.ReaderReadCode( textBox_code.Text );
+			codeExampleControl.RenderReadCode( textBox_code.Text );
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -517,7 +517,7 @@ namespace HslCommunicationDemo
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.TotalSubscriptions( 0x01 );";
-			codeExampleControl.ReaderReadCode( textBox_code.Text );
+			codeExampleControl.RenderReadCode( textBox_code.Text );
 		}
 
 		private void button7_Click( object sender, EventArgs e )
@@ -534,7 +534,7 @@ namespace HslCommunicationDemo
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.TotalSubscriptions( 0x03 );";
-			codeExampleControl.ReaderReadCode( textBox_code.Text );
+			codeExampleControl.RenderReadCode( textBox_code.Text );
 		}
 
 		private void button8_Click( object sender, EventArgs e )
@@ -551,7 +551,7 @@ namespace HslCommunicationDemo
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.SendFrameIMessage( new byte[] {{ 0x65, 0x01, 0x07, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01 }} );";
-			codeExampleControl.ReaderReadCode( textBox_code.Text );
+			codeExampleControl.RenderReadCode( textBox_code.Text );
 		}
 
 		private void WriteIec( byte[] value )
@@ -563,7 +563,7 @@ namespace HslCommunicationDemo
 			OperateResult send = iec104.WriteIec( type, reason, address, value );
 
 			textBox_code.Text = $"OperateResult send = iec104.WriteIec( \"{type}\", \"{reason}\", \"{address}\", \"{value.ToHexString( )}\".ToHexBytes( ) );";
-			codeExampleControl.ReaderReadCode( textBox_code.Text );
+			codeExampleControl.RenderReadCode( textBox_code.Text );
 
 			if (send.IsSuccess)
 			{
@@ -609,7 +609,7 @@ namespace HslCommunicationDemo
 			}
 
 			textBox_code.Text = $"OperateResult send = iec104.SendFrameIMessage( \"{textBox1.Text}\".ToHexBytes( ) );";
-			codeExampleControl.ReaderReadCode( textBox_code.Text );
+			codeExampleControl.RenderReadCode( textBox_code.Text );
 		}
 
 		private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer( );

@@ -85,6 +85,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			if (addressExamples == null) addressExamples = new DeviceAddressExample[0];
 
+			dataGridView1.Rows.Clear( );
 			DataGridSpecifyRowCount( dataGridView1, addressExamples.Length );
 			for (int i = 0; i < addressExamples.Length; i++)
 			{
