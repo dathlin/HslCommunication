@@ -687,7 +687,14 @@ namespace HslCommunicationDemo.DemoControl
 							dgvr.Cells[5].Value = read.Content.ToString( );
 						else
 						{
-							dgvr.Cells[5].Value = this.interpreter.Eval( dataTableItem.Expression, new DynamicExpresso.Parameter( "x", read.Content ) );
+							try
+							{
+								dgvr.Cells[5].Value = this.interpreter.Eval( dataTableItem.Expression, new DynamicExpresso.Parameter( "x", read.Content ) );
+							}
+							catch ( Exception ex )
+							{
+								dgvr.Cells[5].Value = "Error: " + (ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+							}
 						}
 
 						string curveName = dataTableItem.Name;
@@ -705,7 +712,7 @@ namespace HslCommunicationDemo.DemoControl
 										this.curveDataDict.AddData( curveName, this.interpreter.Eval( dataTableItem.Expression, new DynamicExpresso.Parameter( "x", read.Content ) ) );
 								}
 								else
-								{
+								{ 
 									// 没有选择
 									this.curveDataDict.RemoveData( curveName );
 									this.hslCurveHistory1.RemoveCurve( curveName );

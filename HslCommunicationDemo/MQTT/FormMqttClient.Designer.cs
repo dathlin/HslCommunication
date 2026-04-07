@@ -33,6 +33,7 @@
 			this.label13 = new System.Windows.Forms.Label();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.button10 = new System.Windows.Forms.Button();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.label7 = new System.Windows.Forms.Label();
@@ -183,6 +184,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button10);
 			this.panel2.Controls.Add(this.splitContainer1);
 			this.panel2.Controls.Add(this.checkBox_regex_filter);
 			this.panel2.Controls.Add(this.textBox_regex_filter);
@@ -196,6 +198,17 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(895, 563);
 			this.panel2.TabIndex = 13;
+			// 
+			// button10
+			// 
+			this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button10.Location = new System.Drawing.Point(186, 535);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(75, 25);
+			this.button10.TabIndex = 44;
+			this.button10.Text = "计数重置";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click_1);
 			// 
 			// splitContainer1
 			// 
@@ -715,7 +728,7 @@
 			// 
 			this.checkBox_debug_info_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.checkBox_debug_info_show.AutoSize = true;
-			this.checkBox_debug_info_show.Location = new System.Drawing.Point(181, 538);
+			this.checkBox_debug_info_show.Location = new System.Drawing.Point(267, 538);
 			this.checkBox_debug_info_show.Name = "checkBox_debug_info_show";
 			this.checkBox_debug_info_show.Size = new System.Drawing.Size(128, 21);
 			this.checkBox_debug_info_show.TabIndex = 33;
@@ -726,7 +739,7 @@
 			// 
 			this.checkBox_long_message_hide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.checkBox_long_message_hide.AutoSize = true;
-			this.checkBox_long_message_hide.Location = new System.Drawing.Point(335, 538);
+			this.checkBox_long_message_hide.Location = new System.Drawing.Point(404, 538);
 			this.checkBox_long_message_hide.Name = "checkBox_long_message_hide";
 			this.checkBox_long_message_hide.Size = new System.Drawing.Size(99, 21);
 			this.checkBox_long_message_hide.TabIndex = 32;
@@ -1131,5 +1144,6 @@
 		private System.Windows.Forms.Panel panel9;
 		private MQTT.MqttTopicControl mqttTopicControl1;
 		private System.Windows.Forms.CheckBox checkBox_stop;
+		private System.Windows.Forms.Button button10;
 	}
 }

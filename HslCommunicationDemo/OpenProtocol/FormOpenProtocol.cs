@@ -23,8 +23,8 @@ namespace HslCommunicationDemo
 			InitializeComponent( );
 
 			this.toolTip = new ToolTip( );
-			string tip = "额外的mid数组，如果你得用于订阅返回的mid大于421，则需要在数组里额外指定，例如 1000,1010";
-			if (Program.Language == 2) tip = "Additional mid array, if you need to subscribe to the returned mid greater than 421, you need to specify it additionally in the array, such as 1000,1010";
+			string tip = "额外的mid数组，如果你得用于订阅返回的mid大于421，例如 1000,1010  也可以指定返回 1000-1003,2000-2005";
+			if (Program.Language == 2) tip = "Additional mid array: if the mid used for subscription returns is greater than 421, such as 1000, 1010, you can also specify return ranges like 1000-1003, 2000-2005.";
 			this.toolTip.SetToolTip( label_sub_mid, tip );
 		}
 
@@ -46,7 +46,7 @@ namespace HslCommunicationDemo
 			openProtocol.OnReceivedOpenMessage += OpenProtocol_ReceivedMessage;
 			try
 			{
-				if (!string.IsNullOrEmpty( textBox_sub_mid.Text )) openProtocol.ExtraSubscribeMID = textBox_sub_mid.Text.ToStringArray<int>( );
+				openProtocol.SetExtraSubscribeMID( textBox_sub_mid.Text );
 				this.pipeSelectControl1.IniPipe( openProtocol );
 				OperateResult connect = DeviceConnectPLC( openProtocol );
 				if (connect.IsSuccess)
@@ -61,7 +61,10 @@ namespace HslCommunicationDemo
 					paras.Add( nameof( openProtocol.RevisonOnConnected ) );
 					paras.Add( nameof( openProtocol.AutoAckControllerMessage ) );
 					paras.Add( nameof( openProtocol.KeepAliveMessageEnable ) );
-					if (!string.IsNullOrEmpty( textBox_sub_mid.Text )) paras.Add( nameof( openProtocol.ExtraSubscribeMID ) );
+					if (!string.IsNullOrEmpty( textBox_sub_mid.Text ))
+					{
+						paras.Add( $"SetExtraSubscribeMID( \"{textBox_sub_mid.Text}\" )" );
+					}
 
 					codeExampleControl.SetCodeText( "openProtocol", openProtocol, paras.ToArray( ) );
 				}

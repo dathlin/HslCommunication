@@ -123,6 +123,7 @@
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Open Protocol";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 3;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
@@ -381,10 +382,10 @@
 			// tabPage4
 			// 
 			this.tabPage4.Controls.Add(this.panel6);
-			this.tabPage4.Location = new System.Drawing.Point(4, 26);
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(659, 299);
+			this.tabPage4.Size = new System.Drawing.Size(659, 303);
 			this.tabPage4.TabIndex = 1;
 			this.tabPage4.Text = "Subscribe";
 			this.tabPage4.UseVisualStyleBackColor = true;
@@ -399,7 +400,7 @@
 			this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel6.Location = new System.Drawing.Point(3, 3);
 			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(653, 293);
+			this.panel6.Size = new System.Drawing.Size(653, 297);
 			this.panel6.TabIndex = 0;
 			// 
 			// textBox_log
@@ -412,7 +413,7 @@
 			this.textBox_log.Multiline = true;
 			this.textBox_log.Name = "textBox_log";
 			this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_log.Size = new System.Drawing.Size(568, 287);
+			this.textBox_log.Size = new System.Drawing.Size(568, 291);
 			this.textBox_log.TabIndex = 36;
 			// 
 			// checkBox_sub_stop
@@ -430,7 +431,7 @@
 			this.label_subscribe_tick.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label_subscribe_tick.AutoSize = true;
 			this.label_subscribe_tick.ForeColor = System.Drawing.Color.Gray;
-			this.label_subscribe_tick.Location = new System.Drawing.Point(39, 271);
+			this.label_subscribe_tick.Location = new System.Drawing.Point(39, 275);
 			this.label_subscribe_tick.Name = "label_subscribe_tick";
 			this.label_subscribe_tick.Size = new System.Drawing.Size(13, 17);
 			this.label_subscribe_tick.TabIndex = 40;
@@ -451,7 +452,7 @@
 			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label15.AutoSize = true;
 			this.label15.ForeColor = System.Drawing.Color.Gray;
-			this.label15.Location = new System.Drawing.Point(3, 271);
+			this.label15.Location = new System.Drawing.Point(3, 275);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(43, 17);
 			this.label15.TabIndex = 39;
@@ -598,7 +599,7 @@
 			this.listBox1.ItemHeight = 17;
 			this.listBox1.Location = new System.Drawing.Point(1, 29);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(124, 242);
+			this.listBox1.Size = new System.Drawing.Size(124, 259);
 			this.listBox1.TabIndex = 1;
 			this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
 			// 

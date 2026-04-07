@@ -48,6 +48,21 @@ namespace HslCommunicationDemo
 		/// </summary>
 		public bool WriteSuccessNotShowWindow { get; set; } = false;
 
+		/// <summary>
+		/// 上传设备的名称，主要是为了让管理员审核的时候能够知道是谁上传的设备信息，方便联系
+		/// </summary>
+		public string UploadDeviceName { get; set; } = string.Empty;
+
+		/// <summary>
+		/// 上传设备的联系方式，主要是为了让管理员审核的时候能够知道是什么设备，方便联系
+		/// </summary>
+		public string UploadDeviceContact { get; set; } = string.Empty;
+
+		/// <summary>
+		/// 显示列表的模式，0：默认，1：A-Z，2：Z-A  点击来回切换
+		/// </summary>
+		public int RenderListMode { get; set; } = 0;
+
 		public void LoadFiles( )
 		{
 			lock(lock_settings)
@@ -79,6 +94,9 @@ namespace HslCommunicationDemo
 						TopMost                      = GetValue( json, nameof( TopMost ),                   false );
 						ShowTimeOfMilliseconds       = GetValue( json, nameof( ShowTimeOfMilliseconds ),    false );
 						WriteSuccessNotShowWindow    = GetValue( json, nameof( WriteSuccessNotShowWindow ), false );
+						UploadDeviceName             = GetValue( json, nameof( UploadDeviceName ),          string.Empty );
+						UploadDeviceContact          = GetValue( json, nameof( UploadDeviceContact ),       string.Empty );
+						RenderListMode               = GetValue( json, nameof( RenderListMode ),            0 );
 					}
 				}
 				catch
@@ -102,6 +120,9 @@ namespace HslCommunicationDemo
 				json.Add( nameof( TopMost ), TopMost );
 				json.Add( nameof( ShowTimeOfMilliseconds ), ShowTimeOfMilliseconds );
 				json.Add( nameof( WriteSuccessNotShowWindow ), WriteSuccessNotShowWindow );
+				json.Add( nameof( UploadDeviceName ), UploadDeviceName );
+				json.Add( nameof( UploadDeviceContact ), UploadDeviceContact );
+				json.Add( nameof( RenderListMode ), RenderListMode );
 				File.WriteAllText( path, json.ToString( ), Encoding.UTF8 );
 			}
 		}

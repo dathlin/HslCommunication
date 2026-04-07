@@ -33,9 +33,9 @@ namespace HslRedisDesktop
 			}
 		}
 
-        #region 窗体 Load Show Close
+		#region 窗体 Load Show Close
 
-        private void FormMain_Load( object sender, EventArgs e )
+		private void FormMain_Load( object sender, EventArgs e )
 		{
 			ImageList imageList = new ImageList( );
 			imageList.Images.Add( "loading", HslCommunicationDemo.Properties.Resources.loading );
@@ -77,6 +77,24 @@ namespace HslRedisDesktop
 
 			// 显示初始的界面信息
 			CreateRedisShowTagControl<StartControl>( );
+
+			if (Program.Language == 2)
+			{
+				label1.Text = "Server List";
+				新增KeyToolStripMenuItem.Text = "Add Key";
+				刷新数据ToolStripMenuItem.Text = "Refresh Keys";
+				过滤KeyToolStripMenuItem.Text = "Filter Keys";
+				清除所有KeyToolStripMenuItem.Text = "Clear All Keys";
+				刷新所有数据ToolStripMenuItem.Text = "Refresh All Data";
+				服务器状态ToolStripMenuItem.Text = "Server Status";
+				控制台操作ToolStripMenuItem.Text = "Console Operation";
+				修改连接配置ToolStripMenuItem.Text = "Modify Connection Settings";
+				修改密码ToolStripMenuItem.Text = "Change Password";
+				断开当前连接ToolStripMenuItem.Text = "Disconnect Current Connection";
+				删除当前链接ToolStripMenuItem.Text = "Delete Current Connection";
+				展开所有ToolStripMenuItem.Text = "Expand All";
+
+			}
 		}
 
 		private void FormMain_Shown( object sender, EventArgs e )
@@ -85,7 +103,9 @@ namespace HslRedisDesktop
 
 			treeView1.AfterSelect += TreeView1_AfterSelect;
 			treeView1.MouseDown += TreeView1_MouseDown;
+			treeView1.BeforeExpand += TreeView1_BeforeExpand;
 		}
+
 
 		private void FormMain_FormClosing( object sender, FormClosingEventArgs e )
 		{
@@ -175,7 +195,7 @@ namespace HslRedisDesktop
 				}
 
 				FormInputString form = new FormInputString( );
-				form.TextInfo = "请输入新的密码：";
+				form.TextInfo = Program.Language == 1 ? "请输入新的密码：" : "Please input new password";
 				if(form.ShowDialog() == DialogResult.OK)
 				{
 					OperateResult change;
@@ -190,7 +210,7 @@ namespace HslRedisDesktop
 
 					if (change.IsSuccess)
 					{
-						DemoUtils.ShowMessage( "修改密码成功！" );
+						DemoUtils.ShowMessage( Program.Language == 1 ? "修改密码成功！" : "Change password success" );
 						redisSettings.Password = form.InputValue;
 						if (redisSettings.Redis != null)
 						{
@@ -281,7 +301,7 @@ namespace HslRedisDesktop
 			{
 				using (FormInputString formInput = new FormInputString( ))
 				{
-					formInput.TextInfo = "请输入新的过滤条件：";
+					formInput.TextInfo = Program.Language == 1 ? "请输入新的过滤条件：" : "Please enter the new filtering criteria:";
 					formInput.InputValue = dbSettings.Filter;
 
 					if (formInput.ShowDialog( ) == DialogResult.OK)
@@ -306,7 +326,7 @@ namespace HslRedisDesktop
 				if (redisSettings.Redis == null) { DemoUtils.ShowMessage( "获取当前的Redis连接客户端失败！" ); return; }
 
 				OperateResult flush = redisSettings.Redis.FlushDB( );
-				if(!flush.IsSuccess) { DemoUtils.ShowMessage( "获取当前的Redis清除数据失败！" ); return; }
+				if(!flush.IsSuccess) { DemoUtils.ShowMessage( "获取当前的Redis清除数据失败: " + flush.Message ); return; }
 				DemoUtils.ShowMessage( "当前的DB块" + redisSettings.DBBlock + " 清除完成，请手动刷新。" );
 			}
 		}
@@ -341,7 +361,14 @@ namespace HslRedisDesktop
 
 				if (select.ImageKey == "redis_db")
 				{
-					contextMenuStrip_db.Show( treeView1, e.Location );
+					if (select.Tag is DbSettings settings)
+					{
+						RedisSettings redisSettings = select.Parent.Tag as RedisSettings;
+						redisSettings.Redis.SelectDB( settings.DBNumber );
+						settings.DBNumber = settings.DBNumber;
+
+						contextMenuStrip_db.Show( treeView1, e.Location );
+					}
 				}
 				else if (select.ImageKey == "VirtualMachine")
 				{
@@ -354,16 +381,27 @@ namespace HslRedisDesktop
 			}
 		}
 
+		private void TreeView1_BeforeExpand( object sender, TreeViewCancelEventArgs e )
+		{
+			// 如果是db块的节点，则在展开之前刷新数据信息
+			TreeNode treeNode = e.Node;
+			if (treeNode.ImageKey == "redis_db")
+			{
+				if (treeNode.Nodes.Count == 1 && treeNode.Nodes[0].ImageKey == "loading")
+					RefreshDbKeys( treeNode, reload: true );
+			}
+		}
+
 		private void TreeView1_AfterSelect( object sender, TreeViewEventArgs e )
 		{
 			TreeNode select = treeView1.SelectedNode;
 			if (select.ImageKey == "VirtualMachine")
 			{
-				RefreshRedisKey( select );
+				// RefreshRedisKey( select );
 			}
 			else if (select.ImageKey == "redis_db")
 			{
-				RefreshDbKeys( select, false );
+				// RefreshDbKeys( select, false );
 			}
 			else if (select.ImageKey == "Enum_582" || select.ImageKey == "brackets_Square_16xMD" || select.ImageKey == "Table_748" ||
 				select.ImageKey == "docview_xaml_on_16x16" || select.ImageKey == "zset")
@@ -431,10 +469,11 @@ namespace HslRedisDesktop
 				{
 					for (int i = 0; i < 16; i++)
 					{
-						if(i == 0)
+						if (i == 0)
 						{
 							OperateResult selectDb = redisSettings.Redis.SelectDB( i );
-							if (!selectDb.IsSuccess) { DemoUtils.ShowMessage( "Redis读取失败！" + selectDb.Message ); return; };
+							if (!selectDb.IsSuccess) { DemoUtils.ShowMessage( "Redis读取失败！" + selectDb.Message ); return; }
+							;
 						}
 						else
 						{
@@ -456,10 +495,15 @@ namespace HslRedisDesktop
 						dbTree.SelectedImageKey = "redis_db";
 						dbTree.Tag = new DbSettings( ) { DBNumber = i };
 
+						TreeNode load = new TreeNode( "loading..." );
+						load.ImageKey = "loading";
+						load.SelectedImageKey = "loading";
+						dbTree.Nodes.Add( load );
+
 						select.Nodes.Add( dbTree );
 					}
 
-					if(redisSettings.Redis.SelectDB( 0 ).IsSuccess) redisSettings.DBBlock = 0;
+					if (redisSettings.Redis.SelectDB( 0 ).IsSuccess) redisSettings.DBBlock = 0;
 					select.Expand( );
 				}
 			}

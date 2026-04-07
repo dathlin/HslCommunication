@@ -1524,10 +1524,9 @@ namespace HslCommunicationDemo.DemoControl
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 				if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 				WriteResultRender( write, GetWriteAddress( ), string.Empty );
-
 			}
 
-			GetWriteCode( address, "OperateResult write = @deviceName.Write( \"" + address + "\", \"" + textBox_write_text.Text + "\", " + DemoUtils.GetEncodingTextFromIndex( comboBox_write_Encoding.SelectedIndex ) + " ) );" );
+			GetWriteCode( GetWriteAddress( ), "OperateResult write = @deviceName.Write( \"" + GetWriteAddress( ) + "\", \"" + textBox_write_text.Text + "\", " + DemoUtils.GetEncodingTextFromIndex( comboBox_write_Encoding.SelectedIndex ) + " ) );" );
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
 		}
 
@@ -1553,7 +1552,7 @@ namespace HslCommunicationDemo.DemoControl
 				WriteResultRender( write, GetWriteAddress( ), string.Empty );
 			}
 
-			GetWriteCode( address, "OperateResult write = @deviceName.Write( \"" + address + "\", \"" + textBox_write_text.Text + "\".ToHexBytes( ) ) );" );
+			GetWriteCode( GetWriteAddress( ), "OperateResult write = @deviceName.Write( \"" + GetWriteAddress( ) + "\", \"" + textBox_write_text.Text + "\".ToHexBytes( ) ) );" );
 			if (checkBox_write_timer.Checked) this.button_write_timer = sender as Button;
 		}
 

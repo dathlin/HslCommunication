@@ -54,6 +54,7 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox_port = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
+			this.checkBox_log_stop = new System.Windows.Forms.CheckBox();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -125,6 +126,7 @@
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.checkBox_log_stop);
 			this.groupBox1.Controls.Add(this.textBox_revision);
 			this.groupBox1.Controls.Add(this.textBox_dataField);
 			this.groupBox1.Controls.Add(this.label8);
@@ -340,6 +342,16 @@
 			this.label3.TabIndex = 2;
 			this.label3.Text = "port：";
 			// 
+			// checkBox_log_stop
+			// 
+			this.checkBox_log_stop.AutoSize = true;
+			this.checkBox_log_stop.Location = new System.Drawing.Point(12, 187);
+			this.checkBox_log_stop.Name = "checkBox_log_stop";
+			this.checkBox_log_stop.Size = new System.Drawing.Size(54, 21);
+			this.checkBox_log_stop.TabIndex = 38;
+			this.checkBox_log_stop.Text = "Stop";
+			this.checkBox_log_stop.UseVisualStyleBackColor = true;
+			// 
 			// FormOpenProtocolServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -395,5 +407,6 @@
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.CheckBox checkBox_log_stop;
 	}
 }

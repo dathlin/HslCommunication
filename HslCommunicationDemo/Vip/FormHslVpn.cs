@@ -64,6 +64,10 @@ namespace HslCommunicationDemo.Vip
 		{
 			this.device_ip = textBox_device_ip.Text;
 			this.device_port = Convert.ToInt32( textBox_device_port.Text );
+			if (!string.IsNullOrEmpty(textBox_expectPort.Text))
+			{
+				this.expectPort = int.Parse( textBox_expectPort.Text.Trim( ) );
+			}
 
 			mqttClient = new MqttClient( new MqttConnectionOptions( )
 			{
@@ -85,7 +89,7 @@ namespace HslCommunicationDemo.Vip
 				mqttClient.PublishMessage( new MqttApplicationMessage( )
 				{
 					Topic = "GetPort",
-					Payload = Encoding.UTF8.GetBytes( "Request for PortMapping service" )
+					Payload = BitConverter.GetBytes( this.expectPort )
 				} );
 
 				this.logNet?.WriteInfo( Program.Language == 1 ? "连接服务器成功，正在请求端口映射服务..." : "The connection to the server was successful. Requesting PortMapping service..." );
@@ -102,7 +106,7 @@ namespace HslCommunicationDemo.Vip
 			{
 				// 收到服务器返回的开放端口号，如果大于100000，则是失败的消息
 				int port = BitConverter.ToInt32( message.Payload, 0 );
-				if (port > 100000)
+				if (port > 100000 || port < 0)
 				{
 					this.logNet?.WriteInfo( Program.Language == 1 ? "服务器分配端口失败，无法提供端口映射服务" : "The server failed to allocate ports, and thus cannot provide PortMapping services." );
 				}
@@ -157,6 +161,14 @@ namespace HslCommunicationDemo.Vip
 			else if (message.Topic == "Offline")
 			{
 				string guid = Encoding.UTF8.GetString( message.Payload );
+				lock (lockObj)
+				{
+					VpnSession session = vpnSessions.Where( m => m.Guid == guid ).FirstOrDefault( );
+					if (session != null)
+					{
+						session.ServerOffline = true;
+					}
+				}
 				Offline( guid, Program.Language == 1 ? $"远程客户端[{guid}]断开，准备断开本地的设备..." : $"Remote client [{guid}] has disconnected. Preparing to disconnect the local device..." );
 			}
 			else if (message.Topic.StartsWith( "Data:"))
@@ -247,11 +259,14 @@ namespace HslCommunicationDemo.Vip
 		{
 			// 异常关闭操作
 			this.logNet?.WriteInfo( (Program.Language == 1 ? $"本地客户端[{session.Guid}]断开，准备断开远程的连接...  Reason: " : $"The local client [{session.Guid}] has disconnected. Preparing to disconnect the remote connection... Reason:") + ex.Message );
-			mqttClient.PublishMessage( new MqttApplicationMessage( )
+			if (session.ServerOffline == false)
 			{
-				Topic = "Offline",
-				Payload = Encoding.UTF8.GetBytes( session.Guid )
-			} );
+				mqttClient.PublishMessage( new MqttApplicationMessage( )
+				{
+					Topic = "Offline",
+					Payload = Encoding.UTF8.GetBytes( session.Guid )
+				} );
+			}
 			Offline( session.Guid );
 		}
 
@@ -311,6 +326,7 @@ namespace HslCommunicationDemo.Vip
 		private bool running = false;
 		private int vpnLeftSeconds = 900;
 		private bool logStop = false;
+		private int expectPort = -1;
 
 		#endregion
 
@@ -325,6 +341,7 @@ namespace HslCommunicationDemo.Vip
 			element.SetAttributeValue( "MqttUserName", textBox_userName.Text );
 			element.SetAttributeValue( "MqttPassword", textBox_password.Text );
 			element.SetAttributeValue( "MqttClientId", textBox_clientId.Text );
+			element.SetAttributeValue( "ExpectPort", textBox_expectPort.Text );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -337,6 +354,7 @@ namespace HslCommunicationDemo.Vip
 			textBox_userName.Text    = GetXmlValue( element, "MqttUserName", textBox_userName.Text, m => m );
 			textBox_password.Text    = GetXmlValue( element, "MqttPassword", textBox_password.Text, m => m );
 			textBox_clientId.Text    = GetXmlValue( element, "MqttClientId", textBox_clientId.Text, m => m );
+			textBox_expectPort.Text  = GetXmlValue( element, "ExpectPort", textBox_expectPort.Text, m => m );
 		}
 
 		#endregion
@@ -390,6 +408,8 @@ namespace HslCommunicationDemo.Vip
 		public string Guid { get; set; }
 
 		public Socket Socket { get; set; }
+
+		public bool ServerOffline { get; set; } = false;
 
 		/// <summary>
 		/// 正在连接设备

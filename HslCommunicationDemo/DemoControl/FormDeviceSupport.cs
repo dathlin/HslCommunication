@@ -29,6 +29,10 @@ namespace HslCommunicationDemo.DemoControl
 				return;
 			}
 
+			Program.Settings.UploadDeviceName = this.textBox3.Text;
+			Program.Settings.UploadDeviceContact = this.textBox2.Text;
+			Program.Settings.SaveFiles( );
+
 			button1.Enabled = false;
 
 			MqttSyncClient mqtt = new MqttSyncClient( new MqttConnectionOptions( )
@@ -145,6 +149,21 @@ namespace HslCommunicationDemo.DemoControl
 				dataGridView1.Columns[2].HeaderText = "联系方式（QQ）";
 				dataGridView1.Columns[3].HeaderText = "上传时间";
 			}
+			else
+			{
+				label1.Text = "List of supported devices information";
+				label2.Text = "Upload new device info";
+				label3.Text = "Model:";
+				label5.Text = "Name:";
+				label4.Text = "QQ(Contact):";
+				button1.Text = "Upload";
+				label6.Text = "1. Upload successful, pending admin approval. No repeated uploads.";
+				label7.Text = "2. To improve approval success rate, please provide your nickname, contact information, and complete, correct model number.";
+				label8.Text = "3. This feature allows other users to contact the contributor for equipment configuration inquiries. A reasonable service fee may be charged for mutual benefit.";
+			}
+
+			textBox3.Text = Program.Settings.UploadDeviceName;
+			textBox2.Text = Program.Settings.UploadDeviceContact;
 		}
 	}
 

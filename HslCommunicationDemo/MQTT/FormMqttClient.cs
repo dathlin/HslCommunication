@@ -93,6 +93,7 @@ namespace HslCommunicationDemo
 				radioButton1.Text      = "Cover";
 				label5.Text            = "Timeout";
 				checkBox_long_message_hide.Text = "Long Msg Hide";
+				button10.Text          = "Reset";
 
 			}
 		}
@@ -524,6 +525,10 @@ namespace HslCommunicationDemo
 			if (button1.Enabled == false) button2_Click( null, EventArgs.Empty ); // 断开连接
 		}
 
+		private void button10_Click_1( object sender, EventArgs e )
+		{
+			System.Threading.Interlocked.Exchange( ref receiveCount, 0 );
+		}
 	}
 
 

@@ -39,5 +39,21 @@ namespace HslCommunicationDemo.PLC.Inovance
 
 			};
 		}
+
+		public static DeviceAddressExample[] GetInovanceEasyNetAddress( )
+		{
+			return new DeviceAddressExample[]
+			{
+				new DeviceAddressExample( "M0",  "中间继电器", true, true, "M0-M7990" ),
+				new DeviceAddressExample( "S0",  "中间继电器", true, true, "S0-S4090" ),
+				new DeviceAddressExample( "X0",  "输入", true, true, "X0-X1770 八进制" ),
+				new DeviceAddressExample( "Y0",  "输出", true, true, "Y0-Y377 八进制" ),
+				new DeviceAddressExample( "B0",  "特殊继电器", true, true, "B0-B32760" ),
+				new DeviceAddressExample( "D0",  "数据寄存器", true, true, "D0-D7990 读位使用 D100.0" ),
+				new DeviceAddressExample( "W0",  "链接寄存器", true, true, "W0-W32760 读位使用 W100.0" ),
+				new DeviceAddressExample( "R0",  "文件寄存器", true, true, "R0-R32760 读位使用 R100.0" ),
+				new DeviceAddressExample( "UW2100010",  "U寄存器", true, true, "" ),
+			};
+		}
 	}
 }

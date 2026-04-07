@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_dataId = new System.Windows.Forms.CheckBox();
 			this.pipeSelectControl1 = new HslCommunicationDemo.DemoControl.PipeSelectControl();
 			this.checkBox_enable_Fe = new System.Windows.Forms.CheckBox();
 			this.textBox_op_code = new System.Windows.Forms.TextBox();
@@ -42,7 +43,6 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox_dataId = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -68,6 +68,18 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 59);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_dataId
+			// 
+			this.checkBox_dataId.AutoSize = true;
+			this.checkBox_dataId.Checked = true;
+			this.checkBox_dataId.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_dataId.Location = new System.Drawing.Point(868, 33);
+			this.checkBox_dataId.Name = "checkBox_dataId";
+			this.checkBox_dataId.Size = new System.Drawing.Size(97, 21);
+			this.checkBox_dataId.TabIndex = 43;
+			this.checkBox_dataId.Text = "检查DataID?";
+			this.checkBox_dataId.UseVisualStyleBackColor = true;
 			// 
 			// pipeSelectControl1
 			// 
@@ -200,20 +212,9 @@
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "DLT 645 1997";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
+			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
-			// 
-			// checkBox_dataId
-			// 
-			this.checkBox_dataId.AutoSize = true;
-			this.checkBox_dataId.Checked = true;
-			this.checkBox_dataId.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_dataId.Location = new System.Drawing.Point(868, 33);
-			this.checkBox_dataId.Name = "checkBox_dataId";
-			this.checkBox_dataId.Size = new System.Drawing.Size(97, 21);
-			this.checkBox_dataId.TabIndex = 43;
-			this.checkBox_dataId.Text = "检查DataID?";
-			this.checkBox_dataId.UseVisualStyleBackColor = true;
 			// 
 			// FormDLT645With1997
 			// 

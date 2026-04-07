@@ -30,6 +30,9 @@
 		{
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label13 = new System.Windows.Forms.Label();
+			this.textBox_expectPort = new System.Windows.Forms.TextBox();
+			this.label12 = new System.Windows.Forms.Label();
 			this.textBox_password = new System.Windows.Forms.TextBox();
 			this.textBox_clientId = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
@@ -81,6 +84,9 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.label13);
+			this.panel1.Controls.Add(this.textBox_expectPort);
+			this.panel1.Controls.Add(this.label12);
 			this.panel1.Controls.Add(this.textBox_password);
 			this.panel1.Controls.Add(this.textBox_clientId);
 			this.panel1.Controls.Add(this.label4);
@@ -100,12 +106,37 @@
 			this.panel1.Location = new System.Drawing.Point(4, 36);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(992, 70);
+			this.panel1.Size = new System.Drawing.Size(992, 92);
 			this.panel1.TabIndex = 16;
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(245, 66);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(352, 17);
+			this.label13.TabIndex = 20;
+			this.label13.Text = "(服务器端可能不支持指定端口号，具体以实际返回的端口号为准)";
+			// 
+			// textBox_expectPort
+			// 
+			this.textBox_expectPort.Location = new System.Drawing.Point(112, 63);
+			this.textBox_expectPort.Name = "textBox_expectPort";
+			this.textBox_expectPort.Size = new System.Drawing.Size(127, 23);
+			this.textBox_expectPort.TabIndex = 19;
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(8, 66);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(92, 17);
+			this.label12.TabIndex = 18;
+			this.label12.Text = "映射后端口号：";
 			// 
 			// textBox_password
 			// 
-			this.textBox_password.Location = new System.Drawing.Point(885, 38);
+			this.textBox_password.Location = new System.Drawing.Point(885, 34);
 			this.textBox_password.Name = "textBox_password";
 			this.textBox_password.PasswordChar = '*';
 			this.textBox_password.Size = new System.Drawing.Size(100, 23);
@@ -113,7 +144,7 @@
 			// 
 			// textBox_clientId
 			// 
-			this.textBox_clientId.Location = new System.Drawing.Point(438, 38);
+			this.textBox_clientId.Location = new System.Drawing.Point(438, 34);
 			this.textBox_clientId.Name = "textBox_clientId";
 			this.textBox_clientId.Size = new System.Drawing.Size(194, 23);
 			this.textBox_clientId.TabIndex = 17;
@@ -121,7 +152,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(823, 41);
+			this.label4.Location = new System.Drawing.Point(823, 37);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(44, 17);
 			this.label4.TabIndex = 12;
@@ -129,7 +160,7 @@
 			// 
 			// textBox_userName
 			// 
-			this.textBox_userName.Location = new System.Drawing.Point(702, 38);
+			this.textBox_userName.Location = new System.Drawing.Point(702, 34);
 			this.textBox_userName.Name = "textBox_userName";
 			this.textBox_userName.Size = new System.Drawing.Size(115, 23);
 			this.textBox_userName.TabIndex = 11;
@@ -137,7 +168,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(359, 41);
+			this.label6.Location = new System.Drawing.Point(359, 37);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(80, 17);
 			this.label6.TabIndex = 16;
@@ -146,7 +177,7 @@
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(638, 41);
+			this.label7.Location = new System.Drawing.Point(638, 37);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(56, 17);
 			this.label7.TabIndex = 10;
@@ -155,7 +186,7 @@
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(738, 3);
+			this.button2.Location = new System.Drawing.Point(535, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(91, 28);
 			this.button2.TabIndex = 5;
@@ -165,7 +196,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(641, 3);
+			this.button1.Location = new System.Drawing.Point(438, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(91, 28);
 			this.button1.TabIndex = 4;
@@ -210,7 +241,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(8, 41);
+			this.label9.Location = new System.Drawing.Point(8, 37);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(56, 17);
 			this.label9.TabIndex = 0;
@@ -218,7 +249,7 @@
 			// 
 			// textBox_port
 			// 
-			this.textBox_port.Location = new System.Drawing.Point(302, 38);
+			this.textBox_port.Location = new System.Drawing.Point(302, 34);
 			this.textBox_port.Name = "textBox_port";
 			this.textBox_port.Size = new System.Drawing.Size(52, 23);
 			this.textBox_port.TabIndex = 3;
@@ -226,7 +257,7 @@
 			// 
 			// textBox_ip
 			// 
-			this.textBox_ip.Location = new System.Drawing.Point(81, 38);
+			this.textBox_ip.Location = new System.Drawing.Point(81, 34);
 			this.textBox_ip.Name = "textBox_ip";
 			this.textBox_ip.Size = new System.Drawing.Size(158, 23);
 			this.textBox_ip.TabIndex = 1;
@@ -235,7 +266,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(248, 41);
+			this.label8.Location = new System.Drawing.Point(248, 37);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(56, 17);
 			this.label8.TabIndex = 2;
@@ -257,9 +288,9 @@
 			this.panel2.Controls.Add(this.label5);
 			this.panel2.Controls.Add(this.textBox4);
 			this.panel2.Controls.Add(this.label2);
-			this.panel2.Location = new System.Drawing.Point(4, 110);
+			this.panel2.Location = new System.Drawing.Point(4, 132);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(992, 538);
+			this.panel2.Size = new System.Drawing.Size(992, 516);
 			this.panel2.TabIndex = 17;
 			// 
 			// button_log_continue
@@ -347,7 +378,7 @@
 			this.textBox4.Multiline = true;
 			this.textBox4.Name = "textBox4";
 			this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox4.Size = new System.Drawing.Size(980, 501);
+			this.textBox4.Size = new System.Drawing.Size(980, 479);
 			this.textBox4.TabIndex = 1;
 			// 
 			// label2
@@ -411,5 +442,8 @@
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.Button button_log_continue;
 		private System.Windows.Forms.Button button_log_stop;
+		private System.Windows.Forms.TextBox textBox_expectPort;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.Label label13;
 	}
 }

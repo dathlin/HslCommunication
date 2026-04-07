@@ -786,6 +786,7 @@
 			this.userControlHead1.Name = "userControlHead1";
 			this.userControlHead1.ProtocolInfo = "Secs gem HSMS";
 			this.userControlHead1.Size = new System.Drawing.Size(1011, 32);
+			this.userControlHead1.SupportListVisiable = true;
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
@@ -797,13 +798,13 @@
             this.editSecsItemToolStripMenuItem,
             this.deleteSecsItemToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(179, 92);
 			// 
 			// sendMessageToolStripMenuItem
 			// 
 			this.sendMessageToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.Cloud_16xLG;
 			this.sendMessageToolStripMenuItem.Name = "sendMessageToolStripMenuItem";
-			this.sendMessageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.sendMessageToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
 			this.sendMessageToolStripMenuItem.Text = "Send Message";
 			this.sendMessageToolStripMenuItem.Click += new System.EventHandler(this.sendMessageToolStripMenuItem_Click);
 			// 
@@ -811,7 +812,7 @@
 			// 
 			this.addNewSecsItemToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_add_16xLG;
 			this.addNewSecsItemToolStripMenuItem.Name = "addNewSecsItemToolStripMenuItem";
-			this.addNewSecsItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.addNewSecsItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
 			this.addNewSecsItemToolStripMenuItem.Text = "AddNewSecsItem";
 			this.addNewSecsItemToolStripMenuItem.Click += new System.EventHandler(this.addNewSecsItemToolStripMenuItem_Click);
 			// 
@@ -819,7 +820,7 @@
 			// 
 			this.editSecsItemToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.sig;
 			this.editSecsItemToolStripMenuItem.Name = "editSecsItemToolStripMenuItem";
-			this.editSecsItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.editSecsItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
 			this.editSecsItemToolStripMenuItem.Text = "EditSecsItem";
 			this.editSecsItemToolStripMenuItem.Click += new System.EventHandler(this.editSecsItemToolStripMenuItem_Click);
 			// 
@@ -827,7 +828,7 @@
 			// 
 			this.deleteSecsItemToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_Cancel_16xLG;
 			this.deleteSecsItemToolStripMenuItem.Name = "deleteSecsItemToolStripMenuItem";
-			this.deleteSecsItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.deleteSecsItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
 			this.deleteSecsItemToolStripMenuItem.Text = "DeleteSecsItem";
 			this.deleteSecsItemToolStripMenuItem.Click += new System.EventHandler(this.deleteSecsItemToolStripMenuItem_Click);
 			// 

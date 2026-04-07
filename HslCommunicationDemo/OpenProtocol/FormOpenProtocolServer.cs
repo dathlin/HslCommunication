@@ -12,7 +12,6 @@ using HslCommunication.Core.Device;
 using HslCommunication.LogNet;
 using HslCommunication.Profinet.OpenProtocol;
 using HslCommunicationDemo.DemoControl;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HslCommunicationDemo
 {
@@ -44,6 +43,12 @@ namespace HslCommunicationDemo
 				button2.Enabled = true;
 				button1.Enabled = false;
 				panel2.Enabled = true;
+
+
+				StringBuilder code = new StringBuilder( );
+				code.AppendLine( "HslCommunication.Profinet.OpenProtocol.OpenProtocolServer server = new HslCommunication.Profinet.OpenProtocol.OpenProtocolServer();" );
+				code.AppendLine( $"server.ServerStart( {port} );" );
+				codeExampleControl.RenderExampleCode( code );
 			}
 			catch (Exception ex)
 			{
@@ -68,19 +73,22 @@ namespace HslCommunicationDemo
 
 		private void LogNet_BeforeSaveToFile( object sender, HslCommunication.LogNet.HslEventArgs e )
 		{
-			// 输出到控件界面上去
-			Invoke( new Action( ( ) =>
+			if (checkBox_log_stop.Checked == false)
 			{
-				textBox_result.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
-			} ) );
+				// 输出到控件界面上去
+				Invoke( new Action( ( ) =>
+				{
+					textBox_result.AppendText( e.HslMessage.ToString( ) + Environment.NewLine );
+				} ) );
+			}
 		}
 
 		private void OpenProtocol_ReceivedMessage( object sender, OpenEventArgs e )
 		{
-			this.Invoke( new Action( ( ) =>
-			{
-				textBox_result.AppendText( DateTime.Now.ToString( ) + " : " + e.Content + Environment.NewLine );
-			} ) );
+				this.Invoke( new Action( ( ) =>
+				{
+					textBox_result.AppendText( DateTime.Now.ToString( ) + " : " + e.Content + Environment.NewLine );
+				} ) );
 		}
 
 		private OpenProtocolServer server = null;

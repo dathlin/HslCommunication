@@ -122,6 +122,12 @@ namespace HslCommunicationDemo.DemoControl
 						stringBuilder.AppendLine( );
 						continue;
 					}
+					else if (name.StartsWith( "SetExtraSubscribeMID( \"" ))
+					{
+						stringBuilder.Append( $"{iniName}.{name};    // 设置当前额外的订阅MID信息" );
+						stringBuilder.AppendLine( );
+						continue;
+					}
 
 					string propertyName = GetPropertyName( name );
 					object propertyObj = GetObject( obj, name );
