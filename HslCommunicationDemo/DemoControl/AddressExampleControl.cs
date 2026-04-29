@@ -83,7 +83,20 @@ namespace HslCommunicationDemo.DemoControl
 		/// <param name="addressExamples">示例的地址信息</param>
 		public void SetAddressExample( DeviceAddressExample[] addressExamples )
 		{
+			SetAddressExample( addressExamples, true );
+		}
+		private void SetAddressExample( DeviceAddressExample[] addressExamples, bool clearRadioButtons )
+		{
 			if (addressExamples == null) addressExamples = new DeviceAddressExample[0];
+			if (clearRadioButtons)
+			{
+				foreach (var radio in radioButtons)
+				{
+					radio.Dispose( );
+				}
+				radioButtons.Clear( );
+				dataGridView1.Dock = DockStyle.Fill;
+			}
 
 			dataGridView1.Rows.Clear( );
 			DataGridSpecifyRowCount( dataGridView1, addressExamples.Length );
@@ -117,7 +130,55 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		public void SetAddressExample( Dictionary<string, DeviceAddressExample[]> addressExamples )
+		{
+			dataGridView1.Rows.Clear( );
+			if (addressExamples == null) return;
+			this.addressExampleDictionary = addressExamples;
 
+			foreach (var radio in radioButtons)
+			{
+				radio.Dispose( );
+			}
+			radioButtons.Clear( );
+
+			dataGridView1.Dock = DockStyle.None;
+			dataGridView1.Location = new Point( 0, 30 );
+			if (this.Width > 0 && this.Height > 30)
+			{
+				dataGridView1.Size = new Size( this.Width, this.Height - 30 );
+			}
+			dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom))));
+
+			int offsetX = 0;
+			foreach( var item in addressExamples )
+			{
+				RadioButton radioButton = new RadioButton( );
+				radioButton.AutoSize = true;
+				radioButton.Text = item.Key;
+				radioButton.Location = new Point( offsetX + 10, 5 );
+				if (offsetX == 0)
+				{
+					radioButton.Checked = true;
+					SetAddressExample( item.Value, false );
+				}
+				this.Controls.Add( radioButton );
+				radioButton.CheckedChanged += ( sender, e ) =>
+				{
+					if (radioButton.Checked)
+					{
+						SetAddressExample( item.Value, false );
+					}
+				};
+				radioButton.Refresh( );
+				radioButtons.Add( radioButton );
+				offsetX += radioButton.Width + 30;
+			}
+
+		}
+
+		private List<RadioButton> radioButtons = new List<RadioButton>( );
+		private Dictionary<string, DeviceAddressExample[]> addressExampleDictionary = new Dictionary<string, DeviceAddressExample[]>( );
 
 		/// <summary>
 		/// 将 <see cref="DataGridView"/> 的行数控制在指定的行数

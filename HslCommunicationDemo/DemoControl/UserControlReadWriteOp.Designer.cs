@@ -29,6 +29,7 @@
 		private void InitializeComponent( )
 		{
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.comboBox_write_address = new System.Windows.Forms.ComboBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
@@ -99,7 +100,6 @@
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.comboBox_write_address = new System.Windows.Forms.ComboBox();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -151,6 +151,16 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "单数据写入测试";
 			// 
+			// comboBox_write_address
+			// 
+			this.comboBox_write_address.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox_write_address.FormattingEnabled = true;
+			this.comboBox_write_address.Location = new System.Drawing.Point(63, 20);
+			this.comboBox_write_address.Name = "comboBox_write_address";
+			this.comboBox_write_address.Size = new System.Drawing.Size(189, 25);
+			this.comboBox_write_address.TabIndex = 42;
+			// 
 			// label21
 			// 
 			this.label21.AutoSize = true;
@@ -185,7 +195,7 @@
 			// 
 			this.label16.AutoSize = true;
 			this.label16.ForeColor = System.Drawing.Color.Gray;
-			this.label16.Location = new System.Drawing.Point(205, 247);
+			this.label16.Location = new System.Drawing.Point(176, 247);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(180, 17);
 			this.label16.TabIndex = 32;
@@ -214,7 +224,7 @@
 			// 
 			this.label15.AutoSize = true;
 			this.label15.ForeColor = System.Drawing.Color.Gray;
-			this.label15.Location = new System.Drawing.Point(174, 247);
+			this.label15.Location = new System.Drawing.Point(147, 247);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(25, 17);
 			this.label15.TabIndex = 28;
@@ -222,9 +232,9 @@
 			// 
 			// textBox_timer_write_interval
 			// 
-			this.textBox_timer_write_interval.Location = new System.Drawing.Point(101, 243);
+			this.textBox_timer_write_interval.Location = new System.Drawing.Point(98, 243);
 			this.textBox_timer_write_interval.Name = "textBox_timer_write_interval";
-			this.textBox_timer_write_interval.Size = new System.Drawing.Size(72, 23);
+			this.textBox_timer_write_interval.Size = new System.Drawing.Size(45, 23);
 			this.textBox_timer_write_interval.TabIndex = 30;
 			this.textBox_timer_write_interval.Text = "1000";
 			// 
@@ -513,7 +523,6 @@
 			this.groupBox1.Controls.Add(this.panel1);
 			this.groupBox1.Controls.Add(this.button_find_string);
 			this.groupBox1.Controls.Add(this.textBox_read_search);
-			this.groupBox1.Controls.Add(this.checkBox_mask_duplicates);
 			this.groupBox1.Controls.Add(this.label17);
 			this.groupBox1.Controls.Add(this.groupBox3);
 			this.groupBox1.Controls.Add(this.label14);
@@ -539,6 +548,7 @@
 			this.groupBox1.Controls.Add(this.textBox4);
 			this.groupBox1.Controls.Add(this.label7);
 			this.groupBox1.Controls.Add(this.label6);
+			this.groupBox1.Controls.Add(this.checkBox_mask_duplicates);
 			this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
@@ -672,6 +682,7 @@
 			// 
 			// checkBox_mask_duplicates
 			// 
+			this.checkBox_mask_duplicates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox_mask_duplicates.AutoSize = true;
 			this.checkBox_mask_duplicates.ForeColor = System.Drawing.Color.Gray;
 			this.checkBox_mask_duplicates.Location = new System.Drawing.Point(268, 244);
@@ -927,16 +938,6 @@
 			this.label6.Size = new System.Drawing.Size(44, 17);
 			this.label6.TabIndex = 2;
 			this.label6.Text = "地址：";
-			// 
-			// comboBox_write_address
-			// 
-			this.comboBox_write_address.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBox_write_address.FormattingEnabled = true;
-			this.comboBox_write_address.Location = new System.Drawing.Point(63, 20);
-			this.comboBox_write_address.Name = "comboBox_write_address";
-			this.comboBox_write_address.Size = new System.Drawing.Size(189, 25);
-			this.comboBox_write_address.TabIndex = 42;
 			// 
 			// UserControlReadWriteOp
 			// 

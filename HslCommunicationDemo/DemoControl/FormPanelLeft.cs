@@ -46,6 +46,7 @@ namespace HslCommunicationDemo.DemoControl
 			TreeViewIni( );
 			treeView1.DoubleClick      += TreeView1_DoubleClick;
 			treeView1.MouseClick       += TreeView1_MouseClick;
+			treeView1.NodeMouseDoubleClick += TreeView1_NodeMouseDoubleClick;
 
 			SetLanguage( );
 		}
@@ -102,8 +103,21 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void TreeView1_DoubleClick( object sender, EventArgs e )
 		{
+		}
+
+
+		private void TreeView1_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
+		{
+			TreeNode treeNodeLocation = treeView1.GetNodeAt( e.Location );
 			TreeNode treeNode = treeView1.SelectedNode;
-			RenderTreeNode( treeNode );
+
+			if ( treeNodeLocation != null )
+			{
+				if (object.ReferenceEquals( treeNodeLocation, treeNode ))
+				{
+					RenderTreeNode( treeNode );
+				}
+			}
 		}
 
 		private void TreeViewIni( )
@@ -342,6 +356,11 @@ namespace HslCommunicationDemo.DemoControl
 			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Delta Ascii Over Tcp", 32, typeof( FormDeltaSerialAsciiOverTcp ) ) );
 			deltaNode.Nodes.Add( GetTreeNodeByIndex( "Delta Tcp Net", 32, typeof( FormDeltaDvpTcpNet ) ) );
 			this.nodeCollection.Add( deltaNode );
+
+			// Orientalmotor东方马达
+			TreeNode orientalNode = new TreeNode( "Orientalmotor[东方马达]", 64, 64 );
+			orientalNode.Nodes.Add( GetTreeNodeByIndex( "MRC01/MRCU[机器人控制器]", 64, typeof( FormOrientalMotorCip ) ) );
+			this.nodeCollection.Add( orientalNode );
 
 			// 身份证阅读器
 			TreeNode idNode = new TreeNode( "ID Card[身份证]", 4, 4 );

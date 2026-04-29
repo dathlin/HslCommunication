@@ -9,11 +9,10 @@ namespace HslCommunicationDemo.PLC.XINJE
 {
 	internal class Helper
 	{
-		public static DeviceAddressExample[] GetXinJEAddress( )
+		public static Dictionary<string, DeviceAddressExample[]> GetXinJEAddress( )
 		{
-			return new DeviceAddressExample[]
+			DeviceAddressExample[] example1 = new DeviceAddressExample[]
 			{
-				new DeviceAddressExample( "XC1/XC2/XC3/XC5/XCM/XCC", "", false, false, "", true ),
 				new DeviceAddressExample( "M100", "内部继电器", true, false, "M0-M7999 M8000-M8511" ),
 				new DeviceAddressExample( "S100", "流程继电器", true, false, "S0-S1023" ),
 				new DeviceAddressExample( "T100", "定时器", true, false, "T0-T618  bool读写" ),
@@ -26,8 +25,9 @@ namespace HslCommunicationDemo.PLC.XINJE
 				new DeviceAddressExample( "T100", "定时器值", false, true, "T0-T618"),
 				new DeviceAddressExample( "C100", "计数器值", false, true, "C0-C634"),
 				new DeviceAddressExample( "s=2;D100", "数据寄存器", false, true, "地址支持额外指定站号信息"),
-
-				new DeviceAddressExample( "XD/XL", "", false, false, "", true ),
+			};
+			DeviceAddressExample[] example2 = new DeviceAddressExample[]
+			{
 				new DeviceAddressExample( "M100", "内部继电器", true, false, "M0-M7999" ),
 				new DeviceAddressExample( "X10.7", "输入线圈", true, false, "8进制地址，也可以带小数点表示，范围 X0-X77(本体),X10000-X11177"),
 				new DeviceAddressExample( "Y10.7", "输出线圈", true, false, "8进制地址，也可以带小数点表示，Y0-Y77(本体),Y10000-Y11177" ),
@@ -58,6 +58,11 @@ namespace HslCommunicationDemo.PLC.XINJE
 				new DeviceAddressExample( "SFD0", "特殊用FlashROM寄存器", false, true, "一般范围: SFD0~SFD1999"),
 				new DeviceAddressExample( "FSD0", "特殊保密寄存器",       false, true, "一般范围: FSD0~FSD47"),
 				new DeviceAddressExample( "s=2;D100", "数据寄存器", false, true, "地址支持额外指定站号信息"),
+			};
+			return new Dictionary<string, DeviceAddressExample[]>
+			{
+				{ "XC1/XC2/XC3/XC5/XCM/XCC", example1 },
+				{ "XD/XL", example2 },
 			};
 		}
 

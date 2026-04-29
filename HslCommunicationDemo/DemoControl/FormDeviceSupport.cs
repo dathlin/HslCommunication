@@ -73,19 +73,25 @@ namespace HslCommunicationDemo.DemoControl
 				UseRSAProvider = true,
 			} );
 			OperateResult<string> read = await mqtt.ReadRpcAsync<string>( "SupportList/GetDeviceSupport", new { token = string.Empty, unique = this.formName } );
-			if (read.IsSuccess)
+			try
 			{
-				if (!string.IsNullOrEmpty( read.Content ))
+				if (read.IsSuccess)
 				{
-					List<DeviceSupportList> devices = JArray.Parse( read.Content ).ToObject<List<DeviceSupportList>>( );
-					Invoke( new Action<List<DeviceSupportList>>( RenderDevice ), devices );
+					if (!string.IsNullOrEmpty( read.Content ))
+					{
+						List<DeviceSupportList> devices = JArray.Parse( read.Content ).ToObject<List<DeviceSupportList>>( );
+						Invoke( new Action<List<DeviceSupportList>>( RenderDevice ), devices );
+					}
+				}
+				else
+				{
+					DemoUtils.ShowMessage( "Request Server failed: " + read.Message );
 				}
 			}
-			else
+			catch( Exception ex )
 			{
-				DemoUtils.ShowMessage( "Request Server failed: " + read.Message );
-			}
 
+			}
 		}
 
 		private void RenderDevice( List<DeviceSupportList> devices )

@@ -41,6 +41,7 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -178,6 +179,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.checkBox2);
 			this.panel2.Controls.Add(this.checkBox1);
 			this.panel2.Controls.Add(this.textBox6);
 			this.panel2.Controls.Add(this.label7);
@@ -185,6 +187,16 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(995, 533);
 			this.panel2.TabIndex = 13;
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(342, 3);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(111, 21);
+			this.checkBox2.TabIndex = 23;
+			this.checkBox2.Text = "只显示字节数量";
+			this.checkBox2.UseVisualStyleBackColor = true;
 			// 
 			// checkBox1
 			// 
@@ -276,5 +288,6 @@
 		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.TextBox textBox_cache_size;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.CheckBox checkBox2;
 	}
 }

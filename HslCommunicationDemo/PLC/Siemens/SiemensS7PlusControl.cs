@@ -39,7 +39,18 @@ namespace HslCommunicationDemo.PLC.Siemens
 
 		private void SiemensS7PlusControl_Load( object sender, EventArgs e )
 		{
-
+			if (Program.Language == 1)
+			{
+				label1.Text = "刷新间隔：";
+				button2.Text = "开始刷新";
+				label2.Text = "如果想要使用字符串地址，需要先调用 \"plc.BrowseDB( );\" \"plc.BrowseTags( );\"";
+			}
+			else
+			{
+				label1.Text = "Refresh Time:";
+				button2.Text = "Refresh";
+				label2.Text = "If you want to use string addresses, you need to call \"plc.BrowseDB( );\" \"plc.BrowseTags( );\" first.";
+			}
 		}
 
 		public void SetDevice( SiemensS7Plus siemensTcpNet, string address )
@@ -76,9 +87,22 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 		}
 
+		private Dictionary<string, string> tagNameMappig = new Dictionary<string, string>( );
+		private void RefreshTagNameMapping( )
+		{
+			tagNameMappig.Clear( );
+			foreach (var item in this.siemensTcpNet.GetTagStringMapping( ))
+			{
+				if (!tagNameMappig.ContainsKey( item.Value ))
+					tagNameMappig.Add( item.Value, item.Key );
+				else
+					tagNameMappig[item.Value] = item.Key;
+			}
+		}
+
 		private void button1_Click( object sender, EventArgs e )
 		{
-			OperateResult<List<S7Object>> read = this.siemensTcpNet.BrowerDB( );
+			OperateResult<List<S7Object>> read = this.siemensTcpNet.BrowseDB( );
 			if (!read.IsSuccess)
 			{
 				DemoUtils.ShowMessage( "Read failed: " + read.Message );
@@ -95,10 +119,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			dataGridView1.Columns[3].HeaderText = "ClassId";
 			dataGridView1.Columns[4].HeaderText = "Value";
 
-
 			OperateResult<List<S7Object>> read2 = this.siemensTcpNet.BrowseTags( );
 			if (read2.IsSuccess)
 			{
+				RefreshTagNameMapping( );
+
 				//DemoUtils.ShowMessage( "Success: " + read.Content.ToJsonString( ) );
 				//Clipboard.SetText( read.Content.ToJsonString( ) );
 
@@ -110,7 +135,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 
 				BrowerAllTags( read2.Content );
 				DemoUtils.ShowMessage( "Finish!" );
-				treeView1.ExpandAll( );
+				treeView1.Nodes[0].Expand( );
 			}
 			else
 			{
@@ -140,6 +165,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 					row.Cells[2].Value = "0x" + child.TypeCode.ToString( "X" );
 					row.Cells[3].Value = child.GetTypeText( );
 					row.Cells[4].Value = "";
+					row.Cells[5].Value = tagNameMappig.ContainsKey( child.GetLIDText( ) ) ? tagNameMappig[child.GetLIDText( )] : ""; //child.StringAddress;
 					row.Tag = child;
 				}
 			}
@@ -179,7 +205,21 @@ namespace HslCommunicationDemo.PLC.Siemens
 							row.Cells[2].Value = "0x" + child.RelationId2.ToString( "X" );
 							row.Cells[3].Value = child.ClassId.ToString( );
 							row.Cells[4].Value = "";
+							row.Cells[5].Value = "";
 						}
+					}
+					else
+					{
+						// 看看treenode下面还有没有节点
+						List<S7Tag> tags = new List<S7Tag>( );
+						foreach(TreeNode node in treeNode.Nodes)
+						{
+							if (node.Tag is S7Tag tag)
+							{
+								tags.Add( tag );
+							}
+						}
+						RenderS7Tags( tags );
 					}
 				}
 			}
@@ -198,27 +238,50 @@ namespace HslCommunicationDemo.PLC.Siemens
 					}
 					RenderS7Tags( s7Tags );
 				}
-
+				else if (tag.StructID > 0)
+				{
+					List<S7Tag> s7Tags = new List<S7Tag>( );
+					foreach (TreeNode item in treeNode.Nodes)
+					{
+						if (item.Tag is S7Tag child)
+						{
+							s7Tags.Add( child );
+						}
+					}
+					RenderS7Tags( s7Tags );
+				}
 			}
 		}
 
-		private void treeView1_MouseDoubleClick( object sender, MouseEventArgs e )
+		private void AddS7Struct( TreeNode parent, S7Tag structTag )
 		{
-			TreeNode treeNode = treeView1.SelectedNode;
-			if (treeNode == null) return;
-
-			if (treeNode.Tag is S7Tag tag)
+			if (!s7Struct.ContainsKey( structTag.StructID ))
 			{
-				//OperateResult<byte[]> read = this.siemensTcpNet.BrowsrTags( obj );
-				//if (read.IsSuccess)
-				//{
-				//	DemoUtils.ShowMessage( "Success: " + read.Content.ToHexString( ' ' ) );
-				//	Clipboard.SetText( read.Content.ToHexString( ' ' ) );
-				//}
-				//else
-				//{
-				//	DemoUtils.ShowMessage( "Read failed: " + read.Message );
-				//}
+				// 如果没有找到结构体定义，结构体资源可能还没有被浏览到，这时先把这个结构体的ID记录下来，等到后续浏览到这个结构体定义的时候，再进行补全
+				OperateResult<List<S7Object>> structs = this.siemensTcpNet.BrowseTags( structTag.StructID );
+				if (structs.IsSuccess && structs.Content.Count == 1)
+				{
+					if (!s7Struct.ContainsKey( structTag.StructID ))
+					{
+						s7Struct.Add( structTag.StructID, structs.Content[0] );
+					}
+				}
+			}
+
+			// 这是个结构体，还要二次遍历
+			if (s7Struct.ContainsKey( structTag.StructID ))
+			{
+				if (s7Struct[structTag.StructID].S7Tags != null)
+				{
+					List<S7Tag> list = new List<S7Tag>( );
+					for (int j = 0; j < s7Struct[structTag.StructID].S7Tags.Count; j++)
+					{
+						S7Tag s7Tag = s7Struct[structTag.StructID].S7Tags[j].Clone( );
+						s7Tag.LID.InsertRange( 0, structTag.LID );
+						list.Add( s7Tag );
+					}
+					AddS7Tags( parent, list );
+				}
 			}
 		}
 
@@ -235,27 +298,37 @@ namespace HslCommunicationDemo.PLC.Siemens
 				{
 					treeNode.ImageKey = "brackets_Square_16xMD";
 					treeNode.SelectedImageKey = "brackets_Square_16xMD";
+					if (tags[i].TypeCode == 0x11)
+					{
+						// 这是个结构体数组，还要二次遍历
+						for(int j = 0; j < tags[i].ArrayLength; j++)
+						{
+							TreeNode arrayNode = new TreeNode( tags[i].Name + "[" + j + "]" );
+							arrayNode.ImageKey = "Module_648";
+							arrayNode.SelectedImageKey = "Module_648";
+
+							S7Tag s7Tag = tags[i].Clone( );
+							s7Tag.Name += "[" + j + "]";
+							s7Tag.ArrayLength = -1;
+							s7Tag.LID.Add( (ushort)j );
+							s7Tag.LID.Add( (ushort)1 );
+							arrayNode.Tag = s7Tag;
+
+							AddS7Struct( arrayNode, s7Tag );
+							treeNode.Nodes.Add( arrayNode );
+						}
+					}
 				}
-				else if (tags[i].TypeCode == 0x11)
+				else if (tags[i].TypeCode == 0x11 || tags[i].TypeCode == 0x1f)
 				{
 					treeNode.ImageKey = "Module_648";
 					treeNode.SelectedImageKey = "Module_648";
 
-					// 这是个结构体，还要二次遍历
-					if (s7Struct.ContainsKey( tags[i].StructID ))
-					{
-						if (s7Struct[tags[i].StructID].S7Tags != null)
-						{
-							List<S7Tag> list = new List<S7Tag>( );
-							for (int j = 0; j < s7Struct[tags[i].StructID].S7Tags.Count; j++)
-							{
-								S7Tag s7Tag = s7Struct[tags[i].StructID].S7Tags[j].Clone( );
-								s7Tag.LID.InsertRange( 0, tags[i].LID );
-								list.Add( s7Tag );
-							}
-							AddS7Tags( treeNode, list );
-						}
-					}
+					//if (tags[i].StructID == 0x0200001f)
+					//{
+					//	;
+					//}
+					AddS7Struct( treeNode, tags[i] );
 				}
 				else
 				{
@@ -373,7 +446,12 @@ namespace HslCommunicationDemo.PLC.Siemens
 										if (read.Content[i].Value == null)
 											dgvr.Cells[4].Value = read.Content[i].Buffer.ToHexString( ' ' );
 										else
-											dgvr.Cells[4].Value = read.Content[i].Value.ToJsonString( );
+										{
+											if (read.Content[i].Value.GetType( ) == typeof( byte[] ))
+												dgvr.Cells[4].Value = read.Content[i].Buffer.ToHexString( ' ' );
+											else
+												dgvr.Cells[4].Value = read.Content[i].Value.ToJsonString( );
+										}
 									}
 								}
 							}
@@ -408,7 +486,14 @@ namespace HslCommunicationDemo.PLC.Siemens
 				{
 					if (read.Content.Count == 1)
 					{
-						row.Cells[4].Value = read.Content[0].Value.ToJsonString( );
+						if (read.Content[0].Value == null)
+						{
+							row.Cells[4].Value = read.Content[0].Buffer.ToHexString( ' ' );
+						}
+						else
+						{
+							row.Cells[4].Value = read.Content[0].Value.ToJsonString( );
+						}
 					}
 					else
 						row.Cells[4].Value = read.Content.Select( m => m.Value ).ToArray( ).ToJsonString( );
@@ -418,6 +503,50 @@ namespace HslCommunicationDemo.PLC.Siemens
 				{
 					DemoUtils.ShowMessage( "Failed: " + read.Message );
 				}
+			}
+		}
+
+		private void exploreTagToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			TreeNode treeNode = treeView1.SelectedNode;
+			if (treeNode == null) return;
+
+			if (treeNode.Tag is S7Object s7Object)
+			{
+				OperateResult<List<S7Object>> read = this.siemensTcpNet.BrowseTags( s7Object );
+				if (read.IsSuccess && read.Content.Count == 1)
+				{
+					RefreshTagNameMapping( );
+
+					treeNode.Nodes.Clear( );
+					if (read.Content[0].S7Tags == null) return;
+
+					for(int i = 0; i < read.Content[0].S7Tags.Count; i++)
+					{
+						read.Content[0].S7Tags[i].LID.Insert( 0, s7Object.RelationId );
+					}
+					s7Object.S7Tags = read.Content[0].S7Tags;
+					AddS7Tags( treeNode, read.Content[0].S7Tags );
+				}
+			}
+		}
+
+		private void treeView1_MouseDoubleClick( object sender, MouseEventArgs e )
+		{
+			TreeNode treeNode = treeView1.SelectedNode;
+			if (treeNode == null) return;
+
+			exploreTagToolStripMenuItem_Click( sender, e );
+		}
+
+		private void treeView1_MouseClick( object sender, MouseEventArgs e )
+		{
+			if (e.Button == MouseButtons.Right)
+			{
+				treeView1.SelectedNode = treeView1.GetNodeAt( e.Location );
+				if (treeView1.SelectedNode == null) return;
+
+				contextMenuStrip1.Show( treeView1, e.Location );
 			}
 		}
 	}

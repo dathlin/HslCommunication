@@ -112,6 +112,21 @@ namespace HslCommunicationDemo
 			WriteSuccessNotShowWindow = !WriteSuccessNotShowWindow;
 		}
 
+
+		private void 定时读写失败继续ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (Program.Settings.TimerReadWriteFailedContinue)
+			{
+				定时读写失败继续ToolStripMenuItem.Image = null;
+			}
+			else
+			{
+				定时读写失败继续ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			}
+			Program.Settings.TimerReadWriteFailedContinue = !Program.Settings.TimerReadWriteFailedContinue;
+		}
+
+
 		#region Form Load Close Inni
 
 		private void FormLoad_Load( object sender, EventArgs e )
@@ -217,6 +232,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "art",              Properties.Resources.art );               // 61
 			imageList.Images.Add( "database",         Properties.Resources.DatabaseProject_7342_16x );  // 62
 			imageList.Images.Add( "txt",              Properties.Resources.txt );               // 63
+			imageList.Images.Add( "Orientalmotor",    Properties.Resources.Orientalmotor );     // 64
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;
@@ -293,6 +309,15 @@ namespace HslCommunicationDemo
 			mqttClient?.ConnectClose( );
 		}
 
+		public void PublishMqttMessage( string formName )
+		{
+			mqttClient?.PublishMessage( new MqttApplicationMessage( )
+			{
+				Topic = "OpenForm",
+				Payload = Encoding.UTF8.GetBytes( formName ),
+			} );
+		}
+
 		private void FormLoad_Shown( object sender, EventArgs e )
 		{
 			System.Threading.ThreadPool.QueueUserWorkItem( new System.Threading.WaitCallback( ThreadPoolCheckVersion ), null );
@@ -332,6 +357,8 @@ namespace HslCommunicationDemo
 
 			WriteSuccessNotShowWindow = Program.Settings.WriteSuccessNotShowWindow;
 			if (WriteSuccessNotShowWindow) 写入成功不弹窗ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+
+			if (Program.Settings.TimerReadWriteFailedContinue) 定时读写失败继续ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
 		}
 
 		private void ThreadPoolCheckVersion( object obj )
@@ -478,6 +505,11 @@ namespace HslCommunicationDemo
 				portMappingToolStripMenuItem.Text = "端口映射";
 				label_account.Text = "登录";
 				退出软件显示确认ToolStripMenuItem.Text = "退出软件时显示确认";
+				定时读写失败继续ToolStripMenuItem.Text = "定时读写失败继续";
+				写入成功不弹窗ToolStripMenuItem.Text = "写入成功不弹窗";
+				testPanelSizeFixedToolStripMenuItem.Text = "测试界面大小固定";
+				记住窗体位置及大小ToolStripMenuItem.Text = "记住窗体位置及大小";
+				showMsToolStripMenuItem.Text = "读写时间显示毫秒";
 			}
 			else
 			{
@@ -501,6 +533,10 @@ namespace HslCommunicationDemo
 				label_account.Text = "Login";
 				退出软件显示确认ToolStripMenuItem.Text = "Confirm when exit";
 				portMappingToolStripMenuItem.Text = "PortMapping";
+				定时读写失败继续ToolStripMenuItem.Text = "Continue When Timer Read Failed";
+				写入成功不弹窗ToolStripMenuItem.Text = "Write Success Not Show Dialog";
+				testPanelSizeFixedToolStripMenuItem.Text = "Test Panel Size Fixed";
+				记住窗体位置及大小ToolStripMenuItem.Text = "Remember Form Location And Size";
 			}
 		}
 
@@ -554,12 +590,16 @@ namespace HslCommunicationDemo
 				if (item.DockState == DockState.Document)
 				{
 					this.logRender.Show( item, DockAlignment.Bottom, 0.3d );
+					this.logRender.ShowLog = true;
 					finish = true;
 					break;
 				}
 			}
 			if (!finish)
+			{
 				this.logRender.Show( dockPanel1, DockState.DockBottom );
+				this.logRender.ShowLog = true;
+			}
 		}
 
 		public static  void OpenWebside( string url )
@@ -742,7 +782,6 @@ namespace HslCommunicationDemo
 
 
 		public static FormMain Form { get; set; }
-		public static Type[] formTypes = Assembly.GetExecutingAssembly( ).GetTypes( );
 		private ILogNet logNet;
 		private DemoControl.FormLogRender logRender;
 		private MqttSyncClient mqttSyncClient;

@@ -35,25 +35,23 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.7.0
-1. SiemensS7Server: 修复子类SiemensPPIServer在客户端写入长度大于1的bool数组的时候，实际数据写入不正确的bug。
-2. ModbusTcpServer: 修复启用地址映射的时候，针对bool读写时，还是提示地址解析失败的bug。
-3. AllenBradleyServer: CIP虚拟服务器修复远程客户端写入字符串为空的时候，实际数据不清空的bug。
-4. AllenBradleyServer: 修复标签是中文且数组的情况下，远程客户端读写时地址解析异常的bug，修复二维及以上数组解析异常的bug。
-5. AllenBradleyServer: AB-PLC的虚拟服务器支持了读写特性的功能码，目前无论读写哪个实例，特性，都是同一个数据块，方便测试。
-6. PortMappingServer: 新增加端口映射，反向代理的服务器类，支持随机端口范围设置，支持用户自定义端口号，官网提供免费测试。
-7. OpenProtocolNet: Open协议属性ExtraSubscribeMID类型调整，现在支持自定义返回MID信息，支持覆盖已经支持的订阅数据的返回MID，如有使用该属性，升级不兼容。
-8. InovanceEasyNet: 新增汇川Easy521系列的专属协议，支持读取X,Y,M,B,S,D,R,W, UW2100010数据地址，Demo添加相关的界面及地址示例。
-9. FanucSeries0i: 修复读取进给倍率ReadFeedRate方法在某些特殊型号读取值不正确的bug。
-10. Demo: 设备的列表界面，下面新增一个图标，可以控制协议分类的顺序，在默认，A-Z, Z-A三种方式顺序切换，自动保存，支持重启。
-11. Demo: 修复设备监视界面得点位变量表界面，当输入脚本时，该脚本存在异常时，直接程序崩溃的bug，现在显示错误信息。
-12. Demo: Demo界面的modbus协议，仪器仪表，openprotocol，secs等协议的界面也支持查看支持列表功能，等待大家去完善。
-13. Demo: 优化上传型号到服务器的界面，中英文优化，增加提示信息，上传人名称及联系方式自动记忆上次输入。
-14. Demo: 修复Demo程序写入字符串到设备时，无论是PLC,Modbus还是虚拟PLC时，生成的示例代码里，地址信息不正确的bug。
-15. Demo: Demo程序的服务器，当用户使用Demo上传设备支持型号信息时，将自动存入缓存，等待管理员审批，审批通过后写入文件。
-16. Demo: Redis浏览的界面优化，调整为使用+号来展开，修复右键菜单操作时数据块编号不正确的bug。
-17. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
-18. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V12.8.1
+1. ModbusRtuOverTcp: 修复ModbusRtuOverTcp里属性StationCheckMatch拼写不正确的bug，如有使用，升级的时候修改下名称。
+2. MelsecHelper: 修复三菱MC协议的ASCII格式通信类下，输入ZR地址后生成报文时实际进制不正确的bug，Server端也适配了解析十六进制地址报文。实际输入还是十进制。
+3. OrientalMotorEipNet: 新增加东方马达的基于连接的隐式IO-EIP通信协议，可以和马达/机器人控制器通信，demo界面显示可以读写的数据块，方便操作。
+4. SiemensS7Plus: 修复大部分PLC型号读取失败的bug，修复数据解析不正确的bug，修复写入成功后再读取失败的bug，Demo界面优化，支持映射地址读取。
+5. SiemensS7Plus: 修复SiemensS7Plus类针对结构体嵌套时，点位的字符串地址，物理地址映射不正确的bug，新增属性BrowseTagNameOnConnect, 默认为false
+6. SiemensS7Plus: 修复方法名单词拼写错误的问题，BrowerDB 方法名修改为 BrowseDB 方法名。
+7. MemobusTcpServer: 支持了G地址的数据，支持了客户端远程读写G地址，例如 G100
+8. TcpForward: 新增属性OnlyShowLength用来表示记录报文数据时，是否只存储保存长度信息，方便测试，修复DEMO界面上输入错误的ip地址，直接崩溃的bug。
+9. LogBase: 优化存储日志信息到文件的代码，提高缓存队列有很多日志情况的效率。
+10. WebsocketServer: websocket服务器支持了部分浏览器因为跨域的问题，导致连接失败的问题，将检测请求头的Origin属性，并返回允许连接的信息给客户端。
+11. Active: 激活部分的代码优化，提升了激活的性能，在某些特殊的系统情况下，激活耗时大幅度下降。
+12. Demo: 开始设备定时读写时增加提示成功，失败次数，菜单设置新增'定时读写失败继续'，勾选后，失败不在停止弹窗，继续读写操作。
+13. Demo: 修复双击节点展开等非设备节点的位置，也会打开PLC设备协议窗体的bug。
+14. Demo: 地址示例的控件优化，当传入字典地址示例时，自动根据关键字创建单选框，切换选择时，自动切换不同的地址示例表，方便大量地址归类，检索。
+15. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
+16. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

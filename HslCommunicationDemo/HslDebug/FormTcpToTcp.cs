@@ -11,6 +11,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using HslCommunication;
+using HslCommunication.Core;
 using HslCommunication.Enthernet;
 
 namespace HslCommunicationDemo
@@ -32,6 +33,15 @@ namespace HslCommunicationDemo
 			timer.Start( );
 
 			this.checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
+			this.checkBox2.CheckedChanged += CheckBox2_CheckedChanged;
+		}
+
+		private void CheckBox2_CheckedChanged( object sender, EventArgs e )
+		{
+			if ( this.tcpForward != null )
+			{
+				this.tcpForward.OnlyShowLength = checkBox2.Checked;
+			}
 		}
 
 		private void CheckBox1_CheckedChanged( object sender, EventArgs e )
@@ -63,6 +73,7 @@ namespace HslCommunicationDemo
 				label1.Text = "远程IP:";
 				label3.Text = "远程端口:";
 				label2.Text = "本地端口:";
+				checkBox2.Text = "只显示字节数量";
 			}
 			else
 			{
@@ -75,6 +86,7 @@ namespace HslCommunicationDemo
 				label1.Text = "Remote IP:";
 				label3.Text = "Remote Port:";
 				label2.Text = "Local Port:";
+				checkBox2.Text = "Only show bytes length";
 			}
 		}
 
@@ -104,10 +116,12 @@ namespace HslCommunicationDemo
 			// 连接服务器
 			try
 			{
+				HslHelper.GetIpAddressFromInput( textBox3.Text );
 				tcpForward = new TcpForward( int.Parse( textBox1.Text ), textBox3.Text, remotePort );
 				tcpForward.LogMsgFormatBinary = checkBox1.Checked;
 				tcpForward.LogNet = new HslCommunication.LogNet.LogNetSingle( "" );
 				tcpForward.LogNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
+				tcpForward.OnlyShowLength = checkBox2.Checked;
 				tcpForward.CacheSize = cacheSize;
 				tcpForward.ServerStart( );
 
@@ -158,6 +172,9 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlIpAddress, textBox3.Text );
 			element.SetAttributeValue( DemoDeviceList.XmlPort, textBox2.Text );
 			element.SetAttributeValue( "LocalPort", textBox1.Text );
+			element.SetAttributeValue( "CacheSize", textBox_cache_size.Text );
+			element.SetAttributeValue( "UseBinary", checkBox1.Checked );
+			element.SetAttributeValue( "OnlyShowLength", checkBox2.Checked );
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -166,6 +183,9 @@ namespace HslCommunicationDemo
 			textBox3.Text = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox1.Text = element.Attribute( "LocalPort" ).Value;
+			textBox_cache_size.Text = GetXmlValue( element, "CacheSize", "2048", m => m );
+			checkBox1.Checked = GetXmlValue( element, "UseBinary", true, bool.Parse );
+			checkBox2.Checked = GetXmlValue( element, "OnlyShowLength", false, bool.Parse );
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )

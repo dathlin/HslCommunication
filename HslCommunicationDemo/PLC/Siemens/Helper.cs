@@ -27,6 +27,17 @@ namespace HslCommunicationDemo.PLC.Siemens
 				new DeviceAddressExample( "AQ0",   "智能输出寄存器", false, true, "仅支持字单位" ),
 			};
 		}
+		public static DeviceAddressExample[] GetSiemensS7PlusAddress( )
+		{
+			return new DeviceAddressExample[]
+			{
+				new DeviceAddressExample( "8A0E03E8.12",    "RelationId", true, true, "物理地址示例，从Browser界面获取" ),
+				new DeviceAddressExample( "51.A",    "RelationId", true, true, "物理地址示例，从Browser界面获取" ),
+
+
+				new DeviceAddressExample( "\"QArea\".\"急停\"",    "stringaddress", true, true, "映射地址，从Browser界面获取" ),
+			};
+		}
 
 		public static DeviceAddressExample[] GetSiemensPPIAddress( )
 		{

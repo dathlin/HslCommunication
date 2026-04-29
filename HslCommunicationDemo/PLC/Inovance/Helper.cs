@@ -9,11 +9,10 @@ namespace HslCommunicationDemo.PLC.Inovance
 {
 	internal class Helper
 	{
-		public static DeviceAddressExample[] GetInovanceAddress( )
+		public static Dictionary< string,DeviceAddressExample[]> GetInovanceAddress( )
 		{
-			return new DeviceAddressExample[]
+			DeviceAddressExample[] am = new DeviceAddressExample[]
 			{
-				new DeviceAddressExample( "AM400-800/AC/AP", "", false, false, "", true ),
 				new DeviceAddressExample( "Q0.0", "输出", true, false, "	Q0.0-Q8191.7 或是 Q0-Q65535" ),
 				new DeviceAddressExample( "IX0.0", "输入", true, false, "IX0.0-IX8191.7 或是 I0-I65535" ),
 				new DeviceAddressExample( "MX0.0", "M寄存器", true, false, "MX0.0-MX1000.10" ),
@@ -23,8 +22,10 @@ namespace HslCommunicationDemo.PLC.Inovance
 				new DeviceAddressExample( "SM0", "", false, true, "AM600系列还支持 SM0-SM65535" ),
 				new DeviceAddressExample( "SD0", "", false, true, "AM600系列还支持 SDW0-SDW65535" ),
 				new DeviceAddressExample( "s=2;SD0", "", false, true, "以上所有地址支持额外指定站号" ),
+			};
 
-				new DeviceAddressExample( "H3U/H5U/Easy", "", false, false, "", true ),
+			DeviceAddressExample[] h3u = new DeviceAddressExample[]
+			{
 				new DeviceAddressExample( "M0",  "中间继电器", true, false, "M0-M7679，M8000-M8511" ),
 				new DeviceAddressExample( "SM0", "中间继电器", true, false, "SM0-SM1023" ),
 				new DeviceAddressExample( "S0",  "中间继电器", true, false, "S0-S4095" ),
@@ -36,7 +37,12 @@ namespace HslCommunicationDemo.PLC.Inovance
 				new DeviceAddressExample( "SD0", "特殊寄存器", false, true, "SD0-SD1023" ),
 				new DeviceAddressExample( "R0",  "文件寄存器", false, true, "R0-R32767" ),
 				new DeviceAddressExample( "s=2;SD0", "", false, true, "以上所有地址支持额外指定站号" ),
+			};
 
+			return new Dictionary<string, DeviceAddressExample[]>
+			{
+				{ "AM400-800/AC/AP", am },
+				{ "H3U/H5U/Easy", h3u },
 			};
 		}
 

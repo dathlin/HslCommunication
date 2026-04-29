@@ -44,6 +44,7 @@
 			this.pingTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_byteTransform = new System.Windows.Forms.ToolStripMenuItem();
 			this.regexRegularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.portMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.demoSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.formTopMostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.记住窗体位置及大小ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +52,7 @@
 			this.退出软件显示确认ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.showMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.写入成功不弹窗ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.定时读写失败继续ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_Help = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_HomePage = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_ApiDoc = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +76,6 @@
 			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label_account = new System.Windows.Forms.Label();
-			this.portMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -213,6 +214,14 @@
 			this.regexRegularToolStripMenuItem.Text = "RegexRegular";
 			this.regexRegularToolStripMenuItem.Click += new System.EventHandler(this.regexRegularToolStripMenuItem_Click);
 			// 
+			// portMappingToolStripMenuItem
+			// 
+			this.portMappingToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.HslCommunication;
+			this.portMappingToolStripMenuItem.Name = "portMappingToolStripMenuItem";
+			this.portMappingToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.portMappingToolStripMenuItem.Text = "PortMapping";
+			this.portMappingToolStripMenuItem.Click += new System.EventHandler(this.portMappingToolStripMenuItem_Click);
+			// 
 			// demoSettingToolStripMenuItem
 			// 
 			this.demoSettingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -221,7 +230,8 @@
             this.testPanelSizeFixedToolStripMenuItem,
             this.退出软件显示确认ToolStripMenuItem,
             this.showMsToolStripMenuItem,
-            this.写入成功不弹窗ToolStripMenuItem});
+            this.写入成功不弹窗ToolStripMenuItem,
+            this.定时读写失败继续ToolStripMenuItem});
 			this.demoSettingToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.demoSettingToolStripMenuItem.Name = "demoSettingToolStripMenuItem";
 			this.demoSettingToolStripMenuItem.Size = new System.Drawing.Size(75, 21);
@@ -268,6 +278,13 @@
 			this.写入成功不弹窗ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
 			this.写入成功不弹窗ToolStripMenuItem.Text = "写入成功不弹窗";
 			this.写入成功不弹窗ToolStripMenuItem.Click += new System.EventHandler(this.写入成功不弹窗ToolStripMenuItem_Click);
+			// 
+			// 定时读写失败继续ToolStripMenuItem
+			// 
+			this.定时读写失败继续ToolStripMenuItem.Name = "定时读写失败继续ToolStripMenuItem";
+			this.定时读写失败继续ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+			this.定时读写失败继续ToolStripMenuItem.Text = "定时读写失败继续";
+			this.定时读写失败继续ToolStripMenuItem.Click += new System.EventHandler(this.定时读写失败继续ToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem_Help
 			// 
@@ -453,14 +470,6 @@
 			this.label_account.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			this.label_account.Click += new System.EventHandler(this.label_account_Click);
 			// 
-			// portMappingToolStripMenuItem
-			// 
-			this.portMappingToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.HslCommunication;
-			this.portMappingToolStripMenuItem.Name = "portMappingToolStripMenuItem";
-			this.portMappingToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-			this.portMappingToolStripMenuItem.Text = "PortMapping";
-			this.portMappingToolStripMenuItem.Click += new System.EventHandler(this.portMappingToolStripMenuItem_Click);
-			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -537,6 +546,7 @@
 		private System.Windows.Forms.ToolStripMenuItem showMsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 写入成功不弹窗ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem portMappingToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 定时读写失败继续ToolStripMenuItem;
 	}
 }
 

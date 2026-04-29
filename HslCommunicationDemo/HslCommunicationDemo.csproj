@@ -74,8 +74,8 @@
     <Reference Include="DynamicExpresso.Core, Version=2.19.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicExpresso.Core.2.19.3\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.7.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.7.0\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=12.8.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.12.8.1\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
@@ -927,6 +927,18 @@
     <Compile Include="PLC\Omron\Helper.cs" />
     <Compile Include="PLC\Omron\HostLinkCModeControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\OrientalMotor\FormOrientalMotorCip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\OrientalMotor\FormOrientalMotorCip.Designer.cs">
+      <DependentUpon>FormOrientalMotorCip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\OrientalMotor\OrientalMotorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PLC\OrientalMotor\OrientalMotorControl.Designer.cs">
+      <DependentUpon>OrientalMotorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Panasonic\Helper.cs" />
     <Compile Include="PLC\Panasonic\MewtocolControl.cs">
@@ -2567,6 +2579,12 @@
     <EmbeddedResource Include="PLC\Omron\HostLinkCModeControl.resx">
       <DependentUpon>HostLinkCModeControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\OrientalMotor\FormOrientalMotorCip.resx">
+      <DependentUpon>FormOrientalMotorCip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\OrientalMotor\OrientalMotorControl.resx">
+      <DependentUpon>OrientalMotorControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Panasonic\MewtocolControl.resx">
       <DependentUpon>MewtocolControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -3252,6 +3270,7 @@
     <None Include="img\art.png" />
     <None Include="img\secs_s.png" />
     <None Include="img\secs_f.png" />
+    <None Include="img\Orientalmotor.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

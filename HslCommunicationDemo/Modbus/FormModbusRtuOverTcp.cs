@@ -100,7 +100,7 @@ namespace HslCommunicationDemo
 		{
 			if (busRtuClient!=null)
 			{
-				busRtuClient.StationCheckMacth = checkBox_station_check.Checked;
+				busRtuClient.StationCheckMatch = checkBox_station_check.Checked;
 			}
 		}
 
@@ -131,7 +131,7 @@ namespace HslCommunicationDemo
 			busRtuClient.Station = station;
 			busRtuClient.AddressStartWithZero     = checkBox1.Checked;
 			busRtuClient.LogNet                   = LogNet;
-			busRtuClient.StationCheckMacth        = checkBox_station_check.Checked;
+			busRtuClient.StationCheckMatch        = checkBox_station_check.Checked;
 			if (!string.IsNullOrEmpty( textBox_BroadcastStation.Text ))
 				busRtuClient.BroadcastStation = int.Parse( textBox_BroadcastStation.Text );
 
@@ -161,7 +161,7 @@ namespace HslCommunicationDemo
 					stationSearchControl.SetModbus( busRtuClient );
 
 					List<string> props = new List<string>( ) { nameof( busRtuClient.AddressStartWithZero ), nameof( busRtuClient.IsStringReverse ),
-						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.StationCheckMacth ), nameof( busRtuClient.BroadcastStation ) };
+						nameof( busRtuClient.DataFormat ), nameof( busRtuClient.Station ), nameof( busRtuClient.StationCheckMatch ), nameof( busRtuClient.BroadcastStation ) };
 					if (!string.IsNullOrEmpty( busRtuClient.SendBeforeHex )) props.Add( nameof( busRtuClient.SendBeforeHex ) );
 					// 设置示例代码
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.ModbusDeviceName );
@@ -197,7 +197,7 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.XmlAddressStartWithZero, checkBox1.Checked );
 			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, comboBox1.SelectedIndex );
 			element.SetAttributeValue( DemoDeviceList.XmlStringReverse, checkBox3.Checked );
-			element.SetAttributeValue( nameof( ModbusRtuOverTcp.StationCheckMacth ), checkBox_station_check.Checked );
+			element.SetAttributeValue( nameof( ModbusRtuOverTcp.StationCheckMatch ), checkBox_station_check.Checked );
 			element.SetAttributeValue( nameof( ModbusRtuOverTcp.BroadcastStation ), textBox_BroadcastStation.Text );
 
 			this.userControlReadWriteDevice1.GetDataTable( element );
@@ -212,7 +212,7 @@ namespace HslCommunicationDemo
 			checkBox1.Checked            = bool.Parse( element.Attribute( DemoDeviceList.XmlAddressStartWithZero ).Value );
 			comboBox1.SelectedIndex      = int.Parse( element.Attribute( DemoDeviceList.XmlDataFormat ).Value );
 			checkBox3.Checked            = bool.Parse( element.Attribute( DemoDeviceList.XmlStringReverse ).Value );
-			checkBox_station_check.Checked = GetXmlValue( element, nameof( ModbusRtuOverTcp.StationCheckMacth ), checkBox_station_check.Checked, bool.Parse );
+			checkBox_station_check.Checked = GetXmlValue( element, nameof( ModbusRtuOverTcp.StationCheckMatch ), checkBox_station_check.Checked, bool.Parse );
 			textBox_BroadcastStation.Text = GetXmlValue( element, nameof( ModbusRtuOverTcp.BroadcastStation ), "", m => m );
 
 			if (this.userControlReadWriteDevice1.LoadDataTable( element ) > 0)

@@ -27,6 +27,8 @@ namespace HslCommunicationDemo.DemoControl
 			this.checkBox_output_file.CheckedChanged += CheckBox_output_file_CheckedChanged;
 		}
 
+		public bool ShowLog { get; set; } = false;
+
 		HslMessageDegree hslMessageDegree = HslMessageDegree.DEBUG;
 		private string regexFilter = string.Empty;
 		private string logOutputFileName = string.Empty;
@@ -91,6 +93,7 @@ namespace HslCommunicationDemo.DemoControl
 
 		private void LogNet_BeforeSaveToFile( object sender, HslEventArgs e )
 		{
+			if (ShowLog == false) return;
 			try
 			{
 				if (!checkBox_stop_render.Checked)
@@ -112,7 +115,7 @@ namespace HslCommunicationDemo.DemoControl
 							this.logStreamWrite.Write( log );
 						}
 
-						if (render) Invoke( new Action( ( ) =>
+						if (render && IsDisposed == false) Invoke( new Action( ( ) =>
 						{
 							textBox1.AppendText( log );
 						} ) );

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -25,6 +26,11 @@ namespace HslCommunicationDemo
 		public HslFormContent( )
 		{
 			FormGuid = Guid.NewGuid( ).ToString( "N" );
+			ThreadPool.QueueUserWorkItem( new WaitCallback( ( m ) =>
+			{
+				Thread.Sleep( 100 );
+				FormMain.Form?.PublishMqttMessage( this.GetType( ).Name );
+			} ), new object() );
 		}
 
 		protected override void OnLoad( EventArgs e )

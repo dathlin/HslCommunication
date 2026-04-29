@@ -63,6 +63,11 @@ namespace HslCommunicationDemo
 		/// </summary>
 		public int RenderListMode { get; set; } = 0;
 
+		/// <summary>
+		/// 定时器读取数据失败时，是否继续读取，默认为false，如果设置为true，则在定时器读取数据失败时，不会弹出错误提示，而是继续尝试读取数据，主要是为了减少界面上频繁弹出错误提示的干扰
+		/// </summary>
+		public bool TimerReadWriteFailedContinue { get; set; } = false;
+
 		public void LoadFiles( )
 		{
 			lock(lock_settings)
@@ -89,14 +94,15 @@ namespace HslCommunicationDemo
 							Size = new Size( int.Parse( sizes[0] ), int.Parse( sizes[1] ) );
 						}
 
-						ConfirmCloseWindow           = GetValue( json, nameof( ConfirmCloseWindow ),        false );
-						PenelSizeFixed               = GetValue( json, nameof( PenelSizeFixed ),            false );
-						TopMost                      = GetValue( json, nameof( TopMost ),                   false );
-						ShowTimeOfMilliseconds       = GetValue( json, nameof( ShowTimeOfMilliseconds ),    false );
-						WriteSuccessNotShowWindow    = GetValue( json, nameof( WriteSuccessNotShowWindow ), false );
-						UploadDeviceName             = GetValue( json, nameof( UploadDeviceName ),          string.Empty );
-						UploadDeviceContact          = GetValue( json, nameof( UploadDeviceContact ),       string.Empty );
-						RenderListMode               = GetValue( json, nameof( RenderListMode ),            0 );
+						ConfirmCloseWindow             = GetValue( json, nameof( ConfirmCloseWindow ),             false );
+						PenelSizeFixed                 = GetValue( json, nameof( PenelSizeFixed ),                 false );
+						TopMost                        = GetValue( json, nameof( TopMost ),                        false );
+						ShowTimeOfMilliseconds         = GetValue( json, nameof( ShowTimeOfMilliseconds ),         false );
+						WriteSuccessNotShowWindow      = GetValue( json, nameof( WriteSuccessNotShowWindow ),      false );
+						UploadDeviceName               = GetValue( json, nameof( UploadDeviceName ),               string.Empty );
+						UploadDeviceContact            = GetValue( json, nameof( UploadDeviceContact ),            string.Empty );
+						RenderListMode                 = GetValue( json, nameof( RenderListMode ),                 0 );
+						TimerReadWriteFailedContinue   = GetValue( json, nameof( TimerReadWriteFailedContinue ),   false );
 					}
 				}
 				catch
@@ -123,6 +129,7 @@ namespace HslCommunicationDemo
 				json.Add( nameof( UploadDeviceName ), UploadDeviceName );
 				json.Add( nameof( UploadDeviceContact ), UploadDeviceContact );
 				json.Add( nameof( RenderListMode ), RenderListMode );
+				json.Add( nameof( TimerReadWriteFailedContinue ), TimerReadWriteFailedContinue );
 				File.WriteAllText( path, json.ToString( ), Encoding.UTF8 );
 			}
 		}

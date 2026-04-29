@@ -51,6 +51,7 @@ namespace HslCommunicationDemo.DemoControl
 		private long read_tick_count;
 		public event EventHandler<string> MethodCodeClick;
 
+
 		private void UserControlReadWriteOp_Load( object sender, EventArgs e )
 		{
 			Language( Program.Language );
@@ -68,6 +69,21 @@ namespace HslCommunicationDemo.DemoControl
 				deviceImage = formContent.DeviceImage;
 			}
 		}
+
+		protected override void OnSizeChanged( EventArgs e )
+		{
+			base.OnSizeChanged( e );
+
+			if (this.Width < 960)
+			{
+				if(this.checkBox_mask_duplicates.Visible) this.checkBox_mask_duplicates.Visible = false;
+			}
+			else
+			{
+				if (!this.checkBox_mask_duplicates.Visible) this.checkBox_mask_duplicates.Visible = true;
+			}
+		}
+
 
 		private void CheckBox_write_timer_CheckedChanged( object sender, EventArgs e )
 		{
@@ -91,6 +107,8 @@ namespace HslCommunicationDemo.DemoControl
 				timer_write.Tick += Timer_write_Tick; ;
 				timer_write.Start( );
 				this.button_write_timer = null;
+				this.writeSuccessTimes = 0;
+				this.writeFailureTimes = 0;
 			}
 			else
 			{
@@ -137,6 +155,8 @@ namespace HslCommunicationDemo.DemoControl
 				timer_read.Start( );
 				this.button_read_timer = null;
 				this.read_tick_count = 0;
+				this.operateSuccessTimes = 0;
+				this.operateFailureTimes = 0;
 			}
 			else
 			{
@@ -153,7 +173,8 @@ namespace HslCommunicationDemo.DemoControl
 			if (button_read_timer != null)
 			{
 				read_tick_count++;
-				label17.Text = (Program.Language == 1 ? "次数: " : "Freq: ") + this.read_tick_count.ToString( );
+				label17.Text = (Program.Language == 1 ? "成功: " : "Success: ") + this.operateSuccessTimes.ToString( ) + "  " +
+					(Program.Language == 1 ? "失败: " : "Failed: ") + this.operateFailureTimes.ToString( );
 			}
 		}
 
@@ -207,7 +228,7 @@ namespace HslCommunicationDemo.DemoControl
 				checkBox_write_timer.Text = "Timer Write";
 
 				label16.Text = "if write 1-100, value input {1:100}";
-				checkBox_mask_duplicates.Text = "Mask duplicates?";
+				checkBox_mask_duplicates.Text = "Mask repeat?";
 				textBox_read_search.Text = "Search";
 				button_find_string.Text = "find";
 
@@ -282,6 +303,10 @@ namespace HslCommunicationDemo.DemoControl
 		private string readValueLast = string.Empty;
 		private string readTimeLast = string.Empty;
 		private long readValueRepeatTimes = 1;
+		private long operateSuccessTimes = 0;
+		private long operateFailureTimes = 0;
+		private long writeSuccessTimes = 0;
+		private long writeFailureTimes = 0;
 
 		private ValueLimit valueLimit = new ValueLimit( );
 
@@ -298,15 +323,13 @@ namespace HslCommunicationDemo.DemoControl
 		private void RenderReadResult<T>( DateTime start, OperateResult<T> read, int renderResult = -1 )
 		{
 			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-			if (!read.IsSuccess && checkBox_read_timer.Checked) checkBox_read_timer.Checked = false;
+			if (!read.IsSuccess && checkBox_read_timer.Checked && !Program.Settings.TimerReadWriteFailedContinue) checkBox_read_timer.Checked = false;
 			ReadResultRender( read, comboBox_read_address.Text, textBox4, renderResult );
-
 			AddAddressCache( comboBox_read_address.Text );
 		}
 
 		private void AppendReadResult( TextBox textBox, string text )
 		{
-
 			if (!checkBox_mask_duplicates.Checked)
 				textBox.AppendText( DemoUtils.GetRenderTimeText( ) + $"{text}{Environment.NewLine}" );
 			else
@@ -347,6 +370,7 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			if (result.IsSuccess)
 			{
+				System.Threading.Interlocked.Increment( ref operateSuccessTimes );
 				if (result.Content is Array array)
 				{
 					if (renderResult == 1)
@@ -392,7 +416,15 @@ namespace HslCommunicationDemo.DemoControl
 			}
 			else
 			{
-				DemoUtils.ShowMessage( DemoUtils.GetRenderTimeText( ) + $"[{address}] Read Failed {Environment.NewLine}Reason：{result.ToMessageShowString( )}" );
+				System.Threading.Interlocked.Increment( ref operateFailureTimes );
+				if (checkBox_read_timer.Checked && Program.Settings.TimerReadWriteFailedContinue)
+				{
+
+				}
+				else
+				{
+					DemoUtils.ShowMessage( DemoUtils.GetRenderTimeText( ) + $"[{address}] Read Failed {Environment.NewLine}Reason：{result.ToMessageShowString( )}" );
+				}
 			}
 		}
 
@@ -879,11 +911,8 @@ namespace HslCommunicationDemo.DemoControl
 			DateTime start = DateTime.Now;
 			OperateResult write = writeFunc( );
 			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-
 			if (isAsync) button.Enabled = true;
-			if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 			WriteResultRender( write, GetWriteAddress( ), input );
-
 			AddAddressCache( GetWriteAddress( ) );
 		}
 
@@ -894,11 +923,8 @@ namespace HslCommunicationDemo.DemoControl
 			DateTime start = DateTime.Now;
 			OperateResult write = await writeFunc( );
 			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-
 			if (isAsync) button.Enabled = true;
-			if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 			WriteResultRender( write, GetWriteAddress( ), input );
-
 			AddAddressCache( GetWriteAddress( ) );
 		}
 
@@ -1509,7 +1535,6 @@ namespace HslCommunicationDemo.DemoControl
 					write = await readWriteNet.WriteAsync( GetWriteAddress( ), textBox_write_text.Text, DemoUtils.GetEncodingFromIndex( comboBox_write_Encoding.SelectedIndex ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 
-				if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 				WriteResultRender( write, GetWriteAddress( ), string.Empty );
 				button_write_string.Enabled = true;
 			}
@@ -1522,7 +1547,6 @@ namespace HslCommunicationDemo.DemoControl
 				else
 					write = readWriteNet.Write( GetWriteAddress( ), textBox_write_text.Text, DemoUtils.GetEncodingFromIndex( comboBox_write_Encoding.SelectedIndex ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-				if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 				WriteResultRender( write, GetWriteAddress( ), string.Empty );
 			}
 
@@ -1539,7 +1563,6 @@ namespace HslCommunicationDemo.DemoControl
 				DateTime start = DateTime.Now;
 				OperateResult write = await readWriteNet.WriteAsync( GetWriteAddress( ), textBox_write_text.Text.ToHexBytes( ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-				if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 				WriteResultRender( write, GetWriteAddress( ), string.Empty );
 				button_write_string.Enabled = true;
 			}
@@ -1548,7 +1571,6 @@ namespace HslCommunicationDemo.DemoControl
 				DateTime start = DateTime.Now;
 				OperateResult write = readWriteNet.Write( GetWriteAddress( ), textBox_write_text.Text.ToHexBytes( ) );
 				SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
-				if (!write.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
 				WriteResultRender( write, GetWriteAddress( ), string.Empty );
 			}
 
@@ -1558,8 +1580,17 @@ namespace HslCommunicationDemo.DemoControl
 
 		public void WriteResultRender( OperateResult result, string address, string input )
 		{
+			if (result.IsSuccess) 
+				System.Threading.Interlocked.Increment( ref writeSuccessTimes );
+			else 
+				System.Threading.Interlocked.Increment( ref writeFailureTimes );
+			
+			label16.Text = DateTime.Now.ToString( "HH:mm:ss" ) + $" [{input}] " + (Program.Language == 1 ? "成功: " : "Success: ") + writeSuccessTimes.ToString( ) + "  " + (Program.Language == 1 ? "失败: " : "Failed: ") + writeFailureTimes.ToString( );
+
 			if (checkBox_write_timer.Checked && result.IsSuccess)
-				label16.Text = DateTime.Now.ToString( "HH:mm:ss" ) + " Write Success: " + input;
+			{
+
+			}
 			else
 			{
 				if (result.IsSuccess == true && FormMain.WriteSuccessNotShowWindow)
@@ -1568,11 +1599,18 @@ namespace HslCommunicationDemo.DemoControl
 				}
 				else
 				{
-					DemoUtils.WriteResultRender( result, address );
+					if (checkBox_write_timer.Checked && Program.Settings.TimerReadWriteFailedContinue)
+					{
+
+					}
+					else
+					{
+						DemoUtils.WriteResultRender( result, address );
+					}
 				}
 			}
 
-			if (!result.IsSuccess && checkBox_write_timer.Checked) checkBox_write_timer.Checked = false;
+			if (!result.IsSuccess && checkBox_write_timer.Checked && !Program.Settings.TimerReadWriteFailedContinue) checkBox_write_timer.Checked = false;
 		}
 
 		private void button1_Click( object sender, EventArgs e )
