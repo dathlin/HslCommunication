@@ -13,7 +13,6 @@ namespace HslCommunicationDemo.Instrument
 	public class CJT188Control : UserControl
 	{
 		private System.Windows.Forms.Button button7;
-		private System.Windows.Forms.Button button6;
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label2;
@@ -37,16 +36,15 @@ namespace HslCommunicationDemo.Instrument
 		private void InitializeComponent( )
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.textBox_code = new System.Windows.Forms.TextBox();
+			this.label_code = new System.Windows.Forms.Label();
 			this.button7 = new System.Windows.Forms.Button();
-			this.button6 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.textBox12 = new System.Windows.Forms.TextBox();
-			this.label_code = new System.Windows.Forms.Label();
-			this.textBox_code = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -58,7 +56,6 @@ namespace HslCommunicationDemo.Instrument
 			this.groupBox1.Controls.Add(this.textBox_code);
 			this.groupBox1.Controls.Add(this.label_code);
 			this.groupBox1.Controls.Add(this.button7);
-			this.groupBox1.Controls.Add(this.button6);
 			this.groupBox1.Controls.Add(this.button5);
 			this.groupBox1.Controls.Add(this.textBox1);
 			this.groupBox1.Controls.Add(this.label2);
@@ -72,9 +69,29 @@ namespace HslCommunicationDemo.Instrument
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "CJT188 Function";
 			// 
+			// textBox_code
+			// 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_code.Location = new System.Drawing.Point(56, 180);
+			this.textBox_code.Multiline = true;
+			this.textBox_code.Name = "textBox_code";
+			this.textBox_code.Size = new System.Drawing.Size(821, 40);
+			this.textBox_code.TabIndex = 28;
+			// 
+			// label_code
+			// 
+			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label_code.AutoSize = true;
+			this.label_code.Location = new System.Drawing.Point(6, 182);
+			this.label_code.Name = "label_code";
+			this.label_code.Size = new System.Drawing.Size(44, 17);
+			this.label_code.TabIndex = 27;
+			this.label_code.Text = "代码：";
+			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(254, 51);
+			this.button7.Location = new System.Drawing.Point(480, 18);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(151, 28);
 			this.button7.TabIndex = 26;
@@ -82,20 +99,9 @@ namespace HslCommunicationDemo.Instrument
 			this.button7.UseVisualStyleBackColor = true;
 			this.button7.Click += new System.EventHandler(this.button7_Click);
 			// 
-			// button6
-			// 
-			this.button6.Enabled = false;
-			this.button6.Location = new System.Drawing.Point(212, 18);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(81, 28);
-			this.button6.TabIndex = 25;
-			this.button6.Text = "广播时间";
-			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.button6_Click);
-			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(411, 51);
+			this.button5.Location = new System.Drawing.Point(637, 18);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(106, 28);
 			this.button5.TabIndex = 24;
@@ -105,7 +111,7 @@ namespace HslCommunicationDemo.Instrument
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(60, 54);
+			this.textBox1.Location = new System.Drawing.Point(286, 21);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(188, 23);
 			this.textBox1.TabIndex = 23;
@@ -114,7 +120,7 @@ namespace HslCommunicationDemo.Instrument
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(6, 57);
+			this.label2.Location = new System.Drawing.Point(232, 24);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(44, 17);
 			this.label2.TabIndex = 22;
@@ -145,32 +151,12 @@ namespace HslCommunicationDemo.Instrument
 			this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox12.Location = new System.Drawing.Point(9, 84);
+			this.textBox12.Location = new System.Drawing.Point(9, 52);
 			this.textBox12.Multiline = true;
 			this.textBox12.Name = "textBox12";
 			this.textBox12.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox12.Size = new System.Drawing.Size(868, 90);
+			this.textBox12.Size = new System.Drawing.Size(868, 122);
 			this.textBox12.TabIndex = 19;
-			// 
-			// label_code
-			// 
-			this.label_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label_code.AutoSize = true;
-			this.label_code.Location = new System.Drawing.Point(6, 182);
-			this.label_code.Name = "label_code";
-			this.label_code.Size = new System.Drawing.Size(44, 17);
-			this.label_code.TabIndex = 27;
-			this.label_code.Text = "代码：";
-			// 
-			// textBox_code
-			// 
-			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_code.Location = new System.Drawing.Point(56, 180);
-			this.textBox_code.Multiline = true;
-			this.textBox_code.Name = "textBox_code";
-			this.textBox_code.Size = new System.Drawing.Size(821, 40);
-			this.textBox_code.TabIndex = 28;
 			// 
 			// CJT188Control
 			// 

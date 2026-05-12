@@ -29,6 +29,7 @@ namespace HslCommunicationDemo
 
 		private CJT188 cjt188 = null;
 		private CJT188Control control;
+		private CJT188DataControl dataControl;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
 
@@ -47,6 +48,9 @@ namespace HslCommunicationDemo
 
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
+
+			dataControl = new CJT188DataControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( dataControl, false, CJT188DataControl.GetTitle( ) );
 
 			userControlReadWriteDevice1.SetEnable( false );
 		}
@@ -93,6 +97,7 @@ namespace HslCommunicationDemo
 				{
 					userControlReadWriteDevice1.SetEnable( true );
 					button1.Enabled = false;
+					button2.Enabled = true;
 					panel2.Enabled = true;
 
 					// 68 00 00 00 00 00 01 68 11 04 00 00 00 00 10 16
@@ -108,6 +113,7 @@ namespace HslCommunicationDemo
 					// 设置代码示例
 					this.userControlReadWriteDevice1.SetDeviceVariableName( "cjt" );
 					codeExampleControl.SetCodeText( "cjt", cjt188, nameof( cjt188.InstrumentType ), nameof( cjt188.EnableCodeFE ) );
+					dataControl.SetCjt188( cjt188 );
 				}
 				else
 				{
@@ -126,6 +132,7 @@ namespace HslCommunicationDemo
 			// 断开连接
 			userControlReadWriteDevice1.SetEnable( false );
 			button1.Enabled = true;
+			button2.Enabled = false;
 			panel2.Enabled = false;
 			this.pipeSelectControl1.ExtraCloseAction( cjt188 );
 			cjt188.Close( );

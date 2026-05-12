@@ -134,6 +134,7 @@
 			this.readNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.readNcLocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.button47 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -262,6 +263,7 @@
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.button47);
 			this.tabPage1.Controls.Add(this.button46);
 			this.tabPage1.Controls.Add(this.button45);
 			this.tabPage1.Controls.Add(this.button44);
@@ -1098,9 +1100,9 @@
 			// 
 			// button25
 			// 
-			this.button25.Location = new System.Drawing.Point(563, 61);
+			this.button25.Location = new System.Drawing.Point(877, 61);
 			this.button25.Name = "button25";
-			this.button25.Size = new System.Drawing.Size(122, 29);
+			this.button25.Size = new System.Drawing.Size(96, 29);
 			this.button25.TabIndex = 48;
 			this.button25.Text = "设为主程序";
 			this.button25.UseVisualStyleBackColor = true;
@@ -1110,9 +1112,9 @@
 			// 
 			this.textBox6.Location = new System.Drawing.Point(451, 64);
 			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(105, 23);
+			this.textBox6.Size = new System.Drawing.Size(420, 23);
 			this.textBox6.TabIndex = 50;
-			this.textBox6.Text = "33";
+			this.textBox6.Text = "//CNC_MEM/USER/PATH1/O0001";
 			// 
 			// button27
 			// 
@@ -1222,6 +1224,16 @@
 			this.readNcLocalToolStripMenuItem.Name = "readNcLocalToolStripMenuItem";
 			this.readNcLocalToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
 			this.readNcLocalToolStripMenuItem.Text = "读取NC到本地";
+			// 
+			// button47
+			// 
+			this.button47.Location = new System.Drawing.Point(406, 108);
+			this.button47.Name = "button47";
+			this.button47.Size = new System.Drawing.Size(96, 29);
+			this.button47.TabIndex = 94;
+			this.button47.Text = "复位(reset)";
+			this.button47.UseVisualStyleBackColor = true;
+			this.button47.Click += new System.EventHandler(this.button47_Click);
 			// 
 			// FormCncFanuc
 			// 
@@ -1361,5 +1373,6 @@
         private System.Windows.Forms.Button button44;
         private System.Windows.Forms.Button button45;
         private System.Windows.Forms.Button button46;
-    }
+		private System.Windows.Forms.Button button47;
+	}
 }

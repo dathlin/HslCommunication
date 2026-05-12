@@ -29,7 +29,7 @@
 		private void InitializeComponent( )
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.button1 = new System.Windows.Forms.Button();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -45,6 +45,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.exploreTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.label3 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -76,8 +77,8 @@
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
 			this.dataGridView1.AllowUserToResizeRows = false;
-			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(255)))));
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(255)))));
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -174,7 +175,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.ForeColor = System.Drawing.Color.Red;
-			this.label2.Location = new System.Drawing.Point(104, 9);
+			this.label2.Location = new System.Drawing.Point(101, 9);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(176, 17);
 			this.label2.TabIndex = 7;
@@ -190,13 +191,24 @@
 			// exploreTagToolStripMenuItem
 			// 
 			this.exploreTagToolStripMenuItem.Name = "exploreTagToolStripMenuItem";
-			this.exploreTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exploreTagToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
 			this.exploreTagToolStripMenuItem.Text = "Explore Tag";
 			this.exploreTagToolStripMenuItem.Click += new System.EventHandler(this.exploreTagToolStripMenuItem_Click);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(274, 10);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(17, 17);
+			this.label3.TabIndex = 8;
+			this.label3.Text = ">";
+			this.label3.Visible = false;
 			// 
 			// SiemensS7PlusControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.textBox_time);
@@ -232,5 +244,6 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem exploreTagToolStripMenuItem;
+		private System.Windows.Forms.Label label3;
 	}
 }

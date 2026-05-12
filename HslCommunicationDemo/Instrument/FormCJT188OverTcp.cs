@@ -28,6 +28,7 @@ namespace HslCommunicationDemo
 
 		private CJT188OverTcp cjt188 = null;
 		private CJT188Control control;
+		private CJT188DataControl dataControl;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
 
@@ -46,6 +47,10 @@ namespace HslCommunicationDemo
 			codeExampleControl = new CodeExampleControl( );
 			userControlReadWriteDevice1.AddSpecialFunctionTab( codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 			userControlReadWriteDevice1.SetEnable( false );
+
+			dataControl = new CJT188DataControl( );
+			userControlReadWriteDevice1.AddSpecialFunctionTab( dataControl, false, CJT188DataControl.GetTitle( ) );
+
 		}
 
 
@@ -109,6 +114,7 @@ namespace HslCommunicationDemo
 					// 设置代码示例
 					this.userControlReadWriteDevice1.SetDeviceVariableName( "cjt" );
 					codeExampleControl.SetCodeText( "cjt", cjt188, nameof( cjt188.InstrumentType ), nameof( cjt188.EnableCodeFE ) );
+					dataControl.SetCjt188( cjt188 );
 				}
 				else
 				{

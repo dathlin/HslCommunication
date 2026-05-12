@@ -466,12 +466,19 @@ namespace HslCommunicationDemo
 		private void button25_Click( object sender, EventArgs e )
 		{
 			// 设置为主程序
+			OperateResult set = null;
 			if (!ushort.TryParse( textBox6.Text, out ushort programNum ))
 			{
-				DemoUtils.ShowMessage( "主程序号输入错误！\r\nThe main program number was entered incorrectly!" );
-				return;
+				//DemoUtils.ShowMessage( "主程序号输入错误！\r\nThe main program number was entered incorrectly!" );
+				set = fanuc.SetCurrentProgram( textBox6.Text );
+				textBox_code2.Text = $"OperateResult set = fanuc.SetCurrentProgram( \"{textBox6.Text}\" );";
 			}
-			OperateResult set = fanuc.SetCurrentProgram( programNum );
+			else
+			{
+				set = fanuc.SetCurrentProgram( programNum );
+				textBox_code2.Text = $"OperateResult set = fanuc.SetCurrentProgram( {programNum} );";
+			}
+
 			if (set.IsSuccess)
 			{
 				DemoUtils.ShowMessage( "设置主程序成功！\r\nThe main program has been set up successfully!" );
@@ -481,7 +488,6 @@ namespace HslCommunicationDemo
 				DemoUtils.ShowMessage( "设置主程序失败！(Failed to set up the main program)" + set.ToMessageShowString( ) );
 			}
 
-			textBox_code2.Text = $"OperateResult set = fanuc.SetCurrentProgram( {programNum} );";
 		}
 
 		private async void button27_Click( object sender, EventArgs e )
@@ -1073,6 +1079,20 @@ namespace HslCommunicationDemo
 			textBox_code.Text = $"OperateResult read = fanuc.ClearToolGroup( {id}, {id} );";
 		}
 
+		private void button47_Click( object sender, EventArgs e )
+		{
+			if (MessageBox.Show( "是否确定启动机床复位功能?", "确认", MessageBoxButtons.YesNo ) == DialogResult.No) return;
+			OperateResult reset = fanuc.Reset( );
+			if (reset.IsSuccess)
+			{
+				DemoUtils.ShowMessage( "Reset successful" );
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "Reset failed: " + reset.ToMessageShowString( ) );
+			}
+			textBox_code.Text = $"OperateResult reset = fanuc.Reset( );";
+		}
 	}
 
 

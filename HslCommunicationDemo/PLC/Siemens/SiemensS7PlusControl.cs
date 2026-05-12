@@ -143,7 +143,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 		}
 
-		public void RenderS7Tags( List<S7Tag> s7Tags )
+		public void RenderS7Tags( List<S7Tag> s7Tags, string addressFormat = null )
 		{
 			int count = s7Tags == null ? 0 : s7Tags.Count;
 			DemoUtils.DataGridSpecifyRowCount( dataGridView1, row: count );
@@ -165,10 +165,20 @@ namespace HslCommunicationDemo.PLC.Siemens
 					row.Cells[2].Value = "0x" + child.TypeCode.ToString( "X" );
 					row.Cells[3].Value = child.GetTypeText( );
 					row.Cells[4].Value = "";
-					row.Cells[5].Value = tagNameMappig.ContainsKey( child.GetLIDText( ) ) ? tagNameMappig[child.GetLIDText( )] : ""; //child.StringAddress;
+					if (!string.IsNullOrEmpty( addressFormat ))
+						row.Cells[5].Value = string.Format( addressFormat, i );
+					else
+						row.Cells[5].Value = tagNameMappig.ContainsKey( child.GetLIDText( ) ) ? tagNameMappig[child.GetLIDText( )] : ""; //child.StringAddress;
 					row.Tag = child;
 				}
 			}
+		}
+
+		private string GetTreePath( TreeNode treeNode )
+		{
+			if (treeNode.Parent == null) return treeNode.Text;
+
+			return GetTreePath( treeNode.Parent ) + "/" + treeNode.Text;
 		}
 
 		private void treeView1_AfterSelect( object sender, TreeViewEventArgs e )
@@ -176,6 +186,17 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 选择了菜单按钮
 			TreeNode treeNode = e.Node;
 			if (treeNode == null) return;
+
+			if (label2.AutoSize)
+			{
+				label2.AutoSize = false;
+				label2.Size = new Size( 160, 17 );
+				label2.AutoEllipsis = true;
+
+				label3.Visible = true;
+			}
+
+			label3.Text = ">" + GetTreePath( treeNode );
 
 			if (treeNode.Tag is S7Object obj)
 			{
@@ -249,6 +270,23 @@ namespace HslCommunicationDemo.PLC.Siemens
 						}
 					}
 					RenderS7Tags( s7Tags );
+				}
+				else if (tag.TypeCode != 0x11 && tag.ArrayLength > 0)
+				{
+					// 这是普通类型的数组
+					List<S7Tag> s7Tags = new List<S7Tag>( );
+					for (int i = 0; i < tag.ArrayLength; i++)
+					{
+						S7Tag s7Tag = tag.Clone( );
+						s7Tag.ArrayLength = -1;
+						s7Tag.Name += $"[{i}]";
+						s7Tag.LID.Add( (uint)i );
+
+						s7Tags.Add( s7Tag );
+					}
+
+					string tagName = tagNameMappig.ContainsKey( tag.GetLIDText( ) ) ? tagNameMappig[tag.GetLIDText( )] + "[{0}]" : "";
+					RenderS7Tags( s7Tags, tagName );
 				}
 			}
 		}
