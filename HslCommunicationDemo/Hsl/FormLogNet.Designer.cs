@@ -59,6 +59,7 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.button10 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -298,6 +299,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.button10);
 			this.panel2.Controls.Add(this.textBox_code);
 			this.panel2.Controls.Add(this.label9);
 			this.panel2.Controls.Add(this.button8);
@@ -396,6 +398,16 @@
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 27;
 			// 
+			// button10
+			// 
+			this.button10.Location = new System.Drawing.Point(384, 3);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(164, 28);
+			this.button10.TabIndex = 15;
+			this.button10.Text = "过大缓存过滤日志数量";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
+			// 
 			// FormLogNet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -451,5 +463,6 @@
 		private System.Windows.Forms.TextBox textBox_code;
 		private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox checkBox_encoding_bom;
-    }
+		private System.Windows.Forms.Button button10;
+	}
 }

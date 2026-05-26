@@ -35,18 +35,20 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.8.2
-1. PipeMqttClient: 修复MQTT管道再一开始连接MQTT失败的时候，设置管道的时候，直接发生异常的bug，现在还同时支持了断线重连恢复的功能。
-2. PipeMqttClient: 修复MQTT管道在异步通信的情况下，直接调用接收数据得方法，但是提示功能未实现得bug。
-3. CimonServer: 修复Cimon协议虚拟服务器读写F, Z, S地址不正常的bug，还支持了数据块的存储，重新加载的功能。
-4. HslStruct: 读取原始字节自动解析结构体的特性里，针对bool类型数值及数组，支持了设置BoolMode属性，表示解析bool时是否根据字反转再解析操作。
-5. FanucSeries0i: fanuc机床类新增SetCurrentProgram设置主程序重载方法，传入路径字符串，例如//CNC_MEM/USER/PATH1/O000，新增Reset重置方法，Demo界面直接测试。
-6. MemobusTcpServer: 支持了远程客户端针对G地址的bool读写操作，服务器端也支持了对G地址的bool读写，地址示例: G100.0
-7. CJT188Helper: CJT188协议修复读取失败的问题，Demo界面增加数据列表显示，可以方便的显示当前常用的数据及单位信息，串口及串口透传类均优化。
-8. SiemensS7Plus: 标签是非结构体的数组的时候，支持了索引地址访问，例如 ""A"".""B""[1]，Demo界面浏览标签列表时，选中非结构体数组时，支持显示结构体列表信息。
-9. Doc: 官网的在线文档增加 ReadStruct 针对bool属性位偏移的解释说明，针对SiemensS7Plus协议读写数组的功能说明。
-10. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
-11. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权";
+			textBox1.Text = @"V12.8.3
+1. OmronFinsUdp: 属性SID信息改为自增的属性，每次读写数据的时候进行自增操作，最大为255，然后重置为0，继续自增操作。
+2. Authorization: 激活方法SetAuthorizationCode检测传入的激活码，如果长度大于100，则使用证书激活的方式，并返回激活是否成功。
+3. MqttClient: 连接参数类MqttConnectionOptions新增属性LocalBinding，可以用来绑定本机的ip或是端口号，Demo界面新增一个more标签用来设置更多的信息。
+4. ILogNet: 日志接口及对象新增属性MaxCacheCount，用于控制临时缓存队列的最大数量，默认为1000万，超出该值时将会丢弃最新的日志，防止极端情况崩溃。
+5. FtpServer: Ftp服务器在客户端上传文件的时候，如果文件已经存在，先判断文件是否有写入权限再执行实际上传操作。
+6. FtpClient: FTP客户端在上传或下载文件的时候，最终传输数据完成的时候，再次判断是否5XX错误码，从而修复某些特殊的情况提示上传成功但是实际失败的异常。
+7. MelsecA1E: 修复二进制及ASCII格式的协议，使用字读取位地址时，当长度很大导致分批次读取时，后面的偏移地址不正确的bug。
+8. PipeSerialPort: 串口管道SleepTime优化，当接收数据的前五次循环里，使用十分之一的SleepTime值来休眠，兼顾回复数据比较快的设备，可以快速收到数据。
+9. Demo: Demo程序里的台达，汇川，信捷测试界面，连接成功后，系列的下拉框调整为禁用，断开连接后可以重新选择。
+10. Demo: 数据点位表控件如果配置了单个byte类型的数据之后，修复双击写入时，对于西门子S7协议等支持单个byte读写的情况，仍然提示失败的bug。
+11. Demo: 修复企业用户专属的证书界面，当查看已经注册的证书的时候，实际的起始日期，结束日期显示不正确的bug。
+12. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
+13. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

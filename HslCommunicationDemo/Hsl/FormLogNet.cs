@@ -253,5 +253,13 @@ namespace HslCommunicationDemo
 			logNet.HourDeviation = int.Parse( textBox_hour_offset.Text );
 			DemoUtils.ShowMessage( "Finish" );
 		}
+
+		private void button10_Click( object sender, EventArgs e )
+		{
+			if (logNet is LogNetBase logNetBase)
+			{
+				DemoUtils.ShowMessage( "Count: " + logNetBase.GetDropLogCount( ) );
+			}
+		}
 	}
 }

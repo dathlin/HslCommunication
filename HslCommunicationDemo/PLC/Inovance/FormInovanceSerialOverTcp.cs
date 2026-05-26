@@ -124,6 +124,7 @@ namespace HslCommunicationDemo
 					DemoUtils.ShowMessage( HslCommunication.StringResources.Language.ConnectedSuccess );
 					button2.Enabled = true;
 					button1.Enabled = false;
+					comboBox4.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置基本的读写信息
@@ -156,6 +157,7 @@ namespace HslCommunicationDemo
 			// 断开连接
 			button2.Enabled = false;
 			button1.Enabled = true;
+			comboBox4.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( inovance );
 			inovance?.ConnectClose( );

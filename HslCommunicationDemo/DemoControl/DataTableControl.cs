@@ -11,6 +11,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -979,6 +980,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+
 		private void dataGridView1_CellMouseDoubleClick( object sender, DataGridViewCellMouseEventArgs e )
 		{
 			if (e.ColumnIndex == 5 && e.RowIndex >= 0)
@@ -1054,6 +1056,56 @@ namespace HslCommunicationDemo.DemoControl
 								OperateResult<string> read = device.ReadString( dataTableItem.Address, (ushort)len, encoding );
 
 								write = this.device.Write( dataTableItem.Address, value, encoding );
+							}
+							else if (dataTableItem.DataTypeCode == "byte")
+							{
+								if (dataTableItem.Length < 0)
+								{
+									// 通过反射判断是否有重载的写入方法，如果没有的话，提示不支持的类型
+
+									if (!byte.TryParse( value, out byte byteValue ))
+									{
+										DemoUtils.ShowMessage( "byte value input wrong, please input value: 0 ~ 255" );
+										return;
+									}
+									try
+									{
+										MethodInfo writeByteMethod = device.GetType( ).GetMethod( "Write", new Type[] { typeof( string ), typeof( byte ) } );
+										if (writeByteMethod == null) writeByteMethod = device.GetType( ).GetMethod( "WriteByte", new Type[] { typeof( string ), typeof( byte ) } );
+
+										if (writeByteMethod != null)
+										{
+											write = (OperateResult)writeByteMethod.Invoke( device, new object[] { dataTableItem.Address, byteValue } );
+										}
+										else
+										{
+											DemoUtils.ShowMessage( "The device does not support writing byte type data directly" );
+											return;
+										}
+									}
+									catch( Exception ex)
+									{
+										DemoUtils.ShowMessage( "Execute write byte method failed: " + ex.Message );
+										return;
+									}
+								}
+								else
+								{
+									byte[] buffer = null;
+									if (value.StartsWith("[") && value.EndsWith("]"))
+									{
+										// 支持[1,2,3]的格式输入
+										buffer = value.ToStringArray<byte>( );
+									}
+									else
+										buffer = value.ToHexBytes( );
+									if (buffer.Length != dataTableItem.Length)
+									{
+										DemoUtils.ShowMessage( $"Input data length {buffer.Length} does not match the expected length {dataTableItem.Length}" );
+										return;
+									}
+									write = this.device.Write( dataTableItem.Address, buffer );
+								}
 							}
 							else
 							{

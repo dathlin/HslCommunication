@@ -113,7 +113,6 @@ namespace HslCommunicationDemo
 				IpAddress = textBox_ip.Text,
 				Port = int.Parse( textBox2.Text ),
 				ClientId = textBox3.Text,
-				KeepAlivePeriod = TimeSpan.FromSeconds( int.Parse( textBox6.Text ) ),
 				UseRSAProvider = checkBox_rsa.Checked,
 				CleanSession = true,
 				UseSSL = checkBox_SslTls.Checked,
@@ -134,6 +133,18 @@ namespace HslCommunicationDemo
 			{
 				options.CertificateFile = textBox_certificate.Text;
 				options.SSLSecure = checkBox_sslSecure.Checked;
+			}
+			if (this.settingMqttClient != null)
+			{
+				options.ConnectTimeout = this.settingMqttClient.ConnectTimeout;
+				options.CleanSession = this.settingMqttClient.CleanSession;
+				options.KeepAlivePeriod = this.settingMqttClient.KeepAlivePeriod;
+				options.KeepAliveSendInterval = this.settingMqttClient.KeepAliveSendInterval;
+				if (!string.IsNullOrEmpty( this.settingMqttClient.LocalIpAddress ) || this.settingMqttClient.LocalPort > 0)
+				{
+					options.LocalBinding = new System.Net.IPEndPoint( string.IsNullOrEmpty( this.settingMqttClient.LocalIpAddress ) ? System.Net.IPAddress.Any : System.Net.IPAddress.Parse( this.settingMqttClient.LocalIpAddress ),
+					this.settingMqttClient.LocalPort < 0 ? 0 : this.settingMqttClient.LocalPort );
+				}
 			}
 
 			button1.Enabled = false;
@@ -200,6 +211,7 @@ namespace HslCommunicationDemo
 		private long receiveCount = 0;
 		private Lazy<int[]> receiveTest = new Lazy<int[]>( ( ) => new int[10000] );
 		private bool receiveTestMode = false;
+		private SettingMqttClient settingMqttClient;
 
 		private void Timer1s_Tick( object sender, EventArgs e )
 		{
@@ -449,7 +461,6 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( DemoDeviceList.    XmlIpAddress, textBox_ip.Text );
 			element.SetAttributeValue( DemoDeviceList.    XmlPort, textBox2.Text );
 			element.SetAttributeValue( DemoDeviceList.    XmlTimeout, textBox11.Text );
-			element.SetAttributeValue( DemoDeviceList.    XmlKeepLive, textBox6.Text );
 			element.SetAttributeValue( DemoDeviceList.    XmlCompanyID, textBox3.Text );
 			element.SetAttributeValue( DemoDeviceList.    XmlUserName, textBox9.Text );
 			element.SetAttributeValue( DemoDeviceList.    XmlPassword, textBox10.Text );
@@ -460,6 +471,16 @@ namespace HslCommunicationDemo
 			element.SetAttributeValue( "rsa",             checkBox_rsa.Checked );
 			element.SetAttributeValue( "SSLTLS",          checkBox_SslTls.Checked );
 			element.SetAttributeValue( "LongMessageHide", checkBox_long_message_hide.Checked );
+
+			if (this.settingMqttClient != null)
+			{
+				element.SetAttributeValue( "ConnectTimeout",        this.settingMqttClient.ConnectTimeout );
+				element.SetAttributeValue( "CleanSession",          this.settingMqttClient.CleanSession );
+				element.SetAttributeValue( "KeepAlivePeriod",       this.settingMqttClient.KeepAlivePeriod.TotalSeconds );
+				element.SetAttributeValue( "KeepAliveSendInterval", this.settingMqttClient.KeepAliveSendInterval.TotalSeconds );
+				element.SetAttributeValue( "LocalIpAddress",        this.settingMqttClient.LocalIpAddress );
+				element.SetAttributeValue( "LocalPort",             this.settingMqttClient.LocalPort );
+			}
 		}
 
 		public override void LoadXmlParameter( XElement element )
@@ -468,7 +489,6 @@ namespace HslCommunicationDemo
 			textBox_ip.Text            = element.Attribute( DemoDeviceList.XmlIpAddress ).Value;
 			textBox2.Text              = element.Attribute( DemoDeviceList.XmlPort ).Value;
 			textBox11.Text             = element.Attribute( DemoDeviceList.XmlTimeout ).Value;
-			textBox6.Text              = element.Attribute( DemoDeviceList.XmlKeepLive ).Value;
 			textBox3.Text              = element.Attribute( DemoDeviceList.XmlCompanyID ).Value;
 			textBox9.Text              = element.Attribute( DemoDeviceList.XmlUserName ).Value;
 			textBox10.Text             = element.Attribute( DemoDeviceList.XmlPassword ).Value;
@@ -479,6 +499,24 @@ namespace HslCommunicationDemo
 			checkBox_rsa.Checked = element.Attribute( "rsa" ) == null ? false : bool.Parse( element.Attribute( "rsa" ).Value );
 			checkBox_SslTls.Checked = GetXmlValue( element, "SSLTLS", false, bool.Parse );
 			checkBox_long_message_hide.Checked = GetXmlValue( element, "LongMessageHide", false, bool.Parse );
+
+			if (element.Attribute( "ConnectTimeout" ) != null ||
+				element.Attribute( "CleanSession" ) != null ||
+				element.Attribute( "KeepAlivePeriod" ) != null ||
+				element.Attribute( "KeepAliveSendInterval" ) != null ||
+				element.Attribute( "LocalIpAddress" ) != null ||
+				element.Attribute( "LocalPort" ) != null )
+			{
+				this.settingMqttClient = new SettingMqttClient( )
+				{
+					ConnectTimeout        = GetXmlValue( element, "ConnectTimeout", 5000, int.Parse ),
+					CleanSession          = GetXmlValue( element, "CleanSession", false, bool.Parse ),
+					KeepAlivePeriod       = TimeSpan.FromSeconds( GetXmlValue( element, "KeepAlivePeriod", 100, int.Parse ) ),
+					KeepAliveSendInterval = TimeSpan.FromSeconds( GetXmlValue( element, "KeepAliveSendInterval", 30, int.Parse ) ),
+					LocalIpAddress        = GetXmlValue( element, "LocalIpAddress", string.Empty, s => s ),
+					LocalPort             = GetXmlValue( element, "LocalPort", -1, int.Parse )
+				};
+			}
 		}
 
 		private void userControlHead1_SaveConnectEvent_1( object sender, EventArgs e )
@@ -529,8 +567,66 @@ namespace HslCommunicationDemo
 		{
 			System.Threading.Interlocked.Exchange( ref receiveCount, 0 );
 		}
+
+		private void linkLabel_mqtt_more_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+		{
+			using (FormPropertyModify form = new FormPropertyModify( ))
+			{
+				SettingMqttClient newSettings = new SettingMqttClient( this.settingMqttClient ?? new SettingMqttClient( ) );
+				form.SetObject( newSettings );
+				if (form.ShowDialog( ) == DialogResult.OK)
+				{
+					this.settingMqttClient = newSettings;
+				}
+			}
+		}
 	}
 
 
+
+
 	#endregion
+
+	public class SettingMqttClient
+	{
+		public SettingMqttClient( )
+		{
+
+		}
+
+		public SettingMqttClient( SettingMqttClient other )
+		{
+			this.ConnectTimeout = other.ConnectTimeout;
+			this.CleanSession = other.CleanSession;
+			this.KeepAlivePeriod = other.KeepAlivePeriod;
+			this.KeepAliveSendInterval = other.KeepAliveSendInterval;
+			this.LocalIpAddress = other.LocalIpAddress;
+			this.LocalPort = other.LocalPort;
+		}
+
+		[Description( "连接超时时间，毫秒单位\r\nConnection timeout, in milliseconds" )]
+		[DefaultValue( 5000 )]
+		public int ConnectTimeout { get; set; } = 5000;
+
+		[Description( "是否清理会话，如果清理会话（CleanSession）标志被设置为1，客户端和服务端必须丢弃之前的任何会话并开始一个新的会话。\r\nWhether to clean the session. If the CleanSession flag is set to 1, the client and server must discard any previous session and start a new session." )]
+		public bool CleanSession { get; set; } = false;
+
+		[Description( "保持连接的时间间隔，单位为秒，最小为1秒\r\nThe interval of keep alive, in seconds, the minimum is 1 second" )]
+		public TimeSpan KeepAlivePeriod { get; set; } = TimeSpan.FromSeconds( 100 );
+
+		[Description( "保持连接的发送间隔，单位为秒，默认30秒\r\nThe sending interval of keep alive, in seconds, 30 seconds by default" )]
+		public TimeSpan KeepAliveSendInterval { get; set; } = TimeSpan.FromSeconds( 30 );
+
+		[Description( "绑定使用的本地IP地址，如果没有设置或是0.0.0.0，则表示任意可用的地址\r\nThe local IP address used by the binding, if not set or 0.0.0.0, represents any available address" )]
+		[DefaultValue( "" )]
+		public string LocalIpAddress { get; set; } = "";
+
+		[Description( "本地使用的端口，-1表示自动\r\nPort used locally, -1 indicates automatic" )]
+		[DefaultValue( -1 )]
+		public int LocalPort { get; set; } = -1;
+
+
+
+		public override string ToString( ) => $"SettingMqttClient [额外参数配置]";
+	}
 }

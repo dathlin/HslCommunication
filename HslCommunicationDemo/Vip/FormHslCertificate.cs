@@ -18,7 +18,7 @@ namespace HslCommunicationDemo.Vip
 			InitializeComponent( );
 
 			this.hslCertificateControl1.SetRpcClient(rpc);
-			this.hslCertificateControl1.RenderHslCertificate( item );
+			this.item = item;
 		}
 
 		public void RenderHslCertificate( CertificateItem cert )
@@ -26,6 +26,12 @@ namespace HslCommunicationDemo.Vip
 			this.hslCertificateControl1.RenderHslCertificate( cert );
 		}
 
+		protected override void OnShown( EventArgs e )
+		{
+			base.OnShown( e );
+			if (item != null) this.hslCertificateControl1.RenderHslCertificate( item );
+		}
 
+		private CertificateItem item;
 	}
 }

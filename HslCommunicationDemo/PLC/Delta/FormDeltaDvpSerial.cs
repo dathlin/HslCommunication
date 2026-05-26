@@ -90,6 +90,7 @@ namespace HslCommunicationDemo
 				{
 					button2.Enabled = true;
 					button1.Enabled = false;
+					comboBox_plcType.Enabled = false;
 					userControlReadWriteDevice1.SetEnable( true );
 
 					// 设置基本的读写信息
@@ -122,6 +123,7 @@ namespace HslCommunicationDemo
 			// 断开连接
 			button2.Enabled = false;
 			button1.Enabled = true;
+			comboBox_plcType.Enabled = true;
 			userControlReadWriteDevice1.SetEnable( false );
 			this.pipeSelectControl1.ExtraCloseAction( delta );
 			delta?.Close( );

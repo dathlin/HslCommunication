@@ -16,6 +16,7 @@ using System.Data;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -231,6 +232,17 @@ namespace HslCommunicationDemo.DemoControl
 						else if (propertyInfo.PropertyType == typeof( short[] )) stringBuilder.Append( ConvertArrayToString( propertyInfo.GetValue( propertyObj ) as short[] ) );
 						else if (propertyInfo.PropertyType == typeof( ushort[] )) stringBuilder.Append( ConvertArrayToString( propertyInfo.GetValue( propertyObj ) as ushort[] ) );
 						else if (propertyInfo.PropertyType == typeof( uint[] )) stringBuilder.Append( ConvertArrayToString( propertyInfo.GetValue( propertyObj ) as uint[] ) );
+						else if (propertyInfo.PropertyType == typeof( IPEndPoint ))
+						{
+							IPEndPoint endPoint = propertyInfo.GetValue( propertyObj ) as IPEndPoint;
+							if (endPoint != null)
+							{
+								//pipeTcpNet.LocalBinding = new System.Net.IPEndPoint( System.Net.IPAddress.Parse( pipeTcpNet.LocalBinding.Address.ToString( ) ), pipeTcpNet.LocalBinding.Port );
+								stringBuilder.Append( $"new System.Net.IPEndPoint( System.Net.IPAddress.Parse( \"{endPoint.Address}\" ), {endPoint.Port} )" );
+							}
+							else
+								stringBuilder.Append( "null" );
+						}
 						else
 						{
 							stringBuilder.Append( propertyInfo.GetValue( propertyObj ).ToString( ) );
@@ -543,6 +555,7 @@ namespace HslCommunicationDemo.DemoControl
 			StringBuilder sb = CreateFromObject( mqttClient.ConnectionOptions, "options" );
 			SetPropties( "options", sb, mqttClient.ConnectionOptions, nameof( MqttConnectionOptions.IpAddress ), nameof( MqttConnectionOptions.Port ),
 				nameof( MqttConnectionOptions.ClientId ), nameof( MqttConnectionOptions.UseRSAProvider ), nameof( MqttConnectionOptions.Credentials ),
+				nameof( MqttConnectionOptions.ConnectTimeout ), nameof( MqttConnectionOptions.LocalBinding ),
 				nameof( MqttConnectionOptions.CleanSession ), nameof( MqttConnectionOptions.UseSSL ), nameof( MqttConnectionOptions.SSLSecure),
 				nameof( MqttConnectionOptions.CertificateFile), nameof( MqttConnectionOptions.KeepAlivePeriod ), nameof( MqttConnectionOptions.KeepAliveSendInterval ),
 				nameof( MqttConnectionOptions.WillMessage ));
