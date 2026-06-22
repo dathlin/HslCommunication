@@ -779,7 +779,7 @@
 			this.userControlHead1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.userControlHead1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.userControlHead1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlHead1.HelpLink = "http://www.cnblogs.com/dathlin/p/8974215.html";
+			this.userControlHead1.HelpLink = "http://api.hslcommunication.cn/html/c9bad6c5-f988-cf81-437d-e1919eaeeae2.htm";
 			this.userControlHead1.Location = new System.Drawing.Point(0, 0);
 			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);

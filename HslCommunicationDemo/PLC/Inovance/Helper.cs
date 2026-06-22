@@ -39,10 +39,23 @@ namespace HslCommunicationDemo.PLC.Inovance
 				new DeviceAddressExample( "s=2;SD0", "", false, true, "以上所有地址支持额外指定站号" ),
 			};
 
+			DeviceAddressExample[] h5u = new DeviceAddressExample[]
+			{
+				new DeviceAddressExample( "M0",  "中间继电器", true, false, "M0-M7999" ),
+				new DeviceAddressExample( "B0",  "链接继电器", true, false, "B0-B32767" ),
+				new DeviceAddressExample( "S0",  "中间继电器", true, false, "S0-S4095" ),
+				new DeviceAddressExample( "X0",  "输入", true, false, "X0-X1777 或者X0.0-X177.7" ),
+				new DeviceAddressExample( "Y0",  "输出", true, false, "Y0-Y1777 或者Y0.0-Y177.7" ),
+				new DeviceAddressExample( "D0",  "数据寄存器", false, true, "D0-D7999" ),
+				new DeviceAddressExample( "R0",  "文件寄存器", false, true, "R0-R32767" ),
+				new DeviceAddressExample( "s=2;D0", "", false, true, "以上所有地址支持额外指定站号" ),
+			};
+
 			return new Dictionary<string, DeviceAddressExample[]>
 			{
 				{ "AM400-800/AC/AP", am },
-				{ "H3U/H5U/Easy", h3u },
+				{ "H3U", h3u },
+				{ "H5U/Easy", h5u },
 			};
 		}
 

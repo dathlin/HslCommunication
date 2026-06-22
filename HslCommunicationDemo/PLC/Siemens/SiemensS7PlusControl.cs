@@ -27,9 +27,11 @@ namespace HslCommunicationDemo.PLC.Siemens
 			imageList.Images.Add( "brackets_Square_16xMD", global::HslCommunicationDemo.Properties.Resources.brackets_Square_16xMD );
 			imageList.Images.Add( "Enum_582", global::HslCommunicationDemo.Properties.Resources.Enum_582 );
 			imageList.Images.Add( "Module_648", global::HslCommunicationDemo.Properties.Resources.Module_648 );
+			imageList.Images.Add( "loading", global::HslCommunicationDemo.Properties.Resources.loading );
+
 
 			treeView1.ImageList = imageList;
-
+			treeView1.BeforeExpand += TreeView1_BeforeExpand;
 		}
 
 		private void textBox1_TextChanged( object sender, EventArgs e )
@@ -60,7 +62,6 @@ namespace HslCommunicationDemo.PLC.Siemens
 
 
 		private ImageList imageList;
-		private Dictionary<uint, S7ObjectNode> s7Nodes = new Dictionary<uint, S7ObjectNode>( );
 		private Dictionary<uint, S7Object> s7Struct = new Dictionary<uint, S7Object>( );
 		private SiemensS7Plus siemensTcpNet;
 
@@ -76,27 +77,19 @@ namespace HslCommunicationDemo.PLC.Siemens
 				{
 					RenderDbBlock( treeNode.Nodes, s7Object[i].SubObjects );
 				}
-				treeNode.Tag = s7Object[i];
+				else
+				{
+					treeNode.Nodes.Add( new TreeNode( "Loading..." ) { ImageKey = "loading", SelectedImageKey = "loading" } );
+				}
+				treeNode.Tag = new S7ObjectNode( ) { S7Object = s7Object[i], Node = treeNode };
 				nodes.Add( treeNode );
 
-				if (s7Object[i].RelationId2 > 0)
-				{
-					if (!s7Nodes.ContainsKey( s7Object[i].RelationId2 ))
-						s7Nodes.Add( s7Object[i].RelationId2, new S7ObjectNode( ) { S7Object = s7Object[i], Node = treeNode } );
-				}
-			}
-		}
 
-		private Dictionary<string, string> tagNameMappig = new Dictionary<string, string>( );
-		private void RefreshTagNameMapping( )
-		{
-			tagNameMappig.Clear( );
-			foreach (var item in this.siemensTcpNet.GetTagStringMapping( ))
-			{
-				if (!tagNameMappig.ContainsKey( item.Value ))
-					tagNameMappig.Add( item.Value, item.Key );
-				else
-					tagNameMappig[item.Value] = item.Key;
+				//if (s7Object[i].RelationId2 > 0)
+				//{
+				//	if (!s7Nodes.ContainsKey( s7Object[i].RelationId2 ))
+				//		s7Nodes.Add( s7Object[i].RelationId2, new S7ObjectNode( ) { S7Object = s7Object[i], Node = treeNode } );
+				//}
 			}
 		}
 
@@ -110,7 +103,6 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 
 			treeView1.Nodes.Clear( );
-			s7Nodes.Clear( );
 			RenderDbBlock( treeView1.Nodes, read.Content );
 
 			dataGridView1.Columns[0].HeaderText = "Name";
@@ -119,27 +111,9 @@ namespace HslCommunicationDemo.PLC.Siemens
 			dataGridView1.Columns[3].HeaderText = "ClassId";
 			dataGridView1.Columns[4].HeaderText = "Value";
 
-			OperateResult<List<S7Object>> read2 = this.siemensTcpNet.BrowseTags( );
-			if (read2.IsSuccess)
+			if (treeView1.Nodes.Count == 1)
 			{
-				RefreshTagNameMapping( );
-
-				//DemoUtils.ShowMessage( "Success: " + read.Content.ToJsonString( ) );
-				//Clipboard.SetText( read.Content.ToJsonString( ) );
-
-				// 清空原先的数据
-				foreach (var item in s7Nodes.Values)
-				{
-					item.Node.Nodes.Clear( );
-				}
-
-				BrowerAllTags( read2.Content );
-				DemoUtils.ShowMessage( "Finish!" );
 				treeView1.Nodes[0].Expand( );
-			}
-			else
-			{
-				DemoUtils.ShowMessage( "Read failed: " + read2.Message );
 			}
 		}
 
@@ -160,15 +134,30 @@ namespace HslCommunicationDemo.PLC.Siemens
 				{
 					S7Tag child = s7Tags[i];
 					DataGridViewRow row = dataGridView1.Rows[i];
+					string lid = child.GetLIDText( );
 					row.Cells[0].Value = child.Name;
-					row.Cells[1].Value = child.GetLIDText( );
+					row.Cells[1].Value = lid;
 					row.Cells[2].Value = "0x" + child.TypeCode.ToString( "X" );
 					row.Cells[3].Value = child.GetTypeText( );
 					row.Cells[4].Value = "";
-					if (!string.IsNullOrEmpty( addressFormat ))
-						row.Cells[5].Value = string.Format( addressFormat, i );
-					else
-						row.Cells[5].Value = tagNameMappig.ContainsKey( child.GetLIDText( ) ) ? tagNameMappig[child.GetLIDText( )] : ""; //child.StringAddress;
+					row.Cells[5].Value = child.Tag;
+
+					if (!string.IsNullOrEmpty(child.Tag))
+					{
+						OperateResult<string> lid2 = siemensTcpNet.GetLIDFromTagName( child.Tag );
+						if (lid2.IsSuccess == false) row.Cells[5].Value = "";
+						else
+						{
+							if (lid2.Content != child.GetLIDText( ))
+							{
+								row.Cells[5].Value = "";
+							}
+						}
+					}
+					//if (!string.IsNullOrEmpty( addressFormat ))
+					//	row.Cells[5].Value = string.Format( addressFormat, i );
+					//else
+					//	row.Cells[5].Value = tagNameMappig.ContainsKey( child.GetLIDText( ) ) ? tagNameMappig[child.GetLIDText( )] : ""; //child.StringAddress;
 					row.Tag = child;
 				}
 			}
@@ -198,8 +187,9 @@ namespace HslCommunicationDemo.PLC.Siemens
 
 			label3.Text = ">" + GetTreePath( treeNode );
 
-			if (treeNode.Tag is S7Object obj)
+			if (treeNode.Tag is S7ObjectNode s7ObjectNode)
 			{
+				S7Object obj = s7ObjectNode.S7Object;
 				if (obj.RelationId2 >= 0x80000000)
 				{
 					RenderS7Tags( obj.S7Tags );
@@ -281,15 +271,46 @@ namespace HslCommunicationDemo.PLC.Siemens
 						s7Tag.ArrayLength = -1;
 						s7Tag.Name += $"[{i}]";
 						s7Tag.LID.Add( (uint)i );
-
+						s7Tag.Tag = $"{tag.Tag}[{i}]";
 						s7Tags.Add( s7Tag );
 					}
 
-					string tagName = tagNameMappig.ContainsKey( tag.GetLIDText( ) ) ? tagNameMappig[tag.GetLIDText( )] + "[{0}]" : "";
-					RenderS7Tags( s7Tags, tagName );
+					RenderS7Tags( s7Tags, string.Empty );
 				}
 			}
 		}
+
+		private void TreeView1_BeforeExpand( object sender, TreeViewCancelEventArgs e )
+		{
+			TreeNode treeNode = e.Node;
+			if (treeNode == null) return;
+			if (treeNode.Parent == null) return; // 顶级节点不处理
+
+			// 如果是第一次展开，且节点下只有一个子节点，并且这个子节点是个加载中的节点，就去加载数据
+			if (treeNode.Tag is S7ObjectNode s7ObjectNode && !s7ObjectNode.HasLoadTag)
+			{
+				s7ObjectNode.HasLoadTag = true;
+				if (treeNode.Nodes.Count == 1 && treeNode.Nodes[0].ImageKey == "loading")
+				{
+					treeNode.Nodes.Clear( );
+				}
+
+				OperateResult<List<S7Object>> read = this.siemensTcpNet.BrowseTags( s7ObjectNode.S7Object );
+				if (read.IsSuccess && read.Content.Count == 1)
+				{
+					if (read.Content[0].S7Tags == null) return;
+
+					for (int i = 0; i < read.Content[0].S7Tags.Count; i++)
+					{
+						read.Content[0].S7Tags[i].LID.Insert( 0, s7ObjectNode.S7Object.RelationId );
+						read.Content[0].S7Tags[i].Tag = $"\"{s7ObjectNode.S7Object.Name}\".\"{read.Content[0].S7Tags[i].Name}\"";
+					}
+					s7ObjectNode.S7Object.S7Tags = read.Content[0].S7Tags;
+					AddS7Tags( treeNode, read.Content[0].S7Tags );
+				}
+			}
+		}
+
 
 		private void AddS7Struct( TreeNode parent, S7Tag structTag )
 		{
@@ -316,6 +337,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 					{
 						S7Tag s7Tag = s7Struct[structTag.StructID].S7Tags[j].Clone( );
 						s7Tag.LID.InsertRange( 0, structTag.LID );
+						s7Tag.Tag = $"{structTag.Tag}.\"{s7Tag.Name}\"";
 						list.Add( s7Tag );
 					}
 					AddS7Tags( parent, list );
@@ -350,6 +372,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 							s7Tag.ArrayLength = -1;
 							s7Tag.LID.Add( (ushort)j );
 							s7Tag.LID.Add( (ushort)1 );
+							s7Tag.Tag = $"{tags[i].Tag}[{j}]";
 							arrayNode.Tag = s7Tag;
 
 							AddS7Struct( arrayNode, s7Tag );
@@ -377,40 +400,6 @@ namespace HslCommunicationDemo.PLC.Siemens
 			}
 		}
 
-		private void BrowerAllTags( List<S7Object> objects )
-		{
-			for (int i = 0; i < objects.Count; i++)
-			{
-				if (s7Nodes.ContainsKey( objects[i].RelationId ))
-				{
-					S7Object s7Object = s7Nodes[objects[i].RelationId].S7Object;
-					if (objects[i].S7Tags != null)
-					{
-						s7Object.S7Tags = new List<S7Tag>( );
-						for (int j = 0; j < objects[i].S7Tags.Count; j++)
-						{
-							S7Tag s7Tag = objects[i].S7Tags[j].Clone( );
-							s7Tag.LID.Insert( 0, s7Object.RelationId );
-							s7Object.S7Tags.Add( s7Tag );
-						}
-
-						// 遍历添加点位信息
-						AddS7Tags( s7Nodes[objects[i].RelationId].Node, s7Object.S7Tags );
-					}
-				}
-				else
-				{
-					// 如果没有，这可能是一个结构体的定义
-					if (s7Struct.ContainsKey( objects[i].RelationId ))
-						s7Struct[objects[i].RelationId] = objects[i];
-					else
-						s7Struct.Add( objects[i].RelationId, objects[i] );
-				}
-
-				if (objects[i].SubObjects != null)
-					BrowerAllTags( objects[i].SubObjects );
-			}
-		}
 
 
 		private Thread threadRead;
@@ -554,8 +543,6 @@ namespace HslCommunicationDemo.PLC.Siemens
 				OperateResult<List<S7Object>> read = this.siemensTcpNet.BrowseTags( s7Object );
 				if (read.IsSuccess && read.Content.Count == 1)
 				{
-					RefreshTagNameMapping( );
-
 					treeNode.Nodes.Clear( );
 					if (read.Content[0].S7Tags == null) return;
 
@@ -587,11 +574,25 @@ namespace HslCommunicationDemo.PLC.Siemens
 				contextMenuStrip1.Show( treeView1, e.Location );
 			}
 		}
+
+		private void button3_Click( object sender, EventArgs e )
+		{
+			OperateResult<string> read = siemensTcpNet.GetLIDFromTagName( textBox_tag_name.Text );
+			if (read.IsSuccess)
+			{
+				textBox_tag_lid.Text = read.Content;
+			}
+			else
+			{
+				DemoUtils.ShowMessage( "Read Failed: " + read.Message );
+			}
+		}
 	}
 
 	public class S7ObjectNode
 	{
 		public S7Object S7Object { get; set; }
 		public TreeNode Node { get; set; }
+		public bool HasLoadTag { get; set; } = false;
 	}
 }

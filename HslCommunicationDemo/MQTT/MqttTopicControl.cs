@@ -18,9 +18,16 @@ namespace HslCommunicationDemo.MQTT
 		public MqttTopicControl( )
 		{
 			InitializeComponent( );
+			dataGridView1.SizeChanged += DataGridView1_SizeChanged;
 		}
 
-
+		private void DataGridView1_SizeChanged( object sender, EventArgs e )
+		{
+			if (dataGridView1.Width > 100)
+			{
+				Column1.Width = dataGridView1.Width - (440 - 260);
+			}
+		}
 
 		private Dictionary<string, TopicSaveItem> all_dicts = new Dictionary<string, TopicSaveItem>( );
 		private TopicSaveItem selectedItem = null;
@@ -80,6 +87,7 @@ namespace HslCommunicationDemo.MQTT
 				{
 					int index = dataGridView1.Rows.Add( );
 					currentItem.RenderRow( dataGridView1.Rows[index] );
+					label1.Text = "Total: " + dataGridView1.Rows.Count.ToString( );
 				}
 
 				if (checkBox_stop.Checked == false)
@@ -156,5 +164,13 @@ namespace HslCommunicationDemo.MQTT
 			}
 		}
 
+		private void button_clear_all_Click( object sender, EventArgs e )
+		{
+			lock (all_dicts)
+			{
+				all_dicts.Clear( );
+				dataGridView1.Rows.Clear( );
+			}
+		}
 	}
 }

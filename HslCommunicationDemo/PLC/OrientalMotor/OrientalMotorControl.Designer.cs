@@ -35,6 +35,7 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox_length = new System.Windows.Forms.TextBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -100,9 +101,19 @@
 			this.checkBox1.Text = "Stop Receive";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(583, 6);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(48, 17);
+			this.label4.TabIndex = 7;
+			this.label4.Text = "Speed:";
+			// 
 			// OrientalMotorControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.label4);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.textBox_length);
 			this.Controls.Add(this.label3);
@@ -127,5 +138,6 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TextBox textBox_length;
 		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.Label label4;
 	}
 }

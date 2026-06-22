@@ -21,6 +21,24 @@ namespace HslCommunicationDemo
 		{
 			InitializeComponent( );
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
+
+			comboBox1.SelectedIndex = 2;
+			comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
+		}
+
+		private void ComboBox1_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			if (this.xinjeServer != null)
+			{
+				switch (comboBox1.SelectedIndex)
+				{
+					case 0: xinjeServer.DataFormat = HslCommunication.Core.DataFormat.ABCD; break;
+					case 1: xinjeServer.DataFormat = HslCommunication.Core.DataFormat.BADC; break;
+					case 2: xinjeServer.DataFormat = HslCommunication.Core.DataFormat.CDAB; break;
+					case 3: xinjeServer.DataFormat = HslCommunication.Core.DataFormat.DCBA; break;
+					default: break;
+				}
+			}
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
@@ -66,6 +84,7 @@ namespace HslCommunicationDemo
 				xinjeServer.ActiveTimeSpan = TimeSpan.FromHours( 1 );
 				xinjeServer.OnDataReceived += MelsecMcServer_OnDataReceived;
 				xinjeServer.Station = byte.Parse( textBox_station.Text );
+				ComboBox1_SelectedIndexChanged( sender, e );
 
 				this.sslServerControl1.InitializeServer( xinjeServer );
 				if (this.serverSettingControl1.ServerStart( xinjeServer ) == false) return;
@@ -73,9 +92,8 @@ namespace HslCommunicationDemo
 				userControlReadWriteServer1.SetReadWriteServer( xinjeServer, "D100" );
 				userControlReadWriteServer1.SetEnable( true );
 
-
 				// 设置代码示例
-				codeExampleControl.SetCodeText( "server", "", xinjeServer, this.sslServerControl1, nameof( xinjeServer.Station ) );
+				codeExampleControl.SetCodeText( "server", "", xinjeServer, this.sslServerControl1, nameof( xinjeServer.Station ), nameof( xinjeServer.DataFormat ) );
 			}
 			catch (Exception ex)
 			{
@@ -128,6 +146,7 @@ namespace HslCommunicationDemo
 		{
 			this.sslServerControl1.SaveXmlParameter( element );
 			this.serverSettingControl1.SaveXmlParameter( element );
+			element.SetAttributeValue( DemoDeviceList.XmlDataFormat, xinjeServer.DataFormat );
 			element.SetAttributeValue( DemoDeviceList.XmlStation, textBox_station.Text );
 			this.userControlReadWriteServer1.GetDataTable( element );
 		}
@@ -138,6 +157,7 @@ namespace HslCommunicationDemo
 			this.sslServerControl1.LoadXmlParameter( element );
 			this.serverSettingControl1.LoadXmlParameter( element );
 			textBox_station.Text = GetXmlValue( element, DemoDeviceList.XmlStation, "0", m => m );
+			xinjeServer.DataFormat = GetXmlEnum( element, DemoDeviceList.XmlDataFormat, HslCommunication.Core.DataFormat.CDAB );
 			this.userControlReadWriteServer1.LoadDataTable( element );
 		}
 

@@ -35,20 +35,22 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.8.3
-1. OmronFinsUdp: 属性SID信息改为自增的属性，每次读写数据的时候进行自增操作，最大为255，然后重置为0，继续自增操作。
-2. Authorization: 激活方法SetAuthorizationCode检测传入的激活码，如果长度大于100，则使用证书激活的方式，并返回激活是否成功。
-3. MqttClient: 连接参数类MqttConnectionOptions新增属性LocalBinding，可以用来绑定本机的ip或是端口号，Demo界面新增一个more标签用来设置更多的信息。
-4. ILogNet: 日志接口及对象新增属性MaxCacheCount，用于控制临时缓存队列的最大数量，默认为1000万，超出该值时将会丢弃最新的日志，防止极端情况崩溃。
-5. FtpServer: Ftp服务器在客户端上传文件的时候，如果文件已经存在，先判断文件是否有写入权限再执行实际上传操作。
-6. FtpClient: FTP客户端在上传或下载文件的时候，最终传输数据完成的时候，再次判断是否5XX错误码，从而修复某些特殊的情况提示上传成功但是实际失败的异常。
-7. MelsecA1E: 修复二进制及ASCII格式的协议，使用字读取位地址时，当长度很大导致分批次读取时，后面的偏移地址不正确的bug。
-8. PipeSerialPort: 串口管道SleepTime优化，当接收数据的前五次循环里，使用十分之一的SleepTime值来休眠，兼顾回复数据比较快的设备，可以快速收到数据。
-9. Demo: Demo程序里的台达，汇川，信捷测试界面，连接成功后，系列的下拉框调整为禁用，断开连接后可以重新选择。
-10. Demo: 数据点位表控件如果配置了单个byte类型的数据之后，修复双击写入时，对于西门子S7协议等支持单个byte读写的情况，仍然提示失败的bug。
-11. Demo: 修复企业用户专属的证书界面，当查看已经注册的证书的时候，实际的起始日期，结束日期显示不正确的bug。
-12. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
-13. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V12.9.0
+1. AllenBradleyNet: 新增属性ContextIdAutoIncrement，用来设置通信报文里的上下文消息ID是否自增，默认为true, 设置false可以支持科伺PLC的通信。
+2. OrientalMotorEipNet: 修复接收一段时间后，就收不到数据的bug，新增收不到数据时直接返回失败，提示调用者，Demo界面的显示数据接收情况优化，显示数据不影响数据接收。
+3. HttpServer: 修复Http的服务器，在某些特殊情况下，发生处理response异常直接导致系统崩溃的bug，感谢网友反馈。
+4. PanasonicMcNet: 松下的MC协议的地址输入，支持了 DT 写法，D100 = DT100， 方便使用松下习惯的地址，Demo界面的地址增加说明。
+5. Modbus: modbus的地址支持了16进制的格式，带H结尾表示十六进制，例如 100H， FFFFH，修复起始地址从1开始的时候，输入读取 65536 的地址报错的异常。
+6. Modbus: 修复数据变换为 BADC 及 DCBA 时，设备支持掩码功能码的时候，读写bool不一致的异常。
+7. AllenBradleyNet: 修复AB-plc的CIP协议里，当使用分批次读取结构体数组时，返回数据部分丢失的bug，原因来自偏移位置计算不正确。
+8. AllenBradleyNet: 普通的写入方法也支持了结构体数据，然后片段读取结构体数组时，实际分了多次报文的情况下，除第一次报文外，移除后续每次报文的结构体标识，方便调用者解析数据，直接根据长度即可。
+9. XinJEServer: 信捷专用协议虚拟服务器支持了HM的位读写地址，然后Demo界面支持了设置DataFormat设置的功能。
+10. SiemensS7Plus: 重新设计根据标签名查找LID地址方法，删除属性BrowseTagNameOnConnect，连接即可以读取标签地址，自动解析操作。Demo界面分数据块加载点位表，支持了嵌套的结构体数组的标签地址显示。
+11. Demo: 新增科伺的PLC测试界面，实际使用欧姆龙的CIP协议来通信，但是必须设置属性 ContextIdAutoIncrement=false, 才能通信，具体参考示例代码。
+12. Demo: Demo界面里关于汇川的H5U、Easy系列的modbus的示例地址，独立出来，修复之前显示不正确的bug。
+13. Demo: Mqtt服务器客户端的主题统计控件，增加了调整表格框大小的功能，增加清除当前所有缓存主题的功能，方便测试。
+14. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
+15. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

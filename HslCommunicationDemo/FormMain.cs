@@ -233,6 +233,7 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "database",         Properties.Resources.DatabaseProject_7342_16x );  // 62
 			imageList.Images.Add( "txt",              Properties.Resources.txt );               // 63
 			imageList.Images.Add( "Orientalmotor",    Properties.Resources.Orientalmotor );     // 64
+			imageList.Images.Add( "kossi",            Properties.Resources.kossi );             // 65
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;

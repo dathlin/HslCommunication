@@ -212,6 +212,7 @@ namespace HslCommunicationDemo.DemoControl
 			lsisNode.Nodes.Add( GetTreeNodeByIndex( "LSis Virtual Server", 7, typeof( FormLSisServer ) ) );
 			this.nodeCollection.Add( lsisNode );
 
+			// 西蒙PLC
 			TreeNode simon = new TreeNode( "Cimon[西蒙]", 47, 47 );
 			simon.Nodes.Add( GetTreeNodeByIndex( "HmiProtocol", 47, typeof( FormCimonHmiProtocol ) ) );
 			simon.Nodes.Add( GetTreeNodeByIndex( "CimonHmiServer", 47, typeof( FormCimonServer ) ) );
@@ -361,6 +362,11 @@ namespace HslCommunicationDemo.DemoControl
 			TreeNode orientalNode = new TreeNode( "Orientalmotor[东方马达]", 64, 64 );
 			orientalNode.Nodes.Add( GetTreeNodeByIndex( "MRC01/MRCU[机器人控制器]", 64, typeof( FormOrientalMotorCip ) ) );
 			this.nodeCollection.Add( orientalNode );
+
+			// 科伺
+			TreeNode kossi = new TreeNode( "KossiC[科伺]", 65, 65 );
+			kossi.Nodes.Add( GetTreeNodeByIndex( "EIP", 65, typeof( FormkossiCip ) ) );
+			this.nodeCollection.Add( kossi );
 
 			// 身份证阅读器
 			TreeNode idNode = new TreeNode( "ID Card[身份证]", 4, 4 );

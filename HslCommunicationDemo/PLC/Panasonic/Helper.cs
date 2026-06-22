@@ -22,7 +22,7 @@ namespace HslCommunicationDemo.PLC.Panasonic
 				new DeviceAddressExample( "CN0",  "计数器(当前值)",     true, false, "读写字" ),
 				new DeviceAddressExample( "CS0",  "计数器(触点)",       true, false, "读写bool" ),
 				new DeviceAddressExample( "L2.1", "链接继电器",         true, false, "L21 等同于 L2.1" ),
-				new DeviceAddressExample( "D0",   "数据寄存器 DT",      false, true, "" ),
+				new DeviceAddressExample( "D0 / DT0",   "数据寄存器 DT",      false, true, "D90000 = SD0" ),
 				new DeviceAddressExample( "LD0",  "链接寄存器 LD",      false, true, "" ),
 				new DeviceAddressExample( "SD0",  "特殊数据寄存器",     false, true, "" ),
 			};

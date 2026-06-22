@@ -17,9 +17,9 @@ using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
-	public partial class FormOmronCip : HslFormContent
+	public partial class FormkossiCip : HslFormContent
 	{
-		public FormOmronCip( )
+		public FormkossiCip( )
 		{
 			InitializeComponent( );
 			omronCipNet = new OmronCipNet( "192.168.0.110" );
@@ -54,7 +54,7 @@ namespace HslCommunicationDemo
 		{
 			if (language == 2)
 			{
-				Text = "Omron Read PLC Demo";
+				Text = "Kossi Read PLC Demo";
 			}
 		}
 

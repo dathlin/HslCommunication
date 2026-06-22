@@ -36,8 +36,10 @@
 			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label2
@@ -66,7 +68,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.ForeColor = System.Drawing.Color.White;
-			this.label4.Location = new System.Drawing.Point(480, 6);
+			this.label4.Location = new System.Drawing.Point(3, 5);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(68, 17);
 			this.label4.TabIndex = 14;
@@ -76,7 +78,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.ForeColor = System.Drawing.Color.White;
-			this.label5.Location = new System.Drawing.Point(554, 6);
+			this.label5.Location = new System.Drawing.Point(77, 5);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(26, 17);
 			this.label5.TabIndex = 15;
@@ -126,18 +128,26 @@
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
+			// panel2
+			// 
+			this.panel2.Controls.Add(this.label4);
+			this.panel2.Controls.Add(this.label5);
+			this.panel2.Location = new System.Drawing.Point(530, 2);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(281, 27);
+			this.panel2.TabIndex = 19;
+			// 
 			// UserControlHead
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.linkLabel3);
 			this.Controls.Add(this.linkLabel2);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.linkLabel1);
-			this.Controls.Add(this.label4);
-			this.Controls.Add(this.label5);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MinimumSize = new System.Drawing.Size(800, 32);
@@ -146,6 +156,8 @@
 			this.Load += new System.EventHandler(this.UserControlHead_Load);
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -161,5 +173,6 @@
 		private System.Windows.Forms.LinkLabel linkLabel3;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.Panel panel2;
 	}
 }

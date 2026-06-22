@@ -29,13 +29,14 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.serverSettingControl1 = new HslCommunicationDemo.DemoControl.ServerSettingControl();
 			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.textBox_station = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.serverSettingControl1 = new HslCommunicationDemo.DemoControl.ServerSettingControl();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -45,6 +46,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.comboBox1);
 			this.panel1.Controls.Add(this.serverSettingControl1);
 			this.panel1.Controls.Add(this.sslServerControl1);
 			this.panel1.Controls.Add(this.textBox_station);
@@ -55,14 +57,26 @@
 			this.panel1.Size = new System.Drawing.Size(997, 65);
 			this.panel1.TabIndex = 0;
 			// 
+			// serverSettingControl1
+			// 
+			this.serverSettingControl1.buttonCloseAction = null;
+			this.serverSettingControl1.buttonSerialAction = null;
+			this.serverSettingControl1.buttonStartAction = null;
+			this.serverSettingControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.serverSettingControl1.Location = new System.Drawing.Point(2, 0);
+			this.serverSettingControl1.Name = "serverSettingControl1";
+			this.serverSettingControl1.Size = new System.Drawing.Size(986, 30);
+			this.serverSettingControl1.TabIndex = 33;
+			this.serverSettingControl1.TextSerialInfo = "COM4-9600-8-N-1";
+			// 
 			// sslServerControl1
 			// 
 			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.sslServerControl1.Location = new System.Drawing.Point(131, 32);
+			this.sslServerControl1.Location = new System.Drawing.Point(243, 32);
 			this.sslServerControl1.Name = "sslServerControl1";
-			this.sslServerControl1.Size = new System.Drawing.Size(861, 30);
+			this.sslServerControl1.Size = new System.Drawing.Size(749, 30);
 			this.sslServerControl1.TabIndex = 32;
 			// 
 			// textBox_station
@@ -71,7 +85,7 @@
 			this.textBox_station.Name = "textBox_station";
 			this.textBox_station.Size = new System.Drawing.Size(65, 23);
 			this.textBox_station.TabIndex = 31;
-			this.textBox_station.Text = "0";
+			this.textBox_station.Text = "1";
 			// 
 			// label1
 			// 
@@ -120,17 +134,19 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// serverSettingControl1
+			// comboBox1
 			// 
-			this.serverSettingControl1.buttonCloseAction = null;
-			this.serverSettingControl1.buttonSerialAction = null;
-			this.serverSettingControl1.buttonStartAction = null;
-			this.serverSettingControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.serverSettingControl1.Location = new System.Drawing.Point(2, 0);
-			this.serverSettingControl1.Name = "serverSettingControl1";
-			this.serverSettingControl1.Size = new System.Drawing.Size(986, 30);
-			this.serverSettingControl1.TabIndex = 33;
-			this.serverSettingControl1.TextSerialInfo = "COM4-9600-8-N-1";
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Items.AddRange(new object[] {
+            "ABCD",
+            "BADC",
+            "CDAB",
+            "DCBA"});
+			this.comboBox1.Location = new System.Drawing.Point(131, 35);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(100, 25);
+			this.comboBox1.TabIndex = 34;
 			// 
 			// FormXinJEInternalServer
 			// 
@@ -165,5 +181,6 @@
 		private System.Windows.Forms.Label label1;
 		private DemoControl.SslServerControl sslServerControl1;
 		private DemoControl.ServerSettingControl serverSettingControl1;
+		private System.Windows.Forms.ComboBox comboBox1;
 	}
 }

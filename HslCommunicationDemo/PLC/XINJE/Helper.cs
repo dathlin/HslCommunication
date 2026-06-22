@@ -108,6 +108,7 @@ namespace HslCommunicationDemo.PLC.XINJE
 			return new DeviceAddressExample[]
 			{
 				new DeviceAddressExample( "M100", "内部继电器", true, false, "客户端使用XinJE TCP[专用] 的情况" ),
+				new DeviceAddressExample( "HM100", "内部继电器", true, false, "客户端使用XinJE TCP[专用] 的情况"),
 				new DeviceAddressExample( "SM100", "特殊继电器", true, false, "客户端使用XinJE TCP[专用] 的情况" ),
 
 				new DeviceAddressExample( "D100", "数据寄存器", false, true, "客户端使用XinJE TCP[专用] 的情况"),

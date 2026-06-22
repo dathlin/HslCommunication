@@ -78,7 +78,6 @@ namespace HslCommunicationDemo
 
 				//if (!string.IsNullOrEmpty( textBox_localTSAP.Text )) siemensTcpNet.LocalTSAP = int.Parse( textBox_localTSAP.Text );
 				siemensTcpNet.LogNet = LogNet;
-				siemensTcpNet.BrowseTagNameOnConnect = checkBox1.Checked;
 
 
 				OperateResult connect = DeviceConnectPLC( siemensTcpNet );
@@ -101,7 +100,6 @@ namespace HslCommunicationDemo
 
 					// 设置代码示例
 					this.userControlReadWriteDevice1.SetDeviceVariableName( DemoUtils.PlcDeviceName );
-					codeExampleControl.SetCodeText( siemensTcpNet, nameof( siemensTcpNet.BrowseTagNameOnConnect ) );
 
 					// 浏览节点的控件
 					siemensS7PlusControl.SetDevice( siemensTcpNet, "" );

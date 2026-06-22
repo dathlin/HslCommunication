@@ -46,6 +46,10 @@
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.exploreTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.textBox_tag_name = new System.Windows.Forms.TextBox();
+			this.textBox_tag_lid = new System.Windows.Forms.TextBox();
+			this.button3 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -156,7 +160,7 @@
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(657, 9);
+			this.label1.Location = new System.Drawing.Point(683, 9);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(59, 17);
 			this.label1.TabIndex = 6;
@@ -165,9 +169,9 @@
 			// textBox_time
 			// 
 			this.textBox_time.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_time.Location = new System.Drawing.Point(731, 6);
+			this.textBox_time.Location = new System.Drawing.Point(747, 6);
 			this.textBox_time.Name = "textBox_time";
-			this.textBox_time.Size = new System.Drawing.Size(84, 23);
+			this.textBox_time.Size = new System.Drawing.Size(68, 23);
 			this.textBox_time.TabIndex = 5;
 			this.textBox_time.Text = "1000";
 			// 
@@ -205,9 +209,50 @@
 			this.label3.Text = ">";
 			this.label3.Visible = false;
 			// 
+			// label4
+			// 
+			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(274, 3297);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(59, 17);
+			this.label4.TabIndex = 10;
+			this.label4.Text = "输入名称:";
+			// 
+			// textBox_tag_name
+			// 
+			this.textBox_tag_name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.textBox_tag_name.Location = new System.Drawing.Point(343, 3294);
+			this.textBox_tag_name.Name = "textBox_tag_name";
+			this.textBox_tag_name.Size = new System.Drawing.Size(219, 23);
+			this.textBox_tag_name.TabIndex = 9;
+			// 
+			// textBox_tag_lid
+			// 
+			this.textBox_tag_lid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.textBox_tag_lid.Location = new System.Drawing.Point(568, 3294);
+			this.textBox_tag_lid.Name = "textBox_tag_lid";
+			this.textBox_tag_lid.Size = new System.Drawing.Size(219, 23);
+			this.textBox_tag_lid.TabIndex = 11;
+			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button3.Location = new System.Drawing.Point(793, 3291);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(103, 29);
+			this.button3.TabIndex = 12;
+			this.button3.Text = "获取映射";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
 			// SiemensS7PlusControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.button3);
+			this.Controls.Add(this.textBox_tag_lid);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.textBox_tag_name);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -245,5 +290,9 @@
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem exploreTagToolStripMenuItem;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox textBox_tag_name;
+		private System.Windows.Forms.TextBox textBox_tag_lid;
+		private System.Windows.Forms.Button button3;
 	}
 }
