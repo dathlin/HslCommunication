@@ -1,6 +1,6 @@
 ﻿namespace HslCommunicationDemo
 {
-    partial class FormOmronUdpServer
+    partial class FormInovanceEasyNetServer
 	{
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,11 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.checkBox_log_analysis = new System.Windows.Forms.CheckBox();
 			this.serverSettingControl1 = new HslCommunicationDemo.DemoControl.ServerSettingControl();
 			this.sslServerControl1 = new HslCommunicationDemo.DemoControl.SslServerControl();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox_copy_sid = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -45,27 +43,13 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.checkBox_log_analysis);
 			this.panel1.Controls.Add(this.serverSettingControl1);
 			this.panel1.Controls.Add(this.sslServerControl1);
-			this.panel1.Controls.Add(this.checkBox_copy_sid);
-			this.panel1.Location = new System.Drawing.Point(3, 35);
+			this.panel1.Location = new System.Drawing.Point(4, 36);
 			this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(997, 67);
+			this.panel1.Size = new System.Drawing.Size(996, 65);
 			this.panel1.TabIndex = 0;
-			// 
-			// checkBox_log_analysis
-			// 
-			this.checkBox_log_analysis.AutoSize = true;
-			this.checkBox_log_analysis.Checked = true;
-			this.checkBox_log_analysis.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_log_analysis.Location = new System.Drawing.Point(8, 37);
-			this.checkBox_log_analysis.Name = "checkBox_log_analysis";
-			this.checkBox_log_analysis.Size = new System.Drawing.Size(99, 21);
-			this.checkBox_log_analysis.TabIndex = 41;
-			this.checkBox_log_analysis.Text = "日志报文分析";
-			this.checkBox_log_analysis.UseVisualStyleBackColor = true;
 			// 
 			// serverSettingControl1
 			// 
@@ -73,23 +57,20 @@
 			this.serverSettingControl1.buttonSerialAction = null;
 			this.serverSettingControl1.buttonStartAction = null;
 			this.serverSettingControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.serverSettingControl1.Location = new System.Drawing.Point(3, 2);
+			this.serverSettingControl1.Location = new System.Drawing.Point(4, 2);
 			this.serverSettingControl1.Name = "serverSettingControl1";
 			this.serverSettingControl1.Size = new System.Drawing.Size(904, 30);
-			this.serverSettingControl1.TabIndex = 38;
-			this.serverSettingControl1.TcpUdpIndex = 1;
-			this.serverSettingControl1.TextPort = "9600";
+			this.serverSettingControl1.TabIndex = 36;
+			this.serverSettingControl1.TextPort = "12939";
 			this.serverSettingControl1.TextSerialInfo = "COM4-9600-8-N-1";
 			// 
 			// sslServerControl1
 			// 
-			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.sslServerControl1.Location = new System.Drawing.Point(204, 33);
+			this.sslServerControl1.Location = new System.Drawing.Point(3, 32);
 			this.sslServerControl1.Name = "sslServerControl1";
-			this.sslServerControl1.Size = new System.Drawing.Size(788, 30);
-			this.sslServerControl1.TabIndex = 37;
+			this.sslServerControl1.Size = new System.Drawing.Size(988, 30);
+			this.sslServerControl1.TabIndex = 35;
 			// 
 			// panel2
 			// 
@@ -98,10 +79,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Controls.Add(this.userControlReadWriteServer1);
-			this.panel2.Location = new System.Drawing.Point(3, 105);
+			this.panel2.Location = new System.Drawing.Point(4, 105);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(997, 536);
+			this.panel2.Size = new System.Drawing.Size(996, 538);
 			this.panel2.TabIndex = 1;
 			// 
 			// userControlReadWriteServer1
@@ -110,9 +91,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.userControlReadWriteServer1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.userControlReadWriteServer1.Location = new System.Drawing.Point(2, 3);
+			this.userControlReadWriteServer1.Location = new System.Drawing.Point(2, 4);
 			this.userControlReadWriteServer1.Name = "userControlReadWriteServer1";
-			this.userControlReadWriteServer1.Size = new System.Drawing.Size(990, 528);
+			this.userControlReadWriteServer1.Size = new System.Drawing.Size(989, 527);
 			this.userControlReadWriteServer1.TabIndex = 0;
 			// 
 			// userControlHead1
@@ -124,24 +105,12 @@
 			this.userControlHead1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.userControlHead1.MinimumSize = new System.Drawing.Size(800, 32);
 			this.userControlHead1.Name = "userControlHead1";
-			this.userControlHead1.ProtocolInfo = "Fins Udp Server";
+			this.userControlHead1.ProtocolInfo = "EasyNet";
 			this.userControlHead1.Size = new System.Drawing.Size(1004, 32);
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// checkBox_copy_sid
-			// 
-			this.checkBox_copy_sid.AutoSize = true;
-			this.checkBox_copy_sid.Checked = true;
-			this.checkBox_copy_sid.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_copy_sid.Location = new System.Drawing.Point(117, 37);
-			this.checkBox_copy_sid.Name = "checkBox_copy_sid";
-			this.checkBox_copy_sid.Size = new System.Drawing.Size(83, 21);
-			this.checkBox_copy_sid.TabIndex = 42;
-			this.checkBox_copy_sid.Text = "CopySID?";
-			this.checkBox_copy_sid.UseVisualStyleBackColor = true;
-			// 
-			// FormOmronUdpServer
+			// FormInovanceEasyNetServer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -152,13 +121,12 @@
 			this.Controls.Add(this.panel1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "FormOmronUdpServer";
+			this.Name = "FormInovanceEasyNetServer";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "欧姆龙虚拟服务器";
+			this.Text = "汇川EasyNet虚拟服务器";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
 			this.Load += new System.EventHandler(this.FormSiemens_Load);
 			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -172,7 +140,5 @@
         private DemoControl.UserControlReadWriteServer userControlReadWriteServer1;
 		private DemoControl.SslServerControl sslServerControl1;
 		private DemoControl.ServerSettingControl serverSettingControl1;
-		private System.Windows.Forms.CheckBox checkBox_log_analysis;
-		private System.Windows.Forms.CheckBox checkBox_copy_sid;
 	}
 }

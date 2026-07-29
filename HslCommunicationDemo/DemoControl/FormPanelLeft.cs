@@ -184,6 +184,7 @@ namespace HslCommunicationDemo.DemoControl
 			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "InovanceComputerLink", 5, typeof( FormInovanceLinks ) ) );
 			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "ConnectedCip", 5, typeof( FormInovanceConnectedCip ) ) );
 			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "EasyNet(专用协议)", 5, typeof( FormInovanceEasyNet ) ) );
+			inovanceNode.Nodes.Add( GetTreeNodeByIndex( "EasyNetServer", 5, typeof( FormInovanceEasyNetServer ) ) );
 			this.nodeCollection.Add( inovanceNode );
 
 			// 欧姆龙PLC相关

@@ -35,22 +35,22 @@ namespace HslCommunicationDemo
 
 		private void SetUpdayeInfo( )
 		{
-			textBox1.Text = @"V12.9.1
-1. MelsecMcNet: 修复了使用标签地址的时候，读取bool数组的时候，实际数据解析不正确的bug，支持了bool数组的写入操作。
-2. IReadWriteNet: 一个设备通用的接口IReadWriteNet新增属性ByteTransform，方便直接操作数据变化对象，修改字符串是否颠倒等功能。实际也可以使用类DeviceCommunication
-3. HslReflection: 优化基于特性的功能代码，增加了字符串数组属性的读写操作，适配了西门子S7协议，在官网的地址增加了特别的说明。
-4. OmronConnectedCipNet: 修复欧姆龙基于连接的CIP协议在写入不存在的标签的时候，仍然提示写入成功的bug，修复cip虚拟服务器在读写不存在的标签的时候直接报错的bug。
-5. SiemensS7Server: 西门子的虚拟服务器存储及加载数据文件支持了自定义的DB块，Demo界面优化，当加载数据的时候，自动填入当前的DB块数据信息。
-6. MelsecMcNet: 三菱的MC协议支持随机字写入功能，随机字读取支持分批次读取合并，虚拟服务器支持对应的随机写入功能码。
-7. Demo: MqttServer的测试界面里，当收到各种主题数据分类统计的时候，顺序显示连续收到两次统一主题的时间差，方便查看间隔。
-8. Demo: 串口调试的界面，增加了一个控制流设置，可以根据实际的情况来设置值。
-9. Demo: 企业用户的证书注册功能，支持了自定义分类信息，方便证书多的时候，管理，注意：证书不能移动，想要移动只能重新注册证书。
-10. Demo: OpenProtocol开放协议的客户端测试界面优化，订阅数据的界面，使用表格区分每个订阅推送的MID消息，可以随时切换查看不同MID的数据。
-11. Demo: 优化定时读写部分的逻辑，当勾选定时读或是定时写之后，再修改定时时间，然后点击按钮启动定时，修改的时间也生效。
-12. Demo: 修复西门子S7Plus协议得测试demo里，当连接成功进行读写测试时，示例代码没有正确生成的bug。修复读写示例代码里地址带引号生成代码拷贝出来无法编译的bug。
-13. Demo: TCP调试的界面，当配置了多个报文管理的时候，然后配置了自动返回报文之后，支持按顺序给客户端返回报文的操作。
-14. 新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
-15. 本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
+			textBox1.Text = @"V12.9.2
+1. InovanceEasyNetServer: 新增加汇川EasyNet协议的虚拟服务器，添加Demo测试，添加地址示例，支持客户端的所有地址。
+2. OmronServer: FinTcpServer以及FinsUdpServer新增属性CopySID，用来控制返回报文是否复制SID信息，方便实际的时候配合客户端调试。
+3. InovanceHelper: 汇川的型号支持了EVO系列，在demo界面上增加了EVO相关的地址示例说明，支持IX0.0   QX0.0   MW100 地址。
+4. InovanceHelper: 汇川的modbus协议里，选择EVO系列的时候，增加对 MX1000.0 地址的位读写操作。
+5. FanucSeries0i: 修复Fanuc的机床类，再某些特殊型号的机床遍历目录的时候，直接异常的bug。
+6. SiemensS7Plus: PLC的点位地址同时支持了单引号标识，例如 'A'.'B' 也可以正确的识别，方便输入地址的时候更好的查看。
+7. PanasonicHelper: Mewtocol协议使用字方式读取位地址时，当位索引指定不是16倍数的时候，提示地址输入错误，Demo界面的地址更新说明。
+8. OmronHostLinkCMode: Cmode的协议（包括串口透传版本）修复读取定时器计数器位失败的异常，虚拟服务器支持TIM/CNT地址的读写功能。
+9. NetworkConnectedCip: 基于连接的CIP协议基类，修复在多线程读写时，极小概率引发CIP Sequence Count序号错位的bug，导致汇川PLC接收数据超时的问题。
+10.AllenBradleyServer: AB-PLC的虚拟服务器的报文响应里，对ReadFromCipCore方法进行错误捕获，防止意外的情况造成程序崩溃。
+11.其它的一些小优化，针对一些报文索引可能超出范围得情况进行处理，防止极少数情况下直接奔溃的异常。
+12.Doc: 官网上的在线文档增加了欧姆龙Cmode协议读写CNT/TIM的示例，增加了西门子1500得DB块在某些情况下读取数值一直是0得解决办法。
+13.Demo: Demo程序的设置菜单增加设置读取bool结果显示0或1得功能，尤其是在读取大量数组的情况下，可以更快的分辨true, 还是false。
+14.新官网：http://www.hsltechnology.cn:7900/，还有全新的使用文档的地址(V12版本升级说明)：http://www.hsltechnology.cn:7900/Doc/HslCommunication
+15.本软件已经申请软件著作权，软著登记号：2020SR0340826，任何盗用软件，破解软件，未经正式合同授权而商业使用均视为侵权。";
 		}
 
 

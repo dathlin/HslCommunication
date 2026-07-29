@@ -6,51 +6,33 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using HslCommunication.Profinet;
+using HslCommunication.Profinet.Keyence;
 using HslCommunication;
 using HslCommunication.ModBus;
 using System.Threading;
 using System.Xml.Linq;
 using HslCommunicationDemo.DemoControl;
+using HslCommunication.Profinet.Inovance;
 
 namespace HslCommunicationDemo
 {
-	public partial class FormOmronUdpServer : HslFormContent
+	public partial class FormInovanceEasyNetServer : HslFormContent
 	{
-		public FormOmronUdpServer( )
+		public FormInovanceEasyNetServer( )
 		{
 			InitializeComponent( );
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
-			checkBox_log_analysis.CheckedChanged += CheckBox_log_analysis_CheckedChanged;
-			checkBox_copy_sid.CheckedChanged += CheckBox_copy_sid_CheckedChanged;
-		}
-
-		private void CheckBox_copy_sid_CheckedChanged( object sender, EventArgs e )
-		{
-			if (omronFinsServer != null)
-			{
-				omronFinsServer.CopySID = checkBox_copy_sid.Checked;
-			}
-		}
-
-		private void CheckBox_log_analysis_CheckedChanged( object sender, EventArgs e )
-		{
-			if (omronFinsServer != null)
-			{
-				omronFinsServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
-			}
 		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{
 			if(Program.Language == 2)
 			{
-				Text = "Omron Udp Server";
-				checkBox_log_analysis.Text = "Log Analysis";
+				Text = "Inovance Easy Net server";
 			}
 
 			addressExampleControl = new AddressExampleControl( );
-			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Omron.Helper.GetOmronAddressExamples( ) );
+			addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceEasyNetAddress( ) );
 			userControlReadWriteServer1.AddSpecialFunctionTab( addressExampleControl, false, DeviceAddressExample.GetTitle( ) );
 
 			codeExampleControl = new CodeExampleControl( );
@@ -61,6 +43,7 @@ namespace HslCommunicationDemo
 			this.serverSettingControl1.buttonCloseAction = button11_Click;
 			this.serverSettingControl1.buttonSerialAction = button5_Click;
 		}
+		
 		private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
 		{
 			CheckTableDataChanged( this.userControlReadWriteServer1, e );
@@ -69,7 +52,9 @@ namespace HslCommunicationDemo
 			if (this.serverSettingControl1.ButtonStart.Enabled == false) button11_Click( null, EventArgs.Empty );
 		}
 
-		private HslCommunication.Profinet.Omron.OmronFinsUdpServer omronFinsServer;
+		#region Server Start
+
+		private InovanceEasyNetServer keyencdeServer;
 		private AddressExampleControl addressExampleControl;
 		private CodeExampleControl codeExampleControl;
 
@@ -77,19 +62,16 @@ namespace HslCommunicationDemo
 		{
 			try
 			{
-				this.sslServerControl1.InitializeServer( omronFinsServer );
-				omronFinsServer = new HslCommunication.Profinet.Omron.OmronFinsUdpServer( );                       // 实例化对象
-				omronFinsServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
-				omronFinsServer.OnDataReceived += BusTcpServer_OnDataReceived;
-				omronFinsServer.CopySID = checkBox_copy_sid.Checked;
+				keyencdeServer = new InovanceEasyNetServer( );                       // 实例化对象
+				keyencdeServer.OnDataReceived += MelsecMcServer_OnDataReceived;
+				userControlReadWriteServer1.SetReadWriteServer( keyencdeServer, "D100" );
+				this.sslServerControl1.InitializeServer( keyencdeServer );
+				if (this.serverSettingControl1.ServerStart( keyencdeServer ) == false) return;
 
-				if (this.serverSettingControl1.ServerStart( omronFinsServer ) == false) return;
-
-				userControlReadWriteServer1.SetReadWriteServer( omronFinsServer, "D100" );
 				userControlReadWriteServer1.SetEnable( true );
 
-				// 设置示例代码
-				codeExampleControl.SetCodeText( "server", "", omronFinsServer, this.sslServerControl1, nameof( omronFinsServer.AnalysisLogMessage ), nameof( omronFinsServer.CopySID ) );
+				// 设置代码示例
+				codeExampleControl.SetCodeText( "server", "", keyencdeServer );
 			}
 			catch (Exception ex)
 			{
@@ -97,26 +79,26 @@ namespace HslCommunicationDemo
 			}
 		}
 
-
 		private void button11_Click( object sender, EventArgs e )
 		{
 			// 停止服务
 			userControlReadWriteServer1.Close( );
-			omronFinsServer?.ServerClose( );
+			keyencdeServer?.CloseSerialSlave( );
+			keyencdeServer?.ServerClose( );
 		}
 
 		private void button5_Click( object sender, EventArgs e )
 		{
 			// 启动串口
-			omronFinsServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
+			keyencdeServer.StartSerialSlave( this.serverSettingControl1.TextBox_Serial.Text );
 			this.serverSettingControl1.ButtonSerial.Enabled = false;
 
 			// 设置示例代码
-			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, omronFinsServer, this.sslServerControl1, nameof( omronFinsServer.AnalysisLogMessage ) );
+			codeExampleControl.SetCodeText( "server", this.serverSettingControl1.TextBox_Serial.Text, keyencdeServer, this.sslServerControl1 );
 
 		}
 
-		private void BusTcpServer_OnDataReceived( object sender, object source, byte[] receive )
+		private void MelsecMcServer_OnDataReceived( object sender,  object source, byte[] receive )
 		{
 			// 我们可以捕获到接收到的客户端的modbus报文
 			// 如果是TCP接收的
@@ -134,10 +116,11 @@ namespace HslCommunicationDemo
 			}
 		}
 
+		#endregion
+
+
 		public override void SaveXmlParameter( XElement element )
 		{
-			element.SetAttributeValue( "AnalysisLogMessage", checkBox_log_analysis.Checked );
-			element.SetAttributeValue( "CopySID", checkBox_copy_sid.Checked );
 			this.sslServerControl1.SaveXmlParameter( element );
 			this.serverSettingControl1.SaveXmlParameter( element );
 			this.userControlReadWriteServer1.GetDataTable( element );
@@ -146,8 +129,6 @@ namespace HslCommunicationDemo
 		public override void LoadXmlParameter( XElement element )
 		{
 			base.LoadXmlParameter( element );
-			checkBox_log_analysis.Checked = GetXmlValue( element, "AnalysisLogMessage", true, bool.Parse );
-			checkBox_copy_sid.Checked = GetXmlValue( element, "CopySID", true, bool.Parse );
 			this.sslServerControl1.LoadXmlParameter( element );
 			this.serverSettingControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );
@@ -157,5 +138,6 @@ namespace HslCommunicationDemo
 		{
 			userControlHead1_SaveConnectEvent( sender, e );
 		}
+
 	}
 }

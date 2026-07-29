@@ -50,12 +50,24 @@ namespace HslCommunicationDemo.PLC.Inovance
 				new DeviceAddressExample( "R0",  "文件寄存器", false, true, "R0-R32767" ),
 				new DeviceAddressExample( "s=2;D0", "", false, true, "以上所有地址支持额外指定站号" ),
 			};
+			DeviceAddressExample[] evo = new DeviceAddressExample[]
+{
+				new DeviceAddressExample( "QX0.0", "输出", true, false, "	QX0.0-QX8191.7 或是 Q0-Q65535" ),
+				new DeviceAddressExample( "IX0.0", "输入", true, false, "IX0.0-IX8191.7 或是 I0-I65535" ),
+				new DeviceAddressExample( "MX0.0", "M寄存器", true, false, "MX0.0-MX1000.10" ),
+				new DeviceAddressExample( "MW0.0", "M寄存器", true, false, "MW0.0-MW65535.0" ),
+				new DeviceAddressExample( "MW0", "M寄存器", false, true, "MW0-MW65535" ),
+				new DeviceAddressExample( "MD0", "M寄存器", false, true, "MD100 = MW200" ),
+				new DeviceAddressExample( "MB0", "M寄存器", false, true, "MB100 = MW50 必须偶数，byte读取支持奇数" ),
+				new DeviceAddressExample( "s=2;MW0", "", false, true, "以上所有地址支持额外指定站号" ),
+};
 
 			return new Dictionary<string, DeviceAddressExample[]>
 			{
 				{ "AM400-800/AC/AP", am },
 				{ "H3U", h3u },
 				{ "H5U/Easy", h5u },
+				{ "EVO", evo },
 			};
 		}
 

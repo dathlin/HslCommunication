@@ -126,6 +126,18 @@ namespace HslCommunicationDemo
 			Program.Settings.TimerReadWriteFailedContinue = !Program.Settings.TimerReadWriteFailedContinue;
 		}
 
+		private void boolResultShow01ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (Program.Settings.BoolResultRender01)
+			{
+				boolResultShow01ToolStripMenuItem.Image = null;
+			}
+			else
+			{
+				boolResultShow01ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			}
+			Program.Settings.BoolResultRender01 = !Program.Settings.BoolResultRender01;
+		}
 
 		#region Form Load Close Inni
 
@@ -361,6 +373,7 @@ namespace HslCommunicationDemo
 			if (WriteSuccessNotShowWindow) 写入成功不弹窗ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
 
 			if (Program.Settings.TimerReadWriteFailedContinue) 定时读写失败继续ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			if (Program.Settings.BoolResultRender01) boolResultShow01ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
 		}
 
 		private void ThreadPoolCheckVersion( object obj )
@@ -512,6 +525,7 @@ namespace HslCommunicationDemo
 				testPanelSizeFixedToolStripMenuItem.Text = "测试界面大小固定";
 				记住窗体位置及大小ToolStripMenuItem.Text = "记住窗体位置及大小";
 				showMsToolStripMenuItem.Text = "读写时间显示毫秒";
+				boolResultShow01ToolStripMenuItem.Text = "Bool读取显示0或1";
 			}
 			else
 			{
@@ -539,6 +553,7 @@ namespace HslCommunicationDemo
 				写入成功不弹窗ToolStripMenuItem.Text = "Write Success Not Show Dialog";
 				testPanelSizeFixedToolStripMenuItem.Text = "Test Panel Size Fixed";
 				记住窗体位置及大小ToolStripMenuItem.Text = "Remember Form Location And Size";
+				boolResultShow01ToolStripMenuItem.Text = "Bool Result Show 0 or 1";
 			}
 		}
 

@@ -68,6 +68,11 @@ namespace HslCommunicationDemo
 		/// </summary>
 		public bool TimerReadWriteFailedContinue { get; set; } = false;
 
+		/// <summary>
+		/// Bool读取结果是否显示0，1，默认显示 false, true
+		/// </summary>
+		public bool BoolResultRender01 { get; set; } = false;
+
 		public void LoadFiles( )
 		{
 			lock(lock_settings)
@@ -103,6 +108,7 @@ namespace HslCommunicationDemo
 						UploadDeviceContact            = GetValue( json, nameof( UploadDeviceContact ),            string.Empty );
 						RenderListMode                 = GetValue( json, nameof( RenderListMode ),                 0 );
 						TimerReadWriteFailedContinue   = GetValue( json, nameof( TimerReadWriteFailedContinue ),   false );
+						BoolResultRender01             = GetValue( json, nameof( BoolResultRender01 ),             false );
 					}
 				}
 				catch
@@ -130,6 +136,7 @@ namespace HslCommunicationDemo
 				json.Add( nameof( UploadDeviceContact ), UploadDeviceContact );
 				json.Add( nameof( RenderListMode ), RenderListMode );
 				json.Add( nameof( TimerReadWriteFailedContinue ), TimerReadWriteFailedContinue );
+				json.Add( nameof( BoolResultRender01 ), BoolResultRender01 );
 				File.WriteAllText( path, json.ToString( ), Encoding.UTF8 );
 			}
 		}

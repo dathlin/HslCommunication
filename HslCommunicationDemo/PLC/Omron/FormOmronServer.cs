@@ -28,6 +28,15 @@ namespace HslCommunicationDemo
 			checkBox_isstringreverse.CheckedChanged += CheckBox_isstringreverse_CheckedChanged;
 			DemoUtils.SetPanelAnchor( panel1, panel2 );
 			checkBox_log_analysis.CheckedChanged += CheckBox_log_analysis_CheckedChanged;
+			checkBox_copy_sid.CheckedChanged += CheckBox_copy_sid_CheckedChanged;
+		}
+
+		private void CheckBox_copy_sid_CheckedChanged( object sender, EventArgs e )
+		{
+			if (omronFinsServer != null)
+			{
+				omronFinsServer.CopySID = checkBox_copy_sid.Checked;
+			}
 		}
 
 		private void CheckBox_log_analysis_CheckedChanged( object sender, EventArgs e )
@@ -91,6 +100,7 @@ namespace HslCommunicationDemo
 				omronFinsServer.DataFormat = (HslCommunication.Core.DataFormat)comboBox1.SelectedItem;
 				omronFinsServer.ByteTransform.IsStringReverseByteWord = checkBox_isstringreverse.Checked;
 				omronFinsServer.AnalysisLogMessage = checkBox_log_analysis.Checked;
+				omronFinsServer.CopySID = checkBox_copy_sid.Checked;
 				this.sslServerControl1.InitializeServer( omronFinsServer );
 				if (this.serverSettingControl1.ServerStart( omronFinsServer ) == false) return;
 
@@ -100,7 +110,7 @@ namespace HslCommunicationDemo
 				// 设置示例代码
 				codeExampleControl.SetCodeText( "server", "", omronFinsServer, this.sslServerControl1, 
 					nameof( omronFinsServer.ActiveTimeSpan ), nameof( omronFinsServer.DataFormat ), 
-					"ByteTransform.IsStringReverseByteWord", nameof( omronFinsServer.AnalysisLogMessage ) );
+					"ByteTransform.IsStringReverseByteWord", nameof( omronFinsServer.AnalysisLogMessage ), nameof( omronFinsServer.CopySID ) );
 			}
 			catch (Exception ex)
 			{
@@ -149,6 +159,7 @@ namespace HslCommunicationDemo
 		public override void SaveXmlParameter( XElement element )
 		{
 			element.SetAttributeValue( "AnalysisLogMessage", checkBox_log_analysis.Checked );
+			element.SetAttributeValue( "CopySID", checkBox_copy_sid.Checked );
 			this.sslServerControl1.SaveXmlParameter( element );
 			this.serverSettingControl1.SaveXmlParameter( element );
 			this.userControlReadWriteServer1.LoadDataTable( element );
@@ -159,6 +170,7 @@ namespace HslCommunicationDemo
 		{
 			base.LoadXmlParameter( element );
 			this.checkBox_log_analysis.Checked = GetXmlValue( element, "AnalysisLogMessage", true, bool.Parse );
+			this.checkBox_copy_sid.Checked = GetXmlValue( element, "CopySID", true, bool.Parse );
 			this.sslServerControl1.LoadXmlParameter( element );
 			this.serverSettingControl1.LoadXmlParameter( element );
 			this.userControlReadWriteServer1.GetDataTable( element );

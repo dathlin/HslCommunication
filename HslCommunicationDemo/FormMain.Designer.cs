@@ -76,6 +76,7 @@
 			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label_account = new System.Windows.Forms.Label();
+			this.boolResultShow01ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -231,7 +232,8 @@
             this.退出软件显示确认ToolStripMenuItem,
             this.showMsToolStripMenuItem,
             this.写入成功不弹窗ToolStripMenuItem,
-            this.定时读写失败继续ToolStripMenuItem});
+            this.定时读写失败继续ToolStripMenuItem,
+            this.boolResultShow01ToolStripMenuItem});
 			this.demoSettingToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.demoSettingToolStripMenuItem.Name = "demoSettingToolStripMenuItem";
 			this.demoSettingToolStripMenuItem.Size = new System.Drawing.Size(75, 21);
@@ -470,6 +472,13 @@
 			this.label_account.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			this.label_account.Click += new System.EventHandler(this.label_account_Click);
 			// 
+			// boolResultShow01ToolStripMenuItem
+			// 
+			this.boolResultShow01ToolStripMenuItem.Name = "boolResultShow01ToolStripMenuItem";
+			this.boolResultShow01ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+			this.boolResultShow01ToolStripMenuItem.Text = "Bool读取显示0或1";
+			this.boolResultShow01ToolStripMenuItem.Click += new System.EventHandler(this.boolResultShow01ToolStripMenuItem_Click);
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -547,6 +556,7 @@
 		private System.Windows.Forms.ToolStripMenuItem 写入成功不弹窗ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem portMappingToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 定时读写失败继续ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem boolResultShow01ToolStripMenuItem;
 	}
 }
 

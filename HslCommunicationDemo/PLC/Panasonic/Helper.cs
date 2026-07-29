@@ -33,9 +33,9 @@ namespace HslCommunicationDemo.PLC.Panasonic
 		{
 			return new DeviceAddressExample[]
 			{
-				new DeviceAddressExample( "X0",        "外部输入继电器", true, false, "X33 等同于 X3.3" ),
-				new DeviceAddressExample( "Y0",        "外部输出继电器", true, false, "Y33 等同于 Y3.3" ),
-				new DeviceAddressExample( "R2.1",      "内部继电器",     true, false, "R21 等同于 R2.1" ),
+				new DeviceAddressExample( "X0",        "外部输入继电器", true, false, "X33 等同于 X3.3  读字时使用 X1.0, X2.0, X100.0" ),
+				new DeviceAddressExample( "Y0",        "外部输出继电器", true, false, "Y33 等同于 Y3.3  读字时使用 Y1.0, Y2.0, Y100.0" ),
+				new DeviceAddressExample( "R2.1",      "内部继电器",     true, false, "R21 等同于 R2.1  读字时使用 R1.0, R2.0, R100.0" ),
 				new DeviceAddressExample( "SR2.1",     "特殊内部继电器", true, false, "SR21 等同于 SR2.1" ),
 				new DeviceAddressExample( "T0",        "定时器",         true, false, "" ),
 				new DeviceAddressExample( "C0",        "计数器",         true, false, "" ),

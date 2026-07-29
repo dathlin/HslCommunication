@@ -29,6 +29,7 @@
         private void InitializeComponent( )
         {
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_log_analysis = new System.Windows.Forms.CheckBox();
 			this.serverSettingControl1 = new HslCommunicationDemo.DemoControl.ServerSettingControl();
 			this.checkBox_isstringreverse = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -36,7 +37,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteServer1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteServer();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
-			this.checkBox_log_analysis = new System.Windows.Forms.CheckBox();
+			this.checkBox_copy_sid = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -46,6 +47,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.checkBox_copy_sid);
 			this.panel1.Controls.Add(this.checkBox_log_analysis);
 			this.panel1.Controls.Add(this.serverSettingControl1);
 			this.panel1.Controls.Add(this.checkBox_isstringreverse);
@@ -56,6 +58,18 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(997, 70);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_log_analysis
+			// 
+			this.checkBox_log_analysis.AutoSize = true;
+			this.checkBox_log_analysis.Checked = true;
+			this.checkBox_log_analysis.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_log_analysis.Location = new System.Drawing.Point(241, 39);
+			this.checkBox_log_analysis.Name = "checkBox_log_analysis";
+			this.checkBox_log_analysis.Size = new System.Drawing.Size(99, 21);
+			this.checkBox_log_analysis.TabIndex = 40;
+			this.checkBox_log_analysis.Text = "日志报文分析";
+			this.checkBox_log_analysis.UseVisualStyleBackColor = true;
 			// 
 			// serverSettingControl1
 			// 
@@ -96,9 +110,9 @@
 			this.sslServerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.sslServerControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.sslServerControl1.Location = new System.Drawing.Point(346, 34);
+			this.sslServerControl1.Location = new System.Drawing.Point(445, 34);
 			this.sslServerControl1.Name = "sslServerControl1";
-			this.sslServerControl1.Size = new System.Drawing.Size(642, 30);
+			this.sslServerControl1.Size = new System.Drawing.Size(543, 30);
 			this.sslServerControl1.TabIndex = 29;
 			// 
 			// panel2
@@ -139,17 +153,17 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
-			// checkBox_log_analysis
+			// checkBox_copy_sid
 			// 
-			this.checkBox_log_analysis.AutoSize = true;
-			this.checkBox_log_analysis.Checked = true;
-			this.checkBox_log_analysis.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox_log_analysis.Location = new System.Drawing.Point(241, 39);
-			this.checkBox_log_analysis.Name = "checkBox_log_analysis";
-			this.checkBox_log_analysis.Size = new System.Drawing.Size(99, 21);
-			this.checkBox_log_analysis.TabIndex = 40;
-			this.checkBox_log_analysis.Text = "日志报文分析";
-			this.checkBox_log_analysis.UseVisualStyleBackColor = true;
+			this.checkBox_copy_sid.AutoSize = true;
+			this.checkBox_copy_sid.Checked = true;
+			this.checkBox_copy_sid.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_copy_sid.Location = new System.Drawing.Point(356, 39);
+			this.checkBox_copy_sid.Name = "checkBox_copy_sid";
+			this.checkBox_copy_sid.Size = new System.Drawing.Size(83, 21);
+			this.checkBox_copy_sid.TabIndex = 43;
+			this.checkBox_copy_sid.Text = "CopySID?";
+			this.checkBox_copy_sid.UseVisualStyleBackColor = true;
 			// 
 			// FormOmronServer
 			// 
@@ -185,5 +199,6 @@
         private System.Windows.Forms.CheckBox checkBox_isstringreverse;
 		private DemoControl.ServerSettingControl serverSettingControl1;
 		private System.Windows.Forms.CheckBox checkBox_log_analysis;
+		private System.Windows.Forms.CheckBox checkBox_copy_sid;
 	}
 }

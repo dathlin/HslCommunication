@@ -44,7 +44,7 @@ namespace HslCommunicationDemo.PLC.Omron
 				new DeviceAddressExample( "H0 / HR0",    "Holding Area",       false, true, "只能读写字，范围 HR0 ~ HR511" ),
 				new DeviceAddressExample( "A0 / AR0",   "Auxiliary Area",      false, true, "只能读写字，范围 AR0 ~ AR959" ),
 				new DeviceAddressExample( "E0.0 / EM0.0", "EM Area",           false, true, "只能读写字，范围 EM0.0 ~ EMF.9999" ),
-				new DeviceAddressExample( "TIM0",   "Timer Area",              false, true, "读字就是当前值，范围 TIM0 ~ TIM2047" ),
+				new DeviceAddressExample( "TIM0",   "Timer Area",              true, true, "读字就是当前值，范围 TIM0 ~ TIM2047" ),
 				new DeviceAddressExample( "CNT0",   "Counter Area",            false, true, "读字就是当前值，范围 CNT0 ~ CNT2047" ),
 
 

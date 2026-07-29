@@ -37,12 +37,13 @@ namespace HslCommunicationDemo
 				"InovanceH3U",          // 2
 				"InovanceH5U",          // 3
 				"InovanceEasy",         // 4
-				"DeltaAS[台达]",         // 5
-				"DeltaDvp[台达]",       // 6
-				"MegMeet[麦格米特]",    // 7
-				"XinJE_XC",             // 8
-				"XinJE_XD_XL",          // 9
-				"WeCon[维控]",          // 10
+				"InovanceEVO",         // 5
+				"DeltaAS[台达]",         // 6
+				"DeltaDvp[台达]",       // 7
+				"MegMeet[麦格米特]",    // 8
+				"XinJE_XC",             // 9
+				"XinJE_XD_XL",          // 10
+				"WeCon[维控]",          // 11
 				"Invt_Ts[英威腾]",              
 			};
 			comboBox_address_mapping.SelectedIndex = 0;
@@ -60,13 +61,14 @@ namespace HslCommunicationDemo
 					case 2:  busTcpServer.RegisteredAddressMapping( InovanceHelper.PraseInovanceH3UAddress ); break;
 					case 3:  busTcpServer.RegisteredAddressMapping( InovanceHelper.PraseInovanceH5UAddress ); break;
 					case 4:  busTcpServer.RegisteredAddressMapping( InovanceHelper.PraseInovanceH5UAddress ); break;
-					case 5:  busTcpServer.RegisteredAddressMapping( ModbusMappingAddress.Delta_AS ); break;
-					case 6:  busTcpServer.RegisteredAddressMapping( DeltaDvpHelper.ParseDeltaDvpAddress ); break;
-					case 7:  busTcpServer.RegisteredAddressMapping( MegMeetHelper.PraseMegMeetAddress ); break;
-					case 8:  busTcpServer.RegisteredAddressMapping( ( m, n ) => XinJEHelper.PraseXinJEAddress( XinJESeries.XC, m, n ) ); break;
-					case 9:  busTcpServer.RegisteredAddressMapping( ( m, n ) => XinJEHelper.PraseXinJEAddress( XinJESeries.XD, m, n ) ); break;
-					case 10: busTcpServer.RegisteredAddressMapping( ModbusMappingAddress.WeCon_Lx5v ); break;
-					case 11: busTcpServer.RegisteredAddressMapping( ModbusMappingAddress.Invt_Ts ); break;
+					case 5:  busTcpServer.RegisteredAddressMapping( InovanceHelper.PraseInovanceEvoAddress ); break;
+					case 6:  busTcpServer.RegisteredAddressMapping( ModbusMappingAddress.Delta_AS ); break;
+					case 7:  busTcpServer.RegisteredAddressMapping( DeltaDvpHelper.ParseDeltaDvpAddress ); break;
+					case 8:  busTcpServer.RegisteredAddressMapping( MegMeetHelper.PraseMegMeetAddress ); break;
+					case 9:  busTcpServer.RegisteredAddressMapping( ( m, n ) => XinJEHelper.PraseXinJEAddress( XinJESeries.XC, m, n ) ); break;
+					case 10: busTcpServer.RegisteredAddressMapping( ( m, n ) => XinJEHelper.PraseXinJEAddress( XinJESeries.XD, m, n ) ); break;
+					case 11: busTcpServer.RegisteredAddressMapping( ModbusMappingAddress.WeCon_Lx5v ); break;
+					case 12: busTcpServer.RegisteredAddressMapping( ModbusMappingAddress.Invt_Ts ); break;
 					default: break;
 				}
 			}
@@ -78,13 +80,14 @@ namespace HslCommunicationDemo
 				case 2:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) ); break;
 				case 3:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) ); break;
 				case 4:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) ); break;
-				case 5:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Delta.Helper.GetDeviceAddressExamples( ) ); break;
+				case 5:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Inovance.Helper.GetInovanceAddress( ) ); break;
 				case 6:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Delta.Helper.GetDeviceAddressExamples( ) ); break;
-				case 7:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.MegMeet.Helper.GetMegMeetAddress( ) ); break;
-				case 8:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.XINJE.Helper.GetXinJEAddress( ) ); break;
+				case 7:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Delta.Helper.GetDeviceAddressExamples( ) ); break;
+				case 8:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.MegMeet.Helper.GetMegMeetAddress( ) ); break;
 				case 9:  addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.XINJE.Helper.GetXinJEAddress( ) ); break;
-				case 10: addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.WeCon.Helper.GetWeConLx5vAddress( ) ); break;
-				case 11: addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Invt.Helper.GetInvtAddress( ) ); break;
+				case 10: addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.XINJE.Helper.GetXinJEAddress( ) ); break;
+				case 11: addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.WeCon.Helper.GetWeConLx5vAddress( ) ); break;
+				case 12: addressExampleControl.SetAddressExample( HslCommunicationDemo.PLC.Invt.Helper.GetInvtAddress( ) ); break;
 				default: break;
 			}
 		}

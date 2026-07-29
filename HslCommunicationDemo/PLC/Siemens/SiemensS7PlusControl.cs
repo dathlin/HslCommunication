@@ -45,13 +45,13 @@ namespace HslCommunicationDemo.PLC.Siemens
 			{
 				label1.Text = "刷新间隔：";
 				button2.Text = "开始刷新";
-				label2.Text = "如果想要使用字符串地址，需要先调用 \"plc.BrowseDB( );\" \"plc.BrowseTags( );\"";
+				//label2.Text = "如果想要使用字符串地址，需要先调用 \"plc.BrowseDB( );\" \"plc.BrowseTags( );\"";
 			}
 			else
 			{
 				label1.Text = "Refresh Time:";
 				button2.Text = "Refresh";
-				label2.Text = "If you want to use string addresses, you need to call \"plc.BrowseDB( );\" \"plc.BrowseTags( );\" first.";
+				//label2.Text = "If you want to use string addresses, you need to call \"plc.BrowseDB( );\" \"plc.BrowseTags( );\" first.";
 			}
 		}
 
@@ -303,7 +303,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 					for (int i = 0; i < read.Content[0].S7Tags.Count; i++)
 					{
 						read.Content[0].S7Tags[i].LID.Insert( 0, s7ObjectNode.S7Object.RelationId );
-						read.Content[0].S7Tags[i].Tag = $"\"{s7ObjectNode.S7Object.Name}\".\"{read.Content[0].S7Tags[i].Name}\"";
+						read.Content[0].S7Tags[i].Tag = $"'{s7ObjectNode.S7Object.Name}'.'{read.Content[0].S7Tags[i].Name}'";
 					}
 					s7ObjectNode.S7Object.S7Tags = read.Content[0].S7Tags;
 					AddS7Tags( treeNode, read.Content[0].S7Tags );
@@ -337,7 +337,7 @@ namespace HslCommunicationDemo.PLC.Siemens
 					{
 						S7Tag s7Tag = s7Struct[structTag.StructID].S7Tags[j].Clone( );
 						s7Tag.LID.InsertRange( 0, structTag.LID );
-						s7Tag.Tag = $"{structTag.Tag}.\"{s7Tag.Name}\"";
+						s7Tag.Tag = $"{structTag.Tag}.'{s7Tag.Name}'";
 						list.Add( s7Tag );
 					}
 					AddS7Tags( parent, list );

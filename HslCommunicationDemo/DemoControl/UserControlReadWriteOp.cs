@@ -346,11 +346,11 @@ namespace HslCommunicationDemo.DemoControl
 			label21.Text = $"{valueLimit.Count}";
 		}
 
-		private void RenderReadResult<T>( DateTime start, OperateResult<T> read, int renderResult = -1 )
+		private void RenderReadResult<T>( DateTime start, OperateResult<T> read, int renderResult = -1, Func<T, string> func = null )
 		{
 			SetTimeSpend( Convert.ToInt32( (DateTime.Now - start).TotalMilliseconds ) );
 			if (!read.IsSuccess && checkBox_read_timer.Checked && !Program.Settings.TimerReadWriteFailedContinue) checkBox_read_timer.Checked = false;
-			ReadResultRender( read, comboBox_read_address.Text, textBox4, renderResult );
+			ReadResultRender( read, comboBox_read_address.Text, textBox4, renderResult, func );
 			AddAddressCache( comboBox_read_address.Text );
 		}
 
@@ -392,7 +392,7 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
-		public void ReadResultRender<T>( OperateResult<T> result, string address, TextBox textBox, int renderResult )
+		public void ReadResultRender<T>( OperateResult<T> result, string address, TextBox textBox, int renderResult, Func<T, string> func )
 		{
 			if (result.IsSuccess)
 			{
@@ -425,7 +425,10 @@ namespace HslCommunicationDemo.DemoControl
 					}
 					else
 					{
-						AppendReadResult( textBox, $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat( result.Content )}" );
+						if (func == null)
+							AppendReadResult( textBox, $"[{address}] {HslCommunication.BasicFramework.SoftBasic.ArrayFormat( result.Content )}" );
+						else
+							AppendReadResult( textBox, $"[{address}] {func( result.Content )}" );
 					}
 				}
 				else
@@ -437,7 +440,12 @@ namespace HslCommunicationDemo.DemoControl
 						AppendReadResult( textBox, $"[{address}] {GetBoolArrayRenderString( result.Content )}" );
 					}
 					else
-						AppendReadResult( textBox, $"[{address}] {result.Content}" );
+					{
+						if (func == null)
+							AppendReadResult( textBox, $"[{address}] {result.Content}" );
+						else
+							AppendReadResult( textBox, $"[{address}] {func(result.Content)}" );
+					}
 				}
 			}
 			else
@@ -540,6 +548,20 @@ namespace HslCommunicationDemo.DemoControl
 			comboBox_write_address.Text = originalText;
 		}
 
+		private string GetBoolArrayToString( bool[] value )
+		{
+			StringBuilder stringBuilder = new StringBuilder( );
+			for (int i = 0; i < value.Length; i++)
+			{
+				stringBuilder.Append( value[i] ? "1" : "0" );
+			}
+			return stringBuilder.ToString( );
+		}
+		private string GetBoolArrayToString( bool value )
+		{
+			return value ? "1" : "0";
+		}
+
 		private async void button_read_bool_Click( object sender, EventArgs e )
 		{
 			// bool
@@ -548,12 +570,16 @@ namespace HslCommunicationDemo.DemoControl
 				button_read_bool.Enabled = false;
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadBoolAsync( GetReadAddress( ) ) );
+					Func<bool, string> func = null;
+					if (Program.Settings.BoolResultRender01) func = GetBoolArrayToString;
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadBoolAsync( GetReadAddress( ) ), -1, func );
 					GetReadCode( GetReadAddressCode( ), "OperateResult<bool> read = @deviceName.ReadBool( \"" + GetReadAddressCode( ) + "\" );", isArray: false );
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, await readWriteNet.ReadBoolAsync( GetReadAddress( ), ushort.Parse( textBox5.Text ) ) );
+					Func<bool[], string> func = null;
+					if (Program.Settings.BoolResultRender01) func = GetBoolArrayToString;
+					RenderReadResult( DateTime.Now, await readWriteNet.ReadBoolAsync( GetReadAddress( ), ushort.Parse( textBox5.Text ) ), -1, func );
 					GetReadCode( GetReadAddressCode( ), "OperateResult<bool[]> read = @deviceName.ReadBool( \"" + GetReadAddressCode( ) + "\", " + textBox5.Text + " );", isArray: true );
 				}
 				button_read_bool.Enabled = true;
@@ -562,12 +588,16 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				if (textBox5.Text == "1" || string.IsNullOrEmpty( textBox5.Text ))
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadBool( GetReadAddress( ) ) );
+					Func<bool, string> func = null;
+					if (Program.Settings.BoolResultRender01) func = GetBoolArrayToString;
+					RenderReadResult( DateTime.Now, readWriteNet.ReadBool( GetReadAddress( ) ), -1, func );
 					GetReadCode( GetReadAddressCode( ), "OperateResult<bool> read = @deviceName.ReadBool( \"" + GetReadAddressCode( ) + "\" );", isArray: false );
 				}
 				else
 				{
-					RenderReadResult( DateTime.Now, readWriteNet.ReadBool( GetReadAddress( ), ushort.Parse( textBox5.Text ) ) );
+					Func<bool[], string> func = null;
+					if (Program.Settings.BoolResultRender01) func = GetBoolArrayToString;
+					RenderReadResult( DateTime.Now, readWriteNet.ReadBool( GetReadAddress( ), ushort.Parse( textBox5.Text ) ), -1, func );
 					GetReadCode( GetReadAddressCode( ), "OperateResult<bool[]> read = @deviceName.ReadBool( \"" + GetReadAddressCode( ) + "\", " + textBox5.Text + " );", isArray: true );
 				}
 			}
