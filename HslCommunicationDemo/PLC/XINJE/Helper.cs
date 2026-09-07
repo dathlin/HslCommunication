@@ -71,8 +71,8 @@ namespace HslCommunicationDemo.PLC.XINJE
 			return new DeviceAddressExample[]
 			{
 				new DeviceAddressExample( "M100", "内部继电器", true, false, "M0-M69999" ),
-				new DeviceAddressExample( "X10.7", "输入线圈", true, false, "8进制地址，也可以带小数点表示"),
-				new DeviceAddressExample( "Y10.7", "输出线圈", true, false, "8进制地址，也可以带小数点表示" ),
+				new DeviceAddressExample( "X107", "输入线圈", true, false, "8进制地址"),
+				new DeviceAddressExample( "Y107", "输出线圈", true, false, "8进制地址" ),
 				new DeviceAddressExample( "S100", "流程继电器", true, false, "范围: S0~S7999" ),
 				new DeviceAddressExample( "HS100", "流程继电器", true, false, "范围: HS0~HS999"),
 				new DeviceAddressExample( "SM100", "特殊继电器", true, false, "范围: SM0~SM4999" ),
@@ -112,10 +112,10 @@ namespace HslCommunicationDemo.PLC.XINJE
 				new DeviceAddressExample( "SM100", "特殊继电器", true, false, "客户端使用XinJE TCP[专用] 的情况" ),
 
 				new DeviceAddressExample( "D100", "数据寄存器", false, true, "客户端使用XinJE TCP[专用] 的情况"),
-				new DeviceAddressExample( "SD0", "特殊寄存器",            false, true, "客户端使用XinJE TCP[专用] 的情况"),
-				new DeviceAddressExample( "HD0", "数据寄存器",            false, true, "客户端使用XinJE TCP[专用] 的情况"),
+				new DeviceAddressExample( "SD0", "特殊寄存器",  false, true, "客户端使用XinJE TCP[专用] 的情况"),
+				new DeviceAddressExample( "HD0", "数据寄存器",   false, true, "客户端使用XinJE TCP[专用] 的情况"),
 
-				new DeviceAddressExample( "100", "modbus的03功能码",            false, true, "使用modbus地址，客户端使用XinJE TCP[Modbus] 的情况"),
+				new DeviceAddressExample( "100", "modbus的03功能码",   false, true, "使用modbus地址，客户端使用XinJE TCP[Modbus] 的情况"),
 			};
 		}
 

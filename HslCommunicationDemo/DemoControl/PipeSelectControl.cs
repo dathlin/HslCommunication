@@ -190,6 +190,7 @@ namespace HslCommunicationDemo.DemoControl
 					element.SetAttributeValue( "LocalIpAddress", settingTcpIP.LocalIpAddress );
 					element.SetAttributeValue( "LocalPort", settingTcpIP.LocalPort );
 					element.SetAttributeValue( "CloseOnRecvTimeOutTick", settingTcpIP.CloseOnRecvTimeOutTick );
+					element.SetAttributeValue( "AutoReConnect", settingTcpIP.AutoReConnect );
 					if (!string.IsNullOrEmpty( settingTcpIP.SendBeforeHex )) element.SetAttributeValue( "SendBeforeHex", settingTcpIP.SendBeforeHex );
 				}
 			}
@@ -222,6 +223,7 @@ namespace HslCommunicationDemo.DemoControl
 					element.SetAttributeValue( "IsPersistentConnection", settingUdpIP.IsPersistentConnection );
 					element.SetAttributeValue( "LocalIpAddress", settingUdpIP.LocalIpAddress );
 					element.SetAttributeValue( "LocalPort", settingUdpIP.LocalPort );
+					element.SetAttributeValue( "AutoReConnect", settingUdpIP.AutoReConnect );
 					if (!string.IsNullOrEmpty( settingUdpIP.SendBeforeHex )) element.SetAttributeValue( "SendBeforeHex", settingUdpIP.SendBeforeHex );
 				}
 			}
@@ -284,6 +286,7 @@ namespace HslCommunicationDemo.DemoControl
 					this.settingTcpIP.SocketKeepAliveTime = HslFormContent.GetXmlValue( element, "SocketKeepAliveTime", this.settingTcpIP.SocketKeepAliveTime, int.Parse );
 					this.settingTcpIP.IsPersistentConnection = HslFormContent.GetXmlValue( element, "IsPersistentConnection", this.settingTcpIP.IsPersistentConnection, bool.Parse );
 					this.settingTcpIP.SendBeforeHex = HslFormContent.GetXmlValue( element, "SendBeforeHex", this.settingTcpIP.SendBeforeHex, m => m );
+					this.settingTcpIP.AutoReConnect = HslFormContent.GetXmlValue( element, "AutoReConnect", this.settingTcpIP.AutoReConnect, bool.Parse );
 				}
 			}
 			else if (setting == SettingPipe.Debug)
@@ -318,6 +321,7 @@ namespace HslCommunicationDemo.DemoControl
 					this.settingUdpIP.SocketKeepAliveTime = HslFormContent.GetXmlValue( element, "SocketKeepAliveTime", this.settingUdpIP.SocketKeepAliveTime, int.Parse );
 					this.settingUdpIP.IsPersistentConnection = HslFormContent.GetXmlValue( element, "IsPersistentConnection", this.settingUdpIP.IsPersistentConnection, bool.Parse );
 					this.settingUdpIP.SendBeforeHex = HslFormContent.GetXmlValue( element, "SendBeforeHex", this.settingUdpIP.SendBeforeHex, m => m );
+					this.settingUdpIP.AutoReConnect = HslFormContent.GetXmlValue( element, "AutoReConnect", this.settingUdpIP.AutoReConnect, bool.Parse );
 				}
 			}
 			else if (setting == SettingPipe.SerialPipe || setting == SettingPipe.MoxaCom)
@@ -363,16 +367,34 @@ namespace HslCommunicationDemo.DemoControl
 
 		#region Public Properties
 
+		public string TcpIpText
+		{
+			get => this.textBox_tcp_ip.Text;
+			set => this.textBox_tcp_ip.Text = value;
+		}
+
 		public string TcpPortText
 		{
 			get => this.textBox_tcp_port.Text;
 			set => this.textBox_tcp_port.Text = value;
 		}
 
+		public string UdpIpText
+		{
+			get => this.textBox_udp_ip.Text;
+			set => this.textBox_udp_ip.Text = value;
+		}
+
 		public string UdpPortText
 		{
 			get => this.textBox_udp_port.Text;
 			set => this.textBox_udp_port.Text = value;
+		}
+
+		public string SerialPortText
+		{
+			get => this.comboBox_com_port.Text;
+			set => this.comboBox_com_port.Text = value;
 		}
 
 		public string SerialBaudRate
@@ -702,6 +724,7 @@ namespace HslCommunicationDemo.DemoControl
 			pipe.SleepTime = setting.SleepTime;
 			pipe.SocketKeepAliveTime = setting.SocketKeepAliveTime;
 			pipe.IsPersistentConnection = setting.IsPersistentConnection;
+			if (binaryCommunication != null) binaryCommunication.AutoReConnect = setting.AutoReConnect;
 			if (!string.IsNullOrEmpty( setting.LocalIpAddress ) || setting.LocalPort > 0)
 			{
 				pipe.LocalBinding = new System.Net.IPEndPoint( string.IsNullOrEmpty( setting.LocalIpAddress ) ? System.Net.IPAddress.Any : System.Net.IPAddress.Parse( setting.LocalIpAddress ),
@@ -943,6 +966,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.LocalPort = other.LocalPort;
 			this.SendBeforeHex = other.SendBeforeHex;
 			this.CloseOnRecvTimeOutTick = other.CloseOnRecvTimeOutTick;
+			this.AutoReConnect = other.AutoReConnect;
 		}
 
 		public SettingTcpIP( PipeTcpNet pipeTcpNet )
@@ -985,6 +1009,10 @@ namespace HslCommunicationDemo.DemoControl
 		[Description( "在每条报文发送前，额外发送的数据内容，常用于lora，会追加四个字节的站号\r\nBefore each message is sent, the additional data content sent, often used in lora, is appended with a four-byte station" )]
 		[DefaultValue( "" )]
 		public string SendBeforeHex { get; set; } = "";
+
+		[Description( "获取或设置当连接断开的时候，是否需要自动重新连接，默认是true\r\nGet or set whether to automatically reconnect when the connection is disconnected. The default is true." )]
+		[DefaultValue( true )]
+		public bool AutoReConnect { get; set; } = true;
 
 		public override string ToString( ) => $"Tcp/Udp Seting [网络管道额外参数配置]";
 	}

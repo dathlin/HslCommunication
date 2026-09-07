@@ -23,7 +23,7 @@ namespace HslCommunicationDemo.PLC.Vigor
 				new DeviceAddressExample( "CS0",   "计数器触点", true, false, "范围 CS0 ~ CS255" ),
 				new DeviceAddressExample( "CC0",   "计数器线圈", true, false, "范围 CC0 ~ CC255" ),
 				new DeviceAddressExample( "SD0",   "特殊寄存器", false, true, "范围 SD0 ~ SD511" ),
-				new DeviceAddressExample( "D0",    "寄存器", false, true, "范围 D0 ~ D8999" ),
+				new DeviceAddressExample( "D0",    "寄存器", false, true, "范围 D0 ~ D8999, 访问位时：D100.0" ),
 				new DeviceAddressExample( "R0",    "R寄存器", false, true, "范围 R0 ~ R25999" ),
 				new DeviceAddressExample( "T0",    "定时器当前值", false, true, "范围 T0 ~ T511" ),
 				new DeviceAddressExample( "C0",    "计数器当前值", false, true, "16位计数器范围 C0 ~ C199, 32位计数器范围 C200 ~ C255" ),

@@ -6,6 +6,7 @@ using HslCommunication.Core.Pipe;
 using HslCommunication.Instrument.CJT;
 using HslCommunication.Instrument.IEC;
 using HslCommunication.MQTT;
+using HslCommunication.Profinet.OpenProtocol;
 using HslCommunication.Profinet.Siemens;
 using HslCommunication.Robot.ABB;
 using HslCommunication.Serial;
@@ -300,11 +301,37 @@ namespace HslCommunicationDemo.DemoControl
 			SetCodeText( this.deviceName, network, props );
 		}
 
+
 		public void SetCodeText( DeviceUdpNet network, params string[] props )
 		{
 			this.deviceName = DemoUtils.PlcDeviceName;
 			SetCodeText( this.deviceName, network, props );
 		}
+
+		public void SetPluginsCodeText( DevicePluginNet network, string pluginPath, string pluginDeviceName )
+		{
+			this.deviceName = DemoUtils.PlcDeviceName;
+			//SetCodeText( this.deviceName, network, "ByteTransform.DataFormat" );
+			StringBuilder stringBuilder = CreatePluginsFromObject( network, deviceName, pluginPath, pluginDeviceName );
+
+			SetPropties( deviceName, stringBuilder, network, "ByteTransform.DataFormat" );
+			if (!network.AutoReConnect) SetPropties( deviceName, stringBuilder, network, "AutoReConnect" );
+
+			CreateCommunicationPipe( stringBuilder, network.CommunicationPipe, deviceName );
+
+			if (network.GetType( ) == typeof( IEC104 ))
+			{
+				stringBuilder.Append( FormIEC104.Example( ) );
+			}
+
+			// 增加连接的示例代码
+			CreateConnectCodeExample( stringBuilder, network.CommunicationPipe, deviceName );
+
+			RenderExampleCode( stringBuilder );
+		}
+
+
+
 
 		public void SetCodeText( string deviceName, string com, NetworkServerBase serverBase, params string[] props )
 		{
@@ -392,13 +419,19 @@ namespace HslCommunicationDemo.DemoControl
 		{
 			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
-			SetPropties( deviceName, stringBuilder, device, props ); 
+			SetPropties( deviceName, stringBuilder, device, props );
+			if (!device.AutoReConnect) SetPropties( deviceName, stringBuilder, device, "AutoReConnect" );
+
 			CreateCommunicationPipe( stringBuilder, device.CommunicationPipe, deviceName );
 
 			if (device.GetType() == typeof(IEC104))
 			{
 				stringBuilder.Append( FormIEC104.Example( ) );
 			}
+
+			// 增加连接的示例代码
+			CreateConnectCodeExample( stringBuilder, device.CommunicationPipe, deviceName );
+
 			RenderExampleCode( stringBuilder );
 		}
 
@@ -407,6 +440,14 @@ namespace HslCommunicationDemo.DemoControl
 			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
 			SetPropties( deviceName, stringBuilder, device, props );
+
+			// 增加连接的示例代码
+			if( device.GetType( ) == typeof(OpenProtocolNet) )
+			{
+				stringBuilder.Append( FormOpenProtocol.Example( deviceName ) );
+			}
+			CreateConnectCodeExample( stringBuilder, device.CommunicationPipe, deviceName );
+
 			RenderExampleCode( stringBuilder );
 		}
 
@@ -415,6 +456,7 @@ namespace HslCommunicationDemo.DemoControl
 			this.deviceName = deviceName;	
 			StringBuilder stringBuilder = CreateStringBulider( device, deviceName );
 			SetPropties( deviceName, stringBuilder, device, props );
+			if (!device.AutoReConnect) SetPropties( deviceName, stringBuilder, device, "AutoReConnect" );
 			RenderExampleCode( stringBuilder );
 		}
 
@@ -458,7 +500,11 @@ namespace HslCommunicationDemo.DemoControl
 			this.deviceName = deviceName;
 			StringBuilder stringBuilder = CreateStringBulider( network, deviceName );
 			SetPropties( deviceName, stringBuilder, network, props );
+			if (!network.AutoReConnect) SetPropties( deviceName, stringBuilder, network, "AutoReConnect" );
 			CreateCommunicationPipe( stringBuilder, network.CommunicationPipe, deviceName );
+
+			// 增加连接的示例代码
+			CreateConnectCodeExample( stringBuilder, network.CommunicationPipe, deviceName );
 			RenderExampleCode( stringBuilder );
 		}
 
@@ -534,6 +580,18 @@ namespace HslCommunicationDemo.DemoControl
 			return sb;
 		}
 
+		internal static StringBuilder CreatePluginsFromObject( DevicePluginNet obj, string deviceName, string pluginFileName, string pluginDevieName )
+		{
+			string name = obj.GetType( ).FullName;
+			StringBuilder sb = new StringBuilder( );
+			sb.Append( name );
+			sb.Append( $" {deviceName} = DevicePluginNet.CreateFromFile( @\"{pluginFileName}\", \"{pluginDevieName}\" );" );
+			sb.AppendLine( );
+
+			return sb;
+		}
+
+
 		public static StringBuilder CreateStringBulider( MqttSyncClient network, string deviceName )
 		{
 			if (network == null) return new StringBuilder( );
@@ -563,6 +621,63 @@ namespace HslCommunicationDemo.DemoControl
 			sb.Append( mqttClient.GetType( ).FullName + $" mqtt = new {mqttClient.GetType( ).FullName}( options );" );
 			sb.AppendLine( );
 			return sb;
+		}
+
+		private static void CreateConnectCodeExample( StringBuilder sb, CommunicationPipe pipe, string deviceName )
+		{
+			if (pipe == null) return;
+			Type type = pipe.GetType( );
+			if (type == typeof( PipeTcpNet ) ||
+				type == typeof( PipeSslNet ))
+			{
+				sb.AppendLine( );
+				sb.AppendLine( );
+				sb.Append( $"// Connect example code 连接设备的示例代码" );
+				sb.AppendLine( );
+				sb.Append( $"OperateResult connect = {deviceName}.ConnectServer( );        // 连接设备" );
+				sb.AppendLine( );
+				sb.Append( $"if (connect.IsSuccess)" );
+				sb.AppendLine( );
+				sb.Append( "{" );
+				sb.AppendLine( );
+				sb.Append( "    Console.WriteLine(\"Connect Success: \" );   // 连接成功" );
+				sb.AppendLine( );
+				sb.Append( "}" );
+				sb.AppendLine( );
+				sb.Append( "else" );
+				sb.AppendLine( );
+				sb.Append( "{" );
+				sb.AppendLine( );
+				sb.Append( "    Console.WriteLine(\"Connect Failed: \" + connect.Message);  // 连接失败，输出原因" );
+				sb.AppendLine( );
+				sb.Append( "}" );
+				sb.AppendLine( );
+			}
+			else if (type == typeof( PipeSerialPort ))
+			{
+				sb.AppendLine( );
+				sb.AppendLine( );
+				sb.Append( $"// open example code 打开串口的示例代码" );
+				sb.AppendLine( );
+				sb.Append( $"OperateResult open = {deviceName}.Open( );        // 打开串口" );
+				sb.AppendLine( );
+				sb.Append( $"if (open.IsSuccess)" );
+				sb.AppendLine( );
+				sb.Append( "{" );
+				sb.AppendLine( );
+				sb.Append( "    Console.WriteLine(\"Open Success: \" );   // 打开成功" );
+				sb.AppendLine( );
+				sb.Append( "}" );
+				sb.AppendLine( );
+				sb.Append( "else" );
+				sb.AppendLine( );
+				sb.Append( "{" );
+				sb.AppendLine( );
+				sb.Append( "    Console.WriteLine(\"Open Failed: \" + open.Message);  // 打开失败，输出原因" );
+				sb.AppendLine( );
+				sb.Append( "}" );
+				sb.AppendLine( );
+			}
 		}
 
 		private static void CreateCommunicationPipe( StringBuilder sb, CommunicationPipe pipe, string deviceName )
@@ -791,6 +906,14 @@ namespace HslCommunicationDemo.DemoControl
 			return sb;
 		}
 
+		/// <summary>
+		/// 获取设备的实例化且连接的代码
+		/// </summary>
+		/// <returns>代码片段</returns>
+		public string GetDeviceNewCode( )
+		{
+			return textBox1.Text;
+		}
 
 		#region Private Member
 

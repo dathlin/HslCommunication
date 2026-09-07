@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent( )
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.textBox_result = new System.Windows.Forms.TextBox();
 			this.label_result = new System.Windows.Forms.Label();
 			this.button_read = new System.Windows.Forms.Button();
@@ -62,8 +62,14 @@
 			this.Column_value = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel_data_parse = new System.Windows.Forms.Panel();
 			this.label6 = new System.Windows.Forms.Label();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.radioButton1 = new System.Windows.Forms.RadioButton();
+			this.radioButton2 = new System.Windows.Forms.RadioButton();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.panel_data_parse.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// textBox_result
@@ -338,8 +344,8 @@
 			// 
 			// dataGridView1
 			// 
-			dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -412,9 +418,65 @@
 			this.label6.TabIndex = 54;
 			this.label6.Text = "bool类型时Index为位单位，Length动态: [1] 表示由read.Content[1]指定，带编码例子: 10;utf8";
 			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.label8);
+			this.panel1.Controls.Add(this.label7);
+			this.panel1.Controls.Add(this.radioButton1);
+			this.panel1.Controls.Add(this.radioButton2);
+			this.panel1.Location = new System.Drawing.Point(0, 23);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(53, 42);
+			this.panel1.TabIndex = 55;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label8.Location = new System.Drawing.Point(16, 24);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(35, 12);
+			this.label8.TabIndex = 3;
+			this.label8.Text = "ASCII";
+			this.label8.Click += new System.EventHandler(this.label8_Click);
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label7.Location = new System.Drawing.Point(16, 5);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(23, 12);
+			this.label7.TabIndex = 2;
+			this.label7.Text = "HEX";
+			this.label7.Click += new System.EventHandler(this.label7_Click);
+			// 
+			// radioButton1
+			// 
+			this.radioButton1.AutoSize = true;
+			this.radioButton1.Checked = true;
+			this.radioButton1.Font = new System.Drawing.Font("微软雅黑", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.radioButton1.Location = new System.Drawing.Point(2, 4);
+			this.radioButton1.Name = "radioButton1";
+			this.radioButton1.Size = new System.Drawing.Size(14, 13);
+			this.radioButton1.TabIndex = 0;
+			this.radioButton1.TabStop = true;
+			this.radioButton1.UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this.radioButton2.AutoSize = true;
+			this.radioButton2.Font = new System.Drawing.Font("微软雅黑", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.radioButton2.Location = new System.Drawing.Point(2, 23);
+			this.radioButton2.Name = "radioButton2";
+			this.radioButton2.Size = new System.Drawing.Size(14, 13);
+			this.radioButton2.TabIndex = 1;
+			this.radioButton2.UseVisualStyleBackColor = true;
+			// 
 			// BatchReadControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.panel_data_parse);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.label_code);
@@ -448,6 +510,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.panel_data_parse.ResumeLayout(false);
 			this.panel_data_parse.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -488,5 +552,10 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column_value;
 		private System.Windows.Forms.Panel panel_data_parse;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.RadioButton radioButton1;
+		private System.Windows.Forms.RadioButton radioButton2;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label7;
 	}
 }

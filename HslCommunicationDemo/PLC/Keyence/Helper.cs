@@ -62,7 +62,7 @@ namespace HslCommunicationDemo.PLC.Keyence
 				new DeviceAddressExample( "CC0",            "计数器当前值",         false, true, "范围: CC0000~CC3999" ),
 				new DeviceAddressExample( "CS0",            "计数器设定值",         false, true, "范围: CS0000~CS3999" ),
 				new DeviceAddressExample( "CTC0",           "高速计数器设定值",     false, true, "范围: CTC0~CTC3" ),
-				new DeviceAddressExample( "T0",             "数字微调器",           false, true, "范围: AT0~AT7" ),
+				new DeviceAddressExample( "AT0",            "数字微调器",           false, true, "范围: AT0~AT7" ),
 				new DeviceAddressExample( "VM",             "字存储器",             false, true, "范围: VM0~VM59999, 位读写使用 VM100.0" ),
 				new DeviceAddressExample( "unit=1;100",     "扩展存储器模块",       false, true, "[商业授权] 读取扩展模块单元号1，地址100的数据" ),
 			};

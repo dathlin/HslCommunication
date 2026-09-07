@@ -47,6 +47,8 @@
 			this.fromClipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toCsvClipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.fromClipCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.textBox_time = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
@@ -60,8 +62,6 @@
 			this.button_clear_all = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox_sleep_time = new System.Windows.Forms.TextBox();
-			this.toCsvClipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.fromClipCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -175,38 +175,50 @@
             this.toCsvClipToolStripMenuItem,
             this.fromClipCsvToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(181, 180);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(169, 158);
 			// 
 			// rowDeleteToolStripMenuItem
 			// 
 			this.rowDeleteToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_Cancel_16xLG;
 			this.rowDeleteToolStripMenuItem.Name = "rowDeleteToolStripMenuItem";
-			this.rowDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.rowDeleteToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.rowDeleteToolStripMenuItem.Text = "RowDelete";
 			// 
 			// toClipToolStripMenuItem
 			// 
 			this.toClipToolStripMenuItem.Name = "toClipToolStripMenuItem";
-			this.toClipToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.toClipToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.toClipToolStripMenuItem.Text = "导出到剪切板";
 			// 
 			// fromClipToolStripMenuItem
 			// 
 			this.fromClipToolStripMenuItem.Name = "fromClipToolStripMenuItem";
-			this.fromClipToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.fromClipToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.fromClipToolStripMenuItem.Text = "从剪切板导入";
 			// 
 			// toFileToolStripMenuItem
 			// 
 			this.toFileToolStripMenuItem.Name = "toFileToolStripMenuItem";
-			this.toFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.toFileToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.toFileToolStripMenuItem.Text = "导出到文件";
 			// 
 			// fromFileToolStripMenuItem
 			// 
 			this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
-			this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.fromFileToolStripMenuItem.Text = "从文件导入";
+			// 
+			// toCsvClipToolStripMenuItem
+			// 
+			this.toCsvClipToolStripMenuItem.Name = "toCsvClipToolStripMenuItem";
+			this.toCsvClipToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.toCsvClipToolStripMenuItem.Text = "导出Csv到剪切板";
+			// 
+			// fromClipCsvToolStripMenuItem
+			// 
+			this.fromClipCsvToolStripMenuItem.Name = "fromClipCsvToolStripMenuItem";
+			this.fromClipCsvToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.fromClipCsvToolStripMenuItem.Text = "从剪切板导入Csv";
 			// 
 			// textBox_time
 			// 
@@ -349,18 +361,6 @@
 			this.textBox_sleep_time.Size = new System.Drawing.Size(38, 23);
 			this.textBox_sleep_time.TabIndex = 13;
 			this.textBox_sleep_time.Text = "0";
-			// 
-			// toCsvClipToolStripMenuItem
-			// 
-			this.toCsvClipToolStripMenuItem.Name = "toCsvClipToolStripMenuItem";
-			this.toCsvClipToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.toCsvClipToolStripMenuItem.Text = "导出Csv到剪切板";
-			// 
-			// fromClipCsvToolStripMenuItem
-			// 
-			this.fromClipCsvToolStripMenuItem.Name = "fromClipCsvToolStripMenuItem";
-			this.fromClipCsvToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.fromClipCsvToolStripMenuItem.Text = "从剪切板导入Csv";
 			// 
 			// DataTableControl
 			// 

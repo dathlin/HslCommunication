@@ -73,6 +73,16 @@ namespace HslCommunicationDemo
 		/// </summary>
 		public bool BoolResultRender01 { get; set; } = false;
 
+		/// <summary>
+		/// 在主窗体启动的时候，是否直接打开
+		/// </summary>
+		public bool AutoStartAiServer { get; set; } = false;
+
+		/// <summary>
+		/// AI的服务器地址，如果直接为数字，就是端口号
+		/// </summary>
+		public string AiServerUrl { get; set; } = string.Empty; 
+
 		public void LoadFiles( )
 		{
 			lock(lock_settings)
@@ -109,6 +119,8 @@ namespace HslCommunicationDemo
 						RenderListMode                 = GetValue( json, nameof( RenderListMode ),                 0 );
 						TimerReadWriteFailedContinue   = GetValue( json, nameof( TimerReadWriteFailedContinue ),   false );
 						BoolResultRender01             = GetValue( json, nameof( BoolResultRender01 ),             false );
+						AutoStartAiServer              = GetValue( json, nameof( AutoStartAiServer ),              false );
+						AiServerUrl                    = GetValue( json, nameof( AiServerUrl ),                    "" );
 					}
 				}
 				catch
@@ -137,6 +149,8 @@ namespace HslCommunicationDemo
 				json.Add( nameof( RenderListMode ), RenderListMode );
 				json.Add( nameof( TimerReadWriteFailedContinue ), TimerReadWriteFailedContinue );
 				json.Add( nameof( BoolResultRender01 ), BoolResultRender01 );
+				json.Add( nameof( AutoStartAiServer ), AutoStartAiServer );
+				json.Add( nameof( AiServerUrl ), AiServerUrl );
 				File.WriteAllText( path, json.ToString( ), Encoding.UTF8 );
 			}
 		}

@@ -34,6 +34,10 @@ namespace HslCommunicationDemo
 		private CodeExampleControl codeExampleControl;
 		private SiemensS7WriteControl randomWriteControl;
 
+		protected override CodeExampleControl GetCodeExampleControl( )
+		{
+			return codeExampleControl;
+		}
 
 		private void FormSiemens_Load( object sender, EventArgs e )
 		{

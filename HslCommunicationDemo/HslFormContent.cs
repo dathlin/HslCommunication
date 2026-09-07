@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Remoting.Contexts;
 using System.Security.Cryptography;
 using System.Text;
@@ -139,7 +140,7 @@ namespace HslCommunicationDemo
 						{
 							if (name != form.DeviceAlias)
 							{
-								// 需要创建新的配置界面了，删除就的GUID绑定
+								// 需要创建新的配置界面了，删除旧的GUID绑定
 								string guid = GetXmlValue(xElement, DemoDeviceList.XmlGuid, "", m => m );
 								if (!string.IsNullOrEmpty( guid )) FormMain.Form?.GetPanelLeft( )?.RemoveDeviceForm( guid );
 
@@ -156,6 +157,7 @@ namespace HslCommunicationDemo
 								xElement = new XElement( "Device" );
 								xElement.SetAttributeValue( DemoDeviceList.XmlGuid, guid );
 								xElement.SetAttributeValue( DemoDeviceList.XmlType, this.GetType( ).Name );
+
 								xElement.SetAttributeValue( DemoDeviceList.XmlName, form.DeviceAlias );
 
 								if (!string.IsNullOrEmpty( this.Password ))
@@ -260,11 +262,40 @@ namespace HslCommunicationDemo
 
 			if (connect.IsSuccess)
 			{
+				// this.userControlReadWriteDevice1.DataTableControl
+				DataTableControl dataTableControl = null;
+				Type formType = this.GetType( );
+				FieldInfo fieldInfo = formType.GetField( "userControlReadWriteDevice1", BindingFlags.NonPublic | BindingFlags.Instance );
+				if (fieldInfo != null)
+				{
+					UserControlReadWriteDevice userControlReadWriteDevice = fieldInfo.GetValue( this ) as UserControlReadWriteDevice;
+					if (userControlReadWriteDevice != null)
+					{
+						dataTableControl = userControlReadWriteDevice.DataTableControl;
+					}
+				}
+
+				CodeExampleControl codeExampleControl = this.GetCodeExampleControl( );
+				if (codeExampleControl == null)
+				{
+					FieldInfo codeField = formType.GetField( "codeExampleControl", BindingFlags.NonPublic | BindingFlags.Instance );
+					if (codeField != null)
+					{
+						codeExampleControl = codeField.GetValue( this ) as CodeExampleControl;
+					}
+				}
+
 				// 添加到全局的通信数组中去，方便使用
-				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device, this.DeviceImage );
+				DemoDevice.AddDevice( this.FormGuid, this.GetString( ), device, this.DeviceImage, dataTableControl, codeExampleControl );
 			}
 			return connect;
 		}
+
+		/// <summary>
+		/// 获取当前的界面关联的示例代码控件
+		/// </summary>
+		/// <returns></returns>
+		protected virtual CodeExampleControl GetCodeExampleControl( ) => null;
 
 		protected override void OnClosed( EventArgs e )
 		{

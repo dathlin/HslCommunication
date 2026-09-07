@@ -1,17 +1,4 @@
-﻿using HslCommunication.LogNet;
-using HslCommunicationDemo.Control;
-using HslCommunicationDemo.Database;
-using HslCommunicationDemo.HslDebug;
-using HslCommunicationDemo.Instrument;
-using HslCommunicationDemo.MQTT;
-using HslCommunicationDemo.PLC;
-using HslCommunicationDemo.PLC.Cimon;
-using HslCommunicationDemo.PLC.Invt;
-using HslCommunicationDemo.PLC.Omron;
-using HslCommunicationDemo.PLC.WeCon;
-using HslCommunicationDemo.Redis;
-using HslCommunicationDemo.Vip;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +11,22 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using HslCommunication.Core.Plugin;
+using HslCommunication.LogNet;
+using HslCommunicationDemo.Control;
+using HslCommunicationDemo.Database;
+using HslCommunicationDemo.HslDebug;
+using HslCommunicationDemo.Instrument;
+using HslCommunicationDemo.MQTT;
+using HslCommunicationDemo.PLC;
+using HslCommunicationDemo.PLC.Cimon;
+using HslCommunicationDemo.PLC.Invt;
+using HslCommunicationDemo.PLC.Omron;
+using HslCommunicationDemo.PLC.WeCon;
+using HslCommunicationDemo.Plugins;
+using HslCommunicationDemo.Redis;
+using HslCommunicationDemo.Vip;
+using HslRedisDesktop;
 
 namespace HslCommunicationDemo.DemoControl
 {
@@ -99,6 +102,18 @@ namespace HslCommunicationDemo.DemoControl
 					if (hslForm != null) hslForm.Show( dockPanel1 );
 				}
 			}
+			else if ( treeNode.Tag is PluginsDeviceDefinition deviceDefinition)
+			{
+				FormPluginsNet from = new FormPluginsNet( deviceDefinition );
+				from.LogNet = this.logNet;
+				if (!string.IsNullOrEmpty( deviceDefinition.ImageKey ))
+				{
+					from.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[deviceDefinition.ImageKey]).GetHicon( ) );
+					from.SetProtocolImage( (Bitmap)imageList.Images[deviceDefinition.ImageKey] );
+				}
+				if (from != null) from.Show( dockPanel1 );
+
+			}
 		}
 
 		private void TreeView1_DoubleClick( object sender, EventArgs e )
@@ -143,6 +158,9 @@ namespace HslCommunicationDemo.DemoControl
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C (串口)", 8, typeof( FormMelsec3C ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C OverTcp", 8, typeof( FormMelsec3COverTcp ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-3C Server", 8, typeof( FormMcA3CServer ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-4C (串口)", 8, typeof( FormMelsec4C ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-4C OverTcp", 8, typeof( FormMelsec4COverTcp ) ) );
+			melsecNode.Nodes.Add( GetTreeNodeByIndex( "A-4C Server", 8, typeof( FormMcA4CServer ) ) );
 			melsecNode.Nodes.Add( GetTreeNodeByIndex( "Mc Virtual Server", 8, typeof( FormMcServer ) ) );
 			this.nodeCollection.Add( melsecNode );
 
@@ -368,6 +386,10 @@ namespace HslCommunicationDemo.DemoControl
 			TreeNode kossi = new TreeNode( "KossiC[科伺]", 65, 65 );
 			kossi.Nodes.Add( GetTreeNodeByIndex( "EIP", 65, typeof( FormkossiCip ) ) );
 			this.nodeCollection.Add( kossi );
+
+			// 插件
+			treeNodePlugins = new TreeNode( "Plugins [插件]", 67, 67 );
+			this.nodeCollection.Add( treeNodePlugins );
 
 			// 身份证阅读器
 			TreeNode idNode = new TreeNode( "ID Card[身份证]", 4, 4 );
@@ -636,6 +658,7 @@ namespace HslCommunicationDemo.DemoControl
 		private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
 		public static Type[] formTypes = Assembly.GetExecutingAssembly( ).GetTypes( );
 		private TreeNode treeNodeDebug;
+		private TreeNode treeNodePlugins;
 
 		/// <summary>
 		/// 获取当前的图标信息
@@ -722,13 +745,26 @@ namespace HslCommunicationDemo.DemoControl
 				treeView1.Nodes.Clear( );
 				foreach (TreeNode node in list)
 				{
-					treeView1.Nodes.Add( new TreeNode( )
+					if (node.ImageIndex >= 0)
 					{
-						Text = node.Text,
-						Tag  = node.Tag,
-						ImageIndex = node.ImageIndex,
-						SelectedImageIndex = node.SelectedImageIndex,
-					} );
+						treeView1.Nodes.Add( new TreeNode( )
+						{
+							Text = node.Text,
+							Tag = node.Tag,
+							ImageIndex = node.ImageIndex,
+							SelectedImageIndex = node.SelectedImageIndex,
+						} );
+					}
+					else
+					{
+						treeView1.Nodes.Add( new TreeNode( )
+						{
+							Text = node.Text,
+							Tag = node.Tag,
+							ImageKey = node.ImageKey,
+							SelectedImageKey = node.SelectedImageKey,
+						} );
+					}
 				}
 			}
 		}
@@ -773,6 +809,67 @@ namespace HslCommunicationDemo.DemoControl
 			Program.Settings.SaveFiles( );
 
 			RenderTreeNodes( );
+		}
+
+
+		/// <summary>
+		/// 将原始字节的数据转为实际的图片资源
+		/// </summary>
+		/// <param name="buffer">原始字节数据</param>
+		/// <returns>图片资源</returns>
+		public static Image GetImageFromBytes( byte[] buffer )
+		{
+			MemoryStream ms = new MemoryStream( buffer );
+			Image image = Image.FromStream( ms );
+			ms.Dispose( );
+			return image;
+		}
+
+		public void LoadPlugins( )
+		{
+			EdgeServerSettings.Plugins = EdgeServerSettings.LoadPlugins( logNet, EdgeServerSettings.PluginsDirectory( ) );
+			if (EdgeServerSettings.Plugins != null)
+			{
+				foreach(PluginsDefinition pluginsDefinition in EdgeServerSettings.Plugins.Values)
+				{
+					LoadPlugins( pluginsDefinition );
+				}
+			}
+		}
+
+		public void LoadPlugins( PluginsDefinition pluginsDefinition )
+		{
+			string imageKey = "Plugins-" + pluginsDefinition.DllName;
+			Image image = GetImageFromBytes( pluginsDefinition.Icon16 );
+			this.imageList.Images.Add( imageKey, image );
+
+			foreach ( PluginsDeviceDefinition deviceDefinition in pluginsDefinition.DeviceDefinitions.Values)
+			{
+				string nodeText = deviceDefinition.DeviceName;
+				if (string.IsNullOrEmpty( nodeText )) nodeText = pluginsDefinition.DllName;
+
+				TreeNode node = new TreeNode( deviceDefinition.DeviceName );
+				node.ImageKey = imageKey;
+				node.SelectedImageKey = imageKey;
+				node.Tag = deviceDefinition;
+				deviceDefinition.ImageKey = imageKey;
+				deviceDefinition.Http = pluginsDefinition.Http;
+
+				this.treeNodePlugins.Nodes.Add( node );
+			}
+		}
+
+		public PluginsDeviceDefinition GetPluginsDefinition( string dllName, string deviceName)
+		{
+			foreach( TreeNode treeNode in this.treeNodePlugins.Nodes )
+			{
+				if (treeNode.Tag is PluginsDeviceDefinition deviceDefinition)
+				{
+					if (deviceDefinition.PluginFilePath == dllName && deviceDefinition.DeviceName == deviceName)
+						return deviceDefinition;
+				}
+			}
+			return null;
 		}
 	}
 }

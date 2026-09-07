@@ -53,6 +53,8 @@
 			this.showMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.写入成功不弹窗ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.定时读写失败继续ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.boolResultShow01ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.startWithAiServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_Help = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_HomePage = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem_ApiDoc = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +66,11 @@
 			this.authorization授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.verisonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.activeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.ecologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ecologyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.aISkillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aIMCPServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.plugins_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.免责条款ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.lockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,14 +82,13 @@
 			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label_account = new System.Windows.Forms.Label();
-			this.boolResultShow01ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
 			// 
-			this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
+			this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(86)))), ((int)(((byte)(118)))));
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_language,
             this.toolStripMenuItem_Debug,
@@ -91,7 +96,8 @@
             this.toolStripMenuItem_Help,
             this.verisonToolStripMenuItem,
             this.activeToolStripMenuItem,
-            this.ecologyToolStripMenuItem,
+            this.aiToolStripMenuItem,
+            this.plugins_ToolStripMenuItem,
             this.免责条款ToolStripMenuItem,
             this.lockToolStripMenuItem,
             this.授权ToolStripMenuItem,
@@ -233,7 +239,8 @@
             this.showMsToolStripMenuItem,
             this.写入成功不弹窗ToolStripMenuItem,
             this.定时读写失败继续ToolStripMenuItem,
-            this.boolResultShow01ToolStripMenuItem});
+            this.boolResultShow01ToolStripMenuItem,
+            this.startWithAiServerToolStripMenuItem});
 			this.demoSettingToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.demoSettingToolStripMenuItem.Name = "demoSettingToolStripMenuItem";
 			this.demoSettingToolStripMenuItem.Size = new System.Drawing.Size(75, 21);
@@ -287,6 +294,20 @@
 			this.定时读写失败继续ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
 			this.定时读写失败继续ToolStripMenuItem.Text = "定时读写失败继续";
 			this.定时读写失败继续ToolStripMenuItem.Click += new System.EventHandler(this.定时读写失败继续ToolStripMenuItem_Click);
+			// 
+			// boolResultShow01ToolStripMenuItem
+			// 
+			this.boolResultShow01ToolStripMenuItem.Name = "boolResultShow01ToolStripMenuItem";
+			this.boolResultShow01ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+			this.boolResultShow01ToolStripMenuItem.Text = "Bool读取显示0或1";
+			this.boolResultShow01ToolStripMenuItem.Click += new System.EventHandler(this.boolResultShow01ToolStripMenuItem_Click);
+			// 
+			// startWithAiServerToolStripMenuItem
+			// 
+			this.startWithAiServerToolStripMenuItem.Name = "startWithAiServerToolStripMenuItem";
+			this.startWithAiServerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+			this.startWithAiServerToolStripMenuItem.Text = "启动即打开AI服务";
+			this.startWithAiServerToolStripMenuItem.Click += new System.EventHandler(this.startWithAiServerToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem_Help
 			// 
@@ -376,13 +397,46 @@
 			this.activeToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
 			this.activeToolStripMenuItem.Text = "Active(&A)";
 			// 
-			// ecologyToolStripMenuItem
+			// aiToolStripMenuItem
 			// 
-			this.ecologyToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-			this.ecologyToolStripMenuItem.Name = "ecologyToolStripMenuItem";
-			this.ecologyToolStripMenuItem.Size = new System.Drawing.Size(81, 21);
-			this.ecologyToolStripMenuItem.Text = "Ecology(&E)";
-			this.ecologyToolStripMenuItem.Click += new System.EventHandler(this.ecologyToolStripMenuItem_Click);
+			this.aiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ecologyToolStripMenuItem1,
+            this.aISkillToolStripMenuItem,
+            this.aIMCPServerToolStripMenuItem});
+			this.aiToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.aiToolStripMenuItem.Name = "aiToolStripMenuItem";
+			this.aiToolStripMenuItem.Size = new System.Drawing.Size(77, 21);
+			this.aiToolStripMenuItem.Text = "AI Tool(&T)";
+			this.aiToolStripMenuItem.Click += new System.EventHandler(this.ecologyToolStripMenuItem_Click);
+			// 
+			// ecologyToolStripMenuItem1
+			// 
+			this.ecologyToolStripMenuItem1.Name = "ecologyToolStripMenuItem1";
+			this.ecologyToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+			this.ecologyToolStripMenuItem1.Text = "Ecology";
+			this.ecologyToolStripMenuItem1.Click += new System.EventHandler(this.ecologyToolStripMenuItem1_Click);
+			// 
+			// aISkillToolStripMenuItem
+			// 
+			this.aISkillToolStripMenuItem.Name = "aISkillToolStripMenuItem";
+			this.aISkillToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.aISkillToolStripMenuItem.Text = "AI Skill";
+			this.aISkillToolStripMenuItem.Click += new System.EventHandler(this.aISkillToolStripMenuItem_Click);
+			// 
+			// aIMCPServerToolStripMenuItem
+			// 
+			this.aIMCPServerToolStripMenuItem.Name = "aIMCPServerToolStripMenuItem";
+			this.aIMCPServerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.aIMCPServerToolStripMenuItem.Text = "AI MCP Server";
+			this.aIMCPServerToolStripMenuItem.Click += new System.EventHandler(this.aIMCPServerToolStripMenuItem_Click);
+			// 
+			// plugins_ToolStripMenuItem
+			// 
+			this.plugins_ToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.plugins_ToolStripMenuItem.Name = "plugins_ToolStripMenuItem";
+			this.plugins_ToolStripMenuItem.Size = new System.Drawing.Size(76, 21);
+			this.plugins_ToolStripMenuItem.Text = "Plugins(&P)";
+			this.plugins_ToolStripMenuItem.Click += new System.EventHandler(this.plugins_ToolStripMenuItem_Click);
 			// 
 			// 免责条款ToolStripMenuItem
 			// 
@@ -425,7 +479,7 @@
 			// label1
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
+			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(86)))), ((int)(((byte)(118)))));
 			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.label1.Location = new System.Drawing.Point(894, 3);
 			this.label1.Name = "label1";
@@ -451,7 +505,7 @@
 			// label2
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
+			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(86)))), ((int)(((byte)(118)))));
 			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.label2.Location = new System.Drawing.Point(752, 3);
 			this.label2.Name = "label2";
@@ -462,7 +516,7 @@
 			// label_account
 			// 
 			this.label_account.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label_account.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(131)))));
+			this.label_account.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(86)))), ((int)(((byte)(118)))));
 			this.label_account.ForeColor = System.Drawing.Color.Cyan;
 			this.label_account.Location = new System.Drawing.Point(1146, 5);
 			this.label_account.Name = "label_account";
@@ -471,13 +525,6 @@
 			this.label_account.Text = "登录";
 			this.label_account.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			this.label_account.Click += new System.EventHandler(this.label_account_Click);
-			// 
-			// boolResultShow01ToolStripMenuItem
-			// 
-			this.boolResultShow01ToolStripMenuItem.Name = "boolResultShow01ToolStripMenuItem";
-			this.boolResultShow01ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-			this.boolResultShow01ToolStripMenuItem.Text = "Bool读取显示0或1";
-			this.boolResultShow01ToolStripMenuItem.Click += new System.EventHandler(this.boolResultShow01ToolStripMenuItem_Click);
 			// 
 			// FormMain
 			// 
@@ -543,7 +590,7 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_tcp2Tcp;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_byteTransform;
 		private System.Windows.Forms.ToolStripMenuItem regexRegularToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem ecologyToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem aiToolStripMenuItem;
         private System.Windows.Forms.Label label_account;
 		private System.Windows.Forms.ToolStripMenuItem pingTestToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem lockToolStripMenuItem;
@@ -557,6 +604,11 @@
 		private System.Windows.Forms.ToolStripMenuItem portMappingToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 定时读写失败继续ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem boolResultShow01ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem plugins_ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem ecologyToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem aISkillToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem aIMCPServerToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem startWithAiServerToolStripMenuItem;
 	}
 }
 

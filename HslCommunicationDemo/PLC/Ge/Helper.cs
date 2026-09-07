@@ -23,7 +23,7 @@ namespace HslCommunicationDemo.PLC.Ge
 				new DeviceAddressExample( "S1", "S Discrete",           true,  true, "注意：读位和字节，属于不同的地址" ),
 				new DeviceAddressExample( "G1", "Genius Global Data",   true,  true, "注意：读位和字节，属于不同的地址" ),
 				new DeviceAddressExample( "AI1", "Analog Inputs",       false, true, "虽然读取的时候，长度是字节，但是实际是字单位的，所以不支持 ReadByte" ),
-				new DeviceAddressExample( "QI1", "Analog Outputs",      false, true, "虽然读取的时候，长度是字节，但是实际是字单位的，所以不支持 ReadByte" ),
+				new DeviceAddressExample( "AQ1", "Analog Outputs",      false, true, "虽然读取的时候，长度是字节，但是实际是字单位的，所以不支持 ReadByte" ),
 				new DeviceAddressExample( "R1", "Registers",            false, true, "虽然读取的时候，长度是字节，但是实际是字单位的，所以不支持 ReadByte" ),
 			};
 		}

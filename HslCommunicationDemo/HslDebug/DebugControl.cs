@@ -1,6 +1,4 @@
-﻿using HslCommunication.BasicFramework;
-using HslCommunication.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +11,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using HslCommunication.BasicFramework;
+using HslCommunication.Core;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HslCommunicationDemo.HslDebug
 {
@@ -676,6 +677,43 @@ namespace HslCommunicationDemo.HslDebug
 		private void panel1_Paint( object sender, PaintEventArgs e )
 		{
 			e.Graphics.DrawRectangle( Pens.LightGray, 0, 0, panel1.Width - 1, panel1.Height - 1 );
+		}
+
+		private int find_index = -1;
+		private string find_string = "";
+		private void linkLabel_search_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+		{
+			// 搜索
+
+			if (string.IsNullOrEmpty( textBox_read_search.Text ))
+			{
+				// 复原信息
+				find_index = -1;
+				find_string = string.Empty;
+			}
+			else
+			{
+				if (find_string != textBox_read_search.Text)
+				{
+					find_index = -1;
+					find_string = textBox_read_search.Text;
+				}
+
+				int index = richTextBox_main.Text.IndexOf( find_string, find_index < 0 ? 0 : find_index );
+				if (index < 0)
+				{
+					find_index = -1;
+					DemoUtils.ShowMessage( Program.Language == 1 ? "全部查找完毕，再次Enter键重新查找" : "All search is complete, Enter again to find again" );
+				}
+				else
+				{
+					int length = find_string.Length;
+					richTextBox_main.Select( index, length );
+					richTextBox_main.Focus( );
+					richTextBox_main.ScrollToCaret( );
+					find_index = index + length;
+				}
+			}
 		}
 	}
 }

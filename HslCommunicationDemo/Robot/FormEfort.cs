@@ -33,6 +33,11 @@ namespace HslCommunicationDemo.Robot
 			codeExampleControl = new CodeExampleControl( );
 			DemoUtils.AddSpecialFunctionTab( this.tabControl1, codeExampleControl, false, CodeExampleControl.GetTitle( ) );
 		}
+
+		protected override CodeExampleControl GetCodeExampleControl( )
+		{
+			return codeExampleControl;
+		}
 		protected CodeExampleControl codeExampleControl;
 
 		private void RenderErrorMessage(string msg )

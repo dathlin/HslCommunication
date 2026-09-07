@@ -53,7 +53,6 @@ namespace HslCommunicationDemo.PLC.Siemens
 
 		private void InitializeComponent( )
 		{
-			this.components = new System.ComponentModel.Container();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button_force_off = new System.Windows.Forms.Button();
 			this.button_force_clear = new System.Windows.Forms.Button();
@@ -356,7 +355,8 @@ namespace HslCommunicationDemo.PLC.Siemens
 			// 
 			// textBox_code
 			// 
-			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.textBox_code.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_code.Location = new System.Drawing.Point(63, 194);
 			this.textBox_code.MinimumSize = new System.Drawing.Size(500, 40);

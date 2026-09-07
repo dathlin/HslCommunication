@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HslCommunicationDemo.DemoControl;
 
 namespace HslCommunicationDemo
 {
@@ -13,18 +14,22 @@ namespace HslCommunicationDemo
 	/// </summary>
 	public class DemoDevice
 	{
-
-
-
-		public static void AddDevice( string guid, string name, HslCommunication.Core.Net.BinaryCommunication device, Image image )
+		public static void AddDevice( string guid, string name, HslCommunication.Core.Net.BinaryCommunication device, Image image, 
+			DataTableControl dataTableControl = null, CodeExampleControl codeExampleControl = null )
 		{
-			if (Devices.ContainsKey( guid )) Devices.Remove( guid );
-			Devices.Add( guid, new DemoDeviceItem( ) { Guid = guid, Name = name, Device = device, DeviceImage = image } );
+			lock (Devices)
+			{
+				if (Devices.ContainsKey( guid )) Devices.Remove( guid );
+				Devices.Add( guid, new DemoDeviceItem( ) { Guid = guid, Name = name, Device = device, DeviceImage = image, DataTableControl = dataTableControl, CodeExampleControl = codeExampleControl } );
+			}
 		}
 
 		public static void RemoveDevice( string guid )
 		{
-			if (Devices.ContainsKey( guid )) Devices.Remove( guid );
+			lock (Devices)
+			{
+				if (Devices.ContainsKey( guid )) Devices.Remove( guid );
+			}
 		}
 
 
@@ -34,7 +39,11 @@ namespace HslCommunicationDemo
 
 		public static void LoadDevice( DataGridView dataGridView )
 		{
-			List<DemoDeviceItem> devices = DemoDevice.Devices.Values.ToList( );
+			List<DemoDeviceItem> devices;
+			lock (DemoDevice.Devices)
+			{
+				devices = DemoDevice.Devices.Values.ToList( );
+			}
 			DemoUtils.DataGridSpecifyRowCount( dataGridView, devices.Count );
 			for (int i = 0; i < devices.Count; i++)
 			{
@@ -65,6 +74,13 @@ namespace HslCommunicationDemo
 		public string Name { get; set; }
 
 		public HslCommunication.Core.Net.BinaryCommunication Device { get; set; }
+
+		public DataTableControl DataTableControl { get; set; }
+
+		/// <summary>
+		/// 设备实例化的代码示例控件，如果为空，则表示当前协议不支持
+		/// </summary>
+		public CodeExampleControl CodeExampleControl { get; set; }
 	}
 
 	public class DemoDeviceAddressItem

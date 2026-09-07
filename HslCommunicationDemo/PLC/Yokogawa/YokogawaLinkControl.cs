@@ -249,7 +249,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 				DemoUtils.ShowMessage( "Read Failed: " + read.ToMessageShowString( ) );
 			}
 
-			textBox_code.Text = $"OperateResult<bool[]> read = {DemoUtils.PlcDeviceName}.ReadRandomBool( \"{textBox5.Text}\".Split( new char[] {';'} ) );";
+			textBox_code.Text = $"OperateResult<bool[]> read = {DemoUtils.PlcDeviceName}.ReadRandomBool( \"{textBox5.Text}\".Split( new char[] {{';'}} ) );";
 		}
 
 		private void button4_Click( object sender, EventArgs e )
@@ -265,7 +265,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 				DemoUtils.ShowMessage( "Read Failed: " + write.ToMessageShowString( ) );
 			}
 
-			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteRandomBool( \"{textBox5.Text}\".Split( new char[] {';'} ), \"{textBox4.Text}\".ToStringArray<bool>( ) );";
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteRandomBool( \"{textBox5.Text}\".Split( new char[] {{';'}} ), \"{textBox4.Text}\".ToStringArray<bool>( ) );";
 		}
 
 		private void button5_Click( object sender, EventArgs e )
@@ -281,7 +281,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 				DemoUtils.ShowMessage( "Read Failed: " + read.ToMessageShowString( ) );
 			}
 
-			textBox_code.Text = $"OperateResult<short[]> read = {DemoUtils.PlcDeviceName}.ReadRandomInt16( \"{textBox5.Text}\".Split( new char[] {';'} ) );";
+			textBox_code.Text = $"OperateResult<short[]> read = {DemoUtils.PlcDeviceName}.ReadRandomInt16( \"{textBox5.Text}\".Split( new char[] {{';'}} ) );";
 		}
 
 		private void button6_Click( object sender, EventArgs e )
@@ -297,7 +297,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 				DemoUtils.ShowMessage( "Read Failed: " + write.ToMessageShowString( ) );
 			}
 
-			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteRandom( \"{textBox5.Text}\".Split( new char[] {';'} ), \"{textBox4.Text}\".ToStringArray<short>( ) );";
+			textBox_code.Text = $"OperateResult write = {DemoUtils.PlcDeviceName}.WriteRandom( \"{textBox5.Text}\".Split( new char[] {{';'}} ), \"{textBox4.Text}\".ToStringArray<short>( ) );";
 		}
 
 

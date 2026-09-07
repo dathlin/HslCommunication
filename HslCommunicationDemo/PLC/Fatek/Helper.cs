@@ -23,6 +23,7 @@ namespace HslCommunicationDemo.PLC.Fatek
 				new DeviceAddressExample( "RC100", "计数器的当前",   false, true, "范围 RC0 ~ RC9999" ),
 				new DeviceAddressExample( "D100",  "数据寄存器",     false, true, "范围 D0 ~ D65535" ),
 				new DeviceAddressExample( "R100",  "文件寄存器",     false, true, "范围 R0 ~ R65535" ),
+				new DeviceAddressExample( "D100.0",  "数据寄存器",     true, false, "如果需要读取字寄存器的某一位，可以使用这种格式" ),
 				new DeviceAddressExample( "s=2;M100",  "内部继电器",     true, true, "以上所有地址支持额外地址站号信息" ),
 			};
 		}

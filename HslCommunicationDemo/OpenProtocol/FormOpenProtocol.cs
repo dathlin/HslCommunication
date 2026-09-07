@@ -131,6 +131,16 @@ namespace HslCommunicationDemo
 
 		}
 
+		public static string Example( string deviceName )
+		{
+			return $"{deviceName}.OnReceivedOpenMessage += (sender, e) => {{ " + Environment.NewLine +
+				$"    // 这里是接收到订阅的OpenProtocol消息，e.Content是消息内容" + Environment.NewLine +
+				$"    string mid = e.Content.Substring( 4, 4 );  // Mid 信息" + Environment.NewLine +
+				$"    string revision = e.Content.Length >= 11 ? e.Content.Substring( 8, 3 ) : \"\";  // revision 信息" + Environment.NewLine +
+				$"    // 继续处理代码" + Environment.NewLine +
+				$"}};";
+		}
+
 		private void button2_Click( object sender, EventArgs e )
 		{
 			try

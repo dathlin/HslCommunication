@@ -47,6 +47,23 @@ namespace HslCommunicationDemo.DemoControl
 			this.DataType = dataType;
 		}
 
+		/// <summary>
+		/// 从一个匿名对象反射加载当前的数据内容，通常用于加载来自插件的地址示例
+		/// </summary>
+		/// <param name="obj">匿名数据对象</param>
+		public DeviceAddressExample( object obj )
+		{
+			this.AddressExample = HslCommunication.Core.Plugin.PluginsHelper.GetObjectProperty<string>( obj, nameof( this.AddressExample ) );
+			this.AddressType = HslCommunication.Core.Plugin.PluginsHelper.GetObjectProperty<string>( obj, nameof( this.AddressType ) );
+			this.BitEnable = HslCommunication.Core.Plugin.PluginsHelper.GetObjectProperty<bool>( obj, nameof( this.BitEnable ) );
+			this.WordEnable = HslCommunication.Core.Plugin.PluginsHelper.GetObjectProperty<bool>( obj, nameof( this.WordEnable ) );
+			this.Mark = HslCommunication.Core.Plugin.PluginsHelper.GetObjectProperty<string>( obj, nameof( this.Mark ) );
+			this.IsHeader = HslCommunication.Core.Plugin.PluginsHelper.GetObjectProperty<bool>( obj, nameof( this.IsHeader ) );
+			this.FillTagNameWithAddressType = HslCommunication.Core.Plugin.PluginsHelper.GetObjectProperty<bool>( obj, nameof( this.FillTagNameWithAddressType ) );
+			this.Unit = HslCommunication.Core.Plugin.PluginsHelper.GetObjectProperty<string>( obj, nameof( this.Unit ) );
+			this.DataType = HslCommunication.Core.Plugin.PluginsHelper.GetObjectProperty<string>( obj, nameof( this.DataType ) );
+		}
+
 		#endregion
 
 		/// <summary>

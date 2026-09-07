@@ -121,7 +121,7 @@ namespace HslCommunicationDemo.PLC.WeCon
 			busTcpClient.IsCheckMessageId = checkBox2.Checked;
 			busTcpClient.LogNet = LogNet;
 			if (comboBox_series.SelectedIndex == 0)
-				busTcpClient.RegisteredAddressMapping( ModbusMappingAddress.WeCon_Lx5v );  // 注册维控的Modbus地址
+				busTcpClient.RegisteredAddressMapping( HslCommunication.ModBus.ModbusMappingAddress.WeCon_Lx5v );  // 注册维控的Modbus地址
 
 			ComboBox1_SelectedIndexChanged( null, new EventArgs( ) );  // 设置数据服务
 			busTcpClient.IsStringReverse = checkBox3.Checked;

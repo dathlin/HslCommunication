@@ -42,6 +42,11 @@ namespace HslCommunicationDemo
 		}
 
 
+		protected override CodeExampleControl GetCodeExampleControl( )
+		{
+			return codeExampleControl;
+		}
+
 		private SiemensS7Net siemensTcpNet = null;
 		private SiemensPLCS siemensPLCSelected = SiemensPLCS.S1200;
 		private SiemensS7Control control;

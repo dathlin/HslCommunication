@@ -69,6 +69,8 @@
 			this.comboBox_recv_encoding = new System.Windows.Forms.ComboBox();
 			this.label_send_tick = new System.Windows.Forms.Label();
 			this.label_recv_tick = new System.Windows.Forms.Label();
+			this.textBox_read_search = new System.Windows.Forms.TextBox();
+			this.linkLabel_search = new System.Windows.Forms.LinkLabel();
 			this.panel4.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -101,11 +103,11 @@
 			// 
 			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox5.Location = new System.Drawing.Point(3, 447);
+			this.textBox5.Location = new System.Drawing.Point(3, 433);
 			this.textBox5.Multiline = true;
 			this.textBox5.Name = "textBox5";
 			this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox5.Size = new System.Drawing.Size(858, 74);
+			this.textBox5.Size = new System.Drawing.Size(858, 88);
 			this.textBox5.TabIndex = 44;
 			// 
 			// label11
@@ -159,7 +161,7 @@
 			this.richTextBox_main.Location = new System.Drawing.Point(4, 27);
 			this.richTextBox_main.Name = "richTextBox_main";
 			this.richTextBox_main.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-			this.richTextBox_main.Size = new System.Drawing.Size(857, 383);
+			this.richTextBox_main.Size = new System.Drawing.Size(857, 364);
 			this.richTextBox_main.TabIndex = 57;
 			this.richTextBox_main.Text = "";
 			// 
@@ -184,7 +186,7 @@
 			this.panel4.Controls.Add(this.radioButton_append_0a);
 			this.panel4.Controls.Add(this.radioButton_append_0d);
 			this.panel4.Controls.Add(this.label_append);
-			this.panel4.Location = new System.Drawing.Point(424, 415);
+			this.panel4.Location = new System.Drawing.Point(424, 398);
 			this.panel4.Name = "panel4";
 			this.panel4.Size = new System.Drawing.Size(339, 28);
 			this.panel4.TabIndex = 53;
@@ -296,9 +298,10 @@
 			// button_send
 			// 
 			this.button_send.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_send.Location = new System.Drawing.Point(865, 448);
+			this.button_send.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.button_send.Location = new System.Drawing.Point(865, 430);
 			this.button_send.Name = "button_send";
-			this.button_send.Size = new System.Drawing.Size(131, 74);
+			this.button_send.Size = new System.Drawing.Size(131, 89);
 			this.button_send.TabIndex = 45;
 			this.button_send.Text = "发送数据";
 			this.button_send.UseVisualStyleBackColor = true;
@@ -307,7 +310,7 @@
 			// 
 			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(3, 420);
+			this.label6.Location = new System.Drawing.Point(3, 403);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(44, 17);
 			this.label6.TabIndex = 43;
@@ -316,7 +319,7 @@
 			// checkBox_stop_show
 			// 
 			this.checkBox_stop_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkBox_stop_show.Location = new System.Drawing.Point(772, 409);
+			this.checkBox_stop_show.Location = new System.Drawing.Point(772, 392);
 			this.checkBox_stop_show.Name = "checkBox_stop_show";
 			this.checkBox_stop_show.Size = new System.Drawing.Size(89, 21);
 			this.checkBox_stop_show.TabIndex = 54;
@@ -327,7 +330,7 @@
 			// 
 			this.checkBox_auto_return.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox_auto_return.AutoSize = true;
-			this.checkBox_auto_return.Location = new System.Drawing.Point(772, 427);
+			this.checkBox_auto_return.Location = new System.Drawing.Point(772, 410);
 			this.checkBox_auto_return.Name = "checkBox_auto_return";
 			this.checkBox_auto_return.Size = new System.Drawing.Size(75, 21);
 			this.checkBox_auto_return.TabIndex = 56;
@@ -384,7 +387,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBox_sessions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox_sessions.FormattingEnabled = true;
-			this.comboBox_sessions.Location = new System.Drawing.Point(46, 416);
+			this.comboBox_sessions.Location = new System.Drawing.Point(46, 399);
 			this.comboBox_sessions.Name = "comboBox_sessions";
 			this.comboBox_sessions.Size = new System.Drawing.Size(226, 25);
 			this.comboBox_sessions.TabIndex = 66;
@@ -405,12 +408,14 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.AutoScroll = true;
+			this.panel1.Controls.Add(this.linkLabel_search);
 			this.panel1.Controls.Add(this.listBox1);
+			this.panel1.Controls.Add(this.textBox_read_search);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.linkLabel1);
 			this.panel1.Location = new System.Drawing.Point(862, 27);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(140, 383);
+			this.panel1.Size = new System.Drawing.Size(140, 364);
 			this.panel1.TabIndex = 68;
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 			// 
@@ -422,7 +427,7 @@
 			this.listBox1.ItemHeight = 17;
 			this.listBox1.Location = new System.Drawing.Point(5, 22);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(129, 361);
+			this.listBox1.Size = new System.Drawing.Size(129, 310);
 			this.listBox1.TabIndex = 1;
 			// 
 			// label3
@@ -440,7 +445,7 @@
 			this.panel5.BackColor = System.Drawing.SystemColors.Control;
 			this.panel5.Controls.Add(this.radioButton_send_all);
 			this.panel5.Controls.Add(this.radioButton_send_single);
-			this.panel5.Location = new System.Drawing.Point(865, 414);
+			this.panel5.Location = new System.Drawing.Point(865, 397);
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(131, 28);
 			this.panel5.TabIndex = 69;
@@ -487,7 +492,7 @@
             "Binary",
             "ASCII",
             "Unicode"});
-			this.comboBox_send_encoding.Location = new System.Drawing.Point(278, 416);
+			this.comboBox_send_encoding.Location = new System.Drawing.Point(278, 399);
 			this.comboBox_send_encoding.Name = "comboBox_send_encoding";
 			this.comboBox_send_encoding.Size = new System.Drawing.Size(140, 25);
 			this.comboBox_send_encoding.TabIndex = 71;
@@ -526,6 +531,26 @@
 			this.label_recv_tick.Size = new System.Drawing.Size(47, 17);
 			this.label_recv_tick.TabIndex = 74;
 			this.label_recv_tick.Text = "R-Tick:";
+			// 
+			// textBox_read_search
+			// 
+			this.textBox_read_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_read_search.Location = new System.Drawing.Point(4, 337);
+			this.textBox_read_search.Name = "textBox_read_search";
+			this.textBox_read_search.Size = new System.Drawing.Size(93, 23);
+			this.textBox_read_search.TabIndex = 76;
+			// 
+			// linkLabel_search
+			// 
+			this.linkLabel_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.linkLabel_search.AutoSize = true;
+			this.linkLabel_search.Location = new System.Drawing.Point(100, 340);
+			this.linkLabel_search.Name = "linkLabel_search";
+			this.linkLabel_search.Size = new System.Drawing.Size(32, 17);
+			this.linkLabel_search.TabIndex = 77;
+			this.linkLabel_search.TabStop = true;
+			this.linkLabel_search.Text = "搜索";
+			this.linkLabel_search.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_search_LinkClicked);
 			// 
 			// DebugControl
 			// 
@@ -618,5 +643,7 @@
         private System.Windows.Forms.ComboBox comboBox_recv_encoding;
 		private System.Windows.Forms.Label label_send_tick;
 		private System.Windows.Forms.Label label_recv_tick;
+		private System.Windows.Forms.LinkLabel linkLabel_search;
+		private System.Windows.Forms.TextBox textBox_read_search;
 	}
 }

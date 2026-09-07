@@ -14,6 +14,7 @@ using System.Threading;
 using HslCommunication.MQTT;
 using HslCommunication;
 using HslCommunicationDemo.Vip;
+using HslCommunicationDemo.Plugins;
 
 namespace HslCommunicationDemo
 {
@@ -138,6 +139,18 @@ namespace HslCommunicationDemo
 			}
 			Program.Settings.BoolResultRender01 = !Program.Settings.BoolResultRender01;
 		}
+		private void startWithAiServerToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if (Program.Settings.AutoStartAiServer)
+			{
+				startWithAiServerToolStripMenuItem.Image = null;
+			}
+			else
+			{
+				startWithAiServerToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			}
+			Program.Settings.AutoStartAiServer = !Program.Settings.AutoStartAiServer;
+		}
 
 		#region Form Load Close Inni
 
@@ -247,14 +260,19 @@ namespace HslCommunicationDemo
 			imageList.Images.Add( "Orientalmotor",    Properties.Resources.Orientalmotor );     // 64
 			imageList.Images.Add( "kossi",            Properties.Resources.kossi );             // 65
 			imageList.Images.Add( "folder_Closed_16xLG", Properties.Resources.folder_Closed_16xLG ); // 66
+			imageList.Images.Add( "library_16xLG",    Properties.Resources.library_16xLG ); // 67
 
 			panelLeft = new FormPanelLeft( this.dockPanel1, imageList, this.logNet );
 			panelLeft.FormClosing += PanelLeft_FormClosing;
 			panelLeft.Show( dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft );
 
+			if (!Directory.Exists( EdgeServerSettings.PluginsDirectory( ) )) Directory.CreateDirectory( EdgeServerSettings.PluginsDirectory( ) );
+			panelLeft.LoadPlugins( );       // 显示插件的信息
+
 			panelSave = new FormSaveList( this.dockPanel1, imageList, this.logNet, panelLeft.IconImageIndex );
 			panelSave.FormClosing += PanelLeft_FormClosing;
 			panelSave.Show( dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft );
+			panelSave.PanelLeft = panelLeft;
 
 			if (panelSave.LoadDeviceList( ))
 				panelSave.Activate( );
@@ -272,6 +290,15 @@ namespace HslCommunicationDemo
 				this.Text = "调试工具";
 			}
 
+			if (Program.Settings.AutoStartAiServer)
+			{
+				AIGatewayService.Instance.Start( Program.Settings.AiServerUrl );
+				if (AIGatewayService.Instance.IsStarted)
+				{
+					aiToolStripMenuItem.BackColor = Color.Green;
+				}
+			}
+
 			timer = new System.Windows.Forms.Timer( );
 			timer.Interval = 1000;
 			timer.Tick += Timer_Tick;
@@ -283,6 +310,7 @@ namespace HslCommunicationDemo
 			toolStripMenuItem_HomePage.Visible = Program.ShowAuthorInfomation;
 			toolStripMenuItem_ApiDoc.Visible   = Program.ShowAuthorInfomation;
 			免责条款ToolStripMenuItem.Visible  = Program.ShowAuthorInfomation;
+
 		}
 
 		private void PanelLeft_FormClosing( object sender, FormClosingEventArgs e )
@@ -321,6 +349,8 @@ namespace HslCommunicationDemo
 			Program.Settings.WriteSuccessNotShowWindow = WriteSuccessNotShowWindow;
 			Program.Settings.SaveFiles( );
 			mqttClient?.ConnectClose( );
+			if (AIGatewayService.Instance.IsStarted)
+				AIGatewayService.Instance.Stop( );
 		}
 
 		public void PublishMqttMessage( string formName )
@@ -374,6 +404,7 @@ namespace HslCommunicationDemo
 
 			if (Program.Settings.TimerReadWriteFailedContinue) 定时读写失败继续ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
 			if (Program.Settings.BoolResultRender01) boolResultShow01ToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+			if (Program.Settings.AutoStartAiServer) startWithAiServerToolStripMenuItem.Image = Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
 		}
 
 		private void ThreadPoolCheckVersion( object obj )
@@ -510,10 +541,11 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_HomePage.Text = "官方网站";
 				toolStripMenuItem_Debug.Text = "调试(&D)";
 				toolStripMenuItem_Help.Text = "帮助(&H)";
+				plugins_ToolStripMenuItem.Text = "插件(&P)";
 				toolStripMenuItem_Doc.Text = "开发文档";
 				demoSettingToolStripMenuItem.Text = "设置(&S)";
 				toolStripMenuItem_SerialPort.Text = "串口调试";
-				ecologyToolStripMenuItem.Text = "大生态(&E)";
+				aiToolStripMenuItem.Text = "AI工具(&T)";
 				toolStripMenuItem_byteTransform.Text = "字节变换";
 				regexRegularToolStripMenuItem.Text = "正则表达式";
 				formTopMostToolStripMenuItem.Text = "窗体置顶";
@@ -539,9 +571,10 @@ namespace HslCommunicationDemo
 				toolStripMenuItem_Debug.Text = "Debug(&D)";
 				toolStripMenuItem_Help.Text = "Help(&H)";
 				demoSettingToolStripMenuItem.Text = "Setting(&S)";
+				plugins_ToolStripMenuItem.Text = "Plugins(&P)";
 				toolStripMenuItem_Doc.Text = "Document";
 				toolStripMenuItem_SerialPort.Text = "SerialPort";
-				ecologyToolStripMenuItem.Text = "Ecology(&E)";
+				aiToolStripMenuItem.Text = "AI Tool(&T)";
 				showMsToolStripMenuItem.Text = "Time Show Ms";
 				toolStripMenuItem_byteTransform.Text = "ByteTransform";
 				regexRegularToolStripMenuItem.Text = "RegexRegular";
@@ -686,9 +719,14 @@ namespace HslCommunicationDemo
 			new FormHslMap( ).Show( dockPanel1 );
 		}
 
+		private void plugins_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			EdgeServerSettings edgeServerSettings = new EdgeServerSettings( );
+			new Plugins.FormPluginsManagement( this.logNet, edgeServerSettings ).Show( dockPanel1 );
+		}
+
 		private void ecologyToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			OpenWebside( "http://www.hsltechnology.cn:7900/Home/Ecology" );
 		}
 
 		private void toolStripMenuItem_ApiDoc_Click( object sender, EventArgs e )
@@ -699,6 +737,7 @@ namespace HslCommunicationDemo
 		private void authorization授权ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			new FormCharge( ).Show( dockPanel1 );
+			// new FormAuthor( ).ShowDialog( );
 		}
 
 		private void toolStripMenuItem_SerialPort_Click( object sender, EventArgs e )
@@ -848,6 +887,25 @@ namespace HslCommunicationDemo
 		{
 			// 锁住当前的软件操作，并需要输入密码才能继续操作
 
+		}
+
+		private void ecologyToolStripMenuItem1_Click( object sender, EventArgs e )
+		{
+			OpenWebside( "http://www.hsltechnology.cn:7900/Home/Ecology" );
+		}
+
+		private void aISkillToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			OpenWebside( "http://www.hsltechnology.cn:7900/Home/Download" );
+		}
+
+		private void aIMCPServerToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			using(FormAiServer form = new FormAiServer( ) )
+			{
+				form.AiToolStripMenuItem = this.aiToolStripMenuItem;
+				form.ShowDialog( this );
+			}
 		}
 
 	}

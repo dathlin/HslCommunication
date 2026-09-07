@@ -31,9 +31,9 @@
 			this.components = new System.ComponentModel.Container();
 			this.treeView2 = new System.Windows.Forms.TreeView();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.newWindowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.renameDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.newWindowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,6 +54,13 @@
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.Size = new System.Drawing.Size(162, 70);
 			// 
+			// newWindowsToolStripMenuItem
+			// 
+			this.newWindowsToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.view_16xLG;
+			this.newWindowsToolStripMenuItem.Name = "newWindowsToolStripMenuItem";
+			this.newWindowsToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+			this.newWindowsToolStripMenuItem.Text = "NewWindows";
+			// 
 			// deleteDeviceToolStripMenuItem
 			// 
 			this.deleteDeviceToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.action_Cancel_16xLG;
@@ -67,13 +74,6 @@
 			this.renameDeviceToolStripMenuItem.Name = "renameDeviceToolStripMenuItem";
 			this.renameDeviceToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
 			this.renameDeviceToolStripMenuItem.Text = "RenameDevice";
-			// 
-			// newWindowsToolStripMenuItem
-			// 
-			this.newWindowsToolStripMenuItem.Image = global::HslCommunicationDemo.Properties.Resources.view_16xLG;
-			this.newWindowsToolStripMenuItem.Name = "newWindowsToolStripMenuItem";
-			this.newWindowsToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-			this.newWindowsToolStripMenuItem.Text = "NewWindows";
 			// 
 			// FormSaveList
 			// 

@@ -94,6 +94,8 @@ namespace HslCommunicationDemo.DemoControl
 			get => this.batchReadControl2;
 		}
 
+		public DataTableControl DataTableControl => this.dataTableControl1;
+
 		public void AddSpecialFunctionTab( UserControl control, bool show = false, string title = null )
 		{
 			if (control != null)

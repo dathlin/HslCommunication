@@ -9,9 +9,9 @@ namespace HslCommunicationDemo.PLC.Lsis
 {
 	internal class Helper
 	{
-		public static DeviceAddressExample[] GetLsisCnetAddress( )
+		public static DeviceAddressExample[] GetLsisCnetAddress( bool withStation = true )
 		{
-			return new DeviceAddressExample[]
+			List< DeviceAddressExample > list = new List<DeviceAddressExample>
 			{
 				new DeviceAddressExample( "PB0",  "",       true, true, "示例: PX100,PB100,PW100,PD100,PL100  位读取时支持 PW100.0" ),
 				new DeviceAddressExample( "MB0",  "",       true, true, "示例: MX100,MB100,MW100,MD100,ML100  位读取时支持 MW100.0" ),
@@ -29,8 +29,12 @@ namespace HslCommunicationDemo.PLC.Lsis
 				new DeviceAddressExample( "ZB0",  "",       true, true, "示例: ZX100,ZB100,ZW100,ZD100,ZL100" ),
 				new DeviceAddressExample( "RB0",  "",       true, true, "示例: RX100,RB100,RW100,RD100,RL100" ),
 				new DeviceAddressExample( "M0",  "",       true, true, "以上地址如果不写类型，则默认都是 MW0" ),
-				new DeviceAddressExample( "s=2;M0",  "",       true, true, "地址里支持携带站号" ),
 			};
+			if (withStation)
+			{
+				list.Add( new DeviceAddressExample( "s=2;M0", "", true, true, "地址里支持携带站号" ) );
+			}
+			return list.ToArray( );
 		}
 	}
 }

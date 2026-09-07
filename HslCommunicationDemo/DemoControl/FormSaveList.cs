@@ -93,12 +93,12 @@ namespace HslCommunicationDemo.DemoControl
 			deviceList.AddDevice( element );
 			RefreshSaveDevices( );
 			string guid = HslFormContent.GetXmlValue( element, DemoDeviceList.XmlGuid, string.Empty, m => m );
-			if (!string.IsNullOrEmpty(guid) && hslForm != null)
+			if (!string.IsNullOrEmpty( guid ) && hslForm != null)
 			{
 				if (this.formInstances.ContainsKey( guid ))
 					this.formInstances[guid] = hslForm;
 				else
-					this.formInstances.Add(guid, hslForm);
+					this.formInstances.Add( guid, hslForm );
 			}
 
 			File.WriteAllText( Path.Combine( Application.StartupPath, "devices.xml" ), deviceList.GetDevices.ToString( ) );
@@ -240,18 +240,31 @@ namespace HslCommunicationDemo.DemoControl
 			}
 		}
 
+		public FormPanelLeft PanelLeft { get; set; }
+
 		private void CreateNewWindows( TreeNode treeNode, XElement element )
 		{
 			string type = element.Attribute( DemoDeviceList.XmlType ).Value;
 			HslFormContent hslForm = null;
 			// 读取类型
-			foreach (var item in formTypes)
+			if (type == "FormPluginsNet")
 			{
-				if (item.Name == type)
+				//element.SetAttributeValue( "PluginFileName", this.deviceDefinition.PluginFilePath );
+				//element.SetAttributeValue( "PluginDeviceName", this.deviceDefinition.DeviceName );
+
+				hslForm = new FormPluginsNet( PanelLeft.GetPluginsDefinition( element.Attribute( "PluginFileName" ).Value, element.Attribute( "PluginDeviceName" ).Value ));
+				hslForm.LogNet = this.logNet;
+			}
+			else
+			{
+				foreach (var item in formTypes)
 				{
-					hslForm = (HslFormContent)item.GetConstructors( )[0].Invoke( null );
-					hslForm.LogNet = this.logNet;
-					break;
+					if (item.Name == type)
+					{
+						hslForm = (HslFormContent)item.GetConstructors( )[0].Invoke( null );
+						hslForm.LogNet = this.logNet;
+						break;
+					}
 				}
 			}
 
@@ -269,10 +282,15 @@ namespace HslCommunicationDemo.DemoControl
 						formInstances.Add( guid, hslForm );
 					}
 				}
-				if (treeNode.ImageIndex >= 0)
+				if (treeNode.ImageIndex > 0)
 				{
 					hslForm.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[treeNode.ImageIndex]).GetHicon( ) );
 					hslForm.SetProtocolImage( (Bitmap)imageList.Images[treeNode.ImageIndex] );
+				}
+				else if (!string.IsNullOrEmpty(treeNode.ImageKey))
+				{
+					hslForm.Icon = Icon.FromHandle( ((Bitmap)imageList.Images[treeNode.ImageKey]).GetHicon( ) );
+					hslForm.SetProtocolImage( (Bitmap)imageList.Images[treeNode.ImageKey] );
 				}
 				else
 				{
@@ -318,18 +336,6 @@ namespace HslCommunicationDemo.DemoControl
 				// 不存在冒号
 				TreeNode node = new TreeNode( key );
 				node.Tag = element;
-				string type = element.Attribute( DemoDeviceList.XmlType ).Value;
-				if (formIconImageIndex.ContainsKey( type ))
-				{
-					node.ImageIndex = formIconImageIndex[type];
-					node.SelectedImageIndex = formIconImageIndex[type];
-				}
-				else
-				{
-					node.ImageIndex = 0;
-					node.SelectedImageIndex = 0;
-				}
-
 				if (parent == null)
 				{
 					treeView.Nodes.Add( node );
@@ -338,6 +344,34 @@ namespace HslCommunicationDemo.DemoControl
 				{
 					parent.Nodes.Add( node );
 				}
+
+				string type = element.Attribute( DemoDeviceList.XmlType ).Value;
+				if (type == "FormPluginsNet")
+				{
+					XAttribute imageKeyAttr = element.Attribute( "SaveImageKey" );
+					if (imageKeyAttr != null)
+					{
+						string imagekey = imageKeyAttr.Value;
+						node.ImageKey = imagekey;
+						node.SelectedImageKey = imagekey;
+					}
+					else
+					{
+						node.ImageIndex = 0;
+						node.SelectedImageIndex = 0;
+					}
+				}
+				else if( formIconImageIndex.ContainsKey( type ))
+				{
+					node.ImageIndex = formIconImageIndex[type];
+					node.SelectedImageIndex = formIconImageIndex[type];
+				}
+				else 
+				{
+					node.ImageIndex = 0;
+					node.SelectedImageIndex = 0;
+				}
+
 			}
 			else
 			{
@@ -364,7 +398,6 @@ namespace HslCommunicationDemo.DemoControl
 						}
 					}
 				}
-
 
 				if (parentNode == null)
 				{

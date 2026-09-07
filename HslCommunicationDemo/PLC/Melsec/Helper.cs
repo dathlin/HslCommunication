@@ -134,7 +134,7 @@ namespace HslCommunicationDemo.PLC.Melsec
 				new DeviceAddressExample( "S0", "步进继电器",        true, true, "" ),
 				new DeviceAddressExample( "TS0", "定时器触点",       true, false, "" ),
 				new DeviceAddressExample( "CS0", "计数器触点",       true, false, "" ),
-				new DeviceAddressExample( "D0", "数据寄存器",        false, true, "" ),
+				new DeviceAddressExample( "D0", "数据寄存器",        false, true, "读位的话，使用 D100.0" ),
 				new DeviceAddressExample( "R0", "文件寄存器",        false, true, "" ),
 				new DeviceAddressExample( "TN0", "定时器当前值",     false, true, "" ),
 				new DeviceAddressExample( "CN0", "计数器当前值",     false, true, "" ),
@@ -155,7 +155,7 @@ namespace HslCommunicationDemo.PLC.Melsec
 				new DeviceAddressExample( "TC0", "定时器线圈",       true, false, "" ),
 				new DeviceAddressExample( "CS0", "计数器触点",       true, false, "" ),
 				new DeviceAddressExample( "CC0", "计数器线圈",       true, false, "" ),
-				new DeviceAddressExample( "D0", "数据寄存器",        false, true, "" ),
+				new DeviceAddressExample( "D0", "数据寄存器",        false, true, "读位的话，使用 D100.0" ),
 				new DeviceAddressExample( "TN0", "定时器当前值",     false, true, "" ),
 				new DeviceAddressExample( "CN0", "计数器当前值",     false, true, "" )
 			};

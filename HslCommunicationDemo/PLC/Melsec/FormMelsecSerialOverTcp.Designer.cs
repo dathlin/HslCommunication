@@ -37,6 +37,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.userControlReadWriteDevice1 = new HslCommunicationDemo.DemoControl.UserControlReadWriteDevice();
 			this.userControlHead1 = new HslCommunicationDemo.DemoControl.UserControlHead();
+			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -46,6 +47,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.pipeSelectControl1);
 			this.panel1.Controls.Add(this.checkBox_got);
 			this.panel1.Controls.Add(this.checkBox_newVersion);
@@ -65,11 +67,14 @@
 			this.pipeSelectControl1.SerialBaudRate = "9600";
 			this.pipeSelectControl1.SerialDataBits = "8";
 			this.pipeSelectControl1.SerialParity = System.IO.Ports.Parity.None;
+			this.pipeSelectControl1.SerialPortText = "COM2";
 			this.pipeSelectControl1.SerialStopBits = "1";
 			this.pipeSelectControl1.SettingPipe = HslCommunicationDemo.DemoControl.SettingPipe.TcpPipe;
 			this.pipeSelectControl1.Size = new System.Drawing.Size(790, 28);
 			this.pipeSelectControl1.TabIndex = 34;
+			this.pipeSelectControl1.TcpIpText = "127.0.0.1";
 			this.pipeSelectControl1.TcpPortText = "5014";
+			this.pipeSelectControl1.UdpIpText = "127.0.0.1";
 			this.pipeSelectControl1.UdpPortText = "5014";
 			// 
 			// checkBox_got
@@ -152,6 +157,16 @@
 			this.userControlHead1.TabIndex = 2;
 			this.userControlHead1.SaveConnectEvent += new System.EventHandler<System.EventArgs>(this.userControlHead1_SaveConnectEvent_1);
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.Red;
+			this.label1.Location = new System.Drawing.Point(274, 37);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(434, 17);
+			this.label1.TabIndex = 35;
+			this.label1.Text = "注意: 新版本协议写入 bool[] 时使用了读字->修改位->写字实现，存在一定风险";
+			// 
 			// FormMelsecSerialOverTcp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -186,5 +201,6 @@
 		private System.Windows.Forms.CheckBox checkBox_got;
 		private DemoControl.UserControlReadWriteDevice userControlReadWriteDevice1;
 		private DemoControl.PipeSelectControl pipeSelectControl1;
+		private System.Windows.Forms.Label label1;
 	}
 }

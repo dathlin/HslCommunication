@@ -70,7 +70,65 @@ namespace HslCommunicationDemo.DemoControl
 			return hasTableChanged;
 		}
 
+		[Description( "是否显示顶部的菜单栏" )]
+		[DefaultValue( true )]
+		public bool ShowHeadLine 
+		{ 
+			get
+			{
+				return this.showHeadLine;
+			}
+			set
+			{
+				if (this.showHeadLine != value)
+				{
+					this.showHeadLine = value;
+					button_out_clip.Visible = this.showHeadLine;
+					button_from_clip.Visible = this.showHeadLine;
+					button_out_file.Visible = this.showHeadLine;
+					button_from_file.Visible = this.showHeadLine;
+					label2.Visible = this.showHeadLine;
+					button_clear_all.Visible = this.showHeadLine;
+					label1.Visible = this.showHeadLine;
+					textBox_time.Visible = this.showHeadLine;
+					label3.Visible = this.showHeadLine;
+					textBox_sleep_time.Visible = this.showHeadLine;
+					button1.Visible = this.showHeadLine;
 
+					Size size;
+					if (this.showHeadLine)
+					{
+						this.dataGridView1.Location = new Point( 0, 30 );
+						size = new Size( this.Width, this.Height - 30 );
+					}
+					else
+					{
+						this.dataGridView1.Location = new Point( 0, 0 );
+						size = new Size( this.Width, this.Height );
+					}
+					if (size.Width < 30) size.Width = 30;
+					if (size.Height < 30) size.Height = 30;
+					this.dataGridView1.Size = size;
+				}
+			}
+		}
+		private bool showHeadLine = true;
+
+		public void SetDataTableRowSelect( )
+		{
+			this.dataGridView1.AllowDrop = false;
+			this.dataGridView1.AllowUserToAddRows = false;
+			this.dataGridView1.ReadOnly = true;
+			this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+			this.dataGridView1.MultiSelect = false;
+			this.dataGridView1.AllowUserToDeleteRows = false;
+			this.dataGridView1.AllowUserToResizeColumns = false;
+		}
+
+		public void ClearAllRows( )
+		{
+			this.dataGridView1.Rows.Clear( );
+		}
 
 		private void RowDeleteToolStripMenuItem_Click( object sender, EventArgs e )
 		{
@@ -567,6 +625,23 @@ namespace HslCommunicationDemo.DemoControl
 			}
 
 			if (clearEdit) this.hasTableChanged = false;
+		}
+
+		/// <summary>
+		/// Get the current address table content as a plain list of data items.
+		/// This method must be called from the UI thread that owns the grid.
+		/// </summary>
+		public List<DataTableItem> GetDataTableItems( )
+		{
+			List<DataTableItem> items = new List<DataTableItem>( );
+			for (int i = 0; i < dataGridView1.Rows.Count; i++)
+			{
+				DataGridViewRow row = dataGridView1.Rows[i];
+				if (row.IsNewRow) continue;
+				if (row.Cells[2].Value == null) continue;
+				items.Add( GetDataTableItem( row ) );
+			}
+			return items;
 		}
 
 		private void AddRow( DataTableItem dataTableItem )

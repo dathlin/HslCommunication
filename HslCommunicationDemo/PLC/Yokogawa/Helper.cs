@@ -21,7 +21,7 @@ namespace HslCommunicationDemo.PLC.Yokogawa
 				new DeviceAddressExample( "T0",     "Timer relay 定时器",           true, false, "定时器线圈" ),
 				new DeviceAddressExample( "C0",     "Counter relay 计数器",           true, false, "计数器线圈" ),
 				new DeviceAddressExample( "L0",     "Link relay 链接继电器",           true, false, "" ),
-				new DeviceAddressExample( "D0",     "Data register 数据寄存器",           false, true, "" ),
+				new DeviceAddressExample( "D0",     "Data register 数据寄存器",           false, true, "读取位的话  D100.0" ),
 				new DeviceAddressExample( "B0",     "File register 文件寄存器",           false, true, "" ),
 				new DeviceAddressExample( "F0",     "Cache register 缓冲寄存器",           false, true, "" ),
 				new DeviceAddressExample( "R0",     "Shared register 共享寄存器",           false, true, "" ),

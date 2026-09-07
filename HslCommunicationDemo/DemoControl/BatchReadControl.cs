@@ -432,7 +432,7 @@ namespace HslCommunicationDemo.DemoControl
 			{
 				// 读取完整的报文
 				DateTime start = DateTime.Now;
-				OperateResult<byte[]> read = readFunc( textBox_address.Text.ToHexBytes( ) );
+				OperateResult<byte[]> read = readFunc( radioButton1.Checked ? textBox_address.Text.ToHexBytes( ) : SoftBasic.GetFromAsciiStringRender( textBox_address.Text ));
 				RenderReadResult( read, DateTime.Now - start );
 
 				textBox_code.Text = $"OperateResult<byte[]> read = {variableName}.ReadFromCoreServer( \"{textBox_address.Text}\".ToHexBytes( ), true, false );  // 完整的报文";
@@ -894,6 +894,16 @@ namespace HslCommunicationDemo.DemoControl
 			//this.buttonTips3 = (Program.Language == 1 ? "随机字写入，输入多个地址，';'间隔，例如：" : "Random word writing, enter multiple address, ';'Intervals, for example:") + tips;
 		}
 
+		/// <summary>
+		/// 将当前的控件设置为报文读取的方式
+		/// </summary>
+		/// <param name="device">通信对象信息</param>
+		/// <param name="buttomName">按钮的名称</param>
+		/// <param name="tips">默认提示的文本信息</param>
+		public void SetReadSourceBytes( DeviceCommunication device, string buttomName, string tips )
+		{
+			SetReadSourceBytes( m => device.ReadFromCoreServer( m, true, false ), buttomName, tips );
+		}
 
 		/// <summary>
 		/// 将当前的控件设置为报文读取的方式
@@ -962,6 +972,7 @@ namespace HslCommunicationDemo.DemoControl
 					label_tips.Location = new Point( 53, 32 + 40 );
 					textBox_result.Size = new Size( this.Width - (845 - 683), this.Height - (88 + textBoxCodeHeight) - 40 );
 					checkBox_parse.Visible = false;
+					panel1.Visible = true;
 				}
 				else
 				{
@@ -981,6 +992,7 @@ namespace HslCommunicationDemo.DemoControl
 					textBox_result.Location = new Point( 56, 54 );
 					textBox_result.Size = new Size( this.Width - (845 - 683), this.Height - (88 + textBoxCodeHeight) );
 					checkBox_parse.Visible = true;
+					panel1.Visible = false;
 				}
 			}
 		}
@@ -1024,6 +1036,16 @@ namespace HslCommunicationDemo.DemoControl
 					RenderReadBytes( this.buffer );
 				}
 			}
+		}
+
+		private void label8_Click( object sender, EventArgs e )
+		{
+			radioButton2.Checked = true;
+		}
+
+		private void label7_Click( object sender, EventArgs e )
+		{
+			radioButton1.Checked = true;
 		}
 	}
 

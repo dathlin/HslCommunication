@@ -71,11 +71,11 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicExpresso.Core, Version=2.19.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicExpresso.Core.2.19.3\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
+    <Reference Include="DynamicExpresso.Core, Version=2.19.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicExpresso.Core.2.19.5\lib\netstandard2.0\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HslCommunication, Version=12.9.2.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
-      <HintPath>..\packages\HslCommunication.12.9.2\lib\net451\HslCommunication.dll</HintPath>
+    <Reference Include="HslCommunication, Version=13.0.0.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\HslCommunication.13.0.0\lib\net451\HslCommunication.dll</HintPath>
     </Reference>
     <Reference Include="HslControls, Version=3.4.2.0, Culture=neutral, PublicKeyToken=a3ad7c5c937ec0c0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HslControls.3.4.2\lib\net45\HslControls.dll</HintPath>
@@ -228,6 +228,12 @@
       <DependentUpon>DebugRemoteControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\DeviceAddressExample.cs" />
+    <Compile Include="DemoControl\FormAiServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormAiServer.Designer.cs">
+      <DependentUpon>FormAiServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="DemoControl\FormCurveMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,6 +299,12 @@
     </Compile>
     <Compile Include="DemoControl\FormPropertyModify.Designer.cs">
       <DependentUpon>FormPropertyModify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoControl\FormRunDeviceAndDataTableSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoControl\FormRunDeviceAndDataTableSelect.Designer.cs">
+      <DependentUpon>FormRunDeviceAndDataTableSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="DemoControl\FormRunDeviceAndDataSelect.cs">
       <SubType>Form</SubType>
@@ -384,6 +396,7 @@
     <Compile Include="DemoControl\UserControlReadWriteServer.Designer.cs">
       <DependentUpon>UserControlReadWriteServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="AIGatewayService.cs" />
     <Compile Include="DemoDevice.cs" />
     <Compile Include="DemoDeviceList.cs" />
     <Compile Include="DemoSettings.cs" />
@@ -856,6 +869,12 @@
       <DependentUpon>FormDeltaSerialOverTcp.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Fatek\Helper.cs" />
+    <Compile Include="PLC\FormPluginsNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\FormPluginsNet.Designer.cs">
+      <DependentUpon>FormPluginsNet.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLC\Fuji\Helper.cs" />
     <Compile Include="PLC\Ge\GeControl.cs">
       <SubType>UserControl</SubType>
@@ -925,6 +944,24 @@
     </Compile>
     <Compile Include="PLC\Melsec\FormMcA1EServer.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Melsec\FormMcA4CServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Melsec\FormMcA4CServer.Designer.cs">
+      <DependentUpon>FormMcA4CServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Melsec\FormMelsec4COverTcp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Melsec\FormMelsec4COverTcp.Designer.cs">
+      <DependentUpon>FormMelsec4COverTcp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLC\Melsec\FormMelsec4C.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLC\Melsec\FormMelsec4C.Designer.cs">
+      <DependentUpon>FormMelsec4C.cs</DependentUpon>
     </Compile>
     <Compile Include="PLC\Melsec\Helper.cs" />
     <Compile Include="PLC\Omron\FinsTcpControl.cs">
@@ -1333,6 +1370,47 @@
     <Compile Include="PLC\Yokogawa\YokogawaLinkControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Plugins\EdgeServerSettings.cs" />
+    <Compile Include="Plugins\FormPluginsInstall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\FormPluginsInstall.Designer.cs">
+      <DependentUpon>FormPluginsInstall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\FormPluginsManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\FormPluginsManagement.Designer.cs">
+      <DependentUpon>FormPluginsManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\FormPluginsServerSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\FormPluginsServerSetting.Designer.cs">
+      <DependentUpon>FormPluginsServerSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\IEdgePlugins.cs" />
+    <Compile Include="Plugins\JsonSystemVersionConverter.cs" />
+    <Compile Include="Plugins\PluginsDefinition.cs" />
+    <Compile Include="Plugins\PluginsDetailsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plugins\PluginsDetailsControl.Designer.cs">
+      <DependentUpon>PluginsDetailsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\PluginsItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plugins\PluginsItemControl.Designer.cs">
+      <DependentUpon>PluginsItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\PluginsListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plugins\PluginsListControl.Designer.cs">
+      <DependentUpon>PluginsListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ServerPluginItem.cs" />
     <Compile Include="Redis\ConsoleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2240,6 +2318,9 @@
     <EmbeddedResource Include="DemoControl\DebugRemoteControl.resx">
       <DependentUpon>DebugRemoteControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormAiServer.resx">
+      <DependentUpon>FormAiServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormCurveMonitor.resx">
       <DependentUpon>FormCurveMonitor.cs</DependentUpon>
     </EmbeddedResource>
@@ -2272,6 +2353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormPropertyModify.resx">
       <DependentUpon>FormPropertyModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoControl\FormRunDeviceAndDataTableSelect.resx">
+      <DependentUpon>FormRunDeviceAndDataTableSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DemoControl\FormRunDeviceAndDataSelect.resx">
       <DependentUpon>FormRunDeviceAndDataSelect.cs</DependentUpon>
@@ -2558,6 +2642,9 @@
     <EmbeddedResource Include="PLC\Delta\FormDeltaSerialOverTcp.resx">
       <DependentUpon>FormDeltaSerialOverTcp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PLC\FormPluginsNet.resx">
+      <DependentUpon>FormPluginsNet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PLC\Ge\GeControl.resx">
       <DependentUpon>GeControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -2593,6 +2680,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Melsec\FormMcA1EServer.resx">
       <DependentUpon>FormMcA1EServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Melsec\FormMcA4CServer.resx">
+      <DependentUpon>FormMcA4CServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Melsec\FormMelsec4COverTcp.resx">
+      <DependentUpon>FormMelsec4COverTcp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLC\Melsec\FormMelsec4C.resx">
+      <DependentUpon>FormMelsec4C.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Omron\FinsTcpControl.resx">
       <DependentUpon>FinsTcpControl.cs</DependentUpon>
@@ -2806,6 +2902,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\Yokogawa\YokogawaLinkControl.resx">
       <DependentUpon>YokogawaLinkControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\FormPluginsInstall.resx">
+      <DependentUpon>FormPluginsInstall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\FormPluginsManagement.resx">
+      <DependentUpon>FormPluginsManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Redis\ConsoleControl.resx">
       <DependentUpon>ConsoleControl.cs</DependentUpon>
@@ -3299,6 +3401,7 @@
     <None Include="img\secs_f.png" />
     <None Include="img\Orientalmotor.png" />
     <None Include="img\kossi.png" />
+    <None Include="img\library_16xLG.png" />
     <Content Include="img\Yamatake.png" />
     <None Include="img\yokogawa.png" />
     <None Include="img\xinje.png" />

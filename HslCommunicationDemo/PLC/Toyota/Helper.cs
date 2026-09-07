@@ -35,7 +35,7 @@ namespace HslCommunicationDemo.PLC.Toyota
 				new DeviceAddressExample( "EY0",    "扩展输出继电器", true, true, "地址使用16进制，范围 EY0 ~ EY7FF" ),
 				new DeviceAddressExample( "EM0",    "扩展内部继电器", true, true, "地址使用16进制，范围 EM0 ~ EM1FFF" ),
 				new DeviceAddressExample( "ES0",    "扩展特殊寄存器", false, true, "地址使用16进制，范围 ES0 ~ ES7FF" ),
-				new DeviceAddressExample( "ENO",    "扩展当前值寄存器", false, true, "地址使用16进制，范围 EN0 ~ EN7FF" ),
+				new DeviceAddressExample( "EN0",    "扩展当前值寄存器", false, true, "地址使用16进制，范围 EN0 ~ EN7FF" ),
 				new DeviceAddressExample( "H0",    "扩展设置定寄存器", false, true, "地址使用16进制，范围 H0 ~ H7FF" ),
 				new DeviceAddressExample( "U0",    "扩展数据寄存器", false, true, "地址使用16进制，范围 U0 ~ U7FFF" ),
 				new DeviceAddressExample( "GX0",    "扩展输入继电器", false, true, "地址使用16进制，范围 GX0 ~ GXFFFF" ),

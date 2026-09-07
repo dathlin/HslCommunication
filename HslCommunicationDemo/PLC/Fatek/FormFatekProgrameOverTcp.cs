@@ -95,7 +95,7 @@ namespace HslCommunicationDemo
 					// 设置批量读取
 					userControlReadWriteDevice1.BatchRead.SetReadWriteNet( fatekProgram, "D100", string.Empty );
 					// 设置报文读取
-					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( m => fatekProgram.ReadFromCoreServer( m, true, false ), string.Empty, string.Empty );
+					userControlReadWriteDevice1.MessageRead.SetReadSourceBytes( fatekProgram, string.Empty, string.Empty );
 
 					control.SetDevice( fatekProgram, "D100" );
 
